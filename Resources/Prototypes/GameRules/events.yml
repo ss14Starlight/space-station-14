@@ -120,6 +120,7 @@
       min:  30
       max:  30
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncementColor: "#18abf5"
     startAudio:
       path: /Audio/Announcements/announce.ogg
@@ -255,7 +256,7 @@
       pickPlayer: false
       startingGear: SpaceNinjaGear
       roleLoadout:
-      - RoleSurvivalEVA
+      - RoleSurvivalSpaceNinja
       briefing:
         text: ninja-role-greeting
         color: Green
@@ -276,6 +277,10 @@
         nameFormat: name-format-ninja
       mindRoles:
       - MindRoleNinja
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
   - type: DynamicRuleCost
     cost: 75
 
@@ -345,6 +350,7 @@
     - spawnerPrototype: SpawnPointGhostWizard
       min: 1
       max: 1
+      prefRoles: [ Wizard ] #starlight
       playerRatio: 1
       pickPlayer: false
       startingGear: WizardBlueGear
@@ -368,6 +374,10 @@
         nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
 
 # disabled until event is rewritten to be more interesting
 #- type: entity
@@ -384,6 +394,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-gas-leak-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
@@ -614,6 +625,10 @@
         - Syndicate
       mindRoles:
       - MindRoleLoneops
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
   - type: DynamicRuleCost
     cost: 75
 
@@ -622,6 +637,7 @@
   id: SleeperAgents
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     earliestStart: 40 # 🌟Starlight🌟 Casualization
     weight: 6 # 🌟Starlight🌟 Casualization
     minimumPlayers: 15

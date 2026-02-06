@@ -16,7 +16,7 @@
         state: gorilla_rampage
 
 - type: entity
-  parent: BaseImplantAction
+  parent: [BaseMentalAction, BaseImplantAction]
   id: ActionActivateBluespaceImplant
   name: An advanced subdermal implant that, when activated, teleports the user far away.
   description: An advanced subdermal implant that, when activated, teleports the user far away.
@@ -34,7 +34,7 @@
       state: bluespace_implant
 
 - type: entity
-  parent: BaseImplantAction
+  parent: [BaseMentalAction, BaseImplantAction]
   id: ActionActivateRedspaceImplant
   name: An advanced subdermal implant that, when activated, teleports the user far away.
   description: An advanced subdermal implant that, when activated, teleports the user far away.
@@ -53,7 +53,7 @@
 
 # Gear Acidifier
 - type: entity
-  parent: BaseImplantAction
+  parent: [BaseMentalAction, BaseImplantAction]
   id: ActionActivateGearAcidifier
   name: Activate Gear-Acidifier
   description: Activates your gear-acidifier, melting your equipment but leaving your body intact

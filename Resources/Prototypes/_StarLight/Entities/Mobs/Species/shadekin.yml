@@ -121,17 +121,18 @@
     - type: Blindable
     - type: DarkenedVision
     # Other
-    - type: Temperature
+    - type: TemperatureDamage
       heatDamageThreshold: 325
       coldDamageThreshold: 260
-      currentTemperature: 310.15
-      specificHeat: 42
       coldDamage:
         types:
           Cold: 0.1 #per second, scales with temperature & other constants
       heatDamage:
         types:
           Heat: 1.5 #per second, scales with temperature & other constants
+    - type: Temperature
+      currentTemperature: 310.15
+      specificHeat: 42
     - type: TemperatureSpeed
       thresholds:
         293: 0.8

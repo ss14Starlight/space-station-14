@@ -60,8 +60,8 @@ public sealed partial class BorgSubtypeDefinitionComponent : Component
 
     [DataField, AutoNetworkedField] public Vector2? Offset;
 
-    [DataField, AutoNetworkedField] public string PetSuccessString = "petting-success-generic-cyborg";
-    [DataField, AutoNetworkedField] public string PetFailureString = "petting-failure-generic-cyborg";
+    [DataField, AutoNetworkedField] public LocId PetSuccessString = "petting-success-generic-cyborg";
+    [DataField, AutoNetworkedField] public LocId PetFailureString = "petting-failure-generic-cyborg";
 
     /// <summary>
     /// Sound specifier for footstep sounds created by this subtype.

@@ -181,7 +181,9 @@ public abstract partial class SharedStunSystem : EntitySystem
         if (!Resolve(entity, ref entity.Comp, false))
             return false;
 
-        return TryKnockdown(entity, time, refresh, autoStand, drop, force);
+        // Starlight edit start - add voluntary value
+        return TryKnockdown(entity, time, refresh, autoStand, drop, force, voluntary: true);
+        // Starlight edit end
     }
 
     /// <inheritdoc cref="TryCrawling(Entity{CrawlerComponent?},TimeSpan?,bool,bool,bool,bool)"/>
@@ -195,7 +197,9 @@ public abstract partial class SharedStunSystem : EntitySystem
         if (!Resolve(entity, ref entity.Comp, false))
             return false;
 
-        return TryKnockdown(entity, entity.Comp.DefaultKnockedDuration, refresh, autoStand, drop, force);
+        // Starlight edit start - add voluntary value
+        return TryKnockdown(entity, entity.Comp.DefaultKnockedDuration, refresh, autoStand, drop, force, voluntary: true);
+        // Starlight edit end
     }
 
     /// <summary>
@@ -206,8 +210,11 @@ public abstract partial class SharedStunSystem : EntitySystem
     /// <param name="autoStand">Whether we want to automatically stand when knockdown ends.</param>
     /// <param name="drop">Whether we should drop items.</param>
     /// <param name="force">Should we force the status effect?</param>
-    public bool CanKnockdown(Entity<StandingStateComponent?> entity, ref TimeSpan? time, ref bool autoStand, ref bool drop, bool force = false)
+    /// <param name="voluntary">Indicates whether the knockdown is voluntary</param>
+    // Starlight edit start - add voluntary value
+    public bool CanKnockdown(Entity<StandingStateComponent?> entity, ref TimeSpan? time, ref bool autoStand, ref bool drop, bool force = false, bool voluntary = false)
     {
+    // Starlight edit end
         if (time <= TimeSpan.Zero)
             return false;
 
@@ -215,7 +222,9 @@ public abstract partial class SharedStunSystem : EntitySystem
         if (!Resolve(entity, ref entity.Comp, false))
             return false;
 
-        var evAttempt = new KnockDownAttemptEvent(autoStand, drop, time);
+        // Starlight edit start - add voluntary value
+        var evAttempt = new KnockDownAttemptEvent(autoStand, drop, time, voluntary);
+        // Starlight edit end
         RaiseLocalEvent(entity, ref evAttempt);
 
         autoStand = evAttempt.AutoStand;
@@ -233,10 +242,13 @@ public abstract partial class SharedStunSystem : EntitySystem
     /// <param name="autoStand">Whether we want to automatically stand when knockdown ends.</param>
     /// <param name="drop">Whether we should drop items.</param>
     /// <param name="force">Should we force the status effect?</param>
-    public bool TryKnockdown(Entity<CrawlerComponent?> entity, TimeSpan? time, bool refresh = true, bool autoStand = true, bool drop = true, bool force = false)
+    /// <param name="voluntary">Indicates whether the knockdown is voluntary</param>
+    // Starlight edit start - add voluntary value
+    public bool TryKnockdown(Entity<CrawlerComponent?> entity, TimeSpan? time, bool refresh = true, bool autoStand = true, bool drop = true, bool force = false, bool voluntary = false)
     {
-        if (!CanKnockdown(entity.Owner, ref time, ref autoStand, ref drop, force))
+        if (!CanKnockdown(entity.Owner, ref time, ref autoStand, ref drop, force, voluntary))
             return false;
+    // Starlight edit end
 
         // If the entity can't crawl they also need to be stunned, and therefore we should be using paralysis status effect.
         // Also time shouldn't be null if we're and trying to add time but, we check just in case anyways.

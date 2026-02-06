@@ -50,6 +50,8 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/captain.ogg
+  - type: StealTarget # Starlight
+    stealGroup: ClothingHeadsetAltCommand # Starlight
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]

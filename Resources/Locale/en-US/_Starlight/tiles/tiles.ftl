@@ -7,3 +7,5 @@ tiles-sepia-floor = sepia tile
 tiles-terracotta-floor = terracotta tile
 tiles-terracotta-diagonal-floor = diagonal terracotta tile
 tiles-terracotta-small-floor = small terracotta tile
+tiles-abyss-floor = abyss floor
+tiles-abductor-floor = abductor floor

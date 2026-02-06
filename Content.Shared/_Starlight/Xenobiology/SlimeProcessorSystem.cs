@@ -4,7 +4,9 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Jittering;
 using Content.Shared.Power;
-using Content.Shared.Storage.Components;
+using Content.Shared.Verbs;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
@@ -17,22 +19,51 @@ public sealed class SlimeProcessorSystem : EntitySystem
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly SharedJitteringSystem _jitteringSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<SlimeProcessorComponent, ActivateInWorldEvent>(OnAfterActivate);
         SubscribeLocalEvent<SlimeProcessorComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<SlimeProcessorComponent, GetVerbsEvent<InteractionVerb>>(OnGetVerb);
     }
 
     private void OnAfterActivate(Entity<SlimeProcessorComponent> ent, ref ActivateInWorldEvent args)
     {
-        if (ent.Comp.SlimeContainer.ContainedEntities.Count <= 0) return;
+        if (CanActivate(ent))
+            EnableProcessingWrapper(ent);
+    }
+
+    private void OnGetVerb(Entity<SlimeProcessorComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
+    {
+        if (!args.CanInteract || !args.CanAccess)
+            return;
+        
+        var itemVerb = new InteractionVerb();
+        itemVerb.Text = Loc.GetString("comp-slime-processor-verb-activate");
+        if (CanActivate(ent))
+        {
+            itemVerb.Message = Loc.GetString("comp-slime-processor-verb-activate-message-success");
+        }
+        else
+        {
+            itemVerb.Disabled = true;
+            itemVerb.Message = Loc.GetString("comp-slime-processor-verb-activate-message-no-slimes");
+        }
+        itemVerb.Act = () => EnableProcessingWrapper(ent);
+        args.Verbs.Add(itemVerb);
+    }
+
+    private void EnableProcessingWrapper(Entity<SlimeProcessorComponent> ent)
+    {
         EnableProcessing(ent, _entityManager, _gameTiming);
         _jitteringSystem.AddJitter(ent.Owner, -10, 100);
+        _audioSystem.PlayPredicted(new SoundPathSpecifier("/Audio/Machines/blender.ogg"), ent.Owner, null);
     }
-    
+
+    private bool CanActivate(Entity<SlimeProcessorComponent> ent) => ent.Comp.SlimeContainer.ContainedEntities.Count > 0 && !_entityManager.HasComponent<ActiveSlimeProcessorComponent>(ent.Owner);
+
     private void OnPowerChanged(Entity<SlimeProcessorComponent> ent, ref PowerChangedEvent args)
     {
         if (!args.Powered)
@@ -129,7 +160,7 @@ public sealed class CollectingSlimeProcessorSystem : EntitySystem
         while (query.MoveNext(out var uid, out var collectingSlimeProcessorComponent))
         {
             if (!_entityManager.TryGetComponent(uid, out SlimeProcessorComponent? slimeProcessorComponent)) continue;
-            slimeProcessorComponent.SlimeContainer = _container.EnsureContainer<ContainerSlot>(uid, SlimeProcessorComponent.SlimeContainerName);
+            slimeProcessorComponent.SlimeContainer = _container.EnsureContainer<Container>(uid, SlimeProcessorComponent.SlimeContainerName);
             if (!collectingSlimeProcessorComponent.SlimeAcquireMoment.HasValue)
             {
                 collectingSlimeProcessorComponent.SlimeAcquireMoment = _gameTiming.CurTime + slimeProcessorComponent.SlimeAcquireCooldown;
@@ -137,13 +168,13 @@ public sealed class CollectingSlimeProcessorSystem : EntitySystem
             }
 
             if (collectingSlimeProcessorComponent.SlimeAcquireMoment.Value > _gameTiming.CurTime) continue;
-            foreach (var entity in _entityLookupSystem.GetEntitiesInRange(uid, 1F))
+            foreach (var entity in _entityLookupSystem.GetEntitiesInRange<SlimeComponent>(Transform(uid).Coordinates, 1F))
             {
-                if (!_entityManager.TryGetComponent(entity, out SlimeComponent? slimeComponent)) continue;
+                if (_container.IsEntityOrParentInContainer(entity.Owner)) continue;
                 if (!_entityManager.TryGetComponent(entity, out DamageableComponent? damageableComponent)) continue;
                 if (damageableComponent.TotalDamage >= 200)
                 {
-                    _container.Insert(entity, slimeProcessorComponent.SlimeContainer);
+                    _container.Insert(entity.Owner, slimeProcessorComponent.SlimeContainer);
                     collectingSlimeProcessorComponent.SlimeAcquireMoment = _gameTiming.CurTime + slimeProcessorComponent.SlimeAcquireCooldown;
                     break;
                 }

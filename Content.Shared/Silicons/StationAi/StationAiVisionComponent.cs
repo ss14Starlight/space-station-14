@@ -38,4 +38,12 @@ public sealed partial class StationAiVisionComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public float Range = 7.5f;
+
+    /// <summary>
+    /// Starlight Addition!
+    /// The tags that should be assigned to tiles in range, if any.
+    /// Meant for views that should be selective with what is visible, like the xenobiology console camera.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public HashSet<string> Tags = new();
 }

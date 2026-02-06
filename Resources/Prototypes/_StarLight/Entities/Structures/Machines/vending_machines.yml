@@ -113,6 +113,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Machines/VendingMachines/fashionmat.rsi
   - type: Store
+    grid: true
     name: vendor-fashion-o-mat
     categories:
     - SLFashionSkirt
@@ -243,6 +244,80 @@
       range: 200
     - type: AbductorDispencer
 
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineDonk
+  name: Donk on the Go
+  description: Hot and ready when you're on the run! Donk Pockets- It's food, legally.
+  components:
+  - type: VendingMachine
+    pack: DonkPocketsMachineInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 2
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineDonkCircuitboard # Starlight-edit: Vending Machine boards
+  - type: DatasetVocalizer
+    dataset: DonkPocketMachineAds
+  - type: SpeakOnUIClosed
+    pack: DonkPocketMachineGoodbyes
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/donk.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 2.0
+    color: "#ad7c4b"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineIceCream
+  name: I Scream Ice-Cream
+  description: A vending machine full of delicious ice cream. ScaryCorp assures that you don't actually have to scream anything.
+  components:
+  - type: VendingMachine
+    pack: IceCreamInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineIceCreamCircuitboard # Starlight-edit: Vending Machine boards
+  - type: DatasetVocalizer
+    dataset: IceCreamAds
+  - type: SpeakOnUIClosed
+    pack: IceCreamGoodbyes
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/icecream.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#aee8f5"
+
+# Empty
 - type: entity
   parent: VendingMachineCondiments
   id: VendingMachineCondimentsEmpty
@@ -754,3 +829,16 @@
   components:
     - type: EmptyVendingMachine
 
+- type: entity
+  parent: VendingMachineDonk
+  id: VendingMachineDonkEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineIceCream
+  id: VendingMachineIceCreamEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine

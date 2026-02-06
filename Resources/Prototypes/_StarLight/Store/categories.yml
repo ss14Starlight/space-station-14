@@ -161,3 +161,9 @@
 - type: storeCategory
   id: RevUplinkPointless
   name: Glory
+
+# Elf Cantrips
+
+- type: storeCategory
+  id: CantripsStandard
+  name: store-category-cantrips-standard

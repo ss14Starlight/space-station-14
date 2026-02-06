@@ -3,6 +3,12 @@
   name: signal-port-name-body-scanner-sender
   description: signal-port-description-body-scanner-sender
   defaultLinks: [ BodyScannerReceiver ]
+  
+- type: sourcePort
+  id: AiLawConsoleSender
+  name: signal-port-name-ai-law-console-sender
+  description: signal-port-description-ai-law-console-sender
+  defaultLinks: [ AiLawConsoleReceiver ]
 
 - type: sourcePort
   id: ScanGateSuccess

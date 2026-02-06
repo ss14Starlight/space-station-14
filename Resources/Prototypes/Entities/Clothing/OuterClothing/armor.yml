@@ -184,7 +184,6 @@
         Heat: 0.9
     # Starlight-start
     staminaModifier: 0.55
-    ignoreKnockdown: true
     # Starlight-end
   - type: ExplosionResistance
     damageCoefficient: 0.9
@@ -216,7 +215,6 @@
         Caustic: 0.5
     # Starlight-start
     staminaModifier: 0.35
-    ignoreKnockdown: true
     # Starlight-end
   - type: ExplosionResistance
     damageCoefficient: 0.5
@@ -327,10 +325,10 @@
         startValue: 0.1
         endValue: 2.0
         isLooped: true
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 600
     startingCharge: 600
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRechargeRate: 2
   - type: Item
     size: Normal

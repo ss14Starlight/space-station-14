@@ -9,8 +9,9 @@ job-description-cadet = Learn the basics of arresting criminals and managing the
 job-description-captain = Keep the station running, delegate work to the other heads of staff, and exert your will.
 job-description-cargotech = Deal with requisitions and deliveries, pilot the cargo shuttle to the trade station and back, and work with others to make ludicrous amounts of cash and then waste it all gambling.
 job-description-ce = Manage the Engineering department to ensure power, atmospherics, and the hull are in perfect shape.
-job-description-centcomoff = Act as an ambassador to the newest state-of-the-art space station in Nanotrasen's fleet.
-job-description-chaplain = Preach the good word of your deity and religion, and conduct spiritual healing and miracles with your bible.
+job-description-centcommoff = Act as an ambassador to the newest state-of-the-art space station in Nanotrasen's fleet.
+# Starlight: revised:
+job-description-chaplain = Preach the good word of your deity and religion, and conduct spiritual healing and miracles with your holy book.
 job-description-chef = Keep the station fed with a variety of food items, butcher dead animals to ensure ammonia doesn't leak, and help keep the bar lively.
 job-description-chemist = Produce medicinal drugs for the doctors to use, research ethically dubious rare chemicals, and produce weapons of war when enemies of the station arrive.
 job-description-clown = Entertain the crew through elaborate slapstick routines or terrible jokes.
@@ -19,7 +20,8 @@ job-description-paramedic = Rescue critically injured patients all over the stat
 job-description-detective = Investigate crime scenes using forensic tools, ensure that the guilty party is found, and have a couple smokes.
 job-description-doctor = Diagnose and heal crewmembers through medicinal chemicals, advanced medicine, and defibrillators. Make sure the dead don't rot, and that cadavers are in the morgue.
 job-description-engineer = Keep the station's main engine & solars active, optimize the power network, and make emergency repairs using your hardsuit in spaced areas.
-job-description-ertchaplain = Ensure the station crew's last rights are taken care of.
+# Starlight: revised:
+job-description-ertchaplain = See to the crew's last rites.
 job-description-ertengineer = Ensure that the station has power and clean air.
 job-description-ertjanitor = Ensure that the station is properly cleaned--for morale.
 job-description-ertleader = Lead the Emergency Response Team in dealing with threats to Nanotrasen assets.

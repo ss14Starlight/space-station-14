@@ -19,10 +19,10 @@
   - type: Clothing
     slots:
     - outerClothing
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
+  # - type: ClothingSpeedModifier # Starlight removal: Why did WizDen do this???
+  #   walkModifier: 0.9
+  #   sprintModifier: 0.9
+  # - type: HeldSpeedModifier
 
 - type: entity
   abstract: true
@@ -131,6 +131,9 @@
         Piercing: 0.95
         Heat: 0.90
         Radiation: 0.25
+    # Starlight edit start - ignore knockdown
+    ignoreKnockdown: true
+    # Starlight edit end
   - type: ToggleableClothing
     slot: head
   - type: ContainerContainer
@@ -153,6 +156,7 @@
     slots:
     - Tail
   - type: ArmorSparkEffect #starlight
+  - type: HeatRadiationBlocker # Starlight - Prevents the body from radiating heat
 
 - type: entity
   abstract: true
@@ -185,6 +189,7 @@
   - type: HideLayerClothing
     slots:
     - Tail
+  - type: HeatRadiationBlocker # Starlight - Prevents the body from radiating heat
 
 - type: entity
   parent: ClothingOuterBase

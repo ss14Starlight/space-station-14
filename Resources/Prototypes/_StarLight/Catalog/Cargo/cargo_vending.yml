@@ -17,3 +17,23 @@
   cost: 1000
   category: cargoproduct-category-name-service
   group: market
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockDonk
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: CrateVendingMachineRestockDonkFilled
+  cost: 800
+  category: cargoproduct-category-name-service
+  group: market
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockIceCream
+  icon:
+    sprite: _Starlight/Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: CrateVendingMachineRestockIceCreamFilled
+  cost: 1200
+  category: cargoproduct-category-name-service
+  group: market

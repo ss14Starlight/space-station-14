@@ -185,7 +185,6 @@
       tail_prosthetic_hightech:
         type: !type:SimpleColoring
           color: white
-  forcedColoring: true
   sprites:
   - sprite: _Starlight/Mobs/Customization/Resomi/resomi_tail_markings.rsi
     state: tail_prosthetic_hightech

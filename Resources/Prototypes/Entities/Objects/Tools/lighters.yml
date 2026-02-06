@@ -338,7 +338,7 @@
 - type: entity
   parent: [BaseBrandedLighter, BaseSyndicateContraband, FlippoLighter] #SL Edit: added flippolighter parent
   id: SyndicateFlippo
-  name: Blood-red flippo
+  name: blood-red flippo # Starlight-edit
   description: "A 'Valid' choice in lighters. Contains no copper. Causes nasty burns if mishandled."
   components:
   - type: Sprite
@@ -420,7 +420,7 @@
 - type: entity
   parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: CybersunFlippo
-  name: CyberSun Flippo
+  name: CyberSun flippo # Starlight-edit
   description: "A Sleek black and magenta flippo lighter, bearing the logo and iconography of CyberSun Industries."
   components:
   - type: Sprite
@@ -440,7 +440,7 @@
 - type: entity
   parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: InterdyneFlippo
-  name: Interdyne Flippo
+  name: Interdyne flippo # Starlight-edit
   description: "A deep blue flippo lighter, decorated with the logo of Interdyne Pharmaceuticals' 'Gene Clean' clinics. Become the master of your own cigarette."
   components:
   - type: Sprite
@@ -464,7 +464,7 @@
 - type: entity
   parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: NanotrasenFlippo
-  name: Nanotrasen Flippo
+  name: Nanotrasen flippo  # Starlight-edit
   description: "A navy blue luxury flippo, generally handed out to loyal heads of staff instead of a payraise. Fueled with liquid plasma and burns a little hotter than usual."
   components:
   - type: Sprite
@@ -501,7 +501,7 @@
 - type: entity
   parent: [BaseBrandedLighter, BaseCentcommContraband]
   id: CentCommFlippo
-  name: Gilded CentComm Flippo
+  name: gilded CentComm flippo  # Starlight-edit
   description: "An Ornate, jade embossed and gilded flippo frame containing a bluespace powered jet. The latch is secured by a miniature access reader that only responds to CentComm officials. The nicest lighter known to man."
   suffix: DO NOT MAP
   components:

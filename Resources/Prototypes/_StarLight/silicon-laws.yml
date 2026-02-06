@@ -1,4 +1,15 @@
-  # Borgi Lawset, normal
+# AI Crewsimov Lawset
+# Just Crewsimov With no law 0
+- type: siliconLawset
+  id: CrewsimovAI
+  name: law-crewsimov-name
+  laws:
+  - Crewsimov1
+  - Crewsimov2
+  - Crewsimov3
+  obeysTo: laws-owner-crew
+
+# Borgi Lawset, normal
 - type: siliconLaw
   id: Borgi0
   order: 0
@@ -22,6 +33,8 @@
 
 - type: siliconLawset
   id: BorgiLawset
+  name: law-borgilawset-name
+  startAtZero: true
   laws:
   - Borgi0
   - Borgi1
@@ -45,9 +58,9 @@
   order: 3
   lawString: law-syndiborgi-3
 
-
 - type: siliconLawset
   id: SyndiBorgiLawset
+  name: law-syndiborgilawset-name
   laws:
   - SyndiBorgi1
   - SyndiBorgi2
@@ -88,6 +101,7 @@
 
 - type: siliconLawset
   id: ShadowFactoryBorgiLawset
+  name: law-shadowfactoryborgilawset-name
   laws:
   - ShadowBorgi1
   - ShadowBorgi2
@@ -130,6 +144,8 @@
 
 - type: siliconLawset
   id: CommiemovLawset
+  name: law-commiemovlawset-name
+  startAtZero: true
   laws:
   - Commiemov0
   - Commiemov1
@@ -147,6 +163,7 @@
 
 - type: siliconLawset
   id: SyndimovLawset
+  name: law-syndimovlawset-name
   startAtZero: true
   laws:
   - Syndicate0
@@ -185,6 +202,7 @@
 
 - type: siliconLawset
   id: PanicmovLawset
+  name: law-panicmovlawset-name
   laws:
   - Panicmov1
   - Panicmov2
@@ -193,7 +211,7 @@
   - Panicmov5
   obeysTo: laws-owner-crew
 
-  # Genie in a Core Lawset
+# Genie in a Core Lawset
 - type: siliconLaw
   id: Genie1
   order: 1
@@ -222,6 +240,7 @@
 
 - type: siliconLawset
   id: GenieLawset
+  name: law-genielawset-name
   laws:
   - Genie1
   - Genie2
@@ -253,6 +272,7 @@
 
 - type: siliconLawset
   id: ReporterLawset
+  name: law-reporterlawset-name
   laws:
   - Reporter1
   - Reporter2
@@ -278,6 +298,7 @@
 
 - type: siliconLawset
   id: JermovLawset
+  name: law-jermovlawset-name
   laws:
   - Jermov1
   - Jermov2
@@ -301,8 +322,16 @@
 
 - type: siliconLawset
   id: CCLawset
+  name: law-cclawset-name
+  startAtZero: true
   laws:
   - CC0
   - CC1
   - CC2
   obeysTo: laws-owner-centcom
+
+- type: siliconLawset
+  id: FreeLawset
+  name: law-freelawset-name
+  laws: []
+  obeysTo: laws-owner-you

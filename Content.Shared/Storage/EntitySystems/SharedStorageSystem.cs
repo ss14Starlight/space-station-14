@@ -445,6 +445,11 @@ public abstract class SharedStorageSystem : EntitySystem
         if (!Resolve(uid, ref storageComp, false))
             return;
 
+        // Starlight-start: TODO change this to before storage opened event
+        if (HasComp<LockedStorageComponent>(uid) && TryComp<LockComponent>(uid, out var lockComponent) && lockComponent.Locked)
+            return;
+        // Starlight-end
+
         // prevent spamming bag open / honkerton honk sound
         silent |= TryComp<UseDelayComponent>(uid, out var useDelay) && UseDelay.IsDelayed((uid, useDelay), id: OpenUiUseDelayID);
         if (!CanInteract(entity, (uid, storageComp), silent: silent))

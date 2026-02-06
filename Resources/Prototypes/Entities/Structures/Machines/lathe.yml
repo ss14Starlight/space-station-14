@@ -216,6 +216,7 @@
     - Instruments
     - Equipment
     - StarlightProtolatheLootable # Starlight start
+    - StarlightScienceWeapons
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -276,6 +277,7 @@
     - StarlightVendorBoards # Starlight
     dynamicPacks:
     - SecurityScienceBlueSpace # Starlight
+    - StarlightShuttleBoards # Starlight
     - EngineeringBoards
     - CargoBoards
     - MedicalBoards
@@ -287,6 +289,7 @@
     - StarlightMechBoards
     - StarlightLawboards
     - StarlightCircuitImprinterLootable
+    - ReactorCircuitboards # FH edit
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
@@ -439,7 +442,9 @@
     - SecurityScienceBlueSpace # Stalright
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
-    - StarlightDefenseStatic
+    - SecurityDisablers
+    - StarlightDefenseStatic # starlight start
+    - SecurityCyberLimbs
     - StarlightSecurityEquipment
     - StarlightSecurityBoards
     - StarlightSecurityExplosives
@@ -455,6 +460,7 @@
     emagStaticPacks:
     - StarlightSyndicateModulesSecfab
     - StarlightSyndicateAmmoStatic
+    - StarlightSecurityGrenadesEmag
   #endregion Starlight secfab emagging
     - SyndicateAmmoStatic
   - type: MaterialStorage
@@ -526,8 +532,10 @@
     - MedicalClothingStatic
     - EmptyMedkitsStatic
     - StarlightMedicalStatic # Starlight
+    - AACTabletStatic # Moffstation - AAC tablet
     dynamicPacks:
     - StarlightSurgeryDynamic
+    - StarlightAutomendersDynamic # Starlight-edit
     - StarlightCyberlimbDynamic
     - StarlightCyberOrgansDynamic
     - StarlightImplantDynamic
@@ -685,7 +693,7 @@
           variation: 0.250
     - type: AltUseToggle
     - type: ComponentToggler
-      components: 
+      components:
       - type: MagnetPickup
         range: 3
         requiresEquipping: false

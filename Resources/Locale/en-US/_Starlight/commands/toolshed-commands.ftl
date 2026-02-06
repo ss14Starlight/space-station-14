@@ -1,3 +1,7 @@
+command-description-radio-addcustom =
+    Add a custom channel to the specified component on the piped entity. Specify true or false at the end to ensure the component exists.
+command-description-radio-remcustom =
+    Remove a custom channel with the given ID from the specified component on the piped entity.
 command-description-container-insert =
     Inserts the given entity into the specified container on the piped entity.
 command-description-container-insertmany =
@@ -28,3 +32,21 @@ command-description-solution-adjtemperature =
     Adjusts the capacity on the given solution.
 command-description-solution-adjthermalenergy =
     Adjusts the capacity on the given solution.
+### Starlight (upstream #39080)
+command-description-subtlemessage =
+    Sends a subtle message to all the input entities.
+
+command-description-grid-getplayers =
+    Gets all players on the specified grid(s)
+command-description-grid-get =
+    Gets the grid(s) the specified player(s) are standing on.
+command-description-grid-getstation =
+    Gets the station(s) the specified player(s) are standing on.
+command-description-crewmanifest-addto =
+    Adds the piped entity to the specified station's crew manifest.
+command-description-crewmanifest-removefrom =
+    Removes the piped entity from the specified station's crew manifest.
+command-description-crewmanifest-addplayer =
+    Adds the specified player to the crew manifest(s) of the piped station(s).
+command-description-crewmanifest-removeplayer =
+    Removes the specified player to the crew manifest(s) of the piped station(s).

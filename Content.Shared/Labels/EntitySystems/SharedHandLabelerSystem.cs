@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Utility;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Examine;
@@ -8,6 +9,7 @@ using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Labels.EntitySystems;
 
@@ -152,6 +154,8 @@ public abstract class SharedHandLabelerSystem : EntitySystem
         var text = ent.Comp.AssignedLabel == string.Empty
             ? Loc.GetString("hand-labeler-examine-blank")
             : Loc.GetString("hand-labeler-examine-label-text", ("label-text", ent.Comp.AssignedLabel));
-        args.PushMarkup(text);
+        // STARLIGHT: Remove all markup for the examine text.
+        var message = FormattedMessage.FromMarkupPermissive(text).ToString();
+        args.PushMarkup(message);
     }
 }

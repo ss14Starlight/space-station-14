@@ -8,19 +8,24 @@
   },
   "states": [
     {
-      "name": "jobicon"
+      "name": "jobicon",
+      "copyright": "taken from the game"
     },
     {
-      "name": "green"
-    },
-	{
-	  "name": "magistrate"
-	},
-    {
-      "name": "ntrep"
+      "name": "green",
+      "copyright": "taken from the game"
     },
     {
-      "name": "iaa"
+      "name": "magistrate",
+      "copyright": "by Rinary1(Github)"
+    },
+    {
+      "name": "ntrep",
+      "copyright": "by Rinary1(Github)"
+    },
+    {
+      "name": "iaa",
+      "copyright": "by Rinary1(Github)"
     },
     {
       "name": "obs"
@@ -37,11 +42,25 @@
     {
       "name": "miningspecialist"
     },
-	{
+    {
       "name": "decimusicon"
     },
-	{
+	  {
+      "name": "dutyofficer",
+	    "copyright": "BORT",
+	    "license": "CC-BY-SA-3.0"
+    },
+    {
       "name": "ntsficon"
+    },
+    {
+      "name": "TSF"
+    },
+    {
+      "name": "MARSOC"
+    },
+    {
+      "name": "nct"
     }
   ]
 }

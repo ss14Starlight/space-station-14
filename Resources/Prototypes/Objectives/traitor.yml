@@ -198,7 +198,7 @@
   id: BaseCMOStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ ChiefMedicalOfficer ]
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist ] # Starlight. Too easy.
   - type: StealCondition
     owner: job-name-cmo
 
@@ -209,12 +209,14 @@
   - type: StealCondition
     stealGroup: Hypospray
 
-- type: entity
-  parent: BaseCMOStealObjective
-  id: CMOCrewMonitorStealObjective
-  components:
-  - type: StealCondition
-    stealGroup: HandheldCrewMonitor
+# Starlight start
+#- type: entity
+#  parent: BaseCMOStealObjective
+#  id: CMOCrewMonitorStealObjective # Starlight. Disabled in favor of the monitor collection objective, since the game doesn't support items belonging to 2 steal groups. CMO already gets enough pain anyways.
+#  components:
+#  - type: StealCondition
+#    stealGroup: [HandheldCrewMonitor, CrewMonitorCollection]
+# Starlight end
 
 ## rd
 
@@ -224,7 +226,7 @@
   id: BaseRDStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ ResearchDirector ]
+    jobs: [ ResearchDirector, ResearchAssistant, Scientist, Roboticist ] # Starlight. Too easy.
   - type: StealCondition
     owner: job-name-rd
 
@@ -253,9 +255,9 @@
   components:
   - type: Objective
     # HoS will have this on them a lot of the time so..
-    difficulty: 3
+    difficulty: 1.5 # Starlight, lowered difficulty since it's a lot easier to deal with Det than HoS
   - type: NotJobRequirement
-    jobs: [ Detective ] # Starlight - magnum to detective
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Starlight - magnum to detective, and rest of department excluded
   - type: StealCondition
     stealGroup: WeaponEnergyMagnum
     owner: job-name-detective # Starlight - magnum to detective
@@ -267,7 +269,7 @@
   id: MagbootsStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ ChiefEngineer ]
+    jobs: [ ChiefEngineer, StationEngineer, AtmosphericTechnician, TechnicalAssistant ] # Starlight. Too easy.
   - type: StealCondition
     stealGroup: ClothingShoesBootsMagAdv
     owner: job-name-ce
@@ -279,7 +281,7 @@
   id: ClipboardStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ Quartermaster ]
+    jobs: [ Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ] # Starlight. Too easy.
   - type: StealCondition
     stealGroup: BoxFolderQmClipboard
     owner: job-name-qm
@@ -289,7 +291,7 @@
   id: KnuckleDustersStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ Quartermaster ]
+    jobs: [ Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ] # Starlight. Too easy.
   - type: StealCondition
     stealGroup: ClothingHandsKnuckleDustersQM
     owner: job-name-qm

@@ -1,7 +1,31 @@
 - type: entity
+  id: BaseColdBird
+  abstract: true
+  components:
+    - type: TemperatureDamage
+      heatDamageThreshold: 310
+      coldDamageThreshold: 223
+    - type: Temperature
+      currentTemperature: 261
+      specificHeat: 48
+    - type: ThermalRegulator
+      metabolismHeat: 400 # icebirb go brrr
+      radiatedHeat: 100
+      implicitHeatRegulation: 1500
+      sweatHeatRegulation: 2000
+      shiveringHeatRegulation: 2000
+      normalBodyTemperature: 261
+      thermalRegulationTemperatureThreshold: 1
+    - type: TemperatureSpeed
+      thresholds:
+        250: 0.9
+        230: 0.8
+        223: 0.6
+
+- type: entity
   save: false
   name: Urist McAvali
-  parent: [ BaseMobSpeciesOrganic, BaseSpeciesPickupable ]
+  parent: [ BaseColdBird, BaseMobSpeciesOrganic, BaseSpeciesPickupable ]
   id: BaseMobAvali
   abstract: true
   components:
@@ -92,11 +116,6 @@
         0: Alive
         90: Critical
         180: Dead
-    - type: TemperatureSpeed
-      thresholds:
-        250: 0.9
-        230: 0.8
-        223: 0.6
     - type: Fixtures
       fixtures:
         fix1:
@@ -115,9 +134,9 @@
         Female: FemaleAvali
         Unsexed: MaleAvali
     - type: MovementSpeedModifier
-      weightlessAcceleration: 1.6 # Avalis are specifically built to fly in low-g environments
-      weightlessFriction: 1
-      weightlessModifier: 1
+      baseWeightlessAcceleration: 1.6 # Avalis are specifically built to fly in low-g environments
+      baseWeightlessFriction: 1
+      baseWeightlessModifier: 1
     - type: Damageable
       damageContainer: Biological
       damageModifierSet: Avali
@@ -139,19 +158,6 @@
       damage:
         types:
           Slash: 6.25
-    - type: Temperature
-      heatDamageThreshold: 310
-      coldDamageThreshold: 223
-      currentTemperature: 261
-      specificHeat: 48
-    - type: ThermalRegulator
-      metabolismHeat: 400 # icebirb go brrr
-      radiatedHeat: 100
-      implicitHeatRegulation: 1500
-      sweatHeatRegulation: 2000
-      shiveringHeatRegulation: 2000
-      normalBodyTemperature: 261
-      thermalRegulationTemperatureThreshold: 1
     - type: Stasis
       enterStasisAction: ActionStasisEnter
       exitStasisAction: ActionStasisExit

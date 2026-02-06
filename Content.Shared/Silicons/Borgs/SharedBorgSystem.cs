@@ -4,6 +4,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Events;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
+using Content.Shared.Gibbing;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -36,6 +37,10 @@ using Content.Shared.Radio.Components;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Actions.Components;
 using Content.Shared.Starlight.TextToSpeech;
+// Starlight begin
+using System.Linq;
+using Content.Shared.Tag;
+// Starlight end
 
 namespace Content.Shared.Silicons.Borgs;
 
@@ -67,6 +72,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
     [Dependency] private readonly SharedHandheldLightSystem _handheldLight = default!;
     [Dependency] private readonly SharedAccessSystem _access = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly TagSystem _tag = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -92,7 +98,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
         SubscribeLocalEvent<BorgChassisComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
         SubscribeLocalEvent<BorgChassisComponent, ActivatableUIOpenAttemptEvent>(OnUIOpenAttempt);
         SubscribeLocalEvent<BorgChassisComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<BorgChassisComponent, BeingGibbedEvent>(OnBeingGibbed);
+        SubscribeLocalEvent<BorgChassisComponent, GibbedBeforeDeletionEvent>(OnBeingGibbed);
         SubscribeLocalEvent<BorgChassisComponent, GetCharactedDeadIcEvent>(OnGetDeadIC);
         SubscribeLocalEvent<BorgChassisComponent, GetCharacterUnrevivableIcEvent>(OnGetUnrevivableIC);
         SubscribeLocalEvent<BorgChassisComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
@@ -176,9 +182,9 @@ public abstract partial class SharedBorgSystem : EntitySystem
         if (args.Container != chassis.Comp.BrainContainer)
             return;
 
-        if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(args.Entity, out var mindId, out var mind))
+        //#region Starlight
+        if (TryComp(args.Entity, out BorgBrainComponent? brain) && _mind.TryGetMind(args.Entity, out var mindId, out var mind))
         {
-            //#region Starlight
             //re-target the station-AI's shunt target to the chassis insteaf of the brain
             if (TryComp<StationAIShuntComponent>(args.Entity, out var shunt) &&
                 TryComp<StationAIShuntableComponent>(shunt.Return, out var shuntable) &&
@@ -189,9 +195,20 @@ public abstract partial class SharedBorgSystem : EntitySystem
                     borgShunt.Return = shunt.Return;
                     borgShunt.ReturnAction = _actions.AddAction(chassis, shuntable.UnshuntAction);
                 }
-            //#endregion Starlight
-            _mind.TransferTo(mindId, chassis.Owner, mind: mind);
+        
+                //Get borging consent
+                if(!brain.BorgConsent)
+                    RaiseLocalEvent(args.Entity, new AskBorgingChoiceEvent());
+                else
+                    TransferMindToChassis(args.Entity, mindId, mind);
+                    
+                //regardless of outcome here, the player will either be
+                //choosing to play borg or be ghosted, and we do not want 
+                //to ask whoever chooses to take over the gost role again 
+                //if they get a chassis transfer.
+                brain.BorgConsent = true; 
         }
+        //#endregion Starlight
     }
 
     protected virtual void OnRemoved(Entity<BorgChassisComponent> chassis, ref EntRemovedFromContainerMessage args)
@@ -315,19 +332,26 @@ public abstract partial class SharedBorgSystem : EntitySystem
 
             if (TryComp(ent, out ActiveRadioComponent? activeRadio))
             {
+                //Starlight begin
                 foreach (var channel in key.Channels)
-                {
                     activeRadio.Channels.Add(channel);
-                }
+                foreach (var channel in key.CustomChannels)
+                    activeRadio.CustomChannels.Add(channel);
+                Dirty(ent, activeRadio);
+                //Starlight end
             }
             if (TryComp(ent, out IntrinsicRadioTransmitterComponent? transmitter))
             {
+                //Starlight begin
                 foreach (var channel in key.Channels)
-                {
                     transmitter.Channels.Add(channel);
-                }
+                foreach (var channel in key.CustomChannels)
+                    transmitter.CustomChannels.Add(channel);
+                Dirty(ent, transmitter);
+                //Starlight end
             }
         }
+        Dirty(ent);
     }
     // end Starlight
 
@@ -359,11 +383,32 @@ public abstract partial class SharedBorgSystem : EntitySystem
     {
         if (args.NewMobState == MobState.Alive)
             TryActivate(chassis, args.Origin);
+        // Starlight begin
         else
+        {
             SetActive(chassis, false, user: args.Origin);
+
+            // This can be null apparently when borg dies before being "witnessed" by a client.
+            if (chassis.Comp.ModuleContainer == null)
+                return;
+
+            foreach (var ent in chassis.Comp.ModuleContainer.ContainedEntities.ToList())
+            {
+                if (!TryComp<ItemBorgModuleComponent>(ent, out var module)) continue;
+                if (!TryComp<ContainerManagerComponent>(ent, out var manager)) continue;
+                if (!_container.TryGetContainer(ent, module.HoldingContainer, out var container, manager)) continue;
+                foreach (var item in container.ContainedEntities.ToList())
+                {
+                    if (_tag.HasTag(item, chassis.Comp.ModuleItemTag)) continue;
+                    while (_container.TryGetContainingContainer(item, out var containing))
+                        if (!_container.Remove(item, containing)) break;
+                }
+            }
+        }
+        // Starlight end
     }
 
-    private void OnBeingGibbed(Entity<BorgChassisComponent> chassis, ref BeingGibbedEvent args)
+    private void OnBeingGibbed(Entity<BorgChassisComponent> chassis, ref GibbedBeforeDeletionEvent args)
     {
         // Don't use the ItemSlotsSystem eject method since we don't want to play a sound and want we to eject the battery even if the slot is locked.
         if (TryComp<PowerCellSlotComponent>(chassis, out var slotComp) &&
@@ -407,14 +452,34 @@ public abstract partial class SharedBorgSystem : EntitySystem
             _throwing.TryThrow(brain, _random.NextVector2() * 5, 5f);
             return;
         }
+        
+        //Starlight Start
+        if(!brain.Comp.BorgConsent)
+            RaiseLocalEvent(brain.Owner, new AskBorgingChoiceEvent());
+        else
+            TransferMindToChassis(brain.Owner, mindId, mind);
+            
+        //regardless of outcome here, the player will either be
+        //choosing to play borg or be ghosted, and we do not want 
+        //to ask whoever chooses to take over the gost role again 
+        //if they get a chassis transfer.
+        brain.Comp.BorgConsent = true; 
+    }
 
-        //Starlight, load borg voice
-		if (TryComp<TextToSpeechComponent>(brain, out var ttscomp))
+    public void TransferMindToChassis(EntityUid uid, EntityUid mindId, MindComponent mind)
+    {
+        if (!_container.TryGetContainingContainer(uid, out var container))
+            return;
+
+        var borg = container.Owner;
+
+        //load borg voice
+        if (TryComp<TextToSpeechComponent>(uid, out var ttscomp))
 		{
 			if(mind != null)
 			    ttscomp.VoicePrototypeId = mind.SiliconVoice;
 		}
-        //Starlight end
+        //Starlight End
 
         _mind.TransferTo(mindId, borg, mind: mind);
     }

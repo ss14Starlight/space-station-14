@@ -4,7 +4,7 @@
   group: Narcotics
   desc: reagent-desc-desoxyephedrine
   physicalDesc: reagent-physical-desc-translucent
-  contrabandSeverity: Minor
+  contrabandSeverity: Major # Starlight Minor -> Major
   flavor: bitter
   color: "#FAFAFA"
   boilingPoint: 212.0  # Dexosyephedrine vape when?
@@ -73,6 +73,11 @@
   group: Narcotics
   desc: reagent-desc-ephedrine
   physicalDesc: reagent-physical-desc-powdery
+  # Starlight Edits
+  contrabandSeverity: Minor
+  allowedDepartments:
+  - Security
+  # Starlight End
   flavor: bitter
   color: "#D2FFFA"
   boilingPoint: 255.0
@@ -224,6 +229,7 @@
   flavorMinimum: 0.05
   color: "#808080"
   physicalDesc: reagent-physical-desc-crystalline
+  contrabandSeverity: Minor # Starlight None -> Minor
   plantMetabolism:
   - !type:PlantAdjustNutrition
     amount: -5
@@ -284,6 +290,7 @@
   group: Narcotics
   desc: reagent-desc-space-drugs
   physicalDesc: reagent-physical-desc-syrupy
+  contrabandSeverity: Minor # Starlight None -> Minor
   flavor: bitter
   color: "#63806e"
   metabolisms:
@@ -361,7 +368,7 @@
   group: Narcotics
   desc: reagent-desc-norepinephric-acid
   physicalDesc: reagent-physical-desc-milky
-  contrabandSeverity: Minor
+  contrabandSeverity: Major # Starlight Minor -> Major
   flavor: salty
   color: "#96a8b5"
   boilingPoint: 255.0
@@ -408,6 +415,7 @@
   group: Narcotics
   desc: reagent-desc-tear-gas
   physicalDesc: reagent-physical-desc-milky
+  contrabandSeverity: Major # Starlight None -> Major
   allowedDepartments:
   - Security
   flavor: salty
@@ -469,6 +477,11 @@
   group: Narcotics
   desc: reagent-desc-happiness
   physicalDesc: reagent-physical-desc-soothing
+  # Starlight Edits
+  contrabandSeverity: Minor
+  allowedJobs:
+  - Clown
+  # Starlight End
   flavor: paintthinner
   color: "#EE35FF"
   metabolisms:

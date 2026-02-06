@@ -21,5 +21,8 @@ public sealed partial class GibOnTriggerComponent : BaseXOnTriggerComponent
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool GibBody = true;
+
+    [DataField, AutoNetworkedField]
+    public bool GibOrgans = true;
     // Starlight End
 }

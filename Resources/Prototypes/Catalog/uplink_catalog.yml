@@ -282,7 +282,7 @@
   discountDownTo:
     Telecrystal: 20
   cost:
-    Telecrystal: 25
+    Telecrystal: 26 # Starlight
   categories:
   - UplinkWeaponry
 
@@ -538,8 +538,8 @@
   id: UplinkPistol9mmMagazineSP
   name: uplink-pistol-magazine-name
   description: uplink-pistol-magazine-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolHP
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_high_capacity_mag.rsi, state: base-icon }
+  productEntity: MagazinePistolSP
   cost:
     Telecrystal: 1
   categories:
@@ -550,7 +550,7 @@
   name: uplink-pistol-magazine-name
   description: uplink-pistol-magazine-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: sp }
-  productEntity: MagazinePistolSP
+  productEntity: MagazinePistolHP
   cost:
     Telecrystal: 1
   categories:
@@ -788,9 +788,9 @@
   productEntity: Stimpack
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
   - UplinkChemicals
 
@@ -801,9 +801,9 @@
   productEntity: StimkitFilled
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 8
+    Telecrystal: 3
   cost:
-    Telecrystal: 12
+    Telecrystal: 5
   categories:
   - UplinkChemicals
 
@@ -883,9 +883,9 @@
   productEntity: ChameleonProjector
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 2
   cost:
-    Telecrystal: 7
+    Telecrystal: 3
   categories:
   - UplinkDeception
 
@@ -996,6 +996,30 @@
     Telecrystal: 4
   categories:
   - UplinkDeception
+  restockTime: 1800
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkSyndicateBombFakeNukie
+  name: uplink-exploding-syndicate-bomb-fake-name
+  description: uplink-exploding-syndicate-bomb-fake-desc
+  productEntity: SyndicateBombFake
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkDeception
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 # Disruption
 
@@ -1113,6 +1137,19 @@
     Telecrystal: 2
   categories:
   - UplinkDisruption
+
+- type: listing
+  id: UplinkBreachingHammer
+  name: uplink-breaching-hammer-name
+  description: uplink-breaching-hammer-desc
+  productEntity: HammerBreachingNT
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 8
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkWeaponry
 
 - type: listing
   id: UplinkDuffelSurgery
@@ -1700,11 +1737,25 @@
   categories:
   - UplinkWearables
 
+# Starlight, listing disabled and replaced with chameleon crate
+# - type: listing
+#  id: UplinkChameleon
+#  name: uplink-chameleon-name
+#  description: uplink-chameleon-desc
+#  productEntity: ClothingBackpackChameleonFill
+#  icon: { sprite: /Textures/Clothing/Uniforms/Jumpsuit/rainbow.rsi, state: icon }
+#  discountCategory: usualDiscounts
+#  discountDownTo:
+#    Telecrystal: 2
+#  cost:
+#    Telecrystal: 4
+#  categories:
+#    - UplinkWearables
 - type: listing
-  id: UplinkChameleon
-  name: uplink-chameleon-name
-  description: uplink-chameleon-desc
-  productEntity: ClothingBackpackChameleonFill
+  id: UplinkChameleonBundle
+  name: uplink-chameleon-bundle-name
+  description: uplink-chameleon-bundle-desc
+  productEntity: CrateSyndicateChameleonBundle
   icon: { sprite: /Textures/Clothing/Uniforms/Jumpsuit/rainbow.rsi, state: icon }
   discountCategory: usualDiscounts
   discountDownTo:
@@ -1713,6 +1764,7 @@
     Telecrystal: 4
   categories:
     - UplinkWearables
+# Starlight End
 
 - type: listing
   id: UplinkClothingNoSlipsShoes
@@ -2342,11 +2394,8 @@
   name: uplink-smuggler-satchel-name
   description: uplink-smuggler-satchel-desc
   productEntity: ClothingBackpackSatchelSmugglerUnanchored
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 1
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkDeception
 

@@ -53,6 +53,7 @@
         whitelist:
           tags:
             - MagazinePistol
+            - MagazinePistolHighCapacity
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
@@ -64,6 +65,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # Starlight
   - type: AmmoCounter
   - type: MagazineVisuals
     magState: mag
@@ -72,6 +74,14 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
+  # starlight start
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinPistol
+  - type: FiringPinHolder
+    supportedPins: [ Pistol, GunUpgrade ]
+  # starlight end
 
 - type: entity
   name: viper
@@ -92,7 +102,7 @@
         whitelist:
           tags:
             - MagazinePistol
-            - MagazinePistolHighCapacitySP
+            - MagazinePistolHighCapacity
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
@@ -104,6 +114,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # starlight
   - type: StaticPrice
     price: 1000
 
@@ -190,6 +201,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      firing_pin: !type:Container # starlight
   - type: StaticPrice
     price: 1500
 
@@ -243,7 +255,7 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/MK_Universal.ogg
   - type: ItemSlots
     slots:
       gun_magazine:

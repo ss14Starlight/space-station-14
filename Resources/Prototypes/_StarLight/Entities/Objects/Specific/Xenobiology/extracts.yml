@@ -4,13 +4,15 @@
   abstract: true
   components:
     - type: Sprite
-      sprite: _Starlight/Objects/Specific/Xenobiology/test_slime_extract.rsi
+      sprite: _Starlight/Objects/Specific/Xenobiology/slime_extract.rsi
       layers:
-        - state: test_slime_extract
+        - state: extract
     - type: SolutionContainerManager
       solutions:
         container:
           maxVol: 150
+    - type: Item
+      size: Tiny
     - type: MixableSolution
       solution: container
     - type: DrawableSolution
@@ -70,7 +72,6 @@
       scalingFactor: 0
       scalingOffset: 1
   shouldDelete: true
-
 
 - type: entity
   parent: BaseSlimeExtract
@@ -326,7 +327,7 @@
     - type: SlimeExtract
       extractReactions:
         - YellowSlimeExtractWaterReaction
-        - YellowSlimeExtractBloodReaction
+        #- YellowSlimeExtractBloodReaction
         - YellowSlimeExtractPlasmaReaction
 
 - type: extractReaction
@@ -341,15 +342,16 @@
       scalingOffset: 1
   shouldDelete: true
 
-- type: extractReaction
-  id: YellowSlimeExtractBloodReaction
-  requirements:
-    Blood: 1
-  effects:
-    - effect: !type:Emp
-      scalingFactor: 1
-      scalingOffset: 0
-  shouldDelete: true
+# Yellow blood reaction removed until the EMP system is reworked, because right now its broken.
+#- type: extractReaction
+#  id: YellowSlimeExtractBloodReaction
+#  requirements:
+#    Blood: 1
+#  effects:
+#    - effect: !type:Emp
+#      scalingFactor: 1
+#      scalingOffset: 0
+#  shouldDelete: true
 
 - type: extractReaction
   id: YellowSlimeExtractPlasmaReaction
@@ -491,6 +493,7 @@
     - type: SlimeExtract
       extractReactions:
         - BluespaceSlimeExtractWaterReaction
+        - BluespaceSlimeExtractBloodReaction
         - BluespaceSlimeExtractPlasmaReaction
 
 - type: extractReaction
@@ -501,6 +504,18 @@
     - effect: !type:SpawnEntity
         number: 1
         entity: SlimeBluespaceRadioPotion
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
+
+- type: extractReaction
+  id: BluespaceSlimeExtractBloodReaction
+  requirements:
+    Blood: 1
+  effects:
+    - effect: !type:SpawnEntity
+        number: 1
+        entity: FloorTileItemBluespace25
       scalingFactor: 0
       scalingOffset: 1
   shouldDelete: true
@@ -526,8 +541,20 @@
     - type: Sprite
       color: "#c9b7a9ff"
     - type: SlimeExtract
-# Extract reactions for sepia extracts are currently unimplemented as there are no handheld cameras, tiles capable of slowing down, or the ability to stop time.
-# We either need to make these things or come up with different reactions and make this our own thing
+      extractReactions:
+        - SepiaSlimeExtractBloodReaction
+
+- type: extractReaction
+  id: SepiaSlimeExtractBloodReaction
+  requirements:
+    Blood: 1
+  effects:
+    - effect: !type:SpawnEntity
+        number: 1
+        entity: FloorTileItemSepiaXenobiology25
+      scalingFactor: 0
+      scalingOffset: 1
+  shouldDelete: true
 
 
 - type: entity
@@ -889,8 +916,13 @@
   id: RainbowSlimeExtract
   name: rainbow slime extract
   components:
+    - type: RgbLightController
+      layers: [ 0 ]
+    - type: PointLight
+      radius: 1
+      energy: 1
     - type: Sprite
-      color: "#300636ff" # Yes, this is not a rainbow
+      color: "#ffffff" # Yes, this is not a rainbow
     - type: SlimeExtract
       extractReactions:
         - RainbowSlimeExtractBloodReaction

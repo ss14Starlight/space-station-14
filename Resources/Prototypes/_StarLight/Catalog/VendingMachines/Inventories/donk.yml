@@ -1,0 +1,18 @@
+- type: vendingMachineInventory
+  id: DonkPocketsMachineInventory
+  startingInventory:
+    FoodDonkpocket: 2
+    FoodDonkpocketSpicy: 2
+    FoodDonkpocketTeriyaki: 2
+    FoodDonkpocketPizza: 2
+    FoodDonkpocketDank: 1
+    FoodDonkpocketHonk: 1
+    FoodDonkpocketBerry: 1
+    FoodDonkpocketStonk: 1
+    FoodDonkpocketCarp: 1
+    FoodDonkpocketDink: 1
+    FoodDonkpocketMoth: 3
+  contrabandInventory:
+    FoodDonkpocketWarm: 1
+    DonkcoLighter: 1
+    RemoteSignaller: 1

@@ -26,16 +26,21 @@ public sealed partial class SlimeExtractComponent : Component
     /// </summary>
     [ViewVariables, AutoNetworkedField]
     public int RemainingUses = 1;
+}
 
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+public sealed partial class SlimeExtractActiveReactionComponent : Component
+{
     /// <summary>
     /// Whether the current slime extract is paused. Needed as AutoGenerateComponentPause is not possible on this component.
     /// </summary>
     [ViewVariables, AutoNetworkedField]
     public bool CurrentlyPaused = false;
-
+    
     /// <summary>
-    /// The time at which each reaction will activate next, if at all, to handle delayed reactions
+    /// The reactions currently active on this reagent, along with the timestamps of their activation.
     /// </summary>
     [ViewVariables, AutoNetworkedField]
-    public Dictionary<ProtoId<ExtractReactionPrototype>, TimeSpan> ActivationTimes = new();
+    public Dictionary<ProtoId<ExtractReactionPrototype>, TimeSpan> ActiveReactions = new();
 }

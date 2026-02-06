@@ -123,6 +123,7 @@
     - RadiationProtection
     - Adrenaline
   - type: Temperature
+  - type: TemperatureDamage
     heatDamageThreshold: 2400
   - type: Metabolizer
     solutionOnBody: false
@@ -165,6 +166,11 @@
       - Door
       tags:
       - Wall
+    # Starlight start - no eating indestructible walls
+    blacklist:
+      tags:
+      - Inedible
+    # Starlight end
   - type: Tag
     tags:
     - CannotSuicide

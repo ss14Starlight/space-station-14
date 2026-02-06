@@ -54,3 +54,17 @@
   requirements:
   - !type:UsernameRequirement
     username: Rinary
+    
+- type: ghostTheme
+  id: pai_fox
+  name: pai fox
+  description: a cyber kitsune
+  private: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/pai_fox.rsi
+      state: pai_fox
+    color: "#ffffff"
+  requirements:
+    - !type:UsernameRequirement
+      username: KarmaKitsuna

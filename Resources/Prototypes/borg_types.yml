@@ -82,6 +82,7 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleCargo
+    - BorgModuleMining #STARLIGHT
 
   defaultModules:
   - BorgModuleTool

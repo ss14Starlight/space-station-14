@@ -17,3 +17,5 @@
     state: sheetbrigmedicstrange
   - type: Clothing
     sprite: _Starlight/Clothing/Neck/Bedsheets/brigmedic.rsi
+  - type: StealTarget
+    stealGroup: BrigmedicStrangeBedsheet

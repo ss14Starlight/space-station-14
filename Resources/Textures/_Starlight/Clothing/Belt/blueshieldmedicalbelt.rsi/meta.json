@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyrights",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039, Resprited By KillerTamashi, Recolored by Sapphic Haymaker."
+    },
+    {
+      "name": "equipped-BELT",
+      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039, Resprited By KillerTamashi, Recolored by Sapphic Haymaker.",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left",
+      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039, Resprited By KillerTamashi, Recolored by Sapphic Haymaker.",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039, Resprited By KillerTamashi, Recolored by Sapphic Haymaker.",
+      "directions": 4
+    }
+  ]
+}

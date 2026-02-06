@@ -1,0 +1,87 @@
+# cargo hold
+- type: entity
+  parent: BaseStructure
+  id: BorgHold
+  name: Borg Cargo Hold
+  description: A small cargo hold built into a cyborg's chassis
+  components:
+  - type: Animateable
+  - type: Transform
+    noRot: true
+  - type: Icon
+    sprite: _Starlight/Objects/Specific/Cargo/borg_hold.rsi
+    state: icon
+  - type: Sprite
+    noRot: true
+    sprite: _Starlight/Objects/Specific/Cargo/borg_hold.rsi
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: EntityStorage
+    capacity: 15
+    openSound:
+      path: /Audio/_Starlight/Machines/borg_hold.ogg
+    closeSound:
+      path: /Audio/_Starlight/Machines/borg_hold.ogg
+  - type: PlaceableSurface
+    isPlaceable: false # defaults to closed.
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+    stateDoorClosed: closed
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+
+# hydraulic clamp
+
+- type: entity
+  id: BorgClamp
+  parent: BaseItem
+  name: cyborg hydraulic clamp
+  description: A small hydraulic clamp designed to interface with a cyborg
+  components:
+    - type: LargeGrabber
+      maxContents: 1
+    - type: ContainerContainer
+      containers:
+        item-container: !type:Container
+        cell_slot: !type:ContainerSlot { }
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMicroreactor
+          disableEject: true
+          swap: false
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Cargo/borg_clamp.rsi
+      layers:
+        - state: clamp
+        - state: clamp-full
+          map: [ "enum.ToggleableVisuals.Layer" ]
+          visible: false
+    - type: DoAfter
+    - type: ItemToggle
+      onActivate: false
+      onUse: false
+      soundActivate:
+        path: /Audio/Items/change_jaws.ogg
+      soundDeactivate:
+        path: /Audio/Items/change_jaws.ogg
+    - type: MeleeWeapon
+      wideAnimationRotation: -90
+      damage:
+        types:
+          Blunt: 10
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ToggleableVisuals.Enabled:
+          enum.ToggleableVisuals.Layer:
+            True: { visible: true }
+            False: { visible: false }

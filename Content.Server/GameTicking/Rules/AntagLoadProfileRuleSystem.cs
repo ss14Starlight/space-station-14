@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Traits;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Humanoid;
@@ -42,7 +43,9 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
         }
 
         // Startlight - Start (Changing fully so RandomWithSpecies loads with a specieID)
-        var species = _proto.Index<SpeciesPrototype>(SharedHumanoidAppearanceSystem.DefaultSpecies);
+        var species = _proto.Index(SharedHumanoidAppearanceSystem.DefaultSpecies);
+        if (profile is not null)
+            species = _proto.Index(profile.Species);
 
         if (ent.Comp.SpeciesHardOverride is not null)
             species = _proto.Index(ent.Comp.SpeciesHardOverride.Value);
@@ -59,8 +62,9 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
         if (ent.Comp.ApplyCharacterProfile && profile is not null)
         {
             _metaSystem.SetEntityName(args.Entity.Value, profile.Name);
-            _traitSystem.ApplyTraits(args.Entity.Value, profile);
             _sLSharedCharacterInfoSystem.ApplyCharacterInfo(args.Entity.Value, profile);
+            if (args.Session is not null)
+                _traitSystem.ApplyTraits(args.Entity.Value, profile, args.Session);
         }
         // Starlight - End
     }

@@ -1,0 +1,42 @@
+<Document>
+# Duty Officer
+
+<GuideEntityEmbed Entity="ToyFigurineSecurity" Caption="Duty Officer"/>
+
+1 . Standard [color=#00a933]Code Green[/color] equipment is:
+<Box>
+	<GuideEntityEmbed Entity="Stunbaton"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="HoloprojectorSecurity"/>
+	<GuideEntityEmbed Entity="FlashlightSeclite"/>
+	<GuideEntityEmbed Entity="RadioHandheldSecurity"/>
+</Box>
+<Box>
+	<GuideEntityEmbed Entity="ClothingHeadHelmetRiot"/>
+	<GuideEntityEmbed Entity="ClothingOuterArmorRiot"/>
+    <GuideEntityEmbed Entity="RiotShield"/>
+</Box>
+<Box>
+    <GuideEntityEmbed Entity="GrenadeFlashBang"/>
+    or
+	<GuideEntityEmbed Entity="TearGasGrenade"/>
+    x4
+</Box>
+<Box>
+    <GuideEntityEmbed Entity="Handcuffs"/>
+	x2
+	<GuideEntityEmbed Entity="Zipties"/>
+    x2
+</Box>
+
+2. The Duty Officer reports directly to the Warden. The Duty Officer is to assist in the processing of prisoners.
+
+3. The Duty Officer is to directly communicate to the Warden at the start of the shift, and any time they are required to leave the department.
+
+4. The Duty Officer may not perform the duties of a Security Officer, unless the department is short on staff, or during emergencies.
+
+5. Prisoner treatment guidelines must be strictly followed and is your top priority.
+
+6. Non-lethal means should be used against prisoners whenever possible.
+</Document>

@@ -18,11 +18,15 @@ public sealed class SlimeMindTransferencePotionSystem : EntitySystem
     private void OnAfterInteract(Entity<SlimeMindTransferencePotionComponent> ent, ref AfterInteractEvent args)
     {
         if (!args.Target.HasValue || !args.CanReach) return;
-        if (!_entityManager.TryGetComponent<MindContainerComponent>(args.User,
-                out var mindContainerComponent)) return;
-        if (!mindContainerComponent.HasMind) return;
-        _sharedMindSystem.TransferTo(mindContainerComponent.Mind.Value, args.Target.Value);
-        PredictedQueueDel(args.Used);
         args.Handled = true;
+        // The target entity must NOT have a mind, but still able to possess a mind.
+        if (!_entityManager.TryGetComponent<MindContainerComponent>(args.User,
+                out var userMindContainerComponent)) return;
+        if (!_entityManager.TryGetComponent<MindContainerComponent>(args.Target,
+                out var targetMindContainerComponent)) return;
+        if (!userMindContainerComponent.HasMind) return;
+        if (targetMindContainerComponent.HasMind) return;
+        _sharedMindSystem.TransferTo(userMindContainerComponent.Mind.Value, args.Target.Value);
+        PredictedQueueDel(args.Used);
     }
 }

@@ -4,9 +4,12 @@
   antagonist: true
   objective: roles-antag-paradox-clone-objective
   setPreference: false
+  # Starlight start
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 86400 # 24h STARLIGHT
+    time: 24h
+  playTimeTracker: AntagParadoxClone
+  # Starlight end
 
 # they need to be able to espace when spawning inside a locked room
 # TODO: remove this once we got a better spawning loacation selection

@@ -56,3 +56,6 @@ trait-language-grumbakul-desc = You have mastered the language of Dwarfkind, or 
 
 trait-language-aielic-name = Aielic
 trait-language-aielic-desc = The musical language of a nearly-extinct species known for its beautiful literature, pointy ears, and once-vast empire.
+
+trait-language-lagomorphian-name = Lagomorphian
+trait-language-lagomorphian-desc = The lynarxical tongue, developed as an integration language for the Lagomorph's differing vocal structure.

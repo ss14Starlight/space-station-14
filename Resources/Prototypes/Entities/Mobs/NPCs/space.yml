@@ -46,6 +46,7 @@
         Quantity: 300
   - type: CombatMode
   - type: Temperature
+  - type: TemperatureDamage
     heatDamageThreshold: 500
     coldDamageThreshold: 0
   - type: MeleeWeapon
@@ -418,7 +419,7 @@
     description: ghost-role-information-snail-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgentHarmless
+    - MindRoleGhostRoleCritterHarmless # Starlight-edit - FreeAgentHarmless -> CritterHarmless
   - type: GhostTakeoverAvailable
   - type: Emoting
   - type: Sprite
@@ -533,6 +534,7 @@
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
   - type: Temperature
+  - type: TemperatureDamage
     heatDamageThreshold: 500
     coldDamageThreshold: 0
   - type: Reactive

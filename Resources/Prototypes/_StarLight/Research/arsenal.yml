@@ -75,7 +75,7 @@
   - MagazineBoxPistol40AP
   - MagazineBoxRifleAP
   - MagazineBoxLightRifleAP
-  - LightRifleHeavyMagazineAP
+  - MagazineDMRAP
   - MagazinePistolSubMachineGunAP
   radioChannels:
   - Security
@@ -95,6 +95,28 @@
   - WeaponMechCombatIon
   radioChannels:
   - Security
+
+- type: technology
+  id: SecurityCyberLimbsTech
+  name: research-technology-security-cyberlimbs
+  icon:
+    sprite: _Starlight/Objects/Weapons/Melee/cybershield.rsi
+    state: cybershield-on
+  discipline: Arsenal
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+    - LeftArmCyberBulwark
+    - RightArmCyberBulwark
+    - LeftArmCyberZeus
+    - RightArmCyberZeus
+    - LeftLegCyberPilebunker
+    - RightLegCyberPilebunker
+  technologyPrerequisites:
+    - CyberLimbsTech
+  radioChannels:
+  - Security
+  - Medical
   
 # Tier 3
 
@@ -140,28 +162,6 @@
   - Gygax
   radioChannels:
   - Security
-
-- type: technology
-  id: SecurityCyberLimbsTech
-  name: research-technology-security-cyberlimbs
-  icon:
-    sprite: _Starlight/Objects/Weapons/Melee/cybershield.rsi
-    state: cybershield-on
-  discipline: Arsenal
-  tier: 3
-  cost: 9320
-  recipeUnlocks:
-    - LeftArmCyberBulwark
-    - RightArmCyberBulwark
-    - LeftArmCyberZeus
-    - RightArmCyberZeus
-    - LeftLegCyberPilebunker
-    - RightLegCyberPilebunker
-  technologyPrerequisites:
-    - CyberLimbsTech
-  radioChannels:
-  - Security
-  - Medical
 
 - type: technology
   id: CyberEyeThermalVision

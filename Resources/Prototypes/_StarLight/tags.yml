@@ -10,6 +10,9 @@
   id: AbductorScientist
 
 - type: Tag
+  id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
+
+- type: Tag
   id: Arachnid
 
 - type: Tag
@@ -40,16 +43,28 @@
   id: BoneGel
 
 - type: Tag
+  id: BorgItem
+
+- type: Tag
+  id: BorgModuleMining
+
+- type: Tag
   id: BorgModulePurrfus
 
 - type: Tag
   id: BorgModuleSecurity
 
 - type: Tag
+  id: BorgModuleSupply
+
+- type: Tag
   id: BorgModuleSyndicateStealth
 
 - type: Tag
   id: Bow
+
+- type: Tag
+  id: BurnedTraitBackground
 
 - type: Tag
   id: CantInteract
@@ -70,10 +85,16 @@
   id: CartridgePistolImprovised
 
 - type: Tag
+  id: CantBecomeRevolutionary
+
+- type: Tag
   id: CentcommVibroblade
 
 - type: Tag
   id: CheapInsulatedFabric
+
+- type: Tag
+  id: Cleanade
 
 - type: Tag
   id: CivilianTraitBackground
@@ -175,6 +196,9 @@
   id: Felionoid
 
 - type: Tag
+  id: FreeMag
+
+- type: Tag
   id: FestiveDinner
 
 - type: Tag
@@ -244,10 +268,23 @@
   id: ImprovisedWrench
 
 - type: Tag
+  id: Inedible # Prevents something from being eaten using DevourSystem, but only if on the direct target (e.g. doesn't apply if in inventory of target)
+  
+- type: Tag
   id: InsulatedFabric
 
 - type: Tag
   id: InsulatedThread
+
+- type: Tag
+  id: IteratorTraitBackground
+
+# Used for the jet injector and advanced jet injector
+- type: Tag
+  id: JetInjector
+  
+- type: Tag
+  id: Labelable
 
 - type: Tag
   id: L6Saw
@@ -263,6 +300,9 @@
 
 - type: Tag
   id: MagazineBattery
+
+- type: Tag
+  id: MagazineL10DMR
 
 - type: Tag
   id: MagazineBoxLightRifle
@@ -299,6 +339,10 @@
 
 - type: Tag
   id: MedCyberEyes
+
+# Used for the one-use disposable medipens
+- type: Tag
+  id: Medipen
 
 - type: Tag
   id: MercenaryModsuit
@@ -452,6 +496,6 @@
 
 - type: Tag
   id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.
-  
+
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground

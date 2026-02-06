@@ -13,20 +13,24 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Movement.Events; // Starlight-edit
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
-using Content.Shared.Repairable; // Starlight-edit
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Whitelist;
-using Content.Shared.Stunnable; // Starlight-edit
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using System.Linq;
+
+#region Starlight
+using Content.Shared.Movement.Events;
+using Content.Shared.Repairable;
+using Content.Shared.Stunnable;
+using Content.Shared.Movement.Pulling.Events;
+#endregion
 
 namespace Content.Shared.Mech.EntitySystems;
 
@@ -67,14 +71,18 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechPilotComponent, GetMeleeWeaponEvent>(OnGetMeleeWeapon);
         SubscribeLocalEvent<MechPilotComponent, CanAttackFromContainerEvent>(OnCanAttackFromContainer);
         SubscribeLocalEvent<MechPilotComponent, AttackAttemptEvent>(OnAttackAttempt);
+
+        #region Starlight
         SubscribeLocalEvent<MechPilotComponent, EntGotRemovedFromContainerMessage>(OnPilotRemoved); // Starlight-edit
 
-        SubscribeLocalEvent<MechComponent, UpdateCanMoveEvent>(OnMechMoveEvent); // Starlight-edit: Moved from server side, broken
-        SubscribeLocalEvent<MechPilotComponent, UpdateCanMoveEvent>(OnPilotMoveEvent); // Starlight-edit
-        SubscribeLocalEvent<MechComponent, ChangeDirectionAttemptEvent>(OnMechMoveEvent); // Starlight-edit
-        SubscribeLocalEvent<MechComponent, ShotAttemptedEvent>(OnShootAttempt); // Starlight-edit: Moved from server side, broken
-        SubscribeLocalEvent<MechComponent, CanRepairEvent>(OnRepairAttempt); // Starlight-edit: Moved from server side, broken
-        SubscribeLocalEvent<MechPilotComponent, KnockDownAttemptEvent>(OnKnockdownAttempt); // Starlight-edit
+        SubscribeLocalEvent<MechComponent, PullAttemptEvent>(OnMechPullAttempt); // Can't pull mech if in maintenance mode or pilot exists
+        SubscribeLocalEvent<MechPilotComponent, UpdateCanMoveEvent>(OnPilotMoveEvent);
+        SubscribeLocalEvent<MechComponent, ChangeDirectionAttemptEvent>(OnMechMoveEvent);
+        SubscribeLocalEvent<MechComponent, UpdateCanMoveEvent>(OnMechMoveEvent); // Moved from server side, broken
+        SubscribeLocalEvent<MechComponent, ShotAttemptedEvent>(OnShootAttempt); // Moved from server side, broken
+        SubscribeLocalEvent<MechComponent, CanRepairEvent>(OnRepairAttempt); //  Moved from server side, broken
+        SubscribeLocalEvent<MechPilotComponent, KnockDownAttemptEvent>(OnKnockdownAttempt);
+        #endregion
 
         InitializeRelay();
     }
@@ -97,6 +105,12 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         if (component.Broken || component.Integrity <= 0 || component.Energy <= 0 || component.MaintenanceMode)
             args.Cancel();
+    }
+
+    private void OnMechPullAttempt(EntityUid uid, MechComponent component, PullAttemptEvent args)
+    {
+        if (!args.Cancelled && (component.MaintenanceMode || component.PilotSlot.ContainedEntity != null))
+            args.Cancelled = true;
     }
 
     private void OnShootAttempt(EntityUid uid, MechComponent component, ref ShotAttemptedEvent args)
@@ -345,13 +359,17 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (_whitelistSystem.IsWhitelistFail(component.EquipmentWhitelist, toInsert))
             return;
 
-        if (!TryComp<MetaDataComponent>(toInsert, out var toInsertMeta))
-            return;
+        // Starlight start
+        var toInsertMeta = MetaData(toInsert);
 
         var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
         foreach (var ent in equipment)
-            if (TryComp<MetaDataComponent>(ent, out var entMeta) && entMeta.EntityPrototype == toInsertMeta.EntityPrototype)
+        {
+            var entMeta = MetaData(ent);
+            if (entMeta.EntityPrototype == toInsertMeta.EntityPrototype)
                 return;
+        }
+        // Starlight end
 
         equipmentComponent.EquipmentOwner = uid;
         _container.Insert(toInsert, component.EquipmentContainer);

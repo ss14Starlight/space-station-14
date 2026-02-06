@@ -542,3 +542,18 @@
      Steel: 100
      Glass: 500
 
+- type: latheRecipe
+  id: VendingMachineDonkCircuitboard
+  result: VendingMachineDonkCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
+  id: VendingMachineIceCreamCircuitboard
+  result: VendingMachineIceCreamCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500

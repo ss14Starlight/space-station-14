@@ -22,3 +22,8 @@
   license: "CC-BY-3.0"
   copyright: "Skyrat"
   source: "https://github.com/Skyrat-SS13/Skyrat-tg"
+
+- files: ["self_greeting.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "teapoterror (Discord)"
+  source: "https://discord.com/invite/HyDhPwAmUq"

@@ -30,7 +30,7 @@ namespace Content.Server.Store.Systems;
 public sealed partial class StoreSystem
 {
     #region Starlight
-    private static readonly Histogram _storePurchasesMetric = Metrics.CreateHistogram(
+    private static readonly Counter _storePurchasesMetric = Metrics.CreateCounter(
         "sl_store_purchases",
         "Everything bounght from a \"store\" which include ling upgrades, traitor uplinks, wizard grimoires",
         ["store_name", "purchased_item", "discounted"]
@@ -131,7 +131,7 @@ public sealed partial class StoreSystem
         // only tell operatives to lock their uplink if it can be locked
         var showFooter = HasComp<RingerUplinkComponent>(store);
 
-        var state = new StoreUpdateState(component.LastAvailableListings, allCurrency, showFooter, component.RefundAllowed);
+    var state = new StoreUpdateState(component.LastAvailableListings, allCurrency, showFooter, component.RefundAllowed, component.Grid); // Starlight
         _ui.SetUiState(store, StoreUiKey.Key, state);
     }
 
@@ -321,10 +321,7 @@ public sealed partial class StoreSystem
                 {
                     // Get the buyer's name
                     var buyerName = "Unknown";
-                    if (TryComp<MetaDataComponent>(buyer, out var metadata))
-                    {
-                        buyerName = metadata.EntityName;
-                    }
+                    buyerName = MetaData(buyer).EntityName;
 
                     // Update the stock count and last purchaser
                     StockLimitedListingCondition.OnItemPurchased(listing.ID, buyerName, stockCondition.StockLimit);
@@ -362,16 +359,11 @@ public sealed partial class StoreSystem
         }
 
         #region Starlight statistics
-        var accu = 0f;
-        foreach (var item in listing.Cost)
-        {
-            accu += item.Value.Float();
-        }
         _storePurchasesMetric.WithLabels([
             Loc.GetString(component.Name),
             listing.ID,
             listing.IsCostModified.ToString()
-        ]).Observe(accu);
+        ]).Inc(1); //we observe *1* purchase of the item.
         #endregion
     }
 
@@ -381,8 +373,8 @@ public sealed partial class StoreSystem
     public void UpdateAllUSSPUplinkUIs()
     {
         // Find all store components that are USSP uplinks
-        var query = EntityManager.EntityQuery<StoreComponent>();
-        foreach (var storeComp in query)
+        var query = EntityManager.EntityQueryEnumerator<StoreComponent>();
+        while (query.MoveNext(out var uid, out var storeComp))
         {
             // Skip if this is not a USSP uplink
             if (!storeComp.CurrencyWhitelist.Contains("Telebond"))
@@ -394,19 +386,19 @@ public sealed partial class StoreSystem
             // Force a refresh of the available listings
             if (storeComp.AccountOwner != null)
             {
-                storeComp.LastAvailableListings = GetAvailableListings(storeComp.AccountOwner.Value, storeComp.Owner, storeComp)
+                storeComp.LastAvailableListings = GetAvailableListings(storeComp.AccountOwner.Value, uid, storeComp)
                     .ToHashSet();
             }
 
             // Update the UI to reflect the changes
             // We'll just update it with a null user to ensure the listings are refreshed
             // The next time someone opens the UI, they'll see the updated listings
-            UpdateUserInterface(null, storeComp.Owner, storeComp);
+            UpdateUserInterface(null, uid, storeComp);
 
             // Force update the UI for all currently connected sessions
-            ForceUpdateUiForAllSessions(storeComp.Owner, storeComp);
+            ForceUpdateUiForAllSessions(uid, storeComp);
 
-            Logger.DebugS("store", $"Updated USSP uplink UI for {ToPrettyString(storeComp.Owner)}");
+            Log.Debug($"Updated USSP uplink UI for {ToPrettyString(uid)}");
         }
     }
 
@@ -430,21 +422,21 @@ public sealed partial class StoreSystem
         // Only tell operatives to lock their uplink if it can be locked
         var showFooter = HasComp<RingerUplinkComponent>(storeUid);
 
-        var state = new StoreUpdateState(storeComp.LastAvailableListings, allCurrency, showFooter, storeComp.RefundAllowed);
+    var state = new StoreUpdateState(storeComp.LastAvailableListings, allCurrency, showFooter, storeComp.RefundAllowed, storeComp.Grid); // Starlight
 
         // Set the UI state - this will update all connected sessions automatically
         _ui.SetUiState(storeUid, StoreUiKey.Key, state);
 
         // Find all players who might have this uplink open
-        var query = EntityManager.EntityQuery<ActorComponent>();
-        foreach (var actor in query)
+        var query = EntityManager.EntityQueryEnumerator<ActorComponent>();
+        while (query.MoveNext(out var actorUid, out _))
         {
             // Check if this player has the uplink implanted
             if (TryComp<SubdermalImplantComponent>(storeUid, out var implant) &&
-                implant.ImplantedEntity == actor.Owner)
+                implant.ImplantedEntity == actorUid)
             {
                 // Force update the UI for this player
-                UpdateUserInterface(actor.Owner, storeUid, storeComp);
+                UpdateUserInterface(actorUid, storeUid, storeComp);
             }
         }
         // STARLIGHT END

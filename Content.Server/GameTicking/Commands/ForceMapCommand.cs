@@ -17,7 +17,7 @@ namespace Content.Server.GameTicking.Commands
         [Dependency] private readonly IGameMapManager _gameMapManager = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-        public override string Command => "forcemap";
+        public override string Command => "setgamemap"; // Starlight-edit
 
         public override void Execute(IConsoleShell shell, string argStr, string[] args)
         {

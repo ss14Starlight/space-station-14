@@ -157,6 +157,7 @@
     - id: MedkitOxygenFilled
     - id: HolofanProjector
     - id: RCD
+    - id: RPD # Starlight: RPD
     - id: RCDAmmo
     - id: AirGrenade
     - id: trayScanner # Starlight: Add t-ray scanner to atmos lockers
@@ -234,7 +235,8 @@
       amount: 2
     - id: GeigerCounter
       amount: 2
-    - id: PillCanisterPotassiumIodide
+    - id: RadiationBlockingProjector # Far Horizons
+    - id: PillCanisterPotassiumIodide # Far Horizons
       prob: 0.75
 
 - type: entity

@@ -6,7 +6,8 @@
   requirements:
   - !type:RoleTimeRequirement
     role: JobSecurityOfficer
-    time: 10800 # 3 hrs
+    time: 3h
   - !type:RoleTimeRequirement
     role: JobSurgeon
-    time: 10800 # 3 hrs
+    time: 3h
+  playTimeTracker: AntagLoneAbductor

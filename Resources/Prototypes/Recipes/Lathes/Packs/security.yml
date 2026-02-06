@@ -90,10 +90,10 @@
   - CableDetStack1
   - EmptyDetonator
   - ExplosivePayload
-  - GrenadeBlast
-  - GrenadeEMP
-  - GrenadeFlash
-  - MagazineGrenadeEmpty
+  # - GrenadeBlast # SL removal
+  # - GrenadeEMP
+  # - GrenadeFlash
+  # - MagazineGrenadeEmpty
 
 # Shared between secfab and emagged protolathe
 # - type: latheRecipePack
@@ -133,6 +133,7 @@
   - WeaponLaserCarbine
   - WeaponXrayCannon
   - WeaponTemperatureGun
+  - FiringPinLaser # Starlight
 
 - type: latheRecipePack
   id: SecurityDisablers
