@@ -1,3 +1,5 @@
+## Syndicate
+
 - type: latheRecipe
   id: BorgModuleMartyr
   result: BorgModuleMartyr
@@ -41,6 +43,53 @@
     Steel: 2050
     Plastic: 500
     Plasma: 500
+
+- type: latheRecipe
+  id: BorgModuleSyndicateAdvancedChemical
+  result: BorgModuleSyndicateAdvancedChemical
+  categories:
+    - Modules
+  materials: #15 steel, 2 plastic, 1 plasma, 0.5 gold
+    Steel: 1500
+    Plastic: 200
+    Plasma: 100
+    Gold: 50
+
+- type: latheRecipe
+  id: BorgModuleSyndicateRescue
+  result: BorgModuleSyndicateRescue
+  categories:
+    - Modules
+  materials: #20 steel, 2 plastic, 1 plasma, 1 gold
+    Steel: 2000
+    Plastic: 200
+    Plasma: 100
+    Gold: 100
+
+- type: latheRecipe
+  id: BorgModuleSyndicateChameleonProjector
+  result: BorgModuleSyndicateChameleonProjector
+  categories:
+    - Modules
+  materials: #20 steel, 2 plastic, 1 plasma, 1 silver
+    Steel: 2000
+    Plastic: 200
+    Plasma: 100
+    Silver: 100
+
+- type: latheRecipe
+  id: BorgModuleSyndicateAdvancedTool
+  result: BorgModuleSyndicateAdvancedTool
+  categories:
+    - Modules
+  materials: #20 steel, 2 plastic, 1 plasma, 1 silver
+    Steel: 2000
+    Plastic: 200
+    Plasma: 100
+    Silver: 100
+
+
+## Normal
 
 - type: latheRecipe
   parent: BaseRoboticsRecipe

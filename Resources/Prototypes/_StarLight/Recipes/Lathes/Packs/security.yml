@@ -24,6 +24,7 @@
   - WeaponDisablerPractice
   - WeaponLaserCarbinePractice
   - WeaponFlareGunSecurity
+  - MagazineDMRPractice
 
 - type: latheRecipePack
   id: StarlightSecurityAmmoEmagStatic
@@ -63,11 +64,6 @@
 # Battery
   - MagazineBoxBattery
 #####################MAGAZINE#######################
-# LMG
-  - LightRifleHeavyMagazineSP
-  - LightRifleHeavyMagazineHP
-  - LightRifleHeavyMagazineFMJ
-  - LightRifleHeavyMagazineEmpty
 # Light Rifle
   - MagazineLightRifleSP
   - MagazineLightRifleHP
@@ -75,6 +71,10 @@
   - MagazineLightRifleMaxim
   - SpeedLoaderLightRifle
   - MagazineLightRifleEmpty
+  - MagazineDMRSP
+  - MagazineDMRHP
+  - MagazineDMRFMJ
+  - MagazineDMREmpty
 # Magnum
   - SpeedLoaderMagnumSP
   - SpeedLoaderMagnumHP
@@ -163,11 +163,9 @@
   - CableDetStack1
   - EmptyDetonator
   - ExplosivePayload
-  - GrenadeBaton
-  - GrenadeBlast
-  - GrenadeEMP
-  - GrenadeFlash
-#  - GrenadeFrag
+  - MagazineGrenadeEMP
+  - MagazineGrenadeFlash
+  - MagazineGrenadeBaton
   - MagazineGrenadeEmpty
 
 # Shared between secfab and emagged protolathe
@@ -202,14 +200,13 @@
   - BoxShotgunUranium
   - BoxShellTranquilizer
 #####################MAGAZINE#######################
-# LMG
-  - LightRifleHeavyMagazineIncendiary
-  - LightRifleHeavyMagazineUranium
-  - LightRifleHeavyMagazineAP
 # Light Rifle
   - MagazineLightRifleIncendiary
   - MagazineLightRifleUranium
   - MagazineLightRifleAP
+  - MagazineDMRIncendiary
+  - MagazineDMRUranium
+  - MagazineDMRAP
 # Magnum
   - SpeedLoaderMagnumIncendiary
   - SpeedLoaderMagnumUranium
@@ -316,6 +313,12 @@
   - RightArmCyberBulwark
   - LeftArmCyberZeus
   - RightArmCyberZeus
+
+- type: latheRecipePack
+  id: StarlightSecurityGrenadesEmag
+  recipes:
+  - MagazineGrenadeFrag
+  - MagazineGrenadeBlast
 
 - type: latheRecipePack
   id: SecurityImplants

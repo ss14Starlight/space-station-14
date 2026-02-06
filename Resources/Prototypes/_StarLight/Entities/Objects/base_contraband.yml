@@ -5,6 +5,13 @@
   - type: Contraband
     severity: Soviet
 
+- type: entity
+  id: BaseTSFContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: TSF
+
 #Advanced Cyberlimbs
 - type: entity
   id: BaseAdvancedCyberlimbContraband
@@ -82,6 +89,15 @@
   - type: Contraband
     allowedDepartments: [ Law ]
 
+- type: entity
+  id: BaseJanitorSecurityContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ Janitor ]
+    allowedDepartments: [ Security ]
+    
 - type: entity
   id: BaseEngineeringSecurityContraband
   parent: BaseRestrictedContraband

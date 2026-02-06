@@ -6,20 +6,21 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.NPC;
 using Content.Server.NPC.Systems;
 using Content.Server.Pinpointer;
-using Content.Shared.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Dragon;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
+using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared.Mind;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Revolutionary.Components;
-using Content.Shared.Store;
+using Content.Shared.Store.Components;
 using Content.Shared.Store.Events;
+using Content.Shared.Store;
 using Robust.Shared.Maths;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
@@ -29,6 +30,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
 using Content.Server.AlertLevel; // starlight
+using Content.Server.RoundEnd; // starlight
 using Content.Server.Station.Systems;
 using Content.Shared.Starlight.CCVar; // starlight
 using Robust.Shared.Audio;
@@ -36,6 +38,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
+using Robust.Shared.GameObjects; // starlight
 
 namespace Content.Server.Revolutionary;
 
@@ -46,35 +49,35 @@ public sealed class RevSupplyRiftSystem : EntitySystem
 {
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly Chat.Managers.IChatManager _chatManager = default!;
-    [Dependency] private readonly DragonRiftSystem _dragonRift = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly AlertLevelSystem _alert = default!; // Starlight
     [Dependency] private readonly StationSystem _station = default!; // starlight
     [Dependency] private readonly IConfigurationManager _config = default!; // Starlight
+    [Dependency] private readonly RoundEndSystem _roundEnd = default!; // starlight
+    [Dependency] private readonly SharedTransformSystem _transform = default!; // Starlight
 
-    private const string RevSupplyRiftListingId = "RevSupplyRiftListing";
-    
+    private static readonly ProtoId<ListingPrototype> RevSupplyRiftListingId = "RevSupplyRiftListing";
+
     /// <summary>
     /// The current active rift entity, if any.
     /// </summary>
     private EntityUid? _activeRift = null;
-    
+
     /// <summary>
     /// Dictionary to track the original descriptions of listings.
     /// </summary>
     private readonly Dictionary<EntityUid, string> _originalDescriptions = new();
-    
+
     /// <summary>
     /// Tracks whether a rift has been destroyed.
     /// </summary>
     private bool _riftDestroyed = false;
-    
+
     /// <summary>
     /// Flag to track if a rift purchase is currently being processed.
     /// This prevents multiple rifts from being purchased by spam-clicking.
@@ -90,11 +93,11 @@ public sealed class RevSupplyRiftSystem : EntitySystem
         SubscribeLocalEvent<RevSupplyRiftComponent, ComponentShutdown>(OnRevRiftShutdown);
         SubscribeLocalEvent<StorePurchaseAttemptEvent>(OnStorePurchaseAttempt);
         SubscribeLocalEvent<StorePurchaseCompletedEvent>(OnStorePurchaseCompleted);
-        
+
         // Subscribe to the round restart cleanup event to reset the rift destroyed flag
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
-    
+
     /// <summary>
     /// Handles the RoundRestartCleanupEvent to reset the rift destroyed flag.
     /// This ensures that revolutionaries can place rifts in the new round.
@@ -105,11 +108,11 @@ public sealed class RevSupplyRiftSystem : EntitySystem
         _riftDestroyed = false;
         _activeRift = null;
         _isProcessingRift = false;
-        
+
         // Clear the original descriptions dictionary
         _originalDescriptions.Clear();
     }
-    
+
     /// <summary>
     /// Checks if a rift purchase is currently being processed.
     /// </summary>
@@ -119,7 +122,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
         // Return true if either a rift is currently being processed or there's already an active rift
         return _isProcessingRift || _activeRift != null;
     }
-    
+
     /// <summary>
     /// Sets the rift processing flag.
     /// </summary>
@@ -128,7 +131,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
     {
         _isProcessingRift = isProcessing;
     }
-    
+
     /// <summary>
     /// Handles the StorePurchaseAttemptEvent for revolutionary supply rifts.
     /// </summary>
@@ -137,7 +140,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
         // Only handle the revolutionary supply rift listing
         if (args.ListingId != RevSupplyRiftListingId)
             return;
-        
+
         // Check if a rift has been destroyed
         if (_riftDestroyed)
         {
@@ -145,7 +148,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
             args.Cancel = true;
             return;
         }
-        
+
         // Check if there's already an active rift being processed or placed
         if (IsRiftBeingProcessed())
         {
@@ -153,11 +156,11 @@ public sealed class RevSupplyRiftSystem : EntitySystem
             args.Cancel = true;
             return;
         }
-        
+
         // Mark that we're processing a rift purchase
         SetRiftProcessing(true);
     }
-    
+
     /// <summary>
     /// Handles the StorePurchaseCompletedEvent for revolutionary supply rifts.
     /// </summary>
@@ -166,7 +169,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
         // Only handle the revolutionary supply rift listing
         if (args.ListingId != RevSupplyRiftListingId)
             return;
-        
+
         // Mark that we're done processing a rift purchase
         SetRiftProcessing(false);
     }
@@ -182,85 +185,72 @@ public sealed class RevSupplyRiftSystem : EntitySystem
         revRift.PlacedTime = _timing.CurTime;
         revRift.State = DragonRiftState.Charging;
         revRift.ChargePercentage = 0;
-        
+
         // Store the active rift
         _activeRift = uid;
-        
+
         // Try to get the name of the revolutionary who placed the rift
         // The Dragon property in DragonRiftComponent is actually the revolutionary player entity
         var revolutionary = component.Dragon;
-        Logger.InfoS("rev-supply-rift", $"Revolutionary entity: {revolutionary}");
-        
+        Log.Info($"Revolutionary entity: {revolutionary}");
+
         if (revolutionary != null)
         {
             // Use the Identity system to get the player's name
             // This is more reliable than trying to get it from the mind component
             var name = Identity.Name(revolutionary.Value, EntityManager);
-            Logger.InfoS("rev-supply-rift", $"Got name from Identity system: {name}");
-            
+            Log.Info($"Got name from Identity system: {name}");
+
             if (!string.IsNullOrEmpty(name))
             {
                 revRift.PlacedBy = name;
-                Logger.InfoS("rev-supply-rift", $"Set PlacedBy to: {revRift.PlacedBy}");
+                Log.Info($"Set PlacedBy to: {revRift.PlacedBy}");
             }
             else
             {
                 // Fall back to metadata if Identity system doesn't have a name
-                if (TryComp<MetaDataComponent>(revolutionary.Value, out var metadata))
-                {
-                    revRift.PlacedBy = metadata.EntityName;
-                    Logger.InfoS("rev-supply-rift", $"Set PlacedBy to metadata name: {revRift.PlacedBy}");
-                }
-                else
-                {
-                    revRift.PlacedBy = "Unknown";
-                    Logger.InfoS("rev-supply-rift", "Set PlacedBy to Unknown (no metadata)");
-                }
+                var metadata = MetaData(revolutionary.Value);
+                revRift.PlacedBy = metadata.EntityName;
+                Log.Info($"Set PlacedBy to metadata name: {revRift.PlacedBy}");
             }
         }
         else
         {
             // Try to find a nearby humanoid entity to use as the placer
-            if (TryComp<TransformComponent>(uid, out var riftTransform))
-            {
-                // Get all entities with HumanoidAppearanceComponent within a small radius
-                var nearbyHumanoids = EntityManager.EntityQuery<Content.Shared.Humanoid.HumanoidAppearanceComponent, TransformComponent>()
-                    .Where(pair => 
-                    {
-                        var (_, otherTransform) = pair;
-                        return riftTransform.MapID == otherTransform.MapID && 
-                               (riftTransform.WorldPosition - otherTransform.WorldPosition).LengthSquared() < 4; // 2 unit radius
-                    })
-                    .Select(pair => pair.Item1.Owner)
-                    .ToList();
-                
-                if (nearbyHumanoids.Count > 0)
+            var riftTransform = Transform(uid);
+
+            // Get all entities with HumanoidAppearanceComponent within a small radius
+            var nearbyHumanoids = EntityManager.EntityQuery<HumanoidAppearanceComponent, TransformComponent>()
+                .Where(pair =>
                 {
-                    // Use the first nearby humanoid
-                    var humanoid = nearbyHumanoids[0];
-                    var name = Identity.Name(humanoid, EntityManager);
-                    
-                    if (!string.IsNullOrEmpty(name))
-                    {
-                        revRift.PlacedBy = name;
-                        Logger.InfoS("rev-supply-rift", $"Revolutionary entity is null, using nearby humanoid: {name}");
-                    }
-                    else
-                    {
-                        revRift.PlacedBy = "Unknown";
-                        Logger.InfoS("rev-supply-rift", "Revolutionary entity is null, nearby humanoid has no name");
-                    }
+                    var (_, otherTransform) = pair;
+                    return riftTransform.MapID == otherTransform.MapID &&
+                           (_transform.GetWorldPosition(riftTransform) - _transform.GetWorldPosition(otherTransform)).LengthSquared() < 4; // 2 unit radius
+                })
+                .Select(pair => pair.Item1.Owner)
+                .ToList();
+
+            if (nearbyHumanoids.Count > 0)
+            {
+                // Use the first nearby humanoid
+                var humanoid = nearbyHumanoids[0];
+                var name = Identity.Name(humanoid, EntityManager);
+
+                if (!string.IsNullOrEmpty(name))
+                {
+                    revRift.PlacedBy = name;
+                    Log.Info($"Revolutionary entity is null, using nearby humanoid: {name}");
                 }
                 else
                 {
                     revRift.PlacedBy = "Unknown";
-                    Logger.InfoS("rev-supply-rift", "Revolutionary entity is null, no nearby humanoids found");
+                    Log.Info("Revolutionary entity is null, nearby humanoid has no name");
                 }
             }
             else
             {
                 revRift.PlacedBy = "Unknown";
-                Logger.InfoS("rev-supply-rift", "Revolutionary entity is null, set PlacedBy to Unknown");
+                Log.Info("Revolutionary entity is null, no nearby humanoids found");
             }
         }
 
@@ -268,14 +258,12 @@ public sealed class RevSupplyRiftSystem : EntitySystem
         UpdateSupplyRiftListing();
 
         // Send a message to all revolutionaries about the rift
-        SendRiftPlacedMessage(uid);
-        
+        SendRiftPlacedMessage((uid, revRift));
+
         // Play the soviet choir sound in a 5-tile radius around the rift
-        if (TryComp<TransformComponent>(uid, out var transform))
-        {
-            var soundPath = new SoundPathSpecifier("/Audio/_Starlight/Effects/sov_choir.ogg");
-            _audio.PlayPvs(soundPath, uid, AudioParams.Default.WithMaxDistance(5f).WithVolume(10f));
-        }
+        var transform = Transform(uid);
+        var soundPath = new SoundPathSpecifier("/Audio/_Starlight/Effects/sov_choir.ogg");
+        _audio.PlayPvs(soundPath, uid, AudioParams.Default.WithMaxDistance(5f).WithVolume(10f));
     }
 
     private void OnRevRiftStartup(EntityUid uid, RevSupplyRiftComponent component, ComponentStartup args)
@@ -296,18 +284,18 @@ public sealed class RevSupplyRiftSystem : EntitySystem
             return;
 
         // Check if this is a rift that was destroyed (not just a normal shutdown)
-        if (TryComp<DragonRiftComponent>(uid, out var dragonRift) && 
-            dragonRift.State != DragonRiftState.Finished && 
+        if (TryComp<DragonRiftComponent>(uid, out var dragonRift) &&
+            dragonRift.State != DragonRiftState.Finished &&
             _activeRift == uid)
         {
             // Mark that a rift has been destroyed
             _riftDestroyed = true;
             _activeRift = null;
-            
+
             // Update all uplinks with the destroyed message
             UpdateRiftDestroyedListing();
-            
-            Logger.InfoS("rev-supply-rift", "A supply rift was destroyed!");
+
+            Log.Info("A supply rift was destroyed!");
         }
         else
         {
@@ -319,7 +307,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
             }
         }
     }
-    
+
     /// <summary>
     /// Updates all revolutionary uplinks with the rift destroyed message.
     /// </summary>
@@ -339,22 +327,22 @@ public sealed class RevSupplyRiftSystem : EntitySystem
                     {
                         _originalDescriptions[uid] = listing.Description ?? "";
                     }
-                    
+
                     // Update the description with the destroyed message
                     listing.Description = Loc.GetString("rev-supply-rift-destroyed");
-                    
+
                     // Disable the listing permanently
                     listing.Unavailable = true;
-                    
+
                     break;
                 }
             }
-            
+
             // Update the UI to reflect the changes
             _store.UpdateUserInterface(null, uid, store);
         }
 
-        Logger.InfoS("rev-supply-rift", "Updated all uplinks with rift destroyed message");
+        Log.Info("Updated all uplinks with rift destroyed message");
     }
 
     public override void Update(float frameTime)
@@ -367,19 +355,19 @@ public sealed class RevSupplyRiftSystem : EntitySystem
         {
             // Calculate the charge percentage
             var percentage = (int)MathF.Round(dragonRift.Accumulator / dragonRift.MaxAccumulator * 100);
-            
+
             // Update the charge percentage if it changed
             if (revRift.ChargePercentage != percentage)
             {
                 revRift.ChargePercentage = percentage;
-                
+
                 // Update the listing description
                 if (_activeRift == uid)
                 {
                     UpdateSupplyRiftListing();
                 }
             }
-            
+
             // Update the state from the dragon rift component
             if (revRift.State != dragonRift.State)
             {
@@ -402,14 +390,12 @@ public sealed class RevSupplyRiftSystem : EntitySystem
     {
         if (_activeRift == null || !TryComp<RevSupplyRiftComponent>(_activeRift.Value, out var revRift))
             return;
-        
+
         // Get the location of the rift
         string locationString = "unknown location";
-        if (TryComp<TransformComponent>(_activeRift.Value, out var xform))
-        {
-            locationString = _navMap.GetNearestBeaconString((_activeRift.Value, xform));
-        }
-        
+        var xform = Transform(_activeRift.Value);
+        locationString = _navMap.GetNearestBeaconString((_activeRift.Value, xform));
+
         // Find all store components
         var query = EntityQueryEnumerator<StoreComponent>();
         while (query.MoveNext(out var uid, out var store))
@@ -424,20 +410,20 @@ public sealed class RevSupplyRiftSystem : EntitySystem
                     {
                         _originalDescriptions[uid] = listing.Description ?? "";
                     }
-                    
+
                     // Update the description with the charging status and location
                     // Don't use color tags as they're not properly handled in the UI
                     var chargingText = $"Supply rift (Charging: {revRift.ChargePercentage}% - Placed by comrade {revRift.PlacedBy ?? "Unknown"} {locationString})";
-                    
+
                     listing.Description = chargingText;
-                    
+
                     // Disable the listing while a rift is charging
                     listing.Unavailable = true;
-                    
+
                     break;
                 }
             }
-            
+
             // Update the UI to reflect the changes
             _store.UpdateUserInterface(null, uid, store);
         }
@@ -462,19 +448,19 @@ public sealed class RevSupplyRiftSystem : EntitySystem
                     {
                         _originalDescriptions[uid] = listing.Description ?? "";
                     }
-                    
+
                     // Disable the listing
                     listing.Unavailable = true;
-                    
+
                     break;
                 }
             }
-            
+
             // Update the UI to reflect the changes
             _store.UpdateUserInterface(null, uid, store);
         }
 
-        Logger.InfoS("rev-supply-rift", "Disabled supply rift listing in all uplinks");
+        Log.Info("Disabled supply rift listing in all uplinks");
     }
 
     /// <summary>
@@ -493,10 +479,10 @@ public sealed class RevSupplyRiftSystem : EntitySystem
                 rift = revRift.Owner;
                 activeRiftCount++;
             }
-            
+
         }
 
-        if (activeRiftCount >= _config.GetCVar(StarlightCCVars.AutogammaRiftCount) && _config.GetCVar(StarlightCCVars.AutogammaRiftEnabled)) //#region Starlight Autogamma
+        if (activeRiftCount == _config.GetCVar(StarlightCCVars.AutogammaRiftCount) && _config.GetCVar(StarlightCCVars.AutogammaRiftEnabled)) //#region Starlight Autogamma
         {
             var xform = Transform(rift);
             var station = _station.GetStationInMap(xform.MapID);
@@ -506,9 +492,10 @@ public sealed class RevSupplyRiftSystem : EntitySystem
                     Loc.GetString("centcomm-revs-gammarift"),
                     Loc.GetString("cmd-announce-sender"));
                 _alert.SetLevel(station.Value, "gamma", true, true, true, true);
+                _roundEnd.SetShuttleCallsEnabled(false);
             }
         } //#endregion Starlight Autogamma
-        
+
         // Find all store components
         var query = EntityQueryEnumerator<StoreComponent>();
         while (query.MoveNext(out var uid, out var store))
@@ -520,19 +507,19 @@ public sealed class RevSupplyRiftSystem : EntitySystem
                 {
                     // Update the description with the charged message and active rift count
                     listing.Description = Loc.GetString("rev-supply-rift-charged", ("count", activeRiftCount));
-                    
+
                     // Enable the listing since the rift is charged
                     listing.Unavailable = false;
-                    
+
                     break;
                 }
             }
-            
+
             // Update the UI to reflect the changes
             _store.UpdateUserInterface(null, uid, store);
         }
 
-        Logger.InfoS("rev-supply-rift", $"Updated all uplinks with charged rift description. Active rifts: {activeRiftCount}");
+        Log.Info($"Updated all uplinks with charged rift description. Active rifts: {activeRiftCount}");
     }
 
     /// <summary>
@@ -556,10 +543,10 @@ public sealed class RevSupplyRiftSystem : EntitySystem
                     }
                     // Don't set a new description if we don't have the original
                     // This will use the default description from the prototype
-                    
+
                     // Enable the listing
                     listing.Unavailable = false;
-                    
+
                     break;
                 }
             }
@@ -568,9 +555,9 @@ public sealed class RevSupplyRiftSystem : EntitySystem
             _store.UpdateUserInterface(null, uid, store);
         }
 
-        Logger.InfoS("rev-supply-rift", "Enabled supply rift listing in all uplinks");
+        Log.Info("Enabled supply rift listing in all uplinks");
     }
-    
+
     /// <summary>
     /// Checks if a rift has been destroyed and updates the listing accordingly.
     /// This is called by the StoreSystem whenever listings are refreshed.
@@ -581,7 +568,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
         // If no rift has been destroyed, we don't need to do anything
         if (!_riftDestroyed)
             return;
-            
+
         // Find the supply rift listing
         foreach (var listing in storeComp.FullListingsCatalog)
         {
@@ -592,13 +579,13 @@ public sealed class RevSupplyRiftSystem : EntitySystem
                 {
                     _originalDescriptions[storeComp.Owner] = listing.Description ?? "";
                 }
-                
+
                 // Update the description with the destroyed message
                 listing.Description = Loc.GetString("rev-supply-rift-destroyed");
-                
+
                 // Disable the listing permanently
                 listing.Unavailable = true;
-                
+
                 break;
             }
         }
@@ -607,15 +594,13 @@ public sealed class RevSupplyRiftSystem : EntitySystem
     /// <summary>
     /// Sends a message to all revolutionaries about the rift being placed. And also ghosts
     /// </summary>
-    private void SendRiftPlacedMessage(EntityUid riftUid)
+    private void SendRiftPlacedMessage(Entity<RevSupplyRiftComponent> rift)
     {
-        if (!TryComp<TransformComponent>(riftUid, out var xform) || 
-            !TryComp<RevSupplyRiftComponent>(riftUid, out var revRift))
-            return;
+        var xform = Transform(rift.Owner);
 
         // Get the nearest beacon location
-        var locationString = _navMap.GetNearestBeaconString((riftUid, xform));
-        var placedBy = revRift.PlacedBy ?? "Unknown";
+        var locationString = _navMap.GetNearestBeaconString((rift.Owner, xform));
+        var placedBy = rift.Comp.PlacedBy ?? "Unknown";
         var message = Loc.GetString("rev-supply-rift-placed", ("location", locationString), ("name", placedBy));
         var sender = Loc.GetString("rev-supply-rift-sender");
 
@@ -633,10 +618,10 @@ public sealed class RevSupplyRiftSystem : EntitySystem
             if (HasComp<RevolutionaryComponent>(uid) || HasComp<HeadRevolutionaryComponent>(uid))
             {
                 // Send a private message to the revolutionary
-                var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", 
-                    ("sender", sender), 
+                var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message",
+                    ("sender", sender),
                     ("message", message));
-                
+
                 // Only send if the player is connected
                 if (mindComp.UserId != null && _playerManager.TryGetSessionById(mindComp.UserId.Value, out var session))
                 {
@@ -653,24 +638,24 @@ public sealed class RevSupplyRiftSystem : EntitySystem
             .Recipients
             .Where(p => !_adminManager.IsAdmin(p))
             .Select(p => p.Channel);
-        
-        var ghostWrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", 
-            ("sender", sender), 
+
+        var ghostWrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message",
+            ("sender", sender),
             ("message", message));
-        
-        _chatManager.ChatMessageToMany(ChatChannel.Dead, message, ghostWrappedMessage, riftUid, false, true, nonAdminGhostClients.ToList(), Color.Red);
+
+        _chatManager.ChatMessageToMany(ChatChannel.Dead, message, ghostWrappedMessage, rift.Owner, false, true, nonAdminGhostClients.ToList(), Color.Red);
 
         // Send alert
         var adminMessage = $"Revolutionary supply rift placed by {placedBy} {locationString}";
         _chatManager.SendAdminAlert(adminMessage);
-        
+
         // And announcement
         var adminClients = _adminManager.ActiveAdmins.Select(p => p.Channel);
-        var adminWrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", 
-            ("sender", sender), 
+        var adminWrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message",
+            ("sender", sender),
             ("message", message));
-        
-        _chatManager.ChatMessageToMany(ChatChannel.Admin, message, adminWrappedMessage, riftUid, false, true, adminClients.ToList(), Color.Red);
+
+        _chatManager.ChatMessageToMany(ChatChannel.Admin, message, adminWrappedMessage, rift.Owner, false, true, adminClients.ToList(), Color.Red);
     }
 
     /// <summary>

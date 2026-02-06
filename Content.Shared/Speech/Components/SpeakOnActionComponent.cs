@@ -14,4 +14,12 @@ public sealed partial class SpeakOnActionComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public LocId? Sentence;
+
+    #region Starlight
+    /// <summary>
+    /// Should this be sent as a whisper?
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Whisper = false;
+    #endregion Starlight
 }

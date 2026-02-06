@@ -24,7 +24,7 @@ public sealed class StationInitCommand : LocalizedCommands
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (args.Length < 2)
+        if (args.Length == 0)
         {
             shell.WriteLine(
                 "Initializes a grid as a station. Check /Resources/Prototypes/Entities/Stations for valid station prototypes.");
@@ -47,7 +47,14 @@ public sealed class StationInitCommand : LocalizedCommands
                     var id = stationSystem.InitializeNewStationMidRound(uid, comp.BaseStationProtos, comp);
                     added.Add(id);
                 }
+
+                if (added.Count == 0)
+                {
+                    shell.WriteLine("No stations initialized.");
+                    return;
+                }
                 shell.WriteLine($"Initialized stations with the following IDs: {string.Join(", ", added)}.");
+                return;
             }
             shell.WriteError("Invalid grid entity ID.");
             return;
@@ -59,19 +66,25 @@ public sealed class StationInitCommand : LocalizedCommands
             return;
         }
 
-        if (!_prototypeManager.TryIndex(args[1], out var prototype))
+        if (args.Length == 1)
         {
             if (!_entityManager.TryGetComponent<BecomesStationMidRoundComponent>(grid, out var midround) ||
                 midround.BaseStationProtos is null || midround.BaseStationProtos.Count == 0)
             {
-                shell.WriteError(
-                    "Invalid station prototype ID. Check /Resources/Prototypes/Entities/Stations for valid station prototypes.");
+                stationSystem.InitializeNewStationMidRound(grid.Value, "StandardNanotrasenStation");
+                shell.WriteLine($"Station with ID {grid.Value} initialized. Used StandardNanotrasenStation as default prototype.");
                 return;
             }
-
             stationSystem.MarkMidRoundStationForInitialization(grid.Value, midround);
             var id = stationSystem.InitializeNewStationMidRound(grid.Value, midround.BaseStationProtos, midround);
             shell.WriteLine($"Station with ID {id} initialized!");
+            return;
+        }
+        
+        if (!_prototypeManager.TryIndex(args[1], out var prototype))
+        {
+            shell.WriteError(
+                "Invalid station prototype ID. Check /Resources/Prototypes/Entities/Stations for valid station prototypes.");
             return;
         }
 
@@ -101,7 +114,7 @@ public sealed class StationInitCommand : LocalizedCommands
         switch (args.Length)
         {
             case 1:
-                return CompletionResult.FromHintOptions(CompletionHelper.Components<MapGridComponent>(args[0], _entityManager), "Grid ID (or \"all\")");
+                return CompletionResult.FromHintOptions(CompletionHelper.Components<MapGridComponent>(args[0], _entityManager).Append(new CompletionOption("all")), "Grid ID or all");
             case 3:
                 return CompletionResult.FromHintOptions(CompletionHelper.Components<StationDataComponent>(args[2], _entityManager), "Station ID");
         }

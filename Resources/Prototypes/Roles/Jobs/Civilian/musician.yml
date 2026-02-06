@@ -17,7 +17,7 @@
 - type: startingGear
   id: MusicianGear
   equipment:
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesMusicianSunglasses # Starlight
     #shoes: ClothingShoesBootsLaceup # 🌟Starlight🌟
     id: MusicianPDA
     ears: ClothingHeadsetService

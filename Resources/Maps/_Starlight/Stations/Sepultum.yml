@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 01/26/2026 17:34:53
-  entityCount: 42886
+  time: 01/28/2026 19:53:31
+  entityCount: 42905
 maps:
 - 1
 grids:
@@ -12992,7 +12992,7 @@ entities:
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: Door
-      secondsUntilStateChange: -221263.14
+      secondsUntilStateChange: -222549.6
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13287,7 +13287,7 @@ entities:
       pos: -7.5,67.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -175225.11
+      secondsUntilStateChange: -176511.56
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13547,7 +13547,7 @@ entities:
       pos: 7.5,4.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -229493.66
+      secondsUntilStateChange: -230780.11
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13609,7 +13609,7 @@ entities:
       pos: 16.5,93.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -114421.41
+      secondsUntilStateChange: -115707.86
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13621,7 +13621,7 @@ entities:
       pos: 16.5,89.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -114420.805
+      secondsUntilStateChange: -115707.26
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13632,7 +13632,7 @@ entities:
       pos: -60.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -114671.17
+      secondsUntilStateChange: -115957.625
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13643,7 +13643,7 @@ entities:
       pos: -56.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -114671.6
+      secondsUntilStateChange: -115958.055
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13654,7 +13654,7 @@ entities:
       pos: -52.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -114672.14
+      secondsUntilStateChange: -115958.59
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13665,7 +13665,7 @@ entities:
       pos: -48.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -114672.875
+      secondsUntilStateChange: -115959.33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13728,7 +13728,7 @@ entities:
       pos: -60.5,77.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -2690.6567
+      secondsUntilStateChange: -3977.1104
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -14108,7 +14108,7 @@ entities:
       pos: -43.5,-15.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -6779.766
+      secondsUntilStateChange: -8066.2197
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -86548,7 +86548,7 @@ entities:
   - uid: 42894
     components:
     - type: Transform
-      pos: -95.503105,53.42559
+      pos: -95.502045,54.402615
       parent: 2
 - proto: ClothingHeadHatSombrero
   entities:
@@ -87004,7 +87004,7 @@ entities:
   - uid: 42893
     components:
     - type: Transform
-      pos: -95.51873,53.39434
+      pos: -95.55364,54.38699
       parent: 2
 - proto: ClothingOuterStraightjacket
   entities:
@@ -88045,6 +88045,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 7.5,41.5
+      parent: 2
+- proto: ComputerSurveillanceCameraMonitorDesktopIsolatedNetwork
+  entities:
+  - uid: 911
+    components:
+    - type: Transform
+      pos: -111.5,38.5
       parent: 2
 - proto: ComputerTechnologyDiskTerminal
   entities:
@@ -89369,7 +89376,7 @@ entities:
       pos: -24.5,66.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -24247.951
+      secondsUntilStateChange: -25534.404
       state: Closing
 - proto: CurtainsPurple
   entities:
@@ -89384,7 +89391,7 @@ entities:
       pos: -122.5,47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -126611.84
+      secondsUntilStateChange: -127898.3
       state: Opening
   - uid: 14758
     components:
@@ -90134,13 +90141,6 @@ entities:
     components:
     - type: Transform
       pos: -74.5,-12.5
-      parent: 2
-- proto: DesktopComputerFrame
-  entities:
-  - uid: 14870
-    components:
-    - type: Transform
-      pos: -111.5,38.5
       parent: 2
 - proto: DiceBag
   entities:
@@ -164100,6 +164100,11 @@ entities:
     - type: Transform
       pos: -97.5,-6.5
       parent: 2
+  - uid: 25788
+    components:
+    - type: Transform
+      pos: -102.5,42.5
+      parent: 2
 - proto: SLVendingMachineEngi
   entities:
   - uid: 25734
@@ -167953,6 +167958,192 @@ entities:
       - SurveillanceCameraEngineering
       nameSet: True
       id: Engine East
+- proto: SurveillanceCameraIsolatedNetwork
+  entities:
+  - uid: 914
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -108.5,38.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: East Hall
+  - uid: 915
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -114.5,38.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: West Hall
+  - uid: 916
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -120.5,41.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: Supply Closet
+  - uid: 917
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -110.5,42.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: Prize Corner
+  - uid: 918
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -114.5,54.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: Show Stage
+  - uid: 919
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -126.5,47.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: Arcade
+  - uid: 920
+    components:
+    - type: Transform
+      pos: -122.5,44.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: Pirate Cove
+  - uid: 921
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -124.5,40.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: Entrance
+  - uid: 1288
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -104.5,40.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: Kitchen
+  - uid: 1289
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -107.5,59.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: Party Room A
+  - uid: 1290
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -103.5,59.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: Party Room B
+  - uid: 1291
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -100.5,51.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: Restrooms
+  - uid: 14690
+    components:
+    - type: Transform
+      pos: -108.5,44.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: SE. Dining Area
+  - uid: 14870
+    components:
+    - type: Transform
+      pos: -116.5,44.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: SW. Dining Area
+  - uid: 25785
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -108.5,52.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: NE. Dining Area
+  - uid: 25786
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -118.5,58.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: Backstage
+  - uid: 25787
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -116.5,52.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraIsolatedNetwork
+      nameSet: True
+      id: NW. Dining Area
 - proto: SurveillanceCameraGeneral
   entities:
   - uid: 26259
@@ -168472,6 +168663,13 @@ entities:
     components:
     - type: Transform
       pos: -39.5,74.5
+      parent: 2
+- proto: SurveillanceCameraRouterIsolatedNetwork
+  entities:
+  - uid: 913
+    components:
+    - type: Transform
+      pos: -95.5,53.5
       parent: 2
 - proto: SurveillanceCameraRouterGeneral
   entities:

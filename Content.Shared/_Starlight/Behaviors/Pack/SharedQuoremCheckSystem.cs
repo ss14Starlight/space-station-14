@@ -17,7 +17,6 @@ public abstract class SharedQuoremCheckSystem : EntitySystem
 {
     [Dependency] private readonly NpcFactionSystem _npcFactionSystem = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     protected Dictionary<int, HashSet<EntityUid>> _packGroups = new Dictionary<int, HashSet<EntityUid>>();

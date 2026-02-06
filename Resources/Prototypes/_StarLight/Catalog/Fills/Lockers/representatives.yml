@@ -24,6 +24,7 @@
         - id: FaxMachineFlatpack
         - id: PlushieEmmie
         - id: ClothingOuterHardsuitNtrep
+        - id: BriefcaseSecure
         - !type:NestedSelector
           tableId: CorporateDocumentTable
   
@@ -124,7 +125,7 @@
         - id: ClothingUniformJumpskirtBlueShield
         - id: HandheldGPSBasic
         - id: ClothingNeckCloakBsoElite
-        - id: ClothingNeckCloakBsoElite
+        - id: ClothingNeckCloakBsoPoncho
         - id: RadioHandheldSecurity
         - id: ClothingUniformJumpsuitBlueShieldShirt
         - id: ClothingUniformJumpskirtBlueShieldSkirt

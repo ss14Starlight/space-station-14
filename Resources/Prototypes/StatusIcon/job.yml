@@ -17,7 +17,7 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconShaftMiner
+  id: JobIconMiningSpecialist #Starlight
   icon:
     sprite: *icon-rsi
     state: ShaftMiner
@@ -75,7 +75,7 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconQuarterMaster
+  id: JobIconQuartermaster #Starlight
   icon:
     sprite: *icon-rsi
     state: QuarterMaster
@@ -535,7 +535,7 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconERTMedic
+  id: JobIconERTMedical #Starlight
   icon:
     sprite: *icon-rsi
     state: ERTMedical
@@ -551,7 +551,7 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconNanotrasen
+  id: JobIconNanoTrasenRepresentative
   icon:
     sprite: *icon-rsi
     state: Nanotrasen
@@ -595,24 +595,6 @@
   icon:
     sprite: *icon-rsi
     state: SeniorResearcher
-  allowSelection: false
-
-# Admeme
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconSkub
-  icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
-    state: Skub
-  allowSelection: false
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconCultistChaplain
-  icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
-    state: CultistChaplain
   allowSelection: false
 
 # Other

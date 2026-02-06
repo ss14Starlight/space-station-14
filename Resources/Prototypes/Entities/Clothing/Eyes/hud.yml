@@ -91,13 +91,16 @@
   - type: Clothing
     sprite: Clothing/Eyes/Hud/beergoggles.rsi
   - type: ShowThirstIcons
+  - type: FlashImmunity # Starlight
+  - type: EyeProtection # Starlight. They're a steal target, why don't they actually...
   - type: StealTarget
-    stealGroup: ClothingEyesHudBeer
+    stealGroup: MiscGlassesCollection # Starlight
   - type: SolutionScanner
   - type: Tag
     tags:
     - PetWearable
     - WhitelistChameleon
+    - Sunglasses # Starlight
 
 - type: entity
   parent: ClothingEyesBase

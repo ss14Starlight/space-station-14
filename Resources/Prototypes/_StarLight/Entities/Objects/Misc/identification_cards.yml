@@ -132,7 +132,7 @@
       offset: *icon-offset
       state: NTNCBlueShield
   - type: PresetIdCard
-    job: NTNCBlueshield
+    job: NTNCBlueShield
 
 - type: entity
   parent: [ IDCardStandard, BaseCargoContraband ]
@@ -227,6 +227,8 @@
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers: 
     - state: sovietid
+  - type: IdCard
+    jobIcon: JobIconSoviet
 
 - type: entity
   parent: [ IDCardStandard, BaseSyndicateContraband ]
@@ -367,6 +369,66 @@
     heldPrefix: blue
   - type: PresetIdCard
     job: Decimus
+
+- type: entity
+  parent: [IDCardStandard, BaseTSFContraband]
+  id: TSFIdCard
+  name: TSF ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers: 
+    - state: tsf
+  - type: IdCard
+    jobIcon: JobIconTSF
+
+- type: entity
+  parent: TSFIdCard
+  id: TSFIdCardTrader
+  name: TSF Trader ID card
+  components:
+  - type: IdCard
+    jobTitle: job-title-tsf-trader
+
+- type: entity
+  parent: [IDCardStandard, BaseTSFContraband]
+  id: TSFIdCardMarine
+  name: dog tags
+  suffix: TSF
+  description: A marine dog tags.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Misc/dogtags.rsi
+    layers: 
+    - state: icon
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _Starlight/Clothing/Neck/Misc/dogtags.rsi
+  - type: IdCard
+    jobTitle: job-title-tsf-marine
+    jobIcon: JobIconTSF
+  - type: Access
+    groups:
+    - AllAccess
+
+- type: entity
+  parent: TSFIdCardMarine
+  id: TSFIdCardLeader
+  suffix: TSF
+  name: team leader dog tags
+  components:
+  - type: IdCard
+    jobTitle: job-title-tsf-marine-leader
+
+- type: entity
+  parent: TSFIdCardMarine
+  id: TSFIdCardElite
+  name: MARSOC dog tags
+  suffix: TSF
+  components:
+  - type: IdCard
+    jobTitle: job-title-tsf-MARSOC
 
 - type: entity
   parent: IDCardStandard

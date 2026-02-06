@@ -112,7 +112,7 @@
   id: TechnologyDiskStealCollectionObjective
   components:
   - type: NotJobRequirement
-    jobs: [ Scientist ]
+    jobs: [ ResearchDirector, ResearchAssistant, Scientist, Roboticist ] # Starlight. Too easy.
   - type: StealCondition
     stealGroup: TechnologyDisk
     minCollectionSize: 5
@@ -126,7 +126,7 @@
   id: MailStealCollectionObjective
   components:
   - type: NotJobRequirement
-    jobs: [ CargoTechnician, SalvageSpecialist ]
+    jobs: [ Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ] # Starlight. Added rest of Cargo.
   - type: StealCondition
     stealGroup: Mail
     minCollectionSize: 4
@@ -140,7 +140,7 @@
   id: IDCardsStealCollectionObjective
   components:
   - type: NotJobRequirement #Here cause you can buy a personnel crate from cargo which is 8 ID cards. Meaning the ID you start with is number nine and you only need to steal one.
-    jobs: [ CargoTechnician, SalvageSpecialist ]
+    jobs: [ Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead, HeadOfPersonnel ] # Starlight. Added rest of Cargo. HoP also has a box of these...
   - type: StealCondition
     stealGroup: IDCard
     minCollectionSize: 5
@@ -154,7 +154,7 @@
   id: OfficerHandgunsStealCollectionObjective
   components:
   - type: NotJobRequirement
-    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden ]
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Starlight. Rest of Sec.
   - type: StealCondition
     stealGroup: OfficerHandgun
     minCollectionSize: 2
@@ -185,7 +185,7 @@
   id: ForensicScannerStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ Detective ]
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Starlight. Rest of Sec.
   - type: StealCondition
     stealGroup: ForensicScanner
   - type: Objective
@@ -196,7 +196,7 @@
   id: FlippoEngravedLighterStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ Detective ]
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Starlight. Rest of Sec.
   - type: StealCondition
     stealGroup: FlippoEngravedLighter
   - type: Objective
@@ -206,6 +206,8 @@
   parent: BaseThiefStealObjective
   id: ClothingHeadHatWardenStealObjective
   components:
+  - type: NotJobRequirement # Starlight.
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet, HeadOfPersonnel ] # Starlight. Rest of Sec. HoP can literally print it.
   - type: StealCondition
     stealGroup: ClothingHeadHatWarden
   - type: Objective
@@ -215,6 +217,8 @@
   parent: BaseThiefStealObjective
   id: WantedListCartridgeStealObjective
   components:
+  - type: NotJobRequirement # Starlight
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Starlight. Rest of Sec.
   - type: StealCondition
     stealGroup: WantedListCartridge
   - type: Objective
@@ -225,7 +229,7 @@
   id: ClothingOuterHardsuitVoidParamedStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ MedicalDoctor, Paramedic, Chemist, Psychologist ]
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist ] # Starlight. Rest of med.
   - type: StealCondition
     stealGroup: ClothingOuterHardsuitVoidParamed
   - type: Objective
@@ -236,7 +240,7 @@
   id: MedicalTechFabCircuitboardStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ MedicalDoctor, Paramedic, Chemist, Psychologist ]
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist ] # Starlight. Rest of med.
   - type: StealCondition
     stealGroup: MedicalTechFabCircuitboard
   - type: Objective
@@ -247,7 +251,7 @@
   id: ClothingHeadsetAltMedicalStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ ChiefMedicalOfficer ]
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist ] # Starlight. Rest of med.
   - type: StealCondition
     stealGroup: ClothingHeadsetAltMedical
   - type: Objective
@@ -258,7 +262,7 @@
   id: FireAxeStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ AtmosphericTechnician ]
+    jobs: [ ChiefEngineer, StationEngineer, AtmosphericTechnician, TechnicalAssistant ] # Starlight. Rest of engi.
   - type: StealCondition
     stealGroup: FireAxe
   - type: Objective
@@ -269,7 +273,7 @@
   id: AmePartFlatpackStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ StationEngineer, AtmosphericTechnician ]
+    jobs: [ ChiefEngineer, StationEngineer, AtmosphericTechnician, TechnicalAssistant ] # Starlight. Rest of engi.
   - type: StealCondition
     stealGroup: AmePartFlatpack
   - type: Objective
@@ -279,8 +283,8 @@
   parent: BaseThiefStealObjective
   id: ChiefEngineerToolbeltStealObjective
   components:
-  #- type: NotJobRequirement                      Is this really necessary? it's a pickpocket objective. Only thing is that it would be easier to get to CE
-  #  jobs: [ StationEngineer, AtmosphericTechnician ]
+  - type: NotJobRequirement # Starlight uncomment.
+    jobs: [ ChiefEngineer, StationEngineer, AtmosphericTechnician, TechnicalAssistant ] # Starlight. Too easy.
   - type: StealCondition
     stealGroup: ChiefEngineerToolBelt
   - type: Objective
@@ -291,7 +295,7 @@
   id: ExpeditionsCircuitboardStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ SalvageSpecialist ]
+    jobs: [ Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ] # Starlight. Rest of cargo.
   - type: StealCondition
     stealGroup: SalvageExpeditionsComputerCircuitboard
   - type: Objective
@@ -302,22 +306,25 @@
   id: CargoShuttleCircuitboardStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ CargoTechnician, SalvageSpecialist ]
+    jobs: [ Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ] # Starlight. Rest of cargo.
   - type: StealCondition
     stealGroup: CargoShuttleConsoleCircuitboard
   - type: Objective
     difficulty: 0.7
 
-- type: entity                                      #Service subgroup
-  parent: BaseThiefStealObjective
-  id: ClothingEyesHudBeerStealObjective
-  components:
-  - type: NotJobRequirement
-    jobs: [ Bartender, ServiceWorker ]
-  - type: StealCondition
-    stealGroup: ClothingEyesHudBeer
-  - type: Objective
-    difficulty: 0.3
+# Starlight start
+# Disabled in favor of MiscSunglassesStealCollectionObjective
+#- type: entity                                      #Service subgroup
+#  parent: BaseThiefStealObjective
+#  id: ClothingEyesHudBeerStealObjective
+#  components:
+#  - type: NotJobRequirement
+#    jobs: [ Bartender, ServiceWorker ]
+#  - type: StealCondition
+#    stealGroup: ClothingEyesHudBeer
+#  - type: Objective
+#    difficulty: 0.3
+# Starlight end
 
 - type: entity
   parent: BaseThiefStealObjective

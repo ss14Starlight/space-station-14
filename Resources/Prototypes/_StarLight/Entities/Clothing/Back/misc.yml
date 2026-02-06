@@ -17,7 +17,7 @@
       sprite: _Starlight/Clothing/Back/nullspaceteleporter.rsi
     - type: IdClothingBlocker
       freezeUser: false
-      allowedJobs:
+      allowedAccesses:
         - Security
         - Cadet
         - Command
