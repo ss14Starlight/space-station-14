@@ -292,7 +292,7 @@
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/L10.rsi
   - type: Gun
-    fireRate: 4.5
+    fireRate: 5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
