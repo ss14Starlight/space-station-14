@@ -29292,5 +29292,132 @@ Entries:
   id: 120300
   time: '2026-02-05T20:03:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/1203
+- author: neomoth
+  changes:
+  - message: MMMMMMMM MORE TOOLSHED VERY YUMMERS.............
+    type: Add
+  id: 315500
+  time: '2026-02-06T01:40:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3155
+- author: CrazyPhantom
+  changes:
+  - message: Nuclear Reactor.
+    type: Add
+  id: 304400
+  time: '2026-02-06T02:02:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3044
+- author: Conflee
+  changes:
+  - message: Changed rates of RP objectives from 1 -> 0.85. Since they're a reflavor
+      of escape alive, and we have so many more objectives now, this should make them
+      not a guaranteed thing for nearly every traitor.
+    type: Tweak
+  - message: Fixed Classified Documents not being in the traitor steal objective list-
+      Missed in testing because its in an upstream file, and because manually adding
+      the objectives still worked. Now they will appear in round start objectives
+      with the same frequency as Captain steal targets.
+    type: Fix
+  id: 314500
+  time: '2026-02-06T02:06:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3145
+- author: Citrea
+  changes:
+  - message: Lagomorphs no longer reject brain and hand implants
+    type: Fix
+  id: 315600
+  time: '2026-02-06T01:59:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3156
+- author: STARLIGHT TEAM
+  changes:
+  - message: Adds Makeshift Items to Maints Lootpool
+    type: Add
+  id: 314900
+  time: '2026-02-06T02:19:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3149
+- author: wonderfulnewworld
+  changes:
+  - message: 'Added the following to Thief single steal targets: strange brigmedic''s
+      bedsheet, salvage lead''s ceremonial salvager''s mantle, security techfab machine
+      board, PTech circuitboard, log probe cartridge, med tek cartridge, astro nav
+      cartridge, mining shuttle console board, salvage shuttle console board, communications
+      computer board, ID card computer board, and command over-ear headset.'
+    type: Add
+  - message: 'Added the following to Thief collection steal targets: handheld monitors
+      (CMO, Paramed, BSO, Brigmed), galoshes/galoshn''ts, RCDs and RPDs, (beer goggles,
+      musician shades, security glasses, or detective''s noir-tech glasses), and (administration,
+      skill, blueshield, or brigmedic sunglasses).'
+    type: Add
+  - message: 'Added the following to Thief story objectives: Master Thief. Become
+      the greatest thief, and steal anything you perceive as having value. (33% chance
+      to roll it. It''s a more freeform goal, but it does have Difficulty, so getting
+      it will lower your max number of fixed targets.)'
+    type: Add
+  - message: 'Added the following to Traitor single steal targets: nuclear pinpointer,
+      access configurator, head of personnel ID card, nanotrasen representative''s
+      secure briefcase, chief medical officer''s hardsuit, chief engineer''s hardsuit,
+      head of security''s hardsuit, warden''s hardsuit, brigmedic''s hardsuit, QM''s
+      luxury maxim hardsuit, spationaut lead hardsuit, captain''s armored spacesuit,
+      nanotrasen representative''s hardsuit, blue shield officer''s hardsuit, blue
+      shield officer''s magboots, salvage encryption key, head of security''s Proto-5x,
+      and blue shield officer''s X-01 multiphase energy gun or sp8t (either).'
+    type: Add
+  - message: 'Added the following to Traitor story objectives: Harass and inconvenience
+      {$department} this shift, without dealing direct body harm, Impersonate a member
+      of {$department} this shift, and smear them and their department''s reputation,
+      Falsify aggression and increase hostilities between {$department} and another
+      department this shift, and Waste {$department}''s resources this shift, in any
+      way you deem satisfactory.'
+    type: Add
+  - message: '(Temporarily, until new ones are created) Added the following to Vampire
+      single steal targets: head of security''s Proto-5x, blue shield officer''s X-01
+      multiphase energy gun or sp8t (either), chief medical officer''s hardsuit, chief
+      engineer''s hardsuit, head of security''s hardsuit, QM''s luxury maxim hardsuit,
+      captain''s armored spacesuit, nanotrasen representative''s hardsuit, and blue
+      shield officer''s hardsuit,'
+    type: Add
+  - message: Musicians now spawn with custom purple "Musician Shades" instead of normal
+      sunglasses. (They still function like sunglasses.)
+    type: Add
+  - message: Galoshes now spawn in janitor lockers. (There is a *very* high chance
+      that they are actually Galoshn'ts though... test your luck.)
+    type: Add
+  - message: The Beer Goggles now actually function as sunglasses.
+    type: Tweak
+  - message: You can no longer get steal targets corresponding to the department you
+      were employed in at shift start. (Excluding Service.)
+    type: Tweak
+  - message: Increases maximum Traitor difficulty by 1, and maximum Thief difficulty
+      by 0.5.
+    type: Tweak
+  - message: Removed Handheld Monitor and Beer Goggles steal targets in favor of their
+      upgraded versions.
+    type: Remove
+  - message: The detective's Energy Magnum is now a valid steal target instead of
+      being accidentally disabled.
+    type: Fix
+  id: 315700
+  time: '2026-02-06T02:29:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3157
+- author: Conflee
+  changes:
+  - message: Added the Advanced Chemical, Rescue, Chameleon, and Advanced Tools Syndicate
+      Modules to the EMAG lists. This should give more non-combat utility to hacked
+      borgs for both Traitors and SELF Agents.
+    type: Add
+  id: 312800
+  time: '2026-02-06T02:34:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3128
+- author: Rhetorica
+  changes:
+  - message: Elves as a separate playable species. Take control of your arcane fate!
+    type: Add
+  - message: Cantrips for the Traveller, an elf-exclusive wizard spellbook. Choose
+      2 of 5 nifty spells at the start of each shift.
+    type: Add
+  - message: Humans may no longer have elf ears. (But Dwarves can.)
+    type: Remove
+  id: 276200
+  time: '2026-02-06T02:49:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2762
 Order: -1
 

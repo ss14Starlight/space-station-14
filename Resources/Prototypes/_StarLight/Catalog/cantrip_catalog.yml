@@ -1,0 +1,80 @@
+# Elf cantrips
+
+- type: listing
+  id: CantripGlow
+  name: cantrip-glow-name
+  description: cantrip-glow-description
+  productAction: ActionCantripGlow
+  cost:
+    WizCoin: 1
+  categories:
+  - CantripsStandard
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: CantripSpark
+  name: cantrip-spark-name
+  description: cantrip-spark-description
+  productAction: ActionCantripSpark
+  cost:
+    WizCoin: 1
+  categories:
+  - CantripsStandard
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: CantripAntidote
+  name: cantrip-antidote-name
+  description: cantrip-antidote-description
+  productAction: ActionCantripAntidote
+  cost:
+    WizCoin: 1
+  categories:
+  - CantripsStandard
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: CantripMop
+  name: cantrip-mop-name
+  description: cantrip-mop-description
+  productAction: ActionCantripMop
+  cost:
+    WizCoin: 1
+  categories:
+  - CantripsStandard
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: CantripBandage
+  name: cantrip-bandage-name
+  description: cantrip-bandage-description
+  productAction: ActionCantripBandage
+  cost:
+    WizCoin: 1
+  categories:
+  - CantripsStandard
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# Disabled until I figure out what's wrong with it:
+# - type: listing
+#   id: CantripMessage
+#   name: cantrip-message-name
+#   description: cantrip-message-description
+#   productAction: ActionCantripMessage
+#   cost:
+#     WizCoin: 1
+#   categories:
+#   - CantripsStandard
+#   conditions:
+#   - !type:ListingLimitedStockCondition
+#     stock: 1

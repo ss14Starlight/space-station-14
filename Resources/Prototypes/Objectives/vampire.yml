@@ -31,7 +31,7 @@
   id: CMOHyposprayVampireStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ ChiefMedicalOfficer ]
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist ] # Starlight. Too easy.
   - type: StealCondition
     owner: job-name-cmo
     stealGroup: Hypospray
@@ -41,7 +41,7 @@
   id: RDHardsuitVampireStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ ResearchDirector ]
+    jobs: [ ResearchDirector, ResearchAssistant, Scientist, Roboticist ] # Starlight. Too easy.
   - type: StealCondition
     owner: job-name-rd
     stealGroup: ClothingOuterHardsuitRd
@@ -53,9 +53,9 @@
   id: EnergyMagnumVampireStealObjective
   components:
   - type: Objective
-    difficulty: 2
+    difficulty: 1.5 # Starlight, lowered difficulty since it's a lot easier to deal with Det than HoS
   - type: NotJobRequirement
-    jobs: [ Detective ]
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Starlight - magnum to detective, and rest of department excluded
   - type: StealCondition
     stealGroup: WeaponEnergyMagnum
     owner: job-name-detective
@@ -67,29 +67,29 @@
   - type: Objective
     difficulty: 2
   - type: NotJobRequirement
-    jobs: [ Warden ]
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Too easy.
   - type: StealCondition
     stealGroup: WeaponEnergyShotgun
     owner: job-name-warden
 
 - type: entity
   parent: BaseVampireStealObjective
-  id: Proto5xVampireStealObjective
+  id: HOSWeaponVampireStealObjective # Starlight, HoS weapon variants
   components:
   - type: Objective
     difficulty: 2
   - type: NotJobRequirement
-    jobs: [ HeadOfSecurity ]
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Too easy.
   - type: StealCondition
-    stealGroup: Proto5x
-    owner: job-name-hos
+    stealGroup: HOSWeapon # Starlight, HoS weapon variants
+#    owner: job-name-hos Starlight, defined in ftl.
 
 - type: entity
   parent: BaseVampireStealObjective
   id: MagbootsVampireStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ ChiefEngineer ]
+    jobs: [ ChiefEngineer, StationEngineer, AtmosphericTechnician, TechnicalAssistant ] # Starlight. Too easy.
   - type: StealCondition
     stealGroup: ClothingShoesBootsMagAdv
     owner: job-name-ce
@@ -99,7 +99,7 @@
   id: ClipboardVampireStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ Quartermaster ]
+    jobs: [ Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ] # Starlight. Too easy.
   - type: StealCondition
     stealGroup: BoxFolderQmClipboard
     owner: job-name-qm

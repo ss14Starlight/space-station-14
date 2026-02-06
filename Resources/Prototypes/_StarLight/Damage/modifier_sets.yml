@@ -61,6 +61,13 @@
     Bloodloss: 0
 
 - type: damageModifierSet
+  id: Elf
+  coefficients:
+    Poison: 0.75
+    Cellular: 0.9 # magic makes the flesh is less corruptible
+    Blunt: 1.1 # brittle bones, etc.
+
+- type: damageModifierSet
   id: SlimeFireproofPotionEffect
   coefficients:
     Heat: -10.0

@@ -144,7 +144,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         string jobId,
         string? mobFingerprint,
         string? dna,
-        HumanoidCharacterProfile profile,
+        HumanoidCharacterProfile? profile, // Starlight-edit: optional.
         StationRecordsComponent records)
     {
         if (!_prototypeManager.TryIndex<JobPrototype>(jobId, out var jobPrototype))
@@ -322,19 +322,6 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         records.Records.RemoveFromRecentlyAccessed(key.Id);
     }
 
-    //Starlight begin
-    public void AddPlayer(EntityUid station, EntityUid player, HumanoidCharacterProfile profile,
-        string? jobId, StationRecordsComponent records) =>
-        CreateGeneralRecord(station, player, profile, jobId, records);
-
-    public void RemovePlayer(EntityUid station, HumanoidCharacterProfile profile, StationRecordsComponent records)
-    {
-        if (GetRecordByName(station, profile.Name, records) is not { } id) return;
-        var key = new StationRecordKey(id, station);
-        RemoveRecord(key, records);
-    }
-    //Starlight end
-    
     #region Console system helpers
 
     /// <summary>
@@ -424,10 +411,10 @@ public sealed class AfterGeneralRecordCreatedEvent : StationRecordEvent
     ///     about the player character.
     ///     Optional - other systems should anticipate this.
     /// </summary>
-    public readonly HumanoidCharacterProfile Profile;
+    public readonly HumanoidCharacterProfile? Profile; // Starlight-edit: Says it itself that this is optional. Make it actually optional. Note that if any system in the future is added that actually uses this, it will need to check for null.
 
     public AfterGeneralRecordCreatedEvent(StationRecordKey key, GeneralStationRecord record,
-        HumanoidCharacterProfile profile) : base(key)
+        HumanoidCharacterProfile? profile) : base(key) // Starlight-edit
     {
         Record = record;
         Profile = profile;

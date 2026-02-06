@@ -1,0 +1,140 @@
+# Luminous Orb
+
+- type: entity
+  parent: BaseAction
+  id: ActionCantripGlow
+  name: Luminous Orb
+  description: Creates a short-lived luminous ball of light. Decays after 25 seconds.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 45
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+  - type: SpeakOnAction
+    sentence: action-speech-cantrip-glow
+    whisper: true
+
+# Magic Ember
+
+- type: entity
+  parent: BaseAction
+  id: ActionCantripSpark
+  name: Magic Ember
+  description: Creates a short-lived flame suitable for use as an ignition source. Decays after 5 seconds.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/ember.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfMagicEmber
+  - type: SpeakOnAction
+    sentence: action-speech-cantrip-spark
+    whisper: true
+
+# Rejuvenation/Antidote
+
+- type: entity
+  parent: BaseAction
+  id: ActionCantripAntidote
+  name: Rejuvenating Seed
+  description: Creates a magic seed that restores vitality to an ailing plant. Vanishes if not used within 15 seconds.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/antidote.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfAntidoteSeed
+  - type: SpeakOnAction
+    sentence: action-speech-cantrip-antidote
+    whisper: true
+
+# Cleanse
+
+- type: entity
+  parent: BaseAction
+  id: ActionCantripMop
+  name: Cleanse
+  description: Removes filth around you. Like a tiny cleanade. Has a weird shape.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/mop.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:InstantSpawnSpellEvent
+      prototype: ElfCleanseSmoke
+  - type: SpeakOnAction
+    sentence: action-speech-cantrip-mop
+    whisper: true
+
+# Hemostasis
+
+- type: entity
+  parent: BaseAction
+  id: ActionCantripBandage
+  name: Haemostatic Glyph
+  description: Creates a magic rune that stops bleeding. Vanishes if not used within 15 seconds.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/bandage.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfRuneHaemostatic
+  - type: SpeakOnAction
+    sentence: action-speech-cantrip-bandage
+    whisper: true
+
+# Psychic Whisper - disabled in store until i figure out how to make it work properly
+
+- type: entity
+  parent: BaseAction
+  id: ActionCantripMessage
+  name: Psychic Whisper
+  description: Transmits a secret message into the mind of a single target.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/message.rsi
+      state: icon
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - MobState
+      - PAI
+      - StationAiCore
+    event: !type:PsychicWhisperEvent
+
+
