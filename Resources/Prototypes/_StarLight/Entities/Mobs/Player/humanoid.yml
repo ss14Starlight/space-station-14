@@ -3,6 +3,13 @@
 - type: randomHumanoidSettings
   id: EventHumanoidNTNC
   parent: EventHumanoidMindShielded
+  speciesBlacklist:
+  - Diona
+  - Resomi
+  - Vox
+  - Avali
+  - Felionoid
+  - Thaven
   components:
   - type: AutoImplant
     implants:
@@ -138,15 +145,11 @@
   id: NTSFoperative
   parent: EventHumanoidCentcomm
   speciesBlacklist:
-  - Arachnid
   - Diona
-  - Reptilian
   - Resomi
   - Vox
-  - Vulpkanin
   - Avali
   - Felionoid
-  - Shadekin
   - Thaven
   components:
     - type: GhostRole
@@ -189,15 +192,11 @@
   id: Decimusoperative
   parent: EventHumanoidCentcomm
   speciesBlacklist:
-  - Arachnid
   - Diona
-  - Reptilian
   - Resomi
   - Vox
-  - Vulpkanin
   - Avali
   - Felionoid
-  - Shadekin
   - Thaven
   components:
     - type: GhostRole
@@ -271,21 +270,12 @@
   id: TSFMarine
   parent: EventHumanoidMindShielded
   speciesBlacklist:
-  - Arachnid
   - Diona
-  - Reptilian
   - Resomi
   - Vox
-  - Vulpkanin
   - Avali
   - Felionoid
-  - Shadekin
   - Thaven
-  - Cyclorite
-  - Dwarf
-  - Moth
-  - SlimePerson
-  - Lagomorph
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-marine-name

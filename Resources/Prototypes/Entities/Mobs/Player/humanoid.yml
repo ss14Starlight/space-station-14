@@ -85,6 +85,13 @@
 - type: randomHumanoidSettings
   id: ERTLeader
   parent: EventHumanoidCentcomm
+  speciesBlacklist: # Starlight start
+  - Diona
+  - Resomi
+  - Vox
+  - Avali
+  - Felionoid
+  - Thaven # Starlight end
   components:
     - type: GhostRole
       name: ghost-role-information-ert-leader-name
