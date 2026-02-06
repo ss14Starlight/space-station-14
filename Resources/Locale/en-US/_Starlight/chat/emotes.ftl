@@ -41,3 +41,6 @@ chat-emote-msg-pop = pops
 chat-emote-msg-squee = squeaks
 chat-emote-msg-snort = snorts
 chat-emote-msg-stomp = stomps
+
+# IPC death emote - Ported from Far-Horizons-SS14/PR #135 by Killer Tamashi and Princess Gurchi
+chat-emote-msg-deathgasp-ipc = {POSS-ADJ($entity)} mechanical body seizes up, joints locking as {POSS-ADJ($entity)} optical sensors flicker and power down...

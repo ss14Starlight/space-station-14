@@ -146,31 +146,36 @@ public sealed partial class IPCSystem
 
     protected override void UpdateBattery(float frameTime)
     {
-        // When battery runs out, we begin countdown and call events as it's ticking and another event when time has ran out
+        // Update all IPCs - check battery levels and death timers
         var query = EntityQueryEnumerator<IPCBatteryComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (!comp.TimerActive ||
-                _timing.CurTime < comp.NextUpdate)
-                continue;
-
-            comp.NextUpdate = _timing.CurTime + comp.RefreshRate;
-
-            comp.Timer = Math.Max(comp.Timer - (float)comp.RefreshRate.TotalSeconds, 0f);
-            if (comp.Timer == 0f)
+            // Always update battery alerts to show current charge
+            if (_timing.CurTime >= comp.NextUpdate)
             {
-                StopDeathTimer((uid, comp));
-                continue;
+                comp.NextUpdate = _timing.CurTime + comp.RefreshRate;
+                UpdateBatteryAlert((uid, comp));
             }
-
-            if (comp.NumWarnings > 0)
+            
+            // Handle death timer if active
+            if (comp.TimerActive)
             {
-                var step = comp.DieWithoutPowerAfter / comp.NumWarnings;
-                var should_send = Math.Ceiling(comp.NumWarnings - (comp.Timer / step));
-                if (should_send > comp.WarningsIssued)
+                comp.Timer = Math.Max(comp.Timer - frameTime, 0f);
+                if (comp.Timer == 0f)
                 {
-                    RaiseLocalEvent(uid, new IPCBatteryDeathTimerUpdate());
-                    comp.WarningsIssued += 1;
+                    StopDeathTimer((uid, comp));
+                    continue;
+                }
+
+                if (comp.NumWarnings > 0)
+                {
+                    var step = comp.DieWithoutPowerAfter / comp.NumWarnings;
+                    var should_send = Math.Ceiling(comp.NumWarnings - (comp.Timer / step));
+                    if (should_send > comp.WarningsIssued)
+                    {
+                        RaiseLocalEvent(uid, new IPCBatteryDeathTimerUpdate());
+                        comp.WarningsIssued += 1;
+                    }
                 }
             }
         }

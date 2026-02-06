@@ -90,4 +90,3 @@ public sealed class IPCBatteryDeathTimerEnd(bool interrupted = false) : EntityEv
 
 [Serializable, NetSerializable]
 public sealed class IPCBatteryDeathTimerUpdate : EntityEventArgs;
-

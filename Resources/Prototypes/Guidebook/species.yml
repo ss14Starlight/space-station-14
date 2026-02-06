@@ -42,10 +42,10 @@
   name: species-name-human
   text: "/ServerInfo/Guidebook/Mobs/Human.xml"
 
-- type: guideEntry #Far Horizons
+- type: guideEntry # Ported from Far-Horizons-SS14/PR #135
   id: IPC
   name: species-name-ipc
-  text: "/ServerInfo/Guidebook/_FarHorizons/Mobs/IPC.xml"
+  text: "/ServerInfo/Guidebook/_Starlight/Mobs/IPC.xml"
 
 - type: guideEntry
   id: Moth

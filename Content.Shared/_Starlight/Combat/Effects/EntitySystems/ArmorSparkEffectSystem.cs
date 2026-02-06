@@ -28,7 +28,8 @@ public abstract class SharedArmorSparkEffectSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<ArmorSparkEffectComponent, InventoryRelayedEvent<DamageModifyEvent>>(OnArmorDamageModify);
         SubscribeLocalEvent<CyborgSparkEffectComponent, DamageModifyEvent>(OnCyborgDamageModify);
-        // Note: DamageChangedEvent for CyborgSparkEffectComponent is handled by SharedIPCSystem to avoid duplicate subscriptions
+        // Note: DamageChangedEvent for CyborgSparkEffectComponent is handled by SharedIPCSystem 
+        // to avoid duplicate subscriptions. IPCs are robot humanoid-shaped droids that use this component.
         
         // Clean up spawned sparks when components are removed
         SubscribeLocalEvent<ArmorSparkEffectComponent, ComponentShutdown>(OnArmorSparkShutdown);

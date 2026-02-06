@@ -59,6 +59,6 @@ public abstract partial class SharedIPCSystem
         Spawn(component.SparkEffectPrototype, effectCoords);
         
         // Play spark sound from the sound collection
-        _audio.PlayPvs(new SoundPathSpecifier(component.RicochetSoundCollection), cyborgUid);
+        _audio.PlayPvs(new SoundCollectionSpecifier(component.RicochetSoundCollection), cyborgUid);
     }
 }

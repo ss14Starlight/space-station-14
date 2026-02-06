@@ -119,9 +119,9 @@
     - SubstationBasic
     - SubstationBasicEmpty
     - SubstationWallBasic
-  - type: BatteryDrainer # _STARLIGHT: Allow IPCs to drain power from APCs/machines/substations
-    disableHandInteraction: true # _STARLIGHT: Power draining is ALT-click only (alternative verb)
-  - type: HumanoidEMP # _STARLIGHT: EMP effects on IPCs
+  - type: BatteryDrainer # Allow IPCs to drain power from APCs/machines/substations
+    disableHandInteraction: true # Power draining is ALT-click only (alternative verb)
+  - type: HumanoidEMP # EMP effects on IPCs
     stunTime: 3
     damage:
       types:
@@ -132,29 +132,30 @@
   - type: IPCRevive
     rebootButton: true
     rebootTime: 3
-  - type: WelderHealing # _STARLIGHT: Allow welders to repair IPC damage
-  - type: ZombieImmune # _STARLIGHT: IPCs can't be infected by zombies (no biology)
-  # _STARLIGHT: IPCs immune to radiation (electronics shielded) - RadiationReceiver component not inherited
-  - type: AtmosExposed # _STARLIGHT: IPCs need this to interact with atmosphere and change temperature
-  - type: Temperature # _STARLIGHT: IPCs can take cold damage (electronics can freeze/malfunction)
+  - type: WelderHealing # Allow welders to repair IPC damage
+  - type: ZombieImmune # IPCs can't be infected by zombies (no biology)
+  # IPCs immune to radiation (electronics shielded) - RadiationReceiver component not inherited
+  - type: AtmosExposed # IPCs need this to interact with atmosphere and change temperature
+  - type: Temperature # IPCs can take cold damage (electronics can freeze/malfunction)
     # NOTE: IPCs do NOT have ThermalRegulator component - they don't actively warm up like organics
     # They gain/lose temperature purely from environmental sources (atmos, fire, etc.)
-    heatDamageThreshold: 325 # Same as humans
-    coldDamageThreshold: 260 # Same as humans
     currentTemperature: 293 # Room temperature (20°C), cooler than humans
     specificHeat: 42 # Same as humans
+  - type: TemperatureDamage # Temperature damage thresholds for IPCs
+    heatDamageThreshold: 325 # Same as humans
+    coldDamageThreshold: 260 # Same as humans
     coldDamage:
       types:
         Cold: 0.1 # Same as humans
     heatDamage:
       types:
         Heat: 1.5 # Same as humans
-  - type: TemperatureSpeed # _STARLIGHT: IPCs slow down when cold (same as humans)
+  - type: TemperatureSpeed # IPCs slow down when cold (same as humans)
     thresholds:
       293: 0.9 # 20°C: 10% slower
       280: 0.8 # 7°C: 20% slower
       260: 0.7 # -13°C: 30% slower
-  - type: Barotrauma # _STARLIGHT: 50% resistance to pressure damage, no spark sounds
+  - type: Barotrauma # 50% resistance to pressure damage, no spark sounds
     damage:
       types:
         Blunt: 0.425 # 0.85 * 0.5 = 0.425 (50% resistance applied)
