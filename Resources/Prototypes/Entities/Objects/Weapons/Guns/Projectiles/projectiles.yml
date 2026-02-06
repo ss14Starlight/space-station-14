@@ -927,8 +927,8 @@
     layers:
     - state: cleanade
   - type: SmokeOnTrigger
-    duration: 3.5
-    spreadAmount: 30
+    duration: 6
+    spreadAmount: 45
     smokePrototype: Foam
     solution:
       reagents:
@@ -937,13 +937,17 @@
   - type: EmitSoundOnTrigger
     sound: /Audio/Items/smoke_grenade_smoke.ogg
     positional: true
-  - type: ExplodeOnTrigger
-  - type: Explosive
-    explosionType: Default
-    totalIntensity: 0.01 # a little pop
-    intensitySlope: 1
-    maxIntensity: 0.01
-    tileBreakScale: 0.01
+  - type: Projectile # Starlight start
+    damage:
+      types:
+        Blunt: 0 # Cleanades shouldn't do damage
+  # - type: ExplodeOnTrigger
+  # - type: Explosive
+  #   explosionType: Default
+  #   totalIntensity: 0.01 # a little pop
+  #   intensitySlope: 1
+  #   maxIntensity: 0.01
+  #   tileBreakScale: 0.01 # Starlight end
 
 - type: entity
   id: BulletGrenadeEMP
@@ -1311,7 +1315,7 @@
     damage:
       types:
         Heat: 20
-        
+
 - type: entity
   name: destroying bolt
   id: BulletLaserDestroy

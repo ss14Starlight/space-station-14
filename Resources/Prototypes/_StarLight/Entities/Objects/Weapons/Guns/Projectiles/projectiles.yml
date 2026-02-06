@@ -109,6 +109,7 @@
   - type: StaminaDamageOnCollide
     damage: 12 # 9 hits to stun sounds reasonable
 
+
 - type: entity
   name : laser bolt
   id: BulletEnergySMGLaser
@@ -127,7 +128,7 @@
     damage:
       types:
         Heat: 10
-  
+
 - type: entity
   name : disabler bolt
   id: BulletEnergySMGDisabler
@@ -151,3 +152,18 @@
     soundHit:
       collection: WeakHit
     forceSound: true
+
+- type: entity
+  parent: [ BulletGrenadeCleanade, BaseSyndicateContraband ]
+  id: BulletGrenadeCleanadeSyndicate
+  name: evil cleanade grenade round
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SmokeOnTrigger
+      duration: 3.5
+      spreadAmount: 10
+      smokePrototype: Foam
+      solution:
+        reagents:
+          - ReagentId: SyndicateSpaceCleaner
+            Quantity: 15

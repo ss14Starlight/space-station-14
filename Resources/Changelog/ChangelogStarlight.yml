@@ -29419,5 +29419,148 @@ Entries:
   id: 276200
   time: '2026-02-06T02:49:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2762
+- author: RoadTrain, Rinary
+  changes:
+  - message: BatteryStatus is now its' own component. Add it to a controllable entity
+      that has a powercell and it should give you the power cell UI.
+    type: Tweak
+  id: 183400
+  time: '2026-02-06T07:39:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1834
+- author: Celestial3rror404
+  changes:
+  - message: A crate full of sedatives is now purchasable by cargo for 1000 spesos,
+      surgeons rejoice!
+    type: Add
+  id: 313300
+  time: '2026-02-06T07:42:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3133
+- author: NcDuve
+  changes:
+  - message: Changed medical requirement to chemist for brigmedic.
+    type: Tweak
+  id: 314300
+  time: '2026-02-06T07:43:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3143
+- author: Sparlight
+  changes:
+  - message: Smart Corgis / Borgis can now enter cryosleep pods.
+    type: Add
+  id: 316000
+  time: '2026-02-06T07:48:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3160
+- author: CrazyPhantom
+  changes:
+  - message: Ninja can now call in more threats
+    type: Add
+  id: 281900
+  time: '2026-02-06T07:59:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2819
+- author: Coolsurf6
+  changes:
+  - message: Cyclorites walk at 15% slower speed (from 10%)
+    type: Tweak
+  - message: Cyclorites now have 150 health and crit at 300
+    type: Tweak
+  - message: Cyclorites resistances have been slightly increased
+    type: Tweak
+  - message: Cyclorites are now as dense as Diona
+    type: Tweak
+  - message: Cyclorites now slow down less from all sources but damage slowdown
+    type: Add
+  id: 260000
+  time: '2026-02-06T08:12:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2600
+- author: CrazyPhantom
+  changes:
+  - message: Station AI can now shunt into shuntable chassis that are charging
+    type: Tweak
+  id: 313000
+  time: '2026-02-06T08:37:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3130
+- author: Citrea
+  changes:
+  - message: Elves can now accept implants.
+    type: Fix
+  id: 316100
+  time: '2026-02-06T08:42:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3161
+- author: Coolsurf6
+  changes:
+  - message: Cyclorites take twice as long to stand up from prone.
+    type: Tweak
+  - message: Cyclorites now use twice as much stamina to force themselves up.
+    type: Tweak
+  id: 271900
+  time: '2026-02-06T08:57:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2719
+- author: redmushie
+  changes:
+  - message: All player races can now be labeled!
+    type: Add
+  - message: 'Rinary: Fixed identity, so now it doesn''t add name at brackets if entity
+      name contains it.'
+    type: Fix
+  id: 275800
+  time: '2026-02-06T10:13:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2758
+- author: Fractalflower
+  changes:
+  - message: Traitor Janitors can now buy a Syndicate Hydra for twenty telecrystals.
+    type: Add
+  - message: Syndicate Space Cleaner, functions like normal but also does damage.
+    type: Add
+  - message: Security Technology Fabricators can now make non-lethal grenade cartridges.
+    type: Add
+  - message: Applying a Syndicate Cryptographic Sequencer to a Security Technology
+      Fabricator allows it to make blast & fragmentation grenade cartridges.
+    type: Add
+  - message: Grenade cartridges now have six grenades instead of five.
+    type: Tweak
+  - message: Spent EMP grenades use the correct texture
+    type: Fix
+  - message: Grenades and their cartridges are no longer blanket major contraband
+    type: Tweak
+  - message: EMP, baton, and flash grenades - as well as the pre-filled cartridges
+      - are now Security contraband
+    type: Tweak
+  - message: Blast & fragmentation grenades, alongside their respective printable
+      filled cartridges are now Syndicate contraband
+    type: Tweak
+  - message: Removed Shuttle Advanced Armament research.
+    type: Remove
+  - message: The Security Technology Fabricator can no longer make single grenades,
+      only cartridges.
+    type: Remove
+  - message: The non-Syndicate variant of the Hydra can no longer fire non-cleanade
+      rounds.
+    type: Remove
+  - message: Security Technology Fabricators that have not had their safeties removed
+      via a Syndicate Cryptographic Sequencer can no longer make blast or fragmentation
+      grenade cartridges.
+    type: Remove
+  - message: Added an empty grenade cartridge to Security Technology Fabricator. In
+      case you wanted that.
+    type: Add
+  - message: Added a cleanade grenade cartridge, with Syndicate variant.
+    type: Add
+  - message: Added the Hydra to Advanced Cleaning research.
+    type: Add
+  - message: Moved stationary grenade launchers to Explosive Technology research.
+    type: Tweak
+  id: 194300
+  time: '2026-02-06T11:21:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1943
+- author: Coolsurf6
+  changes:
+  - message: Cyclorites metabolise medicines twice as fast meaning they heal less
+      per unit.
+    type: Add
+  - message: Cyclorites metabolise poisons twice as slow meaning they hurt more per
+      unit.
+    type: Add
+  id: 308900
+  time: '2026-02-06T11:37:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3089
 Order: -1
 

@@ -90,6 +90,15 @@
     allowedDepartments: [ Law ]
 
 - type: entity
+  id: BaseJanitorSecurityContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ Janitor ]
+    allowedDepartments: [ Security ]
+    
+- type: entity
   id: BaseEngineeringSecurityContraband
   parent: BaseRestrictedContraband
   abstract: true

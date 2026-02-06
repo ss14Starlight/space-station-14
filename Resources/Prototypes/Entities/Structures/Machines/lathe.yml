@@ -442,7 +442,9 @@
     - SecurityScienceBlueSpace # Stalright
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
-    - StarlightDefenseStatic
+    - SecurityDisablers
+    - StarlightDefenseStatic # starlight start
+    - SecurityCyberLimbs
     - StarlightSecurityEquipment
     - StarlightSecurityBoards
     - StarlightSecurityExplosives
@@ -458,6 +460,7 @@
     emagStaticPacks:
     - StarlightSyndicateModulesSecfab
     - StarlightSyndicateAmmoStatic
+    - StarlightSecurityGrenadesEmag
   #endregion Starlight secfab emagging
     - SyndicateAmmoStatic
   - type: MaterialStorage
@@ -690,7 +693,7 @@
           variation: 0.250
     - type: AltUseToggle
     - type: ComponentToggler
-      components: 
+      components:
       - type: MagnetPickup
         range: 3
         requiresEquipping: false

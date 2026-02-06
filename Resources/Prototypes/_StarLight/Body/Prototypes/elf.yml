@@ -12,6 +12,7 @@
         eyes: OrganHumanEyes
         tongue: OrganHumanTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoHuman
       connections:
@@ -36,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandHuman
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandHuman
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegHuman
       connections:

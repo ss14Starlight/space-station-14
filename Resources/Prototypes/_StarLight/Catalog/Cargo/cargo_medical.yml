@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: MedicalSedative
+  icon:
+    sprite: Objects/Tanks/anesthetic.rsi
+    state: icon
+  product: CrateMedicalSedative
+  cost: 1000
+  category: cargoproduct-category-name-medical
+  group: market
