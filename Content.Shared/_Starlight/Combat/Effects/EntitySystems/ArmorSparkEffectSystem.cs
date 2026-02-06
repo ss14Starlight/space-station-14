@@ -28,7 +28,7 @@ public abstract class SharedArmorSparkEffectSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<ArmorSparkEffectComponent, InventoryRelayedEvent<DamageModifyEvent>>(OnArmorDamageModify);
         SubscribeLocalEvent<CyborgSparkEffectComponent, DamageModifyEvent>(OnCyborgDamageModify);
-        SubscribeLocalEvent<CyborgSparkEffectComponent, DamageChangedEvent>(OnCyborgDamageChanged); // _STARLIGHT: For melee hits
+        // Note: DamageChangedEvent for CyborgSparkEffectComponent is handled by SharedIPCSystem to avoid duplicate subscriptions
         
         // Clean up spawned sparks when components are removed
         SubscribeLocalEvent<ArmorSparkEffectComponent, ComponentShutdown>(OnArmorSparkShutdown);
@@ -146,31 +146,6 @@ public abstract class SharedArmorSparkEffectSystem : EntitySystem
         var effectCoords = cyborgTransform.Coordinates.Offset(offset);
         
         SparkEffectAt(effectCoords, component.SparkEffectPrototype, component.RicochetSoundCollection, component);
-    }
-
-    // _STARLIGHT: Handle melee/general damage events for cyborgs
-    private void OnCyborgDamageChanged(EntityUid uid, CyborgSparkEffectComponent component, DamageChangedEvent args)
-    {
-        // Only process on server
-        if (!_net.IsServer)
-            return;
-
-        // Only spawn sparks if damage was actually dealt
-        if (args.DamageDelta == null || args.DamageDelta.GetTotal() <= 0)
-            return;
-
-        // Don't spawn sparks for environmental damage (Cold/Heat)
-        if (args.DamageDelta.DamageDict.ContainsKey("Cold") || args.DamageDelta.DamageDict.ContainsKey("Heat"))
-        {
-            // If ONLY Cold or Heat damage was dealt, skip sparks
-            var nonThermalDamage = args.DamageDelta.GetTotal() - 
-                (args.DamageDelta.DamageDict.GetValueOrDefault("Cold") + args.DamageDelta.DamageDict.GetValueOrDefault("Heat"));
-            if (nonThermalDamage <= 0)
-                return;
-        }
-
-        // Spawn spark effect for any damage (melee, bullets, etc.)
-        SpawnCyborgSparkEffect(uid, component);
     }
 
     private void SparkEffectAt(EntityCoordinates coordinates, string effectPrototype, string soundCollection, Component ownerComponent)
