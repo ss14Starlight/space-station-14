@@ -1,23 +1,27 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "AftrLite (github)",
+  "copyright": "Made by AftrLite (github)",
   "size": {
         "x": 96,
         "y": 96
   },
   "states": [
     {
-      "name": "nest1"
+      "name": "nest1",
+      "copyright": "Made by AftrLite (github)"
     },
     {
-      "name": "nest2"
+      "name": "nest2",
+      "copyright": "Made by AftrLite (github)"
     },
     {
-      "name": "nest3"
+      "name": "nest3",
+      "copyright": "Made by AftrLite (github)"
     },
     {
       "name": "nest1unshaded",
+      "copyright": "Made by AftrLite (github)",
       "directions": 1,
       "delays": [
         [
@@ -27,6 +31,7 @@
     },
     {
       "name": "nest2unshaded",
+      "copyright": "Made by AftrLite (github)",
       "directions": 1,
       "delays": [
         [
@@ -36,6 +41,7 @@
     },
     {
       "name": "nest3unshaded",
+      "copyright": "Made by AftrLite (github)",
       "directions": 1,
       "delays": [
         [

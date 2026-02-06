@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "AftrLite (github)",
+  "copyright": "State based Copyright",
   "size": {
         "x": 48,
         "y": 48
@@ -9,6 +9,7 @@
   "states": [
     {
       "name": "sign",
+      "copyright": "Made by AftrLite (github)",
       "directions": 4,
       "delays": [
         [

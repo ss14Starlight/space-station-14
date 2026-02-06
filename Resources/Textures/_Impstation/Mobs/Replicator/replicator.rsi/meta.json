@@ -1,17 +1,19 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "AftrLite (github)",
+  "copyright": "State based Copyright",
   "size": {
         "x": 32,
         "y": 32
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "Made by AftrLite (github)"
     },
     {
       "name": "alive",
+      "copyright": "Made by AftrLite (github)",
       "directions": 4,
       "delays": [
         [
@@ -38,6 +40,7 @@
     },
     {
       "name": "alive_level2",
+      "copyright": "Made by AftrLite (github)",
       "directions": 4,
       "delays": [
         [
@@ -64,6 +67,7 @@
     },
     {
       "name": "alive_level2alt",
+      "copyright": "Made by AftrLite (github)",
       "directions": 4,
       "delays": [
         [
@@ -90,6 +94,7 @@
     },
     {
       "name": "alive_level3",
+      "copyright": "Made by AftrLite (github)",
       "directions": 4,
       "delays": [
         [
@@ -116,6 +121,7 @@
     },
     {
       "name": "alive_spore",
+      "copyright": "Made by AftrLite (github)",
       "directions": 4,
       "delays": [
         [
@@ -133,16 +139,20 @@
       ]
     },
     {
-      "name": "dead"
+      "name": "dead",
+      "copyright": "Made by AftrLite (github)"
     },
     {
-      "name": "dead_level2"
+      "name": "dead_level2",
+      "copyright": "Made by AftrLite (github)"
     },
     {
-      "name": "dead_level3"
+      "name": "dead_level3",
+      "copyright": "Made by AftrLite (github)"
     },
     {
       "name": "combat_level1",
+      "copyright": "Made by AftrLite (github)",
       "directions": 4,
       "delays": [
         [
@@ -169,6 +179,7 @@
     },
     {
       "name": "combat_level2",
+      "copyright": "Made by AftrLite (github)",
       "directions": 4,
       "delays": [
         [
@@ -195,6 +206,7 @@
     },
     {
       "name": "combat_level2alt",
+      "copyright": "Made by AftrLite (github)",
       "directions": 4,
       "delays": [
         [
@@ -221,6 +233,7 @@
     },
     {
       "name": "combat_level3",
+      "copyright": "Made by AftrLite (github)",
       "directions": 4,
       "delays": [
         [
@@ -246,19 +259,24 @@
       ]
     },
     {
-      "name": "t1weapon"
+      "name": "t1weapon",
+      "copyright": "Made by AftrLite (github)"
     },
     {
-      "name": "t3weapon"
+      "name": "t3weapon",
+      "copyright": "Made by AftrLite (github)"
     },
     {
-      "name": "t2altweapon"
+      "name": "t2altweapon",
+      "copyright": "Made by AftrLite (github)"
     },
     {
-      "name": "t2altmelee"
+      "name": "t2altmelee",
+      "copyright": "Made by AftrLite (github)"
     },
     {
       "name": "replicator0",
+      "copyright": "Made by AftrLite (github)",
       "directions": 1,
       "delays": [
         [

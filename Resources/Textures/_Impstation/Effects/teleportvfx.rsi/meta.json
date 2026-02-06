@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "A custom asset by AftrLite(github)",
+  "copyright": "State based Copyright",
   "size": {
     "x": 64,
     "y": 64
@@ -9,6 +9,7 @@
   "states": [
     {
       "name": "replicatorvfx",
+      "copyright": "Made by AftrLite(github)",
       "delays": [
         [
           0.075,
