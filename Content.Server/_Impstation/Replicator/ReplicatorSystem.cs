@@ -1,7 +1,3 @@
-// these are HEAVILY based on the Bingle free-agent ghostrole from GoobStation, but reflavored and reprogrammed to make them more Robust (and less of a meme.)
-// all credit for the core gameplay concepts and a lot of the core functionality of the code goes to the folks over at Goob, but I re-wrote enough of it to justify putting it in our filestructure.
-// the original Bingle PR can be found here: https://github.com/Goob-Station/Goob-Station/pull/1519
-
 using Content.Server._Impstation.Administration.Components;
 using Content.Server.Actions;
 using Content.Server.Emp;
@@ -15,6 +11,7 @@ using Content.Shared._Impstation.Replicator;
 using Content.Shared._Impstation.SpawnedFromTracker;
 using Content.Shared.Actions;
 using Content.Shared.CombatMode;
+using Content.Shared.Emp;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Mind.Components;

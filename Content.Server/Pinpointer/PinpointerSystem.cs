@@ -20,9 +20,18 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         base.Initialize();
         _xformQuery = GetEntityQuery<TransformComponent>();
 
+        SubscribeLocalEvent<PinpointerComponent, MapInitEvent>(OnMapInit);  // Moffstation - Allow pinpointer to start active
         SubscribeLocalEvent<PinpointerComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<FTLCompletedEvent>(OnLocateTarget);
     }
+
+    // Moffstation - Start - Allow pinpointer to start active
+    private void OnMapInit(Entity<PinpointerComponent> ent, ref MapInitEvent arg)
+    {
+        SetActive(ent.Owner, ent.Comp.IsActive, ent.Comp);
+        UpdateAppearance(ent.Owner, ent.Comp);
+    }
+    // Moffstation - End
 
     public override bool TogglePinpointer(EntityUid uid, PinpointerComponent? pinpointer = null)
     {

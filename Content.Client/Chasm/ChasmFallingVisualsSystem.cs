@@ -33,8 +33,7 @@ public sealed class ChasmFallingVisualsSystem : EntitySystem
 
         component.OriginalScale = sprite.Scale;
 
-        if (!TryComp<AnimationPlayerComponent>(uid, out var player))
-            return;
+        EnsureComp<AnimationPlayerComponent>(uid, out var player);
 
         if (_anim.HasRunningAnimation(player, _chasmFallAnimationKey))
             return;

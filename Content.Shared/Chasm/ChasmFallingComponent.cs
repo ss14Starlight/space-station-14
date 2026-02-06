@@ -20,7 +20,7 @@ public sealed partial class ChasmFallingComponent : Component
     ///     Time it should take in seconds for the entity to actually delete
     /// </summary>
     [DataField("deletionTime")]
-    public TimeSpan DeletionTime = TimeSpan.FromSeconds(1.8f);
+    public TimeSpan DeletionTime = TimeSpan.FromSeconds(1.6f);
 
     [DataField("nextDeletionTime", customTypeSerializer:typeof(TimeOffsetSerializer))]
     [AutoPausedField]

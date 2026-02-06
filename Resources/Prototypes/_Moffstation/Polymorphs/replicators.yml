@@ -4,9 +4,9 @@
   configuration:
     entity: MobReplicator
     forced: true
-    transferName: true
+    transferName: false
     transferHumanoidAppearance: false
-    inventory: Transfer
+    inventory: None
     allowRepeatedMorphs: true
     revertOnCrit: false
     revertOnDeath: false
@@ -18,57 +18,21 @@
   parent: BaseReplicatorMorph
   configuration:
     entity: MobReplicator
-    forced: true
-    transferName: true
-    transferHumanoidAppearance: false
-    inventory: Transfer
-    allowRepeatedMorphs: true
-    revertOnCrit: false
-    revertOnDeath: false
-    revertOnDelete: false
-    ignoreAllowRepeatedMorphs: true
 
 - type: polymorph
   id: ReplicatorTier2Morph
   parent: BaseReplicatorMorph
   configuration:
     entity: MobReplicatorTier2
-    forced: true
-    transferName: true
-    transferHumanoidAppearance: false
-    inventory: Transfer
-    allowRepeatedMorphs: true
-    revertOnCrit: false
-    revertOnDeath: false
-    revertOnDelete: false
-    ignoreAllowRepeatedMorphs: true
 
 - type: polymorph
   id: ReplicatorTier2AltMorph
   parent: BaseReplicatorMorph
   configuration:
     entity: MobReplicatorTier2Alt
-    forced: true
-    transferName: true
-    transferHumanoidAppearance: false
-    inventory: Transfer
-    allowRepeatedMorphs: true
-    revertOnCrit: false
-    revertOnDeath: false
-    revertOnDelete: false
-    ignoreAllowRepeatedMorphs: true
 
 - type: polymorph
   id: ReplicatorTier3Morph
   parent: BaseReplicatorMorph
   configuration:
     entity: MobReplicatorTier3
-    forced: true
-    transferName: true
-    transferHumanoidAppearance: false
-    inventory: Transfer
-    allowRepeatedMorphs: true
-    revertOnCrit: false
-    revertOnDeath: false
-    revertOnDelete: false
-    ignoreAllowRepeatedMorphs: true

@@ -1,5 +1,6 @@
 using Content.IntegrationTests.Tests.Movement;
 using Content.Shared.Chasm;
+using Content.Shared._Moffstation.Chasm;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Misc;
 using Content.Shared.Weapons.Ranged.Components;

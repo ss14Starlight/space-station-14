@@ -79,7 +79,7 @@ public sealed class ChasmSystem : EntitySystem
                 RemCompDeferred<ChasmFallingComponent>(entity);
 
                 // If it isn't set to be stored, then delete it
-                if (_whitelist.IsBlacklistPass(chasm.PreservationBlacklist, entity) ||
+                if (_whitelist.IsWhitelistPass(chasm.PreservationBlacklist, entity) ||
                     !_whitelist.IsWhitelistPass(chasm.PreservationWhitelist, entity))
                 {
                     TryQueueDel(entity);
@@ -122,7 +122,7 @@ public sealed class ChasmSystem : EntitySystem
             _pulling.TryStopPull(args.Tripper, pullable);
 
         // Reject if blacklisted.
-        if (_whitelist.IsBlacklistPass(ent.Comp.Blacklist, args.Tripper))
+        if (_whitelist.IsWhitelistPass(ent.Comp.Blacklist, args.Tripper))
         {
             if (!ent.Comp.ThrowBlacklisted)
                 return;

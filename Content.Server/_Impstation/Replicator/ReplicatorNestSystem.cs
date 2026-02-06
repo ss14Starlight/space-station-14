@@ -1,7 +1,3 @@
-// these are HEAVILY based on the Bingle free-agent ghostrole from GoobStation, but reflavored and reprogrammed to make them more Robust (and less of a meme.)
-// all credit for the core gameplay concepts and a lot of the core functionality of the code goes to the folks over at Goob, but I re-wrote enough of it to justify putting it in our filestructure.
-// the original Bingle PR can be found here: https://github.com/Goob-Station/Goob-Station/pull/1519
-
 using Content.Server._Impstation.Administration.Components;
 using Content.Server.Actions;
 using Content.Server.Audio;
@@ -97,7 +93,7 @@ public sealed class ReplicatorNestSystem : EntitySystem
         if (!ent.Comp.HasAnnounced && ent.Comp.CurrentLevel >= ent.Comp.AnnounceAtLevel)
         {
             ent.Comp.HasAnnounced = true;
-            _chatSystem.DispatchStationAnnouncement(ent, ent.Comp.Announcement, colorOverride: Color.Red);
+            _chatSystem.DispatchStationAnnouncement(ent, Loc.GetString(ent.Comp.Announcement), colorOverride: Color.Red);
         }
 
         UpdatePoints(ent, args.Tripper);
@@ -222,7 +218,7 @@ public sealed class ReplicatorNestSystem : EntitySystem
 
     private void Embiggen(Entity<ReplicatorNestComponent> ent)
     {
-        RaiseNetworkEvent(new ReplicatorNestEmbiggenedEvent(ent));
+        RaiseNetworkEvent(new ReplicatorNestEmbiggenedEvent(GetNetEntity(ent)));
     }
 
     private void SpawnNew(Entity<ReplicatorNestComponent> ent)

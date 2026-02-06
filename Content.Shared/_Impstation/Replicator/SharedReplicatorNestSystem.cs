@@ -1,17 +1,20 @@
-// these are HEAVILY based on the Bingle free-agent ghostrole from GoobStation, but reflavored and reprogrammed to make them more Robust (and less of a meme.)
-// all credit for the core gameplay concepts and a lot of the core functionality of the code goes to the folks over at Goob, but I re-wrote enough of it to justify putting it in our filestructure.
-// the original Bingle PR can be found here: https://github.com/Goob-Station/Goob-Station/pull/1519
-
 using Content.Shared.Actions;
 using Content.Shared.Polymorph;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Impstation.Replicator;
 
-[ByRefEvent]
-public sealed partial class ReplicatorNestEmbiggenedEvent(Entity<ReplicatorNestComponent> ent) : EntityEventArgs
+[Serializable, NetSerializable]
+public sealed class ReplicatorNestEmbiggenedEvent : EntityEventArgs
 {
-    public Entity<ReplicatorNestComponent> Ent { get; set; } = ent;
+    public NetEntity Ent { get; set; }
+
+    public ReplicatorNestEmbiggenedEvent(NetEntity ent)
+    {
+        Ent = ent;
+    }
 }
 
 public sealed partial class ReplicatorSpawnNestActionEvent : InstantActionEvent;

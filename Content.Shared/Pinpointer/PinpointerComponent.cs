@@ -51,7 +51,7 @@ public sealed partial class PinpointerComponent : Component
     [ViewVariables]
     public EntityUid? Target = null;
 
-    [ViewVariables, AutoNetworkedField]
+    [DataField, AutoNetworkedField] // Moffstation - Change to datafield so it can start active
     public bool IsActive = false;
 
     [ViewVariables, AutoNetworkedField]

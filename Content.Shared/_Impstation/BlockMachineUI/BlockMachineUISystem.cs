@@ -25,7 +25,7 @@ public sealed class SharedBlockMachineUISystem : EntitySystem
         if (ent.Comp.Whitelist == null && ent.Comp.Blacklist == null)
             args.Cancel();
 
-        if (_whitelist.IsWhitelistPassOrNull(ent.Comp.Whitelist, args.Target) && _whitelist.IsBlacklistFailOrNull(ent.Comp.Blacklist, args.Target))
+        if (_whitelist.IsWhitelistPassOrNull(ent.Comp.Whitelist, args.Target) && _whitelist.IsWhitelistFailOrNull(ent.Comp.Blacklist, args.Target))
             return;
 
         args.Cancel();
