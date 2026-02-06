@@ -10,6 +10,9 @@
   id: AbductorScientist
 
 - type: Tag
+  id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
+
+- type: Tag
   id: Arachnid
 
 - type: Tag

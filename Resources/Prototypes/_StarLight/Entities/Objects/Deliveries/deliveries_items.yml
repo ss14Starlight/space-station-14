@@ -53,23 +53,39 @@
         - FigurineStealCollectionObjective
         - IDCardsStealCollectionObjective
         - LAMPStealCollectionObjective
+        - CrewMonitorStealCollectionObjective # CMO, Paramed, BSO, Brigmed, 2-3
+        - GaloshesStealCollectionObjective # 2-3
+        - RCDRPDStealCollectionObjective # 7-12
+        - MiscSunglassesStealCollectionObjective # Musician, Beer Goggles, and all types of Security sunglasses.
+        - RareSunglassesStealCollectionObjective # Administrative, Skill, BSO, Brigmed, and in theory CentComm.
         # thief item objectives
         - ForensicScannerStealObjective
         - FlippoEngravedLighterStealObjective
         - ClothingHeadHatWardenStealObjective
         - WantedListCartridgeStealObjective
+        - LogProbeCartridgeStealObjective
+        - MedTekCartridgeStealObjective
+        - AstroNavCartridgeStealObjective
         - ClothingOuterHardsuitVoidParamedStealObjective
         - MedicalTechFabCircuitboardStealObjective
+        - SecurityTechFabCircuitboardStealObjective
+        - PTechCircuitboardStealObjective
         - ClothingHeadsetAltMedicalStealObjective
+        - ClothingHeadsetAltCommandStealObjective # Captain, NT Rep...
         - FireAxeStealObjective
         - AmePartFlatpackStealObjective
         - ExpeditionsCircuitboardStealObjective
+        - SalvageShuttleConsoleCircuitboardStealObjective
+        - MiningShuttleConsoleCircuitboardStealObjective
         - CargoShuttleCircuitboardStealObjective
-        - ClothingEyesHudBeerStealObjective
+        - CommsComputerCircuitboardStealObjective
+        - IDCardComputerCircuitboardStealObjective
+        - BrigmedicStrangeBedsheetStealObjective
+        - ClothingNeckMantleDecoratedSalvagerStealObjective
+        #- ClothingEyesHudBeerStealObjective Removed in favor of the misc sunglasses collection objective.
         - BibleStealObjective
         - ClothingNeckGoldmedalStealObjective
         - ClothingNeckClownmedalStealObjective
-        - Proto5xStealObjective
         # thief structure objectives
         - NuclearBombStealObjective
         - FaxMachineCaptainStealObjective
@@ -91,24 +107,43 @@
         - ShivaStealObjective
         - TropicoStealObjective
         # thief escape objective
-        - EscapeThiefShuttleObjective
+        - EscapeMasterThiefObjective # Starlight, replaced with master thief.
         # traitor steal objectives
         - CaptainIDStealObjective
+        - HOPIDStealObjective
         - CMOHyposprayStealObjective
-        - CMOCrewMonitorStealObjective
-        - RDHardsuitStealObjective
+#        - CMOCrewMonitorStealObjective Disabled in favor of the collection objective.
         - NukeDiskStealObjective
         - MagbootsStealObjective
         - RDDiplomaStealObjective
         - CMOLicenseStealObjective
+        - PinpointerNuclearStealObjective
+        - AccessConfiguratorStealObjective
+        - EncryptionKeySalvageStealObjective
+        - NTRepBriefcaseSecureStealObjective
         # no ian meat because you are a pacifist and need them alive
         - ClipboardStealObjective #QM's digiboard
+        - KnuckleDustersStealObjective #QM's knuckledusters
         - CaptainGunStealObjective
         - CaptainJetpackStealObjective
         - HandTeleporterStealObjective
         - EnergyMagnumStealObjective
         - EnergyShotgunStealObjective
-        - Proto5xStealObjective
+        - HOSWeaponStealObjective
+        - BSOWeaponStealObjective
+        # Limited Hardsuit objectives
+        - RDHardsuitStealObjective
+        - CMOHardsuitStealObjective
+        - CEHardsuitStealObjective 
+        - HOSHardsuitStealObjective 
+        - WardenHardsuitStealObjective
+        - BrigmedicHardsuitStealObjective
+        - QMHardsuitStealObjective
+        - SalvLeadHardsuitStealObjective
+        - CaptainHardsuitStealObjective
+        - NTRepHardsuitStealObjective
+        - BSOHardsuitStealObjective
+        - BSOMagbootsStealObjective
 
 
 #USSP

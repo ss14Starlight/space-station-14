@@ -30,6 +30,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
 using Content.Server.AlertLevel; // starlight
+using Content.Server.RoundEnd; // starlight
 using Content.Server.Station.Systems;
 using Content.Shared.Starlight.CCVar; // starlight
 using Robust.Shared.Audio;
@@ -57,6 +58,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
     [Dependency] private readonly AlertLevelSystem _alert = default!; // Starlight
     [Dependency] private readonly StationSystem _station = default!; // starlight
     [Dependency] private readonly IConfigurationManager _config = default!; // Starlight
+    [Dependency] private readonly RoundEndSystem _roundEnd = default!; // starlight
     [Dependency] private readonly SharedTransformSystem _transform = default!; // Starlight
 
     private static readonly ProtoId<ListingPrototype> RevSupplyRiftListingId = "RevSupplyRiftListing";
@@ -480,7 +482,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
 
         }
 
-        if (activeRiftCount >= _config.GetCVar(StarlightCCVars.AutogammaRiftCount) && _config.GetCVar(StarlightCCVars.AutogammaRiftEnabled)) //#region Starlight Autogamma
+        if (activeRiftCount == _config.GetCVar(StarlightCCVars.AutogammaRiftCount) && _config.GetCVar(StarlightCCVars.AutogammaRiftEnabled)) //#region Starlight Autogamma
         {
             var xform = Transform(rift);
             var station = _station.GetStationInMap(xform.MapID);
@@ -490,6 +492,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
                     Loc.GetString("centcomm-revs-gammarift"),
                     Loc.GetString("cmd-announce-sender"));
                 _alert.SetLevel(station.Value, "gamma", true, true, true, true);
+                _roundEnd.SetShuttleCallsEnabled(false);
             }
         } //#endregion Starlight Autogamma
 

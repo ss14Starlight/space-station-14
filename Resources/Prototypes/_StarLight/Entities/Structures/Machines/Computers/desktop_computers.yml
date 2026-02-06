@@ -13,6 +13,14 @@
     drawdepth: SmallObjects
     offset: 0,0.2
     noRot: true
+  - type: GenericVisualizer  # Override to prevent edge connection sprites
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer }
+          West: { state: computer }
+          East: { state: computer }
+          East, West: { state: computer }
   - type: Fixtures
     fixtures:
       fix1:

@@ -8,7 +8,7 @@ namespace Content.Shared.Starlight.Utility;
 
 [Serializable, NetSerializable]
 [DataDefinition]
-public partial class ExtendedSpriteSpecifier
+public sealed partial class ExtendedSpriteSpecifier
 {
     
     /// <summary>

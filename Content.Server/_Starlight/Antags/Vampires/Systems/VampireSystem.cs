@@ -21,6 +21,7 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
+using Content.Server.Body.Components;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
@@ -427,6 +428,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
+        RemComp<RespiratorComponent>(uid);
 
         _alerts.ClearAlertCategory(uid, "Hunger");
 

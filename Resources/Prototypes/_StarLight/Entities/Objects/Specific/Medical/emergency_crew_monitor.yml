@@ -26,3 +26,5 @@
   - type: StationLimitedNetwork
   - type: StaticPrice
     price: 200
+  - type: StealTarget
+    stealGroup: CrewMonitorCollection

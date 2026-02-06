@@ -1,7 +1,6 @@
 using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Interaction.Components;
@@ -11,7 +10,6 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Wieldable;
-using Content.Server.Popups;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -90,9 +88,13 @@ public sealed class VampiricClawsSystem : EntitySystem
 
     private void OnUnwielded(Entity<VampiricClawsComponent> ent, ref ItemUnwieldedEvent args)
     {
-        if (TryComp<VampireComponent>(args.User, out var vampire) &&
-            vampire.SpawnedClaws == ent.Owner)
+        if (TryComp<VampireComponent>(args.User, out var vampire))
+        {
+            if (vampire.SpawnedClaws != ent.Owner)
+                return;
+
             vampire.SpawnedClaws = null;
+        }
 
         QueueDel(ent);
     }

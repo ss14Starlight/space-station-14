@@ -1,0 +1,16 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "SP8T taken from RU Paradise Station, X-01 taken from Paradise Station",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+			"copyright": "RU Paradise Station, Paradise Station",
+			"license": "CC-BY-SA-3.0"
+        }
+    ]
+}

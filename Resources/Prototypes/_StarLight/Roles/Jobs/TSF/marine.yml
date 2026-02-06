@@ -10,7 +10,7 @@
         department: Security
         time: 18000 # 5h
   setPreference: false
-  icon: JobIconNanotrasen
+  icon: JobIconTSF
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-none
   canBeAntag: false
@@ -93,7 +93,7 @@
     id: TSFIdCardElite
     ears: ClothingHeadsetAltTSF
     belt: ClothingBeltTSFMarineWebbing
-    pocket1: AccessOveriderUnlimited
+    pocket1: AccessOverider
     pocket2: WeaponPistolDeagle
     suitstorage: WeaponRifleM52
   storage:

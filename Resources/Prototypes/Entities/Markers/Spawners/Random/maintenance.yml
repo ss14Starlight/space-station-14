@@ -339,6 +339,15 @@
       - id: RifleStock
       - id: ModularReceiver
       - id: HydroponicsToolScythe
+      - id: SwordMakeshift  #starlight Start: Adds some Makeshift Items
+      - id: MakeshiftShield
+      - id: SwordImprovised
+      - id: ImprovisedShield
+      - id: WeaponSniperMakeshift
+        weight: .8
+      - id: WeaponShotgunMakeshift
+        weight: .8
+      - id: ClothingOuterArmorMakeshift  #Starlight End:
     # Rare Group
     - !type:GroupSelector
       weight: 5

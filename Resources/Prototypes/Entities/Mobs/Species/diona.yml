@@ -64,6 +64,17 @@
       methods: [Touch]
       effects:
       - !type:WashCreamPie
+    # Starlight:
+    - reagents: [ ElfDiethylamine ]
+      methods: [ Touch, Ingestion ]
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -1
+            Caustic: -0.5
+            Genetic: -0.05
+            Radiation: -0.05
     - reagents: [ PlantBGone ]
       methods: [ Touch ]
       effects:

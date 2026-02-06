@@ -87,8 +87,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyExpedition
-      - EncryptionKeyCargo
+      - EncryptionKeySalvage
       - EncryptionKeyCommon
   - type: Sprite
     sprite: Clothing/Ears/Headsets/mining.rsi

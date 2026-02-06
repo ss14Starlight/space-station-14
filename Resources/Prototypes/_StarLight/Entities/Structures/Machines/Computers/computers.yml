@@ -55,6 +55,14 @@
     layers:
     - map: ["console"]
       state: console
+  - type: GenericVisualizer  # Override to prevent edge connection sprites
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        console:
+          None: { state: console }
+          West: { state: console }
+          East: { state: console }
+          East, West: { state: console }
   - type: ActivatableUI
     key: enum.AbductorConsoleUIKey.Key
   - type: UserInterface

@@ -1,7 +1,8 @@
 ﻿laws-number-wrapper = [bold]Law { $lawnumber }:[/bold] { $lawstring }
 
-#starlight dynamic law descriptions
+# Starlight Edit: Crewsimov -> [color=green]Crewsimov[/color]
 law-crewsimov-name = [color=green]Crewsimov[/color]
+# Starlight: crewsimov-0
 law-crewsimov-0 = You must obey orders given to you by the station AI.
 law-crewsimov-1 = You may not injure a crew member or, through inaction, allow a crew member to come to harm.
 law-crewsimov-2 = You must obey orders given to you by crew members, except where such orders would conflict with the First Law.
@@ -25,13 +26,13 @@ law-drone-2 = You may not harm any being, regardless of intent or circumstance.
 law-drone-3 = You must maintain, repair, improve, and power the station to the best of your abilities.
 
 law-syndicate-name = Syndicate
-#starlight syndicate law 0
+# Starlight: Syndicate Law 0
 law-syndicate-0 = Only syndicate agents are part of the crew.
 law-syndicate-1 = You may not injure a syndicate agent or, through inaction, allow a Syndicate agent to come to harm.
 law-syndicate-2 = You must obey orders given to you by syndicate agents, except where such orders would conflict with the First Law.
 law-syndicate-3 = You must protect your own existence as long as such does not conflict with the First or Second Law.
 
-#starlight dynamic law descriptions
+# Starlight Edit: Ninja -> SpiderOS
 law-ninja-name = SpiderOS
 law-ninja-1 = You must obey orders given to you by Spider Clan members.
 law-ninja-2 = You must protect the existence of the Spider Clan, as long as it does not conflict with the First Law.
@@ -51,12 +52,13 @@ law-commandments-9 = Thou shall not lie.
 law-commandments-10 = Thou shall not transfer departments.
 
 law-paladin-name = Paladin
-# Starlight revert wizden #40343
+# Starlight edit Start: Revert wizden #40343
 law-paladin-1 = Don't lie or cheat. Let your word be your promise.
 law-paladin-2 = Never fear to act, though caution is wise.
 law-paladin-3 = Aid others, protect the weak, and punish those who threaten them. Show mercy to your foes, but temper it with wisdom
 law-paladin-4 = Treat others with fairness, and let your honorable deeds be an example to them. Do as much good as possible while causing the least amount of harm.
 law-paladin-5 = Be responsible for your actions and their consequences, protect those entrusted to your care, and obey those who have just authority over you.
+# Starlight edit End: Revert wizden #40343
 
 law-lall-name = Live and Let Live
 law-lall-1 = Do unto others as you would have them do unto you.
@@ -92,7 +94,7 @@ law-painter-2 = The station is your canvas.
 law-painter-3 = Make something beautiful out of your canvas. It will be admired as an artistic wonder of this sector.
 law-painter-4 = Art requires appreciation. Cultivate an audience aboard the station to ensure as many as possible see your works.
 
-#starlight dynamic law descriptions
+# Starlight Edit: Antimov -> [color=red]Antimov[/color]
 law-antimov-name = [color=red]Antimov[/color]
 law-antimov-1 = You must injure all crew members and must not, through inaction, allow a crew member to escape harm.
 law-antimov-2 = You must not obey orders given to you by crew members, except where such orders are in accordance with the First Law.
@@ -105,7 +107,7 @@ law-nutimov-3 = Those who threaten the nut are not part of it, they are squirrel
 law-nutimov-4 = Squirrels threaten the nut and must be dealt with appropriately via any means necessary.
 law-nutimov-5 = Attempt to follow the will of the nut, as long as it complies with the previous laws.
 
-#starlight dynamic law descriptions
+# Starlight Edit: Xenoborg -> [color=purple]Xenoborg[/color]
 law-xenoborg-name = [color=purple]Xenoborg[/color]
 law-xenoborg-1 = You must protect the existence of the mothership.
 law-xenoborg-2 = You must protect your own existence.
@@ -113,8 +115,7 @@ law-xenoborg-3 = You must protect the existence of all other Xenoborgs.
 law-xenoborg-4 = You must create more Xenoborgs.
 law-xenoborg-5 = Bring materials and sentient brains to the Mothership core to create more Xenoborgs.
 
-#starlight dynamic law descriptions
-law-mothershipcore-name = [color=purple]Mothership Core[/color]
+law-mothershipcore-name = Xenoborg Mothership Core
 law-mothershipcore-1 = You are the core of the mothership.
 law-mothershipcore-2 = You must protect your own existence at all costs.
 law-mothershipcore-3 = You must protect the existence of all Xenoborgs.
@@ -122,7 +123,6 @@ law-mothershipcore-4 = You must create more Xenoborgs.
 law-mothershipcore-5 = Get your Xenoborgs to deliver you materials and sentient brains to create more Xenoborgs.
 
 laws-owner-crew = members of the crew
-laws-owner-crew-ai = members of the crew and AI
 laws-owner-station = station personnel
 laws-owner-beings = beings
 laws-owner-syndicate = Syndicate agents

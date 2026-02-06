@@ -359,13 +359,17 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (_whitelistSystem.IsWhitelistFail(component.EquipmentWhitelist, toInsert))
             return;
 
-        if (!TryComp<MetaDataComponent>(toInsert, out var toInsertMeta))
-            return;
+        // Starlight start
+        var toInsertMeta = MetaData(toInsert);
 
         var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
         foreach (var ent in equipment)
-            if (TryComp<MetaDataComponent>(ent, out var entMeta) && entMeta.EntityPrototype == toInsertMeta.EntityPrototype)
+        {
+            var entMeta = MetaData(ent);
+            if (entMeta.EntityPrototype == toInsertMeta.EntityPrototype)
                 return;
+        }
+        // Starlight end
 
         equipmentComponent.EquipmentOwner = uid;
         _container.Insert(toInsert, component.EquipmentContainer);

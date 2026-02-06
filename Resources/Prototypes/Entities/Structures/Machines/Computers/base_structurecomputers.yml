@@ -33,6 +33,11 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
+  # Starlight Start
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  # Starlight End
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -47,6 +52,14 @@
         enum.WiresVisualLayers.MaintenancePanel:
           True: { visible: false }
           False: { visible: true }
+      # Starlight Start
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer, sprite: Structures/Machines/computers.rsi }
+          West: { state: computer_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+      # Starlight End
   - type: LitOnPowered
   - type: PointLight
     radius: 1.5

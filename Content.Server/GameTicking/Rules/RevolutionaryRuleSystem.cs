@@ -701,8 +701,9 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                         uid = station.Value;
                         _chatSystem.DispatchGlobalAnnouncement(
                             Loc.GetString("centcomm-revs-alldead"),
-                            Loc.GetString("cmd-announce-sender"));
-                        _alert.SetLevel(station.Value, "green", true, true, true);
+                            Loc.GetString("central-command-sender"), colorOverride: Color.Yellow);
+                        _alert.SetLevel(station.Value, "blue", true, true, true);
+                        _roundEnd.SetShuttleCallsEnabled(true);
                     }
                 }
 

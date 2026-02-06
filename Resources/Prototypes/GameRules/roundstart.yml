@@ -257,7 +257,7 @@
   - type: AntagRandomObjectives
     sets:
     - groups: TraitorObjectiveGroups
-    maxDifficulty: 5
+    maxDifficulty: 6 # Starlight. Ultrapop + ton of new targets means some objectives become really easy in the chaos.
   - type: AntagSelection
     agentName: traitor-round-end-agent-name
   - type: DynamicRuleCost

@@ -73,7 +73,7 @@
     stealGroup: CaptainIDCard
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseGrandTheftContraband]
   id: HoPIDCard
   name: head of personnel ID card
   components:
@@ -91,6 +91,8 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: HeadOfPersonnel
+  - type: StealTarget # Starlight
+    stealGroup: HOPIDCard # Starlight
 
 - type: entity
   parent: IDCardStandard

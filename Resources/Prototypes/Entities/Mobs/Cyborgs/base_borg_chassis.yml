@@ -257,6 +257,7 @@
   - type: StationAIShunt #Starlight allow shunting into all borgs
   - type: BorgSwitchableSubtype # Afterlight change
   - type: Crawler
+  - type: BatteryAlert
   - type: Blindable
   - type: EyeProtection
   - type: Stripping

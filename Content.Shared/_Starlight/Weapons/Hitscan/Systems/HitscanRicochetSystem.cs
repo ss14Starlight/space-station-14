@@ -3,6 +3,7 @@ using Content.Shared.Weapons.Hitscan.Events;
 using Content.Shared._Starlight.Combat.Ranged.Pierce;
 using Content.Shared._Starlight.Weapon;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics;
 using Robust.Shared.Random;
@@ -49,10 +50,13 @@ public sealed partial class HitscanRicochetSystem : EntitySystem
         args.Cancelled = true;
 
         var fromEffect = Transform(data.HitEntity.Value).Coordinates;
+        if (Transform(data.HitEntity.Value).MapUid is { } hitMap)
+            fromEffect = new EntityCoordinates(hitMap, data.HitPosition.Value);
 
         var hitFiredEvent = new HitscanTraceEvent
         {
             FromCoordinates = fromEffect,
+            ToCoordinates = fromEffect.Offset(ev.Dir), // Starlight-edit
             ShotDirection = ev.Dir,
             Gun = data.Gun,
             Shooter = data.HitEntity.Value,

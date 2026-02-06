@@ -5,7 +5,7 @@
   playTimeTracker: JobCentralCommandOperator
   setPreference: false
   startingGear: CentcomOperatorGear
-  icon: "JobIconCentCommOperator"
+  icon: JobIconCentralCommandOperator
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-hos
   canBeAntag: false

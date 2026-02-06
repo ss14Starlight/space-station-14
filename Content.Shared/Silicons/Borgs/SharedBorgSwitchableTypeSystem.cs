@@ -52,7 +52,9 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
         Dirty(ent);
 
         if (ent.Comp.SelectedBorgType != null)
+        {
             SelectBorgModule(ent, ent.Comp.SelectedBorgType.Value);
+        }
     }
 
     private void OnShutdown(Entity<BorgSwitchableTypeComponent> ent, ref ComponentShutdown args)
