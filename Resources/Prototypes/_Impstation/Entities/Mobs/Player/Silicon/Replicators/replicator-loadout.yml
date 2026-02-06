@@ -192,6 +192,24 @@
   components:
   - type: Unremoveable
 
+- type: entity
+  parent: AACTablet
+  id: ReplicatorAAC
+  name: verbal interface
+  description: Communication.
+  components:
+  - type: AACTablet
+    phraseGroup: ReplicatorPhrases
+  - type: VoiceMask
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Replicator
+  - type: Sprite
+    sprite: _Impstation/Mobs/Replicator/replicator_tablet.rsi
+    state: aac_tablet
+  - type: Item
+  - type: Unremoveable
+
 - type: hitscan
   id: HitscanReplicator
   staminaDamage: 18
