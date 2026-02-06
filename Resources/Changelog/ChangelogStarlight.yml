@@ -29562,5 +29562,12 @@ Entries:
   id: 308900
   time: '2026-02-06T11:37:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3089
+- author: CrazyPhantom
+  changes:
+  - message: Abductor Consoles and Televisions not having correct sprites
+    type: Fix
+  id: 316700
+  time: '2026-02-06T13:38:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3167
 Order: -1
 

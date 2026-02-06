@@ -17,10 +17,7 @@
     visuals:
       enum.EdgeConnectionVisuals.ConnectionMask:
         computerLayerBody:
-          None: { state: computer }
-          West: { state: computer }
-          East: { state: computer }
-          East, West: { state: computer }
+          None: { state: computer, sprite: _Starlight/Structures/Machines/desktop_computers.rsi }
   - type: Fixtures
     fixtures:
       fix1:

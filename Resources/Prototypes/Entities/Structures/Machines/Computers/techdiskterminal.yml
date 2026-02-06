@@ -17,10 +17,7 @@
     visuals:
       enum.EdgeConnectionVisuals.ConnectionMask:
         computerLayerBody:
-          None: { state: icon }
-          West: { state: icon }
-          East: { state: icon }
-          East, West: { state: icon }
+          None: { state: icon, sprite: Structures/Machines/tech_disk_printer.rsi }
   # Starlight End
   - type: DiskConsole
   - type: ResearchClient
