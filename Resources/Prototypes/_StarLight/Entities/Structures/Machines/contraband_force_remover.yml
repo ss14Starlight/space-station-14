@@ -1,0 +1,104 @@
+- type: entity
+  id: ContrabandForceRemover
+  parent: [BaseMachinePowered, ConstructibleMachine]
+  name: contraband force remover
+  description: An advanced scanning gate that detects contraband and confiscates unauthorized items. Severity rules are fully configurable.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/scan_gate.rsi
+    snapCardinals: true
+    drawdepth: Doors
+    layers:
+    - state: base_black
+    - state: idle
+      shader: unshaded
+      map: ["enum.ScanGateVisualLayers.Status"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.ScanGateVisualLayers.Status:
+          True: { visible: true }
+          False: { visible: false }
+      enum.ScanGateVisuals.State:
+        enum.ScanGateVisualLayers.Status:
+          idle: { state: idle }
+          fail: { state: scan_fail }
+          success: { state: scan_success }
+  - type: Appearance
+  - type: WiresVisuals
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        layer:
+        - ConveyorMask
+        hard: False
+  - type: ContrabandForceRemover
+    scanDelay: 1.5
+    # All severity rules are configurable via these fields:
+    # alwaysBlockedSeverities: [Major, Syndicate, Magical, Soviet, AdvancedCyberlimbs]
+    # centralCommandOnlySeverities: [HighlyIllegal]
+    # commandSecuritySeverities: [Minor]
+    # commandOnlySeverities: [GrandTheft]
+    # jobSpecificSeverities: [TSF]
+    # departmentRestrictedSeverities: [Restricted]
+    # commandDepartments: [Command, CentralCommand]
+    # securityDepartment: Security
+    # centralCommandDepartment: CentralCommand
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400  # 4x more durable than standard (was 100)
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: WiresPanel
+  - type: Wires
+    layoutId: ScanGate
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: StaticPrice
+    price: 2500
+  - type: Electrified
+    enabled: false
+    usesApcPower: true
+    requirePower: true
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+  - type: DeviceLinkSource
+    range: 5
+    ports:
+      - ScanGateSuccess
+      - ScanGateFail
+  - type: Machine
+    board: ScanGateMachineCircuitboard
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path:
+          "/Audio/Weapons/smash.ogg"
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
