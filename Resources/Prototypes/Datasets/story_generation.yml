@@ -20,7 +20,7 @@
   id: BookCharacters
   values:
     prefix: story-gen-book-character
-    count: 40
+    count: 48 # Starlight edit
 
 - type: localizedDataset
   id: BookCharacterTraits

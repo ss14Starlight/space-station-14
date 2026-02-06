@@ -14,7 +14,13 @@
     SELFObjective: 1
     StalkingObjective: 1
     DisgraceObjective: 1
+    HarassObjective: 1
+    ImpersonateObjective: 1
+    FeudObjective: 1
+    WasteObjective: 1
     MaintsBarObjective: 1
+    PanicObjective: 1
+    RumorObjective: 1
 
 # Vampire
 - type: weightedRandom
@@ -36,6 +42,16 @@
     CaptainIDVampireStealObjective: 1
     CaptainJetpackVampireStealObjective: 1
     CaptainGunVampireStealObjective: 1
+    # Temp targets beyond this point, until proper vamp ones are made, so vamps don't roll the same 8 targets every shift. Tried to only pick things of value, so just command/nt + wardgun.
+    HOSWeaponVampireStealObjective: 1 #Starlight
+    VampireCMOHardsuitStealObjective: 1 # I'm so sorry CMO
+    VampireCEHardsuitStealObjective: 1 # Where are you going to hide it?
+    VampireHOSHardsuitStealObjective: 1 # Quite defensive.
+    VampireQMHardsuitStealObjective: 1 # Would you believe it was never an objective before?
+    VampireCaptainHardsuitStealObjective: 0.75 # Good luck.
+    VampireNTRepHardsuitStealObjective: 0.75 # Usually in the bridge... hard to get to.
+    VampireBSOHardsuitStealObjective: 0.75 # Same as the above...
+    VampireBSOWeaponStealObjective: 1
 
 - type: weightedRandom
   id: VampireObjectiveGroupKill

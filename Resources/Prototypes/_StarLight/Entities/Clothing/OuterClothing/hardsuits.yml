@@ -31,10 +31,12 @@
     damageCoefficient: 0.6
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBlueshield
+  - type: StealTarget
+    stealGroup: BSOHardsuit
 
 #NTRep Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband]
   id: ClothingOuterHardsuitNtrep
   name: Nanotrasen Representative hardsuit
   description: It used to be blue, but too many premium cigars turned it tobacco brown.
@@ -65,6 +67,8 @@
     damageCoefficient: 0.9
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNtrep
+  - type: StealTarget
+    stealGroup: NTRepHardsuit
 
 #Clown Battlesuit
 - type: entity
@@ -328,7 +332,7 @@
 
 #QM's Luxury Maxim Hardsuit
 - type: entity
-  parent: [ ClothingOuterHardsuitBase, BaseCommandContraband ]
+  parent: [ ClothingOuterHardsuitBase, BaseGrandTheftContraband ]
   id: ClothingOuterHardsuitLuxmax
   name: QM's luxury maxim hardsuit
   description: This luxury maxim hardsuit has been retrofitted with solid gold fittings and furnishings, making it more cumbersome, and less protective than a standard maxim hardsuit.
@@ -358,6 +362,8 @@
     sprintModifier: 0.9
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitLuxmax
+  - type: StealTarget
+    stealGroup: QMHardsuit
 
 # Experimental Security Hardsuit
 - type: entity
@@ -452,6 +458,8 @@
         - Hardsuit
         - HardsuitSpatio
         - CorgiWearable
+    - type: StealTarget
+      stealGroup: SalvLeadHardsuit
 
 #Mining Specialist Advanced hardsuit
 - type: entity

@@ -84,6 +84,14 @@
     - id: LightReplacer
     - id: BoxLightMixed
     - id: Holoprojector
+    # Starlight start
+    - !type:GroupSelector
+      children:
+      - id: ClothingShoesGaloshes
+        weight: 0.25
+      - id: ClothingShoesGaloshnt
+        weight: 0.75
+    # Starlight end
     - !type:AllSelector
       rolls: 2
       children:

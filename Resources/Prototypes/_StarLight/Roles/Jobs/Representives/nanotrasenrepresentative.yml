@@ -10,7 +10,7 @@
     - !type:RolesRequirement
       proto: ExtRolesReq
   startingGear: NanoTrasenRepresentativeGear
-  icon: JobIconNanotrasen
+  icon: JobIconNanoTrasenRepresentative
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-centcom
   canBeAntag: false

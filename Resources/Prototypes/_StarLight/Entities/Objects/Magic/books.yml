@@ -1,0 +1,39 @@
+# For Elves
+
+- type: entity
+  parent: [ BaseItem, StorePresetCantrips ]
+  id: BookOfCantrips
+  name: abridged grimoire
+  suffix: Elf
+  description: A thin manuscript containing just some of the lesser secrets of Elvenkind.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/books.rsi
+      layers:
+      - state: cantrips
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+    - type: Store
+      refundAllowed: false # get it right the first time
+      ownerOnly: true # your life isn't long enough to study these secrets, mortal
+      balance:
+        WizCoin: 2
+
+# unlike the wizard's grimoire, refunding isn't allowed by default
+
+# For debugging purposes only! Or spawn this for an admeme so a wizard can have every spell at once, I can't stop you.
+- type: entity
+  parent: BookOfCantrips
+  id: BookOfCantripsDebug
+  suffix: Elf, DEBUG
+  description: A thin manuscript containing just some of the lesser secrets of Elvenkind. Someone wrote "PROPERTY OF M.A.G.E." on the inside cover.
+  components:
+    - type: Store
+      refundAllowed: true
+      ownerOnly: false # For ease of debugging.
+      balance:
+        WizCoin: 99999

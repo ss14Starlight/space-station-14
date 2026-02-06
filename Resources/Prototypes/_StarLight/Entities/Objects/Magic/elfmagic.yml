@@ -1,0 +1,237 @@
+# Luminous Orb
+
+- type: entity
+  name: Luminous Orb
+  parent: BaseItem
+  id: ElfLuminousOrb
+  description: Destined to burn out and fade away.
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+    size: Tiny
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+    layers:
+    - state: icon
+      shader: unshaded
+  - type: PointLight
+    radius: 4
+    color: "#00CCFF"
+  - type: TimedDespawn
+    lifetime: 25
+  - type: TileFrictionModifier
+    modifier: 0.001
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/_Starlight/Magic/cantrip.ogg
+  - type: StaticPrice
+    price: 0 # Not sellable.
+
+# Ember
+
+- type: entity
+  name: Ember
+  parent: BaseItem
+  id: ElfMagicEmber
+  description: Careful! It's hot. Cannot be dropped. Will decay soon.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/ember.rsi
+    layers:
+    - state: icon
+      shader: unshaded
+  - type: Item
+    sprite: _Starlight/Objects/Magic/ember.rsi
+    size: Tiny
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+  - type: PointLight
+    radius: 1
+    energy: 8
+    color: "#93F02E"
+  - type: Unremoveable
+  - type: SurgeryTool
+    successRate: 1
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
+  - type: Cautery
+  - type: IgnitionSource
+    ignited: true
+  - type: TimedDespawn
+    lifetime: 5
+  - type: AlwaysHot
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/_Starlight/Magic/ember.ogg
+  - type: StaticPrice
+    price: 0 # Not sellable.
+
+# Antidote
+
+- type: entity
+  id: ElfAntidoteSeed
+  name: seed of rejuvenation
+  description: A bundle of radiant life magic, useful for restoring vitality to plants. Will evaporate soon if not used.
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Magic/antidote.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+    size: Tiny
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/antidote.rsi
+    layers:
+    - state: icon
+      map: ["enum.SolutionContainerLayers.Fill"]
+      shader: unshaded
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: icon-empty
+  - type: ExaminableSolution
+    solution: pen
+  - type: TimedDespawn
+    lifetime: 15 # Not stockpileable.
+  - type: PointLight
+    radius: 1
+    energy: 8
+    color: "#93F02E"
+  - type: Injector
+    solutionName: pen
+    currentTransferAmount: null
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+  - type: Unremoveable
+  - type: StaticPrice
+    price: 0 # Not sellable.
+  - type: DeleteOnSolutionEmpty
+    solution: pen
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/_Starlight/Magic/cantrip.ogg
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: ElfDiethylamine
+          Quantity: 15
+
+# Cleanse
+
+- type: entity
+  parent: BaseFoam
+  id: ElfCleanseSmoke
+  name: cleansing aura
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Smoke
+    spreadAmount: 1
+  - type: PointLight
+    enabled: true
+    radius: 2
+    energy: 8
+  - type: LightFade
+    duration: 1
+  - type: Sprite
+    sprite: Fluids/wet_floor_sparkles.rsi
+    state: sparkles
+  - type: TimedDespawn
+    lifetime: 3
+  - type: Tag
+    tags:
+    - HideContextMenu
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: "/Audio/_Starlight/Magic/gust.ogg"
+      params:
+        volume: 0.1
+        variation: 0.5
+  - type: SolutionContainerManager
+    solutions:
+      solutionArea:
+        maxVol: 15
+        canReact: true
+        reagents:
+        - ReagentId: ElfSpaceCleaner
+          Quantity: 15
+
+# Hemostasis
+
+- type: entity
+  name: haemostatic rune
+  description: A magic rune that stops bleeding when applied. Will fade if not used quickly.
+  parent: BaseHealingItem
+  id: ElfRuneHaemostatic
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Magic/antidote.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+    size: Tiny
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/bandage.rsi
+    layers:
+    - state: icon
+      map: ["enum.SolutionContainerLayers.Fill"]
+      shader: unshaded
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: icon-empty
+  - type: ExaminableSolution
+    solution: pen
+  - type: TimedDespawn
+    lifetime: 15 # Not stockpileable.
+  - type: PointLight
+    radius: 1
+    energy: 8
+    color: "#93F02E"
+  - type: Injector
+    solutionName: pen
+    currentTransferAmount: null
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+  - type: Unremoveable
+  - type: StaticPrice
+    price: 0 # Not sellable.
+  - type: DeleteOnSolutionEmpty
+    solution: pen
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/_Starlight/Magic/ember.ogg
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 5
+        reagents:
+        - ReagentId: ElfTranexamicAcid
+          Quantity: 5
