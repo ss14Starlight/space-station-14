@@ -78,6 +78,7 @@
   name: salvage encryption key box
   parent: BoxEncryptionKeyAssistant
   id: BoxEncryptionKeySalvage
+  suffix: DO NOT MAP, Steal Objective
   components:
     - type: EntityTableContainerFill
       containers:

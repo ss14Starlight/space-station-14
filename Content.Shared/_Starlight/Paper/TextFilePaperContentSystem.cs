@@ -12,7 +12,7 @@ public sealed class TextFilePaperContentSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<TextFilePaperContentComponent, MapInitEvent>(OnTextFilePaperContentComponentInit);
+        SubscribeLocalEvent<TextFilePaperContentComponent, MapInitEvent>(OnTextFilePaperContentComponentInit, after: [typeof(PaperSystem)]);
     }
     
     private void OnTextFilePaperContentComponentInit(Entity<TextFilePaperContentComponent> ent, ref MapInitEvent args)

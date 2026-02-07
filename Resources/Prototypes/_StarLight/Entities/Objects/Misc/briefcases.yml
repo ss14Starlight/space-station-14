@@ -59,4 +59,6 @@
     sprite: _Starlight/Objects/Storage/Briefcases/briefcase_secure.rsi
   - type: GuideHelp
     guides:
-    - CombinationLocks  
+    - CombinationLocks
+  - type: StealTarget
+    stealGroup: NTRepBriefcaseSecure

@@ -780,6 +780,7 @@
           components:
           - GasTank
           - AmeFuelContainer
+          - ReactorPart # FH edit
     #Starlight-edit: end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: construction-module }

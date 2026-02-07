@@ -56,3 +56,15 @@
     balance:
       Telebond: 0
       Conversion: 0
+
+# Elf Cantrip Book
+- type: entity
+  id: StorePresetCantrips
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-cantrips
+    categories:
+    - CantripsStandard
+    currencyWhitelist:
+    - WizCoin

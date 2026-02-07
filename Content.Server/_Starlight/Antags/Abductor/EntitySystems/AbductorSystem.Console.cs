@@ -194,15 +194,18 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
         var victim = GetEntity(args.Victim);
 
-        if (_pullingSystem.IsPulling(victim) 
-            || !TryComp<PullerComponent>(victim, out var pullerComp) 
-            || !TryComp<PullableComponent>(pullerComp.Pulling, out var pullableComp) 
-            || !_pullingSystem.TryStopPull(pullerComp.Pulling.Value, pullableComp))
-            return;
-
-        if (_pullingSystem.IsPulled(victim) 
-            || !_pullingSystem.TryStopPull(victim, pullableComp))
-            return;
+        if (_pullingSystem.IsPulling(victim))
+        {
+            if (!TryComp<PullerComponent>(victim, out var pullerComp)
+                || pullerComp.Pulling == null
+                || !TryComp<PullableComponent>(pullerComp.Pulling.Value, out var pullableComp)
+                || !_pullingSystem.TryStopPull(pullerComp.Pulling.Value, pullableComp)) return;
+        }
+        if (_pullingSystem.IsPulled(victim))
+        {
+            if (!TryComp<PullableComponent>(victim, out var pullableComp)
+                || !_pullingSystem.TryStopPull(victim, pullableComp)) return;
+        }
 
         if (!HasComp<AbductorComponent>(victim))
         {

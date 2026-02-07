@@ -10,6 +10,9 @@
   id: AbductorScientist
 
 - type: Tag
+  id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
+
+- type: Tag
   id: Arachnid
 
 - type: Tag
@@ -89,6 +92,9 @@
 
 - type: Tag
   id: CheapInsulatedFabric
+
+- type: Tag
+  id: Cleanade
 
 - type: Tag
   id: CivilianTraitBackground
@@ -276,6 +282,9 @@
 # Used for the jet injector and advanced jet injector
 - type: Tag
   id: JetInjector
+  
+- type: Tag
+  id: Labelable
 
 - type: Tag
   id: L6Saw
@@ -486,6 +495,6 @@
 
 - type: Tag
   id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.
-  
+
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground

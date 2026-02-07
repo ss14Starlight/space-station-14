@@ -111,18 +111,21 @@
   id: FillLockerBrigmedic
   table: !type:AllSelector
     children:
+    - id: ClothingEyesGlassesBrigmedic # Starlight
     - id: ClothingOuterCoatCorpsman #Starlight
     - id: ClothingUniformJumpsuitCorpsman #Starlight
     - id: ClothingUniformJumpskirtCorpsman #Starlight
     - id: ClothingHeadHatBeretCorpsman #Starlight
     - id: ClothingBeltCorpsmanFilled #Starlight
     - id: ClothingHandsGlovesBlackNitrile #Starlight
-    - id: ClothingEyesGlassesSecurity #Starlight
+#    - id: ClothingEyesGlassesSecurity #Starlight, replacing with brigmed glasses.
     - id: WeaponTaser
     - id: WeaponDisabler
     - id: TrackingImplanter
       amount: 2
     - id: ClothingOuterHardsuitBrigmedic
+    - id: ClothingShoesBootsMagSec # Starlight. They seem to have vanished.
+    - id: RubberStampBrigmedic # Starlight. Also seems to have vanished.
     - id: BoxSterileMask
     - id: ClothingHeadHatBeretBrigmedic
     - id: ClothingOuterCoatAMG
@@ -130,7 +133,11 @@
     - id: ClothingUniformJumpskirtBrigmedic
     - id: ClothingUniformJumpskirtOfLife
       prob: 0.1
+    - id: ClothingUniformJumpsuitOfLife # Starlight
+      prob: 0.1 # Starlight
     - id: MedkitFilled
+    - id: BedsheetBrigmedicStrange # Starlight
+    - id: BedsheetBrigmedic # Starlight
     - !type:GroupSelector
       prob: 0.7
       children:

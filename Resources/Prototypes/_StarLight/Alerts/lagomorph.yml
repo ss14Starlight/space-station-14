@@ -1,0 +1,15 @@
+- type: alert
+  id: Surge
+  icons:
+    - sprite: _Starlight/Interface/Actions/actions_lagomorph.rsi
+      state: stamina-active
+  name: alerts-surge-name
+  description: alerts-surge-desc
+
+- type: alert
+  id: Zoomies
+  icons:
+    - sprite: _Starlight/Interface/Actions/actions_lagomorph.rsi
+      state: zoomies-alert
+  name: alerts-zoomies-name
+  description: alerts-zoomies-desc

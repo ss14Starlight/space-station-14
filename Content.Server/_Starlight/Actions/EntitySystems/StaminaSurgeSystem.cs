@@ -1,12 +1,9 @@
 using Content.Server.Actions;
-using Content.Server.Damage.Systems;
-using Content.Server.Popups;
 using Content.Shared._Starlight.Actions.Components;
 using Content.Shared._Starlight.Actions.EntitySystems;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Alert;
 using Content.Shared.Damage.Components;
-using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Robust.Shared.Timing;
 
@@ -17,6 +14,8 @@ public sealed class StaminaSurgeSystem : SharedStaminaSurgeSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly HungerSystem _hunger = default!;
+    [Dependency] private readonly ThirstSystem _thirst = default!;
     
     public override void Initialize()
     {
@@ -57,15 +56,13 @@ public sealed class StaminaSurgeSystem : SharedStaminaSurgeSystem
             stamina.ResistanceModifiers.Add((GetNetEntity(uid), surge.StaminaResistModifier.Value, endTime));
         
         if (surge.HungerDrain is not null)
-            if (TryComp<HungerComponent>(uid, out var hunger))
-                hunger.HungerDrains.Add((uid, surge.HungerDrain.Value, endTime));
+                _hunger.AddHungerDrain(uid, surge.HungerDrain.Value, endTime);
         
         if (surge.ThirstDrain is not null)
-            if (TryComp<ThirstComponent>(uid, out var thirst))
-                thirst.ThirstDrains.Add((uid, surge.ThirstDrain.Value, endTime));
+                _thirst.AddThirstDrain(uid, surge.ThirstDrain.Value, endTime);
         
         _alerts.ShowAlert(uid, surge.SurgeAlert);
-        
+        surge.Active = true;
         ev.Handled = true;
     }
 
@@ -76,19 +73,17 @@ public sealed class StaminaSurgeSystem : SharedStaminaSurgeSystem
         var query = EntityQueryEnumerator<StaminaComponent, StaminaSurgeComponent>();
         while (query.MoveNext(out var uid, out var stamina, out var surge))
         {
-            if (_timing.CurTime < surge.EffectEndTime) continue;
-
+            if (!surge.Active || _timing.CurTime < surge.EffectEndTime) continue;
+            surge.Active = false;
+            
             stamina.CooldownModifiers.RemoveAll(x => x.Item1 == GetNetEntity(uid) && x.Item3 == surge.EffectEndTime);
             stamina.DecayModifiers.RemoveAll(x => x.Item1 == GetNetEntity(uid) && x.Item3 == surge.EffectEndTime);
             stamina.ResistanceModifiers.RemoveAll(x => x.Item1 == GetNetEntity(uid) && x.Item3 == surge.EffectEndTime);
 
-            if (TryComp<HungerComponent>(uid, out var hunger))
-                hunger.HungerDrains.RemoveAll(x => x.Item1 == uid && x.Item3 == surge.EffectEndTime);
-
-            if (TryComp<ThirstComponent>(uid, out var thirst))
-                thirst.ThirstDrains.RemoveAll(x => x.Item1 == uid && x.Item3 == surge.EffectEndTime);
-            
             _alerts.ClearAlert(uid, surge.SurgeAlert);
+            
+            _hunger.RemoveHungerDrain(uid, surge.EffectEndTime);
+            _thirst.RemoveThirstDrain(uid, surge.EffectEndTime);
         }
     }
 }

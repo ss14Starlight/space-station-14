@@ -21,7 +21,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatHuman #todo
+    - id: FoodMeatHuman # TODO: Make Sprite for butchered rock steak
       amount: 10
   - type: HumanoidAppearance
     species: Cyclorite
@@ -37,7 +37,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 222 # 120%
+        density: 300 # heavier due to being made from rocky skin, same weight as diona
         restitution: 0.0
         mask:
         - MobMask
@@ -46,8 +46,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      120: Critical
-      240: Dead
+      150: Critical # 50 extra health than base species to crit
+      300: Dead # 100 extra damage required to kill
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Cyclorite
@@ -73,11 +73,22 @@
       reagents:
       - ReagentId: CopperBlood
         Quantity: 300
+  - type: MovementSpeedModifierScale
+    movementSpeedScale: 0.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      90: 0.5 # 0.75 w/ Speed Modifier Scale, 60% of base health based on BaseMobSpecies
+      120: 0 # 0.5 w/ Speed Modifier Scale, 80% of base health based on BaseMobSpecies
   - type: Vocal
     sounds:
       Male: MaleCyclorite
       Female: FemaleCyclorite
       Unsexed: MaleCyclorite
+  - type: Crawler
+    standTime: 4
+    knockdownDamageThreshold: 10
+  - type: Stamina
+    forceStandStamina: 20
   - type: Inventory
     speciesId: cyclorite
     templateId: cyclorite

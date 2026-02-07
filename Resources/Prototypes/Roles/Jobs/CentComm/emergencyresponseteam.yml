@@ -506,7 +506,7 @@
     time: 5h
   setPreference: false
   startingGear: ERTMedicalGearEVA
-  icon: "JobIconERTMedic"
+  icon: "JobIconERTMedical" #Starlight
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:

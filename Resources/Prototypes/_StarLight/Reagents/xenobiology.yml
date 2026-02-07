@@ -33,6 +33,14 @@
             Toxin: -2
             Airloss: -2
             Brute: -2
+        # Starlight-Start: Cyclorite Metabolism
+        - !type:AdjustReagent
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Cyclorite ]
+          reagent: RegenerativeJelly
+          amount: -0.5
+        # Starlight-End
 
 - type: reagent
   id: UnstableMutationToxin
@@ -65,6 +73,14 @@
             - Felionoid
             - Shadekin
             - Thaven
+        # Starlight-Start: Cyclorite Metabolism
+        - !type:AdjustReagent
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          reagent: UnstableMutationToxin
+          amount: -0.5
+        # Starlight-End
 
 - type: reagent
   id: ImperfectMutationToxin
@@ -79,6 +95,14 @@
       effects:
         - !type:ChangeSpecies
           species: SlimePerson
+        # Starlight-Start: Cyclorite Metabolism
+        - !type:AdjustReagent
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          reagent: ImperfectMutationToxin
+          amount: -0.5
+        # Starlight-End
 
 - type: reagent
   id: AdvancedMutationToxin
@@ -93,3 +117,11 @@
       effects:
         - !type:MutateIntoEntity
           entity: XenobiologySlimeGray
+        # Starlight-Start: Cyclorite Metabolism
+        - !type:AdjustReagent
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          reagent: AdvancedMutationToxin
+          amount: -0.5
+        # Starlight-End

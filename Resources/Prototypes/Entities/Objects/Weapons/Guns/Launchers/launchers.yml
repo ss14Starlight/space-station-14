@@ -81,7 +81,7 @@
     price: 10000
 
 - type: entity
-  parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseMajorContraband ]
+  parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseJanitorContraband ] # Starlight: major -> jani contra
   id: WeaponLauncherHydra
   name: hydra
   description: PLOOP... FSSSSSS...
@@ -100,6 +100,7 @@
     size: Huge
   - type: AmmoCounter
   - type: Gun
+    pump: true # Starlight change
     fireRate: 1
     selectedMode: SemiAuto
     availableModes:
@@ -113,9 +114,8 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-      - Grenade
+      - Cleanade # Starlight change: make it use cleanades instead of frags
     proto: GrenadeCleanade
-    capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
     soundEject:
@@ -123,13 +123,20 @@
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
 
-- type: entity
+- type: entity # Starlight edit: Ballistics.
   parent: [WeaponLauncherHydra]
   id: WeaponLauncherHydraLethal
-  suffix: frag
+  name: modified hydra # SL edit: give it a proper name
+  suffix: Security # starlight: differentiate
   components:
   - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
     proto: GrenadeFrag
+  - type: ScanDetectable # Starlight: major contra (I think this is valid?)
+  - type: Contraband
+    severity: Major
 
 - type: entity
   name: RPG-7

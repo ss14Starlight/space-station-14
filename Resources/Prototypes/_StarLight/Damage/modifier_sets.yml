@@ -16,7 +16,7 @@
   id: Cyclorite
   coefficients:
     Blunt: 0.85 # Have you ever tried to punch a rock?
-    Slash: 0.75
+    Slash: 0.7
 
 - type: damageModifierSet
   id: Shadekin
@@ -59,6 +59,13 @@
     Slash: 2
     Heat: 0.75
     Bloodloss: 0
+
+- type: damageModifierSet
+  id: Elf
+  coefficients:
+    Poison: 0.75
+    Cellular: 0.9 # magic makes the flesh is less corruptible
+    Blunt: 1.1 # brittle bones, etc.
 
 - type: damageModifierSet
   id: SlimeFireproofPotionEffect

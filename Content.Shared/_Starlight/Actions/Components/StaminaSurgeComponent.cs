@@ -8,13 +8,14 @@ namespace Content.Shared._Starlight.Actions.Components;
 public sealed partial class StaminaSurgeComponent : Component
 {
     [DataField, AutoNetworkedField] public EntProtoId Action = "StaminaSurge";
-    [DataField] public float? StaminaRegenModifier = 1.8f;
-    [DataField] public float? StaminaResistModifier = 0.9f;
-    [DataField] public float? StaminaCooldownModifier = 0.6f;
-    [DataField] public float? HungerDrain = 80f;
-    [DataField] public float? ThirstDrain = 10f;
+    [DataField] public float? StaminaRegenModifier = 1.85f;
+    [DataField] public float? StaminaResistModifier = 0.85f;
+    [DataField] public float? StaminaCooldownModifier = 0.55f;
+    [DataField] public float? HungerDrain = 90f;
+    [DataField] public float? ThirstDrain = 8f;
     [DataField] public ProtoId<AlertPrototype> SurgeAlert = "Surge";
     [DataField] public TimeSpan? Duration = TimeSpan.FromSeconds(20);
+    [ViewVariables] public bool Active;
     /// <summary>
     /// When the effect is due to end.
     /// </summary>

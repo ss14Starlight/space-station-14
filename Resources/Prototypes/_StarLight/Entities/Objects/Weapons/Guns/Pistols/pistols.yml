@@ -167,7 +167,7 @@
 
 - type: entity
   name: sp-8t
-  parent: [WeaponPistolDP, BaseSecurityContraband]
+  parent: [WeaponPistolDP, BaseSecurityContraband, BaseGrandTheftContraband]
   id: WeaponPistolSP8T
   components:
   - type: Gun
@@ -179,6 +179,8 @@
     availablePrefixes:
     - ""
     - dust
+  - type: StealTarget
+    stealGroup: BSOWeapon
 
 - type: entity
   name: sp-8ar

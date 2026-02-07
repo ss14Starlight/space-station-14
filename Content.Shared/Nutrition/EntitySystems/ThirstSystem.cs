@@ -223,7 +223,7 @@ public sealed class ThirstSystem : EntitySystem
             if (thirst.ThirstDrains.Count > 0)
             {
                 var totalDrain =
-                    thirst.ThirstDrains.Aggregate<(EntityUid, float, TimeSpan), float>(1,
+                    thirst.ThirstDrains.Aggregate<(EntityUid, float, TimeSpan?), float>(1,
                         (current, modifier) => current * modifier.Item2);
                 ModifyThirst(uid, thirst, -totalDrain * thirst.ActualDecayRate);
             }
@@ -238,4 +238,18 @@ public sealed class ThirstSystem : EntitySystem
             UpdateEffects(uid, thirst);
         }
     }
+    
+    //Starlight begin
+    public void AddThirstDrain(EntityUid uid, float mod, TimeSpan? endTime, ThirstComponent? comp = null)
+    {
+        if (!Resolve(uid, ref comp)) return;
+        comp.ThirstDrains.Add((uid, mod, endTime));
+    }
+
+    public void RemoveThirstDrain(EntityUid uid, TimeSpan? endTime, ThirstComponent? comp = null)
+    {
+        if (!Resolve(uid, ref comp)) return;
+        comp.ThirstDrains.RemoveAll(x => x.Item1 == uid && x.Item3 == endTime);
+    }
+    //Starlight end
 }

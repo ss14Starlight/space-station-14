@@ -10,7 +10,7 @@
         department: Security
         time: 18000 # 5h
   setPreference: false
-  icon: JobIconNanotrasen
+  icon: JobIconTSF
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-none
   canBeAntag: false
