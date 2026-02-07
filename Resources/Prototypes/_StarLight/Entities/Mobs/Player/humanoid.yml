@@ -44,7 +44,7 @@
       rules: ghost-role-information-corporate-aligned-rules
       raffle:
         settings: default
-      job: NTNCBlueshield
+      job: NTNCBlueShield
     - type: Loadout
       prototypes: [ NTNCBasicGear ]
       roleLoadout: [ RoleSurvivalStandard ]
@@ -65,7 +65,7 @@
       rules: ghost-role-information-corporate-aligned-rules
       raffle:
         settings: default
-      job: NTNCBlueshield
+      job: NTNCBlueShield
     - type: Loadout
       prototypes: [ NTNCHardsuitGear ]
       roleLoadout: [ RoleSurvivalStandard ]

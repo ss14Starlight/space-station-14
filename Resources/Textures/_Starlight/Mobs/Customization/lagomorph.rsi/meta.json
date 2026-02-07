@@ -234,6 +234,38 @@
     {
       "name": "antlers",
       "directions": 4
+    },
+    {
+      "name": "antlers-floppy-ears",
+      "directions": 4
+    },
+    {
+      "name": "antlers-loppy-ears",
+      "directions": 4
+    },
+    {
+      "name": "antlers-loppy-large-ears",
+      "directions": 4
+    },
+    {
+      "name": "antlers-rotund-ears",
+      "directions": 4
+    },
+    {
+      "name": "antlers-sharp-ears",
+      "directions": 4
+    },
+    {
+      "name": "antlers-short-ears",
+      "directions": 4
+    },
+    {
+      "name": "antlers-standard-ears",
+      "directions": 4
+    },
+    {
+      "name": "antlers-tall-ears",
+      "directions": 4
     }
   ]
 }

@@ -3,7 +3,7 @@
   table: !type:GroupSelector
     children:
       - id: ClassifiedCorporateDocumentAbductors
-      - id: ClassifiedCorporateDocumentDecimus
+      #- id: ClassifiedCorporateDocumentDecimus
       - id: ClassifiedCorporateDocumentNinjas
       - id: ClassifiedCorporateDocumentNukies
       - id: ClassifiedCorporateDocumentRomerol

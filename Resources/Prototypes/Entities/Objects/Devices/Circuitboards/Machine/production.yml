@@ -93,6 +93,8 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+    - type: StealTarget # Starlight
+      stealGroup: SecurityTechFabCircuitboard # Starlight
 
 - type: entity
   id: AmmoTechFabCircuitboard

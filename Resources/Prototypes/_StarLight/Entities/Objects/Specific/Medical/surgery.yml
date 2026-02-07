@@ -87,3 +87,9 @@
   - type: Retractor
   - type: BoneSaw
   - type: BoneSetter
+  - type: SolutionRegeneration
+    solution: container
+    generated: 
+      reagents:
+      - ReagentId: BoneGel
+        Quantity: 1

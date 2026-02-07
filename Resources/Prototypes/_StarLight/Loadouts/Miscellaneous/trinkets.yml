@@ -490,6 +490,30 @@
       - RightArmCyberMechwright
 
 - type: loadout
+  id: leftcargoleg
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Cargo
+        time: 72000 # 20 hours of needing more storage
+  storage:
+    back: 
+      - LeftLegCyberCargo
+
+- type: loadout
+  id: rightcargoleg
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Cargo
+        time: 72000 # 20 hours of needing more storage
+  storage:
+    back: 
+      - RightLegCyberCargo
+
+- type: loadout
   id: CigPackBub
   effects:
     - !type:JobRequirementLoadoutEffect

@@ -13,7 +13,10 @@
       maxPicks: 1
     - groups: ThiefObjectiveGroups
       maxPicks: 10
-    maxDifficulty: 2.5
+    - groups: ThiefObjectiveGroupEscape # Starlight
+      prob: 0.33 # Starlight. It gives you a lot more freedom, but also lets you be way more intrusive,  so low chance.
+      maxPicks: 1 # Starlight
+    maxDifficulty: 3 # Starlight. Ultrapop + ton of new targets means some objectives become really easy in the chaos.
   - type: AntagSelection
     agentName: thief-round-end-agent-name
     selectionTime: IntraPlayerSpawn
@@ -69,6 +72,7 @@
   - type: VampireRule
   - type: AntagSelection
     agentName: vampire-roundend-name
+    selectionTime: IntraPlayerSpawn # Starlight. Only select vamps on round start
     definitions:
     - prefRoles: [ Vampire ]
       max: 12 # Starlight. Full gamemode Vamps scale higher to account for scaling.

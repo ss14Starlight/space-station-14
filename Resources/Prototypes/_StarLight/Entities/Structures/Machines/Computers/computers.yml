@@ -59,10 +59,7 @@
     visuals:
       enum.EdgeConnectionVisuals.ConnectionMask:
         console:
-          None: { state: console }
-          West: { state: console }
-          East: { state: console }
-          East, West: { state: console }
+          None: { state: console, sprite: _Starlight/Structures/Machines/abductor_console.rsi }
   - type: ActivatableUI
     key: enum.AbductorConsoleUIKey.Key
   - type: UserInterface

@@ -1,4 +1,5 @@
-﻿using Content.Shared.Damage;
+﻿using Content.Shared.Actions;
+using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Tag;
@@ -46,6 +47,9 @@ public sealed partial class OrganVisualizationComponent : Component
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 public sealed partial class FunctionalOrganComponent : Component
 {
+    [DataField]
+    public bool IsCybernetic = true;
+    
     [DataField("comps")]
     public ComponentRegistry? Components;
 }
@@ -58,6 +62,31 @@ public sealed partial class TaggedOrganComponent : Component
     
     [DataField]
     public List<ProtoId<TagPrototype>> RemoveTags = new();
+}
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+public sealed partial class StorageOrganComponent : Component
+{    
+    [DataField]
+    public EntProtoId? OrganAction { get; set; }
+
+    /// <summary>
+    /// The action entity of the storage organ.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityUid? ActionEntity;
+
+    [DataField]
+    public string ActionKey;
+}
+
+/// <summary>
+/// Used for opening the storage organ via action.
+/// </summary>
+public sealed partial class OpenStorageOrganEvent : InstantActionEvent 
+{
+    [DataField]
+    public string Key = "InternalStorage";
 }
 
 [RegisterComponent, NetworkedComponent]

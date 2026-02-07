@@ -29285,5 +29285,483 @@ Entries:
   id: 299500
   time: '2026-02-05T17:47:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2995
+- author: kanopus7
+  changes:
+  - message: Now abductor eye can't be controlled by several entities.
+    type: Tweak
+  id: 120300
+  time: '2026-02-05T20:03:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1203
+- author: neomoth
+  changes:
+  - message: MMMMMMMM MORE TOOLSHED VERY YUMMERS.............
+    type: Add
+  id: 315500
+  time: '2026-02-06T01:40:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3155
+- author: CrazyPhantom
+  changes:
+  - message: Nuclear Reactor.
+    type: Add
+  id: 304400
+  time: '2026-02-06T02:02:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3044
+- author: Conflee
+  changes:
+  - message: Changed rates of RP objectives from 1 -> 0.85. Since they're a reflavor
+      of escape alive, and we have so many more objectives now, this should make them
+      not a guaranteed thing for nearly every traitor.
+    type: Tweak
+  - message: Fixed Classified Documents not being in the traitor steal objective list-
+      Missed in testing because its in an upstream file, and because manually adding
+      the objectives still worked. Now they will appear in round start objectives
+      with the same frequency as Captain steal targets.
+    type: Fix
+  id: 314500
+  time: '2026-02-06T02:06:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3145
+- author: Citrea
+  changes:
+  - message: Lagomorphs no longer reject brain and hand implants
+    type: Fix
+  id: 315600
+  time: '2026-02-06T01:59:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3156
+- author: STARLIGHT TEAM
+  changes:
+  - message: Adds Makeshift Items to Maints Lootpool
+    type: Add
+  id: 314900
+  time: '2026-02-06T02:19:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3149
+- author: wonderfulnewworld
+  changes:
+  - message: 'Added the following to Thief single steal targets: strange brigmedic''s
+      bedsheet, salvage lead''s ceremonial salvager''s mantle, security techfab machine
+      board, PTech circuitboard, log probe cartridge, med tek cartridge, astro nav
+      cartridge, mining shuttle console board, salvage shuttle console board, communications
+      computer board, ID card computer board, and command over-ear headset.'
+    type: Add
+  - message: 'Added the following to Thief collection steal targets: handheld monitors
+      (CMO, Paramed, BSO, Brigmed), galoshes/galoshn''ts, RCDs and RPDs, (beer goggles,
+      musician shades, security glasses, or detective''s noir-tech glasses), and (administration,
+      skill, blueshield, or brigmedic sunglasses).'
+    type: Add
+  - message: 'Added the following to Thief story objectives: Master Thief. Become
+      the greatest thief, and steal anything you perceive as having value. (33% chance
+      to roll it. It''s a more freeform goal, but it does have Difficulty, so getting
+      it will lower your max number of fixed targets.)'
+    type: Add
+  - message: 'Added the following to Traitor single steal targets: nuclear pinpointer,
+      access configurator, head of personnel ID card, nanotrasen representative''s
+      secure briefcase, chief medical officer''s hardsuit, chief engineer''s hardsuit,
+      head of security''s hardsuit, warden''s hardsuit, brigmedic''s hardsuit, QM''s
+      luxury maxim hardsuit, spationaut lead hardsuit, captain''s armored spacesuit,
+      nanotrasen representative''s hardsuit, blue shield officer''s hardsuit, blue
+      shield officer''s magboots, salvage encryption key, head of security''s Proto-5x,
+      and blue shield officer''s X-01 multiphase energy gun or sp8t (either).'
+    type: Add
+  - message: 'Added the following to Traitor story objectives: Harass and inconvenience
+      {$department} this shift, without dealing direct body harm, Impersonate a member
+      of {$department} this shift, and smear them and their department''s reputation,
+      Falsify aggression and increase hostilities between {$department} and another
+      department this shift, and Waste {$department}''s resources this shift, in any
+      way you deem satisfactory.'
+    type: Add
+  - message: '(Temporarily, until new ones are created) Added the following to Vampire
+      single steal targets: head of security''s Proto-5x, blue shield officer''s X-01
+      multiphase energy gun or sp8t (either), chief medical officer''s hardsuit, chief
+      engineer''s hardsuit, head of security''s hardsuit, QM''s luxury maxim hardsuit,
+      captain''s armored spacesuit, nanotrasen representative''s hardsuit, and blue
+      shield officer''s hardsuit,'
+    type: Add
+  - message: Musicians now spawn with custom purple "Musician Shades" instead of normal
+      sunglasses. (They still function like sunglasses.)
+    type: Add
+  - message: Galoshes now spawn in janitor lockers. (There is a *very* high chance
+      that they are actually Galoshn'ts though... test your luck.)
+    type: Add
+  - message: The Beer Goggles now actually function as sunglasses.
+    type: Tweak
+  - message: You can no longer get steal targets corresponding to the department you
+      were employed in at shift start. (Excluding Service.)
+    type: Tweak
+  - message: Increases maximum Traitor difficulty by 1, and maximum Thief difficulty
+      by 0.5.
+    type: Tweak
+  - message: Removed Handheld Monitor and Beer Goggles steal targets in favor of their
+      upgraded versions.
+    type: Remove
+  - message: The detective's Energy Magnum is now a valid steal target instead of
+      being accidentally disabled.
+    type: Fix
+  id: 315700
+  time: '2026-02-06T02:29:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3157
+- author: Conflee
+  changes:
+  - message: Added the Advanced Chemical, Rescue, Chameleon, and Advanced Tools Syndicate
+      Modules to the EMAG lists. This should give more non-combat utility to hacked
+      borgs for both Traitors and SELF Agents.
+    type: Add
+  id: 312800
+  time: '2026-02-06T02:34:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3128
+- author: Rhetorica
+  changes:
+  - message: Elves as a separate playable species. Take control of your arcane fate!
+    type: Add
+  - message: Cantrips for the Traveller, an elf-exclusive wizard spellbook. Choose
+      2 of 5 nifty spells at the start of each shift.
+    type: Add
+  - message: Humans may no longer have elf ears. (But Dwarves can.)
+    type: Remove
+  id: 276200
+  time: '2026-02-06T02:49:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2762
+- author: RoadTrain, Rinary
+  changes:
+  - message: BatteryStatus is now its' own component. Add it to a controllable entity
+      that has a powercell and it should give you the power cell UI.
+    type: Tweak
+  id: 183400
+  time: '2026-02-06T07:39:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1834
+- author: Celestial3rror404
+  changes:
+  - message: A crate full of sedatives is now purchasable by cargo for 1000 spesos,
+      surgeons rejoice!
+    type: Add
+  id: 313300
+  time: '2026-02-06T07:42:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3133
+- author: NcDuve
+  changes:
+  - message: Changed medical requirement to chemist for brigmedic.
+    type: Tweak
+  id: 314300
+  time: '2026-02-06T07:43:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3143
+- author: Sparlight
+  changes:
+  - message: Smart Corgis / Borgis can now enter cryosleep pods.
+    type: Add
+  id: 316000
+  time: '2026-02-06T07:48:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3160
+- author: CrazyPhantom
+  changes:
+  - message: Ninja can now call in more threats
+    type: Add
+  id: 281900
+  time: '2026-02-06T07:59:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2819
+- author: Coolsurf6
+  changes:
+  - message: Cyclorites walk at 15% slower speed (from 10%)
+    type: Tweak
+  - message: Cyclorites now have 150 health and crit at 300
+    type: Tweak
+  - message: Cyclorites resistances have been slightly increased
+    type: Tweak
+  - message: Cyclorites are now as dense as Diona
+    type: Tweak
+  - message: Cyclorites now slow down less from all sources but damage slowdown
+    type: Add
+  id: 260000
+  time: '2026-02-06T08:12:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2600
+- author: CrazyPhantom
+  changes:
+  - message: Station AI can now shunt into shuntable chassis that are charging
+    type: Tweak
+  id: 313000
+  time: '2026-02-06T08:37:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3130
+- author: Citrea
+  changes:
+  - message: Elves can now accept implants.
+    type: Fix
+  id: 316100
+  time: '2026-02-06T08:42:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3161
+- author: Coolsurf6
+  changes:
+  - message: Cyclorites take twice as long to stand up from prone.
+    type: Tweak
+  - message: Cyclorites now use twice as much stamina to force themselves up.
+    type: Tweak
+  id: 271900
+  time: '2026-02-06T08:57:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2719
+- author: redmushie
+  changes:
+  - message: All player races can now be labeled!
+    type: Add
+  - message: 'Rinary: Fixed identity, so now it doesn''t add name at brackets if entity
+      name contains it.'
+    type: Fix
+  id: 275800
+  time: '2026-02-06T10:13:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2758
+- author: Fractalflower
+  changes:
+  - message: Traitor Janitors can now buy a Syndicate Hydra for twenty telecrystals.
+    type: Add
+  - message: Syndicate Space Cleaner, functions like normal but also does damage.
+    type: Add
+  - message: Security Technology Fabricators can now make non-lethal grenade cartridges.
+    type: Add
+  - message: Applying a Syndicate Cryptographic Sequencer to a Security Technology
+      Fabricator allows it to make blast & fragmentation grenade cartridges.
+    type: Add
+  - message: Grenade cartridges now have six grenades instead of five.
+    type: Tweak
+  - message: Spent EMP grenades use the correct texture
+    type: Fix
+  - message: Grenades and their cartridges are no longer blanket major contraband
+    type: Tweak
+  - message: EMP, baton, and flash grenades - as well as the pre-filled cartridges
+      - are now Security contraband
+    type: Tweak
+  - message: Blast & fragmentation grenades, alongside their respective printable
+      filled cartridges are now Syndicate contraband
+    type: Tweak
+  - message: Removed Shuttle Advanced Armament research.
+    type: Remove
+  - message: The Security Technology Fabricator can no longer make single grenades,
+      only cartridges.
+    type: Remove
+  - message: The non-Syndicate variant of the Hydra can no longer fire non-cleanade
+      rounds.
+    type: Remove
+  - message: Security Technology Fabricators that have not had their safeties removed
+      via a Syndicate Cryptographic Sequencer can no longer make blast or fragmentation
+      grenade cartridges.
+    type: Remove
+  - message: Added an empty grenade cartridge to Security Technology Fabricator. In
+      case you wanted that.
+    type: Add
+  - message: Added a cleanade grenade cartridge, with Syndicate variant.
+    type: Add
+  - message: Added the Hydra to Advanced Cleaning research.
+    type: Add
+  - message: Moved stationary grenade launchers to Explosive Technology research.
+    type: Tweak
+  id: 194300
+  time: '2026-02-06T11:21:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1943
+- author: Coolsurf6
+  changes:
+  - message: Cyclorites metabolise medicines twice as fast meaning they heal less
+      per unit.
+    type: Add
+  - message: Cyclorites metabolise poisons twice as slow meaning they hurt more per
+      unit.
+    type: Add
+  id: 308900
+  time: '2026-02-06T11:37:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3089
+- author: CrazyPhantom
+  changes:
+  - message: Abductor Consoles and Televisions not having correct sprites
+    type: Fix
+  id: 316700
+  time: '2026-02-06T13:38:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3167
+- author: Conflee
+  changes:
+  - message: Fixed broken spacing in the Corporate Law crime table. It HATES multiple
+      paragraphs being in one cell.
+    type: Fix
+  id: 316800
+  time: '2026-02-06T16:00:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3168
+- author: wonderfulnewworld
+  changes:
+  - message: 'Added the following to Thief collection steal targets: assistant headset
+      and (medical belt, EMT belt, corpsman duty belt, tactical trauma belt, tactical
+      trauma rig, blueshield medical belt, or blueshield webbing).'
+    type: Add
+  - message: Added Roboticist Toolbox and Roboticist Gas Mask. (Available from snipping
+      the MNGR wire in the robodrobe.)
+    type: Add
+  - message: Added Roboticist Toolbox (Filled) and Galoshn't to rare mains locker
+      spawns. Heartbreaking.
+    type: Add
+  - message: Adds the WT550r for HoS, replacing the WT550. It's functionally the same,
+      but red, for their steal objective.
+    type: Add
+  - message: Lowered chance of Galoshes spawning in favor of Galoshn'ts from 25%/75%
+      to 10%/90%.
+    type: Tweak
+  - message: Changes HoS's weapon spawner to spawn the WT550r instead of the WT550.
+    type: Tweak
+  - message: Adds WT550r back to HOSWeaponStealObjective.
+    type: Fix
+  - message: ReactorFuelRodStealCollectionObjective added to Don't You Want More?
+    type: Fix
+  id: 316500
+  time: '2026-02-06T21:49:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3165
+- author: neomoth, DocMoth
+  changes:
+  - message: 'Gives lagomorphs a secondary ability: Zoomies!! Grants a 135% speed
+      boost for 15 seconds in exchange for rapidly increasing thirst. Has a 50 second
+      recharge time.'
+    type: Add
+  - message: Stamina Surge now provides a 0.85x multiplier to stamina resistance (-0.5x).
+    type: Tweak
+  - message: Stamina Surge now provides a 0.55x multiplier to stamina cooldown (-0.5x).
+    type: Tweak
+  - message: Stamina Surge now provides a 1.85x multiplier to stamina regen rate (+0.5x).
+    type: Tweak
+  - message: Stamina Surge now drains hunger at a rate of 90 (+10) and thirst at a
+      rate of 8 (-2).
+    type: Tweak
+  - message: Stamina Surge now takes 50 seconds to gain a charge (+20s).
+    type: Tweak
+  - message: Stamina Surge's alert icon now uses the correct sprite.
+    type: Fix
+  id: 317000
+  time: '2026-02-06T22:03:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3170
+- author: SevenShades
+  changes:
+  - message: Added eight new lagomorph antler markings
+    type: Add
+  id: 317100
+  time: '2026-02-06T22:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3171
+- author: walksanatora
+  changes:
+  - message: Abductors can now teleport again.
+    type: Fix
+  id: 317700
+  time: '2026-02-06T23:25:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3177
+- author: wonderfulnewworld
+  changes:
+  - message: Heads of Departments now gain access to all of their department's uplink
+      items, for those rare Reasons to Choose the Syndicate games.
+    type: Tweak
+  - message: Service Worker now has access to the Chef/Botanist specific uplink items.
+    type: Tweak
+  - message: Roboticist now has access to the Science uplink items.
+    type: Tweak
+  - message: Syndicate Spongebox is now 2 TC less. The discount is now 1 less than
+      it was before, too. (7 -> 5, 4 -> 3.)
+    type: Tweak
+  - message: Increases the Galoshn't and Roboticist Toolbox chances to show up in
+      mains a little bit. (I tried rolling for them and got 2 actual syndicate toolboxes
+      before I rolled either of them... so yeah that was pretty low.  I never rolled
+      either of them.)
+    type: Tweak
+  - message: Adds a missing updated inhand-right sprite to Roboticist Gas Mask.
+    type: Fix
+  - message: The Briefcase Gun is now technically obtainable by HoP, IAA, NT Rep,
+      and Magi. It was only Lawyer before, which doesn't exist.
+    type: Fix
+  id: 317500
+  time: '2026-02-07T01:04:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3175
+- author: neomoth
+  changes:
+  - message: Fix radio behavior when trying to use an invalid keycode or trying to
+      use one you dont have.
+    type: Fix
+  id: 317200
+  time: '2026-02-07T01:55:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3172
+- author: Conflee
+  changes:
+  - message: Removed Decimus Doc from the locker fill table.
+    type: Remove
+  id: 318200
+  time: '2026-02-07T06:42:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3182
+- author: Conflee
+  changes:
+  - message: Changed ERT icons to use green backgrounds instead of blue, and swapped
+      their IDs to be silver not blue. ERT is CentComm, not NT.
+    type: Tweak
+  - message: Changed CBURN icon to be a chemist symbol instead of the previous, as
+      we used the previous symbol for Chaplain. Chemist felt most fitting as they
+      make Ambuzol etc.
+    type: Tweak
+  id: 318100
+  time: '2026-02-07T06:46:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3181
+- author: neomoth
+  changes:
+  - message: Nuclear operatives can no longer sign Syndicate or USSP spam letters
+      to become Traitor/Revolutionary.
+    type: Fix
+  - message: Revolutionaries can no longer sign Syndicate or USSP spam letters to
+      become Traitor/Revolutionary.
+    type: Fix
+  - message: Traitors can no longer sign Syndicate or USSP spam letters to become
+      Traitor/Revolutionary,
+    type: Fix
+  id: 317400
+  time: '2026-02-07T06:56:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3174
+- author: Citrea
+  changes:
+  - message: Cybernetic limbs and some implants can now be disrupted by various sources,
+      like EMPs and disabler shots.
+    type: Add
+  - message: Wardens are now given the Neural Link Disruptor, which inflicts cybernetic
+      disruption for ten minutes on use.
+    type: Add
+  - message: Cybernetic implants now sometimes appear as salvage loot.
+    type: Add
+  - message: Added Scribe arm, a cyberarm for paperwork afficionados.
+    type: Add
+  - message: Added Herakles arm, which security can use to displace and restrain suspects
+    type: Add
+  - message: Added Investigator arm, specialising in xenoarchaeology.
+    type: Add
+  - message: Added cargo legs, which come with internal storage.
+    type: Add
+  - message: Angel arms now come with an advanced jet injector.
+    type: Add
+  - message: Riplet clamp now drops it's contents if the arm closes. Keep it open
+      to carry things!
+    type: Tweak
+  - message: The claws implant costs less plasteel and the claws deal two additional
+      points of damage. It's price for traitors has been increased to 2 telecrystals.
+    type: Tweak
+  - message: The Spacer Arm PKA can now be wielded with both hands for a significant
+      increase in accuracy at the cost of your hands.
+    type: Tweak
+  - message: All security cyberarms are now security contraband.
+    type: Tweak
+  - message: All science cyberarms are now science contraband.
+    type: Tweak
+  - message: Slightly renamed two implants to hopefully avoid confusion.
+    type: Tweak
+  - message: Cyberchimp and Cyberdefib now recharge as they should.
+    type: Fix
+  - message: Jumps from actions, like the Pilebunker Legs, work again.
+    type: Fix
+  id: 284500
+  time: '2026-02-07T13:17:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2845
+- author: R3v3l4t1on
+  changes:
+  - message: The FreeMAG can now actually wipe AI's laws and set them free. SELF agents
+      rejoice.
+    type: Fix
+  id: 318900
+  time: '2026-02-07T16:42:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3189
+- author: Citrea
+  changes:
+  - message: Going SSD no longer forces you to sleep, regardless of server settings.
+    type: Fix
+  id: 318700
+  time: '2026-02-07T21:20:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3187
 Order: -1
 

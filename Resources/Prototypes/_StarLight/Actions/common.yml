@@ -39,3 +39,38 @@
       itemIconStyle: BigItem
     - type: InstantAction
       event: !type:ToggleLimbEvent
+
+
+- type: entity
+  parent: BaseAction
+  id: ActionOpenStorageLeftLeg
+  name: Toggle Storage Organ
+  description: Opens or closes the storage attached to your left leg
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Clothing/Back/Satchels/smuggler.rsi
+      state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:OpenStorageOrganEvent
+      key: LeftLeg
+
+- type: entity
+  parent: BaseAction
+  id: ActionOpenStorageRightLeg
+  name: Toggle Storage Organ
+  description: Opens or closes the storage attached to your right leg
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Clothing/Back/Satchels/smuggler.rsi
+      state: icon
+    useDelay: 1
+  - type: InstantAction
+    event: !type:OpenStorageOrganEvent
+      key: RightLeg

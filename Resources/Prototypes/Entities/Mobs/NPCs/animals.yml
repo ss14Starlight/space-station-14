@@ -4081,4 +4081,7 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
+    # Starlight Start
   - type: AlwaysRevolutionaryConvertible
+  - type: CanEnterCryostorage
+    # Starlight End

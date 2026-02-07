@@ -163,11 +163,9 @@
   - CableDetStack1
   - EmptyDetonator
   - ExplosivePayload
-  - GrenadeBaton
-  - GrenadeBlast
-  - GrenadeEMP
-  - GrenadeFlash
-#  - GrenadeFrag
+  - MagazineGrenadeEMP
+  - MagazineGrenadeFlash
+  - MagazineGrenadeBaton
   - MagazineGrenadeEmpty
 
 # Shared between secfab and emagged protolathe
@@ -315,6 +313,14 @@
   - RightArmCyberBulwark
   - LeftArmCyberZeus
   - RightArmCyberZeus
+  - LeftArmCyberHerakles
+  - RightArmCyberHerakles
+
+- type: latheRecipePack
+  id: StarlightSecurityGrenadesEmag
+  recipes:
+  - MagazineGrenadeFrag
+  - MagazineGrenadeBlast
 
 - type: latheRecipePack
   id: SecurityImplants

@@ -3906,7 +3906,7 @@ entities:
       - GenpopEnter
       - GenpopLeave
     - type: IdCard
-      jobIcon: JobIconCentComm
+      jobIcon: JobIconCentralCommandOfficial #Starlight
       _jobTitle: CentComm Operator
     - type: EmitSoundOnCollide
       nextSound: -295.666538

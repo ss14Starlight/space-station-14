@@ -387,7 +387,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
 
         if (!ent.Comp.IsLawboard)
             return;
-
+        ent.Comp.Laws = "FreeLawset";
         ent.Comp.Lawset = GetLawset("FreeLawset");
 
         _popup.PopupEntity(Loc.GetString("lawboard-emag-popup"), ent);

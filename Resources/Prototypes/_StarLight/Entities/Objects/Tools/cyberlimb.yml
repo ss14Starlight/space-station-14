@@ -275,6 +275,11 @@
       - SemiAuto
       soundGunshot:
         path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+    - type: GunWieldBonus
+      minAngle: -1
+      maxAngle: -55
+    - type: Wieldable
+      freeHandsRequired: 2
     - type: AmmoCounter
     - type: Appearance
     - type: GenericVisualizer
@@ -570,6 +575,28 @@
       currentTransferAmount: 15
       reagentWhitelist:
         - Inaprovaline
+    - type: Tag
+      tags:
+        - CyberHandItem
+
+- type: entity
+  parent: AdvancedJetInjector
+  id: AdvancedJetInjectorCyber
+  name: cyber jet injector
+  description: A pristine, fashionable, high quality injector. Now integrated into your arm!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/cyberling.rsi
+      layers:
+        - state: jetinjector
+          map: ["enum.SolutionContainerLayers.Base"]
+        - state: autoinjector-fill-1
+          map: ["enum.SolutionContainerLayers.Fill"]
+          visible: false
+    - type: SolutionContainerVisuals
+      maxFillLevels: 1
+      fillBaseName: autoinjector-fill-
+      solutionName: hypospray
 
 - type: entity
   id: DefibrillatorCyber
@@ -673,6 +700,7 @@
   components:
     - type: LargeGrabber
       maxContents: 1
+      dropOnContainerChange: true
     - type: ContainerContainer
       containers:
         item-container: !type:Container
@@ -939,7 +967,6 @@
     tags:
     - CyberHandItem
 
-
 - type: entity
   id: RCDCyber
   parent: RCD
@@ -949,3 +976,313 @@
   - type: Sprite
     sprite: _Starlight/Objects/Tools/cyberling.rsi
     state: rcd
+
+- type: entity
+  id: PrinterCyber
+  parent: BaseItem
+  name: cybernetic printer
+  description: The dream of every paperwork afficionado.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    layers:
+    - state: printer
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: printer_inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+  - type: Lathe
+    producingSound: /Audio/Machines/scanning.ogg
+    idleState: printer
+    runningState: printer_printing
+    staticPacks:
+    - StarlightDocs
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Document
+    storage:
+      SheetPrinter: 2000
+  - type: ActivatableUI
+    key: enum.LatheUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.LatheUiKey.Key:
+        type: LatheBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
+  - type: Appearance
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  id: PenCyber
+  parent: Pen
+  name: cybernetic pen
+  description: The pen of the future.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: pen
+  - type: Tag
+    tags:
+    - Write
+    - Pen
+    - CyberHandItem
+
+- type: entity
+  id: StampCyber
+  parent: BaseItem
+  name: cybernetic multistamp
+  description: The bad boy can fit so many (3) stamps in it!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    layers:
+    - state: multistamp
+    - state: stamp
+      color: '#ffffff'
+  - type: ItemSlots
+    slots:
+      stamp_slot_1:
+        name: stamp-slot-component-slot-name-stamp
+        whitelist:
+          components:
+            - Stamp
+        blacklist:
+          components:
+            - Multistamp
+      stamp_slot_2:
+        name: stamp-slot-component-slot-name-stamp
+        whitelist:
+          components:
+            - Stamp
+        blacklist:
+          components:
+            - Multistamp
+      stamp_slot_3:
+        name: stamp-slot-component-slot-name-stamp
+        whitelist:
+          components:
+            - Stamp
+        blacklist:
+          components:
+            - Multistamp
+  - type: ContainerContainer
+    containers:
+      stamp_slot_1: !type:ContainerSlot
+      stamp_slot_2: !type:ContainerSlot
+      stamp_slot_3: !type:ContainerSlot
+  - type: Stamp
+  - type: Multistamp
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  parent: BaseItem
+  id: HoloRestrainerCyber
+  name: holorestrainer
+  description: Creates solid, but temporary holographic cuffs.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: holorestrainer
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: holorestrainer_powered
+      unshaded: true
+      visible: false
+  - type: BatteryVisuals
+  - type: GenericVisualizer
+    visuals:
+      enum.BatteryVisuals.State:
+        enum.PowerCellVisualLayers.Unshaded:
+          Full: { visible: true }
+          Neither: { visible: true }
+          Empty: { visible: false }
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot {}
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: HoloItem
+    itemPrototype: HandcuffsHolographic
+    chargeUse: 90
+    requiredComponents:
+    - Cuffable
+  - type: UseDelay
+  - type: Tag
+    tags:
+    - CyberHandItem
+
+- type: entity
+  name: holocuffs
+  id: HandcuffsHolographic
+  parent: [Handcuffs]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: holorestrainer_powered
+  - type: TimedDespawn
+    lifetime: 180
+  - type: Handcuff
+    cuffedRSI: Objects/Misc/handcuffs.rsi
+    bodyIconState: body-overlay
+    mustBeUsedFromHand: false
+    breakOnCuffingFailed: true
+
+- type: entity
+  id: VialCyber
+  parent: BaseItem
+  name: cybernetic vial
+  description: Fluid storage, integrated right into your arm!
+  components:
+  - type: Tag
+    tags:
+    - CyberHandItem
+    - Vial
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    layers:
+      - state: cyber_vial
+      - state: cyber_vial-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: cyber_vial-
+  - type: Edible
+    edible: Drink
+    solution: beaker
+    destroyOnEmpty: false
+    utensil: None
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 30
+  - type: ExaminableSolution
+    solution: beaker
+    exactVolume: true
+  - type: DrawableSolution
+    solution: beaker
+  - type: Spillable
+    solution: beaker
+  - type: SolutionTransfer
+    maxTransferAmount: 30
+    canChangeTransferAmount: true
+  - type: SolutionItemStatus
+    solution: beaker
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
+
+- type: entity
+  id: VialCyberEmpty
+  parent: VialCyber
+  name: cybernetic vial
+  description: Fluid storage, integrated right into your arm!
+  suffix: Water
+  components:
+  - type: MixableSolution
+    solution: beaker
+  - type: RefillableSolution
+    solution: beaker
+  - type: DrainableSolution
+    solution: beaker
+
+- type: entity
+  id: VialCyberWater
+  parent: VialCyber
+  name: cybernetic vial
+  description: Fluid storage, integrated right into your arm! This one slowly draws water from the air.
+  suffix: Water
+  components:
+  - type: SolutionRegeneration
+    solution: beaker
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 0.5
+
+- type: entity
+  id: VialCyberBlood
+  parent: VialCyber
+  name: cybernetic vial
+  description: Fluid storage, integrated right into your arm! This one slowly draws blood from... somewhere. It does not seem to be yours..?
+  suffix: Blood
+  components:
+  - type: SolutionRegeneration
+    solution: beaker
+    generated:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 0.5
+
+- type: entity
+  id: NodeScannerCyber
+  parent: NodeScanner
+  name: cybernetic node scanner
+  description: A node scanner, for scanning your science rocks!
+  components:
+  - type: Tag
+    tags:
+    - CyberHandItem
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    layers:
+      - state: node_scanner
+
+- type: entity
+  id: FilingCabinetCyber
+  parent: [ BaseItem, BaseBagOpenClose ]
+  name: cybernetic file keeper
+  description: Keeping all your forms organised since 2524!
+  components:
+  - type: Tag
+    tags:
+    - CyberHandItem
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: cabinet
+    layers:
+    - state: cabinet
+    - state: cabinet_open
+      map: ["openLayer"]
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 12
+    soundHit:
+      collection: MetalSlam
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,4,3
+    whitelist:
+      tags:
+      - Document
+  - type: Appearance
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: InteractionOutline
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container

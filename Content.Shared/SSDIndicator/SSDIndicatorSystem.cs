@@ -127,9 +127,13 @@ public sealed class SSDIndicatorSystem : EntitySystem
         component.IsSSD = true;
 
         if (_icSsdSleep)
+        //Starlight Start
+        {
             component.FallAsleepTime = _timing.CurTime + TimeSpan.FromSeconds(_icSsdSleepTime);
-
-        _sleep.TrySleeping(uid);
+            _sleep.TrySleeping(uid);
+        }
+        //_sleep.TrySleeping(uid); //Moved sleep on SSD behind the check whether SSD should sleep. WHY WAS THIS NOT ALREADY THE CASE???
+        //Starlight End
 
         Dirty(uid, component);
     }

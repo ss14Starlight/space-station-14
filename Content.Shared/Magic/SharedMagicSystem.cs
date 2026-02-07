@@ -463,7 +463,7 @@ public abstract class SharedMagicSystem : EntitySystem
         _damageable.TryChangeDamage(ev.Target, ev.Damage, true); //ignore resistances
         //starlight end
     }
-
+    
     // End Touch Spells
     #endregion
     #region Knock Spells

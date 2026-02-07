@@ -103,3 +103,4 @@
       distance: 5
       sound:
         path: /Audio/Weapons/block_metal1.ogg
+      isCybernetic: true

@@ -15,3 +15,6 @@ paper-form-dialog-cancel = Cancel
 paper-signature-unknown = Unknown
 
 paper-tamper-proof-modified-message = This page was written using tamper-proof ink.
+
+# Paper tools
+stamp-slot-component-slot-name-stamp = Stamp

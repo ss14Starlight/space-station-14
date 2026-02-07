@@ -29,6 +29,7 @@
   - type: Tag
     tags:
     - Unimplantable # _Starlight
+    - Labelable # Starlight
   - type: MobState
   - type: MobThresholds
     thresholds:
