@@ -29569,5 +29569,142 @@ Entries:
   id: 316700
   time: '2026-02-06T13:38:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3167
+- author: Conflee
+  changes:
+  - message: Fixed broken spacing in the Corporate Law crime table. It HATES multiple
+      paragraphs being in one cell.
+    type: Fix
+  id: 316800
+  time: '2026-02-06T16:00:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3168
+- author: wonderfulnewworld
+  changes:
+  - message: 'Added the following to Thief collection steal targets: assistant headset
+      and (medical belt, EMT belt, corpsman duty belt, tactical trauma belt, tactical
+      trauma rig, blueshield medical belt, or blueshield webbing).'
+    type: Add
+  - message: Added Roboticist Toolbox and Roboticist Gas Mask. (Available from snipping
+      the MNGR wire in the robodrobe.)
+    type: Add
+  - message: Added Roboticist Toolbox (Filled) and Galoshn't to rare mains locker
+      spawns. Heartbreaking.
+    type: Add
+  - message: Adds the WT550r for HoS, replacing the WT550. It's functionally the same,
+      but red, for their steal objective.
+    type: Add
+  - message: Lowered chance of Galoshes spawning in favor of Galoshn'ts from 25%/75%
+      to 10%/90%.
+    type: Tweak
+  - message: Changes HoS's weapon spawner to spawn the WT550r instead of the WT550.
+    type: Tweak
+  - message: Adds WT550r back to HOSWeaponStealObjective.
+    type: Fix
+  - message: ReactorFuelRodStealCollectionObjective added to Don't You Want More?
+    type: Fix
+  id: 316500
+  time: '2026-02-06T21:49:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3165
+- author: neomoth, DocMoth
+  changes:
+  - message: 'Gives lagomorphs a secondary ability: Zoomies!! Grants a 135% speed
+      boost for 15 seconds in exchange for rapidly increasing thirst. Has a 50 second
+      recharge time.'
+    type: Add
+  - message: Stamina Surge now provides a 0.85x multiplier to stamina resistance (-0.5x).
+    type: Tweak
+  - message: Stamina Surge now provides a 0.55x multiplier to stamina cooldown (-0.5x).
+    type: Tweak
+  - message: Stamina Surge now provides a 1.85x multiplier to stamina regen rate (+0.5x).
+    type: Tweak
+  - message: Stamina Surge now drains hunger at a rate of 90 (+10) and thirst at a
+      rate of 8 (-2).
+    type: Tweak
+  - message: Stamina Surge now takes 50 seconds to gain a charge (+20s).
+    type: Tweak
+  - message: Stamina Surge's alert icon now uses the correct sprite.
+    type: Fix
+  id: 317000
+  time: '2026-02-06T22:03:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3170
+- author: SevenShades
+  changes:
+  - message: Added eight new lagomorph antler markings
+    type: Add
+  id: 317100
+  time: '2026-02-06T22:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3171
+- author: walksanatora
+  changes:
+  - message: Abductors can now teleport again.
+    type: Fix
+  id: 317700
+  time: '2026-02-06T23:25:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3177
+- author: wonderfulnewworld
+  changes:
+  - message: Heads of Departments now gain access to all of their department's uplink
+      items, for those rare Reasons to Choose the Syndicate games.
+    type: Tweak
+  - message: Service Worker now has access to the Chef/Botanist specific uplink items.
+    type: Tweak
+  - message: Roboticist now has access to the Science uplink items.
+    type: Tweak
+  - message: Syndicate Spongebox is now 2 TC less. The discount is now 1 less than
+      it was before, too. (7 -> 5, 4 -> 3.)
+    type: Tweak
+  - message: Increases the Galoshn't and Roboticist Toolbox chances to show up in
+      mains a little bit. (I tried rolling for them and got 2 actual syndicate toolboxes
+      before I rolled either of them... so yeah that was pretty low.  I never rolled
+      either of them.)
+    type: Tweak
+  - message: Adds a missing updated inhand-right sprite to Roboticist Gas Mask.
+    type: Fix
+  - message: The Briefcase Gun is now technically obtainable by HoP, IAA, NT Rep,
+      and Magi. It was only Lawyer before, which doesn't exist.
+    type: Fix
+  id: 317500
+  time: '2026-02-07T01:04:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3175
+- author: neomoth
+  changes:
+  - message: Fix radio behavior when trying to use an invalid keycode or trying to
+      use one you dont have.
+    type: Fix
+  id: 317200
+  time: '2026-02-07T01:55:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3172
+- author: Conflee
+  changes:
+  - message: Removed Decimus Doc from the locker fill table.
+    type: Remove
+  id: 318200
+  time: '2026-02-07T06:42:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3182
+- author: Conflee
+  changes:
+  - message: Changed ERT icons to use green backgrounds instead of blue, and swapped
+      their IDs to be silver not blue. ERT is CentComm, not NT.
+    type: Tweak
+  - message: Changed CBURN icon to be a chemist symbol instead of the previous, as
+      we used the previous symbol for Chaplain. Chemist felt most fitting as they
+      make Ambuzol etc.
+    type: Tweak
+  id: 318100
+  time: '2026-02-07T06:46:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3181
+- author: neomoth
+  changes:
+  - message: Nuclear operatives can no longer sign Syndicate or USSP spam letters
+      to become Traitor/Revolutionary.
+    type: Fix
+  - message: Revolutionaries can no longer sign Syndicate or USSP spam letters to
+      become Traitor/Revolutionary.
+    type: Fix
+  - message: Traitors can no longer sign Syndicate or USSP spam letters to become
+      Traitor/Revolutionary,
+    type: Fix
+  id: 317400
+  time: '2026-02-07T06:56:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3174
 Order: -1
 

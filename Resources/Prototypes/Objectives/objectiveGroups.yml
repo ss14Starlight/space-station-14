@@ -105,6 +105,8 @@
     MiscSunglassesStealCollectionObjective: 0.75 # Starlight. Musician, Beer Goggles, and all variants of Security sunglasses (Officer, Brigmed, Detective). A replacement to the beer goggles objective. 5-9.
     RareSunglassesStealCollectionObjective: 0.5 # Starlight. Administration, Skill, BSO, Brigmed, and, if you somehow find them on a salvage... CentComm. 2-4. Not detective, since det glasses can be used on other sec roles.
     ReactorFuelRodStealCollectionObjective: 1 #Far Horizons
+    AssistantHeadsetsStealCollectionObjective: 0.5 # Starlight. Yes, it's cursed. Incredibly so.
+    MedicalBeltStealCollectionObjective: 0.4 # Starlight. There's actually tons of these... but carrying them is a different matter entirely...
 
 - type: weightedRandom
   id: ThiefObjectiveGroupItem
