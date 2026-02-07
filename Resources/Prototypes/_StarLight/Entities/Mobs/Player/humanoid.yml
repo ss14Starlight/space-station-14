@@ -4,9 +4,6 @@
   id: EventHumanoidNTNC
   parent: EventHumanoidMindShielded
   speciesBlacklist:
-  - Diona
-  - Resomi
-  - Avali
   - Felionoid
   - Thaven
   components:
@@ -144,10 +141,6 @@
   id: NTSFoperative
   parent: EventHumanoidCentcomm
   speciesBlacklist:
-  - Diona
-  - Resomi
-  - Vox
-  - Avali
   - Felionoid
   - Thaven
   components:
@@ -191,10 +184,6 @@
   id: Decimusoperative
   parent: EventHumanoidCentcomm
   speciesBlacklist:
-  - Diona
-  - Resomi
-  - Vox
-  - Avali
   - Felionoid
   - Thaven
   components:
@@ -269,10 +258,6 @@
   id: TSFMarine
   parent: EventHumanoidMindShielded
   speciesBlacklist:
-  - Diona
-  - Resomi
-  - Vox
-  - Avali
   - Felionoid
   - Thaven
   components:

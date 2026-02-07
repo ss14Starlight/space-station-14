@@ -86,9 +86,6 @@
   id: ERTLeader
   parent: EventHumanoidCentcomm
   speciesBlacklist: # Starlight start
-  - Diona
-  - Resomi
-  - Avali
   - Felionoid
   - Thaven # Starlight end
   components:
