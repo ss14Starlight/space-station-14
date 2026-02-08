@@ -113,11 +113,6 @@
     speed: 1.2
     endSound:
       path: /Audio/Weapons/smash.ogg
-  - type: LegendaryItem
-    chance: 0.01
-    story: Tool
-    legendarySprites: 
-      - _Starlight/Objects/Specific/legendary_items/brass_screwdriver.rsi
   # 🌟Starlight-end🌟
 
 - type: entity

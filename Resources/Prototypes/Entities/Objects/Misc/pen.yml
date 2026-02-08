@@ -75,6 +75,10 @@
     state: luxury_pen
   - type: Item
     heldPrefix: luxury_pen
+  # Starlight
+  - type: LegendaryItem
+    chance: 0
+    legendarySprites: []
 
 - type: entity
   id: BaseAdvancedPen
