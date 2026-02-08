@@ -54,11 +54,6 @@
       path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
   - type: ItemPrice
     priceCategory: tool_basic
-  - type: LegendaryItem
-    chance: 0.01
-    story: Tool
-    legendarySprites: 
-      - _Starlight/Objects/Specific/legendary_items/brass_wirecutters.rsi
   # 🌟Starlight-end🌟
 
 - type: entity
