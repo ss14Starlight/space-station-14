@@ -143,3 +143,18 @@
       interfaces:
         enum.StorageUiKey.Key:
           type: StorageBoundUserInterface
+
+# microbomb that gibs but does less collateral damage, for terminator
+- type: entity
+  parent: MicroBombImplant
+  id: TerminatorMicroBombImplant
+  name: terminator micro bomb implant
+  description: This implant detonates the user upon activation or upon death.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Explosive
+    explosionType: MicroBomb
+    totalIntensity: 40
+    intensitySlope: 3
+    maxIntensity: 15
+    canCreateVacuum: false

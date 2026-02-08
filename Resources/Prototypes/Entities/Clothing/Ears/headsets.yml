@@ -31,9 +31,12 @@
   parent: ClothingHeadset
   id: ClothingHeadsetAssistant
   name: assistant headset
+  description: A headset used by assistants. # Starlight
   components:
   - type: Sprite
     sprite: Clothing/Ears/Headsets/service.rsi
+  - type: StealTarget # Starlight
+    stealGroup: AssistantHeadsetsCollection # Starlight. Cursed. Incredibly cursed.
 
 - type: entity
   parent: ClothingHeadset
@@ -55,7 +58,7 @@
   parent: ClothingHeadsetCargo
   id: ClothingHeadsetMining
   name: mining headset
-  description: Headset used by shaft miners.
+  description: Headset used by mining specialists. # Starlight rename to mining specialists
   components:
   - type: Sprite
     sprite: Clothing/Ears/Headsets/mining.rsi

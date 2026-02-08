@@ -1,11 +1,12 @@
+using Content.Server.Fluids.EntitySystems;
 using Content.Server.Polymorph.Components;
 using Content.Server.Polymorph.Systems;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Systems;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Maps;
-using Content.Shared.Fluids.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 
@@ -21,6 +22,7 @@ public sealed class SanguinePoolSystem : SharedSanguinePoolSystem
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private readonly PuddleSystem _puddle = default!;
 
     public override void Update(float frameTime)
     {
@@ -50,34 +52,15 @@ public sealed class SanguinePoolSystem : SharedSanguinePoolSystem
             comp.LastTrail = (gridUid, tile);
 
             var tileCoords = _map.GridTileToLocal(gridUid, gridComp, tile);
-            if (HasBloodPuddleNearby(tileCoords))
+            if (_puddle.TryGetPuddle(_map.GetTileRef((gridUid, gridComp), tileCoords), out var puddle))
+            {
+                var solution = new Solution { Contents = [new ReagentQuantity(_bloodReagentId, 30)] };
+                _puddle.TryAddSolution(puddle, solution);
                 continue;
+            }
 
             Spawn(comp.TrailPrototype, tileCoords);
         }
-    }
-
-    private bool HasBloodPuddleNearby(Robust.Shared.Map.EntityCoordinates coords)
-    {
-        foreach (var ent in _lookup.GetEntitiesInRange(coords, 0.45f, LookupFlags.Static | LookupFlags.Dynamic | LookupFlags.Sundries))
-        {
-            if (IsBloodPuddle(ent))
-                return true;
-        }
-
-        return false;
-    }
-
-    private bool IsBloodPuddle(EntityUid uid)
-    {
-        if (!TryComp<PuddleComponent>(uid, out var puddle))
-            return false;
-
-        if (!_solution.TryGetSolution(uid, puddle.SolutionName, out _, out var solution))
-            return false;
-
-        // Use prototype check so blood with forensic data are still detected
-        return solution.ContainsPrototype(_bloodReagentId);
     }
 
     private bool ShouldForceRevert(EntityUid uid, TransformComponent xform)

@@ -59,5 +59,8 @@ public sealed partial class RetractableItemActionComponent : Component
     [DataField, AutoNetworkedField]
     public string Slot = "none";
 
+    [DataField, AutoNetworkedField]
+    public bool IsCybernetic = false;
+
     #endregion Starlight
 }

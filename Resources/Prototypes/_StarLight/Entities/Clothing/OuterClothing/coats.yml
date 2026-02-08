@@ -393,3 +393,14 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.8
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  id: ClothingOuterCoatRatvarRobes
+  name: ratvar robes
+  description: A leathery coat adorned in dull gems, brass buttons, and brass sheets carved with clockwork patterns.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/OverClothes/ratvar_robes.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/OverClothes/ratvar_robes.rsi

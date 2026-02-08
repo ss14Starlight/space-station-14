@@ -11,6 +11,7 @@
       blacklist:
       - Abductor
       - Skeleton
+      - Terminator
     - !type:SubjectMindAntagCondition
       blacklist:
       - Brighteye

@@ -85,6 +85,8 @@
       RedLaserBeam: 0.40
       IgnitionRedLaser: 0.40
       DestroyBeam: 0.40
+      RadOrb: 0.40
+      FreezeRay: 0.40
       # Starlight-end
   - type: IgnitionSource
     temperature: 700

@@ -175,6 +175,9 @@
   - type: StaticPrice
     price: 150
   - type: PryUnpowered
+  - type: Tag #Starlight -- minimum arming distance
+    tags: 
+      - BulletUnarmedCollide #Starlight -- Make bullet pre-arming not phase through windoors 
 
 - type: entity
   id: BaseSecureWindoor
@@ -249,7 +252,7 @@
     tags:
       - SecureWindoor
       # This tag is used to nagivate the Airlock construction graph. It's needed because the construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
-
+      - BulletUnarmedCollide #Starlight -- Make bullet pre-arming not phase through windoors 
 
 #Plasma Windoors
 - type: entity

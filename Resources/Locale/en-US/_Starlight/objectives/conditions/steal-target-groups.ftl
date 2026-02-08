@@ -18,7 +18,7 @@ steal-target-groups-clothing-outer-hardsuit-bso = blue shield officer's hardsuit
 steal-target-groups-clothing-shoes-boots-mag-bso = blue shield officer's magboots
 steal-target-groups-encryption-key-salvage = salvage encryption key
 steal-target-groups-hopboard = bureaucratic digiboard
-steal-target-groups-hos-weapon = head of security's Proto-5x or WT550
+steal-target-groups-hos-weapon = head of security's Proto-5x or WT550r
 steal-target-groups-weapon-energy-shot-gun = warden's energy shotgun
 steal-target-groups-bso-weapon = blue shield officer's X-01 multiphase energy gun or sp8t
 
@@ -49,6 +49,8 @@ steal-target-groups-galoshes = galosh
 steal-target-groups-rcd-rpd = RCDs and RPD
 steal-target-groups-misc-sunglasses = beer goggles, musician shades, security glasses, or detective's noir-tech glass
 steal-target-groups-rare-sunglasses = administration, skill, blueshield, or brigmedic sunglass
+steal-target-groups-assistant-headsets = assistant headset
+steal-target-groups-medical-belts = medical belt, EMT belt, corpsman duty belt, tactical trauma belt, tactical trauma rig, blueshield medical belt, or blueshield webbing
 
 # docs
 steal-target-groups-corporate-documents = classified corporate secrets documents

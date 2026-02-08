@@ -65,3 +65,14 @@
     sprite: _Starlight/Clothing/Shoes/Boots/belpero.rsi
   - type: Matchbox # Cool as fuck =}
 # Fashion-O-Mat End
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesRatvar
+  name: ratvar boots
+  description: Coated with a shiny brass paint to show your dedication to the clockwork god.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Shoes/Boots/ratvar_boots.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Shoes/Boots/ratvar_boots.rsi

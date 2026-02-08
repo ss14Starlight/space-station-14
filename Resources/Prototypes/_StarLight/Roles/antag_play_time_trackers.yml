@@ -97,3 +97,7 @@
 - type: playTimeTracker
   id: AntagSELFAgent
   name: roles-antag-selfagent-name
+
+- type: playTimeTracker
+  id: AntagTerminator
+  name: roles-antag-terminator-name

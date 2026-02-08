@@ -55,6 +55,7 @@
   - SurveillanceWirelessCameraMonitorCircuitboard
   - TelecomServerCircuitboard
   - HolopadMachineCircuitboard
+  - BladeServerRackMachineCircuitboard # Moffstation - Blade Server Rack constructible
   radioChannels:
   - Service
 
@@ -162,6 +163,7 @@
   - AdvMopItem
   - MegaSprayBottle
   - BorgModuleAdvancedCleaning
+  - Hydra # Starlight
   radioChannels:
   - Service
 

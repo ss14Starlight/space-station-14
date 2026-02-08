@@ -156,17 +156,19 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     private void Return(EntityUid uid, AbductorScientistComponent? scientistComp, AbductorAgentComponent? agentComp)
     {
 
-        _color.RaiseEffect(Color.FromHex("#BA0099"), new List<EntityUid>(1) { uid }, Filter.Pvs(uid, entityManager: EntityManager));
-        if (TryComp<PullerComponent>(uid, out var pullerComp)
-            && (pullerComp.Pulling == null
-            || !TryComp<PullableComponent>(pullerComp.Pulling.Value, out var pulledComp)
-            || !_pullingSystem.TryStopPull(pullerComp.Pulling.Value, pulledComp))) 
-            return;
+        if (_pullingSystem.IsPulling(uid))
+        {
+            if (!TryComp<PullerComponent>(uid, out var pullerComp)
+                || pullerComp.Pulling == null
+                || !TryComp<PullableComponent>(pullerComp.Pulling.Value, out var pullableComp)
+                || !_pullingSystem.TryStopPull(pullerComp.Pulling.Value, pullableComp)) return;
+        }
 
-        if (_pullingSystem.IsPulled(uid) 
-            && (!TryComp<PullableComponent>(uid, out var pullableComp) 
-            || !_pullingSystem.TryStopPull(uid, pullableComp)))
-            return;
+        if (_pullingSystem.IsPulled(uid))
+        {
+            if (!TryComp<PullableComponent>(uid, out var pullableComp)
+                || !_pullingSystem.TryStopPull(uid, pullableComp)) return;
+        }
 
         EntityCoordinates? spawnPosition = null;
 

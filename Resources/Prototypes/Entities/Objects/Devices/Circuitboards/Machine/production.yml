@@ -193,6 +193,10 @@
     prototype: ResearchAndDevelopmentServer
     stackRequirements:
       Plasma: 5
+  # Moffstation - Begin - R&D Blade Server
+  - type: BladeServerBoard
+    prototype: ResearchAndDevelopmentBladeServer
+  # Moffstation - End
 
 - type: entity
   id: BiogeneratorMachineCircuitboard
@@ -504,6 +508,10 @@
       stackRequirements:
         Steel: 1
         Cable: 2
+  # Moffstation - Begin - CrewMon Blade Server
+    - type: BladeServerBoard
+      prototype: CrewMonitoringBladeServer
+  # Moffstation - End
 
 - type: entity
   id: CryoPodMachineCircuitboard

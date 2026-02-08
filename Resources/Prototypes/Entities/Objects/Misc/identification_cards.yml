@@ -1161,10 +1161,10 @@
     layers:
     - state: gold
     - state: stripe_top
-      color: *color-centcomm-top
+      color: "#0c7d1d" #Starlight
     - state: stripe_bottom
-      color: *color-centcomm-bottom
-    - sprite: *icon-rsi
+      color: "#0a5715" #Starlight
+    - sprite: *starlight-icon-rsi #Starlight
       offset: *icon-offset
       state: ERTLeader
   - type: Item
@@ -1179,12 +1179,12 @@
   components:
   - type: Sprite
     layers:
-    - state: centcom
+    - state: silver #Starlight
     - state: stripe_top
-      color: *color-service-top
+      color: "#0c7d1d" #Starlight
     - state: stripe_bottom
-      color: *color-service-bottom
-    - sprite: *icon-rsi
+      color: "#0a5715" #Starlight
+    - sprite: *starlight-icon-rsi #Starlight
       offset: *icon-offset
       state: ERTChaplain
   - type: Item
@@ -1199,12 +1199,12 @@
   components:
   - type: Sprite
     layers:
-    - state: centcom
+    - state: silver #Starlight
     - state: stripe_top
-      color: *color-engineering-top
+      color: "#0c7d1d" #Starlight
     - state: stripe_bottom
-      color: *color-engineering-bottom
-    - sprite: *icon-rsi
+      color: "#0a5715" #Starlight
+    - sprite: *starlight-icon-rsi #Starlight
       offset: *icon-offset
       state: ERTEngineer
   - type: Item
@@ -1219,12 +1219,12 @@
   components:
   - type: Sprite
     layers:
-    - state: centcom
+    - state: silver #Starlight
     - state: stripe_top
-      color: *color-service-top
+      color: "#0c7d1d" #Starlight
     - state: stripe_bottom
-      color: *color-service-bottom
-    - sprite: *icon-rsi
+      color: "#0a5715" #Starlight
+    - sprite: *starlight-icon-rsi #Starlight
       offset: *icon-offset
       state: ERTJanitor
   - type: Item
@@ -1239,12 +1239,12 @@
   components:
   - type: Sprite
     layers:
-    - state: centcom
+    - state: silver #Starlight
     - state: stripe_top
-      color: *color-medical-top
+      color: "#0c7d1d" #Starlight
     - state: stripe_bottom
-      color: *color-medical-bottom
-    - sprite: *icon-rsi
+      color: "#0a5715" #Starlight
+    - sprite: *starlight-icon-rsi #Starlight
       offset: *icon-offset
       state: ERTMedical
   - type: Item
@@ -1259,12 +1259,12 @@
   components:
   - type: Sprite
     layers:
-    - state: centcom
+    - state: silver #Starlight
     - state: stripe_top
-      color: *color-security-top
+      color: "#0c7d1d" #Starlight
     - state: stripe_bottom
-      color: *color-security-bottom
-    - sprite: *icon-rsi
+      color: "#0a5715" #Starlight
+    - sprite: *starlight-icon-rsi #Starlight
       offset: *icon-offset
       state: ERTSecurity
   - type: Item
@@ -1298,12 +1298,12 @@
   components:
   - type: Sprite
     layers:
-    - state: centcom
+    - state: silver #Starlight
     - state: stripe_top
-      color: *color-centcomm-top
+      color: "#0c7d1d" #Starlight
     - state: stripe_bottom
-      color: *color-centcomm-bottom
-    - sprite: *icon-rsi
+      color: "#0a5715" #Starlight
+    - sprite: *starlight-icon-rsi #Starlight
       offset: *icon-offset
       state: CBURN
   - type: Item
