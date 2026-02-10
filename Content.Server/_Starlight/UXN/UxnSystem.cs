@@ -1,13 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Text;
-using Content.Shared._Starlight.UXN;
-using Content.Shared._Starlight.UXN.Devices;
-using Content.Shared._Starlight.UXN.Devices.ComponentDevices;
+using Content.Server._Starlight.UXN.Devices;
+using Content.Server._Starlight.UXN.Devices.ComponentDevices;
 using Content.Shared.Fax.Components;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Utility;
 
-namespace Content.Shared._Starlight;
+namespace Content.Server._Starlight.UXN;
 
 public sealed partial class UxnSystem : EntitySystem
 {
@@ -16,8 +15,6 @@ public sealed partial class UxnSystem : EntitySystem
     private readonly ResPath _compilerRom = new("/_Starlight/Uxn/Rom/drifloon.rom");
 
     private readonly UXNProcessor _compiler = new();
-
-    //private readonly Dictionary<Type, Func<ComponentUxnDeviceInner>> _componentDeviceMap = new();
     
     public override void Initialize()
     {
@@ -34,7 +31,7 @@ public sealed partial class UxnSystem : EntitySystem
     private void OnAttachFaxMachineComponent(Entity<FaxMachineComponent> ent, ref OnGetUxnDevices ev)
     {
         ComponentUxnDevice<FaxMachineComponent> dev = new FaxComponentDevice();
-        ev.AddDevice<FaxMachineComponent>(ent.Comp, dev, ent);
+        ev.AddDevice<FaxMachineComponent>(ent, dev);
     }
 
     public bool Compile(string uxnTal, [NotNullWhen(false)] out string? error, [NotNullWhen(true)] out List<byte>? rom)

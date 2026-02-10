@@ -2,8 +2,8 @@
 using System;
 using System.IO;
 using System.Reflection;
-using Content.Shared._Starlight.UXN;
-using Content.Shared._Starlight.UXN.Devices;
+using Content.Server._Starlight.UXN;
+using Content.Server._Starlight.UXN.Devices;
 using Content.Tests;
 using NUnit.Framework;
 using Robust.Shared.Utility;

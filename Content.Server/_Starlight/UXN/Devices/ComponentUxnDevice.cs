@@ -1,6 +1,4 @@
-﻿using Robust.Shared.GameObjects;
-
-namespace Content.Shared._Starlight.UXN.Devices;
+﻿namespace Content.Server._Starlight.UXN.Devices;
 
 public abstract class ComponentUxnDevice<T> : UXNDevice where T : IComponent
 {

@@ -1,7 +1,6 @@
 using System.Linq;
-using Content.Shared._Starlight.UXN;
 
-namespace Content.Shared._Starlight.UXN.Devices;
+namespace Content.Server._Starlight.UXN.Devices;
 
 [Virtual]
 public class StandardSystemDevice : UXNDevice

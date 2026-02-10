@@ -1,6 +1,6 @@
 using Robust.Shared.Utility;
 
-namespace Content.Shared._Starlight.UXN;
+namespace Content.Server._Starlight.UXN;
 
 [RegisterComponent]
 public sealed partial class UxnAttachableComponent : Component

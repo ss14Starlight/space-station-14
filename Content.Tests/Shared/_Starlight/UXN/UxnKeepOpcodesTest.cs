@@ -1,5 +1,5 @@
 using System;
-using Content.Shared._Starlight.UXN;
+using Content.Server._Starlight.UXN;
 using NUnit.Framework;
 using Robust.Shared.IoC;
 using Robust.Shared.Random;

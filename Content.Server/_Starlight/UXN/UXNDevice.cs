@@ -1,6 +1,7 @@
 using System.Collections;
-using Content.Shared._Starlight.UXN.Devices;
-namespace Content.Shared._Starlight.UXN;
+using Content.Server._Starlight.UXN.Devices;
+
+namespace Content.Server._Starlight.UXN;
 
 public sealed class Byte256
 {

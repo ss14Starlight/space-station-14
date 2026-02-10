@@ -1,7 +1,6 @@
 using System.Text;
-using Content.Shared._Starlight;
-using Content.Shared._Starlight.UXN;
-using Content.Shared._Starlight.UXN.Devices;
+using Content.Server._Starlight.UXN;
+using Content.Server._Starlight.UXN.Devices;
 using Robust.Shared.ContentPack;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Log;

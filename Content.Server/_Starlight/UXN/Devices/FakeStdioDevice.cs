@@ -1,7 +1,6 @@
 using System.Text;
-using Content.Shared._Starlight.UXN;
 
-namespace Content.Shared._Starlight.UXN.Devices;
+namespace Content.Server._Starlight.UXN.Devices;
 
 public sealed class FakeStdioDevice : UXNDevice
 {

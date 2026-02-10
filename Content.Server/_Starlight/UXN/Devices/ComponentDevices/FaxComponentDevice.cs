@@ -1,6 +1,6 @@
 ﻿using Content.Shared.Fax.Components;
 
-namespace Content.Shared._Starlight.UXN.Devices.ComponentDevices;
+namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 
 public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
 {
