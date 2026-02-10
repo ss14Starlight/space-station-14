@@ -62,6 +62,22 @@
     sprite: _Starlight/Mobs/Species/Cyberlimbs/resomiparts.rsi
     state: r_foot
 
+- type: humanoidBaseSprite
+  id: ResomiCyberLLegSpeed
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+    state: l_leg_resomi
+
+- type: humanoidBaseSprite
+  id: ResomiCyberRLegSpeed
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+    state: r_leg_resomi
+
 #silver
 - type: humanoidBaseSprite
   id: ResomiCyberLArmSilver

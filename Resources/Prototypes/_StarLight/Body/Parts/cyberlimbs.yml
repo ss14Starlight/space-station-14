@@ -176,6 +176,57 @@
     - type: RoundstartImplantable
       cost: 1
 
+# Speed legs
+- type: entity
+  id: LeftLegCyberSpeed
+  name: "left speg"
+  parent: [PartCyber, BaseLeftLeg]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberLLegSpeed
+        Resomi: ResomiCyberLLegSpeed
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+      state: "l_leg"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+      state: "l_leg"
+    - type: MovementBodyPart
+      walkSpeed: 3.75 # 1.5x of base
+      sprintSpeed: 6.75 # 1.5x of base
+      maxDensity: 111
+    - type: WithAttachedBodyParts
+      parts:
+        left foot: LeftFootCyber
+    - type: MovementBodyPartHinderedByShoes
+      hinderModifier: 0.1667 
+
+- type: entity
+  id: RightLegCyberSpeed
+  name: "right speg"
+  parent: [PartCyber, BaseRightLeg]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberRLegSpeed
+        Resomi: ResomiCyberRLegSpeed
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+      state: "r_leg"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+      state: "r_leg"
+    - type: MovementBodyPart
+      walkSpeed: 3.75 # 1.5x of base
+      sprintSpeed: 6.75 # 1.5x of base
+      maxDensity: 111
+    - type: WithAttachedBodyParts
+      parts:
+        right foot: RightFootCyber
+    - type: MovementBodyPartHinderedByShoes
+      hinderModifier: 0.1667
+      
 #reaper
 - type: entity
   id: LeftArmCyberReaper

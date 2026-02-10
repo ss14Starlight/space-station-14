@@ -2144,7 +2144,7 @@
   discountDownTo:
     Telecrystal: 3
   cost:
-    Telecrystal: 6
+    Telecrystal: 5 # Starlight
   categories:
     - UplinkJob
   conditions:
@@ -2243,7 +2243,7 @@
   discountDownTo:
     Telecrystal: 3
   cost:
-    Telecrystal: 6
+    Telecrystal: 5 # Starlight
   categories:
   - UplinkJob
   conditions:
@@ -2478,9 +2478,9 @@
   productEntity: WeaponSubMachineGunBriefcase
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 10
+    Telecrystal: 8 # Starlight
   cost:
-    Telecrystal: 15
+    Telecrystal: 13 # Starlight. It's a rare gimmick item, and should at least have some reason to buy it over the c20 bundle.
   categories:
   - UplinkJob
   conditions:

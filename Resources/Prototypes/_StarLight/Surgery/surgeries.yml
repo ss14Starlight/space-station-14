@@ -119,7 +119,7 @@
   components:
   - type: Surgery
     requirement:
-    - SurgeryOpenIncision
+    - SurgeryOpenIncisionSlime
     priority: 100
     steps:
     - SurgeryStepMendSlime
@@ -131,6 +131,29 @@
   - type: SurgeryPartCondition
     parts:
     - Head
+
+- type: entity
+  parent: SurgeryCloseIncision
+  id: SurgeryCloseIncisionLimbSlime
+  name: Close Incision
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncisionSlime
+    priority: 100
+    steps:
+    - SurgeryStepMendSlime
+    - SurgeryStepCloseIncision
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - SlimePerson
+  - type: SurgeryPartCondition
+    parts:
+    - Arm
+    - Leg
+    - Hand
+    - Foot
 
 - type: entity
   parent: SurgeryBase

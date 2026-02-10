@@ -106,7 +106,7 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Launchers/hydra_launcher.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 18
+    Telecrystal: 16 # 2's really not much of a discount
   productEntity: WeaponLauncherHydraSyndicate
   cost:
     Telecrystal: 20

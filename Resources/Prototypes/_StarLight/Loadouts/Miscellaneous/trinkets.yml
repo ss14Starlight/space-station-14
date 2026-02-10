@@ -59,9 +59,8 @@
       requirement:
         !type:OverallPlaytimeRequirement
         time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingUnderSocksCoder
+  equipment:
+    shoes: ClothingUnderSocksCoder
   groupBy: "cat maid"
 
 - type: loadout
@@ -71,9 +70,8 @@
       requirement:
         !type:OverallPlaytimeRequirement
         time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingShoesHighheelBoots
+  equipment:
+    shoes: ClothingShoesHighheelBoots
   groupBy: "cat maid"
 
 - type: loadout
@@ -83,9 +81,8 @@
       requirement:
         !type:OverallPlaytimeRequirement
         time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingShoesHighheelShoes
+  equipment:
+    shoes: ClothingShoesHighheelShoes
   groupBy: "cat maid"
 
 - type: loadout
@@ -101,9 +98,8 @@
       requirement:
         !type:OverallPlaytimeRequirement
         time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingUniformJumpskirtElegantMaid
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtElegantMaid
   groupBy: "cat maid"
 
 - type: loadout
@@ -113,9 +109,30 @@
       requirement:
         !type:OverallPlaytimeRequirement
         time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingHeadHatWhiteCatEars
+  equipment:
+    head: ClothingHeadHatWhiteCatEars
+  groupBy: "cat maid"
+
+- type: loadout
+  id: ClothingHeadHatBunny
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    head: ClothingHeadHatBunny
+  groupBy: "cat maid"
+
+- type: loadout
+  id: ClothingHeadHatDogEars
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    head: ClothingHeadHatDogEars
   groupBy: "cat maid"
 
 - type: loadout
@@ -196,6 +213,11 @@
   storage:
     back:
       - Basketball
+
+- type: loadout
+  id: TBall
+  equipment: # woof
+    mask: TennisBall
 
 - type: loadout
   id: RubberQuack
@@ -403,9 +425,8 @@
       !type:RoleTimeRequirement
       role: JobMailTech
       time: 36000 # 10 hours of being ignored while carrying a parcelbomb
-  storage:
-    back:
-    - ClothingShoesSkates
+  equipment:
+    shoes: ClothingShoesSkates
 
 - type: loadout
   id: DaBling
@@ -415,9 +436,8 @@
       !type:RoleTimeRequirement
       role: JobCargoTechnician
       time: 36000 # 10 hours of resisting the urge to declare cargonia
-  storage:
-    back:
-    - ClothingNeckBling
+  equipment:
+    neck: ClothingNeckBling
 
 - type: loadout
   id: CrapPlushie
@@ -474,7 +494,7 @@
         role: JobSurgeon
         time: 72000 # 20 hours of turning her into a papa johns
   storage:
-    back: 
+    back:
       - LeftArmCyberRipper
 
 - type: loadout
@@ -486,7 +506,7 @@
         role: JobStationEngineer
         time: 72000 # 20 hours of banging wrenches on things
   storage:
-    back: 
+    back:
       - RightArmCyberMechwright
 
 - type: loadout
@@ -498,7 +518,7 @@
         department: Cargo
         time: 72000 # 20 hours of needing more storage
   storage:
-    back: 
+    back:
       - LeftLegCyberCargo
 
 - type: loadout
@@ -510,7 +530,7 @@
         department: Cargo
         time: 72000 # 20 hours of needing more storage
   storage:
-    back: 
+    back:
       - RightLegCyberCargo
 
 - type: loadout
@@ -522,7 +542,7 @@
         department: Medical
         time: 72000 # 20hrs of treating patients as Dr. House
   storage:
-    back: 
+    back:
       - CigPackBub
   groupBy: "smokeables"
 
@@ -549,7 +569,7 @@
       !type:OverallPlaytimeRequirement
       time: 48h
   storage:
-    back: 
+    id:
       - PersonalAI
 
 - type: loadout
@@ -561,5 +581,5 @@
       role: GhostPAI
       time: 8h
   storage:
-    back: 
+    id:
       - GoldenPersonalAI

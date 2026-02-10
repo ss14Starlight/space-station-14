@@ -29907,5 +29907,192 @@ Entries:
   id: 322300
   time: '2026-02-10T01:21:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3223
+- author: Fasuh
+  changes:
+  - message: Changed Avali stasis halving its damage reduction.
+    type: Tweak
+  - message: Changed Avali lowering its healing by 4x in crit.
+    type: Tweak
+  id: 321500
+  time: '2026-02-10T06:17:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3215
+- author: Fractalflower
+  changes:
+  - message: Several trinket items now start equipped on you.
+    type: Tweak
+  - message: Fixed the dog ears description being gendered >:(
+    type: Fix
+  - message: Tennis ball trinket. Woof.
+    type: Add
+  - message: Bunny and dog ear trinkets.
+    type: Add
+  - message: Actually fixed the BSO requiring a coat.
+    type: Fix
+  - message: Jobs that come with insuls can now pick their type!
+    type: Add
+  - message: HoP, HoS, Warden, and Captain now have Cadet access.
+    type: Fix
+  - message: Cadets can now use the dominator
+    type: Fix
+  - message: PAIs now start installed in your PDA.
+    type: Tweak
+  id: 321400
+  time: '2026-02-10T06:20:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3214
+- author: Sparlight
+  changes:
+  - message: Fixed corgis being unable to emote.
+    type: Fix
+  id: 320900
+  time: '2026-02-10T06:37:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3209
+- author: Conflee
+  changes:
+  - message: Resprited Conveyor Belts. They are now a mix between Classic and MonkeStation
+      sprites, with animated wheels and directional arrows to indicate which direction
+      "forwards" is in the device linking menu.
+    type: Tweak
+  id: 320800
+  time: '2026-02-10T06:42:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3208
+- author: AlokenMaloken, CrazyPhantom
+  changes:
+  - message: Space Koi
+    type: Add
+  id: 321200
+  time: '2026-02-10T06:47:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3212
+- author: Ilya246
+  changes:
+  - message: NPCs are now able to move in(to) open space. You can't cheese space carp
+      anymore.
+    type: Add
+  - message: Fixed NPC jank when moving in 0-gravity.
+    type: Fix
+  id: 321100
+  time: '2026-02-10T06:51:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3211
+- author: wonderfulnewworld
+  changes:
+  - message: Assistant Boxing Gloves 6 TC -> 5 TC
+    type: Tweak
+  - message: Clown Cluster Banana Peel 6 TC -> 5 TC
+    type: Tweak
+  - message: Briefcase Gun 15 TC -> 13 TC (It's a very rare item, at least make it
+      have some niche)
+    type: Tweak
+  - message: Briefcase Gun Discount 10 TC -> 8 TC
+    type: Tweak
+  - message: Janitor Hydra Discount 18 TC -> 16 TC (It's already a very rare discount...
+      2 TC is laughable...)
+    type: Tweak
+  id: 321700
+  time: '2026-02-10T06:54:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3217
+- author: Citrea
+  changes:
+  - message: Slime limbs can now have their incisions closed.
+    type: Fix
+  id: 320600
+  time: '2026-02-10T06:57:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3206
+- author: PubliclyExecutedPig
+  changes:
+  - message: Updated Sepultum
+    type: Tweak
+  id: 320300
+  time: '2026-02-10T07:07:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3203
+- author: ToasterTrooper
+  changes:
+  - message: 'Two new hairstyles: Rei, Short Fluffy.'
+    type: Add
+  id: 320000
+  time: '2026-02-10T07:16:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3200
+- author: SeaborneProto
+  changes:
+  - message: fixed Beer Hud Eyepatch to not be sunglasses
+    type: Tweak
+  id: 319300
+  time: '2026-02-10T08:34:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3193
+- author: Fractalflower
+  changes:
+  - message: Hydra is no longer pump action
+    type: Fix
+  id: 318000
+  time: '2026-02-10T08:40:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3180
+- author: SapphicHaymaker
+  changes:
+  - message: The Revolutionary Banner acts as a shield again! But now has a weakness
+      to heat, do not let our flag burn, comrade.
+    type: Tweak
+  - message: Soviet Uniforms are now in the Rev Uplink. Come get your red army drip,
+      comrades!
+    type: Add
+  - message: Restored the BSO's gun autolock functionality
+    type: Fix
+  id: 319200
+  time: '2026-02-10T09:22:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3192
+- author: MelliferousMae
+  changes:
+  - message: Borgis now understand all the languages Borgs do, plus Dog.
+    type: Fix
+  id: 322600
+  time: '2026-02-10T09:49:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3226
+- author: teapoterror
+  changes:
+  - message: ARC Has petitioned CC to add a Space Bear observatory to GNT9. We don't
+      know why they accepted either.
+    type: Add
+  - message: The walls around the NTSF Deployment zone have been reinforced with adamantium.
+      Just try to get through that, traitors!
+    type: Add
+  - message: Moved the station beacon from the panopticon into the Fax Machine room.
+    type: Add
+  - message: Atmos markers are now properly used in GNT9, don't worry about whatever
+      you were breathing before, get back to work.
+    type: Add
+  - message: Added a secret present for those who find Davy Jone's treasure. Good
+      hunting!
+    type: Add
+  id: 303600
+  time: '2026-02-10T09:58:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3036
+- author: Fasuh, Vonte
+  changes:
+  - message: Added Speed legs.
+    type: Add
+  - message: Removed Speed Boots.
+    type: Remove
+  id: 275700
+  time: '2026-02-10T10:18:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2757
+- author: CrazyPhantom
+  changes:
+  - message: Double Lockers, Wall lockers and Secure Crates can now have their wiring
+      panels opened and be hacked.
+    type: Fix
+  id: 322800
+  time: '2026-02-10T15:32:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3228
+- author: teapoterror
+  changes:
+  - message: Geiger Complex
+    type: Add
+  id: 282700
+  time: '2026-02-10T18:27:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2827
+- author: CrazyPhantom
+  changes:
+  - message: Space Koi spawner sprite
+    type: Fix
+  id: 323200
+  time: '2026-02-10T20:47:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3232
 Order: -1
 
