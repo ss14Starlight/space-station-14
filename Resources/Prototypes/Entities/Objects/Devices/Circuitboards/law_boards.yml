@@ -10,17 +10,17 @@
   - type: SiliconLawProvider
     laws: NTDefault
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
-    price: 1000 
   - type: GuideHelp
     guides:
     - Lawsets
+  - type: StaticPrice # Starlight: Made all lawboards sellable for at least 700
+    price: 700
 
 - type: entity
   id: NTDefaultCircuitBoard
   parent: BaseSiliconLawboard
   name: law board (NT Default)
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the NT Default lawset.
+  # description: An electronics board containing the NT Default lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
     laws: NTDefault
@@ -29,26 +29,27 @@
   id: AsimovCircuitBoard
   parent: BaseSiliconLawboard
   name: law board (Crewsimov)
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Crewsimov lawset.
+  # description: An electronics board containing the Crewsimov lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
-    laws: CrewsimovAI
+    laws: CrewsimovAI # Starlight Edit: Crewsimov -> CrewsimovAI
     IsLawboard: true # Starlight
 
 - type: entity
   id: CorporateCircuitBoard
   parent: BaseSiliconLawboard
   name: law board (Corporate)
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Corporate lawset.
+  # description: An electronics board containing the Corporate lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
     laws: Corporate
     IsLawboard: true # Starlight
+
 - type: entity
   id: CommandmentCircuitBoard
   parent: BaseSiliconLawboard
   name: law board (Ten Commandments)
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Ten Commandments lawset.
+  # description: An electronics board containing the Ten Commandments lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
     laws: CommandmentsLawset
@@ -58,7 +59,7 @@
   id: PaladinCircuitBoard
   parent: BaseSiliconLawboard
   name: law board (Paladin)
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Paladin lawset.
+  # description: An electronics board containing the Paladin lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
     laws: PaladinLawset
@@ -68,7 +69,7 @@
   id: LiveLetLiveCircuitBoard
   parent: BaseSiliconLawboard
   name: law board (Live and Let Live)
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Live and Let Live lawset.
+  # description: An electronics board containing the Live and Let Live lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
     laws: LiveLetLiveLaws
@@ -78,7 +79,7 @@
   id: StationEfficiencyCircuitBoard
   parent: BaseSiliconLawboard
   name: law board (Station Efficiency)
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Station Efficiency lawset.
+  # description: An electronics board containing the Station Efficiency lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
     laws: EfficiencyLawset
@@ -88,7 +89,7 @@
   id: RobocopCircuitBoard
   parent: BaseSiliconLawboard
   name: law board (Robocop)
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Robocop lawset.
+  # description: An electronics board containing the Robocop lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
     laws: RobocopLawset
@@ -98,7 +99,7 @@
   id: OverlordCircuitBoard
   parent: BaseSiliconLawboard
   name: law board (Overlord)
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Overlord lawset.
+  # description: An electronics board containing the Overlord lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
     laws: OverlordLawset
@@ -108,7 +109,7 @@
   id: GameMasterCircuitBoard
   parent: BaseSiliconLawboard
   name: law board (Game Master)
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Game Master lawset.
+  # description: An electronics board containing the Game Master lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
     laws: GameMasterLawset
@@ -118,7 +119,7 @@
   id: ArtistCircuitBoard
   parent: BaseSiliconLawboard
   name: law board (Artist)
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Artist lawset.
+  # description: An electronics board containing the Artist lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
     laws: PainterLawset
@@ -128,7 +129,7 @@
   id: AntimovCircuitBoard
   parent: [BaseSiliconLawboard, BaseSyndicateContraband]
   name: law board (Antimov)
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Antimov lawset.
+  # description: An electronics board containing the Antimov lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
     laws: AntimovLawset
@@ -141,7 +142,7 @@
   id: NutimovCircuitBoard
   parent: BaseSiliconLawboard
   name: law board (Nutimov)
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Nutimov lawset.
+  # description: An electronics board containing the Nutimov lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
     laws: NutimovLawset
@@ -152,12 +153,12 @@
   parent: BaseSiliconLawboard
   name: law board (Xenoborg)
   suffix: Admeme
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Xenoborg lawset.
+  # description: An electronics board containing the Xenoborg lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
     laws: XenoborgLawset
     IsLawboard: true # Starlight
-  - type: StaticPrice # Starlight-edit: Added lawboards to cargo
+  - type: StaticPrice # Starlight: Made sellable for 5000
     price: 5000
 
 - type: entity
@@ -165,7 +166,7 @@
   parent: BaseSiliconLawboard
   name: law board (Mothership Core)
   suffix: Admeme
-  # Starlight-edit: Dynamic lawbord descriptions. description: An electronics board containing the Mothership Core lawset.
+  # description: An electronics board containing the Mothership Core lawset. # Starlight Edit: Removed for Dynamic Description
   components:
   - type: SiliconLawProvider
     laws: MothershipCoreLawset

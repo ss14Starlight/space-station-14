@@ -48,7 +48,7 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconSalvageSpec
+  id: JobIconSalvageSpecialist
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: SalvageSpecialist
@@ -64,7 +64,15 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconCentComm
+  id: JobIconDutyOfficer
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: DutyOfficer
+  jobName: job-name-dutyofficer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCentralCommandOfficial #Starlight
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: CentComm
@@ -72,7 +80,23 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconCentCommOperator
+  id: JobIconDecimus
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Decimus
+  jobName: job-name-Decimus
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconNanoTrasenSpecialForces
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: NTSF
+  jobName: job-name-NTSF
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCentralCommandOperator
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: CentCommOperator
@@ -157,3 +181,45 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: SyndicateJanitor
   jobName: job-name-Syndicate-Janitor
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSoviet
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Soviet
+  jobName: job-name-Soviet
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconTSF
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: TSF
+  jobName: job-name-TSF
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconNanotrasenCareerTrainer
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: NanotrasenCareerTrainer
+  jobName: job-name-nct
+
+# Admeme
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSkub
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Skub
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconCultistChaplain
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: CultistChaplain
+  allowSelection: false

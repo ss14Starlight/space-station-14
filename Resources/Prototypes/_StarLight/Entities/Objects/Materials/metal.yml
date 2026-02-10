@@ -1,0 +1,38 @@
+- type: entity
+  parent: SheetMetalBase
+  id: SheetAdamantine
+  name: adamantine
+  description: An adamantine bar, obtained from those slime wranglers who refuse to go outside.
+  suffix: Full
+  components:
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        Adamantine: 100
+    - type: Stack
+      stackType: Adamantine
+      baseLayer: base
+      layerStates:
+        - brass
+        - brass_2
+        - brass_3
+    - type: Sprite
+      state: brass_3
+      layers:
+        - state: brass_3
+          map: ["base"]
+    - type: Item
+      heldPrefix: adamantine
+    - type: Appearance
+
+- type: entity
+  parent: SheetAdamantine
+  id: SheetAdamantine1
+  name: adamantine
+  suffix: Single
+  components:
+    - type: Sprite
+      state: brass
+    - type: Stack
+      stackType: Adamantine
+      count: 1

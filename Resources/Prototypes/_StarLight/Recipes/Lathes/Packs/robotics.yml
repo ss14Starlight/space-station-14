@@ -77,6 +77,10 @@
     - BorgModuleMartyr
     - BorgModuleSyndicateWeapon
     - BorgModuleC20r
+    - BorgModuleSyndicateAdvancedChemical
+    - BorgModuleSyndicateRescue
+    - BorgModuleSyndicateChameleonProjector
+    - BorgModuleSyndicateAdvancedTool
 
 - type: latheRecipePack
   id: StarlightSyndicateModulesSecfab
@@ -85,6 +89,10 @@
     - BorgModuleSyndicateWeapon
     - BorgModuleC20r
     - BorgModuleL6C
+    - BorgModuleSyndicateAdvancedChemical
+    - BorgModuleSyndicateRescue
+    - BorgModuleSyndicateChameleonProjector
+    - BorgModuleSyndicateAdvancedTool
 
 # Lawboards
 - type: latheRecipePack
@@ -179,6 +187,8 @@
     - VendingMachineTankDispenserEVACircuitboard
     - VendingMachineTankDispenserEngineeringCircuitboard
     - VendingMachineChemicalsCircuitboard
+    - VendingMachineDonkCircuitboard
+    - VendingMachineIceCreamCircuitboard
 
 
 # Contraband Vendor Boards (Emag only)

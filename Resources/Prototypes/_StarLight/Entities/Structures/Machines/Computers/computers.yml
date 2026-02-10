@@ -55,6 +55,11 @@
     layers:
     - map: ["console"]
       state: console
+  - type: GenericVisualizer  # Override to prevent edge connection sprites
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        console:
+          None: { state: console, sprite: _Starlight/Structures/Machines/abductor_console.rsi }
   - type: ActivatableUI
     key: enum.AbductorConsoleUIKey.Key
   - type: UserInterface
@@ -295,6 +300,7 @@
     - Medical
     - Service
     - Engineering
+    - Law
     - Misc
     - CentralCommand
     - Syndicate

@@ -21,7 +21,7 @@ namespace Content.Server.Disposal.Tube
 {
     public sealed class DisposalTubeSystem : SharedDisposalTubeSystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
+        //[Dependency] private readonly IRobustRandom _random = default!; // Starlight-removed - we made disposal tubes deterministic
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly PopupSystem _popups = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
@@ -197,7 +197,8 @@ namespace Content.Server.Disposal.Tube
             if (args.Holder.PreviousDirectionFrom == Direction.Invalid ||
                 args.Holder.PreviousDirectionFrom == next)
             {
-                args.Next = _random.Pick(directions);
+                // Starlight: Making disposals more consistent. HEAVILY RELIES ON THE '180' BEING DEFINED 2ND.
+                args.Next = ev.Connectable[2];
                 return;
             }
 
@@ -211,8 +212,18 @@ namespace Content.Server.Disposal.Tube
 
         private void OnGetRouterNextDirection(EntityUid uid, DisposalRouterComponent component, ref GetDisposalsNextDirectionEvent args)
         {
+            var next = Transform(uid).LocalRotation.GetDir(); // Starlight
             var ev = new GetDisposalsConnectableDirectionsEvent();
             RaiseLocalEvent(uid, ref ev);
+
+            // region starlight improving dispo consistensy
+            if (args.Holder.PreviousDirectionFrom == Direction.Invalid ||
+                args.Holder.PreviousDirectionFrom != ev.Connectable[2])
+            {
+                args.Next = ev.Connectable[2];
+                return;
+            }
+            // end region starlight
 
             if (args.Holder.Tags.Overlaps(component.Tags) || (args.Holder.Tags.Count != 0 && component.Tags.Contains("*")))// starlight, wildcard support
             {
@@ -220,7 +231,7 @@ namespace Content.Server.Disposal.Tube
                 return;
             }
 
-            args.Next = Transform(uid).LocalRotation.GetDir();
+            args.Next = next;
         }
 
         private void OnGetTransitConnectableDirections(EntityUid uid, DisposalTransitComponent component, ref GetDisposalsConnectableDirectionsEvent args)

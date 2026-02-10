@@ -9,6 +9,7 @@ using Content.Shared.Doors;
 using Content.Shared.Interaction;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
+using Content.Shared.Emag.Systems; // Starlight
 
 namespace Content.Server.Doors.Electronics;
 
@@ -16,6 +17,7 @@ public sealed class DoorElectronicsSystem : EntitySystem
 {
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly EmagSystem _emag = default!; // Starlight
 
     public override void Initialize()
     {
@@ -23,6 +25,7 @@ public sealed class DoorElectronicsSystem : EntitySystem
         SubscribeLocalEvent<DoorElectronicsComponent, DoorElectronicsUpdateConfigurationMessage>(OnChangeConfiguration);
         SubscribeLocalEvent<DoorElectronicsComponent, AccessReaderConfigurationChangedEvent>(OnAccessReaderChanged);
         SubscribeLocalEvent<DoorElectronicsComponent, BoundUIOpenedEvent>(OnBoundUIOpened);
+        SubscribeLocalEvent<DoorElectronicsComponent, GotEmaggedEvent>(OnGotEmagged); // Starlight
     }
 
     public void UpdateUserInterface(EntityUid uid, DoorElectronicsComponent component)
@@ -74,4 +77,27 @@ public sealed class DoorElectronicsSystem : EntitySystem
     {
         UpdateUserInterface(uid, component);
     }
+    
+    // Starlight begin
+    private void OnGotEmagged(EntityUid uid, DoorElectronicsComponent comp, ref GotEmaggedEvent args)
+    {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+            return;
+
+        if (_emag.CheckFlag(uid, EmagType.Interaction, args.EmagComponent))
+            return;
+
+        if (args.EmagComponent is null) return;
+
+        var addedGroups = false;
+        foreach (var group in args.EmagComponent.AccessGroups.Where(group => !comp.AccessGroups.Contains(group)))
+        {
+            comp.AccessGroups.Add(group);
+            addedGroups = true;
+        }
+
+        if (!addedGroups) return;
+        args.Handled = true;
+    }
+    // Starlight end
 }

@@ -1,0 +1,25 @@
+- type: entity
+  parent: BaseAction
+  id: ActionRetractableItemAdvancedClaws
+  name: Advanced Claws
+  description: Extend or retract your claws!
+  components:
+  - type: Action
+    useDelay: 1
+    raiseOnAction: true
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Actions/implants.rsi
+      state: toggle_claws
+  - type: InstantAction
+    event: !type:OnRetractableItemActionEvent
+  - type: RetractableItemAction
+    spawnedPrototype: AdvancedClaws
+    spawnInHand: false
+    slot: gloves
+    requiredSlots: GLOVES
+    summonSounds:
+      collection: ClawsUnsheathe # Placeholder
+    retractSounds:
+      collection: ClawsSheathe # Placeholder
+    isCybernetic: true

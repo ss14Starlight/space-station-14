@@ -4,6 +4,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Mech.Components;
 
@@ -11,44 +12,57 @@ namespace Content.Shared.Mech.Components;
 /// A large, pilotable machine that has equipment that is
 /// powered via an internal battery.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class MechComponent : Component
 {
+    /// <summary>
+    /// Starlight: when to next check if battery charge has changed for raising ChargeChangedEvent. Moved from MechThrustersComponent.
+    /// </summary>
+    [DataField("nextUpdate", customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [AutoPausedField]
+    public TimeSpan NextUpdateTime;
+
+    /// <summary>
+    /// Starlight: How long to wait before checking again. Moved from MechThrustersComponent.
+    /// </summary>
+    [DataField]
+    public TimeSpan Delay = TimeSpan.FromSeconds(1);
+
     /// <summary>
     /// Whether or not an emag disables it.
     /// </summary>
     [DataField("breakOnEmag")]
     [AutoNetworkedField]
     public bool BreakOnEmag = true;
-    
+
     /// <summary>
     /// is the mech in maintenance mode?
     /// </summary>
     [DataField("maintenance")]
     [AutoNetworkedField]
     public bool MaintenanceMode = false;
-    
+
     /// <summary>
     /// is the mech internals enabled?
     /// </summary>
     [DataField("internals")]
     [AutoNetworkedField]
     public bool Internals = false;
-    
+
     /// <summary>
     /// is the mech lights are toggled?
     /// </summary>
     [DataField("light")]
     [AutoNetworkedField]
     public bool Light = false;
-    
+
     /// <summary>
     /// is the mech siren are toggled?
     /// </summary>
     [DataField("sirenToggled")]
     [AutoNetworkedField]
     public bool Siren = false;
-    
+
     /// <summary>
     /// is the mech has siren?
     /// </summary>
@@ -90,7 +104,7 @@ public sealed partial class MechComponent : Component
 
     [ViewVariables]
     public readonly string BatterySlotId = "mech-battery-slot";
-    
+
     /// <summary>
     /// The slot the gas tank is stored in.
     /// </summary>
@@ -214,7 +228,7 @@ public sealed partial class MechComponent : Component
     [DataField]
     public string? BrokenState;
     #endregion
-    
+
     #region Sounds
     [DataField]
     public SoundSpecifier ToggleLightSound = new SoundPathSpecifier("/Audio/Items/flashlight_pda.ogg");
@@ -228,10 +242,10 @@ public sealed partial class MechComponent : Component
     public SoundSpecifier PowerupSound = new SoundPathSpecifier("/Audio/Mecha/powerup.ogg");
     [DataField]
     public SoundSpecifier CriticalDamageSound = new SoundPathSpecifier("/Audio/Mecha/critnano.ogg");
-    
+
     [DataField]
     public bool FirstStart = false;
-    
+
     [DataField]
     public bool PlayPowerSound = true;
     #endregion

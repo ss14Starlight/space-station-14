@@ -221,7 +221,6 @@
       - SurgeryTool
       - Dropper
       components:
-      - Hypospray
       - Injector
       - Pill
       - HandLabeler
@@ -234,7 +233,7 @@
           - Bottle
       hypo:
         whitelist:
-          components:
+          tags:
           - Hypospray
       pill:
         whitelist:
@@ -259,6 +258,8 @@
           tags:
           - Wrench
   - type: Appearance
+  - type: StealTarget # Starlight
+    stealGroup: MedicalBeltCollection # Starlight. There's a lot of things that inherit this, so it's not as hard as you think.
 
 - type: entity
   parent: ClothingBeltMedical
@@ -270,6 +271,30 @@
     sprite: Clothing/Belt/emt.rsi
   - type: Clothing
     sprite: Clothing/Belt/emt.rsi
+  - type: Storage #Starlight start
+    maxItemSize: Large
+    whitelist:
+      tags:
+        - Crowbar
+        - Bottle
+        - Spray
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - CigPack
+        - PillCanister
+        - Radio
+        - DiscreteHealthAnalyzer
+        - SurgeryTool
+        - Dropper
+        - Medkit
+        - BodyBag
+        - ParaKnife
+      components:
+        - Injector
+        - Pill
+        - HandLabeler #Starlight end
 
 - type: entity
   parent: ClothingBeltStorageBase

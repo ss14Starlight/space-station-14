@@ -32,6 +32,8 @@ dp-name = DP-28 LMG
 dp-desc = From RA-TA-TA-TA with love. Uses .30 ammo.
 ppsh-name = PPSH 59 SMG
 ppsh-desc = The legendary discontinued PPSH 59. Inaccurate as hell, but delivers it. Uses .35 ammo.
+toz-name = ZOZ-106
+toz-desc = Aim at head and eyes. Uses .42 ammo, comes with extended magazine.
 
 # Wearables
 soviet-eva-name = Soviet EVA Suit
@@ -74,6 +76,8 @@ soviet-medals-name = Soviet sets of medals
 soviet-medals-desc = Tovarisch robust. Here you go.
 ushanka-name = Ushanka
 ushanka-desc = Perfect for winter in Siberia, da?
+sovietuniform-name = Soviet Uniform
+sovietuniform-desc = Ploughshares to Swords, Assistant to Commisar.
 zapo-name = Zaporozhian sich bundle
 zapo-desc = Cossacks- have gone to space, and have earned respect within the union.
 vodkizine-name = Vodkizine bottle

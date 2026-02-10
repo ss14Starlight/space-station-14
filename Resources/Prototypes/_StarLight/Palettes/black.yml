@@ -1,0 +1,5 @@
+- type: palette
+  id: Black
+  name: black
+  colors:
+    black: "#111111"

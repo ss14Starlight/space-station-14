@@ -118,7 +118,7 @@
   conflicts:
     - AlwaysAlone
 
-# You must attend the chapel regularly to pray, and speak with the Chaplain if possible.
+# You must attend the shrine regularly to pray, and speak with a chaplain if possible.
 - type: thavenMood
   id: VeryReligious
   moodName: thaven-mood-very-religious-name

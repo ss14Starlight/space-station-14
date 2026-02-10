@@ -16,6 +16,10 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 #region Starlight
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Starlight.Radio;
+using Content.Shared.Radio.Components;
 using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Systems;
 using Content.Shared.CollectiveMind;
@@ -181,10 +185,12 @@ public abstract partial class SharedChatSystem : EntitySystem
         string input,
         out string output,
         out RadioChannelPrototype? channel,
+        out CustomRadioChannelData? customChannel, //Starlight
         bool quiet = false)
     {
         output = input.Trim();
         channel = null;
+        customChannel = null; //Starlight
 
         if (input.Length == 0)
             return false;
@@ -216,19 +222,142 @@ public abstract partial class SharedChatSystem : EntitySystem
             var ev = new GetDefaultRadioChannelEvent();
             RaiseLocalEvent(source, ev);
 
+            //Starlight begin
             if (ev.Channel != null)
-                _prototypeManager.TryIndex(ev.Channel, out channel);
+                if (!_prototypeManager.TryIndex(ev.Channel, out channel))
+                {
+                    TryGetCustomChannel(source, ev.Channel, out customChannel);
+                }
+            //Starlight end
+            return true;
+        }
+        
+        // Starlight begin
+        var protoResult = TryGetChannelsFromKeyCode(source, channelKey, out var channelMatches);
+        var customResult = TryGetCustomChannelsFromKeyCode(source, channelKey, out var customChannelMatches);
+        RadioChannelPrototype? protoMatch = null;
+        foreach (var match in channelMatches.Where(p => p.KeyCode == channelKey))
+            protoMatch = match;
+        if (protoResult && !customResult)
+        {
+            if (protoMatch is not null)
+            {
+                channel = protoMatch;
+                return true;
+            }
+        }
+
+        if (customResult && !protoResult)
+        {
+            if (customChannelMatches.Count == 1 || input.Length < 3)
+            {
+                customChannel = customChannelMatches.First();
+                return true;
+            }
+            var idx = input[2].ToString();
+            var isNum = int.TryParse(idx, out var num);
+            if (!isNum || num == 0 || !customChannelMatches.TryGetValue(num, out var match))
+            {
+                customChannel = customChannelMatches[0];
+                return true;
+            }
+
+            output = SanitizeMessageCapital(input[3..].TrimStart());
+            customChannel = match;
             return true;
         }
 
-        if (!_keyCodes.TryGetValue(channelKey, out channel) && !quiet)
+        if (customResult && protoResult)
         {
-            var msg = Loc.GetString("chat-manager-no-such-channel", ("key", channelKey));
-            _popup.PopupEntity(msg, source, source);
+            if (input.Length < 3 && protoMatch is not null)
+            {
+                channel = protoMatch;
+                return true;
+            }
+            var idx = input[2].ToString();
+            var isNum = int.TryParse(idx, out var num);
+            if (!isNum)
+            {
+                channel = protoMatch;
+                return true;
+            }
+            num--;
+            if (!customChannelMatches.TryGetValue(num, out var match))
+            {
+                channel = protoMatch;
+                return true;
+            }
+            output = SanitizeMessageCapital(input[3..].TrimStart());
+            customChannel = match;
+            return true;
+        }
+        if(_net.IsServer) _popup.PopupEntity(Loc.GetString("chat-manager-no-such-channel", ("key", channelKey)), source, source);
+        return true;
+        //Starlight end
+    }
+
+    //Starlight begin
+    public bool TryGetCustomChannel(EntityUid source, string channelId, [NotNullWhen(true)] out CustomRadioChannelData? customChannel)
+    {
+        customChannel = null;
+        if (TryComp<WearingHeadsetComponent>(source, out var wearingHeadset))
+            if (TryComp<ActiveRadioComponent>(wearingHeadset.Headset, out var headsetRadio))
+                foreach (var channel in headsetRadio.CustomChannels.Where(channel => channel.Id == channelId))
+                {
+                    customChannel = channel;
+                    return true;
+                }
+        if(TryComp<IntercomComponent>(source, out var intercom))
+        {
+            foreach (var channel in intercom.CustomChannels.Where(channel => channel.Id == channelId))
+            {
+                customChannel = channel;
+                return true;
+            }
+        }
+        
+        if (!TryComp<IntrinsicRadioTransmitterComponent>(source, out var radio)) return false;
+        foreach (var channel in radio.CustomChannels.Where(channel => channel.Id == channelId))
+        {
+            customChannel = channel;
+            return true;
         }
 
-        return true;
+        return false;
     }
+
+    private bool TryGetCustomChannelsFromKeyCode(EntityUid source, char keycode,
+        out List<CustomRadioChannelData> customChannels)
+    {
+        customChannels = [];
+        if (TryComp<WearingHeadsetComponent>(source, out var wearingHeadset))
+            if (TryComp<ActiveRadioComponent>(wearingHeadset.Headset, out var headsetRadio))
+                customChannels.AddRange(headsetRadio.CustomChannels.Where(channel => channel.Keycode == keycode));
+
+        if (TryComp<IntrinsicRadioTransmitterComponent>(source, out var radio))
+            customChannels.AddRange(radio.CustomChannels.Where(channel => channel.Keycode == keycode));
+        return customChannels.Count > 0;
+    }
+    
+    private bool TryGetChannelsFromKeyCode(EntityUid source, char keycode,
+        out List<RadioChannelPrototype> presentChannels)
+    {
+        presentChannels = [];
+        if (TryComp<WearingHeadsetComponent>(source, out var wearingHeadset))
+            if (TryComp<ActiveRadioComponent>(wearingHeadset.Headset, out var headsetRadio))
+                presentChannels.AddRange(headsetRadio.Channels
+                    .Where(channel => _prototypeManager.HasIndex(channel))
+                    .Select(proto => _prototypeManager.Index(proto))
+                    .Where(channel => channel.KeyCode == keycode));
+
+        if (TryComp<IntrinsicRadioTransmitterComponent>(source, out var radio))
+            presentChannels.AddRange(radio.Channels
+                .Where(channel => _prototypeManager.HasIndex(channel))
+                .Select(proto => _prototypeManager.Index(proto))
+                .Where(channel => channel.KeyCode == keycode));
+        return presentChannels.Count > 0;
+    }
+    //Starlight end
     
     public bool TryProccessCollectiveMindMessage(
         EntityUid source,

@@ -1,0 +1,198 @@
+- type: entity
+  id: MobSkubmoth
+  parent: MobMoth
+  suffix: Admeme
+  name: skubmoth
+  description: Huh, skub.
+  components:
+    - type: PassiveDamage
+      damage:
+        groups:
+          Brute: -1.8
+          Burn: -1.8
+          Toxin: -1.8
+          Genetic: -1.8
+          Airloss: -1.8
+      interval: 0.2
+      allowedStates: [Alive, Critical, Dead]
+    - type: Loadout
+      prototypes: [SkubGear]
+    - type: TextToSpeech
+      voice: alvinjr
+    - type: IntrinsicRadioReceiver
+    - type: IntrinsicRadioTransmitter
+      channels: [Common, CentCom, Command, Engineering, Medical, Science, Security, Service, Supply, Law, Binary, Expedition, Freelance, Xenoborg, Soviet, Mothership, Syndicate, Aspace, Global, Blackstar, Merchant]
+    - type: ActiveRadio
+      channels: [Common, CentCom, Command, Engineering, Medical, Science, Security, Service, Supply, Law, Binary, Expedition, Freelance, Xenoborg, Soviet, Mothership, Syndicate, Aspace, Global, Blackstar, Merchant]
+    - type: MovementAlwaysTouching
+    
+- type: entity
+  parent: ClothingBackpack
+  id: SkubPack
+  categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
+  name: skubpack
+  description: what... the fuck...
+  components:
+    - type: Clothing
+      clothingVisuals:
+        back:
+          - state: equipped-BACKPACK
+            visible: false
+    - type: Item
+      size: Ginormous
+    - type: Storage
+      grid:
+        - 0,0,20,15
+      maxItemSize: Ginormous
+    - type: Tag
+      tags:
+        - Backpack
+    - type: Unremoveable
+
+- type: entity
+  name: wide skub barrage
+  id: SkubSpreadShot
+  categories: [ HideSpawnMenu ]
+  suffix: Admeme, DO NOT MAP
+  parent: Skub
+  components:
+    - type: ProjectileSpread
+      proto: Skub
+      count: 5
+      spread: 30
+
+- type: entity
+  id: SkubPDA
+  categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
+  name: Skub PDA
+  description: Very skubular.
+  parent: AdminPDA
+  components:
+    - type: Unremoveable
+    - type: Pda
+      id: SkubIDCard
+
+- type: entity
+  id: SkubIDCard
+  categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
+  parent: UniversalIDCard
+  components:
+    - type: IdCard
+      jobIcon: JobIconSkub
+
+- type: entity
+  id: SkubSuit
+  categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
+  parent: ClothingOuterSkub
+  components:
+    - type: Unremoveable
+    - type: PressureProtection
+      highPressureMultiplier: 0.02
+      lowPressureMultiplier: 1000
+    - type: TemperatureProtection
+      coolingCoefficient: 0.01
+      heatingCoefficient: 0.01
+
+- type: entity
+  id: SkubHat
+  categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
+  parent: ClothingHeadHatSkub
+  components:
+    - type: Unremoveable
+    - type: PressureProtection
+      highPressureMultiplier: 0.08
+      lowPressureMultiplier: 1000
+    - type: TemperatureProtection
+      coolingCoefficient: 0.1
+      heatingCoefficient: 0.1
+    - type: BreathMask
+      allowedSlots: [HEAD]
+    - type: IdentityBlocker
+      enabled: false
+
+- type: entity
+  id: SpeedySkub
+  parent: Skub
+  categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
+  components:
+    - type: MeleeWeapon
+      attackRate: 15
+      autoAttack: true
+    - type: UseDelay
+      delay: 0.001
+
+- type: entity
+  id: SkubGun
+  parent: WeaponRifleFoam
+  categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
+  components:
+    - type: BallisticAmmoProvider
+      proto: SkubSpreadShot
+      capacity: 1000000
+      unspawnedCount: 1000000
+
+- type: entity
+  id: PocketTether
+  parent: WeaponTetherGunAdmin
+  categories: [HideSpawnMenu]
+  suffix: Admeme, DO NOT MAP
+  components:
+    - type: Item
+      size: Tiny
+
+- type: startingGear
+  id: SkubGear
+  equipment:
+    id: SkubPDA
+    back: SkubPack
+    outerClothing: SkubSuit
+    head: SkubHat
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    pocket1: SpeedySkub
+    pocket2: PocketTether
+  storage:
+    back:
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - Skub
+      - SkubGun

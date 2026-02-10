@@ -1,13 +1,13 @@
 using Robust.Client.Graphics;
 using Robust.Shared.Player;
-using Robust.Shared.Physics.Events;
 using Content.Shared._Starlight.NullSpace;
 using Robust.Shared.Prototypes;
 using Content.Client._Starlight.Overlay;
+using Content.Shared.Inventory.Events;
 
 namespace Content.Client._Starlight;
 
-public sealed partial class EtherealSystem : EntitySystem
+public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 {
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
     [Dependency] private readonly ISharedPlayerManager _playerMan = default!;
@@ -23,39 +23,74 @@ public sealed partial class EtherealSystem : EntitySystem
         SubscribeLocalEvent<NullSpaceComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<NullSpaceComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<NullSpaceComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
-        SubscribeLocalEvent<NullSpaceComponent, PreventCollideEvent>(PreventCollision);
+
+        SubscribeLocalEvent<ShowNullSpaceComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<ShowNullSpaceComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<ShowNullSpaceComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<ShowNullSpaceComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<ShowNullSpaceComponent, GotEquippedEvent>(GotEquippedEvent);
 
         _overlay = new(_prototypeManager.Index<ShaderPrototype>("NullSpaceShader"));
     }
 
-    private void OnInit(EntityUid uid, NullSpaceComponent component, ComponentInit args)
+    private void OnInit(EntityUid uid, Component component, ComponentInit args)
     {
         if (uid != _playerMan.LocalEntity)
             return;
 
+        if (component.GetType() == typeof(ShowNullSpaceComponent))
+        {
+            ShowNullSpaceComponent showNullSpace = (ShowNullSpaceComponent)component;
+            if (!showNullSpace.ShowShader)
+                return;
+        }
+
         _overlayMan.AddOverlay(_overlay);
     }
 
-    private void OnShutdown(EntityUid uid, NullSpaceComponent component, ComponentShutdown args)
+    private void OnShutdown(EntityUid uid, Component component, ComponentShutdown args)
     {
         if (uid != _playerMan.LocalEntity)
+            return;
+
+        if (component.GetType() == typeof(ShowNullSpaceComponent) && HasComp<NullSpaceComponent>(uid))
+            return;
+
+        if (component.GetType() == typeof(NullSpaceComponent) && HasComp<ShowNullSpaceComponent>(uid))
             return;
 
         _overlayMan.RemoveOverlay(_overlay);
     }
 
-    private void OnPlayerAttached(EntityUid uid, NullSpaceComponent component, LocalPlayerAttachedEvent args)
+    private void GotEquippedEvent(EntityUid uid, ShowNullSpaceComponent component, GotEquippedEvent args)
     {
+        if (args.Equipee != _playerMan.LocalEntity
+            || !component.ShowShader)
+            return;
+
         _overlayMan.AddOverlay(_overlay);
     }
 
-    private void OnPlayerDetached(EntityUid uid, NullSpaceComponent component, LocalPlayerDetachedEvent args)
+    private void OnPlayerAttached(EntityUid uid, Component component, LocalPlayerAttachedEvent args)
     {
-        _overlayMan.RemoveOverlay(_overlay);
+        if (component.GetType() == typeof(ShowNullSpaceComponent))
+        {
+            ShowNullSpaceComponent showNullSpace = (ShowNullSpaceComponent)component;
+            if (!showNullSpace.ShowShader)
+                return;
+        }
+
+        _overlayMan.AddOverlay(_overlay);
     }
 
-    private void PreventCollision(EntityUid uid, NullSpaceComponent component, ref PreventCollideEvent args)
+    private void OnPlayerDetached(EntityUid uid, Component component, LocalPlayerDetachedEvent args)
     {
-        args.Cancelled = true;
+        if (component.GetType() == typeof(ShowNullSpaceComponent) && HasComp<NullSpaceComponent>(uid))
+            return;
+
+        if (component.GetType() == typeof(NullSpaceComponent) && HasComp<ShowNullSpaceComponent>(uid))
+            return;
+
+        _overlayMan.RemoveOverlay(_overlay);
     }
 }

@@ -7,7 +7,9 @@
       sprite: Mobs/Demons/abomination.rsi
       state: abomination
     color: "#ffffff"
-  requirement: StaffRolesReq
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: StaffRolesReq
 
 - type: ghostTheme
   id: SpaceDragonStaffTheme
@@ -19,4 +21,6 @@
       sprite: Mobs/Aliens/Carps/dragon.rsi
       state: alive
     color: "#ffffff"
-  requirement: StaffRolesReq
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: StaffRolesReq

@@ -23,6 +23,13 @@
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
       state: panel
       visible: false
+  # Starlight Start
+  - type: GenericVisualizer  # Override to prevent edge connection sprites
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: arcade }
+  # Starlight End
   - type: Icon
     sprite: Structures/Machines/arcade.rsi
     state: arcade
@@ -88,7 +95,7 @@
     - FoamBlade
     - FoamCutlass
     - Football
-    - GlowstickBase #green
+    - GlowstickGreen
     - GlowstickBlue
     - GlowstickYellow
     - GlowstickPurple

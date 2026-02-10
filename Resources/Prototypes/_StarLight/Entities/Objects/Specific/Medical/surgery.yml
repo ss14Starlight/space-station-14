@@ -62,3 +62,34 @@
   - type: HeldSpeedModifier
     walkModifier: 1
     sprintModifier: 0.9
+  - type: Tag
+    tags:
+      - CyberHandItem
+
+# Debug
+
+- type: entity
+  name: Super Amazing All In One Surgery Stick
+  id: DebugStickSurgery
+  parent: BoneGelBase
+  description: A stick.
+  suffix: DEBUG
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Decoration/Flora/Abyss/obelisk.rsi
+    state: obelisk01
+  - type: SurgeryTool
+    speed: 0.1
+  - type: Scalpel
+  - type: Cautery
+  - type: SurgicalDrill
+  - type: Hemostat
+  - type: Retractor
+  - type: BoneSaw
+  - type: BoneSetter
+  - type: SolutionRegeneration
+    solution: container
+    generated: 
+      reagents:
+      - ReagentId: BoneGel
+        Quantity: 1

@@ -1,0 +1,61 @@
+- type: entity
+  id: BaseEntityHandImplant
+  abstract: true
+  parent: [ BaseItem, BaseImplant ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+  - type: Organ
+  - type: HandImplant
+  - type: FlavorProfile
+    flavors:
+      - people
+
+- type: entity
+  id: HandImplantInsulated
+  name: Insulation Implant
+  description: Protects your hands from electric currents!
+  parent: BaseEntityHandImplant
+  components:
+  - type: Sprite
+    state: hand_implant_insulated
+  - type: FunctionalOrgan
+    comps:
+    - type: Insulated
+
+- type: entity
+  id: HandImplantForensics
+  name: Forensics Implant
+  description: Removes your fingerprints! Great for forensics, at the cost of your mail.
+  parent: BaseEntityHandImplant
+  components:
+  - type: Sprite
+    state: hand_implant_forensics
+  - type: FunctionalOrgan
+    comps:
+    - type: FingerprintMask
+
+- type: entity
+  id: HandImplantClaws
+  name: Claws Implant
+  description: Gives you retractable claws!
+  parent: BaseEntityHandImplant
+  components:
+  - type: Sprite
+    state: hand_implant_claws
+  - type: FunctionalOrgan
+    comps:
+    - type: InherentAction
+      action: ActionRetractableItemAdvancedClaws
+
+- type: entity
+  id: HandImplantThrusters
+  name: Thruster Implant
+  description: Wrist-mounted micro-thrusters to help you maneuver in space.
+  parent: BaseEntityHandImplant
+  components:
+  - type: Sprite
+    state: hand_implant_thrusters
+  - type: FunctionalOrgan
+    comps:
+    - type: MovementAlwaysTouching

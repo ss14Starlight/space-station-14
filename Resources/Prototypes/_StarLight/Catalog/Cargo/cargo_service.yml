@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: ServiceHydraRefill
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: cleanade
+  product: CrateServiceHydraRefill
+  cost: 750
+  category: cargoproduct-category-name-service
+  group: market

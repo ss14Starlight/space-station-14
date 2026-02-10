@@ -7,9 +7,9 @@
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
       time: 36000 # 10 hrs
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 28800 # 8 hrs
+    - !type:RoleTimeRequirement
+      role: JobChemist
+      time: 14400 # 4 hrs
   startingGear: BrigmedicGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos
@@ -24,6 +24,7 @@
   - Cryogenics
   - Brigmedic
   - Chemistry
+  - Surgery # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -32,10 +33,10 @@
   id: BrigmedicGear
   equipment:
     ears: ClothingHeadsetBrigmedic
-    neck: ClothingNeckTieRed
+    # neck: ClothingNeckTieRed # Tie variety
     pocket2: HandheldBrigmedicCrewMonitor
-    mask: ClothingMaskBreathMedicalSecurity
-    id: BrigmedicPDA
+    # mask: ClothingMaskBreathMedicalSecurity # Mask variety
+    # id: BrigmedicPDA # No longer needed with veteran PDA.
   storage:
     back:
     - Flash

@@ -24,3 +24,22 @@
     state: one_year_anniversary
     drawdepth: Mobs
     offset: "0.0,0.5"
+
+- type: entity
+  id: Phoronic
+  parent: BaseStructure
+  name: phoronic cascade
+  description: A huge structure made of pure plasma. Dark energy roils and bursts within it.
+  components:
+    - type: Transform
+      anchored: true
+    - type: Sprite
+      noRot: true
+      drawdepth: Mobs
+      offset: "0.0,0.5"
+      sprite: _Starlight/Structures/Decorations/Phoronic.rsi
+      state: phoronic
+    - type: SpriteFade
+    - type: Tag
+      tags:
+        - TheDark

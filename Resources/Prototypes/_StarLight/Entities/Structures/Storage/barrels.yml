@@ -1,0 +1,36 @@
+- type: entity
+  parent: BaseBarrelChem
+  id: BarrelFlaming
+  name: Metal Barrel
+  suffix: Flaming
+  description: For warming canned food in the winter.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Starlight/Structures/Storage/barrels.rsi
+    layers:
+      - state: flamingmetalbarrel
+      - state: fire
+        shader: unshaded
+  - type: PointLight
+    radius: 4
+    energy: 2
+    color: "#FFC90C"
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 50
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: AmbientSound
+    volume: -5
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+  - type: AlwaysHot
+

@@ -22,6 +22,10 @@
     TogaUniformSuit: 1
     ClothingOuterBurnedRobes: 1
     ClothingKitsuneMask: 1
+    ClothingNeckEyeAmulet: 1
+    ClothingNeckMoonAmulet: 1
+    ClothingNeckStarAmulet: 1
+    ClothingNeckSunAmulet: 1
     #Endofstarlight
     BoxCandle: 2
     BoxCandleSmall: 2
@@ -40,3 +44,7 @@
     ClothingHeadHatHoodCulthood: 3
     ClothingShoesCult: 4
     BedsheetCult: 4
+    #Starlight Start
+    ClothingShoesRatvar: 1
+    ClothingOuterCoatRatvarRobes: 1
+    #Starlight End

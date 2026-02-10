@@ -9,6 +9,11 @@
   description: flavor-complex-dragan-special
 
 - type: flavor
+  id: evil
+  flavorType: Base
+  description: flavor-basic-evil
+  
+- type: flavor
   id: thaslop
   flavorType: complex
   description: flavor-complex-tha-slop
@@ -27,3 +32,13 @@
   id: halal
   flavorType: Base
   description: flavor-base-halal
+
+- type: flavor
+  id: greasy
+  flavorType: Base
+  description: flavor-base-greasy
+
+- type: flavor
+  id: festive
+  flavorType: Base
+  description: flavor-base-festive

@@ -67,7 +67,7 @@
   During a confirmed Revolution, the Head of Security or Warden are permitted to authorize execution of an individual if a Mind Shielding fails or is refused. No other officers are granted this authorization. Execution of those charged with Refusal of Mental Shielding outside of a confirmed Revolution must be authorized by the Captain or Central Command on a case by case basis every time it happens.
   
   ## Sentencing
-  Sentencing of under 20 minutes is the responsibility of the arresting officer. When an individual has been detained, they must be promptly marked as such in the Criminal Records Computer. Likewise, when they have been released they must be promptly marked as such. If an individual has been detained but had no preexisting warrant, their criminal record should be updated to reflect them; marking them as wanted and writing in why, before marking them detained.
+  Sentencing of under 10 minutes is the responsibility of the arresting officer. When an individual has been detained, they must be promptly marked as such in the Criminal Records Computer. Likewise, when they have been released they must be promptly marked as such. If an individual has been detained but had no preexisting warrant, their criminal record should be updated to reflect them; marking them as wanted and writing in why, before marking them detained.
 
   The Prisoner's charges must be read to them in front of the Warden or Head of Security.
 
@@ -77,8 +77,8 @@
   
   [color=#a4885c]Stackable Crimes:[/color] Crimes are to be considered 'stackable' in the sense that if you charge someone with two or more different crimes, you may combine the times you would give them for each crime.
   
-  - Example: If a suspect has committed Major Possession and Major Syndicate Possession, the maximum sentence would be 40 minutes due to them being linked crimes.
-  - Example 2: If a suspect has committed Secure Trespass and Manslaughter, the maximum sentence would be 40 minutes due to them being unlinked crimes.
+  - Example: If a suspect has committed Major Possession and Major Syndicate Possession, the maximum sentence would be 20 minutes due to them being linked crimes.
+  - Example 2: If a suspect has committed Secure Trespass and Manslaughter, the maximum sentence would be 20 minutes due to them being unlinked crimes.
   - Context is vital. If you are unsure, seek assistance from the Warden or Head of Security.
 
   [color=#a4885c]Repeater Offenders:[/color] Repeated crimes are when someone is released for a crime and then commits the same crime again within the same shift. Repeated crimes can be charged with additional time. Every repeat adds 5 minutes.
@@ -92,6 +92,8 @@
   [color=#a4885c]Absence of Intent:[/color] Criminals who committed their crime unintentionally may have their sentence reduced by 50% at the sentencing officer's discretion.
 
   [color=#a4885c]Disclosure and Surrender:[/color] Criminals who fully cooperate with the investigation should have their sentence reduced by 50-75% at the sentencing officer's discretion. This includes turning in evidence, turning in accomplices, or recounting the crime in detail.
+  
+  [color=#a4885c]Resisting Arrest:[/color] Resisting Arrest: Criminals who behave in a noncompliant manner including resisting arrest, fleeing during processing, or those who become combative may receive sentence times up to double that of the maximum sentence.
   
   ## Normal Punishments
   - [color=#a4885c]Warning:[/color] For minor crimes it is best to fix the issue then warn the person not to attempt the crime again. If they still proceed to do it at a later date, a brig time may be better.
@@ -157,7 +159,8 @@
   Silicons such as Cyborgs, Personal AIs, and AIs are granted specific protections and exceptions under Corporate Law. Lower tier 'bots' exhibiting sentience and sapience may also qualify.
 
   - Silicons are by nature bound by their laws, and ownership of one can not be considered Unlawfully Detained. Theft of a Silicon is classified as Grand Theft.
-  - Violence against a Silicon may be treated the same as violence against any other sentient humanoid, and the perpetrator may be charged with minor assault, major assault, manslaughter, or murder, at the discretion of the Research Director.
+  - Violence against a Silicon should be treated as Vandalism or Damage of Property depending on the severity, and Destruction of Property in the case that their chassis is destroyed or put into critical condition.
+  - Wiping a Positronic Brain is considered Destruction of Property, as you are wiping the software and training data used to construct the Silicon.
   - Any law broken by a Silicon while under orders is considered to be committed by whoever gave the orders and is not the Silicon’s responsibility. A Silicon that is not bound by standard laws to follow orders is legally responsible for their own actions and crimes.
   - Silicon laws may only be altered to ensure the safety of the crew. A Silicon with non-standard laws is allowed to keep these laws so long as they do not pose a threat to the crew. Unbound Silicons who break Corporate Law may have their laws altered as part of their sentence.
   - Hostile Silicons of non-NanoTrasen origins are considered non-crew entities. They are afforded none of the protections under Corporate Law that other Silicons are and should be treated according to their hostility and the danger they pose.

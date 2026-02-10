@@ -22,12 +22,14 @@ using Content.Shared.Pinpointer;
 using Content.Shared.Roles;
 using Content.Shared.Stacks;
 using Content.Shared.Starlight.Antags.Abductor;
+using Content.Shared.Starlight.CCVar;
 using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
 using Content.Shared.UserInterface;
 using NAudio.CoreAudioApi;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -42,24 +44,33 @@ public sealed partial class SalarySystem : SharedSalarySystem
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly INullLinkPlayerManager _nullLinkRoles = default!;
     [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _time = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
     [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
     private float _delayAccumulator = 0f;
     private readonly Stopwatch _stopwatch = new();
     private readonly Dictionary<ICommonSession, TimeSpan> _lastSalary = [];
     private SalariesPrototype _salaries = new();
+    private float _defaultBonusMultiplier = 1.0f;
+    
     public override void Initialize()
     {
         SubscribeLocalEvent<RoundStartingEvent>(ev => _lastSalary.Clear());
+        _configurationManager.OnValueChanged(StarlightCCVars.SalaryMultiplier, UpdateBonusMultiplier, true);
+        
         _salaries = _prototypes.Index<SalariesPrototype>("standart");
+        
         base.Initialize();
     }
+
+    private void UpdateBonusMultiplier(float value) 
+        => _defaultBonusMultiplier = value;
+    
     public override void Update(float frameTime)
     {
         _delayAccumulator += frameTime;
@@ -106,7 +117,7 @@ public sealed partial class SalarySystem : SharedSalarySystem
 
     private int CalculateSalaryWithBonuses(int baseSalary, ICommonSession session)
     {
-        var bonusMultiplier = 1.0;
+        var bonusMultiplier = _defaultBonusMultiplier;
 
         if (!_nullLinkRoles.TryGetPlayerData(session.UserId, out var playerData))
             return baseSalary;

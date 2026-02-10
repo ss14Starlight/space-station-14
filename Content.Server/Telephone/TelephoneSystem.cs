@@ -21,7 +21,12 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using System.Linq;
-using Content.Server._Starlight.Language; // Starlight
+// Starlight Start
+using Content.Server._Starlight.Language;
+using Content.Shared.IdentityManagement;
+using Robust.Shared.Player;
+using Content.Server.Chat.Managers;
+// Starlight End
 
 namespace Content.Server.Telephone;
 
@@ -37,7 +42,10 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IReplayRecordingManager _replay = default!;
-    [Dependency] private readonly LanguageSystem _language = default!; // Starlight
+    // Starlight Start
+    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
+    // Starlight End
 
     // Has set used to prevent telephone feedback loops
     private HashSet<(EntityUid, string, Entity<TelephoneComponent>)> _recentChatMessages = new();
@@ -51,6 +59,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         SubscribeLocalEvent<TelephoneComponent, ListenAttemptEvent>(OnAttemptListen);
         SubscribeLocalEvent<TelephoneComponent, ListenEvent>(OnListen);
         SubscribeLocalEvent<TelephoneComponent, TelephoneMessageReceivedEvent>(OnTelephoneMessageReceived);
+        SubscribeLocalEvent<TelephoneComponent, LoocListenEvent>(OnLoocListen); // Starlight
     }
 
     #region: Events
@@ -229,6 +238,11 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
         if (TryComp<LabelComponent>(source, out var label))
             deviceName = label.CurrentLabel;
 
+        // Starlight begin - sanitize tags
+        callerInfo.Item1 = callerInfo.Item1?.Replace("[", @"\[");
+        callerInfo.Item2 = callerInfo.Item2?.Replace("]", @"\]");
+        // Starlight end
+        
         receiver.Comp.LastCallerId = (callerInfo.Item1, callerInfo.Item2, deviceName); // This will be networked when the state changes
         receiver.Comp.LinkedTelephones.Add(source);
         receiver.Comp.Muted = options?.MuteReceiver == true;
@@ -493,4 +507,43 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
     {
         return this.IsPowered(entity, EntityManager);
     }
+    // Starlight Start: Holopads support LOOC
+    private void OnLoocListen(Entity<TelephoneComponent> entity, ref LoocListenEvent args)
+    {
+        if (args.Source == entity.Owner)
+            return;
+
+        if (!HasComp<MindContainerComponent>(args.Source))
+            return;
+
+        if (!_recentChatMessages.Add((args.Source, args.Message, entity)))
+            return;
+
+        SendTelephoneLoocMessage(args.Source, args.Message, entity);
+    }
+    private void SendTelephoneLoocMessage(EntityUid messageSource, string message, Entity<TelephoneComponent> source)
+    {
+        var name = FormattedMessage.EscapeText(Identity.Name(messageSource, EntityManager));
+
+        foreach (var receiver in source.Comp.LinkedTelephones)
+        {
+            if (!IsTelephonePowered(receiver) || !IsSourceConnectedToReceiver(source, receiver))
+                continue;
+
+            var speaker = receiver.Comp.Speaker != null ? receiver.Comp.Speaker.Value.Owner : receiver.Owner;
+
+            var wrappedMessage = Loc.GetString("chat-manager-entity-looc-wrap-message",
+                ("entityName", name),
+                ("message", FormattedMessage.EscapeText(message)));
+
+            // Send to all players in range
+            var filter = Filter.Pvs(speaker, entityManager: EntityManager);
+            _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.LOOC, message, wrappedMessage, speaker, hideChat: true, recordReplay: true, colorOverride: null);
+
+            receiver.Comp.StateStartTime = _timing.CurTime;
+        }
+
+        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Telephone LOOC from {ToPrettyString(messageSource):user} on {source}: {message}");
+    }
+    // Starlight End
 }

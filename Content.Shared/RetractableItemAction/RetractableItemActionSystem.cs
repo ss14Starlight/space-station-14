@@ -5,6 +5,8 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
+using Content.Shared._Starlight.Cybernetics; // Starlight
+using Content.Shared._Starlight.Cybernetics.Components; // Starlight
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 
@@ -16,6 +18,7 @@ namespace Content.Shared.RetractableItemAction;
 public sealed class RetractableItemActionSystem : EntitySystem
 {
     [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!; // 🌟Starlight🌟
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
@@ -30,6 +33,8 @@ public sealed class RetractableItemActionSystem : EntitySystem
 
         SubscribeLocalEvent<ActionRetractableItemComponent, ComponentShutdown>(OnActionSummonedShutdown);
         Subs.SubscribeWithRelay<ActionRetractableItemComponent, HeldRelayedEvent<TargetHandcuffedEvent>>(OnItemHandcuffed, inventory: false);
+
+        SubscribeLocalEvent<RetractableItemActionComponent, CyberneticDisruptionEvent>(OnCyberneticsDisrupted); // 🌟Starlight🌟
     }
 
     private void OnActionInit(Entity<RetractableItemActionComponent> ent, ref MapInitEvent args)
@@ -41,8 +46,10 @@ public sealed class RetractableItemActionSystem : EntitySystem
 
     private void OnRetractableItemAction(Entity<RetractableItemActionComponent> ent, ref OnRetractableItemActionEvent args)
     {
-        if (_hands.GetActiveHand(args.Performer) is not { } activeHand)
-            return;
+        /*  🌟Starlight🌟 Start
+         *  if (_hands.GetActiveHand(args.Performer) is not { } activeHand) // Moved
+         *      return;
+         *  🌟Starlight🌟 End */
 
         if (_actions.GetAction(ent.Owner) is not { } action)
             return;
@@ -53,23 +60,56 @@ public sealed class RetractableItemActionSystem : EntitySystem
         if (ent.Comp.ActionItemUid == null)
             return;
 
-        // Don't allow to summon an item if holding an unremoveable item unless that item is summoned by the action.
-        if (_hands.GetActiveItem(ent.Owner) != null
-            && !_hands.IsHolding(args.Performer, ent.Comp.ActionItemUid)
-            && !_hands.CanDropHeld(args.Performer, activeHand, false))
+        // 🌟Starlight🌟 start
+        // A lot of this is the same, but moved a lot
+        if (ent.Comp.SpawnInHand)
         {
-            _popups.PopupClient(Loc.GetString("retractable-item-hand-cannot-drop"), args.Performer, args.Performer);
-            return;
-        }
+            if (_hands.GetActiveHand(args.Performer) is not { } activeHand)
+                return;
 
-        if (_hands.IsHolding(args.Performer, ent.Comp.ActionItemUid))
-        {
-            RetractRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, ent.Owner);
+            // Don't allow to summon an item if holding an unremoveable item unless that item is summoned by the action.
+            if (_hands.GetActiveItem(ent.Owner) != null
+                && !_hands.IsHolding(args.Performer, ent.Comp.ActionItemUid)
+                && !_hands.CanDropHeld(args.Performer, activeHand, false))
+            {
+                _popups.PopupClient(Loc.GetString("retractable-item-hand-cannot-drop"), args.Performer, args.Performer);
+                return;
+            }
+
+            if (_hands.IsHolding(args.Performer, ent.Comp.ActionItemUid))
+            {
+                RetractRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, ent.Owner);
+            }
+            else
+            {
+                // Don't allow summoning an item if it's from a cybernetic and the user is currently disrupted.
+                if (ent.Comp.IsCybernetic && TryComp(args.Performer, out CyberneticDisruptionComponent? _))
+                { 
+                    _popups.PopupClient(Loc.GetString("retractable-item-cybernetics-disrupted"), args.Performer, args.Performer);
+                    return;
+                }
+
+                SummonRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, activeHand, ent.Owner);
+            }
         }
         else
         {
-            SummonRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, activeHand, ent.Owner);
+            if (_inventory.InSlotWithFlags(ent.Comp.ActionItemUid.Value, ent.Comp.RequiredSlots))
+            {
+                RetractRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, ent.Owner);
+            }
+            else
+            {
+                // Don't allow summoning an item if it's from a cybernetic and the user is currently disrupted.
+                if (ent.Comp.IsCybernetic && TryComp(args.Performer, out CyberneticDisruptionComponent? _))
+                { 
+                    _popups.PopupClient(Loc.GetString("retractable-item-cybernetics-disrupted"), args.Performer, args.Performer);
+                    return;
+                }
+                SummonRetractableItemInInventory(args.Performer, ent.Comp.ActionItemUid.Value, ent.Comp.Slot, ent.Owner);
+            }
         }
+        // 🌟Starlight🌟 end
 
         args.Handled = true;
     }
@@ -138,4 +178,30 @@ public sealed class RetractableItemActionSystem : EntitySystem
         _audio.PlayPredicted(action.Comp.SummonSounds, holder, holder);
         EnsureComp<UnremoveableComponent>(item);
     }
+
+    #region Starlight
+    private void SummonRetractableItemInInventory(EntityUid holder, EntityUid item, string slot, Entity<RetractableItemActionComponent?> action)
+    {
+        if (!Resolve(action, ref action.Comp, false))
+            return;
+
+        if (!_inventory.TryEquip(holder, item, slot, silent: true, force: true))
+            return;
+        _audio.PlayPredicted(action.Comp.SummonSounds, holder, holder);
+        EnsureComp<UnremoveableComponent>(item);
+    }
+
+    private void OnCyberneticsDisrupted(Entity<RetractableItemActionComponent> ent, ref CyberneticDisruptionEvent args)
+    {
+        if(!ent.Comp.IsCybernetic)
+            return;
+
+        var ev = new OnRetractableItemActionEvent
+        {
+            Performer = args.Target,
+        };
+        RaiseLocalEvent(ent, ref ev);
+    }
+
+    #endregion Starlight
 }

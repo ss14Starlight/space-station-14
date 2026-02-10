@@ -1,0 +1,23 @@
+- type: entity
+  parent: BaseGameRule
+  id: TerminatorSpawn
+  components:
+  - type: TerminatorRule
+  - type: AntagObjectives
+    objectives:
+    - TerminatorExterminateObjective
+    - TerminatorSelfDestructObjective
+  - type: AntagRandomSpawn
+  - type: AntagSelection
+    agentName: ghost-role-information-terminator-name
+    definitions:
+    - spawnerPrototype: SpawnPointGhostTerminator
+      min: 1
+      max: 1
+      pickPlayer: false
+      briefing:
+        text: terminator-role-greeting
+        color: orange
+        sound: /Audio/Mecha/powerup.ogg
+      mindRoles:
+      - MindRoleTerminator

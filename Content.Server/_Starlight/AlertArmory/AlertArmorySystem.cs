@@ -39,7 +39,6 @@ public sealed class AlertArmorySystem : EntitySystem
     [Dependency] private readonly NavMapSystem _nav = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ActorSystem _actor = default!;
 
     private EntityQuery<PendingClockInComponent> _pendingQuery;
     private EntityQuery<ArrivalsBlacklistComponent> _blacklistQuery;
@@ -136,11 +135,12 @@ public sealed class AlertArmorySystem : EntitySystem
             // Announce recall at the start of FTL back to armory space
             var xform = Transform(ent.Owner);
             var location = FormattedMessage.RemoveMarkupPermissive(_nav.GetNearestBeaconString((ent.Owner, xform)));
+            var station = MetaData(ent.Comp.Station).EntityName;
 
             if (ent.Comp.RecallAnnouncement != null)
             {
                 _chat.DispatchGlobalAnnouncement(
-                    Loc.GetString(ent.Comp.RecallAnnouncement, ("location", location)),
+                    Loc.GetString(ent.Comp.RecallAnnouncement, [("location", location), ("station", station)]),
                     colorOverride: ent.Comp.RecallAnnouncementColor ?? Color.PaleVioletRed);
             }
         }
@@ -170,12 +170,13 @@ public sealed class AlertArmorySystem : EntitySystem
 
         var xform = Transform(uid);
         var location = FormattedMessage.RemoveMarkupPermissive(_nav.GetNearestBeaconString((uid, xform)));
+        var station = MetaData(comp.Station).EntityName;
 
         // Announce arrival at station
         if (ev.MapUid != comp.ArmorySpaceUid && comp.Announcement != null)
         {
             _chat.DispatchGlobalAnnouncement(
-                Loc.GetString(comp.Announcement, ("location", location)),
+                Loc.GetString(comp.Announcement, [("location", location), ("station", station)]),
                 colorOverride: comp.AnnouncementColor ?? Color.PaleVioletRed);
         }
 

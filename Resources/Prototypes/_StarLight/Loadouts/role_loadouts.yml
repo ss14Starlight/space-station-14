@@ -11,19 +11,27 @@
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobMagistrate
   groups:
+  - MagistrateJumpsuit
+  - MagistrateEyewear
+  - MagistrateHands
+  - MagistrateHead
+  - MagistrateOuterclothing
   - CommonBackpack
   - MagistrateShoes
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - LuxuryPens
   - GroupSpeciesBreathTool
+
 
 - type: roleLoadout
   id: JobSurgeon
@@ -41,6 +49,7 @@
   - SurvivalMedical
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - GroupSpeciesBreathToolMedical
 
@@ -54,6 +63,7 @@
   - NanotrasenRepresentativeShoes
   - Trinkets
   - Scarves
+  - Pins
   - NTRPens
   - Survival
   - GroupSpeciesBreathTool
@@ -67,6 +77,7 @@
   - LawyerShoes
   - Trinkets
   - Scarves
+  - Pins
   - LuxuryPens
   - Survival
   - GroupSpeciesBreathTool
@@ -78,11 +89,15 @@
   - BlueShieldJumpsuit
   - BlueShieldBackpack
   - BlueShieldOuterclothing
+  - BlueShieldBelt
+  - Insuls
   - BlueShieldShoes
   - BlueShieldNeck
   - BlueShieldEyewear
+  - BlueShieldPDA
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - SurvivalSecurity
   - GroupSpeciesBreathToolSecurity
@@ -100,6 +115,7 @@
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - GroupSpeciesBreathTool
 
@@ -116,25 +132,53 @@
   - Survival
   - Trinkets
   - Scarves
+  - Pins
   - Pens
   - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobBrigmedic
   groups:
-    - BrigmedicHead
-    - BrigmedicJumpsuit
-    - BrigmedicBackpack
-    - BrigmedicOuterClothing
-    - BrigmedicBelt
-    - BrigmedicGloves
-    - BrigmedicEyewear
-    - SecurityShoes
-    - SecurityNonLethalWeapon
-    - SecuritySidearm
-    - SurvivalSecurity
-    - Trinkets
-    - GroupSpeciesBreathToolSecurity
+  - BrigmedicHead
+  - BrigmedicMask
+  - BrigmedicJumpsuit
+  - BrigmedicTie
+  - BrigmedicBackpack
+  - BrigmedicOuterClothing
+  - BrigmedicBelt
+  - BrigmedicGloves
+  - BrigmedicEyewear
+  - BrigmedicPDA
+  - BrigmedicBeaker
+  - SecurityShoes
+  - SecurityNonLethalWeapon
+  - SecuritySidearm
+  - SurvivalSecurity
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - SecurityJobTrinkets
+  - GroupSpeciesBreathToolSecurity
+
+- type: roleLoadout
+  id: JobDutyOfficer
+  groups:
+  - DutyOfficerHead
+  - DutyOfficerJumpsuit
+  - SecurityBackpack
+  - SecurityEyewear
+  - DutyOfficerOuterClothing
+  - SecurityShoes
+  - DutyOfficerBelt
+  - SecurityNonLethalWeapon
+  - SurvivalSecurity
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - SecurityJobTrinkets
+  - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
   id: JobSalvageLead
@@ -149,4 +193,72 @@
     - Glasses
     - Survival
     - Trinkets
+    - Scarves
+    - Pins
+    - Pens
     - GroupSpeciesBreathTool
+
+# Wildcards
+- type: roleLoadout
+  id: JobZookeeper
+  groups:
+  - CommonBackpack
+  - CivilianShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - ZookeeperJobTrinkets
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobBoxer
+  groups:
+  - BoxerJumpsuit
+  - BoxerGloves
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - BoxerJobTrinkets
+  - GroupSpeciesBreathTool
+
+# Antagonist Loadouts
+- type: roleLoadout
+  id: AntagXenoborg
+  nameDataset: NamesXenoborg
+  canCustomizeName: true
+  groups:
+  - SiliconBrainType
+
+- type: roleLoadout
+  id: AntagMothership
+  nameDataset: NamesXenoborg
+  canCustomizeName: true
+
+- type: roleLoadout
+  id: AntagBrighteye
+  groups:
+  - BrighteyeJumpsuit
+  - BrighteyeNeck
+  - BrighteyeShoes
+  - BrighteyeGloves
+  - Scarves
+  - Pins
+
+- type: roleLoadout
+  id: JobNanotrasenCareerTrainer
+  groups:
+  - NanotrasenCareerTrainerJumpsuit
+  - NanotrasenCareerTrainerHat
+  - NanotrasenCareerTrainerEyewear
+  - NanotrasenCareerTrainerShoes
+  - CommonBackpack
+  - Trinkets
+  - Survival
+  - GroupSpeciesBreathTool

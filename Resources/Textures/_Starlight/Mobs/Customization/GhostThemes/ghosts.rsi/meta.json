@@ -100,6 +100,15 @@
           0.1
         ]
       ]
+    },
+    {
+      "name": "ghost-carpman",
+      "copyright": "Conf",
+      "directions": 4
+    },
+    {  "name": "ghost-moff",
+       "copyright": "Based off the moths and default ghost from tgstation, StygianEagle",
+       "directions": 4
     }
   ]
 }

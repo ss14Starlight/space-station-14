@@ -26,3 +26,163 @@
     tags:
     - CannotSuicide
     - VimPilot
+
+- type: entity
+  parent: MobMouse
+  id: MobMouseRemy
+  name: Remy
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - GalacticCommon
+    - Mouse
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-remy
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-remy
+    noMovementLayers:
+      movement:
+        state: mouse-remy
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-remy
+      Critical:
+        Base: dead-remy
+      Dead:
+        Base: dead-remy
+
+# Mentor / Admin Mouse
+- type: entity
+  parent: BaseSimpleMob
+  id: MobAdminMouse
+  name: Admin Mouse
+  description: A troublemaking mouse that will most probably contribute to your death, one way or another.
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - Mouse
+  - type: UniversalLanguageSpeaker
+  - type: VentCrawler
+  - type: Climbing
+  - type: Hands
+    hands:
+      hand_right:
+        location: Right
+      hand_left:
+        location: Left
+    sortedHands:
+    - hand_right
+    - hand_left
+  - type: ComplexInteraction
+  - type: Puller
+  - type: Body
+    prototype: Mouse
+  - type: Speech
+    speechSounds: Squeak
+    speechVerb: SmallMob
+    allowedEmotes: ['Squeak']
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _Starlight/Mobs/Animals/mouse.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-admin
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-admin
+    noMovementLayers:
+      movement:
+        state: mouse-admin
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-admin
+      Critical:
+        Base: dead-admin
+      Dead:
+        Base: dead-admin
+  - type: Item
+    size: Tiny
+    heldPrefix: 0
+  - type: Clothing
+    quickEquip: false
+    sprite: Mobs/Animals/mouse.rsi
+    equippedPrefix: 0
+    slots:
+    - HEAD
+  - type: NpcFactionMember
+    factions:
+      - Mouse
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 5
+  - type: Tag
+    tags:
+    - VimPilot
+    - ChefPilot
+    - Mouse
+  - type: Vocal
+    sounds:
+      Male: Mouse
+      Female: Mouse
+      Unsexed: Mouse
+    wilhelmProbability: 0.001
+  - type: CanEscapeInventory
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Mouse_burning
+  - type: ZombieImmune
+  - type: AutoImplant
+    implants:
+    - RedspaceImplant
+
+- type: entity
+  parent: MobAdminMouse
+  id: MobMentorMouse
+  name: Mentor Mouse
+  description: A helpful little mouse that will (hopefully) give good advice. Click on it to pick it up!
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-mentor
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-mentor
+    noMovementLayers:
+      movement:
+        state: mouse-mentor
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-mentor
+      Critical:
+        Base: dead-mentor
+      Dead:
+        Base: dead-mentor
+  - type: AutoImplant
+    implants:
+    - BluespaceImplant

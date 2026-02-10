@@ -3,7 +3,7 @@
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitBlueshield
   categories: [ HideSpawnMenu ]
-  name: blueshield officer's hardsuit helmet
+  name: blue shield hardsuit helmet
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hardsuits/blueshield.rsi
@@ -28,7 +28,7 @@
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitNtrep
   categories: [ HideSpawnMenu ]
-  name: Nanotrasen representative's hardsuit helmet
+  name: NanoTrasen representative's hardsuit helmet
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hardsuits/ntrep.rsi
@@ -106,6 +106,10 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.6
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
 
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
@@ -511,11 +515,30 @@
 - type: entity
   parent: ClothingHeadHelmetHardsuitAtmos
   id: ClothingHeadHelmetHardsuitAtmosGolden
-  name: atmos hardsuit helmet
-  description: A special hardsuit helmet designed for working in low-pressure, high thermal environments.
+  name: golden atmos hardsuit helmet
+  description: A golden hardsuit that protects against hazardous, low pressure environments. Has thermal shielding. Use of expensive alloys have made it lighter than its non-golden counterpart.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hardsuits/atmospherics_golden.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: PointLight
+    color: "#feffad"
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitEngineering
+  id: ClothingHeadHelmetHardsuitEngineeringGolden
+  name: golden engineering hardsuit helmet
+  description: A golden hardsuit that protects against hazardous, low pressure environments. Has radiation shielding. Use of expensive alloys have made it lighter than its non-golden counterpart.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/engineering_golden.rsi
     layers:
     - state: icon
     - state: icon-unshaded
@@ -630,6 +653,32 @@
         Heat: 0.80
         Radiation: 0.80
         Caustic: 0.95
+
+# TSF
+- type: entity
+  parent: [ BaseTSFContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitTSF
+  name: MARSOC helmet
+  description: A helmet worn by marines of the Trans-Solar Federation's Marine Special Operations Command. Armored, space ready, and fireproof.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/tsf.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/tsf.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+  - type: FireProtection
+    reduction: 1
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowHealthBars
+  - type: ShowHealthIcons
+  - type: EyeProtection
+    protectionTime: 5
+  - type: FlashImmunity
 
 #Thanatos Helmet (Starlight version of Deathsquad)
 - type: entity

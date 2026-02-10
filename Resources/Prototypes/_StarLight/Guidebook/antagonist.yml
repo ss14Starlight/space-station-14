@@ -1,0 +1,9 @@
+- type: guideEntry
+  id: Brighteye
+  name: roles-antag-brighteye-name
+  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Brighteye.xml"
+
+- type: guideEntry
+  id: SELFAgent
+  name: roles-antag-selfagent-name
+  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/SiliconLiberation.xml"

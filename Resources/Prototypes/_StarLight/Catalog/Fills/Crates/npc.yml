@@ -1,0 +1,18 @@
+- type: entity
+  id: CrateNPCSpaceKoi
+  parent: CrateLivestock
+  name: space koi crate
+  description: A crate containing five space kois.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MobRedBlackKoi
+        amount: 1
+      - id: MobGoldBlackKoi
+        amount: 1
+      - id: MobRedCircleKoi
+        amount: 1
+      - id: MobBloodSkeletonKoi
+        amount: 1
+      - id: MobSpaceGlowKoi
+        amount: 1

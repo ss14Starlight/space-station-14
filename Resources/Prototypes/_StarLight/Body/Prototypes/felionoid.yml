@@ -9,9 +9,10 @@
       - torso
       organs:
         brain: OrganHumanBrain
-        eyes: OrganHumanEyes
+        eyes: OrganFelionoidEyes
         tongue: OrganHumanTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoFelionoid
       connections:
@@ -36,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandFelionoid
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandFelionoid
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegFelionoid
       connections:

@@ -5,6 +5,7 @@
   styles:
     atmospherics: LockerAtmospherics
     basic: ClosetSteelBase
+    bso: LockerBlueshield # Starlight
     botanist: LockerBotanist
     brigmedic: LockerBrigmedic
     captain: LockerCaptain
@@ -18,15 +19,20 @@
     evac: LockerEvacRepair
     hop: LockerHeadOfPersonnel
     hos: LockerHeadOfSecurity
+    iaa: LockerIAA # Starlight
+    magistrate: LockerMagistrate # Starlight
     mime: LockerMime
+    mining: LockerMiningSpecialist # Starlight
     medicine: LockerMedicine
     paramedic: LockerParamedic
     quartermaster: LockerQuarterMaster
     rd: LockerResearchDirector
     representative: LockerRepresentative
     salvage: LockerSalvageSpecialist
+    salvagelead: LockerSalvageLead # Starlight
     scientist: LockerScientist
     security: LockerSecurity
+    warden: LockerWarden # Starlight
     welding: LockerWeldingSupplies
 
 - type: paintableGroup

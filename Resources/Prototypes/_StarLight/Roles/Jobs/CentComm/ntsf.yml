@@ -11,7 +11,7 @@
       proto: ExtRolesReq
   setPreference: false
   startingGear: NanoTrasenSpecialForcesGear
-  icon: JobIconNanotrasen
+  icon: JobIconNanoTrasenSpecialForces
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-nanotrasen
   canBeAntag: false

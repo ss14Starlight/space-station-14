@@ -1,0 +1,27 @@
+- type: entityTable
+  id: CorporateDocumentTable
+  table: !type:GroupSelector
+    children:
+      - id: ClassifiedCorporateDocumentAbductors
+      #- id: ClassifiedCorporateDocumentDecimus
+      - id: ClassifiedCorporateDocumentNinjas
+      - id: ClassifiedCorporateDocumentNukies
+      - id: ClassifiedCorporateDocumentRomerol
+
+- type: entityTable
+  id: CriminalDocumentTable
+  table: !type:GroupSelector
+    children:
+      - id: ClassifiedCriminalDocumentARC
+      - id: ClassifiedCriminalDocumentComitas
+      - id: ClassifiedCriminalDocumentSELF
+      - id: ClassifiedCriminalDocumentTigerCooperative
+
+- type: entityTable
+  id: SecureDocumentTable
+  table: !type:GroupSelector
+    children:
+      - id: ClassifiedSecureDocumentRevolutionaries
+      - id: ClassifiedSecureDocumentVampires
+      - id: ClassifiedSecureDocumentWizards
+      - id: ClassifiedSecureDocumentXenoborgs

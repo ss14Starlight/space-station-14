@@ -1,0 +1,21 @@
+- type: technology
+  id: CivilianCyberLimbsTech
+  name: research-technology-civilian-cyberlimbs
+  icon:
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: wrench
+  discipline: CivilianServices
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+    - LeftArmCyberPersephone
+    - RightArmCyberPersephone
+    - LeftArmCyberMechwright
+    - RightArmCyberMechwright
+    - LeftArmCyberScribe
+    - RightArmCyberScribe
+  technologyPrerequisites:
+    - CyberLimbsTech
+  radioChannels:
+  - Medical
+  - Service

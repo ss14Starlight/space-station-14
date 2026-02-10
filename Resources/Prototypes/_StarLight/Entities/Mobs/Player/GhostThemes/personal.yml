@@ -2,43 +2,69 @@
   id: Morph
   name: Morph
   description: a morph.
+  private: true
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/morph.rsi
       state: morph
     color: "#ffffff"
-  requiredCkey: Grapegifter
+  requirements:
+  - !type:UsernameRequirement
+    username: Grapegifter
 
 - type: ghostTheme
   id: Cateor
   name: Cateor
   description: a cute cateor.
+  private: true
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/cateor.rsi
       state: cateor
     color: "#ffffff"
-  requiredCkey: darkrell
+  requirements:
+  - !type:UsernameRequirement
+    username: darkrell
 
 - type: ghostTheme
   id: Firewraith
   name: Firewraith
   description: a cute firewraith.
+  private: true
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
       state: ghost-firewraith
     color: "#ffffff"
-  requiredCkey: Killerdash
+  requirements:
+  - !type:UsernameRequirement
+    username: Killerdash
 
     
 - type: ghostTheme
   id: Robot
   name: Robot
   description: a funny robot.
+  private: true
   spriteSpecifier:
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
       state: ghost-rinary
     color: "#ffffff"
-  requiredCkey: Rinary
+  requirements:
+  - !type:UsernameRequirement
+    username: Rinary
+    
+- type: ghostTheme
+  id: pai_fox
+  name: pai fox
+  description: a cyber kitsune
+  private: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/pai_fox.rsi
+      state: pai_fox
+    color: "#ffffff"
+  requirements:
+    - !type:UsernameRequirement
+      username: KarmaKitsuna

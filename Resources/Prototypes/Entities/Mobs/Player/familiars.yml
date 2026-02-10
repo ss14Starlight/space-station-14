@@ -4,6 +4,17 @@
   id: MobBatRemilia
   description: The chaplain's familiar. Likes fruit.
   components:
+  # begin starlight
+  - type: LanguageKnowledge
+    speaks:
+    - Bat
+    - Darktongue
+    understands:
+    - GalacticCommon
+    - Bat
+    - Mouse
+    - Darktongue
+  # end starlight
   - type: GhostRole
     makeSentient: true
     allowMovement: true
@@ -26,7 +37,7 @@
     tags:
     - Chapel
   - type: MindContainer
-    showExamineInfo: true
+  - type: MindExaminable
   - type: NpcFactionMember
     factions:
     - PetsNT
@@ -39,6 +50,17 @@
   id: MobCorgiCerberus
   description: This pupper is not wholesome.
   components:
+  # begin starlight
+  - type: LanguageKnowledge
+    speaks:
+    - Dog
+    - Darktongue
+    understands:
+    - GalacticCommon
+    - Dog
+    - Fox
+    - Darktongue
+  # end starlight
   - type: GhostRole
     makeSentient: true
     allowMovement: true
@@ -87,7 +109,7 @@
     tags:
     - Chapel
   - type: MindContainer
-    showExamineInfo: true
+  - type: MindExaminable
   - type: Familiar
   - type: Vocal
     sounds:

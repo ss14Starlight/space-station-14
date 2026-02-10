@@ -1,0 +1,40 @@
+- type: entity
+  parent: XenoborgEngi
+  id: XenoborgEngiFilled
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - MMIFilled
+
+- type: entity
+  parent: XenoborgHeavy
+  id: XenoborgHeavyFilled
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - MMIFilled
+
+- type: entity
+  parent: XenoborgScout
+  id: XenoborgScoutFilled
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - MMIFilled
+
+- type: entity
+  parent: XenoborgStealth
+  id: XenoborgStealthFilled
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - MMIFilled
+

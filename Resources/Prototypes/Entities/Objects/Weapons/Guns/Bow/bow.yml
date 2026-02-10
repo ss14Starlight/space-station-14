@@ -94,3 +94,7 @@
   - type: Construction
     graph: ImprovisedBow
     node: ImprovisedBow
+  # Starlight
+  - type: Tag
+    tags:
+    - Bow

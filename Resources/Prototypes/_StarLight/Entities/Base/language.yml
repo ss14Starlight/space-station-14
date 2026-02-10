@@ -24,6 +24,11 @@
       - VoxPidgin
       - Scratch
       - Thaveyan
+      - Darktongue
+      - Classical
+      - Grumbakul
+      - Aielic
+      - Lagomorphian
 
 - type: entity
   id: BaseBorgiLanguages
@@ -53,6 +58,11 @@
       - Scratch
       - Thaveyan
       - Dog
+      - Darktongue
+      - Classical
+      - Grumbakul
+      - Aielic
+      - Lagomorphian
 
 - type: entity
   id: BaseSiliconBrainLanguages

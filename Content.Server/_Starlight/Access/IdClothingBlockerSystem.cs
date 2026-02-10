@@ -20,7 +20,7 @@ public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<HandsComponent, DidEquipHandEvent>(OnAnyHandEquipped);
         SubscribeLocalEvent<HandsComponent, DidUnequipHandEvent>(OnAnyHandUnequipped);
         SubscribeLocalEvent<InventoryComponent, DidEquipEvent>(OnAnyInventoryEquipped);
@@ -29,10 +29,14 @@ public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
 
     protected override void OnUnauthorizedAccess(EntityUid clothingUid, IdClothingBlockerComponent component, EntityUid wearer)
     {
-        var blockedComponent = EntityManager.EnsureComponent<IdClothingFrozenComponent>(wearer);
-        blockedComponent.ClothingItem = clothingUid;
+        if (component.FreezeUser)
+        {
+            var blockedComponent = EntityManager.EnsureComponent<IdClothingFrozenComponent>(wearer);
+            blockedComponent.ClothingItem = clothingUid;
+            Dirty(wearer, blockedComponent);
+        }
+
         UpdateClothingBlockingState(wearer);
-        Dirty(wearer, blockedComponent);
 
         _popup.PopupEntity(Loc.GetString("access-clothing-blocker-notify-unauthorized-access"), clothingUid, PopupType.MediumCaution);
     }
@@ -53,7 +57,7 @@ public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
 
     protected override void OnUnequipAttempt(EntityUid uid, IdClothingBlockerComponent component, BeingUnequippedAttemptEvent args)
     {
-        var wearerHasAccess = HasJobAccess(args.Unequipee, component);
+        var wearerHasAccess = HasAccess(args.Unequipee, component);
         if (wearerHasAccess)
             return;
 
@@ -68,7 +72,7 @@ public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
         if (args.DoAfter.Args.Target == null)
             return;
 
-        var wearerHasAccess = HasJobAccess(args.DoAfter.Args.Target.Value, component);
+        var wearerHasAccess = HasAccess(args.DoAfter.Args.Target.Value, component);
 
         if (wearerHasAccess)
             return;
@@ -77,14 +81,14 @@ public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
         PopupClient(Loc.GetString("access-clothing-blocker-notify-unauthorized-access"), uid);
     }
 
-    protected override bool HasJobAccess(EntityUid wearer, IdClothingBlockerComponent component)
+    protected override bool HasAccess(EntityUid wearer, IdClothingBlockerComponent component)
     {
-        if (component.AllowedJobs == null)
+        if (component.AllowedAccesses == null)
             return true;
         
         _card.TryFindIdCard(wearer, out var card);
         TryComp<AccessComponent>(card.Owner, out var access);
-        return access != null && access.Tags.Overlaps(component.AllowedJobs);
+        return access != null && access.Tags.Overlaps(component.AllowedAccesses);
     }
 
     // We assume access might have changed when a hand or inventory is equipped or unequipped
@@ -122,7 +126,7 @@ public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
             if (!TryComp<IdClothingBlockerComponent>(clothing, out var blocker))
                 continue;
 
-            var hasAccess = HasJobAccess(wearer, blocker);
+            var hasAccess = HasAccess(wearer, blocker);
             SetBlocked(clothing.Value, blocker, !hasAccess);
         }
     }

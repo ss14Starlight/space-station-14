@@ -13,6 +13,9 @@
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
   - MechEquipmentKineticAccelerator
+  - FiringPinExpedition # Starlight
+  technologyPrerequisites:
+  - SalvageEquipment # starlight
   radioChannels:
   - Supply
   # These are roundstart but not replenishable for salvage
@@ -38,7 +41,7 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxRifleIncendiary
-  - LightRifleHeavyMagazineIncendiary
+  - MagazineDMRIncendiary # Starlight
   - MagazinePistolSubMachineGunIncendiary
   - SpeedLoaderShotgunIncendiary
   radioChannels:
@@ -55,6 +58,7 @@
   cost: 7500
   recipeUnlocks:
   - WeaponLaserCarbine
+  - FiringPinLaser # Starlight
   - WeaponMechCombatFiredartLaser
   radioChannels:
   - Security
@@ -107,7 +111,7 @@
   - MagazineBoxLightRifleUranium
   - MagazineBoxRifleUranium
   - BoxShotgunUranium
-  - LightRifleHeavyMagazineUranium
+  - MagazineDMRUranium # Starlight
   - MagazinePistolSubMachineGunUranium
   - SpeedLoaderShotgunUranium
   radioChannels:
@@ -198,7 +202,7 @@
   - WeaponMechCombatXray # 🌟Starlight-change🌟
   radioChannels:
   - Security
-  
+
 - type: technology
   id: KineticModifications
   name: research-technology-kinetic-modifications
@@ -212,6 +216,12 @@
   - PKAUpgradeDamage
   - PKAUpgradeRange
   - PKAUpgradeFireRate
+  # region starlight
+  technologyPrerequisites:
+  - SalvageWeapons
+  radioChannels:
+  - Supply
+  # end region
 
 - type: technology
   id: BasicShuttleArmament
@@ -221,19 +231,22 @@
     state: full
   discipline: Arsenal
   tier: 2
-  cost: 10500
+  cost: 8000 # Starlight
   recipeUnlocks:
   - PowerCageRechargerCircuitboard
   - PowerCageSmall
   - PowerCageMedium
+  - PowerCageHigh
   - MagazineGrenadeEmpty
   - GrenadeFlash
   - GrenadeBlast
+  - ShuttleGunFriendshipCircuitboard
+  - MagazineGrenadeEmpty
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
-  - ShuttleGunFriendshipCircuitboard
   technologyPrerequisites:
   - SalvageWeapons
+  - Shuttlecraft # starlight
   radioChannels:
   - Security
 
@@ -282,6 +295,7 @@
   - WeaponTemperatureGun
   radioChannels:
   - Security
+
 
 - type: technology
   id: AdvancedShuttleWeapon

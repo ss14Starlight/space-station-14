@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by wonderfulneworld (github), using Killer Tamashi's corpsman (https://github.com/ss14Starlight/space-station-14/commit/41ecc18a7590622ad1c8eff890c42965983bcd72), Yogstation's black pencil skirt (https://github.com/yogstation13/Yogstation), and tg station's (https://github.com/tgstation/tgstation) nurse suit as reference, with the inhand sprites using the ones made by chuiomoio (discord) for pencil skirt/nurse suit as reference",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "equipped-INNERCLOTHING",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    }
+  ]
+}

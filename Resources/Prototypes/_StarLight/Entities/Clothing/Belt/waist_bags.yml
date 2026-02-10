@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltStorageWaistbagScience
+  name: science waist bag
+  description: A purple waist bag meant for carrying the tools of the luscious.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/waistbag_science.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/waistbag_science.rsi
+  - type: Storage
+    grid:
+    - 0,0,5,1

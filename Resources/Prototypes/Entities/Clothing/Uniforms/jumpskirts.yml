@@ -86,7 +86,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtChaplain
-  name: chaplain's jumpskirt
+  name: chaplain jumpskirt # Starlight: chaplain's -> chaplain
   description: It's a black jumpskirt, often worn by religious folk.
   components:
     - type: Sprite
@@ -689,6 +689,8 @@
       sprite: Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
     - type: Clothing
       sprite: Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
+    - type: ZombificationResistance # Starlight
+      zombificationResistanceCoefficient: 0.95 # Starlight
 
 - type: entity
   parent: ClothingUniformSkirtBase

@@ -80,6 +80,22 @@
     - toolbox
     - uboa
     - ussp #SL revs
+    - bee #SL
+    - borgsrogue #SL
+    - crab #SL
+    - lies #SL
+    - skullsketch #SL
+    - yip #SL
+    - aurum #SL
+    - devil #SL
+    - gray #SL
+    - heartarrow #SL
+    - marsfall #SL
+    - syndikat #SL
+    - tspd #SL
+    - usspsketch #SL
+    - xenoborg #SL
+    - youaredead #SL
     radius: 0.5
     randomRotation: true
     maxDecals: 1

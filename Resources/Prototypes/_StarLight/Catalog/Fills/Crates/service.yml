@@ -1,0 +1,10 @@
+- type: entity
+  id: CrateServiceHydraRefill
+  parent: CratePlastic
+  name: hydra refill crate
+  description: Contains two refills for the Hydra cleanade launcher.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineGrenadeCleanade
+        amount: 2

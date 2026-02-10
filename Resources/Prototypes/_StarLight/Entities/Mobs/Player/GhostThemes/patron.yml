@@ -7,7 +7,9 @@
       sprite: _Starlight/Mobs/Customization/GhostThemes/angel.rsi
       state: angel
     color: "#ffffff"
-  requirement: PatronReq
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: PatronReq
 
 - type: ghostTheme
   id: ShadowDemon
@@ -18,7 +20,9 @@
       sprite: _Starlight/Mobs/Customization/GhostThemes/shadow_demon.rsi
       state: shadow_demon
     color: "#ffffff"
-  requirement: PatronReq
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: PatronReq
 
 - type: ghostTheme
   id: WizdenCarp
@@ -30,5 +34,6 @@
       sprite: Mobs/Aliens/Carps/space.rsi
       state: alive
     color: "#ffffff"
-  requirement: WizdenPatronReq
-  
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: WizdenPatronReq

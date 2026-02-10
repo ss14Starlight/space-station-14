@@ -11,6 +11,10 @@
       blacklist:
       - Abductor
       - Skeleton
+      - Terminator
+    - !type:SubjectMindAntagCondition
+      blacklist:
+      - Brighteye
       
 # Example(Smokeable) Prototype
 

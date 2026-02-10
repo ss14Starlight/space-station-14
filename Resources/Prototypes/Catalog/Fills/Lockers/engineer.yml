@@ -157,6 +157,7 @@
     - id: MedkitOxygenFilled
     - id: HolofanProjector
     - id: RCD
+    - id: RPD # Starlight: RPD
     - id: RCDAmmo
     - id: AirGrenade
     - id: trayScanner # Starlight: Add t-ray scanner to atmos lockers
@@ -231,11 +232,12 @@
   table: !type:AllSelector
     children:
     - id: ClothingOuterSuitRad
-      amount: !type:ConstantNumberSelector
-        value: 2
+      amount: 2
     - id: GeigerCounter
-      amount: !type:ConstantNumberSelector
-        value: 2
+      amount: 2
+    - id: RadiationBlockingProjector # Far Horizons
+    - id: PillCanisterPotassiumIodide # Far Horizons
+      prob: 0.75
 
 - type: entity
   parent: LockerEvacRepair

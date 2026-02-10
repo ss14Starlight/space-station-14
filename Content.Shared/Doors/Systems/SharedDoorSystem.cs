@@ -123,7 +123,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
         if (!TryComp<AirlockComponent>(uid, out var airlock))
             return;
 
-        if (!airlock.Powered) //starlight change
+        if (!airlock.Powered)
             return;
 
         if (door.State != DoorState.Closed)
@@ -234,11 +234,19 @@ public abstract partial class SharedDoorSystem : EntitySystem
         if (door.State == DoorState.Closed)
         {
             _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.User)} pried {ToPrettyString(uid)} open");
+            // Starlight-start
+            var userEv = new UserPriedDoorEvent(uid, true);
+            RaiseLocalEvent(args.User, ref userEv);
+            // Starlight-end
             StartOpening(uid, door, args.User, true);
         }
         else if (door.State == DoorState.Open)
         {
             _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.User)} pried {ToPrettyString(uid)} closed");
+            // Starlight-start
+            var userEv = new UserPriedDoorEvent(uid, false);
+            RaiseLocalEvent(args.User, ref userEv);
+            // Starlight-end
             StartClosing(uid, door, args.User, true);
         }
     }
@@ -371,7 +379,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
             Audio.PlayPvs(door.OpenSound, uid, AudioParams.Default.WithVolume(-5));
 
         if (lastState == DoorState.Emagging && TryComp<DoorBoltComponent>(uid, out var doorBoltComponent))
-            SetBoltsDown((uid, doorBoltComponent), !doorBoltComponent.BoltsDown, user, true);
+            SetBoltsDown((uid, doorBoltComponent), true, user, true);
     }
 
     /// <summary>

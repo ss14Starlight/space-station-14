@@ -9,6 +9,10 @@
     state: icon_alt
   - type: Clothing
     equippedPrefix: alt
+  #Starlight begin
+  - type: Tag
+    tags: [ XenomoproachWearable ]
+  #Starlight end
 
 - type: entity
   parent: ClothingHeadsetAlt
@@ -46,6 +50,8 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/captain.ogg
+  - type: StealTarget # Starlight
+    stealGroup: ClothingHeadsetAltCommand # Starlight
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]

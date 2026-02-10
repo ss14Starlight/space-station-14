@@ -93,9 +93,9 @@
     job: IAA
 
 - type: entity
-  parent: [ IDCardStandard, BaseCommandContraband ]
+  parent: [ IDCardStandard, BaseBlueShieldContraband ]
   id: BlueShieldIDCard
-  name: blueshield officer's ID card
+  name: blue shield ID card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -132,7 +132,7 @@
       offset: *icon-offset
       state: NTNCBlueShield
   - type: PresetIdCard
-    job: NTNCBlueshield
+    job: NTNCBlueShield
 
 - type: entity
   parent: [ IDCardStandard, BaseCargoContraband ]
@@ -179,7 +179,7 @@
 - type: entity
   parent: [ IDCardStandard, BaseCargoContraband ]
   id: MailTechIDCard
-  name: mailtech ID card
+  name: mail technician ID card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -198,6 +198,27 @@
     job: MailTech
 
 - type: entity
+  parent: [ IDCardStandard, BaseSecurityContraband ]
+  id: DutyOfficerIDCard
+  name: duty officer ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - sprite: *id-rsi
+      state: stripe_top
+      color: &color-security-top "#cb0000"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: &color-security-bottom "#830000"
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: DutyOfficer
+  - type: PresetIdCard
+    job: DutyOfficer
+
+- type: entity
   parent: IDCardStandard
   id: SovietIdCard
   name: soviet id card
@@ -206,6 +227,8 @@
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers: 
     - state: sovietid
+  - type: IdCard
+    jobIcon: JobIconSoviet
 
 - type: entity
   parent: [ IDCardStandard, BaseSyndicateContraband ]
@@ -348,6 +371,66 @@
     job: Decimus
 
 - type: entity
+  parent: [IDCardStandard, BaseTSFContraband]
+  id: TSFIdCard
+  name: TSF ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers: 
+    - state: tsf
+  - type: IdCard
+    jobIcon: JobIconTSF
+
+- type: entity
+  parent: TSFIdCard
+  id: TSFIdCardTrader
+  name: TSF Trader ID card
+  components:
+  - type: IdCard
+    jobTitle: job-title-tsf-trader
+
+- type: entity
+  parent: [IDCardStandard, BaseTSFContraband]
+  id: TSFIdCardMarine
+  name: dog tags
+  suffix: TSF
+  description: A marine dog tags.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Misc/dogtags.rsi
+    layers: 
+    - state: icon
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _Starlight/Clothing/Neck/Misc/dogtags.rsi
+  - type: IdCard
+    jobTitle: job-title-tsf-marine
+    jobIcon: JobIconTSF
+  - type: Access
+    groups:
+    - AllAccess
+
+- type: entity
+  parent: TSFIdCardMarine
+  id: TSFIdCardLeader
+  suffix: TSF
+  name: team leader dog tags
+  components:
+  - type: IdCard
+    jobTitle: job-title-tsf-marine-leader
+
+- type: entity
+  parent: TSFIdCardMarine
+  id: TSFIdCardElite
+  name: MARSOC dog tags
+  suffix: TSF
+  components:
+  - type: IdCard
+    jobTitle: job-title-tsf-MARSOC
+
+- type: entity
   parent: IDCardStandard
   id: CluwneBeastIDCard
   name: cluwne ID card
@@ -361,3 +444,53 @@
       state: Cluwne
   - type: IdCard
     jobTitle: job-title-cluwne
+
+- type: entity
+  parent: [ IDCardStandard, BaseCommandContraband ]
+  id: NanotrasenCareerTrainerIDCard
+  name: Nanotrasen Career Trainer ID Card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - sprite: *id-rsi
+      state: default
+    - sprite: *id-rsi
+      state: stripe_top
+      color: "#A91169"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: "#630232"
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: NanotrasenCareerTrainer
+  - type: PresetIdCard
+    job: NanotrasenCareerTrainer
+
+- type: entity
+  id: nctdatachip
+  parent: [Clothing, BaseCommandContraband]
+  name: NCT Trainee Access Chip
+  description: A small electronic access token that allows its user to copy the access of their Trainee. Only accessible by NT Career Trainers!
+  components:
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+    sprite: Objects/Misc/id_cards.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/nctdatachip.rsi
+    layers:
+    - state: base
+    - state: enabled
+      shader: unshaded
+      visible: false
+  - type: Item
+    size: Small
+    heldPrefix: default
+    storedRotation: -90
+  - type: Access
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: NCTDataChip

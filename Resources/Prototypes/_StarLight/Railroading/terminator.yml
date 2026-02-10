@@ -1,0 +1,24 @@
+- type: entity
+  id: RRCardTerminate
+  parent: CrewCondition
+  components:
+  - type: RailroadCard
+    title: rr-terminate
+    icon: ""
+    iconColor: "#500f0f"
+    color: "#6c15ae"
+    image: /Textures/_Starlight/Railroading/terminate.png
+    description: rr-terminate-desc
+  - type: RailroadMessageOnChosen
+    messages:
+    - message: rr-terminate-message
+      wrapped: rr-terminate-wrapped-message
+      color: "#fa2626"
+  - type: RailroadTerminatorOnChosen
+  - type: RailroadTimerTask
+    duration: 1800
+  - type: RailroadSurviveTask
+  - type: RailroadDonationReward
+    amount: # 30 min survival, against a very strong enemy
+      min: 400
+      max: 600

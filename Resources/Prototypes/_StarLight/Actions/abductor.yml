@@ -35,7 +35,7 @@
     range: -1
   - type: WorldTargetAction
     event: !type:SendYourselfEvent
-    
+
 - type: entity
   id: ActionGizmoMark
   name: Mark

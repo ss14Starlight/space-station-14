@@ -11,9 +11,14 @@
     ChemBag: 2
     HandLabeler: 3
     ClothingBeltMedical: 2
+    ClothingHeadHatBeretChemist: 2 # Starlight
+    ClothingHeadNurseHatChemist: 2 # Starlight
     ClothingHandsGlovesLatex: 2
     ClothingHeadsetMedical: 2
     ClothingOuterWinterChem: 2
+    ClothingShoesBootsWinterChem: 2 # Starlight
     ClothingEyesGlassesChemical: 2
+    ClothingEyeGlassesChemicalPrescription: 2 # Starlight
   contrabandInventory:
     ToyFigurineChemist: 1
+

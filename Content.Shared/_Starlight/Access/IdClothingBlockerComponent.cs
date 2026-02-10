@@ -11,9 +11,12 @@ public sealed partial class IdClothingBlockerComponent : Component
     [DataField("isBlocked")] [AutoNetworkedField]
     public bool IsBlocked = false;
 
-    [DataField("allowedJobs")]
-    public List<ProtoId<AccessLevelPrototype>>? AllowedJobs = new();
+    [DataField("allowedAccesses")]
+    public List<ProtoId<AccessLevelPrototype>>? AllowedAccesses = new();
 
     [DataField("beepSound")]
     public SoundSpecifier BeepSound = new SoundPathSpecifier("/Audio/Effects/beep1.ogg");
+
+    [DataField]
+    public bool FreezeUser = true;
 } 

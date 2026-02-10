@@ -125,7 +125,7 @@
 
 - type: entity
   name: ARG
-  parent: [ BaseWeaponRifle, BaseSecurityContraband ]
+  parent: [ BaseWeaponRifle, BaseTSFContraband ]
   id: WeaponRifleARG
   description: An old galactic standard assault rifle, used by various paramilitary groups and former SVS militias ever since. Uses .30 rifle ammo.
   components:
@@ -170,17 +170,16 @@
     containers:
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container
   - type: Appearance
   - type: MagazineVisuals
     magState: mag
     steps: 1
     zeroVisible: true
-  - type: Contraband
-    allowedDepartments: [ Security ]
 
 - type: entity
   name: Aussec Armory M-52
-  parent: [WeaponRifleLecter, BaseSecurityContraband]
+  parent: [WeaponRifleLecter, BaseTSFContraband]
   id: WeaponRifleM52
   description: One of the least popular examples of heavy assault rifles. It has impressive firepower.
   components:
@@ -266,6 +265,7 @@
     containers:
       gun_magazine: !type:ContainerSlot ""
       gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -275,6 +275,67 @@
   - type: EyeCursorOffset
     maxOffset: 1.5
     pvsIncrease: 0.15
+
+- type: entity
+  name: L10 DMR
+  parent: [ BaseWeaponRifle, BaseSecurityContraband ]
+  id: WeaponRifleL10
+  description: "A scoped marksman rifle for medium range engagements, built on the Lecter platform.\nChambered in .30 rifle."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/L10.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/L10.rsi
+  - type: Gun
+    fireRate: 4.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDMRSP
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineL10DMR
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleSP
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot ""
+      gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Appearance
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2.5
+    pvsIncrease: 0.25
+
 
 - type: entity
   name: Pitbull

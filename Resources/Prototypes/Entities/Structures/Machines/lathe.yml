@@ -137,6 +137,7 @@
     - StarlightAutolatheLootable
   - type: EmagLatheRecipes
     emagStaticPacks:
+    - StarlightSyndicateAmmoStatic
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
     - StarlightSecurityAmmoEmagStatic # Starlight end
@@ -196,8 +197,11 @@
     unlitIdleState: unlit
     unlitRunningState: unlit-building
     staticPacks:
+    - NullSpaceDrainer # Starlight
+    - ScienceBlueSpaceStatic # Starlight
     - ChemistryStatic
     dynamicPacks:
+    - ScienceBlueSpace # Starlight
     - AdvancedTools
     - ScienceEquipment
     - ScienceExplosives
@@ -212,6 +216,7 @@
     - Instruments
     - Equipment
     - StarlightProtolatheLootable # Starlight start
+    - StarlightScienceWeapons
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -226,7 +231,8 @@
     - StarlightDefenseStatic
     emagStaticPacks:
     - StarlightSecurityEmagWeaponsStatic
-    - StarlightSecurityAmmoStatic # Starlight end
+    - StarlightSecurityAmmoStatic
+    - StarlightSyndicateAmmoStatic # Starlight end
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -270,6 +276,8 @@
     - EngineeringBoardsStatic
     - StarlightVendorBoards # Starlight
     dynamicPacks:
+    - SecurityScienceBlueSpace # Starlight
+    - StarlightShuttleBoards # Starlight
     - EngineeringBoards
     - CargoBoards
     - MedicalBoards
@@ -281,6 +289,7 @@
     - StarlightMechBoards
     - StarlightLawboards
     - StarlightCircuitImprinterLootable
+    - ReactorCircuitboards # FH edit
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
@@ -424,14 +433,17 @@
     runningState: icon
     staticPacks:
     - SecurityEquipmentStatic # Starlight start
+    - NullSpaceDrainer
     - SecurityPracticeStatic
     - StarlightSecurityAmmoStatic
-    - StarlightSecurityAmmoEmagStatic
     - SecurityWeaponsStatic # Starlight end
     dynamicPacks:
+    - SecurityScienceBlueSpace # Stalright
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
-    - StarlightDefenseStatic
+    - SecurityDisablers
+    - StarlightDefenseStatic # starlight start
+    - SecurityCyberLimbs
     - StarlightSecurityEquipment
     - StarlightSecurityBoards
     - StarlightSecurityExplosives
@@ -439,12 +451,16 @@
     - StarlightSecurityWeapons
     - SecurityDisablers
     - SecurityCyberLimbs
+    - SecurityImplants # 🌟Starlight🌟
     - StarlightSecurityMechsWeapons
     - StarlightSecurityTechFabLootable
   #region Starlight secfab emagging
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateModulesSecfab
+    - StarlightSyndicateAmmoStatic
+    - StarlightSecurityAmmoEmagStatic
+    - StarlightSecurityGrenadesEmag
   #endregion Starlight secfab emagging
     - SyndicateAmmoStatic
   - type: MaterialStorage
@@ -480,6 +496,7 @@
       #- SecurityAmmoStatic # SL - disable in favor of previous line
     - type: EmagLatheRecipes
       emagStaticPacks:
+      - StarlightSyndicateAmmoStatic # Starlight
       - SyndicateAmmoStatic
     - type: MaterialStorage
       whitelist: *StandardMaterialWhitelist
@@ -515,8 +532,10 @@
     - MedicalClothingStatic
     - EmptyMedkitsStatic
     - StarlightMedicalStatic # Starlight
+    - AACTabletStatic # Moffstation - AAC tablet
     dynamicPacks:
     - StarlightSurgeryDynamic
+    - StarlightAutomendersDynamic # Starlight-edit
     - StarlightCyberlimbDynamic
     - StarlightCyberOrgansDynamic
     - StarlightImplantDynamic
@@ -674,7 +693,7 @@
           variation: 0.250
     - type: AltUseToggle
     - type: ComponentToggler
-      components: 
+      components:
       - type: MagnetPickup
         range: 3
         requiresEquipping: false

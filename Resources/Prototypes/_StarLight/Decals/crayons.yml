@@ -67,3 +67,103 @@
   sprite:
     sprite: _Starlight/Decals/marks.rsi
     state: yip
+
+- type: decal
+  id: aurum
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: aurum
+
+- type: decal
+  id: devil
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: devil
+
+- type: decal
+  id: gray
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: gray
+
+- type: decal
+  id: heartarrow
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: heart_arrow
+
+- type: decal
+  id: marsfall
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: marsfall
+
+- type: decal
+  id: syndikat
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: syndikat
+
+- type: decal
+  id: tspd
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: TSPD
+
+- type: decal
+  id: usspsketch
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: USSPsketch
+
+- type: decal
+  id: xenoborg
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: xenoborg
+
+- type: decal
+  id: youaredead
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: you_are_dead

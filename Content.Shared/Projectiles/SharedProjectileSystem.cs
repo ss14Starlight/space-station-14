@@ -14,8 +14,8 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization;
-using Robust.Shared.Utility;
-
+using Content.Shared.Tag; // Starlight
+using Robust.Shared.Timing; // Starlight
 namespace Content.Shared.Projectiles;
 
 public abstract partial class SharedProjectileSystem : EntitySystem
@@ -28,6 +28,8 @@ public abstract partial class SharedProjectileSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!; //Starlight -- arming time
+    [Dependency] private readonly TagSystem _tag = default!; //Starlight -- arming time
 
     public override void Initialize()
     {
@@ -101,6 +103,23 @@ public abstract partial class SharedProjectileSystem : EntitySystem
 
     private void EmbedAttach(EntityUid uid, EntityUid target, EntityUid? user, EmbeddableProjectileComponent component)
     {
+        // Starlight start
+        // Embedding can be triggered more than once leading to fail "SpawnAndDeleteAllEntitiesInTheSameSpot" test
+        if (component.EmbeddedIntoUid != null)
+        {
+            if (component.EmbeddedIntoUid == target && TryComp<EmbeddedContainerComponent>(target, out var existingContainer))
+            {
+                if (!existingContainer.EmbeddedObjects.Contains(uid))
+                {
+                    existingContainer.EmbeddedObjects.Add(uid);
+                    Dirty(target, existingContainer);
+                }
+            }
+
+            return;
+        }
+        // Starlight end
+        
         TryComp<PhysicsComponent>(uid, out var physics);
         _physics.SetLinearVelocity(uid, Vector2.Zero, body: physics);
         _physics.SetBodyType(uid, BodyType.Static, body: physics);
@@ -122,12 +141,12 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         Dirty(uid, component);
 
         EnsureComp<EmbeddedContainerComponent>(target, out var embeddedContainer);
+        // Startlight start
+        if (!embeddedContainer.EmbeddedObjects.Contains(uid))
+            embeddedContainer.EmbeddedObjects.Add(uid);
 
-        //Assert that this entity not embed
-        //STARLIGHT COMMENT: This randomly is not true, and will cause a test fail. TODO: Figure out repro steps and fix
-        DebugTools.AssertEqual(embeddedContainer.EmbeddedObjects.Contains(uid), false);
-
-        embeddedContainer.EmbeddedObjects.Add(uid);
+        Dirty(target, embeddedContainer);
+        // Starlight end
     }
 
     public void EmbedDetach(EntityUid uid, EmbeddableProjectileComponent? component, EntityUid? user = null)
@@ -137,6 +156,8 @@ public abstract partial class SharedProjectileSystem : EntitySystem
 
         if (component.EmbeddedIntoUid == null)
             return; // the entity is not embedded, so do nothing
+
+        var embeddedInto = component.EmbeddedIntoUid;
 
         if (TryComp<EmbeddedContainerComponent>(component.EmbeddedIntoUid.Value, out var embeddedContainer))
         {
@@ -176,6 +197,9 @@ public abstract partial class SharedProjectileSystem : EntitySystem
             Dirty(uid, projectile);
         }
 
+        var ev = new EmbedDetachEvent(user, embeddedInto.Value);
+        RaiseLocalEvent(uid, ref ev);
+
         if (user != null)
         {
             // Land it just coz uhhh yeah
@@ -204,7 +228,8 @@ public abstract partial class SharedProjectileSystem : EntitySystem
 
     private void PreventCollision(EntityUid uid, ProjectileComponent component, ref PreventCollideEvent args)
     {
-        if (component.IgnoreShooter && (args.OtherEntity == component.Shooter || args.OtherEntity == component.Weapon))
+        if ((component.IgnoreShooter && (args.OtherEntity == component.Shooter || args.OtherEntity == component.Weapon)) //Starlight edit
+        || (!component.Armed && !_tag.HasAnyTag(args.OtherEntity, component.NotArmedCollideWith))) //Starlight
         {
             args.Cancelled = true;
         }
@@ -224,6 +249,33 @@ public abstract partial class SharedProjectileSystem : EntitySystem
     {
         public override DoAfterEvent Clone() => this;
     }
+
+    //Starlight Start
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        // Analogous to how SharedTimedDespawnSystem does this
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
+        var query = EntityQueryEnumerator<ProjectileComponent>();
+
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if(comp.Armed) //No need to arm twice
+                continue;
+            
+            comp.ArmingTime -= frameTime;
+
+            if(comp.ArmingTime <= 0)
+            {
+                comp.Armed = true;
+                Dirty(uid, comp);
+            }
+        }
+    }
+    //Starlight End
 }
 
 [Serializable, NetSerializable]

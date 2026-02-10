@@ -7,5 +7,5 @@
 public sealed partial class NukeOpsShuttleComponent : Component
 {
     [DataField]
-    public EntityUid AssociatedRule;
+    public EntityUid? AssociatedRule; // Starlight - make nullable to fix issues around serialization of prototypes that can add this
 }

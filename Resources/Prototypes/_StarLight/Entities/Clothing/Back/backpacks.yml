@@ -6,12 +6,30 @@
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Backpacks/roboticist.rsi
-    
+
 - type: entity
-  parent: [ClothingBackpack, BaseCommandContraband]
+  parent: ClothingBackpack
+  id: ClothingBackpackCargoSenior
+  name: senior courier backpack
+  description: A robust backpack for those who know the station's map by heart.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Backpacks/cargosenior.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackChemistrySenior
+  name: senior chemistry backpack
+  description: A specially designed backpack that will never be stained, no matter what liquids are spilled on it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Backpacks/chemistrysenior.rsi
+
+- type: entity
+  parent: [ClothingBackpack, BaseBlueShieldContraband]
   id: ClothingBackpackBlueShield
-  name: blueshields backpack
-  description: A lightweight but reliable backpack. Cant go wrong with the classics!
+  name: blue shield backpack
+  description: A lightweight but reliable backpack. Can't go wrong with the classics!
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Backpacks/blueshield.rsi
@@ -26,3 +44,8 @@
     damageCoefficient: 0.1
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Backpacks/ntnc_bag.rsi
+
+- type: entity
+  parent: [BaseTSFContraband, ClothingBackpackBlueShield]
+  id: ClothingBackpackTSF
+  name: federation backpack

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation",
+  "copyright": "Mechwright tools taken from tgstation, other tools by Maitake",
   "size": {
     "x": 32,
     "y": 32
@@ -14,7 +14,8 @@
           0.3,
           0.3
         ]
-      ]
+      ],
+      "copyright": "taken from tgstation"
     },
     {
       "name": "cutters",
@@ -24,7 +25,8 @@
           0.4,
           0.2
         ]
-      ]
+      ],
+      "copyright": "taken from tgstation"
     },
     {
       "name": "indwelder",
@@ -34,7 +36,20 @@
           0.3,
           0.3
         ]
-      ]
+      ],
+      "copyright": "taken from tgstation"
+    },
+    {
+      "name": "expwelder",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Modified from indwelder by Citrea"
     },
     {
       "name": "indwelder-on",
@@ -43,7 +58,8 @@
           0.2,
           0.2
         ]
-      ]
+      ],
+      "copyright": "taken from tgstation"
     },
     {
       "name": "screwdriver",
@@ -53,7 +69,8 @@
           0.3,
           0.3
         ]
-      ]
+      ],
+      "copyright": "taken from tgstation"
     },
     {
       "name": "wrench",
@@ -63,7 +80,560 @@
           0.3,
           0.3
         ]
-      ]
+      ],
+      "copyright": "taken from tgstation"
+    },
+    {
+      "name": "protokineticaccelerator",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "grapplinghook",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "grapplinghook-loaded",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "grapplinghook-unloaded",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "crusherdagger",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "gorillagauntlet",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "chimphandcannon",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "mag-unshaded-1",
+      "copyright": "Citrea"
+    },
+    {
+      "name": "mag-unshaded-2",
+      "copyright": "Citrea"
+    },
+    {
+      "name": "anomalyscanner",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "autoinjector",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "jetinjector",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Modified from autoinjector"
+    },
+    {
+      "name": "autoinjector-fill-1",
+      "copyright": "Citrea"
+    },
+    {
+      "name": "defibrillator",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "defibrillator-ready"
+    },
+    {
+      "name": "zeusfist_off",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Reshaded from zeusfist_on"
+    },
+    {
+      "name": "zeusfist_on",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "stunfist_off",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Reshaded from stunfist_on"
+    },
+    {
+      "name": "stunfist_on",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "ripletclaw",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "ripletclaw-full",
+      "copyright": "Citrea"
+    },
+    {
+      "name": "jaws_pry",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Modified from jaws and ripletclaw by Citrea"
+    },
+    {
+      "name": "jaws_cutter",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Modified from jaws and ripletclaw by Citrea"
+    },
+    {
+      "name": "drill_bolt",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Modified from powerdrill and cyberwrench by Citrea"
+    },
+    {
+      "name": "drill_screw",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Modified from powerdrill and cyberwrench by Citrea"
+    },
+    {
+      "name": "rcd",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Modified from rcd and cyberwrench by Citrea"
+    },
+    {
+      "name": "handheldgrinder",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "handheldgrinder-empty",
+      "copyright": "None (this is an empty image)"
+    },
+    {
+      "name": "handheldgrinder-beaker-attached",
+      "copyright": "Maitake"
+    },
+    {
+      "name": "minihoe",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "spade",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "clippers",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "hatchet",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "scythe",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "dropper",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "dropper1",
+      "copyright": "Citrea"
+    },
+    {
+      "name": "spraybottle",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Maitake"
+    },
+    {
+      "name": "pen",
+      "delays": [
+        [
+          0.2,
+          0.2
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "printer",
+      "delays": [
+        [
+          0.1,
+          0.1
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "printer_printing",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "printer_inserting",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "multistamp",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "stamp",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "herakles",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Modified from gorillagauntlet, by Citrea"
+    },
+    {
+      "name": "holorestrainer",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "holorestrainer_powered",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "cyber_vial",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Modified from gorillagauntlet, by Citrea"
+    },
+    {
+      "name": "radcaster",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Modified from gorillagauntlet, by Citrea"
+    },
+    {
+      "name": "freeze_ray",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Modified from gorillagauntlet, by Citrea"
+    },
+    {
+      "name": "node_scanner",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Modified from gorillagauntlet and node scanner, by Citrea"
+    },
+    {
+      "name": "radcaster-mag-unshaded-0",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "radcaster-mag-unshaded-1",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "cabinet",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "cabinet_open",
+      "delays": [
+        [
+          0.3,
+          0.3
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "cyber_vial-1",
+      "copyright": "Citrea"
+    },
+    {
+      "name": "cyber_vial-2",
+      "copyright": "Citrea"
+    },
+    {
+      "name": "cyber_vial-3",
+      "copyright": "Citrea"
+    },
+    {
+      "name": "cyber_vial-4",
+      "copyright": "Citrea"
+    },
+    {
+      "name": "cyber_vial-5",
+      "copyright": "Citrea"
+    },
+    {
+      "name": "cyber_vial-6",
+      "copyright": "Citrea"
     }
   ]
 }

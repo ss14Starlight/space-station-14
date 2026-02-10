@@ -119,6 +119,10 @@
   id: SalvageMercenaryEquipment
   name: Scrapper
 
+- type: storeCategory
+  id: SalvageCybernetics
+  name: Cybernetics
+
 # mining
 - type: storeCategory
   id: MiningEquipment
@@ -157,3 +161,9 @@
 - type: storeCategory
   id: RevUplinkPointless
   name: Glory
+
+# Elf Cantrips
+
+- type: storeCategory
+  id: CantripsStandard
+  name: store-category-cantrips-standard

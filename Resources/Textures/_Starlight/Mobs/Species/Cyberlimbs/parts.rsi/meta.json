@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "https://github.com/GentleButter, *_silver_* by darkrell, bulwark by Killer Tamashi",
+  "copyright": "https://github.com/GentleButter, *_silver_* by darkrell, bulwark by Killer Tamashi - specialist limbs are dyed and modified from silver, bulwark, steel and legs by Citrea (someone make better ones?)",
   "size": {
     "x": 32,
     "y": 32
@@ -18,25 +18,7 @@
     },
     {
       "name": "l_arm",
-      "directions": 4,
-      "delays": [
-        [
-          0.3,
-          2.0
-        ],
-        [
-          0.3,
-          2.0
-        ],
-        [
-          0.3,
-          2.0
-        ],
-        [
-          0.3,
-          2.0
-        ]
-      ]
+      "directions": 4
     },
     {
       "name": "l_foot",
@@ -88,25 +70,7 @@
     },
     {
       "name": "r_arm",
-      "directions": 4,
-      "delays": [
-        [
-          0.3,
-          2.0
-        ],
-        [
-          0.3,
-          2.0
-        ],
-        [
-          0.3,
-          2.0
-        ],
-        [
-          0.3,
-          2.0
-        ]
-      ]
+      "directions": 4
     },
     {
       "name": "r_foot",
@@ -169,80 +133,546 @@
       "directions": 4
     },
     {
-      "name": "l_silver_arm_SURG",
-      "directions": 4
+      "name": "l_silver_hand",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
+    },
+    {
+      "name": "l_silver_hand_SURG",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
     },
     {
       "name": "r_silver_arm",
       "directions": 4
     },
     {
-      "name": "r_silver_arm_SURG",
-      "directions": 4
+      "name": "r_silver_hand",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
     },
     {
-      "name": "l_steel_arm",
-      "directions": 4
-    },
-    {
-      "name": "l_steel_arm_TOOLS",
-      "directions": 4
-    },
-    {
-      "name": "r_steel_arm",
-      "directions": 4
-    },
-    {
-      "name": "r_steel_arm_TOOLS",
-      "directions": 4
-    },
-    {
-      "name": "l_bulwark_arm",
-      "directions": 4
-    },
-    {
-      "name": "l_bulwark_arm_TOOLS",
-      "directions": 4
-    },
-    {
-      "name": "r_bulwark_arm",
-      "directions": 4
-    },
-    {
-      "name": "r_bulwark_arm_TOOLS",
-      "directions": 4
-    },
-    {
-      "name": "l_mantis_blade_arm",
-      "directions": 4
-    },
-    {
-      "name": "r_mantis_blade_arm",
-      "directions": 4
-    },
-    {
-      "name": "l_mantis_blade_arm_BLADE",
-      "directions": 4
-    },
-    {
-      "name": "r_mantis_blade_arm_BLADE",
-      "directions": 4
+      "name": "r_silver_hand_SURG",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
     },
     {
       "name": "l_ripper_arm",
       "directions": 4
     },
     {
-      "name": "l_ripper_arm_SURG",
-      "directions": 4
+      "name": "l_ripper_hand",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
+    },
+    {
+      "name": "l_ripper_hand_SURG",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
     },
     {
       "name": "r_ripper_arm",
       "directions": 4
     },
     {
-      "name": "r_ripper_arm_SURG",
+      "name": "r_ripper_hand",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
+    },
+    {
+      "name": "r_ripper_hand_SURG",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
+    },
+    {
+      "name": "l_steel_arm",
       "directions": 4
+    },
+    {
+      "name": "l_steel_hand",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
+    },
+    {
+      "name": "l_steel_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
+    },
+    {
+      "name": "r_steel_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_steel_hand",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
+    },
+    {
+      "name": "r_steel_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
+    },
+    {
+      "name": "l_bulwark_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_bulwark_hand",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
+    },
+    {
+      "name": "l_bulwark_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
+    },
+    {
+      "name": "r_bulwark_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_bulwark_hand",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
+    },
+    {
+      "name": "r_bulwark_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Based off the arm sprite, modified by Citrea"
+    },
+    {
+      "name": "l_mantis_blade_arm",
+      "directions": 4,
+      "copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf and later Citrea"
+    },
+    {
+      "name": "l_mantis_blade_hand",
+      "directions": 4,
+      "copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf and later Citrea"
+    },
+    {
+      "name": "l_mantis_blade_hand_BLADE",
+      "directions": 4,
+      "copyright": "Based off the arm sprite by https://github.com/GentleButter, modified by Citrea"
+    },
+    {
+      "name": "r_mantis_blade_arm",
+      "directions": 4,
+      "copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf and later Citrea"
+    },
+    {
+      "name": "r_mantis_blade_hand",
+      "directions": 4,
+      "copyright": "https://github.com/tgstation/tgstation/blob/8024397cc81c5f47f74cf4279e35728487d0a1a7/icons/mob/human_parts_greyscale.dmi and modified by DrSmugleaf and later Citrea"
+    },
+    {
+      "name": "r_mantis_blade_hand_BLADE",
+      "directions": 4,
+      "copyright": "Based off the arm sprite by https://github.com/GentleButter, modified by Citrea"
+    },
+    {
+      "name": "l_spacer_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_spacer_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_spacer_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_spacer_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_spacer_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_spacer_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_gorilla_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_gorilla_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_gorilla_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_gorilla_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_gorilla_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_gorilla_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_engineer_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_engineer_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_engineer_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_engineer_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_engineer_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_engineer_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_angel_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_angel_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_angel_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_angel_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_angel_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_angel_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_zeus_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_zeus_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_zeus_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_zeus_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_riplet_arm",
+      "directions": 4
+    },
+    {
+      "name": "l_riplet_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_riplet_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_riplet_arm",
+      "directions": 4
+    },
+    {
+      "name": "r_riplet_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_riplet_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_persephone_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_persephone_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_persephone_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_persephone_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_persephone_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_persephone_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_scribe_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_scribe_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_scribe_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_scribe_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_scribe_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_scribe_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_herakles_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_herakles_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_investigator_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_investigator_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_investigator_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_investigator_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_investigator_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_investigator_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_leg_hydraulic",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_leg_hydraulic",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_leg_pilebunker",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_leg_pilebunker",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_leg_cargo",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_leg_cargo",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ],
+      "copyright": "Citrea"
     }
   ]
 }

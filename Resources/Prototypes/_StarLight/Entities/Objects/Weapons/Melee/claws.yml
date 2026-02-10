@@ -1,0 +1,53 @@
+- type: entity
+  parent: BaseItem
+  id: BaseClaws
+  abstract: true
+  components:
+  - type: Sharp
+  - type: MeleeWeapon
+    mustBeEquippedToUse: true
+    wideAnimationRotation: 90
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcClaw
+    attackRate: 2
+    damage:
+      types:
+        Slash: 3
+  - type: Sprite
+    state: icon
+  - type: Item
+    size: Small
+  - type: Utensil
+    types:
+      - Knife
+  - type: Tool
+    qualities:
+    - Slicing
+  - type: Clothing
+    slots: [gloves]
+    equipSound:
+      collection: ClawsUnsheathe # Placeholder
+    unequipSound:
+      collection: ClawsSheathe # Placeholder
+
+- type: entity
+  name: advanced claws
+  parent: [ BaseClaws, BaseSecurityContraband ]
+  id: AdvancedClaws
+  description: Sharp, retractable plasteel claws, embedded in your hand.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/claws.rsi
+  - type: MeleeWeapon
+    mustBeEquippedToUse: true
+    altDisarm: true
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcClaw
+    attackRate: 2
+    damage:
+      types:
+        Slash: 8

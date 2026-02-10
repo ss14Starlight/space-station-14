@@ -1,0 +1,53 @@
+- type: entity
+  id: BodyBagLockable
+  parent: BodyBag
+  name: lockable body bag
+  description: A slightly tougher bag with an ID lock installed to prevent tampering, designed for the storage and transportation of cadavers to stop body decomposition.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/lockablebodybag.rsi
+    layers:
+    - state: bag
+      map: ["unfoldedLayer", "enum.StorageVisualLayers.Base"]
+    - state: bag_folded
+      map: ["foldedLayer"]
+      visible: false
+    - state: open_overlay
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: paper
+      map: ["enum.PaperLabelVisuals.Layer"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: Icon
+    sprite: _Starlight/Objects/Specific/Medical/lockablebodybag.rsi
+    state: bag
+  - type: Lock
+    lockOnClick: false
+    autoUnlock: false
+    autoLock: false 
+  - type: LockVisuals
+  - type: AccessReader
+    access: [["Medical"]]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Inflatable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 45
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+
+- type: entity
+  id: BodyBagLockableFolded
+  name: lockable body bag
+  description: A slightly tougher bag with an ID lock installed to prevent tampering, designed for the storage and transportation of cadavers to stop body decomposition.
+  parent: BodyBagLockable
+  suffix: folded
+  components:
+  - type: Foldable
+    folded: true

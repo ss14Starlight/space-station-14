@@ -247,6 +247,12 @@
       - id: MagazinePistolSubMachineGunImprovised
         launchAngle: 190
         prob: 1
+  - type: ContainerFill
+    containers:
+      firing_pin:
+      - FiringPinMakeshift
+  - type: FiringPinHolder
+    supportedPins: [ Makeshift, GunUpgrade ]
 
 - type: entity
   name: improvised SMG
@@ -329,3 +335,28 @@
   - type: Appearance
   - type: WeaponDismantleOnShoot
     dismantleChance: 0
+
+
+- type: entity
+  name: WT550r
+  parent: [WeaponSubMachineGunWt550, BaseGrandTheftContraband] # Starlight, grand theft
+  id: WeaponSubMachineGunWt550r
+  description: A special red-colored limited edition of the WT550, the WT550r.  Designed by Nanotrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from special top-mounted .35 magazines.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/SMGs/wt550r.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: base-unshaded
+        map: ["enum.GunVisualLayers.BaseUnshaded"]
+        shader: unshaded
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: mag-unshaded-0
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/SMGs/wt550r.rsi
+  - type: StealTarget
+    stealGroup: HOSWeapon # Proto5x and WT550r
