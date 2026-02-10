@@ -223,13 +223,17 @@
   id: CorpsmanIDCard
   name: corpsman ID card
   components:
-    - type: Sprite
-    - state: silver
-    - state: stripe_top
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - sprite: *id-rsi
+      state: stripe_top
       color: *color-security-top
-    - state: stripe_bottom
+    - sprite: *id-rsi
+      state: stripe_bottom
       color: *color-security-bottom
-    - sprite: *icon-rsi
+    - sprite: *starlight-icon-rsi
       offset: *icon-offset
       state: Corpsman
     - type: PresetIdCard

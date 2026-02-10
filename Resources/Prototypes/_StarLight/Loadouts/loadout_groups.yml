@@ -608,7 +608,18 @@
   loadouts:
     - ChemistHandLabeler
     - GoldenHandLabeler
-    
+
+# Security
+# Made into general security ties
+- type: loadoutGroup
+  id: SecurityTie
+  name: loadout-group-security-tie
+  minLimit: 0
+  loadouts:
+    - SecurityRedNeckTie
+    - SecurityDetNeckTie
+
+
 # Brigmedic
 - type: loadoutGroup
   id: BrigmedicMask
@@ -617,14 +628,6 @@
   loadouts:
     - BrigmedicBreathMaskMedicalSecurity
     - BrigmedicMaskGasSecurity
-
-- type: loadoutGroup
-  id: BrigmedicTie
-  name: loadout-group-brigmedic-tie
-  minLimit: 0
-  loadouts:
-    - BrigmedicRedNeckTie
-    - BrigmedicDetNeckTie
 
 - type: loadoutGroup
   id: BrigmedicPDA
@@ -695,8 +698,8 @@
   id: CorpsmanGloves
   name: loadout-group-corpsman-gloves
   loadouts:
-  - CorpsmanNitrile
   - BlackNitrile
+  - Nitrile
   - LatexGloves
 
 - type: loadoutGroup
@@ -707,14 +710,6 @@
     - CorpsmanBreathMaskMedicalSecurity
     - CorpsmanMaskGasCorpsman
     - CorpsmanMaskGasSecurity
-
-- type: loadoutGroup
-  id: CorpsmanTie
-  name: loadout-group-brigmedic-tie
-  minLimit: 0
-  loadouts:
-    - CorpsmanRedNeckTie
-    - CorpsmanDetNeckTie
 
 - type: loadoutGroup
   id: CorpsmanPDA

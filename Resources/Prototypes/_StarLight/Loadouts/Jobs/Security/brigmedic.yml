@@ -60,20 +60,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtOfLife
 
-# Ties
-- type: loadout
-  id: BrigmedicRedNeckTie
-  equipment:
-    neck: ClothingNeckTieRed
-
-- type: loadout
-  id: BrigmedicDetNeckTie
-  effects:
-    - !type:GroupLoadoutEffect
-        proto: MasterDet
-  equipment:
-    neck: ClothingNeckTieDet
-
 # Outer clothing
 - type: loadout
   id: BrigmedicLabCoat

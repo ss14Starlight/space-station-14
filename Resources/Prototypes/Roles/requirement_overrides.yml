@@ -145,6 +145,13 @@
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
       time: 5h
+    Corpsman:
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 3h
+    - !type:RoleTimeRequirement
+      role: JobMedicalDoctor
+      time: 1h
     SecurityCadet:
     - !type:OverallPlaytimeRequirement
       time: 30h

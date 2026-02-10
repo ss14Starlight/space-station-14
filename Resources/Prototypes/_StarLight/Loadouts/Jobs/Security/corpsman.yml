@@ -101,31 +101,6 @@
   equipment:
     belt: ClothingBeltCorpsmanFilled
 
-# Gloves
-- type: loadout
-  id: CorpsmanNitrile
-  equipment:
-    gloves: ClothingHandsGlovesNitrile
-
-- type: loadout
-  id: BlackNitrile
-  equipment:
-    gloves: ClothingHandsGlovesBlackNitrile
-
-# Ties
-- type: loadout
-  id: CorpsmanRedNeckTie
-  equipment:
-    neck: ClothingNeckTieRed
-
-- type: loadout
-  id: CorpsmanDetNeckTie
-  effects:
-    - !type:GroupLoadoutEffect
-        proto: MasterDet
-  equipment:
-    neck: ClothingNeckTieDet
-
 # Outerclothing
 - type: loadout
   id: CorpsmanCoat

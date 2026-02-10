@@ -141,7 +141,6 @@
   - BrigmedicHead
   - BrigmedicMask
   - BrigmedicJumpsuit
-  - BrigmedicTie
   - BrigmedicBackpack
   - BrigmedicOuterClothing
   - BrigmedicBelt
@@ -149,6 +148,7 @@
   - BrigmedicEyewear
   - BrigmedicPDA
   - BrigmedicBeaker
+  - SecurityTie
   - SecurityShoes
   - SecurityNonLethalWeapon
   - SecuritySidearm
@@ -166,13 +166,13 @@
   - CorpsmanHead
   - CorpsmanMask
   - CorpsmanJumpsuit
-  - CorpsmanTie
   - CorpsmanBackpack
   - CorpsmanOuterClothing
   - CorpsmanBelt
   - CorpsmanGloves
   - CorpsmanEyewear
   - CorpsmanPDA
+  - SecurityTie
   - SecurityShoes
   - SecurityNonLethalWeapon
   - SecuritySidearm
@@ -192,8 +192,9 @@
   - SecurityBackpack
   - SecurityEyewear
   - DutyOfficerOuterClothing
-  - SecurityShoes
   - DutyOfficerBelt
+  - SecurityTie
+  - SecurityShoes
   - SecurityNonLethalWeapon
   - SurvivalSecurity
   - Trinkets

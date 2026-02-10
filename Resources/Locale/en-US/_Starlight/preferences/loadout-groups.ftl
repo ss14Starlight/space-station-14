@@ -36,6 +36,7 @@ loadout-group-blueshield-neck = Blueshield Neck
 loadout-group-blueshield-id = Blueshield ID
 
 # Security
+loadout-group-security-tie = Security tie
 
 loadout-group-brigmedic-gloves = Brigmedic gloves
 loadout-group-security-non-lethal-weapon = Security Non-Lethal Weapon
@@ -44,7 +45,6 @@ loadout-group-detective-shoes = Detective shoes
 loadout-group-brigmedic-id = Brigmedic ID
 loadout-group-brigmedic-beaker = Brigmedic beaker
 loadout-group-brigmedic-mask = Brigmedic mask
-loadout-group-brigmedic-tie = Brigmedic tie
 
 loadout-group-dutyofficer-head = Duty officer head
 loadout-group-dutyofficer-jumpsuit = Duty officer jumpsuit
@@ -57,6 +57,9 @@ loadout-group-corpsman-backpack = Corpsman backpack
 loadout-group-corpsman-eyewear = Corpsman eyewear
 loadout-group-corpsman-belt = Corpsman belt
 loadout-group-corpsman-gloves = Corpsman gloves
+loadout-group-corpsman-id = Corpsman ID
+loadout-group-corpsman-mask = Corpsman mask
+loadout-group-corpsman-outerclothing = Corpsman outer clothing
 
 # Law
 loadout-group-magistrate-jumpsuit = Magistrate jumpsuit

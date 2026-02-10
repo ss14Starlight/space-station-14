@@ -253,9 +253,9 @@
   - security-sop-cadet
   - security-sop-securityofficer
   - security-sop-dutyofficer
-  - security-sop-detective
-  - security-sop-brigmedic
   - security-sop-corpsman
+  - security-sop-brigmedic
+  - security-sop-detective
   - security-sop-warden
   - security-sop-headofsecurity
   - security-sop-prisonertreatment
@@ -282,21 +282,21 @@
   priority: 3
 
 - type: guideEntry
-  id: security-sop-detective
-  name: guide-entry-sl-security-sop-detective
-  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/Detective.xml"
-  priority: 4
-
-- type: guideEntry
   id: security-sop-corpsman
   name: guide-entry-sl-security-sop-corpsman
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/Corpsman.xml"
-  priority: 5
+  priority: 4
 
 - type: guideEntry
   id: security-sop-brigmedic
   name: guide-entry-sl-security-sop-brigmedic
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/Brigmedic.xml"
+  priority: 5
+
+- type: guideEntry
+  id: security-sop-detective
+  name: guide-entry-sl-security-sop-detective
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/Detective.xml"
   priority: 6
 
 - type: guideEntry

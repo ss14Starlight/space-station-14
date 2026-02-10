@@ -10,7 +10,6 @@
     - !type:RoleTimeRequirement
       role: JobParamedic
       time: 14400 # 4 hrs
-  weight: 1
   startingGear: CorpsmanGear
   icon: "JobIconCorpsman"
   supervisors: job-supervisors-brigmedic
@@ -38,3 +37,10 @@
     - Flash
     - DefibrillatorCorpsman
     - EmergencyRollerBedSpawnFolded
+
+- type: chameleonOutfit
+  id: CorpsmanChameleonOutfit
+  job: Corpsman
+  equipment:
+    mask: ClothingMaskBreathMedicalSecurity
+    neck: ClothingNeckTieRed
