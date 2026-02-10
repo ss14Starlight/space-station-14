@@ -113,6 +113,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingEyesGlassesBrigmedic # Starlight
+    - id: ClothingEyesGlassesCorpsman # Starlight
     - id: ClothingOuterCoatCorpsman #Starlight
     - id: ClothingUniformJumpsuitCorpsman #Starlight
     - id: ClothingUniformJumpskirtCorpsman #Starlight
@@ -137,6 +138,7 @@
     - id: ClothingUniformJumpsuitOfLife # Starlight
       prob: 0.1 # Starlight
     - id: MedkitFilled
+    - id: PlasmaChemistryVial # Starlight
     - id: BedsheetBrigmedicStrange # Starlight
     - id: BedsheetBrigmedic # Starlight
     - !type:GroupSelector

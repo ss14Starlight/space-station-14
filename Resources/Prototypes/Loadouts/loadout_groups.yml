@@ -1444,8 +1444,8 @@
   loadouts:
   - BrigmedicBeret
   - BrigmedicNurseHat # Starlight
-  - CorpsmanBeret #Starlight
-  - CorpsmanNurseHat # Starlight
+#  - CorpsmanBeret #Starlight moved to Corpsman
+#  - CorpsmanNurseHat # Starlight
   - BrigmedicNurseHatOfLife # Starlight
   - SecurityHelmet
 
@@ -1455,10 +1455,8 @@
   loadouts:
   - JumpsuitBrigmedic
   - JumpskirtBrigmedic # Starlight line swap v
-  - JumpsuitCorpsman # Starlight line swap ^
-  - JumpskirtCorpsman #Starlight
-  - CorpsmanResponse # Starlight
-  - CorpsmanTrauma # Starlight
+#  - JumpsuitCorpsman # Starlight line swap ^, moved to Corpsman
+#  - JumpskirtCorpsman #Starlight moved to Corpsman
   - BrigmedicJumpsuitOfLife # Starlight
   - BrigmedicJumpskirtOfLife # Starlight
 
@@ -1479,8 +1477,6 @@
   loadouts:
   - BrigmedicCoat
   - BrigmedicLabCoat # Starlight
-  - CorpsmanCoat #Starlight
-  - CorpsmanLabCoat # Starlight
   - SecurityOfficerWintercoat
 
 - type: loadoutGroup
@@ -1498,7 +1494,6 @@
   loadouts:
   - BrigmedicRig
   - BrigmedicBelt #Starlight
-  - CorpsmanBelt #Starlight
 
 #Starlight Start
 - type: loadoutGroup

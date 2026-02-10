@@ -219,6 +219,23 @@
     job: DutyOfficer
 
 - type: entity
+  parent: [ IDCardStandard, BaseSecurityContraband ]
+  id: CorpsmanIDCard
+  name: corpsman ID card
+  components:
+    - type: Sprite
+    - state: silver
+    - state: stripe_top
+      color: *color-security-top
+    - state: stripe_bottom
+      color: *color-security-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Corpsman
+    - type: PresetIdCard
+      job: Corpsman
+
+- type: entity
   parent: IDCardStandard
   id: SovietIdCard
   name: soviet id card

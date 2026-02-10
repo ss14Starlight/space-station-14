@@ -123,6 +123,7 @@
   - Detective
   - Warden
   - DutyOfficer # Starlight
+  - Corpsman # Starlight
 
 - type: department
   id: Science

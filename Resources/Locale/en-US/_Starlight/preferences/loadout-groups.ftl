@@ -51,6 +51,12 @@ loadout-group-dutyofficer-jumpsuit = Duty officer jumpsuit
 loadout-group-dutyofficer-outerclothing = Duty officer outer clothing
 loadout-group-dutyofficer-belt = Duty officer belt
 
+loadout-group-corpsman-head = Corpsman head
+loadout-group-corpsman-jumpsuit = Corpsman jumpsuit
+loadout-group-corpsman-backpack = Corpsman backpack
+loadout-group-corpsman-eyewear = Corpsman eyewear
+loadout-group-corpsman-belt = Corpsman belt
+loadout-group-corpsman-gloves = Corpsman gloves
 
 # Law
 loadout-group-magistrate-jumpsuit = Magistrate jumpsuit

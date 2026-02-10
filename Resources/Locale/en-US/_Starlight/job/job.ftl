@@ -14,6 +14,7 @@ job-name-nct = Nanotrasen Career Trainer
 
 job-name-salvagelead = Salvage Lead
 job-name-dutyofficer = Duty Officer
+job-name-corpsman = Corpsman
 job-name-abductor = Abductor
 job-title-borgi = Borgi
 job-title-tsf-trader = TSF Trader

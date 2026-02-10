@@ -161,6 +161,30 @@
   - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
+  id: JobCorpsman
+  groups:
+  - CorpsmanHead
+  - CorpsmanMask
+  - CorpsmanJumpsuit
+  - CorpsmanTie
+  - CorpsmanBackpack
+  - CorpsmanOuterClothing
+  - CorpsmanBelt
+  - CorpsmanGloves
+  - CorpsmanEyewear
+  - CorpsmanPDA
+  - SecurityShoes
+  - SecurityNonLethalWeapon
+  - SecuritySidearm
+  - SurvivalSecurity
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - SecurityJobTrinkets
+  - GroupSpeciesBreathToolSecurity
+
+- type: roleLoadout
   id: JobDutyOfficer
   groups:
   - DutyOfficerHead

@@ -46,6 +46,24 @@
         Blunt: 4
         Shock: 7
 
+- type: entity
+  id: DefibrillatorCorpsman
+  parent: DefibrillatorBrigmedical
+  name: corpsman defibrillator
+  description: Hand-held device that can save lives, and act as a weapon in a pinch.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/defibcorp.rsi
+    layers:
+      - state: icon
+      - state: screen
+        map: [ "enum.ToggleableVisuals.Layer" ]
+        visible: false
+        shader: unshaded
+      - state: ready
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        shader: unshaded
+
 # I'd love to have made this inherit from the syndie defib but that one's powered.
 - type: entity
   id: DefibrillatorSyndicateOneHandedUnpowered

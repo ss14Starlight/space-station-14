@@ -25,14 +25,6 @@
     head: ClothingHeadNurseHatBrigmedic
 
 - type: loadout
-  id: CorpsmanNurseHat
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: VeteranBrigmedic
-  equipment:
-    head: ClothingHeadNurseHatCorpsman
-
-- type: loadout
   id: BrigmedicNurseHatOfLife
   effects:
   - !type:GroupLoadoutEffect
@@ -50,23 +42,6 @@
   id: BrigmedicMaskGasSecurity
   equipment:
     mask: ClothingMaskGasSecurity
-
-# Veteran Jumpsuits
-- type: loadout
-  id: CorpsmanResponse
-  effects:
-    - !type:GroupLoadoutEffect
-        proto: VeteranBrigmedic
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitCorpsmanResponse
-
-- type: loadout
-  id: CorpsmanTrauma
-  effects:
-    - !type:GroupLoadoutEffect
-        proto: VeteranBrigmedic
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtCorpsmanTrauma
 
 # Skilled Jumpsuits
 - type: loadout
@@ -105,14 +80,6 @@
   equipment:
     outerClothing: ClothingOuterCoatLabBrigmedic
 
-- type: loadout
-  id: CorpsmanLabCoat
-  effects:
-    - !type:GroupLoadoutEffect
-        proto: VeteranBrigmedic
-  equipment:
-    outerClothing: ClothingOuterCoatLabCorpsman
-
 # Eyewear
 - type: loadout
   id: BrigmedicEyePatchHud
@@ -134,28 +101,12 @@
     id: BrigmedicPDA
 
 - type: loadout
-  id: CorpsmanPDA
-  effects:
-    - !type:GroupLoadoutEffect
-        proto: SkilledBrigmedic
-  equipment:
-    id: CorpsmanPDA
-
-- type: loadout
   id: VeteranBrigmedicPDA
   effects:
     - !type:GroupLoadoutEffect
         proto: VeteranBrigmedic
   equipment:
     id: VeteranBrigmedicPDA
-
-- type: loadout
-  id: VeteranCorpsmanPDA
-  effects:
-    - !type:GroupLoadoutEffect
-        proto: VeteranBrigmedic
-  equipment:
-    id: VeteranCorpsmanPDA
 
 # Beaker
 - type: loadout

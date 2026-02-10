@@ -62,8 +62,10 @@
       entity_storage: !type:AllSelector
         children:
         - id: ClothingEyesGlassesBrigmedic
+        - id: ClothingEyesGlassesCorpsman
           amount: 2
         - id: ClothingEyesHudBrigmedic
+        - id: ClothingEyesHudCorpsman
           amount: 2
         - id: WeaponDisabler
           amount: 2
@@ -86,6 +88,7 @@
         - id: ClothingHandsGlovesBlackNitrile
         - id: ClothingShoesBootsMagSec
           amount: 2
+        - id: PlasmaChemistryVial
         - id: BedsheetBrigmedicStrange
         - id: BedsheetBrigmedic
         - id: MedkitFilled

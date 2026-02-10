@@ -1,0 +1,174 @@
+- type: loadoutEffectGroup
+  id: SkilledCorpsman
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCorpsman
+      time: 54000 # 15 hrs
+
+# Senior Time
+- type: loadoutEffectGroup
+  id: VeteranCorpsman
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCorpsman
+      time: 216000 # 60 hrs
+
+
+# Head
+- type: loadout
+  id: CorpsmanBeret
+  equipment:
+    head: ClothingHeadHatBeretCorpsman
+
+- type: loadout
+  id: CorpsmanNurseHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledCorpsman
+  equipment:
+    head: ClothingHeadNurseHatCorpsman
+
+# Masks
+- type: loadout
+  id: CorpsmanBreathMaskMedicalSecurity
+  equipment:
+    mask: ClothingMaskBreathMedicalSecurity
+
+- type: loadout
+  id: CorpsmanMaskGasCorpsman
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledCorpsman
+  equipment:
+    mask: ClothingMaskGasCorpsman
+
+- type: loadout
+  id: CorpsmanMaskGasSecurity
+  equipment:
+    mask: ClothingMaskGasSecurity
+
+# Jumpsuit
+- type: loadout
+  id: CorpsmanJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCorpsman
+
+- type: loadout
+  id: CorpsmanJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCorpsman
+
+# Veteran Jumpsuits
+- type: loadout
+  id: CorpsmanResponse
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranCorpsman
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCorpsmanResponse
+
+- type: loadout
+  id: CorpsmanTrauma
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranCorpsman
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCorpsmanTrauma
+
+# Back
+- type: loadout
+  id: CorpsmanBackpack
+  equipment:
+    back: ClothingBackpackCorpsman
+
+- type: loadout
+  id: CorpsmanSatchel
+  equipment:
+    back: ClothingBackpackSatchelCorpsman
+
+- type: loadout
+  id: CorpsmanDuffel
+  equipment:
+    back: ClothingBackpackDuffelCorpsman
+
+# Belt
+- type: loadout
+  id: CorpsmanBelt
+  equipment:
+    belt: ClothingBeltCorpsmanFilled
+
+# Gloves
+- type: loadout
+  id: CorpsmanNitrile
+  equipment:
+    gloves: ClothingHandsGlovesNitrile
+
+- type: loadout
+  id: BlackNitrile
+  equipment:
+    gloves: ClothingHandsGlovesBlackNitrile
+
+# Ties
+- type: loadout
+  id: CorpsmanRedNeckTie
+  equipment:
+    neck: ClothingNeckTieRed
+
+- type: loadout
+  id: CorpsmanDetNeckTie
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: MasterDet
+  equipment:
+    neck: ClothingNeckTieDet
+
+# Outerclothing
+- type: loadout
+  id: CorpsmanCoat
+  equipment:
+    outerClothing: ClothingOuterCoatCorpsman
+
+- type: loadout
+  id: CorpsmanLabCoat
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledCorpsman
+  equipment:
+    outerClothing: ClothingOuterCoatLabCorpsman
+
+# Eyewear
+- type: loadout
+  id: CorpsmanGlasses
+  equipment:
+    eyes: ClothingEyesGlassesCorpsman
+
+- type: loadout
+  id: CorpsmanHud
+  equipment:
+    eyes: ClothingEyesHudCorpsman
+
+- type: loadout
+  id: CorpsmanEyePatchHud
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledCorpsman
+  equipment:
+    eyes: ClothingEyesEyepatchHudCorpsman
+
+# PDA
+- type: loadout
+  id: CorpsmanPDA
+  equipment:
+    id: CorpsmanPDA
+
+- type: loadout
+  id: VeteranCorpsmanPDA
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranCorpsman
+  equipment:
+    id: VeteranCorpsmanPDA

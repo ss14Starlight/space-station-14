@@ -25,6 +25,7 @@
   - Brigmedic
   - Chemistry
   - Surgery # Starlight
+  - Paramedic # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

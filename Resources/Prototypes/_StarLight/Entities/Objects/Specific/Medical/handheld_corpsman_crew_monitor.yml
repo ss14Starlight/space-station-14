@@ -1,0 +1,24 @@
+- type: entity
+  name: CorpBuddy™ 6001
+  parent: HandheldBrigmedicCrewMonitor
+  id: HandheldCorpsmanCrewMonitor
+  description: The device advertises itself as a "new and improved brigbuddy™" but the only notable thing about it is the colors..
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/handheld_corpsman_crewmonitor.rsi
+    state: scanner
+  - type: StealTarget
+    stealGroup: CrewMonitorCollection
+
+- type: entity
+  id: HandheldCorpsmanCrewMonitorEmpty
+  parent: HandheldCorpsmanCrewMonitor
+  suffix: Empty
+  components:
+  - type: Tag
+    tags:
+      - BrigmedicBeltEquip
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default

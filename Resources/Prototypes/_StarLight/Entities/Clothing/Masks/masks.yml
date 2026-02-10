@@ -27,6 +27,36 @@
         Heat: 0.95
 
 - type: entity
+  parent: [ ClothingMaskGas, BaseSecurityContraband ]
+  id: ClothingMaskGasCorpsman
+  name: Biohazard Gas Mask
+  description: VERY Expensive medical PPE.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Mask/corpsmangas.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Mask/corpsmangas.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    hideOnToggle: true
+  - type: Pierceable
+    level: Metal
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+
+- type: entity
   parent: [ClothingMaskGas]
   id: ClothingMaskRoboticist
   name: roboticist gas mask

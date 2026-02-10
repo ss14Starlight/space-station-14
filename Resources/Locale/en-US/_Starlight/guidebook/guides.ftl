@@ -70,6 +70,7 @@ guide-entry-sl-security-sop-securityofficer = Security Officer
 guide-entry-sl-security-sop-dutyofficer = Duty Officer
 guide-entry-sl-security-sop-detective = Detective
 guide-entry-sl-security-sop-brigmedic = Brigmedic
+guide-entry-sl-security-sop-corpsman = Corpsman
 guide-entry-sl-security-sop-warden = Warden
 guide-entry-sl-security-sop-headofsecurity = Head of Security
 guide-entry-sl-security-sop-prisonertreatment = Prisoner Treatment

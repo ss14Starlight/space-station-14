@@ -1,0 +1,40 @@
+- type: job
+  id: Corpsman
+  name: job-name-corpsman
+  description: job-description-corpsman
+  playTimeTracker: JobCorpsman
+  requirements:
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 36000 # 10 hrs
+    - !type:RoleTimeRequirement
+      role: JobParamedic
+      time: 14400 # 4 hrs
+  weight: 1
+  startingGear: CorpsmanGear
+  icon: "JobIconCorpsman"
+  supervisors: job-supervisors-brigmedic
+  canBeAntag: false
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Medical
+  - External
+  - Cryogenics
+  - Brigmedic
+  - Paramedic # Starlight
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: CorpsmanGear
+  equipment:
+    ears: ClothingHeadsetBrigmedic
+    pocket2: HandheldCorpsmanCrewMonitor
+  storage:
+    back:
+    - Flash
+    - DefibrillatorCorpsman
+    - EmergencyRollerBedSpawnFolded

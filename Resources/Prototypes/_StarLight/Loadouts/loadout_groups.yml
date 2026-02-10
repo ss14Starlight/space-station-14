@@ -632,8 +632,6 @@
   loadouts:
     - BrigmedicPDA
     - VeteranBrigmedicPDA
-    - CorpsmanPDA
-    - VeteranCorpsmanPDA
 
 - type: loadoutGroup
   id: BrigmedicBeaker
@@ -641,6 +639,89 @@
   loadouts:
     - DarkBeaker
     - SilverBeakerBrigmedic
+
+# Corpsman
+- type: loadoutGroup
+  id: CorpsmanHead
+  name: loadout-group-corpsman-head
+  minLimit: 0
+  loadouts:
+  - CorpsmanBeret
+  - CorpsmanNurseHat
+  - SecurityHelmet
+
+- type: loadoutGroup
+  id: CorpsmanJumpsuit
+  name: loadout-group-corpsman-jumpsuit
+  loadouts:
+  - CorpsmanJumpsuit
+  - CorpsmanJumpskirt
+  - CorpsmanResponse
+  - CorpsmanTrauma
+
+- type: loadoutGroup
+  id: CorpsmanBackpack
+  name: loadout-group-corpsman-backpack
+  loadouts:
+  - CorpsmanBackpack
+  - CorpsmanSatchel
+  - CorpsmanDuffel
+
+- type: loadoutGroup
+  id: CorpsmanOuterClothing
+  name: loadout-group-corpsman-outerclothing
+  loadouts:
+  - CorpsmanCoat
+  - CorpsmanLabCoat
+  - SecurityOfficerWintercoat
+
+- type: loadoutGroup
+  id: CorpsmanEyewear
+  name: loadout-group-corpsman-eyewear
+  loadouts:
+  - CorpsmanGlasses
+  - CorpsmanHud
+  - CorpsmanEyePatchHud
+
+- type: loadoutGroup
+  id: CorpsmanBelt
+  name: loadout-group-corpsman-belt
+  minLimit: 1
+  loadouts:
+  - CorpsmanBelt
+  - BrigmedicRig
+
+- type: loadoutGroup
+  id: CorpsmanGloves
+  name: loadout-group-corpsman-gloves
+  loadouts:
+  - CorpsmanNitrile
+  - BlackNitrile
+  - LatexGloves
+
+- type: loadoutGroup
+  id: CorpsmanMask
+  name: loadout-group-corpsman-mask
+  minLimit: 1
+  loadouts:
+    - CorpsmanBreathMaskMedicalSecurity
+    - CorpsmanMaskGasCorpsman
+    - CorpsmanMaskGasSecurity
+
+- type: loadoutGroup
+  id: CorpsmanTie
+  name: loadout-group-brigmedic-tie
+  minLimit: 0
+  loadouts:
+    - CorpsmanRedNeckTie
+    - CorpsmanDetNeckTie
+
+- type: loadoutGroup
+  id: CorpsmanPDA
+  name: loadout-group-corpsman-id
+  loadouts:
+    - CorpsmanPDA
+    - VeteranCorpsmanPDA
 
 # Duty Officer
 - type: loadoutGroup
