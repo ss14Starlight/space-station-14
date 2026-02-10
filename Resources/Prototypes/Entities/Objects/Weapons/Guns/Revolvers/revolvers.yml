@@ -143,8 +143,8 @@
     fireRate: 2
     availableModes:
     - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+    soundGunshot: # Starlight edit
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/python_fire.ogg # Starlight edit
       params:
         volume: 2.25
   - type: StaticPrice

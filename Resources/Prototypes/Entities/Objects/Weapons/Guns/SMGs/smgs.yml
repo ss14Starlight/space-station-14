@@ -282,6 +282,8 @@
     - Burst
     - FullAuto
     - SemiAuto
+    soundGunshot: # Starlight edit
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/wt_fire.ogg # Starlight edit
   - type: ItemSlots
     slots:
       gun_magazine:
