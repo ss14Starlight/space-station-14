@@ -199,3 +199,8 @@
   id: SecurityHud
   equipment:
     eyes: ClothingEyesHudSecurity
+
+- type: loadout
+  id: DetectiveNoirGlasses
+  equipment:
+    eyes: ClothingEyesGlassesNoir
