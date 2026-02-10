@@ -4,6 +4,7 @@
 
 using Content.Shared.Alert;
 using Content.Shared.Chat.Prototypes;
+using Content.Shared.DoAfter;
 using Content.Shared.Ninja.Components;
 using Content.Shared.PowerCell.Components;
 using Robust.Shared.Audio;
@@ -46,6 +47,24 @@ public sealed partial class IPCBatteryComponent : Component
 
     [DataField]
     public List<EntProtoId> DrainAllowedTargets = [];
+    
+    /// <summary>
+    /// List of entity prototypes that IPCs can charge their battery from (APCs, rechargers, etc.)
+    /// </summary>
+    [DataField]
+    public List<EntProtoId> ChargeAllowedTargets = [];
+    
+    /// <summary>
+    /// Time in seconds for each charging cycle
+    /// </summary>
+    [DataField]
+    public float ChargeTime = 3f;
+    
+    /// <summary>
+    /// Efficiency of power transfer when charging (0.0-1.0)
+    /// </summary>
+    [DataField]
+    public float ChargeEfficiency = 0.85f;
     
     [DataField]
     public ProtoId<EmotePrototype>? NoPowerDeathEmote = null;
@@ -90,3 +109,9 @@ public sealed class IPCBatteryDeathTimerEnd(bool interrupted = false) : EntityEv
 
 [Serializable, NetSerializable]
 public sealed class IPCBatteryDeathTimerUpdate : EntityEventArgs;
+
+/// <summary>
+/// DoAfter event for IPC battery charging from power sources
+/// </summary>
+[Serializable, NetSerializable]
+public sealed partial class IPCChargeDoAfterEvent : SimpleDoAfterEvent;

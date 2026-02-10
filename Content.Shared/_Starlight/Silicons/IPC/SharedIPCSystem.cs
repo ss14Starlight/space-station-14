@@ -86,6 +86,15 @@ public abstract partial class SharedIPCSystem : EntitySystem
             
         args.PushMarkup(Loc.GetString("ipc-examine-text"));
     }
+
+    /// <summary>
+    /// Gets the IPC's battery and tries to use some charge from it, returning true if successful.
+    /// Serverside only. Similar to ninja's TryUseCharge implementation.
+    /// </summary>
+    public virtual bool TryUseCharge(EntityUid user, float charge)
+    {
+        return false;
+    }
 }
 
 

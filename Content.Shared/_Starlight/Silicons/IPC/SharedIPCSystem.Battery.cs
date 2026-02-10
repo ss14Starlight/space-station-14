@@ -37,23 +37,43 @@ public abstract partial class SharedIPCSystem
         if (!ev.CanComplexInteract || 
             !TryComp<IPCBatteryComponent>(ev.User, out var battery) ||
             !TryComp(ev.Target, out MetaDataComponent? metadata) ||
-            metadata.EntityPrototype == null ||
-            !battery.DrainAllowedTargets.Contains(metadata.EntityPrototype.ID))
+            metadata.EntityPrototype == null)
             return;
 
         var user = ev.User;
         var target = ev.Target;
+        var protoId = metadata.EntityPrototype.ID;
         
-        AlternativeVerb verb = new()
+        // Add drain verb if target is in drain allowed list
+        if (battery.DrainAllowedTargets.Contains(protoId))
         {
-            Act = () => StartDrain((user, battery), target),
-            Text = Loc.GetString("ipc-drain-power-alt-verb"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/zap.svg.192dpi.png")),
-        };
-        ev.Verbs.Add(verb);
+            AlternativeVerb drainVerb = new()
+            {
+                Act = () => StartDrain((user, battery), target),
+                Text = Loc.GetString("ipc-drain-power-alt-verb"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/zap.svg.192dpi.png")),
+                Priority = 1
+            };
+            ev.Verbs.Add(drainVerb);
+        }
+        
+        // Add charge verb if target is in charge allowed list
+        if (battery.ChargeAllowedTargets.Contains(protoId))
+        {
+            AlternativeVerb chargeVerb = new()
+            {
+                Act = () => StartCharge((user, battery), target),
+                Text = Loc.GetString("ipc-charge-battery-alt-verb"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/plug.svg.192dpi.png")),
+                Priority = 2 // Higher priority = shows first
+            };
+            ev.Verbs.Add(chargeVerb);
+        }
     }
 
     protected virtual void StartDrain(Entity<IPCBatteryComponent> user, EntityUid target){}
+    
+    protected virtual void StartCharge(Entity<IPCBatteryComponent> user, EntityUid target){}
 
     // _STARLIGHT: Removed OnBeforeInteractHand - power drawing is now ALT-click only via alternative verbs
 

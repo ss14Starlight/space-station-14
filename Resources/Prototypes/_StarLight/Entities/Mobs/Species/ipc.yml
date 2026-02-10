@@ -119,6 +119,19 @@
     - SubstationBasic
     - SubstationBasicEmpty
     - SubstationWallBasic
+    chargeAllowedTargets:
+    - APCBasic
+    - APCHighCapacity
+    - APCSuperCapacity
+    - APCHyperCapacity
+    - SubstationBasic
+    - SubstationBasicEmpty
+    - SubstationWallBasic
+    - CellRecharger
+    - BorgCharger
+    - WeaponCapacitorRecharger
+    chargeTime: 3 # 3 seconds per charge cycle
+    chargeEfficiency: 0.85 # 85% efficiency when charging
   - type: BatteryDrainer # Allow IPCs to drain power from APCs/machines/substations
     disableHandInteraction: true # Power draining is ALT-click only (alternative verb)
   - type: HumanoidEMP # EMP effects on IPCs

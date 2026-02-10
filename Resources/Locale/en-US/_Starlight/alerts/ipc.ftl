@@ -8,6 +8,13 @@ alerts-ipc-battery-none-name = No Battery
 alerts-ipc-battery-none-desc = You have no battery installed. You will die soon without one!
 
 ipc-drain-power-alt-verb = Drain Power
+ipc-charge-battery-alt-verb = Charge Battery
+
+ipc-no-battery = You have no battery installed!
+ipc-battery-full = Your battery is already fully charged!
+ipc-charge-no-battery = {THE($target)} has no battery to draw power from!
+ipc-charge-empty = {THE($target)} has no power left!
+ipc-charge-success = Battery charging...
 
 ipc-revive-cant-revive = Unable to reboot!
 ipc-revive-reboot-started = Rebooting...

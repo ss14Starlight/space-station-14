@@ -32,6 +32,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Server._Starlight.Silicons.IPC;
 
@@ -45,6 +46,7 @@ public sealed partial class IPCSystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly BatteryDrainerSystem _drainer = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly MobStateSystem _state = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
@@ -74,6 +76,9 @@ public sealed partial class IPCSystem
         SubscribeLocalEvent<IPCBatteryComponent, IPCBatteryDeathTimerUpdate>(OnBatteryTimerUpdate);
 
         SubscribeLocalEvent<IPCBatteryComponent, BeingGibbedEvent>(OnBatteryGibbed);
+        
+        // Charging DoAfter events
+        SubscribeLocalEvent<IPCBatteryComponent, IPCChargeDoAfterEvent>(OnChargeDoAfter);
     }
 
     private void OnServerBatteryStartup(Entity<IPCBatteryComponent> ent, ref ComponentStartup args)
@@ -280,6 +285,100 @@ public sealed partial class IPCSystem
         _doAfter.TryStartDoAfter(doAfterArgs);
     }
 
+    protected override void StartCharge(Entity<IPCBatteryComponent> user, EntityUid target)
+    {
+        var (uid, comp) = user;
+        
+        // Check if IPC battery exists and is not full
+        if (!GetIPCBattery(uid, out var batteryUid, out var batteryComp))
+        {
+            _popup.PopupEntity(Loc.GetString("ipc-no-battery"), uid, uid);
+            return;
+        }
+
+        if (_battery.IsFull((batteryUid.Value, batteryComp)))
+        {
+            _popup.PopupEntity(Loc.GetString("ipc-battery-full"), uid, uid);
+            return;
+        }
+
+        // Check if target has power available
+        if (!TryComp<BatteryComponent>(target, out var targetBattery))
+        {
+            _popup.PopupEntity(Loc.GetString("ipc-charge-no-battery", ("target", target)), uid, uid);
+            return;
+        }
+
+        var available = _battery.GetCharge((target, targetBattery));
+        if (available <= 0)
+        {
+            _popup.PopupEntity(Loc.GetString("ipc-charge-empty", ("target", target)), uid, uid);
+            return;
+        }
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, uid, comp.ChargeTime, new IPCChargeDoAfterEvent(), target: target, eventTarget: uid)
+        {
+            MovementThreshold = 0.5f,
+            BreakOnMove = true,
+            CancelDuplicate = false,
+            AttemptFrequency = AttemptFrequency.StartAndEnd
+        };
+
+        _doAfter.TryStartDoAfter(doAfterArgs);
+    }
+
+    private void OnChargeDoAfter(Entity<IPCBatteryComponent> ent, ref IPCChargeDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled || args.Target is not {} target)
+            return;
+
+        var (uid, comp) = ent;
+
+        // Get IPC battery
+        if (!GetIPCBattery(uid, out var batteryUid, out var batteryComp))
+            return;
+
+        // Check if battery is full
+        if (_battery.IsFull((batteryUid.Value, batteryComp)))
+        {
+            _popup.PopupEntity(Loc.GetString("ipc-battery-full"), uid, uid);
+            return;
+        }
+
+        // Get target battery
+        if (!TryComp<BatteryComponent>(target, out var targetBattery))
+            return;
+
+        var available = _battery.GetCharge((target, targetBattery));
+        if (available <= 0)
+        {
+            _popup.PopupEntity(Loc.GetString("ipc-charge-empty", ("target", target)), uid, uid);
+            return;
+        }
+
+        // Calculate charge amount
+        var required = batteryComp.MaxCharge - _battery.GetCharge((batteryUid.Value, batteryComp));
+        var chargeAmount = Math.Min(available, required / comp.ChargeEfficiency);
+        
+        // Limit charging rate (similar to ninja drain)
+        if (TryComp<PowerNetworkBatteryComponent>(target, out var pnb))
+        {
+            var maxCharged = pnb.MaxSupply * comp.ChargeTime;
+            chargeAmount = Math.Min(chargeAmount, maxCharged);
+        }
+
+        // Transfer power
+        if (_battery.TryUseCharge((target, targetBattery), chargeAmount))
+        {
+            var output = chargeAmount * comp.ChargeEfficiency;
+            _battery.ChangeCharge((batteryUid.Value, batteryComp), output);
+            _popup.PopupEntity(Loc.GetString("ipc-charge-success"), uid, uid);
+            
+            // Repeat if not full yet
+            args.Repeat = !_battery.IsFull((batteryUid.Value, batteryComp));
+        }
+    }
+
     private void UpdateBatteryAlert(Entity<IPCBatteryComponent> ent)
     {
         // _STARLIGHT: Ensure power draw is enabled when alive (fixes battery not draining)
@@ -315,6 +414,31 @@ public sealed partial class IPCSystem
             return;
 
         _battery.SetCharge(comp.BatteryContainerSlot.ContainedEntity.Value, 0);
+    }
+
+    /// <summary>
+    /// Get the battery component in an IPC's battery slot, if it exists.
+    /// Similar to ninja's GetNinjaBattery implementation.
+    /// </summary>
+    public bool GetIPCBattery(EntityUid user, [NotNullWhen(true)] out EntityUid? batteryUid, [NotNullWhen(true)] out BatteryComponent? batteryComp)
+    {
+        if (TryComp<IPCBatteryComponent>(user, out var ipcBattery)
+            && _powerCell.TryGetBatteryFromSlot((user, ipcBattery.PowerCellSlot), out var battery))
+        {
+            batteryUid = battery.Value.Owner;
+            batteryComp = battery.Value.Comp;
+            return true;
+        }
+
+        batteryUid = null;
+        batteryComp = null;
+        return false;
+    }
+
+    /// <inheritdoc/>
+    public override bool TryUseCharge(EntityUid user, float charge)
+    {
+        return GetIPCBattery(user, out var uid, out var battery) && _battery.TryUseCharge((uid.Value, battery), charge);
     }
 
     public void EjectBattery(EntityUid ent, EntityUid user, IPCBatteryComponent? comp = null)
