@@ -86,6 +86,10 @@
   parent: ClosetSteelBase
   categories: [ HideSpawnMenu ]
   components:
+  # Starlight Start
+  - type: Transform
+    anchored: false
+  # Starlight End
   - type: ResistLocker
     resistTime: 30
   - type: StoreOnCollide

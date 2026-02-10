@@ -9,6 +9,7 @@
   - type: ResistLocker
   - type: Transform
     noRot: true
+    anchored: true # Starlight: Lockers start anchored
   - type: Sprite
     noRot: true
     sprite: Structures/Storage/closet.rsi
