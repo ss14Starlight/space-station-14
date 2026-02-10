@@ -14,15 +14,18 @@
         - FireAlarm
         - AirAlarm
     - type: ApcPowerReceiver
+    - type: DoorBolt # Starlight: Let them be bolted
     - type: ExtensionCableReceiver
     - type: DeviceNetwork
       deviceNetId: AtmosDevices
       receiveFrequencyId: AtmosMonitor
     - type: DeviceNetworkRequiresPower
+    - type: Pierceable # Starlight: Flimsy piece of steel
+      level: Metal # Starlight: Flimsy piece of steel
     - type: InteractionOutline
     - type: Damageable
       damageContainer: StructuralInorganic
-      damageModifierSet: StructuralMetallicStrong
+      damageModifierSet: Metallic # Starlight: Flimsy piece of steel
     - type: RCDDeconstructable
       cost: 4
       delay: 6
@@ -30,11 +33,12 @@
     - type: Tag
       tags:
       - ForceFixRotations # Allow fixrotations to target these
+      - Airlock # Starlight: Make them airlock-ish
     - type: Destructible
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 500
+          damage: 100 # Starlight: Flimsy piece of steel
         behaviors:
         - !type:DoActsBehavior
           acts: ["Destruction"]
@@ -148,6 +152,22 @@
       - Fires
       - Spacing
     - type: SyncSprite
+    - type: DoorSignalControl # Starlight start: Make firelocks more... airlock-ish.
+    - type: Airlock
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - Open
+        - Close
+        - Toggle
+        - AutoClose
+        - DoorBolt
+    - type: DeviceLinkSource
+      ports:
+        - DoorStatus
+      lastSignals:
+        DoorStatus: false # Starlight end
 
 - type: entity
   id: Firelock
