@@ -30024,5 +30024,25 @@ Entries:
   id: 318000
   time: '2026-02-10T08:40:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3180
+- author: SapphicHaymaker
+  changes:
+  - message: The Revolutionary Banner acts as a shield again! But now has a weakness
+      to heat, do not let our flag burn, comrade.
+    type: Tweak
+  - message: Soviet Uniforms are now in the Rev Uplink. Come get your red army drip,
+      comrades!
+    type: Add
+  - message: Restored the BSO's gun autolock functionality
+    type: Fix
+  id: 319200
+  time: '2026-02-10T09:22:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3192
+- author: MelliferousMae
+  changes:
+  - message: Borgis now understand all the languages Borgs do, plus Dog.
+    type: Fix
+  id: 322600
+  time: '2026-02-10T09:49:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3226
 Order: -1
 
