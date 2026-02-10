@@ -39,6 +39,38 @@
       thresholds:
         0: Alive
         1500: Dead
+    - type: Destructible # Overwriting MobDamageable so elders don't randomly explode if you shoot them with a PKA too much 
+      thresholds:
+      - trigger:
+          !type:DamageTypeTrigger
+          damageType: Blunt
+          damage: 3000
+        behaviors:
+        - !type:GibBehavior { }
+      - trigger:
+          !type:DamageTypeTrigger
+          damageType: Heat
+          damage: 3000
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawnInContainer: true
+          spawn:
+            Ash:
+              min: 1
+              max: 1
+        - !type:BurnBodyBehavior
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MeatLaserImpact
+      - trigger:
+          !type:DamageTypeTrigger
+          damageType: Radiation
+          damage: 15
+        behaviors:
+        - !type:PopupBehavior
+          popup: mouth-taste-metal
+          popupType: LargeCaution
+          targetOnly: true
     - type: MovementSpeedModifier
       baseWalkSpeed: 2.5
       baseSprintSpeed: 3.5

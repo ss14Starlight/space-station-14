@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ MobCorgiSmart, BaseBorgiLanguages ]
+  parent: [ BaseBorgiLanguages, MobCorgiSmart ]
   id: BaseBorgiChassis
   save: false
   abstract: true

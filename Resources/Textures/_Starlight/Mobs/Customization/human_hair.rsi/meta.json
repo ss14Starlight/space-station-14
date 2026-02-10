@@ -4,7 +4,7 @@
       "x": 32,
       "y": 32
     },
-    "copyright": "Resprited by aedler for SS14, gatheredlow sprited by Sha-Seng (Github), lowpigtails by Skeleskitty (Discord)",
+    "copyright": "Resprited by aedler for SS14, gatheredlow sprited by Sha-Seng (Github), lowpigtails by Skeleskitty (Discord), shortfluffy and reihair by Toaster0423 (Discord)",
     "license": "CC-BY-SA-3.0",
     "states": [
         {
@@ -22,6 +22,14 @@
        {
          "name": "lowpigtails",
         "directions": 4
+       },
+       {
+          "name": "shortfluffy",
+          "directions": 4
+        },
+        {
+            "name": "reihair",
+            "directions": 4
       }
     ]
 }

@@ -142,6 +142,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
 
         if (InventorySystem.TryGetSlots(entity, out var slotDefinitions))
         {
+            var gearLeftToBeIssued = startingGear.Equipment.ToDictionary(); // Starlight
             foreach (var slot in slotDefinitions)
             {
                 var equipmentStr = startingGear.GetGear(slot.Name);
@@ -149,8 +150,16 @@ public abstract class SharedStationSpawningSystem : EntitySystem
                 {
                     var equipmentEntity = Spawn(equipmentStr, xform.Coordinates);
                     InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, silent: true, force: true);
+                    gearLeftToBeIssued.Remove(slot.Name); // Starlight
                 }
             }
+            // Starlight Start
+            // If the equipping entity doesn't have enough slots to fit the designated gear, still spawn it but place at their feet.
+            foreach (var item in gearLeftToBeIssued)
+            {
+                Spawn(item.Value, xform.Coordinates);
+            }
+            // Starlight End
         }
 
         if (_handsQuery.TryComp(entity, out var handsComponent))
@@ -301,6 +310,10 @@ public abstract class SharedStationSpawningSystem : EntitySystem
                     var equipmentStr = startingGear.GetGear(slot.Name);
                     if (!string.IsNullOrEmpty(equipmentStr))
                     {
+                        // Starlight Start
+                        if (slot.Name == "back" && slot.Whitelist?.Tags?.Contains("CorgiWearable") == true)
+                            equipmentStr = "ClothingBagPet";
+                        // Starlight End
                         var equipmentEntity = Spawn(equipmentStr, xform.Coordinates);
                         InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, silent: true, force: true);
                     }

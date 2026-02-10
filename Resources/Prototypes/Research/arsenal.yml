@@ -41,7 +41,7 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxRifleIncendiary
-  - LightRifleHeavyMagazineIncendiary
+  - MagazineDMRIncendiary # Starlight
   - MagazinePistolSubMachineGunIncendiary
   - SpeedLoaderShotgunIncendiary
   radioChannels:
@@ -111,7 +111,7 @@
   - MagazineBoxLightRifleUranium
   - MagazineBoxRifleUranium
   - BoxShotgunUranium
-  - LightRifleHeavyMagazineUranium
+  - MagazineDMRUranium # Starlight
   - MagazinePistolSubMachineGunUranium
   - SpeedLoaderShotgunUranium
   radioChannels:
@@ -202,7 +202,7 @@
   - WeaponMechCombatXray # 🌟Starlight-change🌟
   radioChannels:
   - Security
-  
+
 - type: technology
   id: KineticModifications
   name: research-technology-kinetic-modifications
@@ -231,18 +231,19 @@
     state: full
   discipline: Arsenal
   tier: 2
-  cost: 10500
+  cost: 8000 # Starlight
   recipeUnlocks:
   - PowerCageRechargerCircuitboard
   - PowerCageSmall
   - PowerCageMedium
+  - PowerCageHigh
   - MagazineGrenadeEmpty
-  - GrenadeBaton # starlight TODO move to riot control or smth if a sec nade launcher is added?
-  - GrenadeBlast
   - GrenadeFlash
+  - GrenadeBlast
+  - ShuttleGunFriendshipCircuitboard
+  - MagazineGrenadeEmpty
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
-  - ShuttleGunFriendshipCircuitboard
   technologyPrerequisites:
   - SalvageWeapons
   - Shuttlecraft # starlight
@@ -295,6 +296,7 @@
   radioChannels:
   - Security
 
+
 - type: technology
   id: AdvancedShuttleWeapon
   name: research-technology-advanced-shuttle-weapon
@@ -306,7 +308,6 @@
   cost: 15000
   recipeUnlocks:
   - GrenadeEMP
-#  - GrenadeFrag starlight
   - PowerCageHigh
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:

@@ -20,7 +20,7 @@ public sealed class ChameleonControllerSystem : SharedChameleonControllerSystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedStationSpawningSystem _stationSpawningSystem = default!;
     [Dependency] private readonly ChameleonClothingSystem _chameleonClothingSystem = default!;
-    [Dependency] private readonly IServerPreferencesManager _preferences = default!;
+    //[Dependency] private readonly IServerPreferencesManager _preferences = default!; // Starlight-removed - we dropped the only upstream reference to this
     [Dependency] private readonly UseDelaySystem _delay = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
 

@@ -20,6 +20,9 @@ public partial class JumpActionEvent : WorldTargetActionEvent
 
     [DataField]
     public SoundSpecifier? Sound = default;
+
+    [DataField]
+    public bool IsCybernetic = false;
 }
 
 public sealed partial class JetJumpActionEvent : JumpActionEvent

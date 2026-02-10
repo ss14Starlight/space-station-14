@@ -6,27 +6,51 @@
     TraitorObjectiveGroupKill: 1
     TraitorObjectiveGroupState: 1 #As in, something about your character. Alive, dead, arrested, gained an ability...
     TraitorObjectiveGroupSocial: 0.25 #Involves helping/harming others without killing them or stealing their stuff, lowered because the chance of rolling this was enormous when its just one objective in the category
-    TraitorObjectiveGroupStory: 1  # Starlight
+    TraitorObjectiveGroupStory: 0.85  # Starlight
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSteal
   weights:
     CaptainIDStealObjective: 1
     CMOHyposprayStealObjective: 1
-    CMOCrewMonitorStealObjective: 1
+#    CMOCrewMonitorStealObjective: 1 # Starlight, disabled in favor of collection objective
     RDHardsuitStealObjective: 0.75  #Starlight edit
     NukeDiskStealObjective: 0.5  #Starlight edit, you basically besome aos/kos once you have it
     MagbootsStealObjective: 1
     CorgiMeatStealObjective: 1
     ClipboardStealObjective: 1
     KnuckleDustersStealObjective: 1
+    # Starlight start
     CaptainGunStealObjective: 0.75  #Starlight edit
     CaptainJetpackStealObjective: 0.75  #Starlight edit
     HandTeleporterStealObjective: 1  #Starlight edit
-    RDDiplomaStealObjective: 1 #Starlight Unique Targets
-    CMOLicenseStealObjective: 1 #Starlight Unique Targets
+    RDDiplomaStealObjective: 0.75 #Starlight Unique Targets
+    CMOLicenseStealObjective: 0.75 #Starlight Unique Targets
     EnergyShotgunStealObjective: 0.5 #Starlight re-targeted
-    Proto5xStealObjective: 0.5 #Starlight Unique Targets
+    EnergyMagnumStealObjective: 0.5 # Starlight, was missing for some reason
+    HOSWeaponStealObjective: 0.5 #Starlight Unique Targets
+    HOPIDStealObjective: 1 # HoP's more exposed, but there's less copies of this ID usually
+    PinpointerNuclearStealObjective: 1 # Fun if paired with the nuke disk objective
+    AccessConfiguratorStealObjective: 1 # HoP and CE
+    EncryptionKeySalvageStealObjective: 0.6 # QM/Salv Lead. Not that interesting, so low.
+    CMOHardsuitStealObjective: 1 # I'm so sorry CMO
+    CEHardsuitStealObjective: 1 # Where are you going to hide it?
+    HOSHardsuitStealObjective: 1 # Quite defensive.
+    WardenHardsuitStealObjective: 1 # Not a member of command, yet has 3 steal targets.
+    BrigmedicHardsuitStealObjective: 1 # You're not escaping.
+    QMHardsuitStealObjective: 1 # Would you believe it was never an objective before?
+    SalvLeadHardsuitStealObjective: 0.75 # Likely to be easy if Salvage actually gets better suits.
+    CaptainHardsuitStealObjective: 0.75 # Good luck.
+    NTRepHardsuitStealObjective: 0.75 # Usually in the bridge... hard to get to.
+    NTRepBriefcaseSecureStealObjective: 0.75 # Same as most NT Rep stuff.
+    BSOHardsuitStealObjective: 0.75 # Same as the above...
+    BSOMagbootsStealObjective: 0.75 # Easier to hide, at least.
+    BSOWeaponStealObjective: 0.75 # Blue shield weapons. It's easier to steal the SP8T since they don't always carry it around, and guaranteed to exist.
+    CorporateSecretsStealObjective: 0.75 #Starlight Unique Target
+    CriminalReportsStealObjective: 0.75 #Starlight Unique Target
+    SecureKnowledgeStealObjective:  0.75 #Starlight Unique Target
+    # Starlight end
+    
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
@@ -75,6 +99,14 @@
     FigurineStealCollectionObjective: 0.3          #service
     IDCardsStealCollectionObjective: 1
     LAMPStealCollectionObjective: 0.1                   #only for moth, weight decreased cause boring and insanely easy
+    CrewMonitorStealCollectionObjective: 0.5 # Starlight; Paramedic, BSO, Brigmed, CMO handheld monitors, 2-3. It's kinda easy if there's 2 paramed lockers, so that's why it's low.
+    GaloshesStealCollectionObjective: 0.4 # Starlight. Kinda easy, but they're technically contra... 2-3. Included in janitor closets now, kinda. Janitor closets have a 75% chance to contain Galoshn'ts instead of Galoshes, but they both count for this goal.
+    RCDRPDStealCollectionObjective: 0.3 # Starlight. RCDs & RPDs. You could just buy them, so low priority. 6-10, since there's 2 items that satisfy this, and if you want to just use credits on this, you're taking a huge expense. (Engineering department does not get this goal)
+    MiscSunglassesStealCollectionObjective: 0.75 # Starlight. Musician, Beer Goggles, and all variants of Security sunglasses (Officer, Brigmed, Detective). A replacement to the beer goggles objective. 5-9.
+    RareSunglassesStealCollectionObjective: 0.5 # Starlight. Administration, Skill, BSO, Brigmed, and, if you somehow find them on a salvage... CentComm. 2-4. Not detective, since det glasses can be used on other sec roles.
+    ReactorFuelRodStealCollectionObjective: 1 #Far Horizons
+    AssistantHeadsetsStealCollectionObjective: 0.5 # Starlight. Yes, it's cursed. Incredibly so.
+    MedicalBeltStealCollectionObjective: 0.4 # Starlight. There's actually tons of these... but carrying them is a different matter entirely...
 
 - type: weightedRandom
   id: ThiefObjectiveGroupItem
@@ -87,10 +119,21 @@
     ClothingHeadHatWardenStealObjective: 1
     WantedListCartridgeStealObjective: 1
     # Starlight-start
-    Proto5xStealObjective: 1                # HoS Gun
+    #HOSWeaponStealObjective: 1                # HoS Gun variants, Traitor target, not thief
     FiringPinStealObjective: 1
     FiringPinAdvancedLaserStealObjective: 1
     FiringPinSmartLMGStealObjective: 1
+    LogProbeCartridgeStealObjective: 1 # Detective
+    MedTekCartridgeStealObjective: 1 # CMO, yet again
+    SecurityTechFabCircuitboardStealObjective: 1 # sec
+    PTechCircuitboardStealObjective: 1 # hop
+    CommsComputerCircuitboardStealObjective: 1 # bridge/tech vault
+    IDCardComputerCircuitboardStealObjective: 1 # bridge/tech vault(?)
+    ClothingHeadsetAltCommandStealObjective: 1 # captain/nt rep
+    BrigmedicStrangeBedsheetStealObjective: 1 # Was intended to be a steal target, but never was. I'll at least implement this in memory...
+    ClothingNeckMantleDecoratedSalvagerStealObjective: 1 # Salvage Lead's mantle. They're usually always wearing it...
+    SalvageShuttleCircuitboardStealObjective: 1 # technically qm
+    MiningShuttleCircuitboardStealObjective: 1 # ditto
     # Starlight-end
     ClothingOuterHardsuitVoidParamedStealObjective: 1   #med
     MedicalTechFabCircuitboardStealObjective: 1
@@ -98,7 +141,7 @@
     AmePartFlatpackStealObjective: 1
     ExpeditionsCircuitboardStealObjective: 1            #sup
     CargoShuttleCircuitboardStealObjective: 1
-    ClothingEyesHudBeerStealObjective: 0.5              #srv, beer goggles less common cause its so easy
+    #ClothingEyesHudBeerStealObjective: 0.5              #srv, beer goggles less common cause its so easy # Starlight. Disabled in favor of a slight harder collection objective.
     BibleStealObjective: 1
     ClothingNeckGoldmedalStealObjective: 1              #other
     ClothingNeckClownmedalStealObjective: 0.5
@@ -128,9 +171,16 @@
     ShivaStealObjective: 1
     TropicoStealObjective: 1
 
+# Starlight start
+- type: weightedRandom # Starlight
+  id: ThiefObjectiveGroupEscape # Starlight
+  weights: # Starlight
+    ThiefObjectiveGroupEscapeForced: 1 # Starlight, have to do it this way because it's hardcoded to pick a group from a group
+
 - type: weightedRandom
-  id: ThiefObjectiveGroupEscape
+  id: ThiefObjectiveGroupEscapeForced # Starlight
   weights:
-    EscapeThiefShuttleObjective: 1
+#    EscapeThiefShuttleObjective: # Starlight forced already anyways
+    EscapeMasterThiefObjective: 1 # Starlight
 
 #Crew, wizard, when you code it...

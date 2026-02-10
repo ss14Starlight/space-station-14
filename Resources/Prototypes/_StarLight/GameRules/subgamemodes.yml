@@ -38,7 +38,9 @@
       maxPicks: 1
     - groups: ThiefObjectiveGroups
       maxPicks: 10
-    maxDifficulty: 2.5
+    - groups: ThiefObjectiveGroupEscape
+      prob: 0.33 # It gives you a lot more freedom, but also lets you be way more intrusive, so low chance.
+      maxPicks: 1
   - type: AntagSelection
     agentName: thief-round-end-agent-name
     selectionTime: IntraPlayerSpawn
@@ -70,10 +72,11 @@
   - type: VampireRule
   - type: AntagSelection
     agentName: vampire-roundend-name
+    selectionTime: IntraPlayerSpawn # Only select vamps on round start
     definitions:
     - prefRoles: [ Vampire ]
-      max: 5 # Starlight. Accounting for scaling. Not as many as the full gamemode.
-      playerRatio: 26 # Starlight. Accounting for scaling.
+      max: 6 # Starlight. Accounting for scaling. Not as many as the full gamemode.
+      playerRatio: 21 # Starlight. Accounting for scaling.
       lateJoinAdditional: true
       allowNonHumans: True
       multiAntagSetting: None
@@ -82,7 +85,7 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
-      # Starlight-end
+    # Starlight-end
 
 #Subgamemode Lings for Vamptraitorlings.
 - type: entity

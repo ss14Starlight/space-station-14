@@ -131,22 +131,22 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             return;
         
         // Starlight-start: AI upload console linking
-        if (HasComp<StationAiHeldComponent>(uid) && TryComp<StationAiCoreComponent>(Transform(uid).ParentUid, out var aiCore))
+        if (!component.Subverted 
+            && TryComp<StationAiCoreComponent>(Transform(uid).ParentUid, out var aiCore) 
+            && aiCore.LawConsole != null
+            && _container.TryGetContainer(aiCore.LawConsole.Value, "circuit_holder", out var container) 
+            && container.ContainedEntities.Count != 0 
+            && TryComp(container.ContainedEntities.First(), out SiliconLawProviderComponent? provider) 
+            && provider != null 
+            && component.Laws != provider.Laws)
         {
-            if (aiCore.LawConsole == null 
-                || !_container.TryGetContainer(aiCore.LawConsole.Value, "circuit_holder", out var container) 
-                || container.ContainedEntities.Count == 0
-                || !TryComp(container.ContainedEntities.First(), out SiliconLawProviderComponent? provider) 
-                || provider == null)
-                return;
             component.Laws = provider.Laws;
             var lawset = GetLawset(provider.Laws).Laws;
             SetLaws(lawset, uid, provider.LawUploadSound);
         }
         // Starlight-end
 
-        if (component.Lawset == null)
-            component.Lawset = GetLawset(component.Laws);
+        component.Lawset ??= GetLawset(component.Laws);
 
         args.Laws = component.Lawset;
 
@@ -387,7 +387,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
 
         if (!ent.Comp.IsLawboard)
             return;
-
+        ent.Comp.Laws = "FreeLawset";
         ent.Comp.Lawset = GetLawset("FreeLawset");
 
         _popup.PopupEntity(Loc.GetString("lawboard-emag-popup"), ent);

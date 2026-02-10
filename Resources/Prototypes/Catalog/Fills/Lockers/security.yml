@@ -49,6 +49,7 @@
       amount: 2
     - id: NetworkConfigurator
     - id: Binoculars
+    - id: NeuralLinkDisruptor # Starlight
 
 - type: entityTable
   id: FillLockerWardenHarduit
@@ -111,18 +112,21 @@
   id: FillLockerBrigmedic
   table: !type:AllSelector
     children:
+    - id: ClothingEyesGlassesBrigmedic # Starlight
     - id: ClothingOuterCoatCorpsman #Starlight
     - id: ClothingUniformJumpsuitCorpsman #Starlight
     - id: ClothingUniformJumpskirtCorpsman #Starlight
     - id: ClothingHeadHatBeretCorpsman #Starlight
     - id: ClothingBeltCorpsmanFilled #Starlight
     - id: ClothingHandsGlovesBlackNitrile #Starlight
-    - id: ClothingEyesGlassesSecurity #Starlight
+#    - id: ClothingEyesGlassesSecurity #Starlight, replacing with brigmed glasses.
     - id: WeaponTaser
     - id: WeaponDisabler
     - id: TrackingImplanter
       amount: 2
     - id: ClothingOuterHardsuitBrigmedic
+    - id: ClothingShoesBootsMagSec # Starlight. They seem to have vanished.
+    - id: RubberStampBrigmedic # Starlight. Also seems to have vanished.
     - id: BoxSterileMask
     - id: ClothingHeadHatBeretBrigmedic
     - id: ClothingOuterCoatAMG
@@ -130,7 +134,11 @@
     - id: ClothingUniformJumpskirtBrigmedic
     - id: ClothingUniformJumpskirtOfLife
       prob: 0.1
+    - id: ClothingUniformJumpsuitOfLife # Starlight
+      prob: 0.1 # Starlight
     - id: MedkitFilled
+    - id: BedsheetBrigmedicStrange # Starlight
+    - id: BedsheetBrigmedic # Starlight
     - !type:GroupSelector
       prob: 0.7
       children:
@@ -268,13 +276,13 @@
     children:
     - id: BoxFiringPin # Starlight, firing pins
     - id: WeaponRifleLecter
-      amount: 1
+      amount: 2 # Starlight
     - id: WeaponRifleLeikha
       amount: 1
     - id: MagazineRifleHP
-      amount: 3
+      amount: 4 # Starlight
     - id: MagazineRifleSP
-      amount: 3
+      amount: 4 # Starlight
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
@@ -292,11 +300,11 @@
     children:
     - id: BoxFiringPinPistol # Starlight, firing pins
     - id: WeaponSubMachineGunDrozd
-      amount: 1
+      amount: 2 # Starlight
     - id: WeaponSubMachineGunSP91RC
       amount: 2
     - id: MagazinePistolSubMachineGunSP
-      amount: 4
+      amount: 5 # Starlight
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]

@@ -1,5 +1,6 @@
 using Content.Shared.Changeling;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
@@ -39,6 +40,10 @@ public sealed partial class ChangelingSystem : EntitySystem
 {
     [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
     [Dependency] private readonly ChangelingIdentitySystem _changelingIdentitySystem = default!;
+
+    private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
+    private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
+
     public void SubscribeAbilities()
     {
         SubscribeLocalEvent<ChangelingComponent, OpenEvolutionMenuEvent>(OnOpenEvolutionMenu);
@@ -137,7 +142,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         {
             var blood = originalBlood.Clone();
             blood.ScaleTo(originalBlood.Volume);
-            var ferroAcid = new ReagentQuantity("FerrochromicAcid", originalBlood.Volume);
+            var ferroAcid = new ReagentQuantity(FerrochromicAcidPrototype, originalBlood.Volume);
         
             _blood.ChangeBloodReagents(target, new Solution([ferroAcid]));
             _blood.SpillAllSolutions(target);
@@ -420,7 +425,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         }
 
         var soln = new Solution();
-        soln.AddReagent("PolytrinicAcid", 10f);
+        soln.AddReagent(PolytrinicAcidPrototype, 10f);
 
         if (_pull.IsPulled(uid))
         {

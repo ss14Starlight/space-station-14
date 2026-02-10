@@ -27,6 +27,8 @@
     receiveFrequencyId: CrewMonitor
   - type: WirelessNetworkConnection
     range: 500
+  - type: StealTarget
+    stealGroup: CrewMonitorCollection
 
 - type: entity
   id: HandheldBrigmedicCrewMonitorEmpty

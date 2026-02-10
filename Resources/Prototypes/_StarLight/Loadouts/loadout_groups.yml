@@ -1,4 +1,27 @@
 - type: loadoutGroup
+  id: Insuls
+  name: loadout-group-insuls
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - InsulsRegular
+  - InsulsCombat
+  - InsulsMaid
+  - InsulsMercenary
+
+- type: loadoutGroup
+  id: InsulsCaptain
+  name: loadout-group-insuls-captain
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - InsulsCaptain
+  - InsulsRegular
+  - InsulsCombat
+  - InsulsMaid
+  - InsulsMercenary
+
+- type: loadoutGroup
   id: Scarves
   name: loadout-group-scarves
   minLimit: 0
@@ -47,7 +70,7 @@
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
-  
+
 - type: loadoutGroup
   id: Pens
   name: loadout-group-pens
@@ -235,9 +258,12 @@
 - type: loadoutGroup
   id: MagistrateJumpsuit
   name: loadout-group-magistrate-jumpsuit
+  defaultSelected: 1
+  maxLimit: 1
   loadouts:
   - MagistrateJumpsuit
   - MagistrateJumpskirt
+  - MagistrateJumpsuitLongCoat
 
 - type: loadoutGroup
   id: MagistrateOuterclothing
@@ -261,6 +287,16 @@
   loadouts:
   - MagistrateSecGlasses
   - MagistrateSkillGlasses
+
+- type: loadoutGroup
+  id: MagistrateHands
+  name: loadout-group-magistrate-hands
+  defaultSelected: 1
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MagistrateWhiteGloves
+  - MagistrateBlackGloves
 
 - type: loadoutGroup
   id: BlueShieldHead
@@ -295,7 +331,7 @@
 - type: loadoutGroup
   id: BlueShieldOuterclothing
   name: loadout-group-blueshield-outerclothing
-  minLimit: 1
+  minLimit: 0
   defaultSelected: 1
   loadouts:
   - BlueShieldVest
@@ -595,7 +631,7 @@
   loadouts:
     - ChemistHandLabeler
     - GoldenHandLabeler
-    
+
 # Brigmedic
 - type: loadoutGroup
   id: BrigmedicMask
@@ -739,3 +775,10 @@
   minLimit: 0
   loadouts:
   - SupremeJanitorCloak
+
+- type: loadoutGroup
+  id: WardenNeck
+  name: loadout-group-warden-neck
+  minLimit: 0
+  loadouts:
+  - ClothingNeckWarden

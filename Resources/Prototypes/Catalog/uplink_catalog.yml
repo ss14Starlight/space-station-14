@@ -1139,6 +1139,19 @@
   - UplinkDisruption
 
 - type: listing
+  id: UplinkBreachingHammer
+  name: uplink-breaching-hammer-name
+  description: uplink-breaching-hammer-desc
+  productEntity: HammerBreachingNT
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 8
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkWeaponry
+
+- type: listing
   id: UplinkDuffelSurgery
   name: uplink-duffel-surgery-name
   description: uplink-duffel-surgery-desc
@@ -2118,6 +2131,9 @@
   - !type:BuyerJobCondition
     whitelist:
     - Botanist
+    - ServiceWorker # Starlight
+    - HeadOfPersonnel # Starlight
+    - Captain # Starlight
 
 - type: listing
   id: uplinkRiggedBoxingGlovesAssistant
@@ -2128,7 +2144,7 @@
   discountDownTo:
     Telecrystal: 3
   cost:
-    Telecrystal: 6
+    Telecrystal: 5 # Starlight
   categories:
     - UplinkJob
   conditions:
@@ -2152,6 +2168,8 @@
   - !type:BuyerJobCondition
     whitelist:
     - Chaplain
+    - HeadOfPersonnel # Starlight
+    - Captain # Starlight
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -2173,6 +2191,8 @@
   - !type:BuyerJobCondition
     whitelist:
     - Chaplain
+    - HeadOfPersonnel # Starlight
+    - Captain # Starlight
 
 - type: listing
   id: uplinkRevolverCapGunFake
@@ -2191,6 +2211,8 @@
     whitelist:
     - Mime
     - Clown
+    - HeadOfPersonnel # Starlight
+    - Captain # Starlight
 
 - type: listing
   id: uplinkBananaPeelExplosive
@@ -2209,6 +2231,8 @@
   - !type:BuyerJobCondition
     whitelist:
     - Clown
+    - HeadOfPersonnel # Starlight
+    - Captain # Starlight
 
 - type: listing
   id: UplinkClusterBananaPeel
@@ -2219,13 +2243,15 @@
   discountDownTo:
     Telecrystal: 3
   cost:
-    Telecrystal: 6
+    Telecrystal: 5 # Starlight
   categories:
   - UplinkJob
   conditions:
   - !type:BuyerJobCondition
     whitelist:
     - Clown
+    - HeadOfPersonnel # Starlight
+    - Captain # Starlight
 
 - type: listing
   id: UplinkHoloclownKit
@@ -2244,6 +2270,8 @@
   - !type:BuyerJobCondition
     whitelist:
     - Clown
+    - HeadOfPersonnel # Starlight
+    - Captain # Starlight
 
 - type: listing
   id: uplinkHotPotato
@@ -2264,6 +2292,9 @@
     - Botanist
     - Clown
     - Mime
+    - ServiceWorker # Starlight
+    - HeadOfPersonnel # Starlight
+    - Captain # Starlight
 
 - type: listing
   id: UplinkChimpUpgradeKit
@@ -2278,9 +2309,12 @@
   categories:
   - UplinkJob
   conditions:
-    - !type:BuyerDepartmentCondition
+    - !type:BuyerJobCondition # Starlight. Captain and Robo mean we have to use Job
       whitelist:
-      - Science
+      - Scientist # Starlight
+      - ResearchDirector # Starlight
+      - Roboticist # Starlight
+      - Captain # Starlight
 
 - type: listing
   id: uplinkProximityMine
@@ -2298,6 +2332,8 @@
   - !type:BuyerJobCondition
     whitelist:
     - Janitor
+    - HeadOfPersonnel # Starlight
+    - Captain # Starlight
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -2310,10 +2346,10 @@
   icon: { sprite:  Objects/Misc/monkeycube.rsi, state: box}
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 3 # Starlight
   productEntity: SyndicateSpongeBox
   cost:
-    Telecrystal: 7
+    Telecrystal: 5 # Starlight
   categories:
   - UplinkJob
   conditions:
@@ -2323,6 +2359,10 @@
     - ResearchDirector
     - Chef
     - Zookeeper # Starlight
+    - ServiceWorker # Starlight
+    - Roboticist # Starlight
+    - HeadOfPersonnel # Starlight
+    - Captain # Starlight
 
 - type: listing
   id: UplinkCaneBlade
@@ -2341,6 +2381,8 @@
   - !type:BuyerJobCondition
     whitelist:
     - Librarian
+    - HeadOfPersonnel # Starlight
+    - Captain # Starlight
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -2364,6 +2406,9 @@
     whitelist:
     - Chef
     - Mime
+    - ServiceWorker # Starlight
+    - HeadOfPersonnel # Starlight
+    - Captain # Starlight
 
 - type: listing
   id: UplinkContrabandLighter
@@ -2403,6 +2448,8 @@
   - !type:BuyerJobCondition
     whitelist:
     - Chaplain
+    - HeadOfPersonnel # Starlight
+    - Captain # Starlight
 
 # Starlight, listing disabled
 # - type: listing
@@ -2431,12 +2478,17 @@
   productEntity: WeaponSubMachineGunBriefcase
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 10
+    Telecrystal: 8 # Starlight
   cost:
-    Telecrystal: 15
+    Telecrystal: 13 # Starlight. It's a rare gimmick item, and should at least have some reason to buy it over the c20 bundle.
   categories:
   - UplinkJob
   conditions:
   - !type:BuyerJobCondition
     whitelist:
     - Lawyer
+    - HeadOfPersonnel # Starlight. What, it's technically HoP's department.
+    - IAA # Starlight
+    - Magistrate # Starlight
+    - NanoTrasenRepresentative # Starlight
+    - Captain # Starlight

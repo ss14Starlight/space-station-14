@@ -32,3 +32,8 @@
   license: "CC-BY-NC-4.0"
   copyright: "Created by Vunsunta, converted to mono and modified by kleinerstation13 (Github)"
   source: "https://www.dropbox.com/scl/fi/dd03xhdhwg9em8l1xyxtr/Vunsunta-Firearm-Sound-Pack-V2.zip?rlkey=p7cyhkgf462v2bikj8awjbugu&e=2&st=hesyx5au&dl=0"
+  
+- files: ["l6.ogg"]
+  license: "CC-BY-NC-4.0"
+  copyright: "Starch70 on Monolith"
+  source: "https://github.com/Monolith-Station/Monolith/pull/2369/changes/ff9584192f8d63d21d4ef30b3473209ff771bcaf"

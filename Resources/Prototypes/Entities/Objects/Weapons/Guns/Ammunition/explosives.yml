@@ -43,10 +43,10 @@
 # Grenades
 
 - type: entity
-  abstract: true
-  parent: [BaseItem, BaseMajorContraband]
   id: BaseGrenade
   name: base grenade
+  parent: BaseItem # Starlight edit: Removes major contraband from grenades
+  abstract: true
   components:
   - type: Tag
     tags:
@@ -56,9 +56,9 @@
   - type: Sprite
 
 - type: entity
-  parent: BaseGrenade
   id: GrenadeBaton
   name: baton grenade
+  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeBaton
@@ -73,9 +73,9 @@
     suffix: false
 
 - type: entity
-  parent: BaseGrenade
   id: GrenadeBlast
   name: blast grenade
+  parent: [ BaseGrenade, BaseSecurityContraband ] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeBlast
@@ -90,9 +90,9 @@
     suffix: false
 
 - type: entity
-  parent: BaseGrenade
   id: GrenadeFlash
   name: flash grenade
+  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeFlash
@@ -107,9 +107,9 @@
     suffix: false
 
 - type: entity
-  parent: BaseGrenade
   id: GrenadeFrag
   name: frag grenade
+  parent: [ BaseGrenade, BaseSyndicateContraband ] # Starlight edit: Major -> Syndicate contraband TODO decide on if these should be given to sec?
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeFrag
@@ -124,7 +124,7 @@
     suffix: false
 
 - type: entity
-  parent: BaseGrenade
+  parent: [ BaseGrenade, BaseJanitorContraband ] # Starlight edit: Major -> Janitor contraband
   id: GrenadeCleanade
   name: cleanade grenade round
   components:
@@ -137,13 +137,17 @@
       map: [ "enum.AmmoVisualLayers.Base" ]
   - type: Appearance
   - type: SpentAmmoVisuals
-    state: frag
+    state: cleanade # Starlight edit: frag -> cleanade (bugfix)
     suffix: false
+  - type: Tag # Starlight start
+    tags:
+    - Grenade
+    - Cleanade # Starlight end - hydra whitelist
 
 - type: entity
-  parent: BaseGrenade
   id: GrenadeEMP
   name: EMP grenade
+  parent: [ BaseGrenade, BaseSecurityContraband] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeEMP
@@ -154,7 +158,7 @@
       map: ["enum.AmmoVisualLayers.Base"]
   - type: Appearance
   - type: SpentAmmoVisuals
-    state: frag
+    state: emp # Starlight edit: frag -> emp (bugfix)
     suffix: false
 
 # Cannon Balls

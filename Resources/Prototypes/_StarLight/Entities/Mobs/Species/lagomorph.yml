@@ -16,6 +16,7 @@
     - GalacticCommon
     - Lagomorphian
   - type: StaminaSurge
+  - type: Zoomies
   - type: Icon
     sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
     state: full

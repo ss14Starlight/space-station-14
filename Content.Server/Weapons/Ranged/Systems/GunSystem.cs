@@ -68,11 +68,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
 #region Starlight
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly DecalSystem _decals = default!;
 #endregion Starlight
 
     private const float DamagePitchVariation = 0.05f;
@@ -190,6 +186,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     var hitscanEv = new HitscanTraceEvent
                     {
                         FromCoordinates = fromCoordinates,
+                        ToCoordinates = toCoordinates, // Starlight-edit
                         ShotDirection = mapDirection.Normalized(),
                         Gun = gun,
                         Shooter = user,
@@ -291,9 +288,11 @@ public sealed partial class GunSystem : SharedGunSystem
         // Starlight start - cartridges can hold hitscans
         if (HasComp<HitscanAmmoComponent>(uid))
         {
+            var coordinates = EntityManager.GetComponent<TransformComponent>(uid).Coordinates; // Starlight-edit
             var hitscanEv = new HitscanTraceEvent
             {
-                FromCoordinates = EntityManager.GetComponent<TransformComponent>(uid).Coordinates,
+                FromCoordinates = coordinates,
+                ToCoordinates = coordinates.Offset(mapDirection), // Starlight-edit
                 ShotDirection = mapDirection.Normalized(),
                 Gun = gun,
                 Shooter = user,

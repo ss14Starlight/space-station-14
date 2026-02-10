@@ -500,7 +500,7 @@ public sealed class DantalionSystem : EntitySystem
             Timer.Spawn(invisDuration, () =>
             {
                 if (Exists(uid))
-                    _stealth.SetEnabled(uid, false);
+                    RemComp<StealthComponent>(uid);
             });
         }
 

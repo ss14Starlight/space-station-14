@@ -120,7 +120,7 @@
   # You're technically 'immune to poison' without a heart, but.. uhh, you'll have bigger problems on your hands.
   - type: Metabolizer
     maxReagents: 2
-    metabolizerTypes: [ Slime ]
+    metabolizerTypes: [ Cyclorite ]
     groups:
     - id: Medicine
     - id: Poison

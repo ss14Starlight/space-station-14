@@ -93,6 +93,9 @@
       storagebase: !type:Container
         ents: []
   - type: LockedStorage
+  - type: GuideHelp
+    guides:
+    - CombinationLocks  
 
 - type: entity
   parent: BaseWallSafe

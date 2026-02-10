@@ -12,6 +12,8 @@
     - RightArmCyberPersephone
     - LeftArmCyberMechwright
     - RightArmCyberMechwright
+    - LeftArmCyberScribe
+    - RightArmCyberScribe
   technologyPrerequisites:
     - CyberLimbsTech
   radioChannels:

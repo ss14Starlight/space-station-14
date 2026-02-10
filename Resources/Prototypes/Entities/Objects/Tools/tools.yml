@@ -377,6 +377,8 @@
   - type: ActivatableUI
     inHandsOnly: true
     key: enum.RcdUiKey.Key
+  - type: StealTarget # Starlight
+    stealGroup: RCDRPDCollection # Starlight
 
 - type: entity
   id: RCDEmpty

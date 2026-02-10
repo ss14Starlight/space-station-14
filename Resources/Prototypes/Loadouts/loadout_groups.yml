@@ -63,53 +63,57 @@
   - TowelColorGold
   - TowelColorWhite
   - TowelColorYellow
-  - HarmonicaInstrument # 🌟Starlight🌟
-  - FluteInstrument #Starlight
-  - AcousticGuitarInstrument #Starlight
-  - TrumpetInstrument #Starlight
-  - ClothingUnderSocksCoder # 🌟Starlight🌟
-  - ClothWrap # 🌟Starlight🌟
-  - ClothingUniformJumpskirtElegantMaid # 🌟Starlight🌟
-  - ClothingHeadHatWhiteCatEars # 🌟Starlight🌟
-  - RolliePack #SL
-  - GoldRing #SL
-  - SilverRing #SL
-  - Matchbox #SL
-  - HonkImplant #SL
-  - TromboneImplant #SL
-  - NewtonsCradle #SL
-  - BBall #SL
-  - RubberQuack #SL
-  - GatchaBox #SL
-  - WristWatch #SL
-  - ZippoLighter #SL
-  - MedChecker #SL
-  - ChanceSack #SL
-  - StationMap #SL
-  - YaharJar #SL
-  - PaperFolder1 #SL
-  - PaperFolder2 #SL
-  - PaperFolder3 #SL
-  - PaperFolder4 #SL
-  - PaperFolder5 #SL
-  - PaperFolder6 #SL
-  - PaperFolder7 #SL
-  - PaperClipboard #SL
-  - HonoredClownMask #SL
-  - MedRollies #SL
-  - RollerSkates #SL
-  - DaBling #SL
-  - CrapPlushie #SL ##not a typo
-  - LighterGatcha #SL
-  - MagicCrayon #SL
-  - HappyHonk #SL
-  - leftripperarm #SL
-  - rightmechwrightarm #SL
-  - CigPackBub #SL
-  - PillCanisterPsicodine #SL
-  - ClothingDogTags # SL
-  - PersonalAI #SL
-  - GoldenPersonalAI #SL
+  - HarmonicaInstrument # Starlight start
+  - FluteInstrument
+  - AcousticGuitarInstrument
+  - TrumpetInstrument
+  - ClothingUnderSocksCoder
+  - ClothWrap
+  - ClothingUniformJumpskirtElegantMaid
+  - ClothingHeadHatWhiteCatEars
+  - ClothingHeadHatBunny
+  - ClothingHeadHatDogEars
+  - RolliePack
+  - GoldRing
+  - SilverRing
+  - Matchbox
+  - HonkImplant
+  - TromboneImplant
+  - NewtonsCradle
+  - BBall
+  - TBall
+  - RubberQuack
+  - GatchaBox
+  - WristWatch
+  - ZippoLighter
+  - MedChecker
+  - ChanceSack
+  - StationMap
+  - YaharJar
+  - PaperFolder1
+  - PaperFolder2
+  - PaperFolder3
+  - PaperFolder4
+  - PaperFolder5
+  - PaperFolder6
+  - PaperFolder7
+  - PaperClipboard
+  - HonoredClownMask
+  - MedRollies
+  - RollerSkates
+  - DaBling
+  - CrapPlushie ##not a typo
+  - LighterGatcha
+  - MagicCrayon
+  - HappyHonk
+  - leftripperarm
+  - rightmechwrightarm
+  - CigPackBub
+  - PillCanisterPsicodine
+  - ClothingDogTags
+  - PersonalAI
+  - GoldenPersonalAI # Starlight end
+  - AACTablet # DeltaV
 
 - type: loadoutGroup
   id: Glasses
@@ -136,6 +140,7 @@
   loadouts:
   - EmergencyNitrogen
   - EmergencyOxygen
+  - EmergencyElfOxygen # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreather # 🌟Starlight🌟
 
@@ -718,6 +723,7 @@
   loadouts:
   - EmergencyNitrogenClown
   - EmergencyOxygenClown
+  - EmergencyElfOxygenClown # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherClown # 🌟Starlight🌟
 
@@ -784,6 +790,7 @@
   loadouts:
   - EmergencyNitrogenMime
   - EmergencyOxygenMime
+  - EmergencyElfOxygenMime # Starlight
   - EmergencySpeciesMothMime
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherMime # 🌟Starlight🌟
@@ -1185,6 +1192,7 @@
   loadouts:
   - EmergencyNitrogenExtended
   - EmergencyOxygenExtended
+  - EmergencyElfOxygenExtended # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherExtended # 🌟Starlight🌟
 
@@ -1650,6 +1658,7 @@
   loadouts:
   - EmergencyNitrogenSecurity
   - EmergencyOxygenSecurity
+  - EmergencyElfOxygenSecurity # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonbreatherSecurity # 🌟Starlight🌟
 
@@ -1913,6 +1922,7 @@
   loadouts:
   - EmergencyNitrogenMedical
   - EmergencyOxygenMedical
+  - EmergencyElfOxygenMedical # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherMedical # 🌟Starlight🌟
 
@@ -1956,6 +1966,7 @@
   loadouts:
   - EmergencyNitrogenSyndicate
   - EmergencyOxygenSyndicate
+  - EmergencyElfOxygenSyndicate # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherSyndicate # 🌟Starlight🌟
 
@@ -1967,6 +1978,7 @@
   loadouts:
   - EmergencyNitrogenMilitaryDouble
   - EmergencyOxygenMilitaryDouble
+  - EmergencyElfOxygenMilitaryDouble # Starlight
 
 - type: loadoutGroup
   id: GroupSpeciesBreathTool
