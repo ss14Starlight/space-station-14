@@ -45,10 +45,14 @@
     {
       "name": "decimusicon"
     },
-	  {
+	{
       "name": "dutyofficer",
 	    "copyright": "BORT",
 	    "license": "CC-BY-SA-3.0"
+    },
+	{
+      "name": "corpsman",
+	   "copyright": "Killer Tamashi",
     },
     {
       "name": "ntsficon"
