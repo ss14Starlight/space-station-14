@@ -14,6 +14,8 @@
     - !type:BuyerJobCondition
       whitelist:
         - AtmosphericTechnician
+        - ChiefEngineer
+        - Captain
 
 # Weapons
 
@@ -94,6 +96,8 @@
   - !type:BuyerJobCondition
     whitelist:
     - Musician
+    - HeadOfPersonnel
+    - Captain
 
 - type: listing
   id: UplinkHydra
@@ -112,6 +116,8 @@
   - !type:BuyerJobCondition
     whitelist:
     - Janitor
+    - HeadOfPersonnel
+    - Captain
 
 - type: listing
   id: uplinkWeaponPistolDeagle
@@ -353,6 +359,8 @@
         - ResearchAssistant
         - Scientist
         - ResearchDirector
+        - Roboticist # If you're giving it to the rest of the department...
+        - Captain
 
 - type: listing
   id: UplinkGearAcidifierImplanter
@@ -675,6 +683,8 @@
     - !type:BuyerJobCondition
       whitelist:
         - Boxer
+        - HeadOfPersonnel
+        - Captain
         
 #Explosives
 - type: listing

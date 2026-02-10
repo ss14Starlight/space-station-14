@@ -215,7 +215,7 @@
   - type: StealCondition
     stealGroup: HOSWeapon
   - type: Objective
-    difficulty: 1.5 # Good luck
+    difficulty: 1.7 # Good luck
 
 - type: entity
   parent: BaseTraitorSecurityStealObjective

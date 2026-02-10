@@ -265,6 +265,33 @@
   - type: Objective
     difficulty: 1.4 # Hard to get these...
 
+# Assistant headsets. Yup.
+- type: entity
+  parent: BaseThiefStealObjective # Not parenting collection since they're not actually on map.. but it's Assistants.
+  id: AssistantHeadsetsStealCollectionObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Assistant, HeadOfPersonnel, Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ]
+  - type: StealCondition
+    stealGroup: AssistantHeadsetsCollection
+    minCollectionSize: 8
+    maxCollectionSize: 14
+  - type: Objective
+    difficulty: 0.6 # There's a lot of them... but they're comically easy to get. Cargo can also buy PTech restocks, so they can't get this objective either.
+
+- type: entity
+  parent: BaseThiefStealObjective # Easy
+  id: MedicalBeltStealCollectionObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, HeadOfSecurity, Brigmedic, BlueShield, Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ]
+  - type: StealCondition
+    stealGroup: MedicalBeltCollection
+    minCollectionSize: 6
+    maxCollectionSize: 11
+  - type: Objective
+    difficulty: 0.9 # So a lot of things actually count towards this objective, normal Doctor, Paramed, CMO, Brigmed, BSO... But you can't really hold more than three at a time. Cargo banned because they can just buy restocks.
+
 
 - type: entity
   parent: [BaseThiefObjective, BaseLivingObjective]

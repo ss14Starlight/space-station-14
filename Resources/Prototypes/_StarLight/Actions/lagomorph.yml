@@ -12,6 +12,24 @@
     - type: LimitedCharges
       maxCharges: 1
     - type: AutoRecharge
-      rechargeDuration: 30
+      rechargeDuration: 50
     - type: InstantAction
       event: !type:StaminaSurgeActionEvent
+
+- type: entity
+  id: Zoomies
+  name: "[color=lightblue]Zoomies!![/color]"
+  description: Boost sprint speed at the cost of drastically increased thirst.
+  components:
+    - type: Action
+      useDelay: 15
+      itemIconStyle: BigAction
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_lagomorph.rsi
+        state: zoomies-btn
+    - type: LimitedCharges
+      maxCharges: 1
+    - type: AutoRecharge
+      rechargeDuration: 50
+    - type: InstantAction
+      event: !type:ZoomiesActionEvent

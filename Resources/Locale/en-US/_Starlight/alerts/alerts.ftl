@@ -3,3 +3,5 @@ alerts-cards-desc = You're [color=lightblue]facing a choice[/color]. Click the a
 alerts-error-failed-to-spawn-ghost-role = Failed to spawn the requested ghost role. Sorry! :(
 alerts-surge-name = [color=yellow]Stamina Surge[/color]
 alerts-surge-desc = You have increased stamina regeneration and resistance [color=red]at the cost of increased hunger drain[/color]
+alerts-zoomies-name = [color=lightblue]Zoomies!![/color]
+alerts-zoomies-desc = You have increased movement speed [color=red]at the cost of increased thirst drain[/color]
