@@ -91,6 +91,9 @@
         - Sidearm
         - MagazinePistol
         - MagazineMagnum
+        - Medkit # BSO can do it
+        - BodyBag # From Paramedic
+        - ParaKnife # From Paramedic
       components:
         - Stunbaton
         - FlashOnTrigger

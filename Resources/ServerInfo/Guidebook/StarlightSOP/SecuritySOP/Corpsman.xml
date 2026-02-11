@@ -5,8 +5,8 @@
 
 1 . Standard [color=#00a933]Code Green[/color] equipment is:
 <Box>
-	<GuideEntityEmbed Entity="MedkitAdvancedFilled"/>
-	<GuideEntityEmbed Entity="DefibrillatorCorpsman"/>
+	<GuideEntityEmbed Entity="MedkitCombatFilled"/>
+	<GuideEntityEmbed Entity="DefibrillatorBrigmedical"/>
 	<GuideEntityEmbed Entity="HandheldCorpsmanCrewMonitor"/>
 </Box>
 <Box>
@@ -33,9 +33,9 @@
 
 3. Corpsmen may not perform Security Officer duties unless security is severely understaffed, or a crime has occurred in their sight.
 
-4. Corpsmen putting themselves in excessive danger, and by extension the entire department, are to be considered negligent in their duties.
+4. Corpsmen must prioritize the health and safety of Security Officers and Prisoners over all other priorities.
 
-5. Corpsmen must prioritize the health and safety of Security Officers and Prisoners over all other priorities.
+5. Corpsmen putting themselves in excessive danger, and by extension the entire department, are to be considered negligent in their duties.
 
 6. Crew members who are deceased are to be placed into a body bag before transport to the brig or medbay.
 
