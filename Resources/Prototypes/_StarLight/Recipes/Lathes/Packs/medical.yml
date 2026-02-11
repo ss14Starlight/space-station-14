@@ -4,6 +4,7 @@
   id: StarlightMedicalStatic
   recipes:
     - PatchPack # Starlight
+    - RMCWheelchair
 
 ## Dynamic recipes
 

@@ -752,3 +752,12 @@
   materials:
     Plastic: 200
   name: lathe-recipe-PatchPack-name
+
+# Wheelchair
+- type: latheRecipe
+  id: RMCWheelchair
+  result: RMCWheelchair
+  completetime: 2
+  materials:
+    Plastic: 300
+    Steel: 300
