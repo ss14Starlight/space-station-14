@@ -51,8 +51,10 @@
     - SELFStorageImplant #Starlight
     deimplantFailureDamage:
       types:
-        Cellular: 50
-        Heat: 10
+        # Starlight-Start: Implant Removal Failure increased damage
+        Cellular: 80 
+        Heat: 40
+        # Starlight-End
   - type: Sprite
     sprite: Objects/Specific/Medical/implanter.rsi
     state: implanter0
