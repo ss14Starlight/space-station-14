@@ -57,7 +57,7 @@ public sealed class TestUxnCompiler
         {
             var uxnRunner = new UXNProcessor();
             var mem = uxnRunner.SystemMem;
-            var writeHead = 0x100;
+            ushort writeHead = 0x100;
             var stream = resourceManager.ContentFileRead(res);
             Span<byte> span = new byte[32];
             while (stream.CanRead)

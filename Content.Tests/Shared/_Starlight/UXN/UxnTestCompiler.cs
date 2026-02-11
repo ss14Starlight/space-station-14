@@ -20,7 +20,7 @@ public sealed class UxnTestCompiler : ContentUnitTest
         using Stream rom = Assembly.GetExecutingAssembly().GetManifestResourceStream("Content.Tests.drifloon.rom")!;
 
         var mem = uxn.SystemMem;
-        var writeHead = 0x100;
+        ushort writeHead = 0x100;
         Span<byte> span = new byte[32];
         while (rom.CanRead)
         {

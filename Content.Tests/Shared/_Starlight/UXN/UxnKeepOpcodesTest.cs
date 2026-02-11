@@ -264,7 +264,7 @@ public sealed class UxnKeepOpcodeTest : ContentUnitTest
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x12 + 0x80;
-        var target = 0x101 + (sbyte)offset;
+        ushort target = (ushort)(0x101 + (sbyte)offset);
         uxn.SystemMem[target] = 0x32;
         uxn.WorkingStack.PushByte(offset);
         Assert.That(uxn.Step(), Is.EqualTo(false));
@@ -279,7 +279,7 @@ public sealed class UxnKeepOpcodeTest : ContentUnitTest
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = 0x13 + 0x80;
-        var target = 0x101 + (sbyte)offset;
+        ushort target = (ushort)(0x101 + (sbyte)offset);
         uxn.WorkingStack.PushByte(0x32);
         uxn.WorkingStack.PushByte(offset);
         Assert.That(uxn.Step(), Is.EqualTo(false));

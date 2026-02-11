@@ -44,7 +44,7 @@ public sealed partial class UxnSystem : EntitySystem
         }
         _compiler.Reset();
         var mem = _compiler.SystemMem;
-        var writeHead = 0x100;
+        ushort writeHead = 0x100;
         var stream = _resourceManager.ContentFileRead(_compilerRom);
         Span<byte> span = new byte[32];
         while (stream.CanRead)

@@ -16,6 +16,13 @@ public sealed class Byte256
         set => _inner[i] = value;
     }
 
+    public ushort GetShort(byte baseAddr)
+    {
+        var lsb = this[baseAddr];
+        var msb = this[baseAddr+1];
+        return (ushort)((msb << 8) | lsb);
+    }
+
     public byte[] ToRaw() => (byte[])_inner.Clone();
 }
 
@@ -72,7 +79,7 @@ public sealed class UxnMem
     public UxnMem() =>
         Array.Fill<byte>(_inner, 0x00);
 
-    public byte this[int i]
+    public byte this[ushort i]
     {
         get => _inner[i];
         set => _inner[i] = value;
@@ -480,7 +487,7 @@ public sealed class UXNProcessor
                     if (shrt)
                     {
                         var msb = SystemMem[zp];
-                        stack.PushShort((ushort)((msb << 8) | SystemMem[(zp + 1) & 0xff]));
+                        stack.PushShort((ushort)((msb << 8) | SystemMem[(ushort)((zp + 1) & 0xff)]));
                     }
                     else
                     {
@@ -496,7 +503,7 @@ public sealed class UXNProcessor
                     {
                         var val = stack.PopShort(keep);
                         mem[addr] = (byte)(val >> 8);
-                        mem[(addr + 1) & 0xFF] = (byte)(val & 0xff);
+                        mem[(ushort)((addr + 1) & 0xFF)] = (byte)(val & 0xff);
                     }
                     else
                     {
@@ -521,13 +528,13 @@ public sealed class UXNProcessor
                 break;
             case 0x13: // STR value addr8 --
                 {
-                    var addr = (PC + (sbyte)stack.PopByte(keep)) & 0xFFFF;
+                    ushort addr = (ushort)(PC + (sbyte)stack.PopByte(keep));
                     var mem = SystemMem;
                     if (shrt)
                     {
                         var val = stack.PopShort(keep);
                         mem[addr] = (byte)(val >> 8);
-                        mem[(addr + 1) & 0xFFFF] = (byte)(val & 0xFF);
+                        mem[(ushort)(addr + 1)] = (byte)(val & 0xFF);
                     }
                     else
                     {
@@ -540,7 +547,7 @@ public sealed class UXNProcessor
                     var addr = stack.PopShort(keep);
                     if (shrt)
                     {
-                        stack.PushShort((ushort)((SystemMem[addr] << 8) | SystemMem[(addr + 1) & 0xFFFF]));
+                        stack.PushShort((ushort)((SystemMem[addr] << 8) | SystemMem[(ushort)(addr + 1)]));
                     }
                     else
                     {
@@ -556,7 +563,7 @@ public sealed class UXNProcessor
                     {
                         var val = stack.PopShort(keep);
                         mem[addr] = (byte)(val >> 8);
-                        mem[(addr + 1) & 0xFFFF] = (byte)(val & 0xFF);
+                        mem[(ushort)(addr + 1)] = (byte)(val & 0xFF);
                     }
                     else
                     {
@@ -778,7 +785,7 @@ public sealed class UXNProcessor
             Running = true;
         }
 
-        var instrs = InstructionCounter + instrs;
+        var instrs = InstructionCounter + steps;
         while (InstructionCounter < instrs)
         {
             if (Step())
