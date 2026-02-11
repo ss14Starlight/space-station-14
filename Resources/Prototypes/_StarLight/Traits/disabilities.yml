@@ -139,3 +139,18 @@
     - type: ImpairedMobility
   - !type:SpawnItemInHandEffect
     item: OffsetCane
+
+- type: trait
+  id: ParalyzedLegs
+  name: trait-paralyzed-legs-name
+  description: trait-paralyzed-legs-desc
+  category: Disabilities
+  cost: 0
+  effects:
+  - !type:AddCompsEffect
+    components:
+    - type: LegsParalyzed
+  - !type:SpawnItemInHandEffect
+    item: RMCWheelchair
+
+

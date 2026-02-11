@@ -11,6 +11,15 @@
       "name": "wheelchair",
       "directions": 4,
 	  "copyright": "Conflee"
+    },
+	{
+      "name": "overlay",
+      "directions": 4,
+	  "copyright": "Conflee"
+    },
+	{
+	  "name": "wheelchair_folded",
+	  "copyright": "Conflee"
     }
   ]
 }

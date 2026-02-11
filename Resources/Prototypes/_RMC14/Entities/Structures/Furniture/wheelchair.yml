@@ -30,20 +30,12 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.35
-        density: 500
+        density: 300
         mask:
         - MobMask
         layer:
         - MobLayer
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.RotationVisuals.RotationState:
-        enum.RotationVisualLayers.Layer:
-          North: { state: wheelchair, drawdepth: Mobs }
-          South: { state: wheelchair, drawdepth: Mobs }
-          East: { state: wheelchair, drawdepth: Objects }
-          West: { state: wheelchair, drawdepth: Objects }
   - type: ContainerContainer
     containers:
       rmc-vehicle-pilot: !type:ContainerSlot
@@ -63,14 +55,24 @@
         acts: ["Destruction"]
 
 - type: entity
-  parent: RMCWheelchairBase
+  parent: [ RMCWheelchairBase, BaseDeployFoldable]
   id: RMCWheelchair
   name: wheelchair
   description: Helps those with injuries related to immobility to move freely
   components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Furniture/wheelchair.rsi
+    layers:
+    - state: wheelchair
+  - type: Item
+    size: Normal
+  - type: Appearance
   - type: Wheelchair
-    speedMultiplier: 0.75
+    speedMultiplier: 1
   - type: RMCAllowStrapMovement
+  - type: ChildEntities
+    childPrototypes:
+      - prototype: WheelchairOverlay
 
 - type: entity
   parent: RMCWheelchairBase
@@ -78,8 +80,15 @@
   name: wheelchair with bell
   description: Helps those with injuries related to immobility to move freely. Has a bell attached.
   components:
+  - type: Sprite
+    sprite: _RMC14/Structures/Furniture/wheelchair.rsi
+    layers:
+    - state: wheelchair
+  - type: Appearance
+  - type: Item
+    size: Normal
   - type: Wheelchair
-    speedMultiplier: 0.75
+    speedMultiplier: 1
     bellAction: ActionWheelchairBell
   - type: ContainerContainer
     containers:
@@ -87,4 +96,45 @@
       actions: !type:Container
   - type: ActionsContainer
   - type: RMCAllowStrapMovement
+  - type: ChildEntities
+    childPrototypes:
+      - prototype: WheelchairOverlay
 
+- type: entity
+  id: WheelchairOverlay
+  name: wheelchair
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _RMC14/Structures/Furniture/wheelchair.rsi
+    layers:
+    - state: overlay
+    noRot: false
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+# - type: entity
+  # parent: RMCWheelchair
+  # id: WheelchairSpawnFolded
+  # suffix: folded
+  # components:
+  # - type: Foldable
+    # folded: true
+  # - type: Strap
+    # enabled: False
+  # - type: Item
+    # size: Normal
+
+# - type: entity
+  # parent: RMCWheelchairBell
+  # id: WheelchairBellSpawnFolded
+  # suffix: folded
+  # components:
+  # - type: Foldable
+    # folded: true
+  # - type: Strap
+    # enabled: False
+  # - type: Item
+    # size: Normal

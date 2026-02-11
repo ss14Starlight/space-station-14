@@ -22,6 +22,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._RMC14.Buckle; //Starlight Edit
 
 namespace Content.Shared.Buckle;
 
@@ -173,12 +174,14 @@ public abstract partial class SharedBuckleSystem
             args.Cancel();
     }
 
+//Starlight Start
     private void OnBuckleUpdateCanMove(EntityUid uid, BuckleComponent component, UpdateCanMoveEvent args)
     {
-        if (component.Buckled)
+        if (component.Buckled && !HasComp<RMCAllowStrapMovementComponent>(component.BuckledTo))
             args.Cancel();
     }
-
+// Starlight End
+    
     public bool IsBuckled(EntityUid uid, BuckleComponent? component = null)
     {
         return Resolve(uid, ref component, false) && component.Buckled;
