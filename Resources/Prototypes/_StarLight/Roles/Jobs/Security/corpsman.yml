@@ -38,6 +38,8 @@
     - DefibrillatorBrigmedical
     - BodyBagLockableFolded # Might as well get it since they're technically parameds
     - EmergencyRollerBedSpawnFolded
+    belt:
+    - HyperAdvancedJetInjector
 
 - type: chameleonOutfit
   id: CorpsmanChameleonOutfit

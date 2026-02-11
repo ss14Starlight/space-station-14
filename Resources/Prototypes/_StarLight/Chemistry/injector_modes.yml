@@ -1,0 +1,13 @@
+- type: injectorMode
+  abstract: true
+  parent: BaseJetInjectorMode
+  id: BaseHyperAdvancedJetInjectorMode
+  mobTime: 3.5
+
+- type: injectorMode
+  parent: [ BaseHyperAdvancedJetInjectorMode, BaseInjectMode ]
+  id: HyperAdvancedJetInjectorInjectMode
+
+- type: injectorMode
+  parent: [ BaseHyperAdvancedJetInjectorMode, BaseDynamicMode ]
+  id: HyperAdvancedJetInjectorDynamicMode
