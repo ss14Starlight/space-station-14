@@ -2,7 +2,7 @@
   parent: [AdvancedJetInjector, BaseSecurityContraband]
   id: HyperAdvancedJetInjector
   name: hyper advanced jet injector
-  description: A bold, tacticool, ultra high quality injector. Allows for a very fast injection, with a very large capacity. A Corpsman's best friend.
+  description: A bold, tacticool, ultra high quality injector. Allows for a very fast injection, with a very large capacity. A corpsman's best friend.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/corpsman_jetinjector.rsi

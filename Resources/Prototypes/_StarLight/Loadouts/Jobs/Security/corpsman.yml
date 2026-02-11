@@ -34,22 +34,9 @@
 
 # Masks
 - type: loadout
-  id: CorpsmanBreathMaskMedicalSecurity
-  equipment:
-    mask: ClothingMaskBreathMedicalSecurity
-
-- type: loadout
   id: CorpsmanMaskGasCorpsman
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SkilledCorpsman
   equipment:
     mask: ClothingMaskGasCorpsman
-
-- type: loadout
-  id: CorpsmanMaskGasSecurity
-  equipment:
-    mask: ClothingMaskGasSecurity
 
 # Jumpsuit
 - type: loadout

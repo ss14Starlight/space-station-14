@@ -642,6 +642,16 @@
     - SecurityRedNeckTie
     - SecurityDetNeckTie
 
+# Hos/Ward Masks Masks
+- type: loadoutGroup
+  id: SecurityMask
+  name: loadout-group-security-mask
+  minLimit: 0
+  loadouts:
+    - MaskGasSecurity
+    - BreathMaskMedicalSecurity
+    - MaskGasCorpsman
+
 
 # Brigmedic
 - type: loadoutGroup
@@ -650,7 +660,8 @@
   minLimit: 1
   loadouts:
     - BrigmedicBreathMaskMedicalSecurity
-    - BrigmedicMaskGasSecurity
+    - MaskGasSecurity
+    - MaskGasCorpsman
 
 - type: loadoutGroup
   id: BrigmedicPDA
@@ -730,9 +741,9 @@
   name: loadout-group-corpsman-mask
   minLimit: 1
   loadouts:
-    - CorpsmanBreathMaskMedicalSecurity
+    - MaskGasSecurity
     - CorpsmanMaskGasCorpsman
-    - CorpsmanMaskGasSecurity
+    - BreathMaskMedicalSecurity
 
 - type: loadoutGroup
   id: CorpsmanPDA

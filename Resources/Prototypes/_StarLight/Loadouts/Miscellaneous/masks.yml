@@ -1,0 +1,22 @@
+# Security Masks
+- type: loadout
+  id: MaskGasSecurity
+  equipment:
+    mask: ClothingMaskGasSecurity
+
+
+- type: loadout
+  id: BreathMaskMedicalSecurity
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledBrigmedic
+  equipment:
+    mask: ClothingMaskBreathMedicalSecurity
+
+- type: loadout
+  id: MaskGasCorpsman
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledCorpsman
+  equipment:
+    mask: ClothingMaskGasCorpsman

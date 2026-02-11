@@ -37,6 +37,7 @@ loadout-group-blueshield-id = Blueshield ID
 
 # Security
 loadout-group-security-tie = Security tie
+loadout-group-security-mask = Security mask
 
 loadout-group-brigmedic-gloves = Brigmedic gloves
 loadout-group-security-non-lethal-weapon = Security Non-Lethal Weapon

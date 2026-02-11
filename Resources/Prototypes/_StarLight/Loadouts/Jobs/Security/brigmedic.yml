@@ -38,11 +38,6 @@
   equipment:
     mask: ClothingMaskBreathMedicalSecurity
 
-- type: loadout
-  id: BrigmedicMaskGasSecurity
-  equipment:
-    mask: ClothingMaskGasSecurity
-
 # Skilled Jumpsuits
 - type: loadout
   id: BrigmedicJumpsuitOfLife
