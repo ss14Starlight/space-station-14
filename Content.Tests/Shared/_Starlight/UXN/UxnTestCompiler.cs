@@ -41,7 +41,7 @@ public sealed class UxnTestCompiler : ContentUnitTest
 
         uxn.RunUnlimited();
 
-        Console.WriteLine($"Assembled UXN program in {uxn.InstructionCounter} instructions, FakedStdio provided {stdio.CharCount}/{uxnTal.Length} chars");
+        Console.WriteLine($"Assembled UXN program in {uxn.RealInstructionCounter} instructions, FakedStdio provided {stdio.CharCount}/{uxnTal.Length} chars");
 
         Assert.That(uxn.SystemDevice.Status, Is.GreaterThanOrEqualTo(0x80)); //since anything lesser is a error
         Assert.That(stdio.FakedOutput, Has.Count.EqualTo(3373)); //and this is the expected rom size of compiled opctest

@@ -176,11 +176,26 @@ public sealed class UXNProcessor
     public UxnStack ReturnStack { get; private set; } = new();
     public UxnDevices Devices { get; private set; } = new();
 
+    /// <summary>
+    /// Used by <see cref="RunLimited(int)"/> when determining the number of instructions ran. can be much higher then <see cref="RealInstructionCounter"/>.
+    /// Can be incremented by <see cref="AddInstructionsToCounter(int)"/>
+    /// </summary>
     public int InstructionCounter { get; private set; } = 0;
+    /// <summary>
+    /// The real number of instructions executed by the UXN. Good for knowing how long a program ACTUALLY ran. If you wanna know vaguely how much "effort" was put into something.
+    /// Check <seealso cref="InstructionCounter"/>
+    /// </summary>
+    public int RealInstructionCounter { get; private set; } = 0;
     //public List<(ushort, string)> InstrLog { get; private set; } = new();
     //public List<UxnFrame> FrameLog { get; private set; } = new();
 
     private Queue<UxnEvent> _events = new();
+
+    /// <summary>
+    /// Used by devices mainly when they want their device to consume extra instructions as apart of their execution
+    /// </summary>
+    /// <param name="amount"></param>
+    public void AddInstructionsToCounter(int amount) => InstructionCounter += amount;
 
     /// <summary>
     /// Runs the UXN for a single step
@@ -197,6 +212,7 @@ public sealed class UXNProcessor
         PC++;
 
         InstructionCounter++;
+        RealInstructionCounter++;
 
         bool keep = (instr & 0x80) != 0x00;
         bool ret = (instr & 0x40) != 0x00;
@@ -735,6 +751,7 @@ public sealed class UXNProcessor
         _events = [];
         Running = true;
         InstructionCounter = 0;
+        RealInstructionCounter = 0;
     }
 
     public void PushEvent(UxnEvent uevent)
@@ -761,7 +778,8 @@ public sealed class UXNProcessor
             Running = true;
         }
 
-        for (int i = 0; i < steps; i++)
+        var instrs = InstructionCounter + instrs;
+        while (InstructionCounter < instrs)
         {
             if (Step())
             {

@@ -74,7 +74,7 @@ public sealed class TestUxnCompiler
             var stdio = uxnRunner.AttachDevice(0x1, new FakeStdioDevice(stdin, argv, sawmill));
             uxnRunner.RunUnlimited();
 
-            sawmill.Info($"Ran {uxnRunner.InstructionCounter} instructions");
+            sawmill.Info($"Ran {uxnRunner.RealInstructionCounter} instructions");
             sawmill.Info($"Program output:\n{new string(Encoding.ASCII.GetChars([.. stdio.FakedOutput])).Trim()}");
 
             //Make sure program succeded.

@@ -65,7 +65,7 @@ public sealed partial class UxnSystem : EntitySystem
         // but it *should* run out of memory before assembling uxntal that big tbh.
         _compiler.RunUnlimited();
 
-        Log.Info($"Assembled UXN program in {_compiler.InstructionCounter} instructions, FakedStdio provided {stdio.CharCount}/{uxnTal.Length} chars");
+        Log.Info($"Assembled UXN program in {_compiler.RealInstructionCounter} instructions, FakedStdio provided {stdio.CharCount}/{uxnTal.Length} chars");
 
         var stdErr = stdio.FakedError;
         if (_compiler.SystemDevice.Status < 0x80)
