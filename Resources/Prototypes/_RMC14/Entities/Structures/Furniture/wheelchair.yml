@@ -18,6 +18,9 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.0
     baseSprintSpeed: 3.5
+  - type: Tag
+    tags:
+    - DoorBumpOpener
   - type: Physics
     bodyType: KinematicController
   - type: Clickable
