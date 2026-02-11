@@ -35,7 +35,8 @@
   storage:
     back:
     - Flash
-    - DefibrillatorCorpsman
+    - DefibrillatorBrigmedical
+    - BodyBagLockableFolded # Might as well get it since they're technically parameds
     - EmergencyRollerBedSpawnFolded
 
 - type: chameleonOutfit
