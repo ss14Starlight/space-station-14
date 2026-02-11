@@ -5,7 +5,7 @@
   id: BaseThiefSecurityStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ]
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, Corpsman, DutyOfficer, SecurityCadet ]
 
 - type: entity
   abstract: true
@@ -203,7 +203,7 @@
   id: CrewMonitorStealCollectionObjective
   components:
   - type: NotJobRequirement
-    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, Brigmedic, BlueShield ]
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, Brigmedic, Corpsman, BlueShield ]
   - type: StealCondition
     stealGroup: CrewMonitorCollection
     minCollectionSize: 2 # Easiest to take from the 2 parameds, but you'll still have to get into Medical somehow, or find them in the wild.
@@ -243,7 +243,7 @@
   id: MiscSunglassesStealCollectionObjective
   components:
   - type: NotJobRequirement
-    jobs: [ Musician, Bartender, ServiceWorker, SecurityOfficer, SecurityCadet, DutyOfficer, Warden, HeadOfSecurity, Brigmedic, Detective ]
+    jobs: [ Musician, Bartender, ServiceWorker, SecurityOfficer, SecurityCadet, DutyOfficer, Warden, HeadOfSecurity, Brigmedic, Corpsman, Detective ]
   - type: StealCondition
     stealGroup: MiscGlassesCollection
     minCollectionSize: 5
@@ -257,7 +257,7 @@
   id: RareSunglassesStealCollectionObjective
   components:
   - type: NotJobRequirement
-    jobs: [ Brigmedic, BlueShield, NanoTrasenRepresentative, Magistrate, Captain, HeadOfPersonnel ]
+    jobs: [ Brigmedic, Corpsman, BlueShield, NanoTrasenRepresentative, Magistrate, Captain, HeadOfPersonnel ]
   - type: StealCondition
     stealGroup: RareGlassesCollection
     minCollectionSize: 2
@@ -284,7 +284,7 @@
   id: MedicalBeltStealCollectionObjective
   components:
   - type: NotJobRequirement
-    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, HeadOfSecurity, Brigmedic, BlueShield, Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ]
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, HeadOfSecurity, Brigmedic, Corpsman, BlueShield, Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ]
   - type: StealCondition
     stealGroup: MedicalBeltCollection
     minCollectionSize: 6

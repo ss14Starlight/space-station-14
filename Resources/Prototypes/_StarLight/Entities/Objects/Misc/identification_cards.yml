@@ -236,8 +236,8 @@
     - sprite: *starlight-icon-rsi
       offset: *icon-offset
       state: Corpsman
-    - type: PresetIdCard
-      job: Corpsman
+  - type: PresetIdCard
+    job: Corpsman
 
 - type: entity
   parent: IDCardStandard

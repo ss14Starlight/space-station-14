@@ -2,7 +2,7 @@
   abstract: true
   parent: BaseJetInjectorMode
   id: BaseHyperAdvancedJetInjectorMode
-  mobTime: 3.5
+  mobTime: 4
 
 - type: injectorMode
   parent: [ BaseHyperAdvancedJetInjectorMode, BaseInjectMode ]

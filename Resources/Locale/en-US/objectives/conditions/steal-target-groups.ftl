@@ -1,6 +1,7 @@
 # Traitor single items
 steal-target-groups-supermatter-sliver = supermatter sliver
-steal-target-groups-hypospray = hypospray
+# Starlight, Hypospray now includes the Corpsman's jet injector
+steal-target-groups-hypospray = chief medical officer's hypospray or the corpsman's hyper advanced jet injector 
 steal-target-groups-handheld-crew-monitor = handheld crew monitor
 steal-target-groups-clothing-outer-hardsuit-rd = experimental research hardsuit
 steal-target-groups-hand-teleporter = hand teleporter

@@ -154,7 +154,7 @@
   id: OfficerHandgunsStealCollectionObjective
   components:
   - type: NotJobRequirement
-    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Starlight. Rest of Sec.
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet, Corpsman ] # Starlight. Rest of Sec.
   - type: StealCondition
     stealGroup: OfficerHandgun
     minCollectionSize: 2
@@ -185,7 +185,7 @@
   id: ForensicScannerStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Starlight. Rest of Sec.
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet, Corpsman ] # Starlight. Rest of Sec.
   - type: StealCondition
     stealGroup: ForensicScanner
   - type: Objective
@@ -196,7 +196,7 @@
   id: FlippoEngravedLighterStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Starlight. Rest of Sec.
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet, Corpsman ] # Starlight. Rest of Sec.
   - type: StealCondition
     stealGroup: FlippoEngravedLighter
   - type: Objective
@@ -207,7 +207,7 @@
   id: ClothingHeadHatWardenStealObjective
   components:
   - type: NotJobRequirement # Starlight.
-    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet, HeadOfPersonnel ] # Starlight. Rest of Sec. HoP can literally print it.
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet, HeadOfPersonnel, Corpsman ] # Starlight. Rest of Sec. HoP can literally print it.
   - type: StealCondition
     stealGroup: ClothingHeadHatWarden
   - type: Objective
@@ -218,7 +218,7 @@
   id: WantedListCartridgeStealObjective
   components:
   - type: NotJobRequirement # Starlight
-    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Starlight. Rest of Sec.
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet, Corpsman ] # Starlight. Rest of Sec.
   - type: StealCondition
     stealGroup: WantedListCartridge
   - type: Objective

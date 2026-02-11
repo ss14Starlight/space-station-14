@@ -5,7 +5,7 @@
   id: BaseTraitorSecurityStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ]
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet, Corpsman ]
 
 - type: entity
   abstract: true

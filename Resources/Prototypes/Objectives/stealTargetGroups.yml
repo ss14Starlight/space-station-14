@@ -4,7 +4,7 @@
   id: Hypospray
   name: steal-target-groups-hypospray
   sprite:
-    sprite: Objects/Specific/Medical/hypospray.rsi
+    sprite: /_Starlight/Objects/Misc/hypo-injector-stealobjective.rsi # Starlight
     state: hypo
 
 # Starlight start
