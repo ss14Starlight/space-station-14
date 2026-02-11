@@ -15,6 +15,13 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
     public override void ReadValue(byte memTarget, Byte256 deviceMem, UXNProcessor proc) => base.ReadValue(memTarget, deviceMem, proc);
     public override void WriteValue(byte memTarget, Byte256 deviceMem, UXNProcessor proc) => base.WriteValue(memTarget, deviceMem, proc);
 
+    /// <summary>
+    /// Reads a string from a buffer.
+    /// </summary>
+    /// <param name="mem">the memory to read from</param>
+    /// <param name="bufferLen">the size of the buffer. if 0x00 will attempt to read until it encounters null (basically a null-terminated string)</param>
+    /// <param name="addr">the starting addr of the buffer</param>
+    /// <returns></returns>
     private string ReadBuffered(UxnMem mem, ushort bufferLen, ushort addr)
     {
         StringBuilder output = new StringBuilder();
