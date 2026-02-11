@@ -61,6 +61,26 @@
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/Chairs/sleek_office_chair.rsi
     state: base
+  - type: RMCAllowStrapMovement
+  - type: MobMover
+  - type: Puller
+    needsHands: false
+  - type: Pullable
+  - type: InputMover
+  - type: InteractionOutline
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.0
+    baseSprintSpeed: 1.5
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: Physics
+    bodyType: KinematicController
+  - type: ContainerContainer
+    containers:
+      rmc-vehicle-pilot: !type:ContainerSlot
+  - type: Wheelchair
+    speedMultiplier: 1
 
 #Comfy Chair Gray (Basic/Default)
 - type: entity
