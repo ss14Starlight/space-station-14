@@ -55,7 +55,7 @@
         acts: ["Destruction"]
 
 - type: entity
-  parent: [ RMCWheelchairBase, BaseDeployFoldable]
+  parent: RMCWheelchairBase
   id: RMCWheelchair
   name: wheelchair
   description: Helps those with injuries related to immobility to move freely
