@@ -18,9 +18,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.0
     baseSprintSpeed: 3.5
-  - type: Tag
-    tags:
-    - DoorBumpOpener
   - type: Physics
     bodyType: KinematicController
   - type: Clickable
@@ -29,8 +26,8 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.35
-        density: 300
+          radius: 0.2
+        density: 100
         mask:
         - MobMask
         layer:
