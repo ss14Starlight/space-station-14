@@ -20,32 +20,32 @@
   - Supply
   # These are roundstart but not replenishable for salvage
 
-- type: technology
-  id: DraconicMunitions
-  name: research-technology-draconic-munitions
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
-    state: incendiarydisplay
-  discipline: Arsenal
-  tier: 1
-  cost: 10000
-  recipeUnlocks:
-  - BoxShotgunIncendiary
-  - MagazineRifleIncendiary
-  - MagazinePistolIncendiary
-  - MagazinePistolSubMachineGunIncendiary
-  - MagazineLightRifleIncendiary
-  - SpeedLoaderMagnumIncendiary
-  - MagazineShotgunIncendiary
-  - MagazineBoxPistolIncendiary
-  - MagazineBoxMagnumIncendiary
-  - MagazineBoxLightRifleIncendiary
-  - MagazineBoxRifleIncendiary
-  - MagazineDMRIncendiary # Starlight
-  - MagazinePistolSubMachineGunIncendiary
-  - SpeedLoaderShotgunIncendiary
-  radioChannels:
-  - Security
+# - type: technology # Starlight removal
+#   id: DraconicMunitions
+#   name: research-technology-draconic-munitions
+#   icon:
+#     sprite: Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+#     state: incendiarydisplay
+#   discipline: Arsenal
+#   tier: 1
+#   cost: 10000
+#   recipeUnlocks:
+#   - BoxShotgunIncendiary
+#   - MagazineRifleIncendiary
+#   - MagazinePistolIncendiary
+#   - MagazinePistolSubMachineGunIncendiary
+#   - MagazineLightRifleIncendiary
+#   - SpeedLoaderMagnumIncendiary
+#   - MagazineShotgunIncendiary
+#   - MagazineBoxPistolIncendiary
+#   - MagazineBoxMagnumIncendiary
+#   - MagazineBoxLightRifleIncendiary
+#   - MagazineBoxRifleIncendiary
+#   - MagazineDMRIncendiary # Starlight
+#   - MagazinePistolSubMachineGunIncendiary
+#   - SpeedLoaderShotgunIncendiary
+#   radioChannels:
+#   - Security
 
 - type: technology
   id: WeaponizedLaserManipulation

@@ -44,7 +44,7 @@
 - type: technology
   id: EnergyBarriers
   name: research-technology-energy_barriers
-  icon: 
+  icon:
     sprite: Objects/Tools/EnergyDome/reinhardt.rsi
     state: icon
   discipline: Arsenal
@@ -55,31 +55,6 @@
   radioChannels:
   - Security
 
-- type: technology
-  id: ArmorPenetrationMunitions
-  name: research-technology-armor-penetration
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_mag.rsi
-    state: ap
-  discipline: Arsenal
-  tier: 2
-  cost: 11500
-  recipeUnlocks:
-  - SpeedLoaderMagnumAP
-  - MagazinePistolAP
-  - MagazinePistol40AP
-  - MagazineRifleAP
-  - MagazineLightRifleAP
-  - MagazineBoxMagnumAP
-  - MagazineBoxPistolAP
-  - MagazineBoxPistol40AP
-  - MagazineBoxRifleAP
-  - MagazineBoxLightRifleAP
-  - MagazineDMRAP
-  - MagazinePistolSubMachineGunAP
-  radioChannels:
-  - Security
-  
 - type: technology
   id: IonWeaponry
   name: research-technology-ion-weaponry
@@ -119,7 +94,7 @@
   radioChannels:
   - Security
   - Medical
-  
+
 # Tier 3
 
 - type: technology
@@ -137,7 +112,7 @@
   - ExplosiveTechnology
   radioChannels:
   - Security
-  
+
 - type: technology
   id: Durand
   name: research-technology-durand
@@ -182,7 +157,7 @@
   - Security
   - Medical
 
- # Tier 4 
+ # Tier 4
 
 - type: technology
   id: DecloneTechnology
@@ -197,7 +172,7 @@
   - WeaponDecloner
   radioChannels:
   - Security
-  
+
 - type: technology
   id: ScanGateTechnology
   name: research-technology-scan-gate

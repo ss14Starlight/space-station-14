@@ -176,59 +176,34 @@
 #####################BOX#######################
 # Light Rifle
   - MagazineBoxLightRifleRubber
-  - MagazineBoxLightRifleIncendiary
   - MagazineBoxLightRifleUranium
-  - MagazineBoxLightRifleAP
 # Magnum
   - MagazineBoxMagnumRubber
-  - MagazineBoxMagnumIncendiary
   - MagazineBoxMagnumUranium
-  - MagazineBoxMagnumAP
 # Pistol
   - MagazineBoxPistolRubber
-  - MagazineBoxPistolIncendiary
   - MagazineBoxPistolUranium
-  - MagazineBoxPistolAP
-  - MagazineBoxPistol40AP
 # Rifle
   - MagazineBoxRifleRubber
-  - MagazineBoxRifleIncendiary
   - MagazineBoxRifleUranium
-  - MagazineBoxRifleAP
 # Shotgun
   - BoxBeanbag
-  - BoxShotgunIncendiary
   - BoxShotgunUranium
   - BoxShellTranquilizer
 #####################MAGAZINE#######################
 # Light Rifle
-  - MagazineLightRifleIncendiary
   - MagazineLightRifleUranium
-  - MagazineLightRifleAP
-  - MagazineDMRIncendiary
   - MagazineDMRUranium
-  - MagazineDMRAP
 # Magnum
-  - SpeedLoaderMagnumIncendiary
   - SpeedLoaderMagnumUranium
-  - SpeedLoaderMagnumAP
 # Pistol
-  - MagazinePistolIncendiary
   - MagazinePistolUranium
-  - MagazinePistolAP
-  - MagazinePistol40AP
 # SMG
-  - MagazinePistolSubMachineGunIncendiary
   - MagazinePistolSubMachineGunUranium
-  - MagazinePistolSubMachineGunAP
 # Rifle
-  - MagazineRifleIncendiary
   - MagazineRifleUranium
-  - MagazineRifleAP
 # Shotgun
   - MagazineShotgunBeanbag
-  - MagazineShotgunIncendiary
-  - SpeedLoaderShotgunIncendiary
   - SpeedLoaderShotgunUranium
 # Grenade
   - MagazineGrenadeEmpty
@@ -264,7 +239,6 @@
   recipes:
   - WeaponMechCombatMissileRack8
   - WeaponMechCombatShotgun
-  - WeaponMechCombatShotgunIncendiary
   - WeaponMechCombatUltraRifle
   - WeaponMechCombatXray
   - WeaponMechChainSword
@@ -281,7 +255,7 @@
   id: StarlightSecurityMechsSystems
   recipes:
   - MechEquipmentSecGrabber
-  
+
 - type: latheRecipePack
   id: StarlightSecurityMechs
   recipes:
