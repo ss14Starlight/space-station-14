@@ -26,6 +26,7 @@
   storage:
     back:
       - WeaponPistolMk58
+    belt:
       - MagazinePistolSP
 
 - type: loadout
@@ -37,6 +38,7 @@
   storage:
     back:
       - WeaponPistolDP
+    belt:
       - MagazinePistol40SP
 
 - type: loadout
@@ -45,6 +47,7 @@
   storage:
     back:
     - WeaponPistolEnforcer
+  belt:
     - MagazinePistolSP
 
 # Jumpsuit

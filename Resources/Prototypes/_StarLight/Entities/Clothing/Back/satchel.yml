@@ -28,7 +28,7 @@
 - type: entity
   parent: [ClothingBackpackSatchel, BaseSecurityContraband]
   id: ClothingBackpackSatchelCorpsman
-  name: Corpsman Satchel
+  name: corpsman's satchel
   description: Has more than enough pockets to organize everything.
   components:
   - type: Sprite

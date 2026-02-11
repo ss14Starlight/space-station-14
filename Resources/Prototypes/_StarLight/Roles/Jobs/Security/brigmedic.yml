@@ -41,8 +41,9 @@
   storage:
     back:
     - Flash
-    - SecurityMedkit
     - DefibrillatorBrigmedical
+    belt:
+    - SecurityMedkit
 
 - type: chameleonOutfit
   id: BrigmedicChameleonOutfit

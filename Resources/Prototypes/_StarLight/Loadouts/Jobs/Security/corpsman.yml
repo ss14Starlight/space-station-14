@@ -119,7 +119,7 @@
     - !type:GroupLoadoutEffect
         proto: SkilledCorpsman
   equipment:
-    eyes: ClothingEyesEyepatchHudCorpsman
+    eyes: ClothingEyesEyepatchHudBrigmedic
 
 # PDA
 - type: loadout

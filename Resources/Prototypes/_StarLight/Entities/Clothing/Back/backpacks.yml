@@ -29,7 +29,7 @@
   parent: [ClothingBackpack, BaseCommandContraband]
   id: ClothingBackpackCorpsman
   name: corpsman's backpack
-  description: A backpack with easy to access pockets for the organized Corpsman!
+  description: A backpack with easy to access pockets for the organized corpsman!
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Backpacks/corpsman.rsi

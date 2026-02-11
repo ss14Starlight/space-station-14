@@ -2,7 +2,7 @@
   name: CorpComrade™ 6001
   parent: HandheldBrigmedicCrewMonitor
   id: HandheldCorpsmanCrewMonitor
-  description: The device advertises itself as a "new and improved brigbuddy™" but the only notable thing about it is the colors..
+  description: The device advertises itself as a "new and improved BrigBuddy™" but the only notable thing about it is the colors..
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/handheld_corpsman_crewmonitor.rsi

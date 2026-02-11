@@ -34,12 +34,12 @@
     pocket2: HandheldCorpsmanCrewMonitor
   storage:
     back:
-    - Flash
-    - DefibrillatorBrigmedical
     - EmergencyRollerBedSpawnFolded
+    - DefibrillatorBrigmedical
     belt:
     - HyperAdvancedJetInjector
     - BodyBagLockableFolded # Might as well get it since they're technically parameds
+    - Flash # Let's see if it actually puts it in...
 
 - type: chameleonOutfit
   id: CorpsmanChameleonOutfit
