@@ -6,8 +6,8 @@
 1 . Standard [color=#00a933]Code Green[/color] equipment is:
 <Box>
 	<GuideEntityEmbed Entity="MedkitAdvancedFilled"/>
-	<GuideEntityEmbed Entity="DefibrillatorBrigmedical"/>
-	<GuideEntityEmbed Entity="HandheldBrigmedicCrewMonitor"/>
+	<GuideEntityEmbed Entity="DefibrillatorCorpsman"/>
+	<GuideEntityEmbed Entity="HandheldCorpsmanCrewMonitor"/>
 </Box>
 <Box>
 	<GuideEntityEmbed Entity="WeaponDisabler"/>
@@ -29,9 +29,17 @@
 	<GuideEntityEmbed Entity="Zipties"/>
 </Box>
 
-2. Brigmedics may not perform Security Officer duties unless security is severely understaffed, or a crime has occurred in their sight.
+2. Corpsmen report directly to the Brigmedic.
 
-3. Brigmedics must prioritize the health and safety of Security Officers and Prisoners over all other priorities.
+3. Corpsmen may not perform Security Officer duties unless security is severely understaffed, or a crime has occurred in their sight.
 
-4. Brigmedics putting themselves in excessive danger, and by extension the entire department, are to be considered negligent in their duties.
+4. Corpsmen putting themselves in excessive danger, and by extension the entire department, are to be considered negligent in their duties.
+
+5. Corpsmen must prioritize the health and safety of Security Officers and Prisoners over all other priorities.
+
+6. Crew members who are deceased are to be placed into a body bag before transport to the brig or medbay.
+
+7. Should a crewmember not be able to be stabilized in the field (excess damage, no means to heal) or defibrillated, they should inform the brig or medbay using radio communications prior to arrival.
+
+8. Corpsmen should carry sufficient supplies for each major damage type (burn, brute, poison, airloss, and bloodloss, and radiation).
 </Document>
