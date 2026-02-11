@@ -162,6 +162,28 @@
   - type: Construction
     graph: Seat
     node: chairOffice
+# Starlight Start
+  - type: RMCAllowStrapMovement
+  - type: MobMover
+  - type: Puller
+    needsHands: false
+  - type: Pullable
+  - type: InputMover
+  - type: InteractionOutline
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.8
+    baseSprintSpeed: 1.2
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: Physics
+    bodyType: KinematicController
+  - type: ContainerContainer
+    containers:
+      rmc-vehicle-pilot: !type:ContainerSlot
+  - type: Wheelchair
+    speedMultiplier: 1
+# Starlight End
 
 - type: entity
   name: dark office chair
@@ -173,6 +195,28 @@
   - type: Construction
     graph: Seat
     node: chairOfficeDark
+# Starlight Start
+  - type: RMCAllowStrapMovement
+  - type: MobMover
+  - type: Puller
+    needsHands: false
+  - type: Pullable
+  - type: InputMover
+  - type: InteractionOutline
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.8
+    baseSprintSpeed: 1.2
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: Physics
+    bodyType: KinematicController
+  - type: ContainerContainer
+    containers:
+      rmc-vehicle-pilot: !type:ContainerSlot
+  - type: Wheelchair
+    speedMultiplier: 1
+# Starlight End
 
 # - type: entity
   # name: comfy chair
