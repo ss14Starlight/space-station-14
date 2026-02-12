@@ -47,7 +47,7 @@
   storage:
     back:
     - WeaponPistolEnforcer
-  belt:
+    belt:
     - MagazinePistolSP
 
 # Jumpsuit
