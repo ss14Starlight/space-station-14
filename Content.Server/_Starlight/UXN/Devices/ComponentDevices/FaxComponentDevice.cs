@@ -56,11 +56,17 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                 GetPointers(memTarget, deviceMem, out buf1size, out buf1ptr, out buf2size, out buf2ptr);
                 var component = Entity.Comp;
 
-                comp.DestinationFaxAddress = ReadBuffered(proc.SystemMem, buf1size, buf1ptr);
+                component.DestinationFaxAddress = ReadBuffered(proc.SystemMem, buf1size, buf1ptr);
                 if (component.DestinationFaxAddress == null)
-                    return;
+                {
+                    deviceMem[memTarget & 0xF0] = 0x80; //invalid address
+                    break;   
+                }
                 if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var faxName))
-                    return;
+                {
+                    deviceMem[memTarget & 0xF0] = 0x80; //invalid address
+                    break;
+                }
 
                 var contents = ReadBuffered(proc.SystemMem, buf2size, buf2ptr).Trim();
                 var payload = new NetworkPayload
@@ -109,39 +115,6 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
         buf2ptr = deviceMem.GetShort((byte)(baseAddr + 0x08));
     }
     #endregion
-
-    /// <summary>
-    /// Reads a string from a buffer.
-    /// </summary>
-    /// <param name="mem">the memory to read from</param>
-    /// <param name="bufferLen">the size of the buffer. if 0x00 will attempt to read until it encounters null (basically a null-terminated string)</param>
-    /// <param name="addr">the starting addr of the buffer</param>
-    /// <returns></returns>
-    private string ReadBuffered(UxnMem mem, ushort bufferLen, ushort addr)
-    {
-        StringBuilder output = new StringBuilder();
-        if (bufferLen == 0)
-        {
-            byte read = 0xff;
-            ushort readAddr = addr;
-            ushort counter = 1;
-            while (read != 0 && counter != 0)
-            {
-                read = mem[addr];
-                addr++;
-                counter++;
-                output.Append(Encoding.ASCII.GetChars([read]));
-            }
-            output.Length--; //Delete the last character
-        } else
-        {
-            for (short i = 0; i < bufferLen; i++)
-            {
-                output.Append(mem[(ushort)(addr + i)]);
-            }
-        }
-        return output.ToString();
-    }
 
     private readonly Queue<byte> _buf1Queue = new();
     private readonly Queue<byte> _buf2Queue = new();

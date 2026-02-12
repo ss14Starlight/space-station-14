@@ -2,13 +2,14 @@
 using System.Text;
 using Content.Server._Starlight.UXN.Devices;
 using Content.Server._Starlight.UXN.Devices.ComponentDevices;
+using Content.Shared._Starlight.UXN;
 using Content.Shared.Fax.Components;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.UXN;
 
-public sealed partial class UxnSystem : EntitySystem
+public sealed partial class UxnSystem : SharedUxnSystem
 {
     [Dependency] private readonly IResourceManager _resourceManager = default!;
 
@@ -92,7 +93,7 @@ public struct OnGetUxnDevices
     public void AddDevice<T>(T comp, ComponentUxnDevice<T> dev, EntityUid ent) where T : IComponent
     {
         var typeName = comp.GetType().Name;
-        this.Devices[typeName[..^"Component".Length].ToLower()] = dev;
+        Devices[typeName[..^"Component".Length].ToLower()] = dev;
         dev.Setup(ent, comp);
     }
     public void AddDevice(string name, UXNDevice dev)

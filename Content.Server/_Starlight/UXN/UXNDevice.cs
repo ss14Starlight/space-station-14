@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Text;
 using Content.Server._Starlight.UXN.Devices;
 
 namespace Content.Server._Starlight.UXN;
@@ -154,6 +155,45 @@ public class UXNDevice
     /// </summary>
     /// <param name="proc"></param>
     public virtual void OnAttach(UXNProcessor proc) { }
+
+    /// <summary>
+    /// Called when this device is removed to a UXN processor.
+    /// </summary>
+    /// <param name="proc"></param>
+    public virtual void OnDetach(UXNProcessor proc) { }
+
+    /// <summary>
+    /// Reads a string from a buffer.
+    /// </summary>
+    /// <param name="mem">the memory to read from</param>
+    /// <param name="bufferLen">the size of the buffer. if 0x00 will attempt to read until it encounters null (basically a null-terminated string)</param>
+    /// <param name="addr">the starting addr of the buffer</param>
+    /// <returns></returns>
+    protected string ReadBuffered(UxnMem mem, ushort bufferLen, ushort addr)
+    {
+        StringBuilder output = new StringBuilder();
+        if (bufferLen == 0)
+        {
+            byte read = 0xff;
+            ushort readAddr = addr;
+            ushort counter = 1;
+            while (read != 0 && counter != 0)
+            {
+                read = mem[addr];
+                addr++;
+                counter++;
+                output.Append(Encoding.ASCII.GetChars([read]));
+            }
+            output.Length--; //Delete the last character
+        } else
+        {
+            for (short i = 0; i < bufferLen; i++)
+            {
+                output.Append(mem[(ushort)(addr + i)]);
+            }
+        }
+        return output.ToString();
+    }
 }
 
 public abstract class UxnEvent
@@ -599,7 +639,7 @@ public sealed class UXNProcessor
                         devInstance.ReadValue(dev, DevMem, this);
                         possibleDev.ReadValue((byte)((dev + 1) & 0xFF), DevMem, this);
                         var msb = DevMem[dev];
-                        stack.PushShort((ushort)((msb << 8) | (DevMem[(dev + 1) & 0xFF])));
+                        stack.PushShort((ushort)((msb << 8) | DevMem[(dev + 1) & 0xFF]));
                     }
                     else
                     {
@@ -788,7 +828,7 @@ public sealed class UXNProcessor
     public T AttachDevice<T>(byte slot, T device) where T : UXNDevice
     {
         var devices = Devices;
-        devices[slot] = device;
+        devices[slot & 0x0F] = device;
         device.OnAttach(this);
         return device;
     }
