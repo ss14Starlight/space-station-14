@@ -1,12 +1,12 @@
-using Robust.Shared.Utility;
+using Robust.Shared.Containers;
 
 namespace Content.Server._Starlight.UXN;
 
 [RegisterComponent]
-public sealed partial class UxnAttachableComponent : Component
+public sealed partial class UxnAttachedComponent : Component
 {
     public UXNProcessor? Uxn = null;
 
     [ViewVariables]
-    public Dictionary<string, UXNDevice> Devices = new();
+    public ContainerSlot ChipHolder = new();
 }

@@ -2,10 +2,12 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using Content.Server._Starlight.UXN;
 using Content.Server._Starlight.UXN.Devices;
 using Content.Tests;
 using NUnit.Framework;
+using Robust.Shared.Log;
 using Robust.Shared.Utility;
 
 namespace Content.Tests.Shared._Starlight.UXN;
@@ -42,6 +44,7 @@ public sealed class UxnTestCompiler : ContentUnitTest
         uxn.RunUnlimited();
 
         Console.WriteLine($"Assembled UXN program in {uxn.RealInstructionCounter} instructions, FakedStdio provided {stdio.CharCount}/{uxnTal.Length} chars");
+        Console.WriteLine($"Program output:\n{new string(Encoding.ASCII.GetChars([.. stdio.FakedError])).Trim()}");
 
         Assert.That(uxn.SystemDevice.Status, Is.GreaterThanOrEqualTo(0x80)); //since anything lesser is a error
         Assert.That(stdio.FakedOutput, Has.Count.EqualTo(3373)); //and this is the expected rom size of compiled opctest

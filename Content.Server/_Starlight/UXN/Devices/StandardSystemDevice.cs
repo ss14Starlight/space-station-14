@@ -143,6 +143,7 @@ public class StandardSystemDevice : UXNDevice
                 proc.ReturnStack.SetPointer(deviceMem[memTarget]);
                 break;
             case 0x0e: //debug
+                System.Diagnostics.Debugger.Break(); //BREAKPOINT!!
                 break;
             case 0x0f: //state
                 Status = deviceMem[memTarget];

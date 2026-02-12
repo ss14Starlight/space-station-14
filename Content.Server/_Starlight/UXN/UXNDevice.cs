@@ -96,7 +96,7 @@ public sealed class UxnMem
     {
         var lsb = this[baseAddr];
         var msb = this[(ushort)(baseAddr + 1)];
-        return (ushort)((msb << 8) | lsb);
+        return (ushort)((lsb << 8) | msb);
     }
     
     public void PutShort(ushort addr, ushort val)

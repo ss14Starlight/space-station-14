@@ -302,7 +302,8 @@ public sealed class UxnShortOpcodeTest : ContentUnitTest
         uxn.SystemMem[0x1235] = 0x78;
         uxn.WorkingStack.PushShort(0x1234);
         Assert.That(uxn.Step(), Is.EqualTo(false));
-        Assert.That(uxn.WorkingStack.PopShort(true), Is.EqualTo(0x5678));
+        var result = uxn.WorkingStack.PopShort(true);
+        Assert.That(result, Is.EqualTo(0x5678));
     }
 
     [Test]

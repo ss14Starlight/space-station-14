@@ -1,9 +1,13 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Text;
 using Content.Server._Starlight.UXN.Devices;
 using Content.Server._Starlight.UXN.Devices.ComponentDevices;
 using Content.Shared._Starlight.UXN;
 using Content.Shared.Fax.Components;
+using Content.Shared.Interaction;
+using Content.Shared.Paper;
+using Robust.Server.Containers;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Utility;
 
@@ -12,27 +16,88 @@ namespace Content.Server._Starlight.UXN;
 public sealed partial class UxnSystem : SharedUxnSystem
 {
     [Dependency] private readonly IResourceManager _resourceManager = default!;
+    [Dependency] private readonly ContainerSystem _containerSystem = default!;
 
     private readonly ResPath _compilerRom = new("/_Starlight/Uxn/Rom/drifloon.rom");
 
     private readonly UXNProcessor _compiler = new();
-    
+
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<UxnAttachableComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<FaxMachineComponent, OnGetUxnDevices>(OnAttachFaxMachineComponent);
+        SubscribeLocalEvent<UxnComponent, AfterInteractEvent>(OnInteractUsing);
+
+        #region Device subscriptions
+        SubscribeLocalEvent<FaxMachineComponent, OnGetUxnDevices>(OnGetUxnDevicesFaxMachine);
+        #endregion
     }
 
-    private void OnMapInit(EntityUid euid, UxnAttachableComponent uxn, MapInitEvent map)
+    private void OnInteractUsing(Entity<UxnComponent> ent, ref AfterInteractEvent ev)
     {
+        if (ev.Target == null)
+            return; //we cant interact with air.
+        var target = ev.Target.Value;
+        if (!(HasComp<UxnAttachableComponent>(target) || HasComp<PaperComponent>(target)))
+            return; //the target is not a paper we can load code from. or something we can attach the UXN to.
+
+        if (TryComp<PaperComponent>(target, out var paper))
+        {
+            if (Compile(paper.Content, out var error, out var rom))
+            {
+                ent.Comp.AssembledSize = rom.Count;
+                ent.Comp.CompiledRom = rom;
+                ent.Comp.CompilerOutput = "Compiled successfully";
+            } else
+            {
+                ent.Comp.AssembledSize = 0;
+                ent.Comp.CompiledRom = new();
+                ent.Comp.CompilerOutput = error;
+            }
+            Dirty(ent);
+        }
         
+        if (HasComp<UxnAttachableComponent>(target))
+        {
+            if (HasComp<UxnAttachedComponent>(target))
+                return; //the target allready has a UXN attached. TODO: allow connecting mutiple UXNs to one machine and allowing them to mesh network.
+
+            var attached = EnsureComp<UxnAttachedComponent>(target);
+            var xform = Transform(ent);
+
+            if (_containerSystem.CanInsert(ent.Owner, attached.ChipHolder))
+            {
+                RemComp<UxnAttachedComponent>(target);
+                return; //couldn't insert the uxn into a little slot on the machine so rem the attached comp and continue on.
+            }
+
+            var devEv = new OnGetUxnDevices();
+            RaiseLocalEvent(target, ref devEv);
+
+            var uxn = new UXNProcessor();
+            var mem = uxn.SystemMem;
+            ushort writeHead = 0x100;
+            Span<byte> span = new byte[32];
+            var stream = new MemoryStream([.. ent.Comp.CompiledRom]);
+            while (stream.CanRead)
+            {
+                var amnt = stream.Read(span);
+                if (amnt == 0) break;
+                for (int i = 0; i < amnt; i++)
+                {
+                    mem[writeHead] = span[i];
+                    writeHead++;
+                }
+            }
+
+            attached.Uxn = uxn;
+            _containerSystem.Insert((ent.Owner, xform), attached.ChipHolder);
+        }
     }
 
-    private void OnAttachFaxMachineComponent(Entity<FaxMachineComponent> ent, ref OnGetUxnDevices ev)
+    private void OnGetUxnDevicesFaxMachine(Entity<FaxMachineComponent> ent, ref OnGetUxnDevices ev)
     {
         ComponentUxnDevice<FaxMachineComponent> dev = new FaxComponentDevice();
-        ev.AddDevice<FaxMachineComponent>(ent, dev);
+        ev.AddDevice(ent, dev);
     }
 
     public bool Compile(string uxnTal, [NotNullWhen(false)] out string? error, [NotNullWhen(true)] out List<byte>? rom)
@@ -99,5 +164,5 @@ public struct OnGetUxnDevices
     public void AddDevice(string name, UXNDevice dev)
         => this.Devices[name.ToLower()] = dev;
 
-    public OnGetUxnDevices(){}
+    public OnGetUxnDevices() { }
 }

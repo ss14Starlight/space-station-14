@@ -29,7 +29,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
         var _entMan = IoCManager.Resolve<EntitySystemManager>();
         _fax = _entMan.GetEntitySystem<FaxSystem>();
         _deviceNetwork = _entMan.GetEntitySystem<DeviceNetworkSystem>();
-    } // We dont need any extra setup/information from the ent. but we do need the sytem
+    } // We dont need any extra setup/information from the ent. but we do need the systems
 
     public override void WriteValue(byte memTarget, Byte256 deviceMem, UXNProcessor proc)
     {
@@ -93,7 +93,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
             output.Concat(Encoding.ASCII.GetBytes(item.Key));
             output.Add(0x00);
         }
-        WriteBuffered(uxnMem, buf1size, buf1ptr, output.ToArray(), true);
+        WriteBuffered(uxnMem, buf1size, buf1ptr, [.. output], true);
     }
 
     #region Utility
