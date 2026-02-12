@@ -1,7 +1,13 @@
 ﻿using System.Linq;
 using System.Text;
+using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Fax;
+using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.Fax;
 using Content.Shared.Fax.Components;
+using Content.Shared.Labels.Components;
+using Microsoft.CodeAnalysis;
 
 namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 
@@ -18,9 +24,11 @@ namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
 {
     private FaxSystem _fax = null!;
+    private DeviceNetworkSystem _deviceNetwork = null!;
     protected override void SetupCore(EntityUid entity, FaxMachineComponent component) {
         var _entMan = IoCManager.Resolve<EntitySystemManager>();
         _fax = _entMan.GetEntitySystem<FaxSystem>();
+        _deviceNetwork = _entMan.GetEntitySystem<DeviceNetworkSystem>();
     } // We dont need any extra setup/information from the ent. but we do need the sytem
 
     public override void WriteValue(byte memTarget, Byte256 deviceMem, UXNProcessor proc)
@@ -28,14 +36,58 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
         if ((memTarget & 0x0F) != 0x01)
             return; //the bank being written is NOT the "command" bank. so we can just treat it as normal memory IO.
         byte command = deviceMem[memTarget];
-        switch(command)
+        ushort buf1size, buf1ptr, buf2size, buf2ptr;
+        switch (command)
         {
-            case 0x00: //Scan Devices
+            case 0x00: //Continue buffered write op.
+                GetPointers(memTarget, deviceMem, out buf1size, out buf1ptr, out buf2size, out buf2ptr);
+                var bank1bufstatus = ContinueBufferedWrite(proc.SystemMem, buf1size, buf1ptr, true);
+                var bank2bufstatus = ContinueBufferedWrite(proc.SystemMem, buf2size, buf2ptr, false);
+                deviceMem[memTarget & 0xF0] =  (byte)(bank1bufstatus || bank2bufstatus ? 0xFF : 0x00);
+                break;
+            case 0x01: //Re-Scan for devices
+                _fax.Refresh(Entity.Owner, Entity.Comp);
+                deviceMem[memTarget & 0xF0] = 0x00; //success!
+                break;
+            case 0x02: //List known faxes
+                DumpKnownFaxes(memTarget, deviceMem, proc.SystemMem);
+                break;
+            case 0x03: //Send a fax to destination.
+                GetPointers(memTarget, deviceMem, out buf1size, out buf1ptr, out buf2size, out buf2ptr);
+                var component = Entity.Comp;
 
+                comp.DestinationFaxAddress = ReadBuffered(proc.SystemMem, buf1size, buf1ptr);
+                if (component.DestinationFaxAddress == null)
+                    return;
+                if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var faxName))
+                    return;
 
+                var contents = ReadBuffered(proc.SystemMem, buf2size, buf2ptr).Trim();
+                var payload = new NetworkPayload
+                {
+                    [DeviceNetworkConstants.Command] = FaxConstants.FaxPrintCommand,
+                    [FaxConstants.FaxPaperNameData] = Loc.GetString("uxn-device-faxmachine-name"),
+                    [FaxConstants.FaxPaperContentData] = contents,
+                };
+                _deviceNetwork.QueuePacket(Entity, component.DestinationFaxAddress, payload);
+                break;
             default: //invalid device command
                 break;
         }
+    }
+
+    private void DumpKnownFaxes(byte memTarget, Byte256 deviceMem, UxnMem uxnMem)
+    {
+        GetPointers(memTarget, deviceMem, out var buf1size, out var buf1ptr, out var buf2size, out var buf2ptr);
+        List<byte> output = new();
+        foreach (KeyValuePair<string,string> item in Entity.Comp.KnownFaxes)
+        {
+            output.Concat<byte>(Encoding.ASCII.GetBytes(item.Value));
+            output.Add(0x00);
+            output.Concat(Encoding.ASCII.GetBytes(item.Key));
+            output.Add(0x00);
+        }
+        WriteBuffered(uxnMem, buf1size, buf1ptr, output.ToArray(), true);
     }
 
     #region Utility

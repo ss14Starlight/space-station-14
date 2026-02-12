@@ -23,6 +23,12 @@ public sealed class Byte256
         return (ushort)((msb << 8) | lsb);
     }
 
+    public void PutShort(byte addr, ushort val)
+    {
+        this[addr] = (byte)(val >> 8);
+        this[(byte)(addr + 1)] = (byte)(val & 0xFF);
+    }
+
     public byte[] ToRaw() => (byte[])_inner.Clone();
 }
 
@@ -83,6 +89,19 @@ public sealed class UxnMem
     {
         get => _inner[i];
         set => _inner[i] = value;
+    }
+
+    public ushort GetShort(ushort baseAddr)
+    {
+        var lsb = this[baseAddr];
+        var msb = this[(ushort)(baseAddr + 1)];
+        return (ushort)((msb << 8) | lsb);
+    }
+    
+    public void PutShort(ushort addr, ushort val)
+    {
+        this[addr] = (byte)(val >> 8);
+        this[(ushort)(addr + 1)] = (byte)(val & 0xFF);
     }
 
     public byte[] ToRaw() => (byte[])_inner.Clone();
@@ -547,7 +566,7 @@ public sealed class UXNProcessor
                     var addr = stack.PopShort(keep);
                     if (shrt)
                     {
-                        stack.PushShort((ushort)((SystemMem[addr] << 8) | SystemMem[(ushort)(addr + 1)]));
+                        stack.PushShort(SystemMem.GetShort(addr));
                     }
                     else
                     {
@@ -562,8 +581,7 @@ public sealed class UXNProcessor
                     if (shrt)
                     {
                         var val = stack.PopShort(keep);
-                        mem[addr] = (byte)(val >> 8);
-                        mem[(ushort)(addr + 1)] = (byte)(val & 0xFF);
+                        mem.PutShort(addr, val);
                     }
                     else
                     {
