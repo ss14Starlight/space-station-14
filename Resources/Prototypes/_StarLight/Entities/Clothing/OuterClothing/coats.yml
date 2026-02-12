@@ -94,6 +94,7 @@
     damageCoefficient: 0.95
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodCorpsman
+    slot: head
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.75
 
