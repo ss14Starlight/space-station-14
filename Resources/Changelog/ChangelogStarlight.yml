@@ -30094,5 +30094,130 @@ Entries:
   id: 323200
   time: '2026-02-10T20:47:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3232
+- author: CrazyPhantom
+  changes:
+  - message: PR Build Tests are now working
+    type: Fix
+  id: 323300
+  time: '2026-02-10T23:41:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3233
+- author: CawsForConcern
+  changes:
+  - message: (Lobster) Missing Brigmedic locker
+    type: Fix
+  id: 323500
+  time: '2026-02-11T05:37:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3235
+- author: CrazyPhantom
+  changes:
+  - message: Central Command is now informed of NT-ISD wanted
+    type: Tweak
+  id: 323600
+  time: '2026-02-11T05:46:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3236
+- author: CawsForConcern
+  changes:
+  - message: (Reach) Nanotrasen Career Trainers
+    type: Add
+  - message: (Reach) Magistrate Locker
+    type: Add
+  - message: (Reach) IAA Locker
+    type: Add
+  - message: (Reach) IAA spawnpoints
+    type: Add
+  - message: (Reach) Duty Officer
+    type: Add
+  - message: (Reach) HOS Weapon Spawner
+    type: Add
+  - message: (Reach) SpawnPointLateJoin at Arrivals
+    type: Add
+  - message: (Reach) Wall-mounted mass scanners to Cargo Front
+    type: Add
+  - message: (Reach) AI Restoration Console
+    type: Add
+  - message: (Reach) Enabled Magistrate and IAA on Reach
+    type: Fix
+  - message: (Reach) Removed admin super remote from the Bridge
+    type: Fix
+  id: 324400
+  time: '2026-02-11T05:55:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3244
+- author: CawsForConcern
+  changes:
+  - message: (Bagel) Two more job slots for borgs (for a total of 2 round start and
+      4 total with latejoins)
+    type: Add
+  id: 324300
+  time: '2026-02-11T06:00:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3243
+- author: CawsForConcern
+  changes:
+  - message: (Fland) Removed HOP-only access windoors in EVA Storage
+    type: Fix
+  id: 324200
+  time: '2026-02-11T06:25:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3242
+- author: CawsForConcern
+  changes:
+  - message: (Silica) McGriff has been found and returned to the Warden's office.
+    type: Add
+  id: 324100
+  time: '2026-02-11T06:55:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3241
+- author: CawsForConcern
+  changes:
+  - message: (Hotel) Disposal bin in Security Lobby
+    type: Add
+  - message: (Hotel) Disposal bin in Security Locker Room
+    type: Add
+  - message: (Hotel) Document printer and paper bin in Security Lobby
+    type: Add
+  - message: (Hotel) Jetpacks to Security Armory
+    type: Add
+  - message: (Hotel) Glass shutters removed from the TEG area and replaced with a
+      proper external airlock access instead
+    type: Tweak
+  id: 324000
+  time: '2026-02-11T07:00:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3240
+- author: CawsForConcern
+  changes:
+  - message: (Kiloton) Biogenerator to Botany
+    type: Add
+  id: 323900
+  time: '2026-02-11T07:03:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3239
+- author: CawsForConcern
+  changes:
+  - message: (Box) Missing camera on the West side of Bridge
+    type: Fix
+  id: 323800
+  time: '2026-02-11T10:18:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3238
+- author: teapoterror
+  changes:
+  - message: PPSH From Geiger Complex Armory
+    type: Remove
+  - message: '"Worn-down SSF Suit" to Geiger Complex Armory, a significantly worse
+      version of the standard SSF suit. (Poor mans juggsuit)'
+    type: Add
+  id: 324800
+  time: '2026-02-11T15:24:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3248
+- author: CawsForConcern
+  changes:
+  - message: (Cog) Botany windows are no longer all-access
+    type: Fix
+  - message: (Cog) Escape pods no longer all use the same station beacon names, now
+      use cardinal names (North / Northeast, Southeast, etc)
+    type: Fix
+  - message: (Cog) Solars no longer all use the same station beacon names, now use
+      cardinal names (North / Northeast, Southeast, etc)
+    type: Fix
+  - message: (Cog) Removed duplicate 'Evac' station beacons
+    type: Fix
+  id: 323700
+  time: '2026-02-11T15:34:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3237
 Order: -1
 

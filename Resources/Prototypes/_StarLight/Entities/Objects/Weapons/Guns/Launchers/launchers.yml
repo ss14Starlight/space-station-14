@@ -8,6 +8,10 @@
   - type: ScanDetectable
   - type: Contraband
     severity: Syndicate
+  - type: ContainerContainer
+    containers:
+      revolver-ammo: !type:Container
+      ballistic-ammo: !type:Container
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -28,5 +32,9 @@
   id: WeaponLauncherHydraFilled
   suffix: Filled
   components:
+  - type: ContainerContainer
+    containers:
+      revolver-ammo: !type:Container
+      ballistic-ammo: !type:Container
   - type: BallisticAmmoProvider
     proto: GrenadeCleanade
