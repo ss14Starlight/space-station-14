@@ -300,6 +300,9 @@
 
 - type: Tag
   id: Locker
+  
+- type: Tag
+  id: LoneOpsUplink
 
 - type: Tag
   id: MagazineBattery

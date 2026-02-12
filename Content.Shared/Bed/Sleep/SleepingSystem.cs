@@ -140,8 +140,10 @@ public sealed partial class SleepingSystem : EntitySystem
 
         _stun.TryUnstun(ent.Owner);
         _stun.TryStanding(ent.Owner);
-
-        RemComp<SpamEmitSoundComponent>(ent);
+        // Starlight edit Start
+        if (!TerminatingOrDeleted(ent))
+            RemCompDeferred<SpamEmitSoundComponent>(ent);
+        // Starlight edit end
     }
 
     private void OnCompInit(Entity<SleepingComponent> ent, ref ComponentInit args)

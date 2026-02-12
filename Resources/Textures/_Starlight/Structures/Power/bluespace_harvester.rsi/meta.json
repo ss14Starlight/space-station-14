@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "Taken from Paradise Station 13 RU link: https://github.com/ss220-space/Paradise/blob/HEAD/icons/obj/machines/bluespace_tap.dmi",
+  "size": {
+    "x": 96,
+    "y": 96
+  },
+  "states": [
+    {
+        "name": "bluespace_tap",
+        "copyright": "Paradise Station RU",  
+        "delays":[
+            [0.1,0.1,0.1,0.1]
+        ]
+    },
+    {
+      "name": "bluespace_monitor",
+      "copyright": "Paradise Station RU",
+      "delays": [
+        [0.1,0.1,0.1,0.1]
+      ]
+    }
+  ]
+}

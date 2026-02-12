@@ -90,7 +90,7 @@
   - BlueShieldBackpack
   - BlueShieldOuterclothing
   - BlueShieldBelt
-  - Insuls
+  - InsulsCombat
   - BlueShieldShoes
   - BlueShieldNeck
   - BlueShieldEyewear
@@ -106,9 +106,11 @@
   id: JobMiningSpecialist
   groups:
   - GroupTankHarness
+  - HeadGeneric
   - SalvageSpecialistBackpack
   - MiningSpecialistJumpsuit
   - SalvageSpecialistOuterClothing
+  - GlovesGeneric
   - SalvageSpecialistShoes
   - MiningSpecialistPDA
   - Glasses
@@ -170,6 +172,7 @@
   - SecurityEyewear
   - DutyOfficerOuterClothing
   - SecurityShoes
+  - SecurityGloves
   - DutyOfficerBelt
   - SecurityNonLethalWeapon
   - SurvivalSecurity
@@ -188,6 +191,8 @@
     - SalvageLeadJumpsuit
     - SalvageLeadNeck
     - SalvageSpecialistOuterClothing
+    - HeadGeneric
+    - GlovesGeneric
     - SalvageSpecialistShoes
     - SalvageLeadPDA
     - Glasses
