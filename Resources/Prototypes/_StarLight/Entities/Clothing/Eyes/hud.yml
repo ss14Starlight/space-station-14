@@ -129,10 +129,10 @@
 #    - WhitelistChameleon
 #    - HudMedical
 
-- type: entity
-  parent: [ClothingEyesEyepatchHudCorpsman, ClothingHeadEyeBaseFlipped]
-  id: ClothingEyesEyepatchHudCorpsmanFlipped
-  name: corpsman hud eyepatch
+#- type: entity
+#  parent: [ClothingEyesEyepatchHudCorpsman, ClothingHeadEyeBaseFlipped]
+#  id: ClothingEyesEyepatchHudCorpsmanFlipped
+#  name: corpsman hud eyepatch
 
 - type: entity
   parent: ClothingEyesBase
