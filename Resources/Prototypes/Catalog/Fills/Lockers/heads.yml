@@ -440,13 +440,14 @@
     - id: WeaponTaser
     - id: WantedListCartridge
     - id: DrinkHosFlask
-    - id: SecurityShuttleConsoleCircuitboard #SL
-    - id: PrintedDocumentGreenshiftAlert #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
+    - id: SecurityShuttleConsoleCircuitboard # Starlight start
+    - id: ClothingHandsGlovesCombat
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox # Starlight end
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

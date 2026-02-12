@@ -30245,5 +30245,18 @@ Entries:
   id: 325500
   time: '2026-02-12T06:11:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3255
+- author: Fractalflower
+  changes:
+  - message: Moved several loadout items out of Trinkets tab.
+    type: Tweak
+  - message: Cat paws no longer deal damage.
+    type: Remove
+  - message: Cat paws gloves in loadouts!
+    type: Add
+  - message: Many jobs now have head and gloves loadout slots.
+    type: Add
+  id: 324900
+  time: '2026-02-12T06:34:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3249
 Order: -1
 

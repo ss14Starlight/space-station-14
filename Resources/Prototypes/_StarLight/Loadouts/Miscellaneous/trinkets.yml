@@ -50,91 +50,6 @@
     - TrumpetInstrument
   groupBy: "Instruments"
 
-
-# Meow mrrp ## shut up
-- type: loadout
-  id: ClothingUnderSocksCoder
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    shoes: ClothingUnderSocksCoder
-  groupBy: "cat maid"
-
-- type: loadout
-  id: ClothingShoesHighheelBoots
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    shoes: ClothingShoesHighheelBoots
-  groupBy: "cat maid"
-
-- type: loadout
-  id: ClothingShoesHighheelShoes
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    shoes: ClothingShoesHighheelShoes
-  groupBy: "cat maid"
-
-- type: loadout
-  id: ClothWrap
-  storage:
-    back:
-    - ClothingClothWrap
-
-- type: loadout
-  id: ClothingUniformJumpskirtElegantMaid
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtElegantMaid
-  groupBy: "cat maid"
-
-- type: loadout
-  id: ClothingHeadHatWhiteCatEars
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    head: ClothingHeadHatWhiteCatEars
-  groupBy: "cat maid"
-
-- type: loadout
-  id: ClothingHeadHatBunny
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    head: ClothingHeadHatBunny
-  groupBy: "cat maid"
-
-- type: loadout
-  id: ClothingHeadHatDogEars
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    head: ClothingHeadHatDogEars
-  groupBy: "cat maid"
-
 - type: loadout
   id: RolliePack
   storage:
@@ -149,9 +64,8 @@
       requirement:
         !type:OverallPlaytimeRequirement
         time: 36000 # 10hr
-  storage:
-    back:
-      - GoldRing
+  equipment:
+    gloves: GoldRing
 
 - type: loadout
   id: SilverRing
@@ -160,9 +74,8 @@
       requirement:
         !type:OverallPlaytimeRequirement
         time: 36000 # 10hr
-  storage:
-    back:
-      - SilverRing
+  equipment:
+    gloves: SilverRing
 
 - type: loadout
   id: Matchbox
