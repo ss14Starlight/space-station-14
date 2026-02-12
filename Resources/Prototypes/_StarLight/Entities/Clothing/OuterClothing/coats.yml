@@ -95,6 +95,11 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodCorpsman
     slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+      storagebase: !type:Container
+        ents: []
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.75
 
