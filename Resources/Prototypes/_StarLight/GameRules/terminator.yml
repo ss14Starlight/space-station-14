@@ -18,6 +18,6 @@
       briefing:
         text: terminator-role-greeting
         color: orange
-        sound: /Audio/Mecha/powerup.ogg
+        sound: /Audio/_Starlight/Ambience/Antag/exterminator_start.ogg
       mindRoles:
       - MindRoleTerminator

@@ -30258,5 +30258,46 @@ Entries:
   id: 324900
   time: '2026-02-12T06:34:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3249
+- author: rylandsuper
+  changes:
+  - message: Changed the terminator starting sound
+    type: Tweak
+  id: 324600
+  time: '2026-02-12T08:19:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3246
+- author: Cringe_Cursed
+  changes:
+  - message: Added new constructible machine, called Bluespace Harvester, which allows
+      you to exchange excessive power to kind of Research Points. These points can
+      be spent on various, random rewards. CircuitBoard for machine located in CE
+      locker.
+    type: Add
+  id: 284800
+  time: '2026-02-12T08:22:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2848
+- author: Scarlet Lightweaver
+  changes:
+  - message: 'ADMIN: made mute ACTUALLY mute'
+    type: Tweak
+  id: 325200
+  time: '2026-02-12T09:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3252
+- author: Coolsurf6
+  changes:
+  - message: Fixed duplicated stamina resistance on Raid Suits
+    type: Fix
+  id: 326000
+  time: '2026-02-12T12:31:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3260
+- author: Coolsurf6
+  changes:
+  - message: Nukie TeamOps have had Mech prices reduced to 75 and 100.
+    type: Tweak
+  - message: Nukie LoneOps have had Mech prices reduced to be purchasable now to 30
+      and 45.
+    type: Tweak
+  id: 325900
+  time: '2026-02-12T23:18:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3259
 Order: -1
 

@@ -1,0 +1,9 @@
+- files: ["vampire_start.ogg"]
+  license: "CC-BY-4.0"
+  copyright: 'Paradise Station 13'
+  source: "https://github.com/ss14Starlight/space-station-14"
+
+- files: ["exterminator_start.ogg"]
+  license: "CC-BY-4.0"
+  copyright: 'sounds by samplefocus made in audacity'
+  source: "https://samplefocus.com/"
