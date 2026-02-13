@@ -30299,5 +30299,37 @@ Entries:
   id: 325900
   time: '2026-02-12T23:18:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3259
+- author: skaffen
+  changes:
+  - message: Changed lapsi damage modifier, they now take 10% more slash and pierce
+      damage instead of 20%.
+    type: Tweak
+  id: 326800
+  time: '2026-02-13T05:44:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3268
+- author: Conflee
+  changes:
+  - message: Added 4 new Xenoborg Signs, for use in their Shuttle. Using station signs
+      felt out of place for the shuttle's otherwise excellent theming and color palette.
+      Core, Doors, Power, Space.
+    type: Add
+  id: 326700
+  time: '2026-02-13T06:00:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3267
+- author: Karma
+  changes:
+  - message: Hostage Situation SOP to Security SOP
+    type: Add
+  id: 326600
+  time: '2026-02-13T06:03:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3266
+- author: Citrea & Malkshake
+  changes:
+  - message: Added reporter digiboard, so you can be informed about the most breaking
+      news, right from the front lines!
+    type: Add
+  id: 326500
+  time: '2026-02-13T06:07:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3265
 Order: -1
 
