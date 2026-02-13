@@ -1,13 +1,21 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Content.Server._Starlight.UXN.Devices;
 using Content.Server._Starlight.UXN.Devices.ComponentDevices;
 using Content.Shared._Starlight.UXN;
+using Content.Shared.Anomaly.Components;
+using Content.Shared.Examine;
 using Content.Shared.Fax.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
+using Content.Shared.Starlight.CCVar;
+using Content.Shared.Verbs;
 using Robust.Server.Containers;
+using Robust.Shared.Configuration;
+using Robust.Shared.Containers;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Utility;
 
@@ -15,21 +23,48 @@ namespace Content.Server._Starlight.UXN;
 
 public sealed partial class UxnSystem : SharedUxnSystem
 {
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IResourceManager _resourceManager = default!;
     [Dependency] private readonly ContainerSystem _containerSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
 
     private readonly ResPath _compilerRom = new("/_Starlight/Uxn/Rom/drifloon.rom");
 
     private readonly UXNProcessor _compiler = new();
 
+    private int _maxInstrs = 100000;
+    private int _defaultInstrs = 1000;
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<UxnComponent, AfterInteractEvent>(OnInteractUsing);
+        SubscribeLocalEvent<UxnAttachedComponent, ExaminedEvent>(OnExaminedAttached);
+        SubscribeLocalEvent<UxnAttachedComponent, GetVerbsEvent<InteractionVerb>>(OnGetInteractionVerbAttached);
 
         #region Device subscriptions
         SubscribeLocalEvent<FaxMachineComponent, OnGetUxnDevices>(OnGetUxnDevicesFaxMachine);
         #endregion
+        #region cvar subs
+        _configurationManager.OnValueChanged(StarlightCCVars.UxnMaxInstrLimit, v => _maxInstrs = v);
+        _configurationManager.OnValueChanged(StarlightCCVars.UxnDefaultInstrLimit, v => _defaultInstrs = v);
+        #endregion
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        var enumerator = EntityQueryEnumerator<UxnAttachedComponent>();
+        var comps = new List<UxnAttachedComponent>();
+        while (enumerator.MoveNext(out var comp1))
+        {
+            comps.Add(comp1);
+        }
+        var instrs = Math.Min(_defaultInstrs * (_maxInstrs / (_defaultInstrs * Math.Max(comps.Count,1))), _defaultInstrs);
+        foreach (var item in comps)
+        {
+            item.Uxn?.RunLimited(instrs);
+        }
     }
 
     private void OnInteractUsing(Entity<UxnComponent> ent, ref AfterInteractEvent ev)
@@ -56,7 +91,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
             Dirty(ent);
         }
         
-        if (HasComp<UxnAttachableComponent>(target))
+        if (TryComp<UxnAttachableComponent>(target, out var attachable))
         {
             if (HasComp<UxnAttachedComponent>(target))
                 return; //the target allready has a UXN attached. TODO: allow connecting mutiple UXNs to one machine and allowing them to mesh network.
@@ -64,7 +99,11 @@ public sealed partial class UxnSystem : SharedUxnSystem
             var attached = EnsureComp<UxnAttachedComponent>(target);
             var xform = Transform(ent);
 
-            if (_containerSystem.CanInsert(ent.Owner, attached.ChipHolder))
+            ContainerSlot cont = _containerSystem.HasContainer(target, attachable.UxnContainerId, null) ?
+                (_containerSystem.GetContainer(target, attachable.UxnContainerId) as ContainerSlot)! :
+                _containerSystem.MakeContainer<ContainerSlot>(target, attachable.UxnContainerId);
+            attached.ChipHolder = cont;
+            if (!_containerSystem.CanInsert(ent.Owner, attached.ChipHolder))
             {
                 RemComp<UxnAttachedComponent>(target);
                 return; //couldn't insert the uxn into a little slot on the machine so rem the attached comp and continue on.
@@ -90,8 +129,33 @@ public sealed partial class UxnSystem : SharedUxnSystem
             }
 
             attached.Uxn = uxn;
-            _containerSystem.Insert((ent.Owner, xform), attached.ChipHolder);
+            if (!_containerSystem.Insert((ent.Owner, xform), cont))
+                RemComp<UxnAttachedComponent>(target); //Failed to actually INSERT the chip into the machine... cri
         }
+    }
+
+    private void OnExaminedAttached(Entity<UxnAttachedComponent> ent, ref ExaminedEvent ev)
+    {
+        var uxn = ent.Comp.Uxn;
+        if (uxn == null)
+            return; //somehow we have an attached component but no uxn. shouldn't be possible but just in case.
+        ev.PushMarkup(Loc.GetString("uxn-attached-examine", [("running", uxn.Running), ("instrs", uxn.RealInstructionCounter)]));
+    }
+
+    private void OnGetInteractionVerbAttached(Entity<UxnAttachedComponent> ent, ref GetVerbsEvent<InteractionVerb> ev)
+    {
+        if (!ev.CanAccess)
+            return;
+
+        ev.Verbs.Add(new()
+        {
+            Act = () =>
+            {
+                _handsSystem.PickupOrDrop(ev.User, ent.Comp.ChipHolder.ContainedEntity);
+                RemComp<UxnAttachedComponent>(ent);
+            },
+            Text = Loc.GetString("uxn-attached-take")
+        });
     }
 
     private void OnGetUxnDevicesFaxMachine(Entity<FaxMachineComponent> ent, ref OnGetUxnDevices ev)

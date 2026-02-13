@@ -20,13 +20,18 @@ namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 /// 0x06,0x07 - bank2len*
 /// 0x08,0x09 - bank2ptr*
 /// 0x0A-0x0F - unused
+/// Commands are as follows
+/// 0x00 - Continue buffered write
+/// 0x01 - Re-scan devices
+/// 0x02 - Write scanned devices to buffer1
+/// 0x03 - send fax. buffer 1 is destination fax **id**. buffer 2 is fax contents.
 /// </summary>
 public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
 {
     private FaxSystem _fax = null!;
     private DeviceNetworkSystem _deviceNetwork = null!;
     protected override void SetupCore(EntityUid entity, FaxMachineComponent component) {
-        var _entMan = IoCManager.Resolve<EntitySystemManager>();
+        var _entMan = IoCManager.Resolve<IEntitySystemManager>();
         _fax = _entMan.GetEntitySystem<FaxSystem>();
         _deviceNetwork = _entMan.GetEntitySystem<DeviceNetworkSystem>();
     } // We dont need any extra setup/information from the ent. but we do need the systems
