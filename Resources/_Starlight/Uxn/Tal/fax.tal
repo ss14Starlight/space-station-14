@@ -25,4 +25,4 @@
 &hello "Hello 20 "World $1
 @mmu-atch-fax 03 =dict/fax-name 0f
 
-@buf &size $1 _{ &contents "Central 20 "Command $1 &addr [ $4 "- $4 ] $1 } ( these last 4 are the device address )
+@buf &size $1 _{ &contents "Central 20 "Command $1 &addr [ $4 "- $4 ] $1 } ( these last 4 are the device address ) 

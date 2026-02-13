@@ -39,6 +39,7 @@ public sealed class TestUxnCompiler
 
     [Test]
     [TestCase("/_Starlight/Uxn/Rom/hello.rom")]
+    [TestCase("/_Starlight/Uxn/Rom/acid.rom", null, null, 0x01)]
     [TestCase("/_Starlight/Uxn/Rom/opctest.rom", null, null, 0x80)]
     [TestCase("/_Starlight/Uxn/Rom/console.rom", "foobar", "baz qux", 0x80)]
     [TestCase("/_Starlight/Uxn/Rom/system_test.rom", null, null, 0x80)]
