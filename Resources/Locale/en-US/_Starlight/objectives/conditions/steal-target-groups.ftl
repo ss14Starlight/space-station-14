@@ -1,7 +1,7 @@
 # Traitor single items
 steal-target-groups-rddiploma = diploma
 steal-target-groups-cmolicense = medical license
-steal-target-groups-hypoinjector-combined = chief medical officer's hypospray or the corpsman's hyper advanced jet injector 
+steal-target-groups-hypoinjector-combined = chief medical officer's hypospray or the corpsman's tactical jet injector 
 steal-target-groups-pinpointer-nuclear = nuclear pinpointer
 steal-target-groups-access-configurator = access configurator
 steal-target-groups-hop-id-card = head of personnel ID card
