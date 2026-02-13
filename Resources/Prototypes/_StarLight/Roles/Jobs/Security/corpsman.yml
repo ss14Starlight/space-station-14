@@ -37,7 +37,7 @@
     - EmergencyRollerBedSpawnFolded
     - DefibrillatorBrigmedical
     belt:
-    - HyperAdvancedJetInjector
+    - TacticalJetInjector
     - BodyBagLockableFolded # Might as well get it since they're technically parameds
     - Flash # Let's see if it actually puts it in...
 

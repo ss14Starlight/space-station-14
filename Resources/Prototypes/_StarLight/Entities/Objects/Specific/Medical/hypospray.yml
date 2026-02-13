@@ -1,8 +1,8 @@
 - type: entity
   parent: [AdvancedJetInjector, BaseSecurityContraband]
-  id: HyperAdvancedJetInjector
-  name: hyper advanced jet injector
-  description: A bold, tacticool, ultra high quality injector. Allows for a very fast injection, with a very large capacity. A corpsman's best friend.
+  id: TacticalJetInjector
+  name: tactical jet injector
+  description: A bold, tacticool, ultra high quality injector. Allows for a very fast injection, with a smaller capacity as a tradeoff. A corpsman's best friend.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/corpsman_jetinjector.rsi
@@ -17,14 +17,14 @@
   - type: SolutionContainerManager
     solutions:
       hypospray:
-        maxVol: 25
+        maxVol: 15
   - type: SolutionContainerVisuals
-    maxFillLevels: 5
+    maxFillLevels: 3
   - type: Injector
-    activeModeProtoId: HyperAdvancedJetInjectorDynamicMode
+    activeModeProtoId: TacticalJetInjectorDynamicMode
     allowedModes:
-    - HyperAdvancedJetInjectorDynamicMode
-    - HyperAdvancedJetInjectorInjectMode
+    - TacticalJetInjectorDynamicMode
+    - TacticalJetInjectorInjectMode
   - type: StealTarget
     stealGroup: Hypospray
 

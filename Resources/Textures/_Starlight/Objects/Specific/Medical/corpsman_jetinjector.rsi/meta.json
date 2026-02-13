@@ -1,7 +1,7 @@
 {
 	"version": 1,
 	"license": "CC-BY-SA-3.0",
-	"copyright": "Sprites made by @Sir_Warock on Discord, remastered by @Phantasai on Github, expanded and recolored into Corpsman by wonderfulnewworld (GitHub)",
+	"copyright": "Sprites made by @Sir_Warock on Discord, remastered by @Phantasai on Github, recolored into Corpsman by wonderfulnewworld (GitHub)",
 	"size": {
 		"x": 32,
 		"y": 32
@@ -13,23 +13,15 @@
 		},
         {
 			"name": "jetinjector_filled1",
-			"copyright": "Sir_Warock, Phantasai, wonderfulnewworld"
+			"copyright": "Sir_Warock, Phantasai"
 		},
 		{
 			"name": "jetinjector_filled2",
-			"copyright": "Sir_Warock, Phantasai, wonderfulnewworld"
+			"copyright": "Sir_Warock, Phantasai"
 		},
 		{
 			"name": "jetinjector_filled3",
-			"copyright": "Sir_Warock, Phantasai, wonderfulnewworld"
-		},
-        {
-            "name": "jetinjector_filled4",
-			"copyright": "Sir_Warock, Phantasai, wonderfulnewworld"
-        },
-		{
-            "name": "jetinjector_filled5",
-			"copyright": "Sir_Warock, Phantasai, wonderfulnewworld"
+			"copyright": "Sir_Warock, Phantasai"
         },
         {
             "name": "inhand-left",
