@@ -1,0 +1,16 @@
+- type: entity
+  id: CrateMedicalSedative
+  parent: [ CrateMedicalSecure ]
+  name: sedative crate
+  description: Contains two bottles of chloral hydrate, two tanks of NO2, and two breath masks
+  components:
+  - type: EntityTableContainerFill
+    containers: 
+      entity_storage: !type:AllSelector
+        children:
+        - id: NitrousOxideTankFilled
+          amount: 2
+        - id: ClothingMaskBreathMedical
+          amount: 2
+        - id: ChemistryBottleChloralHydrate
+          amount: 2

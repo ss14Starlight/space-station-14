@@ -125,6 +125,8 @@
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: rotund_inner
 
+# Ears & Antlers
+
 - type: marking
   id: LagomorphAntlers
   bodyPart: HeadTop
@@ -133,6 +135,108 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: antlers
+
+- type: marking
+  id: LagomorphEarsAntlersFloppy
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: floppy_ears
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: antlers-floppy-ears
+
+- type: marking
+  id: LagomorphEarsAntlersLoppy
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: loppy
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: loppy_inner
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: antlers-loppy-ears
+
+- type: marking
+  id: LagomorphEarsAntlersLoppyLarge
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: loppy_large
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: loppy_large_inner
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: antlers-loppy-large-ears
+
+- type: marking
+  id: LagomorphEarsAntlersRotund
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: rotund
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: rotund_inner
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: antlers-rotund-ears
+
+- type: marking
+  id: LagomorphEarsAntlersSharp
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: sharp
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: sharp_inner
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: antlers-sharp-ears
+
+- type: marking
+  id: LagomorphEarsAntlersShort
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: short
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: short_inner
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: antlers-short-ears
+    
+- type: marking
+  id: LagomorphEarsAntlersMedium
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: standard
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: standard_inner
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: antlers-standard-ears
+
+- type: marking
+  id: LagomorphEarsAntlersTall
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: tall_ears_outer
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: tall_ears_inner
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: antlers-tall-ears
 
 # Head Markings
 

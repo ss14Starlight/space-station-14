@@ -42,7 +42,7 @@ public static class Identity
         {
             return identName;
         }
-        if (uidName == identName)
+        if (uidName.Contains(identName)) // Starlight-edit: if main name contains indentity name - then we don't need to add it in brackets
         {
             return uidName;
         }

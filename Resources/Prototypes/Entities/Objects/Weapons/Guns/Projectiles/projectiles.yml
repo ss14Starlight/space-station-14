@@ -237,6 +237,10 @@
     slowdownAmount: 2.5
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
+  # Starlight start
+  - type: CyberneticDisruptionOnCollide
+    disableChance: 0.2
+  # Starlight end
 
 - type: entity
   name: taser bolt
@@ -266,6 +270,10 @@
     slowdownAmount: 10
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
+  # Starlight start
+  - type: CyberneticDisruptionOnCollide
+    disableChance: 0.2
+  # Starlight end
 
 - type: entity
   name : disabler bolt
@@ -310,6 +318,10 @@
     soundHit:
       collection: WeakHit
     forceSound: true
+  # Starlight start
+  - type: CyberneticDisruptionOnCollide
+    disableChance: 0.1
+  # Starlight end
 
 - type: entity
   name : disabler bolt practice
@@ -391,6 +403,10 @@
   - type: Reflective
     reflective:
     - Energy
+  # Starlight start
+  - type: CyberneticDisruptionOnCollide
+    duration: 5
+  # Starlight end
 
 - type: entity
   name: watcher bolt
@@ -927,8 +943,8 @@
     layers:
     - state: cleanade
   - type: SmokeOnTrigger
-    duration: 3.5
-    spreadAmount: 30
+    duration: 6
+    spreadAmount: 45
     smokePrototype: Foam
     solution:
       reagents:
@@ -937,13 +953,17 @@
   - type: EmitSoundOnTrigger
     sound: /Audio/Items/smoke_grenade_smoke.ogg
     positional: true
-  - type: ExplodeOnTrigger
-  - type: Explosive
-    explosionType: Default
-    totalIntensity: 0.01 # a little pop
-    intensitySlope: 1
-    maxIntensity: 0.01
-    tileBreakScale: 0.01
+  - type: Projectile # Starlight start
+    damage:
+      types:
+        Blunt: 0 # Cleanades shouldn't do damage
+  # - type: ExplodeOnTrigger
+  # - type: Explosive
+  #   explosionType: Default
+  #   totalIntensity: 0.01 # a little pop
+  #   intensitySlope: 1
+  #   maxIntensity: 0.01
+  #   tileBreakScale: 0.01 # Starlight end
 
 - type: entity
   id: BulletGrenadeEMP
@@ -1164,6 +1184,10 @@
     soundHit:
       collection: WeakHit
     forceSound: true
+  # Starlight start
+  - type: CyberneticDisruptionOnCollide
+    disableChance: 0.1
+  # Starlight end
 
 - type: entity
   name : energy bolt
@@ -1239,6 +1263,9 @@
     soundHit:
       collection: WeakHit
     forceSound: true
+  # Starlight start
+  - type: CyberneticDisruptionOnCollide
+  # Starlight end
 
 - type: entity
   name: tesla gun lightning
@@ -1311,7 +1338,7 @@
     damage:
       types:
         Heat: 20
-        
+
 - type: entity
   name: destroying bolt
   id: BulletLaserDestroy

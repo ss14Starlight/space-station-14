@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
+using Robust.Shared.Prototypes; // Starlight
 
 // ReSharper disable CheckNamespace
 
@@ -26,6 +27,8 @@ public sealed partial class HumanoidCharacterProfile
     [DataField] public List<string> Cybernetics = [];
 
     [DataField] public string PhysicalDescription { get; set; } = string.Empty;
+
+    public EntProtoId ForcedPrototype; // Starlight - use in conjunction with spawn logic to force a proto
 
     /// <summary>
     /// Detailed text that can appear for the character if <see cref="CCVars.FlavorText"/> is enabled.

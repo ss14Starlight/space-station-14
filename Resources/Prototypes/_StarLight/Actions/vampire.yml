@@ -115,7 +115,7 @@
       itemIconStyle: NoItem
       priority: 10
       icon:
-        sprite: _Starlight/Vampire/haemomancer.rsi
+        sprite: _Starlight/Vampire/Haemomancer.rsi
         state: claws
     - type: InstantAction
       event: !type:VampireHemomancerClawsActionEvent {}
@@ -135,7 +135,7 @@
       itemIconStyle: NoItem
       priority: 13
       icon:
-        sprite: _Starlight/Vampire/haemomancer.rsi
+        sprite: _Starlight/Vampire/Haemomancer.rsi
         state: blood_pool
     - type: InstantAction
       event: !type:VampireSanguinePoolActionEvent {}
@@ -155,7 +155,7 @@
       itemIconStyle: NoItem
       priority: 11
       icon:
-        sprite: _Starlight/Vampire/haemomancer.rsi
+        sprite: _Starlight/Vampire/Haemomancer.rsi
         state: blood_tendrils
     - type: TargetAction
       checkCanAccess: false
@@ -178,7 +178,7 @@
       itemIconStyle: NoItem
       priority: 12
       icon:
-        sprite: _Starlight/Vampire/haemomancer.rsi
+        sprite: _Starlight/Vampire/Haemomancer.rsi
         state: blood_barrier
     - type: TargetAction
       checkCanAccess: false
@@ -202,7 +202,7 @@
       itemIconStyle: NoItem
       priority: 14
       icon:
-        sprite: _Starlight/Vampire/haemomancer.rsi
+        sprite: _Starlight/Vampire/Haemomancer.rsi
         state: predator_sense
     - type: InstantAction
       event: !type:VampireLocateMindActionEvent {}
@@ -222,7 +222,7 @@
       itemIconStyle: NoItem
       priority: 13
       icon:
-        sprite: _Starlight/Vampire/haemomancer.rsi
+        sprite: _Starlight/Vampire/Haemomancer.rsi
         state: blood_spikes
     - type: InstantAction
       event: !type:VampireBloodEruptionActionEvent {}
@@ -242,7 +242,7 @@
       itemIconStyle: NoItem
       priority: 14
       icon:
-        sprite: _Starlight/Vampire/haemomancer.rsi
+        sprite: _Starlight/Vampire/Haemomancer.rsi
         state: blood_rite
     - type: InstantAction
       event: !type:VampireBloodBringersRiteActionEvent {}
@@ -302,7 +302,7 @@
   description: First use, place a shadow anchor beacon (lasts 2 min). Second use while it exists instantly return to it and consume the beacon.
   components:
     - type: Action
-      useDelay: 300 # 5min
+      useDelay: 60 # 1min
       itemIconStyle: NoItem
       priority: 20
       icon:
@@ -348,7 +348,7 @@
   parent: BaseAction
   id: ActionVampireDarkPassage
   name: Dark Passage (20)
-  description: Teleport to target location through shadows. Cannot pass through bright areas.
+  description: Teleport to target location through shadows.
   components:
     - type: Action
       useDelay: 40

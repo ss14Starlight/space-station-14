@@ -433,6 +433,8 @@
     - type: Tag
       tags:
       - HighRiskItem
+    - type: StealTarget # Starlight
+      stealGroup: IDCardComputerCircuitboard # Starlight
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -455,6 +457,8 @@
       state: cpu_command
     - type: ComputerBoard
       prototype: ComputerComms
+    - type: StealTarget # Starlight
+      stealGroup: CommsComputerCircuitboard # Starlight
 
 - type: entity
   parent: [ BaseComputerCircuitboard, BaseSyndicateContraband ]

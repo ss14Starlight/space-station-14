@@ -654,6 +654,32 @@
         Radiation: 0.80
         Caustic: 0.95
 
+# TSF
+- type: entity
+  parent: [ BaseTSFContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitTSF
+  name: MARSOC helmet
+  description: A helmet worn by marines of the Trans-Solar Federation's Marine Special Operations Command. Armored, space ready, and fireproof.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/tsf.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/tsf.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+  - type: FireProtection
+    reduction: 1
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowHealthBars
+  - type: ShowHealthIcons
+  - type: EyeProtection
+    protectionTime: 5
+  - type: FlashImmunity
+
 #Thanatos Helmet (Starlight version of Deathsquad)
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase ]

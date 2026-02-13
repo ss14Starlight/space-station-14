@@ -93,7 +93,18 @@ story-gen-book-character36 = vox
 story-gen-book-character37 = dwarf
 story-gen-book-character38 = thief
 story-gen-book-character39 = wizard
-story-gen-book-character40 = slime
+
+# Starlight edit start
+story-gen-book-character40 = laspi
+story-gen-book-character41 = elf
+story-gen-book-character42 = goblin
+story-gen-book-character43 = orc
+story-gen-book-character44 = IAA
+story-gen-book-character45 = shadekin
+story-gen-book-character46 = avali
+story-gen-book-character47 = resomi
+story-gen-book-character48 = thaven
+# Starlight edit end
 
 story-gen-book-character-trait1 = stupid
 story-gen-book-character-trait2 = smart

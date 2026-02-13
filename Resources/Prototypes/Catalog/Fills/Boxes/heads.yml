@@ -72,6 +72,12 @@
     containers:
       storagebase: !type:AllSelector
         children:
+        - id: CargoRequestEngineeringComputerCircuitboard
+        - id: AlertsComputerCircuitboard
+        - id: AtmosMonitoringComputerCircuitboard
+        - id: PowerComputerCircuitboard
+        - id: SolarControlComputerCircuitboard
+        - id: BluespaceHarvesterMachineCircuitboard # Starlight
         - id: SecurityTechFabCircuitboard
         - id: CargoRequestSecurityComputerCircuitboard
 

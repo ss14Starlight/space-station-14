@@ -118,6 +118,7 @@
   - type: Tag
     tags:
     - NukeOpsUplink
+    - LoneOpsUplink
 
 - type: entity
   parent: BaseUplinkRadioPreset

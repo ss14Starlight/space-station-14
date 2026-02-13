@@ -463,7 +463,7 @@ public abstract class SharedMagicSystem : EntitySystem
         _damageable.TryChangeDamage(ev.Target, ev.Damage, true); //ignore resistances
         //starlight end
     }
-
+    
     // End Touch Spells
     #endregion
     #region Knock Spells
@@ -605,11 +605,12 @@ public abstract class SharedMagicSystem : EntitySystem
         var user = ev.Performer;
 
         // try to put item in hand, otherwise it goes on the ground
-        var star = Spawn(ev.Spawned, Transform(user).Coordinates);
-        if (IsClientSide(star))
-            Del(star);//event has a tendency to produce client-sided cheese... this cleans those up...
-        else
-            _hands.TryPickupAnyHand(user, star);
+        var spawnedEntity = PredictedSpawnAtPosition(ev.Spawned, Transform(user).Coordinates);
+        
+        var afterEvent = new AfterSpawnItemInHandEvent { Entity = spawnedEntity, Performer = user };
+        RaiseLocalEvent(ev.Action, afterEvent);
+
+        _hands.TryPickupAnyHand(user, spawnedEntity);
         ev.Handled = true;
     }
 

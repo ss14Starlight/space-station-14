@@ -18,6 +18,7 @@ using Robust.Shared.Random;
 using System.Linq;
 using System.Text;
 using Content.Server.Codewords;
+using Content.Shared._Starlight.Antags.Traitor; //Starlight
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -140,6 +141,7 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
         Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - Change faction");
         _npcFaction.RemoveFaction(traitor, component.NanoTrasenFaction, false);
         _npcFaction.AddFaction(traitor, component.SyndicateFaction);
+        if(mind.CurrentEntity is not null) EnsureComp<TraitorComponent>(mind.CurrentEntity.Value); //Starlight - mark player entity as traitor
 
         Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - Finished");
         return true;

@@ -383,6 +383,7 @@
         "!type:ProjectileSpellEvent mapping",
         "!type:PrototypeDunGen mapping",
         "!type:PryTileReaction mapping",
+        "!type:PsychicWhisperEvent mapping",
         "!type:PuddleFilter mapping",
         "!type:PulledPrecondition mapping",
         "!type:PulseBehaviour mapping",

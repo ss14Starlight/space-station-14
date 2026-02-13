@@ -24,7 +24,6 @@ namespace Content.Shared.Starlight.Restrict;
 public abstract partial class SharedRestrictNestingItemSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;

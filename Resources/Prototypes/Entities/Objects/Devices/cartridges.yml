@@ -115,6 +115,8 @@
     - type: GuideHelp
       guides:
       - Forensics
+    - type: StealTarget # Starlight
+      stealGroup: LogProbeCartridge # Starlight
 
 - type: entity
   parent: BasePDACartridge
@@ -155,6 +157,8 @@
         sprite: Objects/Specific/Medical/healthanalyzer.rsi
         state: icon
     - type: MedTekCartridge
+    - type: StealTarget # Starlight
+      stealGroup: MedTekCartridge # Starlight
 
 - type: entity
   parent: BasePDACartridge
@@ -173,3 +177,5 @@
         sprite: Objects/Devices/gps.rsi
         state: icon
     - type: AstroNavCartridge
+    - type: StealTarget # Starlight
+      stealGroup: AstroNavCartridge # Starlight

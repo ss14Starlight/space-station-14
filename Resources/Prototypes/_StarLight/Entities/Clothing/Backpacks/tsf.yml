@@ -1,0 +1,43 @@
+- type: entity
+  parent: [ClothingBackpack, BaseTSFContraband]
+  id: ClothingBackpackRadioTSF
+  name: TSF radio telephone pack
+  description: A heavy-duty pack, used for telecommunications between central command.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/rtp.rsi
+  - type: UserInterface
+    interfaces:
+      enum.HolopadUiKey.InteractionWindow:
+          type: HolopadBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Telephone
+    transmissionRange: Map
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    ringTone: /Audio/_Starlight/Machines/telephone_ring.ogg
+    listeningRange: 0
+  - type: Holopad
+  - type: ActivatableUI
+    key: enum.HolopadUiKey.InteractionWindow
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: PhoneSpeak
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.TelephoneVisuals.Key:
+        lights:
+          Idle: { state: icon }
+          Calling: { state: ring }
+          Ringing: { state: ring }
+          InCall: { state: ear }
+          EndingCall: { state: ring }
+  - type: StorageFill
+    contents:
+      - id: HandLabeler

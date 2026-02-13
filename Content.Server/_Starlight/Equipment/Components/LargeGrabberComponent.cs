@@ -44,6 +44,12 @@ public sealed partial class LargeGrabberComponent : Component
     [DataField]
     public SoundSpecifier GrabSound = new SoundPathSpecifier("/Audio/Mecha/sound_mecha_hydraulic.ogg");
 
+    /// <summary>
+    /// Does the grabber drop everything when put away?
+    /// </summary>
+    [DataField]
+    public bool DropOnContainerChange = false;
+
     public EntityUid? AudioStream;
 
     [ViewVariables(VVAccess.ReadWrite)]

@@ -932,6 +932,8 @@
     maxCharges: 45
   - type: Sprite
     sprite: _Starlight/Objects/Tools/rpd.rsi
+  - type: StealTarget
+    stealGroup: RCDRPDCollection
 
 - type: entity
   id: RPDEmpty

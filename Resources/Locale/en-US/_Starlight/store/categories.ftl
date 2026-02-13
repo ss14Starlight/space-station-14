@@ -12,3 +12,5 @@ store-category-security-main = Security
 store-ling-category-combat = Combat
 store-ling-category-sting = Stings
 store-ling-category-utility = Utility
+
+store-category-cantrips-standard = Standard Cantrips

@@ -83,6 +83,22 @@ public sealed partial class MeleeWeaponSystem
                 if (arcComponent.Fadeout)
                     _animation.Play(animationUid, GetFadeAnimation(sprite, length * 0.5f, length + 0.15f), FadeAnimationKey);
                 break;
+            //Starlight begin
+            case WeaponArcAnimation.OldSlash:
+                track = EnsureComp<TrackUserComponent>(animationUid);
+                track.User = user;
+                _animation.Play(animationUid, GetOldSlashAnimation(sprite, angle, spriteRotation), SlashAnimationKey);
+                if(arcComponent.Fadeout)
+                    _animation.Play(animationUid, GetFadeAnimation(sprite, length * 0.5f, length + 0.15f), FadeAnimationKey);
+                break;
+            case WeaponArcAnimation.OldThrust:
+                track = EnsureComp<TrackUserComponent>(animationUid);
+                track.User = user;
+                _animation.Play(animationUid, GetOldThrustAnimation((animationUid, sprite), (float)Math.Clamp(localPos.Length()/2f,0.2,1f), spriteRotation), ThrustAnimationKey);
+                if (arcComponent.Fadeout)
+                    _animation.Play(animationUid, GetFadeAnimation(sprite, 0.05f, 0.15f), FadeAnimationKey);
+                break;
+            //Starlight end
             case WeaponArcAnimation.None:
                 var (mapPos, mapRot) = TransformSystem.GetWorldPositionRotation(userXform);
                 var worldPos = mapPos + (mapRot - userXform.LocalRotation).RotateVec(localPos);
@@ -218,6 +234,79 @@ public sealed partial class MeleeWeaponSystem
             },
         };
     }
+    
+    //Starlight begin
+    private Animation GetOldSlashAnimation(SpriteComponent sprite, Angle arc, Angle spriteRotation)
+    {
+        const float slashStart = 0.03f;
+        const float slashEnd = 0.065f;
+        const float length = slashEnd + 0.05f;
+        var startRotation = sprite.Rotation + arc / 2;
+        var endRotation = sprite.Rotation - arc / 2;
+        var startRotationOffset = startRotation.RotateVec(new Vector2(0f, -1f));
+        var endRotationOffset = endRotation.RotateVec(new Vector2(0f, -1f));
+        startRotation += spriteRotation;
+        endRotation += spriteRotation;
+
+        return new Animation()
+        {
+            Length = TimeSpan.FromSeconds(length),
+            AnimationTracks =
+            {
+                new AnimationTrackComponentProperty()
+                {
+                    ComponentType = typeof(SpriteComponent),
+                    Property = nameof(SpriteComponent.Rotation),
+                    KeyFrames =
+                    {
+                        new AnimationTrackProperty.KeyFrame(startRotation, 0f),
+                        new AnimationTrackProperty.KeyFrame(startRotation, slashStart),
+                        new AnimationTrackProperty.KeyFrame(endRotation, slashEnd)
+                    }
+                },
+                new AnimationTrackComponentProperty()
+                {
+                    ComponentType = typeof(SpriteComponent),
+                    Property = nameof(SpriteComponent.Offset),
+                    KeyFrames =
+                    {
+                        new AnimationTrackProperty.KeyFrame(startRotationOffset, 0f),
+                        new AnimationTrackProperty.KeyFrame(startRotationOffset, slashStart),
+                        new AnimationTrackProperty.KeyFrame(endRotationOffset, slashEnd)
+                    }
+                },
+            }
+        };
+    }
+
+    private Animation GetOldThrustAnimation(Entity<SpriteComponent> sprite, float distance, Angle spriteRotation)
+    {
+        const float thrustEnd = 0.05f;
+        const float length = 0.15f;
+        var startOffset = sprite.Comp.Rotation.RotateVec(new Vector2(0f, -distance / 5f));
+        var endOffset = sprite.Comp.Rotation.RotateVec(new Vector2(0f, -distance));
+        _sprite.SetRotation(sprite.AsNullable(), sprite.Comp.Rotation + spriteRotation);
+
+        return new Animation()
+        {
+            Length = TimeSpan.FromSeconds(length),
+            AnimationTracks =
+            {
+                new AnimationTrackComponentProperty()
+                {
+                    ComponentType = typeof(SpriteComponent),
+                    Property = nameof(SpriteComponent.Offset),
+                    KeyFrames =
+                    {
+                        new AnimationTrackProperty.KeyFrame(startOffset, 0f),
+                        new AnimationTrackProperty.KeyFrame(endOffset, thrustEnd),
+                        new AnimationTrackProperty.KeyFrame(endOffset, length),
+                    }
+                },
+            }
+        };
+    }
+    //Starlight end
 
     /// <summary>
     /// Updates the effect positions to follow the user

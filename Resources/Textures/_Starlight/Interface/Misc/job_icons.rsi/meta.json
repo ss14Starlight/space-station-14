@@ -1,17 +1,19 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Starlight, IAA/Magistrate Icons by Chim | CentComm and CentComm Operator Icon by Happyrobot33 and fqqf | MailTech Icon by Happyrobot33 | HeadRevolutionary and Revolutionary by JustAdler | NTCCBlueShield by conf | Syndicate Cargo, Chef, Warden, Science, Security, Engineer, Janitor Icons by IamSidzilla | SalvageLead,SalvageSpecialist icons by mikeysaurus | DutyOfficer by BORT | Animated versions by github.com/fqqf",
+    "copyright": "Starlight, TG Station, Paradise   Soviet and TSF from: https://github.com/ParadiseSS13/Paradise",
     "size": {
         "x": 8,
         "y": 8
     },
     "states": [
         {
-            "name": "Magistrate"
+            "name": "Magistrate",
+			"copyright": "Chim"
         },
         {
-            "name": "IAA"
+            "name": "IAA",
+			"copyright": "Chim"
         },
         {
             "name": "BlueShield"
@@ -24,33 +26,32 @@
         },
         {
             "name": "MailTech",
-            "delays": [[10, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]]
+            "delays": [[10, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]],
+			"copyright": "Happyrobot33, fqqf"
         },
         {
 	        "name": "DutyOfficer",
-	        "copyright": "BORT",
-	        "license": "CC-BY-SA-3.0"
+	        "copyright": "BORT"
         },
         {
-            "name": "CentComm"
+            "name": "CentComm",
+			"copyright": "Happyrobot33, fqqf"
         },
 		{
 	        "name": "NTSF",
-	        "copyright": "by teapoterror",
-	        "license": "CC-BY-SA-3.0"
+	        "copyright": "by teapoterror"
 		},
 		{
 	        "name": "Decimus",
-	        "copyright": "by teapoterror",
-	        "license": "CC-BY-SA-3.0"
+	        "copyright": "by teapoterror"
 		},
         {
 	        "name": "NanotrasenCareerTrainer",
-	        "copyright": "by ShadesMars",
-	        "license": "CC-BY-SA-3.0"
+	        "copyright": "by ShadesMars"
 		},
         {
-            "name": "CentCommOperator"
+            "name": "CentCommOperator",
+			"copyright": "Happyrobot33, fqqf"
         },
         {
             "name": "Commander"
@@ -62,52 +63,108 @@
             "name": "Operative"
         },
         {
-            "name": "SyndicateSecurity"
+            "name": "SyndicateSecurity",
+			"copyright": "IamSidzilla"
         },
         {
-            "name": "SyndicateWarden"
+            "name": "SyndicateWarden",
+			"copyright": "IamSidzilla"
         },
         {
-            "name": "SyndicateScience"
+            "name": "SyndicateScience",
+			"copyright": "IamSidzilla"
         },
         {
-            "name": "SyndicateChef"
+            "name": "SyndicateChef",
+			"copyright": "IamSidzilla"
         },
         {
-            "name": "SyndicateEngineer"
+            "name": "SyndicateEngineer",
+			"copyright": "IamSidzilla"
         },
         {
-            "name": "SyndicateCargo"
+            "name": "SyndicateCargo",
+			"copyright": "IamSidzilla"
         },
         {
-            "name": "SyndicateJanitor"
+            "name": "SyndicateJanitor",
+			"copyright": "IamSidzilla"
         },
         {
-            "name": "HeadRevolutionary"
+            "name": "HeadRevolutionary",
+			"copyright": "JustAdler"
         },
         {
-            "name": "Revolutionary"
+            "name": "Revolutionary",
+			"copyright": "JustAdler"
         },
         {
-            "name": "NTNCBlueShield"
+            "name": "NTNCBlueShield",
+			"copyright": "Conflee"
         },
         {
-            "name": "SalvageLead"
+            "name": "SalvageLead",
+			"copyright": "mikeysaurus"
         },
         {
-            "name": "SalvageSpecialist"
+            "name": "SalvageSpecialist",
+			"copyright": "mikeysaurus"
+        },
+        {
+            "name": "Soviet",
+			"copyright": "Paradise SS13"
+        },
+        {
+            "name": "TSF",
+			"copyright": "Paradise SS13"
         },
 		{
-			"name": "Xenoborg"
+			"name": "Xenoborg",
+			"copyright": "neomoth"
 		},
 		{
-			"name": "Mothership"
+			"name": "Mothership",
+			"copyright": "neomoth"
 		},
 		{
-			"name": "Skub"
+			"name": "Skub",
+			"copyright": "neomoth"
 		},
 		{
-			"name": "CultistChaplain"
-		}
+			"name": "CultistChaplain",
+			"copyright": "neomoth, Rhetorica"
+		},
+        {
+            "name": "ERTChaplain",
+			"copyright": "Wizards Den, Conflee"
+        },
+        {
+            "name": "ERTEngineer",
+			"copyright": "Wizards Den, Conflee"
+        },
+        {
+            "name": "ERTJanitor",
+			"copyright": "Wizards Den, Conflee"
+        },
+        {
+            "name": "ERTLeader",
+			"copyright": "Wizards Den, Conflee"
+        },
+        {
+            "name": "ERTMedical",
+			"copyright": "Wizards Den, Conflee"
+        },
+        {
+            "name": "ERTSecurity",
+			"copyright": "Wizards Den, Conflee"
+        },
+        {
+            "name": "CBURN",
+			"copyright": "Wizards Den, Conflee"
+        },
+        {
+            "name": "Chaplain",
+			"copyright": "Rhetorica"
+        }
     ]
 }
