@@ -1,11 +1,13 @@
 using Content.Server._Starlight.Antags;
 using Content.Server.Administration.Systems;
 using Content.Server.Chat.Managers;
+using Content.Shared._Starlight.UXN;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Database;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
+using Robust.Shared.ContentPack;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
@@ -18,6 +20,7 @@ public sealed partial class AdminVerbSystem : EntitySystem
     [Dependency] private readonly ISharedAdminManager _adminManager = default!;
     [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly IChatManager _chat = default!;
+    [Dependency] private readonly IResourceManager _resourceManager= default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<GetVerbsEvent<Verb>>(AddVerbs);
@@ -81,5 +84,22 @@ public sealed partial class AdminVerbSystem : EntitySystem
             };
             if (HasComp<ActorComponent>(args.Target)) args.Verbs.Add(preventObjectiveTargeting);
         }
+
+        #region Starlight
+        if (_adminManager.HasAdminFlag(player, AdminFlags.Debug))
+        {
+            if (TryComp<UxnComponent>(args.Target, out var uxn))
+                args.Verbs.Add(new()
+                {
+                    Act = () => {
+                        var writer = _resourceManager.UserData.OpenWrite(new ResPath("/uxn-dump.bin"));
+                        writer.Write([.. uxn.CompiledRom]);
+                        writer.Close();
+                    },
+                    Text = "Dump ROM",
+                    Message = "Dumps the rom of the UXN chip to /uxn-dump.bin"
+                });
+        }
+        #endregion
     }
 }

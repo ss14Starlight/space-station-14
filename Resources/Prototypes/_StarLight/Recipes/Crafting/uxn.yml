@@ -1,0 +1,7 @@
+- type: construction
+  id: UxnChip
+  graph: UxnChip
+  startNode: start
+  targetNode: uxnchip
+  category: construction-category-misc
+  objectType: Item

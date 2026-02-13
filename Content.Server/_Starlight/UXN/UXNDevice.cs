@@ -21,7 +21,7 @@ public sealed class Byte256
     {
         var lsb = this[baseAddr];
         var msb = this[baseAddr+1];
-        return (ushort)((msb << 8) | lsb);
+        return (ushort)((lsb << 8) | msb);
     }
 
     public void PutShort(byte addr, ushort val)
@@ -225,32 +225,45 @@ public partial struct UxnFrame
         new(proc.PC, proc.WorkingStack.ToRaw(), proc.ReturnStack.ToRaw(), proc.SystemMem.ToRaw());
 }
 
-public sealed class UXNProcessor
+[DataDefinition]
+public sealed partial class UXNProcessor
 {
     public static readonly string[] DISASM_TABLE = ["BRK", "INC", "POP", "NIP", "SWP", "ROT", "DUP", "OVR", "EQU", "NEQ", "GTH", "LTH", "JMP", "JCN", "JSR", "STH", "LDZ", "STZ", "LDR", "STR", "LDA", "STA", "DEI", "DEO", "ADD", "SUB", "MUL", "DIV", "AND", "ORA", "EOR", "SFT", "JCI", "INC2", "POP2", "NIP2", "SWP2", "ROT2", "DUP2", "OVR2", "EQU2", "NEQ2", "GTH2", "LTH2", "JMP2", "JCN2", "JSR2", "STH2", "LDZ2", "STZ2", "LDR2", "STR2", "LDA2", "STA2", "DEI2", "DEO2", "ADD2", "SUB2", "MUL2", "DIV2", "AND2", "ORA2", "EOR2", "SFT2", "JMI", "INCr", "POPr", "NIPr", "SWPr", "ROTr", "DUPr", "OVRr", "EQUr", "NEQr", "GTHr", "LTHr", "JMPr", "JCNr", "JSRr", "STHr", "LDZr", "STZr", "LDRr", "STRr", "LDAr", "STAr", "DEIr", "DEOr", "ADDr", "SUBr", "MULr", "DIVr", "ANDr", "ORAr", "EORr", "SFTr", "JSI", "INC2r", "POP2r", "NIP2r", "SWP2r", "ROT2r", "DUP2r", "OVR2r", "EQU2r", "NEQ2r", "GTH2r", "LTH2r", "JMP2r", "JCN2r", "JSR2r", "STH2r", "LDZ2r", "STZ2r", "LDR2r", "STR2r", "LDA2r", "STA2r", "DEI2r", "DEO2r", "ADD2r", "SUB2r", "MUL2r", "DIV2r", "AND2r", "ORA2r", "EOR2r", "SFT2r", "LIT", "INCk", "POPk", "NIPk", "SWPk", "ROTk", "DUPk", "OVRk", "EQUk", "NEQk", "GTHk", "LTHk", "JMPk", "JCNk", "JSRk", "STHk", "LDZk", "STZk", "LDRk", "STRk", "LDAk", "STAk", "DEIk", "DEOk", "ADDk", "SUBk", "MULk", "DIVk", "ANDk", "ORAk", "EORk", "SFTk", "LIT2", "INC2k", "POP2k", "NIP2k", "SWP2k", "ROT2k", "DUP2k", "OVR2k", "EQU2k", "NEQ2k", "GTH2k", "LTH2k", "JMP2k", "JCN2k", "JSR2k", "STH2k", "LDZ2k", "STZ2k", "LDR2k", "STR2k", "LDA2k", "STA2k", "DEI2k", "DEO2k", "ADD2k", "SUB2k", "MUL2k", "DIV2k", "AND2k", "ORA2k", "EOR2k", "SFT2k", "LITr", "INCkr", "POPkr", "NIPkr", "SWPkr", "ROTkr", "DUPkr", "OVRkr", "EQUkr", "NEQkr", "GTHkr", "LTHkr", "JMPkr", "JCNkr", "JSRkr", "STHkr", "LDZkr", "STZkr", "LDRkr", "STRkr", "LDAkr", "STAkr", "DEIkr", "DEOkr", "ADDkr", "SUBkr", "MULkr", "DIVkr", "ANDkr", "ORAkr", "EORkr", "SFTkr", "LIT2r", "INC2kr", "POP2kr", "NIP2kr", "SWP2kr", "ROT2kr", "DUP2kr", "OVR2kr", "EQU2kr", "NEQ2kr", "GTH2kr", "LTH2kr", "JMP2kr", "JCN2kr", "JSR2kr", "STH2kr", "LDZ2kr", "STZ2kr", "LDR2kr", "STR2kr", "LDA2kr", "STA2kr", "DEI2kr", "DEO2kr", "ADD2kr", "SUB2kr", "MUL2kr", "DIV2kr", "AND2kr", "ORA2kr", "EOR2kr", "SFT2kr"];
     public UXNProcessor() => Reset();
 
+    [ViewVariables]
     public bool Running { get; private set; } = true;
 
+    [ViewVariables]
     public StandardSystemDevice SystemDevice = new(); //this gets overrwiten basically instantly but oh well.
 
+    [ViewVariables]
     public Byte256 DevMem { get; private set; } = new();
 
+    [ViewVariables]
     public ushort PC = 0x100; //starts right at the END of zero-page
+
+    [ViewVariables]
     public UxnMem SystemMem { get; private set; } = new();
+    [ViewVariables]
     public UxnStack WorkingStack { get; private set; } = new();
+    
+    [ViewVariables]
     public UxnStack ReturnStack { get; private set; } = new();
+    [ViewVariables]
     public UxnDevices Devices { get; private set; } = new();
 
     /// <summary>
     /// Used by <see cref="RunLimited(int)"/> when determining the number of instructions ran. can be much higher then <see cref="RealInstructionCounter"/>.
     /// Can be incremented by <see cref="AddInstructionsToCounter(int)"/>
     /// </summary>
+    [ViewVariables]
     public int InstructionCounter { get; private set; } = 0;
     /// <summary>
     /// The real number of instructions executed by the UXN. Good for knowing how long a program ACTUALLY ran. If you wanna know vaguely how much "effort" was put into something.
     /// Check <seealso cref="InstructionCounter"/>
     /// </summary>
+    [ViewVariables]
     public int RealInstructionCounter { get; private set; } = 0;
     //public List<(ushort, string)> InstrLog { get; private set; } = new();
     //public List<UxnFrame> FrameLog { get; private set; } = new();

@@ -5,24 +5,15 @@
 ( initial setup )
 ;mmu-atch-fax .System/expansion DEO2 ( attach the fax device )
 
-( get CC's address )
-;buf/size LDA2 .Fax/bnk1len DEO2 ( set the size of the first bank )
-;buf/contents .Fax/bnk1ptr DEO2 ( set the pointer of the first bank )
-01 .Fax/cmd DEO ( refresh the list of faxes )
-02 .Fax/cmd DEO ( dump the first fax to buffer. it SHOULD always be CC due to loading order... I hope... which means this is basically advanced string processing )
-
-00 .System/debug DEO ( hit that breakpoint! )
-
-( prepare our hello the address )
-;dict/hello .Fax/bnk2ptr DEO2 ( hello world is null-terminated so we can just use null-length to get the whole string )
-0000 .Fax/bnk2len DEO2
-;buf/addr .Fax/bnk1ptr DEO2
-0000 .Fax/bnk1len DEO2 ( since the addr is null-terminated we can just set the length to 0 to read the whole thing )
-03 .Fax/cmd DEO ( SEND IT! )
+( fax is ready! )
+;dict/title .Fax/bnk1ptr DEO2
+#0000 .Fax/bnk1len DEO2
+;dict/contents .Fax/bnk2ptr DEO2
+#0000 .Fax/bnk2len DEO2
+#04 .Fax/cmd DEO ( SEND IT! )
 
 @dict
-&fax-name "FaxMachine $1
-&hello "Hello 20 "World $1
+&fax-name "faxmachine $1
+&title "Hello 20 "Central 20 "Command $1
+&contents "Hello 20 "World! $1
 @mmu-atch-fax 03 =dict/fax-name 0f
-
-@buf &size $1 _{ &contents "Central 20 "Command $1 &addr [ $4 "- $4 ] $1 } ( these last 4 are the device address ) 

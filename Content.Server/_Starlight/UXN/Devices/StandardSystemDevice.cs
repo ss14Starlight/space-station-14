@@ -8,7 +8,7 @@ public class StandardSystemDevice : UXNDevice
     public StandardSystemDevice(int numBanks = 0)
     => ExtraPages = [.. Enumerable.Repeat(new UxnMem(), Math.Min(numBanks,ushort.MaxValue))]; //clamped because any more and UXN cant access them.
     
-    protected Dictionary<string, UXNDevice> AttachableDevices = new();
+    public Dictionary<string, UXNDevice> AttachableDevices = new();
     protected HashSet<byte> DetachableSlots = new();
 
     protected List<UxnMem> ExtraPages = [];

@@ -5,6 +5,7 @@ namespace Content.Server._Starlight.UXN;
 [RegisterComponent]
 public sealed partial class UxnAttachedComponent : Component
 {
+    [ViewVariables]
     public UXNProcessor? Uxn = null;
 
     [ViewVariables]

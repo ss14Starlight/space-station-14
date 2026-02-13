@@ -3,10 +3,7 @@ using System.Text;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Fax;
 using Content.Shared.DeviceNetwork;
-using Content.Shared.DeviceNetwork.Components;
-using Content.Shared.Fax;
 using Content.Shared.Fax.Components;
-using Content.Shared.Labels.Components;
 using Microsoft.CodeAnalysis;
 
 namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
@@ -42,6 +39,8 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
             return; //the bank being written is NOT the "command" bank. so we can just treat it as normal memory IO.
         byte command = deviceMem[memTarget];
         ushort buf1size, buf1ptr, buf2size, buf2ptr;
+        GetPointers(memTarget, deviceMem, out buf1size, out buf1ptr, out buf2size, out buf2ptr);
+        var component = Entity.Comp;
         switch (command)
         {
             case 0x00: //Continue buffered write op.
@@ -57,27 +56,41 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
             case 0x02: //List known faxes
                 DumpKnownFaxes(memTarget, deviceMem, proc.SystemMem);
                 break;
-            case 0x03: //Send a fax to destination.
-                GetPointers(memTarget, deviceMem, out buf1size, out buf1ptr, out buf2size, out buf2ptr);
-                var component = Entity.Comp;
-
+            case 0x03: //Set Destination fax
+                var addr = component.DestinationFaxAddress;
                 component.DestinationFaxAddress = ReadBuffered(proc.SystemMem, buf1size, buf1ptr);
+                if (component.DestinationFaxAddress == null)
+                {
+                    deviceMem[memTarget & 0xF0] = 0x80; //invalid address
+                    component.DestinationFaxAddress = addr;
+                    break;
+                }
+                if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var _))
+                {
+                    deviceMem[memTarget & 0xF0] = 0x80; //invalid address
+                    component.DestinationFaxAddress = addr;
+                    break;
+                }
+                break;
+            case 0x04: //Send a fax to destination.
+                
                 if (component.DestinationFaxAddress == null)
                 {
                     deviceMem[memTarget & 0xF0] = 0x80; //invalid address
                     break;   
                 }
-                if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var faxName))
+                if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var _))
                 {
                     deviceMem[memTarget & 0xF0] = 0x80; //invalid address
                     break;
                 }
 
+                var name = ReadBuffered(proc.SystemMem, buf1size, buf1ptr).Trim();
                 var contents = ReadBuffered(proc.SystemMem, buf2size, buf2ptr).Trim();
                 var payload = new NetworkPayload
                 {
                     [DeviceNetworkConstants.Command] = FaxConstants.FaxPrintCommand,
-                    [FaxConstants.FaxPaperNameData] = Loc.GetString("uxn-device-faxmachine-name"),
+                    [FaxConstants.FaxPaperNameData] = name,
                     [FaxConstants.FaxPaperContentData] = contents,
                 };
                 _deviceNetwork.QueuePacket(Entity, component.DestinationFaxAddress, payload);

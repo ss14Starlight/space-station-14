@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using Content.Server._Starlight.UXN.Devices;
 using Content.Server._Starlight.UXN.Devices.ComponentDevices;
+using Content.Server.Administration.Managers;
 using Content.Shared._Starlight.UXN;
+using Content.Shared.Administration.Managers;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Examine;
 using Content.Shared.Fax.Components;
@@ -25,6 +27,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
 {
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IResourceManager _resourceManager = default!;
+    [Dependency] private readonly ISharedAdminManager _adminManager = default!;
     [Dependency] private readonly ContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
 
@@ -81,10 +84,10 @@ public sealed partial class UxnSystem : SharedUxnSystem
             {
                 ent.Comp.AssembledSize = rom.Count;
                 ent.Comp.CompiledRom = rom;
-                ent.Comp.CompilerOutput = "Compiled successfully";
+                ent.Comp.CompilerOutput = error;
             } else
             {
-                ent.Comp.AssembledSize = 0;
+                ent.Comp.AssembledSize = -1;
                 ent.Comp.CompiledRom = new();
                 ent.Comp.CompilerOutput = error;
             }
@@ -113,6 +116,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
             RaiseLocalEvent(target, ref devEv);
 
             var uxn = new UXNProcessor();
+            uxn.SystemDevice.AttachableDevices = devEv.Devices;
             var mem = uxn.SystemMem;
             ushort writeHead = 0x100;
             Span<byte> span = new byte[32];
@@ -147,11 +151,12 @@ public sealed partial class UxnSystem : SharedUxnSystem
         if (!ev.CanAccess)
             return;
 
+        var user = ev.User;
         ev.Verbs.Add(new()
         {
             Act = () =>
             {
-                _handsSystem.PickupOrDrop(ev.User, ent.Comp.ChipHolder.ContainedEntity);
+                _handsSystem.PickupOrDrop(user, ent.Comp.ChipHolder.ContainedEntity!.Value);
                 RemComp<UxnAttachedComponent>(ent);
             },
             Text = Loc.GetString("uxn-attached-take")
@@ -164,7 +169,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
         ev.AddDevice(ent, dev);
     }
 
-    public bool Compile(string uxnTal, [NotNullWhen(false)] out string? error, [NotNullWhen(true)] out List<byte>? rom)
+    public bool Compile(string uxnTal, out string error, [NotNullWhen(true)] out List<byte>? rom)
     {
         if (!_resourceManager.ContentFileExists(_compilerRom))
         {
@@ -198,16 +203,15 @@ public sealed partial class UxnSystem : SharedUxnSystem
         Log.Info($"Assembled UXN program in {_compiler.RealInstructionCounter} instructions, FakedStdio provided {stdio.CharCount}/{uxnTal.Length} chars");
 
         var stdErr = stdio.FakedError;
+        error = new string(Encoding.ASCII.GetChars([.. stdErr]));
         if (_compiler.SystemDevice.Status < 0x80)
         {
-            error = new string(Encoding.ASCII.GetChars([.. stdErr]));
             Log.Error($"Failed to compile uxntal. drifloon error output:\n {error}");
             rom = null;
             return false;
         }
 
         rom = stdio.FakedOutput;
-        error = null;
         return true;
     }
 }
