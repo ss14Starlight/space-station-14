@@ -30331,5 +30331,16 @@ Entries:
   id: 326500
   time: '2026-02-13T06:07:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3265
+- author: Conflee
+  changes:
+  - message: Added the Switchblade. It can be found rarely in maints lockers, or bought
+      in the Uplink for 1 TC. It's half the cost of an Energy Dagger, but can't be
+      concealed as easily. It does 10 Slash when unsheathed (vs the Energy Dagger's
+      10 Slash + 10 Heat), or 2 Blunt and 4 Structural when sheathed, making it OK
+      for bashing down a window in an emergency.
+    type: Add
+  id: 326400
+  time: '2026-02-13T07:24:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3264
 Order: -1
 
