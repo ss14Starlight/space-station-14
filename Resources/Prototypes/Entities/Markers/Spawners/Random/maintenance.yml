@@ -351,7 +351,8 @@
         weight: .8
       - id: WeaponShotgunMakeshift
         weight: .8
-      - id: ClothingOuterArmorMakeshift  #Starlight End:
+      - id: ClothingOuterArmorMakeshift
+      - id: WeaponMeleeSwitchblade #Starlight End:
     # Rare Group
     - !type:GroupSelector
       weight: 5

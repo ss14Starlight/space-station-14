@@ -12,6 +12,20 @@
         reagents:
         - ReagentId: Uranium
           Quantity: 200
+          
+- type: entity
+  parent: Jug
+  suffix: Corn oil
+  id: JugCornoil
+  components:
+  - type: Label
+    currentLabel: Corn Oil for frying
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Cornoil
+          Quantity: 200
 
 # Medicine Jugs for Chemist Locker
 - type: entity
