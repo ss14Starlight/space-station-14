@@ -496,7 +496,6 @@
   id: JobHeadOfSecurity
   groups:
   - HeadofSecurityHead
-  - SecurityMask # Starlight
   - HeadofSecurityNeck
   - HeadofSecurityJumpsuit
   - SecurityBackpack
@@ -518,7 +517,6 @@
   id: JobWarden
   groups:
   - WardenHead
-  - SecurityMask # Starlight
   - WardenNeck # Starlight
   - WardenJumpsuit
   - SecurityBackpack
@@ -543,7 +541,6 @@
   - SecurityBackpack
   - SecurityEyewear
   - SecurityOuterClothing
-  - SecurityTie # Starlight
   - SecurityGloves # Starlight
   - SecurityShoes
   - SecurityPDA

@@ -120,6 +120,7 @@
     - id: ClothingHeadHatBeretCorpsman #Starlight
     - id: ClothingBeltCorpsmanFilled #Starlight
     - id: ClothingHandsGlovesBlackNitrile #Starlight
+    - id: Defibrillator # Starlight, no more compact for brigmedic
 #    - id: ClothingEyesGlassesSecurity #Starlight, replacing with brigmed glasses.
     - id: WeaponTaser
     - id: WeaponDisabler

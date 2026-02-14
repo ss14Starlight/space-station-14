@@ -72,7 +72,7 @@
         - id: TrackingImplanter
           amount: 4
         - id: ClothingOuterHardsuitBrigmedic
-          amount: 2
+        - id: Defibrillator
         - id: BoxSterileMask
         - id: ClothingHeadHatBeretBrigmedic
         - id: ClothingOuterCoatAMG

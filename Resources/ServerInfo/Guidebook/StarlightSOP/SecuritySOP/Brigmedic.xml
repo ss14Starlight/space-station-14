@@ -5,8 +5,7 @@
 
 1 . Standard [color=#00a933]Code Green[/color] equipment is:
 <Box>
-	<GuideEntityEmbed Entity="MedkitAdvancedFilled"/>
-	<GuideEntityEmbed Entity="DefibrillatorBrigmedical"/>
+	<GuideEntityEmbed Entity="SecurityMedkit"/>
 	<GuideEntityEmbed Entity="HandheldBrigmedicCrewMonitor"/>
 </Box>
 <Box>
