@@ -610,8 +610,11 @@ public abstract class SharedMagicSystem : EntitySystem
         var afterEvent = new AfterSpawnItemInHandEvent { Entity = spawnedEntity, Performer = user };
         RaiseLocalEvent(ev.Action, afterEvent);
 
-        _hands.TryPickupAnyHand(user, spawnedEntity);
-        ev.Handled = true;
+        var result = _hands.TryPickupAnyHand(user, spawnedEntity);
+        if(!result && ev.RequiresFreeHand)
+            Del(spawnedEntity); // abort!
+        else
+            ev.Handled = true;
     }
 
     private void OnTowerOfBabel(TowerOfBabelEvent ev)

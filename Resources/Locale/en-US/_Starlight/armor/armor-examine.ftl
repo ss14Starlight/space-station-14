@@ -1,0 +1,1 @@
+supermatter-immune-examine = - [color=orange]Supermatter[/color] ashing [color=lightblue]immunity[/color].
