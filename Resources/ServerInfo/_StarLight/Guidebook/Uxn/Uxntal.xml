@@ -1,0 +1,84 @@
+<Document>
+# A programming language for the Uxn virtual machine.
+
+[weblink="Uxn" link="https://wiki.xxiivv.com/site/uxn.html"] programs are written in a [weblink="concatenative" link="https://wiki.xxiivv.com/site/concatenative.html"] flavor of assembly designed especially to map to the [weblink="idiosyncrasies of this strange little computer" link="https://wiki.xxiivv.com/site/devlog.html"].
+
+## Introduction
+Firstly, there are [weblink="no precedence rules" link="https://wiki.xxiivv.com/site/notation.html"], the calculations are merely performed in the sequence in which they are presented. The order with which elements come off the stack is known as Last In, First Out. In the stack a b c, the c item was the last to be added, and will be the first to be removed.
+[mono][color]
+<Table Columns="7">
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+    [color]#01[/color]
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+    DUP
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+    ADD
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+    [color]#03[/color]
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+    MUL
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+    program
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+     01
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+     01
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+     02
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+     03
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+     06
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+    stack
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+     01
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+    </Box>
+    <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+     02
+    </Box>
+</Table>
+[/color][/mono]
+
+Uxntal numbers are expressed in [weblink="hexadecimal" link="https://wiki.xxiivv.com/site/hexadecimal.html"]. Which means that counting goes like: one, two, three, four, five, six, seven, eight, nine, ha, be, ce, de, he, fe, ten! It takes some getting used to, but don't worry, you'll get the hang of it. Now, without further ado..
+
+## Let's dive into it!
+The following example program prints the phrase "Hello World!" by pushing the address to a label on the stack, and iterating through each letter of the [textlink="string" link="UxntalStrings"] found at that address. A loop increments the pointer until it reaches end of the text, at which point, the stack is emptied and the evaluation ends.
+[mono]( This is a comment, and is ignored by the assembler.
+  Click the Run button to evaluate the program.
+  Select the next example with the dropdown. )
+
+;text                   ( Push text pointer )
+
+@while                  ( Create while label )
+
+    LDAk DUP ?{         ( Load byte at address, jump if not null )
+        POP POP2 BRK }  ( When null, pop text pointer, halt )
+    #18 DEO             ( Send byte to Console/write port )
+    INC2 !while         ( Incr text pointer, jump to label )
+
+@text                   ( Create text label )
+
+	"Hello 20 "World! 00
+[/mono]
+</Document>

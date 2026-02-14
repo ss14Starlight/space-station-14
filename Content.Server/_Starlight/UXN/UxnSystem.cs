@@ -44,6 +44,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
         SubscribeLocalEvent<UxnComponent, AfterInteractEvent>(OnInteractUsing);
         SubscribeLocalEvent<UxnAttachedComponent, ExaminedEvent>(OnExaminedAttached);
         SubscribeLocalEvent<UxnAttachedComponent, GetVerbsEvent<InteractionVerb>>(OnGetInteractionVerbAttached);
+        SubscribeLocalEvent<UxnAttachedComponent, OnGetUxnDevices>(OnGetUxnDevicesAttached);
 
         #region Device subscriptions
         SubscribeLocalEvent<FaxMachineComponent, OnGetUxnDevices>(OnGetUxnDevicesFaxMachine);
@@ -167,6 +168,11 @@ public sealed partial class UxnSystem : SharedUxnSystem
     {
         ComponentUxnDevice<FaxMachineComponent> dev = new FaxComponentDevice();
         ev.AddDevice(ent, dev);
+    }
+
+    private void OnGetUxnDevicesAttached(Entity<UxnAttachedComponent> ent, ref OnGetUxnDevices ev)
+    {
+        //TODO: add some "common" devices here.
     }
 
     public bool Compile(string uxnTal, out string error, [NotNullWhen(true)] out List<byte>? rom)

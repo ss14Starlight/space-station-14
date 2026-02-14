@@ -111,7 +111,7 @@ public class StandardSystemDevice : UXNDevice
                         break;
                     /*atch name* slot*/ case 0x03: //atch
                         var nameptr = proc.SystemMem.GetShort((ushort)(res + 1));
-                        var name = ReadBuffered(proc.SystemMem, 0, nameptr);
+                        var name = ReadBuffered(proc.SystemMem, 0, nameptr).ToLower();
                         var slot = proc.SystemMem[(ushort)(res + 3)];
 
                         if (!AttachableDevices.ContainsKey(name))

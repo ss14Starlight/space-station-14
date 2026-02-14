@@ -14,5 +14,8 @@
         - SmallAIChip
     - type: Construction
       graph: UxnChip
-      node: UxnChip
+      node: uxnchip
     - type: Uxn
+    - type: GuideHelp
+      guides:
+      - Uxn
