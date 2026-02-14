@@ -3,7 +3,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Physics;
 using Robust.Shared.Prototypes;
-using Content.Shared.Atmos.Components; // Starlight: RPD
+using Robust.Shared.Serialization; // Starlight
 
 namespace Content.Shared.RCD.Components;
 
@@ -34,25 +34,27 @@ public sealed partial class RCDComponent : Component
     [DataField, AutoNetworkedField]
     public ProtoId<RCDPrototype> ProtoId { get; set; } = "Invalid";
 
-    // Starlight Start: RPD
+    // Starlight Start
     /// <summary>
-    /// Indicates whether this is an RPD
+    /// A cached copy of currently selected RCD prototype
     /// </summary>
-    [DataField("isRPD"), AutoNetworkedField]
-    public bool IsRPD { get; set; } = false;
+    /// <remarks>
+    /// If the ProtoId is changed, make sure to update the CachedPrototype as well
+    /// </remarks>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public RCDPrototype CachedPrototype { get; set; } = default!;
 
     /// <summary>
-    /// When true the RCD will use the prototype's MirrorPrototype (if available) for placement/validation.
-    /// This is networked so the server can validate/finalize mirror placement.
+    /// Indicates if a mirrored version of the construction prototype should be used (if available)
     /// </summary>
     [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
-    public bool UseMirrorPrototype { get; set; } = false;
+    public bool UseMirrorPrototype = false;
 
     /// <summary>
-    /// Selected pipe layer when placing atmos devices with the RPD.
+    /// Indicates whether this is an RCD or an RPD
     /// </summary>
     [DataField, AutoNetworkedField]
-    public AtmosPipeLayer SelectedPipeLayer { get; set; } = AtmosPipeLayer.Primary;
+    public bool IsRpd { get; set; } = false;
     // Starlight End
 
     /// <summary>
@@ -79,4 +81,32 @@ public sealed partial class RCDComponent : Component
     /// </remarks>
     [ViewVariables(VVAccess.ReadOnly)]
     public Transform ConstructionTransform { get; private set; }
+
+    // Starlight Start
+    /// <summary>
+    /// Stores player rotation
+    /// This is a workaround to the fact eye rotation is not currently networked and required for pipe layering
+    /// Sent only when needed
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float? LastKnownEyeRotation { get; set; } = null;
+
+    /// <summary>
+    /// Current pipe layer / build mode for RPD
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public RpdMode CurrentMode { get; set; } = RpdMode.Free;
+
+    [DataField]
+    public SoundSpecifier SoundSwitchMode { get; set; } = new SoundPathSpecifier("/Audio/Machines/quickbeep.ogg");
+}
+
+[Serializable, NetSerializable]
+public enum RpdMode : byte
+{
+    Primary = 0,
+    Secondary = 1,
+    Tertiary = 2,
+    Free = 3,
+    // Starlight End
 }

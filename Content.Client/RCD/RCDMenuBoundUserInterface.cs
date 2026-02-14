@@ -29,8 +29,11 @@ public sealed class RCDMenuBoundUserInterface : BoundUserInterface
             ["AtmosphericUtility"] = ("rpd-component-atmosphericutility", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/port.png"))),
             ["PumpsValves"] = ("rpd-component-pumps", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/pump_volume.png"))),
             ["Vents"] = ("rpd-component-vents", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/vent_passive.png"))),
-            // Starlight end
+            ["SensorsMonitors"] = ("rpd-component-sensors-monitors", new SpriteSpecifier.Texture(new ResPath("/Textures/_Starlight/Interface/Radial/RPD/airalarm.png"))),
+            // Starlight End: RPD
         };
+
+    private bool IsRpd => EntMan.TryGetComponent<RCDComponent>(Owner, out var rcd) && rcd.IsRpd; // Starlight: RPD
 
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;

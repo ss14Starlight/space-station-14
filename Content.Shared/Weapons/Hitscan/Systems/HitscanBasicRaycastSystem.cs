@@ -20,6 +20,7 @@ using Content.Shared.Weapons.Reflect;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.NullSpace;
+using Content.Shared.Tag;
 using System.Reflection;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Random;
@@ -33,6 +34,7 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly ISharedAdminLogManager _log = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly TagSystem _tag = default!; //Starlight -- arming distance
     [Dependency] private readonly IRobustRandom _rand = default!; // Starlight-edit
 
     private EntityQuery<HitscanBasicVisualsComponent> _visualsQuery;
@@ -55,7 +57,11 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
         // Starlight end
 
         var mapCords = _transform.ToMapCoordinates(args.FromCoordinates);
-
+        // If you are in a container, use the raycast result
+        // Otherwise:
+        //  1.) Hit the first entity that you targeted.
+        //  2.) Hit the first entity that doesn't require you to aim at it specifically to be hit.
+        // Ignore raycast results that hit a NullSpace entity. // TODO: Do something better?
         // Starlight-start
         var toMap = _transform.ToMapCoordinates(args.ToCoordinates);
         var pointer = (toMap.Position - mapCords.Position).Length();
@@ -75,6 +81,8 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
                 foreach (var collide in rayCastResults)
                 {
                     if (collide.HitEntity != args.Target && CompOrNull<RequireProjectileTargetComponent>(collide.HitEntity)?.Active == true)
+                        continue;
+                    if(!(collide.Distance >= ent.Comp.MinDistance || _tag.HasAnyTag(collide.HitEntity, ent.Comp.NotArmedCollideWith)))
                         continue;
                     if (collide.Distance < pointer - 2f && HasComp<MobMoverComponent>(collide.HitEntity))
                     {

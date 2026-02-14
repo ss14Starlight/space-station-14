@@ -151,12 +151,6 @@
   - FlashPayload
   - ExplosivePayload
   - ChemicalPayload
-  - ShuttleGunFriendshipCircuitboard  # SL start
-  - ShuttleGunDusterCircuitboard
-  - MagazineGrenadeEmpty
-  - MagazineGrenadeEMP
-  - MagazineGrenadeBaton
-  - MagazineGrenadeFlash # SL end
   - CableDetStack1
   - EmptyDetonator
   radioChannels:
@@ -237,16 +231,17 @@
     state: full
   discipline: Arsenal
   tier: 2
-  cost: 10500
+  cost: 8000 # Starlight
   recipeUnlocks:
   - PowerCageRechargerCircuitboard
   - PowerCageSmall
   - PowerCageMedium
-  - PowerCageHigh # SL start
-  # - MagazineGrenadeEmpty
-  # - GrenadeFlash
-  # - GrenadeBlast
-  # - ShuttleGunFriendshipCircuitboard # SL end
+  - PowerCageHigh
+  - MagazineGrenadeEmpty
+  - GrenadeFlash
+  - GrenadeBlast
+  - GrenadeBaton # Starlight
+  - ShuttleGunFriendshipCircuitboard
   - MagazineGrenadeEmpty
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
@@ -302,21 +297,21 @@
   radioChannels:
   - Security
 
-# Removing the EMP and moving the board made this basically useless.
-# - type: technology # SL start
-#   id: AdvancedShuttleWeapon
-#   name: research-technology-advanced-shuttle-weapon
-#   icon:
-#     sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
-#     state: icon
-#   discipline: Arsenal
-#   tier: 3
-#   cost: 15000
-#   recipeUnlocks:
-#   - GrenadeEMP
-#   - PowerCageHigh
-#   - ShuttleGunDusterCircuitboard
-#   technologyPrerequisites:
-#   - BasicShuttleArmament
-#   radioChannels:
-#   - Security # SL end
+
+- type: technology
+  id: AdvancedShuttleWeapon
+  name: research-technology-advanced-shuttle-weapon
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - GrenadeEMP
+  - PowerCageHigh
+  - ShuttleGunDusterCircuitboard
+  technologyPrerequisites:
+  - BasicShuttleArmament
+  radioChannels:
+  - Security

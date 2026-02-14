@@ -11,6 +11,13 @@
       antags:
         - antag: Traitor
           targetComponent: TraitorRule
+      #SL begin
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+      #SL end
 
 - type: entity
   id: RRMailSyndicateSpamLetter
@@ -25,6 +32,13 @@
       antags:
         - antag: Traitor
           targetComponent: TraitorRule
+      #SL begin
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+      #SL end
 
 - type: entity
   id: MailSpamDontYouWantMore
@@ -41,7 +55,21 @@
           targetComponent: TraitorRule
         - antag: Thief # gotta be a thief for the thief objectives
           targetComponent: ThiefRule
+      #SL begin
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+      #SL end
     - type: ObjectiveOnSign
+      #SL begin
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+      #SL end
       objectives:
         # thief collection objectives
         - HeadCloakStealCollectionObjective
@@ -58,6 +86,9 @@
         - RCDRPDStealCollectionObjective # 7-12
         - MiscSunglassesStealCollectionObjective # Musician, Beer Goggles, and all types of Security sunglasses.
         - RareSunglassesStealCollectionObjective # Administrative, Skill, BSO, Brigmed, and in theory CentComm.
+        - AssistantHeadsetsStealCollectionObjective # Assistant. It's incredibly cursed.
+        - ReactorFuelRodStealCollectionObjective #Far Horizons. Or, technically, but it doesn't exist in the paper there, so uh, Starlight?
+        - MedicalBeltStealCollectionObjective # Various medical belts. Pretty easy to get, but hard to hold.
         # thief item objectives
         - ForensicScannerStealObjective
         - FlippoEngravedLighterStealObjective
@@ -162,6 +193,13 @@
       antags:
         - antag: Revolutionary
           targetComponent: RevolutionaryRule
+      #SL begin
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+      #SL end
 
 - type: entity
   id: MailSovietSpamLetter50
@@ -178,6 +216,13 @@
       antags:
         - antag: Revolutionary
           targetComponent: RevolutionaryRule
+      #SL begin
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+      #SL end
 
 - type: entity
   id: MailSovietSpamLetter25
@@ -194,4 +239,11 @@
       antags:
         - antag: Revolutionary
           targetComponent: RevolutionaryRule
+      #SL begin
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+      #SL end
 

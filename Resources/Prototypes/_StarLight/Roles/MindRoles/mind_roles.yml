@@ -129,3 +129,13 @@
     roleType: SoloAntagonist
     subtype: role-subtype-vampire
   - type: VampireRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleTerminator
+  name: Terminator Role
+  components:
+  - type: MindRole
+    antagPrototype: Terminator
+    subtype: role-subtype-terminator
+  - type: TerminatorRole

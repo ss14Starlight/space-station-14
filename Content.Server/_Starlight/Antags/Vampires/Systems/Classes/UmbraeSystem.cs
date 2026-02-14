@@ -27,6 +27,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Mobs;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -69,6 +70,22 @@ public sealed class UmbraeSystem : EntitySystem
 
         SubscribeLocalEvent<UmbraeComponent, VampireBloodDrankEvent>(OnBloodDrank);
         SubscribeLocalEvent<UmbraeComponent, VampireFullPowerAchievedEvent>(OnFullPower);
+        SubscribeLocalEvent<UmbraeComponent, MobStateChangedEvent>(OnUmbraeMobStateChanged);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<UmbraeComponent, TransformComponent, StealthComponent>();
+        while (query.MoveNext(out var uid, out var umbrae, out var xform, out var stealth))
+        {
+            if (!umbrae.CloakOfDarknessActive)
+                continue;
+
+            var visibility = GetCloakOfDarknessVisibility(uid, xform, umbrae);
+            _stealth.SetVisibility(uid, visibility, stealth);
+        }
     }
 
     private void OnBloodDrank(EntityUid uid, UmbraeComponent umbrae, ref VampireBloodDrankEvent args)
@@ -80,6 +97,24 @@ public sealed class UmbraeSystem : EntitySystem
             return;
 
         TryBreakRandomLightNear(uid, 8f);
+    }
+
+    private void OnUmbraeMobStateChanged(EntityUid uid, UmbraeComponent umbrae, ref MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Critical)
+            return;
+
+        if (!umbrae.CloakOfDarknessActive)
+            return;
+
+        DeactivateCloakOfDarkness(uid, umbrae);
+
+        if (TryComp<VampireComponent>(uid, out var vampire)
+            && vampire.ActionEntities.TryGetValue("ActionVampireCloakOfDarkness", out var actionEntity)
+            && _actions.GetAction(actionEntity) is { } action)
+        {
+            _actions.SetToggled(action.AsNullable(), false);
+        }
     }
 
     private void TryBreakRandomLightNear(EntityUid uid, float range)
@@ -134,7 +169,7 @@ public sealed class UmbraeSystem : EntitySystem
 
         var stealth = EnsureComp<StealthComponent>(uid);
         _stealth.SetEnabled(uid, true, stealth);
-        _stealth.SetVisibility(uid, -1f, stealth);
+        _stealth.SetVisibility(uid, comp.CloakOfDarknessMinVisibility, stealth);
     }
 
     private void DeactivateCloakOfDarkness(EntityUid uid, UmbraeComponent comp)
@@ -143,7 +178,42 @@ public sealed class UmbraeSystem : EntitySystem
         Dirty(uid, comp);
 
         RemComp<StealthComponent>(uid);
-        _stealth.SetEnabled(uid, false);
+    }
+
+    private float GetCloakOfDarknessVisibility(EntityUid uid, TransformComponent xform, UmbraeComponent comp)
+    {
+        var range = comp.CloakOfDarknessRevealRange;
+        if (range <= 0f)
+            return comp.CloakOfDarknessMinVisibility;
+
+        var center = _transform.GetWorldPosition(xform);
+        var closest = range;
+
+        foreach (var ent in _lookup.GetEntitiesInRange(xform.Coordinates, range))
+        {
+            if (ent == uid)
+                continue;
+
+            if (!HasComp<HumanoidAppearanceComponent>(ent) || HasComp<VampireComponent>(ent))
+                continue;
+
+            if (TryComp<MobStateComponent>(ent, out var mob)
+                && mob.CurrentState == MobState.Dead)
+                continue;
+
+            var targetPos = _transform.GetWorldPosition(Transform(ent));
+            var dist = (targetPos - center).Length();
+
+            if (dist < closest)
+                closest = dist;
+        }
+
+        if (closest >= range)
+            return comp.CloakOfDarknessMinVisibility;
+
+        var t = 1f - Math.Clamp(closest / range, 0f, 1f);
+        return comp.CloakOfDarknessMinVisibility
+               + ((comp.CloakOfDarknessMaxVisibility - comp.CloakOfDarknessMinVisibility) * t);
     }
 
     private void OnShadowSnare(EntityUid uid, VampireComponent comp, ref VampireShadowSnareActionEvent args)

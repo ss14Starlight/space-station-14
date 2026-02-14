@@ -245,3 +245,42 @@
     - type: Tag
       tags:
         - CyberHandItem
+
+- type: entity
+  name: Herakles fist
+  parent: BaseItem
+  id: MeleeWeaponCyberHerakles
+  description: An ostensibly nonlethal arm replacement. Strong enough to toss people around and pry open doors.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: herakles
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 10
+    soundHit:
+      path: "/Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg"
+  - type: StaminaDamageOnHit
+    damage: 20
+  - type: MeleeThrowOnHit
+    speed: 15
+    distance: 5
+  - type: DamageOnAttackedProtection
+    damageProtection:
+      flatReductions:
+        Heat: 100
+        Cold: 100
+        Radiation: 100
+    slots: NONE
+  - type: Prying
+    speedModifier: 1.5
+    pryPowered: true
+    useSound: /Audio/Machines/airlock_creaking.ogg
+    playSoundOnDoafter: true
+  - type: Tag
+    tags:
+    - CyberHandItem

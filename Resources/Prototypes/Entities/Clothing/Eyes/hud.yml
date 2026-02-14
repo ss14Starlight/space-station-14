@@ -294,7 +294,7 @@
   name: security hud eyepatch
 
 - type: entity
-  parent: [ClothingEyesHudBeer, ClothingHeadEyeBaseFlippable]
+  parent: ClothingHeadEyeBaseFlippable
   id: ClothingEyesEyepatchHudBeer
   name: beer hud eyepatch
   description: A pair of sunHud outfitted with apparatus to scan reagents, as well as providing an innate understanding of liquid viscosity while in motion. For true patriots.
@@ -303,6 +303,13 @@
     sprite: Clothing/Eyes/Hud/beerpatch.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/beerpatch.rsi
+  - type: ShowThirstIcons # Starlight. This, and the next 8 lines were moved from ClothingEyesHudBeer. Why would an eyepatch have flash protection? Unparented it from the mentioned ID
+  - type: StealTarget
+    stealGroup: MiscGlassesCollection # Starlight
+  - type: SolutionScanner
+  - type: Tag
+    tags:
+    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingEyesEyepatchHudBeer, ClothingHeadEyeBaseFlipped]

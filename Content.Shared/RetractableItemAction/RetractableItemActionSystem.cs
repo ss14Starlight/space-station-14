@@ -5,6 +5,8 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
+using Content.Shared._Starlight.Cybernetics; // Starlight
+using Content.Shared._Starlight.Cybernetics.Components; // Starlight
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 
@@ -31,6 +33,8 @@ public sealed class RetractableItemActionSystem : EntitySystem
 
         SubscribeLocalEvent<ActionRetractableItemComponent, ComponentShutdown>(OnActionSummonedShutdown);
         Subs.SubscribeWithRelay<ActionRetractableItemComponent, HeldRelayedEvent<TargetHandcuffedEvent>>(OnItemHandcuffed, inventory: false);
+
+        SubscribeLocalEvent<RetractableItemActionComponent, CyberneticDisruptionEvent>(OnCyberneticsDisrupted); // 🌟Starlight🌟
     }
 
     private void OnActionInit(Entity<RetractableItemActionComponent> ent, ref MapInitEvent args)
@@ -78,6 +82,13 @@ public sealed class RetractableItemActionSystem : EntitySystem
             }
             else
             {
+                // Don't allow summoning an item if it's from a cybernetic and the user is currently disrupted.
+                if (ent.Comp.IsCybernetic && TryComp(args.Performer, out CyberneticDisruptionComponent? _))
+                { 
+                    _popups.PopupClient(Loc.GetString("retractable-item-cybernetics-disrupted"), args.Performer, args.Performer);
+                    return;
+                }
+
                 SummonRetractableItem(args.Performer, ent.Comp.ActionItemUid.Value, activeHand, ent.Owner);
             }
         }
@@ -89,6 +100,12 @@ public sealed class RetractableItemActionSystem : EntitySystem
             }
             else
             {
+                // Don't allow summoning an item if it's from a cybernetic and the user is currently disrupted.
+                if (ent.Comp.IsCybernetic && TryComp(args.Performer, out CyberneticDisruptionComponent? _))
+                { 
+                    _popups.PopupClient(Loc.GetString("retractable-item-cybernetics-disrupted"), args.Performer, args.Performer);
+                    return;
+                }
                 SummonRetractableItemInInventory(args.Performer, ent.Comp.ActionItemUid.Value, ent.Comp.Slot, ent.Owner);
             }
         }
@@ -172,6 +189,18 @@ public sealed class RetractableItemActionSystem : EntitySystem
             return;
         _audio.PlayPredicted(action.Comp.SummonSounds, holder, holder);
         EnsureComp<UnremoveableComponent>(item);
+    }
+
+    private void OnCyberneticsDisrupted(Entity<RetractableItemActionComponent> ent, ref CyberneticDisruptionEvent args)
+    {
+        if(!ent.Comp.IsCybernetic)
+            return;
+
+        var ev = new OnRetractableItemActionEvent
+        {
+            Performer = args.Target,
+        };
+        RaiseLocalEvent(ent, ref ev);
     }
 
     #endregion Starlight

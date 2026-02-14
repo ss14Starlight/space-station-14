@@ -1668,14 +1668,22 @@
         - !type:ReagentCondition
           reagent: Insuzine
           min: 12
-      # Starlight-Start: Cyclorite Metabolism
+      #Starlight Start
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Cyclorite ]
         reagent: Insuzine
         amount: -0.25
-        # Starlight-End
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectCyberneticDisruption
+        conditions:
+        - !type:ReagentCondition
+          reagent: Insuzine
+          min: 12
+        type: Add
+        time: 2
+      # Starlight-End
 
 - type: reagent
   id: Opporozidone #Name based of an altered version of the startreck chem "Opporozine"

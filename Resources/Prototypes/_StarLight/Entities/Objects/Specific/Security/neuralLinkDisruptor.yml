@@ -1,0 +1,14 @@
+- type: entity
+  name: neural link disruptor
+  parent: BaseItem
+  id: NeuralLinkDisruptor
+  description: Used to temporarily disrupt cyberware. Implants with passive effects are unaffected.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Security/neural_link_disruptor.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: CyberneticDisruptor
+    useTime: 10
+    duration: 600

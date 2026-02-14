@@ -2,7 +2,7 @@
   parent: [ClothingOuterArmorBase, BaseBlueShieldContraband]
   id: ClothingOuterArmorBlueShield
   name: blue shield bulletproof vest
-  description: Much better than a standard Type 1 security vest. Don't lose it. You will NOT get a replacement.
+  description: Much better than a standard Type 1 security vest. Try not to lose it, you won't get a second replacement.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Armor/blueshield.rsi
@@ -362,11 +362,11 @@
   parent: ClothingOuterReactiveArmourShell
   id: ClothingOuterReactiveArmourShellRandom
   suffix: Random Core
-  
+
 - type: entity
   parent: [ClothingOuterBaseMedium, BaseSovietContraband, AllowSuitStorageClothing ] #"ClothingOuterArmorBase" is stupid and overrides any contraband level.
-  id: ClothingOuterArmorSovietFlak
-  name: soviet flak vest
+  id: ClothingOuterArmorSovietPlate
+  name: soviet armor vest
   description: An old Soviet-era flak vest designed to mitigate damage from explosives, with minor penetration resistance. However, it's just a cheap reproduction model. quality may vary.
   components:
   - type: Pierceable
@@ -378,11 +378,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.90
-        Slash: 0.90
-        Piercing: 0.80
-        Heat: 0.80
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.60
+        Heat: 0.60
+        Radiation: 0.9
   - type: ExplosionResistance
-    damageCoefficient: 0.60
+    damageCoefficient: 0.65
   - type: ClothingSpeedModifier
     sprintModifier: 0.85

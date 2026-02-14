@@ -269,6 +269,10 @@
         weight: 0.25
       - id: ToolboxElectricalFilled
       - id: ToolboxMechanicalFilled
+      - id: ToolboxRoboticistFilled # Starlight
+        weight: 0.6 # Starlight. You'll never see it coming.
+      - id: ClothingShoesGaloshnt # Starlight
+        weight: 0.4 # Starlight. Fake galoshes to crush your spirit.
       - id: ClothingBeltUtility
       - id: ToolboxArtisticFilled
       - id: GeigerCounter
@@ -347,7 +351,8 @@
         weight: .8
       - id: WeaponShotgunMakeshift
         weight: .8
-      - id: ClothingOuterArmorMakeshift  #Starlight End:
+      - id: ClothingOuterArmorMakeshift
+      - id: WeaponMeleeSwitchblade #Starlight End:
     # Rare Group
     - !type:GroupSelector
       weight: 5

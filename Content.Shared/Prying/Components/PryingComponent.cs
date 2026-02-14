@@ -36,6 +36,15 @@ public sealed partial class PryingComponent : Component
     /// </summary>
     [DataField]
     public bool Enabled = true;
+
+    #region Starlight
+
+    /// <summary>
+    /// Whether to play the use sound when prying is started.
+    /// </summary>
+    [DataField]
+    public bool PlaySoundOnDoafter = false;
+    #endregion Starlight
 }
 
 /// <summary>

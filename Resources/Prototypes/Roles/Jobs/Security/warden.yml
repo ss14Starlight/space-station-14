@@ -16,6 +16,7 @@
   supervisors: job-supervisors-hos
   canBeAntag: false
   access:
+  - Cadet # Starlight
   - Security
   - Brig
   - Armory
@@ -53,5 +54,5 @@
     jumpsuit: ClothingUniformJumpsuitWarden
     neck: Dinkystar
     belt: ClothingBeltSecurity
-    gloves: ClothingHandsGlovesCombat
+    # gloves: ClothingHandsGlovesCombat # Starlight
     shoes: ClothingShoesBootsJack

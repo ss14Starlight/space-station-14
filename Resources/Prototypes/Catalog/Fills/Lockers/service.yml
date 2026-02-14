@@ -88,9 +88,9 @@
     - !type:GroupSelector
       children:
       - id: ClothingShoesGaloshes
-        weight: 0.25
+        weight: 0.1
       - id: ClothingShoesGaloshnt
-        weight: 0.75
+        weight: 0.9
     # Starlight end
     - !type:AllSelector
       rolls: 2

@@ -181,7 +181,7 @@
     zeroVisible: true
   - type: Lock
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
   - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
@@ -220,7 +220,7 @@
 
 - type: entity
   name: X-01 multiphase energy gun
-  parent: [ BaseWeaponBatterySmall, BaseGrandTheftContraband ]
+  parent: [ BaseWeaponBatterySmall, BaseBlueShieldContraband, BaseGrandTheftContraband ]
   id: WeaponMultiphaseGun
   description: This is an expensive, modern version of the antique laser pistol, with several unique fire modes.
   components:
@@ -238,6 +238,8 @@
       shader: unshaded
   - type: Lock
     mindShieldLock: true
+    autoUnlock: true
+    autoLock: true
   - type: AccessReader
     access: [["BlueShield"]]
   - type: Item
@@ -894,7 +896,7 @@
     #sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_smg.rsi
     #heldPrefix: energy
   - type: StealTarget
-    stealGroup: HOSWeapon # Proto5x 
+    stealGroup: HOSWeapon # Proto5x and WT550r
   - type: Tag
     tags:
     - HighRiskItem

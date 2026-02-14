@@ -1,0 +1,94 @@
+- type: entity
+  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
+  id: TP14KitchenDeepFryer
+  suffix: Service
+  name: deep fryer
+  description: Can be used to fry delicious food, or all of sci's gold. Directions on the side say to use corn oil only.
+  components:
+  - type: ApcPowerReceiver
+    powerLoad: 50 # Off by default
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      fryer_slots: !type:ContainerSlot
+  - type: DeepFryer
+  - type: ExaminableSolution
+    solution: fryer
+  - type: ItemSlots
+    slots:
+      fryer_slots:
+        ejectOnInteract: true
+        insertSound: /Audio/Effects/Fluids/watersplash.ogg 
+        blacklist:
+          components:
+            - DrainableSolution
+  - type: Machine
+    board: TP14DeepFryerCircuitboard
+  - type: DumpableSolution
+    solution: fryer
+  - type: RefillableSolution
+    solution: fryer
+  - type: DrainableSolution
+    solution: fryer
+  - type: DrawableSolution
+    solution: fryer
+  - type: SolutionContainerManager
+    solutions:
+      fryer:
+        maxVol: 400
+        reagents:
+        - ReagentId: Cornoil
+          Quantity: 400
+  - type: SolutionItemStatus
+    solution: fryer
+  - type: SolutionTransfer
+    maxTransferAmount: 50
+  - type: Sprite
+    sprite: _TP/Structures/Machines/deepfryer.rsi
+    layers:
+    - state: icon
+    - state: active
+      map: [ "enum.DeepFryerVisuals.Active" ]
+      visible: false
+    drawdepth: SmallObjects
+    snapCardinals: true
+#For the previous entity several components were added to allow fluids to be added to the fryer and to allow removal to prevent bricking.
+#In addition power was changed from 0 to 50 so its not powered always.
+#As well as an insert sound to replace the default gun one
+#Lastly theres a blacklist so liquid containers do not go inside the fryer when trying to fill with oil
+
+- type: entity
+  parent: TP14KitchenDeepFryer
+  id: TP14KitchenDeepFryerTabletop
+  suffix: Service
+  name: table-top deep fryer
+  components:
+#removed the SolutionContainerManager from here because it was redundant as it gets it from the parent 
+  - type: Sprite
+    sprite: _TP/Structures/Machines/deepfryer.rsi
+    layers:
+    - state: table-icon
+    - state: table-active
+      map: [ "enum.DeepFryerVisuals.Active" ]
+      visible: false
+
+#additional empty variants of the fryers for both mapping purposes and so we have an empty fryer that gets built rather than the one with oil in it
+- type: entity
+  parent: TP14KitchenDeepFryer
+  id: TP14KitchenDeepFryerEmpty
+  suffix: Empty, Service
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      fryer:
+        maxVol: 400
+
+- type: entity
+  parent: TP14KitchenDeepFryerTabletop
+  id: TP14KitchenDeepFryerTabletopEmpty
+  suffix: Empty, Service
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      fryer:
+        maxVol: 400

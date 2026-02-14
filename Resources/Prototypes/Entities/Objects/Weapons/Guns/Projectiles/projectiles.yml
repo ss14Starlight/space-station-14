@@ -237,6 +237,10 @@
     slowdownAmount: 2.5
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
+  # Starlight start
+  - type: CyberneticDisruptionOnCollide
+    disableChance: 0.2
+  # Starlight end
 
 - type: entity
   name: taser bolt
@@ -266,6 +270,10 @@
     slowdownAmount: 10
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
+  # Starlight start
+  - type: CyberneticDisruptionOnCollide
+    disableChance: 0.2
+  # Starlight end
 
 - type: entity
   name : disabler bolt
@@ -310,6 +318,10 @@
     soundHit:
       collection: WeakHit
     forceSound: true
+  # Starlight start
+  - type: CyberneticDisruptionOnCollide
+    disableChance: 0.1
+  # Starlight end
 
 - type: entity
   name : disabler bolt practice
@@ -391,6 +403,10 @@
   - type: Reflective
     reflective:
     - Energy
+  # Starlight start
+  - type: CyberneticDisruptionOnCollide
+    duration: 5
+  # Starlight end
 
 - type: entity
   name: watcher bolt
@@ -1168,6 +1184,10 @@
     soundHit:
       collection: WeakHit
     forceSound: true
+  # Starlight start
+  - type: CyberneticDisruptionOnCollide
+    disableChance: 0.1
+  # Starlight end
 
 - type: entity
   name : energy bolt
@@ -1243,6 +1263,9 @@
     soundHit:
       collection: WeakHit
     forceSound: true
+  # Starlight start
+  - type: CyberneticDisruptionOnCollide
+  # Starlight end
 
 - type: entity
   name: tesla gun lightning

@@ -757,6 +757,7 @@ public sealed partial class $CLASS$ : Shared$CLASS$ {
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=xform/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Xnor/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=yamls/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Zoomies/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Zumos/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=652E0DBD3559BD4EA35305A83762B0C8/@KeyIndexDefined">True</s:Boolean>
     	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=652E0DBD3559BD4EA35305A83762B0C8/Description/@EntryValue">&amp;XAML Control</s:String>
