@@ -300,7 +300,7 @@
   description: Favoured by Nanotrasen Security for being cheap and easy to use.
   components:
   - type: Battery
-    maxCharge: 900 # 30 shots at 30 per shot
+    maxCharge: 900 # starlight comment
     startingCharge: 900
 
 - type: entity
