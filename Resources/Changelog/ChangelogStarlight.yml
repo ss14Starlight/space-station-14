@@ -30483,5 +30483,27 @@ Entries:
   id: 303800
   time: '2026-02-14T21:06:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3038
+- author: Rhetorica, Grapegifter, et al.
+  changes:
+  - message: Elves officially have an endonym, 'aielithii'
+    type: Add
+  - message: Reduce volume of Haemostatic Glyph
+    type: Tweak
+  - message: Prevent undroppable spells from spawning on ground when no free hands
+      exist
+    type: Fix
+  - message: Ethnicity (subrace) trait category, and 4 aielithii ethnicities
+    type: Add
+  - message: Felyaic, a Darktongue dialect unique to Detari elves (drow)
+    type: Add
+  - message: Elf lore to guidebook
+    type: Add
+  - message: Correct damage numbers in elf guidebook
+    type: Tweak
+  - message: Elf Blunt vulnerability to +20% (was +10%)
+    type: Tweak
+  id: 321300
+  time: '2026-02-14T21:14:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3213
 Order: -1
 
