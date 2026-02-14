@@ -298,10 +298,12 @@
   parent: [BaseLaserRifle, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponLaserCarbine
   description: Favoured by Nanotrasen Security for being cheap and easy to use.
+  # Starlight-start
   components:
   - type: Battery
-    maxCharge: 900 # starlight comment
+    maxCharge: 900
     startingCharge: 900
+  # Starlight-end
 
 - type: entity
   name: practice laser carbine
