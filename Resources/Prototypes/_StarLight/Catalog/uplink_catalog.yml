@@ -158,6 +158,16 @@
   categories:
   - UplinkWeaponry
 
+- type: listing
+  id: UplinkSwitchblade
+  name: uplink-switchblade-name
+  description: uplink-switchblade-desc
+  productEntity: WeaponMeleeSwitchblade
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkWeaponry
+
 # Ammo
 
 - type: listing

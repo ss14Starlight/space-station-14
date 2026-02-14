@@ -10,6 +10,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Bed.Sleep;
 using Content.Shared._Starlight.SSDIndicator.Events;
 using Content.Shared.DoAfter;
+using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Starlight.CryoTeleportation;
 // Starlight-end
@@ -22,6 +23,7 @@ namespace Content.Shared.SSDIndicator;
 public sealed class SSDIndicatorSystem : EntitySystem
 {
     public static readonly EntProtoId StatusEffectSSDSleeping = "StatusEffectSSDSleeping";
+    private static readonly TimeSpan SsdDoAfterDelay = TimeSpan.FromSeconds(10);
 
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -48,7 +50,16 @@ public sealed class SSDIndicatorSystem : EntitySystem
     // Starlight start
     private void OnPlayerAttached(EntityUid uid, SSDIndicatorComponent component, PlayerAttachedEvent args) => TryRemoveSSD(uid, component);
 
-    private void OnPlayerDetached(EntityUid uid, SSDIndicatorComponent component, PlayerDetachedEvent args) => TrySSD(uid, component, force: true);
+    // Avoid marking temporary mind transfer shells as SSD. (Wizard Jaunt Spell, Rod Spell, Golden Mask, etc.)
+    // Real disconnects keep mind on body and still go through SSD.
+    private void OnPlayerDetached(EntityUid uid, SSDIndicatorComponent component, PlayerDetachedEvent args)
+    {
+        if (TryComp<MindContainerComponent>(uid, out var mindContainer)
+            && !mindContainer.HasMind)
+            return;
+
+        TrySSD(uid, component, force: true);
+    }
 
     private void OnMoveInput(EntityUid uid, SSDIndicatorComponent comp, MoveInputEvent args) => TryRemoveSSD(uid, comp);
 
@@ -62,7 +73,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
             return;
 
         component.FallAsleepTime = _timing.CurTime + TimeSpan.FromSeconds(_icSsdSleepTime);
-        component.NextUpdate = _timing.CurTime + component.UpdateInterval;
+        component.NextUpdate = component.FallAsleepTime; // Starlight: schedule the first update at FallAsleepTime, not repeatedly before sleep is even eligible.
         Dirty(uid, component);
     }
 
@@ -87,14 +98,17 @@ public sealed class SSDIndicatorSystem : EntitySystem
                 continue;
 
             _statusEffects.TryUpdateStatusEffectDuration(uid, StatusEffectSSDSleeping);
-            ssd.NextUpdate += ssd.UpdateInterval;
+            ssd.NextUpdate = curTime + ssd.UpdateInterval; // Starlight: advance from current time instead of incrementing by UpdateInterval.
             Dirty(uid, ssd);
         }
     }
 
     #region Starlight
 
-    private void OnSSDTry(EntityUid uid, SSDIndicatorComponent component, SSDTryDoAfterEvent args) => SSD(uid, component);
+    // Starlight-start
+    // /ssd uses a doAfter. After completion, apply SSD with immediate sleep timing.
+    private void OnSSDTry(EntityUid uid, SSDIndicatorComponent component, SSDTryDoAfterEvent args) => SSD(uid, component, sleepDelayOverride: TimeSpan.Zero);
+    // Starlight-end
 
     /// <summary>
     /// Attempts to set the entity as SSD.
@@ -110,7 +124,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
 
         if (!force)
         {
-            var doAfter = new DoAfterArgs(EntityManager, uid, TimeSpan.FromSeconds(10), new SSDTryDoAfterEvent(), uid)
+            var doAfter = new DoAfterArgs(EntityManager, uid, SsdDoAfterDelay, new SSDTryDoAfterEvent(), uid) // Starlight: make doAfter delay as a named constant for clarity.
             {
                 BreakOnMove = true,
             };
@@ -122,18 +136,19 @@ public sealed class SSDIndicatorSystem : EntitySystem
         return true;
     }
 
-    private void SSD(EntityUid uid, SSDIndicatorComponent component)
+    // Starlight-start
+    private void SSD(EntityUid uid, SSDIndicatorComponent component, TimeSpan? sleepDelayOverride = null)
     {
         component.IsSSD = true;
 
         if (_icSsdSleep)
-        //Starlight Start
         {
-            component.FallAsleepTime = _timing.CurTime + TimeSpan.FromSeconds(_icSsdSleepTime);
-            _sleep.TrySleeping(uid);
+            // If sleepDelayOverride is provided, use that instead of the config value. This allows /ssd to apply SSD immediately without waiting for the usual delay.
+            var sleepDelay = sleepDelayOverride ?? TimeSpan.FromSeconds(_icSsdSleepTime);
+            component.FallAsleepTime = _timing.CurTime + sleepDelay;
+            component.NextUpdate = component.FallAsleepTime; // same reason as OnMapInit, first check should happen when sleep can apply.
         }
-        //_sleep.TrySleeping(uid); //Moved sleep on SSD behind the check whether SSD should sleep. WHY WAS THIS NOT ALREADY THE CASE???
-        //Starlight End
+        // Starlight-end
 
         Dirty(uid, component);
     }
@@ -155,6 +170,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
         {
             comp.FallAsleepTime = TimeSpan.Zero;
             _statusEffects.TryRemoveStatusEffect(uid, StatusEffectSSDSleeping);
+            _sleep.TryWaking(uid, force: true); // Starlight: force waking up after removing ssd.
         }
 
         if (TryComp<TargetCryoTeleportationComponent>(uid, out var cryoTeleport) && cryoTeleport.TimeDelay > TimeSpan.FromSeconds(0))

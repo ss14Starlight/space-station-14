@@ -38,5 +38,5 @@ public sealed partial class RCDDeconstructableComponent : Component
     /// </summary>
     [DataField("rpd"), ViewVariables(VVAccess.ReadWrite)]
     public bool RpdDeconstructable = false;
-    // Starlight End
+    // Starlight End: RPD
 }

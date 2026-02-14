@@ -17,4 +17,7 @@ public sealed partial class RailroadDeliveryRewardComponent : Component
     
     [DataField]
     public ProtoId<LocalizedDatasetPrototype>? WrappedDataset = null;
+
+    [NonSerialized]
+    public EntityUid? RecipientMind;
 }
