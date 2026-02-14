@@ -1,0 +1,13 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ActionPAIPDA
+  name: Open PDA
+  description: Opens the PDA UI if you are in one.
+  components:
+    - type: Action
+      icon:
+          sprite: Objects/Devices/pda.rsi
+          state: pda
+      itemIconStyle: NoItem
+    - type: InstantAction
+      event: !type:PAIPDAActionEvent

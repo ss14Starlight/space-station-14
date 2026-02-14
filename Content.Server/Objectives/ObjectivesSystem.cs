@@ -140,12 +140,17 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                 continue;
 
             var cardsToProcess = new List<Entity<RailroadCardComponent, RuleOwnerComponent>>();
+            var cards = new List<Entity<RailroadCardComponent, RuleOwnerComponent>>();
 
             if (railroadable.Completed is not null)
-                cardsToProcess.AddRange(railroadable.Completed);
+                cards.AddRange(railroadable.Completed);
 
             if (railroadable.ActiveCard is { } activeCard)
-                cardsToProcess.Add(activeCard);
+                cards.Add(activeCard);
+
+            foreach (var card in cards)
+                if (!card.Comp1.ShowObjective)
+                    cardsToProcess.Add(card);
 
             if (cardsToProcess.Count == 0)
                 continue;
@@ -181,7 +186,25 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
             var custody = IsInCustody(mindId, mind) ? Loc.GetString("objectives-in-custody") : string.Empty;
 
             var objectives = mind.Objectives;
-            if (objectives.Count == 0)
+            var cardsToProcess = new List<Entity<RailroadCardComponent, RuleOwnerComponent>>();
+
+            if ((mind.OwnedEntity is { } ent)
+                && TryComp<RailroadableComponent>(ent, out var railroadable))
+            {
+                var cards = new List<Entity<RailroadCardComponent, RuleOwnerComponent>>();
+
+                if (railroadable.Completed is not null)
+                    cards.AddRange(railroadable.Completed);
+
+                if (railroadable.ActiveCard is { } activeCard)
+                    cards.Add(activeCard);
+
+                foreach (var card in cards)
+                    if (card.Comp1.ShowObjective)
+                        cardsToProcess.Add(card);
+            }
+
+            if (objectives.Count == 0 && cardsToProcess.Count == 0)
             {
                 agentSummaries.Add((Loc.GetString("objectives-no-objectives", ("custody", custody), ("title", title), ("agent", agent)), 0f, 0));
                 continue;
@@ -209,6 +232,17 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                     var progress = info.Value.Progress;
                     totalObjectives++;
                     WriteObjective(ref completedObjectives, agentSummary, objectiveTitle, progress); // 🌟Starlight🌟
+                }
+            }
+
+            foreach (var card in cardsToProcess)
+            {
+                var collect = new CollectObjectiveInfoEvent([]);
+                RaiseLocalEvent(card, ref collect);
+                foreach (var objective in collect.Objectives)
+                {
+                    totalObjectives++;
+                    WriteObjective(ref completedObjectives, agentSummary, objective.Title, objective.Progress);
                 }
             }
 

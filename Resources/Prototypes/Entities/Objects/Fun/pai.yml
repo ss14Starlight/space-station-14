@@ -65,6 +65,7 @@
   - type: ActionGrant
     actions:
     - ActionPAIOpenShop
+    - ActionPAIPDA #Starlight pAI can open PDAs, see PR #3272
   - type: Store
     name: store-preset-name-pai #Starlight name change for data purity
     categories:

@@ -45,3 +45,73 @@
     - state: rock_bluespace
       sprite: _Starlight/Structures/Walls/rock.rsi
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockDark
+  name: darkstone
+  parent: WallRock
+  components:
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/rock.rsi
+    state: rock_dark
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/rock.rsi
+    layers:
+    - state: rock_dark
+    - map: [ "enum.EdgeLayer.South" ]
+      state: rock_dark_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_dark_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_dark_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_dark_west
+
+- type: entity
+  id: WallRockDarkBluespace
+  parent: WallRockDark
+  description: An ore vein rich with bluespace.
+  suffix: Bluespace
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreBluespace
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/rock.rsi
+    layers:
+    - state: rock_dark
+    - map: [ "enum.EdgeLayer.South" ]
+      state: rock_dark_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_dark_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_dark_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_dark_west
+    - state: rock_bluespace
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockDarkPasma
+  parent: WallRockDark
+  description: An ore vein rich with plasma.
+  suffix: Plasma
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OrePlasma
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/rock.rsi
+    layers:
+    - state: rock_dark
+    - map: [ "enum.EdgeLayer.South" ]
+      state: rock_dark_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_dark_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_dark_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_dark_west
+    - state: rock_phoron
+      sprite: Structures/Walls/rock.rsi
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]

@@ -30342,5 +30342,137 @@ Entries:
   id: 326400
   time: '2026-02-13T07:24:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3264
+- author: katte
+  changes:
+  - message: Deep fryers.
+    type: Add
+  - message: Deep fryer machine board.
+    type: Add
+  - message: mozzarella sticks.
+    type: Add
+  - message: motharella sticks.
+    type: Add
+  - message: Funnel cake.
+    type: Add
+  - message: Fried ice cream.
+    type: Add
+  - message: Fish Sticks.
+    type: Add
+  - message: Corndog.
+    type: Add
+  - message: Added 2 jugs of corn oil in the chefvend.
+    type: Add
+  id: 321000
+  time: '2026-02-13T22:42:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3210
+- author: neomoth
+  changes:
+  - message: Added more killsign sprites. Nobody is safe. :)
+    type: Add
+  id: 328000
+  time: '2026-02-14T09:24:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3280
+- author: Fractalflower
+  changes:
+  - message: The Syndicate stopped modifying their hydras to have a useless ammo tube.
+    type: Fix
+  id: 327800
+  time: '2026-02-14T09:37:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3278
+- author: Conflee
+  changes:
+  - message: Gave the Station AI access to SMES, Substations, and Lathes. AI already
+      gets access to APCs, being able to directly look at SMES and Substations to
+      help diagnose power issues is in line with their current accesses, and the lack
+      of it seems like an oversight when UI was added for these machines. Lathes are
+      also just fun, to see what's unlocked more directly and check department material
+      counts.
+    type: Tweak
+  id: 327000
+  time: '2026-02-14T09:52:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3270
+- author: FeralCreature
+  changes:
+  - message: Temporarily detaching from your body no longer instantly puts your body
+      to sleep.
+    type: Fix
+  - message: Criminal card reward letters should no longer get lost in transit.
+    type: Fix
+  id: 328100
+  time: '2026-02-14T09:57:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3281
+- author: CrazyPhantom
+  changes:
+  - message: Greatly improved RPD pipe placement
+    type: Tweak
+  - message: You can now select RPD placement mode between Primary, Secondary and
+      Tertiary
+    type: Tweak
+  - message: Placing a pipe on the same spot as another with the RPD will now replace
+      it
+    type: Tweak
+  - message: Pipe anchoring bugs when trying to place them over eachother with RPD
+    type: Fix
+  - message: RPD can now create air alarms and air sensors
+    type: Add
+  - message: RPD can now deconstruct air alarms and air sensors
+    type: Tweak
+  - message: All prices for the RPD have been increased by 5x and then tweaked to
+      be mostly lower
+    type: Tweak
+  id: 319900
+  time: '2026-02-14T10:09:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3199
+- author: Way
+  changes:
+  - message: Flipped values of the Great Coat and the Soviet Armor Vest. with some
+      minor additions and changes to spawn rates
+    type: Tweak
+  id: 325800
+  time: '2026-02-14T10:13:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3258
+- author: Central Special Operations Division (scarlet lightweaver)
+  changes:
+  - message: Added alert level ///////////.
+    type: Add
+  - message: Changed ///////////// alert level.
+    type: Tweak
+  id: 327500
+  time: '2026-02-14T10:37:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3275
+- author: Notarin Steele
+  changes:
+  - message: Added the ability for a pAI to open a PDA if it is in one.
+    type: Add
+  id: 327200
+  time: '2026-02-14T16:02:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3272
+- author: Shades
+  changes:
+  - message: Nullspace Ents now cannot be hurt by explosions or FTL.
+    type: Tweak
+  - message: fixed a lot of NullSpaces Bugs, regarding laying down and others issues.
+    type: Fix
+  - message: added Nullspace Protector.
+    type: Add
+  - message: Nullspace Goggles gives now nightvision.
+    type: Add
+  - message: Revenant is now in nullspace.
+    type: Tweak
+  - message: Riply able to pick up anomalies.
+    type: Fix
+  - message: 'New Illegal cannibal item: core spaghetti'
+    type: Add
+  - message: Burned Shadekin will get now a limited power of the Brigheye if they
+      steal his Core (with a cost)
+    type: Tweak
+  - message: Brighteye has new abilities and "The Dark" is now more intresting!
+    type: Add
+  - message: Character Info will not show you the Hivemind if your unable to speak
+      it.
+    type: Tweak
+  id: 283000
+  time: '2026-02-14T19:34:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2830
 Order: -1
 

@@ -37,6 +37,10 @@
         },
         {
             "name": "rejuvenate"
+        },
+        {
+            "name": "thedark",
+            "directions": 1
         }
     ]
 }

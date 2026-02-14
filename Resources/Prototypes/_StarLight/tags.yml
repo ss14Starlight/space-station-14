@@ -211,6 +211,9 @@
   id: FormerSoldierTraitBackground
 
 - type: Tag
+  id: FlatpackBlacklist
+
+- type: Tag
   id: GearAcidifier
 
 - type: Tag

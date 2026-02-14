@@ -1,0 +1,40 @@
+ # * Yeah... New StatusEffect System does not have Temp Blindness...
+# ! Remove it if Upstream ever make a version with the new StatusEffect
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectTemporaryBlindness
+  name: temporary blindness
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+      - Blindable
+      requireAll: true
+  - type: TemporaryBlindness
+
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectTheDark
+  name: the dark
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+    blacklist:
+      components:
+      - Shadekin
+      - TheDarkImmune
+  - type: DrunkStatusEffect
+  - type: DrowsinessStatusEffect
+    sleepIncident: false
+    knockdownIncident: true
+
+# Map Version so its we edit it slightly.
+- type: entity
+  parent: StatusEffectTheDark
+  id: StatusEffectTheDarkMap
+  components:
+  - type: StatusEffectAlert
+    alert: ShadekinTheDarkAlert

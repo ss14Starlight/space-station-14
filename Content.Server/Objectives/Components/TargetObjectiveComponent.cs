@@ -1,4 +1,5 @@
 using Content.Server.Objectives.Systems;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Objectives.Components;
 
@@ -11,6 +12,12 @@ public sealed partial class TargetObjectiveComponent : Component
     /// </summary>
     [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
     public string Title = string.Empty;
+
+    /// <summary>
+    /// Starlight - Adds an icon, mostly this is for railroading.
+    /// </summary>
+    [DataField]
+    public SpriteSpecifier Icon = new SpriteSpecifier.Rsi(new ResPath("Objects/Weapons/Melee/baseball_bat.rsi"), "icon");
 
     /// <summary>
     /// Mind entity id of the target.

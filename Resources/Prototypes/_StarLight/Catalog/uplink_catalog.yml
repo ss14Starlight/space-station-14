@@ -293,7 +293,7 @@
   categories:
     - UplinkCybernetics
 
-- type: listing
+- type: listing # Starlight
   id: UplinkEnergyDomeSyndie
   name: uplink-energy-dome-name
   description: uplink-energy-dome-desc

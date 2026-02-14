@@ -26,7 +26,7 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
     [Dependency] private readonly RailroadRuleSystem _railroadRule = default!;
-    
+
     public readonly ProtoId<AlertPrototype> AlertProtoId = "RailroadingChoice";
 
     public override void Initialize()
@@ -117,7 +117,7 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
         _euiManager.OpenEui(eui, user);
         eui.StateDirty();
         if (TryComp<AlertsComponent>(ent, out var alerts))
-            _alerts.ClearAlert((ent,alerts), AlertProtoId);
+            _alerts.ClearAlert((ent, alerts), AlertProtoId);
     }
 
     // todo: timer
@@ -132,6 +132,17 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
         foreach (var card in subject.Comp.IssuedCards)
             if (card.Owner == cardUid)
             {
+                var ev = new RailroadingAssignedEvent(subject);
+                RaiseLocalEvent(card, ref ev);
+                if (ev.Cancelled)
+                {
+                    Log.Warning($"Could not assign card {ToPrettyString(cardUid)}, deleted it");
+                    if (_entitySystem.TryEntity<RailroadRuleComponent>(card.Comp2.RuleOwner, out var rule))
+                        _railroadRule.AddCardToPool(rule, card);
+
+                    continue;
+                }
+
                 subject.Comp.ActiveCard = card;
                 _adminLogger.Add(LogType.Railroading, LogImpact.Medium, $"{ToPrettyString(subject)} selected card {ToPrettyString(cardUid)}.");
 

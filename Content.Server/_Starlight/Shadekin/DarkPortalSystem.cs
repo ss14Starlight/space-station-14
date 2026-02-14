@@ -49,7 +49,8 @@ public sealed class DarkPortalSystem : EntitySystem
     {
         var query = EntityQueryEnumerator<DarkHubComponent>();
         while (query.MoveNext(out var target, out var portal))
-            _link.TryLink(uid, target);
+            if (portal.Hub)
+                _link.TryLink(uid, target);
     }
 
     private void OnPulse(EntityUid uid, DarkPortalComponent component, ref AnomalyPulseEvent args)
@@ -103,7 +104,7 @@ public sealed class DarkPortalSystem : EntitySystem
         QueueDel(uid);
     }
 
-    private void OnPortalShutdown(EntityUid uid, BrighteyeComponent component)
+    public void OnPortalShutdown(EntityUid uid, BrighteyeComponent component)
     {
         component.Portal = null;
         _alerts.ShowAlert(uid, component.PortalAlert);

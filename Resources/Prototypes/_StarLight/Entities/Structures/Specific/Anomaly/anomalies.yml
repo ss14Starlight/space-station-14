@@ -195,6 +195,8 @@
       energy: 1
       color: "#793a80dd"
     - type: DarkLight
+    - type: Shadegen
+      range: 5
     - type: AmbientSound
       range: 5
       volume: -5
@@ -264,12 +266,136 @@
       location: The Dark
       blacklist:
         tags:
-        - GhostOnlyWarp
+          - GhostOnlyWarp
     - type: DarkLight
     - type: GuideHelp
       guides:
         - Shadekin
         - Brighteye
+
+- type: entity
+  id: ShadekinTrapSpawn
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Specific/Anomalies/dark.rsi
+      noRot: true
+      layers:
+        - state: darktrap-spawn
+          shader: unshaded
+    - type: Physics
+      bodyType: Static
+      fixedRotation: true
+      canCollide: false
+    - type: Transform
+      anchored: true
+    - type: TimedSpawner
+      prototypes:
+        - ShadekinTrap
+      intervalSeconds: 1.9
+    - type: TimedDespawn
+      lifetime: 2
     - type: Tag
       tags:
-        - TheDark
+        - HideContextMenu
+
+- type: entity
+  id: ShadekinTrapTrigger
+  parent: ShadekinTrapSpawn
+  categories: [HideSpawnMenu]
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Specific/Anomalies/dark.rsi
+      noRot: true
+      layers:
+        - state: darktrap-active
+          shader: unshaded
+    - type: TimedDespawn
+      lifetime: 0.7
+
+- type: entity
+  id: ShadekinTrap
+  parent: BaseShadow
+  name: dark trap
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Physics
+      fixedRotation: true
+    - type: Transform
+      anchored: true
+    - type: Fixtures
+      fixtures:
+        floortrap:
+          shape: !type:PhysShapeAabb
+            bounds: "-0.2,-0.2,0.2,0.2"
+          hard: false
+          mask:
+            - ItemMask
+          layer:
+            - SlipLayer
+    - type: Sprite
+      noRot: true
+      sprite: _Starlight/Structures/Specific/Anomalies/dark.rsi
+      layers:
+        - state: darktrap
+    - type: TriggerOnCollide
+      fixtureID: floortrap
+      maxTriggers: 1
+      whitelist:
+        components:
+          - MobState
+      blacklist:
+        components:
+          - Brighteye
+    - type: DarkTrap
+    - type: SpawnOnTrigger
+      proto: ShadekinTrapTrigger
+    - type: DeleteOnTrigger
+    - type: Tag
+      tags:
+        - HideContextMenu
+
+- type: entity
+  name: dark net
+  id: ShadekinDarkNet
+  categories: [HideSpawnMenu]
+  components:
+    - type: Ensnaring
+      freeTime: 10
+      walkSpeed: 0.3
+      sprintSpeed: 0.3
+      staminaDamage: 100
+      ensnareSound: /Audio/_Starlight/Effects/Shadekin/nullphase.ogg
+
+- type: entity
+  id: PortalDarkBreacher
+  parent: BasePortal
+  name: dark breaker portal
+  description: The portal to the light...
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: DarkHub
+      hub: false
+    - type: Sprite
+      noRot: true
+      sprite: _Starlight/Structures/Specific/Anomalies/dark.rsi
+      layers:
+        - state: portal
+    - type: PointLight
+      color: "#793a80dd"
+      radius: 3
+      energy: 1
+    - type: AmbientSound
+      range: 5
+      volume: -5
+      sound:
+        path: /Audio/Ambience/Objects/gravity_gen_hum.ogg
+    - type: Portal
+      arrivalSound: /Audio/Items/hiss.ogg
+      departureSound: /Audio/Items/hiss.ogg
+      canTeleportToOtherMaps: true
+      randomTeleport: false
+    - type: DarkLight

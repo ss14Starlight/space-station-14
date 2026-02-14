@@ -25,23 +25,23 @@
   tier: 2
   cost: 7000
   recipeUnlocks:
-  - NTDefaultCircuitBoard
-  - AsimovCircuitBoard
-  - CorporateCircuitBoard
-  - CommandmentCircuitBoard
-  - PaladinCircuitBoard
-  - PanicmovCircuitBoard
-  - GenieCircuitBoard
-  - ReporterCircuitBoard
-  - LiveLetLiveCircuitBoard
-  - StationEfficiencyCircuitBoard
-  - RobocopCircuitBoard
-  - GameMasterCircuitBoard
-  - ArtistCircuitBoard
-  - NutimovCircuitBoard
-  - JermovCircuitBoard
+    - NTDefaultCircuitBoard
+    - AsimovCircuitBoard
+    - CorporateCircuitBoard
+    - CommandmentCircuitBoard
+    - PaladinCircuitBoard
+    - PanicmovCircuitBoard
+    - GenieCircuitBoard
+    - ReporterCircuitBoard
+    - LiveLetLiveCircuitBoard
+    - StationEfficiencyCircuitBoard
+    - RobocopCircuitBoard
+    - GameMasterCircuitBoard
+    - ArtistCircuitBoard
+    - NutimovCircuitBoard
+    - JermovCircuitBoard
   radioChannels:
-  - Binary
+    - Binary
 
 - type: technology
   id: BluespaceManipulation
@@ -53,8 +53,10 @@
   tier: 2
   cost: 10000
   recipeUnlocks:
-  - ArtificialBluespaceCrystal
-  - NullspaceAnchorMachineCircuitboard
+    - ArtificialBluespaceCrystal
+    - NullspaceAnchorMachineCircuitboard
+    - DarkBreacherMachineCircuitboard
+
 - type: technology
   id: ScienceCyberLimbsTech
   name: research-technology-science-cyberlimbs
@@ -72,5 +74,4 @@
   technologyPrerequisites:
     - CyberLimbsTech
     - AdvancedAnomalyResearch
-
 # Tier 3

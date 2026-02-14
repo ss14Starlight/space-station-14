@@ -49,6 +49,7 @@
     price: 800
   - type: ResearchClient
   - type: TechnologyDatabase
+  - type: StationAiWhitelist #Starlight
 
 # a lathe that can be sped up with space lube / slowed down with glue
 - type: entity

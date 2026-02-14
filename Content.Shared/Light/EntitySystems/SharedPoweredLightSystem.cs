@@ -1,3 +1,5 @@
+using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Shadekin; // Starlight
 using Content.Shared.Audio;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -289,7 +291,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
             case LightBulbState.Normal:
                 if (powerReceiver.Powered && light.On)
                 {
-                    SetLight(uid, true, lightBulb.Color, light, lightBulb.LightRadius, lightBulb.LightEnergy, lightBulb.LightSoftness);
+                    SetLight(uid, true, lightBulb.Color, light, lightBulb.LightRadius, lightBulb.LightEnergy, lightBulb.LightSoftness, HasComp<DarkLightComponent>(bulbUid.Value));
                     _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.On, appearance);
                     var time = GameTiming.CurTime;
                     if (time > light.LastThunk + ThunkDelay)
@@ -332,7 +334,8 @@ public abstract class SharedPoweredLightSystem : EntitySystem
         // Was it being repaired, or did it take damage?
         if (args.DamageIncreased)
         {
-            TryDestroyBulb(uid, component, args.Origin);
+            if (TryDestroyBulb(uid, component, args.Origin) && args.Origin is not null)
+                RaiseLocalEvent(args.Origin.Value, new OnLightBreakEvent(uid)); // SL
         }
     }
 
@@ -367,7 +370,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
         _appearance.SetData(uid, PoweredLightVisuals.Blinking, isNowBlinking, appearance);
     }
 
-    private void SetLight(EntityUid uid, bool value, Color? color = null, PoweredLightComponent? light = null, float? radius = null, float? energy = null, float? softness = null)
+    private void SetLight(EntityUid uid, bool value, Color? color = null, PoweredLightComponent? light = null, float? radius = null, float? energy = null, float? softness = null, bool darklight = false)
     {
         if (!Resolve(uid, ref light))
             return;
@@ -393,6 +396,13 @@ public abstract class SharedPoweredLightSystem : EntitySystem
             if (softness != null)
                 _pointLight.SetSoftness(uid, (float)softness, pointLight);
         }
+
+        // Starlight - Start
+        if (darklight)
+            EnsureComp<DarkLightComponent>(uid);
+        else
+            RemComp<DarkLightComponent>(uid);
+        // Starlight - End
 
         // light bulbs burn your hands!
         if (TryComp<DamageOnInteractComponent>(uid, out var damageOnInteractComp))
