@@ -1,0 +1,70 @@
+
+- type: trait
+  id: HighElf
+  name: trait-ethnicity-elf-high-name
+  description: trait-ethnicity-elf-high-desc
+  category: EthnicityTraits
+  cost: 1
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - Aielic
+      languagesUnderstood:
+        - Aielic
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Elf
+
+- type: trait
+  id: WoodElf
+  name: trait-ethnicity-elf-wood-name
+  description: trait-ethnicity-elf-wood-desc
+  category: EthnicityTraits
+  cost: 1
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - Sylvan
+      languagesUnderstood:
+        - Sylvan
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Elf
+
+- type: trait
+  id: DarkElf
+  name: trait-ethnicity-elf-dark-name
+  description: trait-ethnicity-elf-dark-desc
+  category: EthnicityTraits
+  cost: 1
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - Darktongue
+      languagesUnderstood:
+        - Darktongue
+        - Felyaic
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Elf
+
+- type: trait
+  id: CaveElf
+  name: trait-ethnicity-elf-cave-name
+  description: trait-ethnicity-elf-cave-desc
+  category: EthnicityTraits
+  cost: 1
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - Felyaic
+      languagesUnderstood:
+        - Felyaic
+        - Darktongue
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Elf

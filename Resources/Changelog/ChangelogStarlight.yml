@@ -30474,5 +30474,14 @@ Entries:
   id: 283000
   time: '2026-02-14T19:34:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/2830
+- author: CrazyPhantom
+  changes:
+  - message: New Supermatter animation!
+    type: Tweak
+  - message: Supermatter guide Paper.
+    type: Add
+  id: 303800
+  time: '2026-02-14T21:06:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3038
 Order: -1
 

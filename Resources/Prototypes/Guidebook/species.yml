@@ -3,12 +3,12 @@
   name: guide-entry-species
   text: "/ServerInfo/Guidebook/Mobs/Species.xml"
   children:
+  - Elf # Starlight
   - Arachnid
   - Avali
   - Cyclorite
   - Diona
   - Dwarf
-  - Elf # Starlight
   - Felionoid
   - Human
   - Lagomorph #Afterlight

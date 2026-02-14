@@ -65,7 +65,7 @@
   coefficients:
     Poison: 0.75
     Cellular: 0.9 # magic makes the flesh is less corruptible
-    Blunt: 1.1 # brittle bones, etc.
+    Blunt: 1.2 # brittle bones, etc.
 
 - type: damageModifierSet
   id: SlimeFireproofPotionEffect

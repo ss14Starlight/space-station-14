@@ -1,24 +1,42 @@
 <Document>
-  # Elves
+  # Aielithii
 
   <Box>
     <GuideEntityEmbed Entity="MobElf" Caption=""/>
   </Box>
+  
+  The aielithii are the distant descendants of a fleet that NanoTrasen sent into the Null Scar just two scant decades ago. Inside this tear in reality, ten thousand years or more have passed—enough time for empires to rise and fall, for whole disciplines of science to be invented and forgotten, and countless great wars to be fought on and between the strange planets that populate the realm where physics itself breaks down. Although ostensibly mostly human, they come in all colors and have their own unique culture, shaped greatly by their prolonged exposure, and partial mastery, of just some of the strange energies that exist within the Scar.
+  
+  Aielithii are easily identified by their pointed ears and wide-ranging skintones. They may also live an incredibly long time, with some reportedly living for thousands of years. It is common to refer to them as elves, on account of how hard it is to spell 'aielithii,' but some may take offense to being likened to creatures of fiction.
+  
+  ## Ethnicities
+    Today, there are four major types of aielithii, though many other groups have thrived historically, and are now only in the margins or are totally extinct. It is recommended you select one during character creation, as there are no advantages to not doing so.
+	
+    [bold]Quela[/bold]: The queli descend from the pure-intentioned philosophers, scientists, and explorers of the Quelani Worlds. Their native language is Aielic, and their poetry is second to none. Most likely, you came to the Starlight Sector as part of MAGE's mission to gather intelligence on the Wizarding Federation.
 
-  Although superficially similar to Humans and Dwarves, Elves are easily identified by their pointy ears. They also come in many more colors.
+    [bold]Laurasse[/bold]: The laurassi take pride in their ability to cultivate and nurture plants. They grow up surrounded by Null Scar Dionae, and regard them as their closest friends. Their mother tongue is Sylvan, preserved down through the ages by the wisdom of trees. To a laurasse, metal ships seem like cages. Their verdant homeworld is named Tavas.
+
+    [bold]Seiryth[/bold]: As the generations passed, some of those lost in the Null Scar looked deeper and deeper into the tear itself to harness its mysterious and dangerous secrets. They came to be known as the seirythii, and their leaders as the Seiryth Monarchs, ruling from unassailable fortresses on inhospitable, violent worlds. Upon arriving in Starlight Sector, they were surprised to discover just how many nefarious creatures already spoke their native language, Darktongue.
+
+	[bold]Detar[/bold]: While the other kindreds of aielith squabbled over the event horizon of the Null Scar, the detarii settled on supposedly uninhabitable Dark Worlds, those orbiting weak suns or none at all, by delving deep into the rock and living on geothermal heat. There they waited, adapting to the darkness, for their chance to grab ultimate power. Their native language, Felyaic, is very similar to Darktongue, but has its own unique qualities that only detarii and seirythii understand.
+	
+	All aielithii have some measure of low-light vision, but it is dependent on the Null Scar to function. As a result, while on-station, they are just as blind as humans in the dark.
   
   ## Cantrips
-    All Elves start with an [color=#1e90ff]abridged grimoire[/color] containing a few simple magical spells that help with survival. You may select two to memorize for the duration of the shift. Once you have read from this book, it can generally be discarded; others cannot read your grimoire or study from it. (If you have the Magical Encounter background, there are rumors that Wizarding Federation agents sometimes have access to physical [color=#ff20ff]WizCoin[/color]s, which may be a means to mastering more of your grimoire...)
+    All aielithii have the ability to manipulate certain energies that leak from the Null Scar into our reality. They call this power [color=#1e90ff]arexis[/color], or 'help,' though in practice everyone just calls it magic. It is unlike the elaborate chicanery of the Wizarding Federation.
+	
+	As an aielith, you will start each shift with an [color=#1e90ff]abridged grimoire[/color] containing a few simple spells, or cantrips, that help with survival. You may select two to memorize for the duration of the shift. Once you have read from this book, it can generally be discarded; others cannot read your grimoire or study from it. (In the extremely unlikely event you are able to convince a Federation-aligned wizard to withdraw [color=#ff20ff]WizCoin[/color]s, you might be able to use these to master more of your spellbook...)
   
   ## Damage
-    The body of an Elf is attuned to magic, not bruality. As a result they take [color=#ffa500]10% more damage from Blunt[/color] but [color=#1e90ff]25% less damage from Poison and Cellular decay[/color].
+    Aielithii have spent thosaunds of years in the Null Scar, and have slowly been altered both by the Scar itself and their own arts. They generally avoid melee combat, on account of their brittle bones, taking [color=#ffa500]20% more damage from Blunt[/color]. However, ancient genetic manipulation has gifted them with [color=#1e90ff]25% less damage from Poison[/color] and [color=#1e90ff]10% less damage from Cellular decay[/color].
   
-  ## Origins
+  ## Background
+    In 2501, NanoTrasen scientists determined they had found a way to set up a research outpost inside the Null Scar itself. A massive fleet, equipped with the latest advances in shielding technology and years' worth of supplies, crewed by thousands of NT's best and brightest minds, was deployed into the Scar in order to master this strange frontier once and for all. Tragically, the fleet vanished. In its infinite wisdom, NT covered up the incident, erasing names from the history books and attributing inventions and even awards to others where needed.
   
-    Elves can come from a variety of worlds and have many different cultural backgrounds, but are usually lumped into three broad categories: High Elves, who aspire to pure thoughts and deeds; Dark Elves, who are ruthlessly pragmatic if not downright militaristic; and Wood Elves, who prize their forest homes above any particular ideology.
-  
-    The native language of the Elves is commonly called Aielic, though it may have different names on different planets. Most Elves can also understand Sylvan (the language of Dionae and other treefolk) and Darktongue (a language of malign power.) They are not usually familiar with Sol Common.
-  
-    It is rumored that there is an organization of Elves somewhere in distant space, called MAGE, which opposes the reckless showboating of the Human-run Wizarding Federation, but whether this organization is real or has any actual power is a matter of pure speculation.
+    Twenty-four years later, some bored kids from the Wizarding Federation decided to take a trip through the Null Scar. Whatever they did must have struck a nerve, because not long after, humanlike beings with pointed ears, calling themselves the Aielithii, began to arrive on NT stations, asking strange and uncomfortable questions about the powers these wizards wielded—and how to stop them.
+	
+	Now, a war seems to be brewing, between the Federation and one of the more adventurous groups of aielithii, the Magistracy of Aethyrically-Gifted Explorers, which has members from all the aielithii races but is mainly engineered by the Quelani Worlds, who took grave offense to the childishness of the so-called Wizards.
+	
+	Naturally, NanoTrasen believes it is entitled to the fruits of the research expedition they originally funded to journey into the Null Scar. This approach to diplomacy has yet to yield the intended results.
 
 </Document>
