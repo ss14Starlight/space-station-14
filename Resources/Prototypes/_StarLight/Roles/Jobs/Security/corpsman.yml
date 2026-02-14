@@ -36,10 +36,10 @@
     back:
     - EmergencyRollerBedSpawnFolded
     - DefibrillatorBrigmedical
+    - Flash
     belt:
     - TacticalJetInjector
     - BodyBagLockableFolded # Might as well get it since they're technically parameds
-    - Flash # Let's see if it actually puts it in...
 
 - type: chameleonOutfit
   id: CorpsmanChameleonOutfit
