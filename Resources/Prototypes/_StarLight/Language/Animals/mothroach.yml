@@ -1,6 +1,7 @@
 - type: language
   id: Mothroach
   icon: LanguageIconMoth
+  chatPrefix: mth
   obfuscation:
     !type:ReplacementObfuscation
     replacement:

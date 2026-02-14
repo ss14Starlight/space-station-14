@@ -41,6 +41,7 @@ using Content.Shared.Speech;
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Chat;
 using Content.Shared._Starlight.Language;
+using Content.Shared._Starlight.Language.Systems;
 using Content.Shared.Popups;
 using Content.Shared._Starlight.Radio;
 // Starlight End
@@ -70,7 +71,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
     [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!; // Starlight
-    [Dependency] private readonly SpeechSystem _speechSystem = default!; // Starlight
     [Dependency] private readonly LanguageSystem _language = default!; // Starlight
     [Dependency] private readonly SharedPopupSystem _popups = default!; // Starlight
 
@@ -213,7 +213,13 @@ public sealed partial class ChatSystem : SharedChatSystem
             message = message[1..];
         }
 
-        var language = languageOverride ?? _language.GetLanguage(source); // Starlight
+        // Starlight begin
+        LanguagePrototype language;
+        
+        if (message.StartsWith(SharedLanguageSystem.ChatPrefixChar))
+            language = _language.GetLanguageFromPrefix(source, ref message, out _, true);
+        else language = languageOverride ?? _language.GetLanguage(source);
+        // Starlight end
 
         bool shouldCapitalize = (desiredType != InGameICChatType.Emote);
         bool shouldPunctuate = _configurationManager.GetCVar(CCVars.ChatPunctuation);

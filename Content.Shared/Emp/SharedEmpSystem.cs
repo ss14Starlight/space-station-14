@@ -6,6 +6,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Content.Shared.Humanoid; // Starlight
+using Content.Shared._Starlight.Cybernetics; // Starlight
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Emp;
 
@@ -16,8 +19,10 @@ public abstract class SharedEmpSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedCyberneticDisruptionSystem _disrupt = default!; // Starlight
 
     private HashSet<EntityUid> _entSet = new();
+    private EntityQuery<EmpResistanceComponent> _resistanceQuery;
 
     public override void Initialize()
     {
@@ -26,6 +31,10 @@ public abstract class SharedEmpSystem : EntitySystem
         SubscribeLocalEvent<EmpDisabledComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<EmpDisabledComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<EmpDisabledComponent, RejuvenateEvent>(OnRejuvenate);
+
+        SubscribeLocalEvent<EmpResistanceComponent, EmpAttemptEvent>(OnResistEmpAttempt);
+
+        _resistanceQuery = GetEntityQuery<EmpResistanceComponent>();
     }
 
     public static readonly EntProtoId EmpPulseEffectPrototype = "EffectEmpPulse";
@@ -105,18 +114,31 @@ public abstract class SharedEmpSystem : EntitySystem
     /// <returns>If the entity was affected by the EMP.</returns>
     public bool DoEmpEffects(EntityUid uid, float energyConsumption, TimeSpan duration, EntityUid? user = null)
     {
-        var ev = new EmpPulseEvent(energyConsumption, false, false, duration, user);
+        var strMultiplier = 1f;
+        var durMultiplier = 1f;
+        if (_resistanceQuery.TryComp(uid, out var resistance))
+        {
+            strMultiplier = resistance.StrengthMultiplier;
+            durMultiplier = resistance.DurationMultiplier;
+        }
+        var ev = new EmpPulseEvent(energyConsumption * strMultiplier, false, false, duration * durMultiplier, user);
         RaiseLocalEvent(uid, ref ev);
 
         // TODO: replace with PredictedSpawn once it works with animated sprites
         if (ev.Affected && _net.IsServer)
             Spawn(EmpDisabledEffectPrototype, Transform(uid).Coordinates);
+        
+        //Starlight Start
+        //Disrupt humanoids.
+        if(TryComp(uid, out HumanoidAppearanceComponent? _))
+            _disrupt.TryAddCyberneticDisruptionDuration(uid, duration);
+        //Starlight End
 
         if (!ev.Disabled)
             return ev.Affected;
 
         var disabled = EnsureComp<EmpDisabledComponent>(uid);
-        disabled.DisabledUntil = Timing.CurTime + duration;
+        disabled.DisabledUntil = Timing.CurTime + duration * durMultiplier;
         Dirty(uid, disabled);
 
         return ev.Affected;
@@ -151,6 +173,14 @@ public abstract class SharedEmpSystem : EntitySystem
     private void OnRejuvenate(Entity<EmpDisabledComponent> ent, ref RejuvenateEvent args)
     {
         RemCompDeferred<EmpDisabledComponent>(ent);
+    }
+
+    private void OnResistEmpAttempt(Entity<EmpResistanceComponent> ent, ref EmpAttemptEvent args)
+    {
+        // We only cancel if the strength multiplier is 0, because then the effect basically doesn't exist.
+        // Allows us to make things resistant to the duration, but still lose charge to the EMP.
+        if (ent.Comp.StrengthMultiplier <= 0)
+            args.Cancelled = true;
     }
 }
 

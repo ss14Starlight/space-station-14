@@ -1,7 +1,7 @@
 - type: entity
   parent: ClothingHandsButcherable
   id: ClothingHandsGlovesBlackNitrile
-  name: Black Nitrile Gloves
+  name: black nitrile gloves
   description: High-quality nitrile gloves. Expensive medical PPE, now in black!
   components:
   - type: Sprite
@@ -11,7 +11,7 @@
   - type: Fiber
     fiberMaterial: fibers-black-nitrile
   - type: FingerprintMask
-  - type: Armor 
+  - type: Armor
     modifiers:
       coefficients:
         Caustic: 0.9
@@ -21,7 +21,7 @@
 - type: entity
   parent: [ClothingHandsButcherable, BaseSecurityContraband]
   id: ClothingHandsGlovesSecurityRed
-  name: Red Security Gloves
+  name: red security gloves
   description: Black gloves, but slightly red! The detective will LOVE you if you wear these.
   components:
   - type: Sprite
@@ -35,7 +35,7 @@
 - type: entity
   parent: [ClothingHandsButcherable, BaseSecurityContraband]
   id: ClothingHandsGlovesSecurityFingerlessRed
-  name: Fingerless Red Security Gloves
+  name: fingerless red security gloves
   description: Black gloves, but slightly red! The detective will HATE you if you wear these.
   components:
   - type: Sprite
@@ -56,15 +56,6 @@
     sprite: _Starlight/Clothing/Hands/Gloves/paws.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Hands/Gloves/paws.rsi
-  - type: MeleeWeapon #Taken from the felionoid attack information :)
-    soundHit:
-      collection: AlienClaw
-    angle: 30
-    animation: WeaponArcClaw
-    attackRate: 2
-    damage:
-      types:
-        Slash: 3
 
 - type: entity
   parent: ClothingHandsCatPaws
@@ -119,7 +110,43 @@
     fiberColor: fibers-grey
 
 - type: entity
-  parent: [ BaseSalvageContraband, ClothingHandsGlovesCombat ]
+  parent: ClothingHandsCatPawsWhite
+  name: insulated cat paws
+  id: ClothingHandsCatPawsWhiteInsulated
+  components:
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+
+- type: entity
+  parent: ClothingHandsCatPawsBrown
+  id: ClothingHandsCatPawsBrownInsulated
+  name: insulated cat paws
+  components:
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+
+- type: entity
+  parent: ClothingHandsCatPawsBlack
+  id: ClothingHandsCatPawsBlackInsulated
+  name: insulated cat paws
+  components:
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+
+- type: entity
+  parent: ClothingHandsCatPawsBlackWhite
+  id: ClothingHandsCatPawsBlackWhiteInsulated
+  name: insulated cat paws
+  components:
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+
+- type: entity
+  parent: [ BaseEngineeringSecurityCommandSalvageMiningContraband, ClothingHandsGlovesCombat ]
   id: ClothingHandsSalvageMercGlovesCombat
   name: scrapper combat gloves
   description: High-quality insulated gloves that provide protection while salvaging.
@@ -135,7 +162,7 @@
 - type: entity
   parent: ClothingHandsButcherable
   id: RedRegaliaGloves
-  name: Red Regalia Gloves
+  name: red regalia gloves
   description: A pair of fancy red gloves like a mafiaoso would wear.
   components:
   - type: Sprite

@@ -38,3 +38,23 @@
     - state: green
     - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
       state: full
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostTerminator
+  name: exterminator spawn point
+  components:
+  - type: GhostRole
+    name: ghost-role-information-terminator-name
+    description: ghost-role-information-terminator-description
+    rules: ghost-role-information-terminator-rules
+    mindRoles:
+    - MindRoleTerminator
+    raffle:
+      settings: default
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Terminator/parts.rsi
+      state: full

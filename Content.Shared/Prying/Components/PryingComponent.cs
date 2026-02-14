@@ -36,6 +36,15 @@ public sealed partial class PryingComponent : Component
     /// </summary>
     [DataField]
     public bool Enabled = true;
+
+    #region Starlight
+
+    /// <summary>
+    /// Whether to play the use sound when prying is started.
+    /// </summary>
+    [DataField]
+    public bool PlaySoundOnDoafter = false;
+    #endregion Starlight
 }
 
 /// <summary>
@@ -76,6 +85,15 @@ public readonly record struct PriedEvent(EntityUid User)
 {
     public readonly EntityUid User = User;
 }
+
+// Starlight-start
+[ByRefEvent]
+public readonly record struct UserPriedDoorEvent(EntityUid Door, bool Opened)
+{
+    public readonly EntityUid Door = Door;
+    public readonly bool Opened = Opened;
+}
+// Starlight-end
 
 /// <summary>
 /// Raised to determine how long the door's pry time should be modified by.

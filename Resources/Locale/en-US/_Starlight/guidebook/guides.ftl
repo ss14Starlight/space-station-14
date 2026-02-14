@@ -75,6 +75,7 @@ guide-entry-sl-security-sop-headofsecurity = Head of Security
 guide-entry-sl-security-sop-prisonertreatment = Prisoner Treatment
 guide-entry-sl-security-sop-parole = Parole
 guide-entry-sl-security-sop-permitacquisition = Permit Acquisiton
+guide-entry-sl-security-sop-specialsituations = Special Situations
 
 guide-entry-sl-legal-sop-intro = Legal
 

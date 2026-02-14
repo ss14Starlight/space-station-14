@@ -8,7 +8,7 @@ namespace Content.Server.Speech.EntitySystems
 {
     public sealed class OwOAccentSystem : EntitySystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
+        // [Dependency] private readonly IRobustRandom _random = default!; // Starlight-removed - we dropped the one use of this
 
         private static readonly IReadOnlyDictionary<string, string> SpecialWords = new Dictionary<string, string>()
         {

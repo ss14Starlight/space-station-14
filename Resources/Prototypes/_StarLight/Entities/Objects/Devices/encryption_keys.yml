@@ -65,7 +65,25 @@
     - type: Tag
       tags:
         - EncryptionCargo
+    - type: StealTarget
+      stealGroup: EncryptionKeySalvage
 
+- type: entity
+  parent: [ EncryptionKey, BaseTSFContraband ]
+  id: EncryptionKeyTSF
+  name: TSF encryption key
+  components:
+  - type: EncryptionKey
+    channels:
+    - TSF
+    defaultChannel: TSF
+  - type: Sprite
+    layers:
+    - sprite: Objects/Devices/encryption_keys.rsi
+      state: crypt_blue
+    - sprite: Objects/Devices/encryption_keys.rsi
+      state: com_label
+      
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyMerchant

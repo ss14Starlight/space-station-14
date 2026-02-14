@@ -6,7 +6,7 @@ namespace Content.Shared.Starlight.Utility;
 
 [Serializable, NetSerializable]
 [DataDefinition]
-public partial class EmpProperties
+public sealed partial class EmpProperties
 {
     
     [DataField("range"), ViewVariables(VVAccess.ReadWrite)]

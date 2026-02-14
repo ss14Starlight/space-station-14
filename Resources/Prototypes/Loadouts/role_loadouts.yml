@@ -9,6 +9,7 @@
   - CaptainOuterClothing
   - CaptainShoes # 🌟Starlight🌟
   - CaptainEyewear
+  - InsulsCaptain # Starlight
   - SurvivalExtended
   - Trinkets
   - Scarves # Starlight
@@ -27,6 +28,7 @@
   - HoPBackpack
   - HoPOuterClothing
   - HoPShoes # 🌟Starlight🌟
+  - GlovesGeneric # Starlight
   - Glasses
   - Survival
   - Trinkets
@@ -82,6 +84,7 @@
   - CommonBackpack
   - BartenderOuterClothing
   - CivilianShoes # 🌟Starlight🌟
+  - GlovesGeneric # Starlight
   - Glasses
   - Survival
   - Trinkets
@@ -98,6 +101,8 @@
   - BartenderJumpsuit
   - CommonBackpack
   - CivilianShoes # 🌟Starlight🌟
+  - GlovesGeneric # Starlight
+  - HeadGeneric # starlight
   - Glasses
   - Survival
   - Trinkets
@@ -116,6 +121,7 @@
   - ChefJumpsuit
   - CommonBackpack
   - ChefOuterClothing
+  - GlovesGeneric # Starlight
   - CivilianShoes # 🌟Starlight🌟
   - Glasses
   - Survival
@@ -132,6 +138,8 @@
   - GroupTankHarness
   - LibrarianJumpsuit
   - CommonBackpack
+  - GlovesGeneric # Starlight
+  - HeadGeneric # starlight
   - CivilianShoes # 🌟Starlight🌟
   - Glasses
   - Survival
@@ -152,6 +160,8 @@
   - Glasses
   - Survival
   - Trinkets
+  - GlovesGeneric # Starlight
+  - HeadGeneric # starlight
   - Scarves # Starlight
   - Pins # Starlight
   - LuxuryPens # Starlight
@@ -169,6 +179,7 @@
   - CommonBackpack
   - ChaplainOuterClothing
   - ChaplainBible
+  - GlovesGeneric
   - CivilianShoes # 🌟Starlight🌟
   - Glasses
   - Survival
@@ -203,6 +214,7 @@
   groups:
   - GroupTankHarness
   - BotanistHead
+  - GlovesGeneric # Starlight
   - BotanistJumpsuit
   - BotanistBackpack
   - BotanistOuterClothing
@@ -226,6 +238,7 @@
   - ClownBackpack
   - ClownOuterClothing
   - ClownShoes
+  - GlovesGeneric # Starlight
   - Glasses
   - SurvivalClown
   - Trinkets
@@ -241,6 +254,7 @@
   - GroupTankHarness
   - MimeHead
   - MimeMask
+  - GlovesGeneric # Starlight
   - MimeJumpsuit
   - MimeBackpack
   - MimeOuterClothing
@@ -261,13 +275,15 @@
   - MusicianJumpsuit
   - CommonBackpack
   - MusicianOuterClothing
-  - CivilianShoes # 🌟Starlight🌟
+  - GlovesGeneric # Starlight start
+  - HeadGeneric
+  - CivilianShoes # Starlight end
   - Glasses
   - Survival
   - Trinkets
-  - Scarves # Starlight
-  - Pins # Starlight
-  - Pens # Starlight
+  - Scarves # Starlight start
+  - Pins
+  - Pens # Starlight end
   - MusicianJobTrinkets
   - Instruments
   - GroupSpeciesBreathTool
@@ -282,6 +298,7 @@
   - QuartermasterJumpsuit
   - CargoTechnicianBackpack
   - QuartermasterOuterClothing
+  - GlovesGeneric # Starlight
   - QuartermasterShoes
   - Glasses
   - Survival
@@ -300,6 +317,7 @@
   - CargoTechnicianJumpsuit
   - CargoTechnicianBackpack
   - CargoTechnicianOuterClothing
+  - GlovesGeneric # Starlight
   - CargoTechnicianShoes
   - CargoTechnicianID
   - Glasses
@@ -318,6 +336,8 @@
   - SalvageSpecialistBackpack
   - SalvageSpecialistJumpsuit # afterlight
   - SalvageSpecialistOuterClothing
+  - HeadGeneric # Starlight
+  - GlovesGeneric # Starlight
   - SalvageSpecialistShoes
   - SalvageSpecialistPDA # Starlight
   - Glasses
@@ -339,8 +359,10 @@
   - StationEngineerBackpack
   - ChiefEngineerNeck
   - ChiefEngineerOuterClothing
+  - GlovesGeneric # Starlight
   - ChiefEngineerShoes
   - SurvivalExtended
+  - Insuls # Starlight
   - Trinkets
   - Scarves # Starlight
   - Pins # Starlight
@@ -354,6 +376,11 @@
   - GroupTankHarness
   - TechnicalAssistantJumpsuit
   - StationEngineerBackpack
+  - StationEngineerOuterClothing # Starlight start
+  - GlovesGeneric
+  - HeadGeneric
+  - StationEngineerShoes
+  - Insuls # Starlight end
   - SurvivalExtended
   - Trinkets
   - Scarves # Starlight
@@ -370,9 +397,12 @@
   - StationEngineerJumpsuit
   - StationEngineerBackpack
   - StationEngineerOuterClothing
+  - GlovesGeneric # Starlight
+  - HeadGeneric # Starlight
   - StationEngineerShoes
   - StationEngineerID
   - SurvivalExtended
+  - Insuls # Starlight
   - Trinkets
   - Scarves # Starlight
   - Pins # Starlight
@@ -387,8 +417,11 @@
   - AtmosphericTechnicianJumpsuit
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianOuterClothing
+  - GlovesGeneric # Starlight
+  - HeadGeneric # Starlight
   - AtmosphericTechnicianShoes
   - SurvivalExtended
+  - Insuls # Starlight
   - Trinkets
   - Scarves # Starlight
   - Pins # Starlight
@@ -442,8 +475,13 @@
   id: JobResearchAssistant
   groups:
   - GroupTankHarness
-  - ResearchAssistantJumpsuit
+  - ScientistHead # starlight start
+  - ScientistNeck
+  - ScientistJumpsuit
   - ScientistBackpack
+  - ScientistOuterClothing
+  - ScientistGloves
+  - ScientistShoes # starlight end
   - Glasses
   - Survival
   - Trinkets
@@ -467,6 +505,7 @@
   - SecurityEyewear
   - SecurityShoes
   - SurvivalSecurity
+  - InsulsCombat # Starlight
   - Trinkets
   - Scarves # Starlight
   - Pins # Starlight
@@ -478,6 +517,7 @@
   id: JobWarden
   groups:
   - WardenHead
+  - WardenNeck # Starlight
   - WardenJumpsuit
   - SecurityBackpack
   - SecurityBelt
@@ -485,6 +525,7 @@
   - SecurityEyewear
   - SecurityShoes
   - SurvivalSecurity
+  - InsulsCombat # Starlight
   - Trinkets
   - Scarves # Starlight
   - Pins # Starlight
@@ -500,6 +541,7 @@
   - SecurityBackpack
   - SecurityEyewear
   - SecurityOuterClothing
+  - SecurityGloves # Starlight
   - SecurityShoes
   - SecurityPDA
   - SecurityBelt
@@ -522,6 +564,7 @@
   - SecurityBackpack
   - SecurityEyewear
   - DetectiveOuterClothing
+  - SecurityGloves # Starlight
   - DetectiveShoes # 🌟Starlight🌟
   - SurvivalSecurity
   - Trinkets
@@ -537,8 +580,10 @@
   - SecurityCadetJumpsuit
   - SecurityBackpack
   - SecurityNonLethalWeapon
+  - HeadGeneric # Starlight
   - SecurityEyewear
   - SurvivalSecurity
+  - SecurityGloves # Starlight
   - Trinkets
   - Scarves # Starlight
   - Pins # Starlight
@@ -593,7 +638,13 @@
   id: JobMedicalIntern
   groups:
   - GroupTankHarness
-  - MedicalInternJumpsuit
+  - MedicalDoctorHead # Starlight start
+  - MedicalMask
+  - MedicalDoctorJumpsuit
+  - MedicalGloves
+  - MedicalBackpack
+  - MedicalDoctorOuterClothing
+  - MedicalShoes # Starlight end
   - MedicalBackpack
   - MedicalEyewear
   - SurvivalMedical
@@ -613,13 +664,13 @@
   - ChemistJumpsuit
   - MedicalGloves
   - ChemistBackpack
-  - ChemistBag # Starlight
   - ChemistOuterClothing
-  - ChemistShoes # Starlight
-  - ChemistPDA # Starlight
-  - ChemistEyewear # Starlight
-  - ChemistBeaker # Starlight
-  - ChemistLabeler # Starlight
+  - ChemistBag # Starlight start
+  - ChemistShoes
+  - ChemistPDA
+  - ChemistEyewear
+  - ChemistBeaker
+  - ChemistLabeler # Starlight end
   - SurvivalMedical
   - Trinkets
   - Scarves # Starlight
@@ -656,7 +707,9 @@
   - GroupTankHarness
   - ReporterJumpsuit
   - CommonBackpack
-  - CivilianShoes # 🌟Starlight🌟
+  - HeadGeneric # Starlight start
+  - GlovesGeneric
+  - CivilianShoes # Starlight end
   - Glasses
   - Survival
   - Trinkets
@@ -672,7 +725,10 @@
   - GroupTankHarness
   - PsychologistJumpsuit
   - MedicalBackpack
-  - CivilianShoes # 🌟Starlight🌟
+  - MedicalDoctorHead # Starlight start
+  - MedicalGloves
+  - MedicalDoctorOuterClothing
+  - CivilianShoes # Starlight end
   - Glasses
   - Survival
   - Trinkets

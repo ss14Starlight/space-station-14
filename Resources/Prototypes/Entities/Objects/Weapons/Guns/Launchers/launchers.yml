@@ -81,7 +81,7 @@
     price: 10000
 
 - type: entity
-  parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseMajorContraband ]
+  parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseJanitorContraband ] # Starlight: major -> jani contra
   id: WeaponLauncherHydra
   name: hydra
   description: PLOOP... FSSSSSS...
@@ -113,9 +113,8 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-      - Grenade
+      - Cleanade # Starlight change: make it use cleanades instead of frags
     proto: GrenadeCleanade
-    capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
     soundEject:
@@ -123,13 +122,20 @@
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
 
-- type: entity
+- type: entity # Starlight edit: Ballistics.
   parent: [WeaponLauncherHydra]
   id: WeaponLauncherHydraLethal
-  suffix: frag
+  name: modified hydra # SL edit: give it a proper name
+  suffix: Security # starlight: differentiate
   components:
   - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
     proto: GrenadeFrag
+  - type: ScanDetectable # Starlight: major contra (I think this is valid?)
+  - type: Contraband
+    severity: Major
 
 - type: entity
   name: RPG-7
@@ -379,33 +385,6 @@
             True: { state: base-unshaded }
             False: { state: base-unshaded-off }
     - type: PacifismAllowedGun
-
-- type: entity
-  parent: BaseItem
-  id: WeaponStickyHand
-  name: sticky hand
-  description: They're saying you're reaching. They're saying it's a stretch. You'll show them all, and you'll stick it to them.
-  components:
-  - type: AmmoCounter
-  - type: GrapplingGun
-    cycleSound: /Audio/Misc/woosh.ogg
-    ropeSprite:
-      sprite: Objects/Weapons/Guns/Launchers/sticky_hand.rsi
-      state: rope
-  - type: Gun
-    soundGunshot: /Audio/Misc/stickystretch.ogg
-    fireRate: 0.5
-    clumsyProof: true
-    soundEmpty: /Audio/Misc/boing.ogg
-  - type: BasicEntityAmmoProvider
-    proto: StickyHandPalm
-    capacity: 1
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Launchers/sticky_hand.rsi
-    state: base
-  - type: UseDelay
-    delay: 1.5
-  - type: PacifismAllowedGun
 
 # Admeme
 - type: entity

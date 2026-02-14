@@ -17,6 +17,7 @@ public sealed class WizdenContentFreeze
     /// </summary>
     [Test]
     [Explicit] //Starlight: We dont give a fuck about your microwave recipe freeze
+    [Ignore("Starlight: We dont give a fuck about your microwave recipe freeze")]
     public async Task MicrowaveRecipesFreezeTest()
     {
         await using var pair = await PoolManager.GetServerClient();

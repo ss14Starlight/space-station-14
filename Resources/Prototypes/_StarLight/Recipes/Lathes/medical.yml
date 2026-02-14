@@ -130,6 +130,28 @@
     Steel: 200
 
 - type: latheRecipe
+  id: LeftLegCyberSpeed
+  result: LeftLegCyberSpeed
+  categories:
+  - Cyberlimbs
+  completetime: 3
+  materials:
+    Steel: 1500
+    Plastic: 1000
+    Silver: 500
+
+- type: latheRecipe
+  id: RightLegCyberSpeed
+  result: RightLegCyberSpeed
+  categories:
+  - Cyberlimbs
+  completetime: 3
+  materials:
+    Steel: 1500
+    Plastic: 1000
+    Silver: 500
+      
+- type: latheRecipe
   id: LeftFootCyber
   result: LeftFootCyber
   categories:
@@ -306,6 +328,33 @@
 
 #
 - type: latheRecipe
+  id: LeftArmCyberInvestigator
+  result: LeftArmCyberInvestigator
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plasma: 250
+    Plastic: 450
+    Steel: 550
+    Silver: 100
+    Glass: 100
+
+- type: latheRecipe
+  id: RightArmCyberInvestigator
+  result: RightArmCyberInvestigator
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plasma: 250
+    Plastic: 450
+    Steel: 550
+    Silver: 100
+    Glass: 100
+
+#
+- type: latheRecipe
   id: LeftArmCyberSpacer
   result: LeftArmCyberSpacer
   categories:
@@ -354,6 +403,30 @@
     Plastic: 450
     Steel: 550
     Silver: 100
+    Glass: 100
+#
+- type: latheRecipe
+  id: LeftArmCyberScribe
+  result: LeftArmCyberScribe
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 550
+    Steel: 400
+    Silver: 50
+    Glass: 100
+
+- type: latheRecipe
+  id: RightArmCyberScribe
+  result: RightArmCyberScribe
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 550
+    Steel: 400
+    Silver: 50
     Glass: 100
 
 #
@@ -405,6 +478,29 @@
     Plastic: 250
     Steel: 250
     Silver: 50
+
+#
+- type: latheRecipe
+  id: LeftLegCyberCargo
+  result: LeftLegCyberCargo
+  categories:
+  - Cyberlimbs
+  completetime: 5
+  materials:
+    Plastic: 200
+    Steel: 200
+    Cloth: 50
+
+- type: latheRecipe
+  id: RightLegCyberCargo
+  result: RightLegCyberCargo
+  categories:
+  - Cyberlimbs
+  completetime: 5
+  materials:
+    Plastic: 200
+    Steel: 200
+    Cloth: 50
 # IMPLANTS
 
 # Eye

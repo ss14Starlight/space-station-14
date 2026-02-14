@@ -40,14 +40,14 @@
   name: steal-target-groups-mining-shuttle-console-circuitboard
   sprite:
     sprite: Objects/Misc/module.rsi
-    state: cpuboard
+    state: cpu_supply
 
 - type: stealTargetGroup
   id: SalvageShuttleConsoleCircuitboard
   name: steal-target-groups-salvage-shuttle-console-circuitboard
   sprite:
     sprite: Objects/Misc/module.rsi
-    state: cpuboard
+    state: cpu_supply
 
 - type: stealTargetGroup
   id: HoPBoardSteal
@@ -56,13 +56,132 @@
     sprite: _Starlight/Objects/Misc/hop_clipboard.rsi
     state: hop_clipboard
 
+- type: stealTargetGroup
+  id: HOPIDCard
+  name: steal-target-groups-hop-id-card
+  sprite:
+    sprite: _Starlight/Objects/Misc/hop_id_card.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: PinpointerNuclear
+  name: steal-target-groups-pinpointer-nuclear
+  sprite:
+    sprite: Objects/Devices/pinpointer.rsi
+    state: pinpointer
+
+- type: stealTargetGroup
+  id: AccessConfigurator
+  name: steal-target-groups-access-configurator
+  sprite:
+    sprite: Objects/Tools/access_configurator.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: EncryptionKeySalvage
+  name: steal-target-groups-encryption-key-salvage
+  sprite:
+    sprite: _Starlight/Objects/Misc/salvagekeystealobjective.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: NTRepBriefcaseSecure
+  name: steal-target-groups-ntr-briefcase
+  sprite:
+    sprite: _Starlight/Objects/Misc/ntrepbriefcasestealobjective.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: BSOWeapon
+  name: steal-target-groups-bso-weapon
+  sprite:
+    sprite: _Starlight/Objects/Misc/bso_weapon_obj.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: CMOHardsuit
+  name: steal-target-groups-clothing-outer-hardsuit-cmo
+  sprite:
+    sprite: Clothing/OuterClothing/Hardsuits/medical.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: CEHardsuit
+  name: steal-target-groups-clothing-outer-hardsuit-ce
+  sprite:
+    sprite: Clothing/OuterClothing/Hardsuits/engineering-white.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: HOSHardsuit
+  name: steal-target-groups-clothing-outer-hardsuit-hos
+  sprite:
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security-red.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: WardenHardsuit
+  name: steal-target-groups-clothing-outer-hardsuit-warden
+  sprite:
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/security-warden.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: BrigmedicHardsuit
+  name: steal-target-groups-clothing-outer-hardsuit-brigmedic
+  sprite:
+    sprite: Clothing/OuterClothing/Hardsuits/brigmedic.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: QMHardsuit
+  name: steal-target-groups-clothing-outer-hardsuit-qm
+  sprite:
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/luxmax.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: SalvLeadHardsuit
+  name: steal-target-groups-clothing-outer-hardsuit-salvlead
+  sprite:
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/leadspatio.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: CaptainHardsuit
+  name: steal-target-groups-clothing-outer-hardsuit-captain
+  sprite:
+    sprite: Clothing/OuterClothing/Hardsuits/capspace.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: NTRepHardsuit
+  name: steal-target-groups-clothing-outer-hardsuit-ntr
+  sprite:
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntrepspace.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: BSOHardsuit
+  name: steal-target-groups-clothing-outer-hardsuit-bso
+  sprite:
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/blueshield.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: BSOMagboots
+  name: steal-target-groups-clothing-shoes-boots-mag-bso
+  sprite:
+    sprite: _Starlight/Clothing/Shoes/Boots/magboots-bso.rsi
+    state: icon
+
 #Thief single items
 
 - type: stealTargetGroup
-  id: Proto5x
-  name: steal-target-groups-proto5x
+  id: HOSWeapon
+  name: steal-target-groups-hos-weapon
   sprite:
-    sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_smg.rsi
+    sprite: _Starlight/Objects/Misc/hos_weapons_obj.rsi
     state: icon
 
 - type: stealTargetGroup
@@ -93,3 +212,123 @@
   sprite:
     sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
     state: lmg
+
+- type: stealTargetGroup
+  id: LogProbeCartridge
+  name: steal-target-groups-log-probe-cartridge
+  sprite:
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-log
+
+- type: stealTargetGroup
+  id: MedTekCartridge
+  name: steal-target-groups-med-tek-cartridge
+  sprite:
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-med
+
+- type: stealTargetGroup
+  id: AstroNavCartridge
+  name: steal-target-groups-astro-nav-cartridge
+  sprite:
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-nav
+
+- type: stealTargetGroup
+  id: SecurityTechFabCircuitboard
+  name: steal-target-groups-security-tech-fab-circuitboard
+  sprite:
+    sprite: Objects/Misc/module.rsi
+    state: security
+
+- type: stealTargetGroup
+  id: PTechCircuitboard
+  name: steal-target-groups-ptech-circuitboard
+  sprite:
+    sprite: Objects/Misc/module.rsi
+    state: command
+
+- type: stealTargetGroup
+  id: ClothingHeadsetAltCommand
+  name: steal-target-groups-clothing-headset-alt-command
+  sprite:
+    sprite: Clothing/Ears/Headsets/command.rsi
+    state: icon_alt
+
+- type: stealTargetGroup
+  id: CommsComputerCircuitboard
+  name: steal-target-groups-communications-computer-circuitboard
+  sprite:
+    sprite: Objects/Misc/module.rsi
+    state: cpu_command
+
+- type: stealTargetGroup
+  id: IDCardComputerCircuitboard
+  name: steal-target-groups-id-card-computer-circuitboard
+  sprite:
+    sprite: Objects/Misc/module.rsi
+    state: cpu_command
+
+- type: stealTargetGroup
+  id: BrigmedicStrangeBedsheet
+  name: steal-target-groups-strange-brigmed-bedsheet
+  sprite:
+    sprite: _Starlight/Objects/Misc/bedsheets.rsi
+    state: sheetbrigmedicstrange
+
+- type: stealTargetGroup
+  id: SalvLeadMantle
+  name: steal-target-groups-salvlead-mantle
+  sprite:
+    sprite: _Starlight/Clothing/Neck/Mantles/salvagemantle.rsi
+    state: icon
+
+# Thief Collection
+- type: stealTargetGroup
+  id: CrewMonitorCollection
+  name: steal-target-groups-handheld-monitors
+  sprite:
+    sprite: _Starlight/Objects/Misc/monitorcollection.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: GaloshesCollection
+  name: steal-target-groups-galoshes
+  sprite:
+    sprite: Clothing/Shoes/Specific/galoshes.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: RCDRPDCollection
+  name: steal-target-groups-rcd-rpd
+  sprite:
+    sprite: _Starlight/Objects/Misc/rcdrpdcollection.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: MiscGlassesCollection
+  name: steal-target-groups-misc-sunglasses
+  sprite:
+    sprite: _Starlight/Objects/Misc/miscglasses.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: RareGlassesCollection
+  name: steal-target-groups-rare-sunglasses
+  sprite:
+    sprite: _Starlight/Objects/Misc/rareglasses.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: AssistantHeadsetsCollection
+  name: steal-target-groups-assistant-headsets
+  sprite:
+    sprite: Clothing/Ears/Headsets/service.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: MedicalBeltCollection
+  name: steal-target-groups-medical-belts
+  sprite:
+    sprite: _Starlight/Objects/Misc/medicalbeltstealobjective.rsi
+    state: icon

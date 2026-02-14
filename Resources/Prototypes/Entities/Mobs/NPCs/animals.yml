@@ -1784,6 +1784,7 @@
   - type: Item
     size: Tiny
     heldPrefix: 0
+  - type: VampireDevourable # Starlight-edit: Vampire Devouring
   - type: Clothing
     quickEquip: false
     sprite: Mobs/Animals/mouse.rsi
@@ -2041,7 +2042,8 @@
     energy: 5
     netsync: false
   - type: RadiationSource
-    intensity: 0.3
+    intensity: 0.5
+    slope: 0.3
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -3056,6 +3058,7 @@
       Critical: CorgiCrit
       Dead: CorgiDead
   - type: Blindable # why is this not base?
+  - type: Emoting
   - type: ThermalRegulator # Lower radiated heat, Corgis are smaller so their body surface area is also smaller.
     metabolismHeat: 400 # half of human's
     radiatedHeat: 35 # This affects them reallistically only when dead in a spaced room, makes the cold damage scale slower.
@@ -4078,4 +4081,7 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
+    # Starlight Start
   - type: AlwaysRevolutionaryConvertible
+  - type: CanEnterCryostorage
+    # Starlight End

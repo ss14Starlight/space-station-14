@@ -38,6 +38,8 @@ public sealed class LargeGrabberSystem : EntitySystem
 
         SubscribeLocalEvent<LargeGrabberComponent, AfterInteractEvent>(OnInteract);
         SubscribeLocalEvent<LargeGrabberComponent, GrabberDoAfterEvent>(OnGrab);
+
+        SubscribeLocalEvent<LargeGrabberComponent, EntGotRemovedFromContainerMessage>(OnRemovedFromContainer);
     }
 
     /// <summary>
@@ -115,6 +117,23 @@ public sealed class LargeGrabberSystem : EntitySystem
             UpdateState(uid, component);
             args.Handled = true;
         }
+    }
+
+    private void OnRemovedFromContainer(EntityUid uid, LargeGrabberComponent component, EntGotRemovedFromContainerMessage args)
+    { 
+        if (!component.DropOnContainerChange)
+            return;
+
+        while (component.ItemContainer.Count > 0)
+        {
+            var targetCoords = new EntityCoordinates(args.Container.Owner, component.DepositOffset);
+            if (!_interaction.InRangeUnobstructed(args.Container.Owner, targetCoords))
+                return;
+
+            if (component.ItemContainer.ContainedEntities.TryFirstOrNull(out var item) && item.HasValue)
+                RemoveItem(uid, args.Container.Owner, item.Value, component);
+        }
+        UpdateState(uid, component);
     }
 
     private void OnGrab(EntityUid uid, LargeGrabberComponent component, DoAfterEvent args)

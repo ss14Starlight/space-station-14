@@ -269,6 +269,10 @@
         weight: 0.25
       - id: ToolboxElectricalFilled
       - id: ToolboxMechanicalFilled
+      - id: ToolboxRoboticistFilled # Starlight
+        weight: 0.6 # Starlight. You'll never see it coming.
+      - id: ClothingShoesGaloshnt # Starlight
+        weight: 0.4 # Starlight. Fake galoshes to crush your spirit.
       - id: ClothingBeltUtility
       - id: ToolboxArtisticFilled
       - id: GeigerCounter
@@ -339,6 +343,16 @@
       - id: RifleStock
       - id: ModularReceiver
       - id: HydroponicsToolScythe
+      - id: SwordMakeshift  #starlight Start: Adds some Makeshift Items
+      - id: MakeshiftShield
+      - id: SwordImprovised
+      - id: ImprovisedShield
+      - id: WeaponSniperMakeshift
+        weight: .8
+      - id: WeaponShotgunMakeshift
+        weight: .8
+      - id: ClothingOuterArmorMakeshift
+      - id: WeaponMeleeSwitchblade #Starlight End:
     # Rare Group
     - !type:GroupSelector
       weight: 5

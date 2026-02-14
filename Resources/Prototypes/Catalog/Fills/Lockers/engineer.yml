@@ -235,7 +235,8 @@
       amount: 2
     - id: GeigerCounter
       amount: 2
-    - id: PillCanisterPotassiumIodide
+    - id: RadiationBlockingProjector # Far Horizons
+    - id: PillCanisterPotassiumIodide # Far Horizons
       prob: 0.75
 
 - type: entity

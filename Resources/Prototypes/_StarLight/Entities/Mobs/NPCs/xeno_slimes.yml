@@ -9,9 +9,25 @@
   components:
     - type: Sprite
       drawdepth: Mobs
-      sprite: _Starlight/Mobs/XenoSlimes/test_sprite.rsi
+      sprite: _Starlight/Mobs/XenoSlimes/slimes.rsi
       layers:
-        - state: test_slime
+        - state: eyes_default
+          shader: unshaded
+          color: "#333333"
+        - state: base1
+    - type: RandomSprite
+      available: 
+        - 0: #replaces layer 0 (eyes) with a random one and uses the "Black" color pallete
+            eyes_angry: Black
+            eyes_cat: Black
+            eyes_clown: Black
+            eyes_default: Black
+            eyes_freak: Black
+            eyes_mischief: Black
+            eyes_pins: Black
+            eyes_shocked: Black
+            eyes_smug: Black
+            eyes_squint: Black
     - type: Hunger
       baseDecayRate: 1
     - type: Slime
@@ -112,6 +128,10 @@
         - XenobiologySlimeGold
         - XenobiologySlimeGold
     - type: Sprite
+      layers:
+        - state: eyes_default
+          shader: unshaded
+        - state: base2
       color: "#5e5e5eff"
 
 - type: entity
@@ -180,6 +200,10 @@
         - XenobiologySlimePyrite
         - XenobiologySlimePyrite
     - type: Sprite
+      layers:
+        - state: eyes_default
+          shader: unshaded
+        - state: base2
       color: "#aab8bdff"
 
 - type: entity
@@ -284,6 +308,10 @@
       splitIntoMutation:
         - XenobiologySlimeAdamantine
     - type: Sprite
+      layers:
+        - state: eyes_default
+          shader: unshaded
+        - state: base2
       color: "#8a7b1cff"
 
 - type: entity
@@ -296,6 +324,10 @@
       splitInto: XenobiologySlimeOil
       extract: OilSlimeExtract
     - type: Sprite
+      layers:
+        - state: eyes_default
+          shader: unshaded
+        - state: base2
       color: "#262626ff"
 
 - type: entity
@@ -332,6 +364,10 @@
       splitInto: XenobiologySlimeAdamantine
       extract: AdamantineSlimeExtract
     - type: Sprite
+      layers:
+        - state: eyes_default
+          shader: unshaded
+        - state: base2
       color: "#407985ff"
 
 - type: entity
@@ -343,5 +379,11 @@
     - type: Slime
       splitInto: XenobiologySlimeRainbow
       extract: RainbowSlimeExtract
+    - type: RgbLightController
+      layers: [ 0, 1 ]
+    - type: PointLight
+      radius: 1
+      energy: 1
     - type: Sprite
-      color: "#300636ff"
+      color: "#ffffff"
+

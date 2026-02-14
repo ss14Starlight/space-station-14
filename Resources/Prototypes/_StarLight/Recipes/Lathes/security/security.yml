@@ -105,6 +105,33 @@
     Glass: 100
     Plasma: 100
 
+#Cybernetics
+- type: latheRecipe
+  id: LeftArmCyberHerakles
+  result: LeftArmCyberHerakles
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
+
+- type: latheRecipe
+  id: RightArmCyberHerakles
+  result: RightArmCyberHerakles
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
+
 #IMPLANTS
 
 #Hand
@@ -116,7 +143,7 @@
   - Implants
   completetime: 4
   materials:
-    Plasteel: 500
+    Plasteel: 200
     Steel: 200
     Plasma: 300
     Glass: 150

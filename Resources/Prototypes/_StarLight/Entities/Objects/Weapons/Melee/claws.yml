@@ -50,4 +50,4 @@
     attackRate: 2
     damage:
       types:
-        Slash: 6
+        Slash: 8

@@ -144,7 +144,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         string jobId,
         string? mobFingerprint,
         string? dna,
-        HumanoidCharacterProfile profile,
+        HumanoidCharacterProfile? profile, // Starlight-edit: optional.
         StationRecordsComponent records)
     {
         if (!_prototypeManager.TryIndex<JobPrototype>(jobId, out var jobPrototype))
@@ -411,10 +411,10 @@ public sealed class AfterGeneralRecordCreatedEvent : StationRecordEvent
     ///     about the player character.
     ///     Optional - other systems should anticipate this.
     /// </summary>
-    public readonly HumanoidCharacterProfile Profile;
+    public readonly HumanoidCharacterProfile? Profile; // Starlight-edit: Says it itself that this is optional. Make it actually optional. Note that if any system in the future is added that actually uses this, it will need to check for null.
 
     public AfterGeneralRecordCreatedEvent(StationRecordKey key, GeneralStationRecord record,
-        HumanoidCharacterProfile profile) : base(key)
+        HumanoidCharacterProfile? profile) : base(key) // Starlight-edit
     {
         Record = record;
         Profile = profile;

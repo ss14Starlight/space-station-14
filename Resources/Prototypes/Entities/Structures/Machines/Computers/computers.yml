@@ -38,6 +38,14 @@
         enum.WiresVisualLayers.MaintenancePanel:
           True: { visible: false }
           False: { visible: true }
+      # Starlight Start
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer, sprite: Structures/Machines/computers.rsi }
+          West: { state: computer_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+      # Starlight End
   - type: AtmosAlertsComputer
   - type: ActivatableUI
     singleUser: true
@@ -1342,6 +1350,14 @@
           enum.WiresVisualLayers.MaintenancePanel:
             True: { visible: false }
             False: { visible: true }
+        # Starlight Start
+        enum.EdgeConnectionVisuals.ConnectionMask:
+          computerLayerBody:
+            None: { state: computer, sprite: Structures/Machines/computers.rsi }
+            West: { state: computer_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+            East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
+            East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+        # Starlight End
     - type: SalvageExpeditionConsole
     - type: ActivatableUI
       key: enum.SalvageConsoleUiKey.Expedition
@@ -1694,8 +1710,8 @@
   - type: Lock
     unlockOnClick: false
   - type: SiliconLawUpdater
-    components:
-    - type: StationAiHeld
+#    components: Changed to core linking
+#    - type: StationAiHeld
   - type: ItemSlotsLock
     slots:
     - circuit_holder
@@ -1714,6 +1730,14 @@
     containers:
       circuit_holder: !type:ContainerSlot
       board: !type:Container
+# Starlight-start: Link console to core
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSink
+    ports:
+      - AiLawConsoleReceiver
+# Starlight-end
 
 - type: entity
   id: StationAiFixerComputer
@@ -1761,6 +1785,14 @@
         enum.WiresVisualLayers.MaintenancePanel:
           True: { visible: false }
           False: { visible: true }
+      # Starlight Start
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer, sprite: Structures/Machines/computers.rsi }
+          West: { state: computer_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+      # Starlight End
   - type: ApcPowerReceiver
     powerLoad: 1000
   - type: Computer
@@ -1797,3 +1829,41 @@
         type: StationAiFixerConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerNukieDelivery
+  name: syndicate delivery computer
+  description: "A computer that can bluespace in certain equipment for Nuclear Operations. \nThe circuitboard is integrated into the frame and can't be recovered if deconstructed."
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-syndie
+    - map: ["computerLayerKeys"]
+      state: syndie_generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  # - type: Computer
+  #   board: SyndicateCommsComputerCircuitboard
+  - type: Anchorable
+    flags:
+    - Anchorable # No taking the console along!
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#f71713"
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    name: store-preset-name-nukie-delivery
+    categories:
+    - NukieDelivery

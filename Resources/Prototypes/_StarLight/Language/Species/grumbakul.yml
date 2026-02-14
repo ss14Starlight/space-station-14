@@ -1,6 +1,7 @@
 # Strike the earth!
 - type: language
   id: Grumbakul
+  chatPrefix: gmb
   speech:
     color: "#dfc68c"
     fontId: MonasteryRaid
