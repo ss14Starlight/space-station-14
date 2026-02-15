@@ -51,13 +51,14 @@ public sealed partial class HumanoidAppearanceSystem
     //Starlight Start
     private void OnVerbsRequest(EntityUid uid, HumanoidAppearanceComponent component, GetVerbsEvent<ActivationVerb> args)
     {
-        if (TryComp(args.Target, out BodyComponent? _))
-        {
-            foreach (var part in _body.GetBodyChildren(args.Target))
-                RaiseLocalEvent(part.Id, args);
-            foreach (var organ in _body.GetBodyOrgans(args.Target))
-                RaiseLocalEvent(organ.Id, args);
-        }
+        if (uid != args.Target || !TryComp(args.Target, out BodyComponent? _))
+            return;
+
+        foreach (var part in _body.GetBodyChildren(args.Target))
+            RaiseLocalEvent(part.Id, args);
+        
+        foreach (var organ in _body.GetBodyOrgans(args.Target))
+            RaiseLocalEvent(organ.Id, args);
     }
     //Starlight End
 

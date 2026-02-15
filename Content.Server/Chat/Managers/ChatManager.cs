@@ -258,6 +258,15 @@ internal sealed partial class ChatManager : IChatManager
             return;
         }
 
+        // Starlight-Start: Check if the player is admin muted
+        if (player.AttachedEntity != null &&
+            _entityManager.TryGetComponent<AdminFrozenComponent>(player.AttachedEntity.Value, out var frozenComp) &&
+            frozenComp.Muted)
+        {
+            return;
+        }
+        // Starlight-End
+
         switch (type)
         {
             case OOCChatType.OOC:

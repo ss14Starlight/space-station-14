@@ -7,6 +7,10 @@ using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Construction.Components;
 using Content.Shared.NodeContainer;
 using Content.Shared.Popups;
+// Starlight Start
+using Content.Shared._Starlight.Atmos.EntitySystems;
+using Content.Shared._Starlight.Atmos.Components;
+// Starlight End
 
 namespace Content.Server.Atmos.EntitySystems;
 

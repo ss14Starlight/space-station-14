@@ -90,10 +90,10 @@
   - CableDetStack1
   - EmptyDetonator
   - ExplosivePayload
-  # - GrenadeBlast # SL removal
-  # - GrenadeEMP
-  # - GrenadeFlash
-  # - MagazineGrenadeEmpty
+  - GrenadeBlast
+  - GrenadeEMP
+  - GrenadeFlash
+  - MagazineGrenadeEmpty
 
 # Shared between secfab and emagged protolathe
 # - type: latheRecipePack

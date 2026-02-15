@@ -1,0 +1,31 @@
+- type: entity
+  id: PoweredlightBlackLight
+  description: "A light fixture. Draws power and produces light when equipped with a light tube."
+  suffix: black light
+  parent: Poweredlight
+  components:
+  - type: PoweredLight
+    hasLampOnSpawn: BlackLightTube
+  - type: DarkLight
+  - type: PointLight
+    radius: 10
+    energy: 1.1
+    softness: 1
+    color: "#5D0CED"
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 4
+    popupText: powered-light-component-burn-hand
+
+- type: entity
+  parent: AlwaysPoweredWallLight
+  id: AlwaysPoweredLightBlackLight
+  suffix: Always Powered, black light
+  components:
+  - type: PointLight
+    radius: 10
+    energy: 1.1
+    softness: 1
+    color: "#5D0CED"
+  - type: DarkLight

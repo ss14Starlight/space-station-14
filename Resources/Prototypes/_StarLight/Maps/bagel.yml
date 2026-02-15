@@ -67,7 +67,7 @@
             Musician: [ 1, 1 ]
             #silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 2, 2 ]
+            Borg: [ 2, 4 ]
             #law
             Magistrate: [ 1, 1 ]
             IAA: [ 2, 2 ]      

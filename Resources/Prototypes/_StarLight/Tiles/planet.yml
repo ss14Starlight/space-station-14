@@ -147,3 +147,26 @@
   components:
   - type: Sprite
     state: obelisk03
+
+- type: tile
+  id: FloorDarkGrass
+  name: tiles-dark-grass-floor
+  sprite: /Textures/_Starlight/Tiles/Planet/darkgrass.png
+  baseTurf: FloorDarkStone
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepGrass
+  itemDrop: FloorTileItemGrass
+  heatCapacity: 10000
+  weather: true
+
+- type: tile
+  id: FloorDarkStone
+  name: tiles-darkstone
+  sprite: /Textures/_Starlight/Tiles/Planet/darkstone.png
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  indestructible: true

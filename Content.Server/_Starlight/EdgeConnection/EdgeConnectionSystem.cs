@@ -21,7 +21,6 @@ public sealed class EdgeConnectionSystem : EntitySystem
         SubscribeLocalEvent<EdgeConnectionComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<EdgeConnectionComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<EdgeConnectionComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<EdgeConnectionComponent, EntityTerminatingEvent>(OnTerminating);
         SubscribeLocalEvent<EdgeConnectionComponent, MoveEvent>(OnMove);
     }
 
@@ -40,12 +39,6 @@ public sealed class EdgeConnectionSystem : EntitySystem
     private void OnShutdown(Entity<EdgeConnectionComponent> ent, ref ComponentShutdown args)
     {
         // Update neighbors when this entity is removed
-        UpdateNeighbors(ent);
-    }
-
-    private void OnTerminating(Entity<EdgeConnectionComponent> ent, ref EntityTerminatingEvent args)
-    {
-        // Update neighbors when entity is completely destroyed or deleted
         UpdateNeighbors(ent);
     }
 
@@ -208,11 +201,12 @@ public sealed class EdgeConnectionSystem : EntitySystem
     }
 
     /// <summary>
-    /// Updates all neighboring entities' edge connections when this entity changes.
+    /// Updates all neighboring entities edge connections when this entity changes.
     /// </summary>
     private void UpdateNeighbors(Entity<EdgeConnectionComponent> ent)
     {
-        var xform = Transform(ent);
+        if (!TryComp(ent, out TransformComponent? xform))
+            return;
         
         if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
             return;

@@ -11,15 +11,13 @@
 # Flowers
 - type: loadout
   id: FlowerWreath
-  storage:
-    back:
-    - ClothingHeadHatFlowerWreath
+  equipment:
+    neck: ClothingHeadHatFlowerWreath # Starlight: Roundstart equipped
 
 - type: loadout
   id: Hairflower
-  storage:
-    back:
-    - ClothingHeadHatHairflower
+  equipment:
+    head: ClothingHeadHatHairflower # Starlight: Roundstart equipped
 
 # Headphones
 - type: loadout

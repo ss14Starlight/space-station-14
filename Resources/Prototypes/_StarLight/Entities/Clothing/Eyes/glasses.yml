@@ -238,6 +238,7 @@
     sprite: _Starlight/Clothing/Eyes/Glasses/nullspacegoogles.rsi
   - type: ShowNullSpace
     showShader: true
+  - type: ClothesNightVision
   - type: Construction
     graph: ClothingGlassesNullSpace
     node: glasses

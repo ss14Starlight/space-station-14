@@ -100,7 +100,6 @@
     size: Huge
   - type: AmmoCounter
   - type: Gun
-    pump: true # Starlight change
     fireRate: 1
     selectedMode: SemiAuto
     availableModes:

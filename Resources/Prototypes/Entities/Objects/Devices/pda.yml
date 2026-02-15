@@ -98,6 +98,7 @@
   - type: UserInterface
     interfaces:
       enum.PdaUiKey.Key:
+        requireInputValidation: false #Starlight pAI can open PDAs, see PR #3272
         type: PdaBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface

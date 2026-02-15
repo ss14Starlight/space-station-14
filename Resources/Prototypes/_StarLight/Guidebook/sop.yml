@@ -260,6 +260,7 @@
   - security-sop-prisonertreatment
   - security-sop-parole
   - security-sop-permitacquisition
+  - security-sop-specialsituations
 
 
 - type: guideEntry
@@ -321,6 +322,12 @@
   name: guide-entry-sl-security-sop-permitacquisition
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/PermitAcquisition.xml"
   priority: 10
+
+- type: guideEntry
+  id: security-sop-specialsituations
+  name: guide-entry-sl-security-sop-specialsituations
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/SpecialSituations.xml"
+  priority: 11
 
 - type: guideEntry
   id: legal-sop-intro

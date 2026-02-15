@@ -75,7 +75,7 @@
 - type: entity
   id: GrenadeBlast
   name: blast grenade
-  parent: [ BaseGrenade, BaseSyndicateContraband ] # Starlight edit: Major -> Syndicate contraband
+  parent: [ BaseGrenade, BaseSecurityContraband ] # Starlight edit: Major -> Security contraband
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeBlast
@@ -109,7 +109,7 @@
 - type: entity
   id: GrenadeFrag
   name: frag grenade
-  parent: [ BaseGrenade, BaseSyndicateContraband ] # Starlight edit: Major -> Syndicate contraband
+  parent: [ BaseGrenade, BaseSyndicateContraband ] # Starlight edit: Major -> Syndicate contraband TODO decide on if these should be given to sec?
   components:
   - type: CartridgeAmmo
     proto: BulletGrenadeFrag

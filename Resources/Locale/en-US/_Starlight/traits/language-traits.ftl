@@ -46,7 +46,10 @@ trait-language-thaveyan-name = Thaveyan
 trait-language-thaveyan-desc = You've been around the fish people long enough to master the rhythm of their tongue, though perhaps not their erratic moods.
 
 trait-language-darktongue-name = Darktongue
-trait-language-darktongue-desc = This simple, crude language of ne'er-do-wells and crazed fanatics is easy to pick up, but don't let Security hear you speaking it...
+trait-language-darktongue-desc = This coarse language of ne'er-do-wells and crazed fanatics is easy to pick up, but don't let Security hear you speaking it, or they'll think you're up to something...
+
+trait-language-felyaic-name = Felyaic
+trait-language-felyaic-desc = This more refined form of Darktongue is understood by seiryth and detarii, but is virtually unknown outside of the Null Scar. You must purchase the Darktongue trait to learn to speak Felyaic, even if you already know how to speak Darktongue from another source.
 
 trait-language-classical-name = Classical
 trait-language-classical-desc = Once upon a time, everyone spoke this language. Not as hard to pick up as you might expect.
@@ -55,7 +58,7 @@ trait-language-grumbakul-name = Grumbakul
 trait-language-grumbakul-desc = You have mastered the language of Dwarfkind, or at least that's what your Dwarf friends tell you.
 
 trait-language-aielic-name = Aielic
-trait-language-aielic-desc = The musical language of a nearly-extinct species known for its beautiful literature, pointy ears, and once-vast empire.
+trait-language-aielic-desc = The beautiful language of the queli is ideally suited to poetry, but make one mistake and you'll never live it down.
 
 trait-language-lagomorphian-name = Lagomorphian
 trait-language-lagomorphian-desc = The lynarxical tongue, developed as an integration language for the Lagomorph's differing vocal structure.

@@ -469,45 +469,45 @@
     Steel: 200
 
 # Encampment ammo
-# - type: latheRecipe # SL start - moved to secfab
-#   id: MagazineGrenadeEmpty
-#   result: MagazineGrenadeEmpty
-#   categories:
-#   - Magazines
-#   completetime: 3
-#   materials:
-#     Steel: 150
-#     Plastic: 50
-#
-# - type: latheRecipe
-#   id: GrenadeEMP
-#   result: GrenadeEMP
-#   categories:
-#   - Ammo
-#   completetime: 3
-#   materials:
-#     Steel: 150
-#     Plastic: 100
-#     Glass: 20
-#
-# - type: latheRecipe
-#   id: GrenadeBlast
-#   result: GrenadeBlast
-#   categories:
-#   - Ammo
-#   completetime: 3
-#   materials:
-#     Steel: 450
-#     Plastic: 300
-#     Gold: 150
-#
-# - type: latheRecipe
-#   id: GrenadeFlash
-#   result: GrenadeFlash
-#   categories:
-#   - Ammo
-#   completetime: 3
-#   materials:
-#     Steel: 150
-#     Plastic: 100
-#     Glass: 20 # SL end
+- type: latheRecipe
+  id: MagazineGrenadeEmpty
+  result: MagazineGrenadeEmpty
+  categories:
+  - Magazines
+  completetime: 3
+  materials:
+    Steel: 150
+    Plastic: 50
+
+- type: latheRecipe
+  id: GrenadeEMP
+  result: GrenadeEMP
+  categories:
+  - Ammo
+  completetime: 3
+  materials:
+    Steel: 150
+    Plastic: 100
+    Glass: 20
+
+- type: latheRecipe
+  id: GrenadeBlast
+  result: GrenadeBlast
+  categories:
+  - Ammo
+  completetime: 3
+  materials:
+    Steel: 450
+    Plastic: 300
+    Gold: 150
+
+- type: latheRecipe
+  id: GrenadeFlash
+  result: GrenadeFlash
+  categories:
+  - Ammo
+  completetime: 3
+  materials:
+    Steel: 150
+    Plastic: 100
+    Glass: 20

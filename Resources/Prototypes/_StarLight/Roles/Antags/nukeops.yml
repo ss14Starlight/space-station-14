@@ -1,0 +1,6 @@
+- type: startingGear
+  id: SyndicateBorgiGearNoUplink
+  parent: SyndicateOperativeGearFullNoUplink
+  equipment:
+    mask: ClothingMaskBreath
+    back: ClothingBagPet

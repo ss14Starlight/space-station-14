@@ -87,3 +87,45 @@
     - type: Sprite
       sprite: _Starlight/Structures/Wallmounts/signs.rsi
       state: mining
+
+# Xenoborg
+
+- type: entity
+  parent: BaseSign
+  id: SignCoreXeno
+  name: core sign
+  description: A sign indicating the xenoborg core. Nice of them to mark this for you.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/xeno_signs.rsi
+      state: core
+
+- type: entity
+  parent: BaseSign
+  id: SignDoorsXeno
+  name: doors sign
+  description: A sign warning of doors. Don't stand in them when closing, you wouldn't want to be gibbed would you?
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/xeno_signs.rsi
+      state: doors
+
+- type: entity
+  parent: BaseSign
+  id: SignPowerXeno
+  name: power sign
+  description: A sign indicating the xenoborg power systems. Electrical hazards ahead.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/xeno_signs.rsi
+      state: power
+
+- type: entity
+  parent: BaseSign
+  id: SignSpaceXeno
+  name: space sign
+  description: A sign indicating these doors leads to space. That heavy xenoborg might be lost forever! Don't end up like them.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/xeno_signs.rsi
+      state: space

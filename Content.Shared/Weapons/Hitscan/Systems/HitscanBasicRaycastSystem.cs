@@ -80,7 +80,10 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
             {
                 foreach (var collide in rayCastResults)
                 {
-                    if (collide.HitEntity != args.Target && CompOrNull<RequireProjectileTargetComponent>(collide.HitEntity)?.Active == true)
+                    // FOR ANYONE TOUCHING HITSCAN ONCE MORE, DO NOT FORGET THE CHECK NullSpaceComponent, This is the Third time i have to FIX IT!
+                    if (CompOrNull<NullSpaceComponent>(collide.HitEntity) != null)
+                        continue;
+                    if (collide.HitEntity != args.Target && (CompOrNull<RequireProjectileTargetComponent>(collide.HitEntity)?.Active == true))
                         continue;
                     if(!(collide.Distance >= ent.Comp.MinDistance || _tag.HasAnyTag(collide.HitEntity, ent.Comp.NotArmedCollideWith)))
                         continue;

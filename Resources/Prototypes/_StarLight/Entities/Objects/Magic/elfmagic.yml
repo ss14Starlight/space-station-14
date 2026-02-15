@@ -21,6 +21,7 @@
     layers:
     - state: icon
       shader: unshaded
+      map: [ "enum.ColorVisuals.Color" ]
   - type: PointLight
     radius: 4
     color: "#00CCFF"
@@ -33,6 +34,8 @@
       path: /Audio/_Starlight/Magic/cantrip.ogg
   - type: StaticPrice
     price: 0 # Not sellable.
+  - type: Appearance
+  - type: ColorVisuals
 
 # Ember
 

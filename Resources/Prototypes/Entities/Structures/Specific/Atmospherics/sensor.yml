@@ -90,6 +90,13 @@
     tags:
     - AirSensor
     - ForceFixRotations
+  # Starlight Start: RPD
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
+    rpd: true
+  # Starlight End: RPD
 
 - type: entity
   parent: BaseItem

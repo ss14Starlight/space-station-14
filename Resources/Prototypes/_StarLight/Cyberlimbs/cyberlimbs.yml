@@ -39,6 +39,22 @@
     state: r_leg
 
 - type: humanoidBaseSprite
+  id: CyberLLegSpeed
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: CyberRLegSpeed
+  matchSkin: false
+  markingsMatchSkin: false
+  baseSprite:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
   id: CyberRArm
   matchSkin: false
   markingsMatchSkin: false

@@ -192,6 +192,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: LanguageIconFelyaic
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: felyaic
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
   id: LanguageIconClassical
   icon:
     sprite: /Textures/_Starlight/Interface/language_icon.rsi

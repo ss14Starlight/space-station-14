@@ -13,7 +13,7 @@
 
 - type: entity
   id: RevolutionaryHeldBanner
-  name: glorious revolutionary banner
+  name: revolutionary banner
   description: A towering revolutionary banner that makes you an easy target. A makarov in the other hand is recommended.
   parent: [BaseItem, BaseSovietContraband]
   components:
@@ -75,18 +75,45 @@
       coefficients:
         Blunt: 0.2
         Slash: 0.2
-        Piercing: 0.05
-        Heat: 0.2
+        Piercing: 0.1 
+        Heat: 1.2 # It's a flag, it should burn. This gives it an obvious weakness/counterplay that makes sense.
     activeBlockModifier:
       coefficients:
         Blunt: 0.5
         Slash: 0.5
-        Piercing: 0.1
-        Heat: 0.3
+        Piercing: 0.2
+        Heat: 1.2
       flatReductions:
         Blunt: 10
         Slash: 10
         Piercing: 6
+  - type: Damageable
+    damageContainer: Shield
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 60
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              PartRodMetal1:
+                min: 1
+                max: 1
+              MaterialCloth1:
+                min: 2
+                max: 2
   - type: StaticPrice
     price: 1000
 
