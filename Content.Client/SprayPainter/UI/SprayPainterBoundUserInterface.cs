@@ -40,7 +40,7 @@ public sealed class SprayPainterBoundUserInterface(EntityUid owner, Enum uiKey) 
             _window.SetSelectedTab(sprayPainterComp.SelectedTab);
     }
 
-    protected override void Dispose(bool disposing)
+    protected override void Dispose(bool disposing) // Unsubscribe from events and clean up the window when the UI is closed
     {
         base.Dispose(disposing);
 
