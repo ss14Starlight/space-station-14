@@ -1,12 +1,18 @@
 using System.Linq;
+using Content.Client.Decals;
+using Content.Client.Hands.Systems;
 using Content.Client.Items;
 using Content.Client.Message;
+using Content.Client.SprayPainter.Overlays;
 using Content.Client.Stylesheets;
 using Content.Shared.Decals;
+using Content.Shared.Hands.Components;
 using Content.Shared.SprayPainter;
 using Content.Shared.SprayPainter.Components;
 using Content.Shared.SprayPainter.Prototypes;
 using Robust.Client.GameObjects;
+using Robust.Client.Graphics;
+using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
@@ -21,10 +27,18 @@ namespace Content.Client.SprayPainter;
 public sealed class SprayPainterSystem : SharedSprayPainterSystem
 {
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly IOverlayManager _overlayManager = default!;
+    [Dependency] private readonly DecalPlacementSystem _decalPlacement = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly HandsSystem _hands = default!;
 
     public List<SprayPainterDecalEntry> Decals = [];
     public Dictionary<string, List<string>> PaintableGroupsByCategory = new();
     public Dictionary<string, Dictionary<string, EntProtoId>> PaintableStylesByGroup = new();
+
+    private readonly Dictionary<EntityUid, SprayPainterDecalGhostOverlay> _overlays = new();
 
     public override void Initialize()
     {
@@ -32,14 +46,77 @@ public sealed class SprayPainterSystem : SharedSprayPainterSystem
 
         Subs.ItemStatus<SprayPainterComponent>(ent => new StatusControl(ent));
         SubscribeLocalEvent<SprayPainterComponent, AfterAutoHandleStateEvent>(OnStateUpdate);
+        SubscribeLocalEvent<SprayPainterComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
 
         CachePrototypes();
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        // Update all active overlays to check if they should still exist
+        var query = EntityQueryEnumerator<SprayPainterComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            UpdateDecalGhostOverlay((uid, comp));
+        }
+    }
+
     private void OnStateUpdate(Entity<SprayPainterComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         UpdateUi(ent);
+        UpdateDecalGhostOverlay(ent);
+    }
+
+    private void OnComponentShutdown(Entity<SprayPainterComponent> ent, ref ComponentShutdown args)
+    {
+        // Clean up overlay when the spray painter component is removed
+        if (_overlays.Remove(ent.Owner, out var overlay))
+        {
+            _overlayManager.RemoveOverlay(overlay);
+        }
+    }
+
+    private void UpdateDecalGhostOverlay(Entity<SprayPainterComponent> ent)
+    {
+        var hasOverlay = _overlays.ContainsKey(ent.Owner);
+        
+        // Determine if we should have the overlay:
+        // 1. Must be in Add mode
+        // 2. Must be in the player's active hand
+        var shouldHaveOverlay = ent.Comp.DecalMode == DecalPaintMode.Add 
+            && IsSprayPainterInActiveHand(ent.Owner);
+
+        if (shouldHaveOverlay && !hasOverlay)
+        {
+            // Create and add the overlay
+            var overlay = new SprayPainterDecalGhostOverlay(_decalPlacement, _transform, _spriteSystem, ent.Owner);
+            _overlays[ent.Owner] = overlay;
+            _overlayManager.AddOverlay(overlay);
+        }
+        else if (!shouldHaveOverlay && hasOverlay)
+        {
+            // Remove the overlay
+            if (_overlays.Remove(ent.Owner, out var overlay))
+            {
+                _overlayManager.RemoveOverlay(overlay);
+            }
+        }
+    }
+
+    private bool IsSprayPainterInActiveHand(EntityUid sprayPainterUid)
+    {
+        var player = _playerManager.LocalPlayer?.ControlledEntity;
+        if (player is null)
+            return false;
+
+        if (!EntityManager.TryGetComponent(player, out HandsComponent? handsComp))
+            return false;
+
+        var activeHand = _hands.GetActiveItem((player.Value, handsComp));
+        return activeHand == sprayPainterUid;
     }
 
     protected override void UpdateUi(Entity<SprayPainterComponent> ent)
@@ -86,6 +163,19 @@ public sealed class SprayPainterSystem : SharedSprayPainterSystem
 
             Decals.Add(new SprayPainterDecalEntry(decalPrototype.ID, decalPrototype.Sprite));
         }
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+
+        // Clean up all active overlays
+        foreach (var overlay in _overlays.Values)
+        {
+            _overlayManager.RemoveOverlay(overlay);
+        }
+
+        _overlays.Clear();
     }
 
     private sealed class StatusControl : Control

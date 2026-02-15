@@ -40,6 +40,22 @@ public sealed class SprayPainterBoundUserInterface(EntityUid owner, Enum uiKey) 
             _window.SetSelectedTab(sprayPainterComp.SelectedTab);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        if (disposing && _window != null)
+        {
+            _window.OnSpritePicked -= OnSpritePicked;
+            _window.OnSetPipeColor -= OnSetPipeColor;
+            _window.OnTabChanged -= OnTabChanged;
+            _window.OnDecalChanged -= OnDecalChanged;
+            _window.OnDecalColorChanged -= OnDecalColorChanged;
+            _window.OnDecalAngleChanged -= OnDecalAngleChanged;
+            _window.OnDecalSnapChanged -= OnDecalSnapChanged;
+        }
+    }
+
     public override void Update()
     {
         if (_window == null)
