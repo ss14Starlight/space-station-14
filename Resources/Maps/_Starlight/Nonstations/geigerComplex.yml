@@ -15269,7 +15269,7 @@ entities:
     - type: Transform
       pos: 35.54582,-41.214024
       parent: 2
-- proto: ClothingOuterArmorSovietFlak
+- proto: ClothingOuterArmorSovietPlate
   entities:
   - uid: 1791
     components:
