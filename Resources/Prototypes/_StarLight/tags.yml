@@ -160,6 +160,9 @@
   id: DockGamma
 
 - type: Tag
+  id: DogEmotes
+
+- type: Tag
   id: DrinkCarton
 
 - type: Tag

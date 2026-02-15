@@ -53,8 +53,8 @@
   - type: StationEvent
     weight: 5
     duration: null
-    earliestStart: 20
-    reoccurrenceDelay: 20
+    earliestStart: 10
+    reoccurrenceDelay: 30
     minimumPlayers: 15
   - type: DynamicRuleCost
     cost: 50

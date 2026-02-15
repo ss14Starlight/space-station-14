@@ -30505,5 +30505,229 @@ Entries:
   id: 321300
   time: '2026-02-14T21:14:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3213
+- author: Xale
+  changes:
+  - message: Automatic chat highlights support for Avali and Resomi names
+    type: Add
+  id: 328400
+  time: '2026-02-14T22:18:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3284
+- author: Coolsurf6
+  changes:
+  - message: Syndicate Maulers and Dark Gygaxes now come with Micro Reactor Cells
+      instead of Hyper Cells
+    type: Tweak
+  id: 329300
+  time: '2026-02-15T00:44:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3293
+- author: CrazyPhantom
+  changes:
+  - message: Pinktext! A way for antagonists to make a custom summary of what they
+      did to complete their objectives! Greentext's days are numbered
+    type: Add
+  id: 329500
+  time: '2026-02-15T01:30:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3295
+- author: CrazyPhantom
+  changes:
+  - message: Supply lines for CE's locker tote no longer go to HoS' locker (Bluespace
+      Circuit board is correctly in CE's locker)
+    type: Fix
+  id: 329700
+  time: '2026-02-15T01:58:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3297
+- author: Arkanic
+  changes:
+  - message: Terminators are now much tankier than they were previously (think 90%
+      pierce resist...)
+    type: Tweak
+  - message: Made terminator card spawn slightly more often, hopefully they will be
+      seen more often than once in a blue moon now
+    type: Tweak
+  - message: Bunch of minor terminator bugs, such as not having a wideswing, getting
+      hungry
+    type: Fix
+  - message: stupid terminator appearing effect
+    type: Add
+  id: 327100
+  time: '2026-02-15T03:08:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3271
+- author: Shades
+  changes:
+  - message: Shadegen affecting GhostLight.
+    type: Fix
+  - message: Fixed the LAG! (Oops!)
+    type: Fix
+  id: 330100
+  time: '2026-02-15T03:17:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3301
+- author: Conflee
+  changes:
+  - message: Hristov movement speed increased from 25% to 30%, and scope range increased
+      from 3 to 4 tiles.
+    type: Tweak
+  - message: Estoc movement speed increased from 75% to 80%, and scope range increased
+      from 2 to 2.5 tiles.
+    type: Tweak
+  - message: L10 DMR (Security DMR) movement speed increased from 80% to 90%, and
+      scope range increased from 2.5 to 3 tiles. One extra L10 DMR, FMJ mag, and SP
+      mag was also added to the safe.
+    type: Tweak
+  id: 329200
+  time: '2026-02-15T10:29:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3292
+- author: Sparlight
+  changes:
+  - message: Dogs can now make dog noises like their humanoid counterparts.
+    type: Add
+  id: 330500
+  time: '2026-02-15T11:18:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3305
+- author: CrazyPhantom
+  changes:
+  - message: Pinktext tweaked
+    type: Tweak
+  id: 329600
+  time: '2026-02-15T15:07:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3296
+- author: Notarin Steele
+  changes:
+  - message: Fixed being able to remove unremovable encryption keys.
+    type: Fix
+  - message: Removed common comms from pAIs roundstart.
+    type: Remove
+  - message: Added the ability to install new encryption keys into a pAI.
+    type: Add
+  - message: Added the ability to remove encryption keys from a pAI.
+    type: Add
+  id: 329900
+  time: '2026-02-15T15:12:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3299
+- author: Scarlet lightweaver
+  changes:
+  - message: NT heard you! the breaching hammer and fireaxe can now go on your suit
+      storage!
+    type: Tweak
+  id: 330700
+  time: '2026-02-15T17:56:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3307
+- author: Conflee
+  changes:
+  - message: Added the Captain's Spyglass, Spyglass, and Improvised Spyglass. Captain's
+      Spyglass spawns in their locker and is a Thief objective. The Spyglass spawns
+      in Pirate loot pools (rare maints locker loot, in pirate chests, etc). The Improvised
+      Spyglass spawns semi-uncommonly in maintenance closets.
+    type: Add
+  id: 330400
+  time: '2026-02-15T18:01:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3304
+- author: Rinary
+  changes:
+  - message: Changed something in added thing.
+    type: Tweak
+  id: 328300
+  time: '2026-02-15T18:07:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3283
+- author: Fractalflower
+  changes:
+  - message: CRD has figured out a way to make their survival boxes have a less awkward
+      shape in satchels.
+    type: Tweak
+  - message: Winter coats now obey the laws of physics.
+    type: Tweak
+  - message: Honk Co has discontinued their Bigger-on-the-Inside technology for their
+      Honk Meals.
+    type: Tweak
+  - message: NanoTrasen has finally decided to cease shipments of flares for Shadekin
+      survival boxes.
+    type: Remove
+  id: 321801
+  time: '2026-02-15T18:24:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3218
+- author: marc-pelletier, CrazyPhantom
+  changes:
+  - message: BZ Gas
+    type: Add
+  - message: Healium Gas
+    type: Add
+  - message: Nitrium Gas
+    type: Add
+  - message: Pluxium Gas
+    type: Add
+  - message: Hydrogen Gas
+    type: Add
+  - message: Hyper-Noblium Gas
+    type: Add
+  - message: Proto-Nitrate Gas
+    type: Add
+  - message: Zauker Gas
+    type: Add
+  - message: Halon Gas
+    type: Add
+  - message: Helium Gas
+    type: Add
+  - message: Anti-Noblium Gas
+    type: Add
+  - message: Electrolyzer Machine
+    type: Add
+  - message: Metal Hydrogen Gear
+    type: Add
+  - message: Nerf Frezon Price. 3 Spesos Per mol -> 1.2 Per mol
+    type: Tweak
+  id: 298301
+  time: '2026-02-15T18:34:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2983
+- author: Conflee
+  changes:
+  - message: Canister Sprite changes.
+    type: Tweak
+  id: 298302
+  time: '2026-02-15T18:34:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2983
+- author: Sparlight
+  changes:
+  - message: Added a vestine recipe for Juice that Makes You a Corgi Forever.
+    type: Add
+  id: 330801
+  time: '2026-02-15T18:39:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3308
+- author: R3v3l4t1on, teapoterror
+  changes:
+  - message: The xenoborg collective has grown tired of your shenanigans, and has
+      developed a new shuttle to better suit their goals.
+    type: Add
+  - message: Xenoborgs now start with substantially more materials, allowing them
+      to begin their hunt much faster.
+    type: Add
+  id: 326201
+  time: '2026-02-15T18:43:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3262
+- author: Conflee
+  changes:
+  - message: Gave most gun bundles in the uplink an extra mag/drum/box of ammo, so
+      Nukies actually have a chance. They literally do not have enough ammo to physically
+      get through the tide of assistants currently  I believe.
+    type: Tweak
+  id: 330901
+  time: '2026-02-15T18:56:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3309
+- author: BornStellar
+  changes:
+  - message: Briefing documents for all sec level metashield to the HOS locker
+    type: Add
+  - message: reassurance to sec that they have superior emotional intelligence to
+      the crew and as such can handle this secure information
+    type: Add
+  id: 327901
+  time: '2026-02-15T19:54:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3279
+- author: Sparlight
+  changes:
+  - message: Roundstart equipment will drop to the floor instead of disappearing if
+      no compatible slot is found.
+    type: Fix
+  id: 325401
+  time: '2026-02-15T19:57:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3254
 Order: -1
 

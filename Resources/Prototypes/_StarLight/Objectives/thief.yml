@@ -196,6 +196,17 @@
   - type: Objective
     difficulty: 1.3 # Salvage Lead's usually always wearing this...
 
+- type: entity
+  parent: BaseThiefStealObjective
+  id: SpyglassCaptainStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Captain ]
+  - type: StealCondition
+    stealGroup: SpyglassCaptain
+  - type: Objective
+    difficulty: 1.1
+
 # Thief Collection
 # Various crewmonitors
 - type: entity

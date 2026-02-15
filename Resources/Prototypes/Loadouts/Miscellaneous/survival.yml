@@ -26,27 +26,12 @@
     - Thaven # Starlight
     - Lagomorph # Starlight
 
-# Starlight - exploiting the survival kit loadout group to add the cantrip spellbook
-- type: loadoutEffectGroup
-  id: ElfOxygenBreather
-  effects:
-  - !type:SpeciesLoadoutEffect
-    species:
-    - Elf 
-
 - type: loadoutEffectGroup
   id: EffectSpeciesVox
   effects:
   - !type:SpeciesLoadoutEffect
     species:
     - Vox
-
-- type: loadoutEffectGroup #🌟Starlight🌟
-  id: NonBreather
-  effects:
-  - !type:SpeciesLoadoutEffect
-    species:
-    - Shadekin
 
 # Basic
 - type: loadout
@@ -67,27 +52,6 @@
     back:
     - BoxSurvivalNitrogen
 
-# Starlight: Elves also get cantrip spellbooks
-- type: loadout
-  id: EmergencyElfOxygen
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ElfOxygenBreather
-  storage:
-    back:
-    - BoxSurvival
-    - BookOfCantrips
-
-# NonBreathers, ie. Shadekin 🌟Starlight🌟
-- type: loadout
-  id: EmergencyNonBreather
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxSurvivalNonBreather
-
 # Clown
 - type: loadout
   id: EmergencyOxygenClown
@@ -106,26 +70,6 @@
   storage:
     back:
     - BoxHugNitrogen
-
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherClown
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxHugNonBreather
-
-# Starlight: Elves also get cantrip spellbooks
-- type: loadout
-  id: EmergencyElfOxygenClown
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ElfOxygenBreather
-  storage:
-    back:
-    - BoxHugNonBreather
-    - BookOfCantrips
 
 # Mime
 - type: loadoutEffectGroup
@@ -174,26 +118,6 @@
     back:
     - BoxMimeMoth
 
-# Starlight: Elves also get cantrip spellbooks
-- type: loadout
-  id: EmergencyElfOxygenMime
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ElfOxygenBreather
-  storage:
-    back:
-    - BoxMime
-    - BookOfCantrips
-
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherMime
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-      - BoxMimeNonBreather
-
 # Engineering / Extended
 - type: loadout
   id: EmergencyOxygenExtended
@@ -212,26 +136,6 @@
   storage:
     back:
     - BoxSurvivalEngineeringNitrogen
-
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherExtended
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxSurvivalEngineeringNonBreather
-
-# Starlight: Elves also get cantrip spellbooks
-- type: loadout
-  id: EmergencyElfOxygenExtended
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ElfOxygenBreather
-  storage:
-    back:
-    - BoxSurvivalEngineering
-    - BookOfCantrips
 
 # Medical
 - type: loadout
@@ -252,26 +156,6 @@
     back:
     - BoxSurvivalMedicalNitrogen
 
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherMedical
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxSurvivalMedicalNonBreather
-
-# Starlight: Elves also get cantrip spellbooks
-- type: loadout
-  id: EmergencyElfOxygenMedical
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ElfOxygenBreather
-  storage:
-    back:
-    - BoxSurvivalMedical
-    - BookOfCantrips
-
 # Security
 - type: loadout
   id: EmergencyOxygenSecurity
@@ -291,26 +175,6 @@
     back:
     - BoxSurvivalSecurityNitrogen
 
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonbreatherSecurity
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxSurvivalSecurityNonBreather
-
-# Starlight: Elves also get cantrip spellbooks
-- type: loadout
-  id: EmergencyElfOxygenSecurity
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ElfOxygenBreather
-  storage:
-    back:
-    - BoxSurvivalSecurity
-    - BookOfCantrips
-
 # Syndicate
 - type: loadout
   id: EmergencyOxygenSyndicate
@@ -329,26 +193,6 @@
   storage:
     back:
     - BoxSurvivalSyndicateNitrogen
-
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherSyndicate
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxSurvivalNonBreatherSyndicate
-
-# Starlight: Elves also get cantrip spellbooks
-- type: loadout
-  id: EmergencyElfOxygenSyndicate
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ElfOxygenBreather
-  storage:
-    back:
-    - BoxSurvivalSyndicate
-    - BookOfCantrips
 
 # Military / Double Extended
 - type: loadout
@@ -372,19 +216,6 @@
   storage:
     back:
     - BoxSurvivalMilitaryDoubleNitrogen
-
-# Starlight: there should be a EmergencyNonBreatherMilitaryDouble here, but the Syndicate version was here instead
-
-# Starlight: Elves also get cantrip spellbooks
-- type: loadout
-  id: EmergencyElfOxygenMilitaryDouble
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: ElfOxygenBreather
-  storage:
-    back:
-    - BoxSurvivalMilitaryDouble
-    - BookOfCantrips
 
 # Pre-equipped species gear
 

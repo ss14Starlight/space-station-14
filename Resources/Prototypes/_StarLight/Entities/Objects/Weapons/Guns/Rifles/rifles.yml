@@ -300,8 +300,8 @@
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
   - type: GunRequiresWield
   - type: SpeedModifiedOnWield
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -333,8 +333,8 @@
   - type: Appearance
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 2.5
-    pvsIncrease: 0.25
+    maxOffset: 3
+    pvsIncrease: 0.3
 
 
 - type: entity

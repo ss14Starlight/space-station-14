@@ -1,7 +1,7 @@
 - type: entity
   id: RRCardTerminate
   parent: CrewCondition
-  categories: [HideSpawnMenu]
+  categories: [ HideSpawnMenu ]
   components:
   - type: RailroadCard
     title: rr-terminate

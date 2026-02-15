@@ -7,6 +7,9 @@ using Robust.Shared.Collections;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+// Funkystation Start
+using Robust.Shared.Map;
+// Funkystation End
 
 namespace Content.Server.Radiation.Systems;
 
@@ -60,6 +63,69 @@ public partial class RadiationSystem
 
         var debugRays = debug ? new List<DebugRadiationRay>() : null;
         var receiversTotalRads = new ValueList<(Entity<RadiationReceiverComponent>, float)>();
+
+        // Funkystation Start: Funky atmos - /tg/ gases - sample requested tiles
+        var now = _gameTiming.CurTime;
+        var gridsToClean = new List<EntityUid>();
+
+        foreach (var (gridUid, samples) in _tileRadiationCache)
+        {
+            if (!_gridQuery.TryGetComponent(gridUid, out var gridComp) ||
+                !_xformQuery.TryGetComponent(gridUid, out var gridXform))
+            {
+                gridsToClean.Add(gridUid);
+                continue;
+            }
+
+            var toRemove = new List<Vector2i>();
+            var gridWorldPos = _transform.GetWorldPosition(gridXform);
+
+            foreach (var (tilePos, (oldRads, expires)) in samples)
+            {
+                // Remove expired entries
+                if (now > expires)
+                {
+                    toRemove.Add(tilePos);
+                    continue;
+                }
+
+                var worldPos = _maps.GridTileToWorld(gridUid, gridComp, tilePos).Position;
+
+                // Compute world position of this tile's center
+
+                float rads = 0f;
+
+                foreach (var source in _sources)
+                {
+                    var ray = Irradiate(
+                        source,
+                        EntityUid.Invalid,
+                        gridXform,
+                        worldPos,
+                        debug
+                    );
+
+                    if (ray != null && ray.Value.Rads > 0.001f)
+                        rads += ray.Value.Rads;
+                }
+
+                // Store the fresh rads, keep the existing expiration time
+                samples[tilePos] = (rads, expires);
+            }
+
+            // Clean up expired entries
+            foreach (var pos in toRemove)
+                samples.Remove(pos);
+
+            // If no more samples on this grid, remove the grid entry
+            if (samples.Count == 0)
+                gridsToClean.Add(gridUid);
+        }
+
+        // Actually remove dead grids
+        foreach (var grid in gridsToClean)
+            _tileRadiationCache.Remove(grid);
+        // Funkystation End
 
         // TODO RADIATION Parallelize
         // Would need to give receiversTotalRads a fixed size.

@@ -27,8 +27,6 @@ using Robust.Shared.Utility;
 using Content.Server.Body.Systems;
 using Content.Server.GameTicking;
 using Robust.Shared.GameObjects.Components.Localization;
-using Content.Shared._Starlight.Language.Components;
-using Content.Shared._Starlight.Language.Systems;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -172,7 +170,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         // Starlight Start
         if (profile?.ForcedPrototype.Id != null)
         {
-            if (!_prototypeManager.Resolve(profile.ForcedPrototype, out var forcedProto))
+            if (!_prototypeManager.Resolve(profile.ForcedPrototype, out _))
                 throw new ArgumentException($"Could not find ${profile.ForcedPrototype} prototype for spawn rule.");
             entity = Spawn(profile.ForcedPrototype, coordinates);
             var resolvedEntity = (EntityUid)entity;

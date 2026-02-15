@@ -38,6 +38,7 @@
     quickEquip: false
     slots:
     - back
+    - suitStorage
   - type: UseDelay
     delay: 2
   - type: PhysicalComposition

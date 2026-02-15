@@ -20,6 +20,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.CustomObjectiveSummary; // Starlight
 
 namespace Content.Server.Objectives;
 
@@ -247,6 +248,30 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
             }
 
             var successRate = totalObjectives > 0 ? (float)completedObjectives / totalObjectives : 0f;
+            
+            // Starlight Start: Custom objective response (pink text)
+            if (TryComp<CustomObjectiveSummaryComponent>(mindId, out var customComp))
+            {
+                // We have to split it like this to make it readable. Yeah, it sucks but for some reason the entire thing
+                // is just one long string...
+                var words = customComp.ObjectiveSummary.Split(" ");
+                var currentLine = "";
+                foreach (var word in words)
+                {
+                    currentLine += word + " ";
+
+                    // magic number
+                    if (currentLine.Length <= 50)
+                        continue;
+
+                    agentSummary.AppendLine(Loc.GetString("custom-objective-format", ("line", currentLine)));
+                    currentLine = "";
+                }
+
+                agentSummary.AppendLine(Loc.GetString("custom-objective-format", ("line", currentLine)));
+            }
+            // Starlight End
+            
             agentSummaries.Add((agentSummary.ToString(), successRate, completedObjectives));
         }
 

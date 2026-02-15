@@ -135,7 +135,7 @@
   - type: GameRule
     minPlayers: 20 # Starlight - 30 -> 20
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/mothership.yml
+    gridPath: /Maps/_Starlight/Shuttles/mothership.yml # Starlight-edit custom shuttle grid
   - type: AntagMultipleRoleSpawner
     antagRoleToPrototypes:
       MothershipCore: [ MothershipCore ]

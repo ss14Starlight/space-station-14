@@ -1,0 +1,385 @@
+# Funky atmos - /tg/ gases
+- type: reagent
+  id: BZ
+  name: reagent-name-bz
+  desc: reagent-desc-bz
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#9370db"
+  metabolisms:
+    Gas:
+      effects:
+      - !type:Emote
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 0.2
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
+          inverted: true
+        emote: Cough
+        showInChat: true
+        probability: 0.1
+
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 1
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
+          inverted: true
+        ignoreResistances: true
+        damage:
+          types:
+            Cellular: 0.01
+
+
+      - !type:ModifyStatusEffect
+        minScale: 0.6
+        effectProto: StatusEffectSeeingRainbow
+        type: Add
+        time: 15
+
+      - !type:Emote
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 0.2
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
+        emote: Laugh
+        showInChat: true
+        probability: 0.1
+
+      - !type:Emote
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 0.2
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
+        emote: Scream
+        showInChat: true
+        probability: 0.01
+
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 0.5
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
+        - !type:BloodReagentCondition
+          reagent: NitrosylPlasmide
+          max: 0.1
+        type: Local
+        visualType: Medium
+        messages: [ "effect-sleepy" ]
+        probability: 0.1
+
+
+      - !type:MovementSpeedModifier
+        minScale: 1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ]
+          inverted: true
+        - !type:BloodReagentCondition #  Funky atmos - /tg/ gases
+          reagent: NitrosylPlasmide
+          max: 0.1
+        walkSpeedModifier: 0.65
+        sprintSpeedModifier: 0.65
+
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 1
+        - !type:MetabolizerTypeCondition
+          type: [Slime]
+        - !type:BloodReagentCondition
+          reagent: NitrosylPlasmide
+          max: 0.1
+        effectProto: StatusEffectForcedSleeping
+        type: Update
+        time: 10
+
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: BZ
+          min: 0.1
+        reagent: BZMetabolites
+        amount: 1.8
+
+- type: reagent
+  id: Healium
+  name: reagent-name-healium
+  desc: reagent-desc-healium
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: strange
+  color: "#90560b"
+  metabolisms:
+    Gas:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          max: 24
+        ignoreResistances: true
+        damage:
+          groups:
+            Burn: -2
+            Toxin: -5
+            Brute: -2
+
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          min: 24
+        ignoreResistances: true
+        damage:
+          groups:
+            Burn: -20
+            Toxin: -50
+            Brute: -20
+
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          min: 4
+        - !type:BloodReagentCondition
+          reagent: NitrosylPlasmide
+          max: 0.1
+        type: Local
+        visualType: Medium
+        messages: [ "effect-sleepy" ]
+        probability: 0.01
+
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          min: 8
+        - !type:BloodReagentCondition
+          reagent: NitrosylPlasmide
+          max: 0.01
+        effectProto: StatusEffectForcedSleeping
+        type: Update
+        time: 1
+
+      - !type:Drunk
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          min: 4
+        boozePower: 35
+
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          groups:
+            Burn: -0.1
+            Toxin: -0.1
+            Brute: -0.1
+
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          min: 6
+        effectProto: StatusEffectForcedSleeping
+        type: Update
+        time: 3
+
+      - !type:Drunk
+        conditions:
+        - !type:ReagentCondition
+          reagent: Healium
+          min: 3
+        boozePower: 150
+        # needs to be made into hypothium to work well as a chem, use as a gas otherwise
+
+- type: reagent
+  id: Nitrium
+  name: reagent-name-nitrium
+  desc: reagent-desc-nitrium
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: sour
+  color: "#90560B"
+  metabolisms:
+    Gas:
+      effects:
+      - !type:NitriumMovementSpeedModifier
+        conditions:
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 1
+          max: 8
+        walkSpeedModifier: 1.25
+        sprintSpeedModifier: 1.25
+
+      - !type:NitriumMovementSpeedModifier
+        conditions:
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 8
+          max: 12
+        walkSpeedModifier: 1.4
+        sprintSpeedModifier: 1.4
+
+      - !type:NitriumMovementSpeedModifier
+        conditions:
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 12
+        walkSpeedModifier: 1.6
+        sprintSpeedModifier: 1.6
+
+      - !type:AddReagentToBloodstream
+        conditions:
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 6
+        reagent: NitrosylPlasmide
+        amount: 2.5
+
+      - !type:GenericStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 8
+        key: Stutter
+        component: StutteringAccent
+        time: 5
+
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Nitrium
+          min: 10
+        ignoreResistances: true
+        damage:
+          types:
+            Asphyxiation: 3
+
+- type: reagent
+  id: Pluoxium
+  name: reagent-name-pluoxium
+  desc: reagent-desc-pluoxium
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#7b68ee"
+  metabolisms:
+    Gas:
+      effects:
+      - !type:Oxygenate
+        factor: 8
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Human]
+
+      - !type:Oxygenate
+        factor: 8
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Animal]
+
+      - !type:Oxygenate
+        factor: 8
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Rat]
+
+      - !type:Oxygenate
+        factor: 8
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Plant]
+
+      - !type:ModifyLungGas
+        ratios:
+          CarbonDioxide: 1.0
+          Pluoxium: -1.0
+
+- type: reagent
+  id: Hyper-Noblium
+  name: reagent-name-hyper-noblium
+  desc: reagent-desc-hyper-noblium
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#33cccc"
+
+- type: reagent
+  id: Proto-Nitrate
+  name: reagent-name-proto-nitrate
+  desc: reagent-desc-proto-nitrate
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#009933"
+
+- type: reagent
+  id: Zauker
+  name: reagent-name-zauker
+  desc: reagent-desc-zauker
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#1c1a1a"
+  metabolisms:
+    Gas:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Zauker
+          min: 0.25
+          max: 12
+        ignoreResistances: true
+        damage:
+          types:
+            Slash: 6
+            Heat: 2
+            Poison: 2
+            Bloodloss: 1
+
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Zauker
+          min: 12
+        ignoreResistances: true
+        damage:
+          types:
+            Slash: 30
+            Heat: 10
+            Poison: 10
+            Bloodloss: 5
+
+- type: reagent
+  id: Halon
+  name: reagent-name-halon
+  desc: reagent-desc-halon
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#e3574d"
+
+- type: reagent
+  id: Helium
+  name: reagent-name-helium
+  desc: reagent-desc-helium
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#005959"
+
+- type: reagent
+  id: Anti-Noblium
+  name: reagent-name-anti-noblium
+  desc: reagent-desc-anti-noblium
+  physicalDesc: reagent-physical-desc-gaseous
+  flavor: bitter
+  color: "#525151"

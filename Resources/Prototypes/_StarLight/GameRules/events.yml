@@ -267,6 +267,7 @@
     - id: Xenoborgs
     # Starlight gamerules:
     - id: AbductorsSpawn
+    - id: RailroadingTerminator
     - id: Brighteye
 
 - type: entity

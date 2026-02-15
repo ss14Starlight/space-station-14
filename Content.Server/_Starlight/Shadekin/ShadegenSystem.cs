@@ -52,7 +52,7 @@ public sealed partial class ShadegenSystem : EntitySystem
                 EnsureComp<ShadegenAffectedComponent>(light.Owner);
                 _updateQueue.Add(light.Owner);
 
-                if (TryComp<HandheldLightComponent>(light.Owner, out var handheldcomp) && !handheldcomp.Activated)
+                if (TryComp<HandheldLightComponent>(light.Owner, out var handheldcomp) && handheldcomp.Activated)
                     _handheldLight.TurnOff(new Entity<HandheldLightComponent>(light.Owner, handheldcomp));
 
                 if (component.DestroyLights && TryComp<PoweredLightComponent>(light.Owner, out var poweredcomp) && poweredcomp.On)

@@ -1,0 +1,16 @@
+- type: soundCollection
+  id: ThavenGlub
+  files:
+  - /Audio/_Starlight/Voice/Thaven/thaven-bubble.ogg
+
+- type: soundCollection
+  id: ThavenMHum
+  files:
+  - /Audio/_Starlight/Voice/Thaven/thavenMhum1.ogg
+  - /Audio/_Starlight/Voice/Thaven/thavenMhum2.ogg
+
+- type: soundCollection
+  id: ThavenFHum
+  files:
+  - /Audio/_Starlight/Voice/Thaven/thavenFhum1.ogg
+  - /Audio/_Starlight/Voice/Thaven/thavenFhum2.ogg

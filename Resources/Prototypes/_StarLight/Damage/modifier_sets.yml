@@ -93,19 +93,21 @@
   id: Cybernetic
   coefficients:
     # bonk
-    Blunt: 1.0
+    Blunt: 0.7
     # alloy too hard to cut
-    Slash: 0.1
+    Slash: 0.0
     # pew
-    Piercing: 0.5
+    Piercing: 0.1
     # no burning anymore
-    Heat: 0.0
+    Heat: 0.1
     # its a robot
     Cold: 0.0
     Caustic: 0.0
     Poison: 0.0
     Cellular: 0.0
+    Radiation: 0.0
   flatReductions:
     # can't punch the endoskeleton to death
     Blunt: 5
     Slash: 5
+    Piercing: 5

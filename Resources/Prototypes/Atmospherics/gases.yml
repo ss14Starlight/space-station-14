@@ -1,4 +1,4 @@
-﻿- type: gas
+- type: gas
   id: Oxygen
   name: gases-oxygen
   specificHeat: 20
@@ -99,4 +99,4 @@
   gasMolesVisible: 0.6
   color: 3a758c
   reagent: Frezon
-  pricePerMole: 3
+  pricePerMole: 1.2 # Funkystation: 3 -> 1.2

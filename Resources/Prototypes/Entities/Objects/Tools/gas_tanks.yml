@@ -98,7 +98,7 @@
   - type: Sprite
     sprite: Objects/Tanks/emergency.rsi
   - type: Item
-    size: Small
+    size: Tiny # Starlight edit
     sprite: Objects/Tanks/emergency.rsi
     storedSprite:
       state: storage
@@ -183,6 +183,7 @@
     sprite: Objects/Tanks/emergency_double.rsi
   - type: Item
     sprite: Objects/Tanks/emergency_double.rsi
+    size: Normal # Starlight edit
     storedSprite:
       state: storage
       sprite: Objects/Tanks/emergency_double.rsi

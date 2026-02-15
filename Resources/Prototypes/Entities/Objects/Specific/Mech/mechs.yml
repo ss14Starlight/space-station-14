@@ -943,7 +943,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHyper
+      - PowerCellMicroreactor
       mech-gas-tank-slot:
       - MechAirTankFilled
 
@@ -1019,7 +1019,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHyper
+      - PowerCellMicroreactor
       mech-gas-tank-slot:
       - MechAirTankFilled
 
