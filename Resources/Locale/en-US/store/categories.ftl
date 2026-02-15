@@ -26,3 +26,5 @@ store-caregory-spellbook-events = Event Spells
 
 # Nukie Delivery
 store-category-nukie-delivery = Offers
+
+store-category-languages = Languages

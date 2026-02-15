@@ -74,6 +74,7 @@
     name: store-preset-name-pai #Starlight name change for data purity
     categories:
     - PAIAbilities
+    - Languages #Starlight
     currencyWhitelist:
     - SiliconMemory
     balance:

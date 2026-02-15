@@ -30729,5 +30729,12 @@ Entries:
   id: 325401
   time: '2026-02-15T19:57:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3254
+- author: Notarin Steele
+  changes:
+  - message: Gave pAIs the ability to learn/purchase most station languages.
+    type: Add
+  id: 331001
+  time: '2026-02-15T22:02:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3310
 Order: -1
 
