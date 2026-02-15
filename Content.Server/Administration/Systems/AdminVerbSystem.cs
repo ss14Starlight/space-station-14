@@ -44,6 +44,8 @@ using Content.Server._Starlight.Thaven; //Starlight
 using Content.Server.Traits; // Starlight
 using Content.Shared._Starlight.Character.Info;
 using Content.Server._Starlight.Traits; //Starlight
+using Content.Server._Starlight.GameTicking; //Starlight
+using Content.Shared.Tag; // Starlight
 
 namespace Content.Server.Administration.Systems
 {
@@ -79,6 +81,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly ThavenMoodsSystem _moods = default!; //Starlight
         [Dependency] private readonly TraitSystem _traitSystem = default!; //Starlight
         [Dependency] private readonly SLSharedCharacterInfoSystem _sLSharedCharacterInfoSystem = default!; //Starlight
+        [Dependency] private readonly TagSystem _tag = default!; //Starlight
 
         private readonly Dictionary<ICommonSession, List<EditSolutionsEui>> _openSolutionUis = new();
 
@@ -171,6 +174,8 @@ namespace Content.Server.Administration.Systems
                                 if (_mindSystem.TryGetMind(args.Target, out var mindId, out var mindComp))
                                     _mindSystem.TransferTo(mindId, mobUid, true, mind: mindComp);
 
+                                RaiseLocalEvent(new PlayerAdminSpawnEvent(mobUid, player, null, stationUid, humanoid)); //Starlight
+                                _tag.AddTag(mobUid, new ProtoId<TagPrototype>("AdminSpawnedPlayer")); // Starlight
                             },
                             ConfirmationPopup = true,
                             Impact = LogImpact.High,

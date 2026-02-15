@@ -24,6 +24,27 @@
           0.1
         ]
       ]
+    },
+    {
+      "name": "protector"
+    },
+    {
+      "name": "protector_on",
+      "delays": [
+        [
+          1,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "protector_off",
+      "delays": [
+        [
+          0.1,
+          0.1
+        ]
+      ]
     }
   ]
 }

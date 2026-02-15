@@ -27,6 +27,17 @@
         Heat: 0.95
 
 - type: entity
+  parent: [ClothingMaskGas]
+  id: ClothingMaskRoboticist
+  name: roboticist gas mask
+  description: What a sublime color set, newbie.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Mask/gasroboticist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Mask/gasroboticist.rsi
+
+- type: entity
   parent: [ClothingMaskGas, BaseSovietContraband]
   id: ClothingSovietGasMask
   name: GP-32 gas mask

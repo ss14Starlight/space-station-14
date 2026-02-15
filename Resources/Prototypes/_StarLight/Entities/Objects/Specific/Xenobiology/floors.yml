@@ -23,21 +23,21 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 500
+            damage: 100
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
         - trigger:
             !type:DamageTrigger
-            damage: 200
+            damage: 10
           behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
             - !type:SpawnEntitiesBehavior
               spawn:
                 FloorTileItemBluespace1:
                   min: 1
                   max: 1
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
     - type: Physics
       bodyType: Static
     - type: SpeedModifierContacts
@@ -68,8 +68,12 @@
       heldPrefix: bluespace
     - type: Stack
       stackType: FloorTileBluespace
-    - type: XenobiologyFloorTile
-      entity: FloorBluespaceEntity
+    - type: FloorTile
+      outputs:
+        - Plating
+    - type: SpawnAfterInteract #Nuke after convert to FloorTile
+      prototype: FloorBluespaceEntity
+      removeOnInteract: true
 
 - type: stack
   parent: BaseTileStack
@@ -118,21 +122,21 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 500
+            damage: 100
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
         - trigger:
             !type:DamageTrigger
-            damage: 200
+            damage: 10
           behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
             - !type:SpawnEntitiesBehavior
               spawn:
                 FloorTileItemSepiaXenobiology1:
                   min: 1
                   max: 1
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
     - type: Physics
       bodyType: Static
     - type: SpeedModifierContacts
@@ -163,8 +167,12 @@
       heldPrefix: sepia
     - type: Stack
       stackType: FloorTileSepiaXenobiology
-    - type: XenobiologyFloorTile
-      entity: FloorSepiaXenobiologyEntity
+    - type: FloorTile
+      outputs:
+        - Plating
+    - type: SpawnAfterInteract #Nuke after convert to FloorTile
+      prototype: FloorSepiaXenobiologyEntity
+      removeOnInteract: true
 
 - type: stack
   parent: BaseTileStack

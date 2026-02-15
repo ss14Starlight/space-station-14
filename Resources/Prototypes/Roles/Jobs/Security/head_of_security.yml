@@ -23,6 +23,7 @@
   supervisors: job-supervisors-captain
   canBeAntag: false
   access:
+  - Cadet # Starlight
   - HeadOfSecurity
   - Command
   - Brig
@@ -47,7 +48,7 @@
   equipment:
     eyes: ClothingEyesGlassesSecurity
     id: HoSPDA
-    gloves: ClothingHandsGlovesCombat
+    # gloves: ClothingHandsGlovesCombat # Starlight
     ears: ClothingHeadsetAltSecurity
   storage:
     back:

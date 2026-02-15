@@ -274,7 +274,8 @@ public abstract partial class SharedSurgerySystem
         {
             BreakOnMove = true,
             DuplicateCondition = DuplicateConditions.SameTarget,
-            ForceNet = true
+            ForceNet = true,
+            DistanceTarget = ent.Owner,
         };
         _doAfter.TryStartDoAfter(doAfter);
     }

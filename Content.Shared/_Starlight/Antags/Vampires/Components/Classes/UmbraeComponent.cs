@@ -12,6 +12,15 @@ public sealed partial class UmbraeComponent : VampireClassComponent
 
     public int CloakOfDarknessLoopId = 0;
 
+    [DataField]
+    public float CloakOfDarknessRevealRange = 4.5f;
+
+    [DataField]
+    public float CloakOfDarknessMinVisibility = -0.8f;
+
+    [DataField]
+    public float CloakOfDarknessMaxVisibility = 0.6f;
+
     [AutoNetworkedField]
     public bool EternalDarknessActive = false;
     public EntityUid? EternalDarknessAuraEntity = null;

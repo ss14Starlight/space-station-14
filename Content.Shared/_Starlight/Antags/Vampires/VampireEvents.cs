@@ -176,7 +176,7 @@ public sealed partial class VampireBloodEruptionActionEvent : InstantActionEvent
     public float Range = 10f;
 
     [DataField]
-    public FixedPoint2 Damage = FixedPoint2.New(15);
+    public FixedPoint2 Damage = FixedPoint2.New(50);
 
     [DataField]
     public float TargetRange = 2f;
@@ -339,9 +339,6 @@ public sealed partial class VampireEternalDarknessActionEvent : InstantActionEve
 
     [DataField]
     public float FreezeRadius = 6f;
-
-    [DataField]
-    public float LightOffRadius = 4f;
 
     [DataField]
     public float TargetFreezeTemp = 233.15f;

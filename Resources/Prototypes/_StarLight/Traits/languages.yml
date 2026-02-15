@@ -31,6 +31,11 @@
           baseTranslator: TranslatorForeigner
   conflicts:
     - ForeignerLight
+  requirements:
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
+      inverted: true
 
 # Galactic Languages // Should cost: 1
 
@@ -83,6 +88,35 @@
     - !type:TraitsRequirement
       traits:
         - Iterator
+      inverted: true
+    - !type:TraitsRequirement
+      traits:
+        - DarkElf
+      inverted: true
+
+- type: trait
+  id: Felyaic
+  name: trait-language-felyaic-name
+  description: trait-language-felyaic-desc
+  category: LanguageTraits
+  cost: 1
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - Felyaic
+      languagesUnderstood:
+        - Felyaic
+  requirements:
+    - !type:TraitsRequirement
+      traits:
+        - Darktongue
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
+      inverted: true
+    - !type:TraitsRequirement
+      traits:
+        - CaveElf
       inverted: true
 
 # Species Languages // Should cost: 2
@@ -173,6 +207,10 @@
     - !type:TraitsRequirement
       traits:
         - Iterator
+      inverted: true
+    - !type:TraitsRequirement
+      traits:
+        - HighElf
       inverted: true
 
 - type: trait
@@ -345,6 +383,10 @@
     - !type:SpeciesRequirement
       species:
         - Diona
+      inverted: true
+    - !type:TraitsRequirement
+      traits:
+        - WoodElf
       inverted: true
     - !type:TraitsRequirement
       traits:

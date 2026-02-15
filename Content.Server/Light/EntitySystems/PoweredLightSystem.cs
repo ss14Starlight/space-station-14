@@ -62,7 +62,7 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
         // need this to update visualizers
         UpdateLight(uid, light);
     }
-    
+
     #region Starlight
     private void OnAlertLevelChanged(AlertLevelChangedEvent args)
     {
@@ -71,7 +71,7 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
         {
             if (!TryComp<StationMemberComponent>(Transform(uid).GridUid, out var stationMember)) continue;
             if (stationMember.Station != args.Station) continue;
-            if (args.AlertLevel == "delta" || args.AlertLevel == "epsilon")
+            if (args.AlertLevel == "delta" || args.AlertLevel == "epsilon" || args.AlertLevel == "omega" || args.AlertLevel == "theta")
                 SetState(uid, false, light);
             else
                 SetState(uid, true, light);

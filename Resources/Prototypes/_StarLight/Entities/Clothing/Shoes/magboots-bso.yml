@@ -17,3 +17,5 @@
     - WhitelistChameleon
   - type: StaticPrice
     price: 350
+  - type: StealTarget
+    stealGroup: BSOMagboots

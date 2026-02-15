@@ -65,6 +65,11 @@
   name: Admin Mouse
   description: A troublemaking mouse that will most probably contribute to your death, one way or another.
   components:
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - Mouse
   - type: UniversalLanguageSpeaker
   - type: VentCrawler
   - type: Climbing
@@ -151,7 +156,7 @@
   - type: ZombieImmune
   - type: AutoImplant
     implants:
-    - BluespaceImplant
+    - RedspaceImplant
 
 - type: entity
   parent: MobAdminMouse
@@ -178,3 +183,6 @@
         Base: dead-mentor
       Dead:
         Base: dead-mentor
+  - type: AutoImplant
+    implants:
+    - BluespaceImplant

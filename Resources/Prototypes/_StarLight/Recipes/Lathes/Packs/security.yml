@@ -167,7 +167,6 @@
   - GrenadeBlast
   - GrenadeEMP
   - GrenadeFlash
-#  - GrenadeFrag
   - MagazineGrenadeEmpty
 
 # Shared between secfab and emagged protolathe
@@ -315,6 +314,13 @@
   - RightArmCyberBulwark
   - LeftArmCyberZeus
   - RightArmCyberZeus
+  - LeftArmCyberHerakles
+  - RightArmCyberHerakles
+
+- type: latheRecipePack
+  id: StarlightSecurityGrenadesEmag
+  recipes:
+  - GrenadeFrag
 
 - type: latheRecipePack
   id: SecurityImplants

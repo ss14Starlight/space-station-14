@@ -27,6 +27,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Mobs;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -69,6 +70,22 @@ public sealed class UmbraeSystem : EntitySystem
 
         SubscribeLocalEvent<UmbraeComponent, VampireBloodDrankEvent>(OnBloodDrank);
         SubscribeLocalEvent<UmbraeComponent, VampireFullPowerAchievedEvent>(OnFullPower);
+        SubscribeLocalEvent<UmbraeComponent, MobStateChangedEvent>(OnUmbraeMobStateChanged);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<UmbraeComponent, TransformComponent, StealthComponent>();
+        while (query.MoveNext(out var uid, out var umbrae, out var xform, out var stealth))
+        {
+            if (!umbrae.CloakOfDarknessActive)
+                continue;
+
+            var visibility = GetCloakOfDarknessVisibility(uid, xform, umbrae);
+            _stealth.SetVisibility(uid, visibility, stealth);
+        }
     }
 
     private void OnBloodDrank(EntityUid uid, UmbraeComponent umbrae, ref VampireBloodDrankEvent args)
@@ -80,6 +97,24 @@ public sealed class UmbraeSystem : EntitySystem
             return;
 
         TryBreakRandomLightNear(uid, 8f);
+    }
+
+    private void OnUmbraeMobStateChanged(EntityUid uid, UmbraeComponent umbrae, ref MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Critical)
+            return;
+
+        if (!umbrae.CloakOfDarknessActive)
+            return;
+
+        DeactivateCloakOfDarkness(uid, umbrae);
+
+        if (TryComp<VampireComponent>(uid, out var vampire)
+            && vampire.ActionEntities.TryGetValue("ActionVampireCloakOfDarkness", out var actionEntity)
+            && _actions.GetAction(actionEntity) is { } action)
+        {
+            _actions.SetToggled(action.AsNullable(), false);
+        }
     }
 
     private void TryBreakRandomLightNear(EntityUid uid, float range)
@@ -99,7 +134,7 @@ public sealed class UmbraeSystem : EntitySystem
         var pick = _rand.Pick(list);
 
         if (TryComp<PoweredLightComponent>(pick, out var pl))
-            _poweredLightSystem.SetState(pick, false, pl);
+            _poweredLightSystem.TryDestroyBulb(pick, pl);
     }
 
     private void OnCloakOfDarkness(EntityUid uid, VampireComponent comp, ref VampireCloakOfDarknessActionEvent args)
@@ -134,7 +169,7 @@ public sealed class UmbraeSystem : EntitySystem
 
         var stealth = EnsureComp<StealthComponent>(uid);
         _stealth.SetEnabled(uid, true, stealth);
-        _stealth.SetVisibility(uid, -1f, stealth);
+        _stealth.SetVisibility(uid, comp.CloakOfDarknessMinVisibility, stealth);
     }
 
     private void DeactivateCloakOfDarkness(EntityUid uid, UmbraeComponent comp)
@@ -143,7 +178,42 @@ public sealed class UmbraeSystem : EntitySystem
         Dirty(uid, comp);
 
         RemComp<StealthComponent>(uid);
-        _stealth.SetEnabled(uid, false);
+    }
+
+    private float GetCloakOfDarknessVisibility(EntityUid uid, TransformComponent xform, UmbraeComponent comp)
+    {
+        var range = comp.CloakOfDarknessRevealRange;
+        if (range <= 0f)
+            return comp.CloakOfDarknessMinVisibility;
+
+        var center = _transform.GetWorldPosition(xform);
+        var closest = range;
+
+        foreach (var ent in _lookup.GetEntitiesInRange(xform.Coordinates, range))
+        {
+            if (ent == uid)
+                continue;
+
+            if (!HasComp<HumanoidAppearanceComponent>(ent) || HasComp<VampireComponent>(ent))
+                continue;
+
+            if (TryComp<MobStateComponent>(ent, out var mob)
+                && mob.CurrentState == MobState.Dead)
+                continue;
+
+            var targetPos = _transform.GetWorldPosition(Transform(ent));
+            var dist = (targetPos - center).Length();
+
+            if (dist < closest)
+                closest = dist;
+        }
+
+        if (closest >= range)
+            return comp.CloakOfDarknessMinVisibility;
+
+        var t = 1f - Math.Clamp(closest / range, 0f, 1f);
+        return comp.CloakOfDarknessMinVisibility
+               + ((comp.CloakOfDarknessMaxVisibility - comp.CloakOfDarknessMinVisibility) * t);
     }
 
     private void OnShadowSnare(EntityUid uid, VampireComponent comp, ref VampireShadowSnareActionEvent args)
@@ -201,8 +271,9 @@ public sealed class UmbraeSystem : EntitySystem
             || !_transform.GetGrid(target).HasValue)
             return;
 
-        if (!_vampire.IsValidTile(target) ||
-            !_interaction.InRangeUnobstructed(uid, target, range: 100, collisionMask: CollisionGroup.Opaque, popup: false))
+        if (!_vampire.IsValidTile(target)
+            || (!comp.FullPower
+                && !_interaction.InRangeUnobstructed(uid, target, range: 100, collisionMask: CollisionGroup.Impassable, popup: false)))
         {
             _popup.PopupEntity(Loc.GetString("action-vampire-dark-passage-wrong-place"), uid, uid);
             return;
@@ -242,7 +313,7 @@ public sealed class UmbraeSystem : EntitySystem
 
             if (TryComp<PoweredLightComponent>(ent, out var light))
             {
-                _poweredLightSystem.SetState(ent, false, light);
+                _poweredLightSystem.TryDestroyBulb(ent, light);
                 count++;
             }
         }
@@ -291,7 +362,7 @@ public sealed class UmbraeSystem : EntitySystem
             }
 
             StartEternalDarknessLoop(uid, args.MaxTicks, 0, args.BloodPerTick, args.TempDropInterval, args.FreezeRadius, args.TargetFreezeTemp,
-                args.TempDropPerInterval, args.LightOffRadius);
+                args.TempDropPerInterval);
         }
         else
         {
@@ -311,8 +382,7 @@ public sealed class UmbraeSystem : EntitySystem
         int dropInterval,
         float freezeRadius,
         float targetTemp,
-        float tempDrop,
-        float radius)
+        float tempDrop)
     {
         if (tick >= maxTicks
             || !Exists(uid)
@@ -323,8 +393,8 @@ public sealed class UmbraeSystem : EntitySystem
             || !ConsumeEternalDarknessBlood(uid, comp, umbrae, bloodPerTick))
             return;
 
-        ProcessEternalDarknessEffects(uid, tick, dropInterval, freezeRadius, targetTemp, tempDrop, radius);
-        ScheduleNextEternalDarknessTick(uid, umbrae, maxTicks, tick, bloodPerTick, dropInterval, freezeRadius, targetTemp, tempDrop, radius);
+        ProcessEternalDarknessEffects(uid, tick, dropInterval, freezeRadius, targetTemp, tempDrop);
+        ScheduleNextEternalDarknessTick(uid, umbrae, maxTicks, tick, bloodPerTick, dropInterval, freezeRadius, targetTemp, tempDrop);
     }
 
     private bool ValidateEternalDarknessConditions(EntityUid uid, VampireComponent comp, UmbraeComponent umbrae)
@@ -370,8 +440,7 @@ public sealed class UmbraeSystem : EntitySystem
         int dropInterval,
         float freezeRadius,
         float targetTemp,
-        float tempDrop,
-        float radius)
+        float tempDrop)
     {
         var vampXform = Transform(uid);
         var center = _transform.GetWorldPosition(vampXform);
@@ -379,8 +448,6 @@ public sealed class UmbraeSystem : EntitySystem
         var doCoolingThisTick = (tick % dropInterval) == 0;
         if (doCoolingThisTick)
             ProcessTemperatureEffects(uid, vampXform, center, freezeRadius, targetTemp, tempDrop);
-
-        ProcessLightEffects(vampXform, radius);
     }
 
     private void ProcessTemperatureEffects(EntityUid uid,
@@ -411,13 +478,6 @@ public sealed class UmbraeSystem : EntitySystem
         }
     }
 
-    private void ProcessLightEffects(TransformComponent vampXform, float radius)
-    {
-        foreach (var ent in _lookup.GetEntitiesInRange(vampXform.Coordinates, radius))
-            if (TryComp<PoweredLightComponent>(ent, out var light))
-                _poweredLightSystem.SetState(ent, false, light);
-    }
-
     private void ScheduleNextEternalDarknessTick(EntityUid uid,
         UmbraeComponent umbrae,
         int maxTicks,
@@ -426,8 +486,7 @@ public sealed class UmbraeSystem : EntitySystem
         int dropInterval,
         float freezeRadius,
         float targetTemp,
-        float tempDrop,
-        float radius)
+        float tempDrop)
     {
         var expectedLoopId = umbrae.EternalDarknessLoopId;
         Timer.Spawn(TimeSpan.FromSeconds(1), () =>
@@ -438,7 +497,7 @@ public sealed class UmbraeSystem : EntitySystem
             if (!c2.EternalDarknessActive || c2.EternalDarknessLoopId != expectedLoopId)
                 return;
 
-            StartEternalDarknessLoop(uid, maxTicks, tick + 1, bloodPerTick, dropInterval, freezeRadius, targetTemp, tempDrop, radius);
+            StartEternalDarknessLoop(uid, maxTicks, tick + 1, bloodPerTick, dropInterval, freezeRadius, targetTemp, tempDrop);
         });
     }
 

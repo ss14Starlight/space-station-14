@@ -11,3 +11,10 @@
   components:
   - type: LoadMapRule
     mapPath: /Maps/_Starlight/Nonstations/nukiewestern.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: NukiePlanetSpawnGeiger
+  components:
+  - type: LoadMapRule
+    mapPath: /Maps/_Starlight/Nonstations/geigerComplex.yml

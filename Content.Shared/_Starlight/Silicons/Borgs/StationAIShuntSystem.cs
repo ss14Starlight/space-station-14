@@ -12,6 +12,7 @@ using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Verbs;
+using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
 
@@ -28,6 +29,7 @@ public sealed class StationAIShuntSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly StationAiVisionSystem _vision = default!;
+    [Dependency] private readonly SharedContainerSystem _containers = default!;
 
     public override void Initialize()
     {
@@ -38,6 +40,8 @@ public sealed class StationAIShuntSystem : EntitySystem
         SubscribeLocalEvent<StationAIShuntComponent, AIUnShuntActionEvent>(OnAttemptUnshunt);
         SubscribeLocalEvent<StationAIShuntComponent, GetVerbsEvent<AlternativeVerb>>(GetAltVerbs);
 
+        SubscribeLocalEvent<StationAIShuntThroughComponent, GetVerbsEvent<AlternativeVerb>>(GetAltVerbs);
+        SubscribeLocalEvent<StationAIShuntThroughComponent, FindShuntTargetEvent>(OnFindShuntTarget);
     }
 
     #region Actions
@@ -48,6 +52,19 @@ public sealed class StationAIShuntSystem : EntitySystem
         var target = ev.Target;
         if (_vision.IsOutsideCameraView(target))
             return;
+
+        // If target has ShuntThrough component, search for a valid target in containers
+        if (HasComp<StationAIShuntThroughComponent>(target))
+        {
+            var findEv = new FindShuntTargetEvent();
+            RaiseLocalEvent(target, ref findEv);
+            
+            if (findEv.Target == null)
+                return; // No valid target found
+
+            target = findEv.Target.Value;
+        }
+        
         if (!TryComp<StationAIShuntComponent>(target, out var shunt))
             return;
         if (!_mindSystem.TryGetMind(uid, out var mindId, out var _))
@@ -174,11 +191,12 @@ public sealed class StationAIShuntSystem : EntitySystem
     #endregion
 
     #region Verbs
-    public void GetAltVerbs(EntityUid uid, StationAIShuntComponent comp, GetVerbsEvent<AlternativeVerb> ev)
+    public void GetAltVerbs(EntityUid uid, Component comp, GetVerbsEvent<AlternativeVerb> ev)
     {
-        if (ev.User == ev.Target) //if we are targeting outselves
+        // Handle unshunt verb for entities we're currently inhabiting
+        if (comp is StationAIShuntComponent shuntComp && ev.User == ev.Target)
         {
-            if (!comp.Return.HasValue)
+            if (!shuntComp.Return.HasValue)
                 return; //we are in something not inhabited. so obvs we cant shunt out of it.
 
             var unshuntVerb = new AlternativeVerb()
@@ -201,8 +219,26 @@ public sealed class StationAIShuntSystem : EntitySystem
         if (!HasComp<StationAIShuntableComponent>(ev.User))
             return; //only shuntable can get the into verb
 
-        if (TryComp<BorgChassisComponent>(uid, out var chassis) && !HasComp<StationAIShuntComponent>(chassis.BrainContainer.ContainedEntity))
-            return; //target borg chassis has no brain with shuntable component.
+        // Handle direct shunt targets
+        if (comp is StationAIShuntComponent)
+        {
+            if (TryComp<BorgChassisComponent>(uid, out var chassis) && !HasComp<StationAIShuntComponent>(chassis.BrainContainer.ContainedEntity))
+                return; //target borg chassis has no brain with shuntable component.
+        }
+        // Handle shunt-through targets
+        else if (comp is StationAIShuntThroughComponent)
+        {
+            // Check if there's a valid shunt target inside
+            var findEv = new FindShuntTargetEvent();
+            RaiseLocalEvent(uid, ref findEv);
+            
+            if (findEv.Target == null)
+                return; // No valid target found inside
+        }
+        else
+        {
+            return; // Unknown component type
+        }
 
         var shuntVerb = new AlternativeVerb()
         {
@@ -219,7 +255,53 @@ public sealed class StationAIShuntSystem : EntitySystem
             }
         };
         ev.Verbs.Add(shuntVerb);
+    }
 
+    private void OnFindShuntTarget(EntityUid uid, StationAIShuntThroughComponent comp, ref FindShuntTargetEvent ev)
+    {
+        if (ev.Target != null)
+            return; // Already found a target
+
+        // Check if the container itself is a borg chassis with shuntable brain
+        if (TryComp<BorgChassisComponent>(uid, out var selfChassis))
+        {
+            var brain = selfChassis.BrainContainer.ContainedEntity;
+            if (brain.HasValue && HasComp<StationAIShuntComponent>(brain))
+            {
+                ev.Target = uid; // Return the chassis itself
+                return;
+            }
+        }
+
+        // Search through all containers for valid targets
+        foreach (var container in _containers.GetAllContainers(uid))
+        {
+            foreach (var containedEntity in container.ContainedEntities)
+            {
+                // Check if this entity is directly shuntable
+                if (HasComp<StationAIShuntComponent>(containedEntity))
+                {
+                    ev.Target = containedEntity;
+                    return;
+                }
+                
+                // Check if it's a borg chassis with shuntable brain
+                if (TryComp<BorgChassisComponent>(containedEntity, out var chassis))
+                {
+                    var brain = chassis.BrainContainer.ContainedEntity;
+                    if (brain.HasValue && HasComp<StationAIShuntComponent>(brain))
+                    {
+                        ev.Target = containedEntity;
+                        return;
+                    }
+                }
+                
+                // Send event to nested containers
+                RaiseLocalEvent(containedEntity, ref ev);
+                if (ev.Target != null)
+                    return;
+            }
+        }
     }
     #endregion
 }
@@ -230,4 +312,10 @@ public sealed partial class AIShuntActionEvent : EntityTargetActionEvent
 
 public sealed partial class AIUnShuntActionEvent : InstantActionEvent
 {
+}
+
+[ByRefEvent]
+public record struct FindShuntTargetEvent
+{
+    public EntityUid? Target;
 }

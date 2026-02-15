@@ -338,7 +338,17 @@ public abstract partial class SharedStunSystem : EntitySystem
         var ev = new StunEndAttemptEvent();
         RaiseLocalEvent(entity, ref ev);
 
-        return !ev.Cancelled && RemComp<StunnedComponent>(entity);
+        // Starlight edit Start
+        if (ev.Cancelled)
+            return false;
+
+        // Check if entity is being deleted to avoid double-deletion during cleanup
+        if (TerminatingOrDeleted(entity))
+            return true;
+
+        RemCompDeferred<StunnedComponent>(entity);
+        return true;
+        // Starlight edit End
     }
 
     private void OnStunStatusApplied(Entity<StunnedStatusEffectComponent> entity, ref StatusEffectAppliedEvent args)

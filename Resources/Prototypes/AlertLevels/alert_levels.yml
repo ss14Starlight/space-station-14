@@ -74,12 +74,24 @@
       announcement: alert-level-omega-announcement
       selectable: false
       sound:
-        path: /Audio/_Starlight/Misc/omega.ogg
+        path: /Audio/_Starlight/Misc/omega_alt.ogg
         params:
           volume: -2
       disableSelection: true
-      color: '#454545'
-      emergencyLightColor: '#454545'
+      color: '#FFE4E1'
+      emergencyLightColor: '#FFE4E1'
+      forceEnableEmergencyLights: true
+      shuttleTime: 1200
+    theta:
+      announcement: alert-level-theta-announcement
+      selectable: false
+      sound:
+        path: /Audio/_Starlight/StationEvents/Burn_The_Hive_by_Bolgarich.ogg
+        params:
+          volume: -2
+      disableSelection: true
+      color: '#741b47'
+      emergencyLightColor: '#741b47'
       forceEnableEmergencyLights: true
       shuttleTime: 1200
     psi:

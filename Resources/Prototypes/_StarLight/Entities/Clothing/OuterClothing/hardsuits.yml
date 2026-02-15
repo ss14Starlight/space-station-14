@@ -31,10 +31,12 @@
     damageCoefficient: 0.6
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBlueshield
+  - type: StealTarget
+    stealGroup: BSOHardsuit
 
 #NTRep Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband]
   id: ClothingOuterHardsuitNtrep
   name: Nanotrasen Representative hardsuit
   description: It used to be blue, but too many premium cigars turned it tobacco brown.
@@ -65,6 +67,8 @@
     damageCoefficient: 0.9
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNtrep
+  - type: StealTarget
+    stealGroup: NTRepHardsuit
 
 #Clown Battlesuit
 - type: entity
@@ -328,7 +332,7 @@
 
 #QM's Luxury Maxim Hardsuit
 - type: entity
-  parent: [ ClothingOuterHardsuitBase, BaseCommandContraband ]
+  parent: [ ClothingOuterHardsuitBase, BaseGrandTheftContraband ]
   id: ClothingOuterHardsuitLuxmax
   name: QM's luxury maxim hardsuit
   description: This luxury maxim hardsuit has been retrofitted with solid gold fittings and furnishings, making it more cumbersome, and less protective than a standard maxim hardsuit.
@@ -358,6 +362,8 @@
     sprintModifier: 0.9
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitLuxmax
+  - type: StealTarget
+    stealGroup: QMHardsuit
 
 # Experimental Security Hardsuit
 - type: entity
@@ -382,7 +388,7 @@
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.50
   - type: IdClothingBlocker
-    allowedJobs:
+    allowedAccesses:
       - Security
       - Armory
       - HeadOfSecurity
@@ -452,6 +458,8 @@
         - Hardsuit
         - HardsuitSpatio
         - CorgiWearable
+    - type: StealTarget
+      stealGroup: SalvLeadHardsuit
 
 #Mining Specialist Advanced hardsuit
 - type: entity
@@ -680,6 +688,44 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDecimus
 
+# TSF
+- type: entity
+  parent: [ BaseTSFContraband, ClothingOuterHardsuitBase ]
+  id: ClothingOuterHardsuitTSF
+  name: MARSOC hardsuit
+  description: A suit worn by marines of the Trans-Solar Federation's Marine Special Operations Command. Armored, space ready, and fireproof.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/tsf.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/tsf.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.5
+  - type: FireProtection
+    reduction: 1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.5
+        Caustic: 0
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHeavy
+      params:
+        volume: -6
+        variation: 0.09
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitTSF
+
 #Thanatos (Starlight version of Deathsquad with enhanced stats)
 - type: entity
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
@@ -721,5 +767,3 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitThanatos
-
-

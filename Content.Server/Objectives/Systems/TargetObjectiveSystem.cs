@@ -1,8 +1,8 @@
 using Content.Server.Objectives.Components;
+using Content.Shared._Starlight.Railroading.Events; // Starlight
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Roles.Jobs;
-using Robust.Shared.GameObjects;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Server.Objectives.Systems;
@@ -20,6 +20,7 @@ public sealed class TargetObjectiveSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<TargetObjectiveComponent, ObjectiveAfterAssignEvent>(OnAfterAssign);
+        SubscribeLocalEvent<TargetObjectiveComponent, RailroadingCardChosenEvent>(OnRailroadingChosen); // Starlight
     }
 
     private void OnAfterAssign(EntityUid uid, TargetObjectiveComponent comp, ref ObjectiveAfterAssignEvent args)
@@ -28,6 +29,15 @@ public sealed class TargetObjectiveSystem : EntitySystem
             return;
 
         _metaData.SetEntityName(uid, GetTitle(target.Value, comp.Title), args.Meta);
+    }
+
+    // Starlight
+    private void OnRailroadingChosen(EntityUid uid, TargetObjectiveComponent comp, ref RailroadingCardChosenEvent args)
+    {
+        if (!GetTarget(uid, out var target, comp))
+            return;
+
+        comp.Title = GetTitle(target.Value, comp.Title);
     }
 
     /// <summary>
@@ -53,7 +63,7 @@ public sealed class TargetObjectiveSystem : EntitySystem
         return target != null;
     }
 
-    private string GetTitle(EntityUid target, string title)
+    public string GetTitle(EntityUid target, string title)
     {
         var targetName = "Unknown";
         if (TryComp<MindComponent>(target, out var mind) && mind.CharacterName != null)

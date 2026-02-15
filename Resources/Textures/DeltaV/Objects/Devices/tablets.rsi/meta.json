@@ -1,0 +1,39 @@
+{
+	"version": 1,
+	"license": "CC-BY-SA-3.0",
+	"copyright": "State based Copyright",
+	"size": {
+		"x": 32,
+		"y": 32
+	},
+	"states": [
+		{
+			"name": "aac_tablet",
+			"copyright": "Taken from https://github.com/Baystation12/Baystation12/tree/17e84546562b97d775cb26790a08e6d87e7f8077 edited by portfiend"
+		},
+		{
+			"name": "aac_screen",
+			"copyright": "Taken from https://github.com/Baystation12/Baystation12/tree/17e84546562b97d775cb26790a08e6d87e7f8077 edited by portfiend"
+		},
+		{
+			"name": "aac-inhand-left",
+			"copyright": "Taken from https://github.com/Baystation12/Baystation12/tree/17e84546562b97d775cb26790a08e6d87e7f8077 edited by portfiend",
+			"directions": 4
+		},
+		{
+			"name": "aac-inhand-right",
+			"copyright": "Taken from https://github.com/Baystation12/Baystation12/tree/17e84546562b97d775cb26790a08e6d87e7f8077 edited by portfiend",
+			"directions": 4
+		},
+		{
+			"name": "aac_screen-inhand-left",
+			"copyright": "Taken from https://github.com/Baystation12/Baystation12/tree/17e84546562b97d775cb26790a08e6d87e7f8077 edited by portfiend",
+			"directions": 4
+		},
+		{
+			"name": "aac_screen-inhand-right",
+			"copyright": "Taken from https://github.com/Baystation12/Baystation12/tree/17e84546562b97d775cb26790a08e6d87e7f8077 edited by portfiend",
+			"directions": 4
+		}
+	]
+}

@@ -258,6 +258,8 @@
           tags:
           - Wrench
   - type: Appearance
+  - type: StealTarget # Starlight
+    stealGroup: MedicalBeltCollection # Starlight. There's a lot of things that inherit this, so it's not as hard as you think.
 
 - type: entity
   parent: ClothingBeltMedical

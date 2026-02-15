@@ -8,6 +8,7 @@
     energy: 0.8
     radius: 20
     softness: 20
+  - type: DarkLight
 
 - type: entity
   id: EffectThermalVision
@@ -19,6 +20,7 @@
     energy: 1.8
     radius: 20
     softness: 20
+  - type: DarkLight
 
 - type: entity
   id: EffectThermalVisionRevenant
@@ -26,3 +28,4 @@
   components:
   - type: PointLight
     castShadows: false
+  - type: DarkLight

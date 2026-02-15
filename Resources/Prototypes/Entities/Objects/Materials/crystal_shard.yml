@@ -114,6 +114,7 @@
     radius: 2
     energy: 2.5
     color: "#363636"
+  - type: DarkLight # Starlight
   - type: Tag
     tags:
       - Trash

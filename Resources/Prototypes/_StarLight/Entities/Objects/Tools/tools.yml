@@ -901,7 +901,7 @@
   description: A device used to rapidly pipe things.
   components:
   - type: RCD
-    isRPD: true
+    isRpd: true
     availablePrototypes:
     - PipeFourway
     - PipeStraight
@@ -928,10 +928,14 @@
     - PassiveGate
     - PipeSensor
     - Deconstruct
+    - AirAlarm
+    - AirSensor
   - type: LimitedCharges
-    maxCharges: 45
+    maxCharges: 90
   - type: Sprite
     sprite: _Starlight/Objects/Tools/rpd.rsi
+  - type: StealTarget
+    stealGroup: RCDRPDCollection
 
 - type: entity
   id: RPDEmpty

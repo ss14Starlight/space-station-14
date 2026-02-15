@@ -384,6 +384,8 @@
       sprite: _Starlight/Clothing/Neck/Mantles/salvagemantle.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Neck/Mantles/salvagemantle.rsi
+    - type: StealTarget
+      stealGroup: SalvLeadMantle
 
 
 - type: entity
@@ -396,6 +398,8 @@
       sprite: _Starlight/Clothing/Neck/Mantles/veteran_salvagemantle.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Neck/Mantles/veteran_salvagemantle.rsi
+    - type: StealTarget
+      stealGroup: SalvLeadMantle # Veteran one counts too.
 
 - type: entity
   parent: ClothingNeckBase
@@ -613,3 +617,14 @@
     sprite: _Starlight/Clothing/Neck/Cloaks/red_regalia.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Neck/Cloaks/red_regalia.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase ]
+  id: ClothingNeckCloakwarden
+  name: Warden's Cloak
+  description: A rough cloak that has seen better days.
+  components:
+  - type: Sprite
+    sprite:  _Starlight/Clothing/Neck/Cloaks/warden.rsi
+  - type: Clothing
+    sprite:  _Starlight/Clothing/Neck/Cloaks/warden.rsi

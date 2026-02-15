@@ -74,9 +74,7 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly NpcFactionSystem _factionSystem = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly IGameTiming Timing = default!;
-    [Dependency] private readonly GasTankSystem _gasTank = default!;
 #endregion Starlight
 
 

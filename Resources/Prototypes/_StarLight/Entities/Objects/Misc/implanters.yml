@@ -104,6 +104,14 @@
       implant: MagillitisSerumImplant
 
 - type: entity
+  id: DeathRattleImplanterTSF
+  name: TSF death rattle implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: DeathRattleImplantTSF
+
+- type: entity
   id: BluespaceImplanter
   name: bluespace implanter
   parent: BaseImplantOnlyImplanter

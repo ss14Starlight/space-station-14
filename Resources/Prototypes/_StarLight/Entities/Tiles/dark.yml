@@ -47,6 +47,20 @@
       blacklist:
         components:
           - Shadekin
+          - TheDarkImmune
+    - type: StepTrigger
+      requiredTriggeredSpeed: 0
+      intersectRatio: 0.1
+      blacklist:
+        tags:
+          - Catwalk
+    - type: TileEntityEffect
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectTheDark
+        time: 5
+        type: Add
+
 
 - type: entity
   id: DarkTile2

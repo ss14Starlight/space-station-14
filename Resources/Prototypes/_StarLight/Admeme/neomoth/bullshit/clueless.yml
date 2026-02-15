@@ -1,0 +1,11 @@
+- type: entity
+  id: Clueless
+  name: clueless
+  description: ":clueless:"
+  parent: BaseItem
+  suffix: Admeme
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/neomoth/bullshit.rsi
+      state: clueless
+      scale: 0.5, 0.5

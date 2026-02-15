@@ -1,5 +1,5 @@
 - type: job
-  id: NTNCBlueshield
+  id: NTNCBlueShield
   name: job-name-ntncblueshield
   description: job-description-ntncblueshield
   playTimeTracker: JobConsortiumBlueShield

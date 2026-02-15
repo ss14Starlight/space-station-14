@@ -38,6 +38,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Physics;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -92,6 +93,7 @@ public sealed class GargantuaSystem : EntitySystem
         SubscribeLocalEvent<ActiveBloodSwellComponent, BeforeStaminaDamageEvent>(OnBloodSwellStaminaDamage);
 
         SubscribeLocalEvent<GargantuaComponent, VampireBloodDrankEvent>(OnBloodDrank);
+        SubscribeLocalEvent<GargantuaComponent, UserPriedDoorEvent>(OnDoorPried);
         // Status effects are raised on the status effect entity, so hook globally.
         SubscribeLocalEvent<StatusEffectComponent, StatusEffectAppliedEvent>(OnStatusEffectApplied);
     }
@@ -426,6 +428,26 @@ public sealed class GargantuaSystem : EntitySystem
         args.Handled = true;
     }
 
+    private void OnDoorPried(EntityUid uid, GargantuaComponent component, ref UserPriedDoorEvent args)
+    {
+
+        if (!component.OverwhelmingForceActive)
+            return;
+
+        if (!TryComp<VampireComponent>(uid, out var vampire))
+            return;
+
+        const int BloodCost = 15;
+        var newBlood = Math.Max(0, vampire.DrunkBlood - BloodCost);
+        if (newBlood != vampire.DrunkBlood)
+        {
+            vampire.DrunkBlood = newBlood;
+            Dirty(uid, vampire);
+        }
+
+        _audio.PlayPvs(new SoundPathSpecifier("/Audio/Items/crowbar.ogg"), uid, AudioParams.Default.WithVolume(2f));
+    }
+
     private void OnPullAttempt(EntityUid uid, GargantuaComponent component, PullAttemptEvent args)
     {
         if (!component.OverwhelmingForceActive)
@@ -455,7 +477,7 @@ public sealed class GargantuaSystem : EntitySystem
             return;
 
         var xform = Transform(uid);
-        if (xform.GridUid == null)
+        if (xform.GridUid is not { } gridUid)
             return;
 
         var direction = (args.Target.Position - xform.Coordinates.Position).Normalized();
@@ -478,20 +500,22 @@ public sealed class GargantuaSystem : EntitySystem
         // Flag to stop spawning after hitting something
         var stopped = false;
 
+        var startCoords = xform.Coordinates;
+
         _audio.PlayPvs(args.Sound, args.Target, AudioParams.Default.WithVolume(3f));
 
         for (var i = 1; i <= maxTiles; i++)
         {
             var tileIndex = i;
-            var tileMapCoords = _transform.ToMapCoordinates(xform.Coordinates.Offset(direction * tileIndex));
+            var tileCoords = startCoords.Offset(direction * tileIndex);
 
             Timer.Spawn(delayPerTile * i, () =>
             {
                 if (!Exists(uid) || stopped)
                     return;
 
-                // Convert back to EntityCoordinates inside the callback
-                var tileCoords = _transform.ToCoordinates(tileMapCoords);
+                if (!Exists(gridUid))
+                    return;
 
                 var blocked = false;
                 var entitiesOnTile = _lookup.GetEntitiesInRange(tileCoords, 0.4f);
@@ -501,8 +525,10 @@ public sealed class GargantuaSystem : EntitySystem
                         continue;
 
                     // Check for walls/obstacles before spawning
-                    // Check for static physics bodies (walls, structures)
-                    if (TryComp<PhysicsComponent>(ent, out var physics) && physics.BodyType == BodyType.Static && physics.Hard)
+                    if (TryComp<PhysicsComponent>(ent, out var physics)
+                        && physics.BodyType == BodyType.Static
+                        && physics.Hard
+                        && (physics.CollisionLayer & (int) CollisionGroup.Impassable) != 0)
                     {
                         blocked = true;
                         stopped = true;

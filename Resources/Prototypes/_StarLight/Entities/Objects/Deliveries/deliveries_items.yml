@@ -11,6 +11,13 @@
       antags:
         - antag: Traitor
           targetComponent: TraitorRule
+      #SL begin
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+      #SL end
 
 - type: entity
   id: RRMailSyndicateSpamLetter
@@ -25,6 +32,13 @@
       antags:
         - antag: Traitor
           targetComponent: TraitorRule
+      #SL begin
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+      #SL end
 
 - type: entity
   id: MailSpamDontYouWantMore
@@ -41,7 +55,21 @@
           targetComponent: TraitorRule
         - antag: Thief # gotta be a thief for the thief objectives
           targetComponent: ThiefRule
+      #SL begin
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+      #SL end
     - type: ObjectiveOnSign
+      #SL begin
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+      #SL end
       objectives:
         # thief collection objectives
         - HeadCloakStealCollectionObjective
@@ -53,23 +81,42 @@
         - FigurineStealCollectionObjective
         - IDCardsStealCollectionObjective
         - LAMPStealCollectionObjective
+        - CrewMonitorStealCollectionObjective # CMO, Paramed, BSO, Brigmed, 2-3
+        - GaloshesStealCollectionObjective # 2-3
+        - RCDRPDStealCollectionObjective # 7-12
+        - MiscSunglassesStealCollectionObjective # Musician, Beer Goggles, and all types of Security sunglasses.
+        - RareSunglassesStealCollectionObjective # Administrative, Skill, BSO, Brigmed, and in theory CentComm.
+        - AssistantHeadsetsStealCollectionObjective # Assistant. It's incredibly cursed.
+        - ReactorFuelRodStealCollectionObjective #Far Horizons. Or, technically, but it doesn't exist in the paper there, so uh, Starlight?
+        - MedicalBeltStealCollectionObjective # Various medical belts. Pretty easy to get, but hard to hold.
         # thief item objectives
         - ForensicScannerStealObjective
         - FlippoEngravedLighterStealObjective
         - ClothingHeadHatWardenStealObjective
         - WantedListCartridgeStealObjective
+        - LogProbeCartridgeStealObjective
+        - MedTekCartridgeStealObjective
+        - AstroNavCartridgeStealObjective
         - ClothingOuterHardsuitVoidParamedStealObjective
         - MedicalTechFabCircuitboardStealObjective
+        - SecurityTechFabCircuitboardStealObjective
+        - PTechCircuitboardStealObjective
         - ClothingHeadsetAltMedicalStealObjective
+        - ClothingHeadsetAltCommandStealObjective # Captain, NT Rep...
         - FireAxeStealObjective
         - AmePartFlatpackStealObjective
         - ExpeditionsCircuitboardStealObjective
+        - SalvageShuttleConsoleCircuitboardStealObjective
+        - MiningShuttleConsoleCircuitboardStealObjective
         - CargoShuttleCircuitboardStealObjective
-        - ClothingEyesHudBeerStealObjective
+        - CommsComputerCircuitboardStealObjective
+        - IDCardComputerCircuitboardStealObjective
+        - BrigmedicStrangeBedsheetStealObjective
+        - ClothingNeckMantleDecoratedSalvagerStealObjective
+        #- ClothingEyesHudBeerStealObjective Removed in favor of the misc sunglasses collection objective.
         - BibleStealObjective
         - ClothingNeckGoldmedalStealObjective
         - ClothingNeckClownmedalStealObjective
-        - Proto5xStealObjective
         # thief structure objectives
         - NuclearBombStealObjective
         - FaxMachineCaptainStealObjective
@@ -91,24 +138,43 @@
         - ShivaStealObjective
         - TropicoStealObjective
         # thief escape objective
-        - EscapeThiefShuttleObjective
+        - EscapeMasterThiefObjective # Starlight, replaced with master thief.
         # traitor steal objectives
         - CaptainIDStealObjective
+        - HOPIDStealObjective
         - CMOHyposprayStealObjective
-        - CMOCrewMonitorStealObjective
-        - RDHardsuitStealObjective
+#        - CMOCrewMonitorStealObjective Disabled in favor of the collection objective.
         - NukeDiskStealObjective
         - MagbootsStealObjective
         - RDDiplomaStealObjective
         - CMOLicenseStealObjective
+        - PinpointerNuclearStealObjective
+        - AccessConfiguratorStealObjective
+        - EncryptionKeySalvageStealObjective
+        - NTRepBriefcaseSecureStealObjective
         # no ian meat because you are a pacifist and need them alive
         - ClipboardStealObjective #QM's digiboard
+        - KnuckleDustersStealObjective #QM's knuckledusters
         - CaptainGunStealObjective
         - CaptainJetpackStealObjective
         - HandTeleporterStealObjective
         - EnergyMagnumStealObjective
         - EnergyShotgunStealObjective
-        - Proto5xStealObjective
+        - HOSWeaponStealObjective
+        - BSOWeaponStealObjective
+        # Limited Hardsuit objectives
+        - RDHardsuitStealObjective
+        - CMOHardsuitStealObjective
+        - CEHardsuitStealObjective 
+        - HOSHardsuitStealObjective 
+        - WardenHardsuitStealObjective
+        - BrigmedicHardsuitStealObjective
+        - QMHardsuitStealObjective
+        - SalvLeadHardsuitStealObjective
+        - CaptainHardsuitStealObjective
+        - NTRepHardsuitStealObjective
+        - BSOHardsuitStealObjective
+        - BSOMagbootsStealObjective
 
 
 #USSP
@@ -127,6 +193,13 @@
       antags:
         - antag: Revolutionary
           targetComponent: RevolutionaryRule
+      #SL begin
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+      #SL end
 
 - type: entity
   id: MailSovietSpamLetter50
@@ -143,6 +216,13 @@
       antags:
         - antag: Revolutionary
           targetComponent: RevolutionaryRule
+      #SL begin
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+      #SL end
 
 - type: entity
   id: MailSovietSpamLetter25
@@ -159,4 +239,11 @@
       antags:
         - antag: Revolutionary
           targetComponent: RevolutionaryRule
+      #SL begin
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+      #SL end
 

@@ -26,7 +26,6 @@ using Content.Shared.Screen.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
 using Content.Shared.Shuttles.Systems;
-using Content.Shared.Station.Components; // Starlight
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
@@ -38,7 +37,11 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Server._Starlight.Station; // Starlight
+// Starlight Start
+using Content.Server._Starlight.Station;
+using Content.Shared._Starlight.CustomObjectiveSummary;
+using Content.Shared.Station.Components;
+// Starlight End
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -79,8 +82,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     private static readonly ProtoId<TagPrototype> DockTag = "DockEmergency";
 
     //starlight
-    [ValidatePrototypeId<TagPrototype>]
-    private const string DockEscapeTag = "DockEscape";
+    private static readonly ProtoId<TagPrototype> DockEscapeTag = "DockEscape";
     //starlight end
 
     public override void Initialize()
@@ -269,6 +271,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
             };
             _deviceNetworkSystem.QueuePacket(uid, null, payload, netComp.TransmitFrequency);
         }
+        RaiseLocalEvent(new EvacShuttleLeftEvent()); // Starlight
     }
 
     /// <summary>

@@ -2,7 +2,7 @@
   parent: [ClothingOuterArmorBase, BaseBlueShieldContraband]
   id: ClothingOuterArmorBlueShield
   name: blue shield bulletproof vest
-  description: Much better than a standard Type 1 security vest. Don't lose it. You will NOT get a replacement.
+  description: Much better than a standard Type 1 security vest. Try not to lose it, you won't get a second replacement.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Armor/blueshield.rsi
@@ -362,7 +362,7 @@
   parent: ClothingOuterReactiveArmourShell
   id: ClothingOuterReactiveArmourShellRandom
   suffix: Random Core
-  
+
 - type: entity
   parent: [ClothingOuterBaseMedium, BaseSovietContraband, AllowSuitStorageClothing ] #"ClothingOuterArmorBase" is stupid and overrides any contraband level.
   id: ClothingOuterArmorSovietFlak

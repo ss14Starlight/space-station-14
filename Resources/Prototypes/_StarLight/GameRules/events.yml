@@ -267,6 +267,8 @@
     - id: Xenoborgs
     # Starlight gamerules:
     - id: AbductorsSpawn
+    - id: RailroadingTerminator
+    - id: Brighteye
 
 - type: entity
   parent: BaseGameRule
@@ -306,12 +308,13 @@
   components:
   - type: StationEvent
     weight: 1
-    earliestStart: 30
-    reoccurrenceDelay: 60
-    minimumPlayers: 30
+    earliestStart: 10
+    reoccurrenceDelay: 20
+    minimumPlayers: 20
+    duration: null
   - type: RuleGrids
   - type: GameRule
-    minPlayers: 10
+    minPlayers: 20
   - type: BrighteyeRule
   - type: LoadMapRule
     mapPath: /Maps/_Starlight/TheDark/Hideout.yml
@@ -319,7 +322,12 @@
   - type: AntagLoadProfileRule
     speciesHardOverride: Shadekin
     applyCharacterProfile: true
+  - type: AntagObjectives
+    objectives:
+    - BirghteyeSurviveObjective
+    - BirghteyePortalObjective
   - type: AntagSelection
+    agentName: roles-antag-brighteye-name
     selectionTime: PrePlayerSpawn
     definitions:
     - prefRoles: [ Brighteye ]
@@ -342,14 +350,8 @@
         canDisarm: true
       mindRoles:
       - MindRoleBrighteye
-      # Starlight-start
       tags:
         - CantBecomeRevolutionary
-      # Starlight-end
-  - type: AntagObjectives
-    objectives:
-    - BirghteyeSurviveObjective
-    - BirghteyePortalObjective
   - type: SubGamemodes
     rules:
     - id: RailroadingBrighteye

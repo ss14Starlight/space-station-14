@@ -31,6 +31,11 @@
     - !type:AddCompsEffect
       components:
         - type: Snoring
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Shadekin # Shadekins does not breathe... HOW DO THEY SNORE?
+      inverted: true
 
 - type: trait
   id: Clumsy

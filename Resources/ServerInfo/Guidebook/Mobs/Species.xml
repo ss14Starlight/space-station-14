@@ -1,25 +1,27 @@
 <Document>
   # Species
 
-  Nanotrasen employs a variety of sapient species.
+  NanoTrasen employs a variety of sapient species.
 
   <Box>
+  <GuideEntityEmbed Entity="MobElf" Caption="Aelithii"/>
   <GuideEntityEmbed Entity="MobArachnid" Caption="Arachnid"/>
+  <GuideEntityEmbed Entity="MobCyclorite" Caption="Cyclorite"/>
   <GuideEntityEmbed Entity="MobDiona" Caption="Diona"/>
   <GuideEntityEmbed Entity="MobDwarf" Caption="Dwarf"/>
   <GuideEntityEmbed Entity="MobHuman" Caption="Human"/>
-  <GuideEntityEmbed Entity="MobMoth" Caption="Moth Person"/>
-  <GuideEntityEmbed Entity="MobReptilian" Caption="Reptilian"/>
   </Box>
   <Box>
+  <GuideEntityEmbed Entity="MobMoth" Caption="Moth Person"/>
+  <GuideEntityEmbed Entity="MobReptilian" Caption="Reptilian"/>
   <GuideEntityEmbed Entity="MobSlimePerson" Caption="Laspi"/>
   <GuideEntityEmbed Entity="MobVox" Caption="Vox"/>
   <GuideEntityEmbed Entity="MobVulpkanin" Caption="Vulpkanin"/>
   <GuideEntityEmbed Entity="MobCyclorite" Caption="Cyclorite"/>
-  <GuideEntityEmbed Entity="MobThaven" Caption="Thaven"/>
-  <GuideEntityEmbed Entity="MobResomi" Caption="Resomi"/>
   </Box>
   <Box>
+  <GuideEntityEmbed Entity="MobThaven" Caption="Thaven"/>
+  <GuideEntityEmbed Entity="MobResomi" Caption="Resomi"/>
   <GuideEntityEmbed Entity="MobFelionoid" Caption="Felionoid"/>
   <GuideEntityEmbed Entity="MobAvali" Caption="Avali"/>
   <GuideEntityEmbed Entity="MobShadekin" Caption="Shadekin"/>

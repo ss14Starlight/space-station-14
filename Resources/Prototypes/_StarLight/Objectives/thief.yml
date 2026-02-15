@@ -1,39 +1,64 @@
+# Abstracts
 - type: entity
+  abstract: true
   parent: BaseThiefStealObjective
-  id: SalvageShuttleCircuitboardStealObjective
+  id: BaseThiefSecurityStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ CargoTechnician ]
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ]
+
+- type: entity
+  abstract: true
+  parent: BaseThiefStealObjective
+  id: BaseThiefMedicalStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist ]
+
+- type: entity
+  abstract: true
+  parent: BaseThiefStealObjective
+  id: BaseThiefCargoStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ]
+
+- type: entity
+  abstract: true
+  parent: BaseThiefStealObjective
+  id: BaseThiefScienceStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ ResearchDirector, ResearchAssistant, Scientist, Roboticist ]
+
+- type: entity
+  abstract: true
+  parent: BaseThiefStealObjective
+  id: BaseThiefEngineeringStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ ChiefEngineer, StationEngineer, AtmosphericTechnician, TechnicalAssistant ]
+
+- type: entity
+  abstract: true
+  parent: BaseThiefStealObjective
+  id: BaseThiefCommandStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Captain, HeadOfPersonnel, HeadOfSecurity, ResearchDirector, ChiefEngineer, ChiefMedicalOfficer, Quartermaster, NanoTrasenRepresentative, Magistrate, BlueShield ]
+
+# Thief Single
+- type: entity
+  parent: [BaseThiefStealObjective, BaseThiefCargoStealObjective]
+  id: SalvageShuttleCircuitboardStealObjective
+  components:
   - type: StealCondition
     stealGroup: SalvageShuttleConsoleCircuitboard
   - type: Objective
     difficulty: 0.7
 
 - type: entity
-  parent: BaseThiefStealObjective
-  id: Proto5xStealObjective
-  components:
-  - type: NotJobRequirement
-    jobs: [ HeadOfSecurity ]
-  - type: StealCondition
-    stealGroup: Proto5x
-  - type: Objective
-    difficulty: 1
-
-- type: entity
-  parent: BaseThiefStealObjective
-  id: EnergyShotgunStealObjective
-  components:
-  - type: NotJobRequirement
-    jobs: [ Warden ]
-  - type: StealCondition
-    stealGroup: WeaponEnergyShotgun
-  - type: Objective
-    difficulty: 1
-
-
-- type: entity
-  parent: BaseThiefStealObjective
+  parent: [BaseThiefStealObjective, BaseThiefSecurityStealObjective]
   id: FiringPinStealObjective
   components:
   - type: StealCondition
@@ -60,3 +85,223 @@
     stealGroup: FiringPinSmartLMG
   - type: Objective
     difficulty: 1
+
+- type: entity
+  parent: [BaseThiefStealObjective, BaseThiefSecurityStealObjective]
+  id: LogProbeCartridgeStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: LogProbeCartridge
+  - type: Objective
+    difficulty: 1
+
+- type: entity
+  parent: [BaseThiefStealObjective, BaseThiefMedicalStealObjective]
+  id: MedTekCartridgeStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: MedTekCartridge
+  - type: Objective
+    difficulty: 1
+
+- type: entity
+  parent: [BaseThiefStealObjective, BaseThiefCargoStealObjective]
+  id: AstroNavCartridgeStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: AstroNavCartridge
+  - type: Objective
+    difficulty: 1
+
+- type: entity
+  parent: [BaseThiefStealObjective, BaseThiefSecurityStealObjective]
+  id: SecurityTechFabCircuitboardStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: SecurityTechFabCircuitboard
+  - type: Objective
+    difficulty: 1.4 # Good luck.
+
+- type: entity
+  parent: BaseThiefStealObjective
+  id: PTechCircuitboardStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ HeadOfPersonnel ]
+  - type: StealCondition
+    stealGroup: PTechCircuitboard
+  - type: Objective
+    difficulty: 1.1 # Good luck.
+
+- type: entity
+  parent: [BaseThiefStealObjective, BaseThiefCommandStealObjective]
+  id: ClothingHeadsetAltCommandStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: ClothingHeadsetAltCommand
+  - type: Objective
+    difficulty: 1.3 # Not as hard as you'd think, NTR's usually easy to get this off of.
+
+- type: entity
+  parent: [BaseThiefStealObjective, BaseThiefCargoStealObjective]
+  id: SalvageShuttleConsoleCircuitboardStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: SalvageShuttleConsoleCircuitboard
+  - type: Objective
+    difficulty: 0.7
+
+- type: entity
+  parent: [BaseThiefStealObjective, BaseThiefCargoStealObjective]
+  id: MiningShuttleConsoleCircuitboardStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: MiningShuttleConsoleCircuitboard
+  - type: Objective
+    difficulty: 0.7
+
+- type: entity
+  parent: [BaseThiefStealObjective, BaseThiefCommandStealObjective]
+  id: CommsComputerCircuitboardStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: CommsComputerCircuitboard
+  - type: Objective
+    difficulty: 1.5 # There's an extra in cap's locker, or you can just rob the bridge.
+
+- type: entity
+  parent: [BaseThiefStealObjective, BaseThiefCommandStealObjective]
+  id: IDCardComputerCircuitboardStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: IDCardComputerCircuitboard
+  - type: Objective
+    difficulty: 1.2 # There's an extra in hop's locker, or you can just rob the one from hop's front desk.
+
+- type: entity
+  parent: [BaseThiefStealObjective, BaseThiefSecurityStealObjective]
+  id: BrigmedicStrangeBedsheetStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: BrigmedicStrangeBedsheet
+  - type: Objective
+    difficulty: 1.3
+
+- type: entity
+  parent: [BaseThiefStealObjective, BaseThiefCargoStealObjective]
+  id: ClothingNeckMantleDecoratedSalvagerStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: SalvLeadMantle
+  - type: Objective
+    difficulty: 1.3 # Salvage Lead's usually always wearing this...
+
+# Thief Collection
+# Various crewmonitors
+- type: entity
+  parent: BaseThiefStealObjective # Not parenting collection since BSO/Brigmed aren't mapped, but is completable with CMO/Para
+  id: CrewMonitorStealCollectionObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, Brigmedic, BlueShield ]
+  - type: StealCondition
+    stealGroup: CrewMonitorCollection
+    minCollectionSize: 2 # Easiest to take from the 2 parameds, but you'll still have to get into Medical somehow, or find them in the wild.
+    maxCollectionSize: 3 # Good luck.
+  - type: Objective
+    difficulty: 1
+
+# Galoshes
+- type: entity
+  parent: BaseThiefStealCollectionObjective
+  id: GaloshesStealCollectionObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Janitor, ServiceWorker, HeadOfPersonnel ]
+  - type: StealCondition
+    stealGroup: GaloshesCollection
+    minCollectionSize: 2 # There's always a Janitor on shift.
+    maxCollectionSize: 3 # Good luck.
+  - type: Objective
+    difficulty: 1
+
+# RCD & RPD
+- type: entity
+  parent: [BaseThiefStealCollectionObjective, BaseThiefEngineeringStealObjective]
+  id: RCDRPDStealCollectionObjective
+  components:
+  - type: StealCondition
+    stealGroup: RCDRPDCollection
+    minCollectionSize: 6 # Engineers will always have two of these things on them, so every engineer is a 2 for one.
+    maxCollectionSize: 10 # Good luck.
+  - type: Objective
+    difficulty: 1
+
+# Misc sunglasses
+- type: entity
+  parent: BaseThiefStealObjective # Not parenting collection since the beer goggles are in bardrobe & musician goggles are role dependent
+  id: MiscSunglassesStealCollectionObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Musician, Bartender, ServiceWorker, SecurityOfficer, SecurityCadet, DutyOfficer, Warden, HeadOfSecurity, Brigmedic, Detective ]
+  - type: StealCondition
+    stealGroup: MiscGlassesCollection
+    minCollectionSize: 5
+    maxCollectionSize: 9
+  - type: Objective
+    difficulty: 0.7 # There's a ton of ways to solve this.
+
+# Rare sunglasses
+- type: entity
+  parent: BaseThiefStealObjective # Not parenting collection since CC's glasses count towards this
+  id: RareSunglassesStealCollectionObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Brigmedic, BlueShield, NanoTrasenRepresentative, Magistrate, Captain, HeadOfPersonnel ]
+  - type: StealCondition
+    stealGroup: RareGlassesCollection
+    minCollectionSize: 2
+    maxCollectionSize: 4
+  - type: Objective
+    difficulty: 1.4 # Hard to get these...
+
+# Assistant headsets. Yup.
+- type: entity
+  parent: BaseThiefStealObjective # Not parenting collection since they're not actually on map.. but it's Assistants.
+  id: AssistantHeadsetsStealCollectionObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Assistant, HeadOfPersonnel, Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ]
+  - type: StealCondition
+    stealGroup: AssistantHeadsetsCollection
+    minCollectionSize: 8
+    maxCollectionSize: 14
+  - type: Objective
+    difficulty: 0.6 # There's a lot of them... but they're comically easy to get. Cargo can also buy PTech restocks, so they can't get this objective either.
+
+- type: entity
+  parent: BaseThiefStealObjective # Easy
+  id: MedicalBeltStealCollectionObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, HeadOfSecurity, Brigmedic, BlueShield, Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ]
+  - type: StealCondition
+    stealGroup: MedicalBeltCollection
+    minCollectionSize: 6
+    maxCollectionSize: 11
+  - type: Objective
+    difficulty: 0.9 # So a lot of things actually count towards this objective, normal Doctor, Paramed, CMO, Brigmed, BSO... But you can't really hold more than three at a time. Cargo banned because they can just buy restocks.
+
+
+- type: entity
+  parent: [BaseThiefObjective, BaseLivingObjective]
+  id: EscapeMasterThiefObjective
+  name: Become the greatest thief, and steal anything you perceive as having value.
+  description: Just make sure to get out alive and free.
+  components:
+  - type: Objective
+    difficulty: 0.5 # You're granted freedom to steal stuff, so you should get less actual objectives.
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: EscapeShuttleCondition

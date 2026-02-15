@@ -49,6 +49,7 @@
     price: 800
   - type: ResearchClient
   - type: TechnologyDatabase
+  - type: StationAiWhitelist #Starlight
 
 # a lathe that can be sped up with space lube / slowed down with glue
 - type: entity
@@ -289,6 +290,7 @@
     - StarlightMechBoards
     - StarlightLawboards
     - StarlightCircuitImprinterLootable
+    - ReactorCircuitboards # FH edit
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
@@ -435,13 +437,14 @@
     - NullSpaceDrainer
     - SecurityPracticeStatic
     - StarlightSecurityAmmoStatic
-    - StarlightSecurityAmmoEmagStatic
     - SecurityWeaponsStatic # Starlight end
     dynamicPacks:
     - SecurityScienceBlueSpace # Stalright
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
-    - StarlightDefenseStatic
+    - SecurityDisablers
+    - StarlightDefenseStatic # starlight start
+    - SecurityCyberLimbs
     - StarlightSecurityEquipment
     - StarlightSecurityBoards
     - StarlightSecurityExplosives
@@ -457,6 +460,8 @@
     emagStaticPacks:
     - StarlightSyndicateModulesSecfab
     - StarlightSyndicateAmmoStatic
+    - StarlightSecurityAmmoEmagStatic
+    - StarlightSecurityGrenadesEmag
   #endregion Starlight secfab emagging
     - SyndicateAmmoStatic
   - type: MaterialStorage
@@ -528,6 +533,7 @@
     - MedicalClothingStatic
     - EmptyMedkitsStatic
     - StarlightMedicalStatic # Starlight
+    - AACTabletStatic # Moffstation - AAC tablet
     dynamicPacks:
     - StarlightSurgeryDynamic
     - StarlightAutomendersDynamic # Starlight-edit
@@ -688,7 +694,7 @@
           variation: 0.250
     - type: AltUseToggle
     - type: ComponentToggler
-      components: 
+      components:
       - type: MagnetPickup
         range: 3
         requiresEquipping: false

@@ -142,3 +142,13 @@
     Blood: 10
     Water: 10
     Fat: 10
+
+- type: microwaveMealRecipe
+  id: RecipeFoodCookedShadekinCore
+  name: core spaghetti
+  result: FoodCookedShadekinCore
+  time: 10
+  group: Pasta
+  solids:
+    FoodNoodlesBoiled: 1
+    OrganShadekinCore: 1

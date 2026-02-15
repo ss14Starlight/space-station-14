@@ -109,7 +109,7 @@ public abstract partial class SharedSurgerySystem
 
         if (TryComp<BodyPartComponent>(args.Body, out var itemPart) && itemPart.PartType is BodyPartType item && !ent.Comp.Parts.Contains(item))
         {
-            Logger.Warning("don't have part at part");
+            Log.Warning("don't have part at part");
             args.Cancelled = true;
         }
 
