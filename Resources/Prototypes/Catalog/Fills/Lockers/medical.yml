@@ -92,12 +92,15 @@
   table: !type:AllSelector
     children:
     - id: BoxSyringe
-    - id: BoxBeaker
-    - id: BoxBeaker
-      prob: 0.3
+   #- id: BoxBeaker # Starlight start
+   #- id: BoxBeaker
+   #  prob: 0.3
+    - id: BoxBeakerSmall
+    - id: BoxBeakerLarge
+    - id: BoxJug
+    - id: PatchPack
+      amount: 2 # Starlight end
     - id: BoxPillCanister
-    - id: PatchPack # Starlight
-    - id: PatchPack # Starlight
     - id: BoxBottle
     - id: BoxVial
     - id: PlasmaChemistryVial
