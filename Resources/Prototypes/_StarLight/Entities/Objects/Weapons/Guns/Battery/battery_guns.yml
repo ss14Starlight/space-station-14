@@ -181,7 +181,7 @@
     zeroVisible: true
   - type: Lock
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
   - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 50
@@ -220,7 +220,7 @@
 
 - type: entity
   name: X-01 multiphase energy gun
-  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
+  parent: [ BaseWeaponBatterySmall, BaseBlueShieldContraband, BaseGrandTheftContraband ]
   id: WeaponMultiphaseGun
   description: This is an expensive, modern version of the antique laser pistol, with several unique fire modes.
   components:
@@ -238,6 +238,8 @@
       shader: unshaded
   - type: Lock
     mindShieldLock: true
+    autoUnlock: true
+    autoLock: true
   - type: AccessReader
     access: [["BlueShield"]]
   - type: Item
@@ -274,6 +276,8 @@
     startingCharge: 1500
   - type: BatterySelfRecharger
     autoRechargeRate: 20
+  - type: StealTarget
+    stealGroup: BSOWeapon
 
 - type: entity
   name: MT-7 Magnum
@@ -500,6 +504,9 @@
     - state: stun-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Lock
+  - type: AccessReader
+    access: [[ "CentralCommand" ]]
   - type: Item
     size: Small
     shape:
@@ -661,6 +668,9 @@
       shader: unshaded
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+  - type: Lock
+  - type: AccessReader
+    access: [[ "CentralCommand" ]]
   - type: Item
     size: Normal
     shape:
@@ -715,6 +725,9 @@
     - state: stun-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Lock
+  - type: AccessReader
+    access: [[ "CentralCommand" ]]
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse.rsi
   - type: Item
@@ -883,12 +896,10 @@
     #sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_smg.rsi
     #heldPrefix: energy
   - type: StealTarget
-    stealGroup: Proto5x
+    stealGroup: HOSWeapon # Proto5x and WT550r
   - type: Tag
     tags:
     - HighRiskItem
-  #- type: StealTarget
-    #stealGroup: WeaponEnergyShotgun
   #- type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Battery
     maxCharge: 1500
@@ -918,6 +929,9 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+  - type: Lock
+  - type: AccessReader
+    access: [[ "CentralCommand" ]]
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Battery/ntnc_pulse.rsi
   - type: Item

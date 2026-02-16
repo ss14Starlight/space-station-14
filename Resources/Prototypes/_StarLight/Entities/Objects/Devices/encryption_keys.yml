@@ -65,6 +65,8 @@
     - type: Tag
       tags:
         - EncryptionCargo
+    - type: StealTarget
+      stealGroup: EncryptionKeySalvage
 
 - type: entity
   parent: [ EncryptionKey, BaseTSFContraband ]

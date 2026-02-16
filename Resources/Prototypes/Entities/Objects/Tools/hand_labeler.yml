@@ -25,6 +25,7 @@
           - Item
         tags:
           - Structure
+          - Labelable # Starlight: Playable races can be labeled
     - type: PhysicalComposition
     # Starlight-start: Vending Machines Prices
     - type: ItemPrice

@@ -20,7 +20,7 @@
   parent: BaseAction
   id: ActionRandomizeLanguages
   name: Language Shift
-  description: You ever heard of the tower of babel?
+  description: You ever heard of the Tower of Babel?
   components:
   - type: Magic
     requiresClothes: true

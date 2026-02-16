@@ -1,4 +1,92 @@
-﻿# Teach a Lesson
+﻿# Departmental abstracts
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseTraitorSecurityStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ]
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseTraitorMedicalStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist ]
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseTraitorCargoStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ]
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseTraitorScienceStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ ResearchDirector, ResearchAssistant, Scientist, Roboticist ]
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseTraitorEngineeringStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ ChiefEngineer, StationEngineer, AtmosphericTechnician, TechnicalAssistant ]
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseTraitorCommandStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Captain, HeadOfPersonnel, HeadOfSecurity, ResearchDirector, ChiefEngineer, ChiefMedicalOfficer, Quartermaster, NanoTrasenRepresentative, Magistrate, BlueShield ]
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseTraitorNanoTrasenStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ NanoTrasenRepresentative, Magistrate, BlueShield, IAA, NanotrasenCareerTrainer ]
+
+  # Base Steal NTR / IAA / Magi
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseNTRStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ NanoTrasenRepresentative ]
+  - type: StealCondition
+    owner: job-name-ntrep
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseIAAStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ IAA ]
+  - type: StealCondition
+    owner: job-name-iaa
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseMagistrateStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Magistrate ]
+  - type: StealCondition
+    owner: job-name-magistrate
+
+# Teach a Lesson
 - type: entity
   parent: [BaseTraitorObjective, BaseTeachALessonObjective]
   id: TeachRandomPersonObjective
@@ -54,37 +142,6 @@
   - type: StealCondition
     stealGroup: CMOLicenseSteal
 
-  # Base Steal NTR / IAA / Magi
-- type: entity
-  abstract: true
-  parent: BaseTraitorStealObjective
-  id: BaseNTRStealObjective
-  components:
-  - type: NotJobRequirement
-    jobs: [ NanoTrasenRepresentative ]
-  - type: StealCondition
-    owner: job-name-ntrep
-
-- type: entity
-  abstract: true
-  parent: BaseTraitorStealObjective
-  id: BaseIAAStealObjective
-  components:
-  - type: NotJobRequirement
-    jobs: [ IAA ]
-  - type: StealCondition
-    owner: job-name-iaa
-
-- type: entity
-  abstract: true
-  parent: BaseTraitorStealObjective
-  id: BaseMagistrateStealObjective
-  components:
-  - type: NotJobRequirement
-    jobs: [ Magistrate ]
-  - type: StealCondition
-    owner: job-name-magistrate
-
   # Documents Steal Objective Shit
 - type: entity
   parent: BaseNTRStealObjective
@@ -95,18 +152,179 @@
 
 - type: entity
   parent: BaseIAAStealObjective
-  id: CriminalReportsStealStealObjective
+  id: CriminalReportsStealObjective
   components:
   - type: StealCondition
     stealGroup: CriminalReportsSteal
 
 - type: entity
   parent: BaseMagistrateStealObjective
-  id: SecureKnowledgeStealStealStealObjective
+  id: SecureKnowledgeStealObjective
   components:
   - type: StealCondition
     stealGroup: SecureKnowledgeSteal
-    
+
+- type: entity
+  parent: BaseTraitorCommandStealObjective
+  id: HOPIDStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: HOPIDCard
+
+- type: entity
+  parent: BaseTraitorCommandStealObjective
+  id: PinpointerNuclearStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: PinpointerNuclear
+
+- type: entity
+  parent: BaseTraitorCommandStealObjective
+  id: AccessConfiguratorStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: AccessConfigurator
+
+- type: entity
+  parent: BaseTraitorCargoStealObjective
+  id: EncryptionKeySalvageStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: EncryptionKeySalvage
+
+- type: entity
+  parent: BaseTraitorNanoTrasenStealObjective
+  id: NTRepBriefcaseSecureStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: NTRepBriefcaseSecure
+
+- type: entity
+  parent: BaseTraitorNanoTrasenStealObjective
+  id: BSOWeaponStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: BSOWeapon
+  - type: Objective
+    difficulty: 2.5 # Usually on the person, not limited by SOP like HOS
+
+- type: entity
+  parent: BaseTraitorSecurityStealObjective
+  id: HOSWeaponStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: HOSWeapon
+  - type: Objective
+    difficulty: 1.7 # Good luck
+
+- type: entity
+  parent: BaseTraitorSecurityStealObjective
+  id: EnergyShotgunStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: WeaponEnergyShotgun
+  - type: Objective
+    difficulty: 1
+
+- type: entity
+  parent: BaseTraitorMedicalStealObjective
+  id: CMOHardsuitStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: CMOHardsuit
+  - type: Objective
+    difficulty: 2.5 # Heavy, huge, hard to hide.
+
+- type: entity
+  parent: BaseTraitorEngineeringStealObjective
+  id: CEHardsuitStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: CEHardsuit
+  - type: Objective
+    difficulty: 2.5 # Heavy, huge, hard to hide.
+
+- type: entity
+  parent: BaseTraitorSecurityStealObjective
+  id: HOSHardsuitStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: HOSHardsuit
+  - type: Objective
+    difficulty: 3 # Heavy, huge, hard to hide. Good luck.
+
+- type: entity
+  parent: BaseTraitorSecurityStealObjective
+  id: WardenHardsuitStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: WardenHardsuit
+  - type: Objective
+    difficulty: 3 # Heavy, huge, hard to hide. Warden never leaves sec.
+
+- type: entity
+  parent: BaseTraitorSecurityStealObjective
+  id: BrigmedicHardsuitStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: BrigmedicHardsuit
+  - type: Objective
+    difficulty: 3 # Heavy, huge, hard to hide. Brigmed never leaves sec.
+
+- type: entity
+  parent: BaseTraitorCargoStealObjective
+  id: QMHardsuitStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: QMHardsuit
+  - type: Objective
+    difficulty: 2.5 # Heavy, huge, hard to hide.
+
+- type: entity
+  parent: BaseTraitorCargoStealObjective
+  id: SalvLeadHardsuitStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: SalvLeadHardsuit
+  - type: Objective
+    difficulty: 2.5 # Heavy, huge, hard to hide. Would be 3, but Salvage Lead usually tosses it after getting a better one.
+
+- type: entity
+  parent: BaseTraitorCommandStealObjective
+  id: CaptainHardsuitStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: CaptainHardsuit
+  - type: Objective
+    difficulty: 3 # Good luck.
+
+- type: entity
+  parent: BaseTraitorNanoTrasenStealObjective
+  id: NTRepHardsuitStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: NTRepHardsuit
+  - type: Objective
+    difficulty: 3 # Can't be stored in a bag, and NT Rep rarely leaves bridge without BSO.
+
+- type: entity
+  parent: BaseTraitorNanoTrasenStealObjective
+  id: BSOHardsuitStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: BSOHardsuit
+  - type: Objective
+    difficulty: 3 # If BSO is actually wearing this, chances are they've got lethals enabled. Good luck.
+
+- type: entity
+  parent: BaseTraitorNanoTrasenStealObjective
+  id: BSOMagbootsStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: BSOMagboots
+  - type: Objective
+    difficulty: 2.5 # Mildly easier to obtain.
+
   # RP OBJECTIVES START
   
 - type: entity
@@ -277,6 +495,66 @@
 
 - type: entity
   parent: BaseStoryObjective
+  id: HarassObjective
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 1
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+    - type: DepartmentObjective
+      title: objective-harass
+    - type: PickRandomDepartment
+
+- type: entity
+  parent: BaseStoryObjective
+  id: ImpersonateObjective
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 1
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+    - type: DepartmentObjective
+      title: objective-impersonate
+    - type: PickRandomDepartment
+
+- type: entity
+  parent: BaseStoryObjective
+  id: FeudObjective
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 1
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+    - type: DepartmentObjective
+      title: objective-feud
+    - type: PickRandomDepartment
+
+- type: entity
+  parent: BaseStoryObjective
+  id: WasteObjective
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 1
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+    - type: DepartmentObjective
+      title: objective-waste
+    - type: PickRandomDepartment
+
+- type: entity
+  parent: BaseStoryObjective
   id: MaintsBarObjective
   name: Ensure that the maints bar prospers, and extort them into allowing the Syndicate to conduct business within.
   description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
@@ -290,7 +568,7 @@
 
 - type: entity
   parent: BaseStoryObjective
-  id: ReputationObjective
+  id: ReputationObjective # Vampires
   name: Commit petty crimes, litter the station, ruin the repuatation of the onboard security force and the stations command members.
   description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
@@ -303,12 +581,38 @@
 
 - type: entity
   parent: BaseStoryObjective
-  id: FalseOutbreakObjective
+  id: FalseOutbreakObjective # Vampires
   name: Spread rumors of a biological outbreak of any kind onboard the station.
   description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 2
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+
+- type: entity
+  parent: BaseStoryObjective
+  id: PanicObjective
+  name: Convince the station of the existence of a threat that isn't, to your knowledge, present.
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 2 # Rev metagame counterplay.
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+
+- type: entity
+  parent: BaseStoryObjective
+  id: RumorObjective
+  name: Spread rumors about NanoTrasen and CentComm that paint them in a negative light.
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 0.5 # Easy, lets you slander people for fun.
       unique: true
       icon:
         sprite: _Starlight/Interface/Misc/rp_icon.rsi

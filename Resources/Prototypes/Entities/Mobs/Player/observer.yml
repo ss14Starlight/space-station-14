@@ -61,6 +61,7 @@
   - type: ShowNullSpace # Starlight
   - type: LanguageSpeaker # Starlight
   - type: UniversalLanguageSpeaker # Starlight
+  - type: DarkLight # Starlight
   - type: ActiveRadio
     receiveAllChannels: true
     globalReceive: true

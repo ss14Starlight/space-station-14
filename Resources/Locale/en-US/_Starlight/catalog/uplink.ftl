@@ -10,3 +10,5 @@ uplink-homerun-bat-desc = Send your enemies flying. Hey batta batta batta SWING 
 uplink-observer-bundle-name = Observer Bundle
 uplink-observer-bundle-desc = For keeping an eye on things. Comes with a Camera Bug, Secret Security Glasses, Camera Monitor Board, and supplies to build extra surveillance cameras wherever you need.
 
+uplink-switchblade-name = Switchblade
+uplink-switchblade-desc = A cheap blade that switches people from being alive to not.

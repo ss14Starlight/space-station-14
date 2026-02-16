@@ -286,7 +286,7 @@ public sealed partial class MarkingSet
             var index = 0;
             while (points.Points > 0 || index < points.DefaultMarkings.Count)
             {
-                if (markingManager.Markings.TryGetValue(points.DefaultMarkings[index], out var prototype))
+                if (index < points.DefaultMarkings.Count && markingManager.Markings.TryGetValue(points.DefaultMarkings[index], out var prototype)) //starlight: add index sanity check to avoid problems when removing markings
                 {
                     var colors = MarkingColoring.GetMarkingLayerColors(
                             prototype,
@@ -294,9 +294,16 @@ public sealed partial class MarkingSet
                             eyeColor,
                             this
                         );
-                    var marking = new Marking(points.DefaultMarkings[index], colors, false); //starlight
+                    // begin starlight
+                    try {
+                        var marking = new Marking(points.DefaultMarkings[index], colors, false);
 
-                    AddBack(category, marking);
+                        AddBack(category, marking);
+                    } catch (System.ArgumentOutOfRangeException e) {
+                        // marking was deleted and cannot be added, let's purge it:
+                        points.DefaultMarkings.RemoveAt(index);
+                    }
+                    // end starlight
                 }
 
                 index++;

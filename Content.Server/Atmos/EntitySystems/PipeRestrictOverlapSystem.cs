@@ -1,3 +1,5 @@
+// Starlight Start: Move to Shared ``Content.Shared\_Starlight\Atmos\EntitySystems\PipeRestrictOverlapSystem.cs``
+/*
 using System.Linq;
 using Content.Server.Atmos.Components;
 using Content.Server.NodeContainer;
@@ -123,3 +125,6 @@ public sealed class PipeRestrictOverlapSystem : EntitySystem
         }
     }
 }
+
+*/
+// Starlight End: Move to Shared

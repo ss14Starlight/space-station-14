@@ -291,8 +291,8 @@ public abstract partial class SharedChatSystem : EntitySystem
             customChannel = match;
             return true;
         }
-        
-        return false;
+        if(_net.IsServer) _popup.PopupEntity(Loc.GetString("chat-manager-no-such-channel", ("key", channelKey)), source, source);
+        return true;
         //Starlight end
     }
 

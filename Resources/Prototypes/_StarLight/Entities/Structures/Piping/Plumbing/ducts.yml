@@ -1,0 +1,189 @@
+# ============================================================================
+# Plumbing Ducts
+# ============================================================================
+# Ducts allow transport of reagents through the plumbing network.
+# All ducts inherit from PlumbingDuctBase for common components.
+# ============================================================================
+
+# ============================================================================
+# BASE ENTITY
+# ============================================================================
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: PlumbingDuctBase
+  name: fluid duct
+  description: A duct for transporting reagents through the plumbing network.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Visibility
+    layer: 1
+  - type: Item
+    size: Normal
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _Starlight/Structures/Piping/Plumbing/fluid_ducts.rsi
+    drawdepth: ThinPipe
+    visible: false
+  - type: Appearance
+  - type: PipeAppearance
+    sprite:
+    - sprite: _Starlight/Structures/Piping/Plumbing/fluid_ducts.rsi
+      state: ductConnector
+  - type: PipeColorVisuals
+  - type: AtmosPipeColor
+  - type: Clickable
+  - type: InteractionOutline
+  - type: SubFloorHide
+  - type: CollideOnAnchor
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+  - type: NodeContainer
+  - type: Tag
+    tags:
+    - PlumbingDuct
+  - type: Physics
+    canCollide: false
+    bodyType: static
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -8
+      - !type:DoActsBehavior
+        acts: [Breakage]
+  - type: PipeRestrictOverlap
+  - type: RCDDeconstructable
+    cost: 1
+    delay: 2
+    fx: EffectRCDDeconstruct2
+    rpld: true
+  - type: StaticPrice
+    price: 20
+
+# ============================================================================
+# DUCT VARIANTS
+# ============================================================================
+
+# --------------------------------
+# Straight Duct
+# --------------------------------
+- type: entity
+  parent: PlumbingDuctBase
+  id: PlumbingDuctStraight
+  name: fluid duct
+  suffix: Straight
+  components:
+  - type: NodeContainer
+    nodes:
+      duct:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: Longitudinal
+  - type: Sprite
+    layers:
+    - state: ductStraight
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      color: "#4169E1"
+  - type: Item
+    storedSprite:
+      sprite: _Starlight/Structures/Piping/Plumbing/fluid_ducts.rsi
+      state: storageStraight
+    shape:
+    - 0,0,0,2
+
+# --------------------------------
+# Bend Duct
+# --------------------------------
+- type: entity
+  parent: PlumbingDuctBase
+  id: PlumbingDuctBend
+  name: fluid duct
+  suffix: Bend
+  components:
+  - type: NodeContainer
+    nodes:
+      duct:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: SWBend
+  - type: Sprite
+    layers:
+    - state: ductBend
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      color: "#4169E1"
+  - type: Item
+    size: Small
+    storedSprite:
+      sprite: _Starlight/Structures/Piping/Plumbing/fluid_ducts.rsi
+      state: storageBend
+
+# --------------------------------
+# T-Junction Duct
+# --------------------------------
+- type: entity
+  parent: PlumbingDuctBase
+  id: PlumbingDuctTJunction
+  name: fluid duct
+  suffix: T-Junction
+  components:
+  - type: NodeContainer
+    nodes:
+      duct:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: TSouth
+  - type: Sprite
+    layers:
+    - state: ductTJunction
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      color: "#4169E1"
+  - type: Item
+    storedSprite:
+      sprite: _Starlight/Structures/Piping/Plumbing/fluid_ducts.rsi
+      state: storageTjunction
+
+# --------------------------------
+# Fourway Duct
+# --------------------------------
+- type: entity
+  parent: PlumbingDuctBase
+  id: PlumbingDuctFourway
+  name: fluid duct
+  suffix: Fourway
+  components:
+  - type: NodeContainer
+    nodes:
+      duct:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: Fourway
+  - type: Sprite
+    layers:
+    - state: ductFourway
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+      color: "#4169E1"
+  - type: Item
+    size: Small
+    storedSprite:
+      sprite: _Starlight/Structures/Piping/Plumbing/fluid_ducts.rsi
+      state: storageFourway

@@ -34,7 +34,6 @@ public sealed class PaperSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IdentitySystem _identitySystem = default!; // Starlight-edit
 
     private static readonly ProtoId<TagPrototype> WriteIgnoreStampsTag = "WriteIgnoreStamps";
     private static readonly ProtoId<TagPrototype> WriteTag = "Write";
@@ -316,7 +315,7 @@ public sealed class PaperSystem : EntitySystem
             return;
 
         // Pens have a `Write` tag.
-        if (!args.Using.HasValue || !_tagSystem.HasTag(args.Using.Value, "Write"))
+        if (!args.Using.HasValue || !_tagSystem.HasTag(args.Using.Value, WriteTag))
             return;
 
         EntityUid user = args.User;

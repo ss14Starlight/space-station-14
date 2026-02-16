@@ -81,6 +81,16 @@
     allowedDepartments: [ Engineering, Security ]
     allowedJobs: [ SalvageSpecialist, SalvageLead ]
 
+# it got worse
+- type: entity
+  id: BaseEngineeringSecurityCommandSalvageMiningContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Engineering, Security, Command ]
+    allowedJobs: [ SalvageSpecialist, SalvageLead, MiningSpecialist ]
+
 - type: entity
   id: BaseLawContraband
   parent: BaseRestrictedContraband
@@ -90,12 +100,29 @@
     allowedDepartments: [ Law ]
 
 - type: entity
+  id: BaseJanitorSecurityContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ Janitor ]
+    allowedDepartments: [ Security ]
+
+- type: entity
   id: BaseEngineeringSecurityContraband
   parent: BaseRestrictedContraband
   abstract: true
   components:
     - type: Contraband
       allowedDepartments: [ Engineering, Security ]
+
+- type: entity
+  id: BaseEngineeringSecurityCommandContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+    - type: Contraband
+      allowedDepartments: [ Engineering, Security, Command ]
 
 - type: entity
   id: BaseSecurityBartenderZookeeperContraband

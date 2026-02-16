@@ -1,0 +1,119 @@
+# pointy ears, slenderer torso (todo)
+
+- type: entity
+  id: PartElf
+  parent: [BaseItem, BasePart]
+  name: "elf body part"
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: TorsoElf
+  name: "elf torso"
+  parent: [PartElf, BaseTorso]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Elf/parts.rsi
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: HeadElf
+  name: "elf head"
+  parent: [PartElf, BaseHead]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Elf/parts.rsi
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: LeftArmElf
+  name: "left elf arm"
+  parent: [PartElf, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Elf/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmElf
+  name: "right elf arm"
+  parent: [PartElf, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Elf/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandElf
+  name: "left elf hand"
+  parent: [PartElf, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Elf/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandElf
+  name: "right elf hand"
+  parent: [PartElf, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Elf/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegElf
+  name: "left elf leg"
+  parent: [PartElf, BaseLeftLeg]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Elf/parts.rsi
+    state: "l_leg"
+
+- type: entity
+  id: RightLegElf
+  name: "right elf leg"
+  parent: [PartElf, BaseRightLeg]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Elf/parts.rsi
+    state: "r_leg"
+
+- type: entity
+  id: LeftFootElf
+  name: "left elf foot"
+  parent: [PartElf, BaseLeftFoot]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Elf/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: RightFootElf
+  name: "right elf foot"
+  parent: [PartElf, BaseRightFoot]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Elf/parts.rsi
+    state: "r_foot"

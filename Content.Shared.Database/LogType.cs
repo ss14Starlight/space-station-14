@@ -391,6 +391,7 @@ public enum LogType
     /// Tiles related interactions.
     /// </summary>
     Tile = 86,
+    ObjectiveSummary = 422, // Starlight
 
     /// <summary>
     /// A client has sent too many chat messages recently and is temporarily blocked from sending more.

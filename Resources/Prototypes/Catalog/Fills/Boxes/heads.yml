@@ -24,6 +24,7 @@
         - id: AtmosMonitoringComputerCircuitboard
         - id: PowerComputerCircuitboard
         - id: SolarControlComputerCircuitboard
+        - id: BluespaceHarvesterMachineCircuitboard # Starlight
 
 - type: entity
   parent: ToteBase

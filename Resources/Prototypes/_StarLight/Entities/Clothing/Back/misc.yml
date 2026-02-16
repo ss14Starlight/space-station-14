@@ -17,11 +17,12 @@
       sprite: _Starlight/Clothing/Back/nullspaceteleporter.rsi
     - type: IdClothingBlocker
       freezeUser: false
-      allowedJobs:
+      allowedAccesses:
         - Security
         - Cadet
         - Command
     - type: NullSpaceDrainer
+    - type: TheDarkImmune
     - type: ResearchClient
     - type: ActivatableUI
       inHandsOnly: true

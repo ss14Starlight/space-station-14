@@ -132,7 +132,7 @@
       offset: *icon-offset
       state: NTNCBlueShield
   - type: PresetIdCard
-    job: NTNCBlueshield
+    job: NTNCBlueShield
 
 - type: entity
   parent: [ IDCardStandard, BaseCargoContraband ]

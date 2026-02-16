@@ -7,9 +7,9 @@
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
       time: 36000 # 10 hrs
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 28800 # 8 hrs
+    - !type:RoleTimeRequirement
+      role: JobChemist
+      time: 14400 # 4 hrs
   startingGear: BrigmedicGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos

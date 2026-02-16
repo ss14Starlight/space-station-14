@@ -44,6 +44,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Rounding;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Enumerators;
+using Content.Shared.Starlight.Medical.Surgery.Steps.Parts; // Starlight
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -147,6 +148,7 @@ public abstract class SharedStorageSystem : EntitySystem
         SubscribeLocalEvent<StorageComponent, InteractUsingEvent>(OnInteractUsing, after: new[] { typeof(ItemSlotsSystem) });
         SubscribeLocalEvent<StorageComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<StorageComponent, OpenStorageImplantEvent>(OnImplantActivate);
+        SubscribeLocalEvent<StorageComponent, OpenStorageOrganEvent>(OnOrganActivate);//Starlight
         SubscribeLocalEvent<StorageComponent, AfterInteractEvent>(AfterInteract);
         SubscribeLocalEvent<StorageComponent, DestructionEventArgs>(OnDestroy);
         SubscribeLocalEvent<StorageComponent, BoundUserInterfaceMessageAttempt>(OnBoundUIAttempt);
@@ -445,6 +447,11 @@ public abstract class SharedStorageSystem : EntitySystem
         if (!Resolve(uid, ref storageComp, false))
             return;
 
+        // Starlight-start: TODO change this to before storage opened event
+        if (HasComp<LockedStorageComponent>(uid) && TryComp<LockComponent>(uid, out var lockComponent) && lockComponent.Locked)
+            return;
+        // Starlight-end
+
         // prevent spamming bag open / honkerton honk sound
         silent |= TryComp<UseDelayComponent>(uid, out var useDelay) && UseDelay.IsDelayed((uid, useDelay), id: OpenUiUseDelayID);
         if (!CanInteract(entity, (uid, storageComp), silent: silent))
@@ -572,6 +579,29 @@ public abstract class SharedStorageSystem : EntitySystem
 
         args.Handled = true;
     }
+
+    //Starlight Start
+    /// <summary>
+    /// Specifically for storage organs.
+    /// </summary>
+    private void OnOrganActivate(EntityUid uid, StorageComponent storageComp, OpenStorageOrganEvent args)
+    {
+        if (args.Handled)
+            return;
+        
+        if(!TryComp(uid, out StorageOrganComponent? organ) || organ.ActionKey != args.Key)
+            return;
+
+        var uiOpen = UI.IsUiOpen(uid, StorageComponent.StorageUiKey.Key, args.Performer);
+
+        if (uiOpen)
+            UI.CloseUi(uid, StorageComponent.StorageUiKey.Key, args.Performer);
+        else
+            OpenStorageUI(uid, args.Performer, storageComp, false);
+
+        args.Handled = true;
+    }
+    //Starlight End
 
     /// <summary>
     /// Allows a user to pick up entities by clicking them, or pick up all entities in a certain radius

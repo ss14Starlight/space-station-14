@@ -100,6 +100,9 @@ language-Thaveyan-description = A lyrical sing-songy language common to the Thav
 language-Darktongue-name = Darktongue
 language-Darktongue-description = Sounds a bit like clearing your throat, or perhaps slitting someone else's.
 
+language-Felyaic-name = Felyaic
+language-Felyaic-description = A more ponderous form of Darktongue spoken in deep, dark places by the detarii.
+
 language-Grumbakul-name = Grumbakul
 language-Grumbakul-description = A terse, sturdy language fit for drink and industry.
 
@@ -107,7 +110,7 @@ language-Classical-name = Classical
 language-Classical-description = Once upon a time, everyone spoke this language. They were mostly quite bad at it.
 
 language-Aielic-name = Aielic
-language-Aielic-description = The musical language of a nearly-extinct species known for its beautiful literature, pointy ears, once-vast empire.
+language-Aielic-description = Supposedly the original language of the aielithii, now only spoken by the Queli.
 
 language-Lagomorphian-name = Laguine
 language-Lagomorphian-description = A very lynarxical tongue, developed as an integration language for the Lagomorph's differing vocal structure.

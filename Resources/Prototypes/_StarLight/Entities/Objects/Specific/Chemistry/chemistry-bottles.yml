@@ -1,0 +1,14 @@
+- type: entity
+  id: ChemistryBottleChloralHydrate
+  suffix: chloral hydrate
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-chloral-hydrate
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: ChloralHydrate
+          Quantity: 30

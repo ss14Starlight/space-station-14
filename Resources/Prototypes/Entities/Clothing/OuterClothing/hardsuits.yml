@@ -342,6 +342,8 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
+  - type: StealTarget # Starlight
+    stealGroup: BrigmedicHardsuit # Starlight
 
 #Warden's Hardsuit
 - type: entity
@@ -376,10 +378,12 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWarden
+  - type: StealTarget # Starlight
+    stealGroup: WardenHardsuit # Starlight
 
 #Captain's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband] # Starlight, grand theft
   id: ClothingOuterHardsuitCap
   name: captain's armored spacesuit
   description: A formal armored spacesuit, made for the station's captain.
@@ -416,10 +420,12 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: StealTarget # Starlight
+    stealGroup: CaptainHardsuit # Starlight
 
 #Chief Engineer's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband] # Starlight, Grand theft
   id: ClothingOuterHardsuitEngineeringWhite
   name: chief engineer's hardsuit
   description: A special hardsuit that protects against hazardous, low pressure environments, made for the chief engineer of the station.
@@ -457,10 +463,12 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: StealTarget # Starlight
+    stealGroup: CEHardsuit # Starlight
 
 #Chief Medical Officer's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband] # Starlight, grand theft
   id: ClothingOuterHardsuitMedical
   name: chief medical officer's hardsuit
   description: A special suit that protects against hazardous, low pressure environments. Built with lightweight materials for easier movement.
@@ -491,6 +499,8 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: StealTarget # Starlight
+    stealGroup: CMOHardsuit # Starlight
 
 #Research Director's Hardsuit
 - type: entity
@@ -539,10 +549,11 @@
     price: 750
   - type: StealTarget
     stealGroup: ClothingOuterHardsuitRd
+  - type: TheDarkImmune # Starlight
 
 #Head of Security's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband] # Starlight, grand theft
   id: ClothingOuterHardsuitSecurityRed
   name: head of security's hardsuit
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
@@ -598,6 +609,8 @@
     useCharge: 0
   - type: UseDelay
     delay: 10.0
+  - type: StealTarget # Starlight
+    stealGroup: HOSHardsuit # Starlight
 
 #Luxury Mining Hardsuit
 - type: entity

@@ -30,7 +30,7 @@
     tags:
     - HighRiskItem
   - type: StealTarget
-    stealGroup: HandheldCrewMonitor
+    stealGroup: CrewMonitorCollection
 
 - type: entity
   id: HandheldCrewMonitorEmpty

@@ -16,6 +16,7 @@
     - GalacticCommon
     - Lagomorphian
   - type: StaminaSurge
+  - type: Zoomies
   - type: Icon
     sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
     state: full
@@ -44,6 +45,11 @@
       Thirsty: 310
       Parched: 155
       Dead: 0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Critical
+      180: Dead
   - type: Speech
     speechSounds: ALLagomorph
     speechVerb: Lagomorph

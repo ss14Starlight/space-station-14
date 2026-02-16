@@ -77,6 +77,7 @@
         - id: ClothingUniformJumpsuitBrigmedic
         - id: ClothingUniformJumpskirtBrigmedic
         - id: ClothingUniformJumpskirtOfLife
+        - id: ClothingUniformJumpsuitOfLife
         - id: ClothingHeadHatBeretCorpsman
         - id: ClothingOuterCoatCorpsman
         - id: ClothingUniformJumpsuitCorpsman
@@ -167,6 +168,8 @@
           amount: 4
         - id: Binoculars
           amount: 2
+        - id: NeuralLinkDisruptor
+          amount: 2
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
@@ -179,11 +182,13 @@
       entity_storage: !type:AllSelector
         children:
         - id: WeaponRifleL10
-          amount: 2
+          amount: 3
         - id: MagazineDMRSP
-          amount: 3
+          amount: 4
         - id: MagazineDMRFMJ
-          amount: 3
+          amount: 4
+        - id: HammerBreachingNT
+          amount: 1
 
 - type: entity
   parent: [GunSafe, BaseSecurityContraband]

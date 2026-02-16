@@ -13,3 +13,19 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_hair.rsi
       state: himecutwithtails
+
+- type: marking
+  id: HumanHairShortFluffy
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: shortfluffy
+  
+- type: marking
+  id: HumanHairReiHair
+  bodyPart: Hair 
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: reihair

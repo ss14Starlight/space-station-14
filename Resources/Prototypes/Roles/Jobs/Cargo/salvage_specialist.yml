@@ -7,7 +7,7 @@
     - !type:DepartmentTimeRequirement
       department: Cargo
       time: 2.5h
-  icon: "JobIconSalvageSpec" # Starlight - New distinct icon
+  icon: "JobIconSalvageSpecialist" # Starlight - New distinct icon
   startingGear: SalvageSpecialistGear
   supervisors: job-supervisors-qm
   canBeAntag: false

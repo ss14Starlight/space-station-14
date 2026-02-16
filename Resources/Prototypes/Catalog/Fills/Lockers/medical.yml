@@ -102,6 +102,7 @@
     - id: BoxVial
     - id: PlasmaChemistryVial
     - id: ChemBag
+    - id: RPLD # Starlight
     - id: ClothingHandsGlovesLatex
     - id: ClothingHeadsetMedical
     - id: ClothingMaskSterile

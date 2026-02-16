@@ -1,6 +1,5 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Content.Shared.Atmos.Components; // Starlighgt: RPD
 
 namespace Content.Shared.RCD;
 
@@ -16,14 +15,8 @@ public sealed class RCDConstructionGhostRotationEvent(NetEntity netEntity, Direc
     public readonly NetEntity NetEntity = netEntity;
     public readonly Direction Direction = direction;
 }
-// Starlighgt Start: RPD
-[Serializable, NetSerializable]
-public sealed class RCDConstructionGhostLayerEvent(NetEntity netEntity, AtmosPipeLayer layer) : EntityEventArgs
-{
-    public readonly NetEntity NetEntity = netEntity;
-    public readonly AtmosPipeLayer Layer = layer;
-}
 
+// Starlight Start: RPD
 [Serializable, NetSerializable]
 public sealed class RCDConstructionGhostFlipEvent : EntityEventArgs
 {
@@ -35,7 +28,20 @@ public sealed class RCDConstructionGhostFlipEvent : EntityEventArgs
         UseMirrorPrototype = useMirrorPrototype;
     }
 }
-// Starlight End
+
+[Serializable, NetSerializable]
+public sealed class RPDEyeRotationEvent : EntityEventArgs
+{
+    public readonly NetEntity NetEntity;
+    public float? EyeRotation;
+
+    public RPDEyeRotationEvent(NetEntity netEntity, float? eyeRotation)
+    {
+        NetEntity = netEntity;
+        EyeRotation = eyeRotation;
+    }
+}
+// Starlight End: RPD
 
 [Serializable, NetSerializable]
 public enum RcdUiKey : byte

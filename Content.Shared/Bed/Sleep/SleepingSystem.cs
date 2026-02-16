@@ -36,7 +36,6 @@ public sealed partial class SleepingSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
     [Dependency] private readonly BlindableSystem _blindableSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -141,8 +140,10 @@ public sealed partial class SleepingSystem : EntitySystem
 
         _stun.TryUnstun(ent.Owner);
         _stun.TryStanding(ent.Owner);
-
-        RemComp<SpamEmitSoundComponent>(ent);
+        // Starlight edit Start
+        if (!TerminatingOrDeleted(ent))
+            RemCompDeferred<SpamEmitSoundComponent>(ent);
+        // Starlight edit end
     }
 
     private void OnCompInit(Entity<SleepingComponent> ent, ref ComponentInit args)

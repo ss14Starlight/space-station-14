@@ -30,6 +30,7 @@
       - !type:GibBehavior
         recursive: false
   - type: MeleeWeapon
+    altDisarm: false
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
     angle: 0

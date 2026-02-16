@@ -262,6 +262,9 @@
     - !type:GridInRangeRule
       inverted: true
       range: 3
+    - !type:OnMapTagRule # Starlight
+      mapTag: TheDark
+      inverted: true
 
 # TODO
 - type: rules

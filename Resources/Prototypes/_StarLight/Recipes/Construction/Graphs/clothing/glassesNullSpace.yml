@@ -26,10 +26,5 @@
             icon:
               sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
               state: eyes
-          - tag: DamagedShadekinCore
-            name: construction-graph-tag-shadekin-core
-            icon:
-              sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
-              state: core
     - node: glasses
       entity: ClothingEyesGlassesNullSpace

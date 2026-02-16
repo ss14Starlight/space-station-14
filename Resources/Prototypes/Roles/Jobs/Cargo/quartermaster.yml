@@ -15,7 +15,7 @@
       time: 20h # Starlight
   weight: 10
   startingGear: QuartermasterGear
-  icon: "JobIconQuarterMaster"
+  icon: "JobIconQuartermaster" #Starlight
   supervisors: job-supervisors-captain
   canBeAntag: false
   access:

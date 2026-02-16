@@ -50,3 +50,5 @@ command-description-crewmanifest-addplayer =
     Adds the specified player to the crew manifest(s) of the piped station(s).
 command-description-crewmanifest-removeplayer =
     Removes the specified player to the crew manifest(s) of the piped station(s).
+command-description-job-set = 
+    Changes the job of the piped entity.

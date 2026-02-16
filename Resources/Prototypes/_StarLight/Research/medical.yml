@@ -215,6 +215,8 @@
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
+  technologyPrerequisites:
+  - BluespaceManipulation
   radioChannels:
   - Medical
 

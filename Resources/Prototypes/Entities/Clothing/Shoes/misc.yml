@@ -122,6 +122,7 @@
   - type: Clothing
     sprite: Clothing/Shoes/Misc/snakeskin.rsi
 
+# Starlight edit - Left speed boots with removed lathe recipe as an admeme item
 - type: entity
   parent: [ClothingShoesBase, PowerCellSlotSmallItem, BaseToggleClothing]
   id: ClothingShoesBootsSpeed
@@ -170,6 +171,7 @@
     itemIconStyle: BigItem
   - type: InstantAction
     event: !type:ToggleActionEvent
+# Starlight edit end
 
 - type: entity
   parent: ClothingShoesBase

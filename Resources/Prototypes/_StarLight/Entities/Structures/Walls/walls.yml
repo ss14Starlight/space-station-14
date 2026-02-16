@@ -136,3 +136,14 @@
   - type: IconSmooth
     key: walls
     base: xenoborglight
+
+- type: entity
+  parent: WallWood
+  id: WallDarkWood
+  name: dark wood wall
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/gray_wood.rsi
+    color: "#795382"
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/gray_wood.rsi

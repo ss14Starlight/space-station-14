@@ -206,3 +206,103 @@
       fileName: classified_secure_document_xenoborgs.txt
     - type: StealTarget
       stealGroup: SecureKnowledgeSteal
+
+### Secure Briefings
+
+- type: entity
+  id: BriefDocumentRevs
+  name: USSP Secure Briefing
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security on the risks of USSP activity.
+  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  components:
+    - type: Item
+      size: Small
+    - type: TextFilePaperContent
+      fileName: brief_sec_Revs.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+- type: entity
+  id: BriefDocumentLings
+  name: Changeling Secure Briefing
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security on the existance of Changelings.
+  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  components:
+    - type: Item
+      size: Small
+    - type: TextFilePaperContent
+      fileName: brief_sec_Lings.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+- type: entity
+  id: BriefDocumentBrightEyes
+  name: Bright-Eyes Secure Briefing
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security on the existance of Bright-Eyes.
+  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  components:
+    - type: Item
+      size: Small
+    - type: TextFilePaperContent
+      fileName: brief_sec_BrightEyes.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+- type: entity
+  id: BriefDocumentVampires
+  name: Vampires Secure Briefing
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security on the existance of Vampires.
+  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  components:
+    - type: Item
+      size: Small
+    - type: TextFilePaperContent
+      fileName: brief_sec_Vampires.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+- type: entity
+  id: BriefDocumentSyndicate
+  name: Syndicate Agent Secure Briefing
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security on the existance of Syndicate Agents.
+  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  components:
+    - type: Item
+      size: Small
+    - type: TextFilePaperContent
+      fileName: brief_sec_Syndicate.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+- type: entity
+  id: BriefDocumentWizard
+  name: Wizard Secure Briefing
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security on the existance of Wizards.
+  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  components:
+    - type: Item
+      size: Small
+    - type: TextFilePaperContent
+      fileName: brief_sec_Wizard.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+- type: entity
+  id: BriefDocumentXorgs
+  name: Xenoborg Secure Briefing
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security on the existance of Xenoborgs.
+  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  components:
+    - type: Item
+      size: Small
+    - type: TextFilePaperContent
+      fileName: brief_sec_Xorgs.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal

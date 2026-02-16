@@ -1,7 +1,5 @@
 using System.Linq;
 using Content.Server._Starlight.Computers.RemoteEye;
-using Content.Shared._Starlight.Actions.EntitySystems;
-using Content.Shared.Actions.Components;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.DoAfter;
@@ -10,9 +8,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
-using Content.Shared.Popups;
 using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Starlight.Medical.Surgery;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -32,10 +28,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly RemoteEyeSystem _remoteEye = default!;
 
-    private static readonly EntProtoId<InstantActionComponent> _gizmoMark = "ActionGizmoMark";
-    private static readonly EntProtoId<InstantActionComponent> _sendYourself = "ActionSendYourself";
-    private static readonly EntProtoId<InstantActionComponent> _exitAction = "ActionExitConsole";
-
     private static readonly EntProtoId _teleportationEffect = "EffectTeleportation";
     private static readonly EntProtoId _teleportationEffectEntity = "EffectTeleportationEntity";
     public void InitializeActions()
@@ -54,31 +46,31 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         SubscribeLocalEvent<GizmoMarkEvent>(OnGizmoMark);
     }
 
-    private void AbductorScientistComponentStartup(Entity<AbductorScientistComponent> ent, ref ComponentStartup args)
-    {
-        ent.Comp.SpawnPosition = EnsureComp<TransformComponent>(ent).Coordinates;
+    private void AbductorScientistComponentStartup(Entity<AbductorScientistComponent> ent, ref ComponentStartup args) 
+        => InitializeComponentStartup(ent.Owner, ent.Comp);
 
-        EnsureComp<TransformComponent>(ent, out var xform);
+    private void AbductorAgentComponentStartup(Entity<AbductorAgentComponent> ent, ref ComponentStartup args) 
+        => InitializeComponentStartup(ent.Owner, ent.Comp);
+
+    private void InitializeComponentStartup(EntityUid uid, Component comp)
+    {
+        var xform = Transform(uid);
         var console = _entityLookup.GetEntitiesInRange<AbductorConsoleComponent>(xform.Coordinates, 4, LookupFlags.Approximate | LookupFlags.Dynamic).FirstOrDefault();
 
         if (console == default)
             return;
 
-        console.Comp.Scientist = ent;
-        SyncAbductors(console);
-    }
+        if (comp is AbductorScientistComponent sci)
+        {
+            sci.SpawnPosition = xform.Coordinates;
+            console.Comp.Scientist = uid;
+        }
+        else if (comp is AbductorAgentComponent agent)
+        {
+            agent.SpawnPosition = xform.Coordinates;
+            console.Comp.Agent = uid;
+        }
 
-    private void AbductorAgentComponentStartup(Entity<AbductorAgentComponent> ent, ref ComponentStartup args)
-    {
-        ent.Comp.SpawnPosition = EnsureComp<TransformComponent>(ent).Coordinates;
-
-        EnsureComp<TransformComponent>(ent, out var xform);
-        var console = _entityLookup.GetEntitiesInRange<AbductorConsoleComponent>(xform.Coordinates, 4, LookupFlags.Approximate | LookupFlags.Dynamic).FirstOrDefault();
-
-        if (console == default)
-            return;
-
-        console.Comp.Agent = ent;
         SyncAbductors(console);
     }
 
@@ -116,17 +108,17 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
         _color.RaiseEffect(Color.FromHex("#BA0099"), new List<EntityUid>(1) { ev.Performer }, Filter.Pvs(ev.Performer, entityManager: EntityManager));
         EnsureComp<TransformComponent>(ev.Performer, out var xform);
+
         var effectEnt = SpawnAttachedTo(_teleportationEffectEntity, xform.Coordinates);
         _xformSys.SetParent(effectEnt, ev.Performer);
         EnsureComp<TimedDespawnComponent>(effectEnt, out var despawnEffectEntComp);
         despawnEffectEntComp.Lifetime = 3.0f;
-        _audioSystem.PlayPvs("/Audio/_Starlight/Misc/alien_teleport.ogg", effectEnt);
-
+        _audioSystem.PlayPvs(_alienTeleport, effectEnt);
 
         var effect = _entityManager.SpawnEntity(_teleportationEffect, spawnPosition.Value);
         EnsureComp<TimedDespawnComponent>(effect, out var despawnComp);
         despawnComp.Lifetime = 3.0f;
-        _audioSystem.PlayPvs("/Audio/_Starlight/Misc/alien_teleport.ogg", effect);
+        _audioSystem.PlayPvs(_alienTeleport, effect);
 
         var doAfter = new DoAfterArgs(EntityManager, ev.Performer, TimeSpan.FromSeconds(3), new AbductorReturnDoAfterEvent(), ev.Performer);
         _doAfter.TryStartDoAfter(doAfter);
@@ -142,9 +134,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         if (HasComp<StunnedComponent>(ent) ||
             (TryComp<CuffableComponent>(ent, out var cuffable) && _cuffs.IsCuffed((ent, cuffable))) ||
             _mobState.IsDead(ent))
-        {
             return;
-        }
 
         Return(ent, ent.Comp, null);
     }
@@ -158,9 +148,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         if (HasComp<StunnedComponent>(ent) ||
             (TryComp<CuffableComponent>(ent, out var cuffable) && _cuffs.IsCuffed((ent, cuffable))) ||
             _mobState.IsDead(ent))
-        {
             return;
-        }
 
         Return(ent, null, ent.Comp);
     }
@@ -168,7 +156,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     private void Return(EntityUid uid, AbductorScientistComponent? scientistComp, AbductorAgentComponent? agentComp)
     {
 
-        _color.RaiseEffect(Color.FromHex("#BA0099"), new List<EntityUid>(1) { uid }, Filter.Pvs(uid, entityManager: EntityManager));
         if (_pullingSystem.IsPulling(uid))
         {
             if (!TryComp<PullerComponent>(uid, out var pullerComp)
@@ -203,10 +190,10 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         EnsureComp<TransformComponent>(ev.Performer, out var xform);
         var effectEnt = SpawnAttachedTo(_teleportationEffectEntity, xform.Coordinates);
         _xformSys.SetParent(effectEnt, ev.Performer);
-        EnsureComp<TimedDespawnComponent>(effectEnt, out var despawnEffectEntComp);
+        EnsureComp<TimedDespawnComponent>(effectEnt);
 
         var effect = _entityManager.SpawnEntity(_teleportationEffect, ev.Target);
-        EnsureComp<TimedDespawnComponent>(effect, out var despawnComp);
+        EnsureComp<TimedDespawnComponent>(effect);
 
         var @event = new AbductorSendYourselfDoAfterEvent(GetNetCoordinates(ev.Target));
         var doAfter = new DoAfterArgs(EntityManager, ev.Performer, TimeSpan.FromSeconds(5), @event, ev.Performer);
@@ -214,15 +201,9 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         ev.Handled = true;
     }
 
-    private void OnDoAfterAbductorScientistSendYourself(Entity<AbductorScientistComponent> ent, ref AbductorSendYourselfDoAfterEvent args)
-    {
-        OnDoAfterSendYourself(ent, args);
-    }
+    private void OnDoAfterAbductorScientistSendYourself(Entity<AbductorScientistComponent> ent, ref AbductorSendYourselfDoAfterEvent args) => OnDoAfterSendYourself(ent, args);
 
-    private void OnDoAfterAbductorAgentSendYourself(Entity<AbductorAgentComponent> ent, ref AbductorSendYourselfDoAfterEvent args)
-    {
-        OnDoAfterSendYourself(ent, args);
-    }
+    private void OnDoAfterAbductorAgentSendYourself(Entity<AbductorAgentComponent> ent, ref AbductorSendYourselfDoAfterEvent args) => OnDoAfterSendYourself(ent, args);
 
     private void OnDoAfterSendYourself(EntityUid ent, AbductorSendYourselfDoAfterEvent args)
     {

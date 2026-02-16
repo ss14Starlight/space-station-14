@@ -230,13 +230,19 @@ namespace Content.Server.Lathe
                 var currentRecipe = _proto.Index(comp.CurrentRecipe.Value);
                 if (currentRecipe.Result is { } resultProto)
                 {
-                    var result = Spawn(resultProto, Transform(uid).Coordinates);
+
+                    //Starlight Start
+                    var transform = Transform(uid).Coordinates;
+                    if (_container.IsEntityInContainer(uid))
+                        transform = Transform(_container.GetContainingContainers(uid).Last().Owner).Coordinates;
+                    var result = Spawn(resultProto, transform);
                     _stack.TryMergeToContacts(result);
                     if (currentRecipe.PrintTicket)
                     {
-                        var tickets = Spawn(currentRecipe.TicketProtoId, Transform(uid).Coordinates);
+                        var tickets = Spawn(currentRecipe.TicketProtoId, transform);
                         _stack.TryMergeToContacts(tickets);
                     }
+                    //Starlight End
                 }
 
                 if (currentRecipe.ResultReagents is { } resultReagents &&

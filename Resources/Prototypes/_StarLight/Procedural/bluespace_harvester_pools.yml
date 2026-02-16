@@ -1,0 +1,74 @@
+- type: weightedRandomEntity
+  id: BluespaceHarvesterExoticHatTable
+  weights:
+    ClothingHeadHatTophat: 1
+    ClothingHeadHatFedoraBrown: 1
+    ClothingHeadHatFedoraGrey: 1
+    ClothingHeadHatCowboyBrown: 1
+    ClothingHeadHatCowboyWhite: 1
+    ClothingHeadHatSombrero: 0.75
+    ClothingHeadHatChef: 0.5
+    ClothingHeadHatBowlerHat: 0.6
+    ClothingHeadHatFez: 0.5
+    ClothingHeadHatUshanka: 0.5
+    ClothingHeadHatOutlawHat: 0.35
+    ClothingHeadHatPirate: 0.35
+    ClothingHeadHatPlaguedoctor: 0.3
+    ClothingHeadHatCardborg: 0.25
+    ClothingHeadHatWitch: 0.25
+    ClothingHeadHatWizard: 0.2
+    ClothingHeadHatRedwizard: 0.2
+    ClothingHeadHatVioletwizard: 0.2
+    ClothingHeadHatSantahat: 0.2
+    ClothingHeadHatCaptain: 0.15
+    ClothingHeadHatCentcom: 0.1
+
+- type: weightedRandomEntity
+  id: BluespaceHarvesterSnackTable
+  weights:
+    RandomSnacks: 1
+
+- type: weightedRandomEntity
+  id: BluespaceHarvesterBasicMaterialsTable
+  weights:
+    SheetPlasteel: 1
+    SheetSteel: 1
+    SheetPlastic: 1
+    SheetGlass: 1
+
+- type: weightedRandomEntity
+  id: BluespaceHarvesterArtifactTable
+  weights:
+    RandomArtifactSpawner: 1
+
+- type: bluespaceHarvesterPool
+  id: BluespaceHarvesterExoticHat
+  name: bluespace-harvester-pool-exotic-hat
+  cost: 3000
+  enabled: true
+  order: 1
+  lootTable: BluespaceHarvesterExoticHatTable
+
+- type: bluespaceHarvesterPool
+  id: BluespaceHarvesterBasicMaterials
+  name: bluespace-harvester-pool-basic-materials
+  cost: 2000
+  enabled: true
+  order: 2
+  lootTable: BluespaceHarvesterBasicMaterialsTable
+
+- type: bluespaceHarvesterPool
+  id: BluespaceHarvesterSnack
+  name: bluespace-harvester-pool-snack
+  cost: 1500
+  enabled: true
+  order: 3
+  lootTable: BluespaceHarvesterSnackTable
+
+- type: bluespaceHarvesterPool
+  id: BluespaceHarvesterCulturalArtifact
+  name: bluespace-harvester-pool-artifact
+  cost: 10000
+  enabled: true
+  order: 4
+  lootTable: BluespaceHarvesterArtifactTable

@@ -27,7 +27,7 @@
         - id: BriefcaseSecure
         - !type:NestedSelector
           tableId: CorporateDocumentTable
-  
+
 - type: entity
   id: LockerRepresentativeFilledBluespaced
   suffix: Filled, Bluespaced
@@ -125,11 +125,12 @@
         - id: ClothingUniformJumpskirtBlueShield
         - id: HandheldGPSBasic
         - id: ClothingNeckCloakBsoElite
-        - id: ClothingNeckCloakBsoElite
+        - id: ClothingNeckCloakBsoPoncho
         - id: RadioHandheldSecurity
         - id: ClothingUniformJumpsuitBlueShieldShirt
         - id: ClothingUniformJumpskirtBlueShieldSkirt
         - id: ClothingOuterCoatBlueShield
+        - id: ClothingOuterArmorBlueShield
         - id: ClothingNeckCloakBsoCape
         - id: RubberStampBSO
 
