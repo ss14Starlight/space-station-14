@@ -139,7 +139,6 @@
     - id: ClothingUniformJumpsuitOfLife # Starlight
       prob: 0.1 # Starlight
     - id: MedkitFilled
-    - id: PlasmaChemistryVial # Starlight
     - id: BedsheetBrigmedicStrange # Starlight
     - id: BedsheetBrigmedic # Starlight
     - !type:GroupSelector
