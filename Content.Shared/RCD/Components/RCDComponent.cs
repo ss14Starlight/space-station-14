@@ -44,8 +44,10 @@ public sealed partial class RCDComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     public RCDPrototype CachedPrototype { get; set; } = default!;
 
+
     /// <summary>
-    /// Indicates if a mirrored version of the construction prototype should be used (if available)
+    /// When true the RCD will use the prototype's MirrorPrototype (if available) for placement/validation.
+    /// This is networked so the server can validate/finalize mirror placement.
     /// </summary>
     [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public bool UseMirrorPrototype = false;
@@ -56,6 +58,12 @@ public sealed partial class RCDComponent : Component
     [DataField, AutoNetworkedField]
     public bool IsRpd { get; set; } = false;
     // Starlight End
+    
+    /// <summary>
+    /// Indicates whether this is an RPLD (plumbing)
+    /// </summary>
+    [DataField("isRPLD"), AutoNetworkedField]
+    public bool IsRPLD { get; set; } = false;
 
     /// <summary>
     /// The direction constructed entities will face upon spawning

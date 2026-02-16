@@ -30736,5 +30736,51 @@ Entries:
   id: 331001
   time: '2026-02-15T22:02:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3310
+- author: FeralCreature
+  changes:
+  - message: Following a major breakthrough a method of transporting liquids through
+      pipe-like ducts has been discovered... We have decided to call this new technology
+      plumbing.
+    type: Add
+  - message: Plumbing input, a small tank that you can pour reagents into.
+    type: Add
+  - message: Plumbing output, a small tank that you can draw reagents from using a
+      container.
+    type: Add
+  - message: Plumbing Tank, a large tank for storing greater quantities of reagents.
+    type: Add
+  - message: Plumbing Filter, used to separate off specific reagents from a plumbing
+      network.
+    type: Add
+  - message: Plumbing Reactor, pulls in specified reagents at specified quantities
+      and then fully reacts them.
+    type: Add
+  - message: Plumbing Pill Press, pulls in reagents and presses them into pills or
+      patches.
+    type: Add
+  - message: Plumbing Synthesizer, generates basic reagents using power.
+    type: Add
+  - message: Plumbing Smart Fridge, pulls in and stores reagents for dispensing into
+      labeled jugs.
+    type: Add
+  - message: Plumbing Sink, a sink with plumbing connectors.
+    type: Add
+  - message: Plumbing Drain, a drain with plumbing connectors.
+    type: Add
+  - message: Adds plumbing connectors to the ChemMaster.
+    type: Tweak
+  - message: Adds plumbing connectors to the Chemical Dispenser.
+    type: Tweak
+  - message: Adds plumbing connectors to the Industrial Reagent Grinder.
+    type: Tweak
+  - message: The singularity allowing the ChemMaster to hold infinite reagents has
+      collapsed... it is now limited to 5000u.
+    type: Tweak
+  - message: Plungers now have a use and spill all solutions in plumbing machines
+      onto the floor.
+    type: Tweak
+  id: 293201
+  time: '2026-02-16T00:38:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2932
 Order: -1
 

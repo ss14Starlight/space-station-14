@@ -664,8 +664,8 @@ public sealed class RCDSystem : EntitySystem
         // Attempt to deconstruct a floor tile
         if (target == null)
         {
-            // Starlight Start: RPD
-            if (component.IsRpd)
+            // Starlight Start: RPD/RPLD
+            if (component.IsRpd || component.IsRPLD)
             {
                 if (popMsgs)
                     _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
@@ -707,16 +707,16 @@ public sealed class RCDSystem : EntitySystem
         // Attempt to deconstruct an object
         else
         {
-            // Starlight Start: RPD
+            // Starlight Start: RPD/RPLD
             // The object is not in the RPD whitelist
-            if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !deconstructible.RpdDeconstructable && component.IsRpd)
+            if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !deconstructible.RpdDeconstructable && component.IsRpd || !deconstructible.RpldDeconstructable && component.IsRPLD)
             {
                 if (popMsgs)
                     _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
 
                 return false;
             }
-            // Starlight End: RPD
+            // Starlight End: RPD/RPLD
 
             // The object is not in the whitelist
             if (!deconstructible.Deconstructable) // Starlight Edit: RPD - Removed ``TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !``

@@ -54,7 +54,13 @@
                 <Button Name="EjectButton"
                         Access="Public"
                         Text="{Loc 'reagent-dispenser-window-eject-button'}"
+                        StyleClasses="OpenBoth" />
+                <!-- Starlight-start: Plumbing valve -->
+                <Button Name="ValveButton"
+                        Access="Public"
+                        Text="{Loc 'reagent-dispenser-window-valve-closed'}"
                         StyleClasses="OpenLeft" />
+                <!-- Starlight-end -->
             </BoxContainer>
         </BoxContainer>
         <SplitContainer Orientation="Vertical"
