@@ -88,7 +88,6 @@
         - id: ClothingHandsGlovesBlackNitrile
         - id: ClothingShoesBootsMagSec
           amount: 2
-        - id: PlasmaChemistryVial
         - id: BedsheetBrigmedicStrange
         - id: BedsheetBrigmedic
         - id: MedkitFilled
