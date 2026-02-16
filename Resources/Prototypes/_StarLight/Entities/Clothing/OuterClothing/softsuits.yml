@@ -58,11 +58,13 @@
       coefficients:
         Blunt: 0.6
         Slash: 0.6
-        Piercing: 0.55
-        Heat: 0.55
+        Piercing: 0.6
+        Heat: 0.5
         Caustic: 0
   - type: ExplosionResistance
     damageCoefficient: 0.5
+  - type: StaminaResistance 
+    damageCoefficient: 0.75
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.8
   - type: ClothingSpeedModifier

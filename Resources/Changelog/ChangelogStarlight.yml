@@ -30918,5 +30918,45 @@ Entries:
   id: 332501
   time: '2026-02-16T13:32:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3325
+- author: Shades
+  changes:
+  - message: ERT Leader / TSF Elite now need External Roles (before they needed 10h
+      of ERT)
+    type: Tweak
+  - message: Changed TSF Armor be patched correctly, including stamina resist.
+    type: Tweak
+  - message: TSF Backpack range is now unlimited.
+    type: Tweak
+  - message: TSF have now their own allignement.
+    type: Tweak
+  id: 329101
+  time: '2026-02-16T14:49:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3291
+- author: Conflee
+  changes:
+  - message: Reduced the height of the new canister sprites so they are only slightly
+      taller than a full tile. Should reduce clipping issues and look more fitting
+      ingame.
+    type: Tweak
+  id: 332801
+  time: '2026-02-16T17:40:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3328
+- author: Fractalflower
+  changes:
+  - message: ChemVends now have eight jugs per restock, up from 4.
+    type: Tweak
+  - message: Golden and silver jugs - store 400u and 300u respectively.
+    type: Add
+  - message: Golden and silver jugs to the tech tree.
+    type: Add
+  - message: Large beaker box to chemical lockers, stores 4 large beakers.
+    type: Add
+  - message: Small beaker box, like its large variant - with small beakers.
+    type: Add
+  - message: Jug box. You get the drill.
+    type: Add
+  id: 332601
+  time: '2026-02-16T17:59:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3326
 Order: -1
 

@@ -29,7 +29,9 @@
       entity_storage: !type:AllSelector
         children:
         - id: BoxSyringe
-        - id: BoxBeaker
+       #- id: BoxBeaker # Starlight start
+        - id: BoxBeakerSmall
+        - id: BoxBeakerLarge # Starlight end
         - id: BoxPillCanister
         - id: Dropper
           amount: 2

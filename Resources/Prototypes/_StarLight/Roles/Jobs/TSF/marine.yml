@@ -5,20 +5,41 @@
   playTimeTracker: JobTSFMarine
   requirements:
     - !type:OverallPlaytimeRequirement
-        time: 72000 # 20h
+      time: 72000 # 20h
     - !type:DepartmentTimeRequirement
-        department: Security
-        time: 18000 # 5h
+      department: Security
+      time: 18000 # 5h
   setPreference: false
   icon: JobIconTSF
-  rules: job-rules-corporate-aligned
+  rules: job-rules-tsf-aligned
   supervisors: job-supervisors-none
   canBeAntag: false
   accessGroups:
-  - AllAccess
+    - AllAccess
   special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantTSF ]
+    - !type:AddImplantSpecial
+      implants: [MindShieldImplant, DeathRattleImplantTSF]
+
+- type: job
+  id: TSFMarineElite
+  name: ghost-role-information-tsf-leader-name
+  description: ghost-role-information-tsf-marine-desc
+  playTimeTracker: TSFMarineElite
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000 # 20h
+    - !type:RolesRequirement
+      proto: ExtRolesReq
+  setPreference: false
+  icon: JobIconTSF
+  rules: job-rules-tsf-aligned
+  supervisors: job-supervisors-none
+  canBeAntag: false
+  accessGroups:
+    - AllAccess
+  special:
+    - !type:AddImplantSpecial
+      implants: [MindShieldImplant, DeathRattleImplantTSF]
 
 - type: startingGear
   id: TSFMarineGear
@@ -37,20 +58,20 @@
     suitstorage: WeaponRifleARG
   storage:
     back:
-    - BoxSurvivalSecurity
-    - CrowbarRed
-    - Brutepack
-    - Ointment
-    - Gauze
+      - BoxSurvivalSecurity
+      - CrowbarRed
+      - Brutepack
+      - Ointment
+      - Gauze
     belt:
-    - MagazineBoxLightRifleFMJ
-    - MagazineLightRifleFMJ
-    - MagazineLightRifleFMJ
-    - MagazineLightRifleFMJ
-    - MagazineLightRifleFMJ
-    - MagazineBoxMagnumSP
-    - MagazineMagnum
-    - MagazineMagnum
+      - MagazineBoxLightRifleFMJ
+      - MagazineLightRifleFMJ
+      - MagazineLightRifleFMJ
+      - MagazineLightRifleFMJ
+      - MagazineLightRifleFMJ
+      - MagazineBoxMagnumSP
+      - MagazineMagnum
+      - MagazineMagnum
 
 - type: startingGear
   id: TSFMarineLeaderGear
@@ -69,18 +90,18 @@
     suitstorage: WeaponRifleARG
   storage:
     back:
-    - BoxSurvivalSecurity
-    - CrowbarRed
-    - MedkitCombatFilled
+      - BoxSurvivalSecurity
+      - CrowbarRed
+      - MedkitCombatFilled
     belt:
-    - MagazineBoxLightRifleFMJ
-    - MagazineLightRifleFMJ
-    - MagazineLightRifleFMJ
-    - MagazineLightRifleFMJ
-    - MagazineLightRifleFMJ
-    - MagazineBoxMagnumSP
-    - MagazineMagnum
-    - MagazineMagnum
+      - MagazineBoxLightRifleFMJ
+      - MagazineLightRifleFMJ
+      - MagazineLightRifleFMJ
+      - MagazineLightRifleFMJ
+      - MagazineLightRifleFMJ
+      - MagazineBoxMagnumSP
+      - MagazineMagnum
+      - MagazineMagnum
 
 - type: startingGear
   id: TSFEliteMarineGear
@@ -98,18 +119,18 @@
     suitstorage: WeaponRifleM52
   storage:
     back:
-    - BoxSurvivalSecurity
-    - CrowbarRed
-    - MedkitCombatFilled
+      - BoxSurvivalSecurity
+      - CrowbarRed
+      - MedkitCombatFilled
     belt:
-    - MagazineBoxRifleHP
-    - MagazineRifleM52HP
-    - MagazineRifleM52HP
-    - MagazineRifleM52HP
-    - MagazineRifleM52HP
-    - MagazineBoxMagnumSP
-    - MagazineMagnum
-    - MagazineMagnum
+      - MagazineBoxRifleHP
+      - MagazineRifleM52HP
+      - MagazineRifleM52HP
+      - MagazineRifleM52HP
+      - MagazineRifleM52HP
+      - MagazineBoxMagnumSP
+      - MagazineMagnum
+      - MagazineMagnum
 
 - type: startingGear
   id: TSFGeneralGear
@@ -128,15 +149,15 @@
     pocket2: MindShieldImplanter
   storage:
     back:
-    - BoxSurvivalSecurity
-    - CrowbarRed
-    - MedkitCombatFilled
+      - BoxSurvivalSecurity
+      - CrowbarRed
+      - MedkitCombatFilled
     belt:
-    - SpeedLoaderMagnumBasic
-    - BoxLethalshot
-    - BoxLethalshot
-  inhand: 
-  - DeathRattleImplanterTSF
+      - SpeedLoaderMagnumBasic
+      - BoxLethalshot
+      - BoxLethalshot
+  inhand:
+    - DeathRattleImplanterTSF
 
 - type: startingGear
   id: TSFRepGear
@@ -153,9 +174,9 @@
     pocket2: MindShieldImplanter
   storage:
     back:
-    - BoxSurvival
-  inhand: 
-  - DeathRattleImplanterTSF
+      - BoxSurvival
+  inhand:
+    - DeathRattleImplanterTSF
 
 - type: startingGear
   id: TSFTraderGear
@@ -172,4 +193,4 @@
     pocket2: AppraisalTool
   storage:
     back:
-    - BoxSurvival
+      - BoxSurvival

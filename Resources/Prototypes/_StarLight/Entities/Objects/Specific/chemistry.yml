@@ -31,6 +31,42 @@
         maxVol: 200
 
 - type: entity
+  name: golden jug
+  parent: Jug
+  description: Used to contain a titanic amount of chemicals or solutions.
+  id: GoldenJug
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/goldenjug.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chemistry/goldenjug.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 50
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 400
+
+- type: entity
+  name: silver jug
+  parent: Jug
+  description: Used to contain a ginormous amount of chemicals or solutions.
+  id: SilverJug
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/silverjug.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chemistry/silverjug.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Silver: 50
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 300
+
+- type: entity
   id: VialCase
   parent: [ BaseStorageItem, BaseBagOpenClose ]
   name: vial case
