@@ -160,7 +160,7 @@ namespace Content.Server.Chemistry.EntitySystems
             var container = _itemSlotsSystem.GetItemOrNull(chemMaster, SharedChemMaster.InputSlotName);
             if (container is null ||
                 !_solutionContainerSystem.TryGetFitsInDispenser(container.Value, out var containerSoln, out var containerSolution) ||
-                !_solutionContainerSystem.TryGetSolution(chemMaster.Owner, SharedChemMaster.BufferSolutionName, out _, out var bufferSolution))
+                !_solutionContainerSystem.TryGetSolution(chemMaster.Owner, SharedChemMaster.BufferSolutionName, out var bufferSoln, out var bufferSolution)) //Starlight-edit
             {
                 return;
             }
@@ -173,9 +173,11 @@ namespace Content.Server.Chemistry.EntitySystems
             }
             else // Container to buffer
             {
-                amount = FixedPoint2.Min(amount, containerSolution.GetReagentQuantity(id));
+                // Starlight-Start: No longer force transfer as the buffer container no longer is infinitely big.
+                amount = FixedPoint2.Min(amount, containerSolution.GetReagentQuantity(id), bufferSolution.AvailableVolume);
                 _solutionContainerSystem.RemoveReagent(containerSoln.Value, id, amount);
-                bufferSolution.AddReagent(id, amount);
+                _solutionContainerSystem.TryAddReagent(bufferSoln.Value, id, amount, out _);
+                // Starlight-End
             }
 
             UpdateUiState(chemMaster, updateLabel: true);

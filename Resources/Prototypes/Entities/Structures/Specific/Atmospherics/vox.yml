@@ -34,7 +34,7 @@
   id: AirSensorVox
 
 - type: entity
-  parent: [AirSensorVoxBase, GasVentPump]
+  parent: [AirSensorVoxBase, GasVentPumpVoxBase, GasVentPump] # Carpmosia-edit - Atmos Alt Prototypes
   id: GasVentPumpVox
   components:
   # Starlight Start
@@ -46,7 +46,7 @@
   # Starlight End
 
 - type: entity
-  parent: [AirSensorVoxBase, GasVentScrubber]
+  parent: [AirSensorVoxBase, GasVentScrubberVoxBase, GasVentScrubber] # Carpmosia-edit - Atmos Alt Prototypes
   id: GasVentScrubberVox
   components:
   # Starlight Start

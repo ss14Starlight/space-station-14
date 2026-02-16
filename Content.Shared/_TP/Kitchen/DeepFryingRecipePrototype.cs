@@ -27,5 +27,11 @@ public sealed partial class DeepFryingRecipePrototype : IPrototype
     [DataField("ingredient")]
     public EntProtoId Ingredient;
 
+    /// <summary>
+    /// Starlight edit: appends (formerly x) to the name of the burnt item, so we know what it used to be.
+    /// </summary>
+    [DataField]
+    public bool IncludeFormerly = false;
+
     public string Name => Loc.GetString(_name);
 }

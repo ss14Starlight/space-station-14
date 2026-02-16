@@ -42,7 +42,7 @@
     [color=#999999][italic]Buffering reagents in the network[/italic][/color]
   </Box>
 
-  The [color=#a4885c]Plumbing Tank[/color] stores up to [color=#a4885c]400u[/color] of reagents. Has one inlet and three outlets. Use tanks to buffer reagents between production stages or store large amounts of reagents.
+  The [color=#a4885c]Plumbing Tank[/color] stores up to [color=#a4885c]2000u[/color] of reagents. Has one inlet and three outlets. Use tanks to buffer reagents between production stages or store large amounts of reagents.
 
   <Box>
     <GuideEntityEmbed Entity="PlumbingFilter" Caption=""/>
@@ -95,14 +95,14 @@
   Available reagents: Iron, Carbon, Copper, Hydrogen, Oxygen, Sugar, Silicon, Phosphorus.
 
   <Box>
-    <GuideEntityEmbed Entity="PlumbingSmartFridge" Caption=""/>
+    <GuideEntityEmbed Entity="PlumbingSmartDispenser" Caption=""/>
   </Box>
   <Box>
-    ## Smart Fridge
+    ## Smart Dispenser
   </Box>
   <Box>
     [color=#999999][italic]Storing and dispensing reagents via labeled jugs[/italic][/color]
   </Box>
 
-  The [color=#a4885c]Plumbing Smart Fridge[/color] pulls all reagents from the network and stores up to [color=#a4885c]200u[/color] of each type. Use a [color=#a4885c]labeled jug[/color] on the fridge to fill it with the matching reagent. Connects in all directions. Requires power.
+  The [color=#a4885c]Plumbing Smart Dispenser[/color] pulls all reagents from the network and stores up to [color=#a4885c]200u[/color] of each type. Use a [color=#a4885c]labeled jug[/color] on the dispenser to fill it with the matching reagent. Connects in all directions. Requires power.
 </Document>

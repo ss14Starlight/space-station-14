@@ -6,9 +6,11 @@
     mode: AlignAtmosPipeLayers # starlight
   components:
   - type: AtmosDevice
-  - type: Tag
-    tags:
-      - Unstackable
+  # Carpmosia-start - Atmos stacking
+  # - type: Tag
+  #   tags:
+  #     - Unstackable
+  # Carpmosia-end - Atmos stacking
   - type: SubFloorHide
     blockInteractions: false
     blockAmbience: false
@@ -24,10 +26,14 @@
         pipeDirection: South
   - type: AtmosPipeLayers
     spriteRsiPaths:
-      Primary: Structures/Piping/Atmospherics/pump.rsi
-      Secondary: Structures/Piping/Atmospherics/pump_alt1.rsi
-      Tertiary: Structures/Piping/Atmospherics/pump_alt2.rsi
-  - type: ChildBlockVision # Starlight-edit
+      # Carpmosia-start - 5 pipe layers
+      Primary: _Carpmosia/Structures/Piping/Atmospherics/pump.rsi
+      Secondary: _Carpmosia/Structures/Piping/Atmospherics/pump_alt1.rsi
+      Tertiary: _Carpmosia/Structures/Piping/Atmospherics/pump_alt2.rsi
+      Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pump_alt3.rsi
+      Quinary: _Carpmosia/Structures/Piping/Atmospherics/pump_alt4.rsi
+      # Carpmosia-end - 5 pipe layers
+  - type: ChildBlockVision # Starlight
 
 - type: entity
   parent: GasBinaryBase
@@ -49,9 +55,9 @@
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
   - type: Sprite
-    sprite: Structures/Piping/Atmospherics/pump.rsi
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pump.rsi # Carpmosia-edit - 5 pipe layers
     layers:
-    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
       state: pipeStraight
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: pumpPressure
@@ -61,6 +67,10 @@
       Primary: GasPressurePump
       Secondary: GasPressurePumpAlt1
       Tertiary: GasPressurePumpAlt2
+      # Carpmosia-start - 5 pipe layers
+      Quaternary: GasPressurePumpAlt3
+      Quinary: GasPressurePumpAlt4
+      # Carpmosia-end - 5 pipe layers
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -118,9 +128,9 @@
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
-      sprite: Structures/Piping/Atmospherics/pump.rsi
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pump.rsi # Carpmosia-edit - 5 pipe layers
       layers:
-        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
           state: pipeStraight
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: pumpVolume
@@ -130,6 +140,10 @@
         Primary: GasVolumePump
         Secondary: GasVolumePumpAlt1
         Tertiary: GasVolumePumpAlt2
+        # Carpmosia-start - 5 pipe layers
+        Quaternary: GasVolumePumpAlt3
+        Quinary: GasVolumePumpAlt4
+        # Carpmosia-end - 5 pipe layers
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -191,9 +205,9 @@
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
   - type: Sprite
-    sprite: Structures/Piping/Atmospherics/pump.rsi
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pump.rsi # Carpmosia-edit - 5 pipe layers
     layers:
-    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
       state: pipeStraight
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: pumpPressureRegulator
@@ -203,6 +217,10 @@
       Primary: GasPressureRegulator
       Secondary: GasPressureRegulatorAlt1
       Tertiary: GasPressureRegulatorAlt2
+      # Carpmosia-start - 5 pipe layers
+      Quaternary: GasPressureRegulatorAlt3
+      Quinary: GasPressureRegulatorAlt4
+      # Carpmosia-end - 5 pipe layers
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -249,9 +267,9 @@
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
-      sprite: Structures/Piping/Atmospherics/pump.rsi
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pump.rsi # Carpmosia-edit - 5 pipe layers
       layers:
-        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
           state: pipeStraight
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: pumpPassiveGate
@@ -261,6 +279,10 @@
         Primary: GasPassiveGate
         Secondary: GasPassiveGateAlt1
         Tertiary: GasPassiveGateAlt2
+        # Carpmosia-start - 5 pipe layers
+        Quaternary: GasPassiveGateAlt3
+        Quinary: GasPassiveGateAlt4
+        # Carpmosia-end - 5 pipe layers
     - type: Appearance
     - type: PipeColorVisuals
     - type: GasPassiveGate
@@ -297,9 +319,9 @@
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
-      sprite: Structures/Piping/Atmospherics/pump.rsi
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/pump.rsi # Carpmosia-edit - 5 pipe layers
       layers:
-        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
           state: pipeStraight
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: pumpManualValve
@@ -309,6 +331,10 @@
         Primary: GasValve
         Secondary: GasValveAlt1
         Tertiary: GasValveAlt2
+        # Carpmosia-start - 5 pipe layers
+        Quaternary: GasValveAlt3
+        Quinary: GasValveAlt4
+        # Carpmosia-end - 5 pipe layers
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -363,9 +389,9 @@
     visibleLayers:
     - enum.SubfloorLayers.FirstLayer
   - type: Sprite
-    sprite: Structures/Piping/Atmospherics/pump.rsi
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pump.rsi # Carpmosia-edit - 5 pipe layers
     layers:
-    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
       state: pipeStraight
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: pumpSignalValve
@@ -375,6 +401,10 @@
       Primary: SignalControlledValve
       Secondary: SignalControlledValveAlt1
       Tertiary: SignalControlledValveAlt2
+      # Carpmosia-start - 5 pipe layers
+      Quaternary: SignalControlledValveAlt3
+      Quinary: SignalControlledValveAlt4
+      # Carpmosia-end - 5 pipe layers
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -435,25 +465,34 @@
   placement:
     mode: AlignAtmosPipeLayers # starlight
   components:
+    # Carpmosia-start - Atmos stacking
+    - type: Tag
+      tags:
+        - Unstackable
+    # Carpmosia-end - Atmos stacking
     - type: SubFloorHide
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       sprite: Structures/Piping/Atmospherics/gascanisterport.rsi
       layers:
-        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
           state: pipeUnaryConnectors
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: gasCanisterPort
           map: [ "enum.SubfloorLayers.FirstLayer" ]
-    # region starlight
+    # Starlight Start
     - type: AtmosPipeLayers
       spriteRsiPaths: {}
+    # Starlight End
+    # Carpmosia-start - Atmos Alt Prototypes
       alternativePrototypes:
         Primary: GasPort
         Secondary: GasPortAlt1
         Tertiary: GasPortAlt2
-    # end region
+        Quaternary: GasPortAlt3
+        Quinary: GasPortAlt4
+    # Carpmosia-end - Atmos Alt Prototypes
     - type: Appearance
     - type: PipeColorVisuals
     - type: GasPort
@@ -494,19 +533,23 @@
       drawdepth: FloorObjects
       sprite: Structures/Piping/Atmospherics/vent.rsi
       layers:
-        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
           state: pipeBinaryConnectors
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: vent_off
           map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
-    # region starlight
+    # Starlight Start
     - type: AtmosPipeLayers
       spriteRsiPaths: {}
+    # Starlight End
+    # Carpmosia-start - Atmos Alt Prototypes
       alternativePrototypes:
         Primary: GasDualPortVentPump
         Secondary: GasDualPortVentPumpAlt1
         Tertiary: GasDualPortVentPumpAlt2
-    # end region
+        Quaternary: GasDualPortVentPumpAlt3
+        Quinary: GasDualPortVentPumpAlt4
+    # Carpmosia-end - Atmos Alt Prototypes
     - type: GenericVisualizer
       visuals:
         enum.VentPumpVisuals.State:
@@ -564,7 +607,7 @@
     snapCardinals: true
     granularLayersRendering: true
     layers:
-    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
       state: pipeBinaryConnectors
       map: [ "enum.PipeVisualLayers.Pipe" ]
       renderingStrategy: Default
@@ -574,9 +617,13 @@
   - type: AtmosPipeLayers
     spriteLayersRsiPaths:
       enum.PipeVisualLayers.Pipe:
-        Primary: Structures/Piping/Atmospherics/pipe.rsi
-        Secondary: Structures/Piping/Atmospherics/pipe_alt1.rsi
-        Tertiary: Structures/Piping/Atmospherics/pipe_alt2.rsi
+        # Carpmosia-start - 5 pipe layers
+        Primary: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+        Secondary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+        Tertiary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+        Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+        Quinary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+        # Carpmosia-end - 5 pipe layers
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -638,13 +685,18 @@
   placement:
     mode: SnapgridCenter
   components:
+  # Carpmosia-start - Atmos stacking
+  - type: Tag
+    tags:
+      - Unstackable
+  # Carpmosia-end - Atmos stacking
   - type: Rotatable
   - type: Transform
     noRot: false
   - type: Sprite
-    sprite: Structures/Piping/Atmospherics/heatexchanger.rsi
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/heatexchanger.rsi # Carpmosia-edit - 5 pipe layers
     layers:
-    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
       state: pipeStraight
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: heStraight
@@ -688,7 +740,7 @@
       - enum.SubfloorLayers.FirstLayer
     - type: Sprite
       layers:
-      - sprite: Structures/Piping/Atmospherics/pipe.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
         state: pipeBend
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: heBend

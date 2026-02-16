@@ -185,7 +185,7 @@
   - type: StealCondition
     stealGroup: BrigmedicStrangeBedsheet
   - type: Objective
-    difficulty: 1.3
+    difficulty: 1.4 # It's actually pretty hard to do
 
 - type: entity
   parent: [BaseThiefStealObjective, BaseThiefCargoStealObjective]

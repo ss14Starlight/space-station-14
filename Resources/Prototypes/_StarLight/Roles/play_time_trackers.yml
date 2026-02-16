@@ -48,6 +48,9 @@
   
 - type: playTimeTracker
   id: JobTSFMarine
+
+- type: playTimeTracker
+  id: TSFMarineElite
   
 - type: playTimeTracker
   id: JobBoxer

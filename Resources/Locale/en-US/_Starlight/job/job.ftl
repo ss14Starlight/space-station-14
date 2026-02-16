@@ -30,3 +30,10 @@ role-type-corporate-aligned-alternate-color = #1b67a5
 job-rules-corporate-aligned = You are {role-type-corporate-aligned-name}.
                               You are to serve the interests of NanoTrasen and Central Command, even if they differ from the stations'.
                               Remember, you do NOT serve the crew.
+
+role-type-tsf-aligned-name = Trans-Solar Federation Aligned
+role-type-tsf-aligned-color = #22a7ff
+role-type-tsf-aligned-alternate-color = #22a7ff
+job-rules-tsf-aligned = You are {role-type-tsf-aligned-name}.
+                              You are to serve the interests of Trans-Solar Federation.
+                              Remember, you do NOT serve the crew.

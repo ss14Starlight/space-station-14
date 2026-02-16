@@ -51,103 +51,7 @@ jobs:
       shell: pwsh
       run: |
         $env:DOTNET_gcServer=1
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger trx --filter "FullyQualifiedName!~Content.IntegrationTests.Tests.Power.StationPowerTests&FullyQualifiedName!~Content.IntegrationTests.Tests.PostMapInitTest&FullyQualifiedName!~Content.IntegrationTests.Tests._Starlight.Power.GridPowerTests&FullyQualifiedName!~Content.IntegrationTests.Tests.Chemistry.ReagentDataTest&FullyQualifiedName!~Content.IntegrationTests.Tests.EntityTest&FullyQualifiedName!~Content.IntegrationTests.Tests.Atmos.SharedGasSpecificHeatsTest" -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
-
-    - name: Test results
-      continue-on-error: true
-      if: always()
-      run: |
-        dotnet tool install -g dotnet-trx
-        trx
-
-  build-heavytests:
-    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-
-    runs-on: ${{ matrix.os }}
-
-    steps:
-    - name: Checkout Master
-      uses: actions/checkout@v4.2.2
-
-    - name: Setup Submodule
-      run: |
-        git submodule update --init --recursive
-
-    - name: Pull engine updates
-      uses: space-wizards/submodule-dependency@v0.1.5
-
-    - name: Update Engine Submodules
-      run: |
-        cd RobustToolbox/
-        git submodule update --init --recursive
-
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4.1.0
-      with:
-        dotnet-version: 10.0.x
-
-    - name: Install dependencies
-      run: dotnet restore
-
-    - name: Build Project
-      run: dotnet build --configuration DebugOpt --no-restore /m
-
-    - name: Run Content.IntegrationTests
-      shell: pwsh
-      run: |
-        $env:DOTNET_gcServer=1
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger trx --filter "FullyQualifiedName~Content.IntegrationTests.Tests.Chemistry.ReagentDataTest|FullyQualifiedName~Content.IntegrationTests.Tests.EntityTest|FullyQualifiedName~Content.IntegrationTests.Tests.Atmos.SharedGasSpecificHeatsTest" -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
-
-    - name: Test results
-      continue-on-error: true
-      if: always()
-      run: |
-        dotnet tool install -g dotnet-trx
-        trx
-
-  build-stationtests:
-    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-
-    runs-on: ${{ matrix.os }}
-
-    steps:
-    - name: Checkout Master
-      uses: actions/checkout@v4.2.2
-
-    - name: Setup Submodule
-      run: |
-        git submodule update --init --recursive
-
-    - name: Pull engine updates
-      uses: space-wizards/submodule-dependency@v0.1.5
-
-    - name: Update Engine Submodules
-      run: |
-        cd RobustToolbox/
-        git submodule update --init --recursive
-
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4.1.0
-      with:
-        dotnet-version: 10.0.x
-
-    - name: Install dependencies
-      run: dotnet restore
-
-    - name: Build Project
-      run: dotnet build --configuration DebugOpt --no-restore /m
-
-    - name: Run Content.IntegrationTests
-      shell: pwsh
-      run: |
-        $env:DOTNET_gcServer=1
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger trx --filter "FullyQualifiedName~Content.IntegrationTests.Tests.Power.StationPowerTests|FullyQualifiedName~Content.IntegrationTests.Tests.PostMapInitTest|FullyQualifiedName~Content.IntegrationTests.Tests._Starlight.Power.GridPowerTests" -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
+        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger trx -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
 
     - name: Test results
       continue-on-error: true
@@ -160,8 +64,6 @@ jobs:
     name: Build & Test Debug
     needs:
       - build
-      - build-heavytests
-      - build-stationtests
     runs-on: ubuntu-latest
     steps:
       - name: CI succeeded

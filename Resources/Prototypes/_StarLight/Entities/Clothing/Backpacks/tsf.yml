@@ -13,7 +13,7 @@
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
   - type: Telephone
-    transmissionRange: Map
+    transmissionRange: Unlimited
     compatibleRanges:
     - Grid
     - Map

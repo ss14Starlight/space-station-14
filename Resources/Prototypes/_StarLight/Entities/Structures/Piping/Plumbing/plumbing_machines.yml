@@ -48,8 +48,8 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingTank
-  name: plumbing tank
-  description: A tank that pulls reagents from its inlet (north) and stores up to 400u. Other machines can pull from its outlets (south, east, west).
+  name: Plumbing Tank
+  description: Stores up to 2000u of reagents. Use tanks to buffer reagents between production stages or just store large amounts of reagents.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
@@ -65,7 +65,7 @@
   - type: SolutionContainerManager
     solutions:
       tank:
-        maxVol: 400
+        maxVol: 2000
         canReact: false
   - type: ExaminableSolution
     solution: tank
@@ -98,7 +98,7 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingInput
-  name: plumbing input
+  name: Plumbing Input
   description: A small tank you pour reagents into. Other machines pull from this. Connects in all directions.
   components:
   - type: Sprite
@@ -142,7 +142,7 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingSink
-  name: plumbing sink
+  name: Plumbing Sink
   description: A sink connected to the plumbing network. Draw reagents from it with a container, or dump reagents into it to send them down the drain. Connects in all directions.
   components:
   - type: Sprite
@@ -216,7 +216,7 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingOutput
-  name: plumbing output
+  name: Plumbing Output
   description: A small tank that pulls reagents from the network. Draw from it with a container. Connects in all directions.
   components:
   - type: Sprite
@@ -279,8 +279,8 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingReactor
-  name: plumbing reactor
-  description: Pulls target reagents from inlet (north) and triggers reactions when targets are met. Products available at outlet (south).
+  name: Plumbing Reactor
+  description: Pulls target reagents in up to configured quantities from its inlet and triggers reactions. Requires power.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
@@ -347,13 +347,13 @@
     price: 150
 
 # =============================================================================
-# Plumbing Smart Fridge - stores reagents from the network, fills labeled jugs
+# Plumbing Smart Dispenser - stores reagents from the network, fills labeled jugs
 # =============================================================================
 - type: entity
   parent: PlumbingMachineBase
-  id: PlumbingSmartFridge
-  name: plumbing smart fridge
-  description: A plumbing-connected smart fridge. Pulls all reagents from the network and stores up to 200u of each. Insert a labeled jug to fill it with the matching reagent.
+  id: PlumbingSmartDispenser
+  name: Plumbing Smart Dispenser
+  description: Pulls in all reagents from its inlets and stores up to 200u of each type. Use a labeled jug on the dispenser to fill it with the matching reagent. Requires power.
   components:
   - type: Sprite
     sprite: Structures/Machines/smartfridge.rsi
@@ -376,7 +376,7 @@
     - inletEast
     - inletSouth
     - inletWest
-  - type: PlumbingSmartFridge
+  - type: PlumbingSmartDispenser
     solutionName: fridge
     maxPerReagent: 200
   - type: SolutionContainerManager
@@ -406,10 +406,10 @@
         pipeDirection: West
   - type: UserInterface
     interfaces:
-      enum.PlumbingSmartFridgeUiKey.Key:
-        type: PlumbingSmartFridgeBoundUserInterface
+      enum.PlumbingSmartDispenserUiKey.Key:
+        type: PlumbingSmartDispenserBoundUserInterface
   - type: ActivatableUI
-    key: enum.PlumbingSmartFridgeUiKey.Key
+    key: enum.PlumbingSmartDispenserUiKey.Key
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: ExtensionCableReceiver
@@ -432,8 +432,8 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingPillPress
-  name: plumbing pill press
-  description: Pulls reagents from the network and automatically presses them into pills or patches at a configurable dosage. Has optional mixing inlets (E/W) for ratio-controlled mixing.
+  name: Plumbing Pill Press
+  description: Pulls in reagents and presses them into pills or patches at a configurable dosage. Has optional mixing inlets for ratio-controlled mixing. Requires power.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
@@ -514,8 +514,8 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingFilter
-  name: plumbing filter
-  description: Filters specific reagents. Pulls from inlet (north). Filtered reagents at west output, non-filtered at south output.
+  name: Plumbing Filter
+  description: Filters specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
@@ -583,7 +583,7 @@
   parent: PlumbingFilter
   id: PlumbingFilterFlipped
   suffix: Flipped
-  description: Filters specific reagents. Pulls from inlet (south). Filtered reagents at west output, non-filtered at north output.
+  description: Filters specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
@@ -612,8 +612,8 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingSynthesizer
-  name: plumbing synthesizer
-  description: Generates reagents using power. Select a reagent and it fills its buffer for other machines to pull from. Output at south.
+  name: Plumbing Synthesizer
+  description: Generates basic reagents using power from an internal battery.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
@@ -699,7 +699,7 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingDrain
-  name: plumbing drain
+  name: Plumbing Drain
   description: A floor drain that absorbs puddles and routes them into the plumbing network instead of disposing them.
   placement:
     mode: SnapgridCenter

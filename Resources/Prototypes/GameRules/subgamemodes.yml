@@ -22,8 +22,8 @@
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Thief ]
-      max: 6 # Starlight. Allows alpha to have more thieves without impacting beta.
-      playerRatio: 21 # Starlight. Tweaks thief scaling a little, so that Beta can still have 3 but Alpha requires 126 instead of 120 for 6 thieves. (To account for the 6 thieves.)
+      max: 6 # Starlight
+      playerRatio: 26 # Starlight. Beta has low sec, so we're going to allow the scaling to take a thief from them anyways, to scale Alpha better.
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
@@ -50,7 +50,7 @@
     definitions:
     - prefRoles: [ Changeling ]
       max: 6 # Starlight, same reasoning as the roundstart changeling change, for alpha.
-      playerRatio: 21 # Starlight, to make sure Beta doesn't get more than 3 changelings as a submode. Same justification as Thieves.
+      playerRatio: 26 # Starlight. Same justification as Thieves.
       lateJoinAdditional: true
       allowNonHumans: false
       multiAntagSetting: None
@@ -76,7 +76,7 @@
     definitions:
     - prefRoles: [ Vampire ]
       max: 12 # Starlight. Full gamemode Vamps scale higher to account for scaling.
-      playerRatio: 16 # Starlight. Accounting for scaling.
+      playerRatio: 16 # Starlight. Accounting for scaling. This is for the full vampire gamemode, so it can keep this value.
       lateJoinAdditional: true
       allowNonHumans: True
       multiAntagSetting: None

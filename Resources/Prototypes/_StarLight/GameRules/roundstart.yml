@@ -60,9 +60,9 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.45
+      prob: 0.60 # Same as NoChangelings
     - id: SLChangeling #Starlight lings
-      prob: 0.4
+      prob: 0.25 # To be equal to the chance Vampires spawn in Changeling.
     - id: SubWizard
       prob: 0.07 # Starlight. Wizard is incredibly rare. There are players with 1k hours that have never rolled it.
     - id: Xenoborgs
@@ -93,6 +93,8 @@
     rules:
     - id: ThiefLess
       prob: 0.50
+    - id: SubTraitor # Special traitors with a curated set of objectives; they do not have Kill/Lesson/DAGD, and scale a lot less.
+      prob: 0.20
     - id: VampireLess # This is probably the most interesting sub-gamemode for them.
       prob: 0.32
     - id: Xenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
@@ -149,7 +151,7 @@
     definitions:
     - prefRoles: [ Traitor ]
       max: 12 # Starlight. For VampTraitorLing.
-      playerRatio: 15 # Starlight. For VampTraitorLing.
+      playerRatio: 17 # Starlight. For VampTraitorLing.
       blacklist:
         components:
         - AntagImmune

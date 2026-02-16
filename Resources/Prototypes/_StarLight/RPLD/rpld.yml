@@ -152,11 +152,11 @@
   fx: EffectRCDConstruct0
 
 - type: rcd
-  id: PlumbingRpldSmartFridge
+  id: PlumbingRpldSmartDispenser
   category: PlumbingMachines
   sprite: /Textures/_Starlight/Interface/Radial/RPLD/smart_fridge.png
   mode: ConstructObject
-  prototype: PlumbingSmartFridge
+  prototype: PlumbingSmartDispenser
   cost: 5
   delay: 0
   collisionMask: Impassable

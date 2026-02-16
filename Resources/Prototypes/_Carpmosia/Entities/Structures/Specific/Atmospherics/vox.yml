@@ -1,0 +1,54 @@
+- type: entity
+  abstract: true
+  id: GasVentPumpVoxBase
+  components:
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentPumpVox
+      Secondary: GasVentPumpVoxAlt1
+      Tertiary: GasVentPumpVoxAlt2
+      Quaternary: GasVentPumpVoxAlt3
+      Quinary: GasVentPumpVoxAlt4
+
+- type: entity
+  parent: [AirSensorVoxBase, GasVentPumpVoxBase, GasVentPumpAlt3]
+  id: GasVentPumpVoxAlt3
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorVoxBase, GasVentPumpVoxBase, GasVentPumpAlt4]
+  id: GasVentPumpVoxAlt4
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  abstract: true
+  id: GasVentScrubberVoxBase
+  components:
+  - type: GasVentScrubber
+    wideNet: true # Air alarm with auto mode overrides filters with hardcoded defaults so default to widenet
+    filterGases:
+    - Oxygen # filter out oxygen as well as regular harmful gases
+    - CarbonDioxide
+    - Plasma
+    - Tritium
+    - WaterVapor
+    - Ammonia
+    - NitrousOxide
+    - Frezon
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentScrubberVox
+      Secondary: GasVentScrubberVoxAlt1
+      Tertiary: GasVentScrubberVoxAlt2
+      Quaternary: GasVentScrubberVoxAlt3
+      Quinary: GasVentScrubberVoxAlt4
+
+- type: entity
+  parent: [AirSensorVoxBase, GasVentScrubberVoxBase, GasVentScrubberAlt3]
+  id: GasVentScrubberVoxAlt3
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorVoxBase, GasVentScrubberVoxBase, GasVentScrubberAlt4]
+  id: GasVentScrubberVoxAlt4
+  categories: [ HideSpawnMenu ]
