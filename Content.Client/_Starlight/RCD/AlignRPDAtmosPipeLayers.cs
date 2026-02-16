@@ -49,8 +49,8 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
     private const float SearchBoxSize = 2f;
     private const float MouseDeadzoneRadius = 0.25f;
     private const float PlaceColorBaseAlpha = 0.5f;
-    private const float GuideRadius = 0.1f;
-    private const float GuideOffset = 0.21875f;
+    private const float GuideRadius = 0.05f;
+    private const float GuideOffset = 0.125f;
 
     private EntityCoordinates _mouseCoordsRaw = default;
     private static AtmosPipeLayer _currentLayer = AtmosPipeLayer.Primary;
@@ -96,9 +96,14 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
             var direction = (_eyeManager.CurrentEye.Rotation + gridRotation + Math.PI / 2).GetCardinalDir();
             var multi = (direction == Direction.North || direction == Direction.South) ? -1f : 1f;
 
+            // Center circle (Primary layer)
             args.WorldHandle.DrawCircle(worldPosition, GuideRadius, _guideColor);
+            // Inner ring: Secondary and Tertiary
             args.WorldHandle.DrawCircle(worldPosition + gridRotation.RotateVec(new Vector2(multi * GuideOffset, GuideOffset)), GuideRadius, _guideColor);
             args.WorldHandle.DrawCircle(worldPosition - gridRotation.RotateVec(new Vector2(multi * GuideOffset, GuideOffset)), GuideRadius, _guideColor);
+            // Outer ring: Quaternary and Quinary
+            args.WorldHandle.DrawCircle(worldPosition + gridRotation.RotateVec(new Vector2(multi * GuideOffset * 2, GuideOffset * 2)), GuideRadius, _guideColor);
+            args.WorldHandle.DrawCircle(worldPosition - gridRotation.RotateVec(new Vector2(multi * GuideOffset * 2, GuideOffset * 2)), GuideRadius, _guideColor);
         }
 
         base.Render(args);
@@ -164,17 +169,32 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
                 newLayer = AtmosPipeLayer.Tertiary;
                 break;
 
+            case RpdMode.Quaternary:
+                newLayer = AtmosPipeLayer.Quaternary;
+                break;
+
+            case RpdMode.Quinary:
+                newLayer = AtmosPipeLayer.Quinary;
+                break;
+
             case RpdMode.Free:
-                // Only in Free mode do we use mouse direction
-                if (mouseCoordsDiff.Length() > MouseDeadzoneRadius)
+                // Only in Free mode do we use mouse direction and distance
+                if (mouseCoordsDiff.Length() > MouseDeadzoneRadius / 2)
                 {
                     var gridRotation = _transformSystem.GetWorldRotation(gridId.Value);
-                    var rawAngle = new Angle(mouseCoordsDiff);
-                    var eyeRotation = _eyeManager.CurrentEye.Rotation;
-                    var direction = (rawAngle + eyeRotation + gridRotation + Math.PI / 2).GetCardinalDir();
-                    newLayer = (direction == Direction.North || direction == Direction.East)
-                        ? AtmosPipeLayer.Secondary
-                        : AtmosPipeLayer.Tertiary;
+                    var direction = (new Angle(mouseCoordsDiff) + _eyeManager.CurrentEye.Rotation + gridRotation + Math.PI / 2).GetCardinalDir();
+                    
+                    // Use distance-based layers: inner ring (Secondary/Tertiary) vs outer ring (Quaternary/Quinary)
+                    if (mouseCoordsDiff.Length() > MouseDeadzoneRadius)
+                    {
+                        // Outer ring
+                        newLayer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Quaternary : AtmosPipeLayer.Quinary;
+                    }
+                    else
+                    {
+                        // Inner ring
+                        newLayer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Secondary : AtmosPipeLayer.Tertiary;
+                    }
                 }
                 break;
         }

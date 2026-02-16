@@ -216,10 +216,28 @@
         pipeDirection: South
         volume: 1000
         pipeLayer: 2
+      # Starlight Start: 5 Pipe layers
+      pipe3:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 1000
+        pipeLayer: 3
+      pipe4:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 1000
+        pipeLayer: 4
+      # Starlight End
   - type: GasPipeManifold
     inlets:
     - pipe1
     - pipe2
+    # Starlight Start: 5 Pipe layers
+    - pipe3
+    - pipe4
+    # Starlight End
     outlets:
     - pipe
   - type: PipeRestrictOverlap

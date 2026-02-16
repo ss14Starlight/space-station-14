@@ -46,7 +46,7 @@
       - !type:DoActsBehavior
         acts: ["Breakage"]
   - type: Sprite
-    sprite: Structures/Piping/Atmospherics/pipe.rsi
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
     drawdepth: ThinPipe
     visible: false
   - type: Appearance
@@ -97,9 +97,13 @@
   - type: AtmosPipeLayers
     spriteLayersRsiPaths:
       enum.PipeVisualLayers.Pipe:
-        Primary: Structures/Piping/Atmospherics/pipe.rsi
-        Secondary: Structures/Piping/Atmospherics/pipe_alt1.rsi
-        Tertiary: Structures/Piping/Atmospherics/pipe_alt2.rsi
+        # Carpmosia-start - 5 pipe layers
+        Primary: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+        Secondary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
+        Tertiary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
+        Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+        Quinary: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+        # Carpmosia-end - 5 pipe layers
 
 #Note: The PipeDirection of the PipeNode should be the south-facing version, because the entity starts at an angle of 0 (south)
 
@@ -125,6 +129,10 @@
       Primary: GasPipeHalf
       Secondary: GasPipeHalfAlt1
       Tertiary: GasPipeHalfAlt2
+      # Carpmosia-start - 5 pipe layers
+      Quaternary: GasPipeHalfAlt3
+      Quinary: GasPipeHalfAlt4
+      # Carpmosia-end - 5 pipe layers
   - type: Construction
     graph: GasPipe
     node: half
@@ -165,6 +173,10 @@
       Primary: GasPipeStraight
       Secondary: GasPipeStraightAlt1
       Tertiary: GasPipeStraightAlt2
+      # Carpmosia-start - 5 pipe layers
+      Quaternary: GasPipeStraightAlt3
+      Quinary: GasPipeStraightAlt4
+      # Carpmosia-end - 5 pipe layers
   - type: Construction
     graph: GasPipe
     node: straight
@@ -213,6 +225,10 @@
       Primary: GasPipeBend
       Secondary: GasPipeBendAlt1
       Tertiary: GasPipeBendAlt2
+      # Carpmosia-start - 5 pipe layers
+      Quaternary: GasPipeBendAlt3
+      Quinary: GasPipeBendAlt4
+      # Carpmosia-end - 5 pipe layers
   - type: Construction
     graph: GasPipe
     node: bend
@@ -263,6 +279,10 @@
       Primary: GasPipeTJunction
       Secondary: GasPipeTJunctionAlt1
       Tertiary: GasPipeTJunctionAlt2
+      # Carpmosia-start - 5 pipe layers
+      Quaternary: GasPipeTJunctionAlt3
+      Quinary: GasPipeTJunctionAlt4
+      # Carpmosia-end - 5 pipe layers
   - type: Construction
     graph: GasPipe
     node: tjunction
@@ -317,6 +337,10 @@
       Primary: GasPipeFourway
       Secondary: GasPipeFourwayAlt1
       Tertiary: GasPipeFourwayAlt2
+      # Carpmosia-start - 5 pipe layers
+      Quaternary: GasPipeFourwayAlt3
+      Quinary: GasPipeFourwayAlt4
+      # Carpmosia-end - 5 pipe layers
   - type: Construction
     graph: GasPipe
     node: fourway
@@ -355,7 +379,7 @@
   description: It used to hold gas.
   components:
   - type: Sprite
-    sprite: Structures/Piping/Atmospherics/pipe.rsi
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
     drawdepth: ThinPipe
     state: pipeBroken
     layers:
@@ -390,7 +414,7 @@
     mode: SnapgridCenter
   components:
   - type: Sprite
-    sprite: Structures/Piping/Atmospherics/manifold.rsi
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/manifold.rsi # Carpmosia-edit - 5 pipe layers
     layers:
     - state: pipeManifold
       map: [ "enum.PipeVisualLayers.Pipe" ]
@@ -398,9 +422,13 @@
     pipeLayersLocked: true
   - type: PipeAppearance
     sprite:
-    - { sprite: Structures/Piping/Atmospherics/manifold.rsi, state: pipeConnector }
-    - { sprite: Structures/Piping/Atmospherics/manifold.rsi, state: pipeConnector_alt1 }
-    - { sprite: Structures/Piping/Atmospherics/manifold.rsi, state: pipeConnector_alt2 }
+    # Carpmosia-start - 5 pipe layers
+    - { sprite: _Carpmosia/Structures/Piping/Atmospherics/manifold.rsi, state: pipeConnector }
+    - { sprite: _Carpmosia/Structures/Piping/Atmospherics/manifold.rsi, state: pipeConnector_alt1 }
+    - { sprite: _Carpmosia/Structures/Piping/Atmospherics/manifold.rsi, state: pipeConnector_alt2 }
+    - { sprite: _Carpmosia/Structures/Piping/Atmospherics/manifold.rsi, state: pipeConnector_alt3 }
+    - { sprite: _Carpmosia/Structures/Piping/Atmospherics/manifold.rsi, state: pipeConnector_alt4 }
+    # Carpmosia-end - 5 pipe layers
   - type: Construction
     graph: GasPipe
     node: manifold
@@ -409,7 +437,7 @@
     shape:
     - 0,0,1,0
     storedSprite:
-      sprite: Structures/Piping/Atmospherics/manifold.rsi
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/manifold.rsi # Carpmosia-edit - 5 pipe layers
       state: storageManifold
   - type: NodeContainer
     nodes:
@@ -431,6 +459,18 @@
         pipeDirection: South
         pipeLayer: 2
         volume: 50
+      # Carpmosia-start - 5 pipe layers
+      south3:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        pipeLayer: 3
+      south4:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        pipeLayer: 4
+      # Carpmosia-end - 5 pipe layers
       north0:
         !type:PipeNode
         nodeGroupID: Pipe
@@ -449,6 +489,18 @@
         pipeDirection: North
         pipeLayer: 2
         volume: 50
+      # Carpmosia-start - 5 pipe layers
+      north3:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: North
+        pipeLayer: 3
+      north4:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: North
+        pipeLayer: 4
+      # Carpmosia-end - 5 pipe layers
   - type: GasPipeManifold
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasPipeManifold

@@ -115,6 +115,8 @@ public enum RpdMode : byte
     Primary = 0,
     Secondary = 1,
     Tertiary = 2,
-    Free = 3,
+    Quaternary = 3,
+    Quinary = 4,
+    Free = 5,
     // Starlight End
 }
