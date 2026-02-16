@@ -2,6 +2,7 @@ using Content.Server.AlertLevel;
 using Content.Server.Audio;
 using Content.Server.Chat.Systems;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.GameTicking;
 using Content.Server.Pinpointer;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
@@ -49,6 +50,7 @@ public sealed class NukeSystem : EntitySystem
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     [Dependency] private readonly DigitalLockSystem _digitalLock = default!; // Starlight-edit
 
@@ -509,9 +511,18 @@ public sealed class NukeSystem : EntitySystem
         var x = (int) pos.X;
         var y = (int) pos.Y;
         var posText = $"({x}, {y})";
-
-        // We are collapsing the randomness here, otherwise we would get separate random song picks for checking duration and when actually playing the song afterwards
-        _selectedNukeSong = _audio.ResolveSound(component.ArmMusic);
+        
+        
+        if (_gameTicker.IsGameRuleActive("Nukeops"))
+        {
+            // We are collapsing the randomness here, otherwise we would get separate random song picks for checking duration and when actually playing the song afterwards
+            _selectedNukeSong = _audio.ResolveSound(component.ArmMusic);
+        }
+        else
+        {
+            //special music for loneops
+            _selectedNukeSong = _audio.ResolveSound(component.ArmMusicLone);
+        }
 
         // warn a crew
         var announcement = Loc.GetString("nuke-component-announcement-armed",
