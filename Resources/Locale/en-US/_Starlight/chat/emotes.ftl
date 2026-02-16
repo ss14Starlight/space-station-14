@@ -19,6 +19,8 @@ chat-emote-name-pop = Pop
 chat-emote-name-squee = Squeak
 chat-emote-name-snort = Snort
 chat-emote-name-stomp = Stomp
+chat-emote-name-hum = Hum
+chat-emote-name-glub = Glub
 
 # Emote Messages
 chat-emote-msg-mew = mews

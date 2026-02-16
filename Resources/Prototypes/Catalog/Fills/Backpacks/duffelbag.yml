@@ -69,7 +69,7 @@
         children:
         - id: WeaponShotgunBulldog
         - id: MagazineShotgun
-          amount: 3
+          amount: 4 #SL 3 > 4
         - id: MagazineShotgunSlug
 #       - id: ThermalImagingGoggles
 
@@ -85,7 +85,7 @@
         children:
         - id: WeaponSubMachineGunC20r
         - id: MagazinePistolSubMachineGunSP
-          amount: 2
+          amount: 3 #SL 2 > 3
 #       - id: SMGSuppressor
 
 - type: entity
@@ -100,7 +100,7 @@
         children:
         - id: WeaponRifleEstoc
         - id: MagazineRifleSP
-          amount: 2
+          amount: 3 #SL 2 > 3
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -128,14 +128,15 @@
         children:
         - id: WeaponLightMachineGunL6
         - id: MagazineBoxLightRifleSP
+          amount: 2 #SL 1 > 2
         - id: MagazineLightRifleBoxSP
-        - id: MagazineLightRifleBoxSP
+          amount: 2 #SL cleanup
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
   name: China-Lake bundle
-  description: "An old China-Lake grenade launcher bundled with 11 rounds of various destruction capability."
+  description: "An old China-Lake grenade launcher bundled with 10 rounds of various destruction capability."
   components:
   - type: EntityTableContainerFill
     containers:
@@ -143,9 +144,9 @@
         children:
         - id: WeaponLauncherChinaLake
         - id: GrenadeBlast
-          amount: 4
+          amount: 5 #SL 4 > 5
         - id: GrenadeFrag
-          amount: 4
+          amount: 5 #SL 4 > 5
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -446,7 +447,7 @@
         children:
         - id: WeaponSubMachineGunC20r
         - id: MagazinePistolSubMachineGunSP
-          amount: 3
+          amount: 4 #SL 3 > 4
         - id: MagazinePistolSP
         - id: SyndicateJawsOfLife
         - id: C4
@@ -460,12 +461,13 @@
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledHushpup
   name: Hushpup bundle
-  description: Contains the Hushpup, bundled with a box of buckshot. Quarter included.
+  description: Contains the Hushpup, bundled with 2 boxes of buckshot. Quarter included.
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
         - id: WeaponShotgunHushpup
+          amount: 2 #SL 1 > 2
         - id: BoxLethalshot
         - id: TreasureCoinIron

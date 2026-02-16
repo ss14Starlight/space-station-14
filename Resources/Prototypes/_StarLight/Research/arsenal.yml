@@ -104,12 +104,14 @@
     state: cybershield-on
   discipline: Arsenal
   tier: 2
-  cost: 5000
+  cost: 7500
   recipeUnlocks:
     - LeftArmCyberBulwark
     - RightArmCyberBulwark
     - LeftArmCyberZeus
     - RightArmCyberZeus
+    - LeftArmCyberHerakles
+    - RightArmCyberHerakles
     - LeftLegCyberPilebunker
     - RightLegCyberPilebunker
   technologyPrerequisites:

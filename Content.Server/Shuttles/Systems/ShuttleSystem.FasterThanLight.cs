@@ -251,7 +251,7 @@ public sealed partial class ShuttleSystem
             }
         }
 
-        if (HasComp<PreventPilotComponent>(shuttleUid) || HasComp<PreventFTLComponent>(shuttleUid))
+        if (HasComp<PreventPilotComponent>(shuttleUid) || HasComp<PreventFTLComponent>(shuttleUid) || HasComp<PreventFTLComponent>(Transform(shuttleUid).MapUid)) // SL - Prevent FTL if map has PreventFTLComponent.
         {
             reason = Loc.GetString("shuttle-console-prevent");
             return false;

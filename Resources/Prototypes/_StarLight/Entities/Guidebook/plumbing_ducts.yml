@@ -1,0 +1,55 @@
+# ============================================================================
+# Guidebook Duct Entities
+# ============================================================================
+# Duct variants specifically for GuideEntityEmbed display.
+# Real ducts have SubFloorHide + visible: false, which prevents proper
+# rendering in guidebook embeds
+# ============================================================================
+
+- type: entity
+  id: GuidebookPlumbingDuctStraight
+  name: fluid duct
+  suffix: Straight, Guidebook
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Piping/Plumbing/fluid_ducts.rsi
+    drawdepth: ThinPipe
+    layers:
+    - state: storageStraight
+
+- type: entity
+  id: GuidebookPlumbingDuctBend
+  name: fluid duct
+  suffix: Bend, Guidebook
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Piping/Plumbing/fluid_ducts.rsi
+    drawdepth: ThinPipe
+    layers:
+    - state: storageBend
+
+- type: entity
+  id: GuidebookPlumbingDuctTJunction
+  name: fluid duct
+  suffix: T-Junction, Guidebook
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Piping/Plumbing/fluid_ducts.rsi
+    drawdepth: ThinPipe
+    layers:
+    - state: storageTjunction
+
+- type: entity
+  id: GuidebookPlumbingDuctFourway
+  name: fluid duct
+  suffix: Fourway, Guidebook
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Piping/Plumbing/fluid_ducts.rsi
+    drawdepth: ThinPipe
+    layers:
+    - state: storageFourway

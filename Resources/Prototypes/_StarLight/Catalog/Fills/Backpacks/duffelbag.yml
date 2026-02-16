@@ -28,9 +28,7 @@
         children:
         - id: WeaponShotgunMinotaur
         - id: MagazineShotgun
-        - id: MagazineShotgun
-        - id: MagazineShotgun
-        - id: MagazineShotgun
+          amount: 5
       
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -65,7 +63,7 @@
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledBullpup
   name: pitbull bundle
-  description: "Contains the Pitbull Rifle and two additional magazines."
+  description: "Contains the Pitbull Rifle and 3 additional magazines."
   components:
   - type: EntityTableContainerFill
     containers:
@@ -73,13 +71,13 @@
         children:
         - id: WeaponRiflePitbull
         - id: MagazineMagnumRifleSP
-          amount: 2
+          amount: 3
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledUzi
   name: type u3 uzi bundle
-  description: "Contains a sleek, dangerous uzi, and 2 additional magazines."
+  description: "Contains a sleek, dangerous uzi, and 3 additional magazines."
   components:
   - type: EntityTableContainerFill
     containers:
@@ -87,7 +85,7 @@
         children:
         - id: WeaponSubMachineGunUzi
         - id: MagazinePistolSubMachineGunUzi
-        - id: MagazinePistolSubMachineGunUzi
+          amount: 3
       
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

@@ -16,17 +16,18 @@ public sealed class NullSpaceBlockerSystem : EntitySystem
 
     private void OnEntityEnter(EntityUid uid, NullSpaceBlockerComponent component, ref StartCollideEvent args)
     {
-        if (!component.UnphaseOnCollide)
+        if (component.UnphaseOnCollide)
+            UnphaseOnCollide(args.OtherEntity);
+    }
+
+    private void UnphaseOnCollide(EntityUid uid)
+    {
+        if (!TryComp<NullSpaceComponent>(uid, out var nullspace))
             return;
 
-        var otherUid = args.OtherEntity;
-
-        if (!TryComp<NullSpaceComponent>(otherUid, out var nullspace))
-            return;
-
-        RemComp(otherUid, nullspace);
+        RemComp(uid, nullspace);
 
         if (_net.IsServer)
-            SpawnAtPosition(_shadekinShadow, Transform(otherUid).Coordinates);
+            SpawnAtPosition(_shadekinShadow, Transform(uid).Coordinates);
     }
 }

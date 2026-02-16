@@ -410,6 +410,19 @@
     stockLimit: 4
 
 - type: listing
+  id: USSPUniform
+  name: sovietuniform-name
+  description: sovietuniform-desc
+  productEntity: ClothingUniformJumpsuitSovietFatigues
+  cost:
+    Telebond: 0
+  categories:
+  - RevUplinkPointless
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 4
+
+- type: listing
   id: USSPZaporozhianBundle
   name: zapo-name
   description: zapo-desc

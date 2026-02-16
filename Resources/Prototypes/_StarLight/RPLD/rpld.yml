@@ -1,0 +1,176 @@
+# =============================================================================
+# RPLD (Rapid Plumbing Device) - RCD prototypes for plumbing placement
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Category: PlumbingDucts
+# -----------------------------------------------------------------------------
+
+- type: rcd
+  id: PlumbingRpldDuctStraight
+  category: PlumbingDucts
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/duct_straight.png
+  mode: ConstructObject
+  prototype: PlumbingDuctStraight
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PlumbingRpldDuctBend
+  category: PlumbingDucts
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/duct_bend.png
+  mode: ConstructObject
+  prototype: PlumbingDuctBend
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PlumbingRpldDuctTJunction
+  category: PlumbingDucts
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/duct_tjunction.png
+  mode: ConstructObject
+  prototype: PlumbingDuctTJunction
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PlumbingRpldDuctFourway
+  category: PlumbingDucts
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/duct_fourway.png
+  mode: ConstructObject
+  prototype: PlumbingDuctFourway
+  cost: 1
+  delay: 0
+  rotation: User
+  fx: EffectRCDConstruct0
+
+# -----------------------------------------------------------------------------
+# Category: PlumbingMachines
+# -----------------------------------------------------------------------------
+
+- type: rcd
+  id: PlumbingRpldTank
+  category: PlumbingMachines
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/tank.png
+  mode: ConstructObject
+  prototype: PlumbingTank
+  cost: 2
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PlumbingRpldInput
+  category: PlumbingMachines
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/pipe_input.png
+  mode: ConstructObject
+  prototype: PlumbingInput
+  cost: 2
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PlumbingRpldOutput
+  category: PlumbingMachines
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/pipe_output.png
+  mode: ConstructObject
+  prototype: PlumbingOutput
+  cost: 2
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PlumbingRpldSink
+  category: PlumbingMachines
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/sink.png
+  mode: ConstructObject
+  prototype: PlumbingSink
+  cost: 2
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PlumbingRpldReactor
+  category: PlumbingMachines
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/reaction_chamber.png
+  mode: ConstructObject
+  prototype: PlumbingReactor
+  cost: 5
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PlumbingRpldPillPress
+  category: PlumbingMachines
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/pill_press.png
+  mode: ConstructObject
+  prototype: PlumbingPillPress
+  cost: 3
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PlumbingRpldFilter
+  category: PlumbingMachines
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/filter.png
+  mode: ConstructObject
+  prototype: PlumbingFilter
+  mirrorPrototype: PlumbingFilterFlipped
+  cost: 3
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PlumbingRpldSynthesizer
+  category: PlumbingMachines
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/synthesizer.png
+  mode: ConstructObject
+  prototype: PlumbingSynthesizer
+  cost: 3
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PlumbingRpldSmartDispenser
+  category: PlumbingMachines
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/smart_fridge.png
+  mode: ConstructObject
+  prototype: PlumbingSmartDispenser
+  cost: 5
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0
+
+- type: rcd
+  id: PlumbingRpldDrain
+  category: PlumbingMachines
+  sprite: /Textures/_Starlight/Interface/Radial/RPLD/drain.png
+  mode: ConstructObject
+  prototype: PlumbingDrain
+  cost: 2
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct0

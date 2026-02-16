@@ -146,6 +146,7 @@
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
+  - ElectrolyzerMachineCircuitboard # Funky atmos = /tg/ gases
   technologyPrerequisites:
   - AtmosphericTech
   radioChannels:
@@ -181,7 +182,6 @@
   tier: 2
   cost: 12500
   recipeUnlocks:
-    - OreBagOfHolding
     - MiningDrillDiamond
     - AdvancedMineralScannerEmpty
     - MechEquipmentDrillDiamond
@@ -203,6 +203,7 @@
   tier: 3
   cost: 15000
   recipeUnlocks:
+  - OreBagOfHolding # SL - Moved to BluespaceStorage.
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding

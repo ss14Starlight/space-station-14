@@ -4,13 +4,13 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/02/2026 01:11:31
-  entityCount: 29397
+  time: 02/10/2026 22:24:51
+  entityCount: 29398
 maps:
 - 1
 grids:
 - 2
-- 29395
+- 29396
 orphans: []
 nullspace: []
 tilemap:
@@ -11348,7 +11348,7 @@ entities:
     - type: Joint
       joints:
         docking46345: !type:WeldJoint
-          bodyB: 29395
+          bodyB: 29396
           bodyA: 2
           id: docking46345
           localAnchorB: -0.5,-1
@@ -11373,7 +11373,7 @@ entities:
     - type: Transform
       pos: 5.5,-13.5
       parent: 2
-  - uid: 29395
+  - uid: 29396
     components:
     - type: MetaData
     - type: Transform
@@ -11413,7 +11413,7 @@ entities:
     - type: Joint
       joints:
         docking46345: !type:WeldJoint
-          bodyB: 29395
+          bodyB: 29396
           bodyA: 2
           id: docking46345
           localAnchorB: -0.5,-1
@@ -15702,7 +15702,7 @@ entities:
       state: Open
     - type: Docking
       dockJointId: docking46345
-      dockedWith: 29396
+      dockedWith: 29397
     - type: DeviceLinkSource
       linkedPorts:
         310:
@@ -15739,11 +15739,11 @@ entities:
           - Close
     - type: DeviceLinkSink
       invokeCounter: 1
-  - uid: 29396
+  - uid: 29397
     components:
     - type: Transform
       pos: -0.5,-0.5
-      parent: 29395
+      parent: 29396
     - type: Door
       changeAirtight: False
       state: Open
@@ -19614,11 +19614,11 @@ entities:
     - type: Transform
       pos: -77.5,7.5
       parent: 2
-  - uid: 29397
+  - uid: 29398
     components:
     - type: Transform
       pos: -0.5,-0.5
-      parent: 29395
+      parent: 29396
 - proto: AtmosFixBlockerMarker
   entities:
   - uid: 949
@@ -159247,6 +159247,17 @@ entities:
       - SurveillanceCameraCommand
       nameSet: True
       id: EVA
+  - uid: 29395
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -6.5,-6.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraCommand
+      nameSet: True
+      id: Bridge West
 - proto: SurveillanceCameraEngineering
   entities:
   - uid: 24200
@@ -187539,7 +187550,7 @@ entities:
       pos: 73.5,-3.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -11055.342
+      secondsUntilStateChange: -12759.053
       state: Opening
   - uid: 29380
     components:

@@ -154,6 +154,54 @@
     forceSound: true
 
 - type: entity
+  parent: BaseBullet
+  id: RadOrb
+  name: radiation orb
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: PointLight
+    enabled: true
+    color: "#38c23f"
+    radius: 2.0
+    energy: 7.0
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+      - state: bluespace
+        shader: unshaded
+    color: "#80c000"
+  - type: Ammo
+    muzzleFlash: null
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        mask:
+        - Opaque
+      fly-by: *flybyfixture
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 20
+    impactEffect: BulletImpactEffectDisabler
+    ignoreShooter: false
+    armingTime: 0.5
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Reflective
+    reflective:
+    - Energy
+    
+- type: entity
   parent: [ BulletGrenadeCleanade, BaseSyndicateContraband ]
   id: BulletGrenadeCleanadeSyndicate
   name: evil cleanade grenade round

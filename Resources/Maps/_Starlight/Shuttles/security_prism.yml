@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 264.0.0
-  forkId: Starlight
-  forkVersion: 1732131340
-  time: 08/12/2025 03:44:40
+  engineVersion: 272.0.0
+  forkId: ""
+  forkVersion: ""
+  time: 02/03/2026 02:52:53
   entityCount: 168
 maps: []
 grids:
@@ -27,7 +27,7 @@ entities:
     - type: MetaData
       name: NT SR-01
     - type: Transform
-      pos: 199.08334,200.47464
+      pos: -0.9166565,-15.52536
       parent: invalid
     - type: MapGrid
       chunks:
@@ -169,36 +169,16 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: NavMap
+    - type: ExplosionAirtightGrid
 - proto: AirAlarm
   entities:
   - uid: 2
@@ -211,6 +191,8 @@ entities:
       devices:
       - 86
       - 87
+    - type: Fixtures
+      fixtures: {}
 - proto: AirCanister
   entities:
   - uid: 3
@@ -257,6 +239,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,18.5
       parent: 1
+    - type: Apc
+      maxLoad: 22000
+    - type: Fixtures
+      fixtures: {}
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 9
@@ -676,16 +662,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 2.5,14.5
       parent: 1
-    - type: VentCrawTube
-      connected: True
   - uid: 84
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 3.5,14.5
       parent: 1
-    - type: VentCrawTube
-      connected: True
 - proto: GasPort
   entities:
   - uid: 85
@@ -694,8 +676,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,13.5
       parent: 1
-    - type: VentCrawTube
-      connected: True
 - proto: GasVentPump
   entities:
   - uid: 86
@@ -703,8 +683,6 @@ entities:
     - type: Transform
       pos: 0.5,14.5
       parent: 1
-    - type: VentCrawTube
-      connected: True
     - type: DeviceNetwork
       deviceLists:
       - 2
@@ -716,8 +694,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,14.5
       parent: 1
-    - type: VentCrawTube
-      connected: True
     - type: DeviceNetwork
       deviceLists:
       - 2
@@ -1006,6 +982,8 @@ entities:
         168:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignalButtonDirectional
   entities:
   - uid: 128
@@ -1025,6 +1003,8 @@ entities:
         102:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 129
     components:
     - type: Transform
@@ -1042,6 +1022,8 @@ entities:
         13:
         - - Pressed
           - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SMESBasic
   entities:
   - uid: 130

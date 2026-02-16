@@ -107,6 +107,13 @@ namespace Content.Shared.Chemistry
         public readonly ChemMasterDrawSource DrawSource = drawSource;
     }
 
+    // Starlight-start: Plumbing valve toggle
+    [Serializable, NetSerializable]
+    public sealed class ChemMasterToggleValveMessage : BoundUserInterfaceMessage
+    {
+    }
+    // Starlight-end
+
     public enum ChemMasterMode
     {
         Transfer,
@@ -225,10 +232,14 @@ namespace Content.Shared.Chemistry
 
         public readonly ChemMasterDrawSource DrawSource;
 
+        // Starlight-start: Plumbing valve
+        public readonly bool ValveOpen;
+        // Starlight-end
+
         public ChemMasterBoundUserInterfaceState(
             ChemMasterMode mode, ChemMasterSortingType sortingType, ContainerInfo? inputContainerInfo, ContainerInfo? outputContainerInfo,
             IReadOnlyList<ReagentQuantity> bufferReagents, FixedPoint2 bufferCurrentVolume,
-            uint selectedPillType, uint pillDosageLimit, uint patchDosageLimit, bool updateLabel, ChemMasterDrawSource drawSource) // Starlight-edit - add patchDosageLimit
+            uint selectedPillType, uint pillDosageLimit, uint patchDosageLimit, bool updateLabel, ChemMasterDrawSource drawSource, bool valveOpen) // Starlight-edit - add patchDosageLimit, valveOpen
         {
             InputContainerInfo = inputContainerInfo;
             OutputContainerInfo = outputContainerInfo;
@@ -241,6 +252,7 @@ namespace Content.Shared.Chemistry
             PatchDosageLimit = patchDosageLimit; //Starlight-edit
             UpdateLabel = updateLabel;
             DrawSource = drawSource;
+            ValveOpen = valveOpen; // Starlight-edit
         }
     }
 

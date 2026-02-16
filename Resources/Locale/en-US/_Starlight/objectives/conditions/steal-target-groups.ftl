@@ -43,6 +43,8 @@ steal-target-groups-id-card-computer-circuitboard = ID card computer board
 steal-target-groups-clothing-headset-alt-command = command over-ear headset
 steal-target-groups-ptech-circuitboard = PTech circuitboard
 
+steal-target-groups-spyglass = Captain's Spyglass
+
 # Thief Collection
 steal-target-groups-handheld-monitors = handheld monitor
 steal-target-groups-galoshes = galosh

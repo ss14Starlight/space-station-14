@@ -58,3 +58,11 @@
       state: rejuvenate
   name: alerts-shadekin-rejuvenate-name
   description: alerts-shadekin-rejuvenate-desc
+
+- type: alert
+  id: ShadekinTheDarkAlert
+  icons:
+    - sprite: /Textures/_Starlight/Interface/Alerts/shadekin.rsi
+      state: thedark
+  name: alerts-shadekin-thedark-name
+  description: alerts-shadekin-thedark-desc

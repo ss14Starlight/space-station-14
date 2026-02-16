@@ -75,6 +75,7 @@ guide-entry-sl-security-sop-headofsecurity = Head of Security
 guide-entry-sl-security-sop-prisonertreatment = Prisoner Treatment
 guide-entry-sl-security-sop-parole = Parole
 guide-entry-sl-security-sop-permitacquisition = Permit Acquisiton
+guide-entry-sl-security-sop-specialsituations = Special Situations
 
 guide-entry-sl-legal-sop-intro = Legal
 
@@ -139,3 +140,8 @@ guide-entry-sl-service-sop-intro = Service
 guide-entry-sl-service-sop-genproc-intro = General Procedures
 guide-entry-sl-service-sop-staff-intro = Staff Procedures
 guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
+
+# Plumbing guides
+guide-entry-plumbing = Plumbing
+guide-entry-plumbingflow = Reagent Flow
+guide-entry-plumbingmachines = Plumbing Machines

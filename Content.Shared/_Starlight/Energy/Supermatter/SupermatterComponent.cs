@@ -2,7 +2,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Starlight.Energy.Supermatter;
+namespace Content.Shared._Starlight.Energy.Supermatter;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class SupermatterComponent : Component

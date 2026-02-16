@@ -78,56 +78,6 @@
     Glass: 100
     Plasma: 100
 
-- type: latheRecipe
-  id: MagazineGrenadeEMP
-  result: MagazineGrenadeEMP
-  completetime: 8 # one second per grenade, plus two for the cartridge
-  materials:
-    Plastic: 600
-    Steel: 1200
-    Uranium: 600
-    Plasma: 600
-
-- type: latheRecipe
-  id: MagazineGrenadeBaton
-  result: MagazineGrenadeBaton
-  completetime: 8
-  materials:
-    Plastic: 600
-    Steel: 1650
-
-- type: latheRecipe
-  id: MagazineGrenadeFlash
-  result: MagazineGrenadeFlash
-  completetime: 8
-  materials:
-    Plastic: 1650
-    Steel: 1200
-    Glass: 600
-
-- type: latheRecipe
-  id: MagazineGrenadeBlast
-  result: MagazineGrenadeBlast
-  completetime: 8
-  materials:
-    Plastic: 600
-    Steel: 1200
-    Uranium: 600
-
-- type: latheRecipe
-  id: MagazineGrenadeFrag
-  result: MagazineGrenadeFrag
-  completetime: 8
-  materials:
-    Plastic: 600
-    Steel: 2000
-
-- type: latheRecipe
-  id: MagazineGrenadeEmpty
-  result: MagazineGrenadeEmpty
-  completetime: 2
-  materials:
-    Plastic: 600
 #
 - type: latheRecipe
   id: LeftArmCyberZeus
@@ -155,6 +105,33 @@
     Glass: 100
     Plasma: 100
 
+#Cybernetics
+- type: latheRecipe
+  id: LeftArmCyberHerakles
+  result: LeftArmCyberHerakles
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
+
+- type: latheRecipe
+  id: RightArmCyberHerakles
+  result: RightArmCyberHerakles
+  categories:
+  - Cyberlimbs
+  completetime: 10
+  materials:
+    Plastic: 450
+    Steel: 450
+    Silver: 100
+    Glass: 100
+    Plasma: 100
+
 #IMPLANTS
 
 #Hand
@@ -166,7 +143,7 @@
   - Implants
   completetime: 4
   materials:
-    Plasteel: 500
+    Plasteel: 200
     Steel: 200
     Plasma: 300
     Glass: 150

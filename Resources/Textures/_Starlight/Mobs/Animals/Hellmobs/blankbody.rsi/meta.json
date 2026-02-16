@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from Paradise Station 13 RU link: https://github.com/ss220club/Paradise-SS220/blob/master/icons/mob/animal.dmi",
+  "states": [
+    {
+        "name": "blank_body",
+        "copyright": "Paradise Station RU",  
+        "directions": 4
+    }
+  ]
+}

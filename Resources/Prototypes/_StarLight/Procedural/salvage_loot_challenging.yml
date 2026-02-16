@@ -135,3 +135,84 @@
         - proto: GrenadeEMP
           prob: 0.3
           cost: 3
+
+        - proto: LeftArmCyber
+          prob: 0.4
+          cost: 10
+        - proto: RightArmCyber
+          prob: 0.4
+          cost: 10
+        - proto: LeftArmCyberRipper
+          prob: 0.2
+          cost: 15
+        - proto: RightArmCyberRipper
+          prob: 0.2
+          cost: 15
+        - proto: LeftArmCyberMechwright
+          prob: 0.2
+          cost: 15
+        - proto: RightArmCyberMechwright
+          prob: 0.2
+          cost: 15
+
+        - proto: LeftLegCyber
+          prob: 0.4
+          cost: 10
+        - proto: RightLegCyber
+          prob: 0.4
+          cost: 10
+        - proto: LeftLegCyberCargo
+          prob: 0.4
+          cost: 10
+        - proto: RightLegCyberCargo
+          prob: 0.4
+          cost: 10
+        - proto: LeftLegCyberHydraulic
+          prob: 0.2
+          cost: 10
+        - proto: RightLegCyberHydraulic
+          prob: 0.2
+          cost: 10
+
+        - proto: BrainImplantTranslator
+          prob: 0.2
+          cost: 5
+        - proto: BrainImplantComms
+          prob: 0.2
+          cost: 5
+        - proto: BrainImplantCommsExpedition
+          prob: 0.2
+          cost: 5
+        - proto: BrainImplantNexus
+          prob: 0.01
+          cost: 30
+        - proto: HandImplantForensics
+          prob: 0.2
+          cost: 5
+        - proto: HandImplantClaws
+          prob: 0.2
+          cost: 5
+        - proto: HandImplantInsulated
+          prob: 0.1
+          cost: 10
+        - proto: HandImplantThrusters
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantChemistry
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantMedical
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantWelding
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantSecurity
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantDiagnostic
+          prob: 0.2
+          cost: 5
+        - proto: EyeImplantSyndie
+          prob: 0.1
+          cost: 10

@@ -49,7 +49,7 @@
 - type: entity
   id: MagazineGrenadeFrag
   name: frag grenade cartridge
-  parent: [ BaseMagazineGrenade, BaseSyndicateContraband ] # Starlight edit: Security -> Syndicate contraband
+  parent: [ BaseMagazineGrenade, BaseSyndicateContraband ] # Starlight edit: Security -> Syndicate contraband TODO decide on if these should eventually be sec contra?
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeFrag
@@ -73,7 +73,7 @@
 - type: entity
   id: MagazineGrenadeBlast
   name: blast grenade cartridge
-  parent: [ BaseMagazineGrenade, BaseSyndicateContraband ] # Starlight edit: Security -> Syndicate contraband
+  parent: [ BaseMagazineGrenade, BaseSecurityContraband ] # Starlight edit: Re-add Security contraband
   components:
   - type: BallisticAmmoProvider
     proto: GrenadeBlast

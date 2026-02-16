@@ -1,0 +1,31 @@
+[head=1][color=#009100]────────────────────[/color][/head]
+[color=#cc0000]█▀▀ █▀▀ █▀▀▄[/color] [head=3]   [color=#cc0000]CENTRAL SECURITY DIVISION [/color][/head]
+[color=#cc0000]█░░ ▀▀█ █░░█[/color][bolditalic]     [color=#cc0000]Eradicating the enemies of Nanotrasen[/color][/bolditalic]
+[color=#cc0000]▀▀▀ ▀▀▀ ▀▀▀░[/color]   [color=#aaaaaa][italic]OFFICIAL CSD OFFICE DOCUMENT[/italic][/color]
+[head=1][color=#009100]────────────────────[/color][/head]
+[head=1][color=#cc0000]Classified Secure Document[/color][/head]
+[head=1][color=#009100]────────────────────[/color][/head]
+[mono]
+[bold]Subject:[/bold] Syndicate Agents
+
+[mono]The information contained in this document is restricted from common crew as only your superior emotional intelligence has been judged to be capable of handing the truth without becoming ineffectual in your duties. As such, sharing of any of this information with those outside of security is considered Treason unless authorized to by the HOS, Captain, or local NanoTrasen Representative. This information could cause the crew to panic, not trust one-another, and lead to station inefficiency and lost profits.
+
+If you hear any of these facts discussed with or around common crew, they are to be discredited. If an audience is listening and seems to be believing them, they are to be immediately detained for Sedition and Disturbance. Command should be informed of the situation where they shall handle the rest of the situation.[/mono]
+[head=1][color=#009100]────────────────────[/color][/head]
+As you are aware from news reports, Syndicate agents are commonly dispatched to disrupt NanoTrasen Station operations. They often utilize certain tools in their craft, some of which date back to the Podwar era.
+
+Common tools: Podwar era soft and hard suits, web vests and chest rigs, Syndicate tool boxes, and Syndicate welding masks. These items are still commonly found by spacers and make their way onto stations in ways that do not necessarily indicate Syndicate activity.
+
+Less common tools: EMAG, Access breaker, Jaws of death, and Radio jammers. These items are high end Syndicate equipment that are well guarded by agents. These items do sometimes turn up on black markets, but their presence on a station is strong evidence that some form of Syndicate activity is occurring. These tools are frequently sold after missions into the black market where other neerdowells may get their hands on them.
+
+Advanced tools: Syndicate weapons, energy swords, implants, and uplinks. Syndicate weapons are rarely found on the black market and thus are generally sure signs that someone found in possession and use of these is very likely a Syndicate agent of terrorism.
+
+It is known that members of the Syndicate produce various implants for their agents, though they are too varied and customized to fully document. Some notable examples include implants that allow an agent to slip from cuffs, communicate on hidden comms, and concealed pockets. It is impossible to validate the existence of the implants directly without immense risk; improper use of implant extractors carry the risk of grave bodily harm to the user, and should only be done when evidence is certain. Implant removal is a very painful process, and if conducted improperly may classify as prisoner abuse.
+
+It is known that Syndicate agents possess a tool called 'Uplinks' that can be used to redspace Syndicate tools to agents in the field. How this 'uplink' is accessed or used is not known to NanoTrasen. Any intelligence on uplinks should be reported to CC in extreme detail.
+
+Manufacturers of this equipment seem to be Cybersun, Waffle Co., and Interdyne; though definitive proof linking these corporations to the Syndicate is difficult to acquire.
+
+From decades of experience, it is known that the Syndicate targets specific high end NanoTrasen equipment. It is presumed that this stolen equipment is used in the production of their advanced equipment. This commonly includes: CE's mag boots, the Captain's Antique laser pistol, the RD's hand teleporter and hardsuit, the CMO's hypospray and Portable Crew Monitor, etc. 
+
+[head=1][color=#009100]────────────────────[/color][/head]

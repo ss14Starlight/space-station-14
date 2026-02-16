@@ -3,7 +3,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Rejuvenate;
-using Content.Shared.Starlight.Cybernetics.Components;
+using Content.Shared._Starlight.Cybernetics.Components; // Starlight
 using Content.Shared.StatusIcon;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;

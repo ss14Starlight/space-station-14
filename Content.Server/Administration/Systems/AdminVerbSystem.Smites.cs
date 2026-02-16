@@ -65,6 +65,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Utility;
 using Timer = Robust.Shared.Timing.Timer;
+using Content.Server._Starlight.Terminator;
 
 namespace Content.Server.Administration.Systems;
 
@@ -100,6 +101,7 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly SuperBonkSystem _superBonkSystem = default!;
     [Dependency] private readonly SlipperySystem _slipperySystem = default!;
     [Dependency] private readonly GibbingSystem _gibbing = default!;
+    [Dependency] private readonly TerminatorSystem _terminator = default!; // starlight
 
     private readonly EntProtoId _actionViewLawsProtoId = "ActionViewLaws";
     private readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
@@ -1176,6 +1178,22 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", scrambleName, Loc.GetString("admin-smite-scramble-description"))
         };
         args.Verbs.Add(scramble);
+
+        var terminateName = Loc.GetString("admin-smite-terminate-name").ToLowerInvariant();
+        Verb terminate = new()
+        {
+            Text = terminateName,
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new("Mobs/Species/Terminator/parts.rsi"), "skull_icon"),
+            Act = () =>
+            {
+                _terminator.CreateTerminator(args.Target);
+                _popup.PopupEntity(Loc.GetString("admin-smite-terminate-warning"), args.Target, PopupType.Small); // ill be back
+            },
+            Impact = LogImpact.Extreme,
+            Message = string.Join(": ", terminateName, Loc.GetString("admin-smite-terminate-description"))
+        };
+        args.Verbs.Add(terminate);
         // Starlight end
     }
 

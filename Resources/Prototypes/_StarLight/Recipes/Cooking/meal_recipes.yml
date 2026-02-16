@@ -142,3 +142,21 @@
     Blood: 10
     Water: 10
     Fat: 10
+
+- type: deepFryingRecipe
+  id: KFFAlternative
+  name: Kentucky Fried Felionoid
+  result: FoodFriedfelionoid
+  time: 30
+  ingredient: MobFelionoid
+  includeFormerly: true
+
+- type: microwaveMealRecipe
+  id: RecipeFoodCookedShadekinCore
+  name: core spaghetti
+  result: FoodCookedShadekinCore
+  time: 10
+  group: Pasta
+  solids:
+    FoodNoodlesBoiled: 1
+    OrganShadekinCore: 1

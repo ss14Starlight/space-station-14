@@ -51,8 +51,11 @@ public partial class SharedBodySystem
         //Starlight start
         {
             AddOrgan((insertedUid, organ), ent.Comp.Body.Value, ent);
-            var addedEv = new SurgeryOrganImplantationCompleted(ent.Comp.Body.Value, ent.Owner, insertedUid);
-            RaiseLocalEvent(insertedUid, ref addedEv);
+            if (slotId != "body_organ_slot_cavity")
+            {
+                var addedEv = new SurgeryOrganImplantationCompleted(ent.Comp.Body.Value, ent.Owner, insertedUid);
+                RaiseLocalEvent(insertedUid, ref addedEv);
+            }
         }
         //Starlight end
     }

@@ -65,6 +65,7 @@ namespace Content.Client.Chemistry.UI
             }
 
             _window.OnReagentButtonPressed += (args, button) => SendMessage(new ChemMasterReagentAmountButtonMessage(button.Id, button.Amount, button.IsBuffer));
+            _window.OnToggleValveButtonPressed += () => SendMessage(new ChemMasterToggleValveMessage()); // Starlight-edit: Plumbing valve
         }
 
         /// <summary>

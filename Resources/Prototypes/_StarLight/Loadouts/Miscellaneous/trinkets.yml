@@ -50,74 +50,6 @@
     - TrumpetInstrument
   groupBy: "Instruments"
 
-
-# Meow mrrp ## shut up
-- type: loadout
-  id: ClothingUnderSocksCoder
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingUnderSocksCoder
-  groupBy: "cat maid"
-
-- type: loadout
-  id: ClothingShoesHighheelBoots
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingShoesHighheelBoots
-  groupBy: "cat maid"
-
-- type: loadout
-  id: ClothingShoesHighheelShoes
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingShoesHighheelShoes
-  groupBy: "cat maid"
-
-- type: loadout
-  id: ClothWrap
-  storage:
-    back:
-    - ClothingClothWrap
-
-- type: loadout
-  id: ClothingUniformJumpskirtElegantMaid
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingUniformJumpskirtElegantMaid
-  groupBy: "cat maid"
-
-- type: loadout
-  id: ClothingHeadHatWhiteCatEars
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingHeadHatWhiteCatEars
-  groupBy: "cat maid"
-
 - type: loadout
   id: RolliePack
   storage:
@@ -132,9 +64,8 @@
       requirement:
         !type:OverallPlaytimeRequirement
         time: 36000 # 10hr
-  storage:
-    back:
-      - GoldRing
+  equipment:
+    gloves: GoldRing
 
 - type: loadout
   id: SilverRing
@@ -143,9 +74,8 @@
       requirement:
         !type:OverallPlaytimeRequirement
         time: 36000 # 10hr
-  storage:
-    back:
-      - SilverRing
+  equipment:
+    gloves: SilverRing
 
 - type: loadout
   id: Matchbox
@@ -196,6 +126,11 @@
   storage:
     back:
       - Basketball
+
+- type: loadout
+  id: TBall
+  equipment: # woof
+    mask: TennisBall
 
 - type: loadout
   id: RubberQuack
@@ -403,9 +338,8 @@
       !type:RoleTimeRequirement
       role: JobMailTech
       time: 36000 # 10 hours of being ignored while carrying a parcelbomb
-  storage:
-    back:
-    - ClothingShoesSkates
+  equipment:
+    shoes: ClothingShoesSkates
 
 - type: loadout
   id: DaBling
@@ -415,9 +349,8 @@
       !type:RoleTimeRequirement
       role: JobCargoTechnician
       time: 36000 # 10 hours of resisting the urge to declare cargonia
-  storage:
-    back:
-    - ClothingNeckBling
+  equipment:
+    neck: ClothingNeckBling
 
 - type: loadout
   id: CrapPlushie
@@ -474,7 +407,7 @@
         role: JobSurgeon
         time: 72000 # 20 hours of turning her into a papa johns
   storage:
-    back: 
+    back:
       - LeftArmCyberRipper
 
 - type: loadout
@@ -486,8 +419,32 @@
         role: JobStationEngineer
         time: 72000 # 20 hours of banging wrenches on things
   storage:
-    back: 
+    back:
       - RightArmCyberMechwright
+
+- type: loadout
+  id: leftcargoleg
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Cargo
+        time: 72000 # 20 hours of needing more storage
+  storage:
+    back:
+      - LeftLegCyberCargo
+
+- type: loadout
+  id: rightcargoleg
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Cargo
+        time: 72000 # 20 hours of needing more storage
+  storage:
+    back:
+      - RightLegCyberCargo
 
 - type: loadout
   id: CigPackBub
@@ -498,7 +455,7 @@
         department: Medical
         time: 72000 # 20hrs of treating patients as Dr. House
   storage:
-    back: 
+    back:
       - CigPackBub
   groupBy: "smokeables"
 
@@ -525,7 +482,7 @@
       !type:OverallPlaytimeRequirement
       time: 48h
   storage:
-    back: 
+    id:
       - PersonalAI
 
 - type: loadout
@@ -537,5 +494,17 @@
       role: GhostPAI
       time: 8h
   storage:
-    back: 
+    id:
       - GoldenPersonalAI
+
+- type: loadout
+  id: Boxblacklight
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:SpeciesRequirement
+      species:
+      - Shadekin
+  storage:
+    back: 
+      - Boxblacklight

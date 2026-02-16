@@ -89,7 +89,7 @@
     state: ripletclaw
   discipline: Industrial
   tier: 2
-  cost: 5000
+  cost: 7500
   recipeUnlocks:
     - LeftArmCyberSpacer
     - RightArmCyberSpacer
@@ -97,6 +97,8 @@
     - RightArmCyberRiplet
     - LeftLegCyberHydraulic
     - RightLegCyberHydraulic
+    - LeftLegCyberCargo
+    - RightLegCyberCargo
   technologyPrerequisites:
     - CyberLimbsTech
   radioChannels:

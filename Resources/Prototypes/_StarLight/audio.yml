@@ -10,13 +10,24 @@
   - /Audio/_Starlight/Machines/talk_phone7.ogg
   
 - type: ambientMusic
-  id: TheDark
+  id: NearTheDark
   sound:
     params:
       volume: -12
     collection: AmbienceTheDark
   rules: NearTheDark
   priority: 2
+
+- type: ambientMusic
+  id: TheDark
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceTheDark
+  fadeIn: true
+  interruptable: true
+  rules: InTheDark
+  priority: 1
 
 - type: soundCollection
   id: AmbienceTheDark
@@ -26,7 +37,7 @@
     - /Audio/_Starlight/Ambiance/TheDark/dark3.ogg
 
 - type: rules
-  id: NearTheDark # TODO: If were in the "Dark Map" we should always validade this Rule!
+  id: NearTheDark
   rules:
     - !type:NearbyEntitiesRule
       count: 1
@@ -34,3 +45,9 @@
         tags:
           - TheDark
       range: 5
+
+- type: rules
+  id: InTheDark
+  rules:
+    - !type:OnMapTagRule
+      mapTag: TheDark

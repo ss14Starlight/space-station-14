@@ -4,12 +4,12 @@
   name: stone tea statue
   description: A stone statue depicting a tea-drinking revolutionary. It stands as a symbol of unity and shared purpose among comrades.
   components:
-  - type: Sprite
-    noRot: true
-    sprite: _Starlight/Structures/Decorations/Statues.rsi
-    state: stone_tea
-    drawdepth: Mobs
-    offset: "0.0,0.5"
+    - type: Sprite
+      noRot: true
+      sprite: _Starlight/Structures/Decorations/Statues.rsi
+      state: stone_tea
+      drawdepth: Mobs
+      offset: "0.0,0.5"
 
 - type: entity
   id: StatueOneYearAnniversary
@@ -19,11 +19,11 @@
     A marble statue of an idealized employee, made to commemorate the first anniversary of NanoTrasen control over the Starlight Sector.
     While ostensibly celebratory, it seems oddly mournful. Many died to make this possible.
   components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Decorations/Statues.rsi
-    state: one_year_anniversary
-    drawdepth: Mobs
-    offset: "0.0,0.5"
+    - type: Sprite
+      sprite: _Starlight/Structures/Decorations/Statues.rsi
+      state: one_year_anniversary
+      drawdepth: Mobs
+      offset: "0.0,0.5"
 
 - type: entity
   id: Phoronic
@@ -31,6 +31,7 @@
   name: phoronic cascade
   description: A huge structure made of pure plasma. Dark energy roils and bursts within it.
   components:
+    - type: StationAnchor
     - type: Transform
       anchored: true
     - type: Sprite
@@ -40,6 +41,25 @@
       sprite: _Starlight/Structures/Decorations/Phoronic.rsi
       state: phoronic
     - type: SpriteFade
-    - type: Tag
-      tags:
-        - TheDark
+    - type: TheDarkImmune
+      ranged: true
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          density: 60
+          mask:
+            - MachineMask
+          layer:
+            - MidImpassable
+            - LowImpassable
+        fix2:
+          shape: !type:PhysShapeCircle
+            radius: 5
+          density: 0
+          hard: false
+          mask:
+            - None
+          layer:
+            - MidImpassable

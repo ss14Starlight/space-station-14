@@ -26,6 +26,7 @@ using Robust.Shared.Utility;
 // Starlight Start
 using Content.Server.Body.Systems;
 using Content.Server.GameTicking;
+using Robust.Shared.GameObjects.Components.Localization;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -53,6 +54,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly LimbSystem _limbSystem = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
+    [Dependency] private readonly GrammarSystem _grammarSystem = default!; // Starlight
 
     private List<CyberneticImplant> _allCybernetics = default!; // Starlight
 
@@ -165,7 +167,21 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         if (!_prototypeManager.TryIndex<SpeciesPrototype>(speciesId, out var species))
             throw new ArgumentException($"Invalid species prototype was used: {speciesId}");
 
-        entity ??= Spawn(species.Prototype, coordinates);
+        // Starlight Start
+        if (profile?.ForcedPrototype.Id != null)
+        {
+            if (!_prototypeManager.Resolve(profile.ForcedPrototype, out _))
+                throw new ArgumentException($"Could not find ${profile.ForcedPrototype} prototype for spawn rule.");
+            entity = Spawn(profile.ForcedPrototype, coordinates);
+            var resolvedEntity = (EntityUid)entity;
+            var grammar = EntityManager.EnsureComponent<GrammarComponent>(resolvedEntity);
+            _grammarSystem.SetGender((resolvedEntity, grammar), profile.Gender);
+        }
+        else 
+        { 
+        // Starlight End
+            entity ??= Spawn(species.Prototype, coordinates);
+        } // Starlight
 
         if (profile != null)
         {

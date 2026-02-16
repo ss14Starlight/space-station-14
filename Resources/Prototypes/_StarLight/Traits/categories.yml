@@ -6,6 +6,13 @@
   accentColor: "#ffffff"
 
 - type: traitCategory
+  id: EthnicityTraits
+  name: trait-category-ethnicity
+  priority: 5
+  maxTraits: 1
+  accentColor: "#efc0a3" # pale orange
+
+- type: traitCategory
   id: Disabilities
   name: trait-category-disabilities
   priority: 10

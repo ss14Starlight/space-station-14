@@ -1,5 +1,7 @@
 research-discipline-biochemical = Biochemical
 
+research-technology-chemical-storage = Advanced chemical storage
+
 research-technology-basic-surgery = Basic surgery
 research-technology-advanced-surgery = Advanced surgery
 

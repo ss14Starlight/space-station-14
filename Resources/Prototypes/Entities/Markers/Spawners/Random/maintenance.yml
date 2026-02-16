@@ -71,6 +71,7 @@
         children:
         - id: ClothingOuterCoatPirate
         - id: ClothingHeadHatPirateTricord
+        - id: Spyglass #Starlight
       - id: ClothingHeadHatTophat
       - id: ClothingOuterHoodieBlack
         weight: 0.5
@@ -96,6 +97,8 @@
       - id: CamoUniformSuit #SL
       - id: ClothingOuterBurnedRobes #SL
       - id: ClothingNeckTatteredHood #SL
+      - id: SpyglassImprovised #SL
+        weight: 0.65 #SL
     # Uncommon Group
     - !type:GroupSelector
       weight: 23
@@ -351,7 +354,8 @@
         weight: .8
       - id: WeaponShotgunMakeshift
         weight: .8
-      - id: ClothingOuterArmorMakeshift  #Starlight End:
+      - id: ClothingOuterArmorMakeshift
+      - id: WeaponMeleeSwitchblade #Starlight End:
     # Rare Group
     - !type:GroupSelector
       weight: 5

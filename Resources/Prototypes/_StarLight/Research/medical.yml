@@ -22,6 +22,21 @@
   - Medical
 
 - type: technology
+  id: ChemicalStorageTech
+  name: research-technology-chemical-storage
+  icon:
+    sprite: _Starlight/Objects/Specific/Chemistry/beaker.rsi
+    state: beaker
+  discipline: Biochemical
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - GoldenJug
+  - SilverJug
+  radioChannels:
+  - Medical
+
+- type: technology
   id: AutoMenderTech
   name: research-technology-automenders
   icon:
@@ -215,6 +230,8 @@
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
+  technologyPrerequisites:
+  - BluespaceManipulation
   radioChannels:
   - Medical
 
@@ -244,8 +261,8 @@
   tier: 3
   cost: 25000
   recipeUnlocks:
-  - CloningConsoleComputerCircuitboard 
-  - CloningPodMachineCircuitboard 
+  - CloningConsoleComputerCircuitboard
+  - CloningPodMachineCircuitboard
   - MedicalScannerMachineCircuitboard
   technologyPrerequisites:
   - MeatManipulation # you need the biomass reclaimer after all

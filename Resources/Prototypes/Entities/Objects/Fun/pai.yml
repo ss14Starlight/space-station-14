@@ -57,18 +57,24 @@
     stopSearchVerbPopup: pai-system-stopped-searching
   - type: Examiner
   - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter #Starlight pAI comms rework, see PR #3299
   - type: ActiveRadio
-    channels:
-    - Common
+  - type: ContainerContainer #Starlight pAI comms rework, see PR #3299
+    containers:
+      key_slots: !type:Container
+  - type: EncryptionKeyHolder #Starlight pAI comms rework, see PR #3299
+    keySlots: 1
   - type: DoAfter
   - type: Actions
   - type: ActionGrant
     actions:
     - ActionPAIOpenShop
+    - ActionPAIPDA #Starlight pAI can open PDAs, see PR #3272
   - type: Store
     name: store-preset-name-pai #Starlight name change for data purity
     categories:
     - PAIAbilities
+    - Languages #Starlight
     currencyWhitelist:
     - SiliconMemory
     balance:
@@ -132,12 +138,12 @@
     roleRules: ghost-role-information-syndicate-pai-rules
     mindRoles:
     - MindRoleGhostRolePAI
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Syndicate
-  - type: ActiveRadio
-    channels:
-    - Syndicate
+  - type: ContainerFill #Starlight pAI comms rework, see PR #3299
+    containers:
+      key_slots:
+      - EncryptionKeySyndiePAI
+  - type: EncryptionKeyHolder #Starlight pAI comms rework, see PR #3299
+    keySlots: 2
   - type: Appearance
   - type: GenericVisualizer
     visuals:

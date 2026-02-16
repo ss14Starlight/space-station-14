@@ -27,3 +27,8 @@
   license: "CC-BY-3.0"
   copyright: "teapoterror (Discord)"
   source: "https://discord.com/invite/HyDhPwAmUq"
+
+- files: ["omega_alt.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made by AftrLife (https://github.com/AftrLite) for DeltaV renamed into omega_alt for STARLIGHT"
+  source: "https://github.com/DeltaV-Station/Delta-v/pull/3288"

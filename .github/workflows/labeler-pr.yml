@@ -39,6 +39,7 @@ jobs:
               "Changes: Audio": ["dev"],
               "Changes: C#": ["dev"],
               "Changes: Prototypes": ["prototypers"],
+              "Changes: Guidebook": ["wiki"],
             };
 
             const pr = await github.rest.pulls.get({

@@ -54,3 +54,6 @@ CartridgeRifle: CartridgeRifleSP
 # quick remove xenobio
 SpawnGrayXenobiologySlime: null
 CrateStarterXenobiology: null
+
+#2026-02-15
+ClothingOuterArmorSovietFlak: ClothingOuterArmorSovietPlate

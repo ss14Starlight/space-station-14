@@ -181,4 +181,38 @@
           reagents:
             - ReagentId: BlindingStew
               Quantity: 48
-          
+
+- type: entity
+  parent: [FoodNoodlesBase, BaseMajorContraband]
+  id: FoodCookedShadekinCore
+  name: core spaghetti
+  description: An edible representation of your victory 
+  components:
+  - type: Item
+    storedOffset: 0,-4
+  - type: FlavorProfile
+    flavors:
+      - pasta
+      - meaty
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/shadekin.rsi
+    layers:
+      - state: plate
+      - state: core
+      - state: veins
+      - state: glow
+        shader: unshaded
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 10
+  - type: Tag
+    tags:
+    - Meat

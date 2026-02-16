@@ -193,11 +193,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.60
-        Heat: 0.60
-        Radiation: 0.9
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.75
+        Heat: 0.80
 
 - type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
@@ -393,3 +392,14 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.8
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  id: ClothingOuterCoatRatvarRobes
+  name: ratvar robes
+  description: A leathery coat adorned in dull gems, brass buttons, and brass sheets carved with clockwork patterns.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/OverClothes/ratvar_robes.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/OverClothes/ratvar_robes.rsi

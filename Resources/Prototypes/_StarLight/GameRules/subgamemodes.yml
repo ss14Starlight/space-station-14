@@ -47,7 +47,7 @@
     definitions:
     - prefRoles: [ Thief ]
       max: 3 # Starlight. Prevents excess thieves from spawning on Revs.
-      playerRatio: 21 # Starlight. Accounts for the thieves in the population. (63 pop = 60 crew 3 thieves.)
+      playerRatio: 26 # Starlight. Scales at same ratio as normal thieves now.
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
@@ -76,7 +76,7 @@
     definitions:
     - prefRoles: [ Vampire ]
       max: 6 # Starlight. Accounting for scaling. Not as many as the full gamemode.
-      playerRatio: 21 # Starlight. Accounting for scaling.
+      playerRatio: 26 # Starlight. Scales the same as the other common sub-antags.
       lateJoinAdditional: true
       allowNonHumans: True
       multiAntagSetting: None
@@ -98,7 +98,7 @@
     definitions:
     - prefRoles: [ Changeling ]
       max: 4 # Starlight, same reasoning as the roundstart changeling change, for alpha.
-      playerRatio: 26 # Starlight, to make sure Beta doesn't get more than 2 changelings as a submode on VTL. Same justification as Thieves.
+      playerRatio: 31 # Starlight, to make sure Beta doesn't get more than 2 changelings as a submode on VTL. Same justification as Thieves. Should be harder to get 4 lings on VTL now.
       lateJoinAdditional: true
       allowNonHumans: false
       multiAntagSetting: None
@@ -111,3 +111,29 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+
+- type: entity
+  parent: Traitor
+  id: SubTraitor
+  components:
+  - type: GameRule
+    minPlayers: 5
+    delay:
+      min: 240
+      max: 420
+  - type: AntagRandomObjectives
+    sets:
+    - groups: SubTraitorObjectiveGroups
+    maxDifficulty: 4 # Less intrusive traitors.
+  - type: AntagSelection
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Traitor ]
+      max: 6 # Starlight. Less intrusive traitors.
+      playerRatio: 21 # Starlight. Less intrusive traitors.
+      blacklist:
+        components:
+        - AntagImmune
+      lateJoinAdditional: false
+      mindRoles:
+      - MindRoleTraitor

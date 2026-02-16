@@ -167,7 +167,7 @@
 
 - type: entity
   name: sp-8t
-  parent: [WeaponPistolDP, BaseSecurityContraband, BaseGrandTheftContraband]
+  parent: [WeaponPistolDP, BaseBlueShieldContraband, BaseGrandTheftContraband ]
   id: WeaponPistolSP8T
   components:
   - type: Gun

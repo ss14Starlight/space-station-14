@@ -91,6 +91,7 @@
     - id: ClothingEyesGlassesCommand
     - id: ClothingEyesHudCommand
     - id: EncryptionKeyExpedition #starlight
+    - id: SpyglassCaptain #Starlight
     - id: HeadSkeleton # A skull to accompany your skeleton crew
       conditions:
       - !type:PlayerCountCondition
@@ -440,13 +441,16 @@
     - id: WeaponTaser
     - id: WantedListCartridge
     - id: DrinkHosFlask
-    - id: SecurityShuttleConsoleCircuitboard #SL
-    - id: PrintedDocumentGreenshiftAlert #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
+    - id: SecurityShuttleConsoleCircuitboard # Starlight start
+    - id: ClothingOuterWinterHoS
+    - id: ClothingHandsGlovesCombat
+    - id: SecureBriefings
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox # Starlight end
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

@@ -49,11 +49,15 @@
   - RightLegCyberHydraulic
   - LeftLegCyberPilebunker
   - RightLegCyberPilebunker
+  - LeftLegCyberCargo
+  - RightLegCyberCargo
 
   - LeftArmCyberReaper
   - RightArmCyberReaper
   - LeftArmCyberMechwright
   - RightArmCyberMechwright
+  - LeftLegCyberSpeed
+  - RightLegCyberSpeed
   - LeftArmCyberSpacer
   - RightArmCyberSpacer
   - LeftArmCyberRiplet
@@ -66,6 +70,10 @@
   - RightArmCyberGorilla
   - LeftArmCyberEngineer
   - RightArmCyberEngineer
+  - LeftArmCyberInvestigator
+  - RightArmCyberInvestigator
+  - LeftArmCyberScribe
+  - RightArmCyberScribe
 
 #
 

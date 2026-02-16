@@ -11,3 +11,9 @@
   name: role-type-corporate-aligned-name
   color: '#134975'
   symbol: "🗡" # Should never be antag, but just in case.
+
+- type: roleType
+  id: TSFAligned
+  name: role-type-corporate-aligned-name
+  color: '#134975'
+  symbol: "🗡" # Should never be antag, but just in case.
