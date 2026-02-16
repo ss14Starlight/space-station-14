@@ -5,9 +5,6 @@
     NTCredit: 12
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: VendorPlushieSharkGrey
@@ -16,9 +13,6 @@
     NTCredit: 20
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: VendorPlushieSharkPink
@@ -27,9 +21,6 @@
     NTCredit: 30
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieHampter
@@ -38,9 +29,6 @@
     NTCredit: 20
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorSingularityToy
@@ -49,9 +37,6 @@
     NTCredit: 1000
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieDeer
@@ -60,9 +45,6 @@
     NTCredit: 16
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: VendorPlushieVika
@@ -71,9 +53,6 @@
     NTCredit: 16
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: VendorPlushieAxolotl
@@ -82,9 +61,6 @@
     NTCredit: 20
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: VendorPlushieBorb
@@ -93,9 +69,6 @@
     NTCredit: 16
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: VendorPlushieCreature
@@ -104,9 +77,6 @@
     NTCredit: 30
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: VendorPlushieGnome
@@ -115,9 +85,6 @@
     NTCredit: 30
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: VendorPlushieGoat
@@ -126,9 +93,6 @@
     NTCredit: 16
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: VendorPlushieIan
@@ -137,9 +101,6 @@
     NTCredit: 30
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieLisa
@@ -148,9 +109,6 @@
     NTCredit: 30
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieRenault
@@ -159,9 +117,6 @@
     NTCredit: 30
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieKitten
@@ -170,9 +125,6 @@
     NTCredit: 16
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: VendorPlushiePig
@@ -181,9 +133,6 @@
     NTCredit: 16
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: VendorPlushieSnail
@@ -192,9 +141,6 @@
     NTCredit: 16
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: VendorPlushieCow
@@ -203,9 +149,6 @@
     NTCredit: 16
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: VendorPlushieFrog
@@ -214,9 +157,6 @@
     NTCredit: 16
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
 
 - type: listing
   id: VendorPlushieSus
@@ -225,9 +165,6 @@
     NTCredit: 16
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieMozan
@@ -236,9 +173,6 @@
     NTCredit: 16
   categories:
   - SLCrew
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushiePanda
@@ -247,9 +181,6 @@
     NTCredit: 16
   categories:
   - SLPlushies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 # SLSpecies
 
@@ -260,9 +191,6 @@
     NTCredit: 10
   categories:
   - SLSpecies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieDiona
@@ -271,9 +199,6 @@
     NTCredit: 10
   categories:
   - SLSpecies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieHuman
@@ -282,9 +207,6 @@
     NTCredit: 10
   categories:
   - SLSpecies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieMoth
@@ -293,9 +215,6 @@
     NTCredit: 10
   categories:
   - SLSpecies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieKoni
@@ -304,9 +223,6 @@
     NTCredit: 10
   categories:
     - SLPlushies
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieXeno
@@ -315,9 +231,6 @@
     NTCredit: 10
   categories:
   - SLSpecies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieVox
@@ -326,9 +239,6 @@
     NTCredit: 10
   categories:
   - SLSpecies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieAbductor
@@ -337,9 +247,6 @@
     NTCredit: 20
   categories:
   - SLSpecies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorCatEars
@@ -348,9 +255,6 @@
     NTCredit: 1666
   categories:
   - SLSpecies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieShadekin
@@ -359,9 +263,6 @@
     NTCredit: 10
   categories:
   - SLSpecies
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 #Marketable crewmember plushies
 - type: listing
@@ -371,9 +272,6 @@
     NTCredit: 20
   categories:
   - SLCrew
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieEmmie
@@ -382,9 +280,6 @@
     NTCredit: 20
   categories:
   - SLCrew
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 
 - type: listing
@@ -394,9 +289,6 @@
     NTCredit: 20
   categories:
   - SLCrew
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 
 - type: listing
@@ -406,9 +298,6 @@
     NTCredit: 20
   categories:
   - SLCrew
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieKiosha
@@ -417,9 +306,6 @@
     NTCredit: 20
   categories:
   - SLCrew
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieLance
@@ -428,9 +314,6 @@
     NTCredit: 20
   categories:
   - SLCrew
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieKiller
@@ -439,9 +322,6 @@
     NTCredit: 20
   categories:
   - SLCrew
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieAmali
@@ -450,9 +330,6 @@
     NTCredit: 20
   categories:
   - SLCrew
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieOog
@@ -461,9 +338,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushiePercy
@@ -472,9 +346,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieAsh
@@ -483,9 +354,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieGlados
@@ -494,9 +362,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieWEH
@@ -505,9 +370,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieRufia
@@ -516,9 +378,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieRomero
@@ -527,9 +386,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieVanilla
@@ -538,9 +394,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushiePoley
@@ -549,9 +402,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieGalio
@@ -560,9 +410,6 @@
     NTCredit: 20
   categories:
   - SLCrew
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
 
 - type: listing
   id: VendorPlushieRedwoods
@@ -571,10 +418,7 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
- 
+
 - type: listing
   id: VendorPlushieDoxesTheCaptain
   productEntity: PlushieDoxesTheCaptain
@@ -582,9 +426,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieFixes
@@ -593,9 +434,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieVirus
@@ -604,9 +442,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieRhea
@@ -615,9 +450,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieRemiie
@@ -626,9 +458,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieMalachi
@@ -637,9 +466,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieBrighteyes
@@ -648,9 +474,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieKilla
@@ -659,9 +482,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieBarfo
@@ -670,9 +490,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieEina
@@ -681,9 +498,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieEinalia
@@ -692,9 +506,6 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
 
 - type: listing
   id: VendorPlushieLiz
@@ -703,6 +514,3 @@
     NTCredit: 20
   categories:
     - SLCrew
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
