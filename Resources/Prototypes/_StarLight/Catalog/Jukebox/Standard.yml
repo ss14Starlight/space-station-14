@@ -33,3 +33,9 @@
   name: Christofori - The Midnight Cry
   path:
     path: /Audio/_Starlight/Music/Jukebox/the_midnight_cry_by_christofori.ogg
+
+- type: jukebox
+  id: thestation
+  name: A-Guy173 - The Station
+  path:
+    path: /Audio/_Starlight/Music/Lobby/thestation.ogg

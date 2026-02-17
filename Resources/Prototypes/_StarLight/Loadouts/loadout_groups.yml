@@ -20,7 +20,7 @@
   minLimit: 0
   defaultSelected: 1
   loadouts:
-  - InsulsCombat
+  - InsulsCombatNoLock
   - InsulsRegular
   - InsulsMaid
   - InsulsMercenary
@@ -57,6 +57,8 @@
   loadouts:
   - MaidHeadbandTactical
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars
@@ -208,7 +210,9 @@
   - GreytideBizarreAdventures
   - BrimHat
   - FeatheredHat
-  - Hairflower # starlight
+  - Hairflower
+  - LilyFlower
+  - RoadCone # starlight
 
 - type: loadoutGroup
   id: AssistantBackpack
@@ -245,6 +249,12 @@
   - SkullBandana
   - RoboticistBlackCapFlipped
   - MaidHeadbandTactical
+  - Hairflower
+  - LilyFlower
+  - RoadCone
+  - CatEars
+  - DogEars
+  - BunnyEars
 
 - type: loadoutGroup
   id: RoboticistGloves
@@ -329,6 +339,8 @@
   loadouts:
   - MagistrateHeadPwig
   - Hairflower
+  - LilyFlower
+  - RoadCone
 
 - type: loadoutGroup
   id: MagistrateEyewear
@@ -380,7 +392,8 @@
 - type: loadoutGroup
   id: BlueShieldOuterclothing
   name: loadout-group-blueshield-outerclothing
-  minLimit: 1
+  minLimit: 0
+  maxLimit: 1
   defaultSelected: 1
   loadouts:
   - BlueShieldVest
@@ -846,6 +859,8 @@
   - DutyOfficerHelmetRiot
   - MaidHeadbandTactical
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars
@@ -941,6 +956,8 @@
   - BeretNCTGreen
   - BeretNCTBlack
   - Hairflower
+  - LilyFlower
+  - RoadCone
 
 - type: loadoutGroup
   id: NanotrasenCareerTrainerShoes

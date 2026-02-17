@@ -1,4 +1,6 @@
+using System.Linq;
 using Content.Server.Administration;
+using Content.Server.Database;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
@@ -58,11 +60,19 @@ public sealed class CharacterForcePrototypeCommand : LocalizedCommands
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
-        if (args.Length == 1)
+        switch (args.Length)
         {
-            return CompletionResult.FromHintOptions(CompletionHelper.SessionNames(), LocalizationManager.GetString("shell-argument-username-hint"));
+            case 1:
+                return CompletionResult.FromHintOptions(CompletionHelper.SessionNames(), LocalizationManager.GetString("shell-argument-username-hint"));
+            case 2:
+                _players.TryGetSessionByUsername(args[0], out var player);
+                if (player == null)
+                    return CompletionResult.Empty;
+                var prefs = _prefsManager.GetPreferences(player.UserId).Characters.Select(c => new CompletionOption(c.Key.ToString(),c.Value.Name));
+                return CompletionResult.FromOptions(prefs);
+            default:
+                break;
         }
-
         return CompletionResult.Empty;
     }
 }

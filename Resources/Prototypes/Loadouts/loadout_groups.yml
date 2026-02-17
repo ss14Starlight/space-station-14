@@ -172,6 +172,8 @@
   - CaptainHead
   - CaptainCap
   - Hairflower # Starlight
+  - LilyFlower # Starlight
+  - RoadCone # Starlight
 
 - type: loadoutGroup
   id: CaptainJumpsuit
@@ -233,6 +235,8 @@
   loadouts:
   - HoPHead
   - Hairflower # Starlight
+  - LilyFlower # Starlight
+  - RoadCone # Starlight
 
 - type: loadoutGroup
   id: HoPJumpsuit
@@ -407,6 +411,8 @@
   - BartenderBowler
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -453,6 +459,8 @@
   - ChefHead
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -550,6 +558,8 @@
   - ChaplainWitchHatAlt
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -722,6 +732,8 @@
   - JesterAltHat
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -793,6 +805,8 @@
   - MimeFrenchBeret
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -926,6 +940,8 @@
   - QuartermasterHead
   - QuartermasterBeret
   - Hairflower # Starlight
+  - LilyFlower # Starlight
+  - RoadCone # Starlight
 
 - type: loadoutGroup
   id: QuartermasterJumpsuit
@@ -982,6 +998,8 @@
   - CargoTechnicianBeretFormal
   - MaidHeadbandTactical
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1104,6 +1122,8 @@
   - ChiefEngineerHead
   - ChiefEngineerBeret
   - Hairflower # Starlight
+  - LilyFlower # Starlight
+  - RoadCone # Starlight
 
 - type: loadoutGroup
   id: ChiefEngineerJumpsuit
@@ -1175,6 +1195,8 @@
   - SeniorEngineerBeret
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1300,6 +1322,8 @@
   loadouts:
   - ResearchDirectorBeret
   - Hairflower # Starlight
+  - LilyFlower # Starlight
+  - RoadCone # Starlight
 
 - type: loadoutGroup
   id: ResearchDirectorNeck
@@ -1356,6 +1380,8 @@
   - ScientificBeret
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1469,6 +1495,8 @@
   - HeadofSecuritySheriff #Starlight
   - HeadofSecurityBeret
   - Hairflower # Starlight
+  - LilyFlower # Starlight
+  - RoadCone # Starlight
 
 - type: loadoutGroup
   id: HeadofSecurityJumpsuit
@@ -1521,6 +1549,8 @@
   - WardenBeret
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1573,6 +1603,8 @@
   - SecurityHelmet
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1647,6 +1679,8 @@
   - TrooperHat
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1735,6 +1769,8 @@
   - DetectiveFedoraGrey
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1813,6 +1849,8 @@
   - ChiefMedicalOfficerBeret
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1879,6 +1917,8 @@
   - NurseHat
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -2031,6 +2071,8 @@
   - ParamedicHead
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end

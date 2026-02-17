@@ -1,6 +1,22 @@
 ## Any kind of equipment that doesn't fit elsewhere, goes in this file.
 
 - type: loadout
+  id: RoadCone
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Engineering
+        time: 144000 # 40 hours of being a STMS
+  equipment:
+    head: ClothingHeadHatCone
+
+- type: loadout
+  id: LilyFlower
+  equipment:
+    head: ClothingHeadHatLilyFlower
+
+- type: loadout
   id: CoderSocks
   effects:
     - !type:JobRequirementLoadoutEffect
