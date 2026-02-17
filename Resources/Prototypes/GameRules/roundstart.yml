@@ -286,7 +286,7 @@
     definitions:
     - prefRoles: [ Traitor ]
       max: 24 # Starlight. More of future proofing. If we ever actually average 240 pop then we'll need to actually do something else.
-      playerRatio: 10 # Starlight. It's this number so Beta doesn't lose out on their 6th traitor.
+      playerRatio: 12 # Starlight. Beta has lost 1 traitor.
       blacklist:
         components:
         - AntagImmune
@@ -320,7 +320,7 @@
     definitions:
     - prefRoles: [ Changeling ]
       max: 6 # Starlight. Not a huge increase, but allows lings to actually become a force on alpha that doesn't get wiped out immediately.
-      playerRatio: 21 # Starlight. Allows Beta to still keep only 3 lings.
+      playerRatio: 26 # Starlight. Beta now has 2 lings.
       briefing:
         text: changeling-role-greeting
         color: Red

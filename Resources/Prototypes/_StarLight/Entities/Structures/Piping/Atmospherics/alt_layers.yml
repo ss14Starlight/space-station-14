@@ -8,7 +8,7 @@
     drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/vent.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         state: pipeUnaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: vent_off
@@ -23,9 +23,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/vent.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeUnaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: vent_off
@@ -43,7 +44,7 @@
     drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/vent.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         state: pipeUnaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: vent_passive
@@ -58,9 +59,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/vent.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeUnaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: vent_passive
@@ -78,7 +80,7 @@
     drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/scrubber.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         state: pipeUnaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: scrub_off
@@ -93,9 +95,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/scrubber.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeUnaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: scrub_off
@@ -111,9 +114,9 @@
   components:
   - type: Sprite
     drawdepth: FloorObjects
-    sprite: Structures/Piping/Atmospherics/outletinjector.rsi
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/outletinjector.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         state: pipeUnaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: injector
@@ -132,9 +135,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: Structures/Piping/Atmospherics/outletinjector.rsi
+    drawdepth: FloorObjects
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/outletinjector.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeUnaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: injector
@@ -157,7 +161,7 @@
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/gascanisterport.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         state: pipeUnaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasCanisterPort
@@ -174,7 +178,7 @@
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/gascanisterport.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeUnaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasCanisterPort
@@ -191,7 +195,7 @@
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/vent.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         state: pipeBinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: vent_off
@@ -208,7 +212,7 @@
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/vent.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeBinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: vent_off
@@ -224,9 +228,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/gasfilter.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasFilter
@@ -243,9 +248,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/gasfilter.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasFilter
@@ -262,9 +268,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/gasfilter.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasFilterF
@@ -281,9 +288,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/gasfilter.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasFilterF
@@ -300,9 +308,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/gasmixer.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasMixer
@@ -319,9 +328,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/gasmixer.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasMixer
@@ -338,9 +348,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/gasmixer.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasMixerF
@@ -357,9 +368,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/gasmixer.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasMixerF
@@ -376,9 +388,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/pneumaticvalve.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: off
@@ -393,9 +406,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: Structures/Piping/Atmospherics/pneumaticvalve.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: off

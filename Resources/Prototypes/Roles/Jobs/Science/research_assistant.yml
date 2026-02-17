@@ -20,7 +20,7 @@
 - type: startingGear
   id: ResearchAssistantGear
   equipment:
-    shoes: ClothingShoesColorWhite
+    # shoes: ClothingShoesColorWhite # SL: let them have shoes
     id: ResearchAssistantPDA
     ears: ClothingHeadsetScience
     belt: ClothingBeltStorageWaistbagScience # Starlight

@@ -1,0 +1,31 @@
+[head=1][color=#009100]────────────────────[/color][/head]
+[color=#cc0000]█▀▀ █▀▀ █▀▀▄[/color] [head=3]   [color=#cc0000]CENTRAL SECURITY DIVISION [/color][/head]
+[color=#cc0000]█░░ ▀▀█ █░░█[/color][bolditalic]     [color=#cc0000]Eradicating the enemies of Nanotrasen[/color][/bolditalic]
+[color=#cc0000]▀▀▀ ▀▀▀ ▀▀▀░[/color]   [color=#aaaaaa][italic]OFFICIAL CSD OFFICE DOCUMENT[/italic][/color]
+[head=1][color=#009100]────────────────────[/color][/head]
+[head=1][color=#cc0000]Classified Secure Document[/color][/head]
+[head=1][color=#009100]────────────────────[/color][/head]
+[mono]
+[bold]Subject:[/bold] XenoBorgs
+
+[mono]The information contained in this document is restricted from common crew as only your superior emotional intelligence has been judged to be capable of handing the truth without becoming ineffectual in your duties. As such, sharing of any of this information with those outside of security is considered Treason unless authorized to by the HOS, Captain, or local NanoTrasen Representative. This information could cause the crew to panic, not trust one-another, and lead to station inefficiency and lost profits.
+
+If you hear any of these facts discussed with or around common crew, they are to be discredited. If an audience is listening and seems to be believing them, they are to be immediately detained for Sedition and Disturbance. Command should be informed of the situation where they shall handle the rest of the situation.[/mono]
+[head=1][color=#009100]────────────────────[/color][/head]
+New reports have surfaced that rouge Silicons have started to surface near the Starlight sector. They seem to be a collection of derelict Borgs that have networked with each other and modified themselves into sapient killing machines! They are extremely dangerous entities that seek to grow their numbers by acquisition of more computing power in the form of sapient brains. They are distinctly identified by the black and blue colour scheme.
+
+To avoid the risk of mass panic, crews should be assured that these derelict Borgs pose no danger to the crew inside the station, but extra vehicular activities should be suspended out of an abundance of caution. Sec has all the tools needed at their disposal to effectively deal with the Xenoborg threat! It is not uncommon for 'Motherless' Xenoborgs to drift into NT stations, and as such lone Xenoborgs should be dealt with as isolated incidents.
+
+All encounters with Xenoborgs documented so far have been immediately hostile, with them abducting NanoTrasen employees and extracting their brains. Both biological and Positronic brains can be installed in new Xenoborgs where their laws enslave them to gather more materials to fabricate more Xenoborgs.
+
+These Xenoborgs come in 5 categories that are known about:
+
+    'Mother' - A rampant AI and the hub of the Xenoborg swarm, destroying it will trigger all active Xenoborgs to self terminate. It is also the only Xenoborg capable of constructing more Xenoborgs.
+    Scout - Light weight units that utilize speed and melee to rush down hapless crew. They hover above the ground on small thrusters and are also highly maneuverable in space. Their light construction makes them easily dispatched from range with small arms fire.
+    Heavy - Opposite to the Scouts in every way, they are slow lumbering masses of plasteel with simple laser weapons that basic reflective or heat absorbent armor can protect from indefinitely. Their heavy armor does mean that dispatching of them requires massed fire to dispatch, but their slow speed makes them easy to pick off
+    Engineer - This unit is akin to a brig medic, sustaining their kin in fire fights and breaching defenses. If spotted they should be prioritized as without their repair tools, the rest of the Borgs will be unable to sustain themselves.
+    Stealth - These units possess rudimentary background simulation panels that are able to fool the unobservant into not noticing them. They also have a hypodermic needle that they use to inject a heavy sleeping agent that can take 30 seconds to a minute to take effect. Due to the nature of these display panels, they have next to no armor and are easily dispatched even with simple tools such as crowbars. Due to the existence of these, movement alone is not advised during a Xenoborg attack.
+
+Thankfully Xenoborgs are easily dealt with and are hardly a problem to a well organized crew. They are slow and cumbersome, are weak to all forms of EMP weapons, and can be cut off by simple barricades. Coordination with a station AI is vital for an effective defense. Xenoborgs contain a device used for locating their 'Mother'. Once enough Xenoborgs are salvaged a pin pointer from their fragments can be created that will guide Security to the core, so that the machine menace can be ended once and for all! 
+
+[head=1][color=#009100]────────────────────[/color][/head]

@@ -3,7 +3,7 @@
   name: reagent-name-concentratedcorgijuice
   group: Toxins
   desc: reagent-desc-corgiessence
-  physicalDesc: reagent-physical-desc-vibrant
+  physicalDesc: reagent-physical-desc-fluffy
   flavor: dogfood
   color: "#ed9715"
   metabolisms:
@@ -33,20 +33,18 @@
           key: RatvarianLanguage
           component: BarkAccent
         - !type:AdjustReagent
-          reagent: CorgiJuice
+          reagent: ConcentratedCorgiJuice
           amount: -20
           conditions:
             - !type:ReagentCondition
               reagent: ConcentratedCorgiJuice
               min: 50
-        # Starlight-Start: Cyclorite Metabolism
         - !type:AdjustReagent
           conditions:
             - !type:MetabolizerTypeCondition
               type: [ Cyclorite ]
           reagent: ConcentratedCorgiJuice
-          amount: 0.25
-        # Starlight-End
+          amount: 0.1
     Medicine:
       metabolismRate: 0.5
       effects:

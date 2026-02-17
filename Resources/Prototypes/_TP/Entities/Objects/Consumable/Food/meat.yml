@@ -46,7 +46,7 @@
           Quantity: 2
   - type: Construction
     graph: Cutlet
-    node: sausage
+    node: start # starlight
   - type: Item
     size: Small
     shape:

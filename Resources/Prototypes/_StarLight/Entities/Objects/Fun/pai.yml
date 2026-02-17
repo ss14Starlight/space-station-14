@@ -11,3 +11,9 @@
       itemIconStyle: NoItem
     - type: InstantAction
       event: !type:PAIPDAActionEvent
+
+- type: entity
+  parent: EncryptionKeySyndie
+  id: EncryptionKeySyndiePAI
+  components:
+    - type: Unremoveable

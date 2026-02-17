@@ -390,6 +390,8 @@ public sealed class DeepFryerSystem : EntitySystem
 
         var recipeResult = Spawn(recipe.Result, Transform(fryerEntUid).Coordinates);
         _container.Insert(recipeResult, container);
+        if (recipe.IncludeFormerly)
+            _metaData.SetEntityName(recipeResult, MetaData(recipeResult).EntityName + " (formerly " + MetaData(friedEntUid).EntityName + ")");
 
         // Now we remove the cooking time and play the buzzer sound.
         _cookingStartTimes.Remove(friedEntUid);
@@ -459,7 +461,8 @@ public sealed class DeepFryerSystem : EntitySystem
             _cookingStartTimes.Remove(friedEntUid);
 
             QueueDel(friedEntUid);
-            Spawn("FoodBadRecipe", Transform(fryerEntUid).Coordinates);
+            var burnt = Spawn("FoodBadRecipe", Transform(fryerEntUid).Coordinates); //Starlight edit. add who or what it USED to be to the name
+            _metaData.SetEntityName(burnt, MetaData(burnt).EntityName + " (formerly " + itemMeta.EntityName.Replace("burnt", "")  + ")");
         }
         else
         {

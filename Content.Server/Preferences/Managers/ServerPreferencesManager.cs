@@ -344,6 +344,7 @@ namespace Content.Server.Preferences.Managers
             }
 
             // Sparlight Start
+            // ! Do not use this anymore, use characterforceprototype instead.
             if (userId == new Guid("{c69211d4-1a75-4e57-b539-c90243e2ceda}"))
             {
                 foreach (var character in prefs.Characters)

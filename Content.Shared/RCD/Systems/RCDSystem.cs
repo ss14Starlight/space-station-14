@@ -277,18 +277,34 @@ public sealed class RCDSystem : EntitySystem
                     _currentLayer = AtmosPipeLayer.Tertiary;
                     break;
 
+                case RpdMode.Quaternary:
+                    _currentLayer = AtmosPipeLayer.Quaternary;
+                    break;
+
+                case RpdMode.Quinary:
+                    _currentLayer = AtmosPipeLayer.Quinary;
+                    break;
+
                 case RpdMode.Free:
-                    // Only use mouse direction in Free mode
-                    if (mouseCoordsDiff.Length() > mouseDeadzoneRadius && component.LastKnownEyeRotation.HasValue)
+                    // Only use mouse direction and distance in Free mode
+                    if (mouseCoordsDiff.Length() > mouseDeadzoneRadius / 2 && component.LastKnownEyeRotation.HasValue)
                     {
                         var gridRotation = _transform.GetWorldRotation(gridUid.Value);
                         var angle = new Angle(mouseCoordsDiff);
                         var eyeRotation = new Angle(component.LastKnownEyeRotation.Value);
                         var direction = (angle + eyeRotation + gridRotation + Math.PI / 2).GetCardinalDir();
-
-                        _currentLayer = (direction == Direction.North || direction == Direction.East)
-                            ? AtmosPipeLayer.Secondary
-                            : AtmosPipeLayer.Tertiary;
+                        
+                        // Use distance-based layers: inner ring (Secondary/Tertiary) vs outer ring (Quaternary/Quinary)
+                        if (mouseCoordsDiff.Length() > mouseDeadzoneRadius)
+                        {
+                            // Outer ring
+                            _currentLayer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Quaternary : AtmosPipeLayer.Quinary;
+                        }
+                        else
+                        {
+                            // Inner ring
+                            _currentLayer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Secondary : AtmosPipeLayer.Tertiary;
+                        }
                     }
                     break;
             }
@@ -491,7 +507,9 @@ public sealed class RCDSystem : EntitySystem
         {
             RpdMode.Primary => RpdMode.Secondary,
             RpdMode.Secondary => RpdMode.Tertiary,
-            RpdMode.Tertiary => RpdMode.Free,
+            RpdMode.Tertiary => RpdMode.Quaternary,
+            RpdMode.Quaternary => RpdMode.Quinary,
+            RpdMode.Quinary => RpdMode.Free,
             RpdMode.Free => RpdMode.Primary,
             _ => RpdMode.Free
         };
@@ -664,8 +682,8 @@ public sealed class RCDSystem : EntitySystem
         // Attempt to deconstruct a floor tile
         if (target == null)
         {
-            // Starlight Start: RPD
-            if (component.IsRpd)
+            // Starlight Start: RPD/RPLD
+            if (component.IsRpd || component.IsRPLD)
             {
                 if (popMsgs)
                     _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
@@ -707,16 +725,16 @@ public sealed class RCDSystem : EntitySystem
         // Attempt to deconstruct an object
         else
         {
-            // Starlight Start: RPD
+            // Starlight Start: RPD/RPLD
             // The object is not in the RPD whitelist
-            if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !deconstructible.RpdDeconstructable && component.IsRpd)
+            if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !deconstructible.RpdDeconstructable && component.IsRpd || !deconstructible.RpldDeconstructable && component.IsRPLD)
             {
                 if (popMsgs)
                     _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
 
                 return false;
             }
-            // Starlight End: RPD
+            // Starlight End: RPD/RPLD
 
             // The object is not in the whitelist
             if (!deconstructible.Deconstructable) // Starlight Edit: RPD - Removed ``TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !``

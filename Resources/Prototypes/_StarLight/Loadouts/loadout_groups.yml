@@ -208,6 +208,7 @@
   - GreytideBizarreAdventures
   - BrimHat
   - FeatheredHat
+  - Hairflower # starlight
 
 - type: loadoutGroup
   id: AssistantBackpack
@@ -449,7 +450,8 @@
   - Heels
   - LeatherShoes
   - CoderSocks
-  - RollerSkates # Starlight
+  - RollerSkates
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: CaptainShoes
@@ -463,6 +465,7 @@
   - CowboyBootsBlackFilled
   - CowboyBootsWhiteFilled
   - HighHeelBootsFilled
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: HoPShoes
@@ -473,6 +476,7 @@
   - Heels
   - LaceupShoes
   - LeatherShoes
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: MagistrateShoes
@@ -481,6 +485,7 @@
   loadouts:
   - LaceupShoes
   - Heels
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: NanotrasenRepresentativeShoes
@@ -490,6 +495,7 @@
   - LaceupShoes
   - Heels
   - LeatherShoes
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: DetectiveShoes
@@ -505,7 +511,8 @@
   - Heels
   - HighHeelBootsFilled
   - CoderSocks
-  - RollerSkates # Starlight
+  - RollerSkates
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: CivilianShoes
@@ -519,7 +526,8 @@
   - Heels
   - LaceupShoes
   - CoderSocks
-  - RollerSkates # Starlight
+  - RollerSkates
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: LawyerShoes
@@ -531,7 +539,8 @@
   - Heels
   - LeatherShoes
   - CoderSocks
-  - RollerSkates # Starlight
+  - RollerSkates
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: BlueShieldShoes
@@ -540,6 +549,7 @@
   loadouts:
   - CombatBoots
   - HighHeelBootsFilled
+  - ClothWrapShoe
 
 # Salvage Lead
 - type: loadoutGroup
@@ -672,7 +682,8 @@
   - LaceupShoes
   - LeatherShoes
   - CoderSocks
-  - RollerSkates # Starlight
+  - RollerSkates
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: ChemistPDA
@@ -822,7 +833,7 @@
   id: BrighteyeShoes
   name: loadout-group-civilian-shoes
   loadouts:
-    - BrighteyeClothWrapShoe
+    - ClothWrapShoe
     - BlackShoes
     - CoderSocks
     - RollerSkates # Starlight
@@ -832,7 +843,7 @@
   minLimit: 0
   name: loadout-group-brighteye-gloves
   loadouts:
-    - BrighteyeClothWrapGlove
+    - ClothWrapGlove
     - PawsWhite
     - PawsBrown
     - PawsBlack
@@ -864,6 +875,7 @@
   - LaceupShoes
   - Heels
   - LeatherShoes
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: NanotrasenCareerTrainerEyewear

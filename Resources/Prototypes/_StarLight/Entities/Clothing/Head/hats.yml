@@ -393,6 +393,10 @@
     sprite: _Starlight/Clothing/Head/Hats/CC_beret.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/CC_beret.rsi
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - ClothMade
 
 - type: entity
   parent: [ClothingHeadBase, BaseCentcommContraband]

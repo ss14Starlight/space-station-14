@@ -167,3 +167,8 @@
 - type: storeCategory
   id: CantripsStandard
   name: store-category-cantrips-standard
+
+# Languages
+- type: storeCategory
+  id: Languages
+  name: store-category-languages

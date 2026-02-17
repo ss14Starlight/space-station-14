@@ -143,6 +143,14 @@
     Water: 10
     Fat: 10
 
+- type: deepFryingRecipe
+  id: KFFAlternative
+  name: Kentucky Fried Felionoid
+  result: FoodFriedfelionoid
+  time: 30
+  ingredient: MobFelionoid
+  includeFormerly: true
+
 - type: microwaveMealRecipe
   id: RecipeFoodCookedShadekinCore
   name: core spaghetti

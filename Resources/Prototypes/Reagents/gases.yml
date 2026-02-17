@@ -296,6 +296,10 @@
         - !type:MetabolizerTypeCondition
           type: [ Slime ]
           inverted: true
+        # Funkystation Start: Funky atmos - /tg/ gases
+        - !type:BloodReagentCondition
+          reagent: NitrosylPlasmide
+        # Funkystation End: Funky atmos - /tg/ gases
         type: Local
         visualType: Medium
         messages: [ "effect-sleepy" ]
@@ -306,6 +310,10 @@
         - !type:MetabolizerTypeCondition
           type: [ Slime ]
           inverted: true
+        # Funkystation Start: Funky atmos - /tg/ gases
+        - !type:BloodReagentCondition
+          reagent: NitrosylPlasmide
+        # Funkystation End: Funky atmos - /tg/ gases
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
       - !type:ModifyStatusEffect
@@ -314,6 +322,10 @@
         - !type:MetabolizerTypeCondition
           type: [ Slime ]
           inverted: true
+        # Funkystation Start: Funky atmos - /tg/ gases
+        - !type:BloodReagentCondition
+          reagent: NitrosylPlasmide
+        # Funkystation End: Funky atmos - /tg/ gases
         effectProto: StatusEffectForcedSleeping
         time: 12 #Starlight
         type: Update

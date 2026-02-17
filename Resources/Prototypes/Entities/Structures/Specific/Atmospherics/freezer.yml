@@ -12,7 +12,7 @@
   id: AirSensorFreezer
 
 - type: entity
-  parent: [AirSensorFreezerBase, GasVentPump]
+  parent: [AirSensorFreezerBase, GasVentPumpFreezerBase, GasVentPump] # Carpmosia-edit - Atmos Alt Prototypes
   id: GasVentPumpFreezer
   # Starlight Start
   components:
@@ -24,7 +24,7 @@
   # Starlight End
 
 - type: entity
-  parent: [AirSensorFreezerBase, GasVentScrubber]
+  parent: [AirSensorFreezerBase, GasVentScrubberFreezerBase, GasVentScrubber] # Carpmosia-edit - Atmos Alt Prototypes
   id: GasVentScrubberFreezer
   # Starlight Start
   components:

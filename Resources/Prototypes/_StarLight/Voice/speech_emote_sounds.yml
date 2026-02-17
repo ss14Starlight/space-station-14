@@ -402,6 +402,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    ThavenGlub:
+      collection: ThavenGlub
+    ThavenHum:
+      collection: ThavenMHum
   params:
     variation: 0.05
     pitch: 1.25
@@ -443,6 +447,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    ThavenGlub:
+      collection: ThavenGlub
+    ThavenHum:
+      collection: ThavenFHum
   params:
     variation: 0.05
     pitch: 1.25
@@ -466,6 +474,10 @@
       collection: Whistles
     Weh:
       collection: Weh
+    ThavenGlub:
+      collection: ThavenGlub
+    ThavenHum:
+      collection: ThavenFHum
   params:
     variation: 0.05
     pitch: 1.25
@@ -543,3 +555,29 @@
       collection: LagomorphSnore
     LagomorphStomp:
       collection: LagomorphStomp
+
+- type: emoteSounds
+  id: Dog
+  params:
+    variation: 0.125
+  sounds:
+    Growl:
+      collection: Growl
+    Snarl:
+      collection: VulpkaninSnarls
+    Bark:
+      collection: Bark
+    Whine:
+      collection: VulpkaninWhines
+    Crying:
+      collection: VulpkaninWhines
+    Howl:
+      path: /Audio/_Starlight/Effects/howl.ogg
+    Yip:
+      path: /Audio/_Starlight/Effects/yip.ogg
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Honk:
+      collection: BikeHorn

@@ -1,0 +1,47 @@
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: Electrolyzer
+  name: electrolyzer
+  components:
+  - type: Electrolyzer
+    onSound:
+      path: /Audio/Weapons/click.ogg
+  - type: AtmosDevice
+  - type: Sprite
+    sprite: _Funkystation/Structures/Machines/electrolyzer.rsi
+    noRot: true
+    layers:
+    - state: electrolyzerOff
+      map: ["enum.ElectrolyzerVisualLayers.Main"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ElectrolyzerVisuals.State:
+        ElectrolyzerVisualLayers.Main:
+          Off: { state: electrolyzerOff }
+          On: { state: electrolyzerOn }
+  - type: Machine
+    board: ElectrolyzerMachineCircuitboard
+  - type: WiresPanel
+  - type: ItemSlots
+    slots:
+      fuel:
+        name: fuel slot
+        insertOnInteract: false
+        ejectOnInteract: false
+        whitelist:
+          tags:
+          - PlasmaSheet
+          - UraniumSheet
+        swap: false
+  - type: DeviceLinkSink
+    ports:
+      - On
+      - Off
+      - Toggle
+  - type: ContainerContainer
+    containers:
+      fuel: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      hidden_slot: !type:ContainerSlot

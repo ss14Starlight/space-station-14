@@ -60,8 +60,12 @@
           prob: 0.1
         - id: BoxSyringe
           prob: 0.1
-        - id: BoxBeaker
+       #- id: BoxBeaker # Starlight start
+       #  prob: 0.1
+        - id: BoxBeakerSmall
           prob: 0.1
+        - id: BoxBeakerLarge
+          prob: 0.1 # Starlight end
           #  - Heh
         - id: SalvageHumanCorpse
           prob: 0.1

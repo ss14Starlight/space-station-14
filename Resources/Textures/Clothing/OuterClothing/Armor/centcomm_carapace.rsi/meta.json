@@ -1,34 +1,39 @@
 {
-    "version": 1,
-    "license": "CC-BY-SA-3.0",
-    "copyright": "Assets derived from Wizden SS14 at https://github.com/space-wizards/space-station-14/commit/e4a516514f37d26708e676122eb7c6a95f37b5e3, modified by K-Dynamic (github). Resomi state created by Huaqas (GitHub).",
-    "size": {
-        "x": 32,
-        "y": 32
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Assets derived from Wizden SS14 at https://github.com/space-wizards/space-station-14/commit/e4a516514f37d26708e676122eb7c6a95f37b5e3, modified by K-Dynamic (github). Resomi state created by Huaqas (GitHub).",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
     },
-    "states": [
-        {
-            "name": "icon"
-        },
-        {
-            "name": "equipped-OUTERCLOTHING",
-            "directions": 4
-        },
-        {
-            "name": "equipped-OUTERCLOTHING-vox",
-            "directions": 4
-        },
-        {
-            "name": "equipped-OUTERCLOTHING-resomi",
-            "directions": 4
-        },
-        {
-            "name": "inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "inhand-right",
-            "directions": 4
-        }
-    ]
+    {
+      "name": "equipped-OUTERCLOTHING",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-vox",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-resomi",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-dog",
+      "directions": 4,
+      "copyright": "Made by Sparlight (GitHub)."
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    }
+  ]
 }

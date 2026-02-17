@@ -283,6 +283,13 @@
     sprite: _Starlight/Clothing/Neck/Mantles/salvagemantle.rsi
     state: icon
 
+- type: stealTargetGroup
+  id: SpyglassCaptain
+  name: steal-target-groups-spyglass
+  sprite:
+    sprite: _Starlight/Objects/Tools/spyglass.rsi
+    state: captain_spyglass
+
 # Thief Collection
 - type: stealTargetGroup
   id: CrewMonitorCollection

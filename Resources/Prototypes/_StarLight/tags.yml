@@ -160,6 +160,9 @@
   id: DockGamma
 
 - type: Tag
+  id: DogEmotes
+
+- type: Tag
   id: DrinkCarton
 
 - type: Tag
@@ -391,6 +394,9 @@
 
 - type: Tag
   id: PlasteelFilament
+
+- type: Tag
+  id: PlumbingDuct
 
 - type: Tag
   id: PowerCellTiny

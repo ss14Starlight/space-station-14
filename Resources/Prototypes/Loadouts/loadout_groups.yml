@@ -67,7 +67,6 @@
   - FluteInstrument
   - AcousticGuitarInstrument
   - TrumpetInstrument
-  - ClothWrap
   - RolliePack
   - GoldRing
   - SilverRing
@@ -366,6 +365,7 @@
   minLimit: 0
   loadouts:
   - Mantle
+  - OldMantle
 
 - type: loadoutGroup
   id: AssistantOuterClothing
@@ -389,6 +389,7 @@
   - Heels # 🌟Starlight🌟
   - CoderSocks # Starlight
   - RollerSkates # Starlight
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: AssistantJobTrinkets # Starlight - depassenger
@@ -761,6 +762,7 @@
   - JesterShoes
   - CoderSocks
   - RollerSkates # Starlight
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: SurvivalClown
@@ -960,6 +962,7 @@
   - SalvageBoots
   - WorkBoots
   - Heels # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: QuartermasterJobTrinkets
@@ -1030,6 +1033,7 @@
   - Heels
   - RollerSkates
   - CoderSocks # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: CargoTechnicianID
@@ -1082,6 +1086,7 @@
   - HighHeelBoots
   - CoderSocks
   - RollerSkates # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: SalvageSpecialistJobTrinkets
@@ -1134,6 +1139,7 @@
   - WorkBoots # 🌟Starlight🌟
   - EngineeringWinterBoots
   - Heels # 🌟Starlight🌟
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: ChiefEngineerJobTrinkets
@@ -1213,6 +1219,7 @@
   - Heels # 🌟Starlight🌟
   - CoderSocks # Starlight
   - RollerSkates # Starlight
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: StationEngineerID
@@ -1264,6 +1271,7 @@
   - Heels # 🌟Starlight🌟
   - CoderSocks # Starlight
   - RollerSkates # Starlight
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: AtmosphericTechnicianJobTrinkets
@@ -1329,6 +1337,7 @@
   - Heels # Starlight start
   - LaceupShoes
   - LeatherShoes
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: ResearchDirectorJobTrinkets
@@ -1405,6 +1414,7 @@
   - LeatherShoes
   - RollerSkates
   - CoderSocks # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: ScientistGloves
@@ -1696,6 +1706,7 @@
   - HighHeelBootsFilled
   - CoderSocks
   - RollerSkates # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: SecurityPDA
@@ -1842,6 +1853,7 @@
   - LaceupShoes
   - LeatherShoes
   - CoderSocks # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: ChiefMedicalOfficerJobTrinkets
@@ -1916,6 +1928,7 @@
   - LeatherShoes
   - RollerSkates
   - CoderSocks # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: MedicalDoctorPDA
@@ -2056,6 +2069,7 @@
   - HighHeelBoots
   - RollerSkates
   - CoderSocks # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: ParamedicJobTrinkets
