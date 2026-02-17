@@ -3,3 +3,26 @@
   name: Urist McShadow
   parent: [BaseMobShadekin, BaseMob]
   id: MobShadekin
+
+- type: entity
+  save: false
+  name: Urist McBrighteye
+  parent: [BaseMobShadekin, BaseMob]
+  id: MobBrighteye
+  components:
+  - type: Brighteye
+    energy: 200
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: CombatMode
+    disarmFailChance: 0.5
+    canDisarm: true
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - Labelable
+    - CantBecomeRevolutionary

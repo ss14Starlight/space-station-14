@@ -30837,14 +30837,6 @@ Entries:
   id: 321601
   time: '2026-02-16T07:17:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3216
-- author: wonderfulnewworld
-  changes:
-  - message: Lagomorphs now crit at 60 damage, and die at 180 damage. This is to encourage
-      the fight/flight mechanics that their two abilities push them towards.
-    type: Tweak
-  id: 320201
-  time: '2026-02-16T07:20:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3202
 - author: FeralCreature
   changes:
   - message: Borg battery display updating
@@ -30958,5 +30950,39 @@ Entries:
   id: 332601
   time: '2026-02-16T17:59:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3326
+- author: STARLIGHT TEAM
+  changes:
+  - message: OldWarp for Tiders... in loadout for 10h of assistant.
+    type: Add
+  - message: Added ClothWrap Shoes for all loadouts.
+    type: Add
+  - message: Removed ClothWrap trinket.
+    type: Remove
+  id: 333401
+  time: '2026-02-17T00:40:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3334
+- author: Sparlight
+  changes:
+  - message: Fixed juice that makes you a corgi forever inevitably corgifying cyclorites
+      at low dosages.
+    type: Fix
+  id: 333301
+  time: '2026-02-17T01:15:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3333
+- author: Sparlight
+  changes:
+  - message: Corgis can now wear the CentComm Beret, Centcomm Officer's Glasses, and
+      Centcomm Carapace.
+    type: Add
+  id: 333201
+  time: '2026-02-17T02:23:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3332
+- author: Fractalflower
+  changes:
+  - message: ERT Leader and TSF Elite no longer need Extra Roles.
+    type: Remove
+  id: 334201
+  time: '2026-02-17T03:06:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3342
 Order: -1
 

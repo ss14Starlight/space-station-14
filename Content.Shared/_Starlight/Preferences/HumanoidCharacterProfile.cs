@@ -23,12 +23,12 @@ public sealed partial class HumanoidCharacterProfile
     [DataField] public string ExploitableInfo { get; set; } = string.Empty;
 
     [DataField] public string CustomSpecieName { get; set; } = "";
+    
+    [DataField] public string ForcedPrototype { get; set; } = ""; // Starlight
 
     [DataField] public List<string> Cybernetics = [];
 
     [DataField] public string PhysicalDescription { get; set; } = string.Empty;
-
-    public EntProtoId ForcedPrototype; // Starlight - use in conjunction with spawn logic to force a proto
 
     /// <summary>
     /// Detailed text that can appear for the character if <see cref="CCVars.FlavorText"/> is enabled.
@@ -79,6 +79,11 @@ public sealed partial class HumanoidCharacterProfile
     public HumanoidCharacterProfile WithCustomSpecieName(string customspeciename)
     {
         return new(this) { CustomSpecieName = customspeciename };
+    }
+
+    public HumanoidCharacterProfile WithForcedPrototype(string forcedPrototype)
+    {
+        return new(this) { ForcedPrototype = forcedPrototype };
     }
 
     public HumanoidCharacterProfile WithCybernetics(List<string> cybernetics)

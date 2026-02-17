@@ -131,6 +131,7 @@ namespace Content.Shared.Preferences
             string exploitableInfo, //Starlight
             string species,
             string customspeciename, // Starlight
+            string forcedPrototype, // Starlight
             int age,
             Sex sex,
             Gender gender,
@@ -154,6 +155,7 @@ namespace Content.Shared.Preferences
             ExploitableInfo = exploitableInfo; //Starlight
             Species = species;//Starlight
             CustomSpecieName = customspeciename; // Starlight
+            ForcedPrototype = forcedPrototype; // Starlight
             Age = age;
             Sex = sex;
             Gender = gender;
@@ -180,6 +182,7 @@ namespace Content.Shared.Preferences
                 other.ExploitableInfo,
                 other.Species,
                 other.CustomSpecieName, // Starlight
+                other.ForcedPrototype,
                 other.Age,
                 other.Sex,
                 other.Gender,

@@ -8,8 +8,9 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 20h
-  - !type:RolesRequirement
-    proto: ExtRolesReq
+  - !type:DepartmentTimeRequirement
+    department: CentralCommand
+    time: 10h
   - !type:DepartmentTimeRequirement
     department: Command
     time: 10h

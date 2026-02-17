@@ -1,10 +1,4 @@
 - type: loadout
-  id: ClothWrap
-  storage:
-    back:
-    - ClothingClothWrap
-
-- type: loadout
   id: RedRegaliaGloves
   equipment:
     gloves: RedRegaliaGloves

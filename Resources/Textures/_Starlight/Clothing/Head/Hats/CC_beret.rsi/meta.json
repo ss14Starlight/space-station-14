@@ -15,6 +15,11 @@
       "directions": 4
     },
     {
+      "name": "equipped-HELMET-dog",
+      "directions": 4,
+      "copyright": "Made by Sparlight (GitHub)."
+    },
+    {
       "name": "inhand-left",
       "directions": 4
     },
