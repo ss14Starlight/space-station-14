@@ -1,0 +1,11 @@
+- type: passiveSlimeExtractTrait
+  id: slimeHeatAdd
+  name: Slime Heat
+  description: How much heat this slime creates in the local environment.
+  threshold: 1.0
+  entityEffect:
+    effect: !type:AddHeatEntityEffect
+      heat: 100
+    scalingFactor: 5
+    scalingOffset: 0
+  cooldown: 5
