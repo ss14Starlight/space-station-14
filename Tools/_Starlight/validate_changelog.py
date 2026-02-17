@@ -43,6 +43,8 @@ if ":cl:" not in changelog_without_comments:
     print("::error::Changelog is missing the :cl: command")
     sys.exit(1)
 
+lines = changelog_without_comments.splitlines()
+
 # --- Check that after :cl: there is a non-empty author ---
 cl_lines = [line for line in lines if line.strip().startswith(':cl:')]
 
