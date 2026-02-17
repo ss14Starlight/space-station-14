@@ -5,7 +5,7 @@
   id: BookOfCantrips
   name: abridged grimoire
   suffix: Elf
-  description: A thin manuscript containing just some of the lesser secrets of Elvenkind.
+  description: A thin manuscript containing just some of the lesser secrets of the Aielithii.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Misc/books.rsi
@@ -23,9 +23,6 @@
       balance:
         WizCoin: 2
 
-# unlike the wizard's grimoire, refunding isn't allowed by default
-
-# For debugging purposes only! Or spawn this for an admeme so a wizard can have every spell at once, I can't stop you.
 - type: entity
   parent: BookOfCantrips
   id: BookOfCantripsDebug
@@ -37,3 +34,62 @@
       ownerOnly: false # For ease of debugging.
       balance:
         WizCoin: 99999
+
+- type: entity
+  parent: [ BaseItem, StorePresetMageChromatic, BaseMagicalContraband ]
+  id: BookOfChromaticMagic
+  name: chromatic grimoire
+  suffix: MAGE
+  description: This ancient codex shudders slightly with the awesome power its letters contain. How many spells can you memorize before your mind collapses under their weight?
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/books.rsi
+      layers:
+      - state: chromatic
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+    - type: Store
+      refundAllowed: true
+      ownerOnly: true
+      balance:
+        WizCoin: 12
+
+- type: entity
+  parent: [ BaseItem, StorePresetMageHigh, BaseMagicalContraband ]
+  id: BookOfHighMagic
+  suffix: Admeme
+  name: codex of high magic
+  description: The absolute pinnacle of arcane wisdom. The spells within are so magnificent that anyone could learn them. Even the foulest secrets are among its arsenal. It must never fall into the hands of outsiders.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/books.rsi
+      layers:
+      - state: high
+    - type: Store
+      refundAllowed: false
+      ownerOnly: false
+      balance:
+        WizCoin: 99999
+
+- type: entity
+  parent: [ BaseItem, StorePresetMageDark, BaseMagicalContraband ]
+  id: BookOfDarkMagic
+  suffix: Admeme
+  name: tome of darkness
+  description: Its inky black pages are penned in silver, and bound in the flesh of things of nightmare. To even the most callous and ambitious, it is an unpleasant but necessary evil.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/books.rsi
+      layers:
+      - state: dark-base
+      - state: dark-glow
+        shader: unshaded
+    - type: Store
+      refundAllowed: true
+      ownerOnly: true
+      balance:
+        WizCoin: 12

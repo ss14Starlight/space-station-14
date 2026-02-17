@@ -40,7 +40,7 @@
 # Ember
 
 - type: entity
-  name: Ember
+  name: ember
   parent: BaseItem
   id: ElfMagicEmber
   description: Careful! It's hot. Cannot be dropped. Will decay soon.
@@ -183,13 +183,13 @@
 # Hemostasis
 
 - type: entity
-  name: haemostatic rune
+  name: haemostatic glyph
   description: A magic rune that stops bleeding when applied. Will fade if not used quickly.
   parent: BaseHealingItem
   id: ElfRuneHaemostatic
   components:
   - type: Item
-    sprite: _Starlight/Objects/Magic/antidote.rsi
+    sprite: _Starlight/Objects/Magic/bandage.rsi
     inhandVisuals:
       left:
       - state: inhand-left

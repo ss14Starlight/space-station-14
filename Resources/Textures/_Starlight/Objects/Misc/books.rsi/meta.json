@@ -9,6 +9,18 @@
   "states": [
     {
       "name": "cantrips"
+    },
+	{
+      "name": "chromatic"
+    },
+	{
+      "name": "dark-base"
+    },
+	{
+      "name": "dark-glow"
+    },
+	{
+      "name": "high"
     }
   ]
 }

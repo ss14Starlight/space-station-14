@@ -167,3 +167,49 @@
 - type: storeCategory
   id: CantripsStandard
   name: store-category-cantrips-standard
+
+# Mage Spells
+
+- type: storeCategory
+  id: MageGear
+  name: store-category-mage-gear
+
+- type: storeCategory
+  id: MageGearDark
+  name: store-category-mage-gear
+
+- type: storeCategory
+  id: MageGearHigh
+  name: store-category-mage-gear
+
+- type: storeCategory
+  id: MageSpellLesser
+  name: store-category-mage-spell-lesser
+
+- type: storeCategory
+  id: MageSpellRed
+  name: store-category-mage-spell-red
+
+- type: storeCategory
+  id: MageSpellBlue
+  name: store-category-mage-spell-blue
+
+- type: storeCategory
+  id: MageSpellGold
+  name: store-category-mage-spell-gold
+
+- type: storeCategory
+  id: MageSpellGreen
+  name: store-category-mage-spell-green
+
+- type: storeCategory
+  id: MageSpellWhite
+  name: store-category-mage-spell-white
+
+- type: storeCategory
+  id: MageSpellBlack
+  name: store-category-mage-spell-black
+
+- type: storeCategory
+  id: MageSpellPurple
+  name: store-category-mage-spell-purple

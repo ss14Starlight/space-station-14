@@ -1,0 +1,983 @@
+# Mage and Sorcerer spells; see elf_spells.yml for Elf Cantrips, or elsewhere for Wizard spells
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellFlashCook
+  name: Flash Cook
+  description: Instantly raises the temperature inside food.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-flash-cook
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellTasteOfFire
+  name: Taste of Fire
+  description: Adds a fiery dint to cuisine. May cause indigestion or inebriation.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-taste-of-fire
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellSpringBloom
+  name: Spring Bloom
+  description: Brings about a bountiful harvest.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-spring-bloom
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellWalkBetweenWorlds
+  name: Walk Between Worlds
+  description: Step aside from the physical world, allowing you to walk through walls and other obstacles for a short time.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-walk-between-worlds
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellCounterspell
+  name: Counterspell
+  description: Prevents the target from casting any spells for a short while, and breaks the strings animating any nearby objects.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-counterspell
+    whisper: true
+
+# Blue Magic
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellComet
+  name: Comet
+  description: When meteors just aren't enough.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-comet
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellChainLightning
+  name: Chain Lightning
+  description: Not a tesloose.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-chain-lightning
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellPremonition
+  name: Premonition
+  description: Blocks the next 200 damage.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-premonition
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellLightningBolt
+  name: Lightning Bolt
+  description: Puts the fear of the Gods into a target.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-lightning-bolt
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellGreaterPremonition
+  name: Greater Premonition
+  description: Blocks damage for the next ten seconds.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-greater-premonition
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellFindingDivination
+  name: Finding Divination
+  description: Points you toward the nearest wielder of tainted magic.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-finding-divination
+    whisper: true
+
+# Black Magic
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellPetrify
+  name: Petrify
+  description: Prevents squirming.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-petrify
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellWordOfPain
+  name: Word of Pain
+  description: Wracks those around you with stunning pain for several seconds.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-word-of-pain
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellDoombolt
+  name: Doombolt
+  description: Corrupts the flesh.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-doombolt
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellSoulStealer
+  name: Soul Stealer
+  description: Their good health is your windfall.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-soul-stealer
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellLureOfChaos
+  name: Lure of Chaos
+  description: The only thing holding one back from becoming an antagonist is the self.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-lure-of-chaos
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellSummonDaemonPack
+  name: Summon Daemon Pack
+  description: Brings forth a handful of vile creatures. Do not get close.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-summon-daemon-pack
+    whisper: true
+
+# Red Magic
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellCauterize
+  name: Cauterize
+  description: Mends most non-burn damage, at the cost of a small amount of burning.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-cauterize
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellConflagration
+  name: Conflagration
+  description: An area denial spell of great power.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-conflagration
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellFieryBlast
+  name: Fiery Blast
+  description: Jets of flame leap forth from your fingers toward a foe.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-fiery-blast
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellFlamingSword
+  name: Flaming Sword
+  description: Lettest them taste of thy wroth.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-flaming-sword
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellAegis
+  name: Aegis
+  description: A shield of flame to deflect your foes' missiles.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-aegis
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellBoilingBlood
+  name: Boiling Blood
+  description: Burn their veins, so that are crippled by suffering.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-boiling-blood
+    whisper: true
+
+# Green Magic
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellMasterOfStone
+  name: Master of Stone
+  description: Brings forth a number of rocks to hurl at your enemies.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-master-of-stone
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellFleshOfClay
+  name: Flesh of Clay
+  description: Hardens your body against all but the worst assaults.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-flesh-of-clay
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellFatherOfThorns
+  name: Father of Thorns
+  description: Raises a patch of dangerous brambles.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-father-of-thorns
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellTreefriend
+  name: Treefriend
+  description: Awakens a non-sentient plant.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-treefriend
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellEarthBlood
+  name: Earth Blood
+  description: Siphons natural energies to restore health to yourself or another.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-earth-blood
+    whisper: true
+
+# Gold Magic
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellMalteseFalcon
+  name: Maltese Falcon
+  description: Creates a valuable trinket suitable for barter or bribery.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-maltese-falcon
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellCurseOfRust
+  name: Curse of Rust
+  description: Degrades a metal weapon beyond all repair.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-curse-of-rust
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellEnchantItem
+  name: Enchant Item
+  description: Converts a weapon into an empowered magical equivalent.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-enchant-item
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellSilverArrows
+  name: Silver Arrows
+  description: Slings a series of sharp metal projectiles toward a foe.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-silver-arrows
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellFinalTransmutation
+  name: Final Transmutation
+  description: Gradually turns a target into a golden statue over a long period, necessitating radical intervention.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-final-transmutation
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellEnchantArmor
+  name: Enchant Armor
+  description: Transfigures a hardsuit or vest into a superior piece of equipment.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-enchant-armor
+    whisper: true
+
+# White Magic (admin only)
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellApotheosis
+  name: Apotheosis
+  description: Heals and revives in a large area of effect.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-apotheosis
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellSoulQuench
+  name: Soul Quench
+  description: Extinguishes the essence of an unwanted being.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-soul-quench
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellUnmaking
+  name: Unmaking
+  description: Rids a target of all equipment.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-unmaking
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellRestoration
+  name: Restoration
+  description: Floods the station with lush wilderness.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-restoration
+    whisper: true
+
+# Purple Magic
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellSkeletonize
+  name: Skeletonize
+  description: Raises a Wight from a body, to serve as your Lieutenant.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-skeletonize
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellInvocation
+  name: Invocation
+  description: Heals any nearby Undead Servants.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-invocation
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellRaiseServant
+  name: Raise Servant
+  description: Converts a nearby corpse into an Undead Servant.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-raise-servant
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellDanseMacabre
+  name: Danse Macabre
+  description: Bestows a blessing of haste upon your Undead minions.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-danse-macabre
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellHandOfDust
+  name: Hand of Dust
+  description: Your touch disintegrates some of a target's flesh, or turns a corpse to ash.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-hand-of-dust
+    whisper: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionMageSpellGaze
+  name: Gaze
+  description: Withers the flesh of one upon whom your eyesight falls.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5 # TODO: balance
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-mage-gaze
+    whisper: true

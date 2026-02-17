@@ -64,7 +64,7 @@
   id: Elf
   coefficients:
     Poison: 0.75
-    Cellular: 0.9 # magic makes the flesh is less corruptible
+    Cellular: 0.75 # magic makes the flesh is less corruptible
     Blunt: 1.2 # brittle bones, etc.
 
 - type: damageModifierSet

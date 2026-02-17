@@ -4,7 +4,7 @@ cantrip-glow-description = Creates a short-lived glowing ball.
 cantrip-spark-name = Ember
 cantrip-spark-description = Creates a short-lived flame between your fingertips.
 
-cantrip-antidote-name = Rejuvenating Seed
+cantrip-antidote-name = Seed of Rejuvenation
 cantrip-antidote-description = Creates a magic seed that restores vitality to an ailing plant.
 
 cantrip-mop-name = Cleanse

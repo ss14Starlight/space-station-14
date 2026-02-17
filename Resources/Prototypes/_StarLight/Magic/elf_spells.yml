@@ -1,3 +1,5 @@
+# Elf cantrips; see mage_spells.yml for Mage and Sorc
+
 # Luminous Orb
 
 - type: entity
@@ -28,7 +30,7 @@
 - type: entity
   parent: BaseAction
   id: ActionCantripSpark
-  name: Magic Ember
+  name: Ember
   description: Creates a short-lived flame suitable for use as an ignition source. Decays after 5 seconds.
   components:
   - type: Magic
@@ -52,7 +54,7 @@
 - type: entity
   parent: BaseAction
   id: ActionCantripAntidote
-  name: Rejuvenating Seed
+  name: Seed of Rejuvenation
   description: Creates a magic seed that restores vitality to an ailing plant. Vanishes if not used within 15 seconds.
   components:
   - type: Magic

@@ -68,3 +68,37 @@
     - CantripsStandard
     currencyWhitelist:
     - WizCoin
+
+# Mage Spellbooks
+- type: entity
+  id: StorePresetMageChromatic
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-mage
+    categories:
+    - CantripsStandard
+    currencyWhitelist:
+    - WizCoin
+
+- type: entity
+  id: StorePresetMageHigh
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-mage-high
+    categories:
+    - CantripsStandard
+    currencyWhitelist:
+    - WizCoin
+
+- type: entity
+  id: StorePresetMageDark
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-mage-dark
+    categories:
+    - CantripsStandard
+    currencyWhitelist:
+    - WizCoin
