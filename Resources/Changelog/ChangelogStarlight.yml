@@ -31074,5 +31074,16 @@ Entries:
   id: 334701
   time: '2026-02-17T10:16:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3347
+- author: CrazyPhantom
+  changes:
+  - message: Description to Electrolyzers.
+    type: Add
+  - message: Electrolyzers Now correctly accept Plasma and Uranium sheets.
+    type: Fix
+  - message: Missing localizations for BZ chem guidebook entry.
+    type: Fix
+  id: 334901
+  time: '2026-02-17T15:41:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3349
 Order: -1
 
