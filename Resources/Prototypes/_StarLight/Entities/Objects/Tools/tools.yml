@@ -1031,6 +1031,45 @@
   - type: AutoRecharge
     rechargeDuration: 1
 
+# =============================================================================
+# RAD (Rapid Advert Device) - places advertising speakers
+# =============================================================================
+- type: entity
+  id: RAD
+  parent: RCD
+  suffix: Admeme
+  name: RAD
+  description: A device used to rapidly deploy advertising and even install protective glass around them.
+  components:
+  - type: Contraband
+    allowedDepartments: [ CentralCommand ]
+  - type: RCD
+    availablePrototypes:
+    - Speaker
+    - WindowReinforcedDirectional
+  - type: LimitedCharges
+    maxCharges: 45
+  - type: AutoRecharge
+    rechargeDuration: 1
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/xenoborg_rcd.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 600
+      Plastic: 100
+  - type: StaticPrice
+    price: 110
+  - type: UserInterface
+    interfaces:
+      enum.RcdUiKey.Key:
+        type: RCDMenuBoundUserInterface
+  - type: ActivatableUI
+    inHandsOnly: true
+    key: enum.RcdUiKey.Key
+
 - type: entity
   id: RCDXeno
   parent: [ BaseItem, BaseEngineeringContraband ]
