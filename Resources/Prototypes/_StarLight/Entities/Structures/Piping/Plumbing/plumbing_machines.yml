@@ -642,6 +642,7 @@
       Sugar: 2
       Silicon: 5
       Phosphorus: 5
+      Water: 2
   - type: Plungeable
   - type: PlumbingOutlet
     solutionName: buffer
