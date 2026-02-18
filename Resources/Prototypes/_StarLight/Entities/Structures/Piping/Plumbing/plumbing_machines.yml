@@ -508,6 +508,7 @@
         acts: ["Destruction"]
   - type: StaticPrice
     price: 150
+
 # =============================================================================
 # Plumbing Filter - separates specific reagents into two outputs
 # =============================================================================
@@ -694,6 +695,17 @@
         acts: ["Destruction"]
   - type: StaticPrice
     price: 200
+
+- type: entity
+  parent: PlumbingSynthesizer
+  id: PlumbingSynthesizerWater
+  name: Plumbing Synthesizer
+  suffix: Water
+  description: Generates basic reagents using power from an internal battery.
+  components:
+    - type: PlumbingSynthesizer
+      selectedReagent: Water
+
 # =============================================================================
 # Plumbing Drain - floor drain that outputs to plumbing network
 # =============================================================================
