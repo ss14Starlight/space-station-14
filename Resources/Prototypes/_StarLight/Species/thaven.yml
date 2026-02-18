@@ -33,6 +33,9 @@
     RLeg: MobThavenRLeg
     LFoot: MobThavenLFoot
     RFoot: MobThavenRFoot
+    Tail: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobThavenMarkingLimits
@@ -60,6 +63,15 @@
       points: 6
       required: false
     Snout:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
       points: 1
       required: false
 

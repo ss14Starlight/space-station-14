@@ -224,3 +224,40 @@
   - type: ContainerFill
     containers:
       board: [ BaseDoorElectronicsXenoborg ]
+
+# Brigmedic
+- type: entity
+  parent: Airlock
+  id: AirlockBrigmed
+  suffix: Brigmed
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/brigmedic.rsi
+  - type: Paintable
+    group: AirlockStandard
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockBrigmedGlass
+  suffix: Brigmed
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/brigmedic.rsi
+  - type: Paintable
+    group: AirlockGlass
+
+- type: entity
+  parent: Airlock
+  id: AirlockBrigmedPara
+  suffix: Brigmed/Paramedic
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/brigmedic.rsi
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockBrigmedParaGlass
+  suffix: Brigmed/Paramedic
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/brigmedic.rsi

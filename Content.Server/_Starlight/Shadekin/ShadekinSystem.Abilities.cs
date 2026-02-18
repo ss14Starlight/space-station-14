@@ -157,6 +157,8 @@ public sealed partial class ShadekinSystem : EntitySystem
 
         if (OnAttemptEnergyUse(uid, component, component.PortalCost))
         {
+            SpawnTheDark();
+
             _actionsSystem.RemoveAction(uid, component.PortalAction);
 
             EnsureComp<PortalTimeoutComponent>(uid); // Lets not teleport as soon we put down the portal, duh.

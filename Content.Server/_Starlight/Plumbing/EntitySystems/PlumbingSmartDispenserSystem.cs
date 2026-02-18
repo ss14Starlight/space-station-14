@@ -111,7 +111,8 @@ public sealed class PlumbingSmartDispenserSystem : EntitySystem
         if (!_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out var fridgeSolnEnt, out var fridgeSolution))
             return;
 
-        var available = fridgeSolution.GetReagentQuantity(new ReagentId(reagentId, null));
+        var sourceReagent = fridgeSolution.Contents.FirstOrDefault(r => r.Reagent.Prototype == reagentId);
+        var available = sourceReagent.Quantity;
 
         if (available <= FixedPoint2.Zero)
         {
@@ -132,11 +133,11 @@ public sealed class PlumbingSmartDispenserSystem : EntitySystem
         }
 
         var transferAmount = FixedPoint2.Min(available, jugAvailable);
-        var removed = _solutionSystem.RemoveReagent(fridgeSolnEnt.Value, new ReagentId(reagentId, null), transferAmount);
+        var removed = _solutionSystem.RemoveReagent(fridgeSolnEnt.Value, sourceReagent.Reagent, transferAmount);
 
         if (removed > FixedPoint2.Zero)
         {
-            _solutionSystem.TryAddReagent(jugSolnEnt.Value, reagentId, removed, out _);
+            _solutionSystem.TryAddReagent(jugSolnEnt.Value, sourceReagent.Reagent, removed, out _);
 
             var reagentName = _prototypeManager.Index<ReagentPrototype>(reagentId).LocalizedName;
             _popup.PopupEntity(Loc.GetString("plumbing-smart-dispenser-filled",

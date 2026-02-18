@@ -101,6 +101,11 @@
   name: Plumbing Input
   description: A small tank you pour reagents into. Other machines pull from this. Connects in all directions.
   components:
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+    fixtures: {}
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
@@ -219,6 +224,11 @@
   name: Plumbing Output
   description: A small tank that pulls reagents from the network. Draw from it with a container. Connects in all directions.
   components:
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+    fixtures: {}
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
@@ -517,6 +527,11 @@
   name: Plumbing Filter
   description: Filters specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
   components:
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+    fixtures: {}
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
@@ -585,6 +600,11 @@
   suffix: Flipped
   description: Filters specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
   components:
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+    fixtures: {}
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
@@ -657,7 +677,7 @@
       outlet:
         !type:PlumbingNode
         nodeGroupID: Plumbing
-        pipeDirection: South
+        pipeDirection: TSouth
   - type: UserInterface
     interfaces:
       enum.PlumbingSynthesizerUiKey.Key:

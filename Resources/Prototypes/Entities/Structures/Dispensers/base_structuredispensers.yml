@@ -5,9 +5,13 @@
   placement:
     mode: SnapgridCenter
   components:
+  # Starlight-start: Make dispenser rotatable.
   - type: Transform
     anchored: true
-    noRot: true
+    noRot: false
+  - type: Rotatable
+    rotateWhileAnchored: true
+  # Starlight-end
   - type: Clickable
   - type: InteractionOutline
   - type: Appearance

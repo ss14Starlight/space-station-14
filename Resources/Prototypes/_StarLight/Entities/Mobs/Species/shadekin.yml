@@ -12,6 +12,8 @@
       understands:
       - GalacticCommon
       - Marish
+    - type: Inventory
+      speciesId: shadekin
     - type: CollectiveMind
       blockWhenUnconscious: true
     - type: Shadekin
