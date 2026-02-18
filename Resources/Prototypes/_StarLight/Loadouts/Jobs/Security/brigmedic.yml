@@ -163,12 +163,3 @@
   storage:
     back:
     - DarkBeaker
-    
-- type: loadout
-  id: SilverBeakerBrigmedic
-  effects:
-    - !type:GroupLoadoutEffect
-        proto: SkilledBrigmedic
-  storage:
-    back:
-    - SilverBeaker

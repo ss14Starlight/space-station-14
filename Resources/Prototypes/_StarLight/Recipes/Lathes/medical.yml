@@ -766,3 +766,17 @@
   completetime: 2
   materials:
     Silver: 50
+
+- type: latheRecipe
+  id: LightBeaker
+  result: LightBeaker
+  completetime: 2
+  materials:
+    Steel: 400
+
+- type: latheRecipe
+  id: DarkBeaker
+  result: DarkBeaker
+  completetime: 2
+  materials:
+    Steel: 400

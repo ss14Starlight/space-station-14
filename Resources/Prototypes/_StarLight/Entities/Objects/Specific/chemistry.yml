@@ -209,7 +209,7 @@
 
 - type: entity
   name: dark beaker
-  parent: [BaseBeakerMetallic, DrinkBaseOpenable, DrinkVisualsOpenable, BaseSecurityContraband]
+  parent: [BaseBeakerMetallic, DrinkBaseOpenable, DrinkVisualsOpenable]
   description: The dark side of an unbreakable beaker. Its true power can be sealed.
   id: DarkBeaker
   components:
@@ -245,13 +245,13 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 7
+        Blunt: 3
     soundHit:
       collection: MetalThud
   - type: DamageOtherOnHit
     damage:
       types:
-        Blunt: 9
+        Blunt: 5
   - type: SolutionContainerManager
     solutions:
       beaker:

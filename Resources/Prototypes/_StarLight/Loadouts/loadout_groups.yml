@@ -707,6 +707,7 @@
   name: loadout-group-chemist-beaker
   loadouts:
     - LightBeaker
+    - DarkBeaker
     - SilverBeakerChemist
 
 - type: loadoutGroup
@@ -741,13 +742,6 @@
     - VeteranBrigmedicPDA
     - CorpsmanPDA
     - VeteranCorpsmanPDA
-
-- type: loadoutGroup
-  id: BrigmedicBeaker
-  name: loadout-group-brigmedic-beaker
-  loadouts:
-    - DarkBeaker
-    - SilverBeakerBrigmedic
 
 - type: loadoutGroup
   id: BrigmedicGloves
