@@ -67,7 +67,6 @@
   - FluteInstrument
   - AcousticGuitarInstrument
   - TrumpetInstrument
-  - ClothWrap
   - RolliePack
   - GoldRing
   - SilverRing
@@ -173,6 +172,8 @@
   - CaptainHead
   - CaptainCap
   - Hairflower # Starlight
+  - LilyFlower # Starlight
+  - RoadCone # Starlight
 
 - type: loadoutGroup
   id: CaptainJumpsuit
@@ -234,6 +235,8 @@
   loadouts:
   - HoPHead
   - Hairflower # Starlight
+  - LilyFlower # Starlight
+  - RoadCone # Starlight
 
 - type: loadoutGroup
   id: HoPJumpsuit
@@ -366,6 +369,7 @@
   minLimit: 0
   loadouts:
   - Mantle
+  - OldMantle
 
 - type: loadoutGroup
   id: AssistantOuterClothing
@@ -389,6 +393,7 @@
   - Heels # 🌟Starlight🌟
   - CoderSocks # Starlight
   - RollerSkates # Starlight
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: AssistantJobTrinkets # Starlight - depassenger
@@ -406,6 +411,8 @@
   - BartenderBowler
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -452,6 +459,8 @@
   - ChefHead
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -549,6 +558,8 @@
   - ChaplainWitchHatAlt
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -721,6 +732,8 @@
   - JesterAltHat
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -761,6 +774,7 @@
   - JesterShoes
   - CoderSocks
   - RollerSkates # Starlight
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: SurvivalClown
@@ -791,6 +805,8 @@
   - MimeFrenchBeret
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -924,6 +940,8 @@
   - QuartermasterHead
   - QuartermasterBeret
   - Hairflower # Starlight
+  - LilyFlower # Starlight
+  - RoadCone # Starlight
 
 - type: loadoutGroup
   id: QuartermasterJumpsuit
@@ -960,6 +978,7 @@
   - SalvageBoots
   - WorkBoots
   - Heels # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: QuartermasterJobTrinkets
@@ -979,6 +998,8 @@
   - CargoTechnicianBeretFormal
   - MaidHeadbandTactical
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1030,6 +1051,7 @@
   - Heels
   - RollerSkates
   - CoderSocks # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: CargoTechnicianID
@@ -1082,6 +1104,7 @@
   - HighHeelBoots
   - CoderSocks
   - RollerSkates # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: SalvageSpecialistJobTrinkets
@@ -1099,6 +1122,8 @@
   - ChiefEngineerHead
   - ChiefEngineerBeret
   - Hairflower # Starlight
+  - LilyFlower # Starlight
+  - RoadCone # Starlight
 
 - type: loadoutGroup
   id: ChiefEngineerJumpsuit
@@ -1134,6 +1159,7 @@
   - WorkBoots # 🌟Starlight🌟
   - EngineeringWinterBoots
   - Heels # 🌟Starlight🌟
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: ChiefEngineerJobTrinkets
@@ -1169,6 +1195,8 @@
   - SeniorEngineerBeret
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1213,6 +1241,7 @@
   - Heels # 🌟Starlight🌟
   - CoderSocks # Starlight
   - RollerSkates # Starlight
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: StationEngineerID
@@ -1264,6 +1293,7 @@
   - Heels # 🌟Starlight🌟
   - CoderSocks # Starlight
   - RollerSkates # Starlight
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: AtmosphericTechnicianJobTrinkets
@@ -1292,6 +1322,8 @@
   loadouts:
   - ResearchDirectorBeret
   - Hairflower # Starlight
+  - LilyFlower # Starlight
+  - RoadCone # Starlight
 
 - type: loadoutGroup
   id: ResearchDirectorNeck
@@ -1329,6 +1361,7 @@
   - Heels # Starlight start
   - LaceupShoes
   - LeatherShoes
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: ResearchDirectorJobTrinkets
@@ -1347,6 +1380,8 @@
   - ScientificBeret
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1405,6 +1440,7 @@
   - LeatherShoes
   - RollerSkates
   - CoderSocks # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: ScientistGloves
@@ -1459,6 +1495,8 @@
   - HeadofSecuritySheriff #Starlight
   - HeadofSecurityBeret
   - Hairflower # Starlight
+  - LilyFlower # Starlight
+  - RoadCone # Starlight
 
 - type: loadoutGroup
   id: HeadofSecurityJumpsuit
@@ -1511,6 +1549,8 @@
   - WardenBeret
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1563,6 +1603,8 @@
   - SecurityHelmet
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1634,6 +1676,8 @@
   - TrooperHat
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1696,6 +1740,7 @@
   - HighHeelBootsFilled
   - CoderSocks
   - RollerSkates # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: SecurityPDA
@@ -1721,6 +1766,8 @@
   - DetectiveFedoraGrey
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1799,6 +1846,8 @@
   - ChiefMedicalOfficerBeret
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1842,6 +1891,7 @@
   - LaceupShoes
   - LeatherShoes
   - CoderSocks # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: ChiefMedicalOfficerJobTrinkets
@@ -1864,6 +1914,8 @@
   - NurseHat
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -1916,6 +1968,7 @@
   - LeatherShoes
   - RollerSkates
   - CoderSocks # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: MedicalDoctorPDA
@@ -2015,6 +2068,8 @@
   - ParamedicHead
   - MaidHeadbandTactical # Starlight start
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars # Starlight end
@@ -2056,6 +2111,7 @@
   - HighHeelBoots
   - RollerSkates
   - CoderSocks # Starlight end
+  - ClothWrapShoe # Starlight
 
 - type: loadoutGroup
   id: ParamedicJobTrinkets

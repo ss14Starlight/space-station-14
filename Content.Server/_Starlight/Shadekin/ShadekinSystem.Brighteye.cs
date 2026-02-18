@@ -23,6 +23,7 @@ public sealed partial class ShadekinSystem : EntitySystem
         SubscribeLocalEvent<BrighteyeComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<BrighteyeComponent, NullSpaceShuntEvent>(NullSpaceShunt);
         SubscribeLocalEvent<BrighteyeComponent, EntityZombifiedEvent>((uid, _, _) => RemComp<BrighteyeComponent>(uid));
+        SubscribeLocalEvent<BrighteyeComponent, ForcedPrototypeDoSpecialEvent>(ForcedPrototypeDoSpecial);
 
         SubscribeLocalEvent<OrganShadekinCoreComponent, SurgeryOrganImplantationCompleted>(OnCoreOrganImplanted);
         SubscribeLocalEvent<OrganShadekinCoreComponent, SurgeryOrganExtracted>(OnCoreOrganExtracted);
@@ -43,7 +44,7 @@ public sealed partial class ShadekinSystem : EntitySystem
         _actionsSystem.AddAction(uid, ref component.PhaseAction, component.BrighteyePhaseAction, uid);
         _actionsSystem.AddAction(uid, ref component.ShadeSkipAction, component.BrighteyeShadeSkipAction, uid);
         _actionsSystem.AddAction(uid, ref component.CreateShadeAction, component.BrighteyeCreateShadeAction, uid);
-        _actionsSystem.AddAction(uid, ref component.DarkTrapAction, component.BrighteyeDarkTrapAction, uid);        
+        _actionsSystem.AddAction(uid, ref component.DarkTrapAction, component.BrighteyeDarkTrapAction, uid);
 
         if (TryComp<BodyComponent>(uid, out var body))
             foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((uid, body)))
@@ -68,6 +69,12 @@ public sealed partial class ShadekinSystem : EntitySystem
                 }
             }
 
+        if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
+            SetBrighteyes(uid, humanoid);
+    }
+
+    private void ForcedPrototypeDoSpecial(EntityUid uid, BrighteyeComponent component, ForcedPrototypeDoSpecialEvent args)
+    {
         if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
             SetBrighteyes(uid, humanoid);
     }

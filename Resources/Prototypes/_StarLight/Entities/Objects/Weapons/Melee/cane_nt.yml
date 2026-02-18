@@ -70,3 +70,5 @@
   - type: DrawableSolution
     solution: battery
   - type: MobilityAid
+  - type: Prying
+    speedModifier: 0.25

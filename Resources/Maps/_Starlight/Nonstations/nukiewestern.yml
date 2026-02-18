@@ -60,6 +60,9 @@ entities:
         moles:
           Oxygen: 21.824879
           Nitrogen: 82.10312
+    - type: Tag
+      tags:
+        - NukiePlanet
   - uid: 2
     components:
     - type: MetaData

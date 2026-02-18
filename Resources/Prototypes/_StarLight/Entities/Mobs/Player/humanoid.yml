@@ -315,7 +315,7 @@
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-leader-name
-      job: TSFMarineElite
+      job: TSFMarine
     - type: Loadout
       prototypes: [ TSFMarineLeaderGear ]
     - type: RandomMetadata

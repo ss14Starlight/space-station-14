@@ -58,3 +58,21 @@
   components:
     - type: AccessReader
       access: [["Salvage"], ["Mining"]]
+
+#Brigmedic
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsBrigmed
+  suffix: Brigmed, Locked
+  components:
+    - type: AccessReader
+      access: [["Security"], ["Cadet"], ["Command"]]
+
+#Brigmedic/Paramed
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsBrigmedPara
+  suffix: Brigmed/Paramedic, Locked
+  components:
+    - type: AccessReader
+      access: [["Security"], ["Cadet"], ["Command"], ["Paramedic"]]

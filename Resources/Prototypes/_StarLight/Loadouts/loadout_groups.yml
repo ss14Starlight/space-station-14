@@ -20,7 +20,7 @@
   minLimit: 0
   defaultSelected: 1
   loadouts:
-  - InsulsCombat
+  - InsulsCombatNoLock
   - InsulsRegular
   - InsulsMaid
   - InsulsMercenary
@@ -57,6 +57,8 @@
   loadouts:
   - MaidHeadbandTactical
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars
@@ -208,7 +210,9 @@
   - GreytideBizarreAdventures
   - BrimHat
   - FeatheredHat
-  - Hairflower # starlight
+  - Hairflower
+  - LilyFlower
+  - RoadCone # starlight
 
 - type: loadoutGroup
   id: AssistantBackpack
@@ -245,6 +249,12 @@
   - SkullBandana
   - RoboticistBlackCapFlipped
   - MaidHeadbandTactical
+  - Hairflower
+  - LilyFlower
+  - RoadCone
+  - CatEars
+  - DogEars
+  - BunnyEars
 
 - type: loadoutGroup
   id: RoboticistGloves
@@ -329,6 +339,8 @@
   loadouts:
   - MagistrateHeadPwig
   - Hairflower
+  - LilyFlower
+  - RoadCone
 
 - type: loadoutGroup
   id: MagistrateEyewear
@@ -380,7 +392,8 @@
 - type: loadoutGroup
   id: BlueShieldOuterclothing
   name: loadout-group-blueshield-outerclothing
-  minLimit: 1
+  minLimit: 0
+  maxLimit: 1
   defaultSelected: 1
   loadouts:
   - BlueShieldVest
@@ -450,7 +463,8 @@
   - Heels
   - LeatherShoes
   - CoderSocks
-  - RollerSkates # Starlight
+  - RollerSkates
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: CaptainShoes
@@ -464,6 +478,7 @@
   - CowboyBootsBlackFilled
   - CowboyBootsWhiteFilled
   - HighHeelBootsFilled
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: HoPShoes
@@ -474,6 +489,7 @@
   - Heels
   - LaceupShoes
   - LeatherShoes
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: MagistrateShoes
@@ -482,6 +498,7 @@
   loadouts:
   - LaceupShoes
   - Heels
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: NanotrasenRepresentativeShoes
@@ -491,6 +508,7 @@
   - LaceupShoes
   - Heels
   - LeatherShoes
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: DetectiveShoes
@@ -506,7 +524,8 @@
   - Heels
   - HighHeelBootsFilled
   - CoderSocks
-  - RollerSkates # Starlight
+  - RollerSkates
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: CivilianShoes
@@ -520,7 +539,8 @@
   - Heels
   - LaceupShoes
   - CoderSocks
-  - RollerSkates # Starlight
+  - RollerSkates
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: LawyerShoes
@@ -532,7 +552,8 @@
   - Heels
   - LeatherShoes
   - CoderSocks
-  - RollerSkates # Starlight
+  - RollerSkates
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: BlueShieldShoes
@@ -541,6 +562,7 @@
   loadouts:
   - CombatBoots
   - HighHeelBootsFilled
+  - ClothWrapShoe
 
 # Salvage Lead
 - type: loadoutGroup
@@ -673,7 +695,8 @@
   - LaceupShoes
   - LeatherShoes
   - CoderSocks
-  - RollerSkates # Starlight
+  - RollerSkates
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: ChemistPDA
@@ -761,6 +784,8 @@
   - DutyOfficerHelmetRiot
   - MaidHeadbandTactical
   - Hairflower
+  - LilyFlower
+  - RoadCone
   - CatEars
   - DogEars
   - BunnyEars
@@ -823,7 +848,7 @@
   id: BrighteyeShoes
   name: loadout-group-civilian-shoes
   loadouts:
-    - BrighteyeClothWrapShoe
+    - ClothWrapShoe
     - BlackShoes
     - CoderSocks
     - RollerSkates # Starlight
@@ -833,7 +858,7 @@
   minLimit: 0
   name: loadout-group-brighteye-gloves
   loadouts:
-    - BrighteyeClothWrapGlove
+    - ClothWrapGlove
     - PawsWhite
     - PawsBrown
     - PawsBlack
@@ -856,6 +881,8 @@
   - BeretNCTGreen
   - BeretNCTBlack
   - Hairflower
+  - LilyFlower
+  - RoadCone
 
 - type: loadoutGroup
   id: NanotrasenCareerTrainerShoes
@@ -865,6 +892,7 @@
   - LaceupShoes
   - Heels
   - LeatherShoes
+  - ClothWrapShoe
 
 - type: loadoutGroup
   id: NanotrasenCareerTrainerEyewear

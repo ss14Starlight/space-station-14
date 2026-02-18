@@ -59,7 +59,7 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
         if (profile is null)
             profile = HumanoidCharacterProfile.RandomWithSpecies(species.ID);
 
-        if (profile?.ForcedPrototype.Id != null)
+        if (profile?.ForcedPrototype != "" && profile is not null)
         {
             if (!_proto.Resolve(profile.ForcedPrototype, out var forcedProto))
                 throw new ArgumentException($"Could not find ${profile.ForcedPrototype} prototype for spawn rule.");
@@ -81,6 +81,9 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
             if (args.Session is not null)
                 _traitSystem.ApplyTraits(args.Entity.Value, profile, args.Session);
         }
+
+        if (profile?.ForcedPrototype != "")
+            RaiseLocalEvent(args.Entity.Value, new ForcedPrototypeDoSpecialEvent()); // Starlight
         // Starlight - End
     }
 }

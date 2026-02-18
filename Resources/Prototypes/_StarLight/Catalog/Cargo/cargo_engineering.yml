@@ -39,11 +39,11 @@
   group: market
 
 - type: cargoProduct
-  id: EngineeringRPLD
+  id: PlumbingRPLD
   icon:
     sprite: _Starlight/Objects/Tools/rpld.rsi
     state: icon
   product: CrateRPLD
   cost: 800
-  category: cargoproduct-category-name-engineering
+  category: cargoproduct-category-name-medical
   group: market

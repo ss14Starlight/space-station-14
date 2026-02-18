@@ -161,6 +161,12 @@
     sprite: Clothing/OuterClothing/Armor/centcomm_carapace.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/centcomm_carapace.rsi
+# Starlight Start
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+# Starlight End
 
 #Web vest
 - type: entity

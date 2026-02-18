@@ -35,6 +35,10 @@
     - Dead
   # endoskeleton need it
   - type: TransferMindOnGib
+  # self destruct option for phase 1 (manual only, won't trigger on phase 2 transformation)
+  - type: AutoImplant
+    implants:
+    - TerminatorDeathAcidifierImplant
   - type: MobThresholds
     thresholds:
       0: Alive

@@ -337,3 +337,54 @@
       "/Maps/_Starlight/Shuttles/widow.yml": 1
     addComponents:
     - type: NukeOpsShuttle
+
+# Brigmedic
+- type: entity
+  parent: AirlockBrigmed
+  id: AirlockBrigmedLocked
+  suffix: Brigmed, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBrigmed ]
+
+- type: entity
+  parent: AirlockBrigmedGlass
+  id: AirlockBrigmedGlassLocked
+  suffix: Brigmed, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBrigmed ]
+
+- type: entity
+  parent: AirlockBrigmedLocked
+  id: AirlockMaintBrigmedLocked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+- type: entity
+  parent: AirlockBrigmedPara
+  id: AirlockBrigmedParaLocked
+  suffix: Brigmed/Paramedic, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBrigmedPara ]
+
+- type: entity
+  parent: AirlockBrigmedParaGlass
+  id: AirlockBrigmedParaGlassLocked
+  suffix: Brigmed/Paramedic, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBrigmedPara ]
+
+- type: entity
+  parent: AirlockBrigmedParaLocked
+  id: AirlockMaintBrigmedParaLocked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi

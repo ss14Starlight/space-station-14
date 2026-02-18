@@ -1,14 +1,14 @@
 - type: soundCollection
   id: PhoneSpeak
   files:
-  - /Audio/_Starlight/Machines/talk_phone1.ogg
-  - /Audio/_Starlight/Machines/talk_phone2.ogg
-  - /Audio/_Starlight/Machines/talk_phone3.ogg
-  - /Audio/_Starlight/Machines/talk_phone4.ogg
-  - /Audio/_Starlight/Machines/talk_phone5.ogg
-  - /Audio/_Starlight/Machines/talk_phone6.ogg
-  - /Audio/_Starlight/Machines/talk_phone7.ogg
-  
+    - /Audio/_Starlight/Machines/talk_phone1.ogg
+    - /Audio/_Starlight/Machines/talk_phone2.ogg
+    - /Audio/_Starlight/Machines/talk_phone3.ogg
+    - /Audio/_Starlight/Machines/talk_phone4.ogg
+    - /Audio/_Starlight/Machines/talk_phone5.ogg
+    - /Audio/_Starlight/Machines/talk_phone6.ogg
+    - /Audio/_Starlight/Machines/talk_phone7.ogg
+
 - type: ambientMusic
   id: NearTheDark
   sound:
@@ -29,12 +29,29 @@
   rules: InTheDark
   priority: 1
 
+- type: ambientMusic
+  id: NukiePlanet
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceNukiePlanet
+  fadeIn: true
+  interruptable: true
+  rules: InNukiePlanetMap
+  priority: 1
+
+
 - type: soundCollection
   id: AmbienceTheDark
   files:
     - /Audio/_Starlight/Ambiance/TheDark/dark1.ogg
     - /Audio/_Starlight/Ambiance/TheDark/dark2.ogg
     - /Audio/_Starlight/Ambiance/TheDark/dark3.ogg
+
+- type: soundCollection
+  id: AmbienceNukiePlanet
+  files:
+    - /Audio/_Starlight/Ambiance/nuclearoperations_prep.ogg
 
 - type: rules
   id: NearTheDark
@@ -51,3 +68,9 @@
   rules:
     - !type:OnMapTagRule
       mapTag: TheDark
+
+- type: rules
+  id: InNukiePlanetMap
+  rules:
+    - !type:OnMapTagRule
+      mapTag: NukiePlanet

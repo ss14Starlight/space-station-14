@@ -168,7 +168,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             throw new ArgumentException($"Invalid species prototype was used: {speciesId}");
 
         // Starlight Start
-        if (profile?.ForcedPrototype.Id != null)
+        if (profile?.ForcedPrototype != "" && profile is not null)
         {
             if (!_prototypeManager.Resolve(profile.ForcedPrototype, out _))
                 throw new ArgumentException($"Could not find ${profile.ForcedPrototype} prototype for spawn rule.");
@@ -234,6 +234,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
         DoJobSpecials(job, entity.Value);
         _identity.QueueIdentityUpdate(entity.Value);
+        if (profile?.ForcedPrototype != "")
+            RaiseLocalEvent(entity.Value, new ForcedPrototypeDoSpecialEvent()); // Starlight
 
         #region StarlightStats
         if (entity.HasValue)

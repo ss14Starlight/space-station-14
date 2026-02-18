@@ -101,10 +101,8 @@
   - LauncherSyringe
   - MiniSyringe
   - AdvancedJetInjector
-  - GoldenJug # Starlight start
-  - SilverJug
-  - GoldenBeaker
-  - SilverBeaker # Starlight end
+  - GoldenJug # SL
+  - SilverJug # SL
 
 - type: latheRecipePack
   id: MedicalBoards

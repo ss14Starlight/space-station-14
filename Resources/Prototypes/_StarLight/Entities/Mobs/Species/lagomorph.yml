@@ -45,11 +45,6 @@
       Thirsty: 310
       Parched: 155
       Dead: 0
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      60: Critical
-      180: Dead
   - type: Speech
     speechSounds: ALLagomorph
     speechVerb: Lagomorph

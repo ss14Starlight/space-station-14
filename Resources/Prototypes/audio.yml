@@ -265,6 +265,9 @@
     - !type:OnMapTagRule # Starlight
       mapTag: TheDark
       inverted: true
+    - !type:OnMapTagRule # Starlight
+      mapTag: NukiePlanet
+      inverted: true
 
 # TODO
 - type: rules

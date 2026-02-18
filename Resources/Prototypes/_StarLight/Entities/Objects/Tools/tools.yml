@@ -976,6 +976,8 @@
   name: RPLD
   description: A device used to rapidly deploy plumbing ducts and machines.
   components:
+  - type: Contraband
+    allowedDepartments: [ Engineering, Medical ]
   - type: RCD
     isRPLD: true
     availablePrototypes:
