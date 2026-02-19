@@ -31191,5 +31191,62 @@ Entries:
   id: 332901
   time: '2026-02-18T15:54:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3329
+- author: Awriko
+  changes:
+  - message: (cork) Reworked EVERY department's existing playable area and added relevant
+      missing sub-departments (yes, including the Morgue and Sauna)
+    type: Tweak
+  - message: (cork) Engineering now has a TEG and RTG engine, complete with a burn
+      chamber and secure storage.
+    type: Add
+  - message: (cork) Added spawns and support for all playable roles as of current.
+    type: Add
+  - message: '(cork) Added the following subdepartment areas: Maintsbar and Dorms,
+      AI core, Robotics, Xenobiology, Conference Room, NTR/NTCT Office, Cryopod, Virology,
+      Surgery, Brigmed, IAA/Magistrate office, an (outdoor) Shooting Range'
+    type: Add
+  - message: (cork) Law radio now is mapped and works
+    type: Fix
+  - message: (cork) Air and waste distributions entirely reworked to fit SL standards.
+    type: Fix
+  id: 336301
+  time: '2026-02-19T05:45:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3363
+- author: SiTW
+  changes:
+  - message: Guidebook entry for records.
+    type: Add
+  id: 337101
+  time: '2026-02-19T06:11:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3371
+- author: TeapotError
+  changes:
+  - message: Added NTSF Battlecruiser "Minos".
+    type: Add
+  - message: Gamerule for admins to spawn NTSF Battlecruiser "Minos".
+    type: Add
+  - message: Added Decimus Breaching Craft "Magnus".
+    type: Add
+  - message: Gamerule for admins to spawn Decimus Breaching Craft "Magnus".
+    type: Add
+  - message: Removes the original "Deathsquad" Ship Gamerule.
+    type: Remove
+  id: 244301
+  time: '2026-02-19T06:41:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/2443
+- author: CrazyPhantom779
+  changes:
+  - message: Increased the max Pinktext from 128 to 256.
+    type: Tweak
+  id: 337801
+  time: '2026-02-19T10:51:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3378
+- author: redmushie
+  changes:
+  - message: Paramedics are now mindshielded.
+    type: Tweak
+  id: 336801
+  time: '2026-02-19T10:56:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3368
 Order: -1
 
