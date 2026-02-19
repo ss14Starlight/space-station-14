@@ -158,8 +158,3 @@
     id: VeteranCorpsmanPDA
 
 # Beaker
-- type: loadout
-  id: DarkBeaker
-  storage:
-    back:
-    - DarkBeaker
