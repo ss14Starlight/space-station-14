@@ -33,6 +33,9 @@ using Robust.Shared.Utility;
 using Content.Shared.NodeContainer;
 using Content.Shared.Atmos;
 using Content.Shared._Starlight.Atmos;
+using Content.Shared._Starlight.Atmos.Components;
+using Content.Shared.Prototypes;
+using Content.Shared._Starlight.Plumbing.Components;
 // Starlight End
 
 namespace Content.Shared.RCD.Systems;
@@ -635,7 +638,12 @@ public sealed class RCDSystem : EntitySystem
         // Check rule: The tile is unoccupied
         var isWindow = prototype.ConstructionRules.Contains(RcdConstructionRule.IsWindow);
         var isCatwalk = prototype.ConstructionRules.Contains(RcdConstructionRule.IsCatwalk);
-
+        // Starlight Start: RPLD
+        var isPlumbingMachinePlacement = component.IsRPLD
+            && prototype.Prototype != null
+            && _protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var constructionProto)
+            && constructionProto.HasComponent<PlumbingConnectorAppearanceComponent>(_entityManager.ComponentFactory);
+        // Starlight End: RPLD
         _intersectingEntities.Clear();
         _lookup.GetLocalEntitiesIntersecting(gridUid, position, _intersectingEntities, -0.05f, LookupFlags.Uncontained);
 
@@ -643,7 +651,15 @@ public sealed class RCDSystem : EntitySystem
         {
             if (isWindow && HasComp<SharedCanBuildWindowOnTopComponent>(ent))
                 continue;
+            // Starlight Start: RPLD
+            if (isPlumbingMachinePlacement && Transform(ent).Anchored && HasComp<PlumbingConnectorAppearanceComponent>(ent))
+            {
+                if (popMsgs)
+                    _popup.PopupClient(Loc.GetString("rcd-component-cannot-build-on-occupied-tile-message"), uid, user);
 
+                return false;
+            }
+            // Starlight End: RPLD
             if (isCatwalk && _tags.HasTag(ent, CatwalkTag))
             {
                 if (popMsgs)
@@ -845,6 +861,12 @@ public sealed class RCDSystem : EntitySystem
                         Transform(ent).LocalRotation = direction.ToAngle();
                         break;
                 }
+
+                // Starlight Start: RPLD - Re-anchor ducts after rotation is set.
+                // PipeRestrictOverlap may have incorrectly unanchored because the final rotation wasn't applied yet at that point.
+                if (component.IsRPLD && !Transform(ent).Anchored && HasComp<PipeRestrictOverlapComponent>(ent))
+                    _transform.AnchorEntity(ent, Transform(ent));
+                // Starlight End: RPLD
 
                 _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used RCD to spawn {ToPrettyString(ent)} at {position} on grid {gridUid}");
                 break;

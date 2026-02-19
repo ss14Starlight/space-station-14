@@ -1,0 +1,12 @@
+ # Attempted to keep the files in alphabetical order so its easier to audit.
+ # Finding individual authors is an unfeasible task. If you can reference the author please do so.
+
+- files: ["emote-hum.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Modified from sigh.png by Sarahon"
+  source: "https://github.com/SummerIsTooWarm"
+
+- files: ["emote-glub.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Created by SummerIsTooWarm"
+  source: "https://github.com/SummerIsTooWarm"

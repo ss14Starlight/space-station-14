@@ -367,3 +367,21 @@
   - type: LoadMapRule
     mapPath: /Maps/_Starlight/TheDark/Hideout.yml
     mapTag: TheDark
+
+# Teapot's Nanotrasen Battlecruiser
+- type: entity
+  parent: BaseGameRule
+  id: NTSF_MinosBattlecruiser
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/NTSF_Minos_Battlecruiser.yml
+
+# Teapot's Decimus Shuttle
+- type: entity
+  parent: BaseGameRule
+  id: Decimus_MagnusBreachingCraft
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/Decimus_Shuttle_Magnus.yml

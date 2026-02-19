@@ -145,3 +145,6 @@ guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
 guide-entry-plumbing = Plumbing
 guide-entry-plumbingflow = Reagent Flow
 guide-entry-plumbingmachines = Plumbing Machines
+
+# Records
+guide-entry-records = Character Records

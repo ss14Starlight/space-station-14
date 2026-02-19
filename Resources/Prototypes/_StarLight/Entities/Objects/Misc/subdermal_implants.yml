@@ -144,6 +144,29 @@
         enum.StorageUiKey.Key:
           type: StorageBoundUserInterface
 
+# death acidifier for terminator phase 1, only manual activation (no death trigger to avoid phase 2 transformation issues)
+- type: entity
+  parent: BaseSubdermalImplant
+  id: TerminatorDeathAcidifierImplant
+  name: terminator self-destruct implant
+  description: This implant melts the user and their equipment upon manual activation. Will not trigger during transformation.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivateTerminatorDeathAcidifier
+  - type: TriggerOnActivateImplant
+  - type: GibOnTrigger
+    targetUser: true
+    deleteItems: true
+  - type: SpawnOnTrigger
+    proto: Acidifier
+    predicted: true
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
+
 # microbomb that gibs but does less collateral damage, for terminator
 - type: entity
   parent: MicroBombImplant
