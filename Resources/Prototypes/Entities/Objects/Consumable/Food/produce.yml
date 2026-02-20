@@ -1057,6 +1057,7 @@
     tags:
     - Fruit # Fuck you they're a fruit
     - Vegetable
+    - Blood # Starlight - They're haemovore food!
   - type: FoodSequenceElement
     entries:
       Skewer: TomatoSkewer

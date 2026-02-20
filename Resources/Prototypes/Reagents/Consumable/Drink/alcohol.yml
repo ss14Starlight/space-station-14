@@ -927,6 +927,19 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
+  metabolisms: # SL Dolls
+    Drink:
+      effects:
+      #Starlight Start
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          groups:
+            Brute: -1.5
+            Burn: -0.75
+      #Starlight End
 
 - type: reagent
   id:  Booger
@@ -1149,6 +1162,22 @@
           groups:
             Brute: -3
             Burn: -1.25
+      #Starlight Start
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: UncookedAnimalProteins
+        amount: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          groups:
+            Brute: -1.5
+            Burn: -0.75
+      #Starlight End
 
 - type: reagent
   id: DevilsKiss
@@ -1175,6 +1204,22 @@
           groups:
             Brute: -3
             Burn: -1.25
+      #Starlight Start
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: UncookedAnimalProteins
+        amount: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          groups:
+            Brute: -1.5
+            Burn: -0.75
+      #Starlight End
 
 - type: reagent
   id: DoctorsDelight
@@ -2007,7 +2052,22 @@
           groups:
             Brute: -3
             Burn: -1.25
-  # Starlight edit end
+      #Dolls
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: UncookedAnimalProteins
+        amount: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          groups:
+            Brute: -1.5
+            Burn: -0.75
+      #Starlight End
 
 - type: reagent
   id: PinaColada

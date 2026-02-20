@@ -1,0 +1,168 @@
+# Doll Shell missing
+- type: marking
+  id: DollShellLArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+    state: l_arm
+
+- type: marking
+  id: DollShellRArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+    state: r_arm
+
+- type: marking
+  id: DollShellLHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+    state: l_hand
+
+- type: marking
+  id: DollShellRHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+    state: r_hand
+
+- type: marking
+  id: DollShellLLeg
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+    state: l_leg
+
+- type: marking
+  id: DollShellRLeg
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+    state: r_leg
+
+- type: marking
+  id: DollShellLFoot
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+    state: l_foot
+
+- type: marking
+  id: DollShellRFoot
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+    state: r_foot
+
+- type: marking
+  id: DollShellChestFemale
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+    state: torso_f
+
+- type: marking
+  id: DollShellChestMale
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+    state: torso_m
+
+- type: marking
+  id: DollShellHeadFemale
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+    state: head_f
+
+- type: marking
+  id: DollShellHeadMale
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+    state: head_m

@@ -1,0 +1,73 @@
+﻿- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobDoll
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Darktongue
+    understands:
+    - GalacticCommon
+    - Darktongue
+  - type: Absorbable
+  - type: Hunger
+  - type: Icon
+    sprite: _Starlight/Mobs/Species/Doll/parts.rsi
+    state: doll
+  - type: Thirst
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatAnomaly # Actual anomaly meat, since players probably won't be butchered too often. Yes, that does mean Dolls do not have "people" meat.
+      amount: 5
+    - id: SheetPlasteel1
+      amount: 5
+  - type: HumanoidAppearance
+    species: Doll
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: Body
+    prototype: Doll
+    requiredLegs: 2
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Doll
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: FemaleHuman
+  - type: Inventory
+    speciesId: Doll
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: Shell
+    breakShellAction: ActionShedShell
+    generateShellPieceAction: ActionGenerateShellPiece
+    noShellComponents: 
+    - type: VentCrawler
+      mayCarryItems: false
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobDollDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Doll
+  - type: Body
+    prototype: Doll
+  - type: Inventory
+    speciesId: Doll
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

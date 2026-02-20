@@ -1,0 +1,17 @@
+- type: localizedDataset
+  id: NamesFirstDollMale
+  values:
+    prefix: names-first-doll-male-dataset-
+    count: 200
+
+- type: localizedDataset
+  id: NamesFirstDollFemale
+  values:
+    prefix: names-first-doll-female-dataset-
+    count: 47
+
+- type: localizedDataset
+  id: NamesLastDoll
+  values:
+    prefix: names-last-doll-dataset-
+    count: 200
