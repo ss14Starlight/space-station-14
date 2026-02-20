@@ -22,11 +22,25 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: _FarHorizons/Objects/Vehicles/syndicatesecway.rsi
+      - sprite: _FarHorizons/Objects/Vehicles/neosol_secway.rsi
         state: vehicle
   - type: ConditionalSpawner
     prototypes:
       - VehicleSecwayBatterywithKeysS
+
+- type: entity
+  name: Segway Spawner
+  id: SpawnVehicleSegway
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/segway.rsi
+        state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleSegwayBatterywithKeys
 
 - type: entity
   name: ATV Spawner

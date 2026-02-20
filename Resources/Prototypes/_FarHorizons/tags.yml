@@ -47,4 +47,16 @@
   id: STVKeys
 
 - type: Tag
+  id: Secway
+
+- type: Tag
+  id: SecwayArmorLightKit
+
+- type: Tag
+  id: SegwayKeys
+
+- type: Tag
+  id: SyndicateSegwayKeys
+
+- type: Tag
   id: VehicleKey

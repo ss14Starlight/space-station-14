@@ -60,6 +60,122 @@
         acts: ["Breakage"]
 
 - type: entity
+  parent: BaseVehicleRideable
+  id: BaseVehicleRideableDamageableNotPiercable
+  abstract: true
+  name: VehicleDamageable
+  components:
+  - type: Repairable
+    doAfterDelay: 20
+    qualityNeeded: Anchoring
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+
+- type: entity
+  id: BaseVehicleSecway # Need to do this because of contraband inheretance issues.
+  parent: BaseVehicleRideableDamageableNotPiercable
+  name: Secway
+  description: The future of transportation. Popularized by St. James, the patron saint of security officers and internet forum moderators.
+  suffix: NT
+  abstract: true
+  components:
+  - type: Vehicle
+    acceleration: 2
+    friction: 4.5
+    frictionNoInput: 4.5
+    requireIgnition: true 
+    baseState: vehicle
+    brokenState: vehicle_broken
+    startupTime: 2
+    handsNeeded: 1
+    riderWhitelist:
+      components:
+        - HumanoidAppearance
+    disallowWielding: true
+    allowGunKnockback: true
+    soundHit:
+      collection: MetalThud
+  - type: VehicleBuckle
+    unbuckleTime: 2
+    dismountOnStun: true
+    dismountOnKnockdown: true
+    armorAffectsVehicle: true
+    northOffset: "0, -0.12"
+    southOffset: "0, -0.12"
+    eastOffset: "0, -0.2"
+    westOffset: "-0, -0.2"
+    northDrawDepth: BelowMobs
+    southDrawDepth: OverMobs
+    eastDrawDepth: OverMobs
+    westDrawDepth: OverMobs
+  - type: Sprite
+    drawdepth: OverMobs
+    sprite: _FarHorizons/Objects/Vehicles/secway.rsi
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+  - type: Strap
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 100
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 5.5 #4.5 is default, so this is 1 faster than normal run
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - SecwayKeys
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        disableEject: true
+        # Swappable batteries until we can get secway recharge stations
+        #swap: false 
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
+      cell_slot: !type:ContainerSlot
+      vehicle_mods_container: !type:Container
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: PowerCellDraw
+    drawRate: 1
+    enabled: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Effects/Footsteps/borgwalk4.ogg
+      params:
+        pitch: 1.15
+        variation: 0.05
+
+- type: entity
   id: VehicleWheelchair
   parent: [BaseVehicleRideable, BaseFoldable, BaseItem]
   name: Wheelchair

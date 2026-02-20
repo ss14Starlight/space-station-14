@@ -39,6 +39,26 @@
           state: normal
 
 - type: entity
+  id: SecwayLightBright
+  parent: BaseItem
+  name: Bright Secway Light
+  description: Upgraded light for Secways and Segways alike. Excellent for seeing those maints grilles before you crash into them! 
+  components:
+    - type: UnpoweredFlashlight
+    - type: PointLight
+      enabled: false
+      radius: 8
+      softness: 2
+      mask: /Textures/Effects/LightMasks/cone.png
+      autoRot: true
+      containerOccluded: true
+    - type: Sprite
+      sprite: Objects/Power/light_bulb.rsi
+      layers:
+        - map: [ enum.LightBulbVisualLayers.Base ]
+          state: normal
+
+- type: entity
   id: SecSiren
   parent: BaseItem
   name: Security Siren

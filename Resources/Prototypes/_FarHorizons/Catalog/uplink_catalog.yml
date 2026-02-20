@@ -1,0 +1,111 @@
+# Uplink Catalog for M81A1 "Fissure" Crate Bundle
+
+- type: listing
+  id: UplinkM81A1FissureCrateTeleporter
+  name: uplink-M81A1-fissure-crate-teleporter-name
+  description: uplink-M81A1-fissure-crate-teleporter-desc
+  icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Launchers/m81a1_fissure.rsi, state: base }
+  productEntity: CrateSyndicateM81A1Uplink
+  cost:
+    Telecrystal: 30
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+# 120mmm Rockets
+
+- type: listing
+  id: UplinkRocketAmmo120mmHE
+  name: uplink-rocket-ammo-120mm-HE-name
+  description: uplink-rocket-ammo-120mm-HE-desc
+  icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Ammunition/Explosives/120mm_explosives.rsi, state: 120mm_HE}
+  productEntity: RocketAmmo120mmHE
+  cost: 
+    Telecrystal: 4
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing 
+  id: UplinkRocketAmmo120mmAP
+  name: uplink-rocket-ammo-120mm-AP-name
+  description: uplink-rocket-ammo-120mm-AP-desc
+  icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Ammunition/Explosives/120mm_explosives.rsi, state: 120mm_AP}
+  productEntity: RocketAmmo120mmAP
+  cost:
+    Telecrystal: 5
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkRocketAmmo120mmIncendiary
+  name: uplink-rocket-ammo-120mm-incendiary-name
+  description: uplink-rocket-ammo-120mm-incendiary-desc
+  icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Ammunition/Explosives/120mm_explosives.rsi, state: 120mm_incendiary}
+  productEntity: RocketAmmo120mmIncendiary
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkRocketAmmo120mmShrapnel
+  name: uplink-rocket-ammo-120mm-shrapnel-name
+  description: uplink-rocket-ammo-120mm-shrapnel-desc
+  icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Ammunition/Explosives/120mm_explosives.rsi, state: 120mm_shrapnel}
+  productEntity: RocketAmmo120mmShrapnel
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkSyndicateSecway
+  name: uplink-syndicate-secway-name
+  description: uplink-syndicate-secway-description
+  icon: { sprite: /Textures/_FarHorizons/Objects/Vehicles/syndicate_segway.rsi, state: icon}
+  productEntity: VehicleSegwayBatterywithKeysNST
+  cost:
+    Telecrystal: 2 # What's more loud than a bloodred? A red segway. Plus, not that useful in the grand theme of things, asides from the universal key you get.. Funny though.
+  categories:
+    - UplinkVehicles
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3 # Fun for the whole family
+
+- type: listing
+  id: UplinkSyndicateSecwayArmoredLight
+  name: uplink-syndicate-secway-armored-light-name
+  description: uplink-syndicate-secway-armored-light-description
+  icon: { sprite: /Textures/_FarHorizons/Objects/Vehicles/Armored/syndicate_segway_armored_light.rsi, state: icon}
+  productEntity: VehicleSegwayArmoredLightBatterywithKeysNST
+  cost:
+    Telecrystal: 4 # May I introduce you to it's slightly less useless cousin?
+  categories:
+    - UplinkVehicles
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2 # It's not THAT strong.

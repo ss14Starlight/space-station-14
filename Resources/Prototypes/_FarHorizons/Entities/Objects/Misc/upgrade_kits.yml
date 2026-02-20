@@ -1,0 +1,15 @@
+- type: entity
+  parent: BaseItem
+  id: SecwayArmorLightKit
+  name: Secway Light Armor Upgrade Kit
+  description: Adds ballistic glass and light armor plating to Secways. Takes a little bit to assemble together properly.
+  components:
+  - type: Item
+    size: Normal
+    heldPrefix: light
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Misc/Upgrade_Kits/secway_armor.rsi
+    state: light
+  - type: Tag
+    tags:
+    - SecwayArmorLightKit

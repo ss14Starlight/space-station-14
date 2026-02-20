@@ -407,6 +407,7 @@
     # - SecurityAmmo // Starlight - This pack commented and can't be changed in partials
     - SecurityWeapons
     - SecurityDisablers
+    - FarHorizonsSecurityArmorDynamic #FarHorizons
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SyndicateAmmoStatic

@@ -9,6 +9,20 @@
     state: keys
 
 - type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeySegway
+  name: Segway Electronic Key
+  description: The USB to the present.
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - SegwayKeys
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/segway.rsi
+    state: keys
+
+- type: entity
   parent: [VehicleKeyBase, BaseSecurityContraband]
   id: VehicleKeySecway
   name: Secway Electronic Key
@@ -35,7 +49,24 @@
     - VehicleKey
     - SecwayKeys
   - type: Sprite
-    sprite: _FarHorizons/Objects/Vehicles/syndicatesecway.rsi
+    sprite: _FarHorizons/Objects/Vehicles/neosol_secway.rsi
+    state: keys
+
+- type: entity
+  parent: [VehicleKeyBase, BaseSyndicateContraband]
+  id: VehicleKeyElectronicNST
+  name: Universal Electronic Key
+  description: The EVILER USB to the future. Able to fit in security-issued Secways, as well as normal Segways.
+  suffix: NST
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - SecwayKeys
+    - SyndicateSegwayKeys
+    - SegwayKeys
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/syndicate_segway.rsi
     state: keys
 
 - type: entity
