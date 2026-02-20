@@ -51,6 +51,11 @@
   - type: PhysicalComposition
     materialComposition:
       Meaterial: 300
+  # Starlight Start
+  - type: Tag
+    tags:
+    - Meat # Why was this not always tagged as meat?
+  # Starlight End
 
 - type: entity
   parent: FoodMeatBase

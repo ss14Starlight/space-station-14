@@ -20,7 +20,7 @@
   id: HeadEarrings
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human, Dwarf, SlimePerson]
+  speciesRestriction: [Human, Doll, Dwarf, SlimePerson]
   forcedColoring: false
   followSkinColor: false
   coloring:
@@ -38,7 +38,7 @@
   id: HeadEarringsDrop
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human, Dwarf, SlimePerson]
+  speciesRestriction: [Human, Doll, Dwarf, SlimePerson]
   forcedColoring: false
   followSkinColor: false
   coloring:
@@ -56,7 +56,7 @@
   id: HeadEarringsWeights
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human, Dwarf, SlimePerson]
+  speciesRestriction: [Human, Doll, Dwarf, SlimePerson]
   forcedColoring: false
   followSkinColor: false
   coloring:
@@ -75,7 +75,7 @@
   id: HeadSeptum
   bodyPart: Snout
   markingCategory: Snout
-  speciesRestriction: [Human, Dwarf, Elf]
+  speciesRestriction: [Human, Doll, Dwarf, Elf]
   forcedColoring: false
   followSkinColor: false
   coloring:

@@ -13,6 +13,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Content.Shared.Inventory;
 
 namespace Content.Server.VentCrawl
 {
@@ -24,6 +25,7 @@ namespace Content.Server.VentCrawl
         [Dependency] private readonly PopupSystem _popup = default!;
         [Dependency] private readonly SharedMoverController _mover = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly InventorySystem _inventory = default!; //Starlight
 
         public override void Initialize()
         {
@@ -208,6 +210,11 @@ namespace Content.Server.VentCrawl
 
             if (!TryComp<VentCrawlerComponent>(entity, out var ventCrawlerComponent))
                 return false;
+            
+            //Starlight Start
+            if (!ventCrawlerComponent.MayCarryItems && _inventory.GetHandOrInventoryEntities(entity).Any())
+                return false;
+            //Starlight End
 
             var holder = Spawn(VentCrawlEntryComponent.HolderPrototypeId, _transform.GetMapCoordinates(uid));
             var holderComponent = Comp<VentCrawlHolderComponent>(holder);

@@ -401,6 +401,7 @@
     - Moth
     - SlimePerson
     - Lagomorph
+    - Doll
     - Elf
   components:
     - type: GhostRole

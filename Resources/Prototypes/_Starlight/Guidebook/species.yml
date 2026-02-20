@@ -37,3 +37,8 @@
   id: Lagomorph
   name: species-name-lagomorph
   text: "/ServerInfo/_StarLight/Guidebook/Mobs/Lagomorph.xml"
+
+- type: guideEntry
+  id: Doll
+  name: species-name-doll
+  text: "/ServerInfo/_StarLight/Guidebook/Mobs/Doll.xml"

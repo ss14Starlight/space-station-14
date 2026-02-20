@@ -17,6 +17,22 @@
   metabolisms:
     Drink:
       effects:
+      #Starlight Start
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: UncookedAnimalProteins
+        amount: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          groups:
+            Brute: -1.5
+            Burn: -0.75
+      #Starlight End
       - !type:SatiateThirst
         factor: 1.0
         conditions:

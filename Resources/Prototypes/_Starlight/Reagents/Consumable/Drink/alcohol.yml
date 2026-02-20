@@ -28,6 +28,20 @@
           groups:
             Brute: -3
             Burn: -1.25
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        reagent: UncookedAnimalProteins
+        amount: 0.5
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Doll ]
+        damage:
+          groups:
+            Brute: -1.5
+            Burn: -0.75
     Alcohol:
       effects:
       - !type:Drunk

@@ -148,11 +148,34 @@ public sealed partial class DamageableSystem
         // Apply resistances
         if (!ignoreResistances)
         {
+            //Starlight Start
+            var computedModifiers = new DamageModifierSet();
             if (
                 ent.Comp.DamageModifierSetId != null &&
                 _prototypeManager.Resolve(ent.Comp.DamageModifierSetId, out var modifierSet)
             )
-                damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
+            {
+                foreach (var coefficient in modifierSet.Coefficients)
+                    computedModifiers.Coefficients.Add(coefficient.Key, modifierSet.Coefficients[coefficient.Key]);
+
+                foreach (var modifier in modifierSet.FlatReduction)
+                    computedModifiers.FlatReduction.Add(modifier.Key, modifierSet.FlatReduction[modifier.Key]);
+            }
+
+            foreach(var additiveCoefficent in ent.Comp.AdditiveCoefficients)
+                if(computedModifiers.Coefficients.ContainsKey(additiveCoefficent.Key.ModifierKey))
+                    computedModifiers.Coefficients[additiveCoefficent.Key.ModifierKey] += additiveCoefficent.Value;
+                else
+                    computedModifiers.Coefficients.Add( additiveCoefficent.Key.ModifierKey, 1.0f + additiveCoefficent.Value);
+
+            foreach(var additiveModifier in ent.Comp.AdditiveModifiers)
+                if(computedModifiers.Coefficients.ContainsKey(additiveModifier.Key.ModifierKey))
+                    computedModifiers.Coefficients[additiveModifier.Key.ModifierKey] += additiveModifier.Value;
+                else
+                    computedModifiers.Coefficients.Add( additiveModifier.Key.ModifierKey, 0.0f + additiveModifier.Value);
+
+            damage = DamageSpecifier.ApplyModifierSet(damage, computedModifiers);
+            //Starlight End
 
             // TODO DAMAGE
             // byref struct event.
@@ -451,4 +474,38 @@ public sealed partial class DamageableSystem
 
         Dirty(ent);
     }
+
+    #region Starlight
+
+    /// <summary>
+    ///     Adds to the additive damage modifiers of the DamageableComponent
+    /// </summary>
+    public void AddAdditiveModifierSet(EntityUid source, Entity<DamageableComponent?> ent, DamageModifierSet mods)
+    {
+        if(!Resolve(ent, ref ent.Comp))
+            return;
+
+        foreach (var coefficent in mods.Coefficients)
+            ent.Comp.AdditiveCoefficients.TryAdd((source, coefficent.Key), coefficent.Value);
+
+        foreach (var modifier in mods.FlatReduction)
+            ent.Comp.AdditiveModifiers.TryAdd((source, modifier.Key), modifier.Value);
+    }
+
+    /// <summary>
+    ///     Subtracts from the additive damage modifiers of the DamageableComponent
+    /// </summary>
+    public void RemoveAdditiveModifierSet(EntityUid source, Entity<DamageableComponent?> ent, DamageModifierSet mods)
+    {
+        if(!Resolve(ent, ref ent.Comp))
+            return;
+            
+        foreach (var coefficent in mods.Coefficients)
+            ent.Comp.AdditiveCoefficients.Remove((source, coefficent.Key));
+
+        foreach (var modifier in mods.FlatReduction)
+            ent.Comp.AdditiveModifiers.Remove((source, modifier.Key));
+    }
+
+    #endregion Starlight
 }

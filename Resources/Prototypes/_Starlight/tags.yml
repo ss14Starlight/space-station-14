@@ -36,6 +36,9 @@
   id: BladeSteel
 
 - type: Tag
+  id: Blood
+
+- type: Tag
   id: BloodSplatter
 
 - type: Tag

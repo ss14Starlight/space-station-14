@@ -1,0 +1,73 @@
+- type: body
+  id: Doll
+  name: "doll"
+  root: torso
+  slots:
+    head:
+      part: HeadDoll
+      connections:
+      - torso
+      organs:
+        brain: OrganDollBrain
+        eyes: OrganDollEyes
+        tongue: OrganDollTongue
+        eye_implant: null
+        brain_implant: null
+        shell: ShellFragmentDoll
+    torso:
+      part: TorsoDoll
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganDollHeart
+        lungs: OrganDollLungs
+        stomach: OrganDollStomach
+        liver:  OrganDollLiver
+        kidneys: OrganDollKidneys
+        cavity: null
+        shell: ShellFragmentDoll
+    right arm:
+      part: RightArmDoll
+      connections:
+      - right hand
+      organs:
+        shell: ShellFragmentDoll
+    left arm:
+      part: LeftArmDoll
+      connections:
+      - left hand
+      organs:
+        shell: ShellFragmentDoll
+    right hand:
+      part: RightHandDoll
+      organs:
+        hand_implant: null
+        shell: ShellFragmentDoll
+    left hand:
+      part: LeftHandDoll
+      organs:
+        hand_implant: null
+        shell: ShellFragmentDoll
+    right leg:
+      part: RightLegDoll
+      connections:
+      - right foot
+      organs:
+        shell: ShellFragmentDoll
+    left leg:
+      part: LeftLegDoll
+      connections:
+      - left foot
+      organs:
+        shell: ShellFragmentDoll
+    right foot:
+      part: RightFootDoll
+      organs:
+        shell: ShellFragmentDoll
+    left foot:
+      part: LeftFootDoll
+      organs:
+        shell: ShellFragmentDoll

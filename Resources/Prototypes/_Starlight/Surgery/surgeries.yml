@@ -17,6 +17,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - Doll
 
 - type: entity
   parent: SurgeryOpenIncision
@@ -49,6 +50,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - Doll
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -75,12 +77,12 @@
 
 - type: entity
   parent: SurgeryCloseIncision
-  id: SurgeryCloseIncisionLimb
+  id: SurgeryCloseIncisionDollLimb
   name: Close Incision
   components:
   - type: Surgery
     requirement:
-    - SurgeryOpenIncision
+    - SurgeryOpenIncisionDoll
     priority: 100
     steps:
     - SurgeryStepRejoinBloodVessels
@@ -163,6 +165,7 @@
   - type: Surgery
     requirement:
     - SurgeryOpenIncision
+    - SurgeryOpenIncisionDoll
     priority: -50
     steps:
     - SurgeryStepSawBones
@@ -186,6 +189,7 @@
     requirement:
     - SurgeryOpenIncision
     - SurgeryOpenIncisionSlime
+    - SurgeryOpenIncisionDoll
     priority: -50
     steps:
     - SurgeryStepCutAbdominalMuscles
@@ -207,6 +211,7 @@
     requirement:
     - SurgeryOpenIncision
     - SurgeryOpenIncisionSlime
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepExposeVocalCords
     - SurgeryStepAdjustVocalCords
@@ -626,6 +631,7 @@
     requirement:
     - SurgeryOpenIncision
     - SurgeryOpenIncisionSlime
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepLocateEyes
     - SurgeryStepClampOpticNerve
@@ -651,6 +657,7 @@
     requirement:
     - SurgeryOpenIncision
     - SurgeryOpenIncisionSlime
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepPrepareImplantSiteEyes
     - SurgeryStepInsertEyes
@@ -676,6 +683,7 @@
     requirement:
     - SurgeryOpenIncision
     - SurgeryOpenIncisionSlime
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepLocateImplant
     - SurgeryStepClampOpticNerve
@@ -700,6 +708,7 @@
     requirement:
     - SurgeryOpenIncision
     - SurgeryOpenIncisionSlime
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepPrepareImplantSiteEyes
     - SurgeryStepInsertEyeImplant
@@ -725,6 +734,7 @@
     requirement:
     - SurgeryOpenIncision
     - SurgeryOpenIncisionSlime
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepLocateImplant
     - SurgeryStepExposeNerves
@@ -749,6 +759,7 @@
     requirement:
     - SurgeryOpenIncision
     - SurgeryOpenIncisionSlime
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepPrepareImplantSiteHand
     - SurgeryStepInsertHandImplant
@@ -773,6 +784,7 @@
   - type: Surgery
     requirement:
     - SurgeryOpenIncision
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepPreparePatient
     - SurgeryStepShaveHead
@@ -815,6 +827,7 @@
   - type: Surgery
     requirement:
     - SurgeryOpenIncision
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepCleanImplantSite
     - SurgeryStepPrepareScalp
@@ -956,6 +969,7 @@
   - type: Surgery
     requirement:
     - SurgeryOpenIncision
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepPreparePatient
     - SurgeryStepShaveHead
@@ -991,6 +1005,7 @@
   - type: Surgery
     requirement:
     - SurgeryOpenIncision
+    - SurgeryOpenIncisionDoll
     steps:
     - SurgeryStepCleanImplantSite
     - SurgeryStepPrepareScalp
@@ -1205,3 +1220,83 @@
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
     state: core
+
+#
+- type: entity
+  parent: SurgeryOpenIncision
+  id: SurgeryOpenIncisionDoll
+  name: Open Incision
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemoveShellDoll
+    priority: -100
+    steps:
+    - SurgeryStepRetractSkin
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - Doll
+
+- type: entity
+  parent: SurgeryCloseIncision
+  id: SurgeryCloseIncisionDoll
+  name: Close Incision
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncisionDoll
+    priority: 100
+    steps:
+    - SurgeryStepCloseIncisionDoll
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - Doll
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+    - Head
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRemoveShellDoll
+  name: Remove Shell
+  description: Surgical removal of a dolls shell.
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepOpenShell
+    - SurgeryStepClampTendrils
+    - SurgeryStepRemoveShell
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - Doll
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: setter
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryReattachShellDoll 
+  name: Reattach Shell
+  description: Surgical reattachment of a dolls shell.
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryCloseIncisionDoll
+    steps:
+    - SurgeryStepPositionShell
+    - SurgeryStepMendShellDoll
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - Doll
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Doll/organs.rsi
+    state: shell

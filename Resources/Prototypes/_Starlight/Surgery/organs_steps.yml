@@ -1268,3 +1268,36 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: hemostat
+
+# Shell
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveShell
+  name: Remove Shell
+  components:
+  - type: SurgeryStep
+    duration: 4
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: OrganShell
+  - type: SurgeryStepBleedEffect
+    damage:
+      types:
+        Blunt: 4
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepPositionShell
+  name: Position Shell
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: OrganShell
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Doll/organs.rsi
+    state: shell
+  - type: SurgeryStepOrganInsert
+    slot: shell

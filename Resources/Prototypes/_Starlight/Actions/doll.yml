@@ -1,0 +1,61 @@
+# Actions for Doll species
+
+- type: entity
+  id: ActionShedShell
+  name: shed shell
+  description: Break out of your shell at great expense to yourself.
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_syndrunner.rsi
+        state: exit
+    - type: ConfirmableAction
+      popup: doll-shed-shell-action
+    - type: InstantAction
+      event: !type:SurgeryActionEvent
+        bodyPartTypes: 
+          - Torso
+          - Head
+          - Arm
+          - Leg
+          - Hand
+          - Foot
+        bodyPartSymmetries:
+          - Left
+          - Right
+        surgeries: 
+          - SurgeryRemoveShellDoll
+
+- type: entity
+  id: ActionGenerateShellPiece
+  name: snap shell
+  description: Break off an expendable piece of your shell, either to use it as a crude knife or to donate it to a fellow doll.
+  components:
+    - type: Action
+      itemIconStyle: BigAction
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_syndrunner.rsi
+        state: exit
+      useDelay: 60
+    - type: ConfirmableAction
+      popup: doll-snap-shell-action
+    - type: InstantAction
+      event: !type:SpawnItemInHandEvent
+        spawned: ShellFragmentDoll
+        selfDamage:
+          types:
+            Blunt: 15
+
+- type: entity
+  id: ActionFakeDeath
+  name: Fake Death
+  description: Pretend to take your final breath while staying alive.
+  components:
+  - type: Action
+    useDelay: 30
+    icon:
+      sprite: Interface/Actions/actions_crit.rsi
+      state: fakedeath
+  - type: InstantAction
+    event: !type:CritFakeDeathEvent
