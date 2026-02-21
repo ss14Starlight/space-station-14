@@ -62,3 +62,5 @@
     - CombinationLocks
   - type: StealTarget
     stealGroup: NTRepBriefcaseSecure
+  - type: ExplosionResistance
+    damageCoefficient: 0
