@@ -29,6 +29,10 @@ public sealed partial class AttachedDevice : ComponentUxnDevice<UxnAttachedCompo
     }
 }
 
+/// <summary>
+/// A event raised when you want a UXN to pause execution until the GameTimer has passed a ceartain time.
+/// suggested to also be sent alongside <see cref="UxnAttachedComponent.DelayExecution"/> to prevent the UXN from "spin looping" while this event is on the stack.
+/// </summary>
 public sealed partial class ContinueFromPauseEvent : UxnEvent
 {
     public ushort Vector = 0;
