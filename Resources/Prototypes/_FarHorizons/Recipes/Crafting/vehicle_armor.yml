@@ -1,6 +1,6 @@
 - type: construction
   name: crafting-menu-name-SecwayArmoredLight
-  id: VehicleSecwayArmoredLightBatterywithKeysNT
+  id: VehicleSecwayArmoredLightBatteryNT
   graph: SecwayArmoredLightGraph
   startNode: start
   targetNode: vehicle

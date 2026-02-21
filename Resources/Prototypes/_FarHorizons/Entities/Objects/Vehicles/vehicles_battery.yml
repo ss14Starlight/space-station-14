@@ -28,9 +28,9 @@
         - SecSiren
 
 - type: entity
-  id: VehicleSecwayArmoredLightBatterywithKeysNT
+  id: VehicleSecwayArmoredLightBatteryNT
   parent: VehicleSecway
-  suffix: Battery, Keys, NT
+  suffix: Battery, NT
   description: A simple yet efficent modifcation of station-issued Secways, able to hold up to light arms fire fairly well.
   name: Lightly Armored Secway
   components:
@@ -76,8 +76,6 @@
       containers:
         cell_slot:
         - PowerCellMedium
-        key_slot:
-        - VehicleKeySecway
         vehicle_mods_container:
         - SecwayLightBright
         - SecSiren
@@ -162,6 +160,9 @@
         - PowerCellMedium
         key_slot:
         - VehicleKeySegway
+    - type: Tag
+      tags:
+      - Segway
 
 #Syndicate devider
 - type: entity

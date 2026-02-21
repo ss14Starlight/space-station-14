@@ -18,4 +18,4 @@
           state: icon
         name: crafting-menu-name-Secway
   - node: vehicle
-    entity: VehicleSecwayArmoredLightBatterywithKeysNT
+    entity: VehicleSecwayArmoredLightBatteryNT
