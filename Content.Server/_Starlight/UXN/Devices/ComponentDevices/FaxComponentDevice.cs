@@ -16,7 +16,8 @@ namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 /// 0x04,0x05 - bank1ptr*
 /// 0x06,0x07 - bank2len*
 /// 0x08,0x09 - bank2ptr*
-/// 0x0A-0x0F - unused
+/// 0x0A-0x0D - unused
+/// 0x0E,0x0F - vector*
 /// Commands are as follows
 /// 0x00 - Continue buffered write
 /// 0x01 - Re-scan devices

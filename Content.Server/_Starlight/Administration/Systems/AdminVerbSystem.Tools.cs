@@ -89,7 +89,7 @@ public sealed partial class AdminVerbSystem : EntitySystem
         #region Starlight
         if (_adminManager.HasAdminFlag(player, AdminFlags.Debug))
         {
-            // TODO: make these in-game tools in some-way (cause hexdumps are REALLY usefull)
+            // TODO: make these in-game tools in some-way (cause hexdumps are REALLY usefull when debugging assembly programs)
             if (TryComp<UxnComponent>(args.Target, out var uxn))
                 args.Verbs.Add(new()
                 {
@@ -99,7 +99,8 @@ public sealed partial class AdminVerbSystem : EntitySystem
                         writer.Close();
                     },
                     Text = "Dump ROM",
-                    Message = "Dumps the rom of the UXN chip to /uxn-dump.bin"
+                    Message = "Dumps the rom of the UXN chip to /uxn-dump.bin",
+                    Category = VerbCategory.Debug
                 });
             if (TryComp<UxnAttachedComponent>(args.Target, out var attached))
                 args.Verbs.Add(new()
@@ -114,7 +115,8 @@ public sealed partial class AdminVerbSystem : EntitySystem
                         writer.Close();               
                     },
                     Text = "Dump UXN",
-                    Message = "Dumps the ram/device memory/working/return stacks to various uxn-running-*.bin files"
+                    Message = "Dumps the ram/device memory/working/return stacks to various uxn-running-*.bin files",
+                    Category = VerbCategory.Debug
                 });
         }
         #endregion
