@@ -1,19 +1,41 @@
-|00 @System/vector $2 &expansion $2 &wst $1 &rst $1 &metadata $2 &r $2 &g $2 &b $2 &debug $1 &state $1
-|f0 @Fax/status $1 &cmd $1 &bnk1len $2 &bnk1ptr $2 &bnk2len $2 &bnk2ptr $1
+|00 @System &vector $2 &expansion $2 &wst $1 &rst $1 &metadata $2 &r $2 &g $2 &b $2 &debug $1 &state $1
+|e0 @Delay &vector $2 &time $2
+|f0 @Fax &status $1 &cmd $1 &bnk1len $2 &bnk1ptr $2 &bnk2len $2 &bnk2ptr $1
 
 |100
 ( initial setup )
-;mmu-atch-fax .System/expansion DEO2 ( attach the fax device )
+;mmu/delay .System/expansion DEO2 ( attach the delay device so we can do this properly )
+;mmu/fax .System/expansion DEO2 ( attach the fax device )
+
+#01 .Fax/cmd DEO ( reload the fax list )
+;continue .Delay/vector DEO2 ( set the jump pointer to the continue location )
+#0001 .Delay/time DEO2 ( wait 1 second )
+BRK ( execute the event )
+@continue
+
+;buf/name .Fax/bnk1ptr DEO2 ( setup buffer to hold CC fax name/location )
+#0019 .Fax/bnk1len DEO2
+#02 .Fax/cmd DEO ( get the CC fax id. which should ALWAYS be the first one because it is the first one to be loaded )
+
+;buf/addr .Fax/bnk1ptr DEO2 ( Point our fax machine at CC )
+#0009 .Fax/bnk1len DEO2 
+#03 .Fax/cmd DEO ( execute )
 
 ( fax is ready! )
-;dict/title .Fax/bnk1ptr DEO2
+;dict/title .Fax/bnk1ptr DEO2 ( fax name )
 #0000 .Fax/bnk1len DEO2
-;dict/contents .Fax/bnk2ptr DEO2
+;dict/contents .Fax/bnk2ptr DEO2 ( fax content )
 #0000 .Fax/bnk2len DEO2
 #04 .Fax/cmd DEO ( SEND IT! )
 
 @dict
 &fax-name "faxmachine $1
+&dlay-name "uxnattached $1
 &title "Hello 20 "Central 20 "Command $1
 &contents "Hello 20 "World! $1
-@mmu-atch-fax 03 =dict/fax-name 0f
+
+@mmu
+&fax 03 =dict/fax-name 0f
+&delay 03 =dict/dlay-name 0e
+
+@buf &name "Central 20 "Command $1 &addr $4 "- $5 

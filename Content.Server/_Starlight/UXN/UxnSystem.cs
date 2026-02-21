@@ -1,13 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Linq;
 using System.Text;
 using Content.Server._Starlight.UXN.Devices;
 using Content.Server._Starlight.UXN.Devices.ComponentDevices;
-using Content.Server.Administration.Managers;
 using Content.Shared._Starlight.UXN;
 using Content.Shared.Administration.Managers;
-using Content.Shared.Anomaly.Components;
 using Content.Shared.Examine;
 using Content.Shared.Fax.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -19,6 +16,7 @@ using Robust.Server.Containers;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.ContentPack;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.UXN;
@@ -28,6 +26,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IResourceManager _resourceManager = default!;
     [Dependency] private readonly ISharedAdminManager _adminManager = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly ContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
 
@@ -62,6 +61,12 @@ public sealed partial class UxnSystem : SharedUxnSystem
         var comps = new List<UxnAttachedComponent>();
         while (enumerator.MoveNext(out var comp1))
         {
+            if (comp1.DelayExecution != null)
+            {
+                if (comp1.DelayExecution > _gameTiming.CurTime)
+                    continue; //the delay has not expired yet so skip it for now
+                comp1.DelayExecution = null; //we are past it so skip this check later.
+            }
             comps.Add(comp1);
         }
         var instrs = Math.Min(_defaultInstrs * (_maxInstrs / (_defaultInstrs * Math.Max(comps.Count,1))), _defaultInstrs);
@@ -170,9 +175,10 @@ public sealed partial class UxnSystem : SharedUxnSystem
         ev.AddDevice(ent, dev);
     }
 
+    [SuppressMessage("Style", "IDE0022:Use expression body for method", Justification = "I plan to add more later. STFU")]
     private void OnGetUxnDevicesAttached(Entity<UxnAttachedComponent> ent, ref OnGetUxnDevices ev)
     {
-        //TODO: add some "common" devices here.
+        ev.AddDevice(ent, new AttachedDevice());
     }
 
     public bool Compile(string uxnTal, out string error, [NotNullWhen(true)] out List<byte>? rom)

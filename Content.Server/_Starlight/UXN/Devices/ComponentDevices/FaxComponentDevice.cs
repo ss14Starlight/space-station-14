@@ -20,8 +20,9 @@ namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 /// Commands are as follows
 /// 0x00 - Continue buffered write
 /// 0x01 - Re-scan devices
-/// 0x02 - Write scanned devices to buffer1
-/// 0x03 - send fax. buffer 1 is destination fax **id**. buffer 2 is fax contents.
+/// 0x02 - Write scanned devices to buffer1 in the format of name[null]XXXX-XXXX[null]
+/// 0x03 - Update target fax addr from buffer1
+/// 0x04 - send fax. buffer 1 is destination fax **id**. buffer 2 is fax contents.
 /// </summary>
 public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
 {
@@ -106,9 +107,9 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
         List<byte> output = new();
         foreach (KeyValuePair<string,string> item in Entity.Comp.KnownFaxes)
         {
-            output.Concat<byte>(Encoding.ASCII.GetBytes(item.Value));
+            output.AddRange(Encoding.ASCII.GetBytes(item.Value));
             output.Add(0x00);
-            output.Concat(Encoding.ASCII.GetBytes(item.Key));
+            output.AddRange(Encoding.ASCII.GetBytes(item.Key));
             output.Add(0x00);
         }
         WriteBuffered(uxnMem, buf1size, buf1ptr, [.. output], true);

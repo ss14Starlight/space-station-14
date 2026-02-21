@@ -6,7 +6,7 @@ namespace Content.Server._Starlight.UXN;
 
 public sealed class Byte256
 {
-    private readonly byte[] _inner = new byte[256];
+    public readonly byte[] _inner = new byte[256];
 
     public Byte256() =>
         Array.Fill<byte>(_inner, 0x00);
@@ -81,7 +81,7 @@ public sealed class UxnStack
 
 public sealed class UxnMem
 {
-    private readonly byte[] _inner = new byte[65536];
+    public readonly byte[] _inner = new byte[65536];
 
     public UxnMem() =>
         Array.Fill<byte>(_inner, 0x00);
@@ -189,7 +189,7 @@ public class UXNDevice
         {
             for (short i = 0; i < bufferLen; i++)
             {
-                output.Append(mem[(ushort)(addr + i)]);
+                output.Append(Encoding.ASCII.GetChars([mem[(ushort)(addr + i)]]));
             }
         }
         return output.ToString();
@@ -198,6 +198,13 @@ public class UXNDevice
 
 public abstract class UxnEvent
 {
+    /// <summary>
+    /// Executes a bit of code BEFORE popping the event. usefull for checking if this event can even be ran. (eg: timespan has passed, we finally got that network packet we have been waiting on)
+    /// if this return true the UXN will exit early.
+    /// </summary>
+    /// <returns>Should the UXN exit early and not run this event</returns>
+    public virtual bool PreRun(UXNProcessor proc) => false;
+
     /// <summary>
     /// Performs the UXN event. the impls should handle setting PC based on device information. and filling out relevant memory before running it.
     /// </summary>
@@ -846,12 +853,19 @@ public sealed partial class UXNProcessor
         return device;
     }
 
+    /// <summary>
+    /// runs steps uxn instructions. 
+    /// </summary>
+    /// <param name="steps">the number of teps to run</param>
+    /// <returns>if the uxn has completely ran out of events or has raised a status code.</returns>
     public bool RunLimited(int steps)
     {
         if (!Running)
         {
             if (_events.Count == 0)
-                return false; // UXN is dead in the water. we stopped running and have no events to start it.
+                return true; // UXN is dead in the water. we stopped running and have no events to start it.
+            if (_events.Peek().PreRun(this))
+                return false;
             _events.Dequeue().PerformEvent(this); //we have a event which should get us moving again
             Running = true;
         }
@@ -868,7 +882,14 @@ public sealed partial class UXNProcessor
                     return true;
                 }
                 if (_events.Count > 0)
+                {
+                    if (_events.Peek().PreRun(this))
+                    {
+                        Running = false; //cause if it is running it ends up keep executing code even when the event is not handled.
+                        return false;
+                    }
                     _events.Dequeue().PerformEvent(this);
+                }
                 else
                 {
                     Running = false;

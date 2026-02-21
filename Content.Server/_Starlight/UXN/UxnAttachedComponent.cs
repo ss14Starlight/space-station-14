@@ -2,7 +2,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._Starlight.UXN;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class UxnAttachedComponent : Component
 {
     [ViewVariables]
@@ -10,4 +10,7 @@ public sealed partial class UxnAttachedComponent : Component
 
     [ViewVariables]
     public ContainerSlot ChipHolder = new();
+
+    [ViewVariables, AutoPausedField]
+    public TimeSpan? DelayExecution = null;
 }
