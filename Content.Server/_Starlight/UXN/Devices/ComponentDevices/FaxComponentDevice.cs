@@ -4,7 +4,6 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Fax;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.Fax.Components;
-using Microsoft.CodeAnalysis;
 
 namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 
@@ -24,6 +23,23 @@ namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 /// 0x02 - Write scanned devices to buffer1 in the format of name[null]XXXX-XXXX[null]
 /// 0x03 - Update target fax addr from buffer1
 /// 0x04 - send fax. buffer 1 is destination fax **id**. buffer 2 is fax contents.
+/// 0xf0 - puts the number of buffered faxes into Status
+/// 0xf1 - starts reading content from the next buffered fax
+/// 0xf2 - reads the name of the fax into buffer1
+/// 0xf3 - reads the contents of the fax into buffer1
+/// 0xf4 - reads the stamps of the fax into buffer1 as a null-seperated list.
+/// 0xf5 - reads the sender of the fax (address not name. buffer should ideally be 9 bytes long "XXXX-XXXX")
+/// Status Codes
+/// 0x00 - Success.
+/// 0x80 - Invalid address. the fax address is invalid.
+/// 0xFF - Information buffered. The device has more information to write then the provided buffer(s) can hold. you can call `bufread` to continue reading (bufread can also raise this meaning it has even MORE to read).
+/// UXN "Header" for the fax device (assuming mount at f0)
+/*
+|f0 @Fax &status $1 &cmd $1 &bnk1len $2 &bnk1ptr $2 &bnk2len $2 &bnk2ptr $2 &unused $4 &vector $2
+
+|00 @Faxcmd &bufread $1 &reload $1 &dumpnames $1 &settarget $1 &send $1
+|f0 &readbuf $1 &readnext $1 &readname $1 &readcontent $1 &readstamps $1 &readsender $1
+*/
 /// </summary>
 public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
 {
@@ -73,6 +89,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                     component.DestinationFaxAddress = addr;
                     break;
                 }
+                deviceMem[memTarget & 0xF0] = 0x00;
                 break;
             case 0x04: //Send a fax to destination.
                 
@@ -96,6 +113,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                     [FaxConstants.FaxPaperContentData] = contents,
                 };
                 _deviceNetwork.QueuePacket(Entity, component.DestinationFaxAddress, payload);
+                deviceMem[memTarget & 0xF0] = 0x00;
                 break;
             default: //invalid device command
                 break;
@@ -113,7 +131,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
             output.AddRange(Encoding.ASCII.GetBytes(item.Key));
             output.Add(0x00);
         }
-        WriteBuffered(uxnMem, buf1size, buf1ptr, [.. output], true);
+        deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(uxnMem, buf1size, buf1ptr, [.. output], true) ? 0xFF : 0x00);
     }
 
     #region Utility
@@ -147,7 +165,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
     /// <param name="addr">The starting address of the buffer</param>
     /// <param name="toWrite">The String to write into the buffer</param>
     /// <param name="primary">wheter to write into <see cref="_buf1Queue"/>/<see cref="_buf2Queue"/> depending on true/false</param>
-    /// <returns>if string contents were put into a buffer.</returns>
+    /// <returns>if extra contents were stashed in _buf1/2Queue</returns>
     private bool WriteBuffered(UxnMem mem, ushort bufferLen, ushort addr, byte[] toWrite, bool primary)
     {
         Queue<byte> enqued = new Queue<byte>(toWrite);
@@ -169,7 +187,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
     /// <param name="bufferLen">The size of the buffer</param>
     /// <param name="addr">The starting address of the buffer</param>
     /// <param name="primary">wheter to write into <see cref="_buf1Queue"/>/<see cref="_buf2Queue"/> depending on true/false</param>
-    /// <returns>if there is still more buffered strong contents to read</returns>
+    /// <returns>if there is still more buffered contents to read</returns>
     private bool ContinueBufferedWrite(UxnMem mem, ushort bufferLen, ushort addr, bool primary)
     {
         Queue<byte> activeBuffer = primary ? _buf1Queue : _buf2Queue;
