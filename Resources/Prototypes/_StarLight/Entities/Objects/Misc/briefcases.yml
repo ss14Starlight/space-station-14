@@ -32,7 +32,8 @@
     range: 20
     sound: 
       collection: "sparks"
-    
+  - type: ExplosionResistance
+    damageCoefficient: 0
 
 - type: entity
   parent: BriefcaseBaseSecure
@@ -62,5 +63,3 @@
     - CombinationLocks
   - type: StealTarget
     stealGroup: NTRepBriefcaseSecure
-  - type: ExplosionResistance
-    damageCoefficient: 0
