@@ -1,9 +1,11 @@
 ﻿using System.Linq;
 using System.Text;
+using Content.Server._Starlight.Fax;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Fax;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.Fax.Components;
+using Content.Shared.Paper;
 
 namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 
@@ -32,40 +34,44 @@ namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 /// Status Codes
 /// 0x00 - Success.
 /// 0x80 - Invalid address. the fax address is invalid.
+/// 0x81 - nothing buffered
+/// 0x82 - buffered fax has no stamps.
 /// 0xFF - Information buffered. The device has more information to write then the provided buffer(s) can hold. you can call `bufread` to continue reading (bufread can also raise this meaning it has even MORE to read).
 /// UXN "Header" for the fax device (assuming mount at f0)
 /*
 |f0 @Fax &status $1 &cmd $1 &bnk1len $2 &bnk1ptr $2 &bnk2len $2 &bnk2ptr $2 &unused $4 &vector $2
 
 |00 @Faxcmd &bufread $1 &reload $1 &dumpnames $1 &settarget $1 &send $1
-|f0 &readbuf $1 &readnext $1 &readname $1 &readcontent $1 &readstamps $1 &readsender $1
+|f0 &bufcount $1 &readnext $1 &readname $1 &readcontent $1 &readstamps $1 &readsender $1
 */
 /// </summary>
 public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
 {
     private FaxSystem _fax = null!;
     private DeviceNetworkSystem _deviceNetwork = null!;
-    protected override void SetupCore(EntityUid entity, FaxMachineComponent component) {
+    protected override void SetupCore(EntityUid entity, FaxMachineComponent component)
+    {
         var _entMan = IoCManager.Resolve<IEntitySystemManager>();
         _fax = _entMan.GetEntitySystem<FaxSystem>();
         _deviceNetwork = _entMan.GetEntitySystem<DeviceNetworkSystem>();
     } // We dont need any extra setup/information from the ent. but we do need the systems
+
+    public readonly Queue<MinimalFaxInfo> ReadQueue = new();
+    public MinimalFaxInfo? Next = null;
 
     public override void WriteValue(byte memTarget, Byte256 deviceMem, UXNProcessor proc)
     {
         if ((memTarget & 0x0F) != 0x01)
             return; //the bank being written is NOT the "command" bank. so we can just treat it as normal memory IO.
         byte command = deviceMem[memTarget];
-        ushort buf1size, buf1ptr, buf2size, buf2ptr;
-        GetPointers(memTarget, deviceMem, out buf1size, out buf1ptr, out buf2size, out buf2ptr);
+        GetPointers(memTarget, deviceMem, out var buf1size, out var buf1ptr, out var buf2size, out var buf2ptr);
         var component = Entity.Comp;
         switch (command)
         {
             case 0x00: //Continue buffered write op.
-                GetPointers(memTarget, deviceMem, out buf1size, out buf1ptr, out buf2size, out buf2ptr);
                 var bank1bufstatus = ContinueBufferedWrite(proc.SystemMem, buf1size, buf1ptr, true);
                 var bank2bufstatus = ContinueBufferedWrite(proc.SystemMem, buf2size, buf2ptr, false);
-                deviceMem[memTarget & 0xF0] =  (byte)(bank1bufstatus || bank2bufstatus ? 0xFF : 0x00);
+                deviceMem[memTarget & 0xF0] = (byte)(bank1bufstatus || bank2bufstatus ? 0xFF : 0x00);
                 break;
             case 0x01: //Re-Scan for devices
                 _fax.Refresh(Entity.Owner, Entity.Comp);
@@ -92,11 +98,11 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                 deviceMem[memTarget & 0xF0] = 0x00;
                 break;
             case 0x04: //Send a fax to destination.
-                
+
                 if (component.DestinationFaxAddress == null)
                 {
                     deviceMem[memTarget & 0xF0] = 0x80; //invalid address
-                    break;   
+                    break;
                 }
                 if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var _))
                 {
@@ -115,6 +121,61 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                 _deviceNetwork.QueuePacket(Entity, component.DestinationFaxAddress, payload);
                 deviceMem[memTarget & 0xF0] = 0x00;
                 break;
+            case 0xf0: //Read number of buffered faxes
+                deviceMem[memTarget & 0xF0] = (byte)Math.Min(ReadQueue.Count, 0xFF);
+                break;
+            case 0xf1: //Read number of faxes in-buffer
+                if (!(ReadQueue.Count > 0))
+                {
+                    deviceMem[memTarget & 0xF0] = 0x81;
+                    break;
+                }
+                Next = ReadQueue.Dequeue();
+                deviceMem[memTarget & 0xF0] = 0x00;
+                break;
+            case 0xf2: //Read the name of the fax.
+                if (Next == null)
+                {
+                    deviceMem[memTarget & 0xF0] = 0x81;
+                    break;
+                }
+                deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(proc.SystemMem, buf1size, buf1ptr, Encoding.ASCII.GetBytes(Next.Name), true) ? 0xFF : 0x00);
+                break;
+            case 0xf3: //Read the contents of the fax.
+                if (Next == null)
+                {
+                    deviceMem[memTarget & 0xF0] = 0x81;
+                    break;
+                }
+                deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(proc.SystemMem, buf1size, buf1ptr, Encoding.ASCII.GetBytes(Next.Content), true) ? 0xFF : 0x00);
+                break;
+            case 0xf4: //Read the stamps of the fax.
+                if (Next == null)
+                {
+                    deviceMem[memTarget & 0xF0] = 0x81;
+                    break;
+                }
+                if (Next.StampedBy == null)
+                {
+                    deviceMem[memTarget & 0xF0] = 0x82;
+                    break;
+                }
+                List<byte> output = new();
+                foreach (StampDisplayInfo item in Next.StampedBy)
+                {
+                    output.AddRange(Encoding.ASCII.GetBytes(item.StampedName));
+                    output.Add(0x00);
+                }
+                deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(proc.SystemMem, buf1size, buf1ptr, [.. output], true) ? 0xFF : 0x00);
+                break;
+            case 0xf5: //Read the sender of the fax.
+                if (Next == null)
+                {
+                    deviceMem[memTarget & 0xF0] = 0x81;
+                    break;
+                }
+                deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(proc.SystemMem, buf1size, buf1ptr, Encoding.ASCII.GetBytes(Next.Sender), true) ? 0xFF : 0x00);
+                break;
             default: //invalid device command
                 break;
         }
@@ -124,7 +185,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
     {
         GetPointers(memTarget, deviceMem, out var buf1size, out var buf1ptr, out var buf2size, out var buf2ptr);
         List<byte> output = new();
-        foreach (KeyValuePair<string,string> item in Entity.Comp.KnownFaxes)
+        foreach (KeyValuePair<string, string> item in Entity.Comp.KnownFaxes)
         {
             output.AddRange(Encoding.ASCII.GetBytes(item.Value));
             output.Add(0x00);
@@ -198,4 +259,23 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
         }
         return activeBuffer.Count != 0;
     }
+
+    public void MakeEvent(UXNProcessor uxn, MinimalFaxInfo info)
+    {
+        ReadQueue.Enqueue(info);
+        uxn.PushEvent(new FaxRecievedUxnEvent(
+            uxn.DevMem.GetShort(
+                (byte)((uxn.SystemDevice.AttachedDevices["faxmachine"] << 0x4) + 0x0E)
+                )
+            )
+         );
+    }
+}
+
+public sealed partial class FaxRecievedUxnEvent : UxnEvent
+{
+    ushort Vector = default!;
+    public FaxRecievedUxnEvent(ushort vector) => Vector = vector;
+
+    public override void PerformEvent(UXNProcessor proc) => proc.PC = Vector;
 }

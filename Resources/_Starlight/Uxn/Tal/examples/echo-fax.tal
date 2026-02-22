@@ -1,0 +1,50 @@
+|00 @System &vector $2 &expansion $2 &wst $1 &rst $1 &metadata $2 &r $2 &g $2 &b $2 &debug $1 &state $1
+|e0 @Delay &vector $2 &time $2
+|f0 @Fax &status $1 &cmd $1 &bnk1len $2 &bnk1ptr $2 &bnk2len $2 &bnk2ptr $2 &unused $4 &vector $2
+
+|00 @Faxcmd &bufread $1 &reload $1 &dumpnames $1 &settarget $1 &send $1
+|f0 &bufcount $1 &readnext $1 &readname $1 &readcontent $1 &readstamps $1 &readsender $1
+
+|100
+( initial setup )
+;mmu/delay .System/expansion DEO2 ( attach the delay device so we can do this properly )
+;mmu/fax .System/expansion DEO2 ( attach the fax device )
+
+.Faxcmd/reload .Fax/cmd DEO ( reload the fax list )
+;recieved .Fax/vector DEO2
+BRK
+
+@recieved
+.Faxcmd/readnext .Fax/cmd DEO ( prepare next fax because of event )
+;delay .Delay/vector DEO2
+#0005 .Delay/time DEO2
+BRK
+
+@delay
+;buf/content .Fax/bnk1ptr DEO2 ( read fax contents into ;buf/content )
+#2710 .Fax/bnk1len DEO2
+.Faxcmd/readcontent .Fax/cmd DEO
+;buf/addr .Fax/bnk1ptr DEO2 ( write fax target address to ;buf/addr )
+#0009 .Fax/bnk1len DEO2
+.Faxcmd/readsender .Fax/cmd DEO
+.Faxcmd/settarget .Fax/cmd DEO ( and then set target to the one who faxed us )
+
+;dict/title .Fax/bnk1ptr DEO2 ( fax name )
+#0000 .Fax/bnk1len DEO2
+;buf/content .Fax/bnk2ptr DEO2 ( fax contents )
+#2710 .Fax/bnk2len DEO2
+.Faxcmd/send .Fax/cmd DEO ( SEND IT! )
+BRK
+
+@dict
+&fax-name "faxmachine $1
+&dlay-name "uxnattached $1
+&title "Ping 20 "Nanotransen 20 "Station $1
+
+@mmu
+&fax 03 =dict/fax-name 0f
+&delay 03 =dict/dlay-name 0e
+
+@buf
+&addr "XXXX-XXXX
+&content $2710 ( the max size of a paper is 10k chars. this is 10k bytes of space )

@@ -38,6 +38,8 @@ using Content.Shared.Ghost;
 using Content.Shared.Inventory;
 using Robust.Server.Containers;
 using System.Linq;
+using Content.Server._Starlight.Fax;
+using Content.Server._Starlight.UXN;
 #endregion Starlight
 
 namespace Content.Server.Fax;
@@ -635,9 +637,16 @@ public sealed class FaxSystem : EntitySystem
         _popupSystem.PopupEntity(Loc.GetString("fax-machine-popup-received", ("from", faxName)), uid);
         _appearanceSystem.SetData(uid, FaxMachineVisuals.VisualState, FaxMachineVisualState.Printing);
 
+        #region Starlight edit
         if (component.NotifyAdmins)
-            NotifyAdmins(faxName, printout); // Starlight edit
+            NotifyAdmins(faxName, printout);
 
+        var faxrecvd = new FaxRecievedEvent
+        {
+            Info = new MinimalFaxInfo(printout, fromAddress ?? "????-????")
+        };
+        RaiseLocalEvent(uid, ref faxrecvd);
+        #endregion
         component.PrintingQueue.Enqueue(printout);
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
+using Content.Server._Starlight.Fax;
 using Content.Server._Starlight.UXN.Devices;
 using Content.Server._Starlight.UXN.Devices.ComponentDevices;
 using Content.Shared._Starlight.UXN;
@@ -47,6 +48,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
 
         #region Device subscriptions
         SubscribeLocalEvent<FaxMachineComponent, OnGetUxnDevices>(OnGetUxnDevicesFaxMachine);
+        SubscribeLocalEvent<UxnAttachedComponent, FaxRecievedEvent>(OnFaxRecieved);
         #endregion
         #region cvar subs
         _configurationManager.OnValueChanged(StarlightCCVars.UxnMaxInstrLimit, v => _maxInstrs = v);
@@ -173,6 +175,14 @@ public sealed partial class UxnSystem : SharedUxnSystem
     {
         ComponentUxnDevice<FaxMachineComponent> dev = new FaxComponentDevice();
         ev.AddDevice(ent, dev);
+    }
+
+    private void OnFaxRecieved(Entity<UxnAttachedComponent> ent, ref FaxRecievedEvent ev)
+    {
+        var uxn = ent.Comp.Uxn!;
+        var dev = (FaxComponentDevice)(uxn.SystemDevice.AttachableDevices[typeof(FaxMachineComponent).Name[..^"Component".Length].ToLower()]);
+        dev.MakeEvent(uxn, ev.Info);
+
     }
 
     [SuppressMessage("Style", "IDE0022:Use expression body for method", Justification = "I plan to add more later. STFU")]

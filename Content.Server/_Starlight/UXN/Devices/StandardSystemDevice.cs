@@ -9,7 +9,7 @@ public class StandardSystemDevice : UXNDevice
     => ExtraPages = [.. Enumerable.Repeat(new UxnMem(), Math.Min(numBanks,ushort.MaxValue))]; //clamped because any more and UXN cant access them.
     
     public Dictionary<string, UXNDevice> AttachableDevices = new();
-    protected HashSet<byte> DetachableSlots = new();
+    public Dictionary<string, byte> AttachedDevices = new();
 
     protected List<UxnMem> ExtraPages = [];
 
@@ -122,15 +122,27 @@ public class StandardSystemDevice : UXNDevice
                             break; //device slot is taken
                         
                         proc.AttachDevice((byte)(slot & 0x0F), AttachableDevices[name]);
-                        DetachableSlots.Add((byte)(slot & 0x0F)); //mark this slot as detachable so it can be detached later if needed.
+                        AttachedDevices[name] = ((byte)(slot & 0x0F)); //mark this slot as detachable so it can be detached later if needed.
                         break;
                     /*dtch slot*/ case 0x04: //dtch
-                        var dtchSlot = proc.SystemMem[(ushort)(res + 1)];
-                        if (!DetachableSlots.Contains((byte)(dtchSlot & 0x0F)))
+                        var dtchSlot = (byte)(proc.SystemMem[(ushort)(res + 1)] & 0x0F);
+                        if (!AttachedDevices.ContainsValue(dtchSlot))
                             break; //this slot is not allowed to be detached
                         
                         proc.Devices[dtchSlot & 0x0F].OnDetach(proc); //call on detach so the device can clean up if it needs to
                         proc.AttachDevice((byte)(dtchSlot & 0x0F), new UXNDevice()); //detach by attaching a blank device
+                        
+                        //this is stupid but I cant remember a better way. stupid airplane and lack of wifi.
+                        string? key = null;
+                        foreach (var item in AttachedDevices)
+                        {
+                            if (item.Value != dtchSlot)
+                                continue;
+                            key = item.Key;
+                            break;
+                        }
+                        if (key != null)
+                            AttachedDevices.Remove(key);
                         break;
                     default:
                         break; //Specified command does not exists.
