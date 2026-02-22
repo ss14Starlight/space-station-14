@@ -5,11 +5,11 @@
   category: Disabilities
   cost: 0
   effects:
-  - !type:AddCompsEffect
-    components:
-    - type: PermanentBlindness
-  - !type:SpawnItemInHandEffect
-    item: WhiteCane
+    - !type:AddCompsEffect
+      components:
+        - type: PermanentBlindness
+    - !type:SpawnItemInHandEffect
+      item: WhiteCane
   whitelist:
     components:
       - Blindable
@@ -21,13 +21,13 @@
   category: Disabilities
   cost: 0
   effects:
-  - !type:AddCompsEffect
-    components:
-    - type: PermanentBlindness
-      blindness: 4
-      glassesFixable: true
-  - !type:SpawnItemInHandEffect
-    item: ClothingEyesGlasses
+    - !type:AddCompsEffect
+      components:
+        - type: PermanentBlindness
+          blindness: 4
+          glassesFixable: true
+    - !type:SpawnItemInHandEffect
+      item: ClothingEyesGlasses
   whitelist:
     components:
       - Blindable
@@ -39,13 +39,13 @@
   category: Disabilities
   cost: 0
   effects:
-  - !type:AddCompsEffect
-    components:
-    - type: Narcolepsy
-      maxTimeBetweenIncidents: 600
-      minTimeBetweenIncidents: 300
-      maxDurationOfIncident: 30
-      minDurationOfIncident: 10
+    - !type:AddCompsEffect
+      components:
+        - type: Narcolepsy
+          maxTimeBetweenIncidents: 600
+          minTimeBetweenIncidents: 300
+          maxDurationOfIncident: 30
+          minDurationOfIncident: 10
 
 - type: trait
   id: Unrevivable
@@ -54,10 +54,10 @@
   category: Disabilities
   cost: 0
   effects:
-  - !type:AddCompsEffect
-    components:
-    - type: Unrevivable
-      cloneable: true
+    - !type:AddCompsEffect
+      components:
+        - type: Unrevivable
+          cloneable: true
 
 - type: trait
   id: Monochromacy
@@ -66,9 +66,9 @@
   category: Disabilities
   cost: 0
   effects:
-  - !type:AddCompsEffect
-    components:
-    - type: BlackAndWhiteOverlay
+    - !type:AddCompsEffect
+      components:
+        - type: BlackAndWhiteOverlay
 
 - type: trait
   id: Muted
@@ -77,9 +77,9 @@
   category: Disabilities
   cost: 0
   effects:
-  - !type:AddCompsEffect
-    components:
-    - type: Muted
+    - !type:AddCompsEffect
+      components:
+        - type: Muted
   blacklist:
     components:
       - BorgChassis
@@ -91,14 +91,14 @@
   category: Disabilities
   cost: 0
   effects:
-  - !type:AddCompsEffect
-    components:
-    - type: Paracusia
-      minTimeBetweenIncidents: 0.1
-      maxTimeBetweenIncidents: 300
-      maxSoundDistance: 7
-      sounds:
-        collection: Paracusia
+    - !type:AddCompsEffect
+      components:
+        - type: Paracusia
+          minTimeBetweenIncidents: 0.1
+          maxTimeBetweenIncidents: 300
+          maxSoundDistance: 7
+          sounds:
+            collection: Paracusia
 
 - type: trait
   id: PainNumbness
@@ -107,9 +107,9 @@
   category: Disabilities
   cost: 0
   effects:
-  - !type:AddStatusEffect
-    statusEffects:
-    - PainNumbnessTraitStatusEffect
+    - !type:AddStatusEffect
+      statusEffects:
+        - PainNumbnessTraitStatusEffect
 
 - type: trait
   id: Hemophilia
@@ -118,9 +118,9 @@
   category: Disabilities
   cost: 0
   effects:
-  - !type:AddStatusEffect
-    statusEffects:
-    - StatusEffectHemophiliaTrait
+    - !type:AddStatusEffect
+      statusEffects:
+        - StatusEffectHemophiliaTrait
   requirements:
     - !type:SpeciesRequirement
       species:
@@ -134,8 +134,52 @@
   category: Disabilities
   cost: 0
   effects:
-  - !type:AddCompsEffect
-    components:
-    - type: ImpairedMobility
-  - !type:SpawnItemInHandEffect
-    item: OffsetCane
+    - !type:AddCompsEffect
+      components:
+        - type: ImpairedMobility
+    - !type:SpawnItemInHandEffect
+      item: OffsetCane
+
+- type: trait
+  id: HighLightSensitivity
+  name: trait-highlightsensitivity-name
+  description: trait-highlightsensitivity-desc
+  category: Disabilities
+  cost: -1
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+        - type: Shadekin
+          thresholds:
+            0.7: Low
+            0.8: Annoying
+            5: High
+            10: Extreme
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Shadekin
+  conflicts:
+    - ExtremeLightSensitivity
+
+- type: trait
+  id: ExtremeLightSensitivity
+  name: trait-extremelightsensitivity-name
+  description: trait-extremelightsensitivity-desc
+  category: Disabilities
+  cost: -2
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+        - type: Shadekin
+          thresholds:
+            0.6: Low
+            0.7: Annoying
+            0.8: High
+            5: Extreme
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Shadekin
+  conflicts:
+    - HighLightSensitivity

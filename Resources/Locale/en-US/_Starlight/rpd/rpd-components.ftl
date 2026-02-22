@@ -6,6 +6,8 @@ rcd-component-sensorsmonitors = Sensors & Monitors
 rcd-rpd-mode-primary = Primary
 rcd-rpd-mode-secondary = Secondary
 rcd-rpd-mode-tertiary = Tertiary
+rcd-rpd-mode-quaternary = Quaternary
+rcd-rpd-mode-quinary = Quinary
 rcd-rpd-mode-free = Free
 rcd-component-examine-rpd-mode = Current mode: [color=cyan]{$mode}[/color]
 rcd-verb-switch-mode = Switch mode

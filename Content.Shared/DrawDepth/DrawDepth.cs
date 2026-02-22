@@ -9,13 +9,17 @@ namespace Content.Shared.DrawDepth
         /// <summary>
         ///     This is for sub-floors, the floors you see after prying off a tile.
         /// </summary>
-        LowFloors = DrawDepthTag.Default - 20,
+        LowFloors = DrawDepthTag.Default - 22, // Carpmosia-edit - 5 pipe layers
 
         // various entity types that require different
         // draw depths, as to avoid hiding
         #region SubfloorEntities
-        ThickPipe = DrawDepthTag.Default - 19,
-        ThickWire = DrawDepthTag.Default - 18,
+        // Carpmosia-start - 5 pipe layers
+        ThickPipe = DrawDepthTag.Default - 21,
+        ThickWire = DrawDepthTag.Default - 20,
+        ThinPipeAlt4 = DrawDepthTag.Default - 19,
+        ThinPipeAlt3 = DrawDepthTag.Default - 18,
+        // Carpmosia-end - 5 pipe layers
         ThinPipeAlt2 = DrawDepthTag.Default - 17,
         ThinPipeAlt1 = DrawDepthTag.Default - 16,
         ThinPipe = DrawDepthTag.Default - 15,

@@ -22,7 +22,8 @@ public sealed partial class ShadekinSystem : EntitySystem
         SubscribeLocalEvent<BrighteyeComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<BrighteyeComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<BrighteyeComponent, NullSpaceShuntEvent>(NullSpaceShunt);
-        SubscribeLocalEvent<BrighteyeComponent, EntityZombifiedEvent>(OnZombified);
+        SubscribeLocalEvent<BrighteyeComponent, EntityZombifiedEvent>((uid, _, _) => RemComp<BrighteyeComponent>(uid));
+        SubscribeLocalEvent<BrighteyeComponent, ForcedPrototypeDoSpecialEvent>(ForcedPrototypeDoSpecial);
 
         SubscribeLocalEvent<OrganShadekinCoreComponent, SurgeryOrganImplantationCompleted>(OnCoreOrganImplanted);
         SubscribeLocalEvent<OrganShadekinCoreComponent, SurgeryOrganExtracted>(OnCoreOrganExtracted);
@@ -30,27 +31,57 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     private void OnInit(EntityUid uid, BrighteyeComponent component, ComponentStartup args)
     {
+        if (!HasComp<ShadekinComponent>(uid))
+        {
+            RemComp<BrighteyeComponent>(uid);
+            return;
+        }
+
         _alerts.ShowAlert(uid, component.BrighteyeAlert);
         _alerts.ShowAlert(uid, component.PortalAlert);
+
+        _actionsSystem.AddAction(uid, ref component.PortalAction, component.BrighteyePortalAction, uid);
+        _actionsSystem.AddAction(uid, ref component.PhaseAction, component.BrighteyePhaseAction, uid);
+        _actionsSystem.AddAction(uid, ref component.ShadeSkipAction, component.BrighteyeShadeSkipAction, uid);
+        _actionsSystem.AddAction(uid, ref component.CreateShadeAction, component.BrighteyeCreateShadeAction, uid);
+        _actionsSystem.AddAction(uid, ref component.DarkTrapAction, component.BrighteyeDarkTrapAction, uid);
 
         if (TryComp<BodyComponent>(uid, out var body))
             foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((uid, body)))
             {
                 core.Comp1.Damaged = false;
+
+                _tag.AddTag(core, _coreTag);
+                _tag.RemoveTag(core, _damagedCoreTag);
+
                 if (EnsureComp<StaticPriceComponent>(core, out var price))
                     price.Price = core.Comp1.UndmagedPrice;
+
+                if (core.Comp1.OrganOwner != uid)
+                {
+                    component.MaxEnergy = 100;
+                    component.PhaseCost = 100;
+
+                    _alerts.ClearAlert(uid, component.PortalAlert);
+                    _actionsSystem.RemoveAction(uid, component.PortalAction);
+                    _actionsSystem.RemoveAction(uid, component.ShadeSkipAction);
+                    _actionsSystem.RemoveAction(uid, component.DarkTrapAction);
+                }
             }
 
         if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
             SetBrighteyes(uid, humanoid);
+    }
 
-        _actionsSystem.AddAction(uid, ref component.PortalAction, component.BrighteyePortalAction, uid);
-        _actionsSystem.AddAction(uid, ref component.PhaseAction, component.BrighteyePhaseAction, uid);
+    private void ForcedPrototypeDoSpecial(EntityUid uid, BrighteyeComponent component, ForcedPrototypeDoSpecialEvent args)
+    {
+        if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
+            SetBrighteyes(uid, humanoid);
     }
 
     private void OnCoreOrganImplanted(Entity<OrganShadekinCoreComponent> ent, ref SurgeryOrganImplantationCompleted args)
     {
-        if (!ent.Comp.Damaged && ent.Comp.OrganOwner == args.Body)
+        if (!ent.Comp.Damaged)
             EnsureComp<BrighteyeComponent>(args.Body);
     }
 
@@ -60,17 +91,17 @@ public sealed partial class ShadekinSystem : EntitySystem
             RemComp<BrighteyeComponent>(args.Body);
     }
 
-    // No Phasing, Almost Unkillable Zombie... We get zombified as a Brighteye we get burned!
-    private void OnZombified(EntityUid uid, BrighteyeComponent component, ref EntityZombifiedEvent args)
-    {
-        RemComp<BrighteyeComponent>(uid);
-    }
-
     private void OnShutdown(EntityUid uid, BrighteyeComponent component, ComponentShutdown args)
     {
         _alerts.ClearAlert(uid, component.BrighteyeAlert);
         _alerts.ClearAlert(uid, component.PortalAlert);
         _alerts.ClearAlert(uid, component.RejuvenationAlert);
+
+        _actionsSystem.RemoveAction(uid, component.PortalAction);
+        _actionsSystem.RemoveAction(uid, component.PhaseAction);
+        _actionsSystem.RemoveAction(uid, component.ShadeSkipAction);
+        _actionsSystem.RemoveAction(uid, component.CreateShadeAction);
+        _actionsSystem.RemoveAction(uid, component.DarkTrapAction);
 
         if (component.Portal is not null)
         {
@@ -83,15 +114,15 @@ public sealed partial class ShadekinSystem : EntitySystem
             {
                 core.Comp1.Damaged = true;
 
+                _tag.AddTag(core, _damagedCoreTag);
+                _tag.RemoveTag(core, _coreTag);
+
                 if (EnsureComp<StaticPriceComponent>(core, out var price))
                     price.Price = core.Comp1.DmagedPrice;
             }
 
         if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
             SetBlackeyes(uid, humanoid);
-
-        _actionsSystem.RemoveAction(uid, component.PortalAction);
-        _actionsSystem.RemoveAction(uid, component.PhaseAction);
     }
 
     private void OnRejuvenate(EntityUid uid, BrighteyeComponent component, RejuvenateEvent args)
@@ -120,6 +151,10 @@ public sealed partial class ShadekinSystem : EntitySystem
         RaiseLocalEvent(uid, ev);
 
         if (ev.Cancelled)
+            return;
+
+        // ZombifyOnDeath? Yeah no Regen for you buddy!
+        if (HasComp<ZombifyOnDeathComponent>(uid))
             return;
 
         // Do we have a portal? if no... WE DIE!

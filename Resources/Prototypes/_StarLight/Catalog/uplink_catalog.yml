@@ -1,5 +1,5 @@
 - type: listing
-  id: uplinkContortionistJumpsuit
+  id: UplinkContortionistJumpsuit
   name: uplink-contortionist-jumpsuit-name
   description: uplink-contortionist-jumpsuit-desc
   productEntity: ClothingUniformJumpsuitAtmosSyndie
@@ -34,7 +34,7 @@
   - UplinkWeaponry
 
 - type: listing
-  id: uplinkWeaponShotgunMinotaur
+  id: UplinkWeaponShotgunMinotaur
   name: uplink-minotaur-name
   description: uplink-minotaur-desc
   productEntity: ClothingBackpackDuffelSyndicateFilledMinotaurShotgun
@@ -57,7 +57,7 @@
           - NukeOpsUplink
 
 - type: listing
-  id: uplinkWeaponRiflePitpull
+  id: UplinkWeaponRiflePitpull
   name: uplink-pitbull-bundle-name
   description: uplink-pitbull-bundle-desc
   icon:
@@ -120,7 +120,7 @@
     - Captain
 
 - type: listing
-  id: uplinkWeaponPistolDeagle
+  id: UplinkWeaponPistolDeagle
   name: uplink-deagle-name
   description: uplink-deagle-desc
   productEntity: WeaponPistolDeagle
@@ -133,7 +133,7 @@
     - UplinkWeaponry
 
 - type: listing
-  id: uplinkWeaponPistolStechkin
+  id: UplinkWeaponPistolStechkin
   name: uplink-stechkin-name
   description: uplink-stechkin-desc
   productEntity: WeaponPistolStechkin
@@ -293,7 +293,7 @@
   categories:
     - UplinkCybernetics
 
-- type: listing
+- type: listing # Starlight
   id: UplinkEnergyDomeSyndie
   name: uplink-energy-dome-name
   description: uplink-energy-dome-desc
@@ -371,7 +371,27 @@
         - ResearchDirector
         - Roboticist # If you're giving it to the rest of the department...
         - Captain
-
+        
+- type: listing
+  id: UplinkMindcontrolImplant
+  name: uplink-mind-control-implant-name
+  description: uplink-mind-control-implant-desc
+  productEntity: MindControlImplanter
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 7
+  categories:
+    - UplinkDisruption
+    - UplinkImplants
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+            
+            
 - type: listing
   id: UplinkGearAcidifierImplanter
   name: uplink-gear-acidifier-implant-name

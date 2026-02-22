@@ -16,8 +16,8 @@
       - state: industrial-panel
         map: ["enum.WiresVisualLayers.MaintenancePanel"]
         visible: false
+    snapCardinals: false # Starlight-edit: allow non-cardinal rotation for chem dispenser to avoid conflict with 4 direction plumbing connector sprites
     # Starlight-end
-    snapCardinals: true
   - type: Storage
     openOnActivate: false
     whitelist:

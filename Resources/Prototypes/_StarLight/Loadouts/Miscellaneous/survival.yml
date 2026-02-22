@@ -1,0 +1,156 @@
+- type: loadoutEffectGroup
+  id: NonBreather
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Shadekin
+
+- type: loadout
+  id: EmergencyElfOxygen
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ElfOxygenBreather
+  storage:
+    back:
+    - BoxSurvival
+    - BookOfCantrips
+
+- type: loadout
+  id: EmergencyNonBreather
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NonBreather
+  storage:
+    back:
+    - BoxSurvivalNonBreather
+
+- type: loadout
+  id: EmergencyNonBreatherClown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NonBreather
+  storage:
+    back:
+    - BoxHugNonBreather
+
+- type: loadout
+  id: EmergencyElfOxygenClown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ElfOxygenBreather
+  storage:
+    back:
+    - BoxHugNonBreather
+    - BookOfCantrips
+
+- type: loadout
+  id: EmergencyElfOxygenMime
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ElfOxygenBreather
+  storage:
+    back:
+    - BoxMime
+    - BookOfCantrips
+
+- type: loadout
+  id: EmergencyNonBreatherMime
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NonBreather
+  storage:
+    back:
+      - BoxMimeNonBreather
+
+- type: loadout
+  id: EmergencyNonBreatherExtended
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NonBreather
+  storage:
+    back:
+    - BoxSurvivalNonBreatherExtended
+
+- type: loadout
+  id: EmergencyElfOxygenExtended
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ElfOxygenBreather
+  storage:
+    back:
+    - BoxSurvivalEngineering
+    - BookOfCantrips
+
+- type: loadout
+  id: EmergencyNonBreatherMedical
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NonBreather
+  storage:
+    back:
+    - BoxSurvivalNonBreatherExtended
+
+- type: loadout
+  id: EmergencyElfOxygenMedical
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ElfOxygenBreather
+  storage:
+    back:
+    - BoxSurvivalMedical
+    - BookOfCantrips
+
+- type: loadoutEffectGroup
+  id: ElfOxygenBreather
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Elf
+
+- type: loadout
+  id: EmergencyNonbreatherSecurity
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NonBreather
+  storage:
+    back:
+    - BoxSurvivalNonBreatherExtended
+
+- type: loadout
+  id: EmergencyElfOxygenSecurity
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ElfOxygenBreather
+  storage:
+    back:
+    - BoxSurvivalSecurity
+    - BookOfCantrips
+
+- type: loadout
+  id: EmergencyNonBreatherSyndicate
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NonBreather
+  storage:
+    back:
+    - BoxSurvivalNonBreather
+
+- type: loadout
+  id: EmergencyElfOxygenSyndicate
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ElfOxygenBreather
+  storage:
+    back:
+    - BoxSurvivalSyndicate
+    - BookOfCantrips
+
+- type: loadout
+  id: EmergencyElfOxygenMilitaryDouble
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ElfOxygenBreather
+  storage:
+    back:
+    - BoxSurvivalMilitaryDouble
+    - BookOfCantrips

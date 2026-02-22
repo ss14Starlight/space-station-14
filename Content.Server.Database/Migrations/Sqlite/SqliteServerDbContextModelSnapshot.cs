@@ -15,7 +15,7 @@ namespace Content.Server.Database.Migrations.Sqlite
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.1");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.0");
 
             modelBuilder.Entity("Content.Server.Database.Admin", b =>
                 {
@@ -1477,6 +1477,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("cybernetic_ids");
+
+                    b.Property<string>("ForcedPrototype")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("forced_prototype");
 
                     b.Property<float>("Height")
                         .HasColumnType("REAL")

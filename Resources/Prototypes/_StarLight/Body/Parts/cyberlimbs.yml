@@ -1957,6 +1957,9 @@
       grid:
       - 0,0,1,2
       maxItemSize: Large
+      blacklist: 
+        components:
+          - BodyPart
     - type: PrivateStorage
       accessDelay: 3.0
       accessPopup: "cargo-leg-left-storage-accessing"
@@ -2008,6 +2011,9 @@
       grid:
       - 0,0,1,2
       maxItemSize: Large
+      blacklist: 
+        components:
+          - BodyPart
     - type: PrivateStorage
       accessDelay: 3.0
       accessPopup: "cargo-leg-right-storage-accessing"

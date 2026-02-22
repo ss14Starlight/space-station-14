@@ -119,7 +119,7 @@
       - !type:HealthChange
         damage:
           types:
-            Heat: 0.05
+            Heat: 1 # Starlight-edit
       - !type:PopupMessage
         type: Local
         visualType: Large

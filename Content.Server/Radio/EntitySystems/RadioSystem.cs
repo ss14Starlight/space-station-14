@@ -35,6 +35,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Radio; //Starlight
+using Content.Shared.NameModifier.Components; //Starlight
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -142,6 +143,10 @@ public sealed class RadioSystem : EntitySystem
 
         var meta = MetaData(messageSource);
         var entityName = meta?.EntityName ?? string.Empty;
+        // Starlight BEGIN
+        if (TryComp(messageSource, out NameModifierComponent? nameModifier))
+            entityName = nameModifier.BaseName; // Bypass name modifiers (specifically: labels).
+        // Starlight END
         var evt = new TransformSpeakerNameEvent(messageSource, entityName);
         RaiseLocalEvent(messageSource, evt);
 

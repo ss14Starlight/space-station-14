@@ -101,6 +101,8 @@
   - LauncherSyringe
   - MiniSyringe
   - AdvancedJetInjector
+  - GoldenJug # SL
+  - SilverJug # SL
 
 - type: latheRecipePack
   id: MedicalBoards

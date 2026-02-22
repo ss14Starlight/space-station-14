@@ -4,17 +4,16 @@
   # uses random name generator dont worry
   name: exterminator
   components:
-  - type: Terminator
   # reduced barotrauma damage
   - type: Barotrauma
     damage:
       types:
         Blunt: 0.1
-  # 4x stamina, faster recovery
+  # 6x stamina, faster recovery
   - type: Stamina
-    decay: 6
+    decay: 10
     cooldown: 1
-    baseCritThreshold: 400
+    baseCritThreshold: 600
   # immune to space drugs, pax, temporary blindness
   - type: StatusEffects
     allowed:
@@ -36,16 +35,15 @@
     - Dead
   # endoskeleton need it
   - type: TransferMindOnGib
+  # self destruct option for phase 1 (manual only, won't trigger on phase 2 transformation)
+  - type: AutoImplant
+    implants:
+    - TerminatorDeathAcidifierImplant
   - type: MobThresholds
     thresholds:
       0: Alive
       # used for health display its not possible to actually fall into crit
       200: Dead
-  # fire!!!!
-  - type: Flammable
-    damage:
-      types:
-        Heat: 1.5
   # take terminator flesh damage
   - type: Damageable
     damageModifierSet: CyberneticFlesh
@@ -60,7 +58,7 @@
     - trigger:
         !type:DamageTypeTrigger
         damageType: Heat
-        damage: 150
+        damage: 200
       behaviors:
       - !type:PopupBehavior
         popup: terminator-endoskeleton-burn-popup
@@ -68,7 +66,7 @@
       - !type:GibBehavior
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 200
       behaviors:
       - !type:PopupBehavior
         popup: terminator-endoskeleton-gib-popup
@@ -81,7 +79,6 @@
       90: 0.6
   # arnold is very strong
   - type: MeleeWeapon
-    altDisarm: false
     damage:
       types:
         Blunt: 10
@@ -98,6 +95,32 @@
   - type: IgniteOnHeatDamage
     fireStacks: 2
     threshold: 12
+  # much lower temp heat damage than normal, so that terminator can be decently on fire without immediately gibbing
+  - type: TemperatureDamage
+    coldDamage: 
+      types:
+        Cold: 0.1
+    heatDamage:
+      types:
+        Heat: 0.1
+  - type: Flammable
+    fireSpread: true
+    canResistFire: true
+    damage:
+      types:
+        Heat: 0.05
+  - type: Thirst
+  # john terminator not hungry
+    baseDecayRate: 0
+  - type: Hunger
+    baseDecayRate: 0
+  - type: RandomFootstepSound # 1/1000 steps will be a heavy clank. not very subtle.
+    sound: 
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        volume: -6
+        pitch: 0.7
+        variation: 0.025
 
 - type: entity
   parent:
@@ -143,6 +166,7 @@
   # lets it sit in the terminator flesh's brain slot
   - type: Organ
   - type: Brain
+  - type: OrganEyes # to stop welding mask permablindness
   - type: TypingIndicator
     proto: robot # beep boop borp
   - type: Speech
@@ -178,8 +202,8 @@
     damage:
       types:
         Blunt: 15
-        Structural: 5
-    wideAnimationRotation: 45
+        Structural: 10
+    altDisarm: false
   - type: Puller
     needsHands: false
   - type: Tag
@@ -191,3 +215,8 @@
   - type: AutoImplant
     implants:
     - TerminatorMicroBombImplant
+  # 6x stamina, faster recovery
+  - type: Stamina
+    decay: 10
+    cooldown: 1
+    baseCritThreshold: 600

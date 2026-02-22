@@ -161,6 +161,12 @@
     sprite: Clothing/OuterClothing/Armor/centcomm_carapace.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/centcomm_carapace.rsi
+# Starlight Start
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+# Starlight End
 
 #Web vest
 - type: entity
@@ -192,7 +198,7 @@
 
 #Elite web vest
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSyndicateContraband]
+  parent: ClothingOuterVestWeb # SL: reparent
   id: ClothingOuterVestWebElite
   name: elite web vest
   description: A synthetic armor vest. This one has added webbing and heat resistant fibers.

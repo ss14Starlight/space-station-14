@@ -68,3 +68,18 @@
     icon:
       sprite: Objects/Magic/magicactions.rsi
       state: gib
+
+# Terminator 1st phase Self-Destruct
+- type: entity
+  parent: [BaseSuicideAction, BaseImplantAction]
+  id: ActionActivateTerminatorDeathAcidifier
+  name: Activate Bio-Degrading Mechanism
+  description: Activates your first-phase bio-degradation mechanism, completely melting your outer layer and all equipped items. Your inner endoskeleton is revealed and left fully exposed.
+  components:
+  - type: Action
+    checkCanInteract: false
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: gib

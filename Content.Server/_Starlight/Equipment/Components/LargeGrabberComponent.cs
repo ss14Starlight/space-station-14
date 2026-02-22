@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using Content.Shared.DoAfter;
+using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 
@@ -44,6 +45,21 @@ public sealed partial class LargeGrabberComponent : Component
     [DataField]
     public SoundSpecifier GrabSound = new SoundPathSpecifier("/Audio/Mecha/sound_mecha_hydraulic.ogg");
 
+    /// <summary>
+    /// Blacklists (prevents) entities listed from being grabbed.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? Blacklist = new()
+    {
+        Components =
+        [
+            "WallMount",
+            "Anomaly",
+            "Mech",
+            "MobState",
+        ],
+    };
+    
     /// <summary>
     /// Does the grabber drop everything when put away?
     /// </summary>

@@ -1,22 +1,45 @@
 - type: soundCollection
   id: PhoneSpeak
   files:
-  - /Audio/_Starlight/Machines/talk_phone1.ogg
-  - /Audio/_Starlight/Machines/talk_phone2.ogg
-  - /Audio/_Starlight/Machines/talk_phone3.ogg
-  - /Audio/_Starlight/Machines/talk_phone4.ogg
-  - /Audio/_Starlight/Machines/talk_phone5.ogg
-  - /Audio/_Starlight/Machines/talk_phone6.ogg
-  - /Audio/_Starlight/Machines/talk_phone7.ogg
-  
+    - /Audio/_Starlight/Machines/talk_phone1.ogg
+    - /Audio/_Starlight/Machines/talk_phone2.ogg
+    - /Audio/_Starlight/Machines/talk_phone3.ogg
+    - /Audio/_Starlight/Machines/talk_phone4.ogg
+    - /Audio/_Starlight/Machines/talk_phone5.ogg
+    - /Audio/_Starlight/Machines/talk_phone6.ogg
+    - /Audio/_Starlight/Machines/talk_phone7.ogg
+
 - type: ambientMusic
-  id: TheDark
+  id: NearTheDark
   sound:
     params:
       volume: -12
     collection: AmbienceTheDark
   rules: NearTheDark
   priority: 2
+
+- type: ambientMusic
+  id: TheDark
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceTheDark
+  fadeIn: true
+  interruptable: true
+  rules: InTheDark
+  priority: 1
+
+- type: ambientMusic
+  id: NukiePlanet
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceNukiePlanet
+  fadeIn: true
+  interruptable: true
+  rules: InNukiePlanetMap
+  priority: 1
+
 
 - type: soundCollection
   id: AmbienceTheDark
@@ -25,8 +48,13 @@
     - /Audio/_Starlight/Ambiance/TheDark/dark2.ogg
     - /Audio/_Starlight/Ambiance/TheDark/dark3.ogg
 
+- type: soundCollection
+  id: AmbienceNukiePlanet
+  files:
+    - /Audio/_Starlight/Ambiance/nuclearoperations_prep.ogg
+
 - type: rules
-  id: NearTheDark # TODO: If were in the "Dark Map" we should always validade this Rule!
+  id: NearTheDark
   rules:
     - !type:NearbyEntitiesRule
       count: 1
@@ -34,3 +62,15 @@
         tags:
           - TheDark
       range: 5
+
+- type: rules
+  id: InTheDark
+  rules:
+    - !type:OnMapTagRule
+      mapTag: TheDark
+
+- type: rules
+  id: InNukiePlanetMap
+  rules:
+    - !type:OnMapTagRule
+      mapTag: NukiePlanet

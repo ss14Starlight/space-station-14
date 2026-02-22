@@ -258,7 +258,7 @@
 
 - type: randomHumanoidSettings
   id: VisitorParamedic
-  parent: VisitorMedical
+  parent: [ EventHumanoidMindShielded, VisitorMedical ] # Starlight: Don't forget mindshield
   components:
     - type: GhostRole
       name: job-name-paramedic

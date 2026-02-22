@@ -67,6 +67,7 @@
       Unsexed: MaleThaven
   - type: Speech
     speechSounds: Alto
+    allowedEmotes: ["ThavenHum", "ThavenGlub"]
   - type: HumanoidAppearance
     species: Thaven
     hideLayersOnEquip:

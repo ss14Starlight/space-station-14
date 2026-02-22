@@ -25,6 +25,19 @@
       Ammonia: stationAmmonia
       NitrousOxide: stationNO
       Frezon: danger
+      # Funkystation Start: Funky atmos - /tg/ gases
+      BZ: stationBZ
+      Healium: stationHealium
+      Nitrium: danger
+      Pluoxium: stationPluoxium
+      Hydrogen: danger
+      HyperNoblium: stationHyperNoblium
+      ProtoNitrate: danger
+      Zauker: danger
+      Halon: danger
+      Helium: stationHelium
+      AntiNoblium: danger
+      # Funkystation End: Funky atmos - /tg/ gases
   - type: GuideHelp
     guides:
     - DeviceMonitoringAndControl

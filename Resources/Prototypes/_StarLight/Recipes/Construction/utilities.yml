@@ -15,6 +15,8 @@
   - GasVentPump
   - GasVentPumpAlt1
   - GasVentPumpAlt2
+  - GasVentPumpAlt3
+  - GasVentPumpAlt4
 
 - type: construction
   id: GasVentPumpAlt2
@@ -31,6 +33,9 @@
   - GasVentPump
   - GasVentPumpAlt1
   - GasVentPumpAlt2
+  - GasVentPumpAlt3
+  - GasVentPumpAlt4
+
 
 - type: construction
   id: GasPassiveVentAlt1
@@ -47,6 +52,8 @@
   - GasPassiveVent
   - GasPassiveVentAlt1
   - GasPassiveVentAlt2
+  - GasPassiveVentAlt3
+  - GasPassiveVentAlt4
 
 - type: construction
   id: GasPassiveVentAlt2
@@ -63,6 +70,8 @@
   - GasPassiveVent
   - GasPassiveVentAlt1
   - GasPassiveVentAlt2
+  - GasPassiveVentAlt3
+  - GasPassiveVentAlt4
 
 - type: construction
   id: GasVentScrubberAlt1
@@ -79,6 +88,8 @@
   - GasVentScrubber
   - GasVentScrubberAlt1
   - GasVentScrubberAlt2
+  - GasVentScrubberAlt3
+  - GasVentScrubberAlt4
 
 - type: construction
   id: GasVentScrubberAlt2
@@ -95,6 +106,8 @@
   - GasVentScrubber
   - GasVentScrubberAlt1
   - GasVentScrubberAlt2
+  - GasVentScrubberAlt3
+  - GasVentScrubberAlt4
 
 - type: construction
   id: GasOutletInjectorAlt1
@@ -111,6 +124,8 @@
   - GasOutletInjector
   - GasOutletInjectorAlt1
   - GasOutletInjectorAlt2
+  - GasOutletInjectorAlt3
+  - GasOutletInjectorAlt4
 
 - type: construction
   id: GasOutletInjectorAlt2
@@ -127,6 +142,8 @@
   - GasOutletInjector
   - GasOutletInjectorAlt1
   - GasOutletInjectorAlt2
+  - GasOutletInjectorAlt3
+  - GasOutletInjectorAlt4
 
 # region binary
 
@@ -145,6 +162,8 @@
   - GasPort
   - GasPortAlt1
   - GasPortAlt2
+  - GasPortAlt3
+  - GasPortAlt4
 
 - type: construction
   id: GasPortAlt2
@@ -161,6 +180,8 @@
   - GasPort
   - GasPortAlt1
   - GasPortAlt2
+  - GasPortAlt3
+  - GasPortAlt4
 
 - type: construction
   id: GasDualPortVentPumpAlt1
@@ -171,10 +192,14 @@
   category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
   alternativePrototypes:
   - GasDualPortVentPump
   - GasDualPortVentPumpAlt1
   - GasDualPortVentPumpAlt2
+  - GasDualPortVentPumpAlt3
+  - GasDualPortVentPumpAlt4
 
 - type: construction
   id: GasDualPortVentPumpAlt2
@@ -185,10 +210,14 @@
   category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
   alternativePrototypes:
   - GasDualPortVentPump
   - GasDualPortVentPumpAlt1
   - GasDualPortVentPumpAlt2
+  - GasDualPortVentPumpAlt3
+  - GasDualPortVentPumpAlt4
 
 # region trinary
 - type: construction
@@ -260,6 +289,8 @@
   - GasFilter
   - GasFilterAlt1
   - GasFilterAlt2
+  - GasFilterAlt3
+  - GasFilterAlt4
 
 - type: construction
   id: GasFilterAlt2
@@ -277,6 +308,8 @@
   - GasFilter
   - GasFilterAlt1
   - GasFilterAlt2
+  - GasFilterAlt3
+  - GasFilterAlt4
 
 - type: construction
   id: GasFilterFlippedAlt1
@@ -294,6 +327,8 @@
   - GasFilterFlipped
   - GasFilterFlippedAlt1
   - GasFilterFlippedAlt2
+  - GasFilterFlippedAlt3
+  - GasFilterFlippedAlt4
 
 - type: construction
   id: GasFilterFlippedAlt2
@@ -311,6 +346,8 @@
   - GasFilterFlipped
   - GasFilterFlippedAlt1
   - GasFilterFlippedAlt2
+  - GasFilterFlippedAlt3
+  - GasFilterFlippedAlt4
 
 - type: construction
   id: GasMixerAlt1
@@ -328,6 +365,8 @@
   - GasMixer
   - GasMixerAlt1
   - GasMixerAlt2
+  - GasMixerAlt3
+  - GasMixerAlt4
 
 - type: construction
   id: GasMixerAlt2
@@ -345,6 +384,8 @@
   - GasMixer
   - GasMixerAlt1
   - GasMixerAlt2
+  - GasMixerAlt3
+  - GasMixerAlt4
 
 - type: construction
   id: GasMixerFlippedAlt1
@@ -362,6 +403,8 @@
   - GasMixerFlipped
   - GasMixerFlippedAlt1
   - GasMixerFlippedAlt2
+  - GasMixerFlippedAlt3
+  - GasMixerFlippedAlt4
 
 - type: construction
   id: GasMixerFlippedAlt2
@@ -379,6 +422,8 @@
   - GasMixerFlipped
   - GasMixerFlippedAlt1
   - GasMixerFlippedAlt2
+  - GasMixerFlippedAlt3
+  - GasMixerFlippedAlt4
 
 - type: construction
   id: PressureControlledValveAlt1
@@ -395,6 +440,8 @@
   - PressureControlledValve
   - PressureControlledValveAlt1
   - PressureControlledValveAlt2
+  - PressureControlledValveAlt3
+  - PressureControlledValveAlt4
 
 - type: construction
   id: PressureControlledValveAlt2
@@ -411,3 +458,5 @@
   - PressureControlledValve
   - PressureControlledValveAlt1
   - PressureControlledValveAlt2
+  - PressureControlledValveAlt3
+  - PressureControlledValveAlt4

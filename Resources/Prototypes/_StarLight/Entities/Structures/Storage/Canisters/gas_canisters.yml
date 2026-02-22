@@ -117,3 +117,152 @@
   - type: GasCanister
     gasMixture:
       volume: 1500
+
+# Funkystation Empty Canisters
+
+- type: entity
+  parent: BZCanister
+  id: BZCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: HealiumCanister
+  id: HealiumCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: NitriumCanister
+  id: NitriumCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: PluoxiumCanister
+  id: PluoxiumCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: HydrogenCanister
+  id: HydrogenCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: HyperNobliumCanister
+  id: HyperNobliumCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: ProtoNitrateCanister
+  id: ProtoNitrateCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: ZaukerCanister
+  id: ZaukerCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: HalonCanister
+  id: HalonCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: HeliumCanister
+  id: HeliumCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: AntiNobliumCanister
+  id: AntiNobliumCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: GasCanister
+  id: RainbowCanisterEmpty
+  name: rainbow canister
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/canister.rsi
+    layers:
+    - state: rainbow
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+# Broken variants
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: LiquidOxygenCanisterBroken
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/canister.rsi
+    state: l_oxygen_broken
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: LiquidNitrogenCanisterBroken
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/canister.rsi
+    state: l_nitrogen_broken
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: LiquidCarbonDioxideCanisterBroken
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/canister.rsi
+    state: carbon_broken
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: RainbowCanisterBroken
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/canister.rsi
+    state: rainbow_broken

@@ -86,3 +86,18 @@
           children:
           - id: EncryptionKeySalvage
             amount: 4
+
+- type: entity
+  name: blacklight box
+  parent: BoxLightbulb
+  id: Boxblacklight
+  components:
+  - type: Sprite
+    layers:
+      - state: box
+      - state: lighttube
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: BlackLightTube
+        amount: 12

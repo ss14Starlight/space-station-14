@@ -286,6 +286,7 @@
   - Moth
   - SlimePerson
   - Lagomorph
+  - Elf
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-marine-name
@@ -294,7 +295,7 @@
       raffle:
         settings: default
       mindRoles:
-      - MindRoleGhostCorporateAligned
+      - MindRoleGhostTSFAligned
       job: TSFMarine
     - type: Loadout
       prototypes: [ TSFMarineGear ]
@@ -314,6 +315,7 @@
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-leader-name
+      job: TSFMarine
     - type: Loadout
       prototypes: [ TSFMarineLeaderGear ]
     - type: RandomMetadata
@@ -328,6 +330,7 @@
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-MARSOC-name
+      job: TSFMarineElite
     - type: Loadout
       prototypes: [ TSFEliteMarineGear ]
     - type: RandomMetadata

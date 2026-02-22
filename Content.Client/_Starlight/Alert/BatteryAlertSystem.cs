@@ -1,5 +1,6 @@
 using Content.Shared._Starlight.UI;
 using Content.Shared.Alert;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
 using Robust.Client.Player;
@@ -14,6 +15,7 @@ public sealed partial class BatteryAlertSystem : EntitySystem
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedBatterySystem _battery = default!;
 
     // How often to update the battery alert.
     // Also gets updated instantly when switching bodies or a battery is inserted or removed.
@@ -61,7 +63,7 @@ public sealed partial class BatteryAlertSystem : EntitySystem
         }
 
         // Alert levels from 0 to 10.
-        var chargePercent = (short)MathF.Round(battery.Value.Comp.LastCharge / battery.Value.Comp.MaxCharge * 10f);
+        var chargePercent = (short)MathF.Round(_battery.GetChargeLevel(battery.Value.AsNullable()) * 10f);
 
         // we make sure 0 only shows if they have absolutely no battery.
         // also account for floating point imprecision

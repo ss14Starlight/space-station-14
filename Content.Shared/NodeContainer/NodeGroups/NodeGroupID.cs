@@ -17,4 +17,9 @@ public enum NodeGroupID : byte
     /// <seealso cref="Content.Server.Power.Generation.Teg.TegNodeGroup"/>
     Teg,
     ExCable,
+
+    /// <summary>
+    /// Group used for plumbing (reagent fluid ducts).
+    /// </summary>
+    Plumbing, // Starlight Plumbing System
 }

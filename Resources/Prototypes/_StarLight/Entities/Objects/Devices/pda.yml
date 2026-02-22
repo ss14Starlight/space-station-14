@@ -537,23 +537,19 @@
     - DoorBumpOpener
 
 - type: entity
-  parent: BaseMedicalPDA
+  parent: ParamedicPDA
   id: SeniorParamedicPDA
   name: senior paramedic PDA
   description: Shiny and sterile, despite the scuffs and scratches
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
-  - type: Pda
-    id: ParamedicIDCard
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
        !type:String
        pda-seniorparamedic
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#2a4b5b"
+    accentVColor: "#d7d7d0"
+    borderColor: "#2a4b5b"
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi
     state: pda-seniorparamedic

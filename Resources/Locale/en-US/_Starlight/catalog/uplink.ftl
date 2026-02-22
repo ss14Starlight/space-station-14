@@ -12,3 +12,6 @@ uplink-observer-bundle-desc = For keeping an eye on things. Comes with a Camera 
 
 uplink-switchblade-name = Switchblade
 uplink-switchblade-desc = A cheap blade that switches people from being alive to not.
+
+uplink-mind-control-implant-name = Mind Control Implanter
+uplink-mind-control-implant-desc = Turn your frenemy into a friend. They will follow any order from any Syndicate as long as they can escape to CentComm.

@@ -1,0 +1,43 @@
+- type: entity
+  abstract: true
+  id: GasVentPumpFreezerBase
+  components:
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentPumpFreezer
+      Secondary: GasVentPumpFreezerAlt1
+      Tertiary: GasVentPumpFreezerAlt2
+      Quaternary: GasVentPumpFreezerAlt3
+      Quinary: GasVentPumpFreezerAlt4
+
+- type: entity
+  parent: [AirSensorFreezerBase, GasVentPumpFreezerBase, GasVentPumpAlt3]
+  id: GasVentPumpFreezerAlt3
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorFreezerBase, GasVentPumpFreezerBase, GasVentPumpAlt4]
+  id: GasVentPumpFreezerAlt4
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  abstract: true
+  id: GasVentScrubberFreezerBase
+  components:
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentScrubberFreezer
+      Secondary: GasVentScrubberFreezerAlt1
+      Tertiary: GasVentScrubberFreezerAlt2
+      Quaternary: GasVentScrubberFreezerAlt3
+      Quinary: GasVentScrubberFreezerAlt4
+
+- type: entity
+  parent: [AirSensorFreezerBase, GasVentScrubberFreezerBase, GasVentScrubberAlt3]
+  id: GasVentScrubberFreezerAlt3
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorFreezerBase, GasVentScrubberFreezerBase, GasVentScrubberAlt4]
+  id: GasVentScrubberFreezerAlt4
+  categories: [ HideSpawnMenu ]

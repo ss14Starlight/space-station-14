@@ -49,6 +49,7 @@
     - ChameleonControllerImplant
     - VoiceMaskImplant
     - SELFStorageImplant #Starlight
+    - MindControlImplant #Starlight
     deimplantFailureDamage:
       types:
         Cellular: 50

@@ -8,6 +8,14 @@
 
 - type: entity
   parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostTSFAligned
+  name: Ghost Role (TSF Aligned)
+  components:
+    - type: MindRole
+      roleType: TSFAligned
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
   id: MindRoleGhostRolePAI
   name: Ghost Role (pAI Familiar)
   components:

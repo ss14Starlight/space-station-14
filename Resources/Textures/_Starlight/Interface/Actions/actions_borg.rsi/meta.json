@@ -6,37 +6,40 @@
         "x": 32,
         "y": 32
     },
-    "states": [
-        {
-            "name": "bartending-module"
-        },
-        {
-            "name": "bookkeeping-module"
-        },
-        {
-            "name": "cooking-module"
-        },
-        {
-            "name": "paperwork-module"
-        },
-        {
-            "name": "surgery-module"
-        },
-        {
-            "name": "xenoborg-rcd-module"
-        },
-        {
-            "name": "mail-module"
-        },
-        {
-            "name": "mats-module"
-        },
-        {
-            "name": "loading-module"
-        },
-        {
-            "name": "hands",
-            "directions": 1
-        }
-    ]
+  "states": [
+    {
+      "name": "bartending-module"
+    },
+    {
+      "name": "bookkeeping-module"
+    },
+    {
+      "name": "cooking-module"
+    },
+    {
+      "name": "paperwork-module"
+    },
+    {
+      "name": "surgery-module"
+    },
+    {
+      "name": "xenoborg-rcd-module"
+    },
+    {
+      "name": "mail-module"
+    },
+    {
+      "name": "mats-module"
+    },
+    {
+      "name": "loading-module"
+    },
+    {
+      "name": "plumbing-module"
+    },
+    {
+      "name": "hands",
+      "directions": 1
+    }
+  ]
 }

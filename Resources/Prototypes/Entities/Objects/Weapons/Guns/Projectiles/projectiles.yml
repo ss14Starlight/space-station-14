@@ -854,6 +854,28 @@
     energy: 0.5
 
 - type: entity
+  id: Bullet60mmRocket
+  name: 60mm rocket
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 20
+    intensitySlope: 3
+    totalIntensity: 100
+    maxTileBreak: 1
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+
+- type: entity
   id: BulletGrenadeBaton
   name: baton grenade
   parent: BaseBullet

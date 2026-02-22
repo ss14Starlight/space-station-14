@@ -247,7 +247,7 @@
 
 - type: entity
   parent:
-    [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCentcommContraband]
+    [BaseCentcommContraband, ClothingOuterVestWeb]
   id: ClothingOuterVestWebEliteCentcomm
   name: central command web vest
   description: A synthetic armor vest redesignated for use by the Corporate Consortium, webbing and heat resistant fibers included.

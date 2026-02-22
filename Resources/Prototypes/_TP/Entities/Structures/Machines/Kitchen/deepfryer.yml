@@ -8,9 +8,13 @@
   - type: ApcPowerReceiver
     powerLoad: 50 # Off by default
   - type: Appearance
+  # starlight start
   - type: ContainerContainer
     containers:
       fryer_slots: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  # starlight end
   - type: DeepFryer
   - type: ExaminableSolution
     solution: fryer

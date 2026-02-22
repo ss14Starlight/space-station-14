@@ -341,9 +341,6 @@ public sealed partial class VampireEternalDarknessActionEvent : InstantActionEve
     public float FreezeRadius = 6f;
 
     [DataField]
-    public float LightOffRadius = 4f;
-
-    [DataField]
     public float TargetFreezeTemp = 233.15f;
 
     [DataField]

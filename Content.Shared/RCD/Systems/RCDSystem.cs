@@ -33,6 +33,9 @@ using Robust.Shared.Utility;
 using Content.Shared.NodeContainer;
 using Content.Shared.Atmos;
 using Content.Shared._Starlight.Atmos;
+using Content.Shared._Starlight.Atmos.Components;
+using Content.Shared.Prototypes;
+using Content.Shared._Starlight.Plumbing.Components;
 // Starlight End
 
 namespace Content.Shared.RCD.Systems;
@@ -277,18 +280,34 @@ public sealed class RCDSystem : EntitySystem
                     _currentLayer = AtmosPipeLayer.Tertiary;
                     break;
 
+                case RpdMode.Quaternary:
+                    _currentLayer = AtmosPipeLayer.Quaternary;
+                    break;
+
+                case RpdMode.Quinary:
+                    _currentLayer = AtmosPipeLayer.Quinary;
+                    break;
+
                 case RpdMode.Free:
-                    // Only use mouse direction in Free mode
-                    if (mouseCoordsDiff.Length() > mouseDeadzoneRadius && component.LastKnownEyeRotation.HasValue)
+                    // Only use mouse direction and distance in Free mode
+                    if (mouseCoordsDiff.Length() > mouseDeadzoneRadius / 2 && component.LastKnownEyeRotation.HasValue)
                     {
                         var gridRotation = _transform.GetWorldRotation(gridUid.Value);
                         var angle = new Angle(mouseCoordsDiff);
                         var eyeRotation = new Angle(component.LastKnownEyeRotation.Value);
                         var direction = (angle + eyeRotation + gridRotation + Math.PI / 2).GetCardinalDir();
-
-                        _currentLayer = (direction == Direction.North || direction == Direction.East)
-                            ? AtmosPipeLayer.Secondary
-                            : AtmosPipeLayer.Tertiary;
+                        
+                        // Use distance-based layers: inner ring (Secondary/Tertiary) vs outer ring (Quaternary/Quinary)
+                        if (mouseCoordsDiff.Length() > mouseDeadzoneRadius)
+                        {
+                            // Outer ring
+                            _currentLayer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Quaternary : AtmosPipeLayer.Quinary;
+                        }
+                        else
+                        {
+                            // Inner ring
+                            _currentLayer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Secondary : AtmosPipeLayer.Tertiary;
+                        }
                     }
                     break;
             }
@@ -491,7 +510,9 @@ public sealed class RCDSystem : EntitySystem
         {
             RpdMode.Primary => RpdMode.Secondary,
             RpdMode.Secondary => RpdMode.Tertiary,
-            RpdMode.Tertiary => RpdMode.Free,
+            RpdMode.Tertiary => RpdMode.Quaternary,
+            RpdMode.Quaternary => RpdMode.Quinary,
+            RpdMode.Quinary => RpdMode.Free,
             RpdMode.Free => RpdMode.Primary,
             _ => RpdMode.Free
         };
@@ -617,7 +638,12 @@ public sealed class RCDSystem : EntitySystem
         // Check rule: The tile is unoccupied
         var isWindow = prototype.ConstructionRules.Contains(RcdConstructionRule.IsWindow);
         var isCatwalk = prototype.ConstructionRules.Contains(RcdConstructionRule.IsCatwalk);
-
+        // Starlight Start: RPLD
+        var isPlumbingMachinePlacement = component.IsRPLD
+            && prototype.Prototype != null
+            && _protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var constructionProto)
+            && constructionProto.HasComponent<PlumbingConnectorAppearanceComponent>(_entityManager.ComponentFactory);
+        // Starlight End: RPLD
         _intersectingEntities.Clear();
         _lookup.GetLocalEntitiesIntersecting(gridUid, position, _intersectingEntities, -0.05f, LookupFlags.Uncontained);
 
@@ -625,7 +651,15 @@ public sealed class RCDSystem : EntitySystem
         {
             if (isWindow && HasComp<SharedCanBuildWindowOnTopComponent>(ent))
                 continue;
+            // Starlight Start: RPLD
+            if (isPlumbingMachinePlacement && Transform(ent).Anchored && HasComp<PlumbingConnectorAppearanceComponent>(ent))
+            {
+                if (popMsgs)
+                    _popup.PopupClient(Loc.GetString("rcd-component-cannot-build-on-occupied-tile-message"), uid, user);
 
+                return false;
+            }
+            // Starlight End: RPLD
             if (isCatwalk && _tags.HasTag(ent, CatwalkTag))
             {
                 if (popMsgs)
@@ -664,8 +698,8 @@ public sealed class RCDSystem : EntitySystem
         // Attempt to deconstruct a floor tile
         if (target == null)
         {
-            // Starlight Start: RPD
-            if (component.IsRpd)
+            // Starlight Start: RPD/RPLD
+            if (component.IsRpd || component.IsRPLD)
             {
                 if (popMsgs)
                     _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
@@ -707,16 +741,16 @@ public sealed class RCDSystem : EntitySystem
         // Attempt to deconstruct an object
         else
         {
-            // Starlight Start: RPD
+            // Starlight Start: RPD/RPLD
             // The object is not in the RPD whitelist
-            if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !deconstructible.RpdDeconstructable && component.IsRpd)
+            if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !deconstructible.RpdDeconstructable && component.IsRpd || !deconstructible.RpldDeconstructable && component.IsRPLD)
             {
                 if (popMsgs)
                     _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
 
                 return false;
             }
-            // Starlight End: RPD
+            // Starlight End: RPD/RPLD
 
             // The object is not in the whitelist
             if (!deconstructible.Deconstructable) // Starlight Edit: RPD - Removed ``TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !``
@@ -827,6 +861,12 @@ public sealed class RCDSystem : EntitySystem
                         Transform(ent).LocalRotation = direction.ToAngle();
                         break;
                 }
+
+                // Starlight Start: RPLD - Re-anchor ducts after rotation is set.
+                // PipeRestrictOverlap may have incorrectly unanchored because the final rotation wasn't applied yet at that point.
+                if (component.IsRPLD && !Transform(ent).Anchored && HasComp<PipeRestrictOverlapComponent>(ent))
+                    _transform.AnchorEntity(ent, Transform(ent));
+                // Starlight End: RPLD
 
                 _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used RCD to spawn {ToPrettyString(ent)} at {position} on grid {gridUid}");
                 break;

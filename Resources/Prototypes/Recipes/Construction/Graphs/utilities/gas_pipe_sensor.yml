@@ -22,6 +22,20 @@
         amount: 2
         doAfter: 1
 
+    # Carpmosia-start - 5 pipe layers
+    - to: sensorAlt3
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: sensorAlt4
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    # Carpmosia-end - 5 pipe layers
+
   - node: sensor
     entity: GasPipeSensor
     actions:
@@ -75,3 +89,41 @@
         steps:
           - tool: Welding
             doAfter: 1
+
+  # Carpmosia-start - 5 pipe layers
+  - node: sensorAlt3
+    entity: GasPipeSensorAlt3
+    actions:
+      - !type:SetAnchor
+    edges:
+      - to: start
+        completed:
+          - !type:SpawnPrototype
+            prototype: SheetSteel1
+            amount: 2
+          - !type:DeleteEntity
+        conditions:
+          - !type:EntityAnchored
+            anchored: false
+        steps:
+          - tool: Welding
+            doAfter: 1
+
+  - node: sensorAlt4
+    entity: GasPipeSensorAlt4
+    actions:
+      - !type:SetAnchor
+    edges:
+      - to: start
+        completed:
+          - !type:SpawnPrototype
+            prototype: SheetSteel1
+            amount: 2
+          - !type:DeleteEntity
+        conditions:
+          - !type:EntityAnchored
+            anchored: false
+        steps:
+          - tool: Welding
+            doAfter: 1
+  # Carpmosia-end - 5 pipe layers

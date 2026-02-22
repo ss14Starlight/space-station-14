@@ -15,6 +15,11 @@
     gloves: ClothingHandsGlovesCombat
 
 - type: loadout
+  id: InsulsCombatNoLock
+  equipment:
+    gloves: ClothingHandsGlovesCombat
+
+- type: loadout
   id: InsulsMercenary
   effects:
     - !type:JobRequirementLoadoutEffect
@@ -30,9 +35,9 @@
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
-        !type:RoleTimeRequirement
-        role: JobServiceWorker
-        time: 72000 # 20 hours of advanced tiding
+        !type:DepartmentTimeRequirement
+        department: Security
+        time: 216000 # 60 hours of charging batong
   equipment:
     gloves: ClothingHandsTacticalMaidGloves
 

@@ -1,0 +1,15 @@
+# Funky atmos - /tg/ gases
+- type: entity
+  id: ElectrolyzerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: electrolyzer machine board
+  description: A machine printed circuit board for an electrolyzer.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: Electrolyzer
+    stackRequirements:
+      Steel: 5
+      Manipulator: 2
+      CableHV: 5

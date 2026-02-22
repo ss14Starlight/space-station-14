@@ -1,5 +1,18 @@
 ﻿# Traitor
 - type: weightedRandom
+  id: SubTraitorObjectiveGroups
+  weights:
+    TraitorObjectiveGroupSteal: 1
+    SubTraitorObjectiveGroupState: 1 #As in, something about your character. Alive, dead, arrested, gained an ability...
+    TraitorObjectiveGroupSocial: 0.25 #Involves helping/harming others without killing them or stealing their stuff, lowered because the chance of rolling this was enormous when its just one objective in the category
+    TraitorObjectiveGroupStory: 0.85  # Starlight
+
+- type: weightedRandom
+  id: SubTraitorObjectiveGroupState
+  weights:
+    EscapeShuttleObjective: 1 # We're not allowing DAGD on these.
+
+- type: weightedRandom
   id: TraitorObjectiveGroupStory
   weights:
     RetrieveContrabandObjective: 1

@@ -1,0 +1,79 @@
+- type: entity
+  name: spyglass
+  parent: BaseItem
+  id: Spyglass
+  description: Used for long-distance spying. Makes you feel like a pirate.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/spyglass.rsi
+    state: spyglass
+  - type: Item
+    size: Normal
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.0
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 5
+    pvsIncrease: 0.5
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Glass: 50
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  name: captains spyglass
+  parent: [ BaseItem, BaseGrandTheftContraband ]
+  id: SpyglassCaptain
+  description: Used for long-distance spying. Makes you feel like a captain.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/spyglass.rsi
+    state: captain_spyglass
+  - type: Item
+    size: Normal
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.0
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 8
+    pvsIncrease: 0.8
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 100
+      Glass: 50
+  - type: StaticPrice
+    price: 1000
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: SpyglassCaptain
+
+- type: entity
+  name: improvised spyglass
+  parent: BaseItem
+  id: SpyglassImprovised
+  description: Used for long-distance spying. Makes you worry you might cut your eye on the lens.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/spyglass.rsi
+    state: improvised_spyglass
+  - type: Item
+    size: Normal
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.0
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 4
+    pvsIncrease: 0.4
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Glass: 50
+  - type: StaticPrice
+    price: 100

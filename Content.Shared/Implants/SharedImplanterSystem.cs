@@ -17,6 +17,13 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
+#region Starlight
+using Content.Shared._Starlight.Antags.Traitor;
+using Content.Shared._Starlight.Implants.Components;
+using Content.Shared.Mind;
+using Content.Shared.Mindshield.Components;
+#endregion
+
 namespace Content.Shared.Implants;
 
 public abstract class SharedImplanterSystem : EntitySystem
@@ -29,6 +36,7 @@ public abstract class SharedImplanterSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!; // Starlight-edit
 
     public override void Initialize()
     {
@@ -348,6 +356,36 @@ public abstract class SharedImplanterSystem : EntitySystem
                 }
             }
         }
+
+        if (MetaData(implant.Value).EntityPrototype?.ID == "MindControlImplant")
+        {
+            // prevent from using on SSD or dead
+            if (!_mind.TryGetMind(target, out var mindid, out var mind))
+                return false;
+            if (_mind.IsCharacterDeadIc(mind)) //maybe this should be action blocker? doenst seem to have anything for ssd T-T
+                return false;
+            
+            //disallow on self and traitor
+            if (user == target || HasComp<TraitorComponent>(target))
+            {
+                _popup.PopupEntity(Loc.GetString("mind-control-invalid"), user, user, PopupType.Small);
+                return false;
+            }
+
+            //disallow on mindshield
+            if (HasComp<MindShieldComponent>(target))
+            {
+                _popup.PopupEntity(Loc.GetString("mind-control-prevented"), user, user, PopupType.MediumCaution);
+                return false;
+            }
+            
+            if (TryComp<MindControlImplantComponent>(implant, out var comp))
+            {
+                comp.Master = user; // who implanted the target
+            }
+        }
+
+        
         // STARLIGHT END
 
         var ev = new AddImplantAttemptEvent(user, target, implant.Value, implanter);

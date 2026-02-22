@@ -236,6 +236,9 @@
             "name": "icon-loading"
         },
         {
+            "name": "icon-plumbing"
+        },
+        {
             "name": "base-icon-inhand-left",
             "directions": 4
         },

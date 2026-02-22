@@ -35,6 +35,12 @@
     cards:
     - RRCardBrighteyeDark
     - RRCardBrighteyePortalCritical
+    - RRCardBrighteyeTeachALesson
+    - RRCardBrighteyeProtect
+    - RRCardBrighteyeSanctuary
+    - RRCardBrighteyeReturnHome
+    - RRCardBrighteyeImpersonate
+    - RRCardBrighteyeLights
 
 # we don't just want a roundstart terminate gibbinator every round, so we make it a randomised event.
 # this also encourages players to engage with card system throughout the shift, not just meta-check for funny criminal/terminate
@@ -47,8 +53,8 @@
   - type: StationEvent
     weight: 5
     duration: null
-    earliestStart: 20
-    reoccurrenceDelay: 20
+    earliestStart: 10
+    reoccurrenceDelay: 30
     minimumPlayers: 15
   - type: DynamicRuleCost
     cost: 50
