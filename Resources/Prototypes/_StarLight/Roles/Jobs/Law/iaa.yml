@@ -18,6 +18,7 @@
   displayWeight: 40
   access:
   - IAA
+  - Command
   - Brig
   - Maintenance
   - Lawyer
