@@ -20,7 +20,6 @@
     <Folder Include="_Starlight\Movement\" />
     <Folder Include="Power\Components\" />
     <Folder Include="_Starlight\Spells\" />
-    <Folder Include="_Starlight\Xenobiology\Genetics\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="_Starlight\Weapon\Components\GunComponent.cs">
