@@ -96,7 +96,9 @@ public sealed partial class TraitDict
     public Dictionary<ProtoId<AbstractXenobiologyTraitPrototype>, FixedPoint2> Traits = new();
 
     public TraitDict(Dictionary<ProtoId<AbstractXenobiologyTraitPrototype>, FixedPoint2> traits) => Traits = traits;
-    
+
+    public TraitDict() {}
+
     public static TraitDict Combine(IEnumerable<TraitDict> traitDicts)
     {
         var newDict = new TraitDict();
