@@ -19,11 +19,11 @@ public sealed class GenesSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private FrozenDictionary<string, AbstractTraitPrototype>? _genes;
-    
+
     public override void Initialize()
     {
         base.Initialize();
-        
+
         _genes = _prototypeManager.GetInstances<AbstractTraitPrototype>();
     }
 
@@ -41,7 +41,7 @@ public sealed class GenesSystem : EntitySystem
         var randNormal = mean + (stdDev * randStdNormal);
         return randNormal;
     }
-    
+
     /// <summary>
     /// Returns the collection of traits in random order.
     /// </summary>
@@ -52,9 +52,9 @@ public sealed class GenesSystem : EntitySystem
         while(true)
             yield return _genes.ElementAt(_robustRandom.Next(0, _genes.Count)).Value;
     }
-    
+
     public static TraitDict GetTraitsFromEnumerable(IEnumerable<Gene> genes) => TraitDict.Combine(genes.Select(g => g.Traits));
-    
+
     public static TraitDict GetTraits(params Gene[] genes) => GetTraitsFromEnumerable(genes);
 
     public Gene GenerateGene()
@@ -88,11 +88,11 @@ public sealed class GenesSystem : EntitySystem
 
         return new Gene() { Traits = traitDict, TechnicalName = technicalName.ToString(), Name = null };
     }
-    
+
     public void UpdateTraits(Entity<GenesComponent> entity)
     {
         var newTraits = GetTraitsFromEnumerable(entity.Comp.Genes).Traits;
-        
+
         Dictionary<OnceTraitPrototype, FixedPoint2> newOnceTraits = new();
         Dictionary<OnSolutionChangedTraitPrototype, FixedPoint2> newOnSolutionChangedTraits = new();
         Dictionary<PassiveTraitPrototype, (FixedPoint2, TimeSpan)> newPassiveTraits = new();
@@ -115,11 +115,11 @@ public sealed class GenesSystem : EntitySystem
                     newPassiveTraits.Add(key3, (t.Value, key3.Cooldown + _gameTiming.CurTime));
             }
         }
-        
+
         var onceTraits = _entityManager.EnsureComponent<OnceTraitsComponent>(entity.Owner);
         var onSolutionChangedTraits = _entityManager.EnsureComponent<OnSolutionChangedTraitsComponent>(entity.Owner);
         var passiveTraits = _entityManager.EnsureComponent<PassiveTraitsComponent>(entity.Owner);
-        
+
         /*
          * Okay, this is going to be ugly.
          * The once traits need to be updated in the following way:
@@ -157,7 +157,7 @@ public sealed class GenesSystem : EntitySystem
                     ((newOnceTraits[t] * t.OnUpdatedEffect.ScalingFactor) + t.OnUpdatedEffect.ScalingOffset).Float());
             }
         }
-        
+
         onceTraits.Traits = newOnceTraits;
         onSolutionChangedTraits.Traits = newOnSolutionChangedTraits;
         passiveTraits.Traits = newPassiveTraits;
@@ -193,7 +193,7 @@ public sealed partial class TraitDict
 
         return newDict;
     }
-    
+
     public static TraitDict Add(params TraitDict[] traitDicts) => Combine(traitDicts);
 }
 

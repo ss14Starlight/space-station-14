@@ -14,7 +14,7 @@ public sealed partial class OnceTraitPrototype : AbstractTraitPrototype
     /// </summary>
     [DataField(required: true)]
     public ScaledEntityEffect OnAddedEffect = default!;
-    
+
     /// <summary>
     /// The entity effect that is called when the value associated with this trait is updated.
     /// If no effect is provided, then when the trait value is updated, onRemovedEffect will be applied then onAddedAffect.
