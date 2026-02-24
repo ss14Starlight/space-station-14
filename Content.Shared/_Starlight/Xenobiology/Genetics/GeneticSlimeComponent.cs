@@ -6,5 +6,11 @@ namespace Content.Shared._Starlight.Xenobiology.Genetics;
 public sealed partial class GeneticSlimeComponent : Component
 {
     [ViewVariables, AutoNetworkedField]
-    public TraitDict Genes = new();
+    public List<Gene> Genes = new();
+
+    [ViewVariables, AutoNetworkedField]
+    public TraitDict Traits = new();
+    
+    [ViewVariables, AutoNetworkedField]
+    public Dictionary<PassiveSlimeTraitPrototype, TimeSpan> PassiveTraits = new();
 }
