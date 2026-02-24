@@ -74,6 +74,7 @@
     - id: RailroadingTerminator
     - id: ColossusSpawn # Starlight end
     - id: EeepEvent # imp
+    - id: HellPortalSpawn # Moff
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 

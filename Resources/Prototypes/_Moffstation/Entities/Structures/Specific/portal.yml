@@ -1,0 +1,77 @@
+- type: entity
+  id: BaseHostilePortal
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+  - type: Sprite
+    layers:
+    - sprite: Structures/Specific/carp_rift.rsi
+      state: icon
+      color: "#78090b"
+      shader: unshaded
+  - type: InteractionOutline
+  - type: Clickable
+  - type: PointLight
+    enabled: true
+    color: "#78090b"
+    radius: 20.0
+    energy: 25.0
+    falloff: 10.0
+    netsync: false
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
+  - type: TriggerOnSpawn
+  - type: RepeatingTrigger
+    delay: 30
+  - type: EmitSoundOnTrigger
+    positional: true
+    predicted: true
+    sound:
+      collection: RadiationPulse
+
+
+- type: entity
+  parent: BaseHostilePortal
+  id: HellPortal
+  name: hell portal
+  description: a portal letting loose the worst hell has to offer.
+  components:
+  - type: SpawnEntityTableOnTrigger
+    useMapCoords: true
+    table: !type:AllSelector
+      children:
+      - !type:GroupSelector # The base foot soliders that spawn every time
+        rolls: !type:RangeNumberSelector
+          range: 3, 5
+        children:
+        - id: MobFleshLoverSmasher
+        - id: MobFleshGolemSmasher
+        - id: MobFleshClampSmasher
+        - id: MobFleshJaredSmasher
+        - id: MobAbominationSmasher
+      - !type:GroupSelector # The base foot soliders that spawn every time
+        prob: 0.3
+        children:
+        - id: MobHellhound
+        - id: MobGoliath
+        - id: MobHellspawnSmasher
+          weight: 0.05

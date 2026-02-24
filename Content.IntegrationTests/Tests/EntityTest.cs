@@ -286,6 +286,7 @@ namespace Content.IntegrationTests.Tests
                 "ESSparkOnTrigger",
                 // ES end
                 "BluespaceLocker", // Moff Station
+                "SpawnEntityTableOnTrigger", // Moff Station - Portals spawn more stuff on trigger, self-explanatory
             };
 
             Assert.That(server.CfgMan.GetCVar(CVars.NetPVS), Is.False);
