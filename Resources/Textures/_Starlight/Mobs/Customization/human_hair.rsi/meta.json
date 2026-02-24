@@ -1,35 +1,391 @@
 {
-    "version": 1,
-    "size": {
-      "x": 32,
-      "y": 32
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Starlight, Corvax , Skyrat-tg at https://github.com/Skyrat-SS13/Skyrat-tg/commit/ad654e76b4c5dd3972cd2a07eb2d4f9658965807",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "longbangs",
+	  "copyright": "aedler",
+      "directions": 4
     },
-    "copyright": "Resprited by aedler for SS14, gatheredlow sprited by Sha-Seng (Github), lowpigtails by Skeleskitty (Discord), shortfluffy and reihair by Toaster0423 (Discord)",
-    "license": "CC-BY-SA-3.0",
-    "states": [
-        {
-          "name": "longbangs",
-          "directions": 4
-        },
-        {
-          "name": "himecutwithtails",
-          "directions": 4
-        },
-         {
-         "name": "gatheredlow",
-         "directions": 4
-        },
-       {
-         "name": "lowpigtails",
-        "directions": 4
-       },
-       {
-          "name": "shortfluffy",
-          "directions": 4
-        },
-        {
-            "name": "reihair",
-            "directions": 4
-      }
-    ]
+    {
+      "name": "himecutwithtails",
+	  "copyright": "aedler",
+      "directions": 4
+    },
+    {
+      "name": "gatheredlow",
+      "copyright": "Sha-Seng (Github)",
+      "directions": 4
+    },
+    {
+      "name": "lowpigtails",
+      "copyright": "Skeleskitty (Discord)",
+      "directions": 4
+    },
+    {
+      "name": "shortfluffy",
+      "copyright": "Toaster0423 (Discord)",
+      "directions": 4
+    },
+    {
+      "name": "reihair",
+      "copyright": "Toaster0423 (Discord)",
+      "directions": 4
+    },
+    {
+      "name": "africanpigtails",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "afropuffdouble",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "afropuffleft",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "afropuffright",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "amazon",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "astolfo",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "baum",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "beachwave",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "bluntbangs",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "bluntbangs_alt",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "bobcutalt",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "bunhead4",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "combed",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "combedbob",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "cotton",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "curly",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "dave",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "diagonal_bangs",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "emoshort",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "fingerwave",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "fluffy_short",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "fortuneteller",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "fortuneteller_alt",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "froofylong",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "geisha",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "gentle21",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "glammetal",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "gloomy_long",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "gloomy_medium",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "grande",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "halfshave",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "halfshave_glamorous",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "halfshave_long",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "halfshave_messy",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "halfshave_messylong",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "halfshave_snout",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "hightight",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "hyenamane",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "jessica",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "long4",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "longdtails",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "longeralt",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "longovereye_alt",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "longsidepartstraight",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "loose_slicked",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "mediumbraid",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "newyou",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "ponytailalt",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "ponytailf",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "poofy2",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "quadcurls",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "sabitsuki",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "scully",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "shorthair4",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "shy",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "simple_ponytail",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "sleaze",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "slightlymessy",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "slimedroplet",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "slimedroplet_alt",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "slimespikes",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "slimetendrils",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "slimetendrils_alt",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "spicy",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "twintail_floor",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "veryshortovereye",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "victory",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "viper",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "wife",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    },
+    {
+      "name": "ziegler",
+	  "copyright": "Skyrat-TG",
+      "directions": 4
+    }
+  ]
 }

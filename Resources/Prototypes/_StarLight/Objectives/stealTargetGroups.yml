@@ -78,8 +78,8 @@
     state: icon
 
 - type: stealTargetGroup
-  id: EncryptionKeySalvage
-  name: steal-target-groups-encryption-key-salvage
+  id: EncryptionKeyHybrid
+  name: steal-target-groups-encryption-key-hybrid
   sprite:
     sprite: _Starlight/Objects/Misc/salvagekeystealobjective.rsi
     state: icon

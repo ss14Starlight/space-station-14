@@ -49,6 +49,51 @@
     back:
     - TrumpetInstrument
   groupBy: "Instruments"
+  
+- type: loadout
+  id: CoderSocks
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    shoes: ClothingUnderSocksCoder
+
+# Meow mrrp ## shut up ### no :3
+
+- type: loadout
+  id: CatEars
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    head: ClothingHeadHatWhiteCatEars
+  groupBy: "cat ears"
+
+- type: loadout
+  id: BunnyEars
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    head: ClothingHeadHatBunny
+  groupBy: "cat ears"
+
+- type: loadout
+  id: DogEars
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    head: ClothingHeadHatDogEars
+  groupBy: "cat ears"
 
 - type: loadout
   id: RolliePack
@@ -126,11 +171,13 @@
   storage:
     back:
       - Basketball
+  groupBy: "balls"
 
 - type: loadout
   id: TBall
   equipment: # woof
     mask: TennisBall
+  groupBy: "balls"
 
 - type: loadout
   id: RubberQuack
@@ -338,6 +385,18 @@
       !type:RoleTimeRequirement
       role: JobMailTech
       time: 36000 # 10 hours of being ignored while carrying a parcelbomb
+  storage:
+    back:
+    - ClothingShoesSkates
+
+- type: loadout
+  id: RollerSkatesLoadout
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMailTech
+      time: 18000 # 5 hours of being ignored while carrying a parcelbomb. 
   equipment:
     shoes: ClothingShoesSkates
 
@@ -399,7 +458,7 @@
       - HappyHonk
 
 - type: loadout
-  id: leftripperarm
+  id: LeftRipperArm
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
@@ -409,9 +468,10 @@
   storage:
     back:
       - LeftArmCyberRipper
+  groupBy: "cybernetic trinkets"
 
 - type: loadout
-  id: rightmechwrightarm
+  id: RightMechwrightArm
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
@@ -421,9 +481,10 @@
   storage:
     back:
       - RightArmCyberMechwright
+  groupBy: "cybernetic trinkets"
 
 - type: loadout
-  id: leftcargoleg
+  id: LeftCargoLeg
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
@@ -433,9 +494,10 @@
   storage:
     back:
       - LeftLegCyberCargo
+  groupBy: "cybernetic trinkets"
 
 - type: loadout
-  id: rightcargoleg
+  id: RightCargoLeg
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
@@ -445,6 +507,7 @@
   storage:
     back:
       - RightLegCyberCargo
+  groupBy: "cybernetic trinkets"
 
 - type: loadout
   id: CigPackBub
@@ -484,6 +547,7 @@
   storage:
     id:
       - PersonalAI
+  groupBy: "pAI"
 
 - type: loadout
   id: GoldenPersonalAI
@@ -496,6 +560,7 @@
   storage:
     id:
       - GoldenPersonalAI
+  groupBy: "pAI"
 
 - type: loadout
   id: Boxblacklight
@@ -508,3 +573,32 @@
   storage:
     back: 
       - Boxblacklight
+
+- type: loadout
+  id: RoadCone
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Engineering
+        time: 144000 # 40 hours of being a STMS
+  equipment:
+    head: ClothingHeadHatCone
+
+- type: loadout
+  id: LilyFlower
+  equipment:
+    head: ClothingHeadHatLilyFlower
+  groupBy: "flowers"
+
+- type: loadout
+  id: ClothWrapShoeTrinket
+  equipment:
+    shoes: ClothingClothWrap
+  groupBy: "cloth wraps"
+
+- type: loadout
+  id: ClothWrapGloveTrinket
+  equipment:
+    gloves: ClothingClothWrap
+  groupBy: "cloth wraps"

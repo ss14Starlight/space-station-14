@@ -2,7 +2,7 @@
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
   id: ClothingEyesGlassesBrigmedic
   name: brigmedic glasses
-  description: Tamashi-upgraded glasses. Yes. Brigmedic ones.
+  description: High-quality hud that can protect against flashes. Tamashi-style!
   components:
   - type: Sprite
     sprite: Clothing/Eyes/Glasses/brigmedicglasses.rsi
@@ -18,6 +18,32 @@
     node: glassesSec
   - type: StealTarget
     stealGroup: RareGlassesCollection
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  id: ClothingEyesGlassesCorpsman
+  name: corpsman glasses
+  description: Can protect against flashes much like security glasses, and track vitals!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/corpsman.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/corpsman.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowHealthBars
+  - type: Construction
+    graph: GlassesSecHUD
+    node: glassesSec
+  - type: StealTarget
+    stealGroup: MiscGlassesCollection
   - type: Tag
     tags:
     - HamsterWearable

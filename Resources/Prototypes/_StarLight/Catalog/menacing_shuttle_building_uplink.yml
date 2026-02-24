@@ -183,3 +183,44 @@
     BuildToken: 6
   categories:
   - MenacingShuttleUplinkPirate
+
+- type: listing
+  id: ShuttleGunNTSFCyerxa120mmSet
+  name: NTSF-CYERXA Dual 120mm Cannons
+  description: A devastating dual 120mm cannon system for heavy shuttle combat. Fires 2 rounds per activation. Requires magazines.
+  productEntity: ShuttleGunNTSFCyerxa120mm
+  cost:
+    BuildToken: 15
+  categories:
+  - MenacingShuttleUplinkWeapons
+
+- type: listing
+  id: Magazine120mmGrenadeBlastSet
+  name: 120mm Blast Grenade Magazine
+  description: A 20-round magazine loaded with powerful blast grenades for the NTSF-CYERXA cannon system.
+  productEntity: Magazine120mmGrenadeBlast
+  cost:
+    BuildToken: 10
+  categories:
+  - MenacingShuttleUplinkWeapons
+
+- type: listing
+  id: RemoteSignallerCombatSet
+  name: Combat Remote Signaller
+  description: Military-grade remote signaller with 100m range for triggering shuttle weapons systems.
+  productEntity: RemoteSignallerCombat
+  cost:
+    BuildToken: 2
+  categories:
+  - MenacingShuttleUplinkWeapons
+
+- type: listing
+  id: ShuttleWeaponsConsoleSet
+  name: Shuttle Weapons Control Console
+  description: Advanced weapons control console with device linking for shuttle guns and integrated mass scanner for tactical awareness.
+  productEntity: ShuttleWeaponsConsole
+  cost:
+    BuildToken: 8
+  categories:
+  - MenacingShuttleUplinkWeapons
+

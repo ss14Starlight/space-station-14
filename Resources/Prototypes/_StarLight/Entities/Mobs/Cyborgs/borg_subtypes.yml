@@ -320,6 +320,19 @@
       spriteToggleLightState: cricket_l
       inventoryTemplateId: borgDutch
 
+- type: entity
+  parent: BorgMiningSubtypeBase
+  id: BorgMiningSubtypeMiningBeetle
+  name: Beetle
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/miner.rsi
+      spriteBodyState: beetle
+      spriteHasMindState: beetle_e
+      spriteNoMindState: beetle_e_r
+      spriteToggleLightState: beetle_l
+      inventoryTemplateId: borg
+
 # region Service
 
 - type: entity
@@ -535,3 +548,41 @@
       spriteHasMindState: real_tech_e
       spriteNoMindState: real_tech_e_r
       spriteToggleLightState: real_tech_l
+
+# region Purrfus
+
+- type: entity
+  parent: BorgPurrfusSubtypeBase
+  id: BorgPurrfusSubtypeGreen
+  name: Green Purrfus
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/purrfus.rsi
+      spriteBodyState: green
+      spriteHasMindState: green_e
+      spriteNoMindState: green_e_r
+      spriteToggleLightState: green_l
+
+- type: entity
+  parent: BorgPurrfusSubtypeBase
+  id: BorgPurrfusSubtypeOrange
+  name: Orange Purrfus
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/purrfus.rsi
+      spriteBodyState: orange
+      spriteHasMindState: orange_e
+      spriteNoMindState: orange_e_r
+      spriteToggleLightState: orange_l
+
+- type: entity
+  parent: BorgPurrfusSubtypeBase
+  id: BorgPurrfusSubtypePink
+  name: Pink Purrfus
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/purrfus.rsi
+      spriteBodyState: pink
+      spriteHasMindState: pink_e
+      spriteNoMindState: pink_e_r
+      spriteToggleLightState: pink_l

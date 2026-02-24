@@ -35,6 +35,10 @@
     - Dead
   # endoskeleton need it
   - type: TransferMindOnGib
+  # self destruct option for phase 1 (manual only, won't trigger on phase 2 transformation)
+  - type: AutoImplant
+    implants:
+    - TerminatorDeathAcidifierImplant
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -110,6 +114,13 @@
     baseDecayRate: 0
   - type: Hunger
     baseDecayRate: 0
+  - type: RandomFootstepSound # 1/1000 steps will be a heavy clank. not very subtle.
+    sound: 
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        volume: -6
+        pitch: 0.7
+        variation: 0.025
 
 - type: entity
   parent:

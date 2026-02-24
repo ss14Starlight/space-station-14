@@ -32,7 +32,7 @@
     HOPIDStealObjective: 1 # HoP's more exposed, but there's less copies of this ID usually
     PinpointerNuclearStealObjective: 1 # Fun if paired with the nuke disk objective
     AccessConfiguratorStealObjective: 1 # HoP and CE
-    EncryptionKeySalvageStealObjective: 0.6 # QM/Salv Lead. Not that interesting, so low.
+    EncryptionKeyHybridStealObjective: 0.6 # QM/Salv Lead/Brigmed. Not that interesting, so low.
     CMOHardsuitStealObjective: 1 # I'm so sorry CMO
     CEHardsuitStealObjective: 1 # Where are you going to hide it?
     HOSHardsuitStealObjective: 1 # Quite defensive.

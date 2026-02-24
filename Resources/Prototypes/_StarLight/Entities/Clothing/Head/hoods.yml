@@ -19,3 +19,29 @@
     sprite: _Starlight/Clothing/Head/Hoods/Coat/hoodcargosenior.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hoods/Coat/hoodcargosenior.rsi
+
+- type: entity
+  parent: ClothingHeadHatHoodWinterBase
+  id: ClothingHeadHatHoodCorpsman
+  categories: [ HideSpawnMenu ]
+  name: corpsman's hood
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hoods/Coat/hoodcorpsman.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hoods/Coat/hoodcorpsman.rsi
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+        Caustic: 0.95
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide

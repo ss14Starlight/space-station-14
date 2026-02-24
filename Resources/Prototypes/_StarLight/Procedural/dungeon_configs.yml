@@ -151,7 +151,7 @@
   - !type:PrefabDunGen
     roomWhitelist:
       tags:
-      - SovietDungeon
+      - SovietDungeonWeh
     presets:
     - Bucket
     - Wow
@@ -239,6 +239,169 @@
     - id: PosterContrabandRevolt
     - id: PosterContrabandRise
     - id: PosterLegitWorkForAFuture
+
+
+#========================================================================   
+- type: dungeonConfig
+  id: SovietDungeonWeh
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - SovietDungeon
+    presets:
+    - Bucket
+    - Wow
+    - SpaceShip
+    - Tall
+
+  - !type:CorridorDunGen
+    width: 3
+    tile: FloorTechMaint3
+
+  - !type:DungeonEntranceDunGen
+    count: 3
+    tile: FloorTechMaint2
+    contents: SovietDungeonEntranceWeh
+
+  - !type:RoomEntranceDunGen
+    tile: FloorTechMaint3
+    contents: SovietDungeonRoomEntranceWeh
+
+  - !type:EntranceFlankDunGen
+    tile: FloorTechMaint3
+    contents: SovietDungeonWindowWeh
+
+  - !type:WallMountDunGen
+    tile: FloorTechMaint3
+    contents: SovietDungeonWallsWeh
+
+  - !type:BoundaryWallDunGen
+    tile: FloorTechMaint3
+    wall: WallSolidRust
+    cornerWall: WallSolidRust
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:CornerClutterDunGen
+    contents: BaseClutter
+
+  - !type:CorridorClutterDunGen
+    contents: SovietCorridorsWeh
+    chance: 0.55
+
+  - !type:CorridorDecalSkirtingDunGen
+    cardinalDecals:
+      South: GrayConcreteTrimLineS
+      East: GrayConcreteTrimLineE
+      North: GrayConcreteTrimLineN
+      West: GrayConcreteTrimLineW
+    cornerDecals:
+      SouthEast: GrayConcreteTrimCornerSe
+      SouthWest: GrayConcreteTrimCornerSw
+      NorthEast: GrayConcreteTrimCornerNe
+      NorthWest: GrayConcreteTrimCornerNw
+    pocketDecals:
+      SouthWest: GrayConcreteTrimInnerSw
+      SouthEast: GrayConcreteTrimInnerSe
+      NorthWest: GrayConcreteTrimInnerNw
+      NorthEast: GrayConcreteTrimInnerNe
+
+- type: entityTable
+  id: SovietDungeonEntranceWeh
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: AirlockHatch
+
+- type: entityTable
+  id: SovietDungeonRoomEntranceWeh
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: AirlockHatch
+
+- type: entityTable
+  id: SovietDungeonWindowWeh
+  table: !type:GroupSelector
+    children:
+    - id: CableApcExtension
+    - id: WallSolidRust
+    - id: PoweredSmallLight
+
+- type: entityTable
+  id: SovietDungeonWallsWeh
+  table: !type:GroupSelector
+    children:
+    # Posters
+    - id: PosterContrabandCommunistState
+    - id: PosterContrabandPunchShit
+    - id: PosterContrabandRevolt
+    - id: PosterContrabandRise
+    - id: PosterLegitWorkForAFuture
+
+- type: entityTable
+  id: SovietCorridorsWeh
+  table: !type:GroupSelector
+    children:
+    # Posters
+    - id: VendingMachineSovietSoda
+    - id: VendingMachineSovietSodaEmpty
+    - id: Rack
+      weight: 6
+    - id: PoweredLightPostSmall
+      weight: 6
+    - id: Table
+      weight: 6
+    - id: BannerSovietRegular
+    - id: MobBearSoviet
+    - id: DecalSpawnerBloodSplatters
+      weight: 6
+    - id: GenericTank
+      weight: 6
+    - id: ClosetRadiationSuitFilled
+    - id: ClosetRadiationSuit
+    - id: DecalSpawnerDirtWide
+      weight: 15
+    - id: DecalSpawnerGraffiti
+      weight: 15
+    - id: RandomSpawner
+      weight: 15
+    - id: OreBox
+      weight: 28
+    - id: MaintenancePlantSpawner
+      weight: 6
+    - id: MaintenanceWeaponSpawner
+    - id: MaintenanceToolSpawner
+      weight: 6
+    - id: RandomMercenaryCorpseSpawner
+    - id: RandomSovietCorpseSpawner
+    - id: RandomArtifactSpawner20
+    - id: SpawnMobOreCrab
+    - id: LootSpawnerMedicalMinor
+    - id: LootSpawnerMaterialsSupplementary
+    - id: SalvageCanisterSpawner
+    - id: SalvageSpawnerScrapCommon
+    - id: SalvageSpawnerScrapValuable
+    - id: SalvageSpawnerTreasure
+    - id: SalvageLootSpawner
+    - id: BaseBarrelChemRadioactiveFilledUranium
+    - id: Bonfire
+      weight: 7
+    - id: BarrelFlaming
+      weight: 3
+    - id: AcousticGuitarInstrument
+    - id: SovietRevolutionSupplySpawner
+    - id: LandMineExplosive
+    - id: PuddleBlood
+    - id: PuddleVomit
+    - id: BarrelChemFilledLube
+    - id: BarrelChemEmpty
+    - id: BarrelChemFilledPhosphorus
+    - id: BarrelChemFilledChlorine
+
+
 
 #========================================================================
 

@@ -48,3 +48,42 @@
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
+
+# Derelict
+
+- type: entity
+  parent: PurrfusBorgChassisDerelict
+  id: PlayerPurrfusBorgDerelict
+  suffix: Battery, Module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - PositronicBrain
+      borg_module:
+      - BorgModuleTool
+      - BorgModulePaperwork
+      - BorgModuleFireExtinguisher
+      - BorgModuleMakeshiftKnife
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+  - type: RandomMetadata
+    nameSegments: [NamesBorg]
+
+- type: entity
+  parent: PlayerPurrfusBorgDerelict
+  id: PlayerPurrfusBorgDerelictGhostRole
+  suffix: Ghost role
+  components:
+  - type: GhostRole
+    name: ghost-role-information-derelict-purrfus-cyborg-name
+    description: ghost-role-information-derelict-purrfus-cyborg-description
+    rules: ghost-role-information-silicon-rules
+    raffle:
+      settings: default
+    reregister: false
+    job: Borg
+  - type: GhostTakeoverAvailable

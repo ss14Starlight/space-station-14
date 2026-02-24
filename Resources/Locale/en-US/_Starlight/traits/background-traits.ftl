@@ -29,3 +29,6 @@ trait-background-burned-description = You are a shadekin with the condition that
 
 trait-background-iterator-name = Iterator
 trait-background-iterator-description = You were from a colony which was for one reason or another abandoned, however you had the grit or foolhardiness within you to continue the goal your colony was set out to do. During these trials, your only reliable allies came to be the scugs/scuretts, who have thought you their way of communication which was passed down onto them throughout times of eld. The comprehension of this series of intricate noises and gestures made you slowly lose the fundamental basics of your mother language.
+
+trait-background-exterminator-name = Hunted
+trait-background-exterminator-description = You saw something dreadful. It looked human at first, then it burned down to a metal skeleton. Nothing would slow it down and it acted with the single minded purpose of ending them, and it did. Crushed them like nothing, then it melted away in a brilliant fire. You watched it burn, and saw you watching. You have seen too much, it will come for you next. Of this you are certain...

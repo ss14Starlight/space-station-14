@@ -99,7 +99,7 @@
 # agent uplink
 - type: storeCategory
   id: UplinkCybernetics
-  name: Cybernetics
+  name: store-category-cybernetics
   
 # salvage
 

@@ -117,3 +117,33 @@
   background: /Textures/_Starlight/LobbyScreens/Dispace.webp
   title: lobby-state-background-Dispace-title
   artist: lobby-state-background-IQlvlZero-artist
+
+- type: lobbyBackground
+  id: clown
+  background: /Textures/_Starlight/LobbyScreens/clown.webp
+  title: lobby-state-background-clown-title
+  artist: lobby-state-background-clown-artist
+
+- type: lobbyBackground
+  id: fatefulshift
+  background: /Textures/_Starlight/LobbyScreens/FatefulShift.webp
+  title: lobby-state-background-fatefulshift-title
+  artist: lobby-state-background-fatefulshift-artist
+
+- type: lobbyBackground
+  id: hopdesksimulator
+  background: /Textures/_Starlight/LobbyScreens/HoPdeskSimulator.webp
+  title: lobby-state-background-hopdesksimulator-title
+  artist: lobby-state-background-hopdesksimulator-artist
+
+- type: lobbyBackground
+  id: janitorialhell
+  background: /Textures/_Starlight/LobbyScreens/janitorial.webp
+  title: lobby-state-background-janitorialhell-title
+  artist: lobby-state-background-janitorialhell-artist
+
+- type: lobbyBackground
+  id: katievssyndie
+  background: /Textures/_Starlight/LobbyScreens/KATIEVSSYNDIE.webp
+  title: lobby-state-background-katievssyndie-title
+  artist: lobby-state-background-katievssyndie-artist

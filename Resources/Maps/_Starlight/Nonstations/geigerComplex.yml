@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/11/2026 04:07:28
-  entityCount: 8856
+  time: 02/23/2026 03:17:37
+  entityCount: 8877
 maps:
 - 1
 grids:
@@ -65,6 +65,9 @@ entities:
         moles:
           Oxygen: 21.824879
           Nitrogen: 82.10312
+    - type: Tag
+      tags:
+      - NukiePlanet
   - uid: 2
     components:
     - type: MetaData
@@ -6882,17 +6885,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,-1.5
-      parent: 2
-  - uid: 185
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,1.5
-      parent: 2
-  - uid: 186
-    components:
-    - type: Transform
-      pos: 2.5,3.5
       parent: 2
 - proto: BaseRevUplinkRadio
   entities:
@@ -14741,6 +14733,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -11.486333,66.68471
       parent: 2
+  - uid: 8876
+    components:
+    - type: Transform
+      pos: 1.5325689,4.577227
+      parent: 2
 - proto: ChemDispenser
   entities:
   - uid: 1697
@@ -15269,7 +15266,7 @@ entities:
     - type: Transform
       pos: 35.54582,-41.214024
       parent: 2
-- proto: ClothingOuterArmorSovietFlak
+- proto: ClothingOuterArmorSovietPlate
   entities:
   - uid: 1791
     components:
@@ -15442,7 +15439,7 @@ entities:
   - uid: 1809
     components:
     - type: Transform
-      pos: 1.811276,1.4505179
+      pos: 2.7071874,1.5341425
       parent: 2
   - uid: 1810
     components:
@@ -15680,17 +15677,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-1.5
       parent: 2
-  - uid: 1834
-    components:
-    - type: Transform
-      pos: 0.5,3.5
-      parent: 2
-  - uid: 1835
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,1.5
-      parent: 2
   - uid: 1836
     components:
     - type: Transform
@@ -15743,6 +15729,14 @@ entities:
     - type: Transform
       pos: 1.5,53.5
       parent: 2
+- proto: ComputerNukieDelivery
+  entities:
+  - uid: 4706
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,3.5
+      parent: 2
 - proto: ComputerPowerMonitoring
   entities:
   - uid: 1845
@@ -15778,6 +15772,11 @@ entities:
     components:
     - type: Transform
       pos: -11.5,67.5
+      parent: 2
+  - uid: 4707
+    components:
+    - type: Transform
+      pos: 1.5,1.5
       parent: 2
 - proto: CrateAirGrenade
   entities:
@@ -15889,6 +15888,20 @@ entities:
     components:
     - type: Transform
       pos: 14.285498,-43.4775
+      parent: 2
+  - uid: 8874
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.48569393,3.4834769
+      parent: 2
+- proto: CybersunFlippo
+  entities:
+  - uid: 8875
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.201806,0.5928518
       parent: 2
 - proto: Dart
   entities:
@@ -17283,7 +17296,7 @@ entities:
   - uid: 2104
     components:
     - type: Transform
-      pos: 1.7999003,1.7394578
+      pos: 2.2384374,1.7216425
       parent: 2
   - uid: 2105
     components:
@@ -17507,7 +17520,7 @@ entities:
   - uid: 2138
     components:
     - type: Transform
-      pos: 1.5,3.5
+      pos: 2.5,3.5
       parent: 2
 - proto: FenceMetalBroken
   entities:
@@ -25735,6 +25748,14 @@ entities:
     - type: Transform
       pos: -0.4842868,27.59114
       parent: 2
+- proto: HandheldStationMapNukeops
+  entities:
+  - uid: 8872
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5299311,0.5616018
+      parent: 2
 - proto: HarmonicaInstrument
   entities:
   - uid: 3714
@@ -27380,7 +27401,7 @@ entities:
   - uid: 3946
     components:
     - type: Transform
-      pos: 1.1998768,3.4130595
+      pos: 0.7228124,3.5966425
       parent: 2
   - uid: 3947
     components:
@@ -27535,6 +27556,13 @@ entities:
       access:
       - - SyndicateAgent
       - - NuclearOperative
+- proto: PluoxiumCanister
+  entities:
+  - uid: 8877
+    components:
+    - type: Transform
+      pos: -27.5,5.5
+      parent: 2
 - proto: PlushieLizardJobBartender
   entities:
   - uid: 3965
@@ -30898,7 +30926,7 @@ entities:
   - uid: 4503
     components:
     - type: Transform
-      pos: 1.8297752,3.4022388
+      pos: 0.3009374,3.7216425
       parent: 2
 - proto: RustedThruster
   entities:
@@ -30926,6 +30954,14 @@ entities:
     components:
     - type: Transform
       pos: -19.5,-22.5
+      parent: 2
+- proto: SciFlash
+  entities:
+  - uid: 8873
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.639306,0.6084768
       parent: 2
 - proto: ScrapAirlock2
   entities:
@@ -31847,6 +31883,138 @@ entities:
     - type: Transform
       pos: -12.5,65.5
       parent: 2
+- proto: SurveillanceCameraRouterSecurity
+  entities:
+  - uid: 8857
+    components:
+    - type: Transform
+      pos: -1.5,-0.5
+      parent: 2
+- proto: SurveillanceCameraSecurity
+  entities:
+  - uid: 8858
+    components:
+    - type: Transform
+      pos: 5.5,0.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Command
+  - uid: 8859
+    components:
+    - type: Transform
+      pos: 15.5,1.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Eastern Walkway
+  - uid: 8860
+    components:
+    - type: Transform
+      pos: -12.5,1.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Western Walkway
+  - uid: 8861
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,14.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Northern Walkway
+  - uid: 8862
+    components:
+    - type: Transform
+      pos: 3.5,-10.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Southern Walkway
+  - uid: 8863
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,-25.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Shop
+  - uid: 8864
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 30.5,-0.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Power
+  - uid: 8865
+    components:
+    - type: Transform
+      pos: 3.5,31.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Chasm
+  - uid: 8866
+    components:
+    - type: Transform
+      pos: 7.5,45.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Armory
+  - uid: 8867
+    components:
+    - type: Transform
+      pos: -2.5,45.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Medbay
+  - uid: 8868
+    components:
+    - type: Transform
+      pos: 6.5,50.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: BBQ
+  - uid: 8869
+    components:
+    - type: Transform
+      pos: -35.5,-0.5
+      parent: 2
+    - type: SurveillanceCamera
+      setupAvailableNetworks:
+      - SurveillanceCameraSecurity
+      nameSet: True
+      id: Office
 - proto: SyndicateMicrowave
   entities:
   - uid: 4643
@@ -31859,8 +32027,10 @@ entities:
   - uid: 4644
     components:
     - type: Transform
-      pos: 1.3624003,1.6144578
+      pos: 0.3790624,1.5810175
       parent: 2
+    - type: IntrinsicRadioTransmitter
+      channels: []
 - proto: SyndieFlag
   entities:
   - uid: 4645
@@ -32214,20 +32384,30 @@ entities:
       parent: 2
 - proto: TableReinforced
   entities:
+  - uid: 185
+    components:
+    - type: Transform
+      pos: 2.5,1.5
+      parent: 2
+  - uid: 186
+    components:
+    - type: Transform
+      pos: 0.5,3.5
+      parent: 2
+  - uid: 1834
+    components:
+    - type: Transform
+      pos: 0.5,1.5
+      parent: 2
+  - uid: 1835
+    components:
+    - type: Transform
+      pos: 2.5,3.5
+      parent: 2
   - uid: 4705
     components:
     - type: Transform
       pos: 30.5,-4.5
-      parent: 2
-  - uid: 4706
-    components:
-    - type: Transform
-      pos: 1.5,3.5
-      parent: 2
-  - uid: 4707
-    components:
-    - type: Transform
-      pos: 1.5,1.5
       parent: 2
   - uid: 4708
     components:
@@ -32293,6 +32473,16 @@ entities:
     components:
     - type: Transform
       pos: -10.5,66.5
+      parent: 2
+  - uid: 8870
+    components:
+    - type: Transform
+      pos: -2.5,0.5
+      parent: 2
+  - uid: 8871
+    components:
+    - type: Transform
+      pos: -1.5,0.5
       parent: 2
 - proto: TargetDarts
   entities:

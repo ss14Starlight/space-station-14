@@ -23,7 +23,7 @@
   - External
   - Cryogenics
   - Brigmedic
-  - Chemistry
+  - Paramedic
   - Surgery # Starlight
   special:
   - !type:AddImplantSpecial
@@ -42,6 +42,9 @@
     - Flash
     - SecurityMedkit
     - DefibrillatorBrigmedical
+    belt:
+    - TacticalJetInjector
+    - BodyBagLockableFolded
 
 - type: chameleonOutfit
   id: BrigmedicChameleonOutfit

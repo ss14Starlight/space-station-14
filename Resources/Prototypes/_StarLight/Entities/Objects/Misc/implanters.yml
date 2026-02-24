@@ -144,5 +144,11 @@
   components:
   - type: Implanter
     implant: SELFStorageImplant
-
-
+# Traitor Mind control
+- type: entity
+  id: MindControlImplanter
+  name: mind control implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+    - type: Implanter
+      implant: MindControlImplant

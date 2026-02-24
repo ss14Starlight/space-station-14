@@ -186,11 +186,13 @@
     stealGroup: AccessConfigurator
 
 - type: entity
-  parent: BaseTraitorCargoStealObjective
-  id: EncryptionKeySalvageStealObjective
+  parent: BaseTraitorStealObjective
+  id: EncryptionKeyHybridStealObjective
   components:
+  - type: NotJobRequirement
+    jobs: [ Captain, NanoTrasenRepresentative, BlueShield, Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead, MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ]
   - type: StealCondition
-    stealGroup: EncryptionKeySalvage
+    stealGroup: EncryptionKeyHybrid
 
 - type: entity
   parent: BaseTraitorNanoTrasenStealObjective
@@ -627,3 +629,18 @@
   - type: StealCondition
     stealGroup: HoPBoardSteal
 
+# Control Implant
+
+- type: entity
+  parent: [BaseObjective]
+  id: MindControlledFollowOrders
+  name: Follow orders.
+  description: Follow orders from your master. Use your best judgement when alone.
+  components:
+    - type: Objective
+      issuer: objective-issuer-syndicate
+      difficulty: 1
+      icon:
+        sprite: Objects/Specific/Medical/syndi_implanter.rsi
+        state: implanter0
+    - type: EscapeShuttleCondition

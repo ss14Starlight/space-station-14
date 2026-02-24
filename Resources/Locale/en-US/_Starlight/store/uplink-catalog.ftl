@@ -96,3 +96,6 @@ uplink-friendship-bundle-desc = Friendship packaged in a convenient crate*. (Som
 
 uplink-breaching-hammer-name = Breaching Hammer
 uplink-breaching-hammer-desc = A heavy-duty powered breaching tool disguised as a combat hammer. Functions like jaws of life for prying open doors and airlocks, while also serving as a devastating melee weapon. Can deal massive structural damage to walls and reinforced barriers, making it perfect for forced entry operations.
+
+uplink-explosive-collar-name = Explosive Collar
+uplink-explosive-collar-desc = The legally distinct reverse beartrap from a certin movie franchise.

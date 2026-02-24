@@ -1,0 +1,12 @@
+# Shuttle Weapons Console Circuitboard
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ShuttleWeaponsConsoleCircuitboard
+  name: shuttle weapons console board
+  description: A computer printed circuit board for a shuttle weapons control console.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ShuttleWeaponsConsole

@@ -11,10 +11,6 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.1
     coolingCoefficient: 0.1
-  - type: Item
-    size: Normal
-    shape:
-    - 0,0,1,2 # Starlight: Make them 2x3
   - type: Pierceable
     level: Metal
   - type: Armor

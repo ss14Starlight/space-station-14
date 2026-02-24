@@ -32,6 +32,7 @@
     - code-gamma
     - code-delta
     - code-yellow
+    - code-orange
     - code-violet
 
 
@@ -72,10 +73,16 @@
   priority: 6
 
 - type: guideEntry
+  id: code-orange
+  name: guide-entry-sl-code-orange
+  text: "/ServerInfo/Guidebook/StarlightSOP/GeneralSOP/Alerts/code-orange.xml"
+  priority: 7
+
+- type: guideEntry
   id: code-violet
   name: guide-entry-sl-code-violet
   text: "/ServerInfo/Guidebook/StarlightSOP/GeneralSOP/Alerts/code-violet.xml"
-  priority: 7
+  priority: 8
 
 
 

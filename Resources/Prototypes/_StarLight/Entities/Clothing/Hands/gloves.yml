@@ -172,3 +172,16 @@
   - type: Fiber
     fiberColor: fibers-red
   - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: ClothingHandsTacticalMaidGlovesDelicate
+  name: delicate tactical maid gloves
+  description: Tactical maid gloves, every self-respecting maid should be able to discreetly eliminate her goals. Made of a thin material, far too thin to be insulated.
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/tacticalmaidgloves.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/tacticalmaidgloves.rsi
+  - type: Fiber
+    fiberColor: fibers-black

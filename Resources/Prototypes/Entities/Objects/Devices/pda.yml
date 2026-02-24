@@ -795,6 +795,17 @@
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi #Starlight
     state: pda-paramedic
+    # Starlight BEGIN
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - AstroNavCartridge # The only change: No longer need to carry GPS!
+    # Starlight END
 
 - type: entity
   parent: BaseMedicalPDA

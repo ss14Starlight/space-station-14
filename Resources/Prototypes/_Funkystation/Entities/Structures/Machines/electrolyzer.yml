@@ -2,6 +2,7 @@
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   id: Electrolyzer
   name: electrolyzer
+  description: A machine that processes and transforms gases through electrolysis. Fueled by plasma or uranium sheets. # Starlight
   components:
   - type: Electrolyzer
     onSound:
@@ -31,8 +32,8 @@
         ejectOnInteract: false
         whitelist:
           tags:
-          - PlasmaSheet
-          - UraniumSheet
+          - SheetPlasma
+          - SheetUranium
         swap: false
   - type: DeviceLinkSink
     ports:

@@ -13,6 +13,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Log; // Starlight
 using Content.Shared.Silicons.StationAi; // Starlight
 using Robust.Shared.Map; // Starlight
+using Robust.Shared.Timing; // Starlight
 
 namespace Content.Server.Medical.CrewMonitoring;
 
@@ -21,6 +22,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
     [Dependency] private readonly PowerCellSystem _cell = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly StationAiSystem _stationAiSystem = default!; // Starlight
+    [Dependency] private readonly IGameTiming _gameTiming = default!; // Starlight
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
 
@@ -31,6 +33,24 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, BoundUIOpenedEvent>(OnUIOpened);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, CrewMonitoringWarpRequestMessage>(OnWarpRequest); // Starlight
+    }
+
+    /// <summary>
+    ///     STARLIGHT: Periodically update the UI, even if there is no crew monitoring server transmitting.
+    /// </summary>
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        
+        // Periodically update the UI, per console.
+        var consoles = EntityQueryEnumerator<CrewMonitoringConsoleComponent>();
+        while (consoles.MoveNext(out var id, out var console))
+        {
+            if (console.LastInterfaceUpdate + console.InterfaceUpdateRate > _gameTiming.CurTime)
+                return;
+            
+            UpdateUserInterface(id, console);
+        }
     }
 
     private void OnRemove(EntityUid uid, CrewMonitoringConsoleComponent component, ComponentRemove args)
@@ -53,6 +73,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
             return;
 
         component.ConnectedSensors = sensorStatus;
+        component.LastSensorDataReceivedAt = _gameTiming.CurTime; // Starlight
         UpdateUserInterface(uid, component);
     }
 
@@ -68,6 +89,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
             return;
+        component.LastInterfaceUpdate = _gameTiming.CurTime; // Starlight
 
         if (!_uiSystem.IsUiOpen(uid, CrewMonitoringUIKey.Key))
             return;
@@ -80,7 +102,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
         // Update all sensors info
         var allSensors = component.ConnectedSensors.Values.ToList();
-        _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(allSensors));
+        _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(_gameTiming.CurTime, component.LastSensorDataReceivedAt, allSensors)); // Starlight: Add two timestamps
     }
     // Starlight-start
     private void OnWarpRequest(EntityUid uid, CrewMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)

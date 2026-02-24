@@ -150,7 +150,7 @@
       time: 30h
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 15h
+      time: 30h #SL Edit 15h -> 30h
       inverted: true # stop playing intern if you're good at security!
     SecurityOfficer:
     - !type:DepartmentTimeRequirement
@@ -220,21 +220,21 @@
       time: 5m
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 15h
+      time: 25h #SL edit 15 -> 25
       inverted: true
     MedicalIntern:
     - !type:OverallPlaytimeRequirement
       time: 5m
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 15h
+      time: 25h #SL edit 15 -> 25
       inverted: true 
     ResearchAssistant:
     - !type:OverallPlaytimeRequirement
       time: 5m
     - !type:DepartmentTimeRequirement
       department: Science
-      time: 15h
+      time: 25h #SL edit 15 -> 25
       inverted: true 
     Chaplain:
     - !type:OverallPlaytimeRequirement

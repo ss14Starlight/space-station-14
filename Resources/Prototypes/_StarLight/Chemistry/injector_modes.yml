@@ -1,0 +1,13 @@
+- type: injectorMode
+  abstract: true
+  parent: BaseJetInjectorMode
+  id: BaseTacticalJetInjectorMode
+  mobTime: 2.0
+
+- type: injectorMode
+  parent: [ BaseTacticalJetInjectorMode, BaseInjectMode ]
+  id: TacticalJetInjectorInjectMode
+
+- type: injectorMode
+  parent: [ BaseTacticalJetInjectorMode, BaseDynamicMode ]
+  id: TacticalJetInjectorDynamicMode

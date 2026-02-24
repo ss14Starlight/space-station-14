@@ -1,9 +1,4 @@
 - type: loadout
-  id: RedRegaliaGloves
-  equipment:
-    gloves: RedRegaliaGloves
-
-- type: loadout
   id: SecGloves
   equipment:
     gloves: ClothingHandsGlovesSecurityRed

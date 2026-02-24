@@ -13,3 +13,4 @@ borg-slot-nuke-disk-empty = Nuke Disk
 borg-slot-bounty-empty = Bounties and Slips
 borg-slot-mail-empty = Letters
 borg-slot-organs-empty = Organs and Implants
+borg-slot-knives-empty = Knives

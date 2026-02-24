@@ -73,6 +73,7 @@ public sealed partial class AdminVerbSystem
 {
     private readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
     private readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
+    private readonly ProtoId<PolymorphPrototype> Felionoidsmite = "AdminFelioSmite"; // Starlight edit
 
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -797,6 +798,23 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", vulpName, Loc.GetString("admin-smite-vulpkanin-species-swap-description"))
         };
         args.Verbs.Add(vulp);
+        
+        // Starlight-start
+        var felioName = Loc.GetString("admin-smite-Felionoid-species-swap-name").ToLowerInvariant();
+        Verb felio = new()
+        {
+            Text = felioName,
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Fun/toy_mouse.rsi"), "icon"),
+            Act = () =>
+            {
+                _polymorphSystem.PolymorphEntity(args.Target, Felionoidsmite);
+            },
+            Impact = LogImpact.Extreme,
+            Message = string.Join(": ", felioName, Loc.GetString("admin-smite-Felionoid-species-swap-description"))
+        };
+        args.Verbs.Add(felio);
+        // Starlight-end
 
         var lockerName = Loc.GetString("admin-smite-locker-stuff-name").ToLowerInvariant();
         Verb locker = new()

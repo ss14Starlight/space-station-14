@@ -94,6 +94,9 @@
   id: CentcommVibroblade
 
 - type: Tag
+  id: CombatRemote # Tag: used on the RemoteSignallerCombat
+
+- type: Tag
   id: CheapInsulatedFabric
 
 - type: Tag
@@ -226,6 +229,9 @@
   id: Ghost
 
 - type: Tag
+  id: Grenade120mm # Ammo: Magazine120mmGrenadeBlast, ShuttleGunNTSFCyerxa120mm
+
+- type: Tag
   id: GygaxArmor
 
 - type: Tag
@@ -291,9 +297,6 @@
 # Used for the jet injector and advanced jet injector
 - type: Tag
   id: JetInjector
-  
-- type: Tag
-  id: Labelable
 
 - type: Tag
   id: L6Saw
@@ -318,6 +321,15 @@
 
 - type: Tag
   id: MagazineBoxLightRifle
+
+- type: Tag
+  id: MagazineGrenade120mm # Magazine: Magazine120mmGrenadeBlast
+
+- type: Tag
+  id: Cartridge60mmRocket
+
+- type: Tag
+  id: Magazine60mmRocket
 
 - type: Tag
   id: MagazineLightRiflePan
@@ -367,6 +379,12 @@
 
 - type: Tag
   id: Nexus
+  
+- type: Tag
+  id: NotLabelable
+
+- type: Tag
+  id: NukiePlanet
 
 - type: Tag
   id: OmniCyberEyes
@@ -459,6 +477,9 @@
 
 - type: Tag
   id: SovietDungeon
+
+- type: Tag
+  id: SovietDungeonWeh
 
 - type: Tag
   id: SovietWarehouse

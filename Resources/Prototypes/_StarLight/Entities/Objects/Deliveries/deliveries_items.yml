@@ -150,7 +150,7 @@
         - CMOLicenseStealObjective
         - PinpointerNuclearStealObjective
         - AccessConfiguratorStealObjective
-        - EncryptionKeySalvageStealObjective
+        - EncryptionKeyHybridStealObjective
         - NTRepBriefcaseSecureStealObjective
         # no ian meat because you are a pacifist and need them alive
         - ClipboardStealObjective #QM's digiboard

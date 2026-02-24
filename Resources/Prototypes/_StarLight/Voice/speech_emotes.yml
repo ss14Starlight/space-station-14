@@ -548,7 +548,7 @@
   name: chat-emote-name-glub
   category: Vocal
   available: false
-  icon: Interface/Emotes/vocal.png
+  icon: _Starlight/Interface/Emotes/emote-glub.png
   whitelist:
     components:
     - Vocal
@@ -571,7 +571,7 @@
   name: chat-emote-name-hum
   category: Vocal
   available: false
-  icon: Interface/Emotes/vocal.png
+  icon: _Starlight/Interface/Emotes/emote-hum.png
   whitelist:
     components:
     - Vocal

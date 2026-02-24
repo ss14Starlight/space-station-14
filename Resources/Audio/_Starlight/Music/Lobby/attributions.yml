@@ -57,3 +57,8 @@
   license: "CC-BY-NC-SA-3.0"
   copyright: "Bluespace by Beptol Corporation Acoustics"
   source: "https://soundcloud.com/beptolacoustics/space-station-14-unofficial-bluespace"
+
+- files: ["thestation.ogg"]
+  license: "CC0-1.0"
+  copyright: "Created by A-Guy173"
+  source: "https://github.com/A-Guy173/Music/tree/main"

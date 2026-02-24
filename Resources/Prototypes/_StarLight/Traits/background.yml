@@ -110,3 +110,14 @@
       item: TranslatorIterator
     - !type:BackgroundEffect
       background: Iterator
+
+
+- type: trait
+  id: Hunted
+  name: trait-background-exterminator-name
+  description: trait-background-exterminator-description
+  category: BackgroundTraits
+  cost: 0
+  effects:
+    - !type:BackgroundEffect
+      background: Hunted

@@ -66,7 +66,7 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
     /// </summary>
     private void OnRemove(EntityUid uid, CrewMonitoringServerComponent component, ComponentRemove args)
     {
-        component.SensorStatus.Clear();
+        //component.SensorStatus.Clear(); // Starlight: Don't instantly wipe sensor list, let it time out instead.
     }
 
     /// <summary>

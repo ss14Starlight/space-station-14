@@ -34,6 +34,12 @@
     - FeyMood
     - Borged
     - AyeAye
+    - ThinkYouKnowCorporateSecrets
+    - PocketChange
+    - ArchNemesis
+    - EngineIsDeity
+    - DeliciousMoldyBread
+    - BlindnessIsFreedom
 
 
 # You must always lie, and can never acknowledge that you are lying. If anyone asks, you're incapable of deception.
@@ -43,6 +49,7 @@
   moodDesc: thaven-mood-compulsive-liar-desc
   conflicts:
     - CompulsiveBeliever
+    - PathologicalLiarInTraining
 
 
 # You are unfamiliar with the concept of lying, and are incapable of lying or recognizing lies.
@@ -52,6 +59,7 @@
   moodDesc: thaven-mood-compulsive-believer-desc
   conflicts:
     - CompulsiveLiar
+    - IncrediblyDistrusting
 
 # The usage of plant matter by humanoids is abhorrent.
 - type: thavenMood
@@ -98,6 +106,7 @@
   moodDesc: thaven-mood-cannibal-desc
   conflicts:
     - FoodRestrict
+    - DenierOfConsumption
 
 # The law does not apply to you
 - type: thavenMood
@@ -182,6 +191,7 @@
   conflicts:
     - MostImportant
     - Prometheus
+    - ChairmanComplex
 
 # This is not a place for children. All toys and childish things must be destroyed or removed from the station.
 - type: thavenMood
@@ -249,6 +259,8 @@
   id: AnimalSacrifice
   moodName: thaven-mood-animal-sacrifice-name
   moodDesc: thaven-mood-animal-sacrifice-desc
+  conflicts:
+    - AnimalRightsActivist
 
 # Golden Thread: You strongly feel that you are fated to follow a perfect, unbreakable path. Those who disrupt your goals are at best dangerous criminals, and at worst, evil spirits or demons.
 - type: thavenMood
@@ -283,3 +295,44 @@
 #  moodDesc: thaven-mood-number-good-desc
 #  moodVars:
 #    number: ThavenMoodNumber
+
+# You THINK You Know Corporate Secrets: You are aware of the existence of changelings, abductors, and of course, werewolves. You will constantly bring them up and explain their behaviors (incorrectly).
+- type: thavenMood
+  id: ThinkYouKnowCorporateSecrets
+  moodName: thaven-mood-think-you-know-corporate-secrets-name
+  moodDesc: thaven-mood-think-you-know-corporate-secrets-desc
+
+# Pocket change: NT doesn't pay you enough. Skim a bit off the department budget for 'me' funds
+- type: thavenMood
+  id: PocketChange
+  moodName: thaven-mood-pocket-change-name
+  moodDesc: thaven-mood-pocket-change-desc
+
+# Arch-Nemesis: Your arch-nemesis is on the station and must be identified and subsequently defeated, whether that’s through killing, some form of competition, or publicly humiliating them. Of course, it won’t be fair unless you formally address them as your arch-nemesis and give them time to prepare.
+- type: thavenMood
+  id: ArchNemesis
+  moodName: thaven-mood-arch-nemesis-name
+  moodDesc: thaven-mood-arch-nemesis-desc
+
+# The [engine] is an evil spirit: It wishes to destroy the homeworld. Keep it contained at all costs, if it is not here it must be summoned before it ends the planet. The containment field requires sacrifice, feed it with inconsequential objects to apease it.
+- type: thavenMood
+  id: EngineIsDeity
+  moodName: thaven-mood-engine-is-deity-name
+  moodDesc: thaven-mood-engine-is-deity-desc
+  moodVars:
+    engine: Engines
+
+# Delicious Moldy Bread: Nothing tastes finer than moldy bread. Make as much of it as possible and share the delicacy with the rest of the crew.
+- type: thavenMood
+  id: DeliciousMoldyBread
+  moodName: thaven-mood-delicious-moldy-bread-name
+  moodDesc: thaven-mood-delicious-moldy-bread-desc
+
+# Blindness Is Freedom: Your sight disgusts you. Get rid of it.
+- type: thavenMood
+  id: BlindnessIsFreedom
+  moodName: thaven-mood-blindness-is-freedom-name
+  moodDesc: thaven-mood-blindness-is-freedom-desc
+  conflicts:
+    - FleshIsSacred
+    - BlindSympathizer

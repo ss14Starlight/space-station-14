@@ -19,7 +19,7 @@
   id: JugCornoil
   components:
   - type: Label
-    currentLabel: Corn Oil for frying
+    currentLabel: reagent-name-corn-oil
   - type: SolutionContainerManager
     solutions:
       drink:

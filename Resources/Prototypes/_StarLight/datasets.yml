@@ -1208,3 +1208,29 @@
   - Pills
   - Patches
   - Syringes
+
+- type: dataset
+  id: Languages
+  values:
+  - Galactic Common
+  - Sol Common
+  - Binary
+  - Canilunzt
+  - Bubblish
+  - Chittin
+  - Draconic
+  - Marish
+  - Moffic
+  - Nekomimetic
+  - Sylvan
+  - Terrum
+  - Vox Pidgin
+  - Scratch
+  - Darktongue
+  - Lagomorphian
+
+- type: dataset
+  id: Engines
+  values:
+  - Singularity
+  - Tesla

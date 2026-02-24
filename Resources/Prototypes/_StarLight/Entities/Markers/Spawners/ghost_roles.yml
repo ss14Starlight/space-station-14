@@ -58,3 +58,15 @@
     - state: green
     - sprite: Mobs/Species/Terminator/parts.rsi
       state: full
+ 
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: SpawnPointGhostDerelictCyborg
+  id: SpawnPointGhostDerelictPurrfusCyborg
+  components:
+  - type: GhostRole
+    name: ghost-role-information-derelict-purrfus-cyborg-name
+    description: ghost-role-information-derelict-purrfus-cyborg-description
+    rules: ghost-role-information-silicon-rules
+    raffle:
+      settings: default

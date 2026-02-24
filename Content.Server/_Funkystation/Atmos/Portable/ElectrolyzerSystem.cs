@@ -30,8 +30,8 @@ public sealed class ElectrolyzerSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     private const float WorkingPower = 2f;
     private const float PowerEfficiency = 1f;
-    private const string PlasmaTag = "PlasmaSheet";
-    private const string UraniumTag = "UraniumSheet";
+    private const string PlasmaTag = "SheetPlasma"; // Starlight Edit: PlasmaSheet -> SheetPlasma
+    private const string UraniumTag = "SheetUranium"; // Starlight Edit: UraniumSheet -> SheetUranium
 
     public override void Initialize()
     {

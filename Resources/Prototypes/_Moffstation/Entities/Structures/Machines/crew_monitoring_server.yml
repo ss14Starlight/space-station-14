@@ -13,7 +13,7 @@
     deviceNetId: Wireless
     transmitFrequencyId: CrewMonitor
     receiveFrequencyId: SuitSensor
-    autoConnect: false
+    autoConnect: true # Starlight
   - type: WirelessNetworkConnection
     range: 500
   - type: StationLimitedNetwork

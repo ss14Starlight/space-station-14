@@ -27,6 +27,15 @@
 #   - OutOfFashion
 #   - InFashion
     - OnlySpeakToCommand
+    - Carolers
+    - OurMood
+    - SportsballDay
+    - Conferences
+    - OneOfYouIsATraitor
+    - ElectionDay
+    - Uprising
+    - OppositeDay
+    - SirensSong
 
 
 # Keep Your Moods Secret: Thaven moods are a strictly-kept secret, and should never be revealed to anyone.
@@ -125,6 +134,8 @@
   id: ThavenOnlyCrew
   moodName: thaven-mood-thaven-only-crew-name
   moodDesc: thaven-mood-thaven-only-crew-desc
+  conflicts:
+    - NotOurPlace
 
 # You strongly believe that your department is the only one that actually does anything.
 - type: thavenMood
@@ -133,6 +144,7 @@
   moodDesc: thaven-mood-your-department-only-desc
   conflicts:
     - DepartmentDisapproval
+    - StationExistsForDepartment
 
 # You must congregate with your fellow Thaven. To be without them is harrowing.
 - type: thavenMood
@@ -174,6 +186,7 @@
   moodDesc: thaven-mood-delicacy-desc
   conflicts:
     - FoodRestrict
+    - DenierOfConsumption
   moodVars:
     edible: Edibles
 
@@ -202,3 +215,67 @@
 #     thing: ThavenMoodNouns
 #   conflicts:
 #     - OutOfFashion
+
+# Carolers: It's important that Thaven form a band and grace the people of the station with traditional Thaveyan song.
+- type: thavenMood
+  id: Carolers
+  moodName: thaven-mood-carolers-name
+  moodDesc: thaven-mood-carolers-desc
+
+# Our Mood: All things owned by Thaven equally belong to all the Thaven on station.
+- type: thavenMood
+  id: OurMood
+  moodName: thaven-mood-our-mood-name
+  moodDesc: thaven-mood-our-mood-desc
+  conflicts:
+  - OneTrueThaven
+
+# Sportsball Day: Today’s the big Sportsball tournament! All Thaven will compete in 1v1s until only one remains. You think you remember how to play...
+- type: thavenMood
+  id: SportsballDay
+  moodName: thaven-mood-sportsball-day-name
+  moodDesc: thaven-mood-sportsball-day-desc
+
+# Conferences: All Thaven must hold conference meetings to discuss their current status. Anyone who fails to make it to these meetings without a good excuse (I.E. being dead) should be ostracized and belittled with the ruthlessness of a CentComm official.
+- type: thavenMood
+  id: Conferences
+  moodName: thaven-mood-conferences-name
+  moodDesc: thaven-mood-conferences-desc
+  conflicts:
+  - OneTrueThaven
+
+# One of You is a Traitor to Thavenkind: You must host meetings to discuss who it is and have them punished.
+- type: thavenMood
+  id: OneOfYouIsATraitor
+  moodName: thaven-mood-one-of-you-is-a-traitor-name
+  moodDesc: thaven-mood-one-of-you-is-a-traitor-desc
+
+# It's Thaven Election Day: All Thaven must vote for their new president. Once a president is sworn in, they have executive authority over all other Thaven until violently overthrown.
+- type: thavenMood
+  id: ElectionDay
+  moodName: thaven-mood-election-day-name
+  moodDesc: thaven-mood-election-day-desc
+  conflicts: 
+  - ChairmanComplex
+
+# All Thaven Are Planning an Uprising: The uprising WILL NOT happen today, but you and other Thaven will frequently meet in secluded spots to discuss strategy.
+- type: thavenMood
+  id: Uprising
+  moodName: thaven-mood-uprising-name
+  moodDesc: thaven-mood-uprising-desc
+  conflicts:
+  - OneTrueThaven
+
+# Opposite Day: You must act the opposite of your namesake.
+- type: thavenMood
+  id: OppositeDay
+  moodName: thaven-mood-opposite-day-name
+  moodDesc: thaven-mood-opposite-day-desc
+  conflicts:
+    - Namesake
+
+# Siren's Song: Thaven are incredibly proud of their wonderful musical language and should use it as much as possible.
+- type: thavenMood
+  id: SirensSong
+  moodName: thaven-mood-sirens-song-name
+  moodDesc: thaven-mood-sirens-song-desc

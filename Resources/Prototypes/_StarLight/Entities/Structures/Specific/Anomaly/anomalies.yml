@@ -33,13 +33,20 @@
           spawns:
             - TrashBananaPeel
             - FloorBananiumEntity
+        - settings: 
+            spawnOnPulse: true
+            minAmount: 1
+            maxAmount: 3
+            maxRange: 4
+          spawns:
+            - MobMonkey 
         - settings:
             spawnOnSuperCritical: true
             minAmount: 5
-            maxAmount: 12
+            maxAmount: 10
             maxRange: 6
           spawns:
-            - MobMonkey
+            - MobGorilla
     - type: RadiationSource
 
 - type: entity
@@ -106,6 +113,7 @@
             - MobClownGolem
             - MobClownClamp
             - MobClownLover
+            - SpawnClownSpider
         #        - settings:
         #            spawnOnSuperCritical: true
         #            minAmount: 10
@@ -124,10 +132,11 @@
             - MobClownGolem
             - MobClownClamp
             - MobClownLover
+            - SpawnClownSpider
         - settings:
             spawnOnSuperCritical: true
             minAmount: 5
-            maxAmount: 8
+            maxAmount: 10
             maxRange: 10
           spawns:
             - ClownKudzu

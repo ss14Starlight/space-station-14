@@ -41,3 +41,32 @@
     sprite: _Starlight/Clothing/Neck/Misc/sun_amulet.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Neck/Misc/sun_amulet.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseSyndicateContraband]
+  id: ClothingNeckExplosiveCollar
+  name: explosive collar
+  description: The legally distinct reverse beartrap from a certin movie franchise
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Misc/explosivecollar.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Misc/explosivecollar.rsi
+    stripDelay: 10
+    equipDelay: 5
+  - type: SelfUnremovableClothing
+  - type: AmputatateOnTrigger
+    targetContainer: true
+    parts:
+    - HeadHuman
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    # Cosmetic explosion :tf:
+    maxIntensity: 0.01
+    intensitySlope: 1
+    totalIntensity: 0.01
+  - type: TriggerOnSignal
+  - type: DeviceLinkSink
+    ports:
+      - Trigger

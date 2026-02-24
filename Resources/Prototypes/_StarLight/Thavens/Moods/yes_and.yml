@@ -41,6 +41,26 @@
     - YesMan
     - Centrist
     - SpeechRestriction
+    - StationExistsForDepartment
+    - MuteSympathizer
+    - BlindSympathizer
+    - AnimalRightsActivist
+    - GlubEchoGlub
+    - IWasHere
+    - ThaveyanGreetings
+    - YouAndYourDamnMoods
+    - Namesake
+    - MandelaEffect
+    - Parasocial
+    - ChairmanComplex
+    - UnderdogStory
+    - LookGoodInOrange
+    - LiveAGloriousLife
+    - NaturalHabitat
+    - FleshIsWeak
+    - Marrvelous
+    - Empath
+    - RedLightGreenLight
 
 
 # You are extremely possessive of your property. Refuse to relinquish it, and if it is misplaced or stolen, it must be retrieved at all costs.
@@ -339,6 +359,8 @@
   moodDesc: thaven-mood-speech-restriction-desc
   moodVars:
     speechType: SpeechRestrictions
+  conflicts:
+    - MuteSympathizer
 
 # The color [COLOR] is the only acceptable color for decorations. Endeavor to make your environment this color where possible.
 #- type: thavenMood
@@ -347,3 +369,151 @@
 #  moodDesc: thaven-mood-color-good-desc
 #  conflicts:
 #    - ColorBad
+
+# The Station Exists For [DEPARTMENT]: You strongly believe that [DEPARTMENT] is the most important department on this station, and all other departments exist to support it.
+- type: thavenMood
+  id: StationExistsForDepartment
+  moodName: thaven-mood-station-exists-for-department-name
+  moodDesc: thaven-mood-station-exists-for-department-desc
+  moodVars:
+    department: Departments
+  conflicts:
+    - YourDepartmentOnly
+    - DepartmentDisapproval
+
+# Mute Sympathizer: To show your allyship with the mute crew members, avoid using spoken language as much as possible.
+- type: thavenMood
+  id: MuteSympathizer
+  moodName: thaven-mood-mute-sympathizer-name
+  moodDesc: thaven-mood-mute-sympathizer-desc
+  conflicts:
+    - SpeechRestriction
+    - Marrvelous
+
+# Blind Sympathizer: You want to know how it feels to navigate the world without vision. Find a blindfold and wear it as often as you can.
+- type: thavenMood
+  id: BlindSympathizer
+  moodName: thaven-mood-blind-sympathizer-name
+  moodDesc: thaven-mood-blind-sympathizer-desc
+  conflicts:
+    - BlindnessIsFreedom
+    - RedLightGreenLight
+
+# Animal Rights Activist: You love all animals. You must make sure that they are treated as equal crew members.
+- type: thavenMood
+  id: AnimalRightsActivist
+  moodName: thaven-mood-animal-rights-activist-name
+  moodDesc: thaven-mood-animal-rights-activist-desc
+  conflicts:
+    - AnimalSacrifice
+
+# Glub, Echo, Glub: You are an undercover agent sent to investigate the other Thaven on the station. Look into what they're up to, and don't get caught.
+- type: thavenMood
+  id: GlubEchoGlub
+  moodName: thaven-mood-glub-echo-glub-name
+  moodDesc: thaven-mood-glub-echo-glub-desc
+
+# I Was Here: Let the next shift know you worked here. Leave a mark wherever you go.
+- type: thavenMood
+  id: IWasHere
+  moodName: thaven-mood-i-was-here-name
+  moodDesc: thaven-mood-i-was-here-desc
+
+# Thaveyan Greetings: Booping and petting others is a traditional Thaveyan greeting. It is very impolite not to do it.
+- type: thavenMood
+  id: ThaveyanGreetings
+  moodName: thaven-mood-thaveyan-greetings-name
+  moodDesc: thaven-mood-thaveyan-greetings-desc
+
+# You and Your Damn Moods: You continuously insist that every action you take or desire you express is because of your nature as a Thaven, even if it isn’t.
+- type: thavenMood
+  id: YouAndYourDamnMoods
+  moodName: thaven-mood-you-and-your-damn-moods-name
+  moodDesc: thaven-mood-you-and-your-damn-moods-desc
+  conflicts:
+    - NotOurPlace
+    - SelfConscious
+
+# Namesake: You need to prove that you uphold the value you’re named for.
+- type: thavenMood
+  id: Namesake
+  moodName: thaven-mood-namesake-name
+  moodDesc: thaven-mood-namesake-desc
+  conflicts:
+    - OppositeDay
+
+# Mandela Effect: You distinctly remember the existence of an additional department that you used to work in, that’s seemingly been completely erased from the world and everyone else’s memories, and must inquire with anyone you can to figure out what happened to it.
+- type: thavenMood
+  id: MandelaEffect
+  moodName: thaven-mood-mandela-effect-name
+  moodDesc: thaven-mood-mandela-effect-desc
+
+# Parasocial: You find your department head very fascinating, but cannot muster up the courage to speak to them directly. Try to learn as much about them as you can without them knowing.
+- type: thavenMood
+  id: Parasocial
+  moodName: thaven-mood-parasocial-name
+  moodDesc: thaven-mood-parasocial-desc
+
+# Chairman Complex: You consider yourself the leading authority on Thaven matters aboard the station. All problems Thaven experience should go through you, and you find questioning your authority the highest insult.
+- type: thavenMood
+  id: ChairmanComplex
+  moodName: thaven-mood-chairman-complex-name
+  moodDesc: thaven-mood-chairman-complex-desc
+  conflicts:
+    - Pariah
+    - ElectionDay
+
+# Underdog Story: You unshakably believe that your life is a movie with you as the protagonist, and as a result, that you have plot armor.
+- type: thavenMood
+  id: UnderdogStory
+  moodName: thaven-mood-underdog-story-name
+  moodDesc: thaven-mood-underdog-story-desc
+
+# You’ll Look Good in Orange: You’ve always dreamed of being arrested. However, you neither want to commit a crime nor admit to wanting to be arrested. You’ll have to frame yourself for something without anybody knowing that you didn’t actually do it.
+- type: thavenMood
+  id: LookGoodInOrange
+  moodName: thaven-mood-look-good-in-orange-name
+  moodDesc: thaven-mood-look-good-in-orange-desc
+
+# Live a Glorious Life: Today you'll give it all you've got. Prove to command that you deserve to be awarded a medal.
+- type: thavenMood
+  id: LiveAGloriousLife
+  moodName: thaven-mood-live-a-glorious-life-name
+  moodDesc: thaven-mood-live-a-glorious-life-desc
+
+# Natural Habitat: Every time you feel overwhelmed by a situation, or just need a moment to collect your thoughts, you have the urge to go into a locker and ponder for a bit.
+- type: thavenMood
+  id: NaturalHabitat
+  moodName: thaven-mood-natural-habitat-name
+  moodDesc: thaven-mood-natural-habitat-desc
+
+# The Flesh Is Weak, But Steel Endures: All of these biological organs and limbs will fail in time. They must all be replaced with cybernetics.
+- type: thavenMood
+  id: FleshIsWeak
+  moodName: thaven-mood-flesh-is-weak-name
+  moodDesc: thaven-mood-flesh-is-weak-desc
+  conflicts:
+    - FleshIsSacred
+
+# What does the Thaven say: Seeing how Shadekin are adored for their marrs, you feel envy that Thavenkind doesn't have something similar that sets them apart. Make up a recognizable sound for Thaven, use it frequently and encourage others to do the same.
+- type: thavenMood
+  id: Marrvelous
+  moodName: thaven-mood-marrvelous-name
+  moodDesc: thaven-mood-marrvelous-desc
+  conflicts:
+    - MuteSympathizer
+
+# Empath: You are heavily influenced by the emotions of others.
+- type: thavenMood
+  id: Empath
+  moodName: thaven-mood-empath-name
+  moodDesc: thaven-mood-empath-desc
+
+# Red Light, Green Light: You feel like you can't move when there are eyes on you.
+- type: thavenMood
+  id: RedLightGreenLight
+  moodName: thaven-mood-red-light-green-light-name
+  moodDesc: thaven-mood-red-light-green-light-desc
+  conflicts:
+    - BlindSympathizer
+    - MadHatter

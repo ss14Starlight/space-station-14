@@ -45,3 +45,12 @@
     forced: true
     inventory: None
     allowRepeatedMorphs: false
+    
+- type: polymorph
+  id: AdminFelioSmite
+  configuration:
+    entity: MobFelionoid
+    forced: true
+    transferName: true
+    inventory: Transfer
+    ignoreAllowRepeatedMorphs: true

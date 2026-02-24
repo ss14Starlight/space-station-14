@@ -6,8 +6,6 @@ using Content.Shared.Tag;
 using Content.Shared.Teleportation.Components;
 using Content.Shared.Teleportation.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Shadekin;
@@ -20,7 +18,7 @@ public sealed class DarkBreacherSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
-    private static readonly ProtoId<TagPrototype> _theDarkTag = "TheDark";
+    [Dependency] private readonly ShadekinSystem _shadekin = default!;
 
     public override void Initialize()
     {
@@ -48,7 +46,7 @@ public sealed class DarkBreacherSystem : EntitySystem
 
     private EntityUid? GeneratePortal(DarkBreacherComponent component)
     {
-        SpawnTheDark();
+        _shadekin.SpawnTheDark();
         // First lets find "The Dark".
         var query = EntityQueryEnumerator<DarkHubComponent>();
         while (query.MoveNext(out var target, out var portal))
@@ -64,19 +62,5 @@ public sealed class DarkBreacherSystem : EntitySystem
             }
 
         return null;
-    }
-
-    private void SpawnTheDark()
-    {
-        var query = EntityQueryEnumerator<MapComponent>();
-        while (query.MoveNext(out var mapuid, out var mapcomp))
-        {
-            if (mapcomp.MapPaused)
-                continue;
-
-            if (_tag.HasTag(mapuid, _theDarkTag))
-                return;
-        }
-        _gameTicker.StartGameRule("TheDarkMap");
     }
 }

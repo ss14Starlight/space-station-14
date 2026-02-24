@@ -33,12 +33,12 @@
     - SimpleHostile
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: _Starlight/Mobs/Animals/rat.rsi # Starlight
+    sprite: _Starlight/Mobs/Animals/regalrat.rsi # Starlight
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: giantrat
+      state: regalrat #SLEdit
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
-      state: giantrat_eyes
+      state: eyes #SLEdit
       shader: unshaded
   - type: TypingIndicator
     proto: regal
@@ -92,12 +92,12 @@
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: giantrat
+        Base: regalrat #SLedit
         BaseUnshaded: eyes
       Critical:
-        Base: giantrat
+        Base: critical #SLedit
       Dead:
-        Base: giantrat
+        Base: dead #SLedit
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-rat-king-name
@@ -297,9 +297,9 @@
         Base: smallrat
         BaseUnshaded: smallrat_eyes
       Critical:
-        Base: smallrat
+        Base: smallrat_dead #SLEdit
       Dead:
-        Base: smallrat
+        Base: smallrat_splat #SLEdit
   - type: Butcherable
     spawned:
     - id: FoodMeatRat

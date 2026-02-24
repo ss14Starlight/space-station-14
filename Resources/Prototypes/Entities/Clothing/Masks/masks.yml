@@ -169,6 +169,8 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: ZombificationResistance # Starlight
+    zombificationResistanceCoefficient: 0.95 #Starlight
 
 - type: entity
   parent: ClothingMaskPullableBase

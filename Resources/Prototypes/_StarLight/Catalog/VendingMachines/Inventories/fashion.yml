@@ -28,6 +28,28 @@
       stock: 1
 
 - type: listing
+  id: ClothingUniformJumpskirtElegantMaid
+  productEntity: ClothingUniformJumpskirtElegantMaid
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSkirt
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingUniformJumpskirtTacticalMaid
+  productEntity: ClothingUniformJumpskirtTacticalMaid
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSkirt
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: ClothingUniformJumpskirtDressRed
   productEntity: ClothingUniformJumpskirtDressRed
   cost:
@@ -131,17 +153,6 @@
   productEntity: ClothingUniformJumpskirtCentcomOfficer
   cost:
     NTCredit: 2000
-  categories:
-    - SLFashionSkirt
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
-
-- type: listing
-  id: ClothingUniformJumpskirtElegantMaid
-  productEntity: ClothingUniformJumpskirtElegantMaid
-  cost:
-    NTCredit: 990
   categories:
     - SLFashionSkirt
   conditions:
@@ -323,6 +334,18 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
+
+- type: listing
+  id: ClothingHeadHatTacticalMaidHeadband
+  productEntity: ClothingHeadHatTacticalMaidHeadband
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionHead
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
 
 - type: listing
   id: ClothingMaskGeneralBorg
@@ -562,6 +585,17 @@
 - type: listing
   id: ClothingHeadHatTechnologyFive
   productEntity: ClothingHeadHatTechnologyFive
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingHandsTacticalMaidGlovesDelicate
+  productEntity: ClothingHandsTacticalMaidGlovesDelicate
   cost:
     NTCredit: 400
   categories:

@@ -160,3 +160,63 @@ thaven-mood-speech-restriction-desc = {$speechType ->
   [ThirdPerson] The third person point-of-view is the only respectful manner of speaking.
   [TitleCase] You Are Miraculously Capable Of Pronouncing Capital Letters, And Believe It Is Important That You Do So.
 }
+
+thaven-mood-station-exists-for-department-name = The Station Exists For {$department}
+thaven-mood-station-exists-for-department-desc = You strongly believe that {$department} is the most important department on this station, and all other departments exist to support it.
+
+thaven-mood-mute-sympathizer-name = Mute Sympathizer
+thaven-mood-mute-sympathizer-desc = To show your allyship with the mute crew members, avoid using spoken language as much as possible.
+
+thaven-mood-blind-sympathizer-name = Blind Sympathizer
+thaven-mood-blind-sympathizer-desc = You want to know how it feels to navigate the world without vision. Find a blindfold and wear it as often as you can.
+
+thaven-mood-animal-rights-activist-name = Animal Rights Activist
+thaven-mood-animal-rights-activist-desc = You love all animals. You must make sure that they are treated as equal crew members.
+
+thaven-mood-glub-echo-glub-name = Glub, Echo, Glub
+thaven-mood-glub-echo-glub-desc = You are an undercover agent sent to investigate the other Thaven on the station. Look into what they're up to, and don't get caught.
+
+thaven-mood-i-was-here-name = I Was Here
+thaven-mood-i-was-here-desc = Let the next shift know you worked here. Leave a mark wherever you go.
+
+thaven-mood-thaveyan-greetings-name = Thaveyan Greetings
+thaven-mood-thaveyan-greetings-desc = Booping and petting others is a traditional Thaveyan greeting. It is very impolite not to do it.
+
+thaven-mood-you-and-your-damn-moods-name = You and Your Damn Moods
+thaven-mood-you-and-your-damn-moods-desc = You continuously insist that every action you take or desire you express is because of your nature as a Thaven, even if it isn’t.
+
+thaven-mood-namesake-name = Namesake
+thaven-mood-namesake-desc = You need to prove that you uphold the value you’re named for.
+
+thaven-mood-mandela-effect-name = Mandela Effect
+thaven-mood-mandela-effect-desc = You distinctly remember the existence of an additional department that you used to work in, that’s seemingly been completely erased from the world and everyone else’s memories, and must inquire with anyone you can to figure out what happened to it.
+
+thaven-mood-parasocial-name = Parasocial
+thaven-mood-parasocial-desc = You find your department head very fascinating, but cannot muster up the courage to speak to them directly. Try to learn as much about them as you can without them knowing.
+
+thaven-mood-chairman-complex-name = Chairman Complex
+thaven-mood-chairman-complex-desc = You consider yourself the leading authority on Thaven matters aboard the station. All problems Thaven experience should go through you, and you find questioning your authority the highest insult.
+
+thaven-mood-underdog-story-name = Underdog Story
+thaven-mood-underdog-story-desc = You unshakably believe that your life is a movie with you as the protagonist, and as a result, that you have plot armor.
+
+thaven-mood-look-good-in-orange-name = You’ll Look Good in Orange
+thaven-mood-look-good-in-orange-desc = You’ve always dreamed of being arrested. However, you neither want to commit a crime nor admit to wanting to be arrested. You’ll have to frame yourself for something without anybody knowing that you didn’t actually do it.
+
+thaven-mood-live-a-glorious-life-name = Live a Glorious Life
+thaven-mood-live-a-glorious-life-desc = Today you'll give it all you've got. Prove to command that you deserve to be awarded a medal.
+
+thaven-mood-natural-habitat-name = Natural Habitat
+thaven-mood-natural-habitat-desc = Every time you feel overwhelmed by a situation, or just need a moment to collect your thoughts, you have the urge to go into a locker and ponder for a bit.
+
+thaven-mood-flesh-is-weak-name = The Flesh Is Weak, But Steel Endures
+thaven-mood-flesh-is-weak-desc = All of these biological organs and limbs will fail in time. They must all be replaced with cybernetics.
+
+thaven-mood-marrvelous-name = What Does The Thaven Say
+thaven-mood-marrvelous-desc = Seeing how Shadekin are adored for their marrs, you feel envy that Thavenkind doesn't have something similar that sets them apart. Make up a recognizable sound for Thaven, use it frequently and encourage others to do the same.
+
+thaven-mood-empath-name = Empath
+thaven-mood-empath-desc = You are heavily influenced by the emotions of others.
+
+thaven-mood-red-light-green-light-name = Red Light, Green Light
+thaven-mood-red-light-green-light-desc = You feel like you can't move when there are eyes on you.

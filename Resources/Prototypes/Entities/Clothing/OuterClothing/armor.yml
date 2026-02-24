@@ -175,10 +175,6 @@
   name: web vest
   description: A synthetic armor vest. This one has added webbing and ballistic plates.
   components:
-  - type: Item # Starlight start
-    size: Normal
-    shape:
-    - 0,0,1,2 # Starlight end
   - type: Sprite
     sprite: Clothing/OuterClothing/Vests/webvest.rsi
   - type: Clothing

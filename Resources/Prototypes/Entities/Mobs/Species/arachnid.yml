@@ -35,7 +35,6 @@
     - SpiderCraft
     - AnomalyHost
     - Arachnid
-    - Labelable # Starlight
   - type: Butcherable
     butcheringType: Spike
     spawned:

@@ -66,7 +66,26 @@
       tags:
         - EncryptionCargo
     - type: StealTarget
-      stealGroup: EncryptionKeySalvage
+      stealGroup: EncryptionKeyHybrid
+
+- type: entity
+  parent: [ EncryptionKey, BaseSecurityContraband ]
+  id: EncryptionKeyMedicalSecurity
+  name: med-sec encryption key
+  description: An encryption key used by someone who both takes and saves lives.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Medical
+    - Security
+    defaultChannel: Security
+  - type: Sprite
+    layers:
+    - state: crypt_gray
+    - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+      state: medsec_label
+  - type: StealTarget
+    stealGroup: EncryptionKeyHybrid
 
 - type: entity
   parent: [ EncryptionKey, BaseTSFContraband ]

@@ -364,8 +364,9 @@ public abstract partial class SharedMindSystem : EntitySystem
         mind.Objectives.Add(objective);
     }
 
+
     /// <summary>
-    /// Removes an objective from this mind.
+    /// Removes an objective from this mind by Index.
     /// </summary>
     /// <returns>Returns true if the removal succeeded.</returns>
     public bool TryRemoveObjective(EntityUid mindId, MindComponent mind, int index)
@@ -374,7 +375,20 @@ public abstract partial class SharedMindSystem : EntitySystem
             return false;
 
         var objective = mind.Objectives[index];
-
+        return TryRemoveObjective(mindId, mind, objective); // Starlight-edit
+    }
+    
+    
+    #region Starlight
+    /// <summary>
+    /// Removes an objective from this mind.
+    /// </summary>
+    /// <returns>Returns true if the removal succeeded.</returns>
+    public bool TryRemoveObjective(EntityUid mindId, MindComponent mind, EntityUid objective)
+    {
+        if (!mind.Objectives.Contains(objective))
+            return false;
+            
         var title = Name(objective);
         _adminLogger.Add(LogType.Mind, LogImpact.Low, $"Objective {objective} ({title}) removed from the mind of {MindOwnerLoggingString(mind)}");
         mind.Objectives.Remove(objective);
@@ -391,6 +405,10 @@ public abstract partial class SharedMindSystem : EntitySystem
         Del(objective);
         return true;
     }
+    #endregion
+
+    
+    
 
     public bool TryGetObjectiveComp<T>(EntityUid uid, [NotNullWhen(true)] out T? objective) where T : IComponent
     {

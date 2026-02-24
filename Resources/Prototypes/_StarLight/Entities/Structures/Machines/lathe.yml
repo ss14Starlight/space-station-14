@@ -23,7 +23,7 @@
 - type: entity
   id: TiderLathe
   parent: BaseLatheFuel
-  name: tider's anvil
+  name: makeshift anvil
   description: Every maints blacksmith's dream, a forge for producing gear in bulk.
   components:
   - type: Sprite

@@ -47,9 +47,10 @@
     mask: ClothingMaskBreathMedicalSecurity
 
 - type: loadout
-  id: BrigmedicMaskGasSecurity
+  id: CorpsmanMaskGasCorpsman
   equipment:
-    mask: ClothingMaskGasSecurity
+    mask: ClothingMaskGasCorpsman
+
 
 # Veteran Jumpsuits
 - type: loadout
@@ -85,19 +86,21 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtOfLife
 
-# Ties
+# Back
 - type: loadout
-  id: BrigmedicRedNeckTie
+  id: CorpsmanBackpack
   equipment:
-    neck: ClothingNeckTieRed
+    back: ClothingBackpackCorpsman
 
 - type: loadout
-  id: BrigmedicDetNeckTie
-  effects:
-    - !type:GroupLoadoutEffect
-        proto: MasterDet
+  id: CorpsmanSatchel
   equipment:
-    neck: ClothingNeckTieDet
+    back: ClothingBackpackSatchelCorpsman
+
+- type: loadout
+  id: CorpsmanDuffel
+  equipment:
+    back: ClothingBackpackDuffelCorpsman
 
 # Outer clothing
 - type: loadout
@@ -126,6 +129,16 @@
   id: BrigmeicGlassesPrescription
   equipment:
     eyes: ClothingEyesGlassesBrigmedicPrescription
+
+- type: loadout
+  id: CorpsmanGlasses
+  equipment:
+    eyes: ClothingEyesGlassesCorpsman
+
+- type: loadout
+  id: CorpsmanHud
+  equipment:
+    eyes: ClothingEyesHudCorpsman
 
 # PDA
 - type: loadout

@@ -23,3 +23,16 @@
 
       # Description
       dummyPrototype: BorgChassisCargo
+
+# purrfus
+- type: entity
+  parent: BorgSubtypeBase
+  abstract: true
+  id: BorgPurrfusSubtypeBase
+  name: borg purrfus subtype
+  components:
+    - type: BorgSubtypeDefinition
+      parentType: purrfus
+
+      # Description
+      dummyPrototype: BorgChassisPurrfus

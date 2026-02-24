@@ -46,3 +46,15 @@ ghost-role-information-slime-sentience-potion-description = Made conscious with 
 ghost-role-information-terminator-name = Exterminator
 ghost-role-information-terminator-description = You are a walking automaton clothed in a puppet of flesh. Terminate your target with extreme prejudice.
 ghost-role-information-terminator-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color]. You must obey your objectives. You must not use force on unrelated targets unless they are actively hindering your ability to carry out your objectives. You have no memories of your previous life.
+
+ghost-role-information-derelict-purrfus-cyborg-name = Derelict Purrfus Cyborg
+ghost-role-information-derelict-purrfus-cyborg-description = You are a purrfus cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station. ERR urrfus lo-es you purrfus loves you puRrfus loves yo- ERR
+
+
+
+
+
+
+
+
+

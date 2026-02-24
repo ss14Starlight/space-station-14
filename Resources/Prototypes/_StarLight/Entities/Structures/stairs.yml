@@ -1,0 +1,19 @@
+- type: entity
+  id: StairBlack
+  parent: Stairs
+  suffix: Black
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/stairs.rsi
+    state: stairs_black
+    drawdepth: FloorTiles
+
+- type: entity
+  id: StairStageBlack
+  parent: Stairs
+  suffix: Black, stage
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/stairs.rsi
+    state: stairs_stage_black
+    drawdepth: FloorTiles

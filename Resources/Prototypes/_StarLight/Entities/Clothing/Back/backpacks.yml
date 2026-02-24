@@ -26,6 +26,15 @@
     sprite: _Starlight/Clothing/Back/Backpacks/chemistrysenior.rsi
 
 - type: entity
+  parent: [ClothingBackpack, BaseSecurityContraband]
+  id: ClothingBackpackCorpsman
+  name: corpsman's backpack
+  description: A backpack with easy to access pockets for the organized corpsman!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Backpacks/corpsman.rsi
+
+- type: entity
   parent: [ClothingBackpack, BaseBlueShieldContraband]
   id: ClothingBackpackBlueShield
   name: blue shield backpack

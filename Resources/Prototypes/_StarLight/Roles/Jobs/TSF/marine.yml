@@ -28,6 +28,8 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 72000 # 20h
+    - !type:RolesRequirement
+      proto: ExtRolesReq
   setPreference: false
   icon: JobIconTSF
   rules: job-rules-tsf-aligned

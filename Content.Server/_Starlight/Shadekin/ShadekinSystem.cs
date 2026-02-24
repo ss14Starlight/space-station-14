@@ -33,6 +33,8 @@ using Content.Shared.Ensnaring;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Mobs.Components;
+using Robust.Shared.Map.Components;
+using Content.Server.GameTicking;
 
 namespace Content.Server._Starlight.Shadekin;
 
@@ -61,6 +63,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private readonly SharedEnsnareableSystem _ensnareable = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     private static readonly ProtoId<TagPrototype> _theDarkTag = "TheDark";
     private static readonly ProtoId<TagPrototype> _coreTag = "ShadekinCore";
@@ -330,6 +333,23 @@ public sealed partial class ShadekinSystem : EntitySystem
             return true;
 
         return false;
+    }
+
+    /// <summary>
+    /// Spawn "The Dark"
+    /// </summary>
+    public void SpawnTheDark()
+    {
+        var query = EntityQueryEnumerator<MapComponent>();
+        while (query.MoveNext(out var mapuid, out var mapcomp))
+        {
+            if (mapcomp.MapPaused)
+                continue;
+
+            if (_tag.HasTag(mapuid, _theDarkTag))
+                return;
+        }
+        _gameTicker.StartGameRule("TheDarkMap");
     }
 
     public override void Update(float frameTime)

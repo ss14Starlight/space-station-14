@@ -757,3 +757,67 @@
     - item: BorgClamp
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: loading-module }
+
+- type: entity
+  id: BorgModuleAdvancedPlumbing
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: advanced plumbing cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: generic
+    - state: icon-plumbing
+  - type: ItemBorgModule
+    hands:
+    - item: RPLDRecharging
+    - item: Crowbar
+    - item: Wrench
+    - item: trayScanner
+    - hand:
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+        emptyLabel: borg-slot-construction-empty
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - hand:
+        emptyRepresentative: APCElectronics
+        emptyLabel: borg-slot-circuitboards-empty
+        whitelist:
+          components:
+          - Circuitboard
+    - item: CableApcStack10
+      hand:
+        emptyRepresentative: CableApcStack10
+        emptyLabel: borg-slot-cables-empty
+        whitelist:
+          tags:
+          - CableCoil
+    - item: Plunger
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: plumbing-module }
+
+# Makeshift Start
+
+- type: entity
+  id: BorgModuleMakeshiftKnife
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseMajorContraband ]
+  name: makeshift knife cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: makeshift
+    - state: icon-knife
+  - type: ItemBorgModule
+    hands:
+    - item: KitchenKnife
+      hand:
+        emptyRepresentative: KitchenKnife
+        emptyLabel: borg-slot-knives-empty
+        whitelist:
+          tags:
+          - Knife
+    - item: Crowbar
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: knife-module }
+
+# Makeshift End
