@@ -1,12 +1,12 @@
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.Xenobiology.Genetics;
+namespace Content.Shared._Starlight.Genetics;
 
 /// <summary>
 /// The general prototype that all traits inherit from. Makes some things less repetitive.
 /// </summary>
-public abstract partial class AbstractXenobiologyTraitPrototype : IPrototype
+public abstract partial class AbstractTraitPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;

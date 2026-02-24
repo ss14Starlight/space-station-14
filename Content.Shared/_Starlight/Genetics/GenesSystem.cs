@@ -6,24 +6,21 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Starlight.Xenobiology.Genetics;
+namespace Content.Shared._Starlight.Genetics;
 
-/// <summary>
-/// Generates the genes at round start and then supplies the genes for the rest of the round.
-/// </summary>
-public sealed class GeneticSlimeSystem : EntitySystem
+public sealed class GenesSystem : EntitySystem
 {
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly PrototypeManager _prototypeManager = default!;
 
-    private FrozenDictionary<string, AbstractXenobiologyTraitPrototype>? _genes;
+    private FrozenDictionary<string, AbstractTraitPrototype>? _genes;
     
     public override void Initialize()
     {
         base.Initialize();
         
-        _genes = _prototypeManager.GetInstances<AbstractXenobiologyTraitPrototype>();
+        _genes = _prototypeManager.GetInstances<AbstractTraitPrototype>();
     }
 
     /// <summary>
@@ -45,7 +42,7 @@ public sealed class GeneticSlimeSystem : EntitySystem
     /// Returns the collection of genes in random order.
     /// </summary>
     /// <returns>An enumerator over the random genes.</returns>
-    public IEnumerable<KeyValuePair<string, AbstractXenobiologyTraitPrototype>> RandomGenes()
+    public IEnumerable<KeyValuePair<string, AbstractTraitPrototype>> RandomGenes()
     {
         if (_genes is null) yield break;
         while(true)
@@ -93,9 +90,9 @@ public sealed class GeneticSlimeSystem : EntitySystem
 [DataDefinition, Serializable, NetSerializable]
 public sealed partial class TraitDict
 {
-    public Dictionary<ProtoId<AbstractXenobiologyTraitPrototype>, FixedPoint2> Traits = new();
+    public Dictionary<ProtoId<AbstractTraitPrototype>, FixedPoint2> Traits = new();
 
-    public TraitDict(Dictionary<ProtoId<AbstractXenobiologyTraitPrototype>, FixedPoint2> traits) => Traits = traits;
+    public TraitDict(Dictionary<ProtoId<AbstractTraitPrototype>, FixedPoint2> traits) => Traits = traits;
 
     public TraitDict() {}
 
