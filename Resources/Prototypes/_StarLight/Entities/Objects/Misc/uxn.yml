@@ -9,9 +9,6 @@
       state: icon
     - type: Item
       size: Tiny
-    - type: Tag
-      tags:
-        - SmallAIChip
     - type: Construction
       graph: UxnChip
       node: uxnchip
@@ -19,3 +16,24 @@
     - type: GuideHelp
       guides:
       - Uxn
+    - type: DeviceNetwork
+      transmitFrequencyId: UxnChipNetwork
+      receiveFrequencyId: UxnChipNetwork
+      examinableAddress: true # so you can hard-code IDs into rom for networking.
+    - type: WirelessNetwork
+      range: 16 #tile radius they can communicate.
+
+- type: entity
+  id: UxnChipIncomplete
+  name: Incomplete UXN programming chip
+  parent: BaseItem
+  description: Some assembly required
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/potatoai_chip.rsi
+      state: icon
+    - type: Item
+      size: Tiny
+    - type: Construction
+      graph: UxnChip
+      node: uxnchippartial

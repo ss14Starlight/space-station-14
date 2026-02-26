@@ -6,6 +6,7 @@ using Content.Server._Starlight.UXN.Devices;
 using Content.Server._Starlight.UXN.Devices.ComponentDevices;
 using Content.Shared._Starlight.UXN;
 using Content.Shared.Administration.Managers;
+using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Examine;
 using Content.Shared.Fax.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -185,7 +186,9 @@ public sealed partial class UxnSystem : SharedUxnSystem
     private void OnGetUxnDevicesAttached(Entity<UxnAttachedComponent> ent, ref OnGetUxnDevices ev)
     {
         ev.AddDevice(ent, new DelayDevice());
-        ev.AddDevice(ent, new DelayDevice(), "network"); //todo: implement the network device
+        var chip = ent.Comp.ChipHolder.ContainedEntity;
+        if (TryComp(chip, out DeviceNetworkComponent? net)) //cause I *guess* we could later down the line make it so there is a variant WITHOUT networking.
+            ev.AddDevice((chip.Value, net), new NetworkDevice());
     }
 
     public bool Compile(string uxnTal, out string error, [NotNullWhen(true)] out List<byte>? rom)

@@ -2,29 +2,34 @@
   id: UxnChip
   start: start
   graph:
-    - node: start
-      edges:
-        - to: uxnchip
-          steps:
-            - tag: SmallAIChip
-              name: construction-graph-tag-super-compact-ai-chip
-              icon:
-                sprite: Objects/Misc/potatoai_chip.rsi
-                state: icon
-            - tag: SmallAIChip
-              name: construction-graph-tag-super-compact-ai-chip
-              icon:
-                sprite: Objects/Misc/potatoai_chip.rsi
-                state: icon
-            - material: Glass
-              amount: 1
-              doAfter: 1
-            - material: Cable
-              amount: 4
-              doAfter: 1
-            - tool: Welding
-              doAfter: 2
-            - tool: Screwing
-              doAfter: 1
-    - node: uxnchip
-      entity: UxnChip
+  - node: start
+    edges:
+    - to: uxnchippartial
+      steps:
+      - tag: SmallAIChip
+        name: construction-graph-tag-super-compact-ai-chip
+        icon:
+          sprite: Objects/Misc/potatoai_chip.rsi
+          state: icon
+      - material: Cable
+        amount: 4
+        doAfter: 1
+  - node: uxnchippartial
+    entity: UxnChipIncomplete
+    edges:
+    - to: uxnchip
+      steps:
+      - tag: SmallAIChip
+        name: construction-graph-tag-super-compact-ai-chip
+        icon:
+          sprite: Objects/Misc/potatoai_chip.rsi
+          state: icon
+      - material: Glass
+        amount: 1
+        doAfter: 1
+      - tool: Welding
+        doAfter: 2
+      - tool: Screwing
+        doAfter: 1
+  - node: uxnchip
+    entity: UxnChip

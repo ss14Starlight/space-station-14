@@ -14,3 +14,8 @@
   id: SurveillanceCameraIsolatedNetwork
   name: device-frequency-prototype-name-surveillance-camera-isolated-network
   frequency: 1940
+
+- type: deviceFrequency
+  id: UxnChipNetwork
+  name: device-frequency-prototype-name-uxn-chip
+  frequency: 1971 # The release date of the intel 4004 aka: the worlds first microprocessor.
