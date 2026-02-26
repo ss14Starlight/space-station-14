@@ -71,7 +71,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
             }
             comps.Add(comp1);
         }
-        var instrs = Math.Min(_defaultInstrs * (_maxInstrs / (_defaultInstrs * Math.Max(comps.Count,1))), _defaultInstrs);
+        var instrs = Math.Min(_maxInstrs / Math.Max(comps.Count,1), _defaultInstrs);
         foreach (var item in comps)
         {
             item.Uxn?.RunLimited(instrs);
@@ -172,10 +172,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
     }
 
     private void OnGetUxnDevicesFaxMachine(Entity<FaxMachineComponent> ent, ref OnGetUxnDevices ev)
-    {
-        ComponentUxnDevice<FaxMachineComponent> dev = new FaxComponentDevice();
-        ev.AddDevice(ent, dev);
-    }
+        => ev.AddDevice(ent, new FaxComponentDevice());
 
     private void OnFaxRecieved(Entity<UxnAttachedComponent> ent, ref FaxRecievedEvent ev)
     {
@@ -185,10 +182,10 @@ public sealed partial class UxnSystem : SharedUxnSystem
 
     }
 
-    [SuppressMessage("Style", "IDE0022:Use expression body for method", Justification = "I plan to add more later. STFU")]
     private void OnGetUxnDevicesAttached(Entity<UxnAttachedComponent> ent, ref OnGetUxnDevices ev)
     {
-        ev.AddDevice(ent, new AttachedDevice());
+        ev.AddDevice(ent, new DelayDevice(), "delay");
+        ev.AddDevice(ent, new DelayDevice(), "network"); //todo: implement the network device
     }
 
     public bool Compile(string uxnTal, out string error, [NotNullWhen(true)] out List<byte>? rom)
@@ -245,14 +242,20 @@ public struct OnGetUxnDevices
 
     public void AddDevice<T>(Entity<T> ent, ComponentUxnDevice<T> dev) where T : IComponent
         => AddDevice(ent.Comp, dev, ent.Owner);
+    
+    public void AddDevice<T>(Entity<T> ent, ComponentUxnDevice<T> dev, string name) where T : IComponent
+        => AddDevice(ent.Comp, dev, ent.Owner, name);
+
     public void AddDevice<T>(T comp, ComponentUxnDevice<T> dev, EntityUid ent) where T : IComponent
+        => AddDevice(comp, dev, ent, comp.GetType().Name[..^"Component".Length]);
+
+    public void AddDevice<T>(T comp, ComponentUxnDevice<T> dev, EntityUid ent, string name) where T : IComponent
     {
-        var typeName = comp.GetType().Name;
-        Devices[typeName[..^"Component".Length].ToLower()] = dev;
+        Devices[name.ToLower()] = dev;
         dev.Setup(ent, comp);
     }
     public void AddDevice(string name, UXNDevice dev)
-        => this.Devices[name.ToLower()] = dev;
+        => Devices[name.ToLower()] = dev;
 
     public OnGetUxnDevices() { }
 }

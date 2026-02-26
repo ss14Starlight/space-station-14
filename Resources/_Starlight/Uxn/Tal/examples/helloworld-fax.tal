@@ -33,7 +33,7 @@ BRK ( execute the event )
 
 @dict
 &fax-name "faxmachine $1
-&dlay-name "uxnattached $1
+&dlay-name "delay $1
 &title "Hello 20 "Central 20 "Command $1
 &contents "Hello 20 "World! $1
 

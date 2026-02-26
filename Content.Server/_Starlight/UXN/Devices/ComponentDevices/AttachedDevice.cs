@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Robust.Shared.Timing;
+﻿using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 
 /// <summary>
 /// A UXNDevice for a delaying execution for a few seconds. memory layout is as follows.
-/// 0x00,0x01 - Vector*
+/// 0x00,0x01 - Vector* the vector to be evaluated after the delay is over.
 /// 0x02,0x03 - Time* the time (in-seconds) to delay execution from when this was executed.
 /// 0x04-0x0F - unused
 /// </summary>
-public sealed partial class AttachedDevice : ComponentUxnDevice<UxnAttachedComponent>
+public sealed partial class DelayDevice : ComponentUxnDevice<UxnAttachedComponent>
 {
     private IGameTiming _gameTiming = default!;
 

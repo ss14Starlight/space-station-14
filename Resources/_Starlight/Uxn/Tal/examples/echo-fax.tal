@@ -38,7 +38,7 @@ BRK
 
 @dict
 &fax-name "faxmachine $1
-&dlay-name "uxnattached $1
+&dlay-name "delay $1
 &title "Ping 20 "Nanotransen 20 "Station $1
 
 @mmu

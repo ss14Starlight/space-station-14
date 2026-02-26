@@ -237,7 +237,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
             mem[(ushort)(addr + i)] = enqued.Dequeue();
         }
         activeBuffer.Clear();
-        activeBuffer.Concat(enqued);
+        enqued.ToList().ForEach(activeBuffer.Enqueue);
         return activeBuffer.Count != 0;
     }
 
@@ -272,10 +272,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
     }
 }
 
-public sealed partial class FaxRecievedUxnEvent : UxnEvent
+public sealed partial class FaxRecievedUxnEvent(ushort vector) : UxnEvent
 {
-    ushort Vector = default!;
-    public FaxRecievedUxnEvent(ushort vector) => Vector = vector;
-
-    public override void PerformEvent(UXNProcessor proc) => proc.PC = Vector;
+    public override void PerformEvent(UXNProcessor proc) => proc.PC = vector;
 }
