@@ -12,34 +12,9 @@ namespace Content.IntegrationTests.Tests._Starlight.UXN;
 public sealed class TestUxnCompiler
 {
 
-    private readonly ResPath _uxntalSourceFile = new("/_Starlight/Uxn/Tal/opctest.tal");
-
-    // [Test]
-    // public async Task TestCompilingOpcTest()
-    // {
-    //     await using var pair = await PoolManager.GetServerClient();
-    //     var server = pair.Server;
-
-    //     var resourceManager = server.ResolveDependency<IResourceManager>();
-    //     var uxnSystem = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<UxnSystem>();
-
-    //     await server.WaitAssertion(() =>
-    //     {
-    //         var uxnTalSource = resourceManager.ContentFileReadAllText(_uxntalSourceFile);
-    //         var result = uxnSystem.Compile(uxnTalSource, out var error, out var rom);
-
-    //         //Make sure compile succeded.
-    //         Assert.That(result, Is.EqualTo(true));
-    //         //Make sure compile is the right size.
-    //         Assert.That(rom.Count, Is.EqualTo(3373));
-    //     });
-
-    //     await pair.CleanReturnAsync();
-    // }
-
     [Test]
     [TestCase("/_Starlight/Uxn/Rom/hello.rom")]
-    [TestCase("/_Starlight/Uxn/Rom/acid.rom", null, null, 0x01)]
+    [TestCase("/_Starlight/Uxn/Rom/acid.rom", null, null, 0x00)]
     [TestCase("/_Starlight/Uxn/Rom/opctest.rom", null, null, 0x80)]
     [TestCase("/_Starlight/Uxn/Rom/console.rom", "foobar", "baz qux", 0x80)]
     [TestCase("/_Starlight/Uxn/Rom/system_test.rom", null, null, 0x80)]

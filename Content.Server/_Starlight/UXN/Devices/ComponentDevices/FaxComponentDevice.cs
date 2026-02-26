@@ -73,6 +73,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                 var bank2bufstatus = ContinueBufferedWrite(proc.SystemMem, buf2size, buf2ptr, false);
                 deviceMem[memTarget & 0xF0] = (byte)(bank1bufstatus || bank2bufstatus ? 0xFF : 0x00);
                 break;
+            #region Writing Commands (eg: sending a fax)
             case 0x01: //Re-Scan for devices
                 _fax.Refresh(Entity.Owner, Entity.Comp);
                 deviceMem[memTarget & 0xF0] = 0x00; //success!
@@ -121,6 +122,8 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                 _deviceNetwork.QueuePacket(Entity, component.DestinationFaxAddress, payload);
                 deviceMem[memTarget & 0xF0] = 0x00;
                 break;
+            #endregion
+            #region Reading Commands (processing incoming faxes)
             case 0xf0: //Read number of buffered faxes
                 deviceMem[memTarget & 0xF0] = (byte)Math.Min(ReadQueue.Count, 0xFF);
                 break;
@@ -176,6 +179,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                 }
                 deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(proc.SystemMem, buf1size, buf1ptr, Encoding.ASCII.GetBytes(Next.Sender), true) ? 0xFF : 0x00);
                 break;
+            #endregion
             default: //invalid device command
                 break;
         }
@@ -185,7 +189,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
     {
         GetPointers(memTarget, deviceMem, out var buf1size, out var buf1ptr, out var buf2size, out var buf2ptr);
         List<byte> output = new();
-        foreach (KeyValuePair<string, string> item in Entity.Comp.KnownFaxes)
+        foreach (var item in Entity.Comp.KnownFaxes)
         {
             output.AddRange(Encoding.ASCII.GetBytes(item.Value));
             output.Add(0x00);
@@ -265,7 +269,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
         ReadQueue.Enqueue(info);
         uxn.PushEvent(new FaxRecievedUxnEvent(
             uxn.DevMem.GetShort(
-                (byte)((uxn.SystemDevice.AttachedDevices["faxmachine"] << 0x4) + 0x0E)
+                (byte)((uxn.SystemDevice.AttachedDevices[Id] << 0x4) + 0x0E)
                 )
             )
          );

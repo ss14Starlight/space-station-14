@@ -10,6 +10,7 @@ namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 /// </summary>
 public sealed partial class DelayDevice : ComponentUxnDevice<UxnAttachedComponent>
 {
+    public override string Id => "delay";
     private IGameTiming _gameTiming = default!;
 
     protected override void SetupCore(EntityUid euid, UxnAttachedComponent comp) => _gameTiming = IoCManager.Resolve<IGameTiming>();

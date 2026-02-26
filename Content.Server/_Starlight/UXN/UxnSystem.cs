@@ -184,7 +184,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
 
     private void OnGetUxnDevicesAttached(Entity<UxnAttachedComponent> ent, ref OnGetUxnDevices ev)
     {
-        ev.AddDevice(ent, new DelayDevice(), "delay");
+        ev.AddDevice(ent, new DelayDevice());
         ev.AddDevice(ent, new DelayDevice(), "network"); //todo: implement the network device
     }
 
@@ -242,12 +242,12 @@ public struct OnGetUxnDevices
 
     public void AddDevice<T>(Entity<T> ent, ComponentUxnDevice<T> dev) where T : IComponent
         => AddDevice(ent.Comp, dev, ent.Owner);
-    
+
     public void AddDevice<T>(Entity<T> ent, ComponentUxnDevice<T> dev, string name) where T : IComponent
-        => AddDevice(ent.Comp, dev, ent.Owner, name);
+        => AddDevice(ent.Comp, dev, ent, name);
 
     public void AddDevice<T>(T comp, ComponentUxnDevice<T> dev, EntityUid ent) where T : IComponent
-        => AddDevice(comp, dev, ent, comp.GetType().Name[..^"Component".Length]);
+        => AddDevice(comp, dev, ent, dev.Id);
 
     public void AddDevice<T>(T comp, ComponentUxnDevice<T> dev, EntityUid ent, string name) where T : IComponent
     {
