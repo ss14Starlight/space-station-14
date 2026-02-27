@@ -20,7 +20,7 @@
       transmitFrequencyId: UxnChipNetwork
       receiveFrequencyId: UxnChipNetwork
       examinableAddress: true # so you can hard-code IDs into rom for networking.
-    - type: WirelessNetwork
+    - type: WirelessNetworkConnection #WHY is this a seperate NAME GRAH I WANNA SHOOT SOMEONE
       range: 16 #tile radius they can communicate.
 
 - type: entity
