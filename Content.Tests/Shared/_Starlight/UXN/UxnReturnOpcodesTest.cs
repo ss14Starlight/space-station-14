@@ -23,9 +23,9 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void INCr(byte val)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x01 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.INC | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(val);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo<byte>((byte)(val + 1)));
     }
 
@@ -33,9 +33,9 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void POPr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x02 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.POP | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(0x32);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.StackPointer, Is.EqualTo(0x00));
     }
 
@@ -43,9 +43,9 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void NIPr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x03 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.NIP | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushShort(0x1234);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.StackPointer, Is.EqualTo(0x01));
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(0x34));
     }
@@ -54,9 +54,9 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void SWPr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x04 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.SWP | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushShort(0x1234);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(0x12));
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(0x34));
     }
@@ -65,11 +65,11 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void ROTr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x05 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.ROT | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(0x11);
         uxn.ReturnStack.PushByte(0x22);
         uxn.ReturnStack.PushByte(0x33);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(0x11));
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(0x33));
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(0x22));
@@ -79,9 +79,9 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void DUPr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x06 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.DUP| (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(0x11);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(0x11));
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(0x11));
     }
@@ -90,10 +90,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void OVRr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x07 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.OVR | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(0x11);
         uxn.ReturnStack.PushByte(0x22);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(0x11));
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(0x22));
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(0x11));
@@ -107,10 +107,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void EQUr(byte left, byte right)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x08 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.EQU | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(left);
         uxn.ReturnStack.PushByte(right);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true) == 0x01, Is.EqualTo(left == right));
     }
 
@@ -122,10 +122,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void NEQr(byte left, byte right)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x09 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.NEQ | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(left);
         uxn.ReturnStack.PushByte(right);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true) == 0x01, Is.EqualTo(left != right));
     }
 
@@ -137,10 +137,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void GTH(byte left, byte right, bool expected)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x0A + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.GTH | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(left);
         uxn.ReturnStack.PushByte(right);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true) == 0x01, Is.EqualTo(expected));
     }
 
@@ -152,10 +152,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void LTHr(byte left, byte right, bool expected)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x0B + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.LTH | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(left);
         uxn.ReturnStack.PushByte(right);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true) == 0x01, Is.EqualTo(expected));
     }
 
@@ -165,9 +165,9 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void JMPr(byte jmp)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x0C + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.JMP | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(jmp);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.PC, Is.EqualTo((ushort)(0x101 + (sbyte)jmp))); //the PC is incr'd by 1 so we add to that
     }
 
@@ -179,10 +179,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void JCNr(byte jmp, bool cond)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x0D + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.JCN | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte((byte)(cond ? 0x01 : 0x00));
         uxn.ReturnStack.PushByte(jmp);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.PC, Is.EqualTo(cond ? (ushort)(0x101 + (sbyte)jmp) : 0x101)); //the PC is incr'd by 1 so we add to that
     }
 
@@ -192,9 +192,9 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void JSRr(byte jmp)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x0E + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.JSR | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(jmp);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.PC, Is.EqualTo((ushort)(0x101 + (sbyte)jmp)));
         Assert.That(uxn.WorkingStack.PopShort(false), Is.EqualTo(0x101)); //and the return stack should point to the instr after JSR
     }
@@ -203,9 +203,9 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void STHr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x0F + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.STH | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(0x32);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.WorkingStack.PopByte(false), Is.EqualTo(0x32));
     }
 
@@ -213,10 +213,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void LDZr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x10 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.LDZ | (byte)UxnOpcodeFlag.Return;
         uxn.SystemMem[0x00] = 0x32;
         uxn.ReturnStack.PushByte(0x00);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(false), Is.EqualTo(0x32));
     }
 
@@ -224,10 +224,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void STZr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x11 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.STZ | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(0x32);
         uxn.ReturnStack.PushByte(0x00);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.SystemMem[0x00], Is.EqualTo(0x32));
     }
 
@@ -237,11 +237,11 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void LDRr(byte offset)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x12 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.LDR | (byte)UxnOpcodeFlag.Return;
         ushort target = (ushort)(0x101 + (sbyte)offset);
         uxn.SystemMem[target] = 0x32;
         uxn.ReturnStack.PushByte(offset);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(0x32));
     }
 
@@ -251,11 +251,11 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void STRr(byte offset)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x13 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.STR | (byte)UxnOpcodeFlag.Return;
         ushort target = (ushort)(0x101 + (sbyte)offset);
         uxn.ReturnStack.PushByte(0x32);
         uxn.ReturnStack.PushByte(offset);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.SystemMem[target], Is.EqualTo(0x32));
     }
 
@@ -263,10 +263,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void LDAr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x14 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.LDA | (byte)UxnOpcodeFlag.Return;
         uxn.SystemMem[0x1234] = 0x32;
         uxn.ReturnStack.PushShort(0x1234);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(0x32));
     }
 
@@ -274,10 +274,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void STAr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x15 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.STA | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(0x32);
         uxn.ReturnStack.PushShort(0x1234);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.SystemMem[0x1234], Is.EqualTo(0x32));
     }
 
@@ -285,11 +285,11 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void DEIr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x16 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.DEI | (byte)UxnOpcodeFlag.Return;
         uxn.DevMem[0x00] = 0x32;
         var testdev = new TestDevice();
         uxn.AttachDevice(0x00, testdev);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(0x32));
         Assert.That(testdev.dei, Is.EqualTo(0x00));
     }
@@ -298,12 +298,12 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void DEOr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x17 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.DEO | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(0x32);
         uxn.ReturnStack.PushByte(0x00);
         var testdev = new TestDevice();
         uxn.AttachDevice(0x00, testdev);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.DevMem[0x00], Is.EqualTo(0x32));
         Assert.That(testdev.deo, Is.EqualTo(0x00));
     }
@@ -316,10 +316,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void ADDr(byte left, byte right)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x18 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.ADD | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(left);
         uxn.ReturnStack.PushByte(right);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo((byte)(left + right)));
     }
 
@@ -331,10 +331,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void SUBr(byte left, byte right)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x19 + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.SUB | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(left);
         uxn.ReturnStack.PushByte(right);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo((byte)(left - right)));
     }
 
@@ -346,10 +346,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void MULr(byte left, byte right)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x1A + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.MUL | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(left);
         uxn.ReturnStack.PushByte(right);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo((byte)(left * right)));
     }
 
@@ -362,10 +362,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void DIVr(byte left, byte right)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x1B + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.DIV | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(left);
         uxn.ReturnStack.PushByte(right);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(right != 0 ? (byte)(left / right) : 0x00));
     }
 
@@ -374,12 +374,12 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void ANDr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x1C + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.AND | (byte)UxnOpcodeFlag.Return;
         var left = _random.NextByte();
         var right = _random.NextByte();
         uxn.ReturnStack.PushByte(left);
         uxn.ReturnStack.PushByte(right);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(left & right));
     }
 
@@ -388,12 +388,12 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void ORAr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x1D + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.OR | (byte)UxnOpcodeFlag.Return;
         var left = _random.NextByte();
         var right = _random.NextByte();
         uxn.ReturnStack.PushByte(left);
         uxn.ReturnStack.PushByte(right);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(left | right));
     }
 
@@ -402,12 +402,12 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void EORr()
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x1E + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.XOR | (byte)UxnOpcodeFlag.Return;
         var left = _random.NextByte();
         var right = _random.NextByte();
         uxn.ReturnStack.PushByte(left);
         uxn.ReturnStack.PushByte(right);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(left ^ right));
     }
 
@@ -418,10 +418,10 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     public void SFTr(byte input, byte sft, byte output)
     {
         var uxn = new UXNProcessor();
-        uxn.SystemMem[0x100] = 0x1F + 0x40;
+        uxn.SystemMem[0x100] = (byte)UxnOpcode.SFT | (byte)UxnOpcodeFlag.Return;
         uxn.ReturnStack.PushByte(input);
         uxn.ReturnStack.PushByte(sft);
-        Assert.That(uxn.Step(), Is.EqualTo(false));
+        Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.ReturnStack.PopByte(true), Is.EqualTo(output));
     }
 }

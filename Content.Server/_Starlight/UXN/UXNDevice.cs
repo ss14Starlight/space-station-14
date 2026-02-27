@@ -309,11 +309,11 @@ public sealed partial class UXNProcessor
         var otherStack = ret ? WorkingStack : ReturnStack;
         
         var masked = imme ? instr : instr & 0x1F;
-        switch (masked)
+        switch ((UxnOpcode)masked)
         {
-            case 0x00: return true; // BRK
+            case UxnOpcode.BRK: return true; // BRK
             #region immediates
-            case 0x20: // JCI
+            case UxnOpcode.JCI: // JCI
                 {
                     var msb = SystemMem[PC];
                     var addr = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
@@ -321,7 +321,7 @@ public sealed partial class UXNProcessor
                     if (stack.PopByte(false) != 0) PC += addr;
                 }
                 break;
-            case 0x40: // JMI
+            case UxnOpcode.JMI: // JMI
                 {
                     var msb = SystemMem[PC];
                     var addr = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
@@ -329,7 +329,7 @@ public sealed partial class UXNProcessor
                     PC += 2;
                 }
                 break;
-            case 0x60: // JSI
+            case UxnOpcode.JSI: // JSI
                 {
                     var msb = SystemMem[PC];
                     var addr = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
@@ -338,13 +338,13 @@ public sealed partial class UXNProcessor
                     PC += addr;
                 }
                 break;
-            case 0x80: // LIT
+            case UxnOpcode.LIT: // LIT
                 {
                     stack.PushByte(SystemMem[PC]);
                     PC++;
                 }
                 break;
-            case 0xA0: // LIT2
+            case UxnOpcode.LIT2: // LIT2
                 {
                     var msb = SystemMem[PC];
                     var res = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
@@ -352,13 +352,13 @@ public sealed partial class UXNProcessor
                     stack.PushShort(res);
                 }
                 break;
-            case 0xC0: // LITr
+            case UxnOpcode.LITr: // LITr
                 {
                     stack.PushByte(SystemMem[PC]);
                     PC++;
                 }
                 break;
-            case 0xE0: // LIT2r
+            case UxnOpcode.LIT2r: // LIT2r
                 {
                     var msb = SystemMem[PC];
                     var res = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
@@ -368,7 +368,7 @@ public sealed partial class UXNProcessor
                 break;
             #endregion immediates
             #region basic stack
-            case 0x01: //INC a -- a+1
+            case UxnOpcode.INC: //INC a -- a+1
                 if (shrt)
                 {
                     var a = stack.PopShort(keep);
@@ -380,7 +380,7 @@ public sealed partial class UXNProcessor
                     stack.PushByte((byte)(a + 1));
                 }
                 break;
-            case 0x02: // POP a --
+            case UxnOpcode.POP: // POP a --
                 if (shrt)
                 {
                     stack.PopShort(keep);
@@ -390,7 +390,7 @@ public sealed partial class UXNProcessor
                     stack.PopByte(keep);
                 }
                 break;
-            case 0x03: // NIP a b -- b
+            case UxnOpcode.NIP: // NIP a b -- b
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -404,7 +404,7 @@ public sealed partial class UXNProcessor
                     stack.PushByte(b);
                 }
                 break;
-            case 0x04: // SWP a b -- b a
+            case UxnOpcode.SWP: // SWP a b -- b a
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -420,7 +420,7 @@ public sealed partial class UXNProcessor
                     stack.PushByte(a);
                 }
                 break;
-            case 0x05: // ROT a b c -- b c a
+            case UxnOpcode.ROT: // ROT a b c -- b c a
                 if (shrt)
                 {
                     var c = stack.PopShort(keep);
@@ -440,7 +440,7 @@ public sealed partial class UXNProcessor
                     stack.PushByte(a);
                 }
                 break;
-            case 0x06: // DUP a -- a a
+            case UxnOpcode.DUP: // DUP a -- a a
                 if (shrt)
                 {
                     var a = stack.PopShort(keep);
@@ -454,7 +454,7 @@ public sealed partial class UXNProcessor
                     stack.PushByte(a);
                 }
                 break;
-            case 0x07: // OVR a b -- a b a
+            case UxnOpcode.OVR: // OVR a b -- a b a
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -474,7 +474,7 @@ public sealed partial class UXNProcessor
                 break;
             #endregion basic stack
             #region comparisons
-            case 0x08: // EQU a b -- bool8
+            case UxnOpcode.EQU: // EQU a b -- bool8
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -488,7 +488,7 @@ public sealed partial class UXNProcessor
                     stack.PushByte((byte)(a == b ? 1 : 0));
                 }
                 break;
-            case 0x09: // NEQ a b -- bool8
+            case UxnOpcode.NEQ: // NEQ a b -- bool8
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -502,7 +502,7 @@ public sealed partial class UXNProcessor
                     stack.PushByte((byte)(a == b ? 0 : 1));
                 }
                 break;
-            case 0x0A: // GTH a b -- bool8
+            case UxnOpcode.GTH: // GTH a b -- bool8
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -516,7 +516,7 @@ public sealed partial class UXNProcessor
                     stack.PushByte((byte)(a > b ? 1 : 0));
                 }
                 break;
-            case 0x0B: // LTH a b -- bool8
+            case UxnOpcode.LTH: // LTH a b -- bool8
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -532,21 +532,21 @@ public sealed partial class UXNProcessor
                 break;
             #endregion comparisons
             #region JMPs
-            case 0x0C: // JMP addr --
+            case UxnOpcode.JMP: // JMP addr --
                 PC = shrt ? stack.PopShort(keep) : (ushort)(PC + (sbyte)stack.PopByte(keep));
                 break;
-            case 0x0D: // JCN cond8 addr --
+            case UxnOpcode.JCN: // JCN cond8 addr --
                 {
                     var tgt = shrt ? stack.PopShort(keep) : (ushort)(PC + (sbyte)stack.PopByte(keep));
                     if (stack.PopByte(keep) != 0)
                         PC = tgt;
                 }
                 break;
-            case 0x0E: // JSR addr --
+            case UxnOpcode.JSR: // JSR addr --
                 otherStack.PushShort(PC);
                 PC = shrt ? stack.PopShort(keep) : (ushort)(PC + (sbyte)stack.PopByte(keep));
                 break;
-            case 0x0F: // STH a -- | a
+            case UxnOpcode.STH: // STH a -- | a
                 if (shrt)
                 {
                     var a = stack.PopShort(keep);
@@ -560,7 +560,7 @@ public sealed partial class UXNProcessor
                 break;
             #endregion JMPs
             #region memory manipulation
-            case 0x10: // LDZ addr8 -- value
+            case UxnOpcode.LDZ: // LDZ addr8 -- value
                 {
                     var zp = stack.PopByte(keep);
                     if (shrt)
@@ -574,7 +574,7 @@ public sealed partial class UXNProcessor
                     }
                 }
                 break;
-            case 0x11: // STZ val addr8 --
+            case UxnOpcode.STZ: // STZ val addr8 --
                 {
                     var addr = stack.PopByte(keep);
                     var mem = SystemMem;
@@ -590,7 +590,7 @@ public sealed partial class UXNProcessor
                     }
                 }
                 break;
-            case 0x12: // LDR addr8 -- value
+            case UxnOpcode.LDR: // LDR addr8 -- value
                 {
                     var addr = (ushort)(PC + (sbyte)stack.PopByte(keep));
                     if (shrt)
@@ -605,7 +605,7 @@ public sealed partial class UXNProcessor
                     }
                 }
                 break;
-            case 0x13: // STR value addr8 --
+            case UxnOpcode.STR: // STR value addr8 --
                 {
                     ushort addr = (ushort)(PC + (sbyte)stack.PopByte(keep));
                     var mem = SystemMem;
@@ -621,7 +621,7 @@ public sealed partial class UXNProcessor
                     }
                 }
                 break;
-            case 0x14: // LDA addr16 -- value
+            case UxnOpcode.LDA: // LDA addr16 -- value
                 {
                     var addr = stack.PopShort(keep);
                     if (shrt)
@@ -634,7 +634,7 @@ public sealed partial class UXNProcessor
                     }
                 }
                 break;
-            case 0x15: // STA value addr16 --
+            case UxnOpcode.STA: // STA value addr16 --
                 {
                     var addr = stack.PopShort(keep);
                     var mem = SystemMem;
@@ -649,7 +649,7 @@ public sealed partial class UXNProcessor
                     }
                 }
                 break;
-            case 0x16: // DEI device8 -- value
+            case UxnOpcode.DEI: // DEI device8 -- value
                 {
                     var dev = stack.PopByte(keep);
                     var devInstance = Devices[dev >> 4];
@@ -668,7 +668,7 @@ public sealed partial class UXNProcessor
                     }
                 }
                 break;
-            case 0x17: // DEO value, device8 --
+            case UxnOpcode.DEO: // DEO value, device8 --
                 {
                     var dev = stack.PopByte(keep);
                     var devInstance = Devices[dev >> 4];
@@ -691,7 +691,7 @@ public sealed partial class UXNProcessor
                 break;
             #endregion memory manipulation
             #region math
-            case 0x18: // ADD a b -- a+b
+            case UxnOpcode.ADD: // ADD a b -- a+b
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -705,7 +705,7 @@ public sealed partial class UXNProcessor
                     stack.PushByte((byte)(a + b));
                 }
                 break;
-            case 0x19: // SUB a b -- a-b
+            case UxnOpcode.SUB: // SUB a b -- a-b
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -719,7 +719,7 @@ public sealed partial class UXNProcessor
                     stack.PushByte((byte)(a - b));
                 }
                 break;
-            case 0x1A: // MUL a b -- a*b
+            case UxnOpcode.MUL: // MUL a b -- a*b
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -733,7 +733,7 @@ public sealed partial class UXNProcessor
                     stack.PushByte((byte)(a * b));
                 }
                 break;
-            case 0x1B: // DIV a b -- a/b
+            case UxnOpcode.DIV: // DIV a b -- a/b
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -749,7 +749,7 @@ public sealed partial class UXNProcessor
                     else { stack.PushByte(0x00); }
                 }
                 break;
-            case 0x1C: // AND a b -- a&b
+            case UxnOpcode.AND: // AND a b -- a&b
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -763,7 +763,7 @@ public sealed partial class UXNProcessor
                     stack.PushByte((byte)(a & b));
                 }
                 break;
-            case 0x1D: // OR a b -- a||b
+            case UxnOpcode.OR: // OR a b -- a||b
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -777,7 +777,7 @@ public sealed partial class UXNProcessor
                     stack.PushByte((byte)(a | b));
                 }
                 break;
-            case 0x1E: // XOR a b -- a^b
+            case UxnOpcode.XOR: // XOR a b -- a^b
                 if (shrt)
                 {
                     var b = stack.PopShort(keep);
@@ -791,7 +791,7 @@ public sealed partial class UXNProcessor
                     stack.PushByte((byte)(a ^ b));
                 }
                 break;
-            case 0x1F: // SFT a shift8 -- c
+            case UxnOpcode.SFT: // SFT a shift8 -- c
                 {
                     var shift8 = stack.PopByte(keep);
                     var left = shift8 >> 4;
@@ -925,4 +925,73 @@ public sealed partial class UXNProcessor
         }
         return false;
     }
+}
+
+public enum UxnOpcode : byte
+{
+    BRK   = 0x00,
+    #region immediates
+    JCI   = 0x20,
+    JMI   = 0x40,
+    JSI   = 0x60,
+    LIT   = 0x80,
+    LIT2  = 0xA0,
+    LITr  = 0xC0,
+    LIT2r = 0xE0,
+    #endregion
+    #region basic stack
+    INC   = 0x01,
+    POP   = 0x02,
+    NIP   = 0x03,
+    SWP   = 0x04,
+    ROT   = 0x05,
+    DUP   = 0x06,
+    OVR   = 0x07,
+    #endregion
+    #region comparisons
+    EQU   = 0x08,
+    NEQ   = 0x09,
+    GTH   = 0x0A,
+    LTH   = 0x0B,
+    #endregion
+    #region JMPs
+    JMP   = 0x0C,
+    JCN   = 0x0D,
+    JSR   = 0x0E,
+    STH   = 0x0F,
+    #endregion
+    #region memory manipulation
+    LDZ   = 0x10,
+    STZ   = 0x11,
+    LDR   = 0x12,
+    STR   = 0x13,
+    LDA   = 0x14,
+    STA   = 0x15,
+    DEI   = 0x16,
+    DEO   = 0x17,
+    #endregion
+    #region math
+    ADD   = 0x18,
+    SUB   = 0x19,
+    MUL   = 0x1A,
+    DIV   = 0x1B,
+    AND   = 0x1C,
+    OR    = 0x1D,
+    XOR   = 0x1E,
+    SFT   = 0x1F
+    #endregion
+}
+
+[Flags]
+public enum UxnOpcodeFlag : byte
+{
+    Keep = 0b100_00000,
+    Return = 0b010_00000,
+    Short = 0b001_00000
+}
+
+public static class UxnOps
+{
+    public static byte Or(this UxnOpcode op, UxnOpcodeFlag flag)
+        => (byte)((byte)op | (byte)flag);
 }

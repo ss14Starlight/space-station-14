@@ -66,48 +66,48 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
         byte command = deviceMem[memTarget];
         GetPointers(memTarget, deviceMem, out var buf1size, out var buf1ptr, out var buf2size, out var buf2ptr);
         var component = Entity.Comp;
-        switch (command)
+        switch ((FaxDeviceCommand)command)
         {
-            case 0x00: //Continue buffered write op.
+            case FaxDeviceCommand.ContWrite: //Continue buffered write op.
                 var bank1bufstatus = ContinueBufferedWrite(proc.SystemMem, buf1size, buf1ptr, true);
                 var bank2bufstatus = ContinueBufferedWrite(proc.SystemMem, buf2size, buf2ptr, false);
-                deviceMem[memTarget & 0xF0] = (byte)(bank1bufstatus || bank2bufstatus ? 0xFF : 0x00);
+                deviceMem[memTarget & 0xF0] = (byte)(bank1bufstatus || bank2bufstatus ? FaxDeviceStatus.InformationBuffered : FaxDeviceStatus.Okay);
                 break;
             #region Writing Commands (eg: sending a fax)
-            case 0x01: //Re-Scan for devices
+            case FaxDeviceCommand.ReScan: //Re-Scan for devices
                 _fax.Refresh(Entity.Owner, Entity.Comp);
-                deviceMem[memTarget & 0xF0] = 0x00; //success!
+                deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.Okay;
                 break;
-            case 0x02: //List known faxes
+            case FaxDeviceCommand.DumpNames: //List known faxes
                 DumpKnownFaxes(memTarget, deviceMem, proc.SystemMem);
                 break;
-            case 0x03: //Set Destination fax
+            case FaxDeviceCommand.SetTarget: //Set Destination fax
                 var addr = component.DestinationFaxAddress;
                 component.DestinationFaxAddress = ReadBuffered(proc.SystemMem, buf1size, buf1ptr);
                 if (component.DestinationFaxAddress == null)
                 {
-                    deviceMem[memTarget & 0xF0] = 0x80; //invalid address
+                    deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.InvalidAddr;
                     component.DestinationFaxAddress = addr;
                     break;
                 }
                 if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var _))
                 {
-                    deviceMem[memTarget & 0xF0] = 0x80; //invalid address
+                    deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.InvalidAddr;
                     component.DestinationFaxAddress = addr;
                     break;
                 }
-                deviceMem[memTarget & 0xF0] = 0x00;
+                deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.Okay;
                 break;
-            case 0x04: //Send a fax to destination.
+            case FaxDeviceCommand.SendFax: //Send a fax to destination.
 
                 if (component.DestinationFaxAddress == null)
                 {
-                    deviceMem[memTarget & 0xF0] = 0x80; //invalid address
+                    deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.InvalidAddr;
                     break;
                 }
                 if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var _))
                 {
-                    deviceMem[memTarget & 0xF0] = 0x80; //invalid address
+                    deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.InvalidAddr;
                     break;
                 }
 
@@ -120,47 +120,47 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                     [FaxConstants.FaxPaperContentData] = contents,
                 };
                 _deviceNetwork.QueuePacket(Entity, component.DestinationFaxAddress, payload);
-                deviceMem[memTarget & 0xF0] = 0x00;
+                deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.Okay;
                 break;
             #endregion
             #region Reading Commands (processing incoming faxes)
-            case 0xf0: //Read number of buffered faxes
+            case FaxDeviceCommand.GetIncoming: //Read number of buffered faxes
                 deviceMem[memTarget & 0xF0] = (byte)Math.Min(ReadQueue.Count, 0xFF);
                 break;
-            case 0xf1: //Read number of faxes in-buffer
+            case FaxDeviceCommand.NextIncoming: //Read number of faxes in-buffer
                 if (!(ReadQueue.Count > 0))
                 {
-                    deviceMem[memTarget & 0xF0] = 0x81;
+                    deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.NoIncoming;
                     break;
                 }
                 Next = ReadQueue.Dequeue();
-                deviceMem[memTarget & 0xF0] = 0x00;
+                deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.Okay;
                 break;
-            case 0xf2: //Read the name of the fax.
+            case FaxDeviceCommand.IncomingName: //Read the name of the fax.
                 if (Next == null)
                 {
-                    deviceMem[memTarget & 0xF0] = 0x81;
+                    deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.NoIncoming;
                     break;
                 }
-                deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(proc.SystemMem, buf1size, buf1ptr, Encoding.ASCII.GetBytes(Next.Name), true) ? 0xFF : 0x00);
+                deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(proc.SystemMem, buf1size, buf1ptr, Encoding.ASCII.GetBytes(Next.Name), true) ? FaxDeviceStatus.InformationBuffered : FaxDeviceStatus.Okay);
                 break;
-            case 0xf3: //Read the contents of the fax.
+            case FaxDeviceCommand.IncomingContents: //Read the contents of the fax.
                 if (Next == null)
                 {
-                    deviceMem[memTarget & 0xF0] = 0x81;
+                    deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.NoIncoming;
                     break;
                 }
-                deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(proc.SystemMem, buf1size, buf1ptr, Encoding.ASCII.GetBytes(Next.Content), true) ? 0xFF : 0x00);
+                deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(proc.SystemMem, buf1size, buf1ptr, Encoding.ASCII.GetBytes(Next.Content), true) ? FaxDeviceStatus.InformationBuffered : FaxDeviceStatus.Okay);
                 break;
-            case 0xf4: //Read the stamps of the fax.
+            case FaxDeviceCommand.IncomingStamps: //Read the stamps of the fax.
                 if (Next == null)
                 {
-                    deviceMem[memTarget & 0xF0] = 0x81;
+                    deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.NoIncoming;
                     break;
                 }
                 if (Next.StampedBy == null)
                 {
-                    deviceMem[memTarget & 0xF0] = 0x82;
+                    deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.NoStamps;
                     break;
                 }
                 List<byte> output = new();
@@ -169,15 +169,15 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                     output.AddRange(Encoding.ASCII.GetBytes(item.StampedName));
                     output.Add(0x00);
                 }
-                deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(proc.SystemMem, buf1size, buf1ptr, [.. output], true) ? 0xFF : 0x00);
+                deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(proc.SystemMem, buf1size, buf1ptr, [.. output], true) ? FaxDeviceStatus.InformationBuffered : FaxDeviceStatus.Okay);
                 break;
-            case 0xf5: //Read the sender of the fax.
+            case FaxDeviceCommand.IncomingSender: //Read the sender of the fax.
                 if (Next == null)
                 {
-                    deviceMem[memTarget & 0xF0] = 0x81;
+                    deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.NoIncoming;
                     break;
                 }
-                deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(proc.SystemMem, buf1size, buf1ptr, Encoding.ASCII.GetBytes(Next.Sender), true) ? 0xFF : 0x00);
+                deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(proc.SystemMem, buf1size, buf1ptr, Encoding.ASCII.GetBytes(Next.Sender), true) ? FaxDeviceStatus.InformationBuffered : FaxDeviceStatus.Okay);
                 break;
             #endregion
             default: //invalid device command
@@ -196,7 +196,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
             output.AddRange(Encoding.ASCII.GetBytes(item.Key));
             output.Add(0x00);
         }
-        deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(uxnMem, buf1size, buf1ptr, [.. output], true) ? 0xFF : 0x00);
+        deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(uxnMem, buf1size, buf1ptr, [.. output], true) ? FaxDeviceStatus.InformationBuffered : FaxDeviceStatus.Okay);
     }
 
     #region Utility
@@ -279,4 +279,28 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
 public sealed partial class FaxRecievedUxnEvent(ushort vector) : UxnEvent
 {
     public override void PerformEvent(UXNProcessor proc) => proc.PC = vector;
+}
+
+public enum FaxDeviceCommand : byte
+{
+    ContWrite,
+    ReScan,
+    DumpNames,
+    SetTarget,
+    SendFax,
+    GetIncoming = 0xf0,
+    NextIncoming,
+    IncomingName,
+    IncomingContents,
+    IncomingStamps,
+    IncomingSender,
+}
+
+public enum FaxDeviceStatus : byte
+{
+    Okay,
+    InvalidAddr = 0x80,
+    NoIncoming,
+    NoStamps,
+    InformationBuffered = 0xFF
 }
