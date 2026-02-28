@@ -99,7 +99,7 @@
 # agent uplink
 - type: storeCategory
   id: UplinkCybernetics
-  name: Cybernetics
+  name: store-category-cybernetics
   
 # salvage
 
@@ -161,3 +161,14 @@
 - type: storeCategory
   id: RevUplinkPointless
   name: Glory
+
+# Elf Cantrips
+
+- type: storeCategory
+  id: CantripsStandard
+  name: store-category-cantrips-standard
+
+# Languages
+- type: storeCategory
+  id: Languages
+  name: store-category-languages

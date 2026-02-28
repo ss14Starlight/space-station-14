@@ -70,6 +70,10 @@ public sealed partial class BuckleComponent : Component
     /// Used for client rendering
     /// </summary>
     [ViewVariables] public int? OriginalDrawDepth;
+
+    #region Starlight
+    [ViewVariables] public bool? OriginalVisible;
+    #endregion
 }
 
 public sealed partial class UnbuckleAlertEvent : BaseAlertEvent;

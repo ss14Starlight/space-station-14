@@ -16,7 +16,6 @@ jobs:
         os: [ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
-    #runs-on: happyrobot33
 
     steps:
     - name: Checkout Master
@@ -40,9 +39,7 @@ jobs:
         dotnet-version: 10.0.x
 
     - name: Install dependencies
-      run: |
-        dotnet restore
-#        apt install -y libfreetype6 libfreetype-dev
+      run: dotnet restore
 
     - name: Build Project
       run: dotnet build --configuration DebugOpt --no-restore /m
@@ -55,7 +52,7 @@ jobs:
       run: |
         $env:DOTNET_gcServer=1
         dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger trx -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
-        
+
     - name: Test results
       continue-on-error: true
       if: always()

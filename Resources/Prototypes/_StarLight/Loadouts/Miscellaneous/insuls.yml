@@ -1,0 +1,58 @@
+- type: loadout
+  id: InsulsRegular
+  equipment:
+    gloves: ClothingHandsGlovesColorYellow
+
+- type: loadout
+  id: InsulsCombat
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Security
+        time: 216000 # 60 hours of harmbatong
+  equipment:
+    gloves: ClothingHandsGlovesCombat
+
+- type: loadout
+  id: InsulsCombatNoLock
+  equipment:
+    gloves: ClothingHandsGlovesCombat
+
+- type: loadout
+  id: InsulsMercenary
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobSalvageSpecialist
+        time: 36000 # 10 hours of not turning in contra to sec
+  equipment:
+    gloves: ClothingHandsMercGlovesCombat
+
+- type: loadout
+  id: InsulsMaid
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Security
+        time: 216000 # 60 hours of charging batong
+  equipment:
+    gloves: ClothingHandsTacticalMaidGloves
+
+- type: loadout
+  id: InsulsCaptain
+  equipment:
+    gloves: ClothingHandsGlovesCaptain
+
+- type: loadout
+  id: InsulsScrapper
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobSalvageLead
+        time: 36000 # 10 hours of writing reports
+  equipment:
+    gloves: ClothingHandsSalvageMercGlovesCombat

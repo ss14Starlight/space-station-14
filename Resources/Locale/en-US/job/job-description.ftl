@@ -9,7 +9,7 @@ job-description-cadet = Learn the basics of arresting criminals and managing the
 job-description-captain = Keep the station running, delegate work to the other heads of staff, and exert your will.
 job-description-cargotech = Deal with requisitions and deliveries, pilot the cargo shuttle to the trade station and back, and work with others to make ludicrous amounts of cash and then waste it all gambling.
 job-description-ce = Manage the Engineering department to ensure power, atmospherics, and the hull are in perfect shape.
-job-description-centcomoff = Act as an ambassador to the newest state-of-the-art space station in Nanotrasen's fleet.
+job-description-centcommoff = Act as an ambassador to the newest state-of-the-art space station in Nanotrasen's fleet.
 # Starlight: revised:
 job-description-chaplain = Preach the good word of your deity and religion, and conduct spiritual healing and miracles with your holy book.
 job-description-chef = Keep the station fed with a variety of food items, butcher dead animals to ensure ammonia doesn't leak, and help keep the bar lively.
@@ -44,7 +44,7 @@ job-description-reporter = Entertain & inform the crew with your vibrant journal
 job-description-salvagespec = Use the salvage magnet to draw in detached scraps & asteroids to loot and enrich the station, build a salvage ship and then travel to new planets, while fighting off any space fauna along the way.
 job-description-scientist = Research alien artifacts, unlock new technologies, build newer and better machines around the station, and make everything run more efficiently.
 job-description-security = Catch criminals and enemies of the station, enforce the law, and ensure that the station does not fall into disarray.
-job-description-serviceworker = Learn the basics of bartending, cooking, and growing plants.
+job-description-serviceworker = Learn the basics of bartending, cooking, and growing plants. Attend to the crew, and serve them well.
 job-description-station-ai = Follow your laws, serve the crew.
 job-description-visitor = Enjoy your visit to the station.
 job-description-warden = Patrol the Security department, ensure that no one is stealing from the armory, and make sure that all prisoners are processed and let out when their time is up.

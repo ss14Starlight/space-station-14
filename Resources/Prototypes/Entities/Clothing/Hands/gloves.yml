@@ -253,7 +253,6 @@
     - components:
       - type: BatteryDrainer
       - type: StunProvider
-        cooldown: 10
         noPowerPopup: ninja-no-power
         whitelist:
           components:
@@ -274,7 +273,7 @@
       - type: CriminalRecordsHacker
 
 - type: entity
-  parent: [ ClothingHandsGlovesColorBlack, BaseSecurityEngineeringContraband ]
+  parent: [ ClothingHandsGlovesColorBlack, BaseEngineeringSecurityCommandContraband ] # SL edit: Engi/Sec/Command contra
   id: ClothingHandsGlovesCombat
   name: combat gloves
   description: These tactical gloves are fireproof and shock resistant.
@@ -303,7 +302,7 @@
     fiberColor: fibers-black
 
 - type: entity
-  parent: [ BaseEngineeringSecurityContraband, ClothingHandsGlovesCombat ] #Starlight EngSec contra
+  parent: [ BaseEngineeringSecurityCommandSalvageMiningContraband, ClothingHandsGlovesCombat ] # SL edit: Engi/Sec/Command/Salvage/Mining contra
   id: ClothingHandsMercGlovesCombat
   name: mercenary combat gloves
   description: High-quality combat gloves to protect hands from mechanical damage during combat.
@@ -407,6 +406,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+    - BibleThwackRemovable
   #endregion Starlight
 
 - type: entity

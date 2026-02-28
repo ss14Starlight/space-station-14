@@ -30,3 +30,24 @@
   color: "#6C3BAA"
   recognizable: true
   physicalDesc: reagent-physical-desc-resomi
+
+- type: reagent
+  parent: Blood
+  id: DarkBlood
+  name: reagent-name-dark-blood
+  group: Biological
+  desc: reagent-desc-dark-blood
+  flavor: metallic
+  color: "#1c1624"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-unidentifiable
+  metabolisms:
+    Poison:
+      effects:
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: DarkBlood
+          min: 10
+        effectProto: StatusEffectTheDark
+        time: 1

@@ -1,0 +1,108 @@
+<Document>
+  # Plumbing Machines
+  All plumbing machines are placed with the RPLD. Machines that require [color=#a4885c]power[/color] must be within range of an APC.
+
+  <Box>
+    <GuideEntityEmbed Entity="PlumbingInput" Caption=""/>
+    <GuideEntityEmbed Entity="PlumbingOutput" Caption=""/>
+  </Box>
+  <Box>
+    ## Input and Output
+  </Box>
+  <Box>
+    [color=#999999][italic]Getting reagents into and out of the network[/italic][/color]
+  </Box>
+
+  The [color=#a4885c]Plumbing Input[/color] is a small tank you pour reagents into by hand. Other machines pull from it via the network. Connects in all directions.
+
+  The [color=#a4885c]Plumbing Output[/color] is a small tank you can draw reagents from using a container. It pulls reagents from the network into its buffer. Connects in all directions.
+
+  <Box>
+    <GuideEntityEmbed Entity="PlumbingSink" Caption=""/>
+    <GuideEntityEmbed Entity="PlumbingDrain" Caption=""/>
+  </Box>
+  <Box>
+    ## Sink and Drain
+  </Box>
+  <Box>
+    [color=#999999][italic]The plumbing classics.[/italic][/color]
+  </Box>
+
+  The [color=#a4885c]Plumbing Sink[/color] is more or less a combined input and output. Reagents drawn in from its inlets can be used to fill containers from its facet, and dumping reagents down the drain sends them into the network via its outlet.
+
+  The [color=#a4885c]Plumbing Drain[/color] is a floor drain that absorbs puddles and routes them into the plumbing network. Connects in all directions.
+
+  <Box>
+    <GuideEntityEmbed Entity="PlumbingTank" Caption=""/>
+  </Box>
+  <Box>
+    ## Tank
+  </Box>
+  <Box>
+    [color=#999999][italic]Buffering reagents in the network[/italic][/color]
+  </Box>
+
+  The [color=#a4885c]Plumbing Tank[/color] stores up to [color=#a4885c]2000u[/color] of reagents. Has one inlet and three outlets. Use tanks to buffer reagents between production stages or store large amounts of reagents.
+
+  <Box>
+    <GuideEntityEmbed Entity="PlumbingFilter" Caption=""/>
+  </Box>
+  <Box>
+    ## Filter
+  </Box>
+  <Box>
+    [color=#999999][italic]Splitting reagents by type[/italic][/color]
+  </Box>
+
+  The [color=#a4885c]Plumbing Filter[/color] separates specific reagents from the network. Set which reagents to filter via its UI. Has one inlet and two outlets, one outlet for filtered reagents and one for everything else. When disabled in the UI all reagents passthrough. Can be flipped via the RPLD.
+
+  <Box>
+    <GuideEntityEmbed Entity="PlumbingReactor" Caption=""/>
+  </Box>
+  <Box>
+    ## Reactor
+  </Box>
+  <Box>
+    [color=#999999][italic]Triggering chemical reactions automatically[/italic][/color]
+  </Box>
+
+  The [color=#a4885c]Plumbing Reactor[/color] pulls specific reagents from its inlet in configured quantities, heats them, and triggers reactions. Products are moved to the outlet. Has one inlet and one outlet. Set target reagents and quantities via the UI. Requires power. Use a plunger to clear stuck reagents.
+
+  <Box>
+    <GuideEntityEmbed Entity="PlumbingPillPress" Caption=""/>
+  </Box>
+  <Box>
+    ## Pill Press
+  </Box>
+  <Box>
+    [color=#999999][italic]Automated pill and patch production[/italic][/color]
+  </Box>
+
+  The [color=#a4885c]Plumbing Pill Press[/color] pulls reagents and presses them into pills or patches at a configurable dosage. Has one main inlet that pulls from the network normally, plus two optional mixing inlets that allow ratio-controlled mixing — set a percentage for each side to blend reagents from two separate networks. Toggle between pill and patch output via the UI. Requires power.
+
+  <Box>
+    <GuideEntityEmbed Entity="PlumbingSynthesizer" Caption=""/>
+  </Box>
+  <Box>
+    ## Synthesizer
+  </Box>
+  <Box>
+    [color=#999999][italic]Generating reagents from power[/italic][/color]
+  </Box>
+
+  The [color=#a4885c]Plumbing Synthesizer[/color] generates basic reagents from an internal battery. Select a reagent from the UI and toggle it on. The battery charges while the machine is powered and drains as reagents are synthesized. Different reagents have different power costs.
+
+  Available reagents: Iron, Carbon, Copper, Hydrogen, Oxygen, Sugar, Silicon, Phosphorus.
+
+  <Box>
+    <GuideEntityEmbed Entity="PlumbingSmartDispenser" Caption=""/>
+  </Box>
+  <Box>
+    ## Smart Dispenser
+  </Box>
+  <Box>
+    [color=#999999][italic]Storing and dispensing reagents via labeled jugs[/italic][/color]
+  </Box>
+
+  The [color=#a4885c]Plumbing Smart Dispenser[/color] pulls all reagents from the network and stores up to [color=#a4885c]200u[/color] of each type. Use a [color=#a4885c]labeled jug[/color] on the dispenser to fill it with the matching reagent. Connects in all directions. Requires power.
+</Document>

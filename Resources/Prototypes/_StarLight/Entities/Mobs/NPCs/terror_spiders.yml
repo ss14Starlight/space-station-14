@@ -114,6 +114,8 @@
     speedModifier: 1.5
     useSound:
       path: /Audio/Items/crowbar.ogg
+    useSoundOnDoafter: /Audio/Machines/airlock_creaking.ogg
+    playSoundOnDoafter: true
   - type: PassiveDamage
     allowedStates:
     - Alive
@@ -250,6 +252,8 @@
     speedModifier: 1.5
     useSound:
       path: /Audio/Items/crowbar.ogg
+    useSoundOnDoafter: /Audio/Machines/airlock_creaking.ogg
+    playSoundOnDoafter: true
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.00
     baseSprintSpeed : 5
@@ -322,6 +326,8 @@
     speedModifier: 1.5
     useSound:
       path: /Audio/Items/crowbar.ogg
+    useSoundOnDoafter: /Audio/Machines/airlock_creaking.ogg
+    playSoundOnDoafter: true
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.00
     baseSprintSpeed : 4.75
@@ -370,6 +376,8 @@
     knockdownTargetOnCollision: true
   - type: Spider
     webPrototype: SpiderWebPoison
+    hasBuilding: true
+    buildingActionProto: ActionSpiderBuildingPole
 
 - type: entity
   name: terror black
@@ -410,6 +418,9 @@
   id: MobTerrorWhiteUnevolvable
   abstract: true
   components:
+  - type: Spider
+    hasBuilding: true
+    buildingActionProto: ActionSpiderBuildingCocoon
   - type: OptionsVisualizer
     visuals:
       base:
@@ -547,6 +558,8 @@
     speedModifier: 1.5
     useSound:
       path: /Audio/Items/crowbar.ogg
+    useSoundOnDoafter: /Audio/Machines/airlock_creaking.ogg
+    playSoundOnDoafter: true
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.00
     baseSprintSpeed : 3.75
@@ -554,6 +567,7 @@
   - type: ActionGrant
     actions:
     - ActionEggsLaying
+    - ActionAcidVent
   - type: UserInterface
     interfaces:
       enum.EggsLayingUiKey.Key:

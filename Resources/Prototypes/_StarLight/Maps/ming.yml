@@ -52,6 +52,7 @@
             Detective: [ 1, 1 ]
             SecurityCadet: [ 5, 6 ]
             Brigmedic: [ 1, 1 ]
+            DutyOfficer: [ 1, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
@@ -64,6 +65,7 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 2, 2 ]
+            Performer: [ 3, 4 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 3, 5 ]
@@ -73,3 +75,4 @@
             #Representives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
+            NanotrasenCareerTrainer: [ 1, 2 ]

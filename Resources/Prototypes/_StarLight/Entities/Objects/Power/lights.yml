@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseLightTube
+  name: black light tube
+  id: BlackLightTube
+  description: A colorful light tube. These emit "black light".
+  components:
+  - type: LightBulb
+    color: "#5D0CED"
+    lightEnergy: 1.1
+    lightRadius: 10
+    lightSoftness: 1
+    BurningTemperature: 700
+    PowerUse: 25
+  - type: DarkLight

@@ -1,4 +1,3 @@
-﻿using Content.Shared.Alert;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -133,16 +132,16 @@ public sealed partial class BorgChassisComponent : Component
     #endregion
 
     /// <summary>
-    /// The battery charge alert.
+    /// The battery charge alert. Starlight-edit: moved to external system.
     /// </summary>
-    [DataField]
-    public ProtoId<AlertPrototype> BatteryAlert = "BorgBattery";
+    //[DataField]
+    //public ProtoId<AlertPrototype> BatteryAlert = "BorgBattery";
 
     /// <summary>
-    /// The alert for a missing battery.
+    /// The alert for a missing battery. 1Code has comments. Press enter to view.
     /// </summary>
-    [DataField]
-    public ProtoId<AlertPrototype> NoBatteryAlert = "BorgBatteryNone";
+    //[DataField]
+    //public ProtoId<AlertPrototype> NoBatteryAlert = "BorgBatteryNone";
 
     /// <summary>
     /// The next update time the battery is checked for automatic reactivation.

@@ -55,6 +55,7 @@
   - SurveillanceWirelessCameraMonitorCircuitboard
   - TelecomServerCircuitboard
   - HolopadMachineCircuitboard
+  - BladeServerRackMachineCircuitboard # Moffstation - Blade Server Rack constructible
   radioChannels:
   - Service
 
@@ -115,6 +116,8 @@
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
   - FauxTileDesertAstroSand
+  - FauxTileAstroIronsand
+  - FauxTileAstroIronsandBorderless
   radioChannels:
   - Service
 
@@ -144,7 +147,7 @@
 #  tier: 2
 #  cost: 5000
 #  recipeUnlocks:
-#  - BorgModuleAdvancedChemical
+#  - BorgModuleAdvancedTopical
 #  - AdvancedJetInjector
 
 - type: technology
@@ -160,6 +163,7 @@
   - AdvMopItem
   - MegaSprayBottle
   - BorgModuleAdvancedCleaning
+  - Hydra # Starlight
   radioChannels:
   - Service
 
@@ -226,6 +230,8 @@
   cost: 15000
   recipeUnlocks:
   - CargoTelepadMachineCircuitboard
+  technologyPrerequisites: # Starlight
+  - BluespaceManipulation
   radioChannels:
   - Supply
 
@@ -254,6 +260,10 @@
   tier: 3
   cost: 10000
   recipeUnlocks:
-  - ClothingShoesBootsSpeed
+  # Starlight edit start - Replace speed boots with speed legs
+  # - ClothingShoesBootsSpeed
+  - LeftLegCyberSpeed
+  - RightLegCyberSpeed
+  # Starlight edit end
   radioChannels:
   - Service

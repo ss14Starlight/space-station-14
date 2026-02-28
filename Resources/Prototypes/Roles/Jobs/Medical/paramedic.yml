@@ -4,12 +4,13 @@
   description: job-description-paramedic
   playTimeTracker: JobParamedic
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Medical
-    time: 2.5h
+    - !type:RoleTimeRequirement # Starlight start
+      role: JobMedicalDoctor # Can't be department because of Psychologist again...
+      time: 4h # Starlight end
   startingGear: ParamedicGear
   icon: "JobIconParamedic"
   supervisors: job-supervisors-cmo
+  canBeAntag: false # Starlight
   access:
   - Medical
   - Maintenance
@@ -17,7 +18,10 @@
   - External # Starlight
   extendedAccess:
   - Chemistry
-  - Surgery # Starlight
+  - Surgery # Starlight BEGIN
+  special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]  # Starlight END
 
 - type: startingGear
   id: ParamedicGear

@@ -46,6 +46,10 @@ using Content.Shared.Temperature.Components;
 #region Starlight
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
+using Content.Server._Starlight.Antags.Vampires;
+using Content.Shared._Starlight.Antags.Vampires.Components;
+using Content.Server.Animals.Components;
+using Content.Shared.Animals;
 #endregion Starlight
 
 namespace Content.Server.Zombies;
@@ -162,6 +166,11 @@ public sealed partial class ZombieSystem
         speaker.UnderstoodLanguages.Clear();
 
         _language.AddLanguage(target, "Zombie");
+
+        RemComp<VampireComponent>(target); //De-vamps Vampire zombies
+        RemComp<EggLayerComponent>(target); //Prevent infinite egg production
+        RemComp<UdderComponent>(target); //Prevent infinite milk production
+        RemComp<WoolyComponent>(target); //Prevent infinite wool production
         // Starlight-end
 
         //This is needed for stupid entities that fuck up combat mode component

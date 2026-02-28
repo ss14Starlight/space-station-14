@@ -5,6 +5,13 @@
   - type: Contraband
     severity: Soviet
 
+- type: entity
+  id: BaseTSFContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: TSF
+
 #Advanced Cyberlimbs
 - type: entity
   id: BaseAdvancedCyberlimbContraband
@@ -74,6 +81,16 @@
     allowedDepartments: [ Engineering, Security ]
     allowedJobs: [ SalvageSpecialist, SalvageLead ]
 
+# it got worse
+- type: entity
+  id: BaseEngineeringSecurityCommandSalvageMiningContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Engineering, Security, Command ]
+    allowedJobs: [ SalvageSpecialist, SalvageLead, MiningSpecialist ]
+
 - type: entity
   id: BaseLawContraband
   parent: BaseRestrictedContraband
@@ -81,6 +98,15 @@
   components:
   - type: Contraband
     allowedDepartments: [ Law ]
+
+- type: entity
+  id: BaseJanitorSecurityContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ Janitor ]
+    allowedDepartments: [ Security ]
 
 - type: entity
   id: BaseEngineeringSecurityContraband
@@ -91,6 +117,14 @@
       allowedDepartments: [ Engineering, Security ]
 
 - type: entity
+  id: BaseEngineeringSecurityCommandContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+    - type: Contraband
+      allowedDepartments: [ Engineering, Security, Command ]
+
+- type: entity
   id: BaseSecurityBartenderZookeeperContraband
   parent: BaseRestrictedContraband
   abstract: true
@@ -98,6 +132,15 @@
   - type: Contraband
     allowedDepartments: [ Security ]
     allowedJobs: [ Bartender, Zookeeper ]
+
+- type: entity
+  id: BaseSecurityZookeeperContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Security ]
+    allowedJobs: [ Zookeeper ]
 
 # for ~objective items not held by command
 - type: entity

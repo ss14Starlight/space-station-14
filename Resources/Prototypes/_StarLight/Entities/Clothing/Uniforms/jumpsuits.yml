@@ -24,7 +24,7 @@
   id: ClothingUniformJumpsuitAtmosSyndie
   name: Contortionist's Jumpsuit
   components:
-  - type: VentCrawClothing
+  - type: VentCrawlClothing
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
@@ -35,6 +35,17 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: MagistrateUniformSuitLongcoat
+  name: Magistrate's Longcoat
+  description: It's a nice long jacket attached to your uniform, but it has no real insulation so a real jacket beats it. Atleast it looks cool, though.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate_overcoat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate_overcoat.rsi
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
@@ -196,6 +207,83 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/dutyofficer.rsi
 
+- type: entity
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  id: ClothingUniformJumpsuitServiceWorkerBartender
+  name: waiter jumpsuit
+  description: A sharp and tidy uniform for the bartender's footsoldiers.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/serviceworker_bartender.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/serviceworker_bartender.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  id: ClothingUniformJumpsuitServiceWorkerBotany
+  name: gardener jumpsuit
+  description: Has a light earthy smell to it. Has to be routinely bleached.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/serviceworker_botany.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/serviceworker_botany.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitServiceWorkerChef
+  name: sous chef jumpsuit
+  description: The noble jumpsuit of the chef's co-conspirator.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/serviceworker_chef.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/serviceworker_chef.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPerformerClown
+  name: assistant clown jumpsuit
+  description: Yet to be worthy of honking.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/performer_clown.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/performer_clown.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPerformerMime
+  name: mime apprentice jumpsuit
+  description: Still have to learn how to be quiet...
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/performer_mime.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/performer_mime.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPerformerMusician
+  name: session musician jumpsuit
+  description: A formal suit with a luxurious pair of pants. It's time to act!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/performer_musician.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/performer_musician.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitClownFormal
+  name: distinguished clown suit
+  description: Why, I daresay, HONK!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/clown_distinguished.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/clown_distinguished.rsi
 
 - type: entity
   parent: [ClothingUniformBase, BaseCentcommContraband]
@@ -567,12 +655,83 @@
       sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagebrown.rsi
 
 - type: entity
+  parent: [ClothingUniformBase, BaseTSFContraband]
+  id: ClothingUniformJumpsuitTSF
+  name: TSF marine uniform
+  description: A comfortable and durable combat uniform worn by the forces of the Trans-Solar Marine Corps.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/tsf.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/tsf.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseTSFContraband]
+  id: ClothingUniformJumpsuitTSFRep
+  name: TSF representative's uniform
+  description: A formal uniform worn by the diplomatic representatives of the Trans-Solar Federation.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/tsfrep.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/tsfrep.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseTSFContraband]
+  id: ClothingUniformJumpsuitTSFElite
+  name: MARSOC uniform
+  description: A comfortable and durable combat uniform worn by marines of the Trans-Solar Federation's Marine Special Operations Command.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/tsfelite.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/tsfelite.rsi
+    
+- type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNCT
-  name: NT Career Trainer's uniform
+  name: NT career trainer's uniform
   description: A neatly pressed olive green shirt paired with black jeans, worn by those dedicated to shaping the future of the workforce.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/nct.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/nct.rsi
+
+# Fashion-O-Mat Start
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitVampir
+  name: bloodstained aristocrat suit
+  description: An aristocratic suit reeking of blood and lost dreams.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ari.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ari.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformDama235123
+  name: noble suit
+  description: A blue noble suit that exudes elegance and refinement.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/belpero.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/belpero.rsi
+# Fashion-O-Mat End
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitTraditionalReptilian
+  name: traditional reptilian clothes
+  description: Traditional garments crafted from cloth, worn by the reptilians. This does not stop you from wearing it, if you want.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/traditional_reptilian.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/traditional_reptilian.rsi
+  - type: Construction
+    graph: TraditionalReptilianClothesGraph
+    node: jumpsuit

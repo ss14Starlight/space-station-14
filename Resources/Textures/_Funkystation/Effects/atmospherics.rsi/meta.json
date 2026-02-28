@@ -1,0 +1,41 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "healium",
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]],
+            "copyright": "Taken from https://github.com/tgstation/tgstation"
+        },
+        {
+            "name": "nitrium",
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]],
+            "copyright": "Taken from https://github.com/tgstation/tgstation"
+        },
+        {
+            "name": "proto_nitrate",
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]],
+            "copyright": "Taken from https://github.com/tgstation/tgstation"
+        },
+        {
+            "name": "zauker",
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]],
+            "copyright": "Taken from https://github.com/tgstation/tgstation"
+        },
+        {
+            "name": "anti_noblium",
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1, 0.1]],
+            "copyright": "Taken from https://github.com/tgstation/tgstation"
+        },
+        {
+            "name": "halon",
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]],
+            "copyright": "Taken from https://github.com/tgstation/tgstation"
+        }
+    ]
+}

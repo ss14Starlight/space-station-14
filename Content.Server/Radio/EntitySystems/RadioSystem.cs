@@ -35,6 +35,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Radio; //Starlight
+using Content.Shared.NameModifier.Components; //Starlight
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -87,10 +88,9 @@ public sealed class RadioSystem : EntitySystem
         if (TryComp(uid, out ActorComponent? actor))
         {
             // Starlight - Start
-            var listener = component.Owner;
             var msg = args.OriginalChatMsg;
 
-            if (listener != null && !_language.CanUnderstand(listener, args.Language.ID))
+            if (!_language.CanUnderstand(uid, args.Language.ID))
                 msg = args.LanguageObfuscatedChatMsg;
             else if(args.MessageSource != uid)
                 args.Receivers.Add(uid);
@@ -143,6 +143,10 @@ public sealed class RadioSystem : EntitySystem
 
         var meta = MetaData(messageSource);
         var entityName = meta?.EntityName ?? string.Empty;
+        // Starlight BEGIN
+        if (TryComp(messageSource, out NameModifierComponent? nameModifier))
+            entityName = nameModifier.BaseName; // Bypass name modifiers (specifically: labels).
+        // Starlight END
         var evt = new TransformSpeakerNameEvent(messageSource, entityName);
         RaiseLocalEvent(messageSource, evt);
 
@@ -481,11 +485,22 @@ public sealed class RadioSystem : EntitySystem
     }
 
     #region Starlight
-    private void OnTransmitterEncryptionChannelsChanged(Entity<IntrinsicRadioTransmitterComponent> ent, ref EncryptionChannelsChangedEvent args) => ent.Comp.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))];
+
+    private void OnTransmitterEncryptionChannelsChanged(Entity<IntrinsicRadioTransmitterComponent> ent,
+        ref EncryptionChannelsChangedEvent args)
+    {
+        ent.Comp.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))];
+        Dirty(ent);
+    }
     private void OnReceiverEncryptionChannelsChanged(Entity<IntrinsicRadioReceiverComponent> ent, ref EncryptionChannelsChangedEvent args)
     {
-        if(TryComp(ent.Owner, out ActiveRadioComponent? radio))
-            radio.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))]; 
+        //Starlight begin
+        if (TryComp(ent.Owner, out ActiveRadioComponent? radio))
+        {
+            radio.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))];
+            Dirty(ent, radio);
+        } 
+        //Starlight end
     }
     #endregion Starlight
 }

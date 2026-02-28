@@ -28,6 +28,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Traits;
 
 namespace Content.Server.Database
 {
@@ -342,6 +343,7 @@ namespace Content.Server.Database
                 exploitableInfo,// Starlight
                 profile.Species,
                 profile.StarLightProfile?.CustomSpecieName ?? "", // Starlight
+                profile.StarLightProfile?.ForcedPrototype ?? "", //  Starlight
                 profile.Age,
                 sex,
                 gender,
@@ -408,6 +410,7 @@ namespace Content.Server.Database
             profile.Species = humanoid.Species;
             profile.StarLightProfile ??= new StarLightModel.StarLightProfile(); // Starlight
             profile.StarLightProfile.CustomSpecieName = humanoid.CustomSpecieName; // Starlight
+            profile.StarLightProfile.ForcedPrototype = humanoid.ForcedPrototype; // Starlight
             profile.StarLightProfile.CyberneticIds = humanoid.Cybernetics; // Starlight
             profile.Age = humanoid.Age;
             profile.StarLightProfile.Width = appearance.Width; //starlight

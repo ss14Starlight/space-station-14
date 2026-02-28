@@ -13,14 +13,17 @@
       maxPicks: 1
     - groups: ThiefObjectiveGroups
       maxPicks: 10
-    maxDifficulty: 2.5
+    - groups: ThiefObjectiveGroupEscape # Starlight
+      prob: 0.33 # Starlight. It gives you a lot more freedom, but also lets you be way more intrusive,  so low chance.
+      maxPicks: 1 # Starlight
+    maxDifficulty: 3 # Starlight. Ultrapop + ton of new targets means some objectives become really easy in the chaos.
   - type: AntagSelection
     agentName: thief-round-end-agent-name
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Thief ]
-      max: 3
-      playerRatio: 20
+      max: 6 # Starlight
+      playerRatio: 26 # Starlight. Beta has low sec, so we're going to allow the scaling to take a thief from them anyways, to scale Alpha better.
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
@@ -36,7 +39,7 @@
         sound: "/Audio/Misc/thief_greeting.ogg"
   - type: DynamicRuleCost
     cost: 75
-        
+
 - type: entity
   parent: BaseGameRule
   id: SLChangeling
@@ -46,8 +49,8 @@
     agentName: changeling-roundend-name
     definitions:
     - prefRoles: [ Changeling ]
-      max: 3
-      playerRatio: 10
+      max: 6 # Starlight, same reasoning as the roundstart changeling change, for alpha.
+      playerRatio: 26 # Starlight. Same justification as Thieves.
       lateJoinAdditional: true
       allowNonHumans: false
       multiAntagSetting: None
@@ -69,15 +72,20 @@
   - type: VampireRule
   - type: AntagSelection
     agentName: vampire-roundend-name
+    selectionTime: IntraPlayerSpawn # Starlight. Only select vamps on round start
     definitions:
     - prefRoles: [ Vampire ]
-      max: 7
-      playerRatio: 10
+      max: 12 # Starlight. Full gamemode Vamps scale higher to account for scaling.
+      playerRatio: 16 # Starlight. Accounting for scaling. This is for the full vampire gamemode, so it can keep this value.
       lateJoinAdditional: true
-      allowNonHumans: false
+      allowNonHumans: True
       multiAntagSetting: None
       mindRoles:
       - MindRoleVampire
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary # Same as lings, would be too strong.
+    # Starlight-end
 
 # Needs testing
 - type: entity
@@ -89,8 +97,8 @@
     selectionTime: PrePlayerSpawn
     definitions:
     - prefRoles: [ Wizard ]
-      max: 1
-      playerRatio: 1
+      max: 3 # Starlight. Less egregious than the full wizard mode.
+      playerRatio: 55 # Starlight, ensures Beta only has 1 wizard. Also less egregious.
       spawnerPrototype: SpawnPointGhostWizard
       roleLoadout:
       - RoleSurvivalExtended
@@ -127,7 +135,7 @@
   - type: GameRule
     minPlayers: 20 # Starlight - 30 -> 20
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/mothership.yml
+    gridPath: /Maps/_Starlight/Shuttles/mothership.yml # Starlight-edit custom shuttle grid
   - type: AntagMultipleRoleSpawner
     antagRoleToPrototypes:
       MothershipCore: [ MothershipCore ]

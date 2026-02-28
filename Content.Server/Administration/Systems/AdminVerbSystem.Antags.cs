@@ -16,6 +16,8 @@ using Robust.Shared.Utility;
 using Content.Shared.Roles.Components;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Shared._Starlight.Shadekin;
+using Content.Server.Speech.Components; // Starlight
+using Robust.Shared.Audio; // Starlight
 
 namespace Content.Server.Administration.Systems;
 
@@ -39,6 +41,7 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultVampireRule = "Vampire"; //Starlight
     private static readonly EntProtoId DefaultDevilRule = "Devil"; // starlight
     private static readonly EntProtoId DefaultBrighteyeRule = "Brighteye"; //Starlight
+	private static readonly EntProtoId DefaultSELFRule = "SiliconLiberation"; //Starlight
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -116,7 +119,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(nukeOp);
 
-        var pirateName = Loc.GetString("admin-verb-text-make-pirate");
+        var pirateName = Loc.GetString("admin-verb-text-make-pirate") + " (Wizden)"; // Starlight
         Verb pirate = new()
         {
             Text = pirateName,
@@ -245,12 +248,12 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-verb-make-changeling"),
         };
         args.Verbs.Add(ling);
-
+/// Starlight START
         Verb vampire = new()
         {
             Text = Loc.GetString("admin-verb-text-make-vampire"),
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Actions/actions_vampire.rsi"), "unholystrength"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Vampire/actions_vampire.rsi"), "select_class"), // Starlight
             Act = () =>
             {
                 _antag.ForceMakeAntag<VampireRuleComponent>(targetPlayer, DefaultVampireRule);
@@ -259,8 +262,22 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-verb-make-vampire"),
         };
         args.Verbs.Add(vampire);
+		
+		var selfagentName = Loc.GetString("admin-verb-text-make-selfagent");
+        Verb selfagent = new()
+        {
+            Text = selfagentName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Objects/Specific/SELF/freemag.rsi"), "icon"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<SELFRuleComponent>(targetPlayer, DefaultSELFRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", selfagentName, Loc.GetString("admin-verb-make-selfagent")),
+        };
+        args.Verbs.Add(selfagent);
 
-        // starlight start
         Verb devil = new()
         {
             Text = Loc.GetString("admin-verb-text-make-devil"),
@@ -292,6 +309,6 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(brighteye);
         }
-        // starlight end
+        // STARLIGHT END
     }
 }

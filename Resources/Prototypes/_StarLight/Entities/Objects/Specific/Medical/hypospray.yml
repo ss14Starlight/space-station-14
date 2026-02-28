@@ -1,4 +1,34 @@
 - type: entity
+  parent: [AdvancedJetInjector, BaseSecurityContraband]
+  id: TacticalJetInjector
+  name: tactical jet injector
+  description: A bold, tacticool, ultra high quality injector. Allows for a very fast injection, with a smaller capacity as a tradeoff. Guard it until your last breath.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/corpsman_jetinjector.rsi
+    layers:
+    - state: jetinjector_base
+      map: [ "enum.SolutionContainerLayers.Base" ]
+    - state: jetinjector_filled1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/corpsman_jetinjector.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 10
+  - type: SolutionContainerVisuals
+    maxFillLevels: 2
+  - type: Injector
+    activeModeProtoId: TacticalJetInjectorDynamicMode
+    allowedModes:
+    - TacticalJetInjectorDynamicMode
+    - TacticalJetInjectorInjectMode
+  - type: StealTarget
+    stealGroup: Hypospray
+
+- type: entity
   name: gorlex hypospray
   parent: [BaseHypospray, BaseSyndicateContraband]
   description: An adaptation of the Gorlex Hypospray for cyborgs.

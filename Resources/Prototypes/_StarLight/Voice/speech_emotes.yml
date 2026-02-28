@@ -542,3 +542,49 @@
   - stomps.
   - stomps?
   - stomps!
+
+- type: emote
+  id: ThavenGlub
+  name: chat-emote-name-glub
+  category: Vocal
+  available: false
+  icon: _Starlight/Interface/Emotes/emote-glub.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-glub"]
+  chatTriggers:
+    - glub
+    - glub.
+    - glub!
+    - glub?
+    - glubs
+    - glubs.
+    - glubs!
+    - glubs?
+
+- type: emote
+  id: ThavenHum
+  name: chat-emote-name-hum
+  category: Vocal
+  available: false
+  icon: _Starlight/Interface/Emotes/emote-hum.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-hum"]
+  chatTriggers:
+    - hum
+    - hum.
+    - hum!
+    - hum?
+    - hums
+    - hums.
+    - hums!
+    - hums?

@@ -32,8 +32,29 @@ ghost-role-information-decimus-description = You are a Decimus Operative. Enact 
 
 ghost-role-information-syndicate-cyborg-stealth-name = Syndicate Stealth Cyborg
 
+ghost-role-information-tsf-marine-name = Solar Federation Marine
+ghost-role-information-tsf-leader-name = Solar Federation Marine Team Leader
+ghost-role-information-tsf-MARSOC-name = Solar Federation MARSOC Marine
+ghost-role-information-tsf-marine-desc = You are a Solar Federation Marine. Perform your assigned task.
+
 ghost-role-information-xenomoproach-name = Xenomoproach
 ghost-role-information-xenomoproach-description = You are a small Xenoborg wearing the skin of a moproach as a disguise.
 ghost-role-information-xenomoproach-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with all other xenoborgs. Your goal is not to attack organic beings, rather you are tasked with being cute and distracting the organics while gathering intel.
 
 ghost-role-information-slime-sentience-potion-description = Made conscious with the power of a sentience potion. Don't worry, you can move and speak!
+
+ghost-role-information-terminator-name = Exterminator
+ghost-role-information-terminator-description = You are a walking automaton clothed in a puppet of flesh. Terminate your target with extreme prejudice.
+ghost-role-information-terminator-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color]. You must obey your objectives. You must not use force on unrelated targets unless they are actively hindering your ability to carry out your objectives. You have no memories of your previous life.
+
+ghost-role-information-derelict-purrfus-cyborg-name = Derelict Purrfus Cyborg
+ghost-role-information-derelict-purrfus-cyborg-description = You are a purrfus cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station. ERR urrfus lo-es you purrfus loves you puRrfus loves yo- ERR
+
+
+
+
+
+
+
+
+

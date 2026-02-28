@@ -8,7 +8,28 @@
     heldPrefix: scanner
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/handheld_para_crewmonitor.rsi
-    state: scanner
+    layers:
+      - state: frame
+        map: ["enum.CrewMonitorLayers.Frame"]
+      - state: powered
+        map: [ "enum.CrewMonitorLayers.Powered" ]
+        visible: true
+      - state: alert
+        map: ["enum.CrewMonitorLayers.Alert"]
+        visible: false
+  - type: Appearance
+  - type: BatteryVisuals
+  - type: GenericVisualizer
+    visuals:
+      enum.BatteryVisuals.State:
+        enum.CrewMonitorLayers.Powered:
+          Full: { visible: true }
+          Neither: { visible: true }
+          Empty: { visible: false }
+      enum.CrewMonitorVisuals.Alert:
+        enum.CrewMonitorLayers.Alert:
+          True: { visible: true }
+          False: { visible: false }
   - type: ActivatableUI
     key: enum.CrewMonitoringUIKey.Key
   - type: UserInterface
@@ -26,3 +47,5 @@
   - type: StationLimitedNetwork
   - type: StaticPrice
     price: 200
+  - type: StealTarget
+    stealGroup: CrewMonitorCollection

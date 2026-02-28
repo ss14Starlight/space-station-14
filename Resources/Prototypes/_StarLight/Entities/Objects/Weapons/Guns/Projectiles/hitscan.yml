@@ -1069,6 +1069,33 @@
     spread: 15
     
 - type: entity
+  id: PelletShotgunBirdshotTrace
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Piercing: 0.9
+  - type: HitscanPierce
+    chance: 0
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: buckshot
+
+- type: entity
+  id: PelletShotgunBirdshotSpreadTrace
+  parent: PelletShotgunBirdshotTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: PelletShotgunBirdshotTrace
+    count: 18
+    spread: 25
+
+- type: entity
   id: PelletShotgunIncendiaryTrace
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
@@ -1331,6 +1358,8 @@
   components:
   - type: HitscanStaminaDamage
     staminaDamage: 25
+  - type: HitscanCyberneticDisruption
+    disableChance: 0.1
 
 - type: entity
   id: DisablerBoltSmg
@@ -1340,6 +1369,8 @@
   components:
   - type: HitscanStaminaDamage
     staminaDamage: 15
+  - type: HitscanCyberneticDisruption
+    disableChance: 0.1
       
 - type: entity
   id: TaserBolt
@@ -1578,3 +1609,88 @@
     proto: PelletShotgunTozTrace
     count: 9
     spread: 10
+
+# Apollo Heavy Laser - Devastating shuttle cannon laser
+- type: entity
+  id: ApolloHeavyLaser
+  name: apollo heavy laser beam
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 250
+        Structural: 100
+  - type: HitscanBasicRaycast
+    collisionMask: BulletImpassable
+  - type: HitscanReflect
+    reflectiveType: Energy
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_beam_heavy
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_heavy
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_beam_heavy
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+        state: heavylaser
+  
+- type: entity
+  parent: BasicHitscanNoBeam
+  id: FreezeRay
+  name: freeze ray
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Cold: 20
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_omni
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_omni
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_omni
+
+# Starlight
+- type: entity
+  id: Bullet48RifleFMJ
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: 0.30
+    damage:
+      types:
+        Piercing: 35
+  - type: HitscanPierce
+    chance: 0.75
+    deviation: 0.04
+    pierceLevel: Metal
+  - type: HitscanRicochet
+    chance: 0.70
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle
+    travelFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: trace
+    impactFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: fmj
+# Starlight

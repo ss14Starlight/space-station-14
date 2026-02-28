@@ -7,14 +7,14 @@
   guides: [ Revolutionaries ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 24h # Starlight
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 6h # Starlight
+    time: 72h # Starlight start
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer # Less important than some of the other antags to know
+    time: 5h
   - !type:DepartmentTimeRequirement
     department: Command
-    time: 6h # Starlight
-  playTimeTracker: AntagHeadRev # Starlight
+    time: 12h # Have to be a leader. You're essentially making your own chain of command in this role.
+  playTimeTracker: AntagHeadRev # Starlight end
 
 - type: antag
   id: Rev

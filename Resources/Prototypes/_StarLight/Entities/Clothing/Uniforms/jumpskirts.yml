@@ -43,7 +43,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/eliteblueshield.rsi
     
 - type: entity
-  parent: [ClothingUniformBase, BaseCommandContraband]
+  parent: [ClothingUniformBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpskirtBlueShieldSkirt
   name: blueshield officer's pencil skirt
   description: A collared shirt and pencil skirt for the blueshield officer who likes to keep it business casual.
@@ -108,6 +108,83 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/dutyofficer.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/dutyofficer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtServiceWorkerBartender
+  name: waiter jumpskirt
+  description: A sharp and tidy uniform for the bartender's footsoldiers.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/serviceworker_bartender.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/serviceworker_bartender.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtServiceWorkerBotany
+  name: gardener jumpskirt
+  description: Has a light earthy smell to it. Has to be routinely bleached.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/serviceworker_botany.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/serviceworker_botany.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtServiceWorkerChef
+  name: sous chef jumpskirt
+  description: The noble jumpsuit of the chef's co-conspirator.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/serviceworker_chef.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/serviceworker_chef.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtPerformerClown
+  name: assistant clown jumpskirt
+  description: Yet to be worthy of honking.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/performer_clown.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/performer_clown.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtPerformerMime
+  name: mime apprentice jumpskirt
+  description: Still have to learn how to be quiet...
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/performer_mime.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/performer_mime.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtPerformerMusician
+  name: session musician jumpskirt
+  description: A formal suit with a luxurious pair of pants. It's time to act!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/performer_musician.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/performer_musician.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtClownFormal
+  name: distinguished clown skirt
+  description: Why, I daresay, HONK!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/clown_distinguished.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/clown_distinguished.rsi
 
 # Fashion-O-Mat-Start, not obtainable any other way, unless mapped
 # All CC/Synd stuff in Fashion-O-Mat is replica
@@ -579,7 +656,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNCT
-  name: NT Career Trainer's skirt
+  name: NT career trainer's skirt
   description: A neatly pressed olive green shirt paired with a sleek black skirt, worn by those committed to mentoring the next generation.
   components:
   - type: Sprite

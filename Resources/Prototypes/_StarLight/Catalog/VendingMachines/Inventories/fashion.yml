@@ -28,6 +28,28 @@
       stock: 1
 
 - type: listing
+  id: ClothingUniformJumpskirtElegantMaid
+  productEntity: ClothingUniformJumpskirtElegantMaid
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSkirt
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingUniformJumpskirtTacticalMaid
+  productEntity: ClothingUniformJumpskirtTacticalMaid
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSkirt
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: ClothingUniformJumpskirtDressRed
   productEntity: ClothingUniformJumpskirtDressRed
   cost:
@@ -131,17 +153,6 @@
   productEntity: ClothingUniformJumpskirtCentcomOfficer
   cost:
     NTCredit: 2000
-  categories:
-    - SLFashionSkirt
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
-
-- type: listing
-  id: ClothingUniformJumpskirtElegantMaid
-  productEntity: ClothingUniformJumpskirtElegantMaid
-  cost:
-    NTCredit: 990
   categories:
     - SLFashionSkirt
   conditions:
@@ -325,6 +336,18 @@
       stock: 1
 
 - type: listing
+  id: ClothingHeadHatTacticalMaidHeadband
+  productEntity: ClothingHeadHatTacticalMaidHeadband
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionHead
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+
+- type: listing
   id: ClothingMaskGeneralBorg
   productEntity: ClothingMaskGeneralBorg
   cost:
@@ -447,6 +470,7 @@
 
 - type: listing
   id: BoxPancakes
+  icon: { sprite: _Starlight/Interface/fashion.rsi, state: pastry }
   productEntity: BoxPancakes
   cost:
     NTCredit: 990
@@ -457,12 +481,125 @@
       stock: 1
 
 - type: listing
-  id: ClothingBackpackDuffelRegaliaFilled
-  productEntity: ClothingBackpackDuffelRegaliaFilled
+  id: BoxBelpero
+  icon: { sprite: _Starlight/Interface/fashion.rsi, state: belpero }
+  productEntity: BoxBelpero
+  cost:
+    NTCredit: 1500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: BoxBloodstained
+  icon: { sprite: _Starlight/Interface/fashion.rsi, state: ari }
+  productEntity: BoxBloodstained
+  cost:
+    NTCredit: 1500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: BoxRegalia
+  icon: { sprite: _Starlight/Interface/fashion.rsi, state: regalia }
+  productEntity: BoxRegalia
   cost:
     NTCredit: 500
   categories:
     - SLFashionOther
   conditions:
     - !type:ListingLimitedStockCondition
-      stock: 2
+      stock: 1
+
+- type: listing
+  id: ClothingOuterBrimstoneDT4
+  productEntity: ClothingOuterBrimstoneDT4
+  cost:
+    NTCredit: 2000
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingEyesTechnology
+  productEntity: ClothingEyesTechnology
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingEyesTechnologyZero
+  productEntity: ClothingEyesTechnologyZero
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingEyesTechnologyTwo
+  productEntity: ClothingEyesTechnologyTwo
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingEyesTechnologyLudovic
+  productEntity: ClothingEyesTechnologyLudovic
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingEyesTechnologyX
+  productEntity: ClothingEyesTechnologyX
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingHeadHatTechnologyFive
+  productEntity: ClothingHeadHatTechnologyFive
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingHandsTacticalMaidGlovesDelicate
+  productEntity: ClothingHandsTacticalMaidGlovesDelicate
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1

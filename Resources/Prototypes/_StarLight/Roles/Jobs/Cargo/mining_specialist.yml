@@ -4,12 +4,12 @@
   description: job-description-miningspec
   playTimeTracker: JobMiningSpecialist
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Cargo
-    time: 10800 # 3 hrs
-  - !type:OverallPlaytimeRequirement
-    time: 36000 #10 hrs
-  icon: "JobIconShaftMiner"
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 6h # Less complex than salv
+    - !type:OverallPlaytimeRequirement 
+      time: 10h # Same as above
+  icon: "JobIconMiningSpecialist"
   startingGear: MiningSpecialistGear
   supervisors: job-supervisors-qm
   access:

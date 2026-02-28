@@ -3,7 +3,7 @@
   name: ghost-role-information-pirate-name
   antagonist: true
   setPreference: false
-  objective: never-shown
+  objective: roles-antag-pirate-objective
   playTimeTracker: AntagPirate
 
 - type: antag
@@ -11,5 +11,5 @@
   name: ghost-role-information-pirate-name
   antagonist: true
   setPreference: false
-  objective: never-shown
+  objective: roles-antag-pirate-objective
   playTimeTracker: AntagPirateCaptain

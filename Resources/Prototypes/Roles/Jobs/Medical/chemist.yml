@@ -4,9 +4,9 @@
   description: job-description-chemist
   playTimeTracker: JobChemist
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 5h
+    - !type:RoleTimeRequirement # Starlight start
+      role: JobMedicalDoctor # Can't be department, since you can bypass with Psychologist.
+      time: 6h # Starlight end
   startingGear: ChemistGear
   icon: "JobIconChemist"
   supervisors: job-supervisors-cmo

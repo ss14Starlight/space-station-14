@@ -1,0 +1,40 @@
+# A fancy version of Darktongue, spoken exclusively by detarii
+- type: language
+  id: Felyaic # felya = cave in quenya
+  speech:
+    color: "#6c00ff" # electric blue
+    fontId: Darktongue
+    obfuscationFont: true
+  icon: LanguageIconFelyaic
+  chatPrefix: fel
+  obfuscation:
+    !type:SyllableObfuscation # the darktongue font contains unused capital letters that are more complex
+    minSyllables: 1
+    maxSyllables: 8
+    replacement:
+    - A
+    - B
+    - C
+    - D
+    - E
+    - F
+    - G
+    - H
+    - I
+    - J
+    - K
+    - L
+    - M
+    - N
+    - O
+    - P
+    - Q
+    - R
+    - S
+    - T
+    - U
+    - V
+    - W
+    - X
+    - Y
+    - Z

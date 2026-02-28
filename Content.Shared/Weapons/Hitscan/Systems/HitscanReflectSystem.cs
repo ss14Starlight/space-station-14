@@ -4,6 +4,10 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Reflect;
 using Robust.Shared.Random;
 
+#region Starlight
+using Robust.Shared.Map;
+#endregion Starlight
+
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
 public sealed class HitscanReflectSystem : EntitySystem
@@ -37,9 +41,15 @@ public sealed class HitscanReflectSystem : EntitySystem
 
         var fromEffect = Transform(data.HitEntity.Value).Coordinates;
 
+        // Starlight start - the secondary trace for reflects should start from the impact point
+        if (Transform(data.HitEntity.Value).MapUid is { } hitMap && data.HitPosition is { } hitPosition)
+            fromEffect = new EntityCoordinates(hitMap, hitPosition);
+        // Starlight end
+
         var hitFiredEvent = new HitscanTraceEvent
         {
             FromCoordinates = fromEffect,
+            ToCoordinates = fromEffect.Offset(ev.Direction), // Starlight-edit
             ShotDirection = ev.Direction,
             Gun = data.Gun,
             Shooter = data.HitEntity.Value,

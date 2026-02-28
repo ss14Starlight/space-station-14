@@ -7,6 +7,14 @@
   objectType: Item
 
 - type: construction
+  id: TraditionalReptilianClothes
+  graph: TraditionalReptilianClothesGraph
+  startNode: start
+  targetNode: jumpsuit
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
   id: ClothingGlassesNullSpace
   graph: ClothingGlassesNullSpace
   startNode: start

@@ -44,6 +44,15 @@
   id: JobDecimus
   
 - type: playTimeTracker
+  id: JobTSFMarine
+
+- type: playTimeTracker
+  id: TSFMarineElite
+
+- type: playTimeTracker
+  id: JobPerformer
+
+- type: playTimeTracker
   id: JobBoxer
 
 - type: playTimeTracker

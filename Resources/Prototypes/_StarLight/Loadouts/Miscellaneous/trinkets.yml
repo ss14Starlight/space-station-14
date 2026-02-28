@@ -49,74 +49,51 @@
     back:
     - TrumpetInstrument
   groupBy: "Instruments"
-
-
-# Meow mrrp ## shut up
+  
 - type: loadout
-  id: ClothingUnderSocksCoder
+  id: CoderSocks
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
         !type:OverallPlaytimeRequirement
         time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingUnderSocksCoder
-  groupBy: "cat maid"
+  equipment:
+    shoes: ClothingUnderSocksCoder
+
+# Meow mrrp ## shut up ### no :3
 
 - type: loadout
-  id: ClothingShoesHighheelBoots
+  id: CatEars
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
         !type:OverallPlaytimeRequirement
         time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingShoesHighheelBoots
-  groupBy: "cat maid"
+  equipment:
+    head: ClothingHeadHatWhiteCatEars
+  groupBy: "cat ears"
 
 - type: loadout
-  id: ClothingShoesHighheelShoes
+  id: BunnyEars
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
         !type:OverallPlaytimeRequirement
         time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingShoesHighheelShoes
-  groupBy: "cat maid"
+  equipment:
+    head: ClothingHeadHatBunny
+  groupBy: "cat ears"
 
 - type: loadout
-  id: ClothWrap
-  storage:
-    back:
-    - ClothingClothWrap
-
-- type: loadout
-  id: ClothingUniformJumpskirtElegantMaid
+  id: DogEars
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
         !type:OverallPlaytimeRequirement
         time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingUniformJumpskirtElegantMaid
-  groupBy: "cat maid"
-
-- type: loadout
-  id: ClothingHeadHatWhiteCatEars
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  storage:
-    back:
-    - ClothingHeadHatWhiteCatEars
-  groupBy: "cat maid"
+  equipment:
+    head: ClothingHeadHatDogEars
+  groupBy: "cat ears"
 
 - type: loadout
   id: RolliePack
@@ -132,9 +109,8 @@
       requirement:
         !type:OverallPlaytimeRequirement
         time: 36000 # 10hr
-  storage:
-    back:
-      - GoldRing
+  equipment:
+    gloves: GoldRing
 
 - type: loadout
   id: SilverRing
@@ -143,9 +119,8 @@
       requirement:
         !type:OverallPlaytimeRequirement
         time: 36000 # 10hr
-  storage:
-    back:
-      - SilverRing
+  equipment:
+    gloves: SilverRing
 
 - type: loadout
   id: Matchbox
@@ -196,6 +171,13 @@
   storage:
     back:
       - Basketball
+  groupBy: "balls"
+
+- type: loadout
+  id: TBall
+  equipment: # woof
+    mask: TennisBall
+  groupBy: "balls"
 
 - type: loadout
   id: RubberQuack
@@ -408,6 +390,17 @@
     - ClothingShoesSkates
 
 - type: loadout
+  id: RollerSkatesLoadout
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMailTech
+      time: 18000 # 5 hours of being ignored while carrying a parcelbomb. 
+  equipment:
+    shoes: ClothingShoesSkates
+
+- type: loadout
   id: DaBling
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -415,9 +408,8 @@
       !type:RoleTimeRequirement
       role: JobCargoTechnician
       time: 36000 # 10 hours of resisting the urge to declare cargonia
-  storage:
-    back:
-    - ClothingNeckBling
+  equipment:
+    neck: ClothingNeckBling
 
 - type: loadout
   id: CrapPlushie
@@ -466,7 +458,7 @@
       - HappyHonk
 
 - type: loadout
-  id: leftripperarm
+  id: LeftRipperArm
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
@@ -474,11 +466,12 @@
         role: JobSurgeon
         time: 72000 # 20 hours of turning her into a papa johns
   storage:
-    back: 
+    back:
       - LeftArmCyberRipper
+  groupBy: "cybernetic trinkets"
 
 - type: loadout
-  id: rightmechwrightarm
+  id: RightMechwrightArm
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
@@ -486,8 +479,35 @@
         role: JobStationEngineer
         time: 72000 # 20 hours of banging wrenches on things
   storage:
-    back: 
+    back:
       - RightArmCyberMechwright
+  groupBy: "cybernetic trinkets"
+
+- type: loadout
+  id: LeftCargoLeg
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Cargo
+        time: 72000 # 20 hours of needing more storage
+  storage:
+    back:
+      - LeftLegCyberCargo
+  groupBy: "cybernetic trinkets"
+
+- type: loadout
+  id: RightCargoLeg
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Cargo
+        time: 72000 # 20 hours of needing more storage
+  storage:
+    back:
+      - RightLegCyberCargo
+  groupBy: "cybernetic trinkets"
 
 - type: loadout
   id: CigPackBub
@@ -498,7 +518,7 @@
         department: Medical
         time: 72000 # 20hrs of treating patients as Dr. House
   storage:
-    back: 
+    back:
       - CigPackBub
   groupBy: "smokeables"
 
@@ -525,8 +545,9 @@
       !type:OverallPlaytimeRequirement
       time: 48h
   storage:
-    back: 
+    id:
       - PersonalAI
+  groupBy: "pAI"
 
 - type: loadout
   id: GoldenPersonalAI
@@ -537,5 +558,47 @@
       role: GhostPAI
       time: 8h
   storage:
-    back: 
+    id:
       - GoldenPersonalAI
+  groupBy: "pAI"
+
+- type: loadout
+  id: Boxblacklight
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:SpeciesRequirement
+      species:
+      - Shadekin
+  storage:
+    back: 
+      - Boxblacklight
+
+- type: loadout
+  id: RoadCone
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Engineering
+        time: 144000 # 40 hours of being a STMS
+  equipment:
+    head: ClothingHeadHatCone
+
+- type: loadout
+  id: LilyFlower
+  equipment:
+    head: ClothingHeadHatLilyFlower
+  groupBy: "flowers"
+
+- type: loadout
+  id: ClothWrapShoeTrinket
+  equipment:
+    shoes: ClothingClothWrap
+  groupBy: "cloth wraps"
+
+- type: loadout
+  id: ClothWrapGloveTrinket
+  equipment:
+    gloves: ClothingClothWrap
+  groupBy: "cloth wraps"

@@ -47,7 +47,6 @@
       amount: 3
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: Vox
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -81,6 +80,7 @@
     - DoorBumpOpener
     - AnomalyHost
     - Felionoid
+    - NotLabelable
   - type: Fixtures
     fixtures:
       fix1:

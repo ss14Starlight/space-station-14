@@ -1,0 +1,18 @@
+- type: entity
+  id: TP14DeepFryerCircuitboard
+  parent: BaseMachineCircuitboard
+  suffix: Machine board
+  name: deep fryer machine board
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+#changed the following to the empty fryer variant so building one doesnt create oil from nothing
+    prototype: TP14KitchenDeepFryerEmpty
+    stackRequirements:
+      Manipulator: 1
+      Steel: 10
+      Cable: 4
+  - type: Tag
+    tags:
+    - TP14TagDeepFryerBoard

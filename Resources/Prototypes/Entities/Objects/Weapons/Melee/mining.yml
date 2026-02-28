@@ -181,6 +181,8 @@
   - type: GunRequiresWield
   - type: DisarmMalus
   - type: Prying
+    useSoundOnDoafter: /Audio/Machines/airlock_creaking.ogg
+    playSoundOnDoafter: true
 
 - type: entity
   parent: [ BaseKnife, BaseWeaponCrusher, BaseSecurityCargoContraband]

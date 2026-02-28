@@ -34,11 +34,11 @@
     neck: ClothingNeckCloakVoid
 
 - type: loadout
-  id: BrighteyeClothWrapShoe
+  id: ClothWrapShoe
   equipment:
     shoes: ClothingClothWrap
 
 - type: loadout
-  id: BrighteyeClothWrapGlove
+  id: ClothWrapGlove
   equipment:
     gloves: ClothingClothWrap

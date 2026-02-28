@@ -9,6 +9,10 @@
       reagents:
       - ReagentId: Iron
         Quantity: 30
+  - type: Item
+    size: Large
+    shape:
+      - 0,0,0,1
 
 - type: entity
   id: LeftArmCyber
@@ -172,6 +176,57 @@
     - type: RoundstartImplantable
       cost: 1
 
+# Speed legs
+- type: entity
+  id: LeftLegCyberSpeed
+  name: "left speg"
+  parent: [PartCyber, BaseLeftLeg]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberLLegSpeed
+        Resomi: ResomiCyberLLegSpeed
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+      state: "l_leg"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+      state: "l_leg"
+    - type: MovementBodyPart
+      walkSpeed: 3.75 # 1.5x of base
+      sprintSpeed: 6.75 # 1.5x of base
+      maxDensity: 111
+    - type: WithAttachedBodyParts
+      parts:
+        left foot: LeftFootCyber
+    - type: MovementBodyPartHinderedByShoes
+      hinderModifier: 0.1667 
+
+- type: entity
+  id: RightLegCyberSpeed
+  name: "right speg"
+  parent: [PartCyber, BaseRightLeg]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberRLegSpeed
+        Resomi: ResomiCyberRLegSpeed
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+      state: "r_leg"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+      state: "r_leg"
+    - type: MovementBodyPart
+      walkSpeed: 3.75 # 1.5x of base
+      sprintSpeed: 6.75 # 1.5x of base
+      maxDensity: 111
+    - type: WithAttachedBodyParts
+      parts:
+        right foot: RightFootCyber
+    - type: MovementBodyPartHinderedByShoes
+      hinderModifier: 0.1667
+      
 #reaper
 - type: entity
   id: LeftArmCyberReaper
@@ -928,7 +983,7 @@
 - type: entity
   id: LeftArmCyberGorilla
   name: "left G.O.R.I.L.L.A arm"
-  parent: [PartCyber, BaseLeftArm]
+  parent: [PartCyber, BaseLeftArm, BaseScienceContraband]
   components:
     - type: BaseLayerId
       layers:
@@ -947,7 +1002,7 @@
 - type: entity
   id: LeftHandCyberGorilla
   name: "left G.O.R.I.L.L.A hand"
-  parent: [PartCyber, BaseLeftHand]
+  parent: [PartCyber, BaseLeftHand, BaseScienceContraband]
   components:
     - type: BaseLayerId
       layers:
@@ -979,7 +1034,7 @@
 - type: entity
   id: RightArmCyberGorilla
   name: "right G.O.R.I.L.L.A arm"
-  parent: [PartCyber, BaseRightArm]
+  parent: [PartCyber, BaseRightArm, BaseScienceContraband]
   components:
     - type: BaseLayerId
       layers:
@@ -998,7 +1053,7 @@
 - type: entity
   id: RightHandCyberGorilla
   name: "right G.O.R.I.L.L.A hand"
-  parent: [PartCyber, BaseRightHand]
+  parent: [PartCyber, BaseRightHand, BaseScienceContraband]
   components:
     - type: BaseLayerId
       layers:
@@ -1068,6 +1123,7 @@
       state: "l_angel_hand"
     - type: LimbItemStorage
       items:
+        - AdvancedJetInjectorCyber
         - AutoinjectorCyberTricordrazine
         - AutoinjectorCyberInaprovaline
         - DefibrillatorCyber
@@ -1119,6 +1175,7 @@
       state: "r_angel_hand"
     - type: LimbItemStorage
       items:
+        - AdvancedJetInjectorCyber
         - AutoinjectorCyberTricordrazine
         - AutoinjectorCyberInaprovaline
         - DefibrillatorCyber
@@ -1134,7 +1191,7 @@
 - type: entity
   id: LeftArmCyberZeus
   name: "left zeus arm"
-  parent: [PartCyber, BaseLeftArm]
+  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
   components:
     - type: BaseLayerId
       layers:
@@ -1153,7 +1210,7 @@
 - type: entity
   id: LeftHandCyberZeus
   name: "left zeus hand"
-  parent: [PartCyber, BaseLeftHand]
+  parent: [PartCyber, BaseLeftHand, BaseSecurityContraband]
   components:
     - type: BaseLayerId
       layers:
@@ -1184,7 +1241,7 @@
 - type: entity
   id: RightArmCyberZeus
   name: "right zeus arm"
-  parent: [PartCyber, BaseRightArm]
+  parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
   components:
     - type: BaseLayerId
       layers:
@@ -1203,7 +1260,7 @@
 - type: entity
   id: RightHandCyberZeus
   name: "right zeus hand"
-  parent: [PartCyber, BaseRightHand]
+  parent: [PartCyber, BaseRightHand, BaseSecurityContraband]
   components:
     - type: BaseLayerId
       layers:
@@ -1441,6 +1498,321 @@
         tags:
           - CyberHandItem
 
+# Scribe
+- type: entity
+  id: LeftArmCyberScribe
+  name: "left scribe arm"
+  parent: [PartCyber, BaseLeftArm]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberLArmScribe
+        Resomi: ResomiCyberLArmScribe
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_scribe_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_scribe_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberScribe
+
+- type: entity
+  id: LeftHandCyberScribe
+  name: "left scribe hand"
+  parent: [PartCyber, BaseLeftHand]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberLHandScribe
+        Resomi: ResomiCyberLHandScribe
+    - type: BaseLayerIdToggled
+      layers:
+        Default: CyberLHandScribeTools
+        Resomi: ResomiCyberLHandScribeTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_scribe_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_scribe_hand"
+    - type: LimbItemStorage
+      items:
+        - PenCyber
+        - StampCyber
+        - PrinterCyber
+        - FilingCabinetCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+- type: entity
+  id: RightArmCyberScribe
+  name: "right scribe arm"
+  parent: [PartCyber, BaseRightArm]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberRArmScribe
+        Resomi: ResomiCyberRArmScribe
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_scribe_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_scribe_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberScribe
+
+- type: entity
+  id: RightHandCyberScribe
+  name: "right scribe hand"
+  parent: [PartCyber, BaseRightHand]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberRHandScribe
+        Resomi: ResomiCyberRHandScribe
+    - type: BaseLayerIdToggled
+      layers:
+        Default: CyberRHandScribeTools
+        Resomi: ResomiCyberRHandScribeTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_scribe_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_scribe_hand"
+    - type: LimbItemStorage
+      items:
+        - PenCyber
+        - StampCyber
+        - PrinterCyber
+        - FilingCabinetCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+# Herakles
+- type: entity
+  id: LeftArmCyberHerakles
+  name: "left herakles arm"
+  parent: [PartCyber, BaseLeftArm, BaseSecurityContraband]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberLArmHerakles
+        Resomi: ResomiCyberLArmHerakles
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_bulwark_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_bulwark_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberHerakles
+
+- type: entity
+  id: LeftHandCyberHerakles
+  name: "left herakles hand"
+  parent: [PartCyber, BaseLeftHand, BaseSecurityContraband]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberLHandHerakles
+        Resomi: ResomiCyberLHandHerakles
+    - type: BaseLayerIdToggled
+      layers:
+        Default: CyberLHandHeraklesTools
+        Resomi: ResomiCyberLHandHeraklesTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_bulwark_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_bulwark_hand"
+    - type: LimbItemStorage
+      items:
+        - MeleeWeaponCyberHerakles
+        - HoloRestrainerCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+- type: entity
+  id: RightArmCyberHerakles
+  name: "right herakles arm"
+  parent: [PartCyber, BaseRightArm, BaseSecurityContraband]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberRArmHerakles
+        Resomi: ResomiCyberRArmHerakles
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_bulwark_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_bulwark_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberHerakles
+
+- type: entity
+  id: RightHandCyberHerakles
+  name: "right herakles hand"
+  parent: [PartCyber, BaseRightHand, BaseSecurityContraband]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberRHandHerakles
+        Resomi: ResomiCyberRHandHerakles
+    - type: BaseLayerIdToggled
+      layers:
+        Default: CyberRHandHeraklesTools
+        Resomi: ResomiCyberRHandHeraklesTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_bulwark_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_bulwark_hand"
+    - type: LimbItemStorage
+      items:
+        - MeleeWeaponCyberHerakles
+        - HoloRestrainerCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+# Investigator
+- type: entity
+  id: LeftArmCyberInvestigator
+  name: "left investigator arm"
+  parent: [PartCyber, BaseLeftArm, BaseScienceContraband]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberLArmInvestigator
+        Resomi: ResomiCyberLArmInvestigator
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_investigator_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_investigator_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberInvestigator
+
+- type: entity
+  id: LeftHandCyberInvestigator
+  name: "left investigator hand"
+  parent: [PartCyber, BaseLeftHand, BaseScienceContraband]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberLHandInvestigator
+        Resomi: ResomiCyberLHandInvestigator
+    - type: BaseLayerIdToggled
+      layers:
+        Default: CyberLHandInvestigatorTools
+        Resomi: ResomiCyberLHandInvestigatorTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_investigator_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_investigator_hand"
+    - type: LimbItemStorage
+      items:
+        - RadcasterCyber
+        - FreezeRayCyber
+        - VialCyberEmpty
+        - VialCyberWater
+        - VialCyberBlood
+        - NodeScannerCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
+- type: entity
+  id: RightArmCyberInvestigator
+  name: "right investigator arm"
+  parent: [PartCyber, BaseRightArm, BaseScienceContraband]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberRArmInvestigator
+        Resomi: ResomiCyberRArmInvestigator
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_investigator_arm"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_investigator_arm"
+    - type: WithAttachedBodyParts
+      parts:
+        right hand: RightHandCyberInvestigator
+
+- type: entity
+  id: RightHandCyberInvestigator
+  name: "right investigator hand"
+  parent: [PartCyber, BaseRightHand, BaseScienceContraband]
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberRHandInvestigator
+        Resomi: ResomiCyberRHandInvestigator
+    - type: BaseLayerIdToggled
+      layers:
+        Default: CyberRHandInvestigatorTools
+        Resomi: ResomiCyberRHandInvestigatorTools
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_investigator_hand"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_investigator_hand"
+    - type: LimbItemStorage
+      items:
+        - RadcasterCyber
+        - FreezeRayCyber
+        - VialCyberEmpty
+        - VialCyberWater
+        - VialCyberBlood
+        - NodeScannerCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound:
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+
 # Hydraulic Legs
 - type: entity
   id: LeftLegCyberHydraulic
@@ -1544,3 +1916,112 @@
         right foot: RightFootCyber
     - type: LimbWithAction
       action: JumpPilebunkerLeg
+
+# Cargo Legs
+- type: entity
+  id: LeftLegCyberCargo
+  name: "left cargo cyber leg"
+  parent: [PartCyber, BaseLeftLeg]
+  description: Wait a moment... This is just an older model of cyberleg someone strapped a pouch to!
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberLLegCargo
+        Resomi: ResomiCyberLLegCargo
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_leg_cargo"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_leg_cargo"
+    - type: MovementBodyPart
+      sprintSpeed : 4.05
+      maxDensity: 111
+    - type: WithAttachedBodyParts
+      parts:
+        left foot: LeftFootCyber
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+        params:
+          volume: 0.1
+    - type: LimbWithAction
+      action: ActionOpenStorageLeftLeg
+    - type: StorageOrgan
+      organAction: ActionOpenStorageLeftLeg
+      actionKey: LeftLeg
+    - type: Storage
+      clickInsert: false
+      showVerb: false
+      openOnActivate: false
+      grid:
+      - 0,0,1,2
+      maxItemSize: Large
+      blacklist: 
+        components:
+          - BodyPart
+    - type: PrivateStorage
+      accessDelay: 3.0
+      accessPopup: "cargo-leg-left-storage-accessing"
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents: []
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+
+- type: entity
+  id: RightLegCyberCargo
+  name: "right cargo cyber leg"
+  parent: [PartCyber, BaseRightLeg]
+  description: Wait a moment... This is just an older model of cyberleg someone strapped a pouch to!
+  components:
+    - type: BaseLayerId
+      layers:
+        Default: CyberRLegCargo
+        Resomi: ResomiCyberRLegCargo
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_leg_cargo"
+    - type: Icon
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_leg_cargo"
+    - type: MovementBodyPart
+      sprintSpeed : 4.05
+      maxDensity: 111
+    - type: WithAttachedBodyParts
+      parts:
+        right foot: RightFootCyber
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+        params:
+          volume: 0.1    
+    - type: LimbWithAction
+      action: ActionOpenStorageRightLeg
+    - type: StorageOrgan
+      organAction: ActionOpenStorageRightLeg
+      actionKey: RightLeg
+    - type: Storage
+      clickInsert: false
+      showVerb: false
+      openOnActivate: false
+      grid:
+      - 0,0,1,2
+      maxItemSize: Large
+      blacklist: 
+        components:
+          - BodyPart
+    - type: PrivateStorage
+      accessDelay: 3.0
+      accessPopup: "cargo-leg-right-storage-accessing"
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents: []
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface

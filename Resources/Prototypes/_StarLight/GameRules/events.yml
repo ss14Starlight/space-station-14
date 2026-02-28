@@ -267,6 +267,8 @@
     - id: Xenoborgs
     # Starlight gamerules:
     - id: AbductorsSpawn
+    - id: RailroadingTerminator
+    - id: Brighteye
 
 - type: entity
   parent: BaseGameRule
@@ -306,12 +308,13 @@
   components:
   - type: StationEvent
     weight: 1
-    earliestStart: 30
-    reoccurrenceDelay: 60
-    minimumPlayers: 30
+    earliestStart: 10
+    reoccurrenceDelay: 20
+    minimumPlayers: 20
+    duration: null
   - type: RuleGrids
   - type: GameRule
-    minPlayers: 10
+    minPlayers: 20
   - type: BrighteyeRule
   - type: LoadMapRule
     mapPath: /Maps/_Starlight/TheDark/Hideout.yml
@@ -319,7 +322,12 @@
   - type: AntagLoadProfileRule
     speciesHardOverride: Shadekin
     applyCharacterProfile: true
+  - type: AntagObjectives
+    objectives:
+    - BirghteyeSurviveObjective
+    - BirghteyePortalObjective
   - type: AntagSelection
+    agentName: roles-antag-brighteye-name
     selectionTime: PrePlayerSpawn
     definitions:
     - prefRoles: [ Brighteye ]
@@ -330,7 +338,7 @@
       briefing:
         text: brighteye-role-greeting
         color: "#F200FF"
-        sound: "/Audio/_Starlight/Ambiance/Antag/brighteye.ogg"
+        sound: "/Audio/_Starlight/Ambience/Antag/brighteye.ogg"
       components:
       - type: Brighteye
         energy: 200 # THIS IS HARDCODED BULLSHIT... i wish i could set this auto to MaxEnergy.
@@ -340,16 +348,12 @@
       - type: CombatMode
         disarmFailChance: 0.5
         canDisarm: true
+      - type: Railroadable
+        important: true
       mindRoles:
       - MindRoleBrighteye
-      # Starlight-start
       tags:
         - CantBecomeRevolutionary
-      # Starlight-end
-  - type: AntagObjectives
-    objectives:
-    - BirghteyeSurviveObjective
-    - BirghteyePortalObjective
   - type: SubGamemodes
     rules:
     - id: RailroadingBrighteye
@@ -365,3 +369,46 @@
   - type: LoadMapRule
     mapPath: /Maps/_Starlight/TheDark/Hideout.yml
     mapTag: TheDark
+
+# Teapot's Nanotrasen Battlecruiser
+- type: entity
+  parent: BaseGameRule
+  id: NTSF_MinosBattlecruiser
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/NTSF_Minos_Battlecruiser.yml
+
+# Teapot's Decimus Shuttle
+- type: entity
+  parent: BaseGameRule
+  id: Decimus_MagnusBreachingCraft
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/Decimus_Shuttle_Magnus.yml
+
+
+# Derelict Cyborgs
+
+- type: entity
+  parent: BaseGameRule
+  id: DerelictPurrfusCyborgSpawn
+  components:
+  - type: StationEvent
+    globalAnnouncement: false # Starlight
+    weight: 2.5
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 4
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerPurrfusBorgDerelictGhostRole
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointGhostDerelictPurrfusCyborg
+      min: 1
+      max: 1
+      pickPlayer: false

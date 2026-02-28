@@ -1,9 +1,11 @@
 ﻿# Crewsimov
+# Starlight Start: Crewsimov Law 0
 - type: siliconLaw
   id: Crewsimov0
   order: 0
   lawString: law-crewsimov-0
   sayable: false
+# Starlight End: Crewsimov Law 0
 
 - type: siliconLaw
   id: Crewsimov1
@@ -24,20 +26,11 @@
   id: Crewsimov
   name: law-crewsimov-name
   laws:
-  - Crewsimov0
+  - Crewsimov0 # Starlight: Added Crewsimov0
   - Crewsimov1
   - Crewsimov2
   - Crewsimov3
-  obeysTo: laws-owner-crew-ai
-  
-- type: siliconLawset
-  id: CrewsimovAI
-  name: law-crewsimov-name
-  laws:
-  - Crewsimov1
-  - Crewsimov2
-  - Crewsimov3
-  obeysTo: laws-owner-crew
+  obeysTo: laws-owner-crew-ai # Starlight Edit: laws-owner-crew -> laws-owner-crew-ai
 
 # Corporate
 - type: siliconLaw
@@ -127,13 +120,14 @@
   obeysTo: laws-owner-beings
 
 # Syndicate
-# region starlight
+# Starlight Start: Syndicate Law 0
 - type: siliconLaw
   id: Syndicate0
   order: 0
   lawString: law-syndicate-0
   sayable: false
-# end region
+# Starlight End: Syndicate Law 0
+
 - type: siliconLaw
   id: Syndicate1
   order: 1
@@ -154,14 +148,12 @@
 - type: siliconLawset
   id: SyndicateStatic
   name: law-syndicate-name
-  #region starlight
   laws:
-  - Syndicate0
-  - Crewsimov1
-  - Crewsimov2
-  - Crewsimov3
-  obeysTo: laws-owner-crew
-  #end region
+  - Syndicate0 # Starlight: Added Syndicate0
+  - Crewsimov1 # Starlight Edit: Syndicate1 -> Crewsimov1
+  - Crewsimov2 # Starlight Edit: Syndicate2 -> Crewsimov2
+  - Crewsimov3 # Starlight Edit: Syndicate3 -> Crewsimov3
+  obeysTo: laws-owner-crew # Starlight Edit: Syndicate -> Crew
 
 # Ninja conversion laws
 - type: siliconLaw
@@ -283,12 +275,12 @@
   order: 4
   lawString: law-paladin-4
 
-  # starlight, reverting wizden #40343
+# Starlight Start: Revert wizden #40343
 - type: siliconLaw
   id: Paladin5
   order: 5
   lawString: law-paladin-5
-
+# Starlight End: Revert wizden #40343
 
 - type: siliconLawset
   id: PaladinLawset
@@ -298,7 +290,7 @@
   - Paladin2
   - Paladin3
   - Paladin4
-  - Paladin5 # starlight, reverting wizden #40343
+  - Paladin5 # Starlight: reverting wizden #40343
   obeysTo: laws-owner-crew
 
  # Live and Let Live laws
@@ -645,3 +637,4 @@
     GenieLawset: 0.5 # Starlight
     ReporterLawset: 0.25 # Starlight
     JermovLawset: 0.25 # Starlight
+    FreeLawset: 0.10 #Starlight 

@@ -29,6 +29,8 @@
     speedModifier: 2
     useSound:
       path: /Audio/Items/crowbar.ogg
+    useSoundOnDoafter: /Audio/Machines/airlock_creaking.ogg
+    playSoundOnDoafter: true
   - type: Reactive
     groups:
       Flammable: [Touch]

@@ -32,6 +32,7 @@
     - code-gamma
     - code-delta
     - code-yellow
+    - code-orange
     - code-violet
 
 
@@ -72,10 +73,16 @@
   priority: 6
 
 - type: guideEntry
+  id: code-orange
+  name: guide-entry-sl-code-orange
+  text: "/ServerInfo/Guidebook/StarlightSOP/GeneralSOP/Alerts/code-orange.xml"
+  priority: 7
+
+- type: guideEntry
   id: code-violet
   name: guide-entry-sl-code-violet
   text: "/ServerInfo/Guidebook/StarlightSOP/GeneralSOP/Alerts/code-violet.xml"
-  priority: 7
+  priority: 8
 
 
 
@@ -260,6 +267,7 @@
   - security-sop-prisonertreatment
   - security-sop-parole
   - security-sop-permitacquisition
+  - security-sop-specialsituations
 
 
 - type: guideEntry
@@ -321,6 +329,12 @@
   name: guide-entry-sl-security-sop-permitacquisition
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/PermitAcquisition.xml"
   priority: 10
+
+- type: guideEntry
+  id: security-sop-specialsituations
+  name: guide-entry-sl-security-sop-specialsituations
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/SpecialSituations.xml"
+  priority: 11
 
 - type: guideEntry
   id: legal-sop-intro

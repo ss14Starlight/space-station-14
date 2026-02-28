@@ -19,7 +19,7 @@
   description: spellbook-polymorph-rod-desc
   productAction: ActionPolymorphWizardRod
   cost:
-    WizCoin: 3
+    WizCoin: 7 #Starlight: 3WC->7WC It's a LRP spell murderhobo spell, and it was so cheap you could buy every other wizard movement ability to avoid ever getting caught.
   categories:
   - SpellbookOffensive
   conditions:

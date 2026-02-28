@@ -100,6 +100,8 @@
         - BorgModuleOperative
         - BorgModuleL6C
         - BorgModuleEsword # We're not giving the double e-sword to the borgi. Buy the proper borg.
+    - type: Loadout
+      prototypes: [SyndicateBorgiGearNoUplink]
 
 - type: entity
   parent: BaseSyndicateBorgiChassis
@@ -124,6 +126,8 @@
         borg_module:
         - BorgModuleOperative
         - BorgModuleSyndicateWeapon
+    - type: Loadout
+      prototypes: [SyndicateBorgiGearNoUplink]
 
 - type: entity
   parent: [ BaseXenoborgChassis, BaseXenoborgTransponder, BaseBorgiChassis ]

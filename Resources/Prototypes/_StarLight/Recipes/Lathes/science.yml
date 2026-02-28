@@ -9,6 +9,11 @@
   - ArtificialBluespaceCrystal
 
 - type: latheRecipePack
+  id: ScienceDarkBreacher
+  recipes:
+  - DarkBreacherMachineCircuitboard
+
+- type: latheRecipePack
   id: SecurityScienceBlueSpace
   recipes:
   - NullspaceAnchorMachineCircuitboard

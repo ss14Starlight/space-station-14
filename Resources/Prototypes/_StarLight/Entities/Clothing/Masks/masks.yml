@@ -1,7 +1,7 @@
 - type: entity
   parent: [ ClothingMaskGas, BaseBlueShieldContraband ]
   id: ClothingMaskGasBSO
-  name: Blue Swat Gas Mask
+  name: blue swat gas mask
   description: A elite issue Security gas mask. Now in blue!
   components:
   - type: Sprite
@@ -25,6 +25,44 @@
         Slash: 0.90
         Piercing: 0.95
         Heat: 0.95
+
+- type: entity
+  parent: [ ClothingMaskGas, BaseSecurityContraband ]
+  id: ClothingMaskGasCorpsman
+  name: security bio mask
+  description: VERY Expensive medical PPE that provides superior pathological protection.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Mask/corpsmangas.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Mask/corpsmangas.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    hideOnToggle: true
+  - type: Pierceable
+    level: Metal
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.85
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.90
+
+- type: entity
+  parent: [ClothingMaskGas]
+  id: ClothingMaskRoboticist
+  name: roboticist gas mask
+  description: What a sublime color set, newbie.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Mask/gasroboticist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Mask/gasroboticist.rsi
 
 - type: entity
   parent: [ClothingMaskGas, BaseSovietContraband]

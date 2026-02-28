@@ -37,7 +37,6 @@
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
     state: tongue
 
-
 - type: entity
   id: OrganShadekinAppendix
   parent: OrganHumanAppendix
@@ -47,7 +46,6 @@
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
     layers:
       - state: appendix
-
 
 - type: entity
   id: OrganShadekinHeart
@@ -117,6 +115,7 @@
 - type: entity
   id: OrganShadekinCoreUndamaged
   parent: OrganShadekinCore
+  name: bright-eye core
   suffix: Undamaged
   components:
   - type: OrganShadekinCore
@@ -125,4 +124,4 @@
     tags:
       - ShadekinCore
   - type: StaticPrice
-    price: 30000
+    price: 50000

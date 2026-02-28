@@ -6,6 +6,13 @@ using Robust.Client.Placement;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
+// Starlight Start
+using Robust.Shared.Input;
+using Content.Client._Starlight.RCD;
+using Robust.Shared.Input.Binding;
+using Content.Client.Atmos;
+using Content.Shared.Input;
+// Starlight End
 
 namespace Content.Client.RCD;
 
@@ -15,6 +22,7 @@ namespace Content.Client.RCD;
 public sealed class RCDConstructionGhostSystem : EntitySystem
 {
     private const string PlacementMode = nameof(AlignRCDConstruction);
+    private const string RpdPlacementMode = nameof(AlignRPDAtmosPipeLayers); // Starlight RPD
 
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPlacementManager _placementManager = default!;
@@ -22,6 +30,50 @@ public sealed class RCDConstructionGhostSystem : EntitySystem
     [Dependency] private readonly HandsSystem _hands = default!;
 
     private Direction _placementDirection = default;
+    // Starlight Start: RPD
+    private bool _useMirrorPrototype = false;
+    public event EventHandler? FlipConstructionPrototype;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        // bind key
+        CommandBinds.Builder
+            .Bind(ContentKeyFunctions.EditorFlipObject,
+                new PointerInputCmdHandler(HandleFlip, outsidePrediction: true))
+            .Register<RCDConstructionGhostSystem>();
+    }
+
+    public override void Shutdown()
+    {
+        CommandBinds.Unregister<RCDConstructionGhostSystem>();
+        base.Shutdown();
+    }
+
+    private bool HandleFlip(in PointerInputCmdHandler.PointerInputCmdArgs args)
+    {
+        if (args.State == BoundKeyState.Down)
+        {
+            if (!_placementManager.IsActive || _placementManager.Eraser)
+                return false;
+
+            var placerEntity = _placementManager.CurrentPermission?.MobUid;
+
+            if (!TryComp<RCDComponent>(placerEntity, out var rcd) ||
+                string.IsNullOrEmpty(rcd.CachedPrototype.MirrorPrototype))
+                return false;
+
+            _useMirrorPrototype = !rcd.UseMirrorPrototype;
+
+            // tell the server
+
+            RaiseNetworkEvent(new RCDConstructionGhostFlipEvent(GetNetEntity(placerEntity.Value), _useMirrorPrototype));
+        }
+
+        return true;
+    }
+    // Starlight End: RPD
 
     public override void Update(float frameTime)
     {
@@ -55,7 +107,20 @@ public sealed class RCDConstructionGhostSystem : EntitySystem
 
             return;
         }
-        var prototype = _protoManager.Index(rcd.ProtoId);
+        // Starlight edit Start: RPD - use the mirrored prototype if the flip state is toggled on
+        // var prototype = _protoManager.Index(rcd.ProtoId);
+
+        // Determine if mirrored
+        var cachedProto = rcd.CachedPrototype;
+        var wantMirror = _useMirrorPrototype && !string.IsNullOrEmpty(cachedProto.MirrorPrototype);
+        var prototype = wantMirror ? cachedProto.MirrorPrototype : cachedProto.Prototype;
+
+        bool isLayered = rcd.IsRpd
+            && _protoManager.TryIndex<RCDPrototype>(cachedProto.ID, out var rcdProto)
+            && rcdProto.HasLayers;
+
+        var desiredMode = isLayered ? RpdPlacementMode : PlacementMode;
+        // Starlight edit End: RPD - use the mirrored prototype if the flip state is toggled on
 
         // Update the direction the RCD prototype based on the placer direction
         if (_placementDirection != _placementManager.Direction)
@@ -65,17 +130,21 @@ public sealed class RCDConstructionGhostSystem : EntitySystem
         }
 
         // If the placer has not changed, exit
-        if (heldEntity == placerEntity && prototype.Prototype == placerProto)
+        // Starlight edit Start
+        if (heldEntity == placerEntity &&
+            prototype == placerProto &&
+            _placementManager.CurrentPermission?.PlacementOption == desiredMode)
+        // Starlight edit End
             return;
 
         // Create a new placer
         var newObjInfo = new PlacementInformation
         {
             MobUid = heldEntity.Value,
-            PlacementOption = PlacementMode,
-            EntityType = prototype.Prototype,
+            PlacementOption = desiredMode, // Starlight Edit: PlacementMode -> desiredMode
+            EntityType = prototype, // Starlight Edit: prototype.Prototype -> prototype
             Range = (int)Math.Ceiling(SharedInteractionSystem.InteractionRange),
-            IsTile = (prototype.Mode == RcdMode.ConstructTile),
+            IsTile = (cachedProto.Mode == RcdMode.ConstructTile), // Starlight Edit: prototype.Mode -> cachedProto.Mode
             UseEditorContext = false,
         };
 

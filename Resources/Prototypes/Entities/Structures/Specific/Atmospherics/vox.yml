@@ -15,19 +15,47 @@
       Ammonia: stationAmmonia
       NitrousOxide: stationNO
       Frezon: danger
+      # Funkystation Start: Funky atmos - /tg/ gases
+      BZ: stationBZ
+      Healium: stationHealium
+      Nitrium: voxNitrium
+      Pluoxium: stationPluoxium
+      Hydrogen: danger
+      HyperNoblium: stationHyperNoblium
+      ProtoNitrate: danger
+      Zauker: danger
+      Halon: voxHalon
+      Helium: stationHelium
+      AntiNoblium: danger
+      # Funkystation End: Funky atmos - /tg/ gases
 
 - type: entity
   parent: [AirSensorVoxBase, AirSensor]
   id: AirSensorVox
 
 - type: entity
-  parent: [AirSensorVoxBase, GasVentPump]
+  parent: [AirSensorVoxBase, GasVentPumpVoxBase, GasVentPump] # Carpmosia-edit - Atmos Alt Prototypes
   id: GasVentPumpVox
+  components:
+  # Starlight Start
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentPumpVox
+      Secondary: GasVentPumpVoxAlt1
+      Tertiary: GasVentPumpVoxAlt2
+  # Starlight End
 
 - type: entity
-  parent: [AirSensorVoxBase, GasVentScrubber]
+  parent: [AirSensorVoxBase, GasVentScrubberVoxBase, GasVentScrubber] # Carpmosia-edit - Atmos Alt Prototypes
   id: GasVentScrubberVox
   components:
+  # Starlight Start
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasVentScrubberVox
+      Secondary: GasVentScrubberVoxAlt1
+      Tertiary: GasVentScrubberVoxAlt2
+  # Starlight End
   - type: GasVentScrubber
     wideNet: true # Air alarm with auto mode overrides filters with hardcoded defaults so default to widenet
     filterGases:
@@ -39,6 +67,18 @@
     - Ammonia
     - NitrousOxide
     - Frezon
+    # Funkystation Start: Funky atmos - /tg/ gases
+    - BZ
+    - Healium
+    - Nitrium
+    - Halon
+    - Hydrogen
+    - HyperNoblium
+    - ProtoNitrate
+    - Zauker
+    - Helium
+    - AntiNoblium
+    # Funkystation End: Funky atmos - /tg/ gases
 
 # use this to prevent overriding filters with hardcoded defaults
 - type: entity

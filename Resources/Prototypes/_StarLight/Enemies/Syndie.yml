@@ -9,6 +9,8 @@
       speedModifier: 5.5
       useSound:
         path: /Audio/Items/crowbar.ogg
+      useSoundOnDoafter: /Audio/Machines/airlock_creaking.ogg
+      playSoundOnDoafter: true
     - type: NpcFactionMember
       factions:
         - DungeonSyndicate

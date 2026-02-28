@@ -1,5 +1,7 @@
 research-discipline-biochemical = Biochemical
 
+research-technology-chemical-storage = Advanced chemical storage
+
 research-technology-basic-surgery = Basic surgery
 research-technology-advanced-surgery = Advanced surgery
 
@@ -36,5 +38,6 @@ research-technology-loot-only-2 = Loot Only Technologies Tier 2
 research-technology-loot-only-3 = Loot Only Technologies Tier 3
 
 research-technology-bluespace-manipulation = Bluespace Manipulation
+research-technology-darkbreacher = Dark Breacher
 
 research-technology-basic-xenobiology = Basic Xenobiology

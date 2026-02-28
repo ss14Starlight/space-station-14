@@ -1,9 +1,32 @@
 - type: entity
-  parent: WeaponLauncherHydra
+  parent: [ BaseSyndicateContraband, WeaponLauncherHydra ]
+  id: WeaponLauncherHydraSyndicate
+  name: modified hydra
+  suffix: Syndicate
+  description: It looks like a standard-issue Hydra cleanade launcher, but the safety measures have been filed off.
+  components:
+  - type: ScanDetectable
+  - type: Contraband
+    severity: Syndicate
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
+    proto: GrenadeCleanadeSyndicate
+
+- type: entity
+  parent: WeaponLauncherHydraSyndicate
   id: WeaponLauncherHydraEMP
-  name: hydra
   suffix: EMP
   description: PLOOP... ZAP
   components:
   - type: RevolverAmmoProvider
     proto: GrenadeEMP
+
+- type: entity
+  parent: WeaponLauncherHydra
+  id: WeaponLauncherHydraFilled
+  suffix: Filled
+  components:
+  - type: RevolverAmmoProvider
+    proto: GrenadeCleanade

@@ -37,9 +37,19 @@
   - Freelance
   - Commie
   - Wizard
+  - Pirate
 
 - type: accessGroup
   id: Syndicate
   tags:
   - SyndicateAgent
   - NuclearOperative
+
+- type: accessLevel
+  id: Pirate
+  name: id-card-access-level-pirate
+
+- type: accessGroup
+  id: Pirate
+  tags:
+  - Pirate

@@ -349,3 +349,239 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+
+# region DMR magazines
+- type: entity
+  id: BaseMagazineRifleDMR
+  parent: BaseMagazineMagnumSubMachineGun
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeMagnum
+    capacity: 10
+  - type: Tag
+    tags:
+      - MagazineL10DMR
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/dmr_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineDMRSP
+  name: "DMR magazine (.45 magnum SP)"
+  parent: BaseMagazineRifleDMR
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumSP
+  - type: Sprite
+    layers:
+    - state: sp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#575EF5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#575EF5"
+
+- type: entity
+  id: MagazineDMRHP
+  name: "DMR magazine (.45 magnum HP)"
+  parent: BaseMagazineRifleDMR
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumHP
+  - type: Sprite
+    layers:
+    - state: red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#F5514C"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#F5514C"
+
+- type: entity
+  id: MagazineDMRFMJ
+  name: "DMR magazine (.45 magnum FMJ)"
+  parent: BaseMagazineRifleDMR
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumFMJ
+  - type: Sprite
+    layers:
+    - state: fmj
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#080706"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#080706"
+
+- type: entity
+  id: MagazineDMRAP
+  name: "DMR magazine (.45 magnum AP)"
+  parent: BaseMagazineRifleDMR
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumAP
+  - type: Sprite
+    layers:
+    - state: ap
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#72E374"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#72E374"
+
+- type: entity
+  id: MagazineDMREmpty
+  name: "DMR magazine (.45 magnum any)"
+  suffix: empty
+  parent: MagazineDMRSP
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazineDMRIncendiary
+  name: "DMR magazine (.45 magnum incendiary)"
+  parent: MagazineDMRSP
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumIncendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#E7EEEE"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#E7EEEE"
+        
+- type: entity
+  id: MagazineDMRPractice
+  name: "DMR magazine (.45 magnum practice)"
+  parent: BaseMagazineRifleDMR
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumPractice
+  - type: Sprite
+    layers:
+    - state: practice
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#F08B4B"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#F08B4B"
+
+- type: entity
+  id: MagazineDMRUranium
+  name: "DMR magazine (.45 magnum uranium)"
+  parent: BaseMagazineRifleDMR
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumUranium
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#40F57A"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#40F57A"
+
+- type: entity
+  id: MagazineDMRRubber
+  name: "DMR magazine (.45 magnum rubber)"
+  parent: BaseMagazineRifleDMR
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumRubber
+  - type: Sprite
+    layers:
+    - state: rubber
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#28E7DC"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#28E7DC"

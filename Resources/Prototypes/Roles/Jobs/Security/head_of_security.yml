@@ -6,16 +6,16 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobWarden
-      time: 5h # Starlight
+      time: 10h # Starlight
     - !type:RoleTimeRequirement
       role: JobDetective
       time: 5h # knowing how to use the tools is important # Starlight
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 5h
+      time: 15h # Starlight
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 20h # Starlight
+      time: 60h # Starlight - Literally the most pressured role in the game, you need extensive knowledge of your department
 
   weight: 10
   startingGear: HoSGear
@@ -23,6 +23,7 @@
   supervisors: job-supervisors-captain
   canBeAntag: false
   access:
+  - Cadet # Starlight
   - HeadOfSecurity
   - Command
   - Brig
@@ -47,7 +48,7 @@
   equipment:
     eyes: ClothingEyesGlassesSecurity
     id: HoSPDA
-    gloves: ClothingHandsGlovesCombat
+    # gloves: ClothingHandsGlovesCombat # Starlight
     ears: ClothingHeadsetAltSecurity
   storage:
     back:

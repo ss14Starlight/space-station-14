@@ -50,8 +50,19 @@
           Blunt: 18
           Structural: 20
       animation: WeaponArcFist
+    - type: AmputateOnHit
+      chance: 0.1
+      parts:
+      - RightArmHuman
+      - LeftArmHuman
+      - RightHandHuman
+      - LeftHandHuman
+      - RightLegHuman
+      - LeftLegHuman
+      - RightFootHuman
+      - LeftFootHuman
     - type: StaminaDamageOnHit
-      damage: 50
+      damage: 20
     - type: MeleeThrowOnHit
       speed: 20
       distance: 5
@@ -86,7 +97,6 @@
       needsHands: false
     - type: StatusEffects
       allowed:
-        - KnockedDown
         - Stutter
         - Electrocution
         - ForcedSleep
@@ -94,7 +104,6 @@
         - Pacified
         - Flashed
         - RadiationProtection
-        - Drowsiness
         - Adrenaline
     - type: Prying
       pryPowered: true
@@ -102,9 +111,8 @@
       speedModifier: 1.5
       useSound:
         path: /Audio/Items/crowbar.ogg
-    - type: SlowOnDamage
-      speedModifierThresholds:
-        200: 0.5
+      useSoundOnDoafter: /Audio/Machines/airlock_creaking.ogg
+      playSoundOnDoafter: true
     - type: IgnoreSlowOnDamage
     - type: MobThresholds
       thresholds:
@@ -131,6 +139,7 @@
       tags:
         - DoorBumpOpener
         - SlowImmune
+        - StunImmune
         - KnockdownImmune
         - CannotSuicide
 
@@ -163,6 +172,13 @@
         types:
           Blunt: 35
           Structural: 20
+    - type: AmputateOnHit
+      chance: 1
+    - type: StaminaDamageOnHit
+      damage: 40
+    - type: MeleeThrowOnHit
+      speed: 40
+      distance: 5
     - type: MovementSpeedModifier
       baseWalkSpeed: 2
       baseSprintSpeed: 4

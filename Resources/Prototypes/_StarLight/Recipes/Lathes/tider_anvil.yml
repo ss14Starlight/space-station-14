@@ -245,3 +245,12 @@
     Glass: 700
     Cloth: 20
     CrushedPhosphorus: 1500
+
+- type: latheRecipe
+  id: BorgModuleMakeshiftKnifeTA
+  result: BorgModuleMakeshiftKnife
+  completetime: 60
+  materials:
+    Steel: 600
+    Plastic: 500
+    Glass: 2500

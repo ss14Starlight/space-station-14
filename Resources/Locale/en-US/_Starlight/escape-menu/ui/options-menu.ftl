@@ -5,3 +5,4 @@ server-info-connect-discord-button = Link Discord
 ## Accessibility
 
 ui-options-arachnophobia = Arachnophobia Mode
+ui-options-disable-job-icon-animation = Disable animation for chat and status icons

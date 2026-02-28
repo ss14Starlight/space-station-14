@@ -89,3 +89,32 @@
       interfaces:
         enum.DoorElectronicsConfigurationUiKey.Key:
           type: DoorElectronicsBoundUserInterface
+
+- type: entity
+  id: BaseDoorElectronicsPirate
+  parent: [DoorElectronics, BaseMajorContraband]
+  name: pirate door electronics
+  description: An electronics board used in doors and airlocks. Smells of saltwater.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/module.rsi
+      state: syndicate_door_electronics
+    - type: Tag
+      tags:
+        - DoorElectronics
+    - type: DoorElectronics
+      accessGroups:
+      - Pirate
+    - type: StaticPrice
+      price: 55
+    - type: AccessReader
+      access: [["Pirate"]]
+    - type: ActivatableUI
+      key: enum.DoorElectronicsConfigurationUiKey.Key
+      requiredItems:
+        tags:
+        - DoorElectronicsConfigurator
+    - type: UserInterface
+      interfaces:
+        enum.DoorElectronicsConfigurationUiKey.Key:
+          type: DoorElectronicsBoundUserInterface

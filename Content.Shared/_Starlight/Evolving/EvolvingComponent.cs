@@ -1,4 +1,5 @@
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.Evolving.Conditions;
 
 namespace Content.Shared._Starlight.Evolving;
 
@@ -26,4 +27,26 @@ public sealed partial class EvolvingComponent : Component
 
     [DataField(serverOnly: true)]
     public List<EvolvingCondition> Conditions = [];
+
+    [DataField]
+    public string ObjectiveId = "EvolveObjective";
+
+    [DataField]
+    public List<EntityUid> Objectives = [];
+}
+
+[RegisterComponent]
+public sealed partial class EvolveConditionComponent : Component
+{
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public EvolveType? ConditionType;
+    [DataField("count"), ViewVariables(VVAccess.ReadWrite)]
+    public int Count = 0;
+}
+
+public enum EvolveType
+{
+    EggsInjected,
+    SpiderWebsSpawned,
+    DamageDeal
 }

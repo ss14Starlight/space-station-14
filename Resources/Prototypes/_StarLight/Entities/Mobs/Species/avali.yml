@@ -43,6 +43,7 @@
         - DoorBumpOpener
         - AnomalyHost
         - Avali
+        - NotLabelable
     - type: Absorbable
     - type: HumanoidAppearance
       species: Avali
@@ -169,8 +170,8 @@
         groups:
           Brute: 6
       bleedHealPerUpdate: 1.0
-      critHealingModifier: 2.0
-      stasisDamageReduction: 0.5
+      critHealingModifier: 0.5
+      stasisDamageReduction: 0.7
 
 # Chirp!
 

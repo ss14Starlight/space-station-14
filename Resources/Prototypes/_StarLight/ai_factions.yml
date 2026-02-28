@@ -101,6 +101,7 @@
   - Dragon
   - Gorilla
   - Abductor
+  - Pirate
 
 - type: npcFaction
   id: SyndicateSilicon # Again, zombies fuck you.
@@ -155,3 +156,26 @@
   id: PointDefenseWeapon
   hostile:
   - PointDefenseTarget
+
+- type: npcFaction
+  id: Pirate
+  hostile:
+  - NanoTrasen
+  - NanoTrasenSilicon
+  - Syndicate
+  - SyndicateSilicon
+  - DungeonSyndicate
+  - DungeonSoviet
+  - SimpleHostile
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Abyss
+  - Vampire
+  - Changeling
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  - Dragon
+  - Gorilla
+  - Abductor

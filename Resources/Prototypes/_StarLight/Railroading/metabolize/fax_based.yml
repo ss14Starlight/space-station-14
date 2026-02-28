@@ -11,6 +11,7 @@
       blacklist:
       - Abductor
       - Skeleton
+      - Terminator
     - !type:SubjectMindAntagCondition
       blacklist:
       - Brighteye
@@ -41,6 +42,7 @@
     - Warden
     - Detective's Office
     - Magistrate
+    - Central Command
     letters:
     - name: rr-criminal-letter-name
       content: rr-criminal-1-letter-content
@@ -60,6 +62,7 @@
     - Warden
     - Detective's Office
     - Magistrate
+    - Central Command
     letters:
     - name: rr-criminal-failed-name
       content: rr-criminal-failed-content

@@ -1,4 +1,6 @@
 # PLEASE, KEEP THIS FILE ALPHABETIZED
+- type: Tag
+  id: AnomalyCoreShadow
 
 - type: Tag
   id: AbductedTraitBackground
@@ -8,6 +10,9 @@
 
 - type: Tag
   id: AbductorScientist
+
+- type: Tag
+  id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
 
 - type: Tag
   id: Arachnid
@@ -61,7 +66,16 @@
   id: Bow
 
 - type: Tag
+  id: BulletUnarmedCollide
+  
+- type: Tag
+  id: BurnedTraitBackground
+
+- type: Tag
   id: CantInteract
+
+- type: Tag
+  id: Cartridge48Rifle
 
 - type: Tag
   id: CartridgeBattery
@@ -85,7 +99,13 @@
   id: CentcommVibroblade
 
 - type: Tag
+  id: CombatRemote # Tag: used on the RemoteSignallerCombat
+
+- type: Tag
   id: CheapInsulatedFabric
+
+- type: Tag
+  id: Cleanade
 
 - type: Tag
   id: CivilianTraitBackground
@@ -148,6 +168,9 @@
   id: DockGamma
 
 - type: Tag
+  id: DogEmotes
+
+- type: Tag
   id: DrinkCarton
 
 - type: Tag
@@ -187,6 +210,9 @@
   id: Felionoid
 
 - type: Tag
+  id: FreeMag
+
+- type: Tag
   id: FestiveDinner
 
 - type: Tag
@@ -196,6 +222,9 @@
   id: FormerSoldierTraitBackground
 
 - type: Tag
+  id: FlatpackBlacklist
+
+- type: Tag
   id: GearAcidifier
 
 - type: Tag
@@ -203,6 +232,9 @@
 
 - type: Tag
   id: Ghost
+
+- type: Tag
+  id: Grenade120mm # Ammo: Magazine120mmGrenadeBlast, ShuttleGunNTSFCyerxa120mm
 
 - type: Tag
   id: GygaxArmor
@@ -265,6 +297,13 @@
   id: InsulatedThread
 
 - type: Tag
+  id: IteratorTraitBackground
+
+# Used for the jet injector and advanced jet injector
+- type: Tag
+  id: JetInjector
+
+- type: Tag
   id: L6Saw
 
 - type: Tag
@@ -275,12 +314,27 @@
 
 - type: Tag
   id: Locker
+  
+- type: Tag
+  id: LoneOpsUplink
 
 - type: Tag
   id: MagazineBattery
 
 - type: Tag
+  id: MagazineL10DMR
+
+- type: Tag
   id: MagazineBoxLightRifle
+
+- type: Tag
+  id: MagazineGrenade120mm # Magazine: Magazine120mmGrenadeBlast
+
+- type: Tag
+  id: Cartridge60mmRocket
+
+- type: Tag
+  id: Magazine60mmRocket
 
 - type: Tag
   id: MagazineLightRiflePan
@@ -315,6 +369,10 @@
 - type: Tag
   id: MedCyberEyes
 
+# Used for the one-use disposable medipens
+- type: Tag
+  id: Medipen
+
 - type: Tag
   id: Meson
 
@@ -326,6 +384,12 @@
 
 - type: Tag
   id: Nexus
+  
+- type: Tag
+  id: NotLabelable
+
+- type: Tag
+  id: NukiePlanet
 
 - type: Tag
   id: OmniCyberEyes
@@ -353,6 +417,9 @@
 
 - type: Tag
   id: PlasteelFilament
+
+- type: Tag
+  id: PlumbingDuct
 
 - type: Tag
   id: PowerCellTiny
@@ -405,6 +472,9 @@
   id: ShellShotgunToz
 
 - type: Tag
+  id: Shield
+
+- type: Tag
   id: ShipWreck
 
 - type: Tag
@@ -417,10 +487,16 @@
   id: SovietDungeon
 
 - type: Tag
+  id: SovietDungeonWeh
+
+- type: Tag
   id: SovietWarehouse
 
 - type: Tag
   id: SpeedLoaderMagnumImprovised
+
+- type: Tag
+  id: SpeedLoader48Rifle
 
 - type: Tag
   id: SpeedLoaderShotgun
@@ -466,6 +542,6 @@
 
 - type: Tag
   id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.
-  
+
 - type: Tag
   id: XenosDisasterSurvivorTraitBackground

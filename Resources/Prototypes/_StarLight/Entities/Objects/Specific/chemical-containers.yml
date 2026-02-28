@@ -12,68 +12,22 @@
         reagents:
         - ReagentId: Uranium
           Quantity: 200
+          
+- type: entity
+  parent: Jug
+  suffix: Corn oil
+  id: JugCornoil
+  components:
+  - type: Label
+    currentLabel: reagent-name-corn-oil
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Cornoil
+          Quantity: 200
 
 # Medicine Jugs for Chemist Locker
-- type: entity
-  parent: Jug
-  suffix: bicaridine
-  id: JugBicaridine
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Label
-    currentLabel: reagent-name-bicaridine
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        reagents:
-        - ReagentId: Bicaridine
-          Quantity: 200
-
-- type: entity
-  parent: Jug
-  suffix: dermaline
-  id: JugDermaline
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Label
-    currentLabel: reagent-name-dermaline
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        reagents:
-        - ReagentId: Dermaline
-          Quantity: 200
-
-- type: entity
-  parent: Jug
-  suffix: dylovene
-  id: JugDylovene
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Label
-    currentLabel: reagent-name-dylovene
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        reagents:
-        - ReagentId: Dylovene
-          Quantity: 200
-
-- type: entity
-  parent: Jug
-  suffix: dexalin plus
-  id: JugDexalinPlus
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Label
-    currentLabel: reagent-name-dexalin-plus
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        reagents:
-        - ReagentId: DexalinPlus
-          Quantity: 200
-
 - type: entity
   parent: Jug
   suffix: arithrazine
@@ -87,21 +41,6 @@
       beaker:
         reagents:
         - ReagentId: Arithrazine
-          Quantity: 200
-
-- type: entity
-  parent: Jug
-  suffix: saline
-  id: JugSaline
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Label
-    currentLabel: reagent-name-saline
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        reagents:
-        - ReagentId: Saline
           Quantity: 200
 
 - type: entity
@@ -222,21 +161,6 @@
       beaker:
         reagents:
         - ReagentId: Lacerinol
-          Quantity: 200
-
-- type: entity
-  parent: Jug
-  suffix: puncturase
-  id: JugPuncturase
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Label
-    currentLabel: reagent-name-puncturase
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        reagents:
-        - ReagentId: Puncturase
           Quantity: 200
 
 - type: entity

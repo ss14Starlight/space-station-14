@@ -74,6 +74,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - NanoChatCartridge
 
 - type: entity
   parent: BaseMedicalPDA
@@ -105,6 +106,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - NanoChatCartridge
 
 - type: entity
   parent: BaseMedicalPDA
@@ -136,6 +138,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - NanoChatCartridge
 
 - type: entity
   parent: BaseSecurityPDA
@@ -165,12 +168,15 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - WantedListCartridge
+      - NanoChatCartridge
 
 - type: entity
   parent: BasePDA
   id: MagistratePDA
   name: magistrate PDA
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
   - type: Pda
     id: MagistrateIDCard
     penSlot:
@@ -183,11 +189,12 @@
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
        !type:String
-       pda-captain
+       pda-magi
   - type: PdaBorderColor
-    borderColor: "#7C5D00"
+    borderColor: "#3b3b3b"
   - type: Icon
-    state: pda-captain
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-magi
 
 - type: entity
   parent: BasePDA
@@ -268,6 +275,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+      - NanoChatCartridge
 
 - type: entity
   parent: BlueShieldPDA
@@ -322,6 +330,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+      - NanoChatCartridge
 
 - type: entity
   parent: SalvageLeadPDA
@@ -397,6 +406,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
+    - NanoChatCartridge
 
 - type: entity
   parent: MiningPDA
@@ -441,6 +451,25 @@
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi
     state: pda-mailtech
+
+- type: entity
+  parent: BasePDA
+  id: PerformerPDA
+  name: performer PDA
+  description: Why isn't it purple, pink, black, or white?
+  components:
+  - type: Pda
+    id: PerformerIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-internservice
+  - type: PdaBorderColor
+    borderColor: "#717059"
+    accentVColor: "#00cc35"
+  - type: Icon
+    state: pda-internservice
 
 - type: entity
   parent: BasePDA
@@ -492,6 +521,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - NanoChatCartridge
 
 - type: entity
   parent: BasePDA
@@ -521,6 +551,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - NanoChatCartridge
 
 - type: entity
   parent: ClearPDA
@@ -534,23 +565,19 @@
     - DoorBumpOpener
 
 - type: entity
-  parent: BaseMedicalPDA
+  parent: ParamedicPDA
   id: SeniorParamedicPDA
   name: senior paramedic PDA
   description: Shiny and sterile, despite the scuffs and scratches
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
-  - type: Pda
-    id: ParamedicIDCard
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
        !type:String
        pda-seniorparamedic
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#2a4b5b"
+    accentVColor: "#d7d7d0"
+    borderColor: "#2a4b5b"
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi
     state: pda-seniorparamedic
@@ -580,6 +607,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - NanoChatCartridge
 
 - type: entity
   parent: CentcomPDA
@@ -606,6 +634,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - NanoChatCartridge
 
 - type: entity
   parent: BasePDA
@@ -633,3 +662,4 @@
       - NewsReaderCartridge
       - MedTekCartridge
       - AstroNavCartridge
+      - NanoChatCartridge

@@ -171,3 +171,23 @@
     - type: Sprite
       sprite: _Starlight/Structures/Doors/Airlocks/Glass/eva.rsi
       state: "assembly"
+
+# Brigmedic
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyBrigmed
+  suffix: Brigmed
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/brigmedic.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyBrigmedGlass
+  suffix: Brigmed, Glass
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/brigmedic.rsi
+    state: "assembly"
+

@@ -1,4 +1,9 @@
 - type: guideEntry
+  id: Elf
+  name: species-name-elf
+  text: "/ServerInfo/_StarLight/Guidebook/Mobs/Elf.xml"
+
+- type: guideEntry
   id: Thaven
   name: Thaven
   text: "/ServerInfo/_StarLight/Guidebook/Mobs/Thaven.xml"

@@ -1517,10 +1517,10 @@
   description: A mysterious ornate looking wall. There may be ancient dangers inside.
   components:
   - type: Sprite
-    sprite: Structures/Walls/vault.rsi
+    sprite: _Starlight/Structures/Walls/vault.rsi #Starlight
     state: alienvault
   - type: Icon
-    sprite: Structures/Walls/vault.rsi
+    sprite: _Starlight/Structures/Walls/vault.rsi #Starlight
     state: alienvault
   - type: Destructible
     thresholds:
@@ -1530,30 +1530,53 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  #Starlight Start
+  - type: IconSmooth
+    key: walls
+    base: alienvault
+  #Starlight End
 
 - type: entity
-  parent: WallVaultAlien
+  parent: BaseWall #Starlight
   id: WallVaultRock
   name: rock vault wall
   components:
   - type: Sprite
-    sprite: Structures/Walls/vault.rsi
+    sprite: _Starlight/Structures/Walls/vault.rsi #Starlight
     state: rockvault
   - type: Icon
-    sprite: Structures/Walls/vault.rsi
+    sprite: _Starlight/Structures/Walls/vault.rsi #Starlight
     state: rockvault
+  #Starlight Start
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: walls
+    base: rockvault
+  #Starlight End
 
 - type: entity
-  parent: WallVaultAlien
+  parent: WallVaultRock #Starlight
   id: WallVaultSandstone
   name: sandstone vault wall
   components:
   - type: Sprite
-    sprite: Structures/Walls/vault.rsi
+    sprite: _Starlight/Structures/Walls/vault.rsi #Starlight
     state: sandstonevault
   - type: Icon
-    sprite: Structures/Walls/vault.rsi
+    sprite: _Starlight/Structures/Walls/vault.rsi #Starlight
     state: sandstonevault
+  #Starlight Start
+  - type: IconSmooth
+    key: walls
+    base: sandstonevault
+  #Starlight End
 
 # Mime
 
@@ -1713,6 +1736,40 @@
   - type: IconSmooth
     key: cobblebricks
     base: cobblebrick
+
+- type: entity
+  parent: WallCobblebrick
+  id: WallIronsandCobblebrick
+  name: ironsand brick wall
+  description: The pale, rounded shapes that make up this wall look strikingly different from the iron sands they were allegedly made from.
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/cobblebrick_ironsand.rsi
+  - type: Icon
+    sprite: Structures/Walls/cobblebrick_ironsand.rsi
+  - type: IconSmooth
+    key: cobblebricks
+    base: cobblebrick
+  - type: RCDDeconstructable
+    deconstructable: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SteelOre1:
+            min: 0
+            max: 2
 
 # Cardboard
 

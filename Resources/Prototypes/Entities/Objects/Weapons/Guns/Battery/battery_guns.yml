@@ -59,7 +59,7 @@
     availableModes:
     - SemiAuto
     - FullAuto #Just allows people to hold down left click
-  - type: Battery
+  - type: Battery 
     maxCharge: 1500 # ~1:30 minutes for recharge
     startingCharge: 1500
   - type: BatteryAmmoProvider
@@ -1050,6 +1050,11 @@
   id: WeaponLaserCannonXenoborg
   name: xenoborg laser cannon
   components:
+  # region starlight - fix xenoborg cannon's absurdly low fire cost.
+  - type: BatteryAmmoProvider
+    proto: RedHeavyLaser
+    fireCost: 100
+  # end region starlight
   - type: BatterySelfRecharger
     autoRechargeRate: 30
   # "remove" wield bonus and penalty so borgs can use it

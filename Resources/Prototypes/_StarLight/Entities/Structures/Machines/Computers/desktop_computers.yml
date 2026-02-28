@@ -13,6 +13,11 @@
     drawdepth: SmallObjects
     offset: 0,0.2
     noRot: true
+  - type: GenericVisualizer  # Override to prevent edge connection sprites
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer, sprite: _Starlight/Structures/Machines/desktop_computers.rsi }
   - type: Fixtures
     fixtures:
       fix1:
@@ -165,6 +170,18 @@
   components:
   - type: Computer
     board: SurveillanceCameraMonitorCircuitboardDesktop
+
+- type: entity
+  parent: ComputerSurveillanceCameraMonitorDesktop
+  id: ComputerSurveillanceCameraMonitorDesktopIsolatedNetwork
+  suffix: Isolated Network
+  components:
+  - type: Computer
+    board: null
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCameraIsolatedNetwork
+    transmitFrequencyId: SurveillanceCameraIsolatedNetwork
 
 - type: entity
   parent: [ BaseDesktop, ComputerCargoBounty ]

@@ -32,6 +32,8 @@
     speedModifier: 1.4
     pryPowered: false
     useSound: /Audio/Items/jaws_pry.ogg
+    useSoundOnDoafter: /Audio/Machines/airlock_creaking.ogg
+    playSoundOnDoafter: true
   - type: MultipleTool
     statusShowBehavior: true
     entries:

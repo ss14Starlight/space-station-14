@@ -90,6 +90,30 @@
   name: brigmedic hud eyepatch
 
 - type: entity
+  parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]
+  id: ClothingEyesHudCorpsman
+  name: corpsman hud
+  description: Tamashi-upgraded HUDs for true patriots. Yes. Corpsman ones.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Hud/corpsmanhud.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Hud/corpsmanhud.rsi
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowHealthBars
+  - type: SolutionScanner
+  - type: Construction
+    graph: GlassesSecHUD
+    node: glassesSec
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+
+- type: entity
   parent: ClothingEyesBase
   id: ClothingEyesHudChemical
   name: chemical hud

@@ -1,0 +1,111 @@
+- type: entity
+  id: TP14FoodMothSticks
+  parent: FoodSnackBase
+  suffix: Trieste, Food
+  name: motharella sticks
+  description: A fried snack for moths everywhere! They prefer it with honey.
+  components:
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: FlavorProfile
+    flavors:
+      - oily
+      - cotton
+  - type: Sprite
+    sprite: _TP/Objects/Consumable/fried-food.rsi
+    state: Motharella_Sticks
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2.5
+        - ReagentId: Fiber
+          Quantity: 2.5
+  - type: Tag
+    tags:
+    - ClothMade
+
+- type: entity
+  id: TP14FoodCheeseSticks
+  parent: FoodSnackBase
+  suffix: Trieste, Food
+  name: mozzarella sticks
+  description: Also known as 'Cheese Sticks'. Goes good with salsa.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - oily
+      - cheesy
+  - type: Sprite
+    sprite: _TP/Objects/Consumable/fried-food.rsi
+    state: Mozzarella_Sticks
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+
+- type: entity
+  parent: FoodSnackBase
+  id: TP14FoodCorndog
+  suffix: Trieste, Food
+  name: corndog
+  description: Tasty carnival food, but has an after-taste of dogfood.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - oily
+    - meaty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+  - type: Sprite
+    sprite: _TP/Objects/Consumable/fried-food.rsi
+    state: Corndog
+
+- type: entity
+  parent: FoodSnackBase
+  id: TP14FoodFriedIceCream
+  suffix: Trieste, Food
+  name: fried ice cream
+  description: Disgustingly sweet and the crunch doesn't help.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - oily
+    - sweet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+  - type: Sprite
+    sprite: _TP/Objects/Consumable/fried-food.rsi
+    state: Fried_Icecream
+
+- type: entity
+  parent: FoodSnackBase
+  id: TP14FoodFunnelCake
+  suffix: Trieste, Food
+  name: funnel cake
+  description: A sweet treat! Not really a cake, though.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - oily
+    - sweet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+  - type: Sprite
+    sprite: _TP/Objects/Consumable/fried-food.rsi
+    state: Funnel_Cake

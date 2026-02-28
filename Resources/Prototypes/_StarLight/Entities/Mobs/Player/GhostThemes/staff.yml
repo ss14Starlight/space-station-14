@@ -24,3 +24,73 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: StaffRolesReq
+
+- type: ghostTheme
+  id: BuffRatKingTheme
+  name: Buff Rat King
+  description: The Buff Rat King, ruler of all rats.
+  colorizeable: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+      state: ghost-buff-rat-king
+    color: "#ffffff"
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: TicketsAdministratorReq
+
+- type: ghostTheme
+  id: FoxTheme
+  name: Fox
+  description: A cute fox.
+  colorizeable: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+      state: ghost-fox
+    color: "#ffffff"
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: TicketsAdministratorReq
+
+- type: ghostTheme
+  id: LizardPlushie
+  name: Lizard Plushie
+  description: Weh!
+  colorizeable: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+      state: ghost-lizard-plushie
+    color: "#ffffff"
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: TicketsAdministratorReq
+
+- type: ghostTheme
+  id: MothroachTheme
+  name: Mothroach
+  description: A Mothroach, the most feared creature in space.
+  colorizeable: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+      state: ghost-mothroach
+    color: "#ffffff"
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: TicketsAdministratorReq
+
+- type: ghostTheme
+  id: ScurretTheme
+  name: Scurret
+  description: A Scurret, legally distinct!.
+  colorizeable: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+      state: ghost-scurret
+    color: "#ffffff"
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: TicketsAdministratorReq

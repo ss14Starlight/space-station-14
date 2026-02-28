@@ -42,6 +42,7 @@
     - Dragon
     - Gorilla
     - Abductor # starlight
+    - Pirate # starlight
 
 - type: npcFaction
   id: Mouse

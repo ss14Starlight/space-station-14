@@ -48,3 +48,10 @@
   - 1447273163204464862 # Carp Game Winner
   discord: roles-req-discord-starlight
   rolesLoc: roles-req-carpgames-roles
+
+- type: roleRequirementPrototype
+  id: TicketsAdministratorReq
+  roles:
+  - 1475631679409492108 # Tickets administrator
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-ticketsadministrator-roles

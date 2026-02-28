@@ -31,6 +31,40 @@
     unequipDelay: 3
 
 - type: entity
+  parent: [ClothingHeadEVAHelmetBase, ClothingHeadHelmetArmoredBase, BaseTSFContraband]
+  id: ClothingHeadHelmetTSF
+  name: Federation marine combat helmet
+  description: A powered combat helmet used by the Trans-Solar Marine Corps. Provides excellent protection in all areas, while a modern OCULUS array augments the wearer's vision.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Helmets/tsf.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Helmets/tsf.rsi
+      equipDelay: 3
+      unequipDelay: 3
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: EyeProtection
+      protectionTime: 5
+    - type: FlashImmunity
+    - type: ClothesNightVision
+
+- type: entity
+  parent: ClothingHeadHelmetTSF
+  id: ClothingHeadHelmetTSFLeader
+  name: Federation marine officer's combat helmet
+  description: A powered combat helmet used by officers of the Trans-Solar Marine Corps. Provides excellent protection in all areas, while a next-gen OCULUS array augments the wearer's vision.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Helmets/tsfleader.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Helmets/tsfleader.rsi
+      equipSound: /Audio/Mecha/mechmove03.ogg
+      unequipSound: /Audio/Mecha/mechmove03.ogg
+      equipDelay: 3
+      unequipDelay: 3
+
+- type: entity
   parent: ClothingHeadBase
   id: ClothingHeadBowlHelmet
   name: fish bowl helmet

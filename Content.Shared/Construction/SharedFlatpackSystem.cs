@@ -50,6 +50,13 @@ public abstract class SharedFlatpackSystem : EntitySystem
         if (args.Slot.ID != ent.Comp.SlotId || args.Cancelled)
             return;
 
+        // Starlight - FlatpackBlacklist Tag
+        if (_tag.HasTag(args.Item, "FlatpackBlacklist"))
+        {
+            args.Cancelled = true;
+            return;
+        }
+
         if (HasComp<MachineBoardComponent>(args.Item))
             return;
 

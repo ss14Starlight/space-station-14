@@ -38,6 +38,20 @@
     - MadHatter
     - Crawler
     - Elevated
+    - NotOurPlace
+    - DepartmentHatesYou
+    - DepartmentPhobia
+    - Photophobia
+    - Contrarian
+    - SelfConscious
+    - ItsHardToSay
+    - PathologicalLiarInTraining
+    - PraiseIsBelittling
+    - DenierOfConsumption
+    - FleshIsSacred
+    - IncrediblyDistrusting
+    - PerceivedDissonance
+    - Germophobe
 
 
 # Your Moods are a strictly-kept secret, and should never be revealed to anyone.
@@ -63,6 +77,8 @@
   moodDesc: thaven-mood-department-disapproval-desc
   moodVars:
     department: Departments
+  conflicts:
+    - StationExistsForDepartment
 
 
 # Never Speak To Command: You are too lowly to speak to Command, even if spoken to first.
@@ -90,6 +106,7 @@
   moodDesc: thaven-mood-excessively-disorganized-desc
   conflicts:
     - ExcessivelyOrganized
+    - Germophobe
 
 # Silicons are beneath you: Speaking to them is demeaning, and must be avoided at all costs.
 - type: thavenMood
@@ -122,6 +139,7 @@
   moodDesc: thaven-mood-always-alone-desc
   conflicts:
     - NeverAlone
+    - MadHatter
 
 # You do not approve of organized religion. It should be dismantled or disrupted wherever possible.
 - type: thavenMood
@@ -260,6 +278,7 @@
     food: FoodRestrictions
   conflicts:
     - PlantPacifist
+    - DenierOfConsumption
 
 # Claustrophobic: Small rooms cause you great distress. Avoid them where possible, and renovate your workplace if necessary.
 - type: thavenMood
@@ -300,6 +319,10 @@
   id: MadHatter
   moodName: thaven-mood-mad-hatter-name
   moodDesc: thaven-mood-mad-hatter-desc
+  conflicts:
+    - AlwaysAlone
+    - SelfConscious
+    - RedLightGreenLight
 
 # Creepy Crawly: You have extreme vertigo, to the point where merely standing upright can cause discomfort. You're much more comfortable crawling along the floor.
 - type: thavenMood
@@ -333,3 +356,120 @@
 #  moodDesc: thaven-mood-color-bad-desc
 #  conflicts:
 #    - ColorGood
+
+# Not Our Place: You believe that Thaven moods have no place in this society. Thaven that engage in such frivolous behavior should be shunned.
+- type: thavenMood
+  id: NotOurPlace
+  moodName: thaven-mood-not-our-place-name
+  moodDesc: thaven-mood-not-our-place-desc
+  conflicts:
+    - ThavenOnlyCrew
+    - YouAndYourDamnMoods
+
+# [DEPARTMENT] Hates You: You have done something terrible to the [DEPARTMENT] department. You must seek forgiveness.
+- type: thavenMood
+  id: DepartmentHatesYou
+  moodName: thaven-mood-department-hates-you-name
+  moodDesc: thaven-mood-department-hates-you-desc
+  moodVars:
+    department: Departments
+  conflicts:
+    - DepartmentPhobia
+
+# [DEPARTMENT]phobia: The [DEPARTMENT] department is incredibly scary to you. You should avoid it at all cost.
+- type: thavenMood
+  id: DepartmentPhobia
+  moodName: thaven-mood-department-phobia-name
+  moodDesc: thaven-mood-department-phobia-desc
+  moodVars:
+    department: Departments
+  conflicts:
+    - DepartmentHatesYou
+
+# Photophobia: Light is distressing to you. You should stay in dark places as much as possible.
+- type: thavenMood
+  id: Photophobia
+  moodName: thaven-mood-photophobia-name
+  moodDesc: thaven-mood-photophobia-desc
+
+# Contrarian: Actually, you think exactly the opposite of whatever the shared mood is, and adamantly mock other Thaven who engage with it.
+- type: thavenMood
+  id: Contrarian
+  moodName: thaven-mood-contrarian-name
+  moodDesc: thaven-mood-contrarian-desc
+
+# Self-conscious: It’s deeply embarrassing to act on your other moods. Being caught doing so is the worst fate imaginable.
+- type: thavenMood
+  id: SelfConscious
+  moodName: thaven-mood-self-conscious-name
+  moodDesc: thaven-mood-self-conscious-desc
+  conflicts:
+    - ThavenOnlyCrew
+    - Contrarian
+    - NotOurPlace
+    - YouAndYourDamnMoods
+    - MadHatter
+
+# It’s Hard to Say: You can never outright say what you want from someone, you can only give them hot-or-cold hints.
+- type: thavenMood
+  id: ItsHardToSay
+  moodName: thaven-mood-its-hard-to-say-name
+  moodDesc: thaven-mood-its-hard-to-say-desc
+
+# Pathological Liar in Training: Whenever someone asks you a question, you will lie, apologize, and then tell the truth. Every time.
+- type: thavenMood
+  id: PathologicalLiarInTraining
+  moodName: thaven-mood-pathological-liar-in-training-name
+  moodDesc: thaven-mood-pathological-liar-in-training-desc
+  conflicts:
+    - CompulsiveLiar
+    - CompulsiveBeliever
+
+# Praise is Incredibly Belittling: You sarcastically praise anyone below you whenever they do something, but would never do this to someone above you. Likewise, you will only accept praise from your superiors and take it as an insult from anyone else.
+- type: thavenMood
+  id: PraiseIsBelittling
+  moodName: thaven-mood-praise-is-belittling-name
+  moodDesc: thaven-mood-praise-is-belittling-desc
+
+# Denier of the General Concept of Consumption: You strongly believe that consumption of any kind of physical matter (food, drink, air or chemicals) is a pointless novelty which you’ve never partaken in, nor ever will. You are incapable of acknowledging when you contradict this idea.
+- type: thavenMood
+  id: DenierOfConsumption
+  moodName: thaven-mood-denier-of-consumption-name
+  moodDesc: thaven-mood-denier-of-consumption-desc
+  conflicts:
+    - Delicacy
+    - FoodRestrict
+    - Cannibal
+
+# The Flesh Is Sacred: Your body is a wonderful gift, and to modify or damage it is a vile act.
+- type: thavenMood
+  id: FleshIsSacred
+  moodName: thaven-mood-flesh-is-sacred-name
+  moodDesc: thaven-mood-flesh-is-sacred-desc
+  conflicts:
+    - BlindnessIsFreedom
+    - FleshIsWeak
+
+# Incredibly Distrusting: You do not trust anyone except other Thaven, unless someone you trust vouches for them.
+- type: thavenMood
+  id: IncrediblyDistrusting
+  moodName: thaven-mood-incredibly-distrusting-name
+  moodDesc: thaven-mood-incredibly-distrusting-desc
+  conflicts:
+    - CompulsiveBeliever
+
+# Perceived Dissonance: {$Language} hurts your delicate ears and hearing it should be avoided at all costs.
+- type: thavenMood
+  id: PerceivedDissonance
+  moodName: thaven-mood-perceived-dissonance-name
+  moodDesc: thaven-mood-perceived-dissonance-desc
+  moodVars:
+    language: Languages
+
+# Germophobe: You are afraid of these little creatures that conquer every nook and cranny. Make sure to clean your tools and workplace regularly with soap, so not even prints are left.
+- type: thavenMood
+  id: Germophobe
+  moodName: thaven-mood-germophobe-name
+  moodDesc: thaven-mood-germophobe-desc
+  conflicts:
+    - ExcessivelyDisorganized

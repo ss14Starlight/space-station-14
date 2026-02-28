@@ -89,7 +89,7 @@
   name: charcuterie recipe
   result: FoodCharcuterie
   time: 5
-  group: Savoury
+  group: Savory
   solids:
     FoodCheeseSlice: 2
     FoodMeatCutletCooked: 2
@@ -101,7 +101,7 @@
   name: khlav kalash recipe
   result: FoodMealKhlavKalash
   time: 5
-  group: Savoury
+  group: Savory
   reagents:
     Enzyme: 1
   solids:
@@ -126,7 +126,7 @@
   name: haggis recipe
   result: FoodHaggis
   time: 15
-  group: Meat
+  group: Savory
   reagents:
     UncookedAnimalProteins: 10
   solids:
@@ -137,8 +137,26 @@
   name: black pudding recipe
   result: FoodBlackPudding
   time: 15
-  group: Meat
+  group: Savory
   reagents:
     Blood: 10
     Water: 10
     Fat: 10
+
+- type: deepFryingRecipe
+  id: KFFAlternative
+  name: Kentucky Fried Felionoid
+  result: FoodFriedfelionoid
+  time: 30
+  ingredient: MobFelionoid
+  includeFormerly: true
+
+- type: microwaveMealRecipe
+  id: RecipeFoodCookedShadekinCore
+  name: core spaghetti
+  result: FoodCookedShadekinCore
+  time: 10
+  group: Pasta
+  solids:
+    FoodNoodlesBoiled: 1
+    OrganShadekinCore: 1

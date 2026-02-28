@@ -35,6 +35,11 @@
   group: Medicine
   desc: reagent-desc-amoxla
   physicalDesc: reagent-physical-desc-opaque
+  # Starlight Edits
+  contrabandSeverity: Minor
+  allowedDepartments:
+  - Medical
+  # Starlight End
   flavor: medicine
   color: "#51c38c"
   metabolisms:
@@ -79,6 +84,17 @@
         - !type:MetabolizerTypeCondition
           type: [ Avali, Resomi ]
         amount: 3
+        # Starlight-Start: Cyclorite Metabolism
+      - !type:AdjustReagent # Amoxla for Cyclorites is a toxin not medicine
+        conditions:
+          - !type:ReagentCondition
+            reagent: Amoxla
+            min: 0.26
+          - !type:MetabolizerTypeCondition
+            type: [ Cyclorite ]
+        reagent: Amoxla
+        amount: 0.25
+        # Starlight-End
 
 - type: reagent
   id: BoneGel
@@ -99,6 +115,14 @@
         damage:
           types:
             Poison: 1.5 # You don't want to drink bonegel, because it's for bones and joints
+      # Starlight-Start: Cyclorite Metabolism
+      - !type:AdjustReagent
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Cyclorite ]
+        reagent: BoneGel
+        amount: -0.5
+        # Starlight-End
 
 - type: reagent
   id: Chronexaline
@@ -121,6 +145,14 @@
           damage:
             types:
               Radiation: -5
+        # Starlight-Start: Cyclorite Metabolism
+        - !type:AdjustReagent
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          reagent: Chronexaline
+          amount: -0.5
+        # Starlight-End
 
 - type: reagent
   id: BarozinePlus

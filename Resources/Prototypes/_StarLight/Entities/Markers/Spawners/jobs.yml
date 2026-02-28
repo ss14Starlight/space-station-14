@@ -121,6 +121,20 @@
         - state: jobicon
 
 - type: entity
+  id: SpawnPointPerformer
+  parent: SpawnPointJobBase
+  name: performer
+  components:
+    - type: SpawnPoint
+      job_id: Performer
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      layers:
+        - state: green
+        - state: performer
+        - state: jobicon
+
+- type: entity
   id: SpawnPointSurgeon
   parent: SpawnPointJobBase
   name: surgeon

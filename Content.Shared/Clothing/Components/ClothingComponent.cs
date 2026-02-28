@@ -35,7 +35,7 @@ public sealed partial class ClothingComponent : Component
     /// <remarks>
     /// Note that this may be a combination of different slot flags, not a singular bit.
     /// </remarks>
-    [DataField(required: true)]
+    [DataField(required: true), AutoNetworkedField]
     [Access(typeof(ClothingSystem), typeof(InventorySystem), Other = AccessPermissions.ReadExecute)]
     public SlotFlags Slots = SlotFlags.NONE;
 

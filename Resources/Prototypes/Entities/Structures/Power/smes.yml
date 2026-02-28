@@ -102,6 +102,7 @@
       - PowerStorage
       - VoltageNetworks
       - Power
+    - type: StationAiWhitelist #Starlight
 
     # Interface
     - type: BatteryInterface

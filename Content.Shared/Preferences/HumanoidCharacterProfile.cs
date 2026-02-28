@@ -17,6 +17,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Traits;
 
 namespace Content.Shared.Preferences
 {
@@ -130,6 +131,7 @@ namespace Content.Shared.Preferences
             string exploitableInfo, //Starlight
             string species,
             string customspeciename, // Starlight
+            string forcedPrototype, // Starlight
             int age,
             Sex sex,
             Gender gender,
@@ -153,6 +155,7 @@ namespace Content.Shared.Preferences
             ExploitableInfo = exploitableInfo; //Starlight
             Species = species;//Starlight
             CustomSpecieName = customspeciename; // Starlight
+            ForcedPrototype = forcedPrototype; // Starlight
             Age = age;
             Sex = sex;
             Gender = gender;
@@ -179,6 +182,7 @@ namespace Content.Shared.Preferences
                 other.ExploitableInfo,
                 other.Species,
                 other.CustomSpecieName, // Starlight
+                other.ForcedPrototype,
                 other.Age,
                 other.Sex,
                 other.Gender,
@@ -408,12 +412,12 @@ namespace Content.Shared.Preferences
             // Category not found so dump it.
             TraitCategoryPrototype? traitCategory = null;
 
-            if (category != null && !protoManager.Resolve(category, out traitCategory))
+            if (!protoManager.Resolve(category, out traitCategory)) // Starlight
                 return new(this);
 
             var list = new HashSet<ProtoId<TraitPrototype>>(_traitPreferences) { traitId };
 
-            if (traitCategory == null || traitCategory.MaxTraitPoints < 0)
+            if (traitCategory.MaxPoints < 0) // Starlight
             {
                 return new(this)
                 {
@@ -434,7 +438,7 @@ namespace Content.Shared.Preferences
                 count += otherProto.Cost;
             }
 
-            if (count > traitCategory.MaxTraitPoints && traitProto.Cost != 0)
+            if (count > traitCategory.MaxPoints && traitProto.Cost != 0) // Starlight
             {
                 return new(this);
             }
@@ -729,12 +733,12 @@ namespace Content.Shared.Preferences
                 if (!protoManager.TryIndex(trait, out var traitProto))
                     continue;
 
-                // Always valid.
-                if (traitProto.Category == null)
-                {
-                    result.Add(trait);
-                    continue;
-                }
+                // Starlight
+                // if (traitProto.Category == null)
+                // {
+                //     result.Add(trait);
+                //     continue;
+                // }
 
                 // No category so dump it.
                 if (!protoManager.Resolve(traitProto.Category, out var category))
@@ -744,7 +748,7 @@ namespace Content.Shared.Preferences
                 existing += traitProto.Cost;
 
                 // Too expensive.
-                if (existing > category.MaxTraitPoints)
+                if (existing > category.MaxPoints) // Starlight
                     continue;
 
                 groups[category.ID] = existing;

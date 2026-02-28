@@ -27,6 +27,7 @@
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
             ServiceWorker: [ 2, 2 ]
+            Performer: [ 2, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 2 ]
@@ -47,6 +48,7 @@
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
+            DutyOfficer: [ 1, 1 ]
             SecurityOfficer: [ 4, 4 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 2, 2 ]
@@ -72,3 +74,4 @@
             #Representives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
+            NanotrasenCareerTrainer: [ 1, 2 ]

@@ -79,24 +79,6 @@
     - type: Item
       heldPrefix: bluespace
     - type: Appearance
-    - type: Damageable
-      damageContainer: Inorganic
-    - type: DamageOnLand
-      damage:
-        types:
-          Blunt: 5
-    - type: Destructible
-      thresholds:
-        - trigger: !type:DamageTrigger
-            damage: 5
-          behaviors:
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-                params:
-                  volume: -8
-            - !type:DoActsBehavior
-              acts: ["Destruction"]
     - type: Tag
       tags:
         - Ore

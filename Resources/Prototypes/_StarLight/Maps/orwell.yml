@@ -46,7 +46,7 @@
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
-            DutyOfficer: [ 2, 3 ]
+            DutyOfficer: [ 1, 2 ]
             SecurityOfficer: [ 10, 10 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 6, 6 ]
@@ -63,6 +63,7 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 2, 2 ]
+            Performer: [ 3, 4 ]
             Boxer: [ 2, 2 ]
             #silicon
             StationAi: [ 1, 1 ]

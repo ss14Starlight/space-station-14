@@ -1,3 +1,5 @@
+using Content.Server._Starlight.Administration.Systems;
+using Content.Server._Starlight.Traits;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Humanoid;
@@ -7,6 +9,8 @@ using Content.Shared._Starlight.Character.Info;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
+using Robust.Shared.GameObjects;
+using Robust.Shared.GameObjects.Components.Localization;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking.Rules;
@@ -19,6 +23,8 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
     [Dependency] private readonly MetaDataSystem _metaSystem = default!; // Starlight
     [Dependency] private readonly TraitSystem _traitSystem = default!; //Starlight
     [Dependency] private readonly SLSharedCharacterInfoSystem _sLSharedCharacterInfoSystem = default!; //Starlight
+    [Dependency] private readonly GrammarSystem _grammarSystem = default!; // Starlight
+    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!; // Starlight
 
     public override void Initialize()
     {
@@ -55,15 +61,33 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
         if (profile is null)
             profile = HumanoidCharacterProfile.RandomWithSpecies(species.ID);
 
-        args.Entity = Spawn(species.Prototype);
-        _humanoid.LoadProfile(args.Entity.Value, profile?.WithSpecies(species.ID));
+        if (profile?.ForcedPrototype != "" && profile is not null)
+        {
+            if (!_proto.Resolve(profile.ForcedPrototype, out var forcedProto))
+                throw new ArgumentException($"Could not find ${profile.ForcedPrototype} prototype for spawn rule.");
+            args.Entity = Spawn(profile.ForcedPrototype);
+            var resolvedEntity = (EntityUid)args.Entity;
+            var grammar = EntityManager.EnsureComponent<GrammarComponent>(resolvedEntity);
+            _grammarSystem.SetGender((resolvedEntity, grammar), profile.Gender);
+
+            _autolog.LogToDiscord(Loc.GetString("autolog-forcedprototype", ("character", profile.Name), ("prototype", profile.ForcedPrototype)));
+        }
+        else
+        {
+            args.Entity = Spawn(species.Prototype);
+            _humanoid.LoadProfile(args.Entity.Value, profile?.WithSpecies(species.ID));
+        }
 
         if (ent.Comp.ApplyCharacterProfile && profile is not null)
         {
             _metaSystem.SetEntityName(args.Entity.Value, profile.Name);
-            _traitSystem.ApplyTraits(args.Entity.Value, profile);
             _sLSharedCharacterInfoSystem.ApplyCharacterInfo(args.Entity.Value, profile);
+            if (args.Session is not null)
+                _traitSystem.ApplyTraits(args.Entity.Value, profile, args.Session);
         }
+
+        if (profile?.ForcedPrototype != "")
+            RaiseLocalEvent(args.Entity.Value, new ForcedPrototypeDoSpecialEvent()); // Starlight
         // Starlight - End
     }
 }

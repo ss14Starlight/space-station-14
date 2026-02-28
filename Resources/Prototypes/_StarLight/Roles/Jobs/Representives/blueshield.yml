@@ -6,10 +6,13 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 72000 # 20 hrs
+      time: 30h # You are the sole bodyguard of the highest ranking people on the station, you have to be good.
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 72000 # 20 hrs
+      time: 30h # You're expected to be mature, at least a little.
+    - !type:RoleTimeRequirement
+      role: JobBrigmedic
+      time: 6h # Lower stakes version of the same role, and forces you to get Paramed time too. Totals to about 10 hours paramed+brigmed combined.
     - !type:RolesRequirement
       proto: ExtRolesReq
   startingGear: BlueShieldGear
@@ -58,7 +61,6 @@
     # id: BlueShieldPDA
     ears: ClothingHeadsetAltBSO # Starlight
     # belt: ClothingBeltBlueShieldWebbingFilled
-    gloves: ClothingHandsGlovesCombat
     pocket1: WeaponMultiphaseGun
     pocket2: HandheldBSOCrewMonitor
   storage:

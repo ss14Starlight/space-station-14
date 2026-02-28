@@ -6,6 +6,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.NullSpace; // Starlight
 
 namespace Content.Shared.DoAfter;
 
@@ -114,7 +115,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         else
             RaiseLocalEvent(doAfter.AttemptEvent);
 
-        var ev = (CancellableEntityEventArgs) doAfter.AttemptEvent;
+        var ev = (CancellableEntityEventArgs)doAfter.AttemptEvent;
         if (!ev.Cancelled)
             return true;
 
@@ -156,7 +157,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         if (args.Used is { } used && !xformQuery.HasComponent(used))
             return true;
 
-        if (args.EventTarget is {Valid: true} eventTarget && !xformQuery.HasComponent(eventTarget))
+        if (args.EventTarget is { Valid: true } eventTarget && !xformQuery.HasComponent(eventTarget))
             return true;
 
         if (!xformQuery.TryGetComponent(args.User, out var userXform))
@@ -186,11 +187,16 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         }
 
         // Whether the user and the target are too far apart.
-        if (args.Target != null)
+        var distanceTarget = args.NetDistanceTarget != null ? GetEntity(args.NetDistanceTarget) : args.Target; // Starlight-edit
+        if (distanceTarget != null) // Starlight-edit
         {
+            // Starlight - If user is in nullspace, Cancel DoAfter on target. (Unless user is in nullspace too.)
+            if (HasComp<NullSpaceComponent>(args.Target) && !HasComp<NullSpaceComponent>(args.User))
+                return true;
+
             if (args.DistanceThreshold != null)
             {
-                if (!_interaction.InRangeAndAccessible(args.User, args.Target.Value, args.DistanceThreshold.Value))
+                if (!_interaction.InRangeAndAccessible(args.User, distanceTarget.Value, args.DistanceThreshold.Value)) // Starlight-edit
                     return true;
             }
         }
@@ -221,7 +227,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             // If an item was in the user's hand to begin with,
             // check if the user is no longer holding the item.
             if (args.BreakOnDropItem && doAfter.InitialItem != null && !_hands.IsHolding((args.User, hands), doAfter.InitialItem))
-                    return true;
+                return true;
 
             // If the user changes which hand is active at all, interrupt the do-after
             if (args.BreakOnHandChange && hands.ActiveHandId != doAfter.InitialHand)

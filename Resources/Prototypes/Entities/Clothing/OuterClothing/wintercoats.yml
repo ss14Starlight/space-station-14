@@ -11,8 +11,6 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.1
     coolingCoefficient: 0.1
-  - type: Item
-    size: Normal
   - type: Pierceable
     level: Metal
   - type: Armor

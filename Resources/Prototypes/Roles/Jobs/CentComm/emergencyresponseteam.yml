@@ -7,17 +7,20 @@
   # Starlight start
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 20h
+    time: 96h # Realistically, if you have the CC time, you'll have met this anyways... But, in case that CC time is removed later.
   - !type:DepartmentTimeRequirement
     department: CentralCommand
     time: 10h
   - !type:DepartmentTimeRequirement
     department: Command
-    time: 10h
+    time: 20h
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer
+    time: 15h # If theyre not an admin, they NEED to be good in combat. You're the last hope, after all.
   # Starlight end
   setPreference: false
   startingGear: ERTLeaderGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconERTLeader"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -118,13 +121,13 @@
   playTimeTracker: JobERTChaplain
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 20h
+    time: 48h # While you technically are a last resort against the "paranormal", there's no threats that actually warrant you having more time than this unless Cluwne Beasts get properly implemented.
   - !type:RoleTimeRequirement
     role: JobChaplain
     time: 5h
   setPreference: false
   startingGear: ERTChaplainGear
-  icon: "JobIconCentComm"
+  icon: "JobIconERTChaplain"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -201,13 +204,13 @@
   playTimeTracker: JobERTEngineer
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 20h
+    time: 72h # Starlight. You should know the game's controls if you're going to be building stuff.
   - !type:RoleTimeRequirement
     role: JobStationEngineer
-    time: 5h
+    time: 15h # Starlight. You should know how to construct things with and without the RCD.
   setPreference: false
   startingGear: ERTEngineerGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconERTEngineer"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -273,6 +276,7 @@
   storage:
     back:
     - RCD
+    - RPD # Starlight: RPD
     - GasAnalyzer
     - HolofanProjector
     - MiningDrillDiamond
@@ -301,13 +305,13 @@
   playTimeTracker: JobERTSecurity
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 72000 # 20h
+    time: 72h #Starlight
   - !type:RoleTimeRequirement
     role: JobSecurityOfficer
-    time: 18000 # 5h
+    time: 15h # Starlight, your whole job here is fighting and following orders.
   setPreference: false
   startingGear: ERTEngineerGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconERTSecurity"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -458,6 +462,8 @@
   equipment:
     pocket2: WeaponDisabler
     suitstorage: WeaponShotgunEnforcer
+  inhand:
+    - HammerBreachingNT
   storage:
     back:
     - SmokeGrenade
@@ -494,16 +500,19 @@
   playTimeTracker: JobERTMedical
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 72000 # 20h
+    time: 72h # Starlight
   - !type:RoleTimeRequirement
     role: JobMedicalDoctor
-    time: 18000 # 5h
+    time: 10h # Starlight
   - !type:RoleTimeRequirement
     role: JobChemist
-    time: 18000 # 5h
+    time: 10h #Starlight start
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer
+    time: 5h #Starlight, youre a medic but you WILL be fighting at some point, Starlight end
   setPreference: false
   startingGear: ERTMedicalGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconERTMedical" #Starlight
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -603,13 +612,13 @@
   playTimeTracker: JobERTJanitor
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 20h
+    time: 48h # Starlight
   - !type:RoleTimeRequirement
     role: JobJanitor
     time: 5h
   setPreference: false
   startingGear: ERTJanitorGearEVA
-  icon: "JobIconCentComm"
+  icon: "JobIconERTJanitor"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:

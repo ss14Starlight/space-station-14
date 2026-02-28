@@ -41,7 +41,7 @@
 - type: salvageDungeonMod
   id: SovietStronghold
   desc: salvage-dungeon-mod-soviet-stronghold
-  proto: SovietDungeon
+  proto: SovietDungeonWeh
   biomes:
     - Lava
     - Grasslands

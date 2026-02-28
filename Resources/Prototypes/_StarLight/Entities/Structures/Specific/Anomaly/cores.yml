@@ -127,3 +127,9 @@
       types:
         Blunt: 0
     hidden: true
+
+# Why another one? because Suffix is not showed in construction its will only show "anomaly core", this gives more details, however your not needed to use it.
+- type: entity
+  parent: AnomalyCoreShadow
+  id: CraftingAnomalyCoreShadow
+  name: shadow anomaly core

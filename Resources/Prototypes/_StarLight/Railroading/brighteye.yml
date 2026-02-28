@@ -1,49 +1,254 @@
 - type: entity
   id: BrighteyeCondition
-  categories: [ HideSpawnMenu ]
+  categories: [HideSpawnMenu]
   abstract: true
   components:
-  - type: Conditions
-    conditions:
-    - !type:SubjectMindAntagCondition
-      whitelist:
-      - Brighteye
+    - type: RailroadCard
+      iconColor: "#000000"
+      color: "#6c15ae"
+      image: /Textures/_Starlight/Railroading/shadekin.png
+      showObjective: true
+    - type: Conditions
+      conditions:
+        - !type:SubjectMindAntagCondition
+          whitelist:
+            - Brighteye
+
+# Neutral
 
 - type: entity
   id: RRCardBrighteyeDark
-  parent: [BrighteyeCondition]
-  categories: [ HideSpawnMenu ]
+  parent: BrighteyeCondition
+  categories: [HideSpawnMenu]
   components:
-  - type: RailroadSpawnFlow
-    count:
-      min: 2
-      max: 3
-  - type: RailroadCard
-    title: rr-brighteye-dark
-    icon: 
-    iconColor: "#000000"
-    color: "#6c15ae"
-    image: /Textures/_Starlight/Railroading/shadekin.png
-    description: rr-brighteye-dark-desc
-  - type: RailroadDarkTask
-    amount: 
-      min: 100
-      max: 300
+    - type: RailroadSpawnFlow
+      count:
+        min: 2
+        max: 3
+    - type: RailroadCard
+      title: rr-brighteye-dark
+      icon: 
+      description: rr-brighteye-dark-desc
+    - type: RailroadDarkTask
+      amount:
+        min: 100
+        max: 300
 
 - type: entity
   id: RRCardBrighteyePortalCritical
-  parent: [BrighteyeCondition]
-  categories: [ HideSpawnMenu ]
+  parent: BrighteyeCondition
+  categories: [HideSpawnMenu]
   components:
-  - type: RailroadSpawnFlow
-    count:
-      min: 1
-      max: 2
-  - type: RailroadCard
-    title: rr-brighteye-portal-crit
-    icon: 
-    iconColor: "#000000"
-    color: "#6c15ae"
-    image: /Textures/_Starlight/Railroading/shadekin.png
-    description: rr-brighteye-portal-crit-desc
-  - type: RailroadSupercritPortalTask
+    - type: RailroadSpawnFlow
+      count:
+        min: 1
+        max: 2
+    - type: RailroadCard
+      title: rr-brighteye-portal-crit
+      icon: 
+      description: rr-brighteye-portal-crit-desc
+    - type: RailroadSupercritPortalTask
+
+- type: entity
+  id: RRCardBrighteyeImpersonate
+  parent: BrighteyeCondition
+  categories: [HideSpawnMenu]
+  components:
+    - type: RailroadCard
+      title: rr-brighteye-impersonate
+      icon: 
+      description: rr-brighteye-impersonate-desc
+    - type: DepartmentObjective
+      title: objective-impersonate-brighteye
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+    - type: PickRandomDepartment   
+
+- type: entity
+  id: RRCardBrighteyeLights
+  parent: BrighteyeCondition
+  categories: [HideSpawnMenu]
+  components:
+    - type: RailroadSpawnFlow
+      count:
+        min: 1
+        max: 2
+    - type: RailroadCard
+      title: rr-brighteye-lights
+      icon: 
+      description: rr-brighteye-lights-desc
+    - type: RailroadBreakLightTask
+      amount:
+        min: 30
+        max: 60
+
+# Hostile
+
+- type: entity
+  id: RRCardBrighteyeTeachALesson
+  parent: BrighteyeCondition
+  categories: [HideSpawnMenu]
+  components:
+    - type: RailroadSpawnFlow
+      count:
+        min: 1
+        max: 2
+    - type: RailroadCard
+      title: rr-brighteye-teachalesson
+      icon: 
+      iconColor: "#fd3f3f"
+      description: rr-brighteye-teachalesson-desc
+    - type: TargetObjective
+      title: objective-condition-teach-lesson-title
+      icon:
+        sprite: /Textures/Objects/Weapons/Melee/spear.rsi
+        state: spear
+    - type: PickRandomPerson
+      filters:
+        - !type:BodyMindFilter
+          whitelist:
+            components:
+              - Shadekin
+          inverted: true
+        - !type:TargetObjectiveMindFilter
+          blacklist:
+            components:
+              - TeachALessonTarget
+    - type: TeachALessonCondition
+
+- type: entity
+  id: RRCardBrighteyeReturnHome
+  parent: BrighteyeCondition
+  categories: [HideSpawnMenu]
+  components:
+    - type: RailroadCard
+      title: rr-brighteye-returnhome
+      icon: 
+      iconColor: "#fd3f3f"
+      description: rr-brighteye-returnhome-desc
+    - type: TargetObjective
+      title: objective-condition-shadekin-alive-title
+      icon:
+        sprite: /Textures/Interface/Actions/actions_fakemindshield.rsi
+        state: icon-on
+    - type: PickRandomPerson
+      filters:
+        - !type:BodyMindFilter
+          whitelist:
+            components:
+              - Shadekin
+        - !type:BodyMindFilter
+          whitelist:
+            components:
+              - Brighteye
+          inverted: true
+        - !type:TargetObjectiveMindFilter
+          blacklist:
+            components:
+              - KeepAliveCondition
+              - RailroadKeepEntityInTheDarkTask
+    - type: KeepAliveCondition
+    - type: RailroadKeepEntityInTheDarkTask
+
+- type: entity
+  id: RRCardBrighteyeStealSecureKnowledge
+  parent: BrighteyeCondition
+  categories: [HideSpawnMenu]
+  components:
+    - type: RailroadCard
+      title: rr-brighteye-steal-secureknowledge
+      icon: 
+      iconColor: "#fd3f3f"
+      description: rr-brighteye-steal-secureknowledge-desc
+    - type: TargetObjective
+      title: objective-condition-steal-secureknowledge
+      icon:
+        sprite: /Textures/_Starlight/Objects/Specific/Documents/document.rsi
+        state: background_messy
+    - type: StealCondition
+      objectiveNoOwnerText: objective-condition-steal-title-no-owner
+      objectiveText: objective-condition-steal-title
+      descriptionText: objective-condition-steal-description
+      descriptionMultiplyText: objective-condition-thief-multiply-description
+      stealGroup: BrighteyeSecureKnowledgeSteal
+      checkStealAreas: true
+    - type: RailroadKeepEntityInTheDarkTask
+
+# Dark Station Path
+
+- type: entity
+  id: RRCardBrighteyeBackup
+  parent: BrighteyeCondition
+  categories: [HideSpawnMenu]
+  components:
+    - type: RailroadCard
+      title: rr-brighteye-backup
+      icon: 
+      color: "#fd3f3f"
+      description: rr-brighteye-backup-desc
+
+- type: entity
+  id: RRCardBrighteyeDarkStation
+  parent: BrighteyeCondition
+  categories: [HideSpawnMenu]
+  components:
+    - type: RailroadCard
+      title: rr-brighteye-darkstation
+      icon: 
+      color: "#fd3f3f"
+      description: rr-brighteye-darkstation-desc
+
+# Friendly
+
+- type: entity
+  id: RRCardBrighteyeProtect
+  parent: BrighteyeCondition
+  categories: [HideSpawnMenu]
+  components:
+    - type: RailroadSpawnFlow
+      count:
+        min: 1
+        max: 2
+    - type: RailroadCard
+      title: rr-brighteye-protect
+      icon: 
+      iconColor: "#9FED5896"
+      description: rr-brighteye-protect-desc
+    - type: TargetObjective
+      title: objective-condition-shadekin-alive-title
+      icon:
+        sprite: /Textures/Interface/Actions/actions_fakemindshield.rsi
+        state: icon-on
+    - type: PickRandomPerson
+      filters:
+        - !type:BodyMindFilter
+          whitelist:
+            components:
+              - Shadekin
+        - !type:BodyMindFilter
+          whitelist:
+            components:
+              - Brighteye
+          inverted: true
+        - !type:TargetObjectiveMindFilter
+          blacklist:
+            components:
+              - KeepAliveCondition
+    - type: KeepAliveCondition
+
+- type: entity
+  id: RRCardBrighteyeSanctuary
+  parent: BrighteyeCondition
+  categories: [HideSpawnMenu]
+  components:
+    - type: RailroadCard
+      title: rr-brighteye-sanctuary
+      icon: 
+      iconColor: "#9FED5896"
+      description: rr-brighteye-sanctuary-desc
+    - type: RailroadTimerTask
+      message: rail-sanctuary-task
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon

@@ -115,7 +115,7 @@ reagent-desc-saline = A mixture of salt and water, highly toxic to Avali and Res
 #Starlight End
 
 reagent-name-lacerinol = lacerinol
-reagent-desc-lacerinol = A fairly unreactive chemical that boosts collagen sythesis to incredible levels, healing slash trauma.
+reagent-desc-lacerinol = A fairly unreactive chemical that boosts collagen synthesis to incredible levels, healing slash trauma.
 
 reagent-name-puncturase = puncturase
 reagent-name-puncturase-tranexamic = puncturase & tranexamic

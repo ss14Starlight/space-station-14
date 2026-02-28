@@ -39,6 +39,8 @@
     - GalacticCommon
     - Mouse
   - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _Starlight/Mobs/Animals/mouse_special.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: mouse-remy
@@ -56,7 +58,16 @@
       Critical:
         Base: dead-remy
       Dead:
-        Base: dead-remy
+        Base: splat-remy
+  - type: Item
+    size: Tiny
+    heldPrefix: 0
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Mobs/Animals/mouse_special.rsi #SL Edit
+    equippedPrefix: 0
+    slots:
+    - HEAD
 
 # Mentor / Admin Mouse
 - type: entity
@@ -65,6 +76,11 @@
   name: Admin Mouse
   description: A troublemaking mouse that will most probably contribute to your death, one way or another.
   components:
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - Mouse
   - type: UniversalLanguageSpeaker
   - type: VentCrawler
   - type: Climbing
@@ -87,7 +103,7 @@
     allowedEmotes: ['Squeak']
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: _Starlight/Mobs/Animals/mouse.rsi
+    sprite: _Starlight/Mobs/Animals/mouse_special.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: mouse-admin
@@ -105,14 +121,14 @@
       Critical:
         Base: dead-admin
       Dead:
-        Base: dead-admin
+        Base: splat-admin
   - type: Item
     size: Tiny
-    heldPrefix: 0
+    heldPrefix: 1
   - type: Clothing
     quickEquip: false
-    sprite: Mobs/Animals/mouse.rsi
-    equippedPrefix: 0
+    sprite: _Starlight/Mobs/Animals/mouse_special.rsi #SL Edit
+    equippedPrefix: 1
     slots:
     - HEAD
   - type: NpcFactionMember
@@ -151,7 +167,7 @@
   - type: ZombieImmune
   - type: AutoImplant
     implants:
-    - BluespaceImplant
+    - RedspaceImplant
 
 - type: entity
   parent: MobAdminMouse
@@ -160,6 +176,8 @@
   description: A helpful little mouse that will (hopefully) give good advice. Click on it to pick it up!
   components:
   - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _Starlight/Mobs/Animals/mouse_special.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: mouse-mentor
@@ -177,4 +195,16 @@
       Critical:
         Base: dead-mentor
       Dead:
-        Base: dead-mentor
+        Base: splat-mentor
+  - type: Item
+    size: Tiny
+    heldPrefix: 2
+  - type: Clothing
+    quickEquip: false
+    sprite: _Starlight/Mobs/Animals/mouse_special.rsi #SL Edit
+    equippedPrefix: 2
+    slots:
+    - HEAD
+  - type: AutoImplant
+    implants:
+    - BluespaceImplant

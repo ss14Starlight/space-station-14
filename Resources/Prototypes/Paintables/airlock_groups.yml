@@ -27,6 +27,7 @@
     retrosalvage: AirlockRetroSalvage
     retromining: AirlockRetroMining
     retrosalvagemining: AirlockRetroSalvageMining
+    brigmedic: AirlockBrigmed
     # Starlight End
 
 - type: paintableGroup
@@ -57,4 +58,5 @@
     retrosalvage: AirlockRetroSalvageGlass
     retromining: AirlockRetroMiningGlass
     retrosalvagemining: AirlockRetroSalvageMiningGlass
+    brigmedic: AirlockBrigmedGlass
     # Starlight End

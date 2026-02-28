@@ -19,6 +19,7 @@
   components:
   - type: BrighteyeSurviveCondition
   - type: Objective
+    unique: true
     icon:
       sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
       state: core
@@ -31,6 +32,7 @@
   components:
   - type: BrighteyePortalCondition
   - type: Objective
+    unique: true
     icon:
       sprite: _Starlight/Structures/Specific/Anomalies/dark.rsi
       state: portal

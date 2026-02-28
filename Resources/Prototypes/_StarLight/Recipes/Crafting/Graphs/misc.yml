@@ -11,3 +11,4 @@
         doAfter: 20
   - node: waterbottle
     entity: DrinkWaterBottleEmpty
+

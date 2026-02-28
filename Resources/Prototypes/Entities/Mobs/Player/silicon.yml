@@ -64,6 +64,7 @@
       enum.CommunicationsConsoleUiKey.Key:
         toggleAction: ActionAGhostShowCommunications
   - type: CrewMonitoringConsole
+    pagingSoundLocal: true # Starlight: Only AI player hears paging sounds
   - type: GeneralStationRecordConsole
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -336,6 +337,15 @@
       - StationAiCoreElectronics
   - type: StaticPrice
     price: 5000
+# Starlight-start: Changed to core linking
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSource
+    range: 20
+    ports:
+      - AiLawConsoleSender
+# Starlight-end
 
 # The job-ready version of an AI spawn.
 - type: entity
@@ -713,20 +723,21 @@
     - type: GhostTakeoverAvailable
 
 - type: entity
-  name: syndicate invasion borg spawner
-  id: PlayerBorgSyndicateInvasionGhostRoleSpawner
   parent: MarkerBase
+  id: PlayerBorgSyndicateInvasionGhostRoleSpawner
+  name: syndicate invasion borg spawner
   components:
   - type: Sprite
     layers:
       - state: red
       - sprite: Structures/Decoration/banner.rsi
         state: banner_syndicate
-  - type: RandomSpawner
-    prototypes:
-    - PlayerBorgSyndicateAssaultGhostRole
-    - PlayerBorgSyndicateAssaultGhostRole # Saboteurs are kinda like cyborg medics, we want less.
-    - PlayerBorgSyndicateSaboteurGhostRole
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: PlayerBorgSyndicateAssaultGhostRole
+      - id: PlayerBorgSyndicateSaboteurGhostRole
+        weight: 0.5 # Saboteurs are kinda like cyborg medics, we want less.
 
 - type: entity
   parent: EngineeringBorgChassisDerelict

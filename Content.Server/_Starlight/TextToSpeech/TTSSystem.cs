@@ -360,7 +360,7 @@ public sealed partial class TTSSystem : EntitySystem
     private static readonly IReadOnlyDictionary<string, string> _wordReplacement =
         new Dictionary<string, string>()
         {
-            {"id", "Ai Di"},
+            {"id", "Eye Di"},
             {"pda", "PiDiA"},
             {"sci", "sai"},
 

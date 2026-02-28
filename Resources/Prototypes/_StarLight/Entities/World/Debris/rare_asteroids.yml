@@ -1,0 +1,151 @@
+﻿## Bases
+
+# Trash
+- type: entity
+  id: BaseTrashDebris
+  parent: BaseDebris
+  name: trash debris
+  abstract: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+        - Plating
+        - Plating
+        - Plating
+        - Lattice
+      blobDrawProb: 0.3
+      radius: 6
+      floorPlacements: 25
+    - type: SimpleFloorPlanPopulator
+      entries:
+        Plating:
+          - prob: 2 # Intentional blank.
+          - id: WallTrash
+            prob: 1
+          - id: Grille
+            prob: 0.2
+          - id: DecalSpawnerDirtNear
+            prob: 0.5
+        Lattice:
+          - prob: 2
+          - id: WallTrash
+            prob: 0.5
+          - id: TrashWallLootSpawner
+            prob: 0.3
+          - id: SalvageCanisterSpawner
+            prob: 0.2
+    - type: IFF
+      flags: HideLabel
+      color: "#917461"
+
+# Meat
+- type: entity
+  id: BaseMeatDebris
+  parent: BaseDebris
+  name: meat debris
+  abstract: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+        - FloorFlesh
+        - FloorFlesh
+        - FloorFlesh
+        - FloorFlesh
+        - Plating
+        - Lattice
+      blobDrawProb: 0.2
+      radius: 6
+      floorPlacements: 20
+    - type: SimpleFloorPlanPopulator
+      entries:
+        FloorFlesh:
+          - prob: 2 # Intentional blank.
+          - id: WallMeatroid
+            prob: 1
+          - id: BaseMobFleshSalvage
+            prob: 0.2
+        Lattice:
+          - prob: 2
+          - id: WallMeatroid
+            prob: 0.3
+          - id: MobFleshJaredSalvage
+            prob: 0.2
+          - id: MobFleshGolemSalvage
+            prob: 0.1
+        Plating:
+          - prob: 2
+          - id: WallMeatroid
+            prob: 0.3
+          - id: RandomScienceCorpseSpawner
+            prob: 0.5
+          - id: DecalSpawnerBloodSplatters
+            prob: 1
+    - type: IFF
+      flags: HideLabel
+      color: "#a31a1a"
+
+## Spawners
+
+# Trash
+- type: entity
+  id: TrashDebrisSmall
+  parent: BaseTrashDebris
+  name: trash debris small
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 10
+
+- type: entity
+  id: TrashDebrisMedium
+  parent: BaseTrashDebris
+  name: trash debris medium
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 20
+
+- type: entity
+  id: TrashDebrisLarge
+  parent: BaseTrashDebris
+  name: trash debris large
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 30
+
+# Meat
+- type: entity
+  id: MeatDebrisSmall
+  parent: BaseMeatDebris
+  name: meat debris small
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 6
+
+- type: entity
+  id: MeatDebrisMedium
+  parent: BaseMeatDebris
+  name: meat debris medium
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 11
+
+- type: entity
+  id: MeatDebrisLarge
+  parent: BaseMeatDebris
+  name: meat debris large
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 15

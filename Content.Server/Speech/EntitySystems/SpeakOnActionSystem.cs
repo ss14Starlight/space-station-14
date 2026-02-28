@@ -33,7 +33,7 @@ public sealed class SpeakOnActionSystem : SharedSpeakOnActionSystem
 
         if (string.IsNullOrWhiteSpace(ent.Comp.Sentence))
             return;
-
-        _chat.TrySendInGameICMessage(user, Loc.GetString(ent.Comp.Sentence), InGameICChatType.Speak, false);
+        
+        _chat.TrySendInGameICMessage(user, Loc.GetString(ent.Comp.Sentence), ent.Comp.Whisper ? InGameICChatType.Whisper : InGameICChatType.Speak, false); // Starlight: add Whispering as an option
     }
 }

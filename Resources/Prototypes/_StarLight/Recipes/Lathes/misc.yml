@@ -557,3 +557,24 @@
   materials:
      Steel: 100
      Glass: 500
+
+- type: latheRecipe
+  parent: BaseLightRecipe
+  id: BlackLightTube
+  result: BlackLightTube
+
+- type: latheRecipe
+  id: CassetteTape
+  result: CassetteTape
+  completetime: 2
+  materials:
+    Steel: 50
+    Plastic: 150
+
+- type: latheRecipe
+  id: TapeRecorder
+  result: TapeRecorder
+  completetime: 3
+  materials:
+    Steel: 250
+    Plastic: 250

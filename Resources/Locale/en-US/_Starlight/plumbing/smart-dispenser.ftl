@@ -1,0 +1,10 @@
+plumbing-smart-dispenser-window-title = Smart Dispenser
+plumbing-smart-dispenser-header = Chemical Storage
+plumbing-smart-dispenser-reagent-entry = {$reagent}: {$amount}u
+plumbing-smart-dispenser-empty = No reagents stored.
+plumbing-smart-dispenser-total = {$count} reagent(s) — {$total}u total
+plumbing-smart-dispenser-no-label = Container has no label.
+plumbing-smart-dispenser-no-match = Could not match label to any known reagent.
+plumbing-smart-dispenser-not-in-stock = {$reagent} is not in stock.
+plumbing-smart-dispenser-jug-full = Container is already full.
+plumbing-smart-dispenser-filled = Filled {$amount}u of {$reagent}.

@@ -20,3 +20,9 @@
           announcementColor: "#2288ff"
           recallAnnouncement: announcement-psi-armory-recall
           recallAnnouncementColor: "#2288ff"
+        medical:
+          shuttle: /Maps/_Starlight/Shuttles/CC-NT/EmergencyMedicalPod.yml
+          announcement: announcement-med-pod
+          announcementColor: "#34c3eb"
+          recallAnnouncement: announcement-med-pod-recall
+          recallAnnouncementColor: "#34c3eb"

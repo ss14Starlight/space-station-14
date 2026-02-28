@@ -381,7 +381,7 @@
       - state: equipped-head-light-vox
         shader: unshaded
       head-reptilian:
-      - state: equipped-head-reptilian
+      - state: equipped-head-light-reptilian
         shader: unshaded
       head-dog:
       - state: equipped-head-light-dog
@@ -1115,6 +1115,7 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
+        Radiation: 0.9
         Heat: 0.9
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.75

@@ -1,0 +1,54 @@
+- type: entity
+  id: RadcasterCyber
+  parent: BaseWeaponBatterySmall
+  name: cybernetic radcaster
+  description: This seems a little unsafe...
+  components:
+  - type: Tag
+    tags:
+    - CyberHandItem
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    layers:
+    - state: radcaster
+      map: ["enum.GunVisualLayers.Base"]
+    - state: radcaster-mag-unshaded-1
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
+    cameraRecoilScalar: 0.1
+    projectileSpeed: 2.0
+  - type: BatteryAmmoProvider
+    proto: RadOrb
+    fireCost: 1000
+  - type: BatterySelfRecharger
+    autoRechargeRate: 100
+  - type: MagazineVisuals
+    magState: radcaster-mag
+    steps: 2
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: FreezeRayCyber
+  parent: BaseWeaponBatterySmall
+  name: cybernetic freeze ray
+  description: Brr...! Cold!
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+    cameraRecoilScalar: 0.1
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: freeze_ray
+  - type: BatterySelfRecharger
+    autoRechargeRate: 100
+  - type: BatteryAmmoProvider
+    proto: FreezeRay
+    fireCost: 1000
+  - type: Tag
+    tags:
+    - CyberHandItem

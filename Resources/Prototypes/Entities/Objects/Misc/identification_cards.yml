@@ -25,6 +25,7 @@
     - WhitelistChameleonIdCard
   - type: StealTarget
     stealGroup: IDCard
+  - type: NanoChatCard # CD
 
 #IDs with layers
 
@@ -73,7 +74,7 @@
     stealGroup: CaptainIDCard
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseGrandTheftContraband]
   id: HoPIDCard
   name: head of personnel ID card
   components:
@@ -91,6 +92,8 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: HeadOfPersonnel
+  - type: StealTarget # Starlight
+    stealGroup: HOPIDCard # Starlight
 
 - type: entity
   parent: IDCardStandard
@@ -908,6 +911,8 @@
     jobTitle: job-title-cluwne
     jobIcon: JobIconCluwne
   - type: Unremoveable
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -925,6 +930,8 @@
     jobIcon: JobIconVisitor
   - type: PresetIdCard
     job: Visitor
+  - type: NanoChatCard # CD
+    listNumber: false
 
 #Antags
 
@@ -964,6 +971,8 @@
         type: AgentIDCardBoundUserInterface
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   name: assistant ID card
@@ -976,6 +985,8 @@
     - Maintenance
     - SyndicateAgent
     - NuclearOperative
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: [ IDCardStandard, BaseSyndicateContraband ]
@@ -998,6 +1009,8 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: [ SyndicateIDCard, BaseSyndicateContraband ]
@@ -1015,6 +1028,10 @@
       offset: *icon-offset
       state: SyndicateOperative
   - type: AgentIDCard
+  - type: IdCard
+    jobIcon: JobIconSyndicate # Starlight-edit - SyndicateOperative -> Syndicate
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: [ SyndiOperativeIDCard, BaseSyndicateContraband ]
@@ -1031,6 +1048,10 @@
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SyndicateCorpsman
+  - type: IdCard
+    jobIcon: JobIconSyndicate # Starlight-edit - SyndicateCorpsman -> Syndicate
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: [ SyndiOperativeIDCard, BaseSyndicateContraband ]
@@ -1047,6 +1068,37 @@
     - sprite: *icon-rsi
       offset: *icon-offset
       state: SyndicateCommander
+  - type: IdCard
+    jobIcon: JobIconSyndicate # Starlight-edit - SyndicateCommander -> Syndicate
+  - type: NanoChatCard # CD
+    listNumber: false
+
+- type: entity
+  parent: [ IDCardStandard, BaseHighlyIllegalContraband ]
+  id: NinjaIDCard
+  name: ninja ID card
+  suffix: Ninja
+  components:
+  - type: Sprite
+    layers:
+    - state: ninja
+    - state: stripe_top
+      color: "#38D848"
+    - state: stripe_bottom
+      color: "#309000"
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Ninja
+  - type: Item
+    heldPrefix: green
+  - type: AgentIDCard
+  - type: IdCard
+    jobIcon: JobIconNinja
+  - type: Access
+    tags:
+    - Maintenance
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: [ IDCardStandard, BaseMajorContraband ]
@@ -1056,12 +1108,18 @@
   - type: Sprite
     layers:
     - state: pirate
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Pirate
   - type: Item
     heldPrefix: orange #this is close enough to the weird puce color pirate IDs have going on
-  - type: Access
+  - type: IdCard
+    jobIcon: JobIconPirate
+  - type: Access # Starlight
     tags:
-    - NuclearOperative
-    - SyndicateAgent
+    - Pirate
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1076,7 +1134,7 @@
     - Xenoborg
 
 - type: entity
-  parent: IDCardStandard
+  parent: [ IDCardStandard, BaseMagicalContraband ]
   id: WizardIDCard
   name: wizard ID card
   components:
@@ -1093,6 +1151,10 @@
     - Wizard
     - External
     - Maintenance
+  - type: IdCard
+    jobIcon: JobIconWizard
+  - type: NanoChatCard # CD
+    listNumber: false
 
 #ERT/Centcomm
 
@@ -1115,6 +1177,8 @@
     heldPrefix: blue
   - type: PresetIdCard
     job: CentralCommandOfficial
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1125,16 +1189,18 @@
     layers:
     - state: gold
     - state: stripe_top
-      color: *color-centcomm-top
+      color: "#0c7d1d" #Starlight
     - state: stripe_bottom
-      color: *color-centcomm-bottom
-    - sprite: *icon-rsi
+      color: "#0a5715" #Starlight
+    - sprite: *starlight-icon-rsi #Starlight
       offset: *icon-offset
       state: ERTLeader
   - type: Item
     heldPrefix: gold
   - type: PresetIdCard
     job: ERTLeader
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1143,18 +1209,20 @@
   components:
   - type: Sprite
     layers:
-    - state: centcom
+    - state: silver #Starlight
     - state: stripe_top
-      color: *color-service-top
+      color: "#0c7d1d" #Starlight
     - state: stripe_bottom
-      color: *color-service-bottom
-    - sprite: *icon-rsi
+      color: "#0a5715" #Starlight
+    - sprite: *starlight-icon-rsi #Starlight
       offset: *icon-offset
       state: ERTChaplain
   - type: Item
     heldPrefix: blue
   - type: PresetIdCard
     job: ERTChaplain
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1163,18 +1231,20 @@
   components:
   - type: Sprite
     layers:
-    - state: centcom
+    - state: silver #Starlight
     - state: stripe_top
-      color: *color-engineering-top
+      color: "#0c7d1d" #Starlight
     - state: stripe_bottom
-      color: *color-engineering-bottom
-    - sprite: *icon-rsi
+      color: "#0a5715" #Starlight
+    - sprite: *starlight-icon-rsi #Starlight
       offset: *icon-offset
       state: ERTEngineer
   - type: Item
     heldPrefix: blue
   - type: PresetIdCard
     job: ERTEngineer
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1183,18 +1253,20 @@
   components:
   - type: Sprite
     layers:
-    - state: centcom
+    - state: silver #Starlight
     - state: stripe_top
-      color: *color-service-top
+      color: "#0c7d1d" #Starlight
     - state: stripe_bottom
-      color: *color-service-bottom
-    - sprite: *icon-rsi
+      color: "#0a5715" #Starlight
+    - sprite: *starlight-icon-rsi #Starlight
       offset: *icon-offset
       state: ERTJanitor
   - type: Item
     heldPrefix: blue
   - type: PresetIdCard
     job: ERTJanitor
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1203,18 +1275,20 @@
   components:
   - type: Sprite
     layers:
-    - state: centcom
+    - state: silver #Starlight
     - state: stripe_top
-      color: *color-medical-top
+      color: "#0c7d1d" #Starlight
     - state: stripe_bottom
-      color: *color-medical-bottom
-    - sprite: *icon-rsi
+      color: "#0a5715" #Starlight
+    - sprite: *starlight-icon-rsi #Starlight
       offset: *icon-offset
       state: ERTMedical
   - type: Item
     heldPrefix: blue
   - type: PresetIdCard
     job: ERTMedical
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1223,18 +1297,20 @@
   components:
   - type: Sprite
     layers:
-    - state: centcom
+    - state: silver #Starlight
     - state: stripe_top
-      color: *color-security-top
+      color: "#0c7d1d" #Starlight
     - state: stripe_bottom
-      color: *color-security-bottom
-    - sprite: *icon-rsi
+      color: "#0a5715" #Starlight
+    - sprite: *starlight-icon-rsi #Starlight
       offset: *icon-offset
       state: ERTSecurity
   - type: Item
     heldPrefix: blue
   - type: PresetIdCard
     job: ERTSecurity
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1253,6 +1329,8 @@
       state: DeathSquad
   - type: PresetIdCard
     job: DeathSquad
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1262,18 +1340,20 @@
   components:
   - type: Sprite
     layers:
-    - state: centcom
+    - state: silver #Starlight
     - state: stripe_top
-      color: *color-centcomm-top
+      color: "#0c7d1d" #Starlight
     - state: stripe_bottom
-      color: *color-centcomm-bottom
-    - sprite: *icon-rsi
+      color: "#0a5715" #Starlight
+    - sprite: *starlight-icon-rsi #Starlight
       offset: *icon-offset
       state: CBURN
   - type: Item
     heldPrefix: blue
   - type: PresetIdCard
     job: CBURN
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1317,3 +1397,6 @@
     interfaces:
       enum.AgentIDCardUiKey.Key:
         type: AgentIDCardBoundUserInterface
+  - type: NanoChatCard # CD
+    notificationsMuted: true
+    listNumber: false

@@ -52,7 +52,7 @@
             Detective: [ 1, 2 ]
             SecurityCadet: [ 4, 4 ]
             Brigmedic: [ 1, 2 ]
-            DutyOfficer: [ 1, 2]
+            DutyOfficer: [ 1, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 4 ]
@@ -65,6 +65,7 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 2, 2 ]
+            Performer: [ 4, 5 ]
             Boxer: [ 2, 3 ]
             #silicon
             StationAi: [ 1, 1 ]

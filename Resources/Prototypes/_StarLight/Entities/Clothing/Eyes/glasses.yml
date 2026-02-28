@@ -2,7 +2,7 @@
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
   id: ClothingEyesGlassesBrigmedic
   name: brigmedic glasses
-  description: Tamashi-upgraded glasses. Yes. Brigmedic ones.
+  description: High-quality hud that can protect against flashes. Tamashi-style!
   components:
   - type: Sprite
     sprite: Clothing/Eyes/Glasses/brigmedicglasses.rsi
@@ -16,6 +16,34 @@
   - type: Construction
     graph: GlassesSecHUD
     node: glassesSec
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  id: ClothingEyesGlassesCorpsman
+  name: corpsman glasses
+  description: Can protect against flashes much like security glasses, and track vitals!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/corpsman.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/corpsman.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowHealthBars
+  - type: Construction
+    graph: GlassesSecHUD
+    node: glassesSec
+  - type: StealTarget
+    stealGroup: MiscGlassesCollection
   - type: Tag
     tags:
     - HamsterWearable
@@ -41,6 +69,28 @@
     - WhitelistChameleon
 
 - type: entity
+  parent: ClothingEyesGlassesCheapSunglasses
+  id: ClothingEyesGlassesMusicianSunglasses
+  name: musician shades
+  description: A stylish pair of purple shades. They function as sunglasses, too.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/musicianglasses.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/musicianglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: StealTarget
+    stealGroup: MiscGlassesCollection
+  - type: Tag
+    tags:
+    - Sunglasses
+    - PetWearable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
   parent: ClothingEyesBase
   id: ClothingEyesSunGlassesHudSkill
   name: skills sunglasses
@@ -56,6 +106,8 @@
   - type: ShowCriminalRecordIcons
   - type: EyeProtection
     protectionTime: 5
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
 
 - type: entity
   parent: [ClothingEyesBase, BaseBlueShieldContraband]
@@ -82,6 +134,8 @@
     - HudMedical
   - type: EyeProtection
     protectionTime: 5
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
 
 - type: entity
   parent: [ClothingEyesBase, BaseCentcommContraband]
@@ -106,8 +160,11 @@
   - type: Tag
     tags:
     - HudMedical
+    - CorgiWearable
   - type: EyeProtection
     protectionTime: 5
+  - type: StealTarget
+    stealGroup: RareGlassesCollection
 
 # Prescription Glasses
 
@@ -208,6 +265,7 @@
     sprite: _Starlight/Clothing/Eyes/Glasses/nullspacegoogles.rsi
   - type: ShowNullSpace
     showShader: true
+  - type: ClothesNightVision
   - type: Construction
     graph: ClothingGlassesNullSpace
     node: glasses

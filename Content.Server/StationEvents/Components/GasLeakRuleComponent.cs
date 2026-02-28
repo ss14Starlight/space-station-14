@@ -1,4 +1,4 @@
-﻿using Content.Server.StationEvents.Events;
+using Content.Server.StationEvents.Events;
 using Content.Shared.Atmos;
 using Robust.Shared.Map;
 
@@ -14,6 +14,17 @@ public sealed partial class GasLeakRuleComponent : Component
         Gas.Tritium,
         Gas.Frezon,
         Gas.WaterVapor, // the fog
+        // Funkystation Start: Funky atmos - /tg/ gases
+        Gas.BZ, 
+        Gas.Healium, 
+        Gas.Nitrium, 
+        Gas.Pluoxium, 
+        Gas.HyperNoblium, 
+        Gas.ProtoNitrate, 
+        Gas.Halon, 
+        Gas.Helium, 
+        Gas.AntiNoblium, 
+        // Funkystation End: Funky atmos - /tg/ gases
     };
 
     /// <summary>

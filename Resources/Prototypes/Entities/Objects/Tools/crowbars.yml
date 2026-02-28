@@ -30,6 +30,8 @@
   - type: StaticPrice
     price: 22
   - type: Prying
+    useSoundOnDoafter: /Audio/Machines/airlock_creaking.ogg
+    playSoundOnDoafter: true
   - type: Sprite
     sprite: Objects/Tools/crowbar.rsi
   - type: Clothing
