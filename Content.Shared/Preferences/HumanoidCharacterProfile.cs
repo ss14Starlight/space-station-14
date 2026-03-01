@@ -142,7 +142,7 @@ namespace Content.Shared.Preferences
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts,
             List<string> cybernetics, // Starlight
-            PlayerProvidedCharacterRecords? characterRecords, // Starlight
+            PlayerProvidedCharacterRecords? characterRecords, // Cosmatic Drift Record System
             bool enabled)
         {
             Name = name;
@@ -167,9 +167,11 @@ namespace Content.Shared.Preferences
             _traitPreferences = traitPreferences;
             _loadouts = loadouts;
             Cybernetics = cybernetics; // Starlight
+            // Cosmatic Drift Record System-start
             CDCharacterRecords = characterRecords != null
                 ? new PlayerProvidedCharacterRecords(characterRecords).EnsureValid()
                 : PlayerProvidedCharacterRecords.DefaultRecords();
+            // Cosmatic Drift Record System-end
             Enabled = enabled;
         }
 
@@ -178,10 +180,10 @@ namespace Content.Shared.Preferences
             : this(other.Name,
                 other.Voice,
                 other.SiliconVoice, // 🌟Starlight🌟
-                other.PhysicalDescription, //Starlight
+                other.PhysicalDescription,//Starlight
                 other.PersonalityDescription, //Starlight
-                other.PersonalNotes, //Starlight
-                other.OOCNotes, //Starlight
+                other.PersonalNotes,//Starlight
+                other.OOCNotes,//Starlight
                 other.Secrets,
                 other.ExploitableInfo,
                 other.Species,
@@ -197,9 +199,11 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
                 other.Cybernetics, // Starlight
+                // Cosmatic Drift Record System-start
                 other.CDCharacterRecords != null
                     ? new PlayerProvidedCharacterRecords(other.CDCharacterRecords).EnsureValid()
                     : PlayerProvidedCharacterRecords.DefaultRecords(),
+                // Cosmatic Drift Record System-end
                 other.Enabled)
         {
         }
