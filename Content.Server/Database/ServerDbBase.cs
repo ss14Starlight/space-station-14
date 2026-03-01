@@ -368,21 +368,14 @@ namespace Content.Server.Database
                 traits.ToHashSet(),
                 loadouts,
                 profile.StarLightProfile?.CyberneticIds ?? [], // Starlight
+                // Cosmatic Drift Record System
+                (profile.CDProfile?.CharacterRecords != null)
+                    ? RecordsSerialization.Deserialize(profile.CDProfile.CharacterRecords, profile.CDProfile.CharacterRecordEntries)
+                    : PlayerProvidedCharacterRecords.DefaultRecords(), // Load player-authored records from storage
+                // Cosmatic Drift Record System-end
                 profile.Enabled
             );
-            // Cosmatic Drift Record System: Rehydrate saved CD records into the mutable profile copy
-            if (profile.CDProfile?.CharacterRecords != null)
-            {
-                var records = RecordsSerialization.Deserialize(profile.CDProfile.CharacterRecords, profile.CDProfile.CharacterRecordEntries); // Load player-authored records from storage
-                humanoid = humanoid.WithCDCharacterRecords(records);
-            }
-            else
-            {
-                humanoid = humanoid.WithCDCharacterRecords(PlayerProvidedCharacterRecords.DefaultRecords()); // Seed with empty records when nothing has been saved yet
-            }
-
             return humanoid;
-            // Cosmatic Drift Record System-end
         }
 
         private static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)

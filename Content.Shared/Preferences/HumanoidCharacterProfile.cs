@@ -96,7 +96,7 @@ namespace Content.Shared.Preferences
 
         // Cosmatic Drift – stores the player's custom record data on the profile itself.
         [DataField("cosmaticDriftCharacterRecords")]
-        public PlayerProvidedCharacterRecords? CDCharacterRecords { get; private set; } = PlayerProvidedCharacterRecords.DefaultRecords();
+        public PlayerProvidedCharacterRecords? CDCharacterRecords { get; set; } = PlayerProvidedCharacterRecords.DefaultRecords();
 
         /// <summary>
         /// When spawning into a round what's the preferred spot to spawn.
@@ -142,6 +142,7 @@ namespace Content.Shared.Preferences
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts,
             List<string> cybernetics, // Starlight
+            PlayerProvidedCharacterRecords? characterRecords, // Starlight
             bool enabled)
         {
             Name = name;
@@ -166,6 +167,9 @@ namespace Content.Shared.Preferences
             _traitPreferences = traitPreferences;
             _loadouts = loadouts;
             Cybernetics = cybernetics; // Starlight
+            CDCharacterRecords = characterRecords != null
+                ? new PlayerProvidedCharacterRecords(characterRecords).EnsureValid()
+                : PlayerProvidedCharacterRecords.DefaultRecords();
             Enabled = enabled;
         }
 
@@ -174,10 +178,10 @@ namespace Content.Shared.Preferences
             : this(other.Name,
                 other.Voice,
                 other.SiliconVoice, // 🌟Starlight🌟
-                other.PhysicalDescription,//Starlight
+                other.PhysicalDescription, //Starlight
                 other.PersonalityDescription, //Starlight
-                other.PersonalNotes,//Starlight
-                other.OOCNotes,//Starlight
+                other.PersonalNotes, //Starlight
+                other.OOCNotes, //Starlight
                 other.Secrets,
                 other.ExploitableInfo,
                 other.Species,
@@ -193,14 +197,11 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
                 other.Cybernetics, // Starlight
+                other.CDCharacterRecords != null
+                    ? new PlayerProvidedCharacterRecords(other.CDCharacterRecords).EnsureValid()
+                    : PlayerProvidedCharacterRecords.DefaultRecords(),
                 other.Enabled)
         {
-            // Cosmatic Drift Record System-start
-            CDCharacterRecords = other.CDCharacterRecords != null
-                ? new PlayerProvidedCharacterRecords(other.CDCharacterRecords)
-                : PlayerProvidedCharacterRecords.DefaultRecords();
-            CDCharacterRecords.EnsureValid();
-            // Cosmatic Drift Record System-end
         }
 
         /// <summary>
