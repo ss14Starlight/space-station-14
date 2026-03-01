@@ -96,7 +96,7 @@ namespace Content.Shared.Preferences
 
         // Cosmatic Drift – stores the player's custom record data on the profile itself.
         [DataField("cosmaticDriftCharacterRecords")]
-        public PlayerProvidedCharacterRecords? CDCharacterRecords { get; set; } = PlayerProvidedCharacterRecords.DefaultRecords();
+        public PlayerProvidedCharacterRecords? CDCharacterRecords { get; private set; } = PlayerProvidedCharacterRecords.DefaultRecords();
 
         /// <summary>
         /// When spawning into a round what's the preferred spot to spawn.
