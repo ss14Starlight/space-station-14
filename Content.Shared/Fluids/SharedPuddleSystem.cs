@@ -21,6 +21,7 @@ using Content.Shared.StepTrigger.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -45,6 +46,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     [Dependency] private EntityQuery<StepTriggerComponent> _stepTriggerQuery = default!;
     [Dependency] private EntityQuery<ReactiveComponent> _reactiveQuery = default!;
     [Dependency] private EntityQuery<EvaporationComponent> _evaporationQuery = default!;
+    [Dependency] private INetManager _net = default!;
 
     private ProtoId<ReagentPrototype>[] _standoutReagents = [];
 
