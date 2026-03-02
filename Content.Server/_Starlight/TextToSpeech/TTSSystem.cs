@@ -31,6 +31,7 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private readonly ITTSManager _ttsManager = default!;
     [Dependency] private readonly IRobustRandom _rng = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
 
     private readonly List<string> _sampleText =
     [
@@ -225,23 +226,33 @@ public sealed partial class TTSSystem : EntitySystem
     private async void HandleSay(EntityUid uid, string message, int voice, LanguagePrototype language)
     {
         var recipients = Filter.Pvs(uid, 1F).RemovePlayers(_ignoredRecipients);
+        var understoodRecipients = Filter.Empty();
+        var misunderstoodRecipients = Filter.Empty();
 
-        var soundData = await GenerateTTS(message, voice);
-
-        if (soundData is null)
-            return;
+        var selfUnderstands = _language.CanUnderstand(uid, language.ID);
+        var soundData = (understoodRecipients.Count > 0 || selfUnderstands)
+            ? await GenerateTTS(message, voice) : null;
+            
+        var obfuscatedData = misunderstoodRecipients.Count > 0
+            ? await GenerateTTS(_language.ObfuscateSpeech(message, language), voice) : null;
 
         foreach (var session in recipients.Recipients)
-            if (session.AttachedEntity.HasValue
-            && session.AttachedEntity != uid
-            && !_language.CanUnderstand(session.AttachedEntity.Value, language.ID))
-                recipients.RemovePlayer(session);
+        {
+            if (!session.AttachedEntity.HasValue)
+                continue;
+
+            if (_language.CanUnderstand(session.AttachedEntity.Value, language.ID))
+                understoodRecipients.AddPlayer(session);
+            else
+                misunderstoodRecipients.AddPlayer(session);
+        }
 
         if (TryComp<EyeComponent>(uid, out var eye) && eye is not null)
         {
-            recipients.RemovePlayerByAttachedEntity(uid);
+            understoodRecipients.RemovePlayerByAttachedEntity(uid);
+            misunderstoodRecipients.RemovePlayerByAttachedEntity(uid);
 
-            if (_language.CanUnderstand(uid, language.ID))
+             if (selfUnderstands && soundData is not null)
             {
                 RaiseNetworkEvent(new PlayTTSEvent
                 {
@@ -251,11 +262,23 @@ public sealed partial class TTSSystem : EntitySystem
             }
         }
 
-        RaiseNetworkEvent(new PlayTTSEvent
+        if (soundData is not null && understoodRecipients.Count > 0)
         {
-            Data = soundData,
-            SourceUid = GetNetEntity(uid)
-        }, recipients, false);
+            RaiseNetworkEvent(new PlayTTSEvent
+            {
+                Data = soundData,
+                SourceUid = GetNetEntity(uid)
+            }, understoodRecipients, false);
+        }
+
+        if (obfuscatedData is not null && misunderstoodRecipients.Count > 0)
+        {
+            RaiseNetworkEvent(new PlayTTSEvent
+            {
+                Data = obfuscatedData,
+                SourceUid = GetNetEntity(uid)
+            }, misunderstoodRecipients, false);
+        }
     }
 
     private async void HandleWhisper(EntityUid uid, string message, int voice, LanguagePrototype language)
@@ -305,16 +328,45 @@ public sealed partial class TTSSystem : EntitySystem
     private async void HandleRadio(EntityUid[] uIds, string message, int voice, SoundSpecifier? chime, LanguagePrototype language)
     {
         var recipients = Filter.Entities(uIds).RemovePlayers(_ignoredRecipients);
+        var understoodRecipients = Filter.Empty();
+        var misunderstoodRecipients = Filter.Empty();
+
+        var soundData = understoodRecipients.Count > 0
+            ? await GenerateTTS(message, voice, isRadio: true) : null;
+
+        var obfuscatedData = misunderstoodRecipients.Count > 0
+            ? await GenerateTTS(_language.ObfuscateSpeech(message, language), voice, isRadio: true) : null;
+
         foreach (var session in recipients.Recipients)
-            if (session.AttachedEntity.HasValue
-            && !_language.CanUnderstand(session.AttachedEntity.Value, language.ID))
-                recipients.RemovePlayer(session);
+        {
+            if (!session.AttachedEntity.HasValue)
+                continue;
 
-        var soundData = await GenerateTTS(message, voice, isRadio: true);
-        if (soundData is null)
-            return;
+            if (_language.CanUnderstand(session.AttachedEntity.Value, language.ID))
+                understoodRecipients.AddPlayer(session);
+            else
+                misunderstoodRecipients.AddPlayer(session);
+        }
 
-        RaiseNetworkEvent(new PlayTTSEvent { IsRadio = true, Chime = chime, Data = soundData }, recipients, false);
+        if (soundData is not null && understoodRecipients.Count > 0)
+        {
+            RaiseNetworkEvent(new PlayTTSEvent
+            {
+                IsRadio = true,
+                Chime = chime,
+                Data = soundData
+            }, understoodRecipients, false);
+        }
+
+        if (obfuscatedData is not null && misunderstoodRecipients.Count > 0)
+        {
+            RaiseNetworkEvent(new PlayTTSEvent
+            {
+                IsRadio = true,
+                Chime = chime,
+                Data = obfuscatedData
+            }, misunderstoodRecipients, false);
+        }
     }
 
     private async void HandleCollectiveMind(EntityUid[] uIds, string message, int voice)
@@ -330,6 +382,7 @@ public sealed partial class TTSSystem : EntitySystem
     {
         try
         {
+            text = _chat.SanitizeMessageReplaceWords(text);
             text = DecimalConverter().Replace(text, " point ");
             text = Number2Word().Replace(text, ReplaceNumber2Word);
             text = SymbolFilter().Replace(text, ReplaceAbbreviations);
