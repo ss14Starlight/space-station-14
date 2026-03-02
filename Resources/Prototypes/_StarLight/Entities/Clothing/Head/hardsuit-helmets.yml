@@ -252,6 +252,10 @@
     lowPressureMultiplier: 1000
   - type: PointLight
     color: "#adfffd"
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 # Experimental Security Hardsuit
 - type: entity

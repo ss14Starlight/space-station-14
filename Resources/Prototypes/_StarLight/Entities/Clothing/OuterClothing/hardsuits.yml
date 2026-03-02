@@ -369,6 +369,11 @@
     clothingPrototype: ClothingHeadHelmetHardsuitLuxmax
   - type: StealTarget
     stealGroup: QMHardsuit
+  - type: Tag
+    tags:
+    - Hardsuit
+    - CorgiWearable
+    - WhitelistChameleon
 
 # Experimental Security Hardsuit
 - type: entity
