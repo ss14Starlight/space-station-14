@@ -1,0 +1,550 @@
+# PLEASE, KEEP THIS FILE ALPHABETIZED
+- type: Tag
+  id: AnomalyCoreShadow
+
+- type: Tag
+  id: AbductedTraitBackground
+
+- type: Tag
+  id: Abductor
+
+- type: Tag
+  id: AbductorScientist
+
+- type: Tag
+  id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
+
+- type: Tag
+  id: Arachnid
+
+- type: Tag
+  id: AutoMender
+
+- type: Tag
+  id: Avali
+
+- type: Tag
+  id: AvianFood
+
+- type: Tag
+  id: BibleThwackRemovable
+
+- type: Tag
+  id: BladePlasteel
+
+- type: Tag
+  id: BladeSteel
+
+- type: Tag
+  id: BloodSplatter
+
+- type: Tag
+  id: Bola
+
+- type: Tag
+  id: BoneGel
+
+- type: Tag
+  id: BorgItem
+
+- type: Tag
+  id: BorgModuleMining
+
+- type: Tag
+  id: BorgModulePurrfus
+
+- type: Tag
+  id: BorgModuleSecurity
+
+- type: Tag
+  id: BorgModuleSupply
+
+- type: Tag
+  id: BorgModuleSyndicateStealth
+
+- type: Tag
+  id: Bow
+
+- type: Tag
+  id: BulletUnarmedCollide
+  
+- type: Tag
+  id: BurnedTraitBackground
+
+- type: Tag
+  id: CantInteract
+
+- type: Tag
+  id: Cartridge48Rifle
+
+- type: Tag
+  id: CartridgeBattery
+
+- type: Tag
+  id: CartridgeLightRifleImprovised
+
+- type: Tag
+  id: CartridgeMagnumImprovised
+
+- type: Tag
+  id: CartridgePistolDP
+
+- type: Tag
+  id: CartridgePistolImprovised
+
+- type: Tag
+  id: CantBecomeRevolutionary
+
+- type: Tag
+  id: CentcommVibroblade
+
+- type: Tag
+  id: CombatRemote # Tag: used on the RemoteSignallerCombat
+
+- type: Tag
+  id: CheapInsulatedFabric
+
+- type: Tag
+  id: Cleanade
+
+- type: Tag
+  id: CivilianTraitBackground
+
+- type: Tag
+  id: ClarkeCentralControlModule
+
+- type: Tag
+  id: ClarkeHead
+
+- type: Tag
+  id: ClarkeLArm
+
+- type: Tag
+  id: ClarkePeripheralsControlModule
+
+- type: Tag
+  id: ClarkeRArm
+
+- type: Tag
+  id: ClarkeTreads
+
+- type: Tag
+  id: ClownKudzu
+
+- type: Tag
+  id: CluwneBeastWearable
+
+- type: Tag
+  id: Compy
+
+- type: Tag
+  id: Condiment
+
+- type: Tag
+  id: CyberHandItem
+
+- type: Tag
+  id: DamagedShadekinCore
+
+- type: Tag
+  id: DeificEncounterTraitBackground
+
+- type: Tag
+  id: Dinnerware
+
+- type: Tag
+  id: Diona
+
+- type: Tag
+  id: Disabler
+
+- type: Tag
+  id: DisposalPipe
+
+- type: Tag
+  id: DockEscape
+
+- type: Tag
+  id: DockGamma
+
+- type: Tag
+  id: DogEmotes
+
+- type: Tag
+  id: DrinkCarton
+
+- type: Tag
+  id: DurandArmor
+
+- type: Tag
+  id: DurandCentralControlModule
+
+- type: Tag
+  id: DurandHead
+
+- type: Tag
+  id: DurandLArm
+
+- type: Tag
+  id: DurandLLeg
+
+- type: Tag
+  id: DurandPeripheralsControlModule
+
+- type: Tag
+  id: DurandRArm
+
+- type: Tag
+  id: DurandRLeg
+
+- type: Tag
+  id: DurandTargetingControlModule
+
+- type: Tag
+  id: ElderArena
+
+- type: Tag
+  id: EmergencyWelder
+
+- type: Tag
+  id: Felionoid
+
+- type: Tag
+  id: FreeMag
+
+- type: Tag
+  id: FestiveDinner
+
+- type: Tag
+  id: fingerlessinsuls
+
+- type: Tag
+  id: FormerSoldierTraitBackground
+
+- type: Tag
+  id: FlatpackBlacklist
+
+- type: Tag
+  id: GearAcidifier
+
+- type: Tag
+  id: GasTank
+
+- type: Tag
+  id: Ghost
+
+- type: Tag
+  id: Grenade120mm # Ammo: Magazine120mmGrenadeBlast, ShuttleGunNTSFCyerxa120mm
+
+- type: Tag
+  id: GygaxArmor
+
+- type: Tag
+  id: GygaxCentralControlModule
+
+- type: Tag
+  id: GygaxHead
+
+- type: Tag
+  id: GygaxLArm
+
+- type: Tag
+  id: GygaxLLeg
+
+- type: Tag
+  id: GygaxPeripheralsControlModule
+
+- type: Tag
+  id: GygaxRArm
+
+- type: Tag
+  id: GygaxRLeg
+
+- type: Tag
+  id: GygaxTargetingControlModule
+
+- type: Tag
+  id: HiltPlasteel
+
+- type: Tag
+  id: HiltWood
+
+- type: Tag
+  id: ImprovisedAmmoBox
+
+- type: Tag
+  id: ImprovisedCrowbar
+
+- type: Tag
+  id: ImprovisedMultitool
+
+- type: Tag
+  id: ImprovisedScrewdriver
+
+- type: Tag
+  id: ImprovisedWirecutter
+
+- type: Tag
+  id: ImprovisedWrench
+
+- type: Tag
+  id: Inedible # Prevents something from being eaten using DevourSystem, but only if on the direct target (e.g. doesn't apply if in inventory of target)
+  
+- type: Tag
+  id: InsulatedFabric
+
+- type: Tag
+  id: InsulatedThread
+
+- type: Tag
+  id: IteratorTraitBackground
+
+# Used for the jet injector and advanced jet injector
+- type: Tag
+  id: JetInjector
+
+- type: Tag
+  id: L6Saw
+
+- type: Tag
+  id: LightRifleHeavy
+
+- type: Tag
+  id: Lighters
+
+- type: Tag
+  id: Locker
+  
+- type: Tag
+  id: LoneOpsUplink
+
+- type: Tag
+  id: MagazineBattery
+
+- type: Tag
+  id: MagazineL10DMR
+
+- type: Tag
+  id: MagazineBoxLightRifle
+
+- type: Tag
+  id: MagazineGrenade120mm # Magazine: Magazine120mmGrenadeBlast
+
+- type: Tag
+  id: Cartridge280mmSlug # Ammo: CartridgeCharon280mmSlug, CartridgeCharon280mmSubnuclear
+
+- type: Tag
+  id: Cartridge60mmRocket
+
+- type: Tag
+  id: Magazine60mmRocket
+
+- type: Tag
+  id: MagazineLightRiflePan
+
+- type: Tag
+  id: MagazineMagnumSubMachineGun
+
+- type: Tag
+  id: MagazinePistolDP
+
+- type: Tag
+  id: MagazinePistolImprovised
+
+- type: Tag
+  id: MagazineRifleM52
+
+- type: Tag
+  id: MagazineSMGImprovised
+
+- type: Tag
+  id: MagazineSMGPPSH
+
+- type: Tag
+  id: MagazineSMGUzi
+
+- type: Tag
+  id: MagazineShotgunToz
+
+- type: Tag
+  id: MagicalEncounterTraitBackground
+
+- type: Tag
+  id: MedCyberEyes
+
+# Used for the one-use disposable medipens
+- type: Tag
+  id: Medipen
+
+- type: Tag
+  id: Meson
+
+- type: Tag
+  id: MicroManipulatorStockPart
+
+- type: Tag
+  id: ModularBarrel
+
+- type: Tag
+  id: Nexus
+  
+- type: Tag
+  id: NotLabelable
+
+- type: Tag
+  id: NukiePlanet
+
+- type: Tag
+  id: OmniCyberEyes
+
+- type: Tag
+  id: OvenMachineBoard
+
+- type: Tag
+  id: PaddyMech
+
+- type: Tag
+  id: ParaKnife
+
+- type: Tag
+  id: Patch
+
+- type: Tag
+  id: PatchPack
+
+- type: Tag
+  id: PersonnelStorage
+
+- type: Tag
+  id: PettyCriminalTraitBackground
+
+- type: Tag
+  id: PlasteelFilament
+
+- type: Tag
+  id: PlumbingDuct
+
+- type: Tag
+  id: PowerCellTiny
+
+- type: Tag
+  id: PrototypeJawsOfLife
+
+- type: Tag
+  id: PrototypeVibroblade
+
+- type: Tag
+  id: RequiredForLmgTag
+
+- type: Tag
+  id: Resomi
+
+- type: Tag
+  id: RomerolDisasterSurvivorTraitBackground
+  
+- type: Tag
+  id: ReflectiveArmorHelmet
+    # Tag for reflective helmet, used for set bonus detection by ReflectiveSetBonusSystem
+
+- type: Tag
+  id: ReflectiveArmorVest
+    # Tag for reflective vest, used for set bonus detection by ReflectiveSetBonusSystem
+
+- type: Tag
+  id: Sausage # MetamorphRecipe: FoodSausageBun
+
+- type: Tag
+  id: ScanGateMachineBoard
+
+- type: Tag
+  id: SecCyberEyes
+
+- type: Tag
+  id: SecuredLocker
+
+- type: Tag
+  id: ShadekinCore
+
+- type: Tag
+  id: ShadekinEyes
+
+- type: Tag
+  id: ShellShotgunImprovised
+
+- type: Tag
+  id: ShellShotgunToz
+
+- type: Tag
+  id: Shield
+
+- type: Tag
+  id: ShipWreck
+
+- type: Tag
+  id: ShowWires
+
+- type: Tag
+  id: Skating
+
+- type: Tag
+  id: SovietDungeon
+
+- type: Tag
+  id: SovietDungeonWeh
+
+- type: Tag
+  id: SovietWarehouse
+
+- type: Tag
+  id: SpeedLoaderMagnumImprovised
+
+- type: Tag
+  id: SpeedLoader48Rifle
+
+- type: Tag
+  id: SpeedLoaderShotgun
+
+- type: Tag
+  id: StoveMachineBoard
+
+- type: Tag
+  id: SurgeryCompatibleArmor
+
+- type: Tag
+  id: SwordForged
+
+- type: Tag
+  id: SyndicateJawsOfLife
+
+- type: Tag
+  id: SyndieDungeon
+
+- type: Tag
+  id: Table
+
+- type: Tag
+  id: TheDark
+
+- type: Tag
+  id: ThermiteIgnitor
+
+- type: Tag
+  id: TiderAnvilMats
+
+- type: Tag
+  id: TiderAnvilParts
+
+- type: Tag
+  id: UnDissolvable
+
+- type: Tag
+  id: Vial
+
+- type: Tag
+  id: WallmountMassScannerElectronics
+
+- type: Tag
+  id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.
+
+- type: Tag
+  id: XenosDisasterSurvivorTraitBackground

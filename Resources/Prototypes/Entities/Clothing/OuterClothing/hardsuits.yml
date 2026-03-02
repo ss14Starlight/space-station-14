@@ -994,17 +994,20 @@
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.6
+    damageCoefficient: 0.5 # Starlight-edit
   - type: Pierceable
     level: Metal
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.8
-        Piercing: 0.85
-        Heat: 0.4
-        Caustic: 0.75
+      # Starlight-start
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.55
+        Heat: 0.55
+        Caustic: 0.6
+    staminaModifier: 0.5
+    # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8

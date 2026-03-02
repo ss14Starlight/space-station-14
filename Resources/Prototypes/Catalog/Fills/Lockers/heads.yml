@@ -315,6 +315,7 @@
         presets: #SL
         - Greenshift #SL
         - Sandbox #SL
+    - id: JawsOfLifeMed #Starlight
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -366,7 +367,6 @@
     - id: DoorRemoteResearch
     - id: HandTeleporter
     - id: RubberStampRd
-    - id: RDDiploma #STARLIGHT
     - id: EncryptionKeyMedicalScience # Starlight, steal target
       prob: 0.5 # Starlight
     - id: PrintedDocumentGreenshiftAlert #SL

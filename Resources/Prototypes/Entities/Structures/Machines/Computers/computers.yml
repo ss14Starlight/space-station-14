@@ -479,6 +479,18 @@
       state: med_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
+    # Starlight BEGIN
+    - map: [ "enum.CrewMonitorLayers.Alert" ]
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      state: crew-alert
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.CrewMonitorVisuals.Alert:
+        enum.CrewMonitorLayers.Alert:
+          True: { visible: true }
+          False: { visible: false }
+    # Starlight END
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -494,6 +506,10 @@
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: CrewMonitoringConsole
+    # Starlight START
+    pagingSoundParams:
+      maxDistance: 15 # Stationary consoles have a much longer audio range.
+    # Starlight END
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

@@ -33,8 +33,15 @@ Space-Station 14 has [docs site](https://docs.spacestation14.io/) documentation 
 
 ## License
 
-> [!CAUTION]
-> The repository code is licensed both under MIT - this applies to Space Wizards Federation code - and under modified MIT - this applies to our changes.
+
+
+> [!NOTE]
+> **Relicensing in progress.** The Starlight Fork License (`LICENSE-Starlight.TXT`) was applied to Starlight contributions
+> from **2024-11-04** (commit `84205e38`) through **2026-02-28** (commit `01eff0f7`).
+> This license **remains in effect** for contributions made during that period until explicit relicensing
+> consent is received from the respective authors. Once consent is given, those contributions are relicensed under MIT.
+> All contributions outside of that range are licensed under MIT (`LICENSE.TXT`).
+> Relicensing requests are tracked in [issue #3499](https://github.com/ss14Starlight/space-station-14/issues/3499).
 
 ### Click each banner for further information
 

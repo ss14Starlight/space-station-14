@@ -5,8 +5,10 @@
   objective: roles-antag-dragon-objective
   # Starlight start
   requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 24h
   - !type:RoleTimeRequirement
     role: JobSalvageSpecialist
-    time: 3h
+    time: 8h
   playTimeTracker: AntagDragon
   # Starlight end

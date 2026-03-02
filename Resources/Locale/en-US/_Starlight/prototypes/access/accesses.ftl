@@ -26,3 +26,5 @@ id-card-access-level-salvagelead = Salvage Lead
 id-card-access-level-mining = Mining
 
 id-card-access-level-cadet = Cadet
+
+id-card-access-level-pirate = Pirate

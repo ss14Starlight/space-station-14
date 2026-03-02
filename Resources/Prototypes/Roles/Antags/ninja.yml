@@ -8,9 +8,14 @@
   # Starlight start
   previewStartingGear: SpaceNinjaGear
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Security
+  - !type:OverallPlaytimeRequirement
+    time: 48h
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer # It's better than nothing.
     time: 3h
+  - !type:RoleTimeRequirement
+    role: AntagThief # You are a glorified Thief without Pax.
+    time: 5h
   playTimeTracker: AntagNinja
   # Starlight end
 

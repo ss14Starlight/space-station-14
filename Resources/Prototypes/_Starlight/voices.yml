@@ -1,0 +1,1832 @@
+- type: voice
+  id: colorfingert
+  voice: 0
+  name: tts-voice-name-0
+  sex: Male
+  silicon: false
+  copyright: Colorfinger
+  license: The use of the voice is authorized by the voice holder
+
+- type: voice
+  id: mozillaAu1
+  voice: 1
+  name: tts-voice-name-1
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+  
+- type: voice
+  id: mozillaAu2
+  voice: 2
+  name: tts-voice-name-2
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+  
+- type: voice
+  id: karma
+  voice: 3
+  name: tts-voice-name-3
+  sex: Female
+  silicon: false
+  copyright: Karma
+  license: The use of the voice is authorized by the voice holder
+
+- type: voice
+  id: oliveOffender
+  voice: 4
+  name: tts-voice-name-4
+  sex: Male
+  silicon: false
+  license: The use of the voice is authorized by the voice holder
+
+- type: voice
+  id: felinoid
+  voice: 5
+  name: tts-voice-name-5
+  sex: Unsexed
+  silicon: false
+  license: The use of the voice is authorized by the voice holder
+
+- type: voice
+  id: xoan
+  voice: 7
+  name: tts-voice-name-7
+  sex: Male
+  silicon: false
+  copyright: Xoan
+  license: The use of the voice is authorized by the voice holder
+
+- type: voice
+  id: vikaPvi
+  voice: 8
+  name: tts-voice-name-8
+  sex: Female
+  silicon: false
+  license: The use of the voice is authorized by the voice holder
+
+- type: voice
+  id: piksqu
+  voice: 9
+  name: tts-voice-name-9
+  sex: Male
+  silicon: false
+  copyright: Piksqu
+  license: The use of the voice is authorized by the voice holder
+
+- type: voice
+  id: marcaisse
+  voice: 10
+  name: tts-voice-name-10
+  sex: Male
+  silicon: false
+  copyright: Marcaisse
+  license: The use of the voice is authorized by the voice holder
+
+- type: voice
+  id: slr1
+  voice: 11
+  name: tts-voice-name-11
+  sex: Male
+  silicon: false
+  copyright: Nigel G. Ward and Divette Marco
+  license: CC0-1.0
+
+- type: voice
+  id: slr2
+  voice: 12
+  name: tts-voice-name-12
+  sex: Female
+  silicon: false
+  copyright: Nigel G. Ward and Divette Marco
+  license: CC0-1.0
+
+- type: voice
+  id: slr3
+  voice: 13
+  name: tts-voice-name-13
+  sex: Female
+  silicon: false
+  copyright: Nigel G. Ward and Divette Marco
+  license: CC0-1.0
+
+- type: voice
+  id: slr4
+  voice: 14
+  name: tts-voice-name-14
+  sex: Female
+  silicon: false
+  copyright: Nigel G. Ward and Divette Marco
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu3
+  voice: 15
+  name: tts-voice-name-15
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+  
+- type: voice
+  id: mozillaAu4
+  voice: 16
+  name: tts-voice-name-16
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu5
+  voice: 17
+  name: tts-voice-name-17
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu6
+  voice: 18
+  name: tts-voice-name-18
+  sex: Female
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu7
+  voice: 19
+  name: tts-voice-name-19
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu8
+  voice: 20
+  name: tts-voice-name-20
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu9
+  voice: 21
+  name: tts-voice-name-21
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu10
+  voice: 22
+  name: tts-voice-name-22
+  sex: Female
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu11
+  voice: 23
+  name: tts-voice-name-23
+  sex: Female
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu12
+  voice: 24
+  name: tts-voice-name-24
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu13
+  voice: 25
+  name: tts-voice-name-25
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu14
+  voice: 26
+  name: tts-voice-name-26
+  sex: Female
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu15
+  voice: 27
+  name: tts-voice-name-27
+  sex: Female
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu16
+  voice: 28
+  name: tts-voice-name-28
+  sex: Female
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: ICASSP29
+  voice: 29
+  name: tts-voice-name-29
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US  
+
+- type: voice
+  id: ICASSP30
+  voice: 30
+  name: tts-voice-name-30
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US  
+
+- type: voice
+  id: ICASSP31
+  voice: 31
+  name: tts-voice-name-31
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US  
+
+- type: voice
+  id: ICASSP32
+  voice: 32
+  name: tts-voice-name-32
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US  
+
+- type: voice
+  id: ICASSP33
+  voice: 33
+  name: tts-voice-name-33
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US  
+
+- type: voice
+  id: ICASSP34
+  voice: 34
+  name: tts-voice-name-34
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US  
+
+- type: voice
+  id: ICASSP35
+  voice: 35
+  name: tts-voice-name-35
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US  
+
+- type: voice
+  id: ICASSP36
+  voice: 36
+  name: tts-voice-name-36
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US  
+
+- type: voice
+  id: ICASSP37
+  voice: 37
+  name: tts-voice-name-37
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US  
+
+- type: voice
+  id: ICASSP38
+  voice: 38
+  name: tts-voice-name-38
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US  
+
+- type: voice
+  id: ICASSP39
+  voice: 39
+  name: tts-voice-name-39
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP40
+  voice: 40
+  name: tts-voice-name-40
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP41
+  voice: 41
+  name: tts-voice-name-41
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP42
+  voice: 42
+  name: tts-voice-name-42
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP43
+  voice: 43
+  name: tts-voice-name-43
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP45
+  voice: 45
+  name: tts-voice-name-45
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP46
+  voice: 46
+  name: tts-voice-name-46
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP47
+  voice: 47
+  name: tts-voice-name-47
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP48
+  voice: 48
+  name: tts-voice-name-48
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP49
+  voice: 49
+  name: tts-voice-name-49
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP50
+  voice: 50
+  name: tts-voice-name-50
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP51
+  voice: 51
+  name: tts-voice-name-51
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP52
+  voice: 52
+  name: tts-voice-name-52
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP53
+  voice: 53
+  name: tts-voice-name-53
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP54
+  voice: 54
+  name: tts-voice-name-54
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP55
+  voice: 55
+  name: tts-voice-name-55
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP56
+  voice: 56
+  name: tts-voice-name-56
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP57
+  voice: 57
+  name: tts-voice-name-57
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP58
+  voice: 58
+  name: tts-voice-name-58
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP59
+  voice: 59
+  name: tts-voice-name-59
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP60
+  voice: 60
+  name: tts-voice-name-60
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP61
+  voice: 61
+  name: tts-voice-name-61
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP63
+  voice: 63
+  name: tts-voice-name-63
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP64
+  voice: 64
+  name: tts-voice-name-64
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP65
+  voice: 65
+  name: tts-voice-name-65
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP66
+  voice: 66
+  name: tts-voice-name-66
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP67
+  voice: 67
+  name: tts-voice-name-67
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP68
+  voice: 68
+  name: tts-voice-name-68
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP69
+  voice: 69
+  name: tts-voice-name-69
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP70
+  voice: 70
+  name: tts-voice-name-70
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP71
+  voice: 71
+  name: tts-voice-name-71
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP72
+  voice: 72
+  name: tts-voice-name-72
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP73
+  voice: 73
+  name: tts-voice-name-73
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP74
+  voice: 74
+  name: tts-voice-name-74
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP75
+  voice: 75
+  name: tts-voice-name-75
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP76
+  voice: 76
+  name: tts-voice-name-76
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP77
+  voice: 77
+  name: tts-voice-name-77
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP78
+  voice: 78
+  name: tts-voice-name-78
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP79
+  voice: 79
+  name: tts-voice-name-79
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP80
+  voice: 80
+  name: tts-voice-name-80
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP81
+  voice: 81
+  name: tts-voice-name-81
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP82
+  voice: 82
+  name: tts-voice-name-82
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP83
+  voice: 83
+  name: tts-voice-name-83
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP84
+  voice: 84
+  name: tts-voice-name-84
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP85
+  voice: 85
+  name: tts-voice-name-85
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP86
+  voice: 86
+  name: tts-voice-name-86
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP87
+  voice: 87
+  name: tts-voice-name-87
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP88
+  voice: 88
+  name: tts-voice-name-88
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP89
+  voice: 89
+  name: tts-voice-name-89
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP90
+  voice: 90
+  name: tts-voice-name-90
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP91
+  voice: 91
+  name: tts-voice-name-91
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP92
+  voice: 92
+  name: tts-voice-name-92
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP93
+  voice: 93
+  name: tts-voice-name-93
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP94
+  voice: 94
+  name: tts-voice-name-94
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP95
+  voice: 95
+  name: tts-voice-name-95
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP96
+  voice: 96
+  name: tts-voice-name-96
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP97
+  voice: 97
+  name: tts-voice-name-97
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP98
+  voice: 98
+  name: tts-voice-name-98
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP99
+  voice: 99
+  name: tts-voice-name-99
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP100
+  voice: 100
+  name: tts-voice-name-100
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP101
+  voice: 101
+  name: tts-voice-name-101
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP102
+  voice: 102
+  name: tts-voice-name-102
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP103
+  voice: 103
+  name: tts-voice-name-103
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP104
+  voice: 104
+  name: tts-voice-name-104
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP105
+  voice: 105
+  name: tts-voice-name-105
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP106
+  voice: 106
+  name: tts-voice-name-106
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP107
+  voice: 107
+  name: tts-voice-name-107
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP108
+  voice: 108
+  name: tts-voice-name-108
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP109
+  voice: 109
+  name: tts-voice-name-109
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP110
+  voice: 110
+  name: tts-voice-name-110
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP111
+  voice: 111
+  name: tts-voice-name-111
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP112
+  voice: 112
+  name: tts-voice-name-112
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP113
+  voice: 113
+  name: tts-voice-name-113
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP114
+  voice: 114
+  name: tts-voice-name-114
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP115
+  voice: 115
+  name: tts-voice-name-115
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP116
+  voice: 116
+  name: tts-voice-name-116
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP117
+  voice: 117
+  name: tts-voice-name-117
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP118
+  voice: 118
+  name: tts-voice-name-118
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP119
+  voice: 119
+  name: tts-voice-name-119
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP120
+  voice: 120
+  name: tts-voice-name-120
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP121
+  voice: 121
+  name: tts-voice-name-121
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP122
+  voice: 122
+  name: tts-voice-name-122
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP123
+  voice: 123
+  name: tts-voice-name-123
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP125
+  voice: 125
+  name: tts-voice-name-125
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP126
+  voice: 126
+  name: tts-voice-name-126
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP127
+  voice: 127
+  name: tts-voice-name-127
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP128
+  voice: 128
+  name: tts-voice-name-128
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP129
+  voice: 129
+  name: tts-voice-name-129
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP130
+  voice: 130
+  name: tts-voice-name-130
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP131
+  voice: 131
+  name: tts-voice-name-131
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP132
+  voice: 132
+  name: tts-voice-name-132
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP133
+  voice: 133
+  name: tts-voice-name-133
+  sex: Unsexed
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP134
+  voice: 134
+  name: tts-voice-name-134
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP135
+  voice: 135
+  name: tts-voice-name-135
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP136
+  voice: 136
+  name: tts-voice-name-136
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP137
+  voice: 137
+  name: tts-voice-name-137
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP138
+  voice: 138
+  name: tts-voice-name-138
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP139
+  voice: 139
+  name: tts-voice-name-139
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP140
+  voice: 140
+  name: tts-voice-name-140
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP141
+  voice: 141
+  name: tts-voice-name-141
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP142
+  voice: 142
+  name: tts-voice-name-142
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP143
+  voice: 143
+  name: tts-voice-name-143
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP144
+  voice: 144
+  name: tts-voice-name-144
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP146
+  voice: 146
+  name: tts-voice-name-146
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP147
+  voice: 147
+  name: tts-voice-name-147
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP148
+  voice: 148
+  name: tts-voice-name-148
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP149
+  voice: 149
+  name: tts-voice-name-149
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP150
+  voice: 150
+  name: tts-voice-name-150
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP151
+  voice: 151
+  name: tts-voice-name-151
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP152
+  voice: 152
+  name: tts-voice-name-152
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP153
+  voice: 153
+  name: tts-voice-name-153
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP154
+  voice: 154
+  name: tts-voice-name-154
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP155
+  voice: 155
+  name: tts-voice-name-155
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP156
+  voice: 156
+  name: tts-voice-name-156
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP157
+  voice: 157
+  name: tts-voice-name-157
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP158
+  voice: 158
+  name: tts-voice-name-158
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP159
+  voice: 159
+  name: tts-voice-name-159
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP160
+  voice: 160
+  name: tts-voice-name-160
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP161
+  voice: 161
+  name: tts-voice-name-161
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP162
+  voice: 162
+  name: tts-voice-name-162
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP163
+  voice: 163
+  name: tts-voice-name-163
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: mozillaAu17
+  voice: 164
+  name: tts-voice-name-164
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu18
+  voice: 165
+  name: tts-voice-name-165
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu19
+  voice: 166
+  name: tts-voice-name-166
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu20
+  voice: 167
+  name: tts-voice-name-167
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+  
+- type: voice
+  id: ICASSP163dot5
+  voice: 168
+  name: tts-voice-name-168
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP164
+  voice: 169
+  name: tts-voice-name-169
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP165
+  voice: 170
+  name: tts-voice-name-170
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP166
+  voice: 171
+  name: tts-voice-name-171
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP167
+  voice: 172
+  name: tts-voice-name-172
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP168
+  voice: 173
+  name: tts-voice-name-173
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP169
+  voice: 174
+  name: tts-voice-name-174
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP170
+  voice: 175
+  name: tts-voice-name-175
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP171
+  voice: 176
+  name: tts-voice-name-176
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP172
+  voice: 177
+  name: tts-voice-name-177
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP173
+  voice: 178
+  name: tts-voice-name-178
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP175
+  voice: 180
+  name: tts-voice-name-180
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP176
+  voice: 181
+  name: tts-voice-name-181
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP177
+  voice: 182
+  name: tts-voice-name-182
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP178
+  voice: 183
+  name: tts-voice-name-183
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP179
+  voice: 184
+  name: tts-voice-name-184
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP181
+  voice: 186
+  name: tts-voice-name-186
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP182
+  voice: 187
+  name: tts-voice-name-187
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP183
+  voice: 188
+  name: tts-voice-name-188
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP185
+  voice: 190
+  name: tts-voice-name-190
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP186
+  voice: 191
+  name: tts-voice-name-191
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP187
+  voice: 192
+  name: tts-voice-name-192
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP188
+  voice: 193
+  name: tts-voice-name-193
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP189
+  voice: 194
+  name: tts-voice-name-194
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP190
+  voice: 195
+  name: tts-voice-name-195
+  sex: Female
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP191
+  voice: 196
+  name: tts-voice-name-196
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: ICASSP192
+  voice: 197
+  name: tts-voice-name-197
+  sex: Male
+  silicon: false
+  copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
+  license: CC BY-SA 3.0 US
+
+- type: voice
+  id: mozillaAu21
+  voice: 198
+  name: tts-voice-name-198
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu22
+  voice: 199
+  name: tts-voice-name-199
+  sex: Male
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu23
+  voice: 200
+  name: tts-voice-name-200
+  sex: Female
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu24
+  voice: 201
+  name: tts-voice-name-201
+  sex: Female
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu25
+  voice: 202
+  name: tts-voice-name-202
+  sex: Female
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu26
+  voice: 203
+  name: tts-voice-name-203
+  sex: Female
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu27
+  voice: 204
+  name: tts-voice-name-204
+  sex: Female
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+
+- type: voice
+  id: mozillaAu28
+  voice: 205
+  name: tts-voice-name-205
+  sex: Female
+  silicon: false
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+# -----------------------------------------------------------------------------
+
+- type: voice
+  id: borgColorfingert
+  voice: 1000
+  name: tts-voice-name-0
+  sex: Unsexed
+  silicon: true
+  copyright: Colorfinger
+  license: The use of the voice is authorized by the voice holder
+  
+- type: voice
+  id: borgMozillaAu1
+  voice: 1001
+  name: tts-voice-name-1
+  sex: Unsexed
+  silicon: true
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0
+    
+- type: voice
+  id: borgMozillaAu2
+  voice: 1002
+  name: tts-voice-name-2
+  sex: Unsexed
+  silicon: true
+  copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
+  license: CC0-1.0   
+
+- type: voice
+  id: borgOliveOffender
+  voice: 1004
+  name: tts-voice-name-4
+  sex: Unsexed
+  silicon: true
+  copyright: OliveOffender
+  license: The use of the voice is authorized by the voice holder
+
+- type: voice
+  id: borgTalkBox
+  voice: 1005
+  name: tts-voice-name-1005
+  sex: Unsexed
+  silicon: true
+  license: The use of the voice is authorized by the voice holder
+
+- type: voice
+  id: borgXoan
+  voice: 1007
+  name: tts-voice-name-7
+  sex: Male
+  silicon: true
+  copyright: Xoan
+  license: The use of the voice is authorized by the voice holder

@@ -10,8 +10,8 @@ using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Pinpointer;
 using Content.Server.Silicons.StationAi;
 using Robust.Server.GameObjects;
-using Robust.Shared.Log; // Starlight
 using Content.Shared.Silicons.StationAi; // Starlight
+using Robust.Shared.Audio.Systems; // Starlight
 using Robust.Shared.Map; // Starlight
 using Robust.Shared.Timing; // Starlight
 
@@ -23,6 +23,8 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly StationAiSystem _stationAiSystem = default!; // Starlight
     [Dependency] private readonly IGameTiming _gameTiming = default!; // Starlight
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!; // Starlight
+    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!; // Starlight
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
 
@@ -46,6 +48,12 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         var consoles = EntityQueryEnumerator<CrewMonitoringConsoleComponent>();
         while (consoles.MoveNext(out var id, out var console))
         {
+            // Clear alert visuals after timeout.
+            if (TryComp<AppearanceComponent>(id, out var appearance) &&
+                _appearanceSystem.TryGetData(id, CrewMonitorVisuals.Alert, out bool alertShown, appearance) && alertShown &&
+                _gameTiming.CurTime >= console.PagingVisualsTimeoutAt)
+                _appearanceSystem.SetData(id, CrewMonitorVisuals.Alert, false);
+
             if (console.LastInterfaceUpdate + console.InterfaceUpdateRate > _gameTiming.CurTime)
                 return;
             
@@ -68,6 +76,14 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
         if (command != DeviceNetworkConstants.CmdUpdatedState)
             return;
+        
+        // Starlight START
+        if (payload.ContainsKey(SuitSensorConstants.NET_PAGING_SINCE)) // Branch off for custom packet.
+        {
+            OnPagingPacketReceived(uid, component, args);
+            return;
+        }
+        // Starlight END
 
         if (!payload.TryGetValue(SuitSensorConstants.NET_STATUS_COLLECTION, out Dictionary<string, SuitSensorStatus>? sensorStatus))
             return;
@@ -75,6 +91,48 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         component.ConnectedSensors = sensorStatus;
         component.LastSensorDataReceivedAt = _gameTiming.CurTime; // Starlight
         UpdateUserInterface(uid, component);
+    }
+    
+    /// <summary>
+    ///     STARLIGHT: Handle a paging alert packet sent by a crew monitoring server.    
+    /// </summary>
+    private void OnPagingPacketReceived(EntityUid uid, CrewMonitoringConsoleComponent console,
+        DeviceNetworkPacketEvent args)
+    {
+        if (!console.PagingEnabled)
+            return;
+        
+        // Battery-powered devices need enough power to receive a page. (Returns true if not battery powered.)
+        if (!_cell.TryUseActivatableCharge(uid))
+            return;
+        
+        var payload = args.Data;
+        if (!payload.TryGetValue(SuitSensorConstants.NET_PAGING_SINCE, out TimeSpan? since) ||
+            !payload.TryGetValue(SuitSensorConstants.NET_JOB_DEPARTMENTS, out List<string>? jobDepartments))
+            return;
+        
+        // Check if this event applies to this console based on the filters.
+        if (TryComp<CrewMonitoringFilterComponent>(uid, out var filter))
+        {
+            // Wounded-or-dead check unnecessary since paging only pertains to those in the first place.
+            
+            // If department filter is specified and doesn't match, we will not alert.
+            if (filter.ShownDepartments.Count > 0 && !filter.ShownDepartments.Any(dept => jobDepartments.Contains(dept)))
+                return;
+        }
+        
+        // If the console was opened since this person became crit/dead, we have no need to notify the user again.
+        if (console.LastInterfaceUpdate > since)
+            return;
+        
+        // Play sound either locally (e.g. for Station AI) or in area.
+        if (console.PagingSoundLocal)
+            _audioSystem.PlayLocal(console.PagingSound, uid, uid, console.PagingSoundParams);
+        else
+            _audioSystem.PlayPvs(console.PagingSound, uid, console.PagingSoundParams);
+        
+        _appearanceSystem.SetData(uid, CrewMonitorVisuals.Alert, true);
+        console.PagingVisualsTimeoutAt = _gameTiming.CurTime + console.PagingVisualsTimeoutDelay;
     }
 
     private void OnUIOpened(EntityUid uid, CrewMonitoringConsoleComponent component, BoundUIOpenedEvent args)
@@ -89,10 +147,16 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
             return;
-        component.LastInterfaceUpdate = _gameTiming.CurTime; // Starlight
 
         if (!_uiSystem.IsUiOpen(uid, CrewMonitoringUIKey.Key))
             return;
+        
+        // Starlight START
+        component.LastInterfaceUpdate = _gameTiming.CurTime;
+        
+        // Reset alert visuals if the UI is viewed by anyone.
+        _appearanceSystem.SetData(uid, CrewMonitorVisuals.Alert, false);
+        // Starlight END
 
         // The grid must have a NavMapComponent to visualize the map in the UI
         var xform = Transform(uid);

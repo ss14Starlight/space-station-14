@@ -364,7 +364,7 @@
     minPlayers: 15
   - type: RevolutionaryRule
   - type: SpecialLobbyContent
-    music: "/Audio/_Starlight/Music/Lobby/Liberation.ogg"
+    music: "/Audio/_Starlight/Lobby/Liberation.ogg"
     background: RevClown
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn

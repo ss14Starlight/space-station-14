@@ -1,0 +1,71 @@
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelRoboticist
+  name: roboticist satchel
+  description: Useful for holding borg parts.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/roboticist.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelCargoSenior
+  name: senior courier satchel
+  description: A robust satchel for those who compartmentalize their bags exactly the same every shift.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/cargosenior.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelChemistrySenior
+  name: senior chemistry satchel
+  description: A sterile satchel with vibrant, senior chemist colors.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/chemistrysenior.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseSecurityContraband]
+  id: ClothingBackpackSatchelCorpsman
+  name: corpsman's satchel
+  description: Has more than enough pockets to organize everything.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/corpsman.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseBlueShieldContraband]
+  id: ClothingBackpackSatchelBlueShield
+  name: blue shield officer satchel
+  description: Useful for holding everything a speedy Blue Shield Officer needs!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/blueshield.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCentcommContraband]
+  id: ClothingBackpackSatchelCentcomm
+  name: Central Command Operator Satchel
+  description: A rather stylish satchel plated with real gold, issued to Central Command Operators.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/Centcomm.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseSyndicateContraband]
+  id: ClothingBackpackSatchelSyndicate
+  name: syndicate satchel
+  description: Ask not what the syndicate satchel can do for you, but rather, what can't it do.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/syndicate.rsi
+  - type: Storage
+    grid:
+    - 0,0,1,3
+    - 3,0,7,3
+    - 9,0,10,3
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: StaticPrice
+    price: 1000

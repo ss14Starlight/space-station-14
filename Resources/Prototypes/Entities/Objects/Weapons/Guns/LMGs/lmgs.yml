@@ -144,9 +144,6 @@
             - CartridgeLightRifle
   - type: HeldSpeedModifier
   - type: Gun
-    minAngle: 24
-    maxAngle: 35
-    fireRate: 6
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/l6.ogg
       params:

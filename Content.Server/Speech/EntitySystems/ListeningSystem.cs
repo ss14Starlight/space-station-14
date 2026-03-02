@@ -23,7 +23,7 @@ public sealed class ListeningSystem : EntitySystem
 
     // Starlight edit Start
     private void OnSpeak(EntitySpokeEvent ev) =>
-        PingListeners(ev.Source, ev.Message, ev.IsWhisper);
+        PingListeners(ev.Source, ev.Message.Text, ev.IsWhisper);
     private void OnLooc(EntityLoocEvent ev) =>
         PingLoocListeners(ev.Source, ev.Message);
     // Starlight End

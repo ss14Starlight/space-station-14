@@ -1,11 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Server.Atmos.EntitySystems; // Starlight: DockPipeSystem
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Examine;
 using Content.Shared.NodeContainer;
 using Content.Shared.NodeContainer.NodeGroups;
 using JetBrains.Annotations;
+using Content.Server._Starlight.Atmos.EntitySystems; // Starlight: PipeDockingSystem
 
 namespace Content.Server.NodeContainer.EntitySystems
 {
@@ -17,7 +17,7 @@ namespace Content.Server.NodeContainer.EntitySystems
     public sealed class NodeContainerSystem : SharedNodeContainerSystem
     {
         [Dependency] private readonly NodeGroupSystem _nodeGroupSystem = default!;
-        [Dependency] private readonly DockPipeSystem _dockPipeSystem = default!; // Starlight: DockPipeSystem
+        [Dependency] private readonly PipeDockingSystem _pipeDockingSystem = default!;// Starlight: PipeDockingSystem
         private EntityQuery<NodeContainerComponent> _query;
 
         public override void Initialize()
@@ -143,6 +143,8 @@ namespace Content.Server.NodeContainer.EntitySystems
 
         private void OnShutdownEvent(EntityUid uid, NodeContainerComponent component, ComponentShutdown args)
         {
+            _pipeDockingSystem.RemoveDockConnections(uid); // Starlight: PipeDockingSystem
+
             foreach (var node in component.Nodes.Values)
             {
                 _nodeGroupSystem.QueueNodeRemove(node);
@@ -167,12 +169,16 @@ namespace Content.Server.NodeContainer.EntitySystems
                 else
                     _nodeGroupSystem.QueueNodeRemove(node);
             }
-            // Starlight Start: DockPipeSystem
+            // Starlight Start: PipeDockingSystem
             if (args.Anchored)
             {
-                _dockPipeSystem.TryConnectDockedPipe(uid);
+                _pipeDockingSystem.TryConnectDockedPipe(uid);
             }
-            // Starlight End
+            else
+            {
+                _pipeDockingSystem.RemoveDockConnections(uid);
+            }
+            // Starlight End: PipeDockingSystem
         }
 
         private void OnReAnchor(EntityUid uid, NodeContainerComponent component, ref ReAnchorEvent args)

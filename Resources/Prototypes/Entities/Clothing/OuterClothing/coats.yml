@@ -330,7 +330,7 @@
   name: research director lab coat
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ ClothingOuterStorageBase, AllowSuitStorageClothing ]
   id: ClothingOuterCoatPirate
   name: pirate garb
   description: Yarr.

@@ -1,0 +1,23 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseTerrorSpiderObjective
+  components:
+  - type: Objective
+    difficulty: 1.5
+    issuer: objective-issuer-mind
+
+- type: entity
+  parent: BaseTerrorSpiderObjective
+  id: EvolveObjective
+  components:
+  - type: Objective
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_spider.rsi
+      state: evolve
+  - type: NumberObjective
+    min: 0
+    max: 99
+    title: objective-condition-evolve-title
+    description: objective-condition-evolve-description
+  - type: EvolveCondition

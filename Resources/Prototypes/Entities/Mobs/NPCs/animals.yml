@@ -1342,6 +1342,14 @@
   - type: Inventory
     templateId: monkey
     speciesId: monkey
+  # Starlight Start
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Animals/displacements.rsi
+            state: jumpsuit-monkey
+  # Starlight End
   - type: Deathgasp
     prototype: MonkeyDeathgasp
   - type: Cuffable
@@ -1688,6 +1696,15 @@
     name: ghost-role-information-kobold-name
     description: ghost-role-information-kobold-description
     rules: ghost-role-information-nonantagonist-rules
+  # Starlight Start
+  - type: Inventory
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Animals/displacements.rsi
+            state: jumpsuit-kobold
+  # Starlight End
 
 - type: entity
   name: kobold

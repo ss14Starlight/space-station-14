@@ -7,7 +7,7 @@
   guides: [ Traitors ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 3h # Starlight
+    time: 24h # Starlight, mostly just to ensure you know basic controls.
   playTimeTracker: AntagTraitor # Starlight
 
 - type: antag
@@ -19,7 +19,7 @@
   guides: [ Traitors ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 3h # Starlight
+    time: 24h # Starlight, mostly just to ensure you know basic controls.
   playTimeTracker: AntagTraitor # Starlight
 
 # Syndicate Operative Outfit - Monkey

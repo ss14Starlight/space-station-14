@@ -6,7 +6,8 @@ using Content.Shared.Chat.Prototypes;
 using Content.Shared.Puppet;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Muting;
-using Content.Server._Starlight.Language; // Starlight
+using Content.Server._Starlight.Language;
+using Content.Server._Starlight.Speech.EntitySystems; // Starlight
 
 namespace Content.Server.Speech.Muting
 {

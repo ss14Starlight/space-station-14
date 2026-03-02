@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by TacoLlama (github), in-hands modified by SeamLesss (github) from Objects/Misc/qm_clipboard.rsi/inhand-(left/right), in-hands further modified for Paramed by wonderfulnewworld (github)",
+    "copyright": "Created by TacoLlama (github), in-hands modified by SeamLesss (github) from Objects/Misc/qm_clipboard.rsi/inhand-(left/right), in-hands further modified for Paramed by wonderfulnewworld (github), separated into frame/powered/alert by redmushie (github,discord)",
     "states": [
         {
             "name": "scanner",
@@ -30,6 +30,32 @@
         {
             "name": "icon",
             "directions": 1
+        },
+        {
+            "name": "frame",
+            "directions": 1
+        },
+        {
+            "name": "powered",
+            "directions": 1,
+            "delays": [
+                [
+                    0.4,
+                    0.4,
+                    0.4,
+                    0.4
+                ]
+            ]
+        },
+        {
+            "name": "alert",
+            "directions": 1,
+            "delays": [
+                [
+                    0.3,
+                    0.3
+                ]
+            ]
         }
     ]
 }

@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/24/2026 01:42:49
-  entityCount: 38950
+  time: 02/27/2026 19:31:10
+  entityCount: 38956
 maps:
 - 1
 grids:
@@ -11472,7 +11472,7 @@ entities:
           -10,-6:
             0: 30583
           -10,-5:
-            0: 28791
+            0: 28799
           -10,-9:
             0: 46064
           -10,-4:
@@ -172958,6 +172958,38 @@ entities:
     components:
     - type: Transform
       pos: -44.5,32.5
+      parent: 2
+- proto: SpawnPointPerformer
+  entities:
+  - uid: 38951
+    components:
+    - type: Transform
+      pos: -12.5,7.5
+      parent: 2
+  - uid: 38952
+    components:
+    - type: Transform
+      pos: 13.5,7.5
+      parent: 2
+  - uid: 38953
+    components:
+    - type: Transform
+      pos: -46.5,40.5
+      parent: 2
+  - uid: 38954
+    components:
+    - type: Transform
+      pos: -57.5,41.5
+      parent: 2
+  - uid: 38955
+    components:
+    - type: Transform
+      pos: -10.5,0.5
+      parent: 2
+  - uid: 38956
+    components:
+    - type: Transform
+      pos: 12.5,-0.5
       parent: 2
 - proto: SpawnPointPsychologist
   entities:

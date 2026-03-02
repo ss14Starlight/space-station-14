@@ -42,6 +42,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using ItemToggleMeleeWeaponComponent = Content.Shared.Item.ItemToggle.Components.ItemToggleMeleeWeaponComponent;
+using Content.Shared._Starlight.Combat.Disarming; // Starlight
 
 namespace Content.Shared.Weapons.Melee;
 
@@ -881,6 +882,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         {
             return false;
         }
+        
+        if (HasComp<NoDisarmComponent>(target)) return false; // Starlight
 
         // Need hands or to be able to be shoved over.
         if (!TryComp<HandsComponent>(target, out var targetHandsComponent))

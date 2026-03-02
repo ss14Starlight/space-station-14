@@ -68,6 +68,11 @@
   - AcousticGuitarInstrument
   - TrumpetInstrument
   - RoadCone
+  - MaidOutfit
+  - MaidGloves
+  - MaidOutfitTactical
+  - MaidHeadbandTactical
+  - TacticalMaidGloves
   - CoderSocks
   - CatEars
   - BunnyEars
@@ -336,6 +341,7 @@
   - TatteredClothes
   - TieDye
   - VintageClothes
+  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup
@@ -416,6 +422,7 @@
   - BartenderJumpsuit
   - BartenderJumpskirt
   - BartenderJumpsuitPurple
+  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup
@@ -465,6 +472,7 @@
   loadouts:
   - ChefJumpsuit
   - ChefJumpskirt
+  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup
@@ -709,6 +717,11 @@
   - ClownSkirt
   - ClownFormalJumpsuit # Starlight
   - ClownFormalJumpskirt # Starlight
+  - ClownClownJumpsuit # Starlight
+  - ClownClownJumpskirt # Starlight
+  - ClownCandyJumpskirt # Starlight
+  - ClownStripedJumpskirt # Starlight
+  - ClownSpottedJumpskirt # Starlight
   - JesterSuit
   - JesterAltSuit
 
