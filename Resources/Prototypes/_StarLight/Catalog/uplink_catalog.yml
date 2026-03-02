@@ -419,6 +419,15 @@
         tags:
           - NukeOpsUplink
 
+- type: listing
+  id: UplinkClothingMurderShocks
+  name: uplink-clothing-murder-socks-name
+  description: uplink-clothing-murder-socks-desc
+  productEntity: ClothingUnderSocksMurder
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkPointless
 
 # Allies
 - type: listing

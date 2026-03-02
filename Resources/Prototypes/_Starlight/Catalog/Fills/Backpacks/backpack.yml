@@ -33,6 +33,5 @@
           children:
             - id: ClothingOuterMaidArmorRaid
             - id: ClothingHeadHelmetRaid
-            - id: ClothingMaskGasSyndicate
             - id: ClothingHandsGlovesCombat
-            - id: ClothingUnderSocksCoder
+            - id: ClothingUnderSocksMurder
