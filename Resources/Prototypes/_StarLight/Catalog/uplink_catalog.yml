@@ -403,6 +403,23 @@
   categories:
   - UplinkWearables
 
+- type: listing
+  id: UplinkClothingOuterArmorElegantRaid
+  name: uplink-syndie-elegant-raid-name
+  description: uplink-syndie-elegant-raid-desc
+  icon: { sprite: /Textures/_Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi, state: icon }
+  productEntity: ClothingBackpackSyndicateElegantRaidBundle
+  cost:
+    Telecrystal: 10
+  categories:
+    - UplinkPointless
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+
 # Allies
 - type: listing
   id: UplinkSyndicateBorgi
