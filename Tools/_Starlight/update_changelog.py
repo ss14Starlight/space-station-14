@@ -6,10 +6,12 @@ from github import Github
 
 print("Environment Variables:")
 changelog_path = os.getenv("CHANGELOG_FILE_PATH")
+admin_changelog_path = os.getenv("ADMIN_CHANGELOG_FILE_PATH")
 pr_number = os.getenv("PR_NUMBER")
 repo_name = os.getenv("GITHUB_REPOSITORY")
 github_token = os.getenv("GITHUB_TOKEN")
 print(f"CHANGELOG_FILE_PATH: {changelog_path}")
+print(f"ADMIN_CHANGELOG_FILE_PATH: {admin_changelog_path}")
 print(f"PR_NUMBER: {pr_number}")
 print(f"GITHUB_REPOSITORY: {repo_name}")
 print(f"GITHUB_TOKEN is set: {bool(github_token)}")
@@ -59,6 +61,40 @@ def parse_changelog(pr_body, pr_author):
 
     return blocks
 
+
+def parse_admin_changelog(pr_body, pr_author):
+    blocks = []
+    lines = pr_body.splitlines()
+
+    i = 0
+    while i < len(lines):
+        line = lines[i].strip()
+
+        if line.startswith(":admincl:"):
+            author_raw = line.replace(":admincl:", "").strip()
+            author = author_raw if author_raw else pr_author
+            i += 1
+
+            changes = []
+            while i < len(lines) and not lines[i].strip().startswith(":cl:"):
+                change_match = re.match(r"-\s+(add|remove|tweak|fix):\s+(.+)", lines[i].strip())
+                if change_match:
+                    changes.append({
+                        "type": change_match.group(1).capitalize(),
+                        "message": change_match.group(2).strip()
+                    })
+                i += 1
+
+            if changes:
+                blocks.append({
+                    "author": author,
+                    "changes": changes
+                })
+        else:
+            i += 1
+
+    return blocks
+
 def get_last_id(changelog_data):
     if not changelog_data or "Entries" not in changelog_data or not changelog_data["Entries"]:
         return 0
@@ -73,14 +109,15 @@ def update_changelog():
     cleaned_body = remove_comments(pr.body)
     print("Cleaned PR Body:", repr(cleaned_body))
 
-    if ":cl:" in cleaned_body:
-        print("Found ':cl:' in PR body after removing comments.")
+    if ":cl:" or ":admincl:" in cleaned_body:
+        print("Found ':cl:' or ':admincl: in PR body after removing comments.")
         merge_time = pr.merged_at
         blocks = parse_changelog(cleaned_body, pr.user.login)
+        adminblocks = parse_admin_changelog(cleaned_body, pr.user.login)
 
         print("Parsed entries:", blocks)
 
-        if not blocks:
+        if not blocks and not adminblocks:
             print("No changelog entries found after parsing.")
             return
 
@@ -91,6 +128,15 @@ def update_changelog():
         else:
             print(f"Changelog file does not exist and will be created at {changelog_path}")
             changelog_data = {"Entries": []}
+
+        if os.path.exists(admin_changelog_path):
+            print(f"Admin changelog file exists at {changelog_path}")
+            with open(changelog_path, "r", encoding='utf-8') as file:
+                admin_changelog_data = yaml.safe_load(file) or {"Entries": []}
+        else:
+            print(f"Admin changelog file does not exist and will be created at {changelog_path}")
+            admin_changelog_data = {"Entries": []}
+
         calculatedID = (int(pr_number) * 100)
         for i, block in enumerate(blocks, start=1):
             #shift PR number up two digits
@@ -105,14 +151,32 @@ def update_changelog():
             }
             changelog_data["Entries"].append(changelog_entry)
 
+        for i, block in enumerate(adminblocks, start=1):
+            #shift PR number up two digits
+            #add current ID to it
+            # e.g., PR number 123 -> calculatedID = (123 * 100) = 12300
+            changelog_entry = {
+                "author": block["author"],
+                "changes": block["changes"],
+                "id": calculatedID + i,
+                "time": merge_time.isoformat(timespec='microseconds'),
+                "url": f"https://github.com/{repo_name}/pull/{pr_number}"
+            }
+            admin_changelog_data["Entries"].append(changelog_entry)
+
         os.makedirs(os.path.dirname(changelog_path), exist_ok=True)
 
         with open(changelog_path, "w", encoding='utf-8') as file:
             yaml.dump(changelog_data, file, allow_unicode=True)
             file.write('\n')
         print(f"Changelog updated and written to {changelog_path}")
+
+        with open(admin_changelog_path, "w", encoding='utf-8') as file:
+            yaml.dump(changelog_data, file, allow_unicode=True)
+            file.write('\n')
+        print(f"Admin changelog updated and written to {admin_changelog_path}")
     else:
-        print("No ':cl:' tag found in PR body after removing comments.")
+        print("No ':cl:' or ':admincl:' tag found in PR body after removing comments.")
         return
 
 if __name__ == "__main__":
