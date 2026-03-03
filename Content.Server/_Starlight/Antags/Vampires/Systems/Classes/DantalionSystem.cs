@@ -34,6 +34,7 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Prototypes;
 using Content.Server.EUI;
+using Content.Server.Roles;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -70,6 +71,7 @@ public sealed class DantalionSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly EuiManager _euiMan = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly RoleSystem _role = default!;
 
     public override void Initialize()
     {
@@ -114,7 +116,11 @@ public sealed class DantalionSystem : EntitySystem
             if (thrall.HolyWaterConsumed >= thrall.HolyWaterToBreakFree)
             {
                 _popup.PopupEntity(Loc.GetString("vampire-thrall-holy-water-freed"), uid, uid, PopupType.Medium);
-                RemComp<VampireThrallComponent>(uid);
+                //RemComp<VampireThrallComponent>(uid); shouldn't be needed anymore TODO validate
+                //TODO add code to remove objectives as removing the component is not enough
+                // remove their antag role
+                //_role.MindRemoveRole<VampireThrallComponent>(uid);
+                ReleaseThrall(thrall.Master, uid)
             }
         }
     }
@@ -229,7 +235,7 @@ public sealed class DantalionSystem : EntitySystem
 
         dantalion.Thralls.Add(target);
         dantalion.ThrallSlotsUsed++;
-
+        
         TryAssignThrallObeyObjective(uid, target);
 
         if (TryComp<CollectiveMindComponent>(target, out var cmComp))
@@ -241,12 +247,17 @@ public sealed class DantalionSystem : EntitySystem
     }
 
     private void TryAssignThrallObeyObjective(EntityUid master, EntityUid thrall)
-    {
+    {        
         if (!_mind.TryGetMind(thrall, out var thrallMindId, out var thrallMind)
             || !_mind.TryGetMind(master, out var masterMindId, out _))
             return;
+        
+        //TODO add code that marks them as an antag in admin view. Look at "AntagOnSignSystem.cs" or "ActionAddAntag.cs" maybe to add this?
+        _role.MindAddRole(thrallMindId, "MindRoleThrall");
+        //END TODO
 
-        var objective = _objectives.TryCreateObjective(thrallMindId, thrallMind, ThrallObeyMasterObjectiveId);
+        //Pretty sure this is not needed if MindAddRole works as it seems to with revs TODO validate
+        //var objective = _objectives.TryCreateObjective(thrallMindId, thrallMind, ThrallObeyMasterObjectiveId);
         if (objective == null)
             return;
         
@@ -254,8 +265,9 @@ public sealed class DantalionSystem : EntitySystem
         if (_player.TryGetSessionById(thrallMind.UserId, out var session))
             _euiMan.OpenEui(new VampireThrallEui(), session);
 
-        _targetObjectives.SetTarget(objective.Value, masterMindId);
-        _mind.AddObjective(thrallMindId, thrallMind, objective.Value);
+        //Pretty sure this is not needed if MindAddRole works as it seems to with revs TODO validate
+        //_targetObjectives.SetTarget(objective.Value, masterMindId);
+        //_mind.AddObjective(thrallMindId, thrallMind, objective.Value);
     }
 
     private void OnThrallShutdown(EntityUid uid, VampireThrallComponent component, ComponentShutdown args)
@@ -282,15 +294,24 @@ public sealed class DantalionSystem : EntitySystem
             ReleaseThrall(uid, component, thrall);
     }
 
-    private void ReleaseThrall(EntityUid master, DantalionComponent component, EntityUid thrall)
-    {
-        if (!TryComp<VampireThrallComponent>(thrall, out var thrallComp) || thrallComp.Master != master)
-        {
-            component.Thralls.Remove(thrall);
-            return;
-        }
+    //rewrote to simplify TODO validate
+    //private void ReleaseThrall(EntityUid master, DantalionComponent component, EntityUid thrall)
+    //{
+        //if (!TryComp<VampireThrallComponent>(thrall, out var thrallComp) || thrallComp.Master != master)
+        //{
+        //    component.Thralls.Remove(thrall);
+        //    return;
+        //}
+        
+        //RemComp<VampireThrallComponent>(thrall);
 
-        RemComp<VampireThrallComponent>(thrall);
+        //if (TryComp<CollectiveMindComponent>(thrall, out var cmComp))
+        //    _collectiveMind.UpdateCollectiveMind(thrall, cmComp);
+    //}
+
+    private void ReleaseThrall(EntityUid master, EntityUid thrall)
+    {
+        _role.MindRemoveRole<VampireThrallComponent>(thrall);
 
         if (TryComp<CollectiveMindComponent>(thrall, out var cmComp))
             _collectiveMind.UpdateCollectiveMind(thrall, cmComp);
