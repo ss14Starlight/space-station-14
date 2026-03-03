@@ -39,7 +39,7 @@ if not changelog_without_comments:
     sys.exit(1)
 
 # Check for :cl: command
-if ":cl:" not in changelog_without_comments:
+if ":cl:" or ":admincl:" not in changelog_without_comments:
     print("::error::Changelog is missing the :cl: command")
     sys.exit(1)
 
@@ -47,9 +47,10 @@ lines = changelog_without_comments.splitlines()
 
 # --- Check that after :cl: there is a non-empty author ---
 cl_lines = [line for line in lines if line.strip().startswith(':cl:')]
+cl_lines += [line for line in lines if line.strip().startswith(':admincl:')]
 
 if not cl_lines:
-    print("::error::You must specify at least one ':cl:'")
+    print("::error::You must specify at least one ':cl:' or ':admincl:'")
     sys.exit(1)
 
 # --- Check for valid tags ---
