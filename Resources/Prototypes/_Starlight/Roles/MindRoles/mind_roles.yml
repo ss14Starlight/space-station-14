@@ -140,6 +140,17 @@
 
 - type: entity
   parent: BaseMindRoleAntag
+  id: MindRoleThrall
+  name: roles-antag-thrall-name
+  components:
+  - type: MindRole
+    antagonist: true
+    objective: roles-antag-thrall-objective
+    roleType: MindControled
+  - type: ThrallRole
+
+- type: entity
+  parent: BaseMindRoleAntag
   id: MindRoleTerminator
   name: Terminator Role
   components:
