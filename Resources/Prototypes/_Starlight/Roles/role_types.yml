@@ -17,9 +17,3 @@
   name: role-type-corporate-aligned-name
   color: '#134975'
   symbol: "🗡" # Should never be antag, but just in case.
-
-- type: roleType
-  id: MindControled
-  name: role-type-mind-controlled-name
-  color: '#d82000'
-  symbol: "🧠"
