@@ -1,0 +1,44 @@
+- type: entity
+  abstract: true
+  parent: AirSensorBase
+  id: AirSensorNoLowerBoundBase
+  suffix: NoLowerBounds
+  components:
+  - type: AtmosMonitor
+    temperatureThresholdId: stationTemperatureNoLowerBound
+    pressureThresholdId: stationPressureNoLowerBound
+    gasThresholdPrototypes:
+      Oxygen: stationOxygenNoLowerBound
+      Nitrogen: ignore
+      CarbonDioxide: stationCO2
+      Plasma: stationPlasma
+      Tritium: stationTritium
+      WaterVapor: stationWaterVapor
+      Ammonia: stationAmmonia
+      NitrousOxide: stationNO
+      Frezon: danger
+      # Funkystation Start: Funky atmos - /tg/ gases
+      BZ: stationBZ
+      Healium: stationHealium
+      Nitrium: voxNitrium
+      Pluoxium: stationPluoxium
+      Hydrogen: danger
+      HyperNoblium: stationHyperNoblium
+      ProtoNitrate: danger
+      Zauker: danger
+      Halon: voxHalon
+      Helium: stationHelium
+      AntiNoblium: danger
+      # Funkystation End: Funky atmos - /tg/ gases
+
+- type: entity
+  parent: [AirSensorNoLowerBoundBase, AirSensor]
+  id: AirSensorNoLowerBound
+
+# air alarm proto with auto: false to prevent the automatic switching of modes overriding the default values
+- type: entity
+  parent: AirAlarm
+  id: AirAlarmNoLowerBound
+  suffix: NoLowerBounds
+  components:
+  - type: AirAlarm

@@ -125,3 +125,28 @@
     threshold: 0.8
   lowerWarnAround: !type:AlarmThresholdSetting
     threshold: 1.1
+
+# Starlight Start
+# For air alarms where spacing is ok, but should otherwise be equivalent to station atmos
+- type: alarmThreshold
+  id: stationTemperatureNoLowerBound
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 393.15 # T20C + 200
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.8
+
+- type: alarmThreshold
+  id: stationPressureNoLowerBound
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 550 # HazardHighPressure from Atmospherics.cs
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.7 # 385 kPa, WarningHighPressure from Atmospherics.cs
+
+# For gas concentrations, threshold=0.1 means 10%
+- type: alarmThreshold
+  id: stationOxygenNoLowerBound
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.45 # Starlight: Was 30% o2, now 45% o2.
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.8 # Starlight: Was 0.8x, now 0.8x. Warning triggers >=36% oxygenation.
+# Starlight End
