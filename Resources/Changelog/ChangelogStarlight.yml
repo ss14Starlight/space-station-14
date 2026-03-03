@@ -33241,5 +33241,25 @@ Entries:
   id: 357501
   time: '2026-03-03T12:30:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3575
+- author: CawsForConcern
+  changes:
+  - message: Abductor's 'return to ship' action is now interrupted by damage.
+    type: Tweak
+  - message: Abductor's 'return to ship' action cooldown reduced from 30 seconds to
+      5 seconds.
+    type: Tweak
+  - message: Dead abductor now can be marked for teleport.
+    type: Tweak
+  id: 357601
+  time: '2026-03-03T13:59:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3576
+- author: CawsForConcern
+  changes:
+  - message: (Prism) Cargo shuttle APC split into two LV networks to prevent the APC
+      from being overloaded at roundstart.
+    type: Fix
+  id: 357701
+  time: '2026-03-03T14:13:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3577
 Order: -1
 

@@ -4,6 +4,70 @@
   ruleEntry: true
   text: "/ServerInfo/Guidebook/ServerRules/StarlightRules.xml"
 
+- type: guideEntry
+  id: StarlightLRPRuleset
+  name: guide-entry-rules
+  ruleEntry: true
+  text: "/ServerInfo/_StarLight/Guidebook/ServerRules/StarlightLRPRules.xml"
+
+# LRP Rules
+
+- type: guideEntry
+  id: RuleLRP2
+  name: guide-entry-sl-rule-2
+  ruleEntry: true
+  priority: 2
+  text: "/ServerInfo/_StarLight/Guidebook/ServerRules/RuleLRP2.xml"
+
+- type: guideEntry
+  id: RuleLRP3
+  name: guide-entry-sl-rule-3
+  ruleEntry: true
+  priority: 3
+  text: "/ServerInfo/_StarLight/Guidebook/ServerRules/RuleLRP3.xml"
+
+- type: guideEntry
+  id: RuleLRP4
+  name: guide-entry-sl-rule-4
+  ruleEntry: true
+  priority: 4
+  text: "/ServerInfo/_StarLight/Guidebook/ServerRules/RuleLRP4.xml"
+
+- type: guideEntry
+  id: RuleLRP5
+  name: guide-entry-sl-rule-5
+  ruleEntry: true
+  priority: 5
+  text: "/ServerInfo/_StarLight/Guidebook/ServerRules/RuleLRP5.xml"
+
+- type: guideEntry
+  id: RuleLRP6
+  name: guide-entry-sl-rule-6
+  ruleEntry: true
+  priority: 6
+  text: "/ServerInfo/_StarLight/Guidebook/ServerRules/RuleLRP6.xml"
+
+- type: guideEntry
+  id: RuleLRP7
+  name: guide-entry-sl-rule-7
+  ruleEntry: true
+  priority: 7
+  text: "/ServerInfo/_StarLight/Guidebook/ServerRules/RuleLRP7.xml"
+
+- type: guideEntry
+  id: RuleLRP8
+  name: guide-entry-sl-rule-8
+  ruleEntry: true
+  priority: 8
+  text: "/ServerInfo/_StarLight/Guidebook/ServerRules/RuleLRP8.xml"
+
+- type: guideEntry
+  id: RuleLRP9
+  name: guide-entry-sl-rule-9
+  ruleEntry: true
+  priority: 9
+  text: "/ServerInfo/_StarLight/Guidebook/ServerRules/RuleLRP9.xml"
+
 # Rules
 
 - type: guideEntry
