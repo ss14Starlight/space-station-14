@@ -145,8 +145,8 @@
   components:
   - type: MindRole
     antagonist: true
-    objective: roles-antag-thrall-objective
-    roleType: MindControled
+    roleType: TeamAntagonist
+    subtype: role-subtype-thrall
   - type: ThrallRole
 
 - type: entity
