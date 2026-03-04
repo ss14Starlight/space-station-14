@@ -344,6 +344,13 @@
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
   - type: StealTarget # Starlight
     stealGroup: BrigmedicHardsuit # Starlight
+#Starlight start
+  - type: Tag
+    tags:
+    - Hardsuit
+    - CorgiWearable
+    - WhitelistChameleon
+#Starlight end
 
 #Warden's Hardsuit
 - type: entity

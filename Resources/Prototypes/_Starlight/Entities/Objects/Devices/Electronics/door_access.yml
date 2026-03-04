@@ -76,3 +76,12 @@
   components:
     - type: AccessReader
       access: [["Security"], ["Cadet"], ["Command"], ["Paramedic"]]
+
+#Solgov
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSolgov
+  suffix: Solgov, Locked
+  components:
+    - type: AccessReader
+      access: [["Solgov"]]

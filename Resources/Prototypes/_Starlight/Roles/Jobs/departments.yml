@@ -29,5 +29,9 @@
   description: department-TSF
   color: "#22a7ff"
   roles:
+  - SolGovOfficer
+  - SolGovOfficerSheriff
+  - TSFMCCrew
   - TSFMarine
+  - TSFMarineElite
   editorHidden: true

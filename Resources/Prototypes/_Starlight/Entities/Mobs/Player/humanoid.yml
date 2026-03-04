@@ -4,10 +4,10 @@
   id: EventHumanoidNTNC
   parent: EventHumanoidMindShielded
   components:
-  - type: AutoImplant
-    implants:
-    - DeathRattleImplantCentcomm
-    - RadioImplantCentcomm
+    - type: AutoImplant
+      implants:
+        - DeathRattleImplantCentcomm
+        - RadioImplantCentcomm
 
 ## NTCC Blueshield
 
@@ -46,8 +46,8 @@
         settings: default
       job: NTNCBlueShield
     - type: Loadout
-      prototypes: [ NTNCBasicGear ]
-      roleLoadout: [ RoleSurvivalStandard ]
+      prototypes: [NTNCBasicGear]
+      roleLoadout: [RoleSurvivalStandard]
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirstLeader
@@ -67,8 +67,8 @@
         settings: default
       job: NTNCBlueShield
     - type: Loadout
-      prototypes: [ NTNCHardsuitGear ]
-      roleLoadout: [ RoleSurvivalStandard ]
+      prototypes: [NTNCHardsuitGear]
+      roleLoadout: [RoleSurvivalStandard]
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirstLeader
@@ -103,9 +103,9 @@
       raffle:
         settings: default
       mindRoles:
-      - MindRoleSSF
+        - MindRoleSSF
     - type: Loadout
-      prototypes: [ SSFMarineGear ]
+      prototypes: [SSFMarineGear]
     - type: RandomMetadata
       nameSegments:
         - NamesSovietMarinesFirst
@@ -114,7 +114,7 @@
     - type: Revolutionary # change if you do soviet invasion gamemode
     - type: NpcFactionMember
       factions:
-      - DungeonSoviet
+        - DungeonSoviet
 
 ## NTSf
 
@@ -138,16 +138,16 @@
   id: NTSFoperative
   parent: EventHumanoidCentcomm
   speciesBlacklist:
-  - Arachnid
-  - Diona
-  - Reptilian
-  - Resomi
-  - Vox
-  - Vulpkanin
-  - Avali
-  - Felionoid
-  - Shadekin
-  - Thaven
+    - Arachnid
+    - Diona
+    - Reptilian
+    - Resomi
+    - Vox
+    - Vulpkanin
+    - Avali
+    - Felionoid
+    - Shadekin
+    - Thaven
   components:
     - type: GhostRole
       name: ghost-role-information-nanotrasen-special-forces-name
@@ -156,18 +156,17 @@
       raffle:
         settings: short
       mindRoles:
-#      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
-      - MindRoleGhostCorporateAligned # Starlight
+        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
+        - MindRoleGhostCorporateAligned # Starlight
       job: NanoTrasenSpecialForces
     - type: Loadout
-      prototypes: [ NanoTrasenSpecialForcesGear ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      prototypes: [NanoTrasenSpecialForcesGear]
+      roleLoadout: [RoleSurvivalEVA]
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirstLeader
         - NamesMilitaryLast
       nameFormat: name-format-ert
-
 
 - type: entity
   id: RandomHumanoidSpawnerDecimus
@@ -189,16 +188,16 @@
   id: Decimusoperative
   parent: EventHumanoidCentcomm
   speciesBlacklist:
-  - Arachnid
-  - Diona
-  - Reptilian
-  - Resomi
-  - Vox
-  - Vulpkanin
-  - Avali
-  - Felionoid
-  - Shadekin
-  - Thaven
+    - Arachnid
+    - Diona
+    - Reptilian
+    - Resomi
+    - Vox
+    - Vulpkanin
+    - Avali
+    - Felionoid
+    - Shadekin
+    - Thaven
   components:
     - type: GhostRole
       name: ghost-role-information-decimus-name
@@ -207,12 +206,12 @@
       raffle:
         settings: short
       mindRoles:
-#      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
-      - MindRoleGhostCorporateAligned # Starlight
+        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
+        - MindRoleGhostCorporateAligned # Starlight
       job: Decimus
     - type: Loadout
-      prototypes: [ DecimusGear ]
-      roleLoadout: [ RoleSurvivalEVA ]
+      prototypes: [DecimusGear]
+      roleLoadout: [RoleSurvivalEVA]
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirstLeader
@@ -221,19 +220,68 @@
 
 # TSF
 - type: entity
+  id: RandomHumanoidSpawnerTSFOfficer
+  name: SolGov Patrol Officer
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: TSFOfficer
+    - type: RandomHumanoidSpawner
+      settings: SolgovOfficer
+
+- type: entity
+  id: RandomHumanoidSpawnerTSFOfficerSheriff
+  name: SolGov Patrol Officer
+  suffix: Sheriff
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: TSFOfficer
+    - type: RandomHumanoidSpawner
+      settings: SolgovOfficerSheriff
+
+- type: entity
+  id: RandomHumanoidSpawnerTSFOfficerRiot
+  name: SolGov Patrol Officer
+  suffix: Riot
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: TSFOfficer
+    - type: RandomHumanoidSpawner
+      settings: SolgovOfficerRiot
+
+- type: entity
   id: RandomHumanoidSpawnerTSFMarine
   name: Solar Federation Marine
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
       state: TSF
-    - type: RandomMetadata
-      nameSegments:
-        - NamesMilitaryFirst
-        - NamesMilitaryLast
-      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: TSFMarine
+
+- type: entity
+  parent: RandomHumanoidSpawnerTSFMarine
+  id: RandomHumanoidSpawnerTSFMarineCrew
+  suffix: Crewmember
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: TSFCrew
+    - type: RandomHumanoidSpawner
+      settings: TSFCrew
+
+- type: entity
+  parent: RandomHumanoidSpawnerTSFMarine
+  id: RandomHumanoidSpawnerTSFMarineCorpsman
+  suffix: Corpsman
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: TSF
+    - type: RandomHumanoidSpawner
+      settings: TSFMarineCorpsman
 
 - type: entity
   parent: RandomHumanoidSpawnerTSFMarine
@@ -243,13 +291,19 @@
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
       state: TSF
-    - type: RandomMetadata
-      nameSegments:
-        - NamesMilitaryFirstLeader
-        - NamesMilitaryLast
-      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: TSFMarineLeader
+
+- type: entity
+  parent: RandomHumanoidSpawnerTSFMarine
+  id: RandomHumanoidSpawnerTSFPhantom
+  suffix: Phantom
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: Phantom
+    - type: RandomHumanoidSpawner
+      settings: TSFMarinePhantom
 
 - type: entity
   parent: RandomHumanoidSpawnerTSFMarine
@@ -259,46 +313,65 @@
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
       state: MARSOC
-    - type: RandomMetadata
-      nameSegments:
-        - NamesMilitaryFirstLeader
-        - NamesMilitaryLast
-      nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
       settings: TSFMarineMARSOC
 
 - type: randomHumanoidSettings
-  id: TSFMarine
-  parent: EventHumanoidMindShielded
-  speciesBlacklist:
-  - Arachnid
-  - Diona
-  - Reptilian
-  - Resomi
-  - Vox
-  - Vulpkanin
-  - Avali
-  - Felionoid
-  - Shadekin
-  - Thaven
-  - Cyclorite
-  - Dwarf
-  - Moth
-  - SlimePerson
-  - Lagomorph
-  - Elf
+  id: SolgovOfficer
+  parent: EventHumanoid
   components:
     - type: GhostRole
-      name: ghost-role-information-tsf-marine-name
-      description: ghost-role-information-tsf-marine-desc
-      rules: ghost-role-information-corporate-aligned-rules
+      name: ghost-role-information-tsf-officer-name
+      description: ghost-role-information-tsf-officer-desc
+      rules: ghost-role-information-tsf-aligned-rules
       raffle:
         settings: default
       mindRoles:
-      - MindRoleGhostTSFAligned
-      job: TSFMarine
+        - MindRoleGhostTSFAligned
+      job: SolGovOfficer
     - type: Loadout
-      prototypes: [ TSFMarineGear ]
+      prototypes: [SolGovOfficerGear]
+      roleLoadout: [RoleSurvivalSecurity]
+    - type: AntagImmune
+
+- type: randomHumanoidSettings
+  id: SolgovOfficerSheriff
+  parent: SolgovOfficer
+  components:
+    - type: GhostRole
+      name: ghost-role-information-tsf-officer-Sheriff-name
+      mindRoles:
+        - MindRoleGhostTSFAligned
+      job: SolGovOfficerSheriff
+    - type: Loadout
+      prototypes: [SolGovOfficerSheriffGear]
+    - type: AutoImplant
+      implants:
+        - TSFMindShieldImplant
+
+- type: randomHumanoidSettings
+  id: SolgovOfficerRiot
+  parent: SolgovOfficer
+  components:
+    - type: Loadout
+      prototypes: [SolGovOfficerRiotGear]
+
+- type: randomHumanoidSettings
+  id: TSFCrew
+  parent: EventHumanoid
+  components:
+    - type: GhostRole
+      name: ghost-role-information-tsf-crew-name
+      description: ghost-role-information-tsf-marine-desc
+      rules: ghost-role-information-tsf-aligned-rules
+      raffle:
+        settings: default
+      mindRoles:
+        - MindRoleGhostTSFAligned
+      job: TSFMCCrew
+    - type: Loadout
+      prototypes: [TSFCrewGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirst
@@ -306,8 +379,63 @@
       nameFormat: name-format-ert
     - type: AutoImplant
       implants:
-      - DeathRattleImplantTSF
-      - MindShieldImplant
+        - TSFMindShieldImplant
+    - type: AntagImmune
+
+- type: randomHumanoidSettings
+  id: TSFMarine
+  parent: EventHumanoid
+  speciesBlacklist:
+    - Arachnid
+    - Diona
+    - Reptilian
+    - Resomi
+    - Vox
+    - Vulpkanin
+    - Avali
+    - Felionoid
+    - Shadekin
+    - Thaven
+    - Cyclorite
+    - Dwarf
+    - Moth
+    - SlimePerson
+    - Lagomorph
+    - Elf
+  components:
+    - type: GhostRole
+      name: ghost-role-information-tsf-marine-name
+      description: ghost-role-information-tsf-marine-desc
+      rules: ghost-role-information-tsf-aligned-rules
+      raffle:
+        settings: default
+      mindRoles:
+        - MindRoleGhostTSFAligned
+      job: TSFMarine
+    - type: Loadout
+      prototypes: [TSFMarineGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryLast
+      nameFormat: name-format-ert-rifle
+    - type: AutoImplant
+      implants:
+        - TSFMindShieldImplant
+        - DeathRattleImplantTSF
+    - type: AntagImmune
+
+- type: randomHumanoidSettings
+  id: TSFMarineCorpsman
+  parent: TSFMarine
+  components:
+    - type: Loadout
+      prototypes: [TSFMarineCorpsmanGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryLast
+      nameFormat: name-format-ert-corpsman
 
 - type: randomHumanoidSettings
   id: TSFMarineLeader
@@ -317,12 +445,33 @@
       name: ghost-role-information-tsf-leader-name
       job: TSFMarine
     - type: Loadout
-      prototypes: [ TSFMarineLeaderGear ]
+      prototypes: [TSFMarineLeaderGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
         - NamesMilitaryLast
-      nameFormat: name-format-ert
+      nameFormat: name-format-ert-leader
+
+- type: randomHumanoidSettings
+  id: TSFMarinePhantom
+  parent: TSFMarine
+  components:
+    - type: GhostRole
+      name: ghost-role-information-tsf-Phantom-name
+      job: TSFMarineElite
+    - type: Loadout
+      prototypes: [TSFPhantomGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesSyndicateElite
+      nameFormat: name-format-ert-specialist
+    - type: AutoImplant
+      implants:
+        - TSFMindShieldImplant
+        - DeathRattleImplantTSF
+        - DeathAcidifierImplant
+        - FreedomImplant
 
 - type: randomHumanoidSettings
   id: TSFMarineMARSOC
@@ -332,14 +481,15 @@
       name: ghost-role-information-tsf-MARSOC-name
       job: TSFMarineElite
     - type: Loadout
-      prototypes: [ TSFEliteMarineGear ]
+      prototypes: [TSFMARSOCGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
-        - NamesMilitaryLast
-      nameFormat: name-format-ert
+        - NamesSyndicateElite
+      nameFormat: name-format-ert-officer
     - type: AutoImplant
       implants:
-      - DeathRattleImplantTSF
-      - DeathAcidifierImplant
-      - MindShieldImplant
+        - TSFMindShieldImplant
+        - DeathRattleImplantTSF
+        - DeathAcidifierImplant
+        - FreedomImplant

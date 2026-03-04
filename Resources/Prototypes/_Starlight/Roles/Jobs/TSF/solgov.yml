@@ -1,0 +1,143 @@
+- type: job
+  id: SolGovOfficer
+  name: ghost-role-information-tsf-officer-name
+  description: ghost-role-information-tsf-officer-desc
+  playTimeTracker: JobSolGovOfficer
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 36000 # 10 hrs
+  startingGear: SolGovOfficerGear
+  setPreference: false
+  icon: JobIconTSFOfficer
+  rules: job-rules-tsf-aligned
+  supervisors: job-supervisors-solgov
+  canBeAntag: false
+  access:
+    - Solgov
+
+- type: job
+  id: SolGovOfficerSheriff
+  name: ghost-role-information-tsf-officer-Sheriff-name
+  description: ghost-role-information-tsf-officer-desc
+  playTimeTracker: JobSolGovOfficerSheriff
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 36000 # 10 hrs
+    - !type:RoleTimeRequirement
+      role: JobSolGovOfficer
+      time: 7200 # 2 hrs
+  startingGear: SolGovOfficerSheriffGear
+  setPreference: false
+  icon: JobIconTSFOfficer
+  rules: job-rules-tsf-aligned
+  supervisors: job-supervisors-solgov
+  canBeAntag: false
+  access:
+    - Solgov
+  special:
+    - !type:AddImplantSpecial
+      implants: [TSFMindShieldImplant]
+
+- type: startingGear
+  id: SolGovOfficerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRetroOfficer
+    back: ClothingBackpack
+    shoes: ClothingShoesBootsCombatFilled
+    eyes: ClothingEyesGlassesSunglasses
+    head: ClothingHeadHatRetroOfficer
+    neck: Whistle
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterVestRetroOfficerHiVis
+    belt: ClothingBeltRetroOfficer
+    id: SolGovPDAOfficer
+    ears: ClothingHudTSF
+    pocket1: WeaponPistolTSFModel17
+  storage:
+    back:
+      - Flash
+      - CrowbarRed
+      - TSFZiptiePack
+      - MagazinePistolSP
+      - MagazinePistolSP
+    belt:
+      - Handcuffs
+      - Handcuffs
+      - TSFBatonModel5
+      - HoloprojectorSecurity
+      - TearGasGrenade
+      - TearGasGrenade
+      - GrenadeFlashBang
+      - GrenadeFlashBang
+
+- type: startingGear
+  id: SolGovOfficerSheriffGear
+  parent: SolGovOfficerGear
+  equipment:
+    id: SolGovPDAOfficerSheriff
+    outerClothing: ClothingOuterVestRetroOfficer
+    suitstorage: WeaponRifleLecter
+  storage:
+    back:
+      - Flash
+      - CrowbarRed
+      - TSFZiptiePack
+      - MagazinePistolSP
+      - MagazinePistolSP
+      - MagazineRifleSP
+      - MagazineRifleSP
+      - MagazineRifleSP
+      - MagazineRifleSP
+
+- type: startingGear
+  id: SolGovOfficerRiotGear
+  parent: SolGovOfficerGear
+  equipment:
+    head: ClothingHeadHelmetRiot
+    outerClothing: ClothingOuterArmorRiot
+    suitstorage: WeaponShotgunEnforcer
+  storage:
+    back:
+      - Flash
+      - CrowbarRed
+      - TSFZiptiePack
+      - BoxBeanbag
+  inhand:
+    - RiotShield
+
+- type: startingGear
+  id: TSFRepGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTSFRep
+    back: ClothingBackpackTSF
+    shoes: ClothingShoesBootsLaceup
+    belt: BoxFolderPlasticClipboard
+    head: ClothingHeadHatBeretTSF
+    id: SolGovPDA
+    ears: ClothingHudTSF
+    pocket1: LuxuryPen
+    pocket2: TSFMindShieldImplanter
+  storage:
+    back:
+      - BoxSurvival
+  inhand:
+    - DeathRattleImplanterTSF
+
+- type: startingGear
+  id: TSFTraderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargoAlt
+    back: ClothingBackpackCargo
+    shoes: ClothingShoesColorBlack
+    eyes: ClothingEyesHudCommand
+    belt: BoxFolderPlasticClipboard
+    head: ClothingHeadHatBeretCargoFormal
+    id: SolGovPDA
+    ears: ClothingHeadsetTSFTrader
+    pocket1: Pen
+    pocket2: AppraisalTool
+  storage:
+    back:
+      - BoxSurvival

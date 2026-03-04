@@ -409,62 +409,83 @@
 - type: entity
   parent: [IDCardStandard, BaseTSFContraband]
   id: TSFIdCard
-  name: TSF ID card
+  name: SolGov ID card
+  description: An identification card issued by the Trans Solar Federation.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers: 
+    layers:
     - state: tsf
+    - sprite: *id-rsi
+      state: stripe_top
+      color: "#22a7ff"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: "#145683"
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: TSF
+  - type: Item
+    heldPrefix: silver
   - type: IdCard
     jobIcon: JobIconTSF
+  - type: Access
+    tags:
+      - Solgov
 
 - type: entity
   parent: TSFIdCard
-  id: TSFIdCardTrader
-  name: TSF Trader ID card
-  components:
-  - type: IdCard
-    jobTitle: job-title-tsf-trader
-
-- type: entity
-  parent: [IDCardStandard, BaseTSFContraband]
-  id: TSFIdCardMarine
-  name: dog tags
-  suffix: TSF
-  description: A marine dog tags.
+  id: TSFIdCardOfficer
+  suffix: Patrol Officer
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Neck/Misc/dogtags.rsi
-    layers: 
-    - state: icon
-  - type: Clothing
-    slots:
-    - idcard
-    sprite: _Starlight/Clothing/Neck/Misc/dogtags.rsi
+    layers:
+    - state: tsf
+    - sprite: *id-rsi
+      state: stripe_top
+      color: "#22a7ff"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: "#145683"
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: TSFOfficer
+  - type: PresetIdCard
+    job: SolGovOfficer
   - type: IdCard
-    jobTitle: job-title-tsf-marine
-    jobIcon: JobIconTSF
-  - type: Access
-    groups:
-    - AllAccess
+    jobIcon: JobIconTSFOfficer
 
 - type: entity
-  parent: TSFIdCardMarine
-  id: TSFIdCardLeader
-  suffix: TSF
-  name: team leader dog tags
+  parent: TSFIdCardOfficer
+  id: TSFIdCardOfficerSheriff
+  suffix: Patrol Officer, Sheriff
   components:
-  - type: IdCard
-    jobTitle: job-title-tsf-marine-leader
+  - type: PresetIdCard
+    job: SolGovOfficerSheriff
 
 - type: entity
-  parent: TSFIdCardMarine
-  id: TSFIdCardElite
-  name: MARSOC dog tags
-  suffix: TSF
+  parent: TSFIdCard
+  id: TSFIdCardCrew
+  suffix: Crew
   components:
-  - type: IdCard
-    jobTitle: job-title-tsf-MARSOC
+  - type: PresetIdCard
+    job: TSFMCCrew
+
+- type: entity
+  parent: TSFIdCard
+  id: TSFIdCardMarine
+  suffix: Marine
+  components:
+  - type: PresetIdCard
+    job: TSFMarine
+
+- type: entity
+  parent: TSFIdCard
+  id: TSFIdCardSpecOps
+  suffix: SpecOps
+  components:
+  - type: PresetIdCard
+    job: TSFMarineElite
 
 - type: entity
   parent: IDCardStandard
@@ -532,3 +553,25 @@
     tags:
     - DoorBumpOpener
   - type: NCTDataChip
+
+- type: entity
+  parent: [ Clothing, BaseMinorContraband ]
+  id: MakeshiftID
+  name: makeshift ID card
+  description: A set of door electronics rewired to act as an ID card.
+  components: # Noteably absent is the ID card component and nanochat component - so borgs will treat you as non crew. It also can't be used in a PDA, and cannot be reprogrammed by an ID card computer.
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    state: makeshift
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _Starlight/Objects/Misc/id_cards.rsi # Moffstation
+  - type: Access
+    tags:
+    - Maintenance
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - WhitelistChameleon
+    - WhitelistChameleonIdCard

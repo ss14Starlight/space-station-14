@@ -453,3 +453,58 @@
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+# Solgov
+- type: entity
+  parent: AirlockHatch
+  id: AirlockHatchSolgovLocked
+  suffix: Solgov, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [DoorElectronicsSolgov]
+
+- type: entity
+  parent: AirlockHatchMaintenance
+  id: AirlockHatchMaintenanceSolgovLocked
+  suffix: Solgov, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [DoorElectronicsSolgov]
+
+- type: entity
+  parent: AirlockExternal
+  id: AirlockExternalSolgovLocked
+  suffix: External, Solgov, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [DoorElectronicsSolgov]
+
+- type: entity
+  parent: AirlockExternalGlass
+  id: AirlockExternalGlassSolgovLocked
+  suffix: Glass, External, Solgov, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [DoorElectronicsSolgov]
+
+- type: entity
+  parent: AirlockShuttleSyndicate
+  id: AirlockShuttleSolgovLocked
+  suffix: Docking, Solgov, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [DoorElectronicsSolgov]
+
+- type: entity
+  parent: AirlockGlassShuttleSyndicate
+  id: AirlockGlassShuttleSolgovLocked
+  suffix: Glass, Docking, Solgov, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [DoorElectronicsSolgov]

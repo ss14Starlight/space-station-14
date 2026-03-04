@@ -120,16 +120,30 @@
     updateInterval: 2
   - type: PlumbingInlet
     solutionName: buffer
+    inletNames:
+    - inletNorth
+    - inletEast
+    - inletWest
+    transferAmount: 40
   - type: PlumbingOutlet
     solutionName: beaker
+    connectedOutlets: true
     containerSlotId: beakerSlot
     enabled: false
   - type: NodeContainer
     nodes:
-      inlet:  # Pulls reagents FROM the network (north, east, west sides)
+      inletNorth:  # Pulls reagents FROM the network (north, east, west sides)
         !type:PlumbingNode
         nodeGroupID: Plumbing
-        pipeDirection: TNorth
+        pipeDirection: North
+      inletEast:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: East
+      inletWest:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: West
       outlet:  # Provides reagents TO the network (south side)
         !type:PlumbingNode
         nodeGroupID: Plumbing

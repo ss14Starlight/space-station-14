@@ -479,7 +479,7 @@
       state: med_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-    # Starlight BEGIN
+  # Starlight Start
     - map: [ "enum.CrewMonitorLayers.Alert" ]
       sprite: _Starlight/Structures/Machines/computers.rsi
       state: crew-alert
@@ -490,7 +490,14 @@
         enum.CrewMonitorLayers.Alert:
           True: { visible: true }
           False: { visible: false }
-    # Starlight END
+          enum.EdgeConnectionVisuals.ConnectionMask:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer, sprite: Structures/Machines/computers.rsi }
+          West: { state: computer_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+  # Starlight End
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -838,7 +845,7 @@
     canShuttle: false
     global: true #announce to everyone they're about to fuck shit up
     announceSentBy: false
-    sound: /Audio/Announcements/war.ogg
+    sound: /Audio/_Starlight/Ambience/Antag/wizard.ogg # WIZARD TIME!
   - type: Computer
     board: WizardCommsComputerCircuitboard
   - type: PointLight

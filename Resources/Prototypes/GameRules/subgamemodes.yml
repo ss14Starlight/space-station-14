@@ -105,8 +105,7 @@
       briefing:
         text: wizard-role-greeting
         color: Turquoise
-        # TODO: Need Wizard Start sound
-        #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
       startingGear: WizardBlueGear
       # TODO: WizardComp as needed
       components:

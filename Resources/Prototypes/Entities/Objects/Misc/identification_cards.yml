@@ -1378,6 +1378,8 @@
     jobIcon: JobIconAdmin
   - type: Access
     # Starlight-edit: Start
+    tags:
+    - Solgov
     groups:
     - AllAccess
     - Silicon

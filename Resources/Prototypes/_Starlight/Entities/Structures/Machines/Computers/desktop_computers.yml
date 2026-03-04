@@ -31,6 +31,8 @@
         - BulletImpassable
   - type: Physics
     bodyType: Static
+  - type: EdgeConnection
+    connectionKey: computersDesktop
 # endregion: Base
 
 # region: Frame

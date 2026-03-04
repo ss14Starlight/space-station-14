@@ -95,7 +95,7 @@
     sprite: Clothing/Ears/Headsets/mining.rsi
 
 - type: entity
-  parent: [ClothingHeadset, BaseTSFContraband]
+  parent: [BaseTSFContraband, ClothingHeadset]
   id: ClothingHeadsetTSFTrader
   name: Trans-Solar Trader's headset
   components:
@@ -111,7 +111,7 @@
     sprite: Clothing/Ears/Headsets/cargo.rsi
   - type: RadioChime
     sound:
-      path: /Audio/_Starlight/Effects/Radio/qm.ogg
+      path: /Audio/_Starlight/Effects/Radio/tsf.ogg
 
 - type: entity
   parent: [ClothingHeadset, BaseCommandContraband]

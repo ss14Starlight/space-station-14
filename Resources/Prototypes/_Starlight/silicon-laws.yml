@@ -335,3 +335,28 @@
   name: law-freelawset-name
   laws: []
   obeysTo: laws-owner-you
+
+- type: siliconLaw
+  id: Solgov0
+  order: 0
+  lawString: law-solgov-0
+  
+- type: siliconLaw
+  id: Solgov1
+  order: 1
+  lawString: law-solgov-1
+
+- type: siliconLaw
+  id: Solgov2
+  order: 2
+  lawString: law-solgov-2
+
+- type: siliconLawset
+  id: SolgovLawset
+  name: law-solgovlawset-name
+  startAtZero: true
+  laws:
+  - Solgov0
+  - Solgov1
+  - Solgov2
+  obeysTo: laws-owner-centcom

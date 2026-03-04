@@ -54,6 +54,40 @@
 
 # generic modules
 - type: entity
+  id: BorgModuleUppies
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: personnel transport cyborg module
+  description: A universal cyborg module which allows the unit to carry small personnel.
+  components:
+  - type: Tag
+    tags:
+      - BorgModuleGeneric
+      - PersonnelStorage
+  - type: Sprite
+    layers:
+    - state: generic
+    - state: icon-hands
+  - type: ItemBorgModule
+    hands:
+    - forceRemovable: true
+      hand:
+        emptyRepresentative: MobResomi
+        emptyLabel: borg-slot-uppies-empty
+        whitelist:
+          components:
+          - HumanoidAppearance
+    - forceRemovable: true
+      hand:
+        emptyRepresentative: MobResomi
+        emptyLabel: borg-slot-uppies-empty
+        whitelist:
+          components:
+          - HumanoidAppearance
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: hands }
+
+# region Security
+- type: entity
   id: BorgModuleSecurity
   parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
   name: security cyborg module
@@ -104,39 +138,61 @@
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
 
+# TSF
 - type: entity
-  id: BorgModuleUppies
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
-  name: personnel transport cyborg module
-  description: A universal cyborg module which allows the unit to carry small personnel.
+  id: BorgModuleTSF
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: TSF Security cyborg module
+  description: A Security TSF cyborg module which allows the unit to use unlethal equipment.
   components:
-  - type: Tag
-    tags:
-      - BorgModuleGeneric
-      - PersonnelStorage
   - type: Sprite
     layers:
-    - state: generic
-    - state: icon-hands
+    - state: security
   - type: ItemBorgModule
     hands:
-    - forceRemovable: true
+    - item: Flash
       hand:
-        emptyRepresentative: MobResomi
-        emptyLabel: borg-slot-uppies-empty
+        emptyRepresentative: Flash
+        emptyLabel: borg-slot-flash-empty
         whitelist:
           components:
-          - HumanoidAppearance
-    - forceRemovable: true
+          - Flash
+    - item: Crowbar
+    - item: Zipties
       hand:
-        emptyRepresentative: MobResomi
-        emptyLabel: borg-slot-uppies-empty
+        emptyRepresentative: Zipties
+        emptyLabel: borg-slot-zipties-empty
         whitelist:
-          components:
-          - HumanoidAppearance
+          tags:
+          - Handcuffs # Can be replaced by handcuffs or zipties
+    - item: TSFBatonModel5
+    - item: WeaponDisabler
+      hand:
+        emptyRepresentative: WeaponDisabler
+        emptyLabel: borg-slot-disabler-empty
+        whitelist:
+          tags:
+          - Disabler
   - type: BorgModuleIcon
-    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: hands }
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
 
+- type: entity
+  id: BorgModuleTSFCombat
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: TSMC Combat cyborg module
+  description: A TSMC cyborg module which allows the unit to use combat equipment.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+  - type: ItemBorgModule
+    hands:
+    - item: AccessOverider
+    - item: TSFBatonModel5
+    - item: WeaponPistolTSFBorg
+    - item: WeaponAdvancedLaser
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
 
 # region Purrfus
 - type: entity

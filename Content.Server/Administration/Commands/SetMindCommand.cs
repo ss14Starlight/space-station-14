@@ -1,9 +1,13 @@
+using System.Linq;// Starlight
 using Content.Shared.Administration;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Players;
+using Content.Shared.Silicons.Borgs.Components;// Starlight
+using Content.Shared.Silicons.StationAi; //Starlight
 using Robust.Server.Player;
 using Robust.Shared.Console;
+using Robust.Shared.Containers;// Starlight
 
 namespace Content.Server.Administration.Commands
 {
@@ -12,6 +16,7 @@ namespace Content.Server.Administration.Commands
     {
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+        [Dependency] private readonly SharedContainerSystem _containers = default!;// Starlight
 
         public override string Command => "setmind";
 
@@ -45,7 +50,7 @@ namespace Content.Server.Administration.Commands
                 return;
             }
 
-            if (!EntityManager.HasComponent<MindContainerComponent>(eUid))
+            if (!EntityManager.HasComponent<MindContainerComponent>(eUid)&&!EntityManager.HasComponent<StationAiCoreComponent>(eUid)) // Starlight
             {
                 shell.WriteLine(Loc.GetString("cmd-setmind-target-has-no-mind-message"));
                 return;
@@ -64,10 +69,24 @@ namespace Content.Server.Administration.Commands
                 shell.WriteLine(Loc.GetString("cmd-setmind-target-has-no-content-data-message"));
                 return;
             }
-
             var metadata = EntityManager.GetComponent<MetaDataComponent>(eUid.Value);
 
             var mind = playerCData.Mind ?? _mindSystem.CreateMind(session.UserId, metadata.EntityName);
+            // Starlight-start
+            if (EntityManager.HasComponent<StationAiCoreComponent>(eUid))
+            {
+
+                foreach (var entity in _containers.GetAllContainers((EntityUid)eUid).SelectMany(container => container.ContainedEntities))
+                {
+                    if (!EntityManager.HasComponent<BorgBrainComponent>(entity)) continue;
+                    _mindSystem.TransferTo(mind, entity);
+                    return;
+                }
+                var brain = EntityManager.SpawnInContainerOrDrop("StationAiBrainConstructed", (EntityUid)eUid, StationAiCoreComponent.Container);
+                _mindSystem.TransferTo(mind, brain);
+                return;
+            }
+            // Starlight-end
 
             _mindSystem.TransferTo(mind, eUid, ghostOverride);
         }

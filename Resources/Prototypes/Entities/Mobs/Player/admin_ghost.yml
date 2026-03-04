@@ -47,6 +47,7 @@
     - NuclearOperative
     - SyndicateAgent
     - CentralCommand
+    - Solgov # SL
   - type: UserInterface
     interfaces:
       enum.SolarControlConsoleUiKey.Key:

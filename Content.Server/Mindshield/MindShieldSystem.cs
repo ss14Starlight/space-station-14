@@ -46,12 +46,15 @@ public sealed class MindShieldSystem : EntitySystem
 
     private void OnImplantImplanted(Entity<MindShieldImplantComponent> ent, ref ImplantImplantedEvent ev)
     {
-        EnsureComp<MindShieldComponent>(ev.Implanted);
+        var mindshield = EnsureComp<MindShieldComponent>(ev.Implanted);
+        mindshield.MindShieldStatusIcon = ent.Comp.MindShieldStatusIcon;
         // Starlight-edit start
         if (HasComp<VampireThrallComponent>(ev.Implanted))
             RemComp<VampireThrallComponent>(ev.Implanted);
         // Starlight-edit end
         MindShieldRemovalCheck(ev.Implanted, ev.Implant);
+
+        Dirty(ev.Implanted, mindshield);
     }
 
     /// <summary>

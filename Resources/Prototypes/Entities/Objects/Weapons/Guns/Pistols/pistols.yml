@@ -26,6 +26,7 @@
     tags:
     - Sidearm
   - type: CanDualWield # 🌟Starlight🌟
+    dualWieldInaccuracyPenalty: 15
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/viper.rsi
     quickEquip: false

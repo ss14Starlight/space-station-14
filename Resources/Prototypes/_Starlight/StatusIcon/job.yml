@@ -208,6 +208,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconTSFOfficer
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: TSFOfficer
+  jobName: job-name-TSF-officer
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconNanotrasenCareerTrainer
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi

@@ -1995,6 +1995,7 @@
       blacklist: 
         components:
           - BodyPart
+          - Organ
     - type: PrivateStorage
       accessDelay: 3.0
       accessPopup: "cargo-leg-left-storage-accessing"
@@ -2049,6 +2050,7 @@
       blacklist: 
         components:
           - BodyPart
+          - Organ
     - type: PrivateStorage
       accessDelay: 3.0
       accessPopup: "cargo-leg-right-storage-accessing"

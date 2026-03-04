@@ -33261,5 +33261,159 @@ Entries:
   id: 357701
   time: '2026-03-03T14:13:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3577
+- author: Swonki
+  changes:
+  - message: Added Corgi Biosuits.
+    type: Add
+  - message: Added Corgi Luxmax & Brigmed Hardsuits.
+    type: Add
+  - message: Added Corgi Monkey & Chicken Suits.
+    type: Add
+  - message: Added Corgi Bulletproof, Riot, and Bombsuits.
+    type: Add
+  id: 357301
+  time: '2026-03-03T20:53:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3573
+- author: SevenShades
+  changes:
+  - message: New emergency rollerbed sprites.
+    type: Add
+  id: 355401
+  time: '2026-03-03T21:24:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3554
+- author: Citrea
+  changes:
+  - message: You can no longer store organs in cargo legs, gaining their metabolism
+      *and organ damage* in the process.
+    type: Tweak
+  id: 358301
+  time: '2026-03-03T21:29:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3583
+- author: Shades
+  changes:
+  - message: Solgov has arrived with better equipement and Access.
+    type: Add
+  - message: Wizard Sound Intro + Annoncement Changed.
+    type: Tweak
+  id: 358701
+  time: '2026-03-04T05:33:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3587
+- author: Conflee
+  changes:
+  - message: Changed the Contraband Level of many 'harmless' Syndicate items to reflect
+      how they should be treated per Corporate Law. Namely, all harmless items like
+      clothing are now Minor Contraband not Syndicate Contraband. Items with utility
+      as weapons or armor, as well as Gorlex Flippo and Matchbox, remain Syndicate
+      Contraband.
+    type: Tweak
+  - message: Changed the Contraband Level of the NetProbe Cartridge to be Engineering
+      Contra, the Log Probe Cartridge to be Security Contra, and the Wanted List Cartridge
+      to be Security Contra, to reflect their intended status as restricted items.
+      Programs that act as 'safety' features like medscanner and coordinates remain
+      non-contra.
+    type: Tweak
+  - message: Changed all 'safe' AI Law Boards to be Command-Security-Science Contraband.
+      SELF Agents explicitly target these items to complete an objective, and only
+      Command and arguably Sci/Sec should ever be touching them, so their status as
+      non-contra no longer made sense and arguably never made sense.
+    type: Tweak
+  id: 359001
+  time: '2026-03-04T06:23:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3590
+- author: Conflee
+  changes:
+  - message: Added the Steel Spear, made in the Anvil, rarely found in Maints Weapon
+      Pools, and rarely delivered to Revs by the USSP. It's slightly better than the
+      Plasma Spear, doing 15 pierce, 5 slash, 5 structural. Intended to be a spear
+      counterpart to the forged swords.
+    type: Add
+  - message: Added the Makeshift ID, made in the Anvil. Only contains Maintenance
+      access, shows no name or job icon, and can not be inserted into an ID Card Console.
+      Lets you move through maints while concealing your identity, but it is contraband.
+    type: Add
+  - message: Added the Improvised Jetpack, crafted anywhere out of 1 fire extinguisher,
+      2 gas tanks, some cables, and 2 plasteel. Works as a wearable mini-jetpack and
+      is contraband. Allows antags like Revs, Thieves, Changelings, Vampires, and
+      SELF Agents easier access to space, as the core game balance is built around
+      this being true and Sec being limited in space.
+    type: Add
+  id: 358801
+  time: '2026-03-04T06:33:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3588
+- author: Scarlet Lightweaver
+  changes:
+  - message: Added inital spread penalty for dualweilding til public testing is done.
+    type: Add
+  - message: Fixed not being able to dual weild revolvers. Go wild cowboy.
+    type: Fix
+  id: 359501
+  time: '2026-03-04T15:59:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3595
+- author: CrazyPhantom
+  changes:
+  - message: Consoles no longer try to connect to desktops.
+    type: Fix
+  - message: Crew monitoring consoles now properly connect to computers next to them.
+    type: Fix
+  id: 360001
+  time: '2026-03-04T18:35:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3600
+- author: R3v3l4t1on
+  changes:
+  - message: Using SetMind on an AI core will now turn the player into an AI rather
+      than the physical core.
+    type: Tweak
+  id: 359401
+  time: '2026-03-04T18:43:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3594
+- author: FeralCreature
+  changes:
+  - message: Added multi-layer plumbing duct support (primary/alt layer variants)
+      including a manifold for connecting across them.
+    type: Add
+  - message: 'Added new plumbing machines: Buffer for supplying separate networks
+      with reagents and Disposer for vaporizing unwanted reagents.'
+    type: Add
+  - message: Reworked plumbing filter to split filtered/passthrough reagents into
+      their own internal solutions reducing clogging issues.
+    type: Tweak
+  - message: Plumbing filter can now only filter up to 4 reagents at a time as they
+      are now significantly easier to use.
+    type: Tweak
+  - message: Split RPLD machines submenu into supply and production as it was getting
+      quite crowded with the new machines.
+    type: Tweak
+  - message: Plumbing pill press can now label pills and patches.
+    type: Tweak
+  - message: Reworked plumbing outlet/inlet node topology across machines to explicit
+      per-direction nodes and configurable bridging behavior.
+    type: Tweak
+  - message: Fixed RPLD/RPD free placement layer synchronization so placed ducts reliably
+      match the selected preview layer.
+    type: Fix
+  - message: Switching between different RPLDs/RPDs now immediately syncs placed rotation
+      with the preview rotation.
+    type: Fix
+  - message: Fixed plumbing naming consistency by normalizing machine names to lowercase
+      style.
+    type: Fix
+  - message: Updated guidebook with new plumbing machines, duct layer, and behavior
+      changes.
+    type: Tweak
+  id: 356601
+  time: '2026-03-04T18:52:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3566
+- author: teapoterror
+  changes:
+  - message: Artyom stole all the Uranium Ammunition.
+    type: Remove
+  - message: The USSP's failed efforts in Laser Replication Technology has led to
+      the firing lens of the Immolator Prototype being even more inaccurate than before.
+    type: Tweak
+  - message: Replaced the DP-28 with the C-20.
+    type: Tweak
+  id: 357001
+  time: '2026-03-04T18:55:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3570
 Order: -1
 

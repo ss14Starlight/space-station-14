@@ -4,8 +4,8 @@
   name: roboticist backpack
   description: A backpack specifically designed for oil and short circuit protection.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Back/Backpacks/roboticist.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/Backpacks/roboticist.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -13,8 +13,8 @@
   name: senior courier backpack
   description: A robust backpack for those who know the station's map by heart.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Back/Backpacks/cargosenior.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/Backpacks/cargosenior.rsi
 
 - type: entity
   parent: ClothingBackpack
@@ -22,8 +22,8 @@
   name: senior chemistry backpack
   description: A specially designed backpack that will never be stained, no matter what liquids are spilled on it.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Back/Backpacks/chemistrysenior.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/Backpacks/chemistrysenior.rsi
 
 - type: entity
   parent: [ClothingBackpack, BaseSecurityContraband]
@@ -31,8 +31,8 @@
   name: corpsman's backpack
   description: A backpack with easy to access pockets for the organized corpsman!
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Back/Backpacks/corpsman.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/Backpacks/corpsman.rsi
 
 - type: entity
   parent: [ClothingBackpack, BaseBlueShieldContraband]
@@ -40,21 +40,25 @@
   name: blue shield backpack
   description: A lightweight but reliable backpack. Can't go wrong with the classics!
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Back/Backpacks/blueshield.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/Backpacks/blueshield.rsi
 
 - type: entity
-  parent: [ ClothingBackpackERTLeader, BaseCentcommContraband ]
+  parent: [ClothingBackpackERTLeader, BaseCentcommContraband]
   id: ClothingBackpackNTNC
   name: NTNC backpack
   description: A spacious backpack with lots of pockets, worn by NTNC Officers
   components:
-  - type: ExplosionResistance
-    damageCoefficient: 0.1
-  - type: Sprite
-    sprite: _Starlight/Clothing/Back/Backpacks/ntnc_bag.rsi
+    - type: ExplosionResistance
+      damageCoefficient: 0.1
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/Backpacks/ntnc_bag.rsi
 
 - type: entity
-  parent: [BaseTSFContraband, ClothingBackpackBlueShield]
+  parent: [BaseTSFContraband, ClothingBackpackERTLeader]
   id: ClothingBackpackTSF
-  name: federation backpack
+  name: TSF marine rucksack
+  description: A spacious rucksack covered in pouches and pockets, worn by marines of the Trans-Solar Federation.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/Backpacks/tsf.rsi

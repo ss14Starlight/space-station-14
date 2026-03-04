@@ -4060,7 +4060,6 @@ entities:
     - type: FTLDestination
     - type: GravityShake
       shakeTimes: 10
-    - type: ImplicitRoof
     - type: ExplosionAirtightGrid
   - uid: 8812
     components:

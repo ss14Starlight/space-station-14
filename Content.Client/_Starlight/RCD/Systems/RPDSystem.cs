@@ -37,7 +37,7 @@ public sealed class RPDSystem : EntitySystem
         public RPDModeStatusControl(Entity<RCDComponent> entity)
         {
             _uid = entity.Owner;
-            _isRpd = entity.Comp.IsRpd;
+            _isRpd = entity.Comp.IsRpd || entity.Comp.IsRPLD;
             _rcdSystem = EntitySystem.Get<RCDSystem>();
             AddChild(_label);
         }

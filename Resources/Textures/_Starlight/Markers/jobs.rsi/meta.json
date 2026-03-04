@@ -62,7 +62,16 @@
       "name": "TSF"
     },
     {
+      "name": "TSFCrew"
+    },
+    {
+      "name": "TSFOfficer"
+    },
+    {
       "name": "MARSOC"
+    },
+    {
+      "name": "Phantom"
     },
     {
       "name": "nct"

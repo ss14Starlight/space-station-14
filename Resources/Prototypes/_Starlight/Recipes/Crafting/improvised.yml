@@ -575,3 +575,11 @@
   targetNode: cannon
   category: construction-category-weapons
   objectType: Item
+
+- type: construction
+  id: JetpackImprovised
+  graph: JetpackImprovisedGraph
+  startNode: start
+  targetNode: jetpack
+  category: construction-category-tools
+  objectType: Item

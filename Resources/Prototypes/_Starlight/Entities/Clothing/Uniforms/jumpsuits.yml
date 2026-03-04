@@ -735,3 +735,14 @@
   - type: Construction
     graph: TraditionalReptilianClothesGraph
     node: jumpsuit
+
+- type: entity
+  parent: [ClothingUniformBase, BaseTSFContraband]
+  id: ClothingUniformJumpsuitRetroOfficer
+  name: TSF officer's uniform
+  description: A standard uniform from the Trans Solar Federation's law enforcement division. This classic peacekeeping attire represents TSF authority across the galaxy.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/RetroSec.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/RetroSec.rsi

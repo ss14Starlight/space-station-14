@@ -433,3 +433,29 @@
       color: "#d14343"
     - type: Computer
       board: SecurityShuttleConsoleCircuitboard
+
+- type: entity
+  parent: ComputerComms
+  id: SolgovComputerComms
+  name: solgov communications computer
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: eris_control
+    - map: ["computerLayerKeys"]
+      state: recruitment_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [["Solgov"]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-tsf
+    color: "#22a7ff"
+    canShuttle: false
+    global: true
+    sound: /Audio/_Starlight/Announcements/tsf_announce.ogg

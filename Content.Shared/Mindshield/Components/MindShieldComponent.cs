@@ -8,9 +8,9 @@ namespace Content.Shared.Mindshield.Components;
 /// <summary>
 /// If a player has a Mindshield they will get this component to prevent conversion.
 /// </summary>
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedRevolutionarySystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class MindShieldComponent : Component
 {
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField, AutoNetworkedField] // Starlight Edited: Removed ReadOnly
     public ProtoId<SecurityIconPrototype> MindShieldStatusIcon = "MindShieldIcon";
 }

@@ -71,6 +71,8 @@ command-description-vector2dataconstructor-clean =
     Clean up an unused Vector2 list definition on the entity.
 command-description-job-set = 
     Changes the job of the piped entity.
+command-description-job-delset =
+    Changes the job of the piped entity by deleting then setting the job, so that the briefing plays.
 command-description-clientcomp-ensure =
     Ensures that all clients add the component with the specified name to an entity, assuming it exists.
 command-description-clientcomp-write =
@@ -133,6 +135,8 @@ command-description-polymorph-rmcopycomp =
     Remove an entry from the list of components to copy to the polymorph.
 command-description-polymorph-apply =
     Instantly apply the polymorph and finish.
+command-description-polymorph-applyget =
+    Instantly apply the polymorph and finish, returning the new entity.
 command-description-polymorph-addaction =
     Add a polymorph action to the entity using the current polymorph setup chain. You should probably call polymorph:apply or polymorph:finish afterward.
 command-description-polymorph-addactionproto =
@@ -147,3 +151,73 @@ command-description-polymorph-reset =
     Reset the entity's polymorph to their original state.
 command-description-polymorph-finish =
     Marks this polymorph setup chain as complete, cleaning up and removing the component.
+command-description-vv-write =
+    Modify a path's value using VV (View Variables). Can use a variable for the value but it must be wrapped in quotes.
+command-description-vv-read =
+    Print a path's value using VV (View Variables).
+command-description-vv-rsave =
+    Retrieve a path's value using VV (View Variables). Can be saved to a variable.
+command-description-mind-wipe =
+    Wipes a player or entity's mind. Note that this will make their game unplayable until you give them a new mind.
+command-description-mind-takeover =
+    Directly takeover a mob, creating a mind if it does not exist, and forcing the entity to become sentient.
+command-description-mind-takeoverwipe =
+    Wipe your own mind then takeover the entity. This will clear all mindroles and objectives n such.
+command-description-mind-controlwipe =
+    Wipe the target player's mind and make them control the piped entity, creating a new mind and making the entity sentient.
+command-description-killsign-kill =
+    Apply a killsign to the entity using the kill sprite.
+command-description-killsign-stinky =
+    Apply a killsign to the entity using the stinky sprite.
+command-description-killsign-raider =
+    Apply a killsign to the entity using the raider sprite.
+command-description-killsign-peak =
+    Apply a killsign to the entity using the peak sprite.
+command-description-killsign-nerd =
+    Apply a killsign to the entity using the nerd sprite.
+command-description-killsign-it =
+    Apply a killsign to the entity using the it sprite.
+command-description-killsign-furry =
+    Apply a killsign to the entity using the furry sprite.
+command-description-killsign-dog =
+    Apply a killsign to the entity using the dog sprite.
+command-description-killsign-cat =
+    Apply a killsign to the entity using the cat sprite.
+command-description-killsign-bald =
+    Apply a killsign to the entity using the bald sprite.
+command-description-killsign-w =
+    Apply a killsign to the entity using the w sprite.
+command-description-killsign-vip =
+    Apply a killsign to the entity using the vip sprite.
+command-description-killsign-ssd =
+    Apply a killsign to the entity using the ssd sprite.
+command-description-killsign-uwu =
+    Apply a killsign to the entity using the uwu sprite.
+command-description-killsign-owo =
+    Apply a killsign to the entity using the owo sprite.
+command-description-killsign-moff =
+    Apply a killsign to the entity using the moff sprite.
+command-description-killsign-l =
+    Apply a killsign to the entity using the l sprite.
+command-description-killsign-honk =
+    Apply a killsign to the entity using the honk sprite.
+command-description-killsign-harmbatong =
+    Apply a killsign to the entity using the harmbatong sprite.
+command-description-killsign-gay =
+    Apply a killsign to the entity using the gay sprite.
+command-description-killsign-fat =
+    Apply a killsign to the entity using the fat sprite.
+command-description-killsign-event =
+    Apply a killsign to the entity using the event sprite.
+command-description-killsign-dumb =
+    Apply a killsign to the entity using the dumb sprite.
+command-description-killsign-dm =
+    Apply a killsign to the entity using the dm sprite.
+command-description-killsign-clueless =
+    Apply a killsign to the entity using the clueless sprite.
+command-description-killsign-blind =
+    Apply a killsign to the entity using the blind sprite.
+command-description-killsign-admin =
+    Apply a killsign to the entity using the admin sprite.
+command-description-killsign-rm =
+    Remove a killsign from the entity

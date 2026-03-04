@@ -252,6 +252,10 @@
     lowPressureMultiplier: 1000
   - type: PointLight
     color: "#adfffd"
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 # Experimental Security Hardsuit
 - type: entity
@@ -660,30 +664,82 @@
 
 # TSF
 - type: entity
-  parent: [ BaseTSFContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
-  id: ClothingHeadHelmetHardsuitTSF
+  parent: [BaseTSFContraband, ClothingHeadHardsuitBase]
+  id: ClothingHeadHelmetHardsuitTSFMARSOC
   name: MARSOC helmet
   description: A helmet worn by marines of the Trans-Solar Federation's Marine Special Operations Command. Armored, space ready, and fireproof.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hardsuits/tsf.rsi
+    sprite: _Starlight/Clothing/Head/Hardsuits/tsf_marsoc.rsi
     layers:
     - state: icon
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hardsuits/tsf.rsi
+    sprite: _Starlight/Clothing/Head/Hardsuits/tsf_marsoc.rsi
     clothingVisuals:
       head:
       - state: equipped-head
-  - type: FireProtection
-    reduction: 1
+  - type: BreathMask
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
   - type: ShowHealthBars
   - type: ShowHealthIcons
-  - type: EyeProtection
-    protectionTime: 5
   - type: FlashImmunity
+    blocksSpecialVision: false
   - type: ClothesNightVision
+  - type: FireProtection
+    reduction: 1
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+        Caustic: 0
+
+- type: entity
+  parent: [BaseTSFContraband, ClothingHeadHardsuitBase]
+  id: ClothingHeadHelmetHardsuitTSFPhantom
+  name: Phantom helmet
+  description: A helmet worn by marines of the Trans-Solar Federation's Marine pecial Operations Phantom. Armored, space ready, and stealthy.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/tsf_phantom.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/tsf_phantom.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+  - type: BreathMask
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowHealthBars
+  - type: ShowHealthIcons
+  - type: FlashImmunity
+    blocksSpecialVision: false
+  - type: ClothesNightVision
+  - type: FireProtection
+    reduction: 1
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+        Caustic: 0
 
 #Thanatos Helmet (Starlight version of Deathsquad)
 - type: entity

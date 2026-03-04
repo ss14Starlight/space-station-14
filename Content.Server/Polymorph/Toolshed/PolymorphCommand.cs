@@ -346,6 +346,18 @@ public sealed class PolymorphCommand : ToolshedCommand
         RemComp<PolymorphSetupComponent>(uid);
         return uid;
     }
+    
+    /// <summary>
+    /// Instantly apply the polymorph and finish, returning the new entity.
+    /// </summary>
+    [CommandImplementation("applyget")]
+    public EntityUid ApplyGet([PipedArgument] EntityUid uid)
+    {
+        if(!EnsureConfig(uid, out var config)) return uid;
+        var ent = _system?.PolymorphEntity(uid, config.Config);
+        RemComp<PolymorphSetupComponent>(uid);
+        return ent ?? EntityUid.Invalid;
+    }
 
     /// <summary>
     /// Add a polymorph action to the entity using the current polymorph setup chain.
@@ -545,6 +557,10 @@ public sealed class PolymorphCommand : ToolshedCommand
     [CommandImplementation("apply")]
     public IEnumerable<EntityUid> Apply([PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(Apply);
+    
+    [CommandImplementation("applyget")]
+    public IEnumerable<EntityUid> ApplyGet([PipedArgument] IEnumerable<EntityUid> uid)
+        => uid.Select(ApplyGet);
     
     [CommandImplementation("addaction")]
     public IEnumerable<EntityUid> AddAction([PipedArgument] IEnumerable<EntityUid> uid, string instanceId)

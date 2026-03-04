@@ -38,5 +38,7 @@
           weight: 3
         - id: WeaponShotgunToz106Extended
           weight: 6
+        - id: SpearSteel
+          weight: 1
         rolls: !type:ConstantNumberSelector
           value: 1

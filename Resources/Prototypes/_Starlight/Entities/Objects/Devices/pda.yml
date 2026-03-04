@@ -663,3 +663,73 @@
       - MedTekCartridge
       - AstroNavCartridge
       - NanoChatCartridge
+
+- type: entity
+  parent: [BasePDA, BaseTSFContraband]
+  id: SolGovPDA
+  name: SolGov PDA
+  description: A personal data assistant issued by the Trans Solar Federation.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: TSFIdCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-solgov
+  - type: PdaBorderColor
+    borderColor: "#5C6575"
+    accentHColor: "#FFFFFF"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-solgov
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
+      - NanoChatCartridge
+
+- type: entity
+  parent: SolGovPDA
+  id: SolGovPDAOfficer
+  suffix: Patrol Officer
+  components:
+  - type: Pda
+    id: TSFIdCardOfficer
+
+- type: entity
+  parent: SolGovPDA
+  id: SolGovPDAOfficerSheriff
+  suffix: Patrol Officer, Sheriff
+  components:
+  - type: Pda
+    id: TSFIdCardOfficerSheriff
+
+- type: entity
+  parent: SolGovPDA
+  id: SolGovPDACrew
+  suffix: Crew
+  components:
+  - type: Pda
+    id: TSFIdCardCrew
+
+- type: entity
+  parent: SolGovPDA
+  id: SolGovPDAMarine
+  suffix: Marine
+  components:
+  - type: Pda
+    id: TSFIdCardMarine
+
+- type: entity
+  parent: SolGovPDA
+  id: SolGovPDASpecOps
+  suffix: SpecOps
+  components:
+  - type: Pda
+    id: TSFIdCardSpecOps

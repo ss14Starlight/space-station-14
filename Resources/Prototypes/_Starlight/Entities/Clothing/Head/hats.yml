@@ -1,24 +1,24 @@
 - type: entity
-  parent: [ ClothingHeadBase, BaseCommandContraband ]
+  parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatCapNtrep
   name: nt representive cap
   description: The cap of justice over command!
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/ntrep.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/ntrep.rsi
-    
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/ntrep.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/ntrep.rsi
+
 - type: entity
   parent: [ClothingHeadBase, BaseBlueShieldContraband]
   id: ClothingHeadHatBeretBlueShield
   name: blueshield beret
   description: This beret completes the outfit of any true Blue Shield Officer.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/blueshield.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/blueshield.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/blueshield.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/blueshield.rsi
 
 - type: entity
   parent: [ClothingHeadBase, BaseBlueShieldContraband]
@@ -26,13 +26,13 @@
   name: blueshield bounty hunter's hat
   description: For when your charges do not wish to be tracked down.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/BSO_Bounty_Hunter_hat.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/BSO_Bounty_Hunter_hat.rsi
-  - type: Tag
-    tags:
-    - HamsterWearable
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/BSO_Bounty_Hunter_hat.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/BSO_Bounty_Hunter_hat.rsi
+    - type: Tag
+      tags:
+        - HamsterWearable
 
 - type: entity
   parent: ClothingHeadBase
@@ -40,15 +40,15 @@
   name: chemistry beret
   description: An orange beret. Defender of bald heads everywhere.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/beret_chemist.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/beret_chemist.rsi
-  - type: Tag
-    tags:
-    - PetWearable
-    - CorgiWearable
-    - HamsterWearable
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/beret_chemist.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/beret_chemist.rsi
+    - type: Tag
+      tags:
+        - PetWearable
+        - CorgiWearable
+        - HamsterWearable
 
 - type: entity
   parent: ClothingHeadBase
@@ -56,16 +56,16 @@
   name: chemistry nurse hat
   description: I'm technically a doctor, you know.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/nursehat_chemist.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/nursehat_chemist.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - HamsterWearable
-    - WhitelistChameleon
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/nursehat_chemist.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/nursehat_chemist.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - HamsterWearable
+        - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadBase
@@ -73,10 +73,10 @@
   name: chemistry trucker hat
   description: My chemical chariot cannot be stopped!
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/truckershat_chemist.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/truckershat_chemist.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/truckershat_chemist.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/truckershat_chemist.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -84,10 +84,10 @@
   name: chemistry fishing cap
   description: Do mechanical brides fish in chemical spills?
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/fishcap_chemist.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/fishcap_chemist.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/fishcap_chemist.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/fishcap_chemist.rsi
 
 - type: entity
   parent: [ClothingHeadBase, BaseSecurityContraband]
@@ -95,10 +95,10 @@
   name: corpsman's beret
   description: Losing this hat is considered grounds for demotion. Kidding, though you will be ridiculed by your fellow corpsmans.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/beret_corpsman.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/beret_corpsman.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/beret_corpsman.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/beret_corpsman.rsi
 
 - type: entity
   parent: [ClothingHeadBase, BaseSecurityContraband]
@@ -106,16 +106,16 @@
   name: brigmedic's medbay hat
   description: For those long nights on the shift.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/nursehat_brigmedic.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/nursehat_brigmedic.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - HamsterWearable
-    - WhitelistChameleon
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/nursehat_brigmedic.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/nursehat_brigmedic.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - HamsterWearable
+        - WhitelistChameleon
 
 - type: entity
   parent: [ClothingHeadBase, BaseSecurityContraband]
@@ -123,16 +123,16 @@
   name: corpsman's traumabay hat
   description: Dark enough to hide blood and tears alike.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/nursehat_corpsman.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/nursehat_corpsman.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - HamsterWearable
-    - WhitelistChameleon
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/nursehat_corpsman.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/nursehat_corpsman.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - HamsterWearable
+        - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadBase
@@ -140,16 +140,16 @@
   name: nurse hat of life
   description: A hat that symbolizes the joy and positivity of our life.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/nursehatoflife.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/nursehatoflife.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - HamsterWearable
-    - WhitelistChameleon
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/nursehatoflife.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/nursehatoflife.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - HamsterWearable
+        - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadBase
@@ -157,15 +157,15 @@
   name: duty officer's cap
   description: I'm the only thing that can protect this station from chaos.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/dutyofficer_hat.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/dutyofficer_hat.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - PetWearable
-    - CorgiWearable
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/dutyofficer_hat.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/dutyofficer_hat.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - PetWearable
+        - CorgiWearable
 
 - type: entity
   parent: ClothingHeadBase
@@ -173,15 +173,15 @@
   name: duty officer's beret
   description: A dark-red beret themed after the warden's. Not bad, not bad.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/beret_dutyofficer.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/beret_dutyofficer.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - PetWearable
-    - CorgiWearable
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/beret_dutyofficer.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/beret_dutyofficer.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - PetWearable
+        - CorgiWearable
 
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
@@ -189,16 +189,16 @@
   name: head of security's sheriff hat
   description: It's high noon.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/sheriffhat.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/sheriffhat.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - HamsterWearable
-    - WhitelistChameleon
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/sheriffhat.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/sheriffhat.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - HamsterWearable
+        - WhitelistChameleon
 
 #USSP
 - type: entity
@@ -207,19 +207,19 @@
   name: SNKVD ushanka
   description: Disappearances are entirely voluntary, tovarisch.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/Ushanka.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/Ushanka.rsi
-  - type: TemperatureProtection
-    heatingCoefficient: 1.025
-    coolingCoefficient: 0.65
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - HamsterWearable
-    - WhitelistChameleon
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/Ushanka.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/Ushanka.rsi
+    - type: TemperatureProtection
+      heatingCoefficient: 1.025
+      coolingCoefficient: 0.65
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - HamsterWearable
+        - WhitelistChameleon
 
 - type: entity
   parent: [ClothingHeadBase, BaseSovietContraband]
@@ -227,15 +227,15 @@
   name: soviet admiral hat
   description: This hat clearly belongs to someone very important.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/sovietadmiralhat.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/sovietadmiralhat.rsi 
-  - type: Tag
-    tags:
-    - ClothMade
-    - Recyclable
-    - HamsterWearable
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/sovietadmiralhat.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/sovietadmiralhat.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - HamsterWearable
 
 - type: entity
   parent: ClothingHeadBase
@@ -243,14 +243,14 @@
   name: wide brimmed hat
   description: Keep that bloody sun out of your eyes.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/brim_hat.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/brim_hat.rsi 
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/brim_hat.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/brim_hat.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadBase
@@ -258,14 +258,14 @@
   name: feathered hat
   description: You own theses streets.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/feather_hat.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/feather_hat.rsi 
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/feather_hat.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/feather_hat.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadBase
@@ -273,13 +273,13 @@
   name: tv head
   description: The label says it will make you look like a true Tumblr sexyman. What does that even mean?
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/tv_head.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/tv_head.rsi 
-  - type: Tag
-    tags:
-    - WhitelistChameleon
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/tv_head.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/tv_head.rsi
+    - type: Tag
+      tags:
+        - WhitelistChameleon
 
 # Fashion-O-Mat-Start
 - type: entity
@@ -288,37 +288,37 @@
   name: legendary silver helm
   description: The old silver helm of the famous musician duo. One more time?
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/daft_punk_silver.rsi
-  - type: Clothing
-    quickEquip: false
-    clothingVisuals:
-      head:
-      - state: equipped-head
-      - state: equipped-head-unshaded
-        shader: unshaded
-  - type: Instrument
-    program: 27
-  - type: SwappableInstrument
-    instrumentList:
-      "Clean": {27: 0}
-      "Jazz": {25: 0}
-      "Muted": {28: 0}
-  - type: HideLayerClothing
-    slots:
-    - Hair
-    - Snout
-    - HeadTop
-    - HeadSide
-  - type: ActivatableUI
-    inHandsOnly: false
-    singleUser: true
-    verbText: verb-instrument-openui
-    key: enum.InstrumentUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.InstrumentUiKey.Key:
-        type: InstrumentBoundUserInterface
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/daft_punk_silver.rsi
+    - type: Clothing
+      quickEquip: false
+      clothingVisuals:
+        head:
+          - state: equipped-head
+          - state: equipped-head-unshaded
+            shader: unshaded
+    - type: Instrument
+      program: 27
+    - type: SwappableInstrument
+      instrumentList:
+        "Clean": { 27: 0 }
+        "Jazz": { 25: 0 }
+        "Muted": { 28: 0 }
+    - type: HideLayerClothing
+      slots:
+        - Hair
+        - Snout
+        - HeadTop
+        - HeadSide
+    - type: ActivatableUI
+      inHandsOnly: false
+      singleUser: true
+      verbText: verb-instrument-openui
+      key: enum.InstrumentUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.InstrumentUiKey.Key:
+          type: InstrumentBoundUserInterface
 
 - type: entity
   parent: ClothingHeadBase
@@ -401,26 +401,26 @@
       - state: equipped-HELMET
         offset: "0, 0.08"
 # Fashion-O-Mat-End
-    
+
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatNTRTophat
   name: NT rep tophat
   description: A fancy black tophat, handmade for the Nanotrasen rep. It looks expensive.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/ntr_tophat.rsi
-  - type: Clothing
-    clothingVisuals:
-      head:
-      - state: equipped-HELMET
-        offset: "0, 0.09"
-  - type: Tag
-    tags:
-    - PetWearable
-    - CorgiWearable
-    - ClothMade
-    - HamsterWearable
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/ntr_tophat.rsi
+    - type: Clothing
+      clothingVisuals:
+        head:
+          - state: equipped-HELMET
+            offset: "0, 0.09"
+    - type: Tag
+      tags:
+        - PetWearable
+        - CorgiWearable
+        - ClothMade
+        - HamsterWearable
 
 - type: entity
   parent: ClothingHeadBase
@@ -428,19 +428,19 @@
   name: NT rep elite tophat
   description: An expensive looking black tophat. the gold embossing on the front shows the Nanotrasen logo, fitting for an NT rep.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/ntr_elite_tophat.rsi
-  - type: Clothing
-    clothingVisuals:
-      head:
-      - state: equipped-HELMET
-        offset: "0, 0.09"
-  - type: Tag
-    tags:
-    - PetWearable
-    - CorgiWearable
-    - ClothMade
-    - HamsterWearable
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/ntr_elite_tophat.rsi
+    - type: Clothing
+      clothingVisuals:
+        head:
+          - state: equipped-HELMET
+            offset: "0, 0.09"
+    - type: Tag
+      tags:
+        - PetWearable
+        - CorgiWearable
+        - ClothMade
+        - HamsterWearable
 
 - type: entity
   parent: [ClothingHeadBase, BaseCentcommContraband]
@@ -448,14 +448,14 @@
   name: centcomm beret
   description: a green beret, like any other beret but green and you can't have it.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/CC_beret.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/CC_beret.rsi
-  - type: Tag
-    tags:
-    - CorgiWearable
-    - ClothMade
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/CC_beret.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/CC_beret.rsi
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - ClothMade
 
 - type: entity
   parent: [ClothingHeadBase, BaseCentcommContraband]
@@ -463,10 +463,10 @@
   name: central command sheriff's hat
   description: A sheriff's hat in the signature CC colors, one look at this might make a tider think twice from sneaking into debrief.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/CC_Bounty_Hunter_hat.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/CC_Bounty_Hunter_hat.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/CC_Bounty_Hunter_hat.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/CC_Bounty_Hunter_hat.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -507,7 +507,7 @@
         - WhitelistChameleon
 
 - type: entity
-  parent: [ ClothingHeadBase , BaseSalvageContraband ]
+  parent: [ClothingHeadBase, BaseSalvageContraband]
   id: ClothingHeadHatBeretSalvageMercBrown
   name: brown scrapper beret
   description: A brown beret.
@@ -522,7 +522,7 @@
         - CorgiWearable
 
 - type: entity
-  parent: [ ClothingHeadBase , BaseSalvageContraband ]
+  parent: [ClothingHeadBase, BaseSalvageContraband]
   id: ClothingHeadHatBeretSalvageMercGreen
   name: green scrapper beret
   description: A green beret.
@@ -537,7 +537,7 @@
         - CorgiWearable
 
 - type: entity
-  parent: [ ClothingHeadBase , BaseSalvageContraband ]
+  parent: [ClothingHeadBase, BaseSalvageContraband]
   id: ClothingHeadHatBeretSalvageMercPurple
   name: purple scrapper beret
   description: A purple beret.
@@ -552,26 +552,26 @@
         - CorgiWearable
 
 - type: entity
-  parent: [ClothingHeadBase, BaseTSFContraband]
+  parent: [BaseTSFContraband, ClothingHeadBase]
   id: ClothingHeadHatBeretTSF
   name: TSF beret
   description: A beret worn by marines of the Trans-Solar Federation.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/beret_tsf.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/beret_tsf.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/beret_tsf.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/beret_tsf.rsi
 
 - type: entity
-  parent: [ClothingHeadBase, BaseTSFContraband]
+  parent: [BaseTSFContraband, ClothingHeadBase]
   id: ClothingHeadHatBeretTSFElite
   name: MARSOC beret
   description: A beret worn by junior officers of the Trans-Solar Federation's Marine Special Operations Command.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/beret_tsfelite.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/beret_tsfelite.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/beret_tsfelite.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/beret_tsfelite.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -579,10 +579,10 @@
   name: red regalia Hat
   description: A fancy red hat like a mafiaoso would wear.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/red_regalia.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/red_regalia.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/red_regalia.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/red_regalia.rsi
 
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
@@ -590,20 +590,20 @@
   name: NT career trainer's beret
   description: A beret worn by the mentors and trainers of the Career Training Team. This one is black!
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/beret_nct_black.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/beret_nct_black.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/beret_nct_black.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/beret_nct_black.rsi
 
 - type: entity
   parent: ClothingHeadHatBeretNCTBlack
   id: ClothingHeadHatBeretNCTGreen
   description: A beret worn by the mentors and trainers of the Career Training Team. This one is green!
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/beret_nct_green.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/beret_nct_green.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/beret_nct_green.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/beret_nct_green.rsi
 
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
@@ -611,7 +611,18 @@
   name: campaign hat
   description: A wide-brimmed campaign hat with a drill sergeant feel, worn by Career Trainers to project knowledge and guide new employees with classic style.
   components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/drilltrainer.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/drilltrainer.rsi
+
+- type: entity
+  parent: [ClothingHeadBase, BaseTSFContraband]
+  id: ClothingHeadHatRetroOfficer
+  name: TSF officer's cap
+  description: A peaked cap from the Trans Solar Federation's law enforcement division. This peacekeeping headgear symbolizes TSF authority across known space.
+  components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hats/drilltrainer.rsi
+    sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hats/drilltrainer.rsi
+    sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi

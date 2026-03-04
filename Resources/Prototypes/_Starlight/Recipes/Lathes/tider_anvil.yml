@@ -1,3 +1,4 @@
+# WEAPONS
 - type: latheRecipe
   id: SwordFlamingTA
   result: SwordFlaming
@@ -10,24 +11,12 @@
      Plasteel: 1100
 
 - type: latheRecipe
-  id: HelmetForgedTA
-  result: UnfinishedClothingHeadHelmetForged
-  completetime: 60
+  id: SpearSteelTA
+  result: SpearSteel
+  completetime: 90
   materials:
-     Steel: 400
-     Plastic: 150
-     Cloth: 300
-     Plasteel: 200
-
-- type: latheRecipe
-  id: OmnitoolForgedTA
-  result: UnfinishedForgedOmnitool
-  completetime: 120
-  materials:
-     Steel: 1400
-     Glass: 50
-     Plastic: 200
-     Plasteel: 350
+    Cloth: 300
+    Plasteel: 1000
 
 - type: latheRecipe
   id: PistolForgedTA
@@ -48,27 +37,6 @@
      Wood: 350
      Plastic: 50
      Plasteel: 400
-
-- type: latheRecipe
-  id: BucklerForgedTA
-  result: UnfinishedForgedShieldBuckler
-  completetime: 60
-  materials:
-     Steel: 350
-     Plastic: 300
-     Cloth: 350
-     Plasteel: 300
-
-- type: latheRecipe
-  id: TowerForgedTA
-  result: UnfinishedForgedShieldTower
-  completetime: 120
-  materials:
-     Steel: 1300
-     Glass: 300
-     Plastic: 450
-     Cloth: 600
-     Plasteel: 600
 
 - type: latheRecipe
   id: ShotgunForgedTA
@@ -110,6 +78,46 @@
     Plasteel: 1100
 
 - type: latheRecipe
+  id: GreatSwordTA
+  result: UnfinishedClaymoreForged
+  completetime: 120
+  materials:
+    Cloth: 600
+    Plasteel: 1900
+
+# ARMOR
+- type: latheRecipe
+  id: HelmetForgedTA
+  result: UnfinishedClothingHeadHelmetForged
+  completetime: 60
+  materials:
+     Steel: 400
+     Plastic: 150
+     Cloth: 300
+     Plasteel: 200
+
+- type: latheRecipe
+  id: BucklerForgedTA
+  result: UnfinishedForgedShieldBuckler
+  completetime: 60
+  materials:
+     Steel: 350
+     Plastic: 300
+     Cloth: 350
+     Plasteel: 300
+
+- type: latheRecipe
+  id: TowerForgedTA
+  result: UnfinishedForgedShieldTower
+  completetime: 120
+  materials:
+     Steel: 1300
+     Glass: 300
+     Plastic: 450
+     Cloth: 600
+     Plasteel: 600
+
+- type: latheRecipe
   id: ArmourForgedTA
   result: UnfinishedClothingOuterArmorForged
   completetime: 120
@@ -118,42 +126,6 @@
     Plastic: 350
     Cloth: 750
     Plasteel: 350
-
-- type: latheRecipe
-  id: MagazineBoxImprovTA
-  result: BaseMagazineBoxImprovised
-  completetime: 30
-  materials:
-    Steel: 350
-    Cloth: 20
-
-- type: latheRecipe
-  id: SpeedloaderMagnumImprovTA
-  result: SpeedLoaderMagnumImprovised
-  completetime: 22
-  materials:
-    Steel: 450
-
-- type: latheRecipe
-  id: MagazinePistolImprovTA
-  result: MagazinePistolImprovised
-  completetime: 7
-  materials:
-    Steel: 350
-
-- type: latheRecipe
-  id: SpeedloaderRifleImprovTA
-  result: SpeedLoaderMagnumLeverImprovised
-  completetime: 30
-  materials:
-    Steel: 600
-
-- type: latheRecipe
-  id: MagazineSMGImprovTA
-  result: MagazinePistolSubMachineGunImprovised
-  completetime: 30
-  materials:
-    Steel: 600
 
 - type: latheRecipe
   id: GreatPaladinTA
@@ -197,13 +169,62 @@
     Cloth: 1100
     Plasteel: 750
 
+# TOOLS
 - type: latheRecipe
-  id: GreatSwordTA
-  result: UnfinishedClaymoreForged
+  id: OmnitoolForgedTA
+  result: UnfinishedForgedOmnitool
   completetime: 120
   materials:
-    Cloth: 600
-    Plasteel: 1900
+     Steel: 1400
+     Glass: 50
+     Plastic: 200
+     Plasteel: 350
+
+- type: latheRecipe
+  id: MakeshiftIDTA
+  result: MakeshiftID
+  completetime: 120
+  materials:
+     Steel: 1000
+     Plastic: 400
+     Plasteel: 350
+
+# AMMO
+- type: latheRecipe
+  id: MagazineBoxImprovTA
+  result: BaseMagazineBoxImprovised
+  completetime: 30
+  materials:
+    Steel: 350
+    Cloth: 20
+
+- type: latheRecipe
+  id: SpeedloaderMagnumImprovTA
+  result: SpeedLoaderMagnumImprovised
+  completetime: 22
+  materials:
+    Steel: 450
+
+- type: latheRecipe
+  id: MagazinePistolImprovTA
+  result: MagazinePistolImprovised
+  completetime: 7
+  materials:
+    Steel: 350
+
+- type: latheRecipe
+  id: SpeedloaderRifleImprovTA
+  result: SpeedLoaderMagnumLeverImprovised
+  completetime: 30
+  materials:
+    Steel: 600
+
+- type: latheRecipe
+  id: MagazineSMGImprovTA
+  result: MagazinePistolSubMachineGunImprovised
+  completetime: 30
+  materials:
+    Steel: 600
 
 - type: latheRecipe
   id: MagazineBoxImprovisedPistolTA
@@ -246,11 +267,12 @@
     Cloth: 20
     CrushedPhosphorus: 1500
 
+# MAKESHIFT MODULES
 - type: latheRecipe
   id: BorgModuleMakeshiftKnifeTA
   result: BorgModuleMakeshiftKnife
-  completetime: 60
+  completetime: 30
   materials:
     Steel: 600
     Plastic: 500
-    Glass: 2500
+    Glass: 300

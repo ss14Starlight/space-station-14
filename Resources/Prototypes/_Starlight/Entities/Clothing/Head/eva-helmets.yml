@@ -31,7 +31,7 @@
     unequipDelay: 3
 
 - type: entity
-  parent: [ClothingHeadEVAHelmetBase, ClothingHeadHelmetArmoredBase, BaseTSFContraband]
+  parent: [BaseTSFContraband, ClothingHeadEVAHelmetBase, ClothingHeadHelmetArmoredBase]
   id: ClothingHeadHelmetTSF
   name: Federation marine combat helmet
   description: A powered combat helmet used by the Trans-Solar Marine Corps. Provides excellent protection in all areas, while a modern OCULUS array augments the wearer's vision.
@@ -44,10 +44,7 @@
       unequipDelay: 3
     - type: ShowJobIcons
     - type: ShowMindShieldIcons
-    - type: EyeProtection
-      protectionTime: 5
     - type: FlashImmunity
-    - type: ClothesNightVision
 
 - type: entity
   parent: ClothingHeadHelmetTSF

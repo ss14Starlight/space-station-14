@@ -1,43 +1,83 @@
 - type: entity
-  parent: [ClothingBackpack, BaseTSFContraband]
+  parent: [BaseTSFContraband, ClothingBackpackSatchel]
   id: ClothingBackpackRadioTSF
   name: TSF radio telephone pack
   description: A heavy-duty pack, used for telecommunications between central command.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Back/rtp.rsi
-  - type: UserInterface
-    interfaces:
-      enum.HolopadUiKey.InteractionWindow:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/rtp.rsi
+    - type: UserInterface
+      interfaces:
+        enum.HolopadUiKey.InteractionWindow:
           type: HolopadBoundUserInterface
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-  - type: Telephone
-    transmissionRange: Unlimited
-    compatibleRanges:
-    - Grid
-    - Map
-    - Unlimited
-    ringTone: /Audio/_Starlight/Machines/telephone_ring.ogg
-    listeningRange: 0
-  - type: Holopad
-  - type: ActivatableUI
-    key: enum.HolopadUiKey.InteractionWindow
-  - type: TypingIndicator
-    proto: robot
-  - type: Speech
-    speechVerb: Robotic
-    speechSounds: PhoneSpeak
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.TelephoneVisuals.Key:
-        lights:
-          Idle: { state: icon }
-          Calling: { state: ring }
-          Ringing: { state: ring }
-          InCall: { state: ear }
-          EndingCall: { state: ring }
-  - type: StorageFill
-    contents:
-      - id: HandLabeler
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+    - type: Telephone
+      transmissionRange: Unlimited
+      compatibleRanges:
+        - Grid
+        - Map
+        - Unlimited
+      ringTone: /Audio/_Starlight/Machines/telephone_ring.ogg
+      listeningRange: 0
+    - type: Holopad
+    - type: ActivatableUI
+      key: enum.HolopadUiKey.InteractionWindow
+    - type: TypingIndicator
+      proto: robot
+    - type: Speech
+      speechVerb: Robotic
+      speechSounds: PhoneSpeak
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.TelephoneVisuals.Key:
+          lights:
+            Idle: { state: icon }
+            Calling: { state: ring }
+            Ringing: { state: ring }
+            InCall: { state: ear }
+            EndingCall: { state: ring }
+    - type: StorageFill
+      contents:
+        - id: HandLabeler
+
+- type: entity
+  parent: [BaseTSFContraband, ClothingBackpackSatchel, BaseToggleClothing]
+  id: ClothingBackpackThermalCloakTSF
+  name: Phantom thermal cloak
+  description: The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard UNMC ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high maneuverability and adaptability to many environments.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/thermalcloak.rsi
+    - type: ItemToggle
+      onUse: false
+      onActivate: false
+    - type: ToggleClothing
+      action: ActionTogglePhaseCloak
+      disableOnUnequip: true
+    - type: ComponentToggler
+      parent: true
+      components:
+        - type: Stealth
+          minVisibility: 0.15
+          maxVisibility: 0.15
+          lastVisibility: 0.15
+    - type: PowerCellDraw
+      drawRate: 14 # roughly 200 seconds on the default cell
+    - type: ToggleCellDraw
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+      fitsInCharger: false
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMicroreactor
+          disableEject: true
+          whitelist:
+            tags:
+              - PowerCell

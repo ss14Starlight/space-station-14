@@ -87,3 +87,39 @@
     reregister: false
     job: Borg
   - type: GhostTakeoverAvailable
+
+- type: entity
+  id: PlayerBorgChassisTSFBattery
+  parent: BorgChassisTSF
+  suffix: Battery, Module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+  - type: DefaultBorgModules
+    modules:
+      - BorgModuleTool
+      - BorgModuleFireExtinguisher
+      - BorgModuleTSF
+      - BorgModuleTSFCombat
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+
+- type: entity
+  parent: PlayerBorgChassisTSFBattery
+  id: PlayerBorgChassisTSFGhostRole
+  suffix: Ghost role
+  components:
+  - type: GhostRole
+    name: ghost-role-information-tsf-borg-name
+    description: ghost-role-information-tsf-borg-desc
+    rules: ghost-role-information-silicon-rules
+    raffle:
+      settings: default
+    reregister: false
+    job: Borg
+  - type: GhostTakeoverAvailable

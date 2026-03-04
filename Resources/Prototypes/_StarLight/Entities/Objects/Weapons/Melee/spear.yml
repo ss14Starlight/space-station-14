@@ -1,0 +1,19 @@
+- type: entity
+  name: steel spear
+  parent: Spear
+  id: SpearSteel
+  description: A solid steel spear.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/steel_spear.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 15
+        Slash: 5
+        Structural: 5
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 25

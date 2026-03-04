@@ -48,7 +48,7 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingTank
-  name: Plumbing Tank
+  name: plumbing tank
   description: Stores up to 2000u of reagents. Use tanks to buffer reagents between production stages or just store large amounts of reagents.
   components:
   - type: Sprite
@@ -62,6 +62,11 @@
   - type: Plungeable
   - type: PlumbingOutlet
     solutionName: tank
+    connectedOutlets: true
+    outletNames:
+    - outletSouth
+    - outletEast
+    - outletWest
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -75,10 +80,18 @@
         !type:PlumbingNode
         nodeGroupID: Plumbing
         pipeDirection: North
-      outlet:
+      outletSouth:
         !type:PlumbingNode
         nodeGroupID: Plumbing
-        pipeDirection: TSouth
+        pipeDirection: South
+      outletEast:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: East
+      outletWest:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: West
   - type: Destructible
     thresholds:
     - trigger:
@@ -93,12 +106,43 @@
     price: 100
 
 # =============================================================================
+# Plumbing Buffer - small low-profile tank for reagent buffering
+# =============================================================================
+- type: entity
+  parent: PlumbingTank
+  id: PlumbingBuffer
+  name: plumbing buffer
+  description: Stores up to 200u of reagents. Useful for supplying separate duct networks with its unconnected outlets.
+  components:
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+    fixtures: {}
+  - type: Sprite
+    sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
+    layers:
+    - state: buffer_tank
+  - type: PlumbingOutlet
+    solutionName: tank
+    connectedOutlets: false
+    outletNames:
+    - outletSouth
+    - outletEast
+    - outletWest
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 200
+        canReact: false
+
+# =============================================================================
 # Plumbing Input - pour reagents into the network
 # =============================================================================
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingInput
-  name: Plumbing Input
+  name: plumbing input
   description: A small tank you pour reagents into. Other machines pull from this. Connects in all directions.
   components:
   - type: Physics
@@ -115,6 +159,12 @@
   - type: Plungeable
   - type: PlumbingOutlet
     solutionName: input
+    connectedOutlets: true
+    outletNames:
+    - outletNorth
+    - outletEast
+    - outletSouth
+    - outletWest
   - type: SolutionContainerManager
     solutions:
       input:
@@ -124,10 +174,22 @@
     solution: input
   - type: NodeContainer
     nodes:
-      outlet:
+      outletNorth:
         !type:PlumbingNode
         nodeGroupID: Plumbing
-        pipeDirection: Fourway
+        pipeDirection: North
+      outletEast:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: East
+      outletSouth:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: South
+      outletWest:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: West
   - type: Destructible
     thresholds:
     - trigger:
@@ -147,7 +209,7 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingSink
-  name: Plumbing Sink
+  name: plumbing sink
   description: A sink connected to the plumbing network. Draw reagents from it with a container, or dump reagents into it to send them down the drain. Connects in all directions.
   components:
   - type: Sprite
@@ -169,6 +231,7 @@
     solutionName: output
   - type: PlumbingOutlet
     solutionName: drain
+    connectedOutlets: true
   - type: DumpableSolution
     solution: drain
   - type: Plungeable
@@ -221,7 +284,7 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingOutput
-  name: Plumbing Output
+  name: plumbing output
   description: A small tank that pulls reagents from the network. Draw from it with a container. Connects in all directions.
   components:
   - type: Physics
@@ -289,7 +352,7 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingReactor
-  name: Plumbing Reactor
+  name: plumbing reactor
   description: Pulls target reagents in up to configured quantities from its inlet and triggers reactions. Requires power.
   components:
   - type: Sprite
@@ -309,9 +372,15 @@
     bufferSolutionName: buffer
     outputSolutionName: output
     inletName: inlet
+  - type: PlumbingInlet
+    solutionName: buffer
+    inletNames:
+    - inlet
+    transferAmount: 0
   - type: Plungeable
   - type: PlumbingOutlet
     solutionName: output
+    connectedOutlets: true
   - type: SolutionContainerManager
     solutions:
       buffer:
@@ -362,7 +431,7 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingSmartDispenser
-  name: Plumbing Smart Dispenser
+  name: plumbing smart dispenser
   description: Pulls in all reagents from its inlets and stores up to 200u of each type. Use a labeled jug on the dispenser to fill it with the matching reagent. Requires power.
   components:
   - type: Sprite
@@ -386,6 +455,7 @@
     - inletEast
     - inletSouth
     - inletWest
+    transferAmount: 40
   - type: PlumbingSmartDispenser
     solutionName: fridge
     maxPerReagent: 200
@@ -442,7 +512,7 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingPillPress
-  name: Plumbing Pill Press
+  name: plumbing pill press
   description: Pulls in reagents and presses them into pills or patches at a configurable dosage. Has optional mixing inlets for ratio-controlled mixing. Requires power.
   components:
   - type: Sprite
@@ -463,9 +533,6 @@
     dosage: 10
   - type: PlumbingConnectorAppearance
     offset: 0.09375
-    mixingInletNames:
-    - mixingInletEast
-    - mixingInletWest
   - type: PlumbingInlet
     solutionName: buffer
     inletNames:
@@ -524,8 +591,8 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingFilter
-  name: Plumbing Filter
-  description: Filters specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
+  name: plumbing filter
+  description: Filters up to 4 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
   components:
   - type: Physics
     bodyType: Static
@@ -543,7 +610,8 @@
   - type: PlumbingFilter
     filterNodeName: outletFilter
     passthroughNodeName: outletPassthrough
-    bufferSolutionName: buffer
+    filteredSolutionName: bufferFiltered
+    passthroughSolutionName: buffer
   - type: Plungeable
   - type: PlumbingOutlet
     solutionName: buffer
@@ -553,6 +621,9 @@
   - type: SolutionContainerManager
     solutions:
       buffer:
+        maxVol: 40
+        canReact: false
+      bufferFiltered:
         maxVol: 40
         canReact: false
   - type: ExaminableSolution
@@ -589,6 +660,8 @@
       behaviors:
       - !type:SpillBehavior
         solution: buffer
+      - !type:SpillBehavior
+        solution: bufferFiltered
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: StaticPrice
@@ -598,7 +671,7 @@
   parent: PlumbingFilter
   id: PlumbingFilterFlipped
   suffix: Flipped
-  description: Filters specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
+  description: Filters up to 4 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
   components:
   - type: Physics
     bodyType: Static
@@ -632,7 +705,7 @@
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingSynthesizer
-  name: Plumbing Synthesizer
+  name: plumbing synthesizer
   description: Generates basic reagents using power from an internal battery.
   components:
   - type: Sprite
@@ -665,6 +738,11 @@
   - type: Plungeable
   - type: PlumbingOutlet
     solutionName: buffer
+    connectedOutlets: true
+    outletNames:
+    - outletSouth
+    - outletEast
+    - outletWest
   - type: SolutionContainerManager
     solutions:
       buffer:
@@ -674,10 +752,18 @@
     solution: buffer
   - type: NodeContainer
     nodes:
-      outlet:
+      outletSouth:
         !type:PlumbingNode
         nodeGroupID: Plumbing
-        pipeDirection: TSouth
+        pipeDirection: South
+      outletEast:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: East
+      outletWest:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: West
   - type: UserInterface
     interfaces:
       enum.PlumbingSynthesizerUiKey.Key:
@@ -714,12 +800,75 @@
   - type: StaticPrice
     price: 200
 # =============================================================================
+# Plumbing Disposal - destroys reagents pulled from plumbing network
+# =============================================================================
+- type: entity
+  parent: PlumbingMachineBase
+  id: PlumbingDisposal
+  name: plumbing disposal
+  description: Pulls reagents from a south inlet into an internal 200u buffer and destroys them.
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
+    layers:
+    - state: disposal
+      map: [ "enum.PlumbingVisualLayers.Base" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.PlumbingVisuals.Running:
+        enum.PlumbingVisualLayers.Base:
+          True: { state: disposal_working }
+          False: { state: disposal }
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+    fixtures: {}
+  - type: PlumbingDevice
+    updateInterval: 1
+  - type: PlumbingInlet
+    solutionName: drainBuffer
+    inletNames:
+    - inlet
+  - type: Drain
+    autoDrain: false
+    unitsDestroyedPerSecond: 15
+  - type: DumpableSolution
+    solution: drainBuffer
+  - type: SolutionContainerManager
+    solutions:
+      drainBuffer:
+        maxVol: 200
+        canReact: false
+  - type: ExaminableSolution
+    solution: drainBuffer
+  - type: NodeContainer
+    nodes:
+      inlet:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: South
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpillBehavior
+        solution: drainBuffer
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: StaticPrice
+    price: 150
+
+# =============================================================================
 # Plumbing Drain - floor drain that outputs to plumbing network
 # =============================================================================
 - type: entity
   parent: PlumbingMachineBase
   id: PlumbingDrain
-  name: Plumbing Drain
+  name: plumbing drain
   description: A floor drain that absorbs puddles and routes them into the plumbing network instead of disposing them.
   placement:
     mode: SnapgridCenter
@@ -754,16 +903,34 @@
     solutionName: drainBuffer
   - type: PlumbingOutlet
     solutionName: drainBuffer
+    connectedOutlets: true
+    outletNames:
+    - outletNorth
+    - outletEast
+    - outletSouth
+    - outletWest
   - type: SolutionContainerManager
     solutions:
       drainBuffer:
         maxVol: 400
   - type: NodeContainer
     nodes:
-      outlet:
+      outletNorth:
         !type:PlumbingNode
         nodeGroupID: Plumbing
-        pipeDirection: Fourway
+        pipeDirection: North
+      outletEast:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: East
+      outletSouth:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: South
+      outletWest:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: West
   - type: ExaminableSolution
     solution: drainBuffer
   - type: Destructible

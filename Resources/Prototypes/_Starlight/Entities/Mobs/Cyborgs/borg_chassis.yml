@@ -121,3 +121,74 @@
     - Command
     - Science
     - Law
+
+# TSF
+# ? Make this Generic in the future if we have... More TSF Borgs?
+- type: entity
+  id: BorgChassisTSF
+  parent: BaseBorgChassisNotIonStormable
+  name: TSMC assault cyborg
+  description: A purpose built assault silicon used by the TSMC.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Silicon/Chassis/tsmc.rsi
+    layers:
+    - state: assault
+      map: ["enum.BorgVisualLayers.Body", "movement"]
+    - state: assault_l
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: assault_l
+      shader: unshaded
+      map: ["light","enum.BorgVisualLayers.LightStatus"]
+  - type: BorgChassis
+    jobIconOverride: JobIconTSF
+    jobTitleOverride: chat-radio-tsf-borg
+    maxModules: 8
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleSecurity
+    hasMindState: assault_l
+    noMindState: assault_l
+  - type: Access
+    tags:
+    - Solgov
+  - type: AccessReader
+    access: [["Solgov"]]
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - TSF
+    - Common
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - TSF
+    - Common
+  - type: MovementAlwaysTouching
+  - type: Speech
+    speechSounds: SyndieBorg
+    allowedEmotes:
+    - Laugh
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
+  - type: IonStormTarget
+    chance: 0.2
+  - type: ShowJobIcons
+  - type: SiliconLawProvider
+    laws: SolgovLawset
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - SiliconEmotes
+    - Unimplantable
+    - EmagImmune

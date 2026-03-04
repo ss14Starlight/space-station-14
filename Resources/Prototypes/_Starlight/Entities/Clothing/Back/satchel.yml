@@ -53,7 +53,7 @@
     sprite: _Starlight/Clothing/Back/Satchels/Centcomm.rsi
 
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseSyndicateContraband]
+  parent: [ClothingBackpackSatchel, BaseMinorContraband]
   id: ClothingBackpackSatchelSyndicate
   name: syndicate satchel
   description: Ask not what the syndicate satchel can do for you, but rather, what can't it do.
