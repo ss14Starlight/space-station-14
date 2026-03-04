@@ -240,13 +240,18 @@
             Caustic: 1
     Medicine: #Starlight
       effects:
+      - !type:SatiateThirst 
+          conditions:
+          - !type:MetabolizerTypeCondition #Spectralight, sates avali and resomi thirst better than water
+            type: [ Avali, Resomi ]
+          factor: 6
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Avali, Resomi ]
         damage:
           types:
-            Asphyxiation: -1
+            Asphyxiation: -0.5
     Gas:
       effects:
       - !type:HealthChange

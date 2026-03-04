@@ -449,7 +449,16 @@
     Drink:
       effects:
       - !type:SatiateThirst
+        conditions:
+          - !type:MetabolizerTypeCondition #Spectralight, no longer sates avali resomi thirst as well.
+            type: [ Avali, Resomi ]
+            inverted: true
         factor: 4
+      - !type:SatiateThirst
+        conditions:
+          - !type:MetabolizerTypeCondition #Spectralight, no longer sates avali resomi thirst as well.
+            type: [ Avali, Resomi ]
+        factor: 2
     Gas:
       effects:
       - !type:HealthChange

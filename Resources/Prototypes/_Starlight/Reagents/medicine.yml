@@ -51,7 +51,7 @@
           type: [ Avali, Resomi ]
         damage:
           types:
-            Asphyxiation: -3.5
+            Asphyxiation: -3.5 
             Bloodloss: -3
       - !type:AdjustReagent
         conditions:
@@ -78,12 +78,7 @@
           types:
             Poison: 1.5 #Ammonia is toxic injected directly into bloodstream
             Asphyxiation: 1 
-            Bloodloss: 0.5
-      - !type:ModifyBloodLevel
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Avali, Resomi ]
-        amount: 3
+            Bloodloss: 0.5 #SpectraLight, remove bloodloss healing from amoxla
         # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent # Amoxla for Cyclorites is a toxin not medicine
         conditions:

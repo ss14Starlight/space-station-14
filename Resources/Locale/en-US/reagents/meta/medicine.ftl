@@ -24,7 +24,8 @@ reagent-desc-dermaline = An advanced chemical that is more effective at treating
 
 # Starlight Start
 reagent-name-dexalin = dexalin
-reagent-desc-dexalin = Used for treating minor oxygen deprivation and bloodloss, mildly toxic to Avali and Resomi. A required reagent for dexalin plus.
+reagent-desc-dexalin = Used for treating minor oxygen deprivation and bloodloss. A required reagent for dexalin plus. 
+#Spectralight, no longer avali toxic
 
 reagent-name-dexalin-plus = dexalin plus
 reagent-name-dexalin-plus-saline = dexalin plus & saline
@@ -111,7 +112,8 @@ reagent-desc-sigynate = A thick pink syrup useful for neutralizing acids and soo
 
 # Starlight Start
 reagent-name-saline = saline
-reagent-desc-saline = A mixture of salt and water, highly toxic to Avali and Resomi. Commonly used to treat dehydration or low fluid presence in blood.
+reagent-desc-saline = A mixture of salt and water. Commonly used to treat dehydration or low fluid presence in blood. 
+#Spectralight, no longer toxic to avali
 #Starlight End
 
 reagent-name-lacerinol = lacerinol

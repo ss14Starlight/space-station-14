@@ -3,10 +3,10 @@
   abstract: true
   components:
     - type: TemperatureDamage
-      heatDamageThreshold: 310
-      coldDamageThreshold: 223
+      heatDamageThreshold: 293 #Spectralight: Lowered to 293
+      coldDamageThreshold: 213 #Spectralight: Lowered to 213
     - type: Temperature
-      currentTemperature: 261
+      currentTemperature: 251 #Spectralight: Lowered to 251
       specificHeat: 48
     - type: ThermalRegulator
       metabolismHeat: 400 # icebirb go brrr
@@ -14,13 +14,13 @@
       implicitHeatRegulation: 1500
       sweatHeatRegulation: 2000
       shiveringHeatRegulation: 2000
-      normalBodyTemperature: 261
+      normalBodyTemperature: 251 #Spectralight: Lowered to 251
       thermalRegulationTemperatureThreshold: 1
     - type: TemperatureSpeed
       thresholds:
-        250: 0.9
-        230: 0.8
-        223: 0.6
+        230: 0.9 #Spectralight: Lowered to 230
+        220: 0.8 #Spectralight: Lowered to 220
+        213: 0.6 #Spectralight: Lowered to 213
 
 - type: entity
   save: false
@@ -43,7 +43,6 @@
         - DoorBumpOpener
         - AnomalyHost
         - Avali
-        - NotLabelable
     - type: Absorbable
     - type: HumanoidAppearance
       species: Avali

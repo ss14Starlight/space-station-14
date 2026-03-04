@@ -1,0 +1,9 @@
+- type: reaction
+  id: Ammonium
+  reactants:
+    Ammonia:
+      amount: 1
+    Hydrogen:
+      amount: 1
+  products:
+    Ammonium: 2

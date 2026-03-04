@@ -336,10 +336,6 @@
     Medicine:
       effects:
       - !type:HealthChange
-        conditions:
-        - !type:MetabolizerTypeCondition #starliight
-          type: [ Avali, Resomi ]
-          inverted: true
         damage:
           types:
             Asphyxiation: -1
@@ -353,15 +349,7 @@
           types:
             Asphyxiation: 3
             Cold: 1
-      - !type:HealthChange #Starlight
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Avali, Resomi ]
-        damage:
-          types:
-            Poison: 1.5 #Avali and Resomi blood is ammonia based, so chems made to treat normal bloodloss poison them instead (Lethal Dose: 20u)
-            Asphyxiation: 1 
-            Bloodloss: 1
+            #SpectaLight. Avali blood is ammonia based so only chems with iron in them are poison. Oxygen is fine.
       # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
@@ -659,6 +647,10 @@
     Medicine:
       effects:
       - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition #starliight
+          type: [ Avali, Resomi ]
+          inverted: true
         damage:
           types:
             Cold: -4
@@ -914,21 +906,14 @@
     Medicine: #Starlight
       effects:
         - !type:SatiateThirst  # Starlight - thirst effect changed from Drink to Medicine
-           factor: 6           #
-        - !type:ModifyBloodLevel
           conditions:
-          - !type:MetabolizerTypeCondition
+          - !type:MetabolizerTypeCondition #Spectralight, no longer sates avali resomi thirst.
             type: [ Avali, Resomi ]
             inverted: true
+          factor: 6           
+        - !type:ModifyBloodLevel
           amount: 6
-        - !type:HealthChange
-          conditions:
-          - !type:MetabolizerTypeCondition
-           type: [ Avali, Resomi ]
-          damage:
-            types:
-              Caustic: 2 # 30 damage per unit was ridiculous, but I'm leaving some damage to punish mistakes without risking round removal. Adding salt to water shouldn't suddenly make it the strongest toxin in the game by far.
-              Heat: 2 
+          #SpectraLight Avali/Resomi blood is DILUTED ammonia blood. saline is fine. iron is not.
         # Starlight-Start: Cyclorite Metabolism
         - !type:AdjustReagent
           conditions:
@@ -1587,10 +1572,21 @@
       metabolismRate: 0.1 # slow metabolism to not be a godly combat med, its for treating burn victims efficiently
       effects:
       - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Avali, Resomi ]
+          inverted: true
         damage:
           types:
             Heat: -1
-      # od causes massive bleeding
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Avali, Resomi ]
+        damage:
+          types:
+            Slash: 0.5
+            Piercing: 0.5 #SpectraLight: Iron as a constituant part. Poison.
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -1636,9 +1632,21 @@
       effects:
       # heals shocks and removes shock chems
       - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Avali, Resomi ]
+          inverted: true
         damage:
           types:
             Shock: -1.5 # 6 per u
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition 
+          type: [ Avali, Resomi ]
+        damage:
+          types:
+            Shock: 2 
+            Poison: 1 #SpectraLight: Avali poison again. see above. iron based chem.
       - !type:AdjustReagent
         reagent: Licoxide
         amount: -2

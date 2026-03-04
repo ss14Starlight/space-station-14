@@ -1,0 +1,61 @@
+- type: reaction
+  id: Scorizine
+  requiredMixerCategories:
+  - Electrolysis
+  reactants:
+    AmmoniaCarbonate:
+      amount: 1
+    Silicon:
+      amount: 2
+    Copper:
+      amount: 1
+      catalyst: true
+  products:
+    Scorizine: 3
+
+- type: reaction
+  id: Voltizol
+  requiredMixerCategories:
+  - Electrolysis
+  reactants:
+    AmmoniaCarbonate:
+      amount: 1
+    Lithium:
+      amount: 2
+    Copper:
+      amount: 1
+      catalyst: true
+  products:
+    Voltizol: 3
+
+- type: reaction
+  id: Carbonate
+  reactants:
+    Carbon:
+      amount: 1
+    Oxygen:
+      amount: 1
+    Ammonia:
+      amount: 1
+  products:
+    Carbonate: 3
+
+- type: reaction
+  id: SodiumCarbonateCarbonate
+  reactants:
+    Carbonate:
+      amount: 3
+    TableSalt:
+      amount: 1
+  products:
+    SodiumCarbonate: 4
+
+- type: reaction
+  id: AmmoniaCarbonate
+  reactants:
+    Carbonate:
+      amount: 1
+    Ammonium:
+      amount: 1
+  products:
+    AmmoniaCarbonate: 2
