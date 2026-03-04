@@ -364,9 +364,9 @@
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
         type: Add
-        time: 40 # Starlight: Liquid frezon way more potent (its denser!)
+        time: 60 # Starlight: Liquid frezon way more potent (its denser!)
       - !type:Drunk
-        boozePower: 40  # Starlight: Liquid frezon way more potent (its denser!)
+        boozePower: 30  # Starlight: Liquid frezon way more potent (its denser!)
       - !type:PopupMessage
         type: Local
         messages: [ "frezon-lungs-cold" ]
@@ -393,7 +393,7 @@
         type: Add
         time: 20  # Starlight: Down from 500 (holy shit)
       - !type:Drunk
-        boozePower: 20 # Starlight: Down from 500 (holy shit)
+        boozePower: 10 # Starlight: Down from 500 (holy shit)
         minScale: 1
       - !type:PopupMessage
         type: Local
