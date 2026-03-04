@@ -141,13 +141,13 @@
 - type: entity
   parent: BaseMindRoleAntag
   id: MindRoleThrall
-  name: roles-antag-thrall-name
+  name: Thrall Role
   components:
   - type: MindRole
-    antagonist: true
+    antagPrototype: Thrall
     roleType: TeamAntagonist
     subtype: role-subtype-thrall
-  - type: ThrallRole
+  - type: VampireThrall
 
 - type: entity
   parent: BaseMindRoleAntag

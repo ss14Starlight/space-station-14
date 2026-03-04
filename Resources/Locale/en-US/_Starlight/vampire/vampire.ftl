@@ -9,6 +9,9 @@ alerts-vampire-fed-desc = Your current blood fullness. Drink blood to stay fed.
 roles-antag-vamire-name = Vampire
 roles-antag-vampire-description = Feed on the crew. Extend your fangs and drink their blood.
 
+roles-antag-thrall-name = Thrall
+roles-antag-thrall-description = Obey your master, {$targetName}.
+
 vampire-roundend-name = vampire
 
 vampire-drink-start = You sink your fangs into {CAPITALIZE(THE($target))}.
@@ -179,3 +182,9 @@ alerts-vampire-blood-swell-name = Blood Swell
 alerts-vampire-blood-swell-desc = Your muscles surge with unholy power.
 alerts-vampire-blood-rush-name = Blood Rush
 alerts-vampire-blood-rush-desc = Supernatural speed courses through your limbs.
+
+Vamp-converted-title = Enthralled!
+Vamp-converted-text =
+    You have been Enthralled!
+    Obey your master faithfully, you may access the hivemind with '+p'
+Vamp-converted-confirm = Understood
