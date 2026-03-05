@@ -39,7 +39,7 @@ if not changelog_without_comments:
     sys.exit(1)
 
 # Check for :cl: command
-if ":cl:" or ":admincl:" not in changelog_without_comments:
+if ":cl:" and ":admincl:" not in changelog_without_comments:
     print("::error::Changelog is missing the :cl: or :admincl: command")
     sys.exit(1)
 
