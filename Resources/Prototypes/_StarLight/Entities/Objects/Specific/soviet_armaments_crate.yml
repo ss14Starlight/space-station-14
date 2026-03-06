@@ -35,6 +35,8 @@
         - id: EmagCommie
           weight: 1
         - id: ClothingOuterArmorSovietPlate
+          weight: 5
+        - id: ClothingBackpackDuffelSovietEVABundle
           weight: 3
         - id: WeaponShotgunToz106Extended
           weight: 6
