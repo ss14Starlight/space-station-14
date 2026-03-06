@@ -62,6 +62,7 @@
         - !type:MetabolizerTypeCondition
           type: [ Vox ]
         ignoreResistances: true
+        maxScale: 16 # Starlight: Cap damage per breath, no more instant death
         damage:
           types:
             Poison: 0.7
