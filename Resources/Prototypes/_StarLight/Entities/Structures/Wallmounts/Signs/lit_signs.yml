@@ -1,0 +1,129 @@
+- type: entity
+  id: BarSignLights
+  parent: [ BaseWallmountGlass, BaseWallmountMachine, Poweredlight ]
+  name: bar sign
+  suffix: light
+  components:
+  - type: AmbientSound #SL
+    volume: -7 #SL
+    range: 4 #SL
+    sound: #SL
+      path: /Audio/_Starlight/Effects/Machinery/electric_buzz.ogg #SL
+  - type: WallMount
+    arc: 360
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/bar_light.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      shader: unshaded
+    state: base
+  - type: Appearance
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: PoweredLight
+    bulb: Bulb
+    on: true
+    hasLampOnSpawn: LightBulb
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 1
+    popupText: powered-light-component-burn-hand
+  - type: PointLight
+    radius: 1
+    energy: 0.2
+    softness: 3
+    offset: "0, 0"
+    enabled: true
+  - type: PoweredLightVisuals
+    blinkingSound:
+      path: "/Audio/Machines/light_tube_on.ogg"
+    spriteStateMap:
+      empty: base
+      off: base
+      on: base
+      broken: base
+      burned: base
+
+- type: entity
+  id: ClinicSignLights
+  parent: [ BarSignLights ]
+  name: clinic sign
+  suffix: light
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/clinic.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      shader: unshaded
+    state: base
+
+- type: entity
+  id: OnAirSignLights
+  parent: [ BarSignLights ]
+  name: on air sign
+  suffix: light
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/on_air.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      shader: unshaded
+    state: base
+
+- type: entity
+  id: OpenSignLights
+  parent: [ BarSignLights ]
+  name: open sign
+  suffix: light
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/open.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      shader: unshaded
+    state: base
+
+- type: entity
+  id: OpenBarSignLights
+  parent: [ BarSignLights ]
+  name: open bar sign
+  suffix: light
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/open_bar.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      shader: unshaded
+    state: base

@@ -1,9 +1,9 @@
 - type: cargoProduct
   id: NuclearReactorFlatpackPurchase
   icon:
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/cargo_icons.rsi
+    sprite: _FarHorizons/Interface/FissionGenerator/cargo_icons.rsi
     state: reactor
-  product: NuclearReactorFlatpack
+  product: CrateNuclearReactorFlatpack # Starlight Edit: NuclearReactorFlatpack -> CrateNuclearReactorFlatpack
   cost: 15000
   category: cargoproduct-category-name-engineering
   group: market
@@ -11,9 +11,9 @@
 - type: cargoProduct
   id: GasTurbineFlatpackPurchase
   icon:
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/cargo_icons.rsi
+    sprite: _FarHorizons/Interface/FissionGenerator/cargo_icons.rsi
     state: turbine
-  product: GasTurbineFlatpack
+  product: CrateGasTurbineFlatpack # Starlight Edit: GasTurbineFlatpack -> CrateGasTurbineFlatpack
   cost: 10000
   category: cargoproduct-category-name-engineering
   group: market
@@ -21,7 +21,7 @@
 - type: cargoProduct
   id: CerenkiteFuelRodPurchase
   icon:
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
+    sprite: _FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi
     state: default_rod
   product: CrateCerenkiteFuelRod
   cost: 4000
@@ -31,7 +31,7 @@
 - type: cargoProduct
   id: BohrumControlRodPurchase
   icon:
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
+    sprite: _FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi
     state: default_rod
   product: CrateBohrumControlRod
   cost: 2000
@@ -41,7 +41,7 @@
 - type: cargoProduct
   id: SteelGasChannelPurchase
   icon:
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
+    sprite: _FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi
     state: default_rod
   product: CrateSteelGasChannel
   cost: 1000
@@ -51,7 +51,7 @@
 - type: cargoProduct
   id: SteelHeatExhangerPurchase
   icon:
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
+    sprite: _FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi
     state: default_rod
   product: CrateSteelHeatExhanger
   cost: 1000

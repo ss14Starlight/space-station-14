@@ -35,12 +35,13 @@ namespace Content.Server.Communications
         [DataField]
         public Color Color = Color.Gold;
 
+        //Starlight begin - remove VV readonly
         /// <summary>
         /// Time in seconds between announcement delays on a per-console basis
         /// </summary>
-        [ViewVariables]
         [DataField]
         public int Delay = 90;
+        //Starlight end
 
         /// <summary>
         /// Time in seconds of announcement cooldown when a new console is created on a per-console basis

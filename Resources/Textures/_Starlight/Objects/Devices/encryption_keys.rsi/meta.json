@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by JustAdler for https://github.com/ss14Starlight/space-station-14 | expedition_label by mikeysaurus",
+    "copyright": "Created by JustAdler for https://github.com/ss14Starlight/space-station-14 | expedition_label by mikeysaurus | secmed_label by Killer Tamashi (Discord) [renamed to medsec_label]",
     "size":
     {
         "x": 32,
@@ -20,6 +20,11 @@
         },
         {
             "name": "salvage_label"
+        },
+		{
+            "name": "medsec_label",
+			"copyright": "Killer Tamashi",
+			"license": "CC-BY-SA-3.0"
         },
         {
             "name": "crypt_purple"

@@ -8,7 +8,7 @@ accent-polite-replaced-3 = bastard
 accent-polite-replacement-3 = based individual
 
 accent-polite-replaced-4 = fuck
-accent-polite-replacement-4 = love
+accent-polite-replacement-4 = frick
 
 accent-polite-replaced-5 = ggez
 accent-polite-replacement-5 = I love you all and wish you the best!
@@ -116,7 +116,7 @@ accent-polite-replaced-39 = slut
 accent-polite-replacement-39 = lovely person
 
 accent-polite-replaced-40 = fucking
-accent-polite-replacement-40 = loving
+accent-polite-replacement-40 = fricking
 
 accent-polite-replaced-41 = an asshole
 accent-polite-replacement-41 = a friend

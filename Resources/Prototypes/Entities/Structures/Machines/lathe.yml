@@ -134,14 +134,18 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
-    dynamicPacks: # Starlight start
+    # Starlight Start
+    - CassetteTape
+    - TapeRecorder
+    dynamicPacks:
     - StarlightAutolatheLootable
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateAmmoStatic
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
-    - StarlightSecurityAmmoEmagStatic # Starlight end
+    - StarlightSecurityAmmoEmagStatic 
+    # Starlight end
     #- SecurityAmmoStatic # SL disable in favor of prior three lines
     - SyndicateAmmoStatic
   - type: BlueprintReceiver
@@ -203,6 +207,7 @@
     - ChemistryStatic
     dynamicPacks:
     - ScienceBlueSpace # Starlight
+    - ScienceDarkBreacher # Starlight
     - AdvancedTools
     - ScienceEquipment
     - ScienceExplosives

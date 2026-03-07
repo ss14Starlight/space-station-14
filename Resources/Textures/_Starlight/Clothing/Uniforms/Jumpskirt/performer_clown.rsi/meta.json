@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Bartender base taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039, Clown Jumpskirt inspiration taken from ParadiseStation at commit https://github.com/ParadiseSS13/Paradise/commit/95c46662c5a5cd4911132da8e695a7cc21fb4297, monkey derivative made by brainfood1183 (github) for ss14, converted into Performer by wonderfulnewworld (GitHub) for Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "TG Station, OnlineGirlfriend, Paradise Station, Christasmurf, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "equipped-INNERCLOTHING",
+      "directions": 4,
+	  "copyright": "TG Station, OnlineGirlfriend, Paradise Station, Christasmurf, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "equipped-INNERCLOTHING-monkey",
+      "directions": 4,
+	  "copyright": "TG Station, OnlineGirlfriend, Paradise Station, Christasmurf, brainfood1183, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "TG Station, OnlineGirlfriend, Paradise Station, Christasmurf, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "TG Station, OnlineGirlfriend, Paradise Station, Christasmurf, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    }
+  ]
+}

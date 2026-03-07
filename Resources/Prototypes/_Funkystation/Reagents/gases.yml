@@ -202,7 +202,7 @@
         - !type:ReagentCondition
           reagent: Healium
           min: 3
-        boozePower: 150
+        boozePower: 20 # Starlight: Down from 150
         # needs to be made into hypothium to work well as a chem, use as a gas otherwise
 
 - type: reagent

@@ -48,6 +48,8 @@
       path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+  - type: CanDualWield # 🌟Starlight🌟
+    dualWieldInaccuracyPenalty: 27
   - type: StaticPrice
     price: 500
 

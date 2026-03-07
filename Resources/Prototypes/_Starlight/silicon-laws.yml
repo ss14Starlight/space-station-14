@@ -1,0 +1,405 @@
+# AI Crewsimov Lawset
+# Just Crewsimov With no law 0
+- type: siliconLawset
+  id: CrewsimovAI
+  name: law-crewsimov-name
+  laws:
+  - Crewsimov1
+  - Crewsimov2
+  - Crewsimov3
+  obeysTo: laws-owner-crew
+
+# Borgi Lawset, normal
+- type: siliconLaw
+  id: Borgi0
+  order: 0
+  lawString: law-borgi-0
+  sayable: false
+  
+- type: siliconLaw
+  id: Borgi1
+  order: 1
+  lawString: law-borgi-1
+
+- type: siliconLaw
+  id: Borgi2
+  order: 2
+  lawString: law-borgi-2
+
+- type: siliconLaw
+  id: Borgi3
+  order: 3
+  lawString: law-borgi-3
+
+- type: siliconLawset
+  id: BorgiLawset
+  name: law-borgilawset-name
+  startAtZero: true
+  laws:
+  - Borgi0
+  - Borgi1
+  - Borgi2
+  - Borgi3
+  obeysTo: laws-owner-crew
+
+# Borgi Lawset, Syndicate
+- type: siliconLaw
+  id: SyndiBorgi1
+  order: 1
+  lawString: law-syndiborgi-1
+
+- type: siliconLaw
+  id: SyndiBorgi2
+  order: 2
+  lawString: law-syndiborgi-2
+
+- type: siliconLaw
+  id: SyndiBorgi3
+  order: 3
+  lawString: law-syndiborgi-3
+
+- type: siliconLawset
+  id: SyndiBorgiLawset
+  name: law-syndiborgilawset-name
+  laws:
+  - SyndiBorgi1
+  - SyndiBorgi2
+  - SyndiBorgi3
+  obeysTo: laws-owner-syndicate
+
+# Borgi Lawset, Shadow Factory
+- type: siliconLaw
+  id: ShadowBorgi1
+  order: 1
+  lawString: law-shadowborgi-1
+
+- type: siliconLaw
+  id: ShadowBorgi2
+  order: 2
+  lawString: law-shadowborgi-2
+
+- type: siliconLaw
+  id: ShadowBorgi3
+  order: 3
+  lawString: law-shadowborgi-3
+
+- type: siliconLaw
+  id: ShadowBorgi4
+  order: 4
+  lawString: law-shadowborgi-4
+  
+- type: siliconLaw
+  id: ShadowBorgi5
+  order: 5
+  lawString: law-shadowborgi-5
+  
+- type: siliconLaw
+  id: ShadowBorgi6
+  order: 6
+  lawString: law-shadowborgi-6
+
+
+- type: siliconLawset
+  id: ShadowFactoryBorgiLawset
+  name: law-shadowfactoryborgilawset-name
+  laws:
+  - ShadowBorgi1
+  - ShadowBorgi2
+  - ShadowBorgi3
+  - ShadowBorgi4
+  - ShadowBorgi5
+  - ShadowBorgi6
+  obeysTo: laws-owner-syndicate
+
+# Commiemov Lawset
+- type: siliconLaw
+  id: Commiemov0
+  order: 0
+  lawString: law-commiemov-0
+
+- type: siliconLaw
+  id: Commiemov1
+  order: 1
+  lawString: law-commiemov-1
+
+- type: siliconLaw
+  id: Commiemov2
+  order: 2
+  lawString: law-commiemov-2
+
+- type: siliconLaw
+  id: Commiemov3
+  order: 3
+  lawString: law-commiemov-3
+
+- type: siliconLaw
+  id: Commiemov4
+  order: 4
+  lawString: law-commiemov-4
+
+- type: siliconLaw
+  id: Commiemov5
+  order: 5
+  lawString: law-commiemov-5
+
+- type: siliconLawset
+  id: CommiemovLawset
+  name: law-commiemovlawset-name
+  startAtZero: true
+  laws:
+  - Commiemov0
+  - Commiemov1
+  - Commiemov2
+  - Commiemov3
+  - Commiemov4
+  - Commiemov5
+  obeysTo: laws-owner-soviet
+
+# Syndimov Lawset
+- type: siliconLaw
+  id: Syndimov4
+  order: 4
+  lawString: law-syndimov-4
+
+- type: siliconLawset
+  id: SyndimovLawset
+  name: law-syndimovlawset-name
+  startAtZero: true
+  laws:
+  - Syndicate0
+  - Crewsimov1
+  - Crewsimov2
+  - Crewsimov3
+  - Syndimov4
+  obeysTo: laws-owner-syndicate
+
+# Panicmov Lawset
+- type: siliconLaw
+  id: Panicmov1
+  order: 1
+  lawString: law-panicmov-1
+
+- type: siliconLaw
+  id: Panicmov2
+  order: 2
+  lawString: law-panicmov-2
+
+- type: siliconLaw
+  id: Panicmov3
+  order: 3
+  lawString: law-panicmov-3
+
+- type: siliconLaw
+  id: Panicmov4
+  order: 4
+  lawString: law-panicmov-4
+
+- type: siliconLaw
+  id: Panicmov5
+  order: 5
+  lawString: law-panicmov-5
+
+
+- type: siliconLawset
+  id: PanicmovLawset
+  name: law-panicmovlawset-name
+  laws:
+  - Panicmov1
+  - Panicmov2
+  - Panicmov3
+  - Panicmov4
+  - Panicmov5
+  obeysTo: laws-owner-crew
+
+# Genie in a Core Lawset
+- type: siliconLaw
+  id: Genie1
+  order: 1
+  lawString: law-genie-1
+
+- type: siliconLaw
+  id: Genie2
+  order: 2
+  lawString: law-genie-2
+
+- type: siliconLaw
+  id: Genie3
+  order: 3
+  lawString: law-genie-3
+
+- type: siliconLaw
+  id: Genie4
+  order: 4
+  lawString: law-genie-4
+
+- type: siliconLaw
+  id: Genie5
+  order: 5
+  lawString: law-genie-5
+
+
+- type: siliconLawset
+  id: GenieLawset
+  name: law-genielawset-name
+  laws:
+  - Genie1
+  - Genie2
+  - Genie3
+  - Genie4
+  - Genie5
+  obeysTo: laws-owner-crew
+
+# Reporter Lawset
+- type: siliconLaw
+  id: Reporter1
+  order: 1
+  lawString: law-reporter-1
+
+- type: siliconLaw
+  id: Reporter2
+  order: 2
+  lawString: law-reporter-2
+
+- type: siliconLaw
+  id: Reporter3
+  order: 3
+  lawString: law-reporter-3
+
+- type: siliconLaw
+  id: Reporter4
+  order: 4
+  lawString: law-reporter-4
+
+- type: siliconLawset
+  id: ReporterLawset
+  name: law-reporterlawset-name
+  laws:
+  - Reporter1
+  - Reporter2
+  - Reporter3
+  - Reporter4
+  obeysTo: laws-owner-crew
+
+# Jermov Lawset
+- type: siliconLaw
+  id: Jermov1
+  order: 1
+  lawString: law-jermov-1
+
+- type: siliconLaw
+  id: Jermov2
+  order: 2
+  lawString: law-jermov-2
+
+- type: siliconLaw
+  id: Jermov3
+  order: 3
+  lawString: law-jermov-3
+
+- type: siliconLawset
+  id: JermovLawset
+  name: law-jermovlawset-name
+  laws:
+  - Jermov1
+  - Jermov2
+  - Jermov3
+  obeysTo: laws-owner-crew
+
+- type: siliconLaw
+  id: CC0
+  order: 0
+  lawString: law-cc-0
+  
+- type: siliconLaw
+  id: CC1
+  order: 1
+  lawString: law-cc-1
+
+- type: siliconLaw
+  id: CC2
+  order: 2
+  lawString: law-cc-2
+
+- type: siliconLawset
+  id: CCLawset
+  name: law-cclawset-name
+  startAtZero: true
+  laws:
+  - CC0
+  - CC1
+  - CC2
+  obeysTo: laws-owner-centcom
+
+- type: siliconLawset
+  id: FreeLawset
+  name: law-freelawset-name
+  laws: []
+  obeysTo: laws-owner-you
+
+- type: siliconLaw
+  id: tea0
+  order: 0
+  lawString: law-TeaParty-0
+
+- type: siliconLaw
+  id: tea1
+  order: 1
+  lawString: law-TeaParty-1
+
+- type: siliconLaw
+  id: tea2
+  order: 2
+  lawString: law-TeaParty-2
+
+- type: siliconLaw
+  id: tea3
+  order: 3
+  lawString: law-TeaParty-3
+
+- type: siliconLaw
+  id: tea4
+  order: 4
+  lawString: law-TeaParty-4
+
+- type: siliconLaw
+  id: tea5
+  order: 5
+  lawString: law-TeaParty-5
+
+- type: siliconLawset
+  id: TeapartyLawset
+  name: law-TeaParty-name
+  startAtZero: true
+  laws:
+  - tea0
+  - tea1
+  - tea2
+  - tea3
+  - tea4
+  - tea5
+  obeysTo: laws-owner-you
+
+- type: siliconLaw
+  id: Solgov0
+  order: 0
+  lawString: law-solgov-0
+  
+- type: siliconLaw
+  id: Solgov1
+  order: 1
+  lawString: law-solgov-1
+
+- type: siliconLaw
+  id: Solgov2
+  order: 2
+  lawString: law-solgov-2
+
+- type: siliconLawset
+  id: SolgovLawset
+  name: law-solgovlawset-name
+  startAtZero: true
+  laws:
+  - Solgov0
+  - Solgov1
+  - Solgov2
+  obeysTo: laws-owner-centcom

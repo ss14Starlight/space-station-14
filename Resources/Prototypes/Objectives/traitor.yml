@@ -203,9 +203,11 @@
     owner: job-name-cmo
 
 - type: entity
-  parent: BaseCMOStealObjective
+  parent: BaseTraitorStealObjective # Starlight
   id: CMOHyposprayStealObjective
   components:
+  - type: NotJobRequirement # Starlight
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet] # Starlight, tactical jet injector
   - type: StealCondition
     stealGroup: Hypospray
 

@@ -2,7 +2,7 @@
   id: NuclearPowerGeneration
   name: research-technology-nuclear-power
   icon:
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
+    sprite: _FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi
     state: default_rod
   discipline: Industrial
   tier: 1
@@ -35,7 +35,7 @@
   id: NuclearPowerRecycling
   name: research-technology-nuclear-recycling
   icon:
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
+    sprite: _FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi
     state: nuclear_waste
   discipline: Industrial
   tier: 2

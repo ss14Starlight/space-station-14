@@ -19,12 +19,6 @@ public sealed partial class ReactorPartComponent : Component
     [Dependency] private IPrototypeManager _proto = default!;
 
     /// <summary>
-    /// The entity prototype name this component results from.
-    /// </summary>
-    [DataField]
-    public EntProtoId ProtoId = "BaseReactorPart";
-
-    /// <summary>
     /// Icon of this component as it shows in the UIs.
     /// </summary>
     [DataField]
@@ -154,7 +148,6 @@ public sealed partial class ReactorPartComponent : Component
     /// <param name="source"></param>
     public ReactorPartComponent(ReactorPartComponent source)
     {
-        ProtoId = source.ProtoId;
         IconStateInserted = source.IconStateInserted;
         IconStateCap = source.IconStateCap;
         RodType = source.RodType;

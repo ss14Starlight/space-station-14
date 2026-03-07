@@ -1,0 +1,194 @@
+- type: entity
+  id: BorgChassisSyndicateStealth
+  parent: BaseBorgChassisSyndicate
+  name: syndicate stealth cyborg
+  components:
+  - type: TextToSpeech
+  - type: Sprite
+    sprite: _Starlight/Mobs/Silicon/Chassis/synd_stealth.rsi
+    layers:
+    - state: borg
+    - state: borg_e
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light" ]
+      visible: false
+  - type: Body
+    prototype: BorgSyndicateStealth
+  - type: BorgChassis
+    maxModules: 5
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleSyndicate
+      - BorgModuleSyndicateStealth
+    hasMindState: borg_e
+    noMindState: borg_e_r
+  - type: InteractionPopup
+    interactSuccessString: petting-success-syndicate-cyborg
+    interactFailureString: petting-failure-syndicate-cyborg
+  - type: VentCrawler
+  - type: Thieving
+    stealthy: true
+  - type: Pacified # THE STEALTH BORG DOES NOT FUCKING GET GUNS
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Syndicate
+  - type: ActiveRadio
+    channels:
+    - Syndicate
+
+- type: entity
+  id: BorgChassisSecurity
+  parent: BorgChassisSelectable
+  name: security cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: security
+    
+- type: entity
+  id: BorgChassisPurrfus
+  parent: BorgChassisSelectable
+  name: purrfus cyborg
+  components:
+  - type: TextToSpeech
+  - type: BorgSwitchableType
+    selectedBorgType: purrfus
+
+- type: entity
+  id: BorgChassisCargo
+  parent: BorgChassisSelectable
+  name: cargo cyborg
+  components:
+  - type: TextToSpeech
+  - type: BorgSwitchableType
+    selectedBorgType: cargo
+
+
+# Derelict
+
+- type: entity
+  id: PurrfusBorgChassisDerelict
+  parent: BaseBorgChassisDerelict
+  name: derelict purrfus cyborg
+  description: A man-machine hybrid that assists in station activity. This one is in a state of great disrepair.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Silicon/Chassis/derelict.rsi
+    layers:
+    - state: purrfus
+    - state: purrfus_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: purrfus_l
+      shader: unshaded
+      map: [ "light" ]
+      visible: false
+  - type: BorgChassis
+    maxModules: 5 # One less module slot than the regular module to reflect this being a "broken" cyborg.
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModulePurrfus
+    hasMindState: purrfus_e
+    noMindState: purrfus_e_r
+  - type: Construction
+    node: derelictcyborg
+  - type: InteractionPopup
+    interactSuccessString: petting-success-derelict-cyborg
+    interactFailureString: petting-failure-derelict-cyborg
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Command
+    - Science
+    - Law
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Command
+    - Science
+    - Law
+
+# TSF
+# ? Make this Generic in the future if we have... More TSF Borgs?
+- type: entity
+  id: BorgChassisTSF
+  parent: BaseBorgChassisNotIonStormable
+  name: TSMC assault cyborg
+  description: A purpose built assault silicon used by the TSMC.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Silicon/Chassis/tsmc.rsi
+    layers:
+    - state: assault
+      map: ["enum.BorgVisualLayers.Body", "movement"]
+    - state: assault_l
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: assault_l
+      shader: unshaded
+      map: ["light","enum.BorgVisualLayers.LightStatus"]
+  - type: BorgChassis
+    jobIconOverride: JobIconTSF
+    jobTitleOverride: chat-radio-tsf-borg
+    maxModules: 8
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleSecurity
+    hasMindState: assault_l
+    noMindState: assault_l
+  - type: Access
+    tags:
+    - Solgov
+  - type: AccessReader
+    access: [["Solgov"]]
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - TSF
+    - Common
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - TSF
+    - Common
+  - type: MovementAlwaysTouching
+  - type: Speech
+    speechSounds: SyndieBorg
+    allowedEmotes:
+    - Laugh
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
+  - type: IonStormTarget
+    chance: 0.2
+  - type: ShowJobIcons
+  - type: SiliconLawProvider
+    laws: SolgovLawset
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - SiliconEmotes
+    - Unimplantable
+    - EmagImmune

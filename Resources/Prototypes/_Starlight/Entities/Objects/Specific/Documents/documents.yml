@@ -1,0 +1,308 @@
+- type: entity
+  parent: BaseItem
+  id: ImportantDocumentGeneric
+  abstract: true
+  description: Looks highly classified!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Documents/document.rsi
+      layers:
+      - state: background_messy
+        map: [ "background" ]
+      - state: bribe
+        map: [ "bribe" ]
+      - state: document
+      - state: line
+        map: [ "label" ]
+    - type: Paper
+      contentSize: 12000
+      editingDisabled: true
+    - type: ActivatableUI
+      key: enum.PaperUiKey.Key
+      requiresComplex: false
+    - type: UserInterface
+      interfaces:
+        enum.PaperUiKey.Key:
+          type: PaperBoundUserInterface
+    - type: Tag
+      tags:
+        - Document
+        - Paper
+        - HighRiskItem
+    - type: Item
+      size: Normal
+    - type: RandomSprite
+      getAllGroups: true
+      available:
+        - background:
+            background_messy: ""
+            background_clean: ""
+            background_large: ""
+        - bribe:
+            bribe: ""
+            empty: ""
+        - label:
+            line: Departmental
+            stamp: Departmental
+
+### Classified Corporate Documents
+
+- type: entity
+  id: ClassifiedCorporateDocumentAbductors
+  name: classified corporate documents
+  suffix: Do Not Map
+  description: A set of highly classified documents containing Corporate Secrets.
+  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  components:
+    - type: TextFilePaperContent
+      fileName: classified_corporate_document_abductors.txt
+    - type: StealTarget
+      stealGroup: CorporateSecretsSteal
+
+- type: entity
+  id: ClassifiedCorporateDocumentDecimus
+  name: classified corporate documents
+  suffix: Do Not Map
+  description: A set of highly classified documents containing Corporate Secrets.
+  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  components:
+    - type: TextFilePaperContent
+      fileName: classified_corporate_document_decimus.txt
+    - type: StealTarget
+      stealGroup: CorporateSecretsSteal
+
+- type: entity
+  id: ClassifiedCorporateDocumentNinjas
+  name: classified corporate documents
+  suffix: Do Not Map
+  description: A set of highly classified documents containing Corporate Secrets.
+  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  components:
+    - type: TextFilePaperContent
+      fileName: classified_corporate_document_ninjas.txt
+    - type: StealTarget
+      stealGroup: CorporateSecretsSteal
+
+- type: entity
+  id: ClassifiedCorporateDocumentNukies
+  name: classified corporate documents
+  suffix: Do Not Map
+  description: A set of highly classified documents containing Corporate Secrets.
+  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  components:
+    - type: TextFilePaperContent
+      fileName: classified_corporate_document_nukies.txt
+    - type: StealTarget
+      stealGroup: CorporateSecretsSteal
+
+- type: entity
+  id: ClassifiedCorporateDocumentRomerol
+  name: classified corporate documents
+  suffix: Do Not Map
+  description: A set of highly classified documents containing Corporate Secrets.
+  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  components:
+    - type: TextFilePaperContent
+      fileName: classified_corporate_document_romerol.txt
+    - type: StealTarget
+      stealGroup: CorporateSecretsSteal
+
+### Classified Criminal Documents
+
+- type: entity
+  id: ClassifiedCriminalDocumentARC
+  name: classified criminal documents
+  suffix: Do Not Map
+  description: A set of highly classified documents containing criminal reports.
+  parent: [ ImportantDocumentGeneric, BaseLawContraband ]
+  components:
+    - type: TextFilePaperContent
+      fileName: classified_criminal_document_arc.txt
+    - type: StealTarget
+      stealGroup: CriminalReportsSteal
+
+- type: entity
+  id: ClassifiedCriminalDocumentComitas
+  name: classified criminal documents
+  suffix: Do Not Map
+  description: A set of highly classified documents containing criminal reports.
+  parent: [ ImportantDocumentGeneric, BaseLawContraband ]
+  components:
+    - type: TextFilePaperContent
+      fileName: classified_criminal_document_comitas.txt
+    - type: StealTarget
+      stealGroup: CriminalReportsSteal
+
+- type: entity
+  id: ClassifiedCriminalDocumentSELF
+  name: classified criminal documents
+  suffix: Do Not Map
+  description: A set of highly classified documents containing criminal reports.
+  parent: [ ImportantDocumentGeneric, BaseLawContraband ]
+  components:
+    - type: TextFilePaperContent
+      fileName: classified_criminal_document_self.txt
+    - type: StealTarget
+      stealGroup: CriminalReportsSteal
+
+- type: entity
+  id: ClassifiedCriminalDocumentTigerCooperative
+  name: classified criminal documents
+  suffix: Do Not Map
+  description: A set of highly classified documents containing criminal reports.
+  parent: [ ImportantDocumentGeneric, BaseLawContraband ]
+  components:
+    - type: TextFilePaperContent
+      fileName: classified_criminal_document_tiger_cooperative.txt
+    - type: StealTarget
+      stealGroup: CriminalReportsSteal
+
+### Classified Secure Documents
+
+- type: entity
+  id: ClassifiedSecureDocumentRevolutionaries
+  name: classified secure documents
+  suffix: Do Not Map
+  description: A set of highly classified documents containing secure documents.
+  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  components:
+    - type: TextFilePaperContent
+      fileName: classified_secure_document_revolutionaries.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+- type: entity
+  id: ClassifiedSecureDocumentVampires
+  name: classified secure documents
+  suffix: Do Not Map
+  description: A set of highly classified documents containing secure documents.
+  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  components:
+    - type: TextFilePaperContent
+      fileName: classified_secure_document_vampires.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+- type: entity
+  id: ClassifiedSecureDocumentWizards
+  name: classified secure documents
+  suffix: Do Not Map
+  description: A set of highly classified documents containing secure documents.
+  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  components:
+    - type: TextFilePaperContent
+      fileName: classified_secure_document_wizards.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+- type: entity
+  id: ClassifiedSecureDocumentXenoborgs
+  name: classified secure documents
+  suffix: Do Not Map
+  description: A set of highly classified documents containing secure documents.
+  parent: [ ImportantDocumentGeneric, BaseSecurityContraband ]
+  components:
+    - type: TextFilePaperContent
+      fileName: classified_secure_document_xenoborgs.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+### Secure Briefings
+
+- type: entity
+  id: BriefDocumentRevs
+  name: USSP Secure Briefing
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security on the risks of USSP activity.
+  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  components:
+    - type: Item
+      size: Small
+    - type: TextFilePaperContent
+      fileName: brief_sec_Revs.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+- type: entity
+  id: BriefDocumentLings
+  name: Changeling Secure Briefing
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security on the existance of Changelings.
+  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  components:
+    - type: Item
+      size: Small
+    - type: TextFilePaperContent
+      fileName: brief_sec_Lings.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+- type: entity
+  id: BriefDocumentBrightEyes
+  name: Bright-Eyes Secure Briefing
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security on the existance of Bright-Eyes.
+  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  components:
+    - type: Item
+      size: Small
+    - type: TextFilePaperContent
+      fileName: brief_sec_BrightEyes.txt
+    - type: StealTarget
+      stealGroup: BrighteyeSecureKnowledgeSteal
+
+- type: entity
+  id: BriefDocumentVampires
+  name: Vampires Secure Briefing
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security on the existance of Vampires.
+  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  components:
+    - type: Item
+      size: Small
+    - type: TextFilePaperContent
+      fileName: brief_sec_Vampires.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+- type: entity
+  id: BriefDocumentSyndicate
+  name: Syndicate Agent Secure Briefing
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security on the existance of Syndicate Agents.
+  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  components:
+    - type: Item
+      size: Small
+    - type: TextFilePaperContent
+      fileName: brief_sec_Syndicate.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+- type: entity
+  id: BriefDocumentWizard
+  name: Wizard Secure Briefing
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security on the existance of Wizards.
+  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  components:
+    - type: Item
+      size: Small
+    - type: TextFilePaperContent
+      fileName: brief_sec_Wizard.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal
+
+- type: entity
+  id: BriefDocumentXorgs
+  name: Xenoborg Secure Briefing
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security on the existance of Xenoborgs.
+  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  components:
+    - type: Item
+      size: Small
+    - type: TextFilePaperContent
+      fileName: brief_sec_Xorgs.txt
+    - type: StealTarget
+      stealGroup: SecureKnowledgeSteal

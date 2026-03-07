@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 268.0.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 01/24/2026 00:23:33
-  entityCount: 12964
+  time: 02/27/2026 22:54:26
+  entityCount: 12969
 maps:
 - 1
 grids:
@@ -54814,8 +54814,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 12.342254,-6.2312956
       parent: 2
-- proto: HandheldHealthAnalyzerUnpowered
-  entities:
   - uid: 8299
     components:
     - type: Transform
@@ -55316,6 +55314,9 @@ entities:
     - type: Transform
       pos: -13.5,21.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Command
 - proto: HolopadSecurityBrig
   entities:
   - uid: 8374
@@ -57950,6 +57951,8 @@ entities:
     - type: Transform
       pos: 2.5129576,32.47221
       parent: 2
+    - type: IntrinsicRadioTransmitter
+      channels: []
     - type: LanguageKnowledge
       understands:
       - GalacticCommon
@@ -57976,6 +57979,8 @@ entities:
     - type: Transform
       pos: -24.675209,-5.91818
       parent: 2
+    - type: IntrinsicRadioTransmitter
+      channels: []
     - type: LanguageKnowledge
       understands:
       - GalacticCommon
@@ -58002,6 +58007,8 @@ entities:
     - type: Transform
       pos: 7.5388803,-23.388987
       parent: 2
+    - type: IntrinsicRadioTransmitter
+      channels: []
     - type: LanguageKnowledge
       understands:
       - GalacticCommon
@@ -58425,6 +58432,9 @@ entities:
   entities:
   - uid: 8789
     components:
+    - type: Transform
+      pos: -2.5,52.5
+      parent: 2
     - type: StationAiCore
       lawConsole: 10171
     - type: DeviceLinkSource
@@ -58432,9 +58442,6 @@ entities:
         10171:
         - - AiLawConsoleSender
           - AiLawConsoleReceiver
-    - type: Transform
-      pos: -2.5,52.5
-      parent: 2
 - proto: PlushieAtmosian
   entities:
   - uid: 8790
@@ -61328,6 +61335,18 @@ entities:
       - Experimental
       - CivilianServices
       - Biochemical
+- proto: protectionanchor
+  entities:
+  - uid: 12965
+    components:
+    - type: Transform
+      pos: -13.5,21.5
+      parent: 2
+  - uid: 12966
+    components:
+    - type: Transform
+      pos: -2.5,17.5
+      parent: 2
 - proto: Protolathe
   entities:
   - uid: 9181
@@ -67521,6 +67540,18 @@ entities:
     - type: Transform
       pos: 24.5,-5.5
       parent: 2
+- proto: SpawnPointPerformer
+  entities:
+  - uid: 12967
+    components:
+    - type: Transform
+      pos: -4.5,0.5
+      parent: 2
+  - uid: 12968
+    components:
+    - type: Transform
+      pos: -22.5,-6.5
+      parent: 2
 - proto: SpawnPointQuartermaster
   entities:
   - uid: 10138
@@ -67770,11 +67801,11 @@ entities:
   entities:
   - uid: 10171
     components:
-    - type: SiliconLawUpdater
-      core: 8789
     - type: Transform
       pos: -4.5,36.5
       parent: 2
+    - type: SiliconLawUpdater
+      core: 8789
     - type: AccessReader
       accessListsOriginal:
       - - ResearchDirector
@@ -70719,6 +70750,13 @@ entities:
     components:
     - type: Transform
       pos: 12.492016,27.532398
+      parent: 2
+- proto: TP14KitchenDeepFryerTabletop
+  entities:
+  - uid: 12969
+    components:
+    - type: Transform
+      pos: -13.5,-1.5
       parent: 2
 - proto: TrainingBomb
   entities:

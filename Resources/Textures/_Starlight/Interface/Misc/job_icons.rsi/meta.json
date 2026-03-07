@@ -9,11 +9,11 @@
     "states": [
         {
             "name": "Magistrate",
-			"copyright": "Chim"
+            "copyright": "Chim"
         },
         {
             "name": "IAA",
-			"copyright": "Chim"
+            "copyright": "Chim"
         },
         {
             "name": "BlueShield"
@@ -26,32 +26,36 @@
         },
         {
             "name": "MailTech",
-            "delays": [[10, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]],
-			"copyright": "Happyrobot33, fqqf"
+            "delays": [ [ 10, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2 ] ],
+            "copyright": "Happyrobot33, fqqf"
         },
         {
-	        "name": "DutyOfficer",
-	        "copyright": "BORT"
+            "name": "DutyOfficer",
+            "copyright": "BORT"
+        },
+        {
+	        "name": "Performer",
+	        "copyright": "wonderfulnewworld"
         },
         {
             "name": "CentComm",
-			"copyright": "Happyrobot33, fqqf"
+            "copyright": "Happyrobot33, fqqf"
         },
-		{
-	        "name": "NTSF",
-	        "copyright": "by teapoterror"
-		},
-		{
-	        "name": "Decimus",
-	        "copyright": "by teapoterror"
-		},
         {
-	        "name": "NanotrasenCareerTrainer",
-	        "copyright": "by ShadesMars"
-		},
+            "name": "NTSF",
+            "copyright": "by teapoterror"
+        },
+        {
+            "name": "Decimus",
+            "copyright": "by teapoterror"
+        },
+        {
+            "name": "NanotrasenCareerTrainer",
+            "copyright": "by ShadesMars"
+        },
         {
             "name": "CentCommOperator",
-			"copyright": "Happyrobot33, fqqf"
+            "copyright": "Happyrobot33, fqqf"
         },
         {
             "name": "Commander"
@@ -64,107 +68,116 @@
         },
         {
             "name": "SyndicateSecurity",
-			"copyright": "IamSidzilla"
+            "copyright": "IamSidzilla"
         },
         {
             "name": "SyndicateWarden",
-			"copyright": "IamSidzilla"
+            "copyright": "IamSidzilla"
         },
         {
             "name": "SyndicateScience",
-			"copyright": "IamSidzilla"
+            "copyright": "IamSidzilla"
         },
         {
             "name": "SyndicateChef",
-			"copyright": "IamSidzilla"
+            "copyright": "IamSidzilla"
         },
         {
             "name": "SyndicateEngineer",
-			"copyright": "IamSidzilla"
+            "copyright": "IamSidzilla"
         },
         {
             "name": "SyndicateCargo",
-			"copyright": "IamSidzilla"
+            "copyright": "IamSidzilla"
         },
         {
             "name": "SyndicateJanitor",
-			"copyright": "IamSidzilla"
+            "copyright": "IamSidzilla"
         },
         {
             "name": "HeadRevolutionary",
-			"copyright": "JustAdler"
+            "copyright": "JustAdler"
         },
         {
             "name": "Revolutionary",
-			"copyright": "JustAdler"
+            "copyright": "JustAdler"
         },
         {
             "name": "NTNCBlueShield",
-			"copyright": "Conflee"
+            "copyright": "Conflee"
         },
         {
             "name": "SalvageLead",
-			"copyright": "mikeysaurus"
+            "copyright": "mikeysaurus"
         },
         {
             "name": "SalvageSpecialist",
-			"copyright": "mikeysaurus"
+            "copyright": "mikeysaurus"
         },
         {
             "name": "Soviet",
-			"copyright": "Paradise SS13"
+            "copyright": "Paradise SS13"
         },
         {
             "name": "TSF",
-			"copyright": "Paradise SS13"
+            "copyright": "Paradise SS13"
         },
-		{
-			"name": "Xenoborg",
-			"copyright": "neomoth"
-		},
-		{
-			"name": "Mothership",
-			"copyright": "neomoth"
-		},
-		{
-			"name": "Skub",
-			"copyright": "neomoth"
-		},
-		{
-			"name": "CultistChaplain",
-			"copyright": "neomoth, Rhetorica"
-		},
+        {
+            "name": "TSFOfficer",
+            "copyright": "Sprited by Wassuy"
+        },
+        {
+            "name": "Xenoborg",
+            "copyright": "neomoth"
+        },
+        {
+            "name": "Mothership",
+            "copyright": "neomoth"
+        },
+        {
+            "name": "Skub",
+            "copyright": "neomoth"
+        },
+        {
+            "name": "CultistChaplain",
+            "copyright": "neomoth, Rhetorica"
+        },
         {
             "name": "ERTChaplain",
-			"copyright": "Wizards Den, Conflee"
+            "copyright": "Wizards Den, Conflee"
         },
         {
             "name": "ERTEngineer",
-			"copyright": "Wizards Den, Conflee"
+            "copyright": "Wizards Den, Conflee"
         },
         {
             "name": "ERTJanitor",
-			"copyright": "Wizards Den, Conflee"
+            "copyright": "Wizards Den, Conflee"
         },
         {
             "name": "ERTLeader",
-			"copyright": "Wizards Den, Conflee"
+            "copyright": "Wizards Den, Conflee"
         },
         {
             "name": "ERTMedical",
-			"copyright": "Wizards Den, Conflee"
+            "copyright": "Wizards Den, Conflee"
         },
         {
             "name": "ERTSecurity",
-			"copyright": "Wizards Den, Conflee"
+            "copyright": "Wizards Den, Conflee"
         },
         {
             "name": "CBURN",
-			"copyright": "Wizards Den, Conflee"
+            "copyright": "Wizards Den, Conflee"
         },
         {
             "name": "Chaplain",
-			"copyright": "Rhetorica"
+            "copyright": "Rhetorica"
+        },
+        {
+            "name": "TSF_Mindshield",
+            "copyright": "Taken from commit: https://github.com/Monolith-Station/Monolith/commit/87c200ff42a1987117105d49d885df82c5912bd9",
+            "delays": [ [ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ] ]
         }
     ]
 }

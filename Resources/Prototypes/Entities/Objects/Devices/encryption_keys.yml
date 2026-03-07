@@ -88,6 +88,8 @@
     layers:
     - state: crypt_gold
     - state: cap_label
+  - type: StealTarget # Starlight
+    stealGroup: EncryptionKeyHybrid # Starlight
 
 - type: entity
   parent: [ EncryptionKey, BaseCommandContraband ]
@@ -158,6 +160,8 @@
     layers:
     - state: crypt_gray
     - state: medsci_label
+  - type: StealTarget # Starlight
+    stealGroup: EncryptionKeyHybrid # Starlight
 
 - type: entity
   parent: [ EncryptionKey, BaseScienceContraband ]

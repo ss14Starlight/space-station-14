@@ -1,5 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Content.Shared._Starlight.Power.EntitySystems;
+using JetBrains.Annotations; // Starlight
 
 namespace Content.Shared.Power.Components;
 
@@ -16,6 +18,25 @@ public sealed partial class BatterySelfRechargerComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables]
     public float AutoRechargeRate;
+    
+    //Starlight begin
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float AutoRechargeRateVV
+    {
+        get => AutoRechargeRate;
+        set
+        {
+            var em = IoCManager.Resolve<IEntityManager>();
+            var query = em.EntityQueryEnumerator<BatterySelfRechargerComponent>();
+            while (query.MoveNext(out var uid, out var comp))
+            {
+                if (comp != this) continue;
+                em.System<BatterySelfRechargerSystem>().UpdateAutoRechargeRate(uid, value, this);
+                break;
+            }
+        }
+    }
+    //Starlight end
 
     /// <summary>
     /// How long should the entity stop automatically recharging if a charge is used?

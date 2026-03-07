@@ -212,13 +212,18 @@
   id: MobChicken
   description: Comes before an egg, and IS a dinosaur!
   components:
-  # Starlight-start: Languages
+  # Starlight START
   - type: LanguageKnowledge
     speaks:
     - Chicken
     understands:
     - Chicken
-  # Starlight-end
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Critical
+      60: Dead
+  # Starlight END
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -254,6 +259,8 @@
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-laid-egg-popup
+    capacity: 12  #Starlight
+    hungerPerBirth: 35 #Starlight
     makeOffspringInfant: false
     partnerWhitelist:
       tags:
@@ -690,13 +697,18 @@
   id: MobDuckMallard
   description: An adorable mallard duck, it's fluffy and soft!
   components:
-  # Starlight-start: Languages
+  # Starlight START
   - type: LanguageKnowledge
     speaks:
     - Duck
     understands:
     - Duck
-  # Starlight-end
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Critical
+      60: Dead
+  # Starlight END
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -722,6 +734,8 @@
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-laid-egg-popup
+    capacity: 12  #Starlight
+    hungerPerBirth: 35 #Starlight
     makeOffspringInfant: false
     partnerWhitelist:
       tags:
@@ -988,6 +1002,13 @@
   id: MobCrab
   description: A folk legend goes around that his claw snaps spacemen out of existence over distasteful remarks. Be polite and tolerant for your own safety.
   components:
+  # Starlight START
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Critical
+      60: Dead
+  # Starlight END
   - type: VentCrawler
   - type: Sprite
     drawdepth: Mobs
@@ -1321,6 +1342,14 @@
   - type: Inventory
     templateId: monkey
     speciesId: monkey
+  # Starlight Start
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Animals/displacements.rsi
+            state: jumpsuit-monkey
+  # Starlight End
   - type: Deathgasp
     prototype: MonkeyDeathgasp
   - type: Cuffable
@@ -1667,6 +1696,15 @@
     name: ghost-role-information-kobold-name
     description: ghost-role-information-kobold-description
     rules: ghost-role-information-nonantagonist-rules
+  # Starlight Start
+  - type: Inventory
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Animals/displacements.rsi
+            state: jumpsuit-kobold
+  # Starlight End
 
 - type: entity
   name: kobold
@@ -1787,7 +1825,7 @@
   - type: VampireDevourable # Starlight-edit: Vampire Devouring
   - type: Clothing
     quickEquip: false
-    sprite: Mobs/Animals/mouse.rsi
+    sprite: _Starlight/Mobs/Animals/mouse.rsi #SL Edit
     equippedPrefix: 0
     slots:
     - HEAD
@@ -1835,7 +1873,7 @@
       Critical:
         Base: dead-0
       Dead:
-        Base: dead-0
+        Base: splat-0 #SLEdit
   - type: Edible
   - type: FlavorProfile
     flavors:
@@ -1987,7 +2025,7 @@
       Critical:
         Base: dead-1
       Dead:
-        Base: dead-1
+        Base: splat-1 #SLEdit
   - type: Item
     size: Tiny
     heldPrefix: 1
@@ -1997,27 +2035,27 @@
   id: MobMouse2
   components:
   - type: Sprite
-    color: Gray
+    #color: Gray #SL Edit
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: mouse-0
+      state: mouse-2 #SLEdit
   - type: SpriteMovement
     movementLayers:
       movement:
-        state: mouse-moving-0
+        state: mouse-moving-2 #SLEdit
     noMovementLayers:
       movement:
-        state: mouse-0
+        state: mouse-2 #SLEdit
   - type: Clothing
     equippedPrefix: 2
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: mouse-0
+        Base: mouse-2 #SLEdit
       Critical:
-        Base: dead-0
+        Base: dead-2 #SLEdit
       Dead:
-        Base: dead-0
+        Base: splat-2 #SLEdit
   - type: Item
     size: Tiny
     heldPrefix: 2

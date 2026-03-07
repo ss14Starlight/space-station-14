@@ -25,7 +25,16 @@ public sealed class DarkBreacherSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<DarkBreacherComponent, ChargedMachineActivatedEvent>(OnActivated);
+        SubscribeLocalEvent<DarkBreacherComponent, OnAttemptPortalEvent>(OnAttemptPortal);
         SubscribeLocalEvent<DarkBreacherComponent, ChargedMachineDeactivatedEvent>((uid, _, _) => RemComp<LinkedEntityComponent>(uid));
+    }
+
+    private void OnAttemptPortal(EntityUid uid, DarkBreacherComponent component, OnAttemptPortalEvent args)
+    {
+        if (TryComp<PowerChargeComponent>(uid, out var power) && power.Active)
+            return;
+
+        args.Cancel();
     }
 
     private void OnActivated(Entity<DarkBreacherComponent> ent, ref ChargedMachineActivatedEvent args)

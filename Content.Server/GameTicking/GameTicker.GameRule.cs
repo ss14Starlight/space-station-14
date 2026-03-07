@@ -364,11 +364,13 @@ public sealed partial class GameTicker
             if (shell.Player != null)
             {
                 _adminLogger.Add(LogType.EventStarted, $"{shell.Player} tried to add game rule [{rule}] via command");
+                _autolog.LogToDiscord(Loc.GetString("add-gamerule-admin", ("rule", rule), ("admin", shell.Player)), shell.Player.Name); // Starlight
                 _chatManager.SendAdminAnnouncement(Loc.GetString("add-gamerule-admin", ("rule", rule), ("admin", shell.Player)));
             }
             else
             {
                 _adminLogger.Add(LogType.EventStarted, $"Unknown tried to add game rule [{rule}] via command");
+                _autolog.LogToDiscord("Unknown tried to add game rule [{rule}] via command"); // Starlight
             }
             var ent = AddGameRule(rule);
 

@@ -109,7 +109,7 @@ public sealed partial class ShuttleSystem
             foreach (var grid in station.Grids)
             {
                 if (!TryComp<BecomesStationMidRoundComponent>(grid, out var becomesStation)) continue;
-                if (!becomesStation.UseArmories)
+                if (!becomesStation.AllowFTLDestination)
                     return;
                 break; // can break, we already found the grid that created this station
             }

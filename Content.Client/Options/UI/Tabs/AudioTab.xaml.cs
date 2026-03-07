@@ -61,6 +61,8 @@ public sealed partial class AudioTab : Control
             _cfg.GetCVar(CCVars.MinMaxAmbientSourcesConfigured),
             _cfg.GetCVar(CCVars.MaxMaxAmbientSourcesConfigured));
 
+        // Starlight start
+
         Control.AddOptionPercentSlider(
             StarlightCCVars.TTSVolume,
             SliderTts,
@@ -75,6 +77,13 @@ public sealed partial class AudioTab : Control
             StarlightCCVars.TTSAnnounceVolume,
             SliderTtsAnnounce,
             scale: ContentAudioSystem.TtsMultiplier);
+
+        Control.AddOptionPercentSlider(
+            StarlightCCVars.TTSChimeVolume,
+            SliderTtsChime,
+            scale: ContentAudioSystem.TtsMultiplier);
+
+        // Starlight end
 
         Control.AddOptionCheckBox(CCVars.LobbyMusicEnabled, LobbyMusicCheckBox);
         Control.AddOptionCheckBox(CCVars.RestartSoundsEnabled, RestartSoundsCheckBox);

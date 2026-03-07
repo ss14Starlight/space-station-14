@@ -31,10 +31,11 @@
   id: CMOHyposprayVampireStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist ] # Starlight. Too easy.
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet] # Starlight. Too easy + Tactical jet injector.
   - type: StealCondition
-    owner: job-name-cmo
-    stealGroup: Hypospray
+    stealGroup: Hypospray # Starlight line swap
+#    owner: job-name-cmo # Starlight
+
 
 - type: entity
   parent: BaseVampireStealObjective

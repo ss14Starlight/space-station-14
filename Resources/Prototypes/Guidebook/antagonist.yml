@@ -12,11 +12,14 @@
   - MinorAntagonists
   - SpaceNinja
   - Thieves
-  - Vampires
-  - Abductors
   - Wizard
-  - Brighteye # Starlight
-  - SELFAgent # Starlight
+  # Starlight-start
+  - Abductors
+  - Vampires
+  - TerrorSpiders
+  - Brighteye
+  - SELFAgent
+  # Starlight-end
 
 - type: guideEntry
   id: Traitors
@@ -67,40 +70,4 @@
   id: Xenoborgs
   name: guide-entry-xenoborgs
   text: "/ServerInfo/Guidebook/Antagonist/Xenoborgs.xml"
-
-#Startlight-edit:
-- type: guideEntry
-  id: Vampires
-  name: guide-entry-vampires
-  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Vampires.xml"
-  children:
-  - VampiresHemomancer
-  - VampiresUmbrae
-  - VampiresDantalion
-  - VampiresGargantua
-
-- type: guideEntry
-  id: VampiresHemomancer
-  name: guide-entry-vampire-hemomancer
-  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Hemomancer.xml"
-
-- type: guideEntry
-  id: VampiresUmbrae
-  name: guide-entry-vampire-umbrae
-  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Umbrae.xml"
-
-- type: guideEntry
-  id: VampiresDantalion
-  name: guide-entry-vampire-dantalion
-  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Dantalion.xml"
-
-- type: guideEntry
-  id: VampiresGargantua
-  name: guide-entry-vampire-gargantua
-  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Gargantua.xml"
-
-- type: guideEntry
-  id: Abductors
-  name: guide-entry-abductors
-  text: "/ServerInfo/Guidebook/Antagonist/Abductors.xml"
   

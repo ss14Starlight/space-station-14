@@ -1,0 +1,72 @@
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostDerelictBorgi
+  components:
+  - type: GhostRole
+    name: ghost-role-information-derelict-borgi-name
+    description: ghost-role-information-derelict-borgi-desc
+    rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleSubvertedSilicon
+    raffle:
+      settings: default
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Silicon/Chassis/derelict.rsi
+      state: derelict_icon
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostBrighteye
+  name: ghost role spawn point
+  suffix: brighteye
+  components:
+  - type: GhostRole
+    name: roles-antag-brighteye-name
+    description: roles-antag-brighteye-description
+    mindRoles:
+    - MindRoleBrighteye
+    raffle:
+      settings: default
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+      state: full
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostTerminator
+  name: exterminator spawn point
+  components:
+  - type: GhostRole
+    name: ghost-role-information-terminator-name
+    description: ghost-role-information-terminator-description
+    rules: ghost-role-information-terminator-rules
+    mindRoles:
+    - MindRoleTerminator
+    raffle:
+      settings: default
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Terminator/parts.rsi
+      state: full
+ 
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: SpawnPointGhostDerelictCyborg
+  id: SpawnPointGhostDerelictPurrfusCyborg
+  components:
+  - type: GhostRole
+    name: ghost-role-information-derelict-purrfus-cyborg-name
+    description: ghost-role-information-derelict-purrfus-cyborg-description
+    rules: ghost-role-information-silicon-rules
+    raffle:
+      settings: default

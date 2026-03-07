@@ -20,6 +20,7 @@
     <PackageReference Include="NAudio" />
     <PackageReference Include="OggVorbisEncoder" />
     <PackageReference Include="SS14.Starlight.NullLink" />
+    <PackageReference Include="StackExchange.Redis" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Content.Packaging\Content.Packaging.csproj" />

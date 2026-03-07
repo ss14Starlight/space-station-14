@@ -364,16 +364,31 @@ public abstract partial class SharedMindSystem : EntitySystem
         mind.Objectives.Add(objective);
     }
 
+
     /// <summary>
-    /// Removes an objective from this mind.
+    /// Removes an objective from this mind by Index.
     /// </summary>
     /// <returns>Returns true if the removal succeeded.</returns>
-    public bool TryRemoveObjective(EntityUid mindId, MindComponent mind, int index)
+    public bool TryRemoveObjective(EntityUid mindId, MindComponent mind, int index, bool force = false) // Starlight-edit: force option
     {
         if (index < 0 || index >= mind.Objectives.Count)
             return false;
 
         var objective = mind.Objectives[index];
+
+        return TryRemoveObjective(mindId, mind, objective, force); // Starlight-edit: add entityuid based removal
+    }
+
+    #region Starlight
+
+    /// <summary>
+    /// Removes an objective from this mind.
+    /// </summary>
+    /// <returns>Returns true if the removal succeeded.</returns>
+    public bool TryRemoveObjective(EntityUid mindId, MindComponent mind, EntityUid objective, bool delete = true, bool force = false)
+    {
+        if (!mind.Objectives.Contains(objective))
+            return false;
 
         var title = Name(objective);
         _adminLogger.Add(LogType.Mind, LogImpact.Low, $"Objective {objective} ({title}) removed from the mind of {MindOwnerLoggingString(mind)}");
@@ -381,16 +396,25 @@ public abstract partial class SharedMindSystem : EntitySystem
 
         // garbage collection - only delete the objective entity if no mind uses it anymore
         // This comes up for stuff like paradox clones where the objectives share the same entity
-        var mindQuery = AllEntityQuery<MindComponent>();
-        while (mindQuery.MoveNext(out _, out var queryComp))
+        if (!force)
         {
-            if (queryComp.Objectives.Contains(objective))
-                return true;
+            var mindQuery = AllEntityQuery<MindComponent>();
+            while (mindQuery.MoveNext(out _, out var queryComp))
+            {
+                if (queryComp.Objectives.Contains(objective))
+                    return true;
+            }
         }
 
-        Del(objective);
+        if (delete)
+            Del(objective);
+        
         return true;
     }
+    #endregion
+
+    
+    
 
     public bool TryGetObjectiveComp<T>(EntityUid uid, [NotNullWhen(true)] out T? objective) where T : IComponent
     {

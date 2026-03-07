@@ -1,0 +1,908 @@
+- type: loadoutGroup
+  id: Insuls
+  name: loadout-group-insuls-normal
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - InsulsRegular
+  - InsulsCombat
+  - InsulsMercenary
+  - InsulsScrapper
+
+- type: loadoutGroup
+  id: InsulsCombat
+  name: loadout-group-insuls-combat
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - InsulsCombatNoLock
+  - InsulsRegular
+  - InsulsMercenary
+  - InsulsScrapper
+
+- type: loadoutGroup
+  id: InsulsCaptain
+  name: loadout-group-insuls-captain
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - InsulsCaptain
+  - InsulsRegular
+  - InsulsCombat
+  - InsulsMercenary
+  - InsulsScrapper
+
+- type: loadoutGroup
+  id: Scarves
+  name: loadout-group-scarves
+  minLimit: 0
+  loadouts:
+  - ScarfRed
+  - ScarfBlue
+  - ScarfGreen
+  - ScarfBlack
+  - ScarfBrown
+  - ScarfLightBlue
+  - ScarfOrange
+  - ScarfPurple
+  - ScarfPrideAce
+  - ScarfPrideAro
+  - ScarfPrideAroace
+  - ScarfPrideBisexual
+  - ScarfPrideGay
+  - ScarfPrideIntersex
+  - ScarfPrideLesbian
+  - ScarfPridePansexual
+  - ScarfPrideNonbinary
+  - ScarfPrideRainbow
+  - ScarfPrideTrans
+  - ScarfPrideLongBacon
+
+- type: loadoutGroup
+  id: Pins
+  name: loadout-group-pins
+  minLimit: 0
+  loadouts:
+  - ClothingNeckLGBTPin
+  - ClothingNeckAllyPin
+  - ClothingNeckAromanticPin
+  - ClothingNeckAroacePin
+  - ClothingNeckAsexualPin
+  - ClothingNeckBisexualPin
+  - ClothingNeckGayPin
+  - ClothingNeckIntersexPin
+  - ClothingNeckLesbianPin
+  - ClothingNeckNonBinaryPin
+  - ClothingNeckPansexualPin
+  - ClothingNeckPluralPin
+  - ClothingNeckOmnisexualPin
+  - ClothingNeckGenderqueerPin
+  - ClothingNeckGenderfluidPin
+  - ClothingNeckTransPin
+  - ClothingNeckAutismPin
+  - ClothingNeckGoldAutismPin
+
+- type: loadoutGroup
+  id: Pens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
+  id: ClownPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - CrayonOrange
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
+  id: MimePens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - CrayonMime
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
+  id: LuxuryPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - FancyPenNoReq
+  - Pen
+
+- type: loadoutGroup
+  id: HoPPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - PenHop
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
+  id: CapPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - PenCap
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
+  id: NTRPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - PenNTR
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
+  id: CCPens
+  name: loadout-group-pens
+  minLimit: 1
+  loadouts:
+  - PenCentcom
+  - Pen
+  - FancyPen
+
+- type: loadoutGroup
+  id: AssistantGlasses
+  name: loadout-group-assistant-glasses
+  minLimit: 0
+  loadouts:
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+  - CheapSunnies
+  - AssistantNoirGlasses
+
+- type: loadoutGroup
+  id: AssistantHead
+  name: loadout-group-assistant-head
+  minLimit: 0
+  loadouts:
+  - GreyCowboy
+  - GreyBandana
+  - GreyFlatcap
+  - GreyCap
+  - CorpoCap
+  - SyndieCap
+  - GreyFedoraA
+  - SolidHeadband
+  - GreytideBizarreAdventures
+  - BrimHat
+  - FeatheredHat
+
+- type: loadoutGroup
+  id: AssistantBackpack
+  name: loadout-group-assistant-backpack
+  loadouts:
+  - CommonBackpack
+  - CommonSatchel
+  - CommonDuffel
+  - LeatherSatchel
+
+- type: loadoutGroup
+  id: RoboticistJumpsuit
+  name: loadout-group-roboticist-jumpsuit
+  loadouts:
+  - RoboticistJumpsuit
+  - RoboticistJumpskirt
+
+- type: loadoutGroup
+  id: RoboticistOuterClothing
+  name: loadout-group-roboticist-outerclothing
+  minLimit: 0
+  loadouts:
+  - RoboticistLabCoat
+  - RoboticistWintercoat
+
+- type: loadoutGroup
+  id: RoboticistHead
+  name: loadout-group-roboticist-head
+  minLimit: 0
+  loadouts:
+  - RoboticistCap
+  - SkullBandana
+  - RoboticistBlackCapFlipped
+
+- type: loadoutGroup
+  id: RoboticistGloves
+  name: loadout-group-roboticist-gloves
+  minLimit: 0
+  loadouts:
+  - LatexGloves
+  - PurpleGloves
+  - RobohandsGloves
+
+- type: loadoutGroup
+  id: RoboticistGoggles
+  name: loadout-group-roboticist-goggles
+  minLimit: 0
+  loadouts:
+  - RoboticistWeldingGoggles
+  - RoboticistDiagnosticsHud
+
+- type: loadoutGroup
+  id: RoboticistBackpack
+  name: loadout-group-roboticist-backpack
+  loadouts:
+  - RoboticistBackpack
+  - RoboticistSatchel
+  - RoboticistDuffel
+  - LeatherSatchel
+
+- type: loadoutGroup
+  id: NanoTrasenRepresentativeHead
+  name: loadout-group-nanotrasenrepresentative-head
+  loadouts:
+  - NanoTrasenRepresentativeTophat
+  - NanoTrasenRepresentativeEliteTophat
+  - NanoTrasenRepresentativeCap
+
+- type: loadoutGroup
+  id: NanoTrasenRepresentativeJumpsuit
+  name: loadout-group-nanotrasenrepresentative-jumpsuit
+  loadouts:
+  - NanoTrasenRepresentativeJumpsuit
+  - NanoTrasenRepresentativeJumpskirt
+  - NanoTrasenRepresentativeJumpsuitFormal
+  - NanoTrasenRepresentativeTurtleneck
+  - NanoTrasenRepresentativeTurtleneckSkirt
+  - NanoTrasenRepresentativeNoble
+
+- type: loadoutGroup
+  id: NanoTrasenRepresentativeEyewear
+  name: loadout-group-nanotrasenrepresentative-eyewear
+  loadouts:
+  - NanoTrasenRepresentativeGlasses
+  - NanoTrasenRepresentativeHud
+  - NanoTrasenRepresentativeMonocle
+
+- type: loadoutGroup
+  id: MagistrateJumpsuit
+  name: loadout-group-magistrate-jumpsuit
+  defaultSelected: 1
+  maxLimit: 1
+  loadouts:
+  - MagistrateJumpsuit
+  - MagistrateJumpskirt
+  - MagistrateJumpsuitLongCoat
+
+- type: loadoutGroup
+  id: MagistrateOuterclothing
+  name: loadout-group-magistrate-outer
+  defaultSelected: 1
+  minLimit: 0
+  loadouts:
+  - MagistrateRobes
+
+- type: loadoutGroup
+  id: MagistrateHead
+  name: loadout-group-magistrate-headwear
+  defaultSelected: 1
+  minLimit: 0
+  loadouts:
+  - MagistrateHeadPwig
+
+- type: loadoutGroup
+  id: MagistrateEyewear
+  name: loadout-group-magistrate-eyewear
+  loadouts:
+  - MagistrateSecGlasses
+  - MagistrateSkillGlasses
+
+- type: loadoutGroup
+  id: MagistrateHands
+  name: loadout-group-magistrate-hands
+  defaultSelected: 1
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - MagistrateWhiteGloves
+  - MagistrateBlackGloves
+
+- type: loadoutGroup
+  id: BlueShieldHead
+  name: loadout-group-blueshield-head
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - BlueShieldBeret
+  - BlueShieldBountyHat
+
+- type: loadoutGroup
+  id: BlueShieldBackpack
+  name: loadout-group-blueshield-backpack
+  loadouts:
+  - BlueShieldBackpack
+  - BlueShieldSatchel
+  - BlueShieldDuffel
+  - LeatherSatchel
+
+- type: loadoutGroup
+  id: BlueShieldJumpsuit
+  name: loadout-group-blueshield-jumpsuit
+  loadouts:
+  - BlueShieldJumpsuit
+  - BlueShieldJumpskirt
+  - EliteBlueShieldJumpsuit
+  - EliteBlueShieldJumpskirt
+  - BlueShieldShirt
+  - BlueShieldSkirt
+  - FormalBlueShieldJumpsuit
+
+- type: loadoutGroup
+  id: BlueShieldOuterclothing
+  name: loadout-group-blueshield-outerclothing
+  minLimit: 0
+  maxLimit: 1
+  defaultSelected: 1
+  loadouts:
+  - BlueShieldVest
+  - BlueShieldCoat
+
+- type: loadoutGroup
+  id: BlueShieldBelt
+  name: loadout-group-blueshield-belt
+  minLimit: 1
+  defaultSelected: 1
+  loadouts:
+  - BlueShieldWebbing
+  - BlueShieldMedicalBelt
+
+- type: loadoutGroup
+  id: BlueShieldPDA
+  minLimit: 1
+  defaultSelected: 1
+  name: loadout-group-blueshield-id
+  loadouts:
+    - BlueShieldPDA
+    - VeteranBlueShieldPDA
+
+- type: loadoutGroup
+  id: BlueShieldNeck
+  minLimit: 0
+  defaultSelected: 1
+  name: loadout-group-blueshield-neck
+  loadouts:
+  - BlueShieldFormalCloak
+  - BlueShieldEliteCloak
+  - BlueShieldPoncho
+
+- type: loadoutGroup
+  id: BlueShieldEyewear
+  minLimit: 1
+  defaultSelected: 1
+  name: loadout-group-blueshield-eyewear
+  loadouts:
+  - BlueShieldGlasses
+  - BlueShieldHud
+  - BlueShieldEyePatchHud
+
+- type: loadoutGroup
+  id: SecurityNonLethalWeapon
+  name: loadout-group-security-non-lethal-weapon
+  loadouts:
+  - SecurityTaser
+  - SecurityDominator
+
+- type: loadoutGroup
+  id: SecuritySidearm
+  name: loadout-group-security-sidearm
+  loadouts:
+  - SecurityMk58
+  - SecurityPistolDP
+  - SecurityPistolEnforcer
+
+# Assorted Boots
+- type: loadoutGroup
+  id: RoboticistShoes
+  name: loadout-group-roboticist-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - BlackShoes
+  - ScienceWinterBoots
+  - Heels
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: CaptainShoes
+  name: loadout-group-captain-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+  - CowboyBootsBrownFilled
+  - CowboyBootsBlackFilled
+  - CowboyBootsWhiteFilled
+  - HighHeelBootsFilled
+
+- type: loadoutGroup
+  id: HoPShoes
+  name: loadout-group-hop-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - BrownShoes
+  - Heels
+  - LaceupShoes
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: MagistrateShoes
+  name: loadout-group-magistrate-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - LaceupShoes
+  - Heels
+
+- type: loadoutGroup
+  id: NanotrasenRepresentativeShoes
+  name: loadout-group-nanotrasenrepresentative-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: DetectiveShoes
+  name: loadout-group-detective-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - JackBoots
+  - SecurityWinterBoots
+  - LaceupShoes
+  - CowboyBootsBrownFilled
+  - CowboyBootsBlackFilled
+  - CowboyBootsWhiteFilled
+  - Heels
+  - HighHeelBootsFilled
+
+- type: loadoutGroup
+  id: CivilianShoes
+  name: loadout-group-civilian-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - BlackShoes
+  - WhiteShoes
+  - GreenShoes
+  - LeatherShoes
+  - Heels
+  - LaceupShoes
+
+- type: loadoutGroup
+  id: LawyerShoes
+  name: loadout-group-iia-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - BlackShoes
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: BlueShieldShoes
+  name: loadout-group-security-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - CombatBoots
+  - HighHeelBootsFilled
+
+# Salvage Lead
+- type: loadoutGroup
+  id: SalvageLeadJumpsuit
+  name: loadout-group-salvage-lead-jumpsuit
+  loadouts:
+    - SalvageLeadJumpsuit
+    - SalvageLeadJumpskirt
+
+- type: loadoutGroup
+  id: SalvageLeadNeck
+  name: loadout-group-salvage-lead-mantle
+  loadouts:
+    - SalvageLeaderMantle
+    - SalvageVeteranMantle
+
+- type: loadoutGroup
+  id: SalvageLeadPDA
+  name: loadout-group-salvagelead-id
+  loadouts:
+  - SalvageLeadPDA
+  - VeteranSalvageLeadPDA
+
+# Mining Specialist
+- type: loadoutGroup
+  id: MiningSpecialistJumpsuit
+  name: loadout-group-mining-specialist-jumpsuit
+  loadouts:
+    - MiningSpecialistJumpsuit
+    - MiningSpecialistJumpskirt
+
+- type: loadoutGroup
+  id: MiningSpecialistPDA
+  name: loadout-group-mining-id
+  loadouts:
+  - MiningPDA
+  - VeteranMiningPDA
+
+# Salvage Specialist
+- type: loadoutGroup
+  id: SalvageSpecialistPDA
+  name: loadout-group-salvage-id
+  loadouts:
+    - SalvagePDA
+    - VeteranSalvagePDA
+
+# Service
+# Mime
+- type: loadoutGroup
+  id: MimeShoes
+  name: loadout-group-mime-shoes
+  minLimit: 0 # Starlight
+  defaultSelected: 1 # Starlight
+  loadouts:
+  - WhiteShoes
+  - BlackShoes
+  - RollerSkatesLoadout # Starlight
+
+# Service Worker
+- type: loadoutGroup
+  id: ServiceWorkerHead
+  name: loadout-group-serviceworker-head
+  minLimit: 0
+  loadouts:
+  - BartenderHead
+  - BartenderBowler
+  - BotanistHead
+  - BotanistBandana
+  - ChefHead
+
+- type: loadoutGroup
+  id: ServiceWorkerJumpsuit
+  name: loadout-group-serviceworker-jumpsuit
+  loadouts:
+  - ServiceWorkerBartenderJumpsuit
+  - ServiceWorkerBartenderJumpskirt
+  - ServiceWorkerBotanyJumpsuit
+  - ServiceWorkerBotanyJumpskirt
+  - ServiceWorkerChefJumpsuit
+  - ServiceWorkerChefJumpskirt
+  - MaidOutfit
+
+# Performer
+- type: loadoutGroup
+  id: PerformerHead
+  name: loadout-group-performer-head
+  minLimit: 0
+  loadouts:
+  - JesterHat
+  - JesterAltHat
+  - MimeHead
+  - MimeFrenchBeret
+  - MimeCap
+
+- type: loadoutGroup
+  id: PerformerJumpsuit
+  name: loadout-group-performer-jumpsuit
+  loadouts:
+  - PerformerMusicianJumpsuit
+  - PerformerMusicianJumpskirt
+  - PerformerClownJumpsuit
+  - PerformerClownJumpskirt
+  - PerformerMimeJumpsuit
+  - PerformerMimeJumpskirt
+
+- type: loadoutGroup
+  id: PerformerJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - LizardPlushieMusician
+  - LizardPlushieClown
+  - LizardPlushieMime
+
+# Boxer
+- type: loadoutGroup
+  id: BoxerJumpsuit
+  name: loadout-group-boxer-jumpsuit
+  loadouts:
+  - BoxerShorts
+  - BoxerShortsWithTop
+
+- type: loadoutGroup
+  id: BoxerGloves
+  name: loadout-group-boxer-gloves
+  loadouts:
+  - RedBoxingGloves
+  - BlueBoxingGloves
+  - GreenBoxingGloves
+  - YellowBoxingGloves
+
+- type: loadoutGroup
+  id: BoxerJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - LizardPlushieBoxer
+
+# Zookeeper
+- type: loadoutGroup
+  id: ZookeeperJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - LizardPlushieZookeeper
+
+# Silicon Brain Type
+- type: loadoutGroup
+  id: SiliconBrainType
+  name: loadout-group-borg-brain-type
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutSiliconPositronicBrain
+  - LoadoutSiliconSpeciesBrain
+
+# Chemist
+- type: loadoutGroup
+  id: ChemistHead
+  name: loadout-group-chemist-head
+  minLimit: 0
+  loadouts:
+    - ChemistryBeret
+    - ChemistNurseHat
+    - ChemistTruckersHat
+    - ChemistFisherCap
+
+- type: loadoutGroup
+  id: ChemistBag
+  name: loadout-group-chemist-bag
+  loadouts:
+    - ChemBag
+    - SeniorChemBag
+
+- type: loadoutGroup
+  id: ChemistShoes
+  name: loadout-group-chemist-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - WhiteShoes
+  - ChemistWinterBoots
+  - MedicalWinterBoots
+  - Heels
+  - LaceupShoes
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: ChemistPDA
+  name: loadout-group-chemist-id
+  loadouts:
+    - ChemistPDA
+    - SeniorChemistPDA
+
+- type: loadoutGroup
+  id: ChemistEyewear
+  name: loadout-group-chemist-eyewear
+  loadouts:
+    - ChemicalGoggles
+    - ChemicalHud
+    - ChemicalEyePatchHud
+    - ChemicalJensens
+    - ChemicalGlassesPrescription
+
+- type: loadoutGroup
+  id: ChemistBeaker
+  name: loadout-group-chemist-beaker
+  loadouts:
+    - LightBeaker
+    - SilverBeakerChemist
+
+- type: loadoutGroup
+  id: ChemistLabeler
+  name: loadout-group-chemist-labeler
+  loadouts:
+    - ChemistHandLabeler
+    - GoldenHandLabeler
+
+# Security
+- type: loadoutGroup
+  id: SecurityTie
+  name: loadout-group-security-tie
+  minLimit: 0
+  loadouts:
+    - SecurityRedNeckTie
+    - SecurityDetNeckTie
+
+# HoS/Ward Masks
+- type: loadoutGroup
+  id: SecurityMask
+  name: loadout-group-security-mask
+  minLimit: 0
+  loadouts:
+    - MaskGasSecurity
+    - BreathMaskMedicalSecurity
+    - MaskGasCorpsman
+
+# Brigmedic
+- type: loadoutGroup
+  id: BrigmedicMask
+  name: loadout-group-brigmedic-mask
+  loadouts:
+    - BrigmedicBreathMaskMedicalSecurity
+    - MaskGasSecurity
+    - CorpsmanMaskGasCorpsman
+
+- type: loadoutGroup
+  id: BrigmedicPDA
+  name: loadout-group-brigmedic-id
+  loadouts:
+    - BrigmedicPDA
+    - VeteranBrigmedicPDA
+    - CorpsmanPDA
+    - VeteranCorpsmanPDA
+
+- type: loadoutGroup
+  id: BrigmedicBeaker
+  name: loadout-group-brigmedic-beaker
+  loadouts:
+    - DarkBeaker
+    - SilverBeakerBrigmedic
+
+- type: loadoutGroup
+  id: BrigmedicGloves
+  name: loadout-group-brigmedic-gloves
+  loadouts:
+  - Nitrile
+  - BlackNitrile
+  - LatexGloves
+
+# Duty Officer
+- type: loadoutGroup
+  id: DutyOfficerHead
+  name: loadout-group-dutyofficer-head
+  loadouts:
+  - DutyOfficerHead
+  - DutyOfficerBeret
+  - DutyOfficerHelmetRiot
+
+- type: loadoutGroup
+  id: DutyOfficerJumpsuit
+  name: loadout-group-dutyofficer-jumpsuit
+  loadouts:
+  - DutyOfficerJumpsuit
+  - DutyOfficerJumpskirt
+  - DutyOfficerJumpsuitBlue
+  - DutyOfficerJumpskirtBlue
+
+- type: loadoutGroup
+  id: DutyOfficerBelt
+  name: loadout-group-dutyofficer-belt
+  loadouts:
+    - DutyOfficerBelt
+    - DutyOfficerWebbing
+
+- type: loadoutGroup
+  id: DutyOfficerOuterClothing
+  name: loadout-group-dutyofficer-outerclothing
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - DutyOfficerArmorRiot
+  - ArmorVest
+  - ArmorVestSlim
+  - ArmorVestPlate
+  - ArmorVestStab
+  - ArmorVestHeatAbsorb
+  - SecurityOfficerWintercoat
+  - SecurityBomber
+  - WindbreakerSecurity
+
+# Brighteye
+- type: loadoutGroup
+  id: BrighteyeJumpsuit
+  name: loadout-group-brighteye-jumpsuit
+  loadouts:
+    - BrighteyeTatteredClothes
+    - BrighteyeGladiator
+
+- type: loadoutGroup
+  id: BrighteyeNeck
+  name: Loadout-group-brighteye-neck
+  loadouts:
+    - BrighteyeTatteredHood
+    - BrighteyeMantle
+    - BrighteyeOldMantle
+    - BrighteyeGoliathCloak
+    - BrighteyeCloakVoid
+
+- type: loadoutGroup
+  id: BrighteyeShoes
+  name: loadout-group-civilian-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+    - ClothWrapShoe
+    - BlackShoes
+
+- type: loadoutGroup
+  id: BrighteyeGloves
+  minLimit: 0
+  name: loadout-group-brighteye-gloves
+  loadouts:
+    - ClothWrapGlove
+
+- type: loadoutGroup
+  id: NanotrasenCareerTrainerJumpsuit
+  name: loadout-group-NanotrasenCareerTrainer-jumpsuit
+  loadouts:
+  - JumpsuitNCT
+  - JumpskirtNCT
+
+- type: loadoutGroup
+  id: NanotrasenCareerTrainerHat
+  name: loadout-group-NanotrasenCareerTrainer-hat
+  loadouts:
+  - Drilltrainer
+  - BeretNCTGreen
+  - BeretNCTBlack
+
+- type: loadoutGroup
+  id: NanotrasenCareerTrainerShoes
+  name: loadout-group-NanotrasenCareerTrainer-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - JackBoots
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: NanotrasenCareerTrainerEyewear
+  name: loadout-group-NanotrasenCareerTrainer-eyewear
+  loadouts:
+  - NanoTrasenRepresentativeGlasses
+  - NanoTrasenRepresentativeHud
+
+- type: loadoutGroup
+  id: JanitorNeck
+  name: loadout-group-janitor-neck
+  minLimit: 0
+  loadouts:
+  - SupremeJanitorCloak
+
+- type: loadoutGroup
+  id: WardenNeck
+  name: loadout-group-warden-neck
+  minLimit: 0
+  loadouts:
+  - ClothingNeckWarden
+
+- type: loadoutGroup
+  id: SecurityGloves
+  name: loadout-group-gloves-sec
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - SecGloves
+  - SecGlovesFingerless
+  

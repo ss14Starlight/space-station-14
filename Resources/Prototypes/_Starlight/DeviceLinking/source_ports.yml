@@ -1,0 +1,57 @@
+- type: sourcePort
+  id: BodyScannerSender
+  name: signal-port-name-body-scanner-sender
+  description: signal-port-description-body-scanner-sender
+  defaultLinks: [ BodyScannerReceiver ]
+  
+- type: sourcePort
+  id: AiLawConsoleSender
+  name: signal-port-name-ai-law-console-sender
+  description: signal-port-description-ai-law-console-sender
+  defaultLinks: [ AiLawConsoleReceiver ]
+
+- type: sourcePort
+  id: ScanGateSuccess
+  name: signal-port-name-scan-gate-success
+  description: signal-port-description-scan-gate-success
+
+- type: sourcePort
+  id: ScanGateFail
+  name: signal-port-name-scan-gate-fail
+  description: signal-port-description-scan-gate-fail
+  
+- type: sourcePort  
+  id: MassDriverConsoleSender
+  name: signal-port-name-mass-driver-console-sender
+  description: signal-port-description-mass-driver-console-sender
+  defaultLinks: [ MassDriverConsoleReceiver ]
+
+- type: sourcePort
+  id: Gun1
+  name: signal-port-name-gun-1
+  description: signal-port-description-gun-1
+
+- type: sourcePort
+  id: Gun2
+  name: signal-port-name-gun-2
+  description: signal-port-description-gun-2
+
+- type: sourcePort
+  id: Gun3
+  name: signal-port-name-gun-3
+  description: signal-port-description-gun-3
+
+- type: sourcePort
+  id: Gun4
+  name: signal-port-name-gun-4
+  description: signal-port-description-gun-4
+
+- type: sourcePort
+  id: Gun5
+  name: signal-port-name-gun-5
+  description: signal-port-description-gun-5
+
+- type: sourcePort
+  id: Gun6
+  name: signal-port-name-gun-6
+  description: signal-port-description-gun-6

@@ -1,4 +1,5 @@
 using Content.Shared.Damage;
+using Content.Shared.Inventory;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._Starlight.Clothing.Components;
@@ -8,6 +9,7 @@ public sealed partial class DamageOnEquipComponent : Component
 {
     [DataField] public DamageSpecifier? EquipDamage;
     [DataField] public DamageSpecifier? UnequipDamage;
+    [DataField] public SlotFlags TargetSlots;
     [DataField] public bool IgnoreResistances;
     [DataField] public bool InterruptDoAfters;
     [DataField] public bool IgnoreGlobalModifiers;

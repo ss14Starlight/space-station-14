@@ -20,4 +20,12 @@ public sealed partial class StationDataComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public HashSet<EntityUid> Grids = new();
+
+    //Starlight begin
+    /// <summary>
+    /// All grids that are INITIALLY part of the station go here, as in anything that had BecomesStationComponent on it.
+    /// This is used to track if a player is on the "main station" or not.
+    /// </summary>
+    [ViewVariables] public HashSet<EntityUid> MainGrids = [];
+    //Starlight end
 }

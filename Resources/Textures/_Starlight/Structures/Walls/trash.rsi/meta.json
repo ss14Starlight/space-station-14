@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by conf (on discord)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "trash"
+        },
+        {
+            "name": "trash_east"
+        },
+        {
+            "name": "trash_north"
+        },
+        {
+            "name": "trash_south"
+        },
+        {
+            "name": "trash_west"
+        }
+    ]
+}

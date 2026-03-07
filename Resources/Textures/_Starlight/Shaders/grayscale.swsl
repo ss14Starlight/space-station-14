@@ -1,0 +1,9 @@
+light_mode unshaded;
+
+void fragment(){
+	highp vec4 base = texture2D(TEXTURE, UV);
+	highp float bw = zGrayscale(base.rgb);
+	bw = clamp(bw * 2.0, 0.0, 1.0);
+
+	COLOR = vec4(vec3(bw), base.a);
+}

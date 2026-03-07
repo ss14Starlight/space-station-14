@@ -7,6 +7,7 @@ plumbing-pill-press-output-mode = Output:
 plumbing-pill-press-mode-pill = Pills
 plumbing-pill-press-mode-patch = Patches
 plumbing-pill-press-dosage = Dosage (u):
+plumbing-pill-press-label = Label:
 plumbing-pill-press-set = Set
 plumbing-pill-press-pill-type = Pill Type
 plumbing-pill-press-mixing-mode = Mixing Mode (E/W Inlets)

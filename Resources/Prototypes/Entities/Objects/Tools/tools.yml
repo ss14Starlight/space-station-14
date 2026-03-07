@@ -447,6 +447,8 @@
     - Multitool
   - type: Prying
     enabled: false
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
+    playSoundOnDoafter: true #SL
   - type: Tool
     qualities:
       - Screwing

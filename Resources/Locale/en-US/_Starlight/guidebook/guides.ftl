@@ -39,6 +39,7 @@ guide-entry-sl-code-red = Code Red
 guide-entry-sl-code-gamma = Code Gamma
 guide-entry-sl-code-delta = Code Delta
 guide-entry-sl-code-yellow = Code Yellow
+guide-entry-sl-code-orange = Code Orange
 guide-entry-sl-code-violet = Code Violet
 
 guide-entry-sl-emergency-sops = Emergency
@@ -141,7 +142,13 @@ guide-entry-sl-service-sop-genproc-intro = General Procedures
 guide-entry-sl-service-sop-staff-intro = Staff Procedures
 guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
 
+guide-entry-abductors = Abductors
+guide-entry-terror-spiders = Terror Spiders
+
 # Plumbing guides
 guide-entry-plumbing = Plumbing
 guide-entry-plumbingflow = Reagent Flow
 guide-entry-plumbingmachines = Plumbing Machines
+
+# Records
+guide-entry-records = Character Records

@@ -1,0 +1,95 @@
+<Document>
+  # Terror spiders
+
+  <Box>
+    [color=#999999][italic]"Spiders! Oh, no! I am arachnophobic! "[/italic][/color]
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="MobTerrorPrince" Caption=""/>
+  </Box>
+
+  Terror spiders are capture antagonists that kill all humanoids that they see.
+
+  <Box>
+    <GuideEntityEmbed Entity="MobTerrorPrincess" Caption=""/>
+  </Box>
+
+  ## Initial spider (Princess of terror)
+  You are princess [color=#fc6cff]TIER 3[/color] spider.
+
+  ### Abilities
+
+  You can open powered doors, spin a web and breach welded vents.
+
+  ### Extending your population
+  
+  You have [color=#ace9ff]Lay the egg[/color] action which allows you to spawn [color=#fc6cff]TIER 1[/color] eggs with spiders.
+  eggs will hatch into spiderlings after a 90 seconds and then spiderlings will grow into [color=#fc6cff]TIER 1[/color] spiders with type which you selected before after another 90 seconds.
+
+  # TIER 1 spiders
+
+  <Box>
+    <GuideEntityEmbed Entity="MobTerrorRed" Caption=""/>
+  </Box>
+
+  ## Terror red
+
+  It's combat spider. It has [color=#ace9ff]Strong[/color] web, bigger health and damage.
+
+  Also can open [color=#ace9ff]powered doors[/color].
+
+  Can evolve into [color=#fc6cff]TIER 2[/color] purple terror after spinning 36 webs.
+
+  <Box>
+    <GuideEntityEmbed Entity="MobTerrorGreen" Caption=""/>
+  </Box>
+
+  ## Terror green
+
+  It's support spider. It can [color=#ace9ff]lay[/color] eggs into humanoids, so with time eggs will hatch into spiderlings inside humanoid's body.
+
+  Also has [color=#4d7954]Slime[/color] web which slows humanoids speeds to 30% of their original speed(instead of default 50%).
+
+  Can evolve into [color=#fc6cff]TIER 2[/color] white terror after injecting 4 eggs into humanoids.
+
+  <Box>
+    <GuideEntityEmbed Entity="MobTerrorGray" Caption=""/>
+  </Box>
+
+  ## Terror gray
+
+  It's a stealth spider. It has [color=#ace9ff]Invisibility[/color] ability which makes it invisible at any web.
+
+  Also has [color=#665a4f]Stealth[/color] web which more harder to see.
+
+  Can evolve into [color=#fc6cff]TIER 2[/color] black terror after spinning 36 webs.
+
+  # TIER 2 spiders
+
+  ## Terror purple
+
+  <Box>
+    <GuideEntityEmbed Entity="MobTerrorPurple" Caption=""/>
+  </Box>
+
+  It's an advanced combat spider. In contrast to the red terror it has [color=#a3f2fe]EMP scream[/color] ability which can drain energy from energy devices.
+
+  ## Terror white
+
+  <Box>
+    <GuideEntityEmbed Entity="MobTerrorWhite" Caption=""/>
+  </Box>
+
+  It's an advanced support spider. In contrast to the green terror it has acid spit long-distance attack.
+
+  ## Terror black
+
+  <Box>
+    <GuideEntityEmbed Entity="MobTerrorBlack" Caption=""/>
+  </Box>
+
+  It's an advanced stealth spider. In contrast to the gray terror it has Jump ability which allows it to jump, jumping also knocks off humanoids.
+
+  Also has [color=#4d643e]Poison[/color] web which injects toxin to humanoids standing in it.
+
+</Document>

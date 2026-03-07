@@ -444,7 +444,7 @@
 
 - type: entity
   id: BedsheetSyndie
-  parent: [ BedsheetBase, BaseMajorContraband ]  #SL EDIT, Syndie to Major
+  parent: [ BedsheetBase, BaseMinorContraband ]  #SL EDIT, Syndie to Minor
   name: syndicate bedsheet
   description: It has a syndicate emblem and it has an aura of evil.
   components:

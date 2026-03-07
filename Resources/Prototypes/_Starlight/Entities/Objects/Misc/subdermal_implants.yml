@@ -1,0 +1,203 @@
+- type: entity
+  id: USSPUplinkImplant
+  name: USSP uplink implant
+  description: A subdermal implant containing the USSP uplink radio.
+  parent: [ BaseSubdermalImplant, StorePresetUSSP ]
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionOpenSKBUplinkImplant
+      whitelist:
+        components:
+          - Hands
+    - type: Store
+      balance:
+        Telebond: 0
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+    - type: USSPUplinkImplant
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: MagillitisSerumImplant
+  name: magillitis serum implant
+  description: An experimental biochip which causes irreversable rapid muscular growth in Hominidae. Side-affects may include hypertrichosis, violent outbursts, and an unending affinity for bananas.
+  categories: [HideSpawnMenu]
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionActivateMagillitisSerumImplant
+      whitelist:
+        components:
+          - Hands
+    - type: TriggerOnActivateImplant
+    - type: PolymorphOnTrigger
+      polymorph: RampagingGorilla
+      targetUser: true
+
+- type: entity
+  parent: MindShieldImplant
+  id: TSFMindShieldImplant
+  name: TSF mindshield implant
+  description: This implant will ensure loyalty to SolGov and prevent mind control devices.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MindShieldImplant
+    mindShieldStatusIcon: TSFMindShieldIcon
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantTSF
+  name: TSF death rattle implant
+  description: This implant will inform the TSF radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RattleOnTrigger
+    radioChannel: TSF
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: BluespaceImplant
+  name: bluespace implant
+  description: An advanced subdermal implant that, when activated, teleports the user far away.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivateBluespaceImplant
+  - type: TriggerOnMobstateChange
+    mobState:
+      - Dead
+  - type: TriggerOnActivateImplant
+  - type: DeleteOnTrigger
+    targetUser: true
+  - type: SpawnOnTrigger
+    proto: BluespaceImplantEffect
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RedspaceImplant
+  name: redspace implant
+  description: An advanced subdermal implant that, when activated, teleports the user far away.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivateRedspaceImplant
+  - type: TriggerOnMobstateChange
+    mobState:
+      - Dead
+  - type: TriggerOnActivateImplant
+  - type: DeleteOnTrigger
+    targetUser: true
+  - type: SpawnOnTrigger
+    proto: RedspaceImplantEffect
+
+# Gear Acidifier
+- type: entity
+  parent: BaseSubdermalImplant
+  id: GearAcidifierImplant
+  name: gear-acidifier implant
+  description: This implant melts the user's equipment upon death, leaving the body intact.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivateGearAcidifier
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: TriggerOnActivateImplant
+  - type: GibOnTrigger
+    targetUser: true
+    deleteItems: true
+    gibBody: false
+  - type: PopupOnTrigger
+    targetUser: true
+    text: death-acidifier-implant-activate-gear
+  - type: SpawnOnTrigger
+    targetUser: true
+    proto: GearAcidifier
+    predicted: true
+  - type: DeleteOnTrigger
+    targetUser: false
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
+    - GearAcidifier
+
+#SELF
+- type: entity
+  parent: BaseSubdermalImplant
+  id: SELFStorageImplant
+  name: S.E.L.F storage implant
+  description: This implant grants hidden storage within a person's body using bluespace technology.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StorageImplant
+    - type: SubdermalImplant
+      implantAction: ActionOpenStorageImplant
+      whitelist:
+        components:
+        - Hands # no use giving a mouse a storage implant, but a monkey is another story...
+    - type: Storage
+      grid:
+      - 0,0,4,3
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents: [ ]
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+
+# death acidifier for terminator phase 1, only manual activation (no death trigger to avoid phase 2 transformation issues)
+- type: entity
+  parent: BaseSubdermalImplant
+  id: TerminatorDeathAcidifierImplant
+  name: terminator self-destruct implant
+  description: This implant melts the user and their equipment upon manual activation. Will not trigger during transformation.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivateTerminatorDeathAcidifier
+  - type: TriggerOnActivateImplant
+  - type: GibOnTrigger
+    targetUser: true
+    deleteItems: true
+  - type: SpawnOnTrigger
+    proto: Acidifier
+    predicted: true
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
+
+# microbomb that gibs but does less collateral damage, for terminator
+- type: entity
+  parent: MicroBombImplant
+  id: TerminatorMicroBombImplant
+  name: terminator micro bomb implant
+  description: This implant detonates the user upon activation or upon death.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Explosive
+    explosionType: MicroBomb
+    totalIntensity: 40
+    intensitySlope: 3
+    maxIntensity: 15
+    canCreateVacuum: false
+
+# Traitor Mind Control
+- type: entity
+  parent: BaseSubdermalImplant
+  id: MindControlImplant
+  name: mind control implant
+  description: A knock-off of the Mindshield. this Implant ensures the user is on the side of the syndicate.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: MindControlImplant

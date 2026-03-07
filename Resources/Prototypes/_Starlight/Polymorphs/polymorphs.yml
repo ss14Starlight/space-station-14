@@ -1,0 +1,56 @@
+- type: polymorph
+  id: AdmemeForcedJohnToe
+  configuration:
+    entity: MobJohnToe
+    forced: true
+    inventory: Transfer
+    allowRepeatedMorphs: true
+    transferName: false
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    polymorphSound: !type:SoundPathSpecifier
+      path: /Audio/Magic/forcewall.ogg
+    exitPolymorphSound: !type:SoundPathSpecifier
+      path: /Audio/Magic/forcewall.ogg
+
+- type: polymorph
+  id: VampireSanguinePoolPolymorph
+  configuration:
+    entity: MobVampireSanguinePool
+    forced: true
+    transferDamage: true
+    transferName: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+    effectProto: null
+    polymorphSound: !type:SoundPathSpecifier
+      path: /Audio/_Starlight/Effects/vampire/enter_blood.ogg
+    exitPolymorphSound: !type:SoundPathSpecifier
+      path: /Audio/_Starlight/Effects/vampire/exit_blood.ogg
+
+- type: polymorph
+  id: AdminMouse
+  configuration:
+    entity: MobAdminMouse
+    forced: true
+    inventory: None
+    allowRepeatedMorphs: false
+
+- type: polymorph
+  id: MentorMouse
+  configuration:
+    entity: MobMentorMouse
+    forced: true
+    inventory: None
+    allowRepeatedMorphs: false
+    
+- type: polymorph
+  id: AdminFelioSmite
+  configuration:
+    entity: MobFelionoid
+    forced: true
+    transferName: true
+    inventory: Transfer
+    ignoreAllowRepeatedMorphs: true

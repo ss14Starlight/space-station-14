@@ -1,0 +1,66 @@
+# Shuttle Weapons Control Console
+
+- type: entity
+  parent: BaseComputer
+  id: ShuttleWeaponsConsole
+  name: shuttle weapons control console
+  description: A computer for controlling linked shuttle weapons and scanning nearby objects.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: solar_screen
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+  - type: Computer
+    board: ShuttleWeaponsConsoleCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#da2a2a"
+  - type: RadarConsole
+    maxRange: 512
+  - type: DeviceLinkSource
+    range: 200
+    ports:
+    - Gun1
+    - Gun2
+    - Gun3
+    - Gun4
+    - Gun5
+    - Gun6
+  - type: ActivatableUI
+    key: enum.SignalLinkerUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.SignalLinkerUiKey.Key:
+        type: SignalPortSelectorBoundUserInterface
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: DeviceNetworkRequiresPower
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: ExtensionCableReceiver
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 750

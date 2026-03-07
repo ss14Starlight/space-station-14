@@ -1,0 +1,82 @@
+- type: entity
+  id: TophatThatFuckingKillsYou
+  parent: ClothingHeadHatMagician
+  suffix: Admeme
+  name: The hat that kills you if you take it off
+  description: Does what it says on the tin. Literally fucking evil ass hat. Don't wear this unless you hate yourself.
+  components:
+    - type: DamageOnEquip
+      unequipDamage:
+        types:
+          Slash: 400
+      targetSlots: HEAD
+      ignoreResistances: true
+      delay: 4
+      popupDelay: 2
+      popupLocId: hat-killsyou-uhoh
+
+- type: entity
+  id: TophatThatFuckingGibsYou
+  parent: TophatThatFuckingKillsYou
+  suffix: Admeme
+  name: The hat that gibs you if you take it off
+  components:
+    - type: DamageOnEquip
+      unequipDamage:
+        types:
+          Blunt: 2000
+      targetSlots: HEAD
+      delay: 5
+      popupDelay: 2.5
+      popupLocId: hat-killsyou-gib
+
+- type: entity
+  id: TophatThatFuckingAshesYou
+  parent: TophatThatFuckingKillsYou
+  suffix: Admeme
+  name: The hat that ashes you if you take it off
+  components:
+    - type: DamageOnEquip
+      unequipDamage:
+        types:
+          Heat: 99999999
+      targetSlots: HEAD
+      delay: 7
+      popupDelay: 3.5
+      popupLocId: hat-killsyou-ash
+
+#ghostroles
+- type: entity
+  id: TophatThatFuckingKillsYouGhostBase
+  abstract: true
+  components:
+    - type: TextToSpeech
+    - type: Speech
+      speechSounds: Alto
+    - type: Examiner
+    - type: GhostRole
+      prob: 1
+      name: ghost-role-information-tophat-name
+      allowMovement: true
+      description: ghost-role-information-tophat-description
+      rules: ghost-role-information-antagonist-rules
+      mindRoles:
+        - MindRoleGhostRoleSoloAntagonist
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  id: TophatThatFuckingKillsYouGhost
+  suffix: Admeme, Ghost Role
+  parent: [TophatThatFuckingKillsYouGhostBase, TophatThatFuckingKillsYou]
+
+- type: entity
+  id: TophatThatFuckingGibsYouGhost
+  suffix: Admeme, Ghost Role
+  parent: [TophatThatFuckingKillsYouGhostBase, TophatThatFuckingGibsYou]
+
+- type: entity
+  id: TophatThatFuckingAshesYouGhost
+  suffix: Admeme, Ghost Role
+  parent: [TophatThatFuckingKillsYouGhostBase, TophatThatFuckingAshesYou]

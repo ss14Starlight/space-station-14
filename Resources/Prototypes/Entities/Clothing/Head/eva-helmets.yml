@@ -34,7 +34,7 @@
 
 #Syndicate EVA Helmet
 - type: entity
-  parent: [ ClothingHeadEVAHelmetBase, BaseSyndicateContraband ]
+  parent: [ ClothingHeadEVAHelmetBase, BaseMinorContraband ] #SL Edit Syndie > Minor Contra
   id: ClothingHeadHelmetSyndicate
   name: syndicate EVA helmet
   description: A simple, stylish EVA helmet. Designed for maximum humble space-badassery.

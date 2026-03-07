@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Antag;
@@ -67,6 +68,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly SharedRoleSystem _roles = default!;
         [Dependency] private readonly ServerDbEntryManager _dbEntryManager = default!;
         [Dependency] private readonly AntagSelectionSystem _antagSelection = default!;
+        [Dependency] private readonly AutoDiscordLogSystem _autolog = default!; // Starlight
 
         [ViewVariables] private bool _initialized;
         [ViewVariables] private bool _postInitialized;
