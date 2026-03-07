@@ -33,6 +33,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using System.Diagnostics.CodeAnalysis;
+using Content.Server.DoAfter;
+using Content.Shared.Power.Components;
 
 namespace Content.Server._Starlight.Silicons.IPC;
 
@@ -46,7 +48,6 @@ public sealed partial class IPCSystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly BatteryDrainerSystem _drainer = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly MobStateSystem _state = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
