@@ -40,6 +40,28 @@
 
 - type: entity
   parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelMailSenior
+  name: senior mail courier trunk
+  description: A huge trunk for the station's strongest mail technicians.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/mailseniortrunk.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,9,5
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.8
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: MetalThud
+
+- type: entity
+  parent: ClothingBackpackDuffel
   id: ClothingBackpackDuffelChemistrySenior
   name: senior chemistry duffel bag
   description: A large duffel bag for holding a wide assortment of advanced chemical supplies.
@@ -64,3 +86,27 @@
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Duffels/blueshield.rsi
+
+# Fashion-O-Mat
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelSpaceCourier
+  name: space courier trunk
+  description: A huge trunk themed after a legendary space courier.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/space_courier_trunk.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,9,5
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.8
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: MetalThud
+# Fashion-O-Mat END

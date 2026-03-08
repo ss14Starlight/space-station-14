@@ -46,6 +46,17 @@
   name: nt representive jacket
 
 - type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatSeniorMail
+  name: senior mail technician coat
+  description: Pristine overclothing for the most senior of mail techs. Styled after a legendary space courier.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/senior_mail_coat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/senior_mail_coat.rsi
+
+- type: entity
   parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatLabSeniorChemist
   name: senior chemist lab coat
@@ -158,6 +169,20 @@
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabCorpsman]
   id: ClothingOuterCoatLabCorpsmanOpened
   name: corpsman's nostalgic overcoat
+
+# Fashion-O-Mat
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatSpaceCourier
+  name: space courier coat
+  description: A luxurious coat, made to honor a legendary space courier. Fly, space courier!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/space_courier_coat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/space_courier_coat.rsi
+# Fashion-O-Mat END
+
 
 - type: entity
   parent: ClothingOuterStorageBase
