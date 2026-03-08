@@ -1,0 +1,896 @@
+- type: entity
+  id: BaseBorgModuleSecurity
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - BorgModuleSecurity
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#a0322c"
+      - state: base-module-inhand-left
+        color: "#444444"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#5b5b5b"
+      right:
+      - state: base-icon-inhand-right
+        color: "#a0322c"
+      - state: base-module-inhand-right
+        color: "#444444"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#5b5b5b"
+
+- type: entity
+  id: BaseBorgModuleSyndicateStealth
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - BorgModuleSyndicateStealth
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#FF0000"
+      - state: base-module-inhand-left
+        color: "#891417"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#7B0F12"
+      right:
+      - state: base-icon-inhand-right
+        color: "#FF0000"
+      - state: base-module-inhand-right
+        color: "#891417"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#7B0F12"
+
+# generic modules
+- type: entity
+  id: BorgModuleUppies
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: personnel transport cyborg module
+  description: A universal cyborg module which allows the unit to carry small personnel.
+  components:
+  - type: Tag
+    tags:
+      - BorgModuleGeneric
+      - PersonnelStorage
+  - type: Sprite
+    layers:
+    - state: generic
+    - state: icon-hands
+  - type: ItemBorgModule
+    hands:
+    - forceRemovable: true
+      hand:
+        emptyRepresentative: MobResomi
+        emptyLabel: borg-slot-uppies-empty
+        whitelist:
+          components:
+          - HumanoidAppearance
+    - forceRemovable: true
+      hand:
+        emptyRepresentative: MobResomi
+        emptyLabel: borg-slot-uppies-empty
+        whitelist:
+          components:
+          - HumanoidAppearance
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: hands }
+
+# region Security
+- type: entity
+  id: BorgModuleSecurity
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: security cyborg module
+  description: A security cyborg module which allows the unit to use unlethal equipment.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-nt
+  - type: ItemBorgModule
+    hands:
+    - item: Flash
+      hand:
+        emptyRepresentative: Flash
+        emptyLabel: borg-slot-flash-empty
+        whitelist:
+          components:
+          - Flash
+    - item: Crowbar
+    - item: Zipties
+      hand:
+        emptyRepresentative: Zipties
+        emptyLabel: borg-slot-zipties-empty
+        whitelist:
+          tags:
+          - Handcuffs # Can be replaced by handcuffs or zipties
+    - item: Stunbaton
+      hand:
+        emptyRepresentative: Stunbaton
+        emptyLabel: borg-slot-stunbaton-empty
+        whitelist:
+          components:
+          - Stunbaton
+    - item: WeaponDisabler
+      hand:
+        emptyRepresentative: WeaponDisabler
+        emptyLabel: borg-slot-disabler-empty
+        whitelist:
+          tags:
+          - Disabler
+    - item: HoloprojectorSecurity
+      hand:
+        emptyRepresentative: HoloprojectorSecurity
+        emptyLabel: borg-slot-holoprojector-empty
+        whitelist:
+          components:
+          - HolosignProjector
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
+
+# TSF
+- type: entity
+  id: BorgModuleTSF
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: TSF Security cyborg module
+  description: A Security TSF cyborg module which allows the unit to use unlethal equipment.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+  - type: ItemBorgModule
+    hands:
+    - item: Flash
+      hand:
+        emptyRepresentative: Flash
+        emptyLabel: borg-slot-flash-empty
+        whitelist:
+          components:
+          - Flash
+    - item: Crowbar
+    - item: Zipties
+      hand:
+        emptyRepresentative: Zipties
+        emptyLabel: borg-slot-zipties-empty
+        whitelist:
+          tags:
+          - Handcuffs # Can be replaced by handcuffs or zipties
+    - item: TSFBatonModel5
+    - item: WeaponDisabler
+      hand:
+        emptyRepresentative: WeaponDisabler
+        emptyLabel: borg-slot-disabler-empty
+        whitelist:
+          tags:
+          - Disabler
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
+
+- type: entity
+  id: BorgModuleTSFCombat
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: TSMC Combat cyborg module
+  description: A TSMC cyborg module which allows the unit to use combat equipment.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+  - type: ItemBorgModule
+    hands:
+    - item: AccessOverider
+    - item: TSFBatonModel5
+    - item: WeaponPistolTSFBorg
+    - item: WeaponAdvancedLaser
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
+
+# region Purrfus
+- type: entity
+  id: BaseBorgModulePurrfus
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - BorgModulePurrfus
+  - type: Sprite
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#616161"
+      - state: base-module-inhand-left
+        color: "#067aa8"
+      - state: base-stripes-inhand-left
+        color: "#ffffff"
+      right:
+      - state: base-icon-inhand-right
+        color: "#616161"
+      - state: base-module-inhand-right
+        color: "#067aa8"
+      - state: base-stripes-inhand-right
+        color: "#ffffff"
+
+- type: entity
+  id: BorgModulePaperStampPlaceholder
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamp-paper-borg.rsi
+    state: stamp-paper-borg
+
+- type: entity
+  id: BorgModulePaperwork
+  parent: [ BaseBorgModulePurrfus, BaseProviderBorgModule ]
+  name: paperwork cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: command
+    - state: icon-paperwork
+  - type: ItemBorgModule
+    hands:
+    - item: LuxuryPen
+    - item: BoxFolderCyborgClipboard
+    - item: RubberStampApproved
+    - item: RubberStampDenied
+    - item: HandLabeler
+    - hand:
+        emptyLabel: borg-slot-papers-empty
+        emptyRepresentative: BorgModulePaperStampPlaceholder
+        whitelist:
+          tags:
+          - Document
+          components:
+          - Stamp
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: paperwork-module }
+
+# region Service
+- type: entity
+  id: BorgModuleBartending
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: bartending cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-bartending
+  - type: ItemBorgModule
+    hands:
+    - item: DrinkGlass
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkGlass
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: DrinkGlass
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkGlass
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: DrinkShaker
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: DrinkShaker
+        whitelist:
+          components:
+          - FitsInDispenser
+    - item: BorgDropper
+    - item: BarSpoon
+    - hand:
+        emptyLabel: borg-slot-bottles-empty
+        emptyRepresentative: DrinkWhiskeyBottleFull
+        whitelist:
+          tags:
+          - DrinkBottle
+          - DrinkCarton
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: bartending-module }
+
+- type: entity
+  id: BorgModuleBooks
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: bookkeeping cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-pen
+  - type: ItemBorgModule
+    hands:
+    - item: Pen
+    - hand:
+        emptyLabel: borg-slot-documents-empty
+        emptyRepresentative: Paper
+        whitelist:
+          tags:
+          - Book
+          - Dice
+          - Document
+          - Figurine
+          - TabletopBoard
+          - Write
+    - hand:
+        emptyLabel: borg-slot-documents-empty
+        emptyRepresentative: BookBase
+        whitelist:
+          tags:
+          - Book
+          - Dice
+          - Document
+          - Figurine
+          - TabletopBoard
+          - Write
+    - item: BooksBag
+    - item: HandLabeler
+    - item: RubberStampApproved
+    - item: RubberStampDenied
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: bookkeeping-module }
+
+- type: entity
+  id: BorgModuleBotany
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: botany cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-gardening
+  - type: ItemBorgModule
+    hands:
+    - item: HydroponicsToolMiniHoe
+    - item: HydroponicsToolSpade
+    - item: HydroponicsToolClippers
+    - item: DiseaseSwab
+      hand:
+        emptyLabel: borg-slot-swabs-empty
+        emptyRepresentative: DiseaseSwab
+        whitelist:
+          components:
+          - BotanySwab
+    - item: HydroponicsToolScythe
+    - item: HydroponicsToolHatchet
+    - item: PlantBag
+    - hand:
+        emptyLabel: borg-slot-seeds-empty
+        emptyRepresentative: WheatSeeds
+        whitelist:
+          components:
+          - Seed
+    - hand:
+        emptyLabel: borg-slot-produce-empty
+        emptyRepresentative: FoodApple
+        whitelist:
+          components:
+          - Produce
+    - item: Bucket
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: gardening-module }
+
+- type: entity
+  id: BorgModuleCooking
+  parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
+  name: cooking cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: service
+    - state: icon-cooking
+  - type: ItemBorgModule
+    hands:
+    - item: BorgDropper
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-small-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+    - hand:
+        emptyLabel: borg-slot-ingredient-empty
+        emptyRepresentative: ReagentContainerFlour
+        whitelist:
+          tags:
+          - Slice
+          - Condiment
+          - Packet
+          - Meat
+          - DrinkCarton
+          components:
+          - Produce
+    - hand:
+        emptyLabel: borg-slot-food-empty
+        emptyRepresentative: FoodBreakfastAmerican
+        whitelist:
+          tags:
+          - Dinnerware
+          - Skewer
+          components:
+          - Edible
+        blacklist:
+          tags:
+          - Crayon
+          components:
+          - Clothing
+          - Organ
+    - item: KitchenKnife
+    - item: RollingPin
+
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: cooking-module }
+    
+# region Syndicate
+- type: entity
+  id: BorgModuleSyndicateAdvancedTool
+  parent: [ BaseBorgModuleEngineering, BaseProviderBorgModule, BaseSyndicateContraband]
+  name: syndicate advanced tool cyborg module
+  description: A syndicate version of the advanced tools module, containing disguised syndicate jaws of life.
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-tools-adv
+  - type: ItemBorgModule
+    hands:
+    - item: SyndicateJawsOfLifeStealth
+    - item: PowerDrill
+    - item: WelderExperimental
+    - item: Multitool
+    - item: RemoteSignallerAdvanced
+    - item: SprayPainterBorg
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-tools-module }
+
+- type: entity
+  id: BorgModuleSyndicateAdvancedChemical
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule, BaseSyndicateContraband]
+  name: syndicate advanced chemical cyborg module
+  description: A syndicate version of the advanced chemical module, including a gorlex hypospray.
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-chemist
+  - type: ItemBorgModule
+    hands:
+    - item: HandheldHealthAnalyzer
+    - item: SyndiBorgHypo
+    - item: AutoMenderBrute
+    - item: AutoMenderBurn
+    - item: Syringe
+      hand:
+        emptyLabel: borg-slot-syringe-empty
+        emptyRepresentative: Syringe
+        whitelist:
+          tags:
+          - Syringe
+          - JetInjector
+          - Medipen
+    - item: BorgDropper
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: PinpointerSyndicateNuclear
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }
+
+- type: entity
+  id: BorgModuleSyndicateRescue
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule, BaseSyndicateContraband ]
+  name: syndicate rescue cyborg module
+  description: A syndicate version of the rescue module, featuring a syndicate defibrillator.
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-defib
+  - type: ItemBorgModule
+    hands:
+    - item: HandheldHealthAnalyzer
+    - item: DefibrillatorSyndicateOneHandedUnpowered
+    - item: BorgFireExtinguisher
+    - item: BorgHandheldGPSBasic
+    - item: HandLabeler
+    - item: PinpointerSyndicateNuclear
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: defib-module }
+
+- type: entity
+  id: BorgModuleSyndicateStealth
+  parent: [BaseBorgModuleSyndicateStealth, BaseProviderBorgModule, BaseSyndicateContraband ]
+  name: syndicate stealth module
+  description: Contains an adaptation of the infiltration suit's cloaking device for the syndicate stealth cyborg.
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    hands:
+    - item: CloakingDevice
+    - item: PinpointerSyndicateNuclear
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-eye-module }
+
+- type: entity
+  id: BorgModuleSyndicateChameleonProjector
+  parent: [ BaseBorgModuleSyndicateStealth, BaseProviderBorgModule, BaseSyndicateContraband ]
+  name: syndicate chameleon projector module.
+  description: Contains an adaptation of the chameleon projector for the syndicate stealth cyborg.
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    hands:
+    - item: ChameleonProjector
+    - item: PinpointerSyndicateNuclear
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-projector-module }
+
+- type: entity
+  id: BorgModuleSyndicateNukeDisk
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
+  name: syndicate nuke disk carrier module
+  description: Allows for the transportation of the nuclear authentication disk.
+  components:
+    - type: Sprite
+      layers:
+        - state: syndicate
+        - state: icon-syndicate
+    - type: ItemBorgModule
+      hands:
+        - hand:
+            emptyRepresentative: NukeDisk
+            emptyLabel: borg-slot-nuke-disk-empty
+            whitelist:
+              components:
+                - NukeDisk
+              tags:
+                - FakeNukeDisk
+    - type: BorgModuleIcon
+      icon: { sprite: Objects/Misc/nukedisk.rsi, state: icon }
+    - type: Tag
+      tags:
+        - BorgModuleSyndicate
+
+# xenoborg
+# region Medical
+- type: entity
+  id: BorgModuleOrganPlaceholder
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: heart-off
+
+- type: entity
+  id: BorgModuleSurgical
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  name: surgery cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: medical
+    - state: icon-surgery
+  - type: ItemBorgModule
+    hands:
+    - item: Scalpel
+    - item: Hemostat
+    - item: Retractor
+    - item: BoneSetter
+    - item: Cautery
+    - item: SawElectric
+    - item: Drill
+    - item: BoneGel
+    - hand:
+        emptyLabel: borg-slot-organs-empty
+        emptyRepresentative: BorgModuleOrganPlaceholder
+        whitelist:
+          components:
+          - Organ
+          - OrganDamage
+          - FunctionalOrgan
+          - BodyPart
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: surgery-module }
+    
+# region Xenoborg
+- type: entity
+  parent: [ BaseXenoborgModuleGeneric, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: XenoborgModuleRCD
+  name: engineering xenoborg module
+  description: Module with a recharging xenoborg RCD
+  components:
+  - type: Sprite
+    layers:
+    - state: xenoborg_engi
+    - state: icon-rcd
+  - type: ItemBorgModule
+    hands:
+    - item: RCDXeno
+    - item: BorgFireExtinguisher
+    - item: BorgHandheldGPSBasic
+    - item: GasAnalyzer
+    - item: HolofanProjectorBorg
+    - item: GeigerCounter
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-rcd-module }
+
+# region Cargo
+- type: entity
+  id: BaseBorgModuleMining
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: BorgModule
+    borgFitTypes:
+    - borg-type-salvage
+  - type: Tag
+    tags:
+    - BorgModuleMining
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#EBD8B7"
+      - state: base-module-inhand-left
+        color: "#613D1D"
+      - state: base-stripes-inhand-left
+        color: "#520079"
+      right:
+      - state: base-icon-inhand-right
+        color: "#EBD8B7"
+      - state: base-module-inhand-right
+        color: "#613D1D"
+      - state: base-stripes-inhand-right
+        color: "#520079"
+
+- type: entity
+  id: BaseBorgModuleSupply
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: BorgModule
+    borgFitTypes:
+    - borg-type-cargo
+  - type: Tag
+    tags:
+    - BorgModuleSupply
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#EBD8B7"
+      - state: base-module-inhand-left
+        color: "#613D1D"
+      - state: base-stripes-inhand-left
+        color: "#cbb036"
+      right:
+      - state: base-icon-inhand-right
+        color: "#EBD8B7"
+      - state: base-module-inhand-right
+        color: "#613D1D"
+      - state: base-stripes-inhand-right
+        color: "#cbb036"
+
+- type: entity
+  id: BorgModuleBountyPaperPlaceholder
+  categories: [ HideSpawnMenu ]
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: paper
+      color: "#f7e574"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#f7e574"
+      visible: true
+
+- type: entity
+  id: BorgModuleHold
+  parent: [ BaseBorgModuleSupply, BaseProviderBorgModule ]
+  name: hauling cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: hauling
+    - state: icon-mats
+  - type: ItemBorgModule
+    hands:
+    - item: BorgHold
+    - item: BorgHold
+    - hand: #For loading lathes and making crates
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+        emptyLabel: borg-slot-construction-empty
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - hand: #Attatching lables to crates for bounties
+        emptyRepresentative: BorgModuleBountyPaperPlaceholder
+        emptyLabel: borg-slot-bounty-empty
+        whitelist:
+          tags:
+          - Document
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: mats-module }
+
+- type: entity
+  id: BorgModuleMailPlaceholder
+  categories: [ HideSpawnMenu ]
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Cargo/mail.rsi
+    layers: 
+    - state: icon
+    - state: postmark
+    - state: locked
+
+- type: entity
+  id: BorgModuleMail
+  parent: [ BaseBorgModuleSupply, BaseProviderBorgModule ]
+  name: mail cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: hauling
+    - state: icon-mail
+  - type: ItemBorgModule
+    hands:
+    - item: MailBag
+    - hand:
+        emptyRepresentative: BorgModuleMailPlaceholder
+        emptyLabel: borg-slot-mail-empty
+        whitelist:
+          components:
+          - Delivery
+    - hand: # Second one is so it can pick up packages
+        emptyRepresentative: BorgModuleMailPlaceholder 
+        emptyLabel: borg-slot-mail-empty
+        whitelist:
+          components:
+          - Delivery
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: mail-module }
+
+- type: entity
+  id: BorgModuleAdvancedLoading
+  parent: [ BaseBorgModuleSupply, BaseProviderBorgModule ]
+  name: advanced loading cyborg module
+  description: Advanced module for cargo cyborgs, with specialised hydraulic clamps
+  components:
+  - type: Sprite
+    layers:
+    - state: hauling
+    - state: icon-loading
+  - type: ItemBorgModule
+    hands:
+    - item: BorgClamp
+    - item: BorgClamp
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: loading-module }
+
+- type: entity
+  id: BorgModuleAdvancedPlumbing
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: advanced plumbing cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: generic
+    - state: icon-plumbing
+  - type: ItemBorgModule
+    hands:
+    - item: RPLDRecharging
+    - item: Crowbar
+    - item: Wrench
+    - item: trayScanner
+    - hand:
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+        emptyLabel: borg-slot-construction-empty
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - hand:
+        emptyRepresentative: APCElectronics
+        emptyLabel: borg-slot-circuitboards-empty
+        whitelist:
+          components:
+          - Circuitboard
+    - item: CableApcStack10
+      hand:
+        emptyRepresentative: CableApcStack10
+        emptyLabel: borg-slot-cables-empty
+        whitelist:
+          tags:
+          - CableCoil
+    - item: Plunger
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: plumbing-module }
+
+# Makeshift Start
+
+- type: entity
+  id: BorgModuleMakeshiftKnife
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseMajorContraband ]
+  name: makeshift knife cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: makeshift
+    - state: icon-knife
+  - type: ItemBorgModule
+    hands:
+    - item: KitchenKnife
+      hand:
+        emptyRepresentative: KitchenKnife
+        emptyLabel: borg-slot-knives-empty
+        whitelist:
+          tags:
+          - Knife
+    - item: Crowbar
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: knife-module }
+
+# Makeshift End
+
+- type: entity
+  id: BorgModuleTeaPartyMAG
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseMajorContraband ]
+  name: TeaPartyMAG cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: xenoborg_engi
+    - state: icon-xenoborg-access-breaker
+  - type: ItemBorgModule
+    hands:
+    - item: EmagTeaParty
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-door-remote-module }
+  
+  

@@ -255,9 +255,9 @@
     - type: RandomMetadata
       nameSegments:
       - NamesClown
-    - type: NpcFactionMember
-      factions:
-        - Syndicate
+    # - type: NpcFactionMember Starlight-edit
+    #  factions:
+    #     - Syndicate
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound

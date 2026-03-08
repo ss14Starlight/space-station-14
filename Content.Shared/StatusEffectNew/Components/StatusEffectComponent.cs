@@ -31,6 +31,12 @@ public sealed partial class StatusEffectComponent : Component
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, AutoNetworkedField]
     public TimeSpan? EndEffectTime;
+    
+    /// <summary>
+    ///     STARLIGHT: Maximum duration of this status effect that it can stack up to. Relative to now, not start time.
+    /// </summary>
+    [DataField]
+    public TimeSpan? MaximumDuration { get; private set; }
 
     /// <summary>
     /// If true, this status effect has been applied. Used to ensure that <see cref="StatusEffectAppliedEvent"/> only fires once.

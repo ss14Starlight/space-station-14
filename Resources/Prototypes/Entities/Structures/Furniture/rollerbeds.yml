@@ -129,6 +129,7 @@
   - type: Item
     heldPrefix: emergency_rollerbed
   - type: Sprite
+    sprite: _Starlight/Structures/Furniture/rollerbed.rsi # Starlight
     layers:
     - state: emergency_rollerbed
       map: ["unfoldedLayer"]

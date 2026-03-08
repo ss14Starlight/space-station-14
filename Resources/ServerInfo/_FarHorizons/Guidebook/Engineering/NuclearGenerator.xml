@@ -1,0 +1,20 @@
+<Document>
+	# Nuclear Generator
+    <Box>
+	  <GuideEntityEmbed Entity="NuclearReactorNormal" Caption="" Scale="1.5"/>
+	  <GuideEntityEmbed Entity="GasTurbineNormal" Caption="" Scale="1.5"/>
+    </Box>
+
+	The Nuclear Generator generates power by heating a gas through fission reactions in a [textlink="Nuclear Reactor" link="NuclearReactor"], which then spins a [textlink="Gas Turbine" link="GasTurbine"].
+    
+    ## Starting the Nuclear Generator
+	To start the Nuclear Generator, engineers must follow these steps:
+	- Fill the coolant loop with a gas.
+	- Set the Gas Turbine's Flow Rate according to the Nuclear Reactor setup.
+	- Insert the Fuel Rods into the empty spots in the Nuclear Reactor grid, typically by a control rod(s) and surrounded by heat exchangers and gas channels.
+	- Retract the Control Rods to start warming up the Nuclear Reactor.
+	- As the Nuclear Reactor warms up, engineers will want to keep adjusting the Gas Turbine's Stator Load to maintain optimal RPM.
+	- Once the Gas Turbine is making enough power for the station, the Control Rods should be inserted to the point of maintaining Nuclear Reactor temperature.
+
+	Over time, the Fuel Rods will lose radioactivity, meaning the Control Rods should be retracted further or the Fuel Rods replaced.
+</Document>

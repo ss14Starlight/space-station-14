@@ -31,9 +31,9 @@
     - id: Xenoborgs
       prob: 0.08 # Starlight
     - id: Brighteye # Starlight
-      prob: 0.05
-#    - id: SiliconLiberation #Starlight
-#      prob: 0.4 #Starlight
+      prob: 0.07
+    - id: SiliconLiberation #Starlight
+      prob: 0.2 #Starlight
 
 - type: entity
   parent: BaseGameRule
@@ -50,9 +50,9 @@
     - id: Xenoborgs
       prob: 0.08 # Starlight
     - id: Brighteye # Starlight
-      prob: 0.05
-#    - id: SiliconLiberation #Starlight
-#      prob: 0.4 #Starlight
+      prob: 0.07
+    - id: SiliconLiberation #Starlight
+      prob: 0.2 #Starlight
 
 - type: entity
   parent: BaseGameRule
@@ -69,9 +69,9 @@
     - id: SubWizard
       prob: 0.08 # Starlight Space is dangerous, yo.
     - id: Brighteye # Starlight
-      prob: 0.05
-#    - id: SiliconLiberation #Starlight
-#      prob: 0.5 #Starlight
+      prob: 0.08
+    - id: SiliconLiberation #Starlight
+      prob: 0.2 #Starlight
 
 - type: entity
   parent: BaseGameRule
@@ -86,9 +86,9 @@
     - id: VampireLess # Starlight reworked
       prob: 0.15 # Starlight
     - id: Brighteye # Starlight
-      prob: 0.05
-#    - id: SiliconLiberation #Starlight
-#      prob: 0.5 #Starlight
+      prob: 0.07
+    - id: SiliconLiberation #Starlight
+      prob: 0.2 #Starlight
 
 - type: entity
   parent: BaseGameRule
@@ -286,7 +286,7 @@
     definitions:
     - prefRoles: [ Traitor ]
       max: 24 # Starlight. More of future proofing. If we ever actually average 240 pop then we'll need to actually do something else.
-      playerRatio: 12 # Starlight. Beta has lost 1 traitor.
+      playerRatio: 10 # Starlight. It's this number so Beta doesn't lose out on their 6th traitor.
       blacklist:
         components:
         - AntagImmune
@@ -364,7 +364,7 @@
     minPlayers: 15
   - type: RevolutionaryRule
   - type: SpecialLobbyContent
-    music: "/Audio/_Starlight/Music/Lobby/Liberation.ogg"
+    music: "/Audio/_Starlight/Lobby/Liberation.ogg"
     background: RevClown
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
@@ -442,8 +442,7 @@
       briefing:
         text: wizard-role-greeting
         color: Turquoise
-        # TODO: Need Wizard Start sound
-        #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
       startingGear: WizardBlueGear
       # TODO: WizardComp as needed
       components:

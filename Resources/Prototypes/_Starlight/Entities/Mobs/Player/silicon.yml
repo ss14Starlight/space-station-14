@@ -1,0 +1,125 @@
+# Borgs
+- type: entity
+  id: PlayerBorgSyndicateStealthBattery
+  parent: BorgChassisSyndicateStealth
+  suffix: Battery, Module, Operative
+  components:
+  - type: NukeOperative
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+  - type: DefaultBorgModules
+    modules:
+      - BorgModuleSyndicateNukeDisk
+      - BorgModuleOperative
+      - BorgModuleTool
+      - BorgModuleSyndicateStealth
+      - BorgModuleSyndicateChameleonProjector
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+
+- type: entity
+  id: PlayerBorgSyndicateStealthGhostRole
+  parent: PlayerBorgSyndicateStealthBattery
+  suffix: Ghost role
+  components:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-cyborg-name
+      description: ghost-role-information-syndicate-cyborg-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  id: PlayerBorgChassis
+  parent: BorgChassisSelectable
+  suffix: Battery
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
+
+# Derelict
+
+- type: entity
+  parent: PurrfusBorgChassisDerelict
+  id: PlayerPurrfusBorgDerelict
+  suffix: Battery, Module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - PositronicBrain
+      borg_module:
+      - BorgModuleTool
+      - BorgModulePaperwork
+      - BorgModuleFireExtinguisher
+      - BorgModuleMakeshiftKnife
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+  - type: RandomMetadata
+    nameSegments: [NamesBorg]
+
+- type: entity
+  parent: PlayerPurrfusBorgDerelict
+  id: PlayerPurrfusBorgDerelictGhostRole
+  suffix: Ghost role
+  components:
+  - type: GhostRole
+    name: ghost-role-information-derelict-purrfus-cyborg-name
+    description: ghost-role-information-derelict-purrfus-cyborg-description
+    rules: ghost-role-information-silicon-rules
+    raffle:
+      settings: default
+    reregister: false
+    job: Borg
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  id: PlayerBorgChassisTSFBattery
+  parent: BorgChassisTSF
+  suffix: Battery, Module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+  - type: DefaultBorgModules
+    modules:
+      - BorgModuleTool
+      - BorgModuleFireExtinguisher
+      - BorgModuleTSF
+      - BorgModuleTSFCombat
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+
+- type: entity
+  parent: PlayerBorgChassisTSFBattery
+  id: PlayerBorgChassisTSFGhostRole
+  suffix: Ghost role
+  components:
+  - type: GhostRole
+    name: ghost-role-information-tsf-borg-name
+    description: ghost-role-information-tsf-borg-desc
+    rules: ghost-role-information-silicon-rules
+    raffle:
+      settings: default
+    reregister: false
+    job: Borg
+  - type: GhostTakeoverAvailable

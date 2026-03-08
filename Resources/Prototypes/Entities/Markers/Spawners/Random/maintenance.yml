@@ -290,6 +290,7 @@
       - id: WeaponFlareGun
       - id: BarberScissors
       - id: TwinPointerKit # Starlight: Added twinpointer to maints loot
+      - id: JetpackImprovisedFilled #Starlight
       - !type:GroupSelector
         children:
         - id: DrinkSpaceGlue
@@ -313,6 +314,7 @@
       - id: WehpetInstrument
       - id: LidSalami
         weight: 0.05
+      - id: MakeshiftID # Starlight
 
 - type: entity
   name: Maint Loot Spawner
@@ -355,7 +357,8 @@
       - id: WeaponShotgunMakeshift
         weight: .8
       - id: ClothingOuterArmorMakeshift
-      - id: WeaponMeleeSwitchblade #Starlight End:
+      - id: WeaponMeleeSwitchblade 
+      - id: SpearSteel #Starlight End:
     # Rare Group
     - !type:GroupSelector
       weight: 5

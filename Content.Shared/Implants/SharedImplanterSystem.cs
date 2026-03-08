@@ -179,6 +179,7 @@ public abstract class SharedImplanterSystem : EntitySystem
         }
 
         // STARLIGHT START: Check if the implant is a USSP uplink implant (revolutionary implant)
+        //TODO this could probably be moved to rev system
         var isUSSPImplant = false;
         if (MetaData(implant.Value).EntityPrototype?.ID == "USSPUplinkImplant")
         {
@@ -356,40 +357,12 @@ public abstract class SharedImplanterSystem : EntitySystem
                 }
             }
         }
-
-        if (MetaData(implant.Value).EntityPrototype?.ID == "MindControlImplant")
-        {
-            // prevent from using on SSD or dead
-            if (!_mind.TryGetMind(target, out var mindid, out var mind))
-                return false;
-            if (_mind.IsCharacterDeadIc(mind)) //maybe this should be action blocker? doenst seem to have anything for ssd T-T
-                return false;
-            
-            //disallow on self and traitor
-            if (user == target || HasComp<TraitorComponent>(target))
-            {
-                _popup.PopupEntity(Loc.GetString("mind-control-invalid"), user, user, PopupType.Small);
-                return false;
-            }
-
-            //disallow on mindshield
-            if (HasComp<MindShieldComponent>(target))
-            {
-                _popup.PopupEntity(Loc.GetString("mind-control-prevented"), user, user, PopupType.MediumCaution);
-                return false;
-            }
-            
-            if (TryComp<MindControlImplantComponent>(implant, out var comp))
-            {
-                comp.Master = user; // who implanted the target
-            }
-        }
-
+        
         
         // STARLIGHT END
 
         var ev = new AddImplantAttemptEvent(user, target, implant.Value, implanter);
-        RaiseLocalEvent(target, ev);
+        RaiseLocalEvent(implant.Value, ev); //Starlight edit - raising on the implant instead of target 
         return !ev.Cancelled;
     }
 

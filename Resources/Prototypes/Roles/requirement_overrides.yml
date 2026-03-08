@@ -257,6 +257,9 @@
     ServiceWorker:
     - !type:OverallPlaytimeRequirement
       time: 5m
+    Performer:
+    - !type:OverallPlaytimeRequirement
+      time: 5m
     Visitor:
     - !type:OverallPlaytimeRequirement
       time: 0

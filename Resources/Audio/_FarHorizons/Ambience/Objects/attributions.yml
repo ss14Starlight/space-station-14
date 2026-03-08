@@ -7,3 +7,8 @@
   license: "CC-BY-4.0"
   copyright: "Created by Zabuhailo, clipped and converted Mono and .ogg by Jhrushbe"
   source: https://freesound.org/people/Zabuhailo/sounds/167673/
+
+- files: ["bad_bearing.ogg"]
+  license: "CC0-1.0"
+  copyright: "Created by craigsmith, clipped, modified, and converted Mono and .ogg by Jhrushbe"
+  source: https://freesound.org/people/craigsmith/sounds/675725/

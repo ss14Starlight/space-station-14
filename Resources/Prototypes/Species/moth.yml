@@ -17,6 +17,7 @@
   id: MobMothSprites
   sprites:
     Head: MobMothHead
+    Hair: MobHumanoidAnyMarking # Starlight
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
@@ -42,10 +43,10 @@
 
 - type: markingPoints
   id: MobMothMarkingLimits
-  onlyWhitelisted: true
+  #onlyWhitelisted: true // Starlight removal
   points:
     Hair:
-      points: 0
+      points: 1 # Starlight
       required: false
     FacialHair:
       points: 0

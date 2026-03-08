@@ -1,0 +1,519 @@
+# "Yes, and" moods will encourage players towards certain behaviors and objects
+
+# Make sure to add new moods to this dataset or they will not be selected!!!!!!
+- type: dataset
+  id: ThavenMoodsYesAnd
+  values:
+    - PossessiveOfProperty
+    - ExcessivelyOrganized
+    - MostImportant
+    - LeastImportant
+    - MustDoDrugs
+    - WorshipSilicons
+    - DinnerEtiquette
+    - HugGood
+    - NeverAlone
+    - VeryReligious
+    - OnlySpeakToCommand
+    - Scheduler
+    - ProperStorage
+    - TheftNeutral
+    - Duel
+    - Prometheus
+    - Klingon
+    - SogginsLaw
+    - Generous
+    - FavorsRepaid
+    - Bookkeeper
+    - SacredBlood
+    - GiftReciever
+    - NewJob
+    - DepartmentTitle
+    - Barefoot
+    - Hospitable
+    - VoxSymp
+    - Smoker
+    - EyeForEye
+    - Optimist
+    - ItemGood
+    - Hypochondriac
+    - ImposterSyndrome
+    - YesMan
+    - Centrist
+    - SpeechRestriction
+    - StationExistsForDepartment
+    - MuteSympathizer
+    - BlindSympathizer
+    - AnimalRightsActivist
+    - GlubEchoGlub
+    - IWasHere
+    - ThaveyanGreetings
+    - YouAndYourDamnMoods
+    - Namesake
+    - MandelaEffect
+    - Parasocial
+    - ChairmanComplex
+    - UnderdogStory
+    - LookGoodInOrange
+    - LiveAGloriousLife
+    - NaturalHabitat
+    - FleshIsWeak
+    - Marrvelous
+    - Empath
+    - RedLightGreenLight
+
+
+# You are extremely possessive of your property. Refuse to relinquish it, and if it is misplaced or stolen, it must be retrieved at all costs.
+- type: thavenMood
+  id: PossessiveOfProperty
+  moodName: thaven-mood-possessive-of-property-name
+  moodDesc: thaven-mood-possessive-of-property-desc
+
+
+# You are obsessively organized - everything has its place and must be returned to it.
+- type: thavenMood
+  id: ExcessivelyOrganized
+  moodName: thaven-mood-excessively-organized-name
+  moodDesc: thaven-mood-excessively-organized-desc
+  conflicts:
+    - ExcessivelyDisorganized
+
+# You are the most important person aboard the station.
+- type: thavenMood
+  id: MostImportant
+  moodName: thaven-mood-most-important-name
+  moodDesc: thaven-mood-most-important-desc
+  conflicts:
+    - LeastImportant
+    - DontSpeakToCommand
+    - OnlySpeakToCommand
+
+
+# You are the least important person aboard the station.
+- type: thavenMood
+  id: LeastImportant
+  moodName: thaven-mood-least-important-name
+  moodDesc: thaven-mood-least-important-desc
+  conflicts:
+    - MostImportant
+    - OnlySpeakToCommand
+
+# You must be inebriated at all times.
+- type: thavenMood
+  id: MustDoDrugs
+  moodName: thaven-mood-must-do-drugs-name
+  moodDesc: thaven-mood-must-do-drugs-desc
+  conflicts:
+    - DisapproveOfDrugs
+
+# You worship Silicons as gods, and regard their word as law.
+- type: thavenMood
+  id: WorshipSilicons
+  moodName: thaven-mood-worship-silicons-name
+  moodDesc: thaven-mood-worship-silicons-desc
+  conflicts:
+    - DetestSilicons
+
+# Food must be consumed in the manner of a proper meal - seated at a table, in courses, with dishes and utensils.
+- type: thavenMood
+  id: DinnerEtiquette
+  moodName: thaven-mood-dinner-etiquette-name
+  moodDesc: thaven-mood-dinner-etiquette-desc
+  conflicts:
+    - DinnerFloor
+
+# It is extremely impolite not to hug people frequently.
+- type: thavenMood
+  id: HugGood
+  moodName: thaven-mood-hug-good-name
+  moodDesc: thaven-mood-hug-good-desc
+  conflicts:
+    - HugBad
+
+# You must strive to be around others whenever possible.
+- type: thavenMood
+  id: NeverAlone
+  moodName: thaven-mood-never-alone-name
+  moodDesc: thaven-mood-never-alone-desc
+  conflicts:
+    - AlwaysAlone
+
+# You must attend the shrine regularly to pray, and speak with a chaplain if possible.
+- type: thavenMood
+  id: VeryReligious
+  moodName: thaven-mood-very-religious-name
+  moodDesc: thaven-mood-very-religious-desc
+  conflicts:
+    - Atheist
+
+# You are too important to speak to the rabble. You will only talk to Command.
+- type: thavenMood
+  id: OnlySpeakToCommand
+  moodName: thaven-mood-only-speak-to-command-name
+  moodDesc: thaven-mood-only-speak-to-command-desc
+  conflicts:
+    - DontSpeakToCommand
+
+# Time must be strictly managed. Everything must be scheduled, and tardiness is exceptionally rude.
+- type: thavenMood
+  id: Scheduler
+  moodName: thaven-mood-scheduler-name
+  moodDesc: thaven-mood-scheduler-desc
+  conflicts:
+    - Procrastinator
+
+# Speaking face-to-face is unacceptably personal. Any conversation must be had over the radio, or through an intermediary individual.
+- type: thavenMood
+  id: RadioOnly
+  moodName: thaven-mood-radio-only-name
+  moodDesc: thaven-mood-radio-only-desc
+  conflicts:
+    - NoRadio
+
+# It is unacceptable to allow personal belongings to touch the floor. Your possessions should be properly stored, placed on tables, or exchanged by hand.
+- type: thavenMood
+  id: ProperStorage
+  moodName: thaven-mood-proper-storage-name
+  moodDesc: thaven-mood-proper-storage-desc
+  conflicts:
+    - ImproperStorage
+
+# Theft is a morally neutral act. You don't understand the concept of property as it relates to other people.
+- type: thavenMood
+  id: TheftNeutral
+  moodName: thaven-mood-theft-neutral-name
+  moodDesc: thaven-mood-theft-neutral-desc
+
+# Disagreements must be settled through a formal duel, violent or otherwise. The winner is correct.
+- type: thavenMood
+  id: Duel
+  moodName: thaven-mood-duel-name
+  moodDesc: thaven-mood-duel-desc
+
+# You possess incalculable wisdom, and all must hear it.
+- type: thavenMood
+  id: Prometheus
+  moodName: thaven-mood-prometheus-name
+  moodDesc: thaven-mood-prometheus-desc
+
+# You must openly carry a lethal weapon at all times, even if you cannot use it - it is a great dishonor to be unarmed.
+- type: thavenMood
+  id: Klingon
+  moodName: thaven-mood-klingon-name
+  moodDesc: thaven-mood-klingon-desc
+
+# All agreements must be documented and signed for posterity and authenticity, no matter how small.
+- type: thavenMood
+  id: SogginsLaw
+  moodName: thaven-mood-soggins-name
+  moodDesc: thaven-mood-soggins-desc
+
+# Imitation is the highest form of flattery. Attempt to emulate the mannerisms and accents of everyone you speak to.
+- type: thavenMood
+  id: Imitation
+  moodName: thaven-mood-imitation-name
+  moodDesc: thaven-mood-imitation-desc
+
+# Everyone you speak to must recieve a gift.
+- type: thavenMood
+  id: Generous
+  moodName: thaven-mood-generous-name
+  moodDesc: thaven-mood-generous-desc
+  conflicts:
+    - PossessiveOfProperty
+
+# Favors must be repaid in kind. If anyone is unable to do so, they are in debt, and must be shunned, until such time as they have repaid the favor.
+- type: thavenMood
+  id: FavorsRepaid
+  moodName: thaven-mood-favors-repaid-name
+  moodDesc: thaven-mood-favors-repaid-desc
+
+# You feel bookkeeping is vitally important. Make sure to provide your supervisor with a detailed log of each job task you complete.
+- type: thavenMood
+  id: Bookkeeper
+  moodName: thaven-mood-bookkeeper-name
+  moodDesc: thaven-mood-bookkeeper-desc
+
+# Your blood is sacred, and must be returned to your body if it is ever spilled.
+- type: thavenMood
+  id: SacredBlood
+  moodName: thaven-mood-sacred-blood-name
+  moodDesc: thaven-mood-sacred-blood-desc
+  conflicts:
+    - OnlyPills
+
+# You expect to receive a gift before following any orders or performing any favors.
+- type: thavenMood
+  id: GiftReciever
+  moodName: thaven-mood-gift-reciever-name
+  moodDesc: thaven-mood-gift-reciever-desc
+  conflicts:
+    - LeastImportant
+
+# Your current job is disgusting to you. You must endeavor to get a new one.
+- type: thavenMood
+  id: NewJob
+  moodName: thaven-mood-new-job-name
+  moodDesc: thaven-mood-new-job-desc
+  conflicts:
+    - YourDepartmentOnly
+
+
+# You must not refer directly to the names of departments - You may only refer to a specific person who works in that department.
+- type: thavenMood
+  id: DepartmentTitle
+  moodName: thaven-mood-no-department-title-name
+  moodDesc: thaven-mood-no-department-title-desc
+  conflicts:
+    - SpeechRestriction
+
+# The ground you walk on is sacred. You must not wear shoes.
+- type: thavenMood
+  id: Barefoot
+  moodName: thaven-mood-shoes-bad-name
+  moodDesc: thaven-mood-shoes-bad-desc
+
+# You must ensure all new arrivals are properly welcomed to the station.
+- type: thavenMood
+  id: Hospitable
+  moodName: thaven-mood-hospitable-name
+  moodDesc: thaven-mood-hospitable-desc
+
+# Vox Sympathizer: To demonstrate your allyship for the Vox, you must be wearing internals at all times.
+- type: thavenMood
+  id: VoxSymp
+  moodName: thaven-mood-voxsymp-name
+  moodDesc: thaven-mood-voxsymp-desc
+
+# [ITEM]s are endlessly fascinating. You must collect as many as you can, and ensure others treat them with respect.
+- type: thavenMood
+  id: ItemGood
+  moodName: thaven-mood-item-good-name
+  moodDesc: thaven-mood-item-good-desc
+  moodVars:
+    item: Items
+#  conflicts:
+#    - ItemBad
+
+# Smoker: You are hopelessly addicted to cigarettes. You must be smoking one at all times.
+- type: thavenMood
+  id: Smoker
+  moodName: thaven-mood-smoker-name
+  moodDesc: thaven-mood-smoker-desc
+  conflicts:
+    - DisapproveOfDrugs
+    - NonSmoker
+
+# Eye For An Eye: You must treat every living being the way that it treats you.
+- type: thavenMood
+  id: EyeForEye
+  moodName: thaven-mood-eye-for-eye-name
+  moodDesc: thaven-mood-eye-for-eye-desc
+
+# Optimist: You must interpret every situation in the best light that you can.
+- type: thavenMood
+  id: Optimist
+  moodName: thaven-mood-optimist-name
+  moodDesc: thaven-mood-optimist-desc
+
+# Hypochondriac: You've been sickly since you were a child. Everything negative you experience is the result of a potentially terminal illness, for which you need immediate medical treatment.
+- type: thavenMood
+  id: Hypochondriac
+  moodName: thaven-mood-hypochondriac-name
+  moodDesc: thaven-mood-hypochondriac-desc
+
+# Imposter Syndrome: You feel your life experience drain from your mind. You are brand-new at your job, unsure of how anything works. You should probably find someone experienced to show you the ropes.
+- type: thavenMood
+  id: ImposterSyndrome
+  moodName: thaven-mood-imposter-syndrome-name
+  moodDesc: thaven-mood-imposter-syndrome-desc
+
+# Yes Man: You just can't say "no." You must agree with everyone, and perform any task requested of you, regardless of its source.
+- type: thavenMood
+  id: YesMan
+  moodName: thaven-mood-yes-man-name
+  moodDesc: thaven-mood-yes-man-desc
+  conflicts:
+    - Centrist
+
+# Centrist: You are ambivalent towards any and all decisions, and refuse to take sides.
+- type: thavenMood
+  id: Centrist
+  moodName: thaven-mood-centrist-name
+  moodDesc: thaven-mood-centrist-desc
+  conflicts:
+    - YesMan
+
+# Public Sector: Your job should not be done in private if it can be helped. If at all possible, you should renovate the facilities to allow public access to your workplace.
+- type: thavenMood
+  id: PublicSector
+  moodName: thaven-mood-public-sector-name
+  moodDesc: thaven-mood-public-sector-desc
+  conflicts:
+    - StationIsAlive
+
+# Speech Restrictions
+- type: thavenMood
+  id: SpeechRestriction
+  moodName: thaven-mood-speech-restriction-name
+  moodDesc: thaven-mood-speech-restriction-desc
+  moodVars:
+    speechType: SpeechRestrictions
+  conflicts:
+    - MuteSympathizer
+
+# The color [COLOR] is the only acceptable color for decorations. Endeavor to make your environment this color where possible.
+#- type: thavenMood
+#  id: ColorGood
+#  moodName: thaven-mood-color-good-name
+#  moodDesc: thaven-mood-color-good-desc
+#  conflicts:
+#    - ColorBad
+
+# The Station Exists For [DEPARTMENT]: You strongly believe that [DEPARTMENT] is the most important department on this station, and all other departments exist to support it.
+- type: thavenMood
+  id: StationExistsForDepartment
+  moodName: thaven-mood-station-exists-for-department-name
+  moodDesc: thaven-mood-station-exists-for-department-desc
+  moodVars:
+    department: Departments
+  conflicts:
+    - YourDepartmentOnly
+    - DepartmentDisapproval
+
+# Mute Sympathizer: To show your allyship with the mute crew members, avoid using spoken language as much as possible.
+- type: thavenMood
+  id: MuteSympathizer
+  moodName: thaven-mood-mute-sympathizer-name
+  moodDesc: thaven-mood-mute-sympathizer-desc
+  conflicts:
+    - SpeechRestriction
+    - Marrvelous
+
+# Blind Sympathizer: You want to know how it feels to navigate the world without vision. Find a blindfold and wear it as often as you can.
+- type: thavenMood
+  id: BlindSympathizer
+  moodName: thaven-mood-blind-sympathizer-name
+  moodDesc: thaven-mood-blind-sympathizer-desc
+  conflicts:
+    - BlindnessIsFreedom
+    - RedLightGreenLight
+
+# Animal Rights Activist: You love all animals. You must make sure that they are treated as equal crew members.
+- type: thavenMood
+  id: AnimalRightsActivist
+  moodName: thaven-mood-animal-rights-activist-name
+  moodDesc: thaven-mood-animal-rights-activist-desc
+  conflicts:
+    - AnimalSacrifice
+
+# Glub, Echo, Glub: You are an undercover agent sent to investigate the other Thaven on the station. Look into what they're up to, and don't get caught.
+- type: thavenMood
+  id: GlubEchoGlub
+  moodName: thaven-mood-glub-echo-glub-name
+  moodDesc: thaven-mood-glub-echo-glub-desc
+
+# I Was Here: Let the next shift know you worked here. Leave a mark wherever you go.
+- type: thavenMood
+  id: IWasHere
+  moodName: thaven-mood-i-was-here-name
+  moodDesc: thaven-mood-i-was-here-desc
+
+# Thaveyan Greetings: Booping and petting others is a traditional Thaveyan greeting. It is very impolite not to do it.
+- type: thavenMood
+  id: ThaveyanGreetings
+  moodName: thaven-mood-thaveyan-greetings-name
+  moodDesc: thaven-mood-thaveyan-greetings-desc
+
+# You and Your Damn Moods: You continuously insist that every action you take or desire you express is because of your nature as a Thaven, even if it isn’t.
+- type: thavenMood
+  id: YouAndYourDamnMoods
+  moodName: thaven-mood-you-and-your-damn-moods-name
+  moodDesc: thaven-mood-you-and-your-damn-moods-desc
+  conflicts:
+    - NotOurPlace
+    - SelfConscious
+
+# Namesake: You need to prove that you uphold the value you’re named for.
+- type: thavenMood
+  id: Namesake
+  moodName: thaven-mood-namesake-name
+  moodDesc: thaven-mood-namesake-desc
+  conflicts:
+    - OppositeDay
+
+# Mandela Effect: You distinctly remember the existence of an additional department that you used to work in, that’s seemingly been completely erased from the world and everyone else’s memories, and must inquire with anyone you can to figure out what happened to it.
+- type: thavenMood
+  id: MandelaEffect
+  moodName: thaven-mood-mandela-effect-name
+  moodDesc: thaven-mood-mandela-effect-desc
+
+# Parasocial: You find your department head very fascinating, but cannot muster up the courage to speak to them directly. Try to learn as much about them as you can without them knowing.
+- type: thavenMood
+  id: Parasocial
+  moodName: thaven-mood-parasocial-name
+  moodDesc: thaven-mood-parasocial-desc
+
+# Chairman Complex: You consider yourself the leading authority on Thaven matters aboard the station. All problems Thaven experience should go through you, and you find questioning your authority the highest insult.
+- type: thavenMood
+  id: ChairmanComplex
+  moodName: thaven-mood-chairman-complex-name
+  moodDesc: thaven-mood-chairman-complex-desc
+  conflicts:
+    - Pariah
+    - ElectionDay
+
+# Underdog Story: You unshakably believe that your life is a movie with you as the protagonist, and as a result, that you have plot armor.
+- type: thavenMood
+  id: UnderdogStory
+  moodName: thaven-mood-underdog-story-name
+  moodDesc: thaven-mood-underdog-story-desc
+
+# You’ll Look Good in Orange: You’ve always dreamed of being arrested. However, you neither want to commit a crime nor admit to wanting to be arrested. You’ll have to frame yourself for something without anybody knowing that you didn’t actually do it.
+- type: thavenMood
+  id: LookGoodInOrange
+  moodName: thaven-mood-look-good-in-orange-name
+  moodDesc: thaven-mood-look-good-in-orange-desc
+
+# Live a Glorious Life: Today you'll give it all you've got. Prove to command that you deserve to be awarded a medal.
+- type: thavenMood
+  id: LiveAGloriousLife
+  moodName: thaven-mood-live-a-glorious-life-name
+  moodDesc: thaven-mood-live-a-glorious-life-desc
+
+# Natural Habitat: Every time you feel overwhelmed by a situation, or just need a moment to collect your thoughts, you have the urge to go into a locker and ponder for a bit.
+- type: thavenMood
+  id: NaturalHabitat
+  moodName: thaven-mood-natural-habitat-name
+  moodDesc: thaven-mood-natural-habitat-desc
+
+# The Flesh Is Weak, But Steel Endures: All of these biological organs and limbs will fail in time. They must all be replaced with cybernetics.
+- type: thavenMood
+  id: FleshIsWeak
+  moodName: thaven-mood-flesh-is-weak-name
+  moodDesc: thaven-mood-flesh-is-weak-desc
+  conflicts:
+    - FleshIsSacred
+
+# What does the Thaven say: Seeing how Shadekin are adored for their marrs, you feel envy that Thavenkind doesn't have something similar that sets them apart. Make up a recognizable sound for Thaven, use it frequently and encourage others to do the same.
+- type: thavenMood
+  id: Marrvelous
+  moodName: thaven-mood-marrvelous-name
+  moodDesc: thaven-mood-marrvelous-desc
+  conflicts:
+    - MuteSympathizer
+
+# Empath: You are heavily influenced by the emotions of others.
+- type: thavenMood
+  id: Empath
+  moodName: thaven-mood-empath-name
+  moodDesc: thaven-mood-empath-desc
+
+# Red Light, Green Light: You feel like you can't move when there are eyes on you.
+- type: thavenMood
+  id: RedLightGreenLight
+  moodName: thaven-mood-red-light-green-light-name
+  moodDesc: thaven-mood-red-light-green-light-desc
+  conflicts:
+    - BlindSympathizer
+    - MadHatter

@@ -59,6 +59,7 @@ public sealed class StationPowerTests
         "StarlightElkridge",
         "StarlightFland",
         "StarlightHotel",
+        "StarlightOasis",
         "StarlightPacked",
         "StarlightReach",
         "StarlightSaltern",
@@ -67,7 +68,8 @@ public sealed class StationPowerTests
         "StarlightCluster",
         "StarlightStationBuilding",
         "StarlightPlasma",
-        "StarlightSepultum"
+        "StarlightSepultum",
+        "StarlightBoxcars"
         #endregion
     ];
 

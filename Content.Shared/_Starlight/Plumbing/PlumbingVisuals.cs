@@ -23,6 +23,12 @@ public enum PlumbingVisuals : byte
     ConnectedDirections,
 
     /// <summary>
+    ///     Packed connected layer index per cardinal direction.
+    ///     Stores (layer + 1) in 4-bit nibbles, where 0 means no layer assigned.
+    /// </summary>
+    ConnectedLayerByDirection,
+
+    /// <summary>
     ///     Directions that have inlet nodes.
     ///     Used to color inlet connectors red.
     /// </summary>
@@ -44,7 +50,18 @@ public enum PlumbingVisuals : byte
     ///     Directions that have mixing inlet nodes.
     ///     Used to color mixing inlet connectors green.
     /// </summary>
-    MixingInletDirections
+    MixingInletDirections,
+
+    /// <summary>
+    ///     Whether this entity should use manifold connector rendering instead of regular per-direction connector layers.
+    /// </summary>
+    ManifoldMode,
+
+    /// <summary>
+    ///     Packed connected slot bitmask per cardinal direction for manifold-mode connectors.
+    ///     Uses 4-bit nibbles per direction, where each bit is a slot index (0-3).
+    /// </summary>
+    ManifoldConnectedSlotsByDirection
 }
 
 [Serializable, NetSerializable]

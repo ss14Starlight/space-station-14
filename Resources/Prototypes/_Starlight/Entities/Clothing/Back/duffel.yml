@@ -1,0 +1,66 @@
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelAbductor
+  name: abductor's surgery duffel bag
+  description: A large duffel bag for holding various surgery goods.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/abductor.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: Storage
+    grid:
+    - 0,0,8,4
+    
+- type: entity
+  parent: ClothingBackpackDuffelAbductor
+  id: ClothingBackpackDuffelAbductorBundle
+  abstract: true
+  components:
+  - type: Tag
+    tags: []
+    
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelRoboticist
+  name: roboticist duffel bag
+  description: A large duffel bag for holding extra roboticist related goods.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/roboticist.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelCargoSenior
+  name: senior courier duffel bag
+  description: A large duffel bag for the quartermaster's most devoted couriers.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/cargosenior.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelChemistrySenior
+  name: senior chemistry duffel bag
+  description: A large duffel bag for holding a wide assortment of advanced chemical supplies.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/chemistrysenior.rsi
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseSecurityContraband]
+  id: ClothingBackpackDuffelCorpsman
+  name: corpsman's duffel bag
+  description: An odd duffelbag that uses flaps instead of zippers for quicker access. Handy!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/corpsman.rsi
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseBlueShieldContraband]
+  id: ClothingBackpackDuffelBlueShield
+  name: blue shield duffel bag
+  description: The bag for a Blue Shield Officer who is ready for any contingency. 
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/blueshield.rsi

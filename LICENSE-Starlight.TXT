@@ -1,3 +1,9 @@
+[LEGACY] This license was in effect for Starlight contributions made between 2024-11-04 (commit 84205e38)
+and 2026-02-28 (commit 01eff0f7). It is no longer applied to new contributions.
+For contributions made during this period, this license remains in effect until explicit relicensing
+confirmation is received from the respective authors. Relicensing is tracked in the repository issues.
+See README.md for details.
+
 Modified MIT License, henceforth referred to as the Starlight License
 
 Copyright (c) 2024 Starlight

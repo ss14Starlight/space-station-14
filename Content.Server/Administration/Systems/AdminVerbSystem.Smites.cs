@@ -54,6 +54,8 @@ using Content.Shared.CombatMode.Pacification;
 using Content.Shared._Starlight.Gnome; // starlight
 using Content.Shared.Trigger; // Starlight
 using Content.Shared.Trigger.Components.Effects; // Starlight
+using Content.Shared.NPC.Prototypes; // Starlight
+using Content.Shared.NPC.Systems; // Starlight
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
@@ -103,11 +105,15 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly SlipperySystem _slipperySystem = default!;
     [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly TerminatorSystem _terminator = default!; // starlight
+    [Dependency] private readonly NpcFactionSystem _npcFactionSmite = default!; // starlight
 
     private readonly EntProtoId _actionViewLawsProtoId = "ActionViewLaws";
     private readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
 
     private readonly EntProtoId _siliconMindRole = "MindRoleSiliconBrain";
+    private readonly EntProtoId _pirateMindRole = "MindRolePirate"; // starlight
+    private readonly ProtoId<NpcFactionPrototype> _smitePirateFaction = "Pirate"; // starlight
+    private readonly ProtoId<NpcFactionPrototype> _smiteNanoTrasenFaction = "NanoTrasen"; // starlight
     private const string SiliconLawBoundUserInterface = "SiliconLawBoundUserInterface";
 
     // All smite verbs have names so invokeverb works.
@@ -1130,12 +1136,8 @@ public sealed partial class AdminVerbSystem
         {
             Text = fuelRodifyName,
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/_FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi"), "default_rod"),
-            Act = () =>
-            {
-                _gibbing.Gib(args.Target);
-                _polymorphSystem.PolymorphEntity(args.Target, "AdminFuelRodSmite");
-            },
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi"), "default_rod"),
+            Act = () => _polymorphSystem.PolymorphEntity(args.Target, "AdminFuelRodSmite"),
             Impact = LogImpact.Extreme,
             Message = string.Join(": ", fuelRodifyName, Loc.GetString("admin-smite-become-fuelrod-description"))
         };

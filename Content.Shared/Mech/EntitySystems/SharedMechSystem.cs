@@ -152,6 +152,19 @@ public abstract partial class SharedMechSystem : EntitySystem
             return;
         args.Handled = true;
 
+        // STARLIGHT - check for gas tank presence.
+        if (component.GasTankSlot.ContainedEntity == null)
+        {
+            if(_net.IsServer && component.PilotSlot.ContainedEntity != null)
+            {
+                _popup.PopupEntity(
+                    Loc.GetString("mech-no-tank"),
+                    uid,
+                    component.PilotSlot.ContainedEntity.Value);
+            }
+            return;
+        }
+
         component.Internals = !component.Internals;
 
         _actions.SetToggled(component.MechToggleInternalsActionEntity, component.Internals);

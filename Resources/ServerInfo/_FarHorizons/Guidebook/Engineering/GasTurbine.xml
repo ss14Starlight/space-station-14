@@ -1,0 +1,90 @@
+<Document>
+	# The Gas Turbine
+	<Box>
+		<GuideEntityEmbed Entity="GasTurbineNormal" Scale="1.5"/>
+	</Box>
+
+	The Gas Turbine is where the power actually gets made.
+
+	It takes in hot gas from the [textlink="Nuclear Reactor" link="NuclearReactor"] and outputs electricity and sends colder gas back to the Reactor.
+
+	The amount of energy made by the Turbine is affected by its RPM, which is adjusted through Flow Rate and Stator Load.
+
+	### Flow Rate
+	The Flow Rate determines how much gas goes through the Turbine every second.
+
+	The higher the Flow Rate, the higher the RPM of the Turbine.
+
+	Flow Rate is usually set to allow maximum flow through the Reactor core, which can be found by the following equation: 
+    <Box>
+        [color=#a4885c]100 * number of gas channels + 200[/color]
+    </Box>
+
+	### Stator Load
+	The Stator Load determines how much power is made by each revolution of the Turbine.
+
+	The higher the Stator Load, the lower the RPM of the Turbine.
+
+	Stator Load is usually adjusted to ensure the Turbine stays at optimal RPM.
+
+	### RPM
+	The RPM (Rotations Per Minute) represents how fast the Turbine is spinning.
+
+	The Turbine has an optimal RPM, where it will produce the most power.
+
+	Going faster or slower than optimal will result in poor performance.
+
+	## Turbine Status Indicators
+	The Turbine has a set of status indicators to warn operators of dangerous conditions or faults.
+
+	### Overspeed
+	The Turbine RPM is too high.
+
+	If the Turbine RPM gets too high, it will start to take damage.
+
+	Prolonged time spent at overspeed or excessive overspeed will cause the Turbine to [color=red]tear itself apart[/color].
+
+	Damage to the Turbine can be repaired with a [color=yellow]welder[/color], though it will likely take multiple attempts to fully repair it.
+
+	### Overtemp
+	The gas going into the Turbine is too hot.
+
+	If the gas coming into the Turbine is hotter than 2726C (3000k), it will trigger an emergency purge valve and dump the gas into the room.
+
+	This hot gas can cause serious burns to personnel or even a fire, if the gas is flammable.
+
+	### Stalling
+	The gas is not hot enough for the set stator load.
+
+	Stalling is where the gas going into the Turbine isn't "pushing" hard enough to overcome the stator load's resistance.
+
+	### Undertemp
+	The gas going into the Turbine is too cold.
+
+	If the gas is at or below room temperature (20C), there is no energy for the Turbine to take out of it.
+
+	## Turbine Parts
+	<Box>
+		<GuideEntityEmbed Entity="NuclearFabricator"/>
+	</Box>
+	<Box>
+		<GuideEntityEmbed Entity="SteelGasTurbineBlade" Caption="turbine blade"/>
+		<GuideEntityEmbed Entity="SteelGasTurbineStator" Caption="stator"/>
+	</Box>
+
+	Turbine parts are what define how well the turbine functions.
+
+	Turbine parts are made in the Nuclear Fabricator from a set of [textlink="materials" link="NuclearMaterials"].
+
+	The Turbine is capable of accepting two different types of parts: Blades and Stators
+
+	### Turbine Blades
+	Turbine blades govern the integrity and inertia of the turbine.
+
+	Higher integrity means it can take more damage before failing, making it generally safer.
+
+	Higher inertia means it will take more energy to change the RPM, which leads to smoother operation.
+	
+	### Stators
+	Stators affect the power efficiency and output of the Turbine.
+</Document>

@@ -1,0 +1,187 @@
+﻿# Skilled Time
+- type: loadoutEffectGroup
+  id: SkilledBrigmedic
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBrigmedic
+      time: 54000 # 15 hrs
+
+# Senior Time
+- type: loadoutEffectGroup
+  id: VeteranBrigmedic
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBrigmedic
+      time: 216000 # 60 hrs
+
+# Head
+- type: loadout
+  id: BrigmedicNurseHat
+  equipment:
+    head: ClothingHeadNurseHatBrigmedic
+
+- type: loadout
+  id: CorpsmanNurseHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranBrigmedic
+  equipment:
+    head: ClothingHeadNurseHatCorpsman
+
+- type: loadout
+  id: BrigmedicNurseHatOfLife
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledBrigmedic
+  equipment:
+    head: ClothingHeadNurseHatOfLife
+
+# Masks
+- type: loadout
+  id: BrigmedicBreathMaskMedicalSecurity
+  equipment:
+    mask: ClothingMaskBreathMedicalSecurity
+
+- type: loadout
+  id: CorpsmanMaskGasCorpsman
+  equipment:
+    mask: ClothingMaskGasCorpsman
+
+
+# Veteran Jumpsuits
+- type: loadout
+  id: CorpsmanResponse
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranBrigmedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCorpsmanResponse
+
+- type: loadout
+  id: CorpsmanTrauma
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranBrigmedic
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCorpsmanTrauma
+
+# Skilled Jumpsuits
+- type: loadout
+  id: BrigmedicJumpsuitOfLife
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledBrigmedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOfLife
+
+- type: loadout
+  id: BrigmedicJumpskirtOfLife
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledBrigmedic
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtOfLife
+
+# Back
+- type: loadout
+  id: CorpsmanBackpack
+  equipment:
+    back: ClothingBackpackCorpsman
+
+- type: loadout
+  id: CorpsmanSatchel
+  equipment:
+    back: ClothingBackpackSatchelCorpsman
+
+- type: loadout
+  id: CorpsmanDuffel
+  equipment:
+    back: ClothingBackpackDuffelCorpsman
+
+# Outer clothing
+- type: loadout
+  id: BrigmedicLabCoat
+  equipment:
+    outerClothing: ClothingOuterCoatLabBrigmedic
+
+- type: loadout
+  id: CorpsmanLabCoat
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranBrigmedic
+  equipment:
+    outerClothing: ClothingOuterCoatLabCorpsman
+
+# Eyewear
+- type: loadout
+  id: BrigmedicEyePatchHud
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledBrigmedic
+  equipment:
+    eyes: ClothingEyesEyepatchHudBrigmedic
+
+- type: loadout
+  id: BrigmeicGlassesPrescription
+  equipment:
+    eyes: ClothingEyesGlassesBrigmedicPrescription
+
+- type: loadout
+  id: CorpsmanGlasses
+  equipment:
+    eyes: ClothingEyesGlassesCorpsman
+
+- type: loadout
+  id: CorpsmanHud
+  equipment:
+    eyes: ClothingEyesHudCorpsman
+
+# PDA
+- type: loadout
+  id: BrigmedicPDA
+  equipment:
+    id: BrigmedicPDA
+
+- type: loadout
+  id: CorpsmanPDA
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledBrigmedic
+  equipment:
+    id: CorpsmanPDA
+
+- type: loadout
+  id: VeteranBrigmedicPDA
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranBrigmedic
+  equipment:
+    id: VeteranBrigmedicPDA
+
+- type: loadout
+  id: VeteranCorpsmanPDA
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranBrigmedic
+  equipment:
+    id: VeteranCorpsmanPDA
+
+# Beaker
+- type: loadout
+  id: DarkBeaker
+  storage:
+    back:
+    - DarkBeaker
+    
+- type: loadout
+  id: SilverBeakerBrigmedic
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SkilledBrigmedic
+  storage:
+    back:
+    - SilverBeaker

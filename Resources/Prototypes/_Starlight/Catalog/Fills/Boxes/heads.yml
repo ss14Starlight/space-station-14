@@ -1,0 +1,10 @@
+﻿- type: entity
+  parent: ToteBase
+  id: BoxMagiCircuitBoards
+  name: law circuit tote
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: LawCommsComputerCircuitboard # Starlight

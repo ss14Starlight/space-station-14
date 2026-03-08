@@ -12,7 +12,7 @@
       time: 5h # Starlight
     - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 20h # Starlight
+      time: 30h # Starlight
   weight: 10
   startingGear: QuartermasterGear
   icon: "JobIconQuartermaster" #Starlight

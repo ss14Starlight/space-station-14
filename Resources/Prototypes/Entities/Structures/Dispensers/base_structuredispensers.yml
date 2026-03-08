@@ -89,12 +89,30 @@
   # Starlight-start: Plumbing outlet
   - type: NodeContainer
     nodes:
-      outlet:  # Provides reagents TO the network (all directions)
+      outletNorth:  # Provides reagents TO the network (all directions)
         !type:PlumbingNode
         nodeGroupID: Plumbing
-        pipeDirection: Fourway
+        pipeDirection: North
+      outletEast:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: East
+      outletSouth:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: South
+      outletWest:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: West
   - type: PlumbingOutlet
     solutionName: beaker
+    connectedOutlets: true
+    outletNames:
+    - outletNorth
+    - outletEast
+    - outletSouth
+    - outletWest
     containerSlotId: beakerSlot
     enabled: false
   # Starlight-end

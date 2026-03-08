@@ -244,7 +244,9 @@
     - ZombieBlood
     - Sap # Starlight-start
     - AvaliBlood
-    - ResomiBlood # Starlight-end
+    - DarkBlood
+    - ResomiBlood 
+    - CycloriteBlood # Starlight-end
 
 - type: xenoArchTrigger
   id: TriggerThrow

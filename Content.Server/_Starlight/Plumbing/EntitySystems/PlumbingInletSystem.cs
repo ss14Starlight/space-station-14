@@ -31,6 +31,10 @@ public sealed class PlumbingInletSystem : EntitySystem
         if (TryComp<PlumbingPillPressComponent>(ent.Owner, out var pillPress) && pillPress.MixingEnabled)
             return;
 
+        // Plumbing filters handle inlet pulling in PlumbingFilterSystem to split into lanes.
+        if (HasComp<PlumbingFilterComponent>(ent.Owner))
+            return;
+
         if (!_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out var solutionEnt, out var solution))
             return;
             

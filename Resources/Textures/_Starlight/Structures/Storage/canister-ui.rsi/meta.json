@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based Copyright. This is a cursed fix, but otherwise the canisters are janky in the cargo ordering UI. I am sinning, but it will look better for players",
+  "size": {
+    "x": 40,
+    "y": 40
+  },
+  "states": [
+    {
+      "name": "air",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "ammonia",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "anti_noblium",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "bz",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "carbon",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "freezon",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "gray",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "halon",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "healium",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "helium",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "hydrogen",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "hyper_noblium",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "l_nitrogen",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "l_oxygen",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "nitrium",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "nitrogen",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "nitrous_oxide",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "oxygen",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "plasma",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "pluoxium",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "proto_nitrate",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "rainbow",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "storage",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "tritium",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "water_vapor",
+      "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "zauker",
+      "copyright": "Created by Conf (Starlight)"
+    }
+  ]
+}

@@ -12,3 +12,8 @@
   license: "CC-BY-SA-3.0"
   copyright: "by github.com/fqqf"
   source: "https://github.com/fqqf"
+
+- files: ["leviathan_fire.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Aurora.3."
+  source: "https://github.com/Aurorastation/Aurora.3/blob/master/sound/weapons/gunshot/ship_weapons/leviathan_fire.ogg"

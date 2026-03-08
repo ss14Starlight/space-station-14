@@ -1,0 +1,59 @@
+- type: entity
+  id: ToolboxElectricalTurretPirateFilled
+  name: electrical toolbox
+  suffix: Pirate, Turret, Filled
+  parent: ToolboxElectricalTurretPirate
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: ToolboxElectricalEntityTable
+
+- type: entity
+  id: ToolboxArtisticFilledCleaner
+  name: artistic toolbox
+  suffix: Cleaner
+  parent: ToolboxArtistic
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SoapletSyndie
+        - id: CleanerGrenade
+          amount: 2
+        - id: SprayBottleSpaceCleaner
+          amount: 2
+        - id: ClothingHeadHatPurplesoft
+        - id: ClothingHandsGlovesJanitor
+
+- type: entity
+  id: ToolboxRoboticist
+  name: roboticist toolbox
+  parent: ToolboxBase
+  description: What, it's just a roboticist toolbox? Were you expecting something else?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/Toolboxes/toolbox_robotics.rsi
+    state: icon
+  - type: Item
+    sprite: _Starlight/Objects/Tools/Toolboxes/toolbox_robotics.rsi
+
+- type: entity
+  id: ToolboxRoboticistFilled
+  name: roboticist toolbox
+  suffix: Filled
+  parent: ToolboxRoboticist
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CrowbarOrange
+        - id: Wrench
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: Welder
+        - id: Multitool
+        - id: ClothingMaskRoboticist
+        - id: ClothingHandsGlovesRobohands

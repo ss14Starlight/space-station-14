@@ -143,10 +143,8 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponLauncherChinaLake
-        - id: GrenadeBlast
-          amount: 5 #SL 4 > 5
-        - id: GrenadeFrag
-          amount: 5 #SL 4 > 5
+        - id: MagazineGrenadeBlast #SL
+        - id: MagazineGrenadeFrag  #SL
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

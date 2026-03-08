@@ -71,6 +71,11 @@
         Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.80
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterArmorBase
@@ -99,8 +104,11 @@
   # STARLIGHT: Component for set bonus system. Stores original reflection and tag for vest piece.
   - type: ReflectiveSetBonus
     vestTag: ReflectiveArmorVest
+# Starlight
   - type: Tag
     tags:
+    - CorgiWearable
+    - WhitelistChameleon
     - ReflectiveArmorVest # STARLIGHT: Tag for set bonus system detection
 
 #Detective's vest
@@ -364,6 +372,11 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: GroupExamine
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]

@@ -290,7 +290,7 @@
 
 #Syndicate
 - type: entity
-  parent: [ClothingBackpack, BaseSyndicateContraband]
+  parent: [ClothingBackpack, BaseMinorContraband] #SL Edit Syndie > Minor Contra
   id: ClothingBackpackSyndicate
   name: syndicate backpack
   description:

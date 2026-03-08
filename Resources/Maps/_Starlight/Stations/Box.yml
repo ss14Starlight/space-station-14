@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/10/2026 22:24:51
-  entityCount: 29398
+  time: 02/24/2026 01:31:49
+  entityCount: 29399
 maps:
 - 1
 grids:
@@ -13992,13 +13992,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -12.5,34.5
       parent: 2
-  - uid: 197
-    components:
-    - type: MetaData
-      name: BrigMed
-    - type: Transform
-      pos: 3.5,35.5
-      parent: 2
   - uid: 198
     components:
     - type: MetaData
@@ -14095,6 +14088,13 @@ entities:
     components:
     - type: Transform
       pos: -9.5,25.5
+      parent: 2
+- proto: AirlockBrigmedGlassLocked
+  entities:
+  - uid: 197
+    components:
+    - type: Transform
+      pos: 3.5,35.5
       parent: 2
 - proto: AirlockCaptainLocked
   entities:
@@ -23737,7 +23737,7 @@ entities:
   - uid: 1723
     components:
     - type: Transform
-      pos: -14.479834,46.5225
+      pos: -14.591593,45.65175
       parent: 2
 - proto: BoxFolderBase
   entities:
@@ -23751,7 +23751,7 @@ entities:
   - uid: 1725
     components:
     - type: Transform
-      pos: -29.590153,4.042227
+      pos: -29.278965,5.0368314
       parent: 2
 - proto: BoxFolderBlue
   entities:
@@ -23888,7 +23888,7 @@ entities:
   - uid: 1749
     components:
     - type: Transform
-      pos: -14.356977,45.6773
+      pos: -14.32808,46.75586
       parent: 2
 - proto: BoxingBell
   entities:
@@ -23969,7 +23969,7 @@ entities:
   - uid: 1763
     components:
     - type: Transform
-      pos: -14.497602,45.39605
+      pos: -14.64058,46.677734
       parent: 2
 - proto: BoxMagazinePistolPractice
   entities:
@@ -24040,7 +24040,7 @@ entities:
   - uid: 1774
     components:
     - type: Transform
-      pos: -14.6620245,46.74173
+      pos: -14.357218,45.65175
       parent: 2
 - proto: BoxSyringe
   entities:
@@ -24069,7 +24069,7 @@ entities:
   - uid: 1779
     components:
     - type: Transform
-      pos: -14.229834,46.74125
+      pos: -14.482218,45.7455
       parent: 2
 - proto: BoxTrashbag
   entities:
@@ -24107,7 +24107,7 @@ entities:
   - uid: 1785
     components:
     - type: Transform
-      pos: -14.700727,45.70855
+      pos: -14.54683,46.552734
       parent: 2
 - proto: BrbSign
   entities:
@@ -71386,12 +71386,12 @@ entities:
   - uid: 11150
     components:
     - type: Transform
-      pos: -29.402653,3.5422268
+      pos: -29.35709,3.7555814
       parent: 2
   - uid: 11151
     components:
     - type: Transform
-      pos: -29.512028,3.6359768
+      pos: -29.278965,3.5680814
       parent: 2
   - uid: 11152
     components:
@@ -71416,7 +71416,7 @@ entities:
   - uid: 11155
     components:
     - type: Transform
-      pos: -29.516005,4.760977
+      pos: -29.622715,3.7712064
       parent: 2
 - proto: CigarGoldSpent
   entities:
@@ -73734,7 +73734,7 @@ entities:
   - uid: 11328
     components:
     - type: Transform
-      pos: -29.365503,4.497406
+      pos: -29.622715,4.5212064
       parent: 2
     - type: ContainerContainer
       containers:
@@ -87387,6 +87387,13 @@ entities:
     - type: Transform
       pos: 74.3515,-18.443996
       parent: 2
+- proto: Electrolyzer
+  entities:
+  - uid: 20099
+    components:
+    - type: Transform
+      pos: 19.5,-40.5
+      parent: 2
 - proto: EmergencyLight
   entities:
   - uid: 13618
@@ -89205,11 +89212,6 @@ entities:
     - type: Transform
       pos: -9.5,-23.5
       parent: 2
-  - uid: 13851
-    components:
-    - type: Transform
-      pos: 4.5,27.5
-      parent: 2
   - uid: 13852
     components:
     - type: Transform
@@ -89224,6 +89226,11 @@ entities:
     components:
     - type: Transform
       pos: -54.5,-10.5
+      parent: 2
+  - uid: 20174
+    components:
+    - type: Transform
+      pos: 2.5,25.5
       parent: 2
 - proto: filingCabinetRandom
   entities:
@@ -93341,7 +93348,7 @@ entities:
   - uid: 14395
     components:
     - type: Transform
-      pos: -29.262028,3.9797268
+      pos: -29.278965,4.2555814
       parent: 2
 - proto: FoodSnackPopcorn
   entities:
@@ -123486,6 +123493,8 @@ entities:
     - type: Transform
       pos: 72.57052,-35.416756
       parent: 2
+    - type: IntrinsicRadioTransmitter
+      channels: []
 - proto: GravityGenerator
   entities:
   - uid: 18216
@@ -133489,11 +133498,6 @@ entities:
     - type: Transform
       pos: -26.5,38.5
       parent: 2
-  - uid: 20099
-    components:
-    - type: Transform
-      pos: 39.5,-4.5
-      parent: 2
   - uid: 20100
     components:
     - type: Transform
@@ -134085,14 +134089,6 @@ entities:
     - type: Transform
       pos: 22.5,-21.5
       parent: 2
-  - uid: 20174
-    components:
-    - type: Transform
-      pos: 6.5,29.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Chemistry
 - proto: LockerChiefEngineerFilled
   entities:
   - uid: 20175
@@ -134317,6 +134313,11 @@ entities:
       parent: 2
 - proto: LockerIAAFilled
   entities:
+  - uid: 13851
+    components:
+    - type: Transform
+      pos: 4.5,27.5
+      parent: 2
   - uid: 20201
     components:
     - type: Transform
@@ -135578,7 +135579,7 @@ entities:
   - uid: 20385
     components:
     - type: Transform
-      pos: -29.667736,5.2166553
+      pos: -29.66959,4.9274564
       parent: 2
 - proto: MaterialDurathread
   entities:
@@ -137500,16 +137501,22 @@ entities:
     - type: Transform
       pos: -5.4702005,-4.4925995
       parent: 2
+    - type: IntrinsicRadioTransmitter
+      channels: []
   - uid: 20689
     components:
     - type: Transform
       pos: 13.5,10.5
       parent: 2
+    - type: IntrinsicRadioTransmitter
+      channels: []
   - uid: 20690
     components:
     - type: Transform
       pos: 59.539406,-39.454147
       parent: 2
+    - type: IntrinsicRadioTransmitter
+      channels: []
 - proto: PestSpray
   entities:
   - uid: 20691
@@ -139132,11 +139139,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,49.5
-      parent: 2
-  - uid: 20936
-    components:
-    - type: Transform
-      pos: 2.5,25.5
       parent: 2
   - uid: 20937
     components:
@@ -143762,6 +143764,18 @@ entities:
       - Experimental
       - CivilianServices
       - Biochemical
+- proto: protectionanchor
+  entities:
+  - uid: 24833
+    components:
+    - type: Transform
+      pos: -10.5,45.5
+      parent: 2
+  - uid: 29399
+    components:
+    - type: Transform
+      pos: -31.5,6.5
+      parent: 2
 - proto: Protolathe
   entities:
   - uid: 21602
@@ -143809,6 +143823,11 @@ entities:
       parent: 2
 - proto: Rack
   entities:
+  - uid: 20936
+    components:
+    - type: Transform
+      pos: -14.5,45.5
+      parent: 2
   - uid: 21608
     components:
     - type: Transform
@@ -143876,11 +143895,6 @@ entities:
     components:
     - type: Transform
       pos: -21.5,-9.5
-      parent: 2
-  - uid: 21621
-    components:
-    - type: Transform
-      pos: -14.5,45.5
       parent: 2
   - uid: 21622
     components:
@@ -161538,11 +161552,6 @@ entities:
     - type: Transform
       pos: 31.5,-6.5
       parent: 2
-  - uid: 24450
-    components:
-    - type: Transform
-      pos: 39.5,-4.5
-      parent: 2
   - uid: 24451
     components:
     - type: Transform
@@ -163212,6 +163221,11 @@ entities:
       parent: 2
 - proto: TableReinforced
   entities:
+  - uid: 24450
+    components:
+    - type: Transform
+      pos: -29.5,3.5
+      parent: 2
   - uid: 24782
     components:
     - type: Transform
@@ -163466,11 +163480,6 @@ entities:
     components:
     - type: Transform
       pos: 47.5,-10.5
-      parent: 2
-  - uid: 24833
-    components:
-    - type: Transform
-      pos: -29.5,3.5
       parent: 2
   - uid: 24834
     components:
@@ -165145,6 +165154,13 @@ entities:
     components:
     - type: Transform
       pos: 31.579891,15.170173
+      parent: 2
+- proto: TP14KitchenDeepFryer
+  entities:
+  - uid: 21621
+    components:
+    - type: Transform
+      pos: 39.5,-4.5
       parent: 2
 - proto: TrainingBomb
   entities:
@@ -187550,7 +187566,7 @@ entities:
       pos: 73.5,-3.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -12759.053
+      secondsUntilStateChange: -13416.001
       state: Opening
   - uid: 29380
     components:

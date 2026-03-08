@@ -103,12 +103,37 @@
     },
     {
       "name": "ghost-carpman",
-      "copyright": "Conf",
+      "copyright": "Made by Conf for Starlight",
       "directions": 4
     },
     {  "name": "ghost-moff",
        "copyright": "Based off the moths and default ghost from tgstation, StygianEagle",
        "directions": 4
+    },
+    {
+      "name": "ghost-buff-rat-king",
+      "copyright": "Default Buff Rat King greyscaled",
+      "directions": 4
+    },
+    {
+      "name": "ghost-fox",
+      "copyright": "Default Fox greyscaled",
+      "directions": 4
+    },
+    {
+      "name": "ghost-lizard-plushie",
+      "copyright": "Default Lizard Plushie greyscaled",
+      "directions": 4
+    },
+    {
+      "name": "ghost-mothroach",
+      "copyright": "Default Mothroach greyscaled",
+      "directions": 4
+    },
+    {
+      "name": "ghost-scurret",
+      "copyright": "Default Scurret greyscaled",
+      "directions": 4
     }
   ]
 }

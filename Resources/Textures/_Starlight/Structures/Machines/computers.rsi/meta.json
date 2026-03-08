@@ -172,6 +172,253 @@
             "name": "computer_l_r-broken",
             "copyright": "Taken from Aurora.3 at https://github.com/Aurorastation/Aurora.3/blob/d95734c606035f4040e758b3ad3426b3a5339092/icons/obj/machinery/modular_terminal.dmi",
             "directions": 4
+        },
+        {
+            "name": "crew-alert",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894, derivative alert overlay by redmushie (github,discord)",
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "comm",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894, updated for departmental edits by redmushie (disord, github).",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "comm-eng",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894, updated for departmental edits by redmushie (disord, github).",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "comm-med",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894, updated for departmental edits by redmushie (disord, github).",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "comm-sci",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894, updated for departmental edits by redmushie (disord, github).",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "comm-sec",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894, updated for departmental edits by redmushie (disord, github).",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "comm-srv",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894, updated for departmental edits by redmushie (disord, github).",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "comm-sup",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894, updated for departmental edits by redmushie (disord, github).",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "comm-law",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894, updated for departmental edits by redmushie (disord, github).",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ]
+            ]
         }
     ]
 }

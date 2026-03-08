@@ -4,7 +4,7 @@
   # Floor generation
   layers:
   - !type:NoiseDunGen
-    tileCap: 1000
+    tileCap: 800 #SL Edit 1000 > 800
     capStd: 32
     iterations: 3
     layers:
@@ -34,7 +34,7 @@
   # Floor generation
   layers:
   - !type:NoiseDunGen
-    tileCap: 750
+    tileCap: 600 #SL Edit 750 > 600
     capStd: 32
     layers:
       - tile: FloorAsteroidSand
@@ -62,7 +62,7 @@
   # Floor generation
   layers:
   - !type:NoiseDunGen
-    tileCap: 1000
+    tileCap: 800 #SL Edit 1000 > 800
     capStd: 32
     layers:
       - tile: FloorAsteroidSand
@@ -91,7 +91,7 @@
   # Floor generation
   layers:
   - !type:NoiseDunGen
-    tileCap: 1000
+    tileCap: 800 #SL Edit 1000 > 800
     capStd: 32
     layers:
       - tile: FloorAsteroidSand

@@ -269,6 +269,12 @@
         {
             "name": "base-stripes-inhand-right",
             "directions": 4
+        },
+        {
+            "name": "makeshift"
+        },
+        {
+            "name": "icon-knife"
         }
     ]
 

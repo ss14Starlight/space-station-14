@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Speech.EntitySystems;
 using Content.Server.Speech.EntitySystems;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
@@ -42,7 +43,7 @@ public sealed class OwoifyCommand : IConsoleCommand
         var owoSys = _entManager.System<OwOAccentSystem>();
         var metaDataSys = _entManager.System<MetaDataSystem>();
 
-        metaDataSys.SetEntityName(eUid.Value, owoSys.Accentuate(meta.EntityName), meta);
-        metaDataSys.SetEntityDescription(eUid.Value, owoSys.Accentuate(meta.EntityDescription), meta);
+        metaDataSys.SetEntityName(eUid.Value, owoSys.Accentuate(meta.EntityName).Text, meta); // Starlight
+        metaDataSys.SetEntityDescription(eUid.Value, owoSys.Accentuate(meta.EntityDescription).Text, meta); // Starlight
     }
 }

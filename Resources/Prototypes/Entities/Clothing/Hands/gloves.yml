@@ -406,6 +406,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+    - BibleThwackRemovable
   #endregion Starlight
 
 - type: entity

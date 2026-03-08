@@ -73,6 +73,7 @@ public sealed class GridPowerTests
         new("/Maps/_Starlight/Shuttles/sec_patrol_one.yml"),
         new("/Maps/_Starlight/Shuttles/sec_patrol_two.yml"),
         new("/Maps/_Starlight/Shuttles/security_prism.yml"),
+        new("/Maps/_Starlight/Shuttles/oasis_briggle.yml"),
         new("/Maps/_Starlight/Shuttles/ss_ana.yml"),
         new("/Maps/_Starlight/Test/SL_admin_test_arena.yml"),
         new("/Maps/_Starlight/Shuttles/mothership.yml"),

@@ -1,0 +1,34 @@
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponEnergyTurretSilicon
+  suffix: Silicon
+  components:
+  - type: AccessReader
+    access: [["StationAi"], ["ResearchDirector"]]
+  - type: StationAiTurret
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - Borg
+    - BasicSilicon
+  - type: Machine
+    board: WeaponEnergyTurretSiliconMachineCircuitboard
+  - type: DeviceNetwork
+    receiveFrequencyId: TurretControlSilicon
+    transmitFrequencyId: TurretSilicon
+  
+
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponEnergyTurretSolgov
+  suffix: Solgov
+  components:
+  - type: AccessReader
+    access: [["Solgov"]]
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - Solgov
+  - type: DeviceNetwork
+    receiveFrequencyId: TurretControl
+    transmitFrequencyId: Turret
+  - type: StationAiWhitelist
+    enabled: false

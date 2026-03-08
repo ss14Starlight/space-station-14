@@ -57,6 +57,10 @@
       color: "#f1eb58"
       roles:
       - 1380299412164579328 # Maintainer
+    - text: "Senior Developer"
+      color: "#c4c9ce"
+      roles:
+      - 1473631364048879759 # Senior Developer
     - text: "Developer"
       color: "#f1eb58"
       roles:
@@ -77,6 +81,10 @@
       color: "#7ac000"
       roles:
       - 1305029272653533268 # Trialmin
+    - text: "Senior Prototyper"
+      color: "#edc113"
+      roles:
+      - 1473619558211260539 # Senior Prototyper
     - text: "Prototyper"
       color: "#F1C40F"
       roles:

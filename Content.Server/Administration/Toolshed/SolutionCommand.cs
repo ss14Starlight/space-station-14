@@ -9,6 +9,8 @@ using Robust.Shared.Toolshed.Syntax;
 using Robust.Shared.Toolshed.TypeParsers;
 using System.Linq;
 using Robust.Shared.Prototypes;
+using Content.Shared.Chemistry.Components.SolutionManager; // Starlight
+using Robust.Shared.Containers; // Starlight
 
 namespace Content.Server.Administration.Toolshed;
 
@@ -16,6 +18,7 @@ namespace Content.Server.Administration.Toolshed;
 public sealed class SolutionCommand : ToolshedCommand
 {
     private SharedSolutionContainerSystem? _solutionContainer;
+    private SharedContainerSystem? _container; // Starlight
 
     [CommandImplementation("get")]
     public SolutionRef? Get([PipedArgument] EntityUid input, string name)
@@ -105,6 +108,42 @@ public sealed class SolutionCommand : ToolshedCommand
     [CommandImplementation("adjthermalenergy")]
     public IEnumerable<SolutionRef> AdjThermalEnergy([PipedArgument] IEnumerable<SolutionRef> input, float energy) =>
         input.Select(x => AdjThermalEnergy(x, energy));
+
+    [CommandImplementation("create")]
+    public SolutionRef? Create([PipedArgument] EntityUid uid, string name)
+    {
+        _solutionContainer ??= GetSys<SharedSolutionContainerSystem>();
+        var sMgr = EnsureComp<SolutionContainerManagerComponent>(uid);
+        if(_solutionContainer.EnsureSolutionEntity((uid, sMgr), name, out var ent))
+            return new SolutionRef(ent.Value);
+        return null;
+    }
+
+    [CommandImplementation("delete")]
+    public EntityUid Delete([PipedArgument] EntityUid uid, string name)
+    {
+        _solutionContainer ??= GetSys<SharedSolutionContainerSystem>();
+        if (_solutionContainer.TryGetSolution(uid, name, out var solution))
+            QDel(solution.Value.Owner);
+        return uid;
+    }
+
+    [CommandImplementation("create")]
+    public IEnumerable<SolutionRef?> Create([PipedArgument] IEnumerable<EntityUid> uid, string name) =>
+        uid.Select(x => Create(x, name)).Where(x => x is not null);
+
+    [CommandImplementation("delete")]
+    public IEnumerable<EntityUid> Delete([PipedArgument] IEnumerable<EntityUid> uid, string name) =>
+        uid.Select(x => Delete(x, name));
+    
+    [CommandImplementation("delete")]
+    public EntityUid? Delete([PipedArgument] SolutionRef solution)
+    {
+        _container ??= GetSys<SharedContainerSystem>();
+        QDel(solution.Solution.Owner);
+        if (!_container.TryGetContainingContainer(solution.Solution.Owner, out var container)) return null;
+        return container.Owner;
+    }
     //Starlight end
 }
 
