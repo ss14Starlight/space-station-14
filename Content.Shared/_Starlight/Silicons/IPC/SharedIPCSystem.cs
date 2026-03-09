@@ -33,9 +33,6 @@ public abstract partial class SharedIPCSystem : EntitySystem
         
         // Optical sensors are vulnerable to bright light
         SubscribeLocalEvent<IPCComponent, AfterFlashedEvent>(OnFlashed);
-        
-        // Show IPC-specific status when examined
-        SubscribeLocalEvent<IPCComponent, ExaminedEvent>(OnExamined);
     }
 
     public override void Update(float frameTime)

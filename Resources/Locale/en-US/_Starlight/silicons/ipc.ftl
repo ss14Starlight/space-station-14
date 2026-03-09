@@ -1,8 +1,5 @@
 # _STARLIGHT: IPC Localization Strings
-# Contains examine text, healing messages, and APC recharging messages for IPCs
-
-## IPC Examine
-ipc-examine-text = [color=cyan]This is an IPC (Integrated Positronic Chassis), a synthetic being with a robotic body.[/color]
+# Contains healing messages, and APC recharging messages for IPCs
 
 ## IPC Healing
 ipc-heal-burn-none = {THE($target)} has no burn damage to repair.
