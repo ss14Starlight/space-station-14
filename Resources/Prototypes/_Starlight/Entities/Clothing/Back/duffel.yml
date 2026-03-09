@@ -41,6 +41,28 @@
 - type: entity
   parent: ClothingBackpackDuffel
   id: ClothingBackpackDuffelMailSenior
+  name: mail technician trunk
+  description: A huge trunk made of every aspiring mail technician's dreams.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/mailtrunk.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,11,3
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.8
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 7
+    soundHit:
+      collection: MetalThud
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelMailSenior
   name: senior mail technician trunk
   description: A huge trunk for the station's strongest mail technicians.
   components:
@@ -49,7 +71,7 @@
   - type: Storage
     maxItemSize: Huge
     grid:
-    - 0,0,9,4
+    - 0,0,11,3
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 0.8
@@ -99,7 +121,7 @@
   - type: Storage
     maxItemSize: Huge
     grid:
-    - 0,0,9,4
+    - 0,0,11,3
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 0.8
