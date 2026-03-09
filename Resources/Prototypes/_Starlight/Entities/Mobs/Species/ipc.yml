@@ -71,7 +71,9 @@
     - "enum.HumanoidVisualLayers.RArm"
     - "enum.HumanoidVisualLayers.RLeg"
     damageOverlayGroups:
-      # Brute damage removed - robots don't bleed
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#525252"
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
         color: "#FFA500"
