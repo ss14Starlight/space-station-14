@@ -71,18 +71,6 @@ public abstract partial class SharedIPCSystem : EntitySystem
             _statusEffects.TrySetTime(uid, "Flashed", newDuration);
         }
     }
-    
-    /// <summary>
-    /// Shows IPC-specific information when examined.
-    /// Identifies the entity as robotic and displays relevant status.
-    /// </summary>
-    private void OnExamined(EntityUid uid, IPCComponent component, ExaminedEvent args)
-    {
-        if (!args.IsInDetailsRange)
-            return;
-            
-        args.PushMarkup(Loc.GetString("ipc-examine-text"));
-    }
 
     /// <summary>
     /// Gets the IPC's battery and tries to use some charge from it, returning true if successful.
