@@ -17,6 +17,9 @@
   suffix: Steel
   description: The greatest invention since rocket-propelled grenades.
   components:
+  - type: Tag
+    tags:
+      - Stairs
   - type: Anchorable
     flags:
     - Anchorable

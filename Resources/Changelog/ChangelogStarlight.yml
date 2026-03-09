@@ -33808,5 +33808,209 @@ Entries:
   id: 363201
   time: '2026-03-07T17:26:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3632
+- author: Shades
+  changes:
+  - message: Nerfed Gorilla Disarm chance and by stam damage by 10.
+    type: Tweak
+  - message: Fixed NukeOps Uplink not showing Gorilla Implant.
+    type: Fix
+  id: 365801
+  time: '2026-03-08T09:01:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3658
+- author: Awriko
+  changes:
+  - message: (Cork) patched AI-Anchor room blast doors not networking
+    type: Fix
+  - message: (Cork) patched an unanchored firelock in the hall north of bridge fixed
+      sec front desk windoor access
+    type: Fix
+  - message: (Cork) patched security front desk windoor access
+    type: Fix
+  - message: (Cork) re-added an erroneously removed scrubber from engineering
+    type: Fix
+  - message: (Cork) added a late join spawn point for arrivals
+    type: Fix
+  - message: (Cork) reconfigured cryosleep for late join spawners
+    type: Tweak
+  - message: (Cork) re-condemned xenobiology until it is fixed and ready for deployment
+    type: Tweak
+  - message: (Cork) added two anomaly vessels to science as there were none before...
+    type: Add
+  - message: (Cork) added scrubbers to the artifact chambers for easier spacing on
+      an otherwise atmospheric planet
+    type: Add
+  - message: (Cork) added an additional canister of plasma to engineering storage
+      for TEG per early round budget and power concerns
+    type: Add
+  - message: (Cork) added two thermo-machine boards to secure storage for TEG optimization
+      and atmos enrichment
+    type: Add
+  - message: (Cork) added signage to the electric fence by engineering
+    type: Add
+  - message: (Cork) added missing genpop signs
+    type: Add
+  - message: (Cork) removed some stuck-in-wall lights
+    type: Fix
+  id: 365701
+  time: '2026-03-08T09:10:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3657
+- author: IrkallaEpsilon
+  changes:
+  - message: Reverts Shadekin Light Damage back to original value.
+    type: Tweak
+  id: 365401
+  time: '2026-03-08T09:18:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3654
+- author: Coolsurf6
+  changes:
+  - message: BSO Belts have been cleaned up.
+    type: Tweak
+  - message: BSOs now spawn with their SP-8T instead of their X-01.
+    type: Tweak
+  - message: Two pistol mags of .40 now spawn in BSO belts rather than their locker.
+    type: Tweak
+  - message: X-01 now spawns in the BSO lockers.
+    type: Tweak
+  - message: X-01 Destroy Beam now does 100 structural with 15 shots to take down
+      walls and airlocks.
+    type: Tweak
+  - message: BSO Lockers now spawn with jackboots instead of combat boots.
+    type: Tweak
+  - message: BSOs can now spawn with Jackboots.
+    type: Add
+  - message: Stealing the BSO weapon now only allows for the X-01 as the target.
+    type: Tweak
+  - message: Stealing officer weapons now accepts the sp-8t as a valid target.
+    type: Tweak
+  id: 363101
+  time: '2026-03-08T09:56:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3631
+- author: redmushie
+  changes:
+  - message: Departmental communications consoles! Every department head receives
+      a board for their corresponding console in their circuit tote.
+    type: Add
+  - message: The Magistrate now also gets their own circuit tote.
+    type: Add
+  - message: Alert level changes now announce who did them.
+    type: Tweak
+  - message: Smart LMG firing pin steal objective now actually exists.
+    type: Fix
+  - message: The mapping preset telecomms server with "All" keys now actually includes
+      Law.
+    type: Fix
+  id: 364201
+  time: '2026-03-08T09:59:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3642
+- author: redmushie
+  changes:
+  - message: Admin chat window no longer errors from bad markup.
+    type: Fix
+  id: 366001
+  time: '2026-03-08T10:07:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3660
+- author: wonderfulnewworld
+  changes:
+  - message: The Energy Shotgun Steal objective is now the Energy Shotgun OR the Energy
+      Magnum. In exchange, 3 people can get this target now instead of 2. More options.
+    type: Tweak
+  - message: Removed the Energy Magnum steal objective.
+    type: Remove
+  - message: Fixes a duplicate loc for almost all at once's gamemode that I missed.
+    type: Fix
+  id: 366101
+  time: '2026-03-08T11:34:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3661
+- author: Kirb
+  changes:
+  - message: being EMPed while having a mind control implant will drain your stamina
+      and stun you.
+    type: Add
+  - message: new popup for trying to mindshield a person who has a mind control implant.
+    type: Tweak
+  - message: Mind control implanter is less expensive and now available to nukeops.
+    type: Tweak
+  id: 365301
+  time: '2026-03-09T05:07:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3653
+- author: neomoth
+  changes:
+  - message: Items that are actively being wielded are now slightly harder to knock
+      out of someone's hand via shoving them.
+    type: Tweak
+  id: 366601
+  time: '2026-03-09T05:13:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3666
+- author: Xale
+  changes:
+  - message: Corndogs are now twice as large, with roughly double the nutritional
+      value.
+    type: Tweak
+  - message: Funnel cakes are now twice as large.
+    type: Tweak
+  - message: Corndogs are now classified as a meat food.
+    type: Fix
+  id: 366501
+  time: '2026-03-09T05:18:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3665
+- author: Ohelig
+  changes:
+  - message: Added Mining Defense Cyborg Module.
+    type: Add
+  - message: Unlocks with Salvage Weapons Research (T1 Arsenal).
+    type: Add
+  - message: Has PKA, PKA Upgrade hand, Knife hand, and Goliath Plate hand.
+    type: Add
+  - message: Restricted to Mining Cyborgs.
+    type: Add
+  id: 364701
+  time: '2026-03-09T05:22:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3647
+- author: Conflee
+  changes:
+  - message: Moved the Changeling section of the Corporate Law guidebook page into
+      a new page, accessed by clicking a link where the old section used to be. The
+      link/page it sends you to both state that only characters with Secure Knowledge
+      know the information. This is so the main page, opened by a book in game, can
+      be 99% IC/Canon and not break metashield.
+    type: Tweak
+  id: 362601
+  time: '2026-03-09T05:26:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3626
+- author: Shades
+  changes:
+  - message: 'Added more station events: PsychicScreach, SecurityDrill, DoorRuntime,
+      RadStorm, SolarFlare, AuroraCaelus, SpaceWhale, CommunicationBlackout, NightShift.'
+    type: Add
+  - message: Previous SolarFlare event got changed into CommunicationBlackout.
+    type: Tweak
+  id: 359901
+  time: '2026-03-09T05:33:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3599
+- author: neomoth
+  changes:
+  - message: Adds better screenshake to the game when shooting guns, getting hit,
+      explosions, etc.
+    type: Add
+  - message: Gravity screenshake can no longer occur in the first 10 seconds of the
+      round.
+    type: Tweak
+  id: 366401
+  time: '2026-03-09T08:56:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3664
+- author: redmushie
+  changes:
+  - message: Healium heals more at lower concentrations.
+    type: Tweak
+  - message: Healium now has a cap on how much it heals. This only affects high concentrations.
+    type: Tweak
+  - message: Nitrosyl plasmide no longer makes it impossible to stun and cuff (but
+      still reduces stun time).
+    type: Tweak
+  - message: Healium now has a minor bleed-staunching effect.
+    type: Add
+  id: 366301
+  time: '2026-03-09T14:06:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3663
 Order: -1
 

@@ -78,6 +78,8 @@ guide-entry-sl-security-sop-parole = Parole
 guide-entry-sl-security-sop-permitacquisition = Permit Acquisiton
 guide-entry-sl-security-sop-specialsituations = Special Situations
 
+guide-entry-rules-changeling-clause = Changeling Clause
+
 guide-entry-sl-legal-sop-intro = Legal
 
 guide-entry-sl-engineering-sop-intro = Engineering

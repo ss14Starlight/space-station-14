@@ -40,17 +40,23 @@ public abstract class SharedWeatherSystem : EntitySystem
         }
     }
 
-    public bool CanWeatherAffect(EntityUid uid, MapGridComponent grid, TileRef tileRef, RoofComponent? roofComp = null)
+    public bool CanWeatherAffect(EntityUid uid, MapGridComponent grid, TileRef tileRef, bool onlySpace = false, bool checkTileWeather = true, RoofComponent? roofComp = null) // SL - Edit
     {
         if (tileRef.Tile.IsEmpty)
             return true;
 
-        if (Resolve(uid, ref roofComp, false) && _roof.IsRooved((uid, grid, roofComp), tileRef.GridIndices))
+        if (_blockQuery.HasComponent(uid))
             return false;
 
         var tileDef = (ContentTileDefinition) _tileDefManager[tileRef.Tile.TypeId];
 
-        if (!tileDef.Weather)
+        if (onlySpace && !tileDef.MapAtmosphere)
+            return false;
+
+        if (Resolve(uid, ref roofComp, false) && _roof.IsRooved((uid, grid, roofComp), tileRef.GridIndices))
+            return false;
+
+        if (checkTileWeather && !tileDef.Weather)
             return false;
 
         var anchoredEntities = _mapSystem.GetAnchoredEntitiesEnumerator(uid, grid, tileRef.GridIndices);
@@ -131,6 +137,8 @@ public abstract class SharedWeatherSystem : EntitySystem
                 {
                     SetState(uid, WeatherState.Ending, comp, weather, weatherProto);
                 }
+                else if (endTime != null && remainingTime > WeatherComponent.ShutdownTime)
+                    SetState(uid, WeatherState.Ended, comp, weather, weatherProto);
                 // Starting up
                 else
                 {
@@ -140,6 +148,10 @@ public abstract class SharedWeatherSystem : EntitySystem
                     if (elapsed < WeatherComponent.StartupTime)
                     {
                         SetState(uid, WeatherState.Starting, comp, weather, weatherProto);
+                    }
+                    else
+                    {
+                        SetState(uid, WeatherState.Running, comp, weather, weatherProto); // SL
                     }
                 }
 

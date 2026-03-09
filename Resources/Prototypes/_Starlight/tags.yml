@@ -514,6 +514,9 @@
   id: SpeedLoaderShotgun
 
 - type: Tag
+  id: Stairs
+
+- type: Tag
   id: StoveMachineBoard
 
 - type: Tag

@@ -221,12 +221,14 @@
 
 - type: entity
   parent: BaseTraitorSecurityStealObjective
-  id: EnergyShotgunStealObjective
+  id: SecurityRareGunsStealObjective
   components:
   - type: StealCondition
-    stealGroup: WeaponEnergyShotgun
+    stealGroup: SecurityRareGuns
   - type: Objective
-    difficulty: 1
+    difficulty: 1.2
+  - type: ObjectiveLimit
+    limit: 3 # 2 guns, 3 people can get this objective for max drama
 
 - type: entity
   parent: BaseTraitorMedicalStealObjective

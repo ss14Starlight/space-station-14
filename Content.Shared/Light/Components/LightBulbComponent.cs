@@ -18,6 +18,13 @@ public sealed partial class LightBulbComponent : Component
     public Color Color = Color.White;
 
     /// <summary>
+    /// Starlight
+    /// Is LightBulb NightShift Compatible?
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool NightShiftCompatible = true;
+
+    /// <summary>
     /// The type of lightbulb. Tube/bulb/etc...
     /// </summary>
     [DataField("bulb")]

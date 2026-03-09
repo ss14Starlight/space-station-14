@@ -286,12 +286,22 @@ public abstract class SharedPoweredLightSystem : EntitySystem
             return;
         }
 
+        // SL - NightShift Mode!
+        var lightEnergy = lightBulb.LightEnergy;
+        var powerUse = lightBulb.PowerUse;
+
+        if (light.NightModeEnabled && lightBulb.NightShiftCompatible)
+        {
+            lightEnergy -= 0.5f;
+            powerUse  -= 10;
+        }
+
         switch (lightBulb.State)
         {
             case LightBulbState.Normal:
                 if (powerReceiver.Powered && light.On)
                 {
-                    SetLight(uid, true, lightBulb.Color, light, lightBulb.LightRadius, lightBulb.LightEnergy, lightBulb.LightSoftness, HasComp<DarkLightComponent>(bulbUid.Value));
+                    SetLight(uid, true, lightBulb.Color, light, lightBulb.LightRadius, lightEnergy, lightBulb.LightSoftness, HasComp<DarkLightComponent>(bulbUid.Value));
                     _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.On, appearance);
                     var time = GameTiming.CurTime;
                     if (time > light.LastThunk + ThunkDelay)
@@ -317,7 +327,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
                 break;
         }
 
-        powerReceiver.Load = (light.On && lightBulb.State == LightBulbState.Normal) ? lightBulb.PowerUse : 0;
+        powerReceiver.Load = (light.On && lightBulb.State == LightBulbState.Normal) ? powerUse : 0;
     }
 
     /// <summary>
@@ -424,6 +434,17 @@ public abstract class SharedPoweredLightSystem : EntitySystem
             return;
 
         light.On = state;
+        Dirty(uid, light);
+        UpdateLight(uid, light);
+    }
+
+    // Starlight - NightShift
+    public void SetNightMode(EntityUid uid, bool state, PoweredLightComponent? light = null)
+    {
+        if (!Resolve(uid, ref light))
+            return;
+
+        light.NightModeEnabled = state;
         Dirty(uid, light);
         UpdateLight(uid, light);
     }

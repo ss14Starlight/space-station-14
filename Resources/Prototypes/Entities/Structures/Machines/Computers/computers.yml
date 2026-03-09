@@ -754,7 +754,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerComms
-  name: communications computer
+  name: communications console # Starlight
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
   - type: Sprite
@@ -764,6 +764,7 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi # Starlight: Visual cohesion w/ departmental consoles
       state: comm
     - map: ["computerLayerKeys"]
       state: generic_keys
@@ -772,7 +773,7 @@
   - type: AccessReader
     access: [[ "Command" ]]
   - type: CommunicationsConsole
-    title: comms-console-announcement-title-station
+    title: comms-console-announcement-title-command # Starlight
     sound: /Audio/_Starlight/Announcements/announce2.ogg #Starlight
   - type: DeviceNetwork
     deviceNetId: Wireless

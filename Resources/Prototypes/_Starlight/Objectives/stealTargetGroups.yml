@@ -199,10 +199,10 @@
     state: icon
 
 - type: stealTargetGroup
-  id: WeaponEnergyShotgun
-  name: steal-target-groups-weapon-energy-shot-gun
+  id: SecurityRareGuns
+  name: steal-target-groups-security-rare-guns
   sprite:
-    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
+    sprite: _Starlight/Objects/Misc/secrareguns_objective.rsi
     state: icon
 
 

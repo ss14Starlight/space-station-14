@@ -29,7 +29,7 @@
   - allexceptroundenders
   name: all-at-once-except-zombieteors-title
   minPlayers: 15 # Starlight, for Delta
-  description: all-at-once-except-zombieteors-title
+  description: all-at-once-except-zombieteors-description
   showInVote: false
   rules:
     - Nukeops

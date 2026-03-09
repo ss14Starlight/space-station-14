@@ -920,7 +920,7 @@
     tags:
     - HighRiskItem
   - type: StealTarget
-    stealGroup: WeaponEnergyShotgun
+    stealGroup: SecurityRareGuns # Starlight, combined with detective magnum in target
   - type: Gun
     fireRate: 2
     soundGunshot:
@@ -971,7 +971,7 @@
     - HighRiskItem
     - Sidearm
   - type: StealTarget
-    stealGroup: WeaponEnergyMagnum
+    stealGroup: SecurityRareGuns # Starlight, combined with eshotgun
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg

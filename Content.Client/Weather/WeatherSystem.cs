@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client.Parallax.Managers;
 using Content.Shared.Light.Components;
 using Content.Shared.Weather;
 using Robust.Client.Audio;
@@ -19,6 +20,7 @@ public sealed class WeatherSystem : SharedWeatherSystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly IParallaxManager _parallax = default!;
 
     public override void Initialize()
     {
@@ -45,7 +47,14 @@ public sealed class WeatherSystem : SharedWeatherSystem
             return;
         }
 
-        if (!Timing.IsFirstTimePredicted || weatherProto.Sound == null)
+        if (!Timing.IsFirstTimePredicted)
+            return;
+
+        // SL - If weather ended on another map and unloaded a parallax we need, lets reload it!
+        if (weatherProto.Parallax is not null && _parallax.IsLoaded(weatherProto.Parallax))
+            _parallax.LoadParallaxByName(weatherProto.Parallax);
+
+        if (weatherProto.Sound == null)
             return;
 
         weather.Stream ??= _audio.PlayGlobal(weatherProto.Sound, Filter.Local(), true)?.Entity;
@@ -73,7 +82,7 @@ public sealed class WeatherSystem : SharedWeatherSystem
                 if (!visited.Add(node.GridIndices))
                     continue;
 
-                if (!CanWeatherAffect(entXform.GridUid.Value, grid, node, roofComp))
+                if (!CanWeatherAffect(entXform.GridUid.Value, grid, node, weatherProto.OnlySpace, weatherProto.CheckTileWeather, roofComp)) // SL - Edit
                 {
                     // Add neighbors
                     // TODO: Ideally we pick some deterministically random direction and use that
@@ -130,9 +139,21 @@ public sealed class WeatherSystem : SharedWeatherSystem
         if (!Timing.IsFirstTimePredicted)
             return true;
 
-        // TODO: Fades (properly)
-        weather.Stream = _audio.Stop(weather.Stream);
-        weather.Stream = _audio.PlayGlobal(weatherProto.Sound, Filter.Local(), true)?.Entity;
+        // SL - Handles Parallax.
+        if (weatherProto.Parallax is not null)
+        {
+            if (state == WeatherState.Starting && !_parallax.IsLoaded(weatherProto.Parallax))
+                _parallax.LoadParallaxByName(weatherProto.Parallax);
+            else if (state == WeatherState.Ended && _parallax.IsLoaded(weatherProto.Parallax))
+                _parallax.UnloadParallax(weatherProto.Parallax);
+        }
+
+        // SL - Audio... Make it better!
+        if (state == WeatherState.Starting)
+            weather.Stream = _audio.PlayGlobal(weatherProto.Sound, Filter.Local(), true)?.Entity;
+        else if (state == WeatherState.Ended)
+            weather.Stream = _audio.Stop(weather.Stream);
+        
         return true;
     }
 

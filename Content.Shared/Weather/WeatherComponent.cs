@@ -16,6 +16,14 @@ public sealed partial class WeatherComponent : Component
 
     public static readonly TimeSpan StartupTime = TimeSpan.FromSeconds(15);
     public static readonly TimeSpan ShutdownTime = TimeSpan.FromSeconds(15);
+
+    // Starlight
+    [ViewVariables(VVAccess.ReadOnly)]
+    public TimeSpan NextUpdate = TimeSpan.Zero;
+
+    // Starlight
+    [DataField]
+    public TimeSpan UpdateCooldown = TimeSpan.FromSeconds(1f);
 }
 
 [DataDefinition, Serializable, NetSerializable]
@@ -50,4 +58,5 @@ public enum WeatherState : byte
     Starting,
     Running,
     Ending,
+    Ended, // SL
 }
