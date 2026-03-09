@@ -1,0 +1,67 @@
+# Senior Time
+- type: loadoutEffectGroup
+  id: SeniorMailTechnician
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMailTech
+      time: 216000 # 60 hrs
+
+
+# Jumpsuits
+- type: loadout
+  id: MailTechnicianJumpsuitSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorMail
+
+# Trunks
+- type: loadout
+  id: MailTechnicianTrunk
+  equipment:
+    back: ClothingBackpackDuffelTrunkMail
+
+- type: loadout
+  id: MailTechnicianTrunkSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    back: ClothingBackpackDuffelTrunkMailSenior
+
+# Outer clothes
+# Do not make a non-senior version of the mail coat, it should be earned. A green one can be bought at the Fashion vendor, but this outfit should otherwise be limited.
+- type: loadout
+  id: MailTechnicianCoatSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    outerClothing: ClothingOuterCoatSeniorMail
+
+# Shoes
+# Same as the coat, don't make these easier to get.
+- type: loadout
+  id: MailTechnicianBootsSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    shoes: ClothingShoesBootsSeniorMail
+
+# PDAs!
+- type: loadout
+  id: MailPDA
+  equipment:
+    id: MailPDA
+
+- type: loadout
+  id: SeniorMailPDA
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    id: SeniorMailPDA

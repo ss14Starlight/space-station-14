@@ -507,6 +507,66 @@
   - CombatBoots
   - HighHeelBootsFilled
 
+# Cargo
+# Mail Technician
+- type: loadoutGroup
+  id: MailTechnicianJumpsuit
+  name: loadout-group-mail-technician-jumpsuit
+  loadouts:
+  - CargoTechnicianJumpsuit
+  - CargoTechnicianJumpskirt
+  - CargoTechnicianJumpsuitAlt # afterlight start
+  - CargoTechnicianJumpsuitFormal
+  - CargoTechnicianJumpskirtFormal # afterlight end
+  - MailTechnicianJumpsuitSenior
+  - CargoTechnicianOveralls
+
+- type: loadoutGroup
+  id: MailTechnicianBackpack
+  name: loadout-group-mail-technician-backpack
+  loadouts:
+  - CargoTechnicianBackpack
+  - CargoTechnicianSatchel
+  - CargoTechnicianDuffel
+  - SeniorCourierBackpack
+  - SeniorCourierSatchel
+  - SeniorCourierDuffel
+  - MailTechnicianTrunk
+  - MailTechnicianTrunkSenior
+  - LeatherSatchel
+
+- type: loadoutGroup
+  id: MailTechnicianOuterClothing
+  name: loadout-group-mail-technician-outerclothing
+  minLimit: 0
+  loadouts:
+  - CargoTechnicianWintercoat
+  - SeniorCourierWintercoat
+  - MailTechnicianCoatSenior
+  - WindbreakerCargo
+
+- type: loadoutGroup
+  id: MailTechnicianShoes
+  name: loadout-group-mail-technician-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - BlackShoes
+  - YellowShoes
+  - CargoWinterBoots
+  - SeniorCourierWinterBoots
+  - MailTechnicianBootsSenior
+  - LeatherShoes
+  - WorkBoots
+  - Heels
+
+- type: loadoutGroup
+  id: MailTechnicianPDA
+  name: loadout-group-mail-technician-id
+  loadouts:
+  - MailPDA
+  - SeniorMailPDA
+
 # Salvage Lead
 - type: loadoutGroup
   id: SalvageLeadJumpsuit

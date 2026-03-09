@@ -40,7 +40,7 @@
 
 - type: entity
   parent: ClothingBackpackDuffel
-  id: ClothingBackpackDuffelMailSenior
+  id: ClothingBackpackDuffelTrunkMail
   name: mail technician trunk
   description: A huge trunk made of every aspiring mail technician's dreams.
   components:
@@ -52,7 +52,7 @@
     - 0,0,11,3
   - type: ClothingSpeedModifier
     walkModifier: 1
-    sprintModifier: 0.8
+    sprintModifier: 0.85
   - type: MeleeWeapon
     damage:
       types:
@@ -62,7 +62,7 @@
 
 - type: entity
   parent: ClothingBackpackDuffel
-  id: ClothingBackpackDuffelMailSenior
+  id: ClothingBackpackDuffelTrunkMailSenior
   name: senior mail technician trunk
   description: A huge trunk for the station's strongest mail technicians.
   components:
@@ -74,7 +74,7 @@
     - 0,0,11,3
   - type: ClothingSpeedModifier
     walkModifier: 1
-    sprintModifier: 0.8
+    sprintModifier: 0.85
   - type: MeleeWeapon
     damage:
       types:
@@ -112,7 +112,7 @@
 # Fashion-O-Mat
 - type: entity
   parent: ClothingBackpackDuffel
-  id: ClothingBackpackDuffelSpaceCourier
+  id: ClothingBackpackDuffelTrunkSpaceCourier
   name: space courier trunk
   description: A huge trunk themed after a legendary space courier.
   components:
@@ -124,7 +124,7 @@
     - 0,0,11,3
   - type: ClothingSpeedModifier
     walkModifier: 1
-    sprintModifier: 0.8
+    sprintModifier: 0.85
   - type: MeleeWeapon
     damage:
       types:

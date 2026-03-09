@@ -124,10 +124,11 @@
   groups:
   - GroupTankHarness
   - CargoTechnicianHead
-  - CargoTechnicianJumpsuit
-  - CargoTechnicianBackpack
-  - CargoTechnicianOuterClothing
-  - CargoTechnicianShoes
+  - MailTechnicianJumpsuit
+  - MailTechnicianBackpack
+  - MailTechnicianOuterClothing
+  - MailTechnicianShoes
+  - MailTechnicianPDA
   - Glasses
   - Survival
   - Trinkets

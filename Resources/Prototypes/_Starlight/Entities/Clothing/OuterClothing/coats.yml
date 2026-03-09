@@ -45,6 +45,7 @@
   id: ClothingOuterCoatNtrepOpen
   name: nt representive jacket
 
+# Do not make a non-senior version of the mail coat, it should be earned. A green one can be bought at the Fashion vendor, but this outfit should otherwise be limited.
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatSeniorMail

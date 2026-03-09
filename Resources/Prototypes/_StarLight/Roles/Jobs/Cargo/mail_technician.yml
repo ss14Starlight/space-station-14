@@ -17,7 +17,6 @@
 - type: startingGear
   id: MailTechGear
   equipment:
-    id: MailPDA
     ears: ClothingHeadsetCargo
     belt: MailBag
   storage:
