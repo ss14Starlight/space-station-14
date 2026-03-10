@@ -435,7 +435,6 @@ public sealed partial class VampireSystem : EntitySystem
             //Biting Damage              
             //Little bit of additional damage to disincentivize blood donations
             var BiteDamage = new DamageSpecifier();
-            //BiteDamage += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_poisonTypeId), FixedPoint2.New(0.1) * actualSipAmount); //1 cellular per 10u
             BiteDamage += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_pierceTypeId), FixedPoint2.New(0.05) * actualSipAmount); //5 pierce per 10u
             _damageableSystem.TryChangeDamage(target, BiteDamage, ignoreResistances: true);
             _blood.TryModifyBleedAmount(target, 1);
@@ -446,8 +445,6 @@ public sealed partial class VampireSystem : EntitySystem
             {
                 _blindable.AdjustEyeDamage((target, blindable), 1);
                 comp.BlindInc = 0;
-                //var timeSpan = TimeSpan.FromSeconds(3f);
-                //_statusEffect.TryAddStatusEffect(target, TemporaryBlindnessSystem.BlindingStatusEffect, timeSpan, false, TemporaryBlindnessSystem.BlindingStatusEffect);
             }
             else if (comp.BlindInc < 2)
             {
@@ -569,10 +566,32 @@ public sealed partial class VampireSystem : EntitySystem
             var vectorToTarget = Vector2.Normalize(targetPosition - ourPosition);
 
             var dot = Vector2.Dot(ourDirection, vectorToTarget);
+            // If target in front
+            if (dot <= 0.7f)
+                continue;
+//TODO test all this:
+            //Target not blind
+            if (HasComp<PermanentBlindnessComponent>(target) || HasComp<TemporaryBlindnessComponent>(target))
+                continue;
 
+            //Target not flash immune
+            if (HasComp<FlashImmunityComponent>(target))
+            {
+                 if (TryComp<MaskComponent>(target, out var mask) && !mask.IsToggled)
+                     continue;
+                 if (target.Comp.Enabled)
+                     continue;
+            }
+
+            //Target not holy unless full power
+            if (IsProtectedByFaith(target) && !comp.FullPower)
+                continue;
+                
             var duration = TimeSpan.FromSeconds(10);
             _statusEffects.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, duration);
+            
 
+/* Test without all this junk since sleep doesn't need us to do all this extra stuff that will wear off before the sleep does, TODO remove once tested
             if (!TryComp<StaminaComponent>(target, out var stam))
                 continue;
 
@@ -606,11 +625,11 @@ public sealed partial class VampireSystem : EntitySystem
 
                 _stamina.TakeStaminaDamage(target, args.SideStaminaDamage, stam, source: uid);
             }
+*/
 
             // Start DOT effect with limited ticks
             StartGlareDotEffect(target, uid, args.DotStaminaDamage, 0, false);
         }
-
         args.Handled = true;
     }
 
