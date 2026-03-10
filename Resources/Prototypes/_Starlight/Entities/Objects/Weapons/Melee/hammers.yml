@@ -20,7 +20,7 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 20
+        Blunt: 35
         Structural: 110
   - type: Item
     size: Normal
