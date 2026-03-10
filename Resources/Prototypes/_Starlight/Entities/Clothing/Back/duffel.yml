@@ -136,6 +136,7 @@
   parent: ClothingBackpackDuffelTrunkSpaceCourier
   id: ClothingBackpackDuffelTrunkSpaceCourierPAI
   name: space courier trunk
+  suffix: Ghost Role
   description: A huge trunk themed after a legendary space courier.
   components:
   - type: GhostRole
