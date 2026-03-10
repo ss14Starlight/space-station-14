@@ -20,12 +20,12 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 20
+        Blunt: 35
         Structural: 110
   - type: Item
-    size: Normal
+    size: Ginormous
     shape:
-    - 0,0,1,4
+    - 0,0,4,3
   - type: Fixtures
     fixtures:
       fix1:
@@ -57,6 +57,10 @@
   - type: HeldSpeedModifier
   - type: UseDelay
     delay: 2
+  - type: Tag
+    tags:
+    - BreachingHammer
+  - type: BreachingHammer
   - type: PhysicalComposition
     materialComposition:
       Steel: 500

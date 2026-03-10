@@ -30,6 +30,9 @@
   id: BibleThwackRemovable
 
 - type: Tag
+  id: BreachingHammer # used by HammerHardsuitBonus on hardsuits
+
+- type: Tag
   id: BladePlasteel
 
 - type: Tag

@@ -157,6 +157,7 @@
     - Tail
   - type: ArmorSparkEffect #starlight
   - type: HeatRadiationBlocker # Starlight - Prevents the body from radiating heat
+  - type: HammerHardsuitBonus # Starlight - reduces breaching hammer slowdown by 5% when worn
 
 - type: entity
   abstract: true
