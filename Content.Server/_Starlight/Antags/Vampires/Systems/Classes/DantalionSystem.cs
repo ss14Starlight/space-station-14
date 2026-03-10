@@ -243,6 +243,10 @@ public sealed class DantalionSystem : EntitySystem
         if (TryComp<CollectiveMindComponent>(target, out var cmComp))
             _collectiveMind.UpdateCollectiveMind(target, cmComp);
 
+        _adminLogManager.Add(LogType.Mind,
+            LogImpact.Medium,
+            $"{ToPrettyString(uid.Value)} converted {ToPrettyString(Target.Value)} into a Trall"); //TODO test
+
         _popup.PopupEntity(Loc.GetString("vampire-enthrall-success", ("target", Identity.Entity(target, EntityManager))), uid, uid);
         _popup.PopupEntity(Loc.GetString("vampire-enthrall-target"), target, target, PopupType.Medium);
         args.Handled = true;
