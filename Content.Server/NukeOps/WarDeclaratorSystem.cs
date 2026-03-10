@@ -1,6 +1,9 @@
 using Content.Server.Administration.Logs;
+using Content.Server.AlertLevel;
+using Content.Server.Audio;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
+using Content.Server.Station.Systems;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -8,8 +11,12 @@ using Content.Shared.Database;
 using Content.Shared.NukeOps;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.NukeOps;
 
@@ -25,6 +32,9 @@ public sealed class WarDeclaratorSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!; // SL
+    [Dependency] private readonly StationSystem _station = default!; // SL
+    [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // SL
 
     public override void Initialize()
     {
@@ -76,6 +86,13 @@ public sealed class WarDeclaratorSystem : EntitySystem
             var title = Loc.GetString(ent.Comp.SenderTitle);
             _chat.DispatchGlobalAnnouncement(ent.Comp.Message, title, true, ent.Comp.Sound, ent.Comp.Color);
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(args.Actor):player} has declared war with this text: {ent.Comp.Message}");
+
+            // Starlight - Start
+            _audio.PlayGlobal(_audio.ResolveSound(ent.Comp.WarMusic), Filter.Broadcast(), true, AudioParams.Default.WithVolume(-5f));
+            if (ent.Comp.GammaAlert)
+                if (_station.GetStations().FirstOrNull() is { } station)
+                    _alertLevel.SetLevel(station, "gamma", false, true, true, true);
+            // Starligh - End
         }
 
         UpdateUI(ent, ev.Status);

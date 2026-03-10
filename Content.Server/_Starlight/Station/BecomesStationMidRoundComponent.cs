@@ -1,4 +1,6 @@
+using Content.Server._Starlight.Commands;
 using Content.Server.GameTicking;
+using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
@@ -9,7 +11,7 @@ namespace Content.Server._Starlight.Station;
 /// Similar to BecomesStation, but causes it to initialize on grid/map spawn instead of solely on gamemap load.
 /// </summary>
 [RegisterComponent]
-[Access(typeof(GameTicker), typeof(StationSystem))]
+[Access(typeof(GameTicker), typeof(StationSystem), typeof(ShuttleSystem), typeof(StationInitCommand))]
 public sealed partial class BecomesStationMidRoundComponent : Component
 {
     /// <summary>
@@ -28,7 +30,7 @@ public sealed partial class BecomesStationMidRoundComponent : Component
     /// <summary>
     /// Prototypes to use when constructing station
     /// </summary>
-    [DataField] public List<EntProtoId>? BaseStationProtos = default!;
+    [DataField] public List<EntProtoId> BaseStationProtos = [];
     /// <summary>
     /// Always allow FTLing to this station
     /// </summary>
@@ -56,7 +58,7 @@ public sealed partial class BecomesStationMidRoundComponent : Component
     /// <summary>
     /// Whitelisted gridspawns
     /// </summary>
-    [DataField] public string[] AllowedGridSpawns = default!;
+    [DataField] public HashSet<string> AllowedGridSpawns = [];
     /// <summary>
     /// Overrides the emergency shuttle grid
     /// </summary>
@@ -64,9 +66,11 @@ public sealed partial class BecomesStationMidRoundComponent : Component
     /// <summary>
     /// Jobs available on init
     /// </summary>
-    [DataField] public Dictionary<ProtoId<JobPrototype>, int>? AvailableJobs = null;
+    [DataField] public Dictionary<ProtoId<JobPrototype>, int> AvailableJobs = [];
     /// <summary>
     /// Allows events to target this station
     /// </summary>
     [DataField] public bool AllowEvents;
+
+    [DataField] public EntProtoId DefaultBaseStationPrototype = "StandardNanotrasenStation";
 }

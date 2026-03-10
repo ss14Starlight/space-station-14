@@ -57,7 +57,8 @@ public sealed partial class PolymorphSystem : EntitySystem
         SubscribeLocalEvent<PolymorphableComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<PolymorphedEntityComponent, MapInitEvent>(OnMapInit);
 
-        SubscribeLocalEvent<PolymorphableComponent, PolymorphActionEvent>(OnPolymorphActionEvent);
+        SubscribeLocalEvent<PolymorphableComponent, PolymorphActionEvent>(OnPolymorphActionEvent); // Starlight-edit
+        SubscribeLocalEvent<PolymorphableComponent, PolymorphConfigActionEvent>(OnPolymorphConfigActionEvent); // Starlight
         SubscribeLocalEvent<PolymorphedEntityComponent, RevertPolymorphActionEvent>(OnRevertPolymorphActionEvent);
 
         SubscribeLocalEvent<PolymorphedEntityComponent, BeforeFullySlicedEvent>(OnBeforeFullySliced);
@@ -117,15 +118,21 @@ public sealed partial class PolymorphSystem : EntitySystem
         }
     }
 
+    // Starlight begin - Why the fuck these can't just be one event handler listening for BasePolymorphActionEvent is fucking beyond me.
     private void OnPolymorphActionEvent(Entity<PolymorphableComponent> ent, ref PolymorphActionEvent args)
     {
-        if (!_proto.Resolve(args.ProtoId, out var prototype) || args.Handled)
-            return;
-
-        PolymorphEntity(ent, prototype.Configuration);
-
+        if (args.Handled) return;
+        PolymorphEntity(ent, args.Config);
         args.Handled = true;
     }
+    
+    private void OnPolymorphConfigActionEvent(Entity<PolymorphableComponent> ent, ref PolymorphConfigActionEvent args)
+    {
+        if (args.Handled) return;
+        PolymorphEntity(ent, args.Config);
+        args.Handled = true;
+    }
+    // Starlight end
 
     private void OnRevertPolymorphActionEvent(Entity<PolymorphedEntityComponent> ent,
         ref RevertPolymorphActionEvent args)
@@ -455,4 +462,41 @@ public sealed partial class PolymorphSystem : EntitySystem
         if (actions.TryGetValue(id, out var action))
             _actions.RemoveAction(target.Owner, action);
     }
+    
+    //Starlight begin
+    public void CreatePolymorphAction(string id, PolymorphConfiguration config, EntityUid target, PolymorphableComponent? comp)
+    {
+        if (!Resolve(target, ref comp)) return;
+        comp.PolymorphConfigActions ??= new();
+        if (comp.PolymorphConfigActions.ContainsKey(id))
+            return;
+        
+        var entProto = _proto.Index(config.Entity);
+
+        EntityUid? actionId = default!;
+        if (!_actions.AddAction(target, ref actionId, RevertPolymorphId, target))
+            return;
+
+        comp.PolymorphConfigActions.Add(id, actionId.Value);
+
+        var metaDataCache = MetaData(actionId.Value);
+        _metaData.SetEntityName(actionId.Value, Loc.GetString("polymorph-self-action-name", ("target", entProto.Name)), metaDataCache);
+        _metaData.SetEntityDescription(actionId.Value, Loc.GetString("polymorph-self-action-description", ("target", entProto.Name)), metaDataCache);
+
+        if (_actions.GetAction(actionId) is not {} action)
+            return;
+
+        _actions.SetIcon((action, action.Comp), new SpriteSpecifier.EntityPrototype(config.Entity));
+        _actions.SetEvent(action, new PolymorphConfigActionEvent(config));
+    }
+
+    public void RemovePolymorphAction(string id, EntityUid target, PolymorphableComponent? comp)
+    {
+        if (!Resolve(target, ref comp)) return;
+        if (comp.PolymorphConfigActions is not { } actions) return;
+        if (!actions.TryGetValue(id, out var action)) return;
+        _actions.RemoveAction(target, action);
+        actions.Remove(id);
+    }
+    //Starlight end
 }

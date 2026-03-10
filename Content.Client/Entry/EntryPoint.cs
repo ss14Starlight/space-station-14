@@ -1,4 +1,5 @@
 ﻿using Content.Client._Starlight.Managers;
+using Content.Client._NullLink; // NullLink
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -82,6 +83,7 @@ namespace Content.Client.Entry
         [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _clientsidePlaytimeManager = default!;
         [Dependency] private readonly INullLinkPlayerRolesManager _nullLinkPlayerRolesManager = default!; //NullLink
+        [Dependency] private readonly INullLinkPlayerResourcesManager _nullLinkResourcesManager = default!; //NullLink
         [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _sharedNullLinkPlayer = default!; //NullLink
         [Dependency] private readonly PreWrittenDocumentManager _documentManager = default!; // Starlight
 
@@ -195,6 +197,7 @@ namespace Content.Client.Entry
 
             // NullLink start
             _nullLinkPlayerRolesManager.Initialize();
+            _nullLinkResourcesManager.Initialize();
             _sharedNullLinkPlayer.Initialize();
             // NullLink end
 

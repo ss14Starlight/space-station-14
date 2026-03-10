@@ -3,17 +3,17 @@
   recognition:
   # DB1
     alfa:
-      - STARLIGHT.delta
+  #    - STARLIGHT.delta
       - TRIESTEPORT.main
       - AFTERLIGHT.main
       - CLOVER.main
     beta:
-      - STARLIGHT.delta
+  #    - STARLIGHT.delta
       - TRIESTEPORT.main
       - AFTERLIGHT.main
       - CLOVER.main
     gamma:
-      - STARLIGHT.delta
+  #    - STARLIGHT.delta
       - TRIESTEPORT.main
       - AFTERLIGHT.main
       - CLOVER.main

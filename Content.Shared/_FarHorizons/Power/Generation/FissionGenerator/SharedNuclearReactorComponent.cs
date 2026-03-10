@@ -24,12 +24,14 @@ public sealed class NuclearReactorBuiState : BoundUserInterfaceState
     public float ReactorTherm = 0;
     public float ControlRodActual = 0;
     public float ControlRodSet = 0;
+
+    public float ReactionRatio = 0.5f;
 }
 
 [Serializable, NetSerializable, DataDefinition]
 public sealed partial class ReactorSlotBUIData
 {
-    public double Temperature = 0f;
+    public float Temperature = 0f;
     public int NeutronCount = 0;
     public string IconName = "base";
     public string PartName = "empty";
@@ -40,9 +42,9 @@ public sealed partial class ReactorSlotBUIData
 }
 
 [Serializable, NetSerializable]
-public sealed class ReactorItemActionMessage(Vector2d position) : BoundUserInterfaceMessage
+public sealed class ReactorItemActionMessage(Vector2i position) : BoundUserInterfaceMessage
 {
-    public Vector2d Position { get; } = position;
+    public Vector2i Position { get; } = position;
 }
 
 [Serializable, NetSerializable]

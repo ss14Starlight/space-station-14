@@ -23,7 +23,6 @@ using Content.Shared.Body.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Tag;
 using Robust.Shared.Random;
-using Content.Shared.Bed.Sleep;
 using Content.Server._Starlight.NullSpace;
 using Content.Server._Starlight.Bluespace;
 using Content.Server.Stunnable;
@@ -33,6 +32,8 @@ using Content.Shared.Ensnaring;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Mobs.Components;
+using Robust.Shared.Map.Components;
+using Content.Server.GameTicking;
 
 namespace Content.Server._Starlight.Shadekin;
 
@@ -54,13 +55,13 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SleepingSystem _sleeping = default!;
     [Dependency] private readonly NullSpacePhaseSystem _nullspace = default!;
     [Dependency] private readonly StunSystem _stunSystem = default!;
     [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedEnsnareableSystem _ensnareable = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     private static readonly ProtoId<TagPrototype> _theDarkTag = "TheDark";
     private static readonly ProtoId<TagPrototype> _coreTag = "ShadekinCore";
@@ -332,6 +333,23 @@ public sealed partial class ShadekinSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// Spawn "The Dark"
+    /// </summary>
+    public void SpawnTheDark()
+    {
+        var query = EntityQueryEnumerator<MapComponent>();
+        while (query.MoveNext(out var mapuid, out var mapcomp))
+        {
+            if (mapcomp.MapPaused)
+                continue;
+
+            if (_tag.HasTag(mapuid, _theDarkTag))
+                return;
+        }
+        _gameTicker.StartGameRule("TheDarkMap");
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -361,11 +379,6 @@ public sealed partial class ShadekinSystem : EntitySystem
 
             if (component.CurrentState == ShadekinState.Extreme)
                 ApplyLightDamage(uid, 1);
-
-            if (TryComp<BodyComponent>(uid, out var body))
-                foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((uid, body)))
-                    if (core.Comp1.OrganOwner != uid)
-                        ApplyCoreDamage(uid, 1);
 
             if (TryComp<BrighteyeComponent>(uid, out var brighteye))
                 UpdateEnergy(uid, component, brighteye);

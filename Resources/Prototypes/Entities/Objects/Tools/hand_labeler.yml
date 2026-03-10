@@ -20,12 +20,16 @@
         enum.HandLabelerUiKey.Key:
           type: HandLabelerBoundUserInterface
     - type: HandLabeler
+    # Starlight-start
+      blacklist:
+        tags:
+          - NotLabelable
+    # Starlight-end
       whitelist:
         components:
           - Item
         tags:
           - Structure
-          - Labelable # Starlight: Playable races can be labeled
     - type: PhysicalComposition
     # Starlight-start: Vending Machines Prices
     - type: ItemPrice

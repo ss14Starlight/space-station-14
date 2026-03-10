@@ -64,11 +64,13 @@
       enum.CommunicationsConsoleUiKey.Key:
         toggleAction: ActionAGhostShowCommunications
   - type: CrewMonitoringConsole
+    pagingSoundLocal: true # Starlight: Only AI player hears paging sounds
   - type: GeneralStationRecordConsole
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
     transmitFrequencyId: ShuttleTimer
+  - type: StationLimitedNetwork # Starlight
   - type: RadarConsole
     followEntity: false
   - type: CommunicationsConsole

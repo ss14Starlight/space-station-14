@@ -42,6 +42,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using ItemToggleMeleeWeaponComponent = Content.Shared.Item.ItemToggle.Components.ItemToggleMeleeWeaponComponent;
+using Content.Shared.Wieldable.Components; // Starlight
+using Content.Shared._Starlight.Combat.Disarming; // Starlight
+using Content.Shared._Starlight.Camera; // Starlight | ES Screenshake
 
 namespace Content.Shared.Weapons.Melee;
 
@@ -67,6 +70,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] private   readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private   readonly DamageExamineSystem _damageExamine = default!;
+    [Dependency] private readonly ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
 
     private const int AttackMask = (int) (CollisionGroup.MobMask | CollisionGroup.Opaque);
 
@@ -584,6 +588,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         if (damageResult.GetTotal() > FixedPoint2.Zero)
         {
             DoDamageEffect(targets, user, targetXform);
+            DoScreenshake(user, targets); // Starlight | ES Screenshake
         }
 
         // Starlight-start
@@ -754,6 +759,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         if (appliedDamage.GetTotal() > FixedPoint2.Zero)
         {
             DoDamageEffect(targets, user, Transform(targets[0]));
+            DoScreenshake(user, targets); // Starlight | ES Screenshake
         }
 
         // Starlight-start
@@ -856,6 +862,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         {
             chance += malus.Malus;
         }
+        
+        //Starlight begin
+        if (TryComp<WieldableComponent>(inTargetHand, out var wieldable))
+            if (wieldable.Wielded)
+                chance += wieldable.DisarmMalus;
+        //Starlight end
 
         return Math.Clamp(chance, 0f, 1f);
     }
@@ -881,6 +893,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         {
             return false;
         }
+        
+        if (HasComp<NoDisarmComponent>(target)) return false; // Starlight
 
         // Need hands or to be able to be shoved over.
         if (!TryComp<HandsComponent>(target, out var targetHandsComponent))
@@ -1077,4 +1091,25 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             }
         }
     }
+    
+    //Starlight begin | ES Screenshake
+    private void DoScreenshake(EntityUid uid, List<EntityUid> targets)
+    {
+        var userRotation = new ScreenshakeParameters
+        {
+            Trauma = 0.08f,
+            DecayRate = 1,
+            Frequency = 0.009f,
+        };
+        var otherTranslation = new ScreenshakeParameters
+        {
+            Trauma = 0.45f,
+            DecayRate = 1.1f,
+            Frequency = 0.04f,
+        };
+        _shake.Screenshake(uid, null, userRotation);
+        foreach(var target in targets)
+            _shake.Screenshake(target, otherTranslation, null);
+    }
+    //Starlight end
 }

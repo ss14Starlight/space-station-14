@@ -1,0 +1,283 @@
+- type: roleLoadout
+  id: JobRoboticist
+  groups:
+  - RoboticistHead
+  - RoboticistGoggles
+  - RoboticistJumpsuit
+  - RoboticistGloves
+  - RoboticistOuterClothing
+  - RoboticistBackpack
+  - RoboticistShoes
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobMagistrate
+  groups:
+  - MagistrateJumpsuit
+  - MagistrateEyewear
+  - MagistrateHands
+  - MagistrateHead
+  - MagistrateOuterclothing
+  - CommonBackpack
+  - MagistrateShoes
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - LuxuryPens
+  - GroupSpeciesBreathTool
+
+
+- type: roleLoadout
+  id: JobSurgeon
+  groups:
+  - GroupTankHarness
+  - MedicalDoctorHead
+  - MedicalMask
+  - MedicalDoctorJumpsuit
+  - MedicalGloves
+  - MedicalBackpack
+  - MedicalDoctorOuterClothing
+  - MedicalShoes
+  - MedicalDoctorPDA
+  - MedicalEyewear
+  - SurvivalMedical
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - GroupSpeciesBreathToolMedical
+
+- type: roleLoadout
+  id: JobNanoTrasenRepresentative
+  groups:
+  - NanoTrasenRepresentativeHead
+  - NanoTrasenRepresentativeJumpsuit
+  - NanoTrasenRepresentativeEyewear
+  - CommonBackpack
+  - NanotrasenRepresentativeShoes
+  - Trinkets
+  - Scarves
+  - Pins
+  - NTRPens
+  - Survival
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobIAA
+  groups:
+  - LawyerNeck
+  - LawyerJumpsuit
+  - CommonBackpack
+  - LawyerShoes
+  - Trinkets
+  - Scarves
+  - Pins
+  - LuxuryPens
+  - Survival
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobBlueShield
+  groups:
+  - BlueShieldHead
+  - BlueShieldJumpsuit
+  - BlueShieldBackpack
+  - BlueShieldOuterclothing
+  - BlueShieldBelt
+  - InsulsCombat
+  - BlueShieldShoes
+  - BlueShieldNeck
+  - BlueShieldEyewear
+  - BlueShieldPDA
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - SurvivalSecurity
+  - GroupSpeciesBreathToolSecurity
+
+- type: roleLoadout
+  id: JobMiningSpecialist
+  groups:
+  - GroupTankHarness
+  - SalvageSpecialistBackpack
+  - MiningSpecialistJumpsuit
+  - SalvageSpecialistOuterClothing
+  - SalvageSpecialistShoes
+  - MiningSpecialistPDA
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobMailTech
+  groups:
+  - GroupTankHarness
+  - CargoTechnicianHead
+  - CargoTechnicianJumpsuit
+  - CargoTechnicianBackpack
+  - CargoTechnicianOuterClothing
+  - CargoTechnicianShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobBrigmedic
+  groups:
+  - BrigmedicHead
+  - BrigmedicMask
+  - BrigmedicJumpsuit
+  - BrigmedicBackpack
+  - BrigmedicOuterClothing
+  - BrigmedicBelt
+  - BrigmedicGloves
+  - BrigmedicEyewear
+  - BrigmedicPDA
+  - BrigmedicBeaker
+  - SecurityTie
+  - SecurityShoes
+  - SecurityNonLethalWeapon
+  - SecuritySidearm
+  - SurvivalSecurity
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - SecurityJobTrinkets
+  - GroupSpeciesBreathToolSecurity
+
+- type: roleLoadout
+  id: JobDutyOfficer
+  groups:
+  - DutyOfficerHead
+  - DutyOfficerJumpsuit
+  - SecurityBackpack
+  - SecurityEyewear
+  - DutyOfficerOuterClothing
+  - DutyOfficerBelt
+  - SecurityTie
+  - SecurityShoes
+  - SecurityGloves
+  - SecurityNonLethalWeapon
+  - SurvivalSecurity
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - SecurityJobTrinkets
+  - GroupSpeciesBreathToolSecurity
+
+- type: roleLoadout
+  id: JobSalvageLead
+  groups:
+    - GroupTankHarness
+    - SalvageSpecialistBackpack
+    - SalvageLeadJumpsuit
+    - SalvageLeadNeck
+    - SalvageSpecialistOuterClothing
+    - SalvageSpecialistShoes
+    - SalvageLeadPDA
+    - Glasses
+    - Survival
+    - Trinkets
+    - Scarves
+    - Pins
+    - Pens
+    - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobPerformer
+  groups:
+  - GroupTankHarness
+  - PerformerHead
+  - PerformerJumpsuit
+  - CommonBackpack
+  - CivilianShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - PerformerJobTrinkets
+  - GroupSpeciesBreathTool
+
+# Wildcards
+- type: roleLoadout
+  id: JobZookeeper
+  groups:
+  - CommonBackpack
+  - CivilianShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - ZookeeperJobTrinkets
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
+  id: JobBoxer
+  groups:
+  - BoxerJumpsuit
+  - BoxerGloves
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - BoxerJobTrinkets
+  - GroupSpeciesBreathTool
+
+# Antagonist Loadouts
+- type: roleLoadout
+  id: AntagXenoborg
+  nameDataset: NamesXenoborg
+  canCustomizeName: true
+  groups:
+  - SiliconBrainType
+
+- type: roleLoadout
+  id: AntagMothership
+  nameDataset: NamesXenoborg
+  canCustomizeName: true
+
+- type: roleLoadout
+  id: AntagBrighteye
+  groups:
+  - BrighteyeJumpsuit
+  - BrighteyeNeck
+  - BrighteyeShoes
+  - BrighteyeGloves
+  - Scarves
+  - Pins
+
+- type: roleLoadout
+  id: JobNanotrasenCareerTrainer
+  groups:
+  - NanotrasenCareerTrainerJumpsuit
+  - NanotrasenCareerTrainerHat
+  - NanotrasenCareerTrainerEyewear
+  - NanotrasenCareerTrainerShoes
+  - CommonBackpack
+  - Trinkets
+  - Survival
+  - GroupSpeciesBreathTool

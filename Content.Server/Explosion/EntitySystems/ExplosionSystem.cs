@@ -29,6 +29,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Camera; // Starlight | ES Screenshake
 
 namespace Content.Server.Explosion.EntitySystems;
 
@@ -55,6 +56,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     [Dependency] private readonly FlammableSystem _flammableSystem = default!;
     [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+    [Dependency] private readonly ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
 
     private EntityQuery<FlammableComponent> _flammableQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
@@ -348,7 +350,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         var visualEnt = CreateExplosionVisualEntity(pos, queued.Proto.ID, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
 
         // camera shake
-        CameraShake(iterationIntensity.Count * 4f, pos, queued.TotalIntensity * 10f);
+        // CameraShake(iterationIntensity.Count * 4f, pos, queued.TotalIntensity * 10f); // Starlight | ES Screenshake
         
         // smoke
         
@@ -383,6 +385,13 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             ? queued.Proto.SmallSoundFar
             : queued.Proto.SoundFar;
 
+        //Starlight begin | ES Screenshake
+        var shakeParams = iterationIntensity.Count < queued.Proto.SmallSoundIterationThreshold
+            ? new ScreenshakeParameters { Trauma = 0.4f, DecayRate = 0.2f, Frequency = 0.014f }
+            : new ScreenshakeParameters { Trauma = 0.6f, DecayRate = 0.05f, Frequency = 0.014f };
+        _shake.Screenshake(filter, shakeParams, null);
+        //Starlight end
+        
         _audio.PlayGlobal(farSound, farFilter, true, farSound.Params);
 
         return new Explosion(this,

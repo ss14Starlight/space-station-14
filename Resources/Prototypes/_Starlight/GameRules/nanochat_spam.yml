@@ -1,0 +1,10 @@
+- type: entity
+  id: NanoChatSpam
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+  - type: NanoChatSpamRule
+    minDelay: 5  # 2m
+    maxDelay: 10  # 5m
+    maxRecipientsPerMessage: 3  # Up to 3 people get each spam
+    recipientChance: 0.3  # 30% of eligible players get spam

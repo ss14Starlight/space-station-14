@@ -1,7 +1,6 @@
 using Content.Server.Light.EntitySystems;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Shadekin;
-using Content.Shared.Light;
 using Content.Shared.Light.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
@@ -13,7 +12,7 @@ public sealed partial class ShadegenSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PoweredLightSystem _light = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedHandheldLightSystem _handheldLight = default!;
+    [Dependency] private readonly HandheldLightSystem _handheldLight = default!;
     private readonly HashSet<EntityUid> _updateQueue = new();
 
     public override void Initialize()
@@ -53,7 +52,7 @@ public sealed partial class ShadegenSystem : EntitySystem
                 _updateQueue.Add(light.Owner);
 
                 if (TryComp<HandheldLightComponent>(light.Owner, out var handheldcomp) && handheldcomp.Activated)
-                    _handheldLight.TurnOff(new Entity<HandheldLightComponent>(light.Owner, handheldcomp));
+                    _handheldLight.TurnOff((light.Owner, handheldcomp), makeNoise: false);
 
                 if (component.DestroyLights && TryComp<PoweredLightComponent>(light.Owner, out var poweredcomp) && poweredcomp.On)
                     if (_light.TryDestroyBulb(light.Owner, poweredcomp))

@@ -25,13 +25,15 @@
                 
                 <Label Text="{Loc 'ui-options-tts-label'}"
                     StyleClasses="LabelKeyText"/>
-                <!--🌟Starlight🌟-->
+                <!--🌟Starlight🌟 start-->
                 <CheckBox Name="TtsClientCheckBox" Text="{Loc 'ui-options-tts-enabled'}" />
                 <CheckBox Name="TtsRadioQueueCheckBox" Text="{Loc 'ui-options-tts-radio-queue-enabled'}" />
-                
+
                 <ui:OptionSlider Name="SliderTts" Title="{Loc 'ui-options-tts-volume'}" />
                 <ui:OptionSlider Name="SliderTtsRadio" Title="{Loc 'ui-options-tts-radio-volume'}" />
                 <ui:OptionSlider Name="SliderTtsAnnounce" Title="{Loc 'ui-options-tts-announce-volume'}"/>
+                <ui:OptionSlider Name="SliderTtsChime" Title="{Loc 'ui-options-tts-chime-volume'}" />
+              <!--🌟Starlight🌟 end-->
             </BoxContainer>
         </BoxContainer>
         <ui:OptionsTabControlRow Name="Control" Access="Public" />

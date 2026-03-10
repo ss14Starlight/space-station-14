@@ -119,3 +119,45 @@ thaven-mood-crawler-desc = It is impolite not to perform a deep bow by entering 
 
 thaven-mood-elevated-name = The Floor Is Lava
 thaven-mood-elevated-desc = You prefer to be elevated whenever possible - Standing atop tables, railings, etc., is where you feel the most comfortable.
+
+thaven-mood-not-our-place-name = Not Our Place
+thaven-mood-not-our-place-desc = You believe that Thaven moods have no place in this society. Thaven that engage in such frivolous behavior should be shunned.
+
+thaven-mood-department-hates-you-name = {$department} Hates You
+thaven-mood-department-hates-you-desc = You have done something terrible to the {$department} department. You must seek forgiveness.
+
+thaven-mood-department-phobia-name = {$department}phobia
+thaven-mood-department-phobia-desc = The {$department} department is incredibly scary to you. You should avoid it at all cost.
+
+thaven-mood-photophobia-name = Photophobia
+thaven-mood-photophobia-desc = Light is distressing to you. You should stay in dark places as much as possible.
+
+thaven-mood-contrarian-name = Contrarian
+thaven-mood-contrarian-desc = Actually, you think exactly the opposite of whatever the shared mood is, and adamantly mock other Thaven who engage with it.
+
+thaven-mood-self-conscious-name = Self-conscious
+thaven-mood-self-conscious-desc = It’s deeply embarrassing to act on your other moods. Being caught doing so is the worst fate imaginable.
+
+thaven-mood-its-hard-to-say-name = It’s Hard to Say
+thaven-mood-its-hard-to-say-desc = You can never outright say what you want from someone, you can only give them hot-or-cold hints.
+
+thaven-mood-pathological-liar-in-training-name = Pathological Liar in Training
+thaven-mood-pathological-liar-in-training-desc = Whenever someone asks you a question, you will lie, apologize, and then tell the truth. Every time.
+
+thaven-mood-praise-is-belittling-name = Praise is Incredibly Belittling
+thaven-mood-praise-is-belittling-desc = You sarcastically praise anyone below you whenever they do something, but would never do this to someone above you. Likewise, you will only accept praise from your superiors and take it as an insult from anyone else.
+
+thaven-mood-denier-of-consumption-name = Denier of the General Concept of Consumption
+thaven-mood-denier-of-consumption-desc = You strongly believe that consumption of any kind of physical matter (food, drink, air or chemicals) is a pointless novelty which you’ve never partaken in, nor ever will. You are incapable of acknowledging when you contradict this idea.
+
+thaven-mood-flesh-is-sacred-name = The Flesh Is Sacred
+thaven-mood-flesh-is-sacred-desc = Your body is a wonderful gift, and to modify or damage it is a vile act.
+
+thaven-mood-incredibly-distrusting-name = Incredibly Distrusting
+thaven-mood-incredibly-distrusting-desc = You do not trust anyone except other Thaven, unless someone you trust vouches for them.
+
+thaven-mood-perceived-dissonance-name = Perceived Dissonance
+thaven-mood-perceived-dissonance-desc = {$language} hurts your delicate ears and hearing it should be avoided at all costs.
+
+thaven-mood-germophobe-name = Germophobe
+thaven-mood-germophobe-desc = You are afraid of these little creatures that conquer every nook and cranny. Make sure to clean your tools and workplace regularly with soap, so not even prints are left.

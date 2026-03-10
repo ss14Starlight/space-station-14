@@ -13,11 +13,13 @@
   id: FlowerWreath
   equipment:
     neck: ClothingHeadHatFlowerWreath # Starlight: Roundstart equipped
+  groupBy: "flowers" # Starlight 
 
 - type: loadout
   id: Hairflower
   equipment:
     head: ClothingHeadHatHairflower # Starlight: Roundstart equipped
+  groupBy: "flowers" # Starlight 
 
 # Headphones
 - type: loadout
@@ -32,12 +34,14 @@
   storage:
     back:
     - PlushieLizard
+  groupBy: "wehzards" # Starlight
 
 - type: loadout
   id: PlushieSpaceLizard
   storage:
     back:
     - PlushieSpaceLizard
+  groupBy: "wehzards" # Starlight
 
 - type: loadout
   id: ThreeCandles

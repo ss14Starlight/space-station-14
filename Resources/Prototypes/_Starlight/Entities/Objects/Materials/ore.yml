@@ -1,0 +1,101 @@
+- type: entity
+  parent: OreBase
+  id: AbyssiumOre
+  name: abyssium ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: AbyssiumOre
+    count: 10
+  - type: Sprite
+    sprite: _Starlight/Objects/Materials/ore.rsi
+    state: abyssium
+    scale: 0.5, 0.5
+  - type: Item
+    sprite: _Starlight/Objects/Materials/ore.rsi
+    size: Normal
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawAbyssium: 100
+  - type: Extractable
+    grindableSolutionName: abyssiumore
+  - type: SolutionContainerManager
+    solutions:
+      abyssiumore:
+        reagents:
+        - ReagentId: Iron
+          Quantity: 10
+  - type: PointLight
+    radius: 1.2
+    energy: 0.8
+    castShadows: false
+    color: "#DDFFFF"
+  - type: Tag
+    tags:
+    - Ore
+
+#stack
+- type: stack
+  id: AbyssiumOre
+  name: stack-abyssium-ore
+  icon: { sprite: _Starlight/Objects/Materials/ore.rsi, state: abyssium }
+  spawn: AbyssiumOre1
+  maxCount: 10
+  
+- type: entity
+  parent: AbyssiumOre
+  id: AbyssiumOre1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+# Raw Bluespace
+- type: entity
+  parent: OreBase
+  id: RawBluespaceCrystal
+  name: raw bluespace crystal
+  description: A glowing bluespace crystal, not much is known about how they work. It looks very delicate.
+  suffix: Full
+  components:
+    - type: Stack
+      stackType: RawBluespaceCrystal
+      baseLayer: base
+      layerStates:
+        - bluespace_crystal
+        - bluespace_crystal_2
+        - bluespace_crystal_3
+    - type: Sprite
+      sprite: _Starlight/Objects/Materials/materials.rsi
+      state: bluespace_crystal_3
+      layers:
+        - state: bluespace_crystal_3
+          map: ["base"]
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        RawBluespaceCrystal: 100
+    - type: Item
+      heldPrefix: bluespace
+    - type: Appearance
+    - type: Tag
+      tags:
+        - Ore
+        - RawMaterial
+
+- type: entity
+  parent: RawBluespaceCrystal
+  id: RawBluespaceCrystal1
+  suffix: Single
+  components:
+    - type: Stack
+      count: 1
+
+- type: entity
+  parent: RawBluespaceCrystal
+  id: RawBluespaceCrystal10
+  suffix: 10
+  components:
+    - type: Stack
+      count: 10

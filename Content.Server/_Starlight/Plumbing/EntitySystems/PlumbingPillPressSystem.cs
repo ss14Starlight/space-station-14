@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Server._Starlight.Plumbing.Components;
 using Content.Server._Starlight.Plumbing.Nodes;
+using Content.Shared.Starlight.Medical.Items.Components;
 using Content.Shared._Starlight.Plumbing;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Chemistry;
@@ -8,12 +9,14 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
+using Content.Shared.Labels.EntitySystems;
 using Content.Shared.NodeContainer;
 using Content.Shared.UserInterface;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using SharedAppearanceSystem = Robust.Shared.GameObjects.SharedAppearanceSystem;
 
@@ -32,9 +35,12 @@ public sealed class PlumbingPillPressSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly PlumbingPullSystem _pullSystem = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly LabelSystem _labelSystem = default!;
 
     private static readonly EntProtoId PillPrototypeId = "Pill";
     private static readonly EntProtoId PatchPrototypeId = "Patch";
+    private const int MaxOutputEntitiesOnTile = 30;
 
     /// <summary>Max dosage matches the ChemMaster limit.</summary>
     private const uint MaxDosage = 20;
@@ -48,6 +54,7 @@ public sealed class PlumbingPillPressSystem : EntitySystem
         SubscribeLocalEvent<PlumbingPillPressComponent, PlumbingDeviceUpdateEvent>(OnDeviceUpdate);
         SubscribeLocalEvent<PlumbingPillPressComponent, PlumbingPillPressToggleMessage>(OnToggle);
         SubscribeLocalEvent<PlumbingPillPressComponent, PlumbingPillPressSetDosageMessage>(OnSetDosage);
+        SubscribeLocalEvent<PlumbingPillPressComponent, PlumbingPillPressSetLabelMessage>(OnSetLabel);
         SubscribeLocalEvent<PlumbingPillPressComponent, PlumbingPillPressSetOutputModeMessage>(OnSetOutputMode);
         SubscribeLocalEvent<PlumbingPillPressComponent, PlumbingPillPressSetPillTypeMessage>(OnSetPillType);
         SubscribeLocalEvent<PlumbingPillPressComponent, PlumbingPillPressSetMixingMessage>(OnSetMixing);
@@ -73,21 +80,33 @@ public sealed class PlumbingPillPressSystem : EntitySystem
         var dosage = FixedPoint2.New(ent.Comp.Dosage);
         var produced = false;
 
-        while (solution.Volume >= dosage)
+        if (solution.Volume >= dosage)
         {
+            // Spawn on the same tile, offset slightly south
+            var spawnCoords = Transform(ent.Owner).Coordinates.Offset(new Vector2(0, -0.3f));
+
+            if (GetOutputEntityCount(spawnCoords) >= MaxOutputEntitiesOnTile)
+            {
+                _appearance.SetData(ent.Owner, PlumbingVisuals.Running, false);
+                UpdateUiState(ent);
+                return;
+            }
+
             var withdrawal = _solutionSystem.SplitSolution(solutionEnt.Value, dosage);
 
             if (withdrawal.Volume <= FixedPoint2.Zero)
-                break;
+            {
+                _appearance.SetData(ent.Owner, PlumbingVisuals.Running, false);
+                UpdateUiState(ent);
+                return;
+            }
 
             produced = true;
-
-            // Spawn on the same tile, offset slightly south
-            var spawnCoords = Transform(ent.Owner).Coordinates.Offset(new Vector2(0, -0.3f));
 
             if (ent.Comp.OutputMode == PillPressOutputMode.Pill)
             {
                 var item = Spawn(PillPrototypeId, spawnCoords);
+                _labelSystem.Label(item, ent.Comp.Label);
                 _solutionSystem.EnsureSolutionEntity(item,
                     SharedChemMaster.PillSolutionName,
                     out var itemSolution,
@@ -103,6 +122,7 @@ public sealed class PlumbingPillPressSystem : EntitySystem
             else
             {
                 var item = Spawn(PatchPrototypeId, spawnCoords);
+                _labelSystem.Label(item, ent.Comp.Label);
 
                 _solutionSystem.EnsureSolutionEntity(item,
                     SharedChemMaster.PatchSolutionName,
@@ -208,6 +228,17 @@ public sealed class PlumbingPillPressSystem : EntitySystem
         UpdateUiState(ent);
     }
 
+    private void OnSetLabel(Entity<PlumbingPillPressComponent> ent, ref PlumbingPillPressSetLabelMessage args)
+    {
+        if (args.Label.Length > SharedChemMaster.LabelMaxLength)
+            return;
+
+        ent.Comp.Label = args.Label;
+        DirtyField(ent, ent.Comp, nameof(PlumbingPillPressComponent.Label));
+        ClickSound(ent);
+        UpdateUiState(ent);
+    }
+
     private void OnSetOutputMode(Entity<PlumbingPillPressComponent> ent, ref PlumbingPillPressSetOutputModeMessage args)
     {
         ent.Comp.OutputMode = args.OutputMode;
@@ -289,6 +320,7 @@ public sealed class PlumbingPillPressSystem : EntitySystem
             ent.Comp.Dosage,
             ent.Comp.OutputMode,
             ent.Comp.PillType,
+            ent.Comp.Label,
             ent.Comp.Enabled,
             ent.Comp.MixingEnabled,
             ent.Comp.InletRatioEast,
@@ -303,5 +335,18 @@ public sealed class PlumbingPillPressSystem : EntitySystem
     {
         if (TryComp<PlumbingDeviceComponent>(uid, out var device))
             _audio.PlayPvs(device.ClickSound, uid, AudioParams.Default.WithVolume(-2f));
+    }
+
+    private int GetOutputEntityCount(EntityCoordinates coords)
+    {
+        var count = 0;
+
+        foreach (var entity in _lookup.GetEntitiesIntersecting(coords))
+        {
+            if (HasComp<PillComponent>(entity) || HasComp<PatchComponent>(entity))
+                count++;
+        }
+
+        return count;
     }
 }

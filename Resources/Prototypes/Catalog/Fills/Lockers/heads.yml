@@ -255,7 +255,7 @@
     - id: ClothingMaskGasAtmos
     - id: ClothingOuterHardsuitEngineeringWhite
     - id: ClothingShoesBootsMagAdv
-    - id: JetpackVoidFilled
+    - id: JetpackVoidEngineerFilled #Starlight edit: CE's custom pack for steal objective
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
 
@@ -307,12 +307,15 @@
     - id: AutoMenderBurnFilled #Starlight
     - id: AutoMenderBruteFilled #Starlight
     - id: CMOLicense #STARLIGHT
+    - id: EncryptionKeyMedicalScience # Starlight, steal target
+      prob: 0.5 # Starlight
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
       - !type:GamemodeCondition #SL
         presets: #SL
         - Greenshift #SL
         - Sandbox #SL
+    - id: JawsOfLifeMed #Starlight
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -364,7 +367,8 @@
     - id: DoorRemoteResearch
     - id: HandTeleporter
     - id: RubberStampRd
-    - id: RDDiploma #STARLIGHT
+    - id: EncryptionKeyMedicalScience # Starlight, steal target
+      prob: 0.5 # Starlight
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
       - !type:GamemodeCondition #SL

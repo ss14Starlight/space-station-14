@@ -1,9 +1,21 @@
 - type: guideEntry
+  id: NuclearGenerator
+  name: guide-entry-nuclear-generator
+  text: "/ServerInfo/_FarHorizons/Guidebook/Engineering/NuclearGenerator.xml"
+  children:
+  - NuclearReactor
+  - GasTurbine
+  - NuclearMaterials
+
+- type: guideEntry
   id: NuclearReactor
   name: guide-entry-nuclear-reactor
   text: "/ServerInfo/_FarHorizons/Guidebook/Engineering/NuclearReactor.xml"
-  children:
-  - NuclearMaterials
+
+- type: guideEntry
+  id: GasTurbine
+  name: guide-entry-gas-turbine
+  text: "/ServerInfo/_FarHorizons/Guidebook/Engineering/GasTurbine.xml"
 
 - type: guideEntry
   id: NuclearMaterials

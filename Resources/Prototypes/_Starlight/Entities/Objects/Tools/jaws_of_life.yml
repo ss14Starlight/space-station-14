@@ -1,0 +1,74 @@
+- type: entity
+  name: jaws of life
+  parent: SyndicateJawsOfLife
+  id: SyndicateJawsOfLifeStealth # For the saboteur borg: It's syndie jaws painted as normal jaws.
+  description: A set of jaws of life, compressed through the magic of science.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/jaws_of_life.rsi
+    state: jaws_pry
+
+- type: entity
+  name: medical jaws of life
+  parent: [ BaseItem, BaseMedicalSecurityContraband ]
+  id: JawsOfLifeMed
+  description: A set of jaws of life, for pulling the injured out of whatever mess they put themselves in.
+  components:
+  - type: Tag
+    tags:
+    - JawsOfLife
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/jaws_of_life.rsi
+    state: jaws_pry
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: _Starlight/Objects/Tools/jaws_of_life.rsi
+    quickEquip: false
+    slots:
+      - Belt
+  - type: ToolTileCompatible
+    delay: 0.5
+  - type: Tool
+    qualities:
+      - Prying
+    useSound: /Audio/Items/jaws_pry.ogg
+  - type: Prying
+    force: true
+    speedModifier: 1.0
+    useSound: /Audio/Items/jaws_pry.ogg
+    pryPowered: true #SL
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
+    playSoundOnDoafter: true #SL
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: Prying
+        sprite:
+          sprite: _Starlight/Objects/Tools/jaws_of_life.rsi
+          state: jaws_pry
+        useSound: /Audio/Items/jaws_pry.ogg
+        changeSound: /Audio/Items/change_jaws.ogg
+      - behavior: Cutting
+        sprite:
+          sprite: _Starlight/Objects/Tools/jaws_of_life.rsi
+          state: jaws_cutter
+        useSound: /Audio/Items/jaws_cut.ogg
+        changeSound: /Audio/Items/change_jaws.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    damage:
+      types:
+        Blunt: 10
+    soundHit:
+      collection: MetalThud
+  # 🌟Starlight-start🌟
+  - type: SurgeryTool
+    successRate: 0.8
+    speed: 0.8
+    startSound:
+      path: /Audio/Items/jaws_cut.ogg
+    endSound:
+      path: /Audio/Items/change_jaws.ogg
+  - type: BoneSaw
+  # 🌟Starlight-end🌟

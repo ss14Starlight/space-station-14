@@ -35,12 +35,13 @@ namespace Content.Server.Communications
         [DataField]
         public Color Color = Color.Gold;
 
+        //Starlight begin - remove VV readonly
         /// <summary>
         /// Time in seconds between announcement delays on a per-console basis
         /// </summary>
-        [ViewVariables]
         [DataField]
         public int Delay = 90;
+        //Starlight end
 
         /// <summary>
         /// Time in seconds of announcement cooldown when a new console is created on a per-console basis
@@ -81,6 +82,17 @@ namespace Content.Server.Communications
         /// Upon map init, this will attempt to find this station's Central Command and automatically append it.
         /// </summary>
         [ViewVariables] public List<EntityUid> AdditionalGrids = [];
+        
+        /// <summary>
+        /// Whether this console can broadcast to screens around the station.
+        /// </summary>
+        [DataField]
+        public bool CanBroadcast = true;
+
+        /// <summary>
+        /// Alert levels that can be set from this console.
+        /// </summary>
+        [DataField] public List<string>? SettableAlertLevels;
         //Starlight end
     }
 }

@@ -1,5 +1,5 @@
 NanoTrasenRepresentative-loadout = NanoTrasen representative's loadout
-loadout-group-insuls = Insulated gloves
-loadout-group-gloves-generic = Gloves
-loadout-group-head-generic = Head
+loadout-group-insuls-normal = Insulated gloves
+loadout-group-insuls-combat = Insulated combat gloves
+loadout-group-insuls-captain = Captain insulated gloves
 loadout-group-gloves-sec = Security Gloves

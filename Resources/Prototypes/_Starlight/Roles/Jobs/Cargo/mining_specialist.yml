@@ -1,0 +1,41 @@
+﻿- type: job
+  id: MiningSpecialist
+  name: job-name-miningspec
+  description: job-description-miningspec
+  playTimeTracker: JobMiningSpecialist
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 3h # Less complex than salv, just learn how to use the shuttle
+    - !type:OverallPlaytimeRequirement 
+      time: 5h # Same as above
+  icon: "JobIconMiningSpecialist"
+  startingGear: MiningSpecialistGear
+  supervisors: job-supervisors-qm
+  access:
+  - Cargo
+  - Mining
+  - Maintenance
+  - External
+  extendedAccess:
+  - Salvage
+
+- type: startingGear
+  id: MiningSpecialistGear
+  equipment:
+    ears: ClothingHeadsetMining
+    belt: OreBag
+    #storage:
+    #back:
+    #- Stuff
+
+- type: chameleonOutfit
+  id: MiningSpecialistChameleonOutfit
+  job: MiningSpecialist
+  equipment:
+    head: ClothingHeadHatCargosoft
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGasExplorer
+    outerClothing: ClothingOuterWinterMiner
+    neck: ClothingNeckScarfStripedBrown
+    gloves: ClothingHandsGlovesColorBlack

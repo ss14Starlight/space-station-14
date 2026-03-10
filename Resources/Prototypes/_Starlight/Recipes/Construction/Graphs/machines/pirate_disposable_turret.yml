@@ -1,0 +1,16 @@
+- type: constructionGraph
+  id: WeaponTurretPirateDisposable
+  start: disposableTurret
+  graph:
+  - node: disposableTurret
+    entity: WeaponTurretPirateDisposable
+    edges:
+    - to: disposableTurret
+      completed:
+      - !type:SpawnPrototype
+            prototype: ToolboxElectricalTurret
+            amount: 1
+      - !type:DeleteEntity {}
+      steps:
+        - tool: Screwing
+          doAfter: 10

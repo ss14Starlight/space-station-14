@@ -18,3 +18,5 @@
       posData: !type:TargetInFront
   - type: SpeakOnAction
     sentence: action-speech-spell-forcewall
+    tts: action-speech-spell-forcewall-tts
+    modifier: Spell

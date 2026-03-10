@@ -20,7 +20,7 @@
 - type: startingGear
   id: MedicalInternGear
   equipment:
-    shoes: ClothingShoesColorWhite
+#    shoes: ClothingShoesColorWhite Starlight loadout options enabled
     id: MedicalInternPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled

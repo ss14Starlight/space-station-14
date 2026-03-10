@@ -177271,7 +177271,7 @@ entities:
     - type: Transform
       pos: -10.623228,76.85322
       parent: 2
-- proto: WeaponRevolverSnubRevolver
+- proto: WeaponRevolverDispatcher
   entities:
   - uid: 28674
     components:

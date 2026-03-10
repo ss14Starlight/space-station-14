@@ -129,6 +129,72 @@
                     0.15
                 ]
             ]
+        },
+        {
+            "name": "honk",
+            "directions": 1,
+            "delays":
+            [
+                [
+                    0.15,
+                    0.15
+                ]
+            ]
+        },
+        {
+            "name": "vip",
+            "directions": 1,
+            "delays":
+            [
+                [
+                    0.15,
+                    0.15
+                ]
+            ]
+        },
+        {
+            "name": "dm",
+            "directions": 1,
+            "delays":
+            [
+                [
+                    0.15,
+                    0.15
+                ]
+            ]
+        },
+        {
+            "name": "admin",
+            "directions": 1,
+            "delays":
+            [
+                [
+                    0.15,
+                    0.15
+                ]
+            ]
+        },
+        {
+            "name": "uwu",
+            "directions": 1,
+            "delays":
+            [
+                [
+                    0.15,
+                    0.15
+                ]
+            ]
+        },
+        {
+            "name": "event",
+            "directions": 1,
+            "delays":
+            [
+                [
+                    0.15,
+                    0.15
+                ]
+            ]
         }
     ]
 }

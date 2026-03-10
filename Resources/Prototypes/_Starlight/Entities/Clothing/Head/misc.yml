@@ -1,0 +1,50 @@
+- type: entity
+  parent: [ ClothingHeadBase ]
+  id: ClothingHeadHatWhiteCatEars
+  name: white cat ears
+  description: "NYAH!"
+  components:
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+  - type: Sprite
+    sprite: Clothing/Head/Hats/catears.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/catears.rsi
+  - type: AddAccentClothing
+    accent: OwOAccent
+  - type: StaticPrice
+    price: 15
+
+- type: entity
+  parent: [ClothingHeadHatWhiteCatEars, BaseToggleClothing]
+  id: ClothingHeadHatWhiteCatEarsValid
+  suffix: Valid, DO NOT MAP
+  categories: [ DoNotMap ]
+  components:
+  - type: ToggleClothing
+    action: ActionBecomeValid
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: KillSign
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+  - type: Sprite
+    sprite: Clothing/Head/Hats/catears.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/catears.rsi
+  - type: AddAccentClothing
+    accent: OwOAccent
+
+- type: entity
+  name: lily
+  parent: ClothingHeadHatHairflower
+  id: ClothingHeadHatLilyFlower
+  description: A beautiful orange flower.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/lily.rsi
+    state: produce
+  - type: Clothing
+    sprite: Objects/Specific/Hydroponics/lily.rsi

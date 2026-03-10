@@ -1,0 +1,28 @@
+- type: entity
+  id: BaseStationCryoTeleportation
+  abstract: true
+  components:
+  - type: StationCryoTeleportation
+  
+- type: entity
+  id: BaseStationAlertArmories
+  abstract: true
+  components:
+    - type: AlertArmoryStation
+      shuttles:
+        gamma:
+          shuttle: /Maps/_Starlight/Shuttles/CC-NT/GammaWeaponry.yml
+          announcement: announcement-gamma-armory
+          recallAnnouncement: announcement-gamma-armory-recall
+        psi:
+          shuttle: /Maps/_Starlight/Shuttles/CC-NT/PsiArmory.yml
+          announcement: announcement-psi-armory
+          announcementColor: "#2288ff"
+          recallAnnouncement: announcement-psi-armory-recall
+          recallAnnouncementColor: "#2288ff"
+        medical:
+          shuttle: /Maps/_Starlight/Shuttles/CC-NT/EmergencyMedicalPod.yml
+          announcement: announcement-med-pod
+          announcementColor: "#34c3eb"
+          recallAnnouncement: announcement-med-pod-recall
+          recallAnnouncementColor: "#34c3eb"

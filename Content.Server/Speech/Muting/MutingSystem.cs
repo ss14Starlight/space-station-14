@@ -6,7 +6,9 @@ using Content.Shared.Chat.Prototypes;
 using Content.Shared.Puppet;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Muting;
-using Content.Server._Starlight.Language; // Starlight
+using Content.Server._Starlight.Language;
+using Content.Server._Starlight.Speech.EntitySystems; // Starlight
+using Content.Shared.StatusEffectNew; // Starlight
 
 namespace Content.Server.Speech.Muting
 {
@@ -20,6 +22,12 @@ namespace Content.Server.Speech.Muting
             SubscribeLocalEvent<MutedComponent, SpeakAttemptEvent>(OnSpeakAttempt);
             SubscribeLocalEvent<MutedComponent, EmoteEvent>(OnEmote, before: new[] { typeof(VocalSystem), typeof(MumbleAccentSystem) });
             SubscribeLocalEvent<MutedComponent, ScreamActionEvent>(OnScreamAction, before: new[] { typeof(VocalSystem) });
+            
+            // Starlight START
+            // Remove when WizDen finally migrates mute status effect to StatusEffectNew
+            SubscribeLocalEvent<MutedComponent, StatusEffectAppliedEvent>((_, _, ref args) => EnsureComp<MutedComponent>(args.Target));
+            SubscribeLocalEvent<MutedComponent, StatusEffectRemovedEvent>((_, _, ref args) => RemComp<MutedComponent>(args.Target));
+            // Starlight END
         }
 
         private void OnEmote(EntityUid uid, MutedComponent component, ref EmoteEvent args)

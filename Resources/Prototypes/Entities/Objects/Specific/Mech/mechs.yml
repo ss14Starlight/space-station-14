@@ -78,32 +78,12 @@
   components:
   - type: MobMover
   - type: Mech
+# 🌟Starlight-start🌟
+    batteryWhitelist: 
+      tags:
+      - MechReactor
+# 🌟Starlight-end🌟
   - type: MechAir
-  - type: AirFilter
-    # everything except oxygen and nitrogen
-    gases:
-    - CarbonDioxide
-    - Plasma
-    - Tritium
-    - WaterVapor
-    - Ammonia
-    - NitrousOxide
-    - Frezon
-    #- Helium3 TODO: fusion
-    # remove everything except oxygen to maintain oxygen ratio
-    overflowGases:
-    - Nitrogen
-    - CarbonDioxide
-    - Plasma
-    - Tritium
-    - WaterVapor
-    - Ammonia
-    - NitrousOxide
-    - Frezon
-    #- Helium3 TODO: fusion
-  - type: AtmosDevice
-    requireAnchored: false
-    joinSystem: true
   - type: DoAfter
   - type: Repairable
     fuelCost: 25
@@ -223,9 +203,9 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 14 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
+        Blunt: 25 #Starlight - Ripley gets to punch, but is *not* safe
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.25
+    baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 3.6
   - type: PointLight
     mask: /Textures/Effects/LightMasks/cone.png
@@ -246,7 +226,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - MechReactorHigh #Starlight - MechReactors
 
 # Ripley MK-II
 - type: entity
@@ -273,7 +253,7 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.4
+    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
     airtight: true
     pilotWhitelist:
       components:
@@ -283,10 +263,12 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 20
+  #Starlight Start
+        Blunt: 25 #brought in line with Ripley
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 2
+    baseWalkSpeed: 2 #All mechs walk at the same speed
+    baseSprintSpeed: 3.0 #Mk II is still slower, but not unusably slow
+  #Starlight End
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: PointLight
@@ -312,7 +294,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - MechReactorHigh #Starlight - MechReactors
       mech-gas-tank-slot:
       - MechAirTankFilled
 
@@ -344,7 +326,7 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.60
+    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
     airtight: true
     maxEquipmentAmount: 4 # 🌟Starlight-Change
     pilotWhitelist:
@@ -359,7 +341,7 @@
       types:
         Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech. # 
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.5
+    baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 4
   - type: PointLight
     mask: /Textures/Effects/LightMasks/cone.png
@@ -376,7 +358,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - MechReactorHigh #Starlight - MechReactors
       mech-gas-tank-slot:
       - MechAirTankFilled
 
@@ -412,7 +394,7 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.5
+    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
     airtight: true
     pilotWhitelist:
       components:
@@ -424,7 +406,7 @@
       types:
         Blunt: 26
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.5
+    baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 4.5
   - type: MechThrusters
   - type: PointLight
@@ -442,7 +424,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - MechReactorHigh #Starlight - MechReactors
       mech-gas-tank-slot:
       - MechAirTankFilled
 
@@ -469,7 +451,7 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.5
+    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
     airtight: true # Space Honks is real.
     pilotWhitelist:
       components:
@@ -483,7 +465,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - MechReactorHigh #Starlight - MechReactors
 
 - type: entity
   parent: MechHonkerBattery
@@ -517,7 +499,7 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.2
+    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
     maxEquipmentAmount: 2
     airtight: true
     pilotWhitelist:
@@ -531,7 +513,7 @@
         Blunt: 10 #thwack
         Structural: 2
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.4
+    baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 3.7
 
 - type: entity
@@ -542,7 +524,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - MechReactorHigh #Starlight - MechReactors
       mech-gas-tank-slot:
       - MechAirTankFilled
 
@@ -583,7 +565,7 @@
     brokenState: base-broken
     maxEquipmentAmount: 0
     # keep mouse safe
-    mechToPilotDamageMultiplier: 0.1
+    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
     airtight: true
     pilotWhitelist:
       tags:
@@ -596,7 +578,7 @@
         Blunt: 10 #thwack
         Structural: 2
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.25
+    baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 3.6
   - type: Access
     tags:
@@ -612,7 +594,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - MechReactorHigh #Starlight - MechReactors
       mech-gas-tank-slot:
       - MechAirTankFilled
 
@@ -639,7 +621,7 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.3
+    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
     airtight: true
     maxIntegrity: 325
     pilotWhitelist:
@@ -654,7 +636,7 @@
         Structural: 180
   - type: MovementSpeedModifier
 # 🌟Starlight-start🌟
-    baseWalkSpeed: 2.5
+    baseWalkSpeed: 2 #All mechs walk at the same speed
     baseSprintSpeed: 4.0
 # 🌟Starlight-end🌟
   - type: Damageable
@@ -675,7 +657,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - MechReactorHigh #Starlight - MechReactors
       mech-gas-tank-slot:
       - MechAirTankFilled
 
@@ -700,7 +682,7 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    mechToPilotDamageMultiplier: 0.15
+    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
     airtight: true
     maxIntegrity: 465
     pilotWhitelist:
@@ -714,8 +696,8 @@
         Blunt: 40
         Structural: 220
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.7
-    baseSprintSpeed: 2.2
+    baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
+    baseSprintSpeed: 2.8 #Starlight - No longer unusably slow
   - type: Damageable
     damageModifierSet: DurandArmor
   - type: MechThrusters
@@ -737,7 +719,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - MechReactorHigh #Starlight - MechReactors
       mech-gas-tank-slot:
       - MechAirTankFilled
 
@@ -764,7 +746,7 @@
     baseState: marauder
     openState: marauder-open
     brokenState: marauder-broken
-    mechToPilotDamageMultiplier: 0.1
+    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
     airtight: true
     maxIntegrity: 575
     maxEquipmentAmount: 4
@@ -779,8 +761,8 @@
         Blunt: 40
         Structural: 200
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
+    baseSprintSpeed: 2.2 #Starlight - No longer unusably slow
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: MechThrusters
@@ -796,7 +778,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHyper
+      - MechReactorHyper #Starlight - MechReactors
       mech-gas-tank-slot:
       - MechAirTankFilled
 
@@ -833,7 +815,7 @@
     baseState: seraph
     openState: seraph-open
     brokenState: seraph-broken
-    mechToPilotDamageMultiplier: 0.05
+    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
     airtight: true
     maxIntegrity: 700
     maxEquipmentAmount: 5
@@ -848,7 +830,7 @@
         Blunt: 60
         Structural: 400
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
+    baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 3.7
   - type: Damageable
     damageModifierSet: HeavyArmorNT
@@ -865,7 +847,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellAntiqueProto
+      - MechReactorAntique #Starlight - MechReactors
       mech-gas-tank-slot:
       - MechAirTankFilled
 
@@ -905,7 +887,7 @@
     baseState: darkgygax
     openState: darkgygax-open
     brokenState: darkgygax-broken
-    mechToPilotDamageMultiplier: 0.15
+    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
     airtight: true
     maxIntegrity: 375
     maxEquipmentAmount: 4
@@ -920,7 +902,7 @@
         Blunt: 30
         Structural: 200
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3.0
+    baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 4.5 # 🌟Starlight-Change - Faster than regular Gygax
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
@@ -943,7 +925,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellMicroreactor
+      - MechReactorMicro #Starlight - MechReactors
       mech-gas-tank-slot:
       - MechAirTankFilled
 
@@ -980,7 +962,7 @@
     baseState: mauler
     openState: mauler-open
     brokenState: mauler-broken
-    mechToPilotDamageMultiplier: 0.1
+    mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
     airtight: true
     maxIntegrity: 550
     maxEquipmentAmount: 5
@@ -995,8 +977,8 @@
         Blunt: 50
         Structural: 400
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
+    baseSprintSpeed: 2.2 #Starlight - No longer unusably slow
   - type: Damageable
     damageModifierSet: MaulerArmor
   - type: MechThrusters
@@ -1019,7 +1001,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellMicroreactor
+      - MechReactorMicro #Starlight - MechReactors
       mech-gas-tank-slot:
       - MechAirTankFilled
 

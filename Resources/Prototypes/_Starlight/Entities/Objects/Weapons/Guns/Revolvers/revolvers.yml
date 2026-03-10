@@ -1,0 +1,148 @@
+- type: entity
+  name: Makeshift Revolver
+  parent: [BaseWeaponRevolver, BaseMinorContraband]
+  id: WeaponRevolverMakeshift
+  description: Little more than a hand-cannon with a high chance of blowing up in your face.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Revolvers/makeshift_revolver.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Revolvers/makeshift_revolver.rsi
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeMagnum
+        - CartridgeMagnumImprovised
+        - SpeedLoaderMagnum
+        - SpeedLoaderMagnumImprovised
+    proto: null
+    capacity: 1
+    chambers: [ null ]
+    ammoSlots: [ null ]
+  - type: Construction
+    graph: MakeshiftRevolverGraph
+    node: shotgun
+  - type: WeaponDismantleOnShoot
+    dismantleChance: 0.30
+    selfDamage:
+      types:
+        Blunt: 8
+        Heat: 8
+    items:
+      - id: ModularBarrel
+        launchAngle: 0
+        prob: 1
+      - id: ModularReceiver
+        launchAngle: 90
+        prob: 0.10
+      - id: RifleStock
+        launchAngle: 180
+        prob: 0.80
+
+- type: entity
+  name: Improvised Revolver
+  parent: WeaponRevolverMakeshift
+  id: WeaponRevolverImprovised
+  description: A revolver that has two barrels and no cylinder. Can you really call this a revolver?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Revolvers/improvised_revolver.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Revolvers/improvised_revolver.rsi
+  - type: RevolverAmmoProvider
+    capacity: 2
+    chambers: [ null, null]
+    ammoSlots: [ null, null]
+  - type: Construction
+    graph: ImprovisedRevolverGraph
+    node: shotgun
+  - type: WeaponDismantleOnShoot
+    dismantleChance: 0.10
+    items:
+      - id: ModularBarrel
+        launchAngle: 0
+        prob: 1
+      - id: ModularReceiver
+        launchAngle: 90
+        prob: 0.10
+      - id: SheetSteel1
+        launchAngle: 67
+        prob: 0.70
+      - id: RifleStock
+        launchAngle: 180
+        prob: 0.80
+
+- type: entity
+  name: Forged Revolver
+  parent: WeaponRevolverImprovised
+  id: WeaponRevolverForged
+  description: The best Tider engineering can offer, a revolver with the ability to hold 4 bullets! 
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Revolvers/forged_revolver.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Revolvers/forged_revolver.rsi
+  - type: RevolverAmmoProvider
+    capacity: 4
+    chambers: [ null, null, null, null]
+    ammoSlots: [ null, null, null, null]
+  - type: WeaponDismantleOnShoot
+    dismantleChance: 0
+
+- type: entity
+  name: NT Model-7 'Dispatcher' Service Revolver
+  parent: [BaseWeaponRevolver, BaseSecurityContraband]
+  id: WeaponRevolverDispatcher
+  description: The Model 7, known unofficially as the 'Dispatcher.' chambered in .45 Magnum with robust stopping power for putting an end to any non-compliance. A true timeless classic carried amongst Nanotrasen's elite security staff.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Revolvers/Dispatcher.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Revolvers/Dispatcher.rsi
+  - type: Item
+    storedOffset: 0,-2
+  - type: Gun
+    fireRate: 1.25
+    availableModes:
+    - SemiAuto
+    selectedMode: SemiAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/revolver_stronger.ogg
+  - type: RevolverAmmoProvider
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+  - type: StealTarget
+    stealGroup: OfficerHandgun
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate 
+    weight: 0.01 
+
+- type: entity
+  name: TOZ-82 'Jupiter'
+  parent: [BaseWeaponRevolver, BaseSecuritySalvageContraband]
+  id: WeaponRevolverZOZ
+  description: An oversized bullpup revolver whose design was smuggled out of the USSP. You might need both hands for this one. It's got a flip-out bayonet, but the damned thing is stuck shut. Loads 6 rounds of .45 magnum.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Revolvers/ZOZ82.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Revolvers/ZOZ82.rsi
+  - type: Item
+    storedOffset: 0,-2
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -3
+    maxAngle: -16
+  - type: Gun
+    minAngle: 4
+    maxAngle: 18
+    fireRate: 2.3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+      params:
+        volume: 2.25

@@ -1,0 +1,44 @@
+- type: entityTable
+  id: MeatWallLoot
+  table: !type:GroupSelector
+    children:
+    - id: MaterialSheetMeat1
+    - id: FoodMeat
+    - id: FoodMeatHuman
+    - id: FoodMeatFish
+    - id: FoodMeatBacon
+    - id: FoodMeatBear
+    - id: FoodMeatPenguin
+    - id: FoodMeatChicken
+    - id: FoodMeatDuck
+    - id: FoodMeatCrab
+    - id: FoodMeatGoliath
+    - id: FoodMeatRat
+    - id: FoodMeatDragon
+    - id: FoodMeatLizard
+    - id: FoodMeatPlant
+    - id: FoodMeatRotten
+    - id: FoodMeatRotten
+    - id: FoodMeatRotten
+    - id: FoodMeatRotten
+    - id: FoodMeatRotten
+    - id: FoodMeatSpider
+    - id: FoodMeatSnake
+    - id: FoodMeatHuman
+    - id: FoodMeatHuman
+    - id: FoodMeatHuman
+    - id: FoodMeatXeno
+    - id: FoodMeatClown
+    - id: FoodMeatSlime
+    - id: FoodMeatSnail
+    - id: MaterialBiomass1
+    - id: MaterialBiomass1
+    - id: MaterialBiomass1
+    - id: MaterialBones1
+    - id: FoodMeatAnomaly
+    - id: FoodMeatAnomaly
+    - id: MaterialBones1
+    - id: MaterialBones1
+    - id: BaseMobFleshSalvage
+    - id: MobFleshJaredSalvage
+    - id: MobFleshGolemSalvage

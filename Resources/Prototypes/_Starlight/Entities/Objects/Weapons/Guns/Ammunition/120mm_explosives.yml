@@ -1,0 +1,90 @@
+# Starlight 120mm Ammunition
+
+# Base 120mm Grenade
+- type: entity
+  abstract: true
+  parent: [BaseItem, BaseMajorContraband]
+  id: Base120mmGrenade
+  name: base 120mm grenade
+  components:
+  - type: Tag
+    tags:
+    - Grenade120mm
+  - type: Item
+    size: Normal
+  - type: Sprite
+
+# 120mm Blast Grenade (3x stronger than normal blast grenade)
+- type: entity
+  parent: Base120mmGrenade
+  id: Grenade120mmBlast
+  name: 120mm blast grenade
+  description: A devastating 120mm blast grenade designed for the NTSF-CYERXA cannon system. Three times more powerful than standard blast grenades.
+  components:
+  - type: CartridgeAmmo
+    proto: BulletGrenade120mmBlast
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: blast
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: blast
+    suffix: false
+  - type: StaticPrice
+    price: 500
+
+# 20-Round Magazine for 120mm Blast Grenades
+- type: entity
+  parent: BaseMagazineGrenade
+  id: Magazine120mmGrenadeBlast
+  name: 120mm blast grenade magazine
+  description: A large 20-round magazine loaded with powerful blast grenades for the NTSF-CYERXA cannon system.
+  components:
+  - type: Tag
+    tags:
+    - MagazineGrenade120mm
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - Grenade120mm
+    proto: Grenade120mmBlast
+    capacity: 20
+    soundRack:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        variation: 0.05
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+      params:
+        variation: 0.05
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-4
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: StaticPrice
+    price: 800
+
+- type: entity
+  parent: Magazine120mmGrenadeBlast
+  id: Magazine120mmGrenadeBlastEmpty
+  name: 120mm blast grenade magazine (empty)
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - Grenade120mm
+    capacity: 20

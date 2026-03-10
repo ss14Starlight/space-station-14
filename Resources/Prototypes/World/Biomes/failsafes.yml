@@ -18,4 +18,14 @@
           prob: 0.7
         - id: AsteroidDebrisLarger
           prob: 0.4
-
+# Starlight Start
+        - id: TrashDebrisSmall
+        - id: TrashDebrisMedium
+        - id: TrashDebrisLarge
+          prob: 0.4
+        - id: MeatDebrisSmall
+        - id: MeatDebrisMedium
+          prob: 0.2
+        - id: MeatDebrisLarge
+          prob: 0.1
+#Starlight End

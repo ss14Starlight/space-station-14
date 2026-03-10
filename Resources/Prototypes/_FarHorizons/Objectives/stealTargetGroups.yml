@@ -4,5 +4,5 @@
   id: ReactorFuelRodSteal
   name: steal-target-groups-reactorfuelrod
   sprite:
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
+    sprite: _FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi
     state: default_rod

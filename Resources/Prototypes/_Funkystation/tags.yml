@@ -5,7 +5,7 @@
   id: MetalHydrogenArmor
 
 - type: Tag # Funky atmos - /tg/ gases
-  id: UraniumSheet
+  id: SheetUranium # Starlight Edit: UraniumSheet -> SheetUranium
 
 - type: Tag # Funky atmos - /tg/ gases
-  id: PlasmaSheet
+  id: SheetPlasma # Starlight Edit: PlasmaSheet -> SheetPlasma

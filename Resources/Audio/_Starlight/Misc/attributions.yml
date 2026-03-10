@@ -23,11 +23,6 @@
   copyright: "Skyrat"
   source: "https://github.com/Skyrat-SS13/Skyrat-tg"
 
-- files: ["self_greeting.ogg"]
-  license: "CC-BY-3.0"
-  copyright: "teapoterror (Discord)"
-  source: "https://discord.com/invite/HyDhPwAmUq"
-
 - files: ["omega_alt.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made by AftrLife (https://github.com/AftrLite) for DeltaV renamed into omega_alt for STARLIGHT"

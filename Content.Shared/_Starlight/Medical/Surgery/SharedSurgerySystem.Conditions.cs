@@ -26,6 +26,20 @@ public abstract partial class SharedSurgerySystem
         SubscribeLocalEvent<SurgeryAnyAccentConditionComponent, SurgeryValidEvent>(OnAnyAccentConditionValid);
         SubscribeLocalEvent<SurgeryAnyLimbSlotConditionComponent, SurgeryValidEvent>(OnAnyLimbSlotConditionValid);
         SubscribeLocalEvent<SurgeryLimbSlotConditionComponent, SurgeryValidEvent>(OnLimbSlotConditionValid);
+        SubscribeLocalEvent<SurgeryHasCompConditionComponent, SurgeryValidEvent>(OnHasCompConditionValid);
+    }
+
+    private void OnHasCompConditionValid(Entity<SurgeryHasCompConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (ent.Comp.Component == null)
+            return; // nothing to check
+
+        foreach (var comp in (ent.Comp.Component ?? []).Values)
+            if (!EntityManager.HasComponent(args.Body, comp.Component.GetType()))
+            {
+                args.Cancelled = true;
+                return;
+            }
     }
 
     private void OnOrganDontExistConditionValid(Entity<SurgeryOrganDontExistConditionComponent> ent, ref SurgeryValidEvent args)

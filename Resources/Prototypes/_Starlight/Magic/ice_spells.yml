@@ -1,0 +1,68 @@
+# Ice Storm Spell - Projectile-based ice spell
+- type: entity
+  parent: BaseAction
+  id: ActionIceStorm
+  name: Ice Storm
+  description: Summon a freezing blast of ice that chills everything it touches! (Cooldown of 2 minutes)
+  components:
+  - type: Magic
+  - type: Action
+    useDelay: 120 # 2 minutes
+    itemIconStyle: BigAction
+    raiseOnUser: true
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/fireball.ogg
+    icon:
+      sprite: Structures/Specific/Anomalies/ice_anom.rsi
+      state: anom
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:MultiProjectileSpellEvent  # Starlight: Changed to fire multiple projectiles
+      prototype: ProjectileIceStormSingle
+      projectileCount: 3  # Starlight: Shoot 3 ice spikes
+      spreadDegrees: 12  # Starlight: Tight spread like a shotgun
+  - type: SpeakOnAction
+    sentence: action-speech-spell-icestorm
+    tts: action-speech-spell-icestorm-tts
+    modifier: Spell
+
+# Starlight: Ice Storm projectile
+- type: entity
+  id: ProjectileIceStormSingle
+  parent: BaseBulletTrigger
+  name: ice spike
+  description: A freezing spike of magical ice!
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/ice_anom.rsi
+    layers:
+    - state: bullet
+  - type: Projectile
+    damage:
+      types:
+        Cold: 30
+        Heat: 15  # Starlight: Frostburn effect - extreme cold causes burning sensation
+        Piercing: 12
+        Structural: 40
+    soundHit:
+      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+  - type: ChangeTemperatureOnCollide
+    heat: -120000 # Starlight: Very cold, in Joules (negative = cooling)
+    ignoreHeatResistance: false
+  - type: TriggerOnCollide
+    fixtureID: projectile
+  # Starlight: Spawn IceCrust debris and replace tiles with snow while the projectile is flying
+  - type: IceTrail
+    spawnInterval: 0.05  # Starlight: Spawn IceCrust every 0.05 seconds
+    iceChance: 0.55  # Starlight: 55% ice, 45% snow
+    iceEntityId: IceCrust  # Starlight: Ice crust debris entity
+    snowTileId: FloorSnow  # Starlight: Snow floor tile
+  # Starlight: Custom component to spawn IceCrust debris and replace tiles with snow in a circle when hitting humanoids
+  - type: IceSpawnOnTrigger
+    radius: 2  # Starlight: 2 tile radius for a smaller area
+    requireHumanoid: true  # Starlight: Only create ice circle if we hit a living humanoid
+    iceChance: 0.60  # Starlight: 60% ice, 40% snow
+    iceEntityId: IceCrust  # Starlight: Ice crust debris entity
+    snowTileId: FloorSnow  # Starlight: Snow floor tile

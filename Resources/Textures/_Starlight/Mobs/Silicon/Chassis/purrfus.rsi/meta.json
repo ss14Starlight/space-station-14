@@ -22,6 +22,54 @@
         {
             "name": "borg_l",
             "directions": 4
+        },
+		{
+            "name": "green",
+            "directions": 4
+        },
+        {
+            "name": "green_e",
+            "directions": 4
+        },
+        {
+            "name": "green_e_r",
+            "directions": 4
+        },
+        {
+            "name": "green_l",
+            "directions": 4
+        },
+		{
+            "name": "orange",
+            "directions": 4
+        },
+        {
+            "name": "orange_e",
+            "directions": 4
+        },
+        {
+            "name": "orange_e_r",
+            "directions": 4
+        },
+        {
+            "name": "orange_l",
+            "directions": 4
+        },
+		{
+            "name": "pink",
+            "directions": 4
+        },
+        {
+            "name": "pink_e",
+            "directions": 4
+        },
+        {
+            "name": "pink_e_r",
+            "directions": 4
+        },
+        {
+            "name": "pink_l",
+            "directions": 4
         }
     ]
 }

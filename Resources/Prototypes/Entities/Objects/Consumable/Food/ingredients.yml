@@ -64,6 +64,12 @@
     damage:
       types:
         Blunt: 0
+  #Starlight start
+  - type: ExaminableSolution
+    solution: food
+    examinableWhileClosed: false
+    heldOnly: true
+  #Starlight end
 
 - type: entity
   abstract: true
@@ -267,6 +273,15 @@
           Quantity: 20
   - type: Edible
     edible: Drink # slurping sounds!
+  #Starlight start
+    solution: food
+    destroyOnEmpty: false
+    utensil: None
+  - type: Openable
+    sound:
+      collection: pop
+    closeable: true
+  #Starlight end
 
 - type: entity
   parent: ReagentPacketBase
@@ -295,7 +310,17 @@
   - type: Tag
     tags:
       - Mayo
-      - Condiment #Starlight
+  #Starlight start
+      - Condiment
+  - type: Openable
+    closeable: true
+  - type: Edible
+    edible: Drink # slurping sounds!
+    solution: food
+    destroyOnEmpty: false
+    utensil: None
+  #Starlight end
+
 # - type: entity
 #   parent: ReagentPacketBase
 #   id: ReagentContainerAllspice

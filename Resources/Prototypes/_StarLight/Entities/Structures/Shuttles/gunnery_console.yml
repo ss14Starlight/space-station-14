@@ -1,0 +1,73 @@
+# SGS-GUNNERY — Starlight Gunnery Console
+# A targeting-radar station that lets crew aim and remotely fire shuttle-mounted
+# cannons, and guide EMP rockets via LMB-drag. Not anchorable; not researchable.
+
+- type: entity
+  id: ComputerGunneryConsole
+  name: gunnery console
+  description: A dedicated fire-control station. Displays a tactical radar overlay showing shuttle cannons, draws aim lines, and allows guided control of EMP rockets. Cannot be anchored.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: solar_screen
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True:  { visible: true,  shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True:  { visible: true,  shader: unshaded }
+          False: { visible: true,  shader: shaded }
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.35"
+        density: 300
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Pullable
+  - type: Clickable
+  - type: InteractionOutline
+  - type: GunneryConsole
+    maxRange: 512
+  - type: ActivatableUI
+    key: enum.GunneryConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.GunneryConsoleUiKey.Key:
+        type: GunneryConsoleBoundUserInterface
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    enabled: false
+    color: "#ff6010"
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: StaticPrice
+    price: 3500
+  - type: ContainerContainer
+    containers: {}

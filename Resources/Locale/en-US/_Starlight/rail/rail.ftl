@@ -441,3 +441,6 @@ rr-brighteye-backup-desc = We will need help for our next move...
 
 rr-brighteye-darkstation = Dark Station
 rr-brighteye-darkstation-desc = Let the dark consume the station and all the lightwalkers with it.
+
+rr-brighteye-steal-secureknowledge = Hear no evil
+rr-brighteye-steal-secureknowledge-desc = This is a threat... We must remove that information from the lightwalkers hands.

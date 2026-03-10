@@ -1,3 +1,5 @@
+alert-level-announcement-sender = Attention! {$sender} has called {$name} alert! {$announcement}
+
 alert-level-omega = Omega
 alert-level-omega-announcement = Fluctuations in the Null Scar indicate this station is out of phase with its standard reality. I hope whatever you have done is worth it.
 alert-level-omega-instructions = Reevaluate your decisions.

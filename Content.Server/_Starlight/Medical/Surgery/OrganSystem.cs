@@ -18,7 +18,7 @@ using Content.Shared._Starlight.Cybernetics.Components;
 using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Tag;
-using Content.Shared.VentCraw;
+using Content.Shared.VentCrawl;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;

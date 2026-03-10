@@ -19,6 +19,7 @@ public sealed partial class PlumbingPillPressWindow : DefaultWindow
 
     public event Action<bool>? OnToggle;
     public event Action<uint>? OnSetDosage;
+    public event Action<string>? OnSetLabel;
     public event Action<PillPressOutputMode>? OnSetOutputMode;
     public event Action<uint>? OnSetPillType;
     public event Action<bool>? OnSetMixing;
@@ -60,6 +61,9 @@ public sealed partial class PlumbingPillPressWindow : DefaultWindow
                 return;
             OnSetDosage?.Invoke(val);
         };
+
+        LabelInput.IsValid = s => s.Length <= SharedChemMaster.LabelMaxLength;
+        SetLabelButton.OnPressed += _ => OnSetLabel?.Invoke(LabelInput.Text);
 
         MixingToggle.OnToggled += args =>
         {
@@ -180,6 +184,9 @@ public sealed partial class PlumbingPillPressWindow : DefaultWindow
         // Update dosage don't overwrite while user is typing
         if (!DosageInput.HasKeyboardFocus())
             DosageInput.Text = state.Dosage.ToString();
+
+        if (!LabelInput.HasKeyboardFocus())
+            LabelInput.Text = state.Label;
 
         OutputModeSelector.SelectId((int) state.OutputMode);
 

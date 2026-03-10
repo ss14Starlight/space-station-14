@@ -3,6 +3,7 @@ using Content.Server.Radiation.Components;
 using Content.Server.Radiation.Events;
 using Content.Shared.Radiation.Components;
 using Content.Shared.Radiation.Systems;
+using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
@@ -139,6 +140,10 @@ public partial class RadiationSystem
             var rads = 0f;
             foreach (var source in _sources)
             {
+                // Afterlight Edit: Don't apply an artifact's radiation to itself
+                if (source.Entity.Owner == destUid && HasComp<XenoArtifactComponent>(destUid))
+                    continue;
+
                 // send ray towards destination entity
                 if (Irradiate(source, destUid, destTrs, destWorld, debug) is not { } ray)
                     continue;

@@ -25,6 +25,9 @@ public sealed class PlumbingPillPressBoundUserInterface : BoundUserInterface
         _window.OnSetDosage += dosage =>
             SendMessage(new PlumbingPillPressSetDosageMessage(dosage));
 
+        _window.OnSetLabel += label =>
+            SendMessage(new PlumbingPillPressSetLabelMessage(label));
+
         _window.OnSetOutputMode += mode =>
             SendMessage(new PlumbingPillPressSetOutputModeMessage(mode));
 

@@ -1,0 +1,137 @@
+- type: entity
+  parent: [ ClothingHeadset, BaseLawContraband ]
+  id: ClothingHeadsetIAA
+  name: internal affairs agent headset
+  description: A headset for internal affairs agent to hear the captain's last words.
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyLaw
+        - EncryptionKeySecurity
+        - EncryptionKeyCommon
+    - type: Sprite
+      sprite: Clothing/Ears/Headsets/servicesecurity.rsi
+
+- type: entity
+  parent: [ ClothingHeadset, BaseLawContraband ]
+  id: ClothingHeadsetMagistrate
+  name: magistrate headset
+  description: A headset for internal affairs agent to hear the captain's last words.
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyLaw
+        - EncryptionKeySecurity
+        - EncryptionKeyCommon
+        - EncryptionKeyCommand
+    - type: Sprite
+      sprite: _Starlight/Clothing/Ears/Headsets/magi.rsi
+
+- type: entity
+  parent: [ ClothingHeadset, BaseMajorContraband ]
+  id: ClothingHeadsetAssistantNinja
+  name: stolen headset
+  components:
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/service.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/ninja.ogg
+
+- type: entity
+  parent: [ ClothingHeadset, BaseSecurityContraband ]
+  id: ClothingHeadsetSecurityWarden
+  name: warden's headset
+  description: This is used by your elite warden.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySecurity
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/security.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/security.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/warden.ogg
+
+- type: entity
+  parent: [ ClothingHeadsetAlt, BaseSovietContraband ]
+  id: ClothingHeadsetAltSoviet
+  name: SSF marine over-ear headset
+  description: Priyom.
+  components:
+  - type: Headset
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySoviet
+  - type: Sprite
+    sprite: _Starlight/Clothing/Ears/Headsets/soviet_headset.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Ears/Headsets/soviet_headset.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/soviet.ogg
+
+- type: entity
+  parent: ClothingHeadsetCargo
+  id: ClothingHeadsetSalvageLead
+  name: salvage lead's headset
+  description: Headset used by the salvage lead.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySalvage
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/mining.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/mining.rsi
+
+- type: entity
+  parent: [BaseTSFContraband, ClothingHeadset]
+  id: ClothingHeadsetTSFTrader
+  name: Trans-Solar Trader's headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTSF
+      - EncryptionKeyMerchant
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/cargo.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/cargo.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/tsf.ogg
+
+- type: entity
+  parent: [ClothingHeadset, BaseCommandContraband]
+  id: ClothingHeadsetNCT
+  name: nanotrasen career trainer radio headset
+  description: This is used by your well-taught corporate training team.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommand
+      - EncryptionKeyCargo
+      - EncryptionKeyEngineering
+      - EncryptionKeyMedicalScience
+      - EncryptionKeyService
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/centcom.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/centcom.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/marauder.ogg

@@ -10,8 +10,8 @@
 
 - files: ["attention.ogg"]
   license: "CC-BY-SA-3.0"
-  copyright: "Taken from tgstation"
-  source: "https://github.com/tgstation/tgstation/blob/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a/sound/ai/default/attention.ogg"
+  copyright: "Darkrell"
+  source: "https://github.com/ss14Starlight"
 
 - files: ["meteors.ogg"]
   license: "CC-BY-SA-3.0"
