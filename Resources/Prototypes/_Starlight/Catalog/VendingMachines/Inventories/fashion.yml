@@ -483,11 +483,11 @@
       stock: 1
 
 - type: listing
-  id: BoxCourier
+  id: BoxCourierPAI
   icon: { sprite: _Starlight/Interface/fashion.rsi, state: courier }
-  productEntity: BoxCourier
+  productEntity: BoxCourierPAI
   cost:
-    NTCredit: 1000
+    NTCredit: 1500
   categories:
     - SLFashionOther
   conditions:
