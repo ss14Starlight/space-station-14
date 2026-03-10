@@ -459,3 +459,267 @@
     canShuttle: false
     global: true
     sound: /Audio/_Starlight/Announcements/tsf_announce.ogg
+
+## Departmental Communications Consoles BEGIN
+
+# Engineering
+- type: entity
+  parent: ComputerComms
+  id: ComputerCommsEngineering
+  name: engineering communications console
+  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: comm-eng
+          sprite: _Starlight/Structures/Machines/computers.rsi
+        - map: ["computerLayerKeys"]
+          state: generic_keys
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: AccessReader
+      access: [[ "ChiefEngineer" ]]
+    - type: CommunicationsConsole
+      title: comms-console-announcement-title-eng
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      color: "#ff733c"
+      settableAlertLevels:
+        - green
+        - yellow
+        - orange
+      canBroadcast: false
+      canShuttle: false
+    - type: Computer
+      board: EngineeringCommsComputerCircuitboard
+    - type: PointLight
+      radius: 1.5
+      energy: 4.0
+      color: "#ff733c"
+
+# Medical
+- type: entity
+  parent: ComputerComms
+  id: ComputerCommsMedical
+  name: medical communications console
+  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: comm-med
+          sprite: _Starlight/Structures/Machines/computers.rsi
+        - map: ["computerLayerKeys"]
+          state: generic_keys
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: AccessReader
+      access: [[ "ChiefMedicalOfficer" ]]
+    - type: CommunicationsConsole
+      title: comms-console-announcement-title-med
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      color: "#57b8f0"
+      settableAlertLevels:
+        - green
+        - violet
+      canBroadcast: false
+      canShuttle: false
+    - type: Computer
+      board: MedicalCommsComputerCircuitboard
+    - type: PointLight
+      radius: 1.5
+      energy: 4.0
+      color: "#57b8f0"
+
+# Science
+- type: entity
+  parent: ComputerComms
+  id: ComputerCommsScience
+  name: science communications console
+  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: comm-sci
+          sprite: _Starlight/Structures/Machines/computers.rsi
+        - map: ["computerLayerKeys"]
+          state: generic_keys
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: AccessReader
+      access: [[ "ResearchDirector" ]]
+    - type: CommunicationsConsole
+      title: comms-console-announcement-title-sci
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      color: "#cd7ccd"
+      settableAlertLevels: []
+      canBroadcast: false
+      canShuttle: false
+    - type: Computer
+      board: ScienceCommsComputerCircuitboard
+    - type: PointLight
+      radius: 1.5
+      energy: 4.0
+      color: "#cd7ccd"
+
+# Security
+- type: entity
+  parent: ComputerComms
+  id: ComputerCommsSecurity
+  name: security communications console
+  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: comm-sec
+          sprite: _Starlight/Structures/Machines/computers.rsi
+        - map: ["computerLayerKeys"]
+          state: generic_keys
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: AccessReader
+      access: [[ "HeadOfSecurity", "Armory" ]]
+    - type: CommunicationsConsole
+      title: comms-console-announcement-title-sec
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      color: "#ff4242"
+      settableAlertLevels:
+        - green
+        - blue
+        - red
+      canBroadcast: false
+      canShuttle: false
+    - type: Computer
+      board: SecurityCommsComputerCircuitboard
+    - type: PointLight
+      radius: 1.5
+      energy: 4.0
+      color: "#ff4242"
+
+# Service
+- type: entity
+  parent: ComputerComms
+  id: ComputerCommsService
+  name: service communications console
+  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: comm-srv
+          sprite: _Starlight/Structures/Machines/computers.rsi
+        - map: ["computerLayerKeys"]
+          state: generic_keys
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: AccessReader
+      access: [[ "HeadOfPersonnel" ]]
+    - type: CommunicationsConsole
+      title: comms-console-announcement-title-srv
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      color: "#539c00"
+      settableAlertLevels: []
+      canBroadcast: false
+      canShuttle: false
+    - type: Computer
+      board: ServiceCommsComputerCircuitboard
+    - type: PointLight
+      radius: 1.5
+      energy: 4.0
+      color: "#539c00"
+
+# Cargo
+- type: entity
+  parent: ComputerComms
+  id: ComputerCommsCargo
+  name: cargo communications console
+  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: comm-sup
+          sprite: _Starlight/Structures/Machines/computers.rsi
+        - map: ["computerLayerKeys"]
+          state: generic_keys
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: AccessReader
+      access: [[ "Quartermaster" ]]
+    - type: CommunicationsConsole
+      title: comms-console-announcement-title-sup
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      color: "#b48b57"
+      settableAlertLevels: []
+      canBroadcast: false
+      canShuttle: false
+    - type: Computer
+      board: CargoCommsComputerCircuitboard
+    - type: PointLight
+      radius: 1.5
+      energy: 4.0
+      color: "#b48b57"
+
+# Law
+- type: entity
+  parent: ComputerComms
+  id: ComputerCommsLaw
+  name: law communications console
+  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: comm-law
+          sprite: _Starlight/Structures/Machines/computers.rsi
+        - map: ["computerLayerKeys"]
+          state: generic_keys
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: AccessReader
+      access: [[ "Magistrate", "IAA" ]]
+    - type: CommunicationsConsole
+      title: comms-console-announcement-title-law
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      color: "#ff178b"
+      settableAlertLevels: []
+      canBroadcast: false
+      canShuttle: false
+    - type: Computer
+      board: LawCommsComputerCircuitboard
+    - type: PointLight
+      radius: 1.5
+      energy: 4.0
+      color: "#ff178b"
+
+## Departmental Communications Consoles END

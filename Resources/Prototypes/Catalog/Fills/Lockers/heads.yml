@@ -255,7 +255,7 @@
     - id: ClothingMaskGasAtmos
     - id: ClothingOuterHardsuitEngineeringWhite
     - id: ClothingShoesBootsMagAdv
-    - id: JetpackVoidFilled
+    - id: JetpackVoidEngineerFilled #Starlight edit: CE's custom pack for steal objective
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
 

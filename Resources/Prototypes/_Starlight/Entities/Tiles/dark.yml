@@ -57,8 +57,9 @@
     - type: TileEntityEffect
       effects:
       - !type:ModifyStatusEffect
-        effectProto: StatusEffectTheDark
-        time: 5
+        effectProto: StatusEffectTheDarkMap
+        type: Add
+        time: 10
 
 
 - type: entity

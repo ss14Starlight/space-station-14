@@ -43,6 +43,7 @@ using Content.Shared._Starlight.Weapons.DualWield;
 using Content.Shared.Mech.Components;
 using Content.Shared.Starlight.Utility;
 using Content.Shared.Weapons.Hitscan.Events;
+using Content.Shared._Starlight.Camera;
 #endregion Starlight
 
 namespace Content.Shared.Weapons.Ranged.Systems;
@@ -75,6 +76,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] protected readonly TagSystem TagSystem = default!;
     [Dependency] protected readonly ThrowingSystem ThrowingSystem = default!;
+    [Dependency] private readonly ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
 
     /// <summary>
     /// Default projectile speed
@@ -117,6 +119,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         InitializeClothing();
         InitializeContainer();
         InitializeSolution();
+        InitializeMech(); //Starlight
 
         // Interactions
         SubscribeLocalEvent<GunComponent, GetVerbsEvent<AlternativeVerb>>(OnAltVerb);
@@ -161,7 +164,11 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
         }
 
-        if (gun.Owner != GetEntity(msg.Gun))
+        // 🌟Starlight🌟 — in dual-wield mode, TryGetGun already picks the correct alternating gun;
+        // skip the gun-ID match check so the server fires the right gun even when the client's
+        // NextIsLeft state hasn't synced back yet.
+        var isDualWield = TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active;
+        if (!isDualWield && gun.Owner != GetEntity(msg.Gun))
             return;
 
         if (TryComp(user, out VentCrawlerComponent? crawlerComp) //🌟Starlight🌟
@@ -170,12 +177,12 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         gun.Comp.ShootCoordinates = GetCoordinates(msg.Coordinates);
         gun.Comp.Target = GetEntity(msg.Target);
-        AttemptShoot(user.Value, gun);
+        var fired = AttemptShoot(user.Value, gun);
 
-        // 🌟Starlight🌟 — dual-wield: alternate which gun fires next
-        if (TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active)
+        // 🌟Starlight🌟 — dual-wield: only alternate after an actual shot so both guns stay in sync
+        if (isDualWield && fired)
         {
-            dualWield.NextIsLeft = !dualWield.NextIsLeft;
+            dualWield!.NextIsLeft = !dualWield.NextIsLeft;
             Dirty(user.Value, dualWield);
         }
     }
@@ -461,10 +468,23 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
 
         // Shoot confirmed - sounds also played here in case it's invalid (e.g. cartridge already spent).
-        Shoot(gun, ev.Ammo, fromCoordinates, toCoordinates.Value, out var userImpulse, user, throwItems: attemptEv.ThrowItems);
+        Shoot(gun, ev.Ammo, fromCoordinates, toCoordinates.Value, out var userImpulse, out var fired, user, throwItems: attemptEv.ThrowItems);
         var shotEv = new GunShotEvent(user, ev.Ammo);
         RaiseLocalEvent(gun, ref shotEv);
 
+        //Starlight begin | ES Screenshake
+        if (fired)
+        {
+            var gunShakeRotation = new ScreenshakeParameters()
+            {
+                Trauma = 0.035f * gun.Comp.CameraRecoilScalarModified,
+                DecayRate = 1.2f,
+                Frequency = 0.008f
+            };
+            _shake.Screenshake(user, null, gunShakeRotation);
+        }
+        //Starlight end
+        
         if (!userImpulse || !TryComp<PhysicsComponent>(user, out var userPhysics))
             return true;
 
@@ -482,11 +502,12 @@ public abstract partial class SharedGunSystem : EntitySystem
         EntityCoordinates fromCoordinates,
         EntityCoordinates toCoordinates,
         out bool userImpulse,
+        out bool fired, // Starlight-edit
         EntityUid? user = null,
         bool throwItems = false)
     {
         var shootable = EnsureShootable(ammo);
-        Shoot(gun, new List<(EntityUid? Entity, IShootable Shootable)>(1) { (ammo, shootable) }, fromCoordinates, toCoordinates, out userImpulse, user, throwItems);
+        Shoot(gun, new List<(EntityUid? Entity, IShootable Shootable)>(1) { (ammo, shootable) }, fromCoordinates, toCoordinates, out userImpulse, out fired, user, throwItems); // Starlight-edit
     }
 
     public abstract void Shoot(
@@ -495,6 +516,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         EntityCoordinates fromCoordinates,
         EntityCoordinates toCoordinates,
         out bool userImpulse,
+        out bool fired, // Starlight-edit
         EntityUid? user = null,
         bool throwItems = false);
 

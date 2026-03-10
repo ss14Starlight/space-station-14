@@ -412,3 +412,92 @@
       min: 1
       max: 1
       pickPlayer: false
+      
+- type: entity
+  parent: BaseGameRule
+  id: XenoBorgHeavyDerelictSpawn
+  components:
+    - type: StationEvent
+      globalAnnouncement: false # Starlight
+      weight: 2.5
+      earliestStart: 15
+      reoccurrenceDelay: 20
+      minimumPlayers: 15
+      duration: null
+    - type: SpaceSpawnRule
+      spawnDistance: 0
+    - type: AntagSpawner
+      prototype: PlayerXenoBorgHeavyDerelictGhostRole
+    - type: AntagSelection
+      definitions:
+        - spawnerPrototype: SpawnPointGhostXenoBorgHeavyDerelict
+          min: 1
+          max: 1
+          pickPlayer: false
+          
+- type: entity
+  parent: BaseGameRule
+  id: XenoBorgEngiDerelictSpawn
+  components:
+    - type: StationEvent
+      globalAnnouncement: false # Starlight
+      weight: 2.5
+      earliestStart: 15
+      reoccurrenceDelay: 20
+      minimumPlayers: 15
+      duration: null
+    - type: SpaceSpawnRule
+      spawnDistance: 0
+    - type: AntagSpawner
+      prototype: PlayerXenoBorgEngiDerelictGhostRole
+    - type: AntagSelection
+      definitions:
+        - spawnerPrototype: SpawnPointGhostXenoborgEngiDerelict
+          min: 1
+          max: 1
+          pickPlayer: false
+
+- type: entity
+  parent: BaseGameRule
+  id: XenoborgScoutDerelictSpawn
+  components:
+    - type: StationEvent
+      globalAnnouncement: false # Starlight
+      weight: 2.5
+      earliestStart: 15
+      reoccurrenceDelay: 20
+      minimumPlayers: 15
+      duration: null
+    - type: SpaceSpawnRule
+      spawnDistance: 0
+    - type: AntagSpawner
+      prototype: PlayerXenoborgScoutDerelictGhostRole
+    - type: AntagSelection
+      definitions:
+        - spawnerPrototype: SpawnPointGhostXenoborgScoutDerelict
+          min: 1
+          max: 1
+          pickPlayer: false
+          
+- type: entity
+  parent: BaseGameRule
+  id: XenoBorgStealthDerelictSpawn
+  components:
+    - type: StationEvent
+      globalAnnouncement: false # Starlight
+      weight: 2.5
+      earliestStart: 15
+      reoccurrenceDelay: 20
+      minimumPlayers: 15
+      duration: null
+    - type: SpaceSpawnRule
+      spawnDistance: 0
+    - type: AntagSpawner
+      prototype: PlayerXenoborgStealthDerelictGhostRole
+    - type: AntagSelection
+      definitions:
+        - spawnerPrototype: SpawnPointGhostXenoborgStealthDerelict
+          min: 1
+          max: 1
+          pickPlayer: false
+ 

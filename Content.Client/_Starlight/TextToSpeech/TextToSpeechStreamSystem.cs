@@ -10,7 +10,7 @@ namespace Content.Client._Starlight.TextToSpeech;
 
 public sealed class TextToSpeechStreamSystem : EntitySystem
 {
-    private ISawmill _sawmill = default!;
+    // private ISawmill _sawmill = default!;
     private readonly Dictionary<Guid, TTSStream> _streams = [];
     private readonly HashSet<ProtoId<RadioChannelPrototype>> _mutedChannels = [];
 
@@ -18,7 +18,8 @@ public sealed class TextToSpeechStreamSystem : EntitySystem
 
     public override void Initialize()
     {
-        _sawmill = Logger.GetSawmill("tts.stream");
+        // FYI dark if you see this, just use Log? No need to grab a new sawmill...
+        // _sawmill = Logger.GetSawmill("tts.stream");
 
         SubscribeNetworkEvent<TTSHeaderEvent>(OnHeader);
         SubscribeNetworkEvent<TTSChunkEvent>(OnChunk);
@@ -37,7 +38,7 @@ public sealed class TextToSpeechStreamSystem : EntitySystem
     {
         if (_streams.ContainsKey(ev.Id))
         {
-            _sawmill.Warning("Duplicate TTS header received for {Id}", ev.Id);
+            // _sawmill.Warning("Duplicate TTS header received for {Id}", ev.Id);
             return;
         }
 
@@ -58,7 +59,7 @@ public sealed class TextToSpeechStreamSystem : EntitySystem
         };
 
         _streams[ev.Id] = stream;
-        _sawmill.Debug("TTS stream started: {Id}", ev.Id);
+        // _sawmill.Debug("TTS stream started: {Id}", ev.Id);
     }
 
     private void OnChunk(TTSChunkEvent ev)
@@ -68,16 +69,16 @@ public sealed class TextToSpeechStreamSystem : EntitySystem
 
         if (ev.Data.Length == 0)
         {
-            _sawmill.Debug("TTS stream completed: {Id}", ev.Id);
+            // _sawmill.Debug("TTS stream completed: {Id}", ev.Id);
             _streams.Remove(ev.Id);
         }
         else
         {
-            _sawmill.Debug("TTS stream {Id} received chunk of {Size} bytes", ev.Id, ev.Data.Length);
+            // _sawmill.Debug("TTS stream {Id} received chunk of {Size} bytes", ev.Id, ev.Data.Length);
             stream.Data.Enqueue(ev.Data);
             if (!stream.IsStarted)
             {
-                _sawmill.Debug("TTS stream started playback: {Id}", ev.Id);
+                // _sawmill.Debug("TTS stream started playback: {Id}", ev.Id);
                 stream.IsStarted = true;
                 RaiseLocalEvent(stream);
             }

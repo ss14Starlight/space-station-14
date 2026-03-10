@@ -178,7 +178,7 @@ public sealed class TextToSpeechSystem : EntitySystem
             if (previous is var (eid, audio, tts))
                 silencePadding = Math.Clamp(1f - (float)(tts.AudioLength.TotalSeconds - audio.PlaybackPosition), 0f, 1f);
 
-            _sawmill.Debug($"Play TTS chunk: {audioBytes.Length}, prependSilence: {silencePadding:F3}s");
+            // _sawmill.Debug($"Play TTS chunk: {audioBytes.Length}, prependSilence: {silencePadding:F3}s");
             @params = @params.WithPlayOffset(silencePadding);
             var ent = sourceUid != null && sourceUid != _player.LocalEntity
                 ? _audio.PlayEntity(audioStream, sourceUid.Value, null, @params)

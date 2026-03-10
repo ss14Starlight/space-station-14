@@ -596,6 +596,12 @@
   equipment:
     shoes: ClothingClothWrap
   groupBy: "cloth wraps"
+  
+- type: loadout
+  id: PawBootTrinket
+  equipment:
+    shoes: ClothingShoesPawBoots
+  groupBy: "Paw Boots"
 
 - type: loadout
   id: ClothWrapGloveTrinket

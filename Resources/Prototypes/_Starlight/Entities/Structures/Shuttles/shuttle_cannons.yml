@@ -72,6 +72,7 @@
           params:
             pitch: 2
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: GunneryTrackable
   - type: StaticPrice
     price: 5000
 
@@ -123,6 +124,7 @@
     laserColor: "#FF44FF"
     traceDuration: 0.75
     maxRange: 35.0
+  - type: GunneryTrackable
 
 # Vanyk-MK2 60mm Rocket Launcher - Multi-rocket burst fire system
 - type: entity
@@ -169,16 +171,13 @@
           acts: ["Destruction"]
   - type: Gun
     projectileSpeed: 40
-    fireRate: 3.0
-    burstFireRate: 6
-    shotsPerBurst: 3
-    burstCooldown: 30
-    selectedMode: Burst
+    fireRate: 0.5
+    selectedMode: SemiAuto
     angleDecay: 20
     minAngle: 0
     maxAngle: 8
     availableModes:
-    - Burst
+    - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
       params:
@@ -201,15 +200,16 @@
             pitch: 1.5
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
   - type: Appearance
+  - type: GunneryTrackable
   - type: StaticPrice
     price: 6000
 
-# M321-CHARON 'Thanatos' 280mm Railgun - Single-shot, manually loaded, extreme damage
+# M321-CHARYBDIS 'Thanatos' 280mm Railgun - Single-shot, manually loaded, extreme damage
 - type: entity
   id: ShuttleGunCharon
   parent: ShuttleGunBase
-  name: M321-CHARON 'Thanatos' 280mm Railgun
-  description: A single-shot electromagnetic railgun of unparalleled destructive capability. Accelerates a 280mm slug to devastating velocities. Requires manual loading of each round into the open chamber before firing. Named for the ferryman of the dead - because that is what you become upon encountering one.
+  name: M321-CHARYBDIS 'Thanatos' 280mm Railgun
+  description: A single-shot electromagnetic railgun of unparalleled destructive capability. Accelerates a 280mm slug to devastating velocities. Requires manual loading of each round into the open chamber before firing. Named for the devouring whirlpool of legend - because that is what awaits those who face one.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Charon.rsi
@@ -275,6 +275,74 @@
       params:
         pitch: 0.6
         volume: 3
+  - type: GunneryTrackable
   - type: StaticPrice
     price: 25000
+
+# SSG-TARNYX EMP Grenade Cannon - lobs EMP grenades, 4-round capacity
+- type: entity
+  id: ShuttleGunTarnyx
+  parent: ShuttleGunBase
+  name: SSG-TARNYX EMP Grenade Cannon
+  description: A heavy-duty electromagnetic grenade lobber. Fires EMP grenades in a wide arc, designed to saturate an area with electromagnetic pulses and disable enemy ship systems. Holds 4 rounds. Does not cause structural damage.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/tarnyx.rsi
+    state: space_artillery
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Anchorable
+    delay: 90
+  - type: Pullable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 25
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    angleDecay: 30
+    minAngle: 0
+    maxAngle: 20
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        pitch: 0.7
+        volume: 4
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - Grenade
+    capacity: 4
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Appearance
+  - type: GunneryTrackable
+  - type: StaticPrice
+    price: 5500
 

@@ -1,9 +1,133 @@
 - type: quickPhrase
+  parent: [ BaseNanotrasenPhrase, BaseJobPhrase ]
+  id: BaseNanotrasenJobPhrase
+  abstract: true
+
+- type: quickPhrase
+  parent: [ BaseCentralcommandPhrase, BaseJobPhrase ]
+  id: BaseCentralcommandJobPhrase
+  abstract: true
+
+
+
+#Science (Epistemics)
+
+- type: quickPhrase
   parent: BaseEpistemicsJobPhrase
   id: SAIPhrase
   text: job-name-station-ai
 
 - type: quickPhrase
+  parent: BaseEpistemicsJobPhrase
+  id: RoboticistPhrase
+  text: job-name-roboticist
+
+
+
+#Security
+
+- type: quickPhrase
   parent: BaseSecurityJobPhrase
   id: BrigmedicPhrase
   text: job-name-brigmedic
+
+- type: quickPhrase
+  parent: BaseSecurityJobPhrase
+  id: DutyofficerPhrase
+  text: job-name-dutyofficer
+
+
+
+#Cargo (Logistics)
+
+- type: quickPhrase
+  parent: BaseLogisticsJobPhrase
+  id: SalvageleadPhrase
+  text: job-name-salvagelead
+
+- type: quickPhrase
+  parent: BaseLogisticsJobPhrase
+  id: MiningspecialistPhrase
+  text: job-name-miningspec
+
+- type: quickPhrase
+  parent: BaseLogisticsJobPhrase
+  id: MailtrchnicianPhrase
+  text: job-name-mailtech
+
+
+
+#Law (Justice)
+# I guess the entire justice department falls under NT instead of its own department.
+#- type: quickPhrase
+#  parent: BaseJusticeJobPhrase
+#  id: MagistratePhrase
+#  text: job-name-magistrate
+
+#- type: quickPhrase
+#  parent: BaseJusticeJobPhrase
+#  id: InternalaffairsagentPhrase
+#  text: job-name-iaa
+
+
+
+#Medical
+
+- type: quickPhrase
+  parent: BaseMedicalJobPhrase
+  id: SurgeonPhrase
+  text: job-name-surgeon
+
+
+#Service
+
+- type: quickPhrase
+  parent: BaseServiceJobPhrase
+  id: PerformerPhrase
+  text: job-name-performer
+
+- type: quickPhrase
+  parent: BaseServiceJobPhrase
+  id: ServiceworkerPhrase
+  text: job-name-serviceworker
+
+- type: quickPhrase
+  parent: BaseServiceJobPhrase
+  id: ChaplainPhrase
+  text: job-name-chaplain
+
+
+#Nanotrasen
+
+- type: quickPhrase
+  parent: BaseNanotrasenJobPhrase
+  id: NanotrasencareertrainerPhrase
+  text: job-name-nct
+
+- type: quickPhrase
+  parent: BaseNanotrasenJobPhrase
+  id: NanotrasenrepresensativePhrase
+  text: job-name-ntrep
+
+- type: quickPhrase
+  parent: BaseNanotrasenJobPhrase
+  id: BlueshieldofficerPhrase
+  text: job-name-blueshield
+
+- type: quickPhrase
+  parent: BaseNanotrasenJobPhrase
+  id: MagistratePhrase
+  text: job-name-magistrate
+
+- type: quickPhrase
+  parent: BaseNanotrasenJobPhrase
+  id: InternalaffairsagentPhrase
+  text: job-name-iaa
+
+
+#Central Command
+
+- type: quickPhrase
+  parent: BaseCentralcommandJobPhrase
+  id: ERTPhrase
+  text: job-name-ert

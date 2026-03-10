@@ -68,11 +68,13 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: Handcuffs
-        - id: Handcuffs
         - id: Stunbaton
+        - id: Handcuffs
+        - id: Handcuffs
         - id: GrenadeFlashBang
         - id: TearGasGrenade
+        - id: MagazinePistol40SP
+          amount: 2
         - id: MedkitCombatFilled
 
 - type: entity
@@ -84,11 +86,13 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: Handcuffs
-        - id: Handcuffs
         - id: Stunbaton
+        - id: Handcuffs
+        - id: Handcuffs
         - id: GrenadeFlashBang
         - id: TearGasGrenade
+        - id: MagazinePistol40SP
+          amount: 2
         - id: MedkitCombatFilled
 
 

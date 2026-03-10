@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/02/2026 07:58:00
-  entityCount: 27541
+  time: 03/05/2026 17:54:14
+  entityCount: 27543
 maps:
 - 1
 grids:
@@ -15872,7 +15872,7 @@ entities:
       pos: -131.5,-45.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -171443.3
+      secondsUntilStateChange: -171507.08
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -153930,6 +153930,18 @@ entities:
     - type: Transform
       pos: -22.5,-25.5
       parent: 2
+- proto: SpawnPointPerformer
+  entities:
+  - uid: 3543
+    components:
+    - type: Transform
+      pos: -58.5,-33.5
+      parent: 2
+  - uid: 4037
+    components:
+    - type: Transform
+      pos: -58.5,-31.5
+      parent: 2
 - proto: SpawnPointPsychologist
   entities:
   - uid: 22455
@@ -178487,7 +178499,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -371550.12
+      secondsUntilStateChange: -371613.9
       state: Opening
     - type: Airlock
       autoClose: False

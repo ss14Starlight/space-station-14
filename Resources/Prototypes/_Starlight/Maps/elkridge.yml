@@ -29,7 +29,8 @@
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
             Reporter: [ 1, 2 ]
-            ServiceWorker: [ 2, 3 ]
+            ServiceWorker: [ 2, 2 ]
+            Performer: [ 2, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 3 ]

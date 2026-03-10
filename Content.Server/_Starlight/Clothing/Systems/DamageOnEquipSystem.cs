@@ -29,10 +29,12 @@ public sealed class DamageOnEquipSystem : EntitySystem
         switch (ev)
         {
             case GotEquippedEvent equipped when comp.EquipDamage is not null:
+                if (equipped.SlotFlags != comp.TargetSlots) return;
                 target = equipped.Equipee;
                 damage = comp.EquipDamage;
                 break;
             case GotUnequippedEvent unequipped when comp.UnequipDamage is not null:
+                if (unequipped.SlotFlags != comp.TargetSlots) return;
                 target = unequipped.Equipee;
                 damage = comp.UnequipDamage;
                 break;

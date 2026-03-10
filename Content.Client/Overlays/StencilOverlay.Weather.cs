@@ -24,6 +24,9 @@ public sealed partial class StencilOverlay
         var worldBounds = args.WorldBounds;
         var position = args.Viewport.Eye?.Position.Position ?? Vector2.Zero;
 
+        if (weatherProto.Sprite is null) // SL - Make code happy because its might be null now.
+            return;
+
         // Cut out the irrelevant bits via stencil
         // This is why we don't just use parallax; we might want specific tiles to get drawn over
         // particularly for planet maps or stations.
@@ -45,7 +48,7 @@ public sealed partial class StencilOverlay
                 foreach (var tile in _map.GetTilesIntersecting(grid.Owner, grid, worldAABB))
                 {
                     // Ignored tiles for stencil
-                    if (_weather.CanWeatherAffect(grid.Owner, grid, tile, roofComp))
+                    if (_weather.CanWeatherAffect(grid.Owner, grid, tile, weatherProto.OnlySpace, weatherProto.CheckTileWeather, roofComp)) // SL - Edited
                     {
                         continue;
                     }

@@ -210,7 +210,7 @@
 - type: weightedRandomOre
   id: IronRockCoalCrabProb
   weights:
-    OreCoal: 19
+    OreCoal: 49
     OreCoalCrab: 1
 
 - type: entity
@@ -222,9 +222,9 @@
       currentOre: OreCoalCrab
 
 - type: entity
-  id: IronRockCoalCrab5
+  id: IronRockCoalCrab2
   parent: IronRockCoal
-  suffix: Coal 95%, Crab 5%
+  suffix: Coal 98%, Crab 2%
   components:
     - type: OreVein
       currentOre: null
@@ -233,7 +233,7 @@
 - type: weightedRandomOre
   id: IronRockGoldCrabProb
   weights:
-    OreGold: 19
+    OreGold: 49
     OreGoldCrab: 1
 
 - type: entity
@@ -245,9 +245,9 @@
       currentOre: OreGoldCrab
 
 - type: entity
-  id: IronRockGoldCrab5
+  id: IronRockGoldCrab2
   parent: IronRockGold
-  suffix: Gold 95%, Crab 5%
+  suffix: Gold 98%, Crab 2%
   components:
     - type: OreVein
       currentOre: null
@@ -256,7 +256,7 @@
 - type: weightedRandomOre
   id: IronRockBananiumCrabProb
   weights:
-    OreBananium: 19
+    OreBananium: 49
     OreBananiumCrab: 1
 
 - type: entity
@@ -268,9 +268,9 @@
       currentOre: OreBananiumCrab
 
 - type: entity
-  id: IronRockBananiumCrab5
+  id: IronRockBananiumCrab2
   parent: IronRockBananium
-  suffix: Bananium 95%, Crab 5%
+  suffix: Bananium 98%, Crab 2%
   components:
     - type: OreVein
       currentOre: null
@@ -279,7 +279,7 @@
 - type: weightedRandomOre
   id: IronRockIronCrabProb
   weights:
-    OreSteel: 19
+    OreSteel: 49
     OreIronCrab: 1
 
 - type: entity
@@ -291,9 +291,9 @@
       currentOre: OreIronCrab
 
 - type: entity
-  id: IronRockIronCrab5
+  id: IronRockIronCrab2
   parent: IronRockIron
-  suffix: Iron 95%, Crab 5%
+  suffix: Iron 98%, Crab 2%
   components:
     - type: OreVein
       currentOre: null
@@ -302,7 +302,7 @@
 - type: weightedRandomOre
   id: IronRockQuartzCrabProb
   weights:
-    OreSpaceQuartz: 19
+    OreSpaceQuartz: 49
     OreQuartzCrab: 1
 
 - type: entity
@@ -314,9 +314,9 @@
       currentOre: OreQuartzCrab
 
 - type: entity
-  id: IronRockQuartzCrab5
+  id: IronRockQuartzCrab2
   parent: IronRockQuartz
-  suffix: Quartz 95%, Crab 5%
+  suffix: Quartz 98%, Crab 2%
   components:
     - type: OreVein
       currentOre: null
@@ -325,7 +325,7 @@
 - type: weightedRandomOre
   id: IronRockSilverCrabProb
   weights:
-    OreSilver: 19
+    OreSilver: 49
     OreSilverCrab: 1
 
 - type: entity
@@ -337,9 +337,9 @@
       currentOre: OreSilverCrab
 
 - type: entity
-  id: IronRockSilverCrab5
+  id: IronRockSilverCrab2
   parent: IronRockSilver
-  suffix: Silver 95%, Crab 5%
+  suffix: Silver 98%, Crab 2%
   components:
     - type: OreVein
       currentOre: null
@@ -348,7 +348,7 @@
 - type: weightedRandomOre
   id: IronRockUraniumCrabProb
   weights:
-    OreUranium: 19
+    OreUranium: 49
     OreUraniumCrab: 1
 
 - type: entity
@@ -360,9 +360,9 @@
       currentOre: OreUraniumCrab
 
 - type: entity
-  id: IronRockUraniumCrab5
+  id: IronRockUraniumCrab2
   parent: IronRockUranium
-  suffix: Uranium 95%, Crab 5%
+  suffix: Uranium 98%, Crab 2%
   components:
     - type: OreVein
       currentOre: null

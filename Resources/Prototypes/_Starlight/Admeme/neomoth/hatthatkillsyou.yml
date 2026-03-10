@@ -8,7 +8,8 @@
     - type: DamageOnEquip
       unequipDamage:
         types:
-          Slash: 2000
+          Slash: 400
+      targetSlots: HEAD
       ignoreResistances: true
       delay: 4
       popupDelay: 2
@@ -24,6 +25,7 @@
       unequipDamage:
         types:
           Blunt: 2000
+      targetSlots: HEAD
       delay: 5
       popupDelay: 2.5
       popupLocId: hat-killsyou-gib
@@ -38,6 +40,7 @@
       unequipDamage:
         types:
           Heat: 99999999
+      targetSlots: HEAD
       delay: 7
       popupDelay: 3.5
       popupLocId: hat-killsyou-ash

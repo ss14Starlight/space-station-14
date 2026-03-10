@@ -1,10 +1,10 @@
-# Starlight - M321-CHARON 'Thanatos' 280mm Railgun Projectiles
+# Starlight - M321-CHARYBDIS 'Thanatos' 280mm Railgun Projectiles
 
-# M381 CHARON 280mm 26.5kg Slug
+# M381 CHARYBDIS 280mm 26.5kg Slug
 # Pierces through soft targets while dealing massive kinetic damage, then detonates.
 - type: entity
   id: BulletCharon280mmSlug
-  name: M381 CHARON 280mm slug
+  name: M381 CHARYBDIS 280mm slug
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
@@ -36,11 +36,11 @@
     scale: 1.2
     requireInSpace: true
 
-# M381 CHARON 280mm 40KG Subnuclear Slug
+# M381 CHARYBDIS 280mm 40KG Subnuclear Slug
 # Does not pierce - detonates on first impact with a devastating subnuclear explosion.
 - type: entity
   id: BulletCharon280mmSubnuclear
-  name: M381 CHARON 280mm subnuclear slug
+  name: M381 CHARYBDIS 280mm subnuclear slug
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:

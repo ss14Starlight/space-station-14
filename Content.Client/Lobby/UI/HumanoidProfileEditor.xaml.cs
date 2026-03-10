@@ -595,7 +595,7 @@ namespace Content.Client.Lobby.UI
             if (Profile is null)
                 return;
 
-            _voiceSelectorWindow.UpdateVoices(_voices);
+            _voiceSelectorWindow.UpdateVoices(_voices, updateVoice: false);
 
             if (string.IsNullOrEmpty(Profile.Voice))
             {
@@ -645,7 +645,7 @@ namespace Content.Client.Lobby.UI
             if (Profile is null)
                 return;
 
-            _voiceSiliconSelectorWindow.UpdateVoices(_siliconVoices);
+            _voiceSiliconSelectorWindow.UpdateVoices(_siliconVoices, updateVoice: false);
 
             if (string.IsNullOrEmpty(Profile.SiliconVoice))
             {

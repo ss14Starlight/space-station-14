@@ -17,11 +17,11 @@
 # 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: Pulse
     fireCost: 80
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
 
 - type: entity
   id: WeaponMechCombatImmolationGun
@@ -42,13 +42,13 @@
 # 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
 # 🌟Starlight-start🌟
     proto: IgnitionRedLaser
     fireCost: 40
 # 🌟Starlight-end🌟
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
 
 - type: entity
   id: WeaponMechCombatSolarisLaser
@@ -69,13 +69,13 @@
 # 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
 # 🌟Starlight-start🌟
     proto: RedHeavyLaser
     fireCost: 28
 # 🌟Starlight-start🌟
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
 # region starlight
   - type: Tag
     tags:
@@ -104,11 +104,11 @@
 # 🌟Starlight-start🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: RedLaser
     fireCost: 14 # 🌟Starlight-Change
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   # region starlight
   - type: Tag
     tags:
@@ -138,11 +138,11 @@
       path: /Audio/Effects/Lightning/lightningshock.ogg
       params:
         variation: 0.2
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: TeslaGunBullet
     fireCost: 100
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
 
 - type: entity
   id: WeaponMechCombatDisabler
@@ -163,11 +163,11 @@
 # 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: BulletDisablerSmgSpread
     fireCost: 30 # 🌟Starlight-Change
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   # region starlight
   - type: Tag
     tags:
@@ -193,11 +193,11 @@
 # 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: TaserBolt
     fireCost: 40
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   # region starlight
   - type: Tag
     tags:
@@ -221,13 +221,13 @@
       - FullAuto # Starlight-edit
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
 # 🌟Starlight-start🌟
     proto: ShellShotgunMech
     fireCost: 80
 # 🌟Starlight-end🌟
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
 
 - type: entity
   id: WeaponMechCombatShotgunIncendiary
@@ -246,13 +246,13 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
 # 🌟Starlight-start🌟
     proto: ShellShotgunMechIncendiary
     fireCost: 80
 # 🌟Starlight-end🌟
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
 
 - type: entity
   id: WeaponMechCombatUltraRifle
@@ -273,11 +273,11 @@
     # Starlight-end
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: MechAC2FMJ
     fireCost: 20
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
 
 - type: entity
   id: WeaponMechCombatUltraAC54
@@ -298,11 +298,11 @@
       - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: MechAC2FMJ
     fireCost: 20
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   
 - type: entity
   id: WeaponMechCombatIon
@@ -324,11 +324,11 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: EmpPulse
     fireCost: 400
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   - type: Battery
     maxCharge: 400
     startingCharge: 400
@@ -356,11 +356,11 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: RedLaserBeam
     fireCost: 20
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   
 - type: entity
   id: WeaponMechCombatXray
@@ -381,11 +381,11 @@
 # 🌟Starlight-end🌟
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: XrayLaser
     fireCost: 48 # 🌟Starlight-Change
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   - type: Battery
     maxCharge: 400
     startingCharge: 400
@@ -407,11 +407,11 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: BulletWeakRocket
     fireCost: 50
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
 
 - type: entity
   id: WeaponMechCombatMissileRack6
@@ -430,11 +430,11 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: GrenadeBlast
     fireCost: 220
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   - type: Battery
     maxCharge: 220
     startingCharge: 220
@@ -458,11 +458,11 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: BatteryAmmoProvider
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: GrenadeFlash
     fireCost: 60
   - type: Appearance
-  - type: AmmoCounter
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   # region starlight
   - type: Tag
     tags:

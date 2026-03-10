@@ -1,0 +1,56 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Paradise Station at commit: https://github.com/ss220-space/Paradise/commit/a2c75c91a06ea244d7c0d6e56150c890a7ab89a6",
+    "states": [
+        {
+            "name": "base"
+        },
+        {
+            "name": "paper_empty"
+        },
+        {
+            "name": "paper_1"
+        },
+        {
+            "name": "paper_2"
+        },
+        {
+            "name": "paper_3"
+        },
+        {
+            "name": "display_0"
+        },
+        {
+            "name": "display_1"
+        },
+        {
+            "name": "display_2"
+        },
+        {
+            "name": "display_3"
+        },
+        {
+            "name": "display_4"
+        },
+        {
+            "name": "display_5"
+        },
+        {
+            "name": "display_6"
+        },
+        {
+            "name": "display_7"
+        },
+        {
+            "name": "display_8"
+        },
+        {
+            "name": "display_9"
+        }    
+      ]
+    }

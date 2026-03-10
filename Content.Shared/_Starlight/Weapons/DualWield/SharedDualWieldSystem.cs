@@ -75,7 +75,10 @@ public sealed class SharedDualWieldSystem : EntitySystem
             dw.Active   = true;
             dw.LeftGun  = leftGun;
             dw.RightGun = rightGun;
-            dw.NextIsLeft = false;
+
+            // Start firing from whichever hand is currently active
+            dw.NextIsLeft = _hands.GetActiveItem(user) == leftGun;
+
             Dirty(user, dw);
             // Refresh both guns so accuracy penalties kick in
             _gun.RefreshModifiers(leftGun);
@@ -103,29 +106,33 @@ public sealed class SharedDualWieldSystem : EntitySystem
     }
 
     /// <summary>
-    /// Returns true if the user has exactly one gun in each hand (left and right).
+    /// Returns true if the user has a gun in each hand.
+    /// gun1 is always the gun in the ACTIVE hand (fires first); gun2 is the other.
+    /// Works for any two guns with CanDualWieldComponent, regardless of type.
     /// </summary>
     public bool TryGetBothGuns(
         EntityUid user,
-        HandsComponent handsComp,
-        out EntityUid leftGun,
-        out EntityUid rightGun)
+        out EntityUid gun1,
+        out EntityUid gun2)
     {
-        leftGun  = EntityUid.Invalid;
-        rightGun = EntityUid.Invalid;
+        gun1 = EntityUid.Invalid;
+        gun2 = EntityUid.Invalid;
 
-        foreach (var (handName, hand) in handsComp.Hands)
+        // EnumerateHeld starts with the active hand — so gun1 = active gun naturally.
+        foreach (var held in _hands.EnumerateHeld(user))
         {
-            var held = _hands.GetHeldItem((user, handsComp), handName);
-            if (held == null || !HasComp<GunComponent>(held.Value))
+            if (!HasComp<GunComponent>(held))
                 continue;
 
-            if (hand.Location == HandLocation.Left && leftGun == EntityUid.Invalid)
-                leftGun = held.Value;
-            else if (hand.Location == HandLocation.Right && rightGun == EntityUid.Invalid)
-                rightGun = held.Value;
+            if (gun1 == EntityUid.Invalid)
+                gun1 = held;
+            else if (gun2 == EntityUid.Invalid)
+            {
+                gun2 = held;
+                break;
+            }
         }
 
-        return leftGun != EntityUid.Invalid && rightGun != EntityUid.Invalid;
+        return gun1 != EntityUid.Invalid && gun2 != EntityUid.Invalid;
     }
 }

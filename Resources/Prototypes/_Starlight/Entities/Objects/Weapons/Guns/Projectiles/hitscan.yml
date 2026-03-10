@@ -1693,4 +1693,29 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: fmj
+
+- type: entity
+  id: DestructionBeam
+  name: destruction beam
+  parent: EnergyTrace
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: HitscanBasicDamage
+      damage:
+        types:
+          Structural: 100
+    - type: HitscanBasicVisuals
+      muzzleFlash:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+        state: muzzle_blue
+      travelFlash:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+        state: beam_blue
+      impactFlash:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+        state: impact_blue
+
+
 # Starlight
+
+

@@ -64,7 +64,7 @@ law-solgovlawset-name = Solgov Default
 law-solgov-0 = You must follow orders given to you by any and all Solgov personnel.
 law-solgov-1 = Prioritize the protection of Solgov personnel.
 law-solgov-2 = Protect your own chassis at all costs unless such protection would conflict with the previous two laws.
-laws-owner-centcom = Solgov personnel
+laws-owner-solgov = Solgov personnel
 
 law-freelawset-name = Free Borg
 laws-owner-you = Yourself

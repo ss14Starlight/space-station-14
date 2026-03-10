@@ -1051,6 +1051,12 @@
     # Starlight-end
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
+#Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -1065,6 +1071,12 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTChaplain
+#Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -1081,6 +1093,12 @@
     clothingPrototype: ClothingHeadHelmetHardsuitERTEngineer
   - type: FireProtection
     reduction: 0.8
+#Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
 
 #ERT Medic Hardsuit
 - type: entity
@@ -1095,6 +1113,12 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedical
+#Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
 
 #ERT Security Hardsuit
 - type: entity
@@ -1130,6 +1154,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+    - CorgiWearable
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -1144,6 +1169,12 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertjanitor.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTJanitor
+#Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
 
 #Deathsquad
 - type: entity
@@ -1188,6 +1219,12 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
+#Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
 
 #CBURN Hardsuit
 - type: entity

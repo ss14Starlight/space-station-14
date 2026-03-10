@@ -81,7 +81,7 @@ namespace Content.Client._Starlight.Lobby.UI
             UpdateVoices(voices, updateList: false);
         }
 
-        public void UpdateVoices(List<VoicePrototype> voices, bool updateList = true)
+        public void UpdateVoices(List<VoicePrototype> voices, bool updateList = true, bool updateVoice = true)
         {
             if (updateList)
             {
@@ -92,7 +92,7 @@ namespace Content.Client._Starlight.Lobby.UI
             foreach (var voice in voices)
                 VoiceList.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", metadata: voice);
 
-            if (CurrentVoice != null)
+            if (updateVoice && CurrentVoice != null)
                 SelectVoice(CurrentVoice);
         }
 

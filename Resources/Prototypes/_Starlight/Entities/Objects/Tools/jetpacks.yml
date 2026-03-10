@@ -16,6 +16,12 @@
         - Back
         - suitStorage
         - Belt
+#Starlight Start
+    - type: ClothingSpeedModifier
+      walkModifier: 1.0
+      sprintModifier: 1.0
+    - type: HeldSpeedModifier
+#Starlight End
 
 - type: entity
   id: JetpackSSFMarineFilled
@@ -87,3 +93,48 @@
       moles:
         Oxygen: 0.307706858 # oxygen
         Nitrogen: 0.307706858 # nitrogen
+
+#Empty CE void
+- type: entity
+  id: JetpackVoidEngineer
+  parent: [ BaseJetpack, BaseGrandTheftContraband ]
+  name: chief engineer's void jetpack
+  suffix: Empty
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Tanks/Jetpacks/ce_void.rsi
+    size: Normal
+  - type: Sprite
+    sprite: _Starlight/Objects/Tanks/Jetpacks/ce_void.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Tanks/Jetpacks/ce_void.rsi
+    slots:
+      - Back
+      - suitStorage
+      - Belt
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: JetpackChiefEngineerFilled
+
+# Filled CE void
+- type: entity
+  id: JetpackVoidEngineerFilled
+  parent: JetpackVoidEngineer
+  name: chief engineer's void jetpack
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      # 13 minutes of thrust
+      volume: 5
+      temperature: 293.15
+      moles:
+        Oxygen: 1.025689525 # oxygen
+        Nitrogen: 1.025689525 # nitrogen

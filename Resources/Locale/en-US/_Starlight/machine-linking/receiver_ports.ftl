@@ -9,3 +9,9 @@ signal-port-description-mass-driver-console-receiver = Recieves options only fro
 
 signal-port-name-launch = Launch
 signal-port-description-launch = When signal received, activated launch. Requires manual mode enabled.
+
+signal-port-name-ticket-machine-nextnumber = Next Ticket Number
+signal-port-description-ticket-machine-nextnumber = Changes ticket number to next one when triggered.
+
+signal-port-name-ticket-machine-burntickets = Burn Tickets
+signal-port-description-ticket-machine-burntickets = Burns all served tickets when triggered.

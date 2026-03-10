@@ -185,8 +185,19 @@ namespace Content.MapRenderer.Painters
                 }
             });
 
-            await _pair.RunTicksSync(10);
+            await _pair.RunTicksSync(200); // Starlight-edit
             await Task.WhenAll(client.WaitIdleAsync(), server.WaitIdleAsync());
+
+            // Starlight-start
+            await server.WaitPost(() =>
+            {
+                foreach (var (uid, _) in _grids)
+                {
+                    var xform = xformQuery.GetComponent(uid);
+                    xformSystem.SetWorldRotation(xform, Angle.Zero);
+                }
+            });
+            // Starlight-end
 
             foreach (var (uid, grid) in _grids)
             {

@@ -527,7 +527,7 @@ public sealed class NuclearReactorSystem : EntitySystem
         var comp = ent.Comp;
         var uid = ent.Owner;
 
-        var stationUid = _station.GetStationInMap(Transform(uid).MapID);
+        var stationUid = _station.GetOwningStation(uid); // Starlight-edit
         if (stationUid != null)
             _alertLevel.SetLevel(stationUid.Value, comp.MeltdownAlertLevel, true, true, true);
 
@@ -734,7 +734,7 @@ public sealed class NuclearReactorSystem : EntitySystem
 
         if (comp.Temperature >= (comp.ReactorFireTemp + comp.ReactorMeltdownTemp) >> 1 && !comp.HasSentWarning)
         {
-            var stationUid = _station.GetStationInMap(Transform(uid).MapID);
+            var stationUid = _station.GetOwningStation(uid); //Starlight-edit
             var announcement = Loc.GetString("reactor-melting-announcement");
             var sender = Loc.GetString("reactor-melting-announcement-sender");
             _chatSystem.DispatchStationAnnouncement(stationUid ?? uid, announcement, sender, false, null, Color.Orange);

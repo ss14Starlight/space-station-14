@@ -73,11 +73,11 @@ command-description-job-set =
     Changes the job of the piped entity.
 command-description-job-delset =
     Changes the job of the piped entity by deleting then setting the job, so that the briefing plays.
-command-description-clientcomp-ensure =
+command-description-ccomp-ensure =
     Ensures that all clients add the component with the specified name to an entity, assuming it exists.
-command-description-clientcomp-write =
+command-description-ccomp-write =
     Attempt to make all clients vvwrite something into a client component.
-command-description-clientcomp-rm =
+command-description-ccomp-rm =
     Ensures that all clients delete the component with the specified name from an entity, assuming it exists.
 command-description-globalsound-play =
     Play a sound globally for the piped entities or sessions.
@@ -151,12 +151,18 @@ command-description-polymorph-reset =
     Reset the entity's polymorph to their original state.
 command-description-polymorph-finish =
     Marks this polymorph setup chain as complete, cleaning up and removing the component.
+command-description-vv-open =
+    Open the ViewVariables window of the piped entity or path.
 command-description-vv-write =
-    Modify a path's value using VV (View Variables). Can use a variable for the value but it must be wrapped in quotes.
+    Modify a path's value using VV (View Variables). Can use a variable for the value, but it must be a serialized string.
+command-description-vv-owrite =
+    Modify a path's value using VV (View Variables). Can use a raw variable for the value.
 command-description-vv-read =
     Print a path's value using VV (View Variables).
 command-description-vv-rsave =
     Retrieve a path's value using VV (View Variables). Can be saved to a variable.
+command-description-vv-rsaveraw =
+    Retrieve a path's value using VV (View Variables). Can be saved to a variable. Saves the raw value instead of the serialized string.
 command-description-mind-wipe =
     Wipes a player or entity's mind. Note that this will make their game unplayable until you give them a new mind.
 command-description-mind-takeover =
@@ -221,3 +227,69 @@ command-description-killsign-admin =
     Apply a killsign to the entity using the admin sprite.
 command-description-killsign-rm =
     Remove a killsign from the entity
+command-description-fixinput =
+    Refreshes the input context of the entity's session.
+command-description-faction-add =
+    Add a faction to this entity.
+command-description-faction-remove =
+    Remove a faction from this entity.
+command-description-faction-aggro =
+    Make this entity aggessive to the target entity.
+command-description-faction-deaggro =
+    Make this entity no longer aggressive to the target entity.
+command-description-faction-ignore =
+    Make this entity and the target entity ignore each other.
+command-description-faction-unignore =
+    Make this entity and the target entity no longer ignore each other.
+command-description-faction-clear =
+    Clear this entity's factions.
+command-description-npc-sethtn =
+    Creates an NPC on the entity and sets it's HTN compound.
+command-description-npc-setenabled =
+    Enable or disable this npc's HTN behaviors.
+command-description-stationinit-begin =
+    Begin the process of initializing a new midround station. Attaches BecomesStationMidRoundComponent to the grid.
+command-description-stationinit-setid =
+    Set the ID of the station. This is to prevent duplicates.
+command-description-stationinit-clearbaseprotos =
+    Clear the list of base station prototypes.
+command-description-stationinit-addbaseproto =
+    Add a base station prototype to use.
+command-description-stationinit-rmbaseproto =
+    Remove a base station prototype from use.
+command-description-stationinit-setallowftl =
+    Set allowing anybody to FTL to the map this station resides in.
+command-description-stationinit-setuseemergencyshuttle =
+    Set spawning an emergency shuttle to use at round end.
+command-description-stationinit-setusearmories =
+    Set spawning armories that can be sent to the station with the armory command.
+command-description-stationinit-setusearrivals =
+    Set spawning an arrivals shuttle for this station.
+command-description-stationinit-setallowdungeonspawns =
+    Set allowing dungeons like the VGroid to spawn.
+command-description-stationinit-setallowcargo =
+    Set allowing cargo shuttles and the ATS to spawn.
+command-description-stationinit-clearallowedgridspawns =
+    Clear the list of gridspawns that are allowed to spawn from the base protos.
+command-description-stationinit-addallowedgridspawn =
+    Add a gridspawn that is allowed to spawn from the base protos.
+command-description-stationinit-rmallowedgridspawn =
+    Remove a gridspawn that is allowed to spawn from the base protos.
+command-description-stationinit-setemergencyshuttlepath =
+    Set the override to use for the emergency shuttle grid.
+command-description-stationinit-clearjobs =
+    Clear all jobs from this station.
+command-description-stationinit-addjob =
+    Add a new job to this station.
+command-description-stationinit-rmjob =
+    Remove a job from this station.
+command-description-stationinit-setallowevents =
+    Set allowing events to target this station.
+command-description-stationinit-namegrid =
+    Rename the target grid, the name of the grid is what will be used for the station's name when initializing.
+command-description-stationinit-initialize =
+    Finish setup and initialize the station.
+command-description-stationinit-initializeget =
+    Finish setup and initialize the station, and return the newly created station entity.
+command-description-aitakeover =
+    Make the piped entity take over the target AI core.

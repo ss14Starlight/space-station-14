@@ -769,3 +769,7 @@
         Heat: 0.80
         Radiation: 0.80
         Caustic: 0.95
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable

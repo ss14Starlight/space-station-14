@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from mojave-sun-13 at https://github.com/Mojave-Sun/mojave-sun-13/blob/ffcecc82f28c796f8eff92ac46ff0f5e0d9b1ab6/mojave/icons/decals/graffiti.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "aid"
+    },
+	{
+      "name": "danger"
+    },
+	{
+      "name": "dead_inside"
+    },
+	{
+      "name": "do_not"
+    },
+	{
+      "name": "dont_open"
+    },
+	{
+      "name": "follow"
+    },
+	{
+      "name": "free"
+    },
+	{
+      "name": "gang_shit"
+    },
+	{
+      "name": "tally"
+    }
+  ]
+}

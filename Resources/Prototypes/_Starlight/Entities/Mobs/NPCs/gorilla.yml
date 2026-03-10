@@ -173,9 +173,9 @@
           Blunt: 35
           Structural: 20
     - type: AmputateOnHit
-      chance: 1
+      chance: 0.5
     - type: StaminaDamageOnHit
-      damage: 40
+      damage: 50
     - type: MeleeThrowOnHit
       speed: 40
       distance: 5

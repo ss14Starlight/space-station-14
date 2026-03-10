@@ -807,3 +807,7 @@
     - type: HeldSpeedModifier
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitThanatos
+    - type: Tag
+      tags:
+        - CorgiWearable
+        - Hardsuit

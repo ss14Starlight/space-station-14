@@ -72,6 +72,9 @@
   id: BurnedTraitBackground
 
 - type: Tag
+  id: BypassUserTagChecks
+
+- type: Tag
   id: CantInteract
 
 - type: Tag
@@ -213,6 +216,9 @@
   id: FreeMag
 
 - type: Tag
+  id: CanAffectLawBoards
+
+- type: Tag
   id: FestiveDinner
 
 - type: Tag
@@ -316,6 +322,9 @@
   id: Locker
   
 - type: Tag
+  id: LabellerRefillPaper
+  
+- type: Tag
   id: LoneOpsUplink
 
 - type: Tag
@@ -368,6 +377,9 @@
 
 - type: Tag
   id: MagicalEncounterTraitBackground
+
+- type: Tag
+  id: MechReactor
 
 - type: Tag
   id: MedCyberEyes
@@ -503,6 +515,9 @@
 
 - type: Tag
   id: SpeedLoaderShotgun
+
+- type: Tag
+  id: Stairs
 
 - type: Tag
   id: StoveMachineBoard

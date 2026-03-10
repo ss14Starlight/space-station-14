@@ -9,6 +9,7 @@ using Content.Shared.Movement.Components;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
+using Content.Shared._Starlight.Camera; // Starlight | ES Screenshake
 
 namespace Content.Shared.Movement.Systems;
 
@@ -161,6 +162,20 @@ public abstract class SharedContentEyeSystem : EntitySystem
         _eye.SetOffset(eye, ev.Offset + evRelayed.Offset, eye);
     }
 
+    //Starlight begin | ES Screenshake
+    public void UpdateEyeRotation(Entity<EyeComponent> eye)
+    {
+        var baseAngle = Angle.Zero;
+        if (TryComp<ContentEyeComponent>(eye, out var contentEye))
+            baseAngle = contentEye.BaseRotation;
+
+        var ev = new GetEyeRotationEvent();
+        RaiseLocalEvent(eye, ref ev);
+        
+        _eye.SetRotation(eye, baseAngle + ev.Rotation, eye);
+    }
+    //Starlight end
+    
     public void UpdatePvsScale(EntityUid uid, ContentEyeComponent? contentEye = null, EyeComponent? eye = null)
     {
         if (!Resolve(uid, ref contentEye) || !Resolve(uid, ref eye))

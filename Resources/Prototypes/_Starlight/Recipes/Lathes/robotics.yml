@@ -124,3 +124,9 @@
   parent: BaseGoldBorgModuleRecipe
   id: BorgModuleAdvancedLoading
   result: BorgModuleAdvancedLoading
+
+# Cargo
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleMiningDefense
+  result: BorgModuleMiningDefense

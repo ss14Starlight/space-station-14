@@ -11,6 +11,8 @@
     scale: 1.1
     shape: Circle
     requireInSpace: true
+  - type: GuidedProjectile
+    turnRate: 180
 
 # 60mm Rocket Cartridge
 - type: entity

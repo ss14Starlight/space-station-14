@@ -411,7 +411,7 @@ public sealed class PolymorphCommand : ToolshedCommand
     /// Revert to the previous x entity, if possible.
     /// </summary>
     [CommandImplementation("revert")]
-    public EntityUid? Revert([PipedArgument] EntityUid uid, int depth)
+    public EntityUid Revert([PipedArgument] EntityUid uid, int depth)
     {
         _system ??= EntitySystemManager.GetEntitySystem<PolymorphSystem>();
         EntityUid? newUid = uid;
@@ -420,20 +420,20 @@ public sealed class PolymorphCommand : ToolshedCommand
             if (newUid is null || !HasComp<PolymorphedEntityComponent>(newUid.Value)) break;
             newUid = _system.Revert(newUid.Value);
         }
-        return newUid;
+        return newUid ?? EntityUid.Invalid;
     }
 
     /// <summary>
     /// Reset the entity's polymorph to their original state.
     /// </summary>
     [CommandImplementation("reset")]
-    public EntityUid? Reset([PipedArgument] EntityUid uid)
+    public EntityUid Reset([PipedArgument] EntityUid uid)
     {
         _system ??= EntitySystemManager.GetEntitySystem<PolymorphSystem>();
         EntityUid? newUid = uid;
         while (true)
         {
-            if (newUid is null || !HasComp<PolymorphedEntityComponent>(newUid.Value)) return newUid;
+            if (newUid is null || !HasComp<PolymorphedEntityComponent>(newUid.Value)) return newUid ?? EntityUid.Invalid;
             newUid = _system.Revert(newUid.Value);
         }
     }
@@ -579,11 +579,11 @@ public sealed class PolymorphCommand : ToolshedCommand
         => uid.Select(x=>RemoveActionPrototype(x, protoId));
     
     [CommandImplementation("revert")]
-    public IEnumerable<EntityUid?> Revert([PipedArgument] IEnumerable<EntityUid> uid, int depth)
+    public IEnumerable<EntityUid> Revert([PipedArgument] IEnumerable<EntityUid> uid, int depth)
         => uid.Select(x=>Revert(x, depth));
     
     [CommandImplementation("reset")]
-    public IEnumerable<EntityUid?> Reset([PipedArgument] IEnumerable<EntityUid> uid)
+    public IEnumerable<EntityUid> Reset([PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(Reset);
     
     [CommandImplementation("finish")]

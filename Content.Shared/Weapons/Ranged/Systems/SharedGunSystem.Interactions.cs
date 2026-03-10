@@ -32,12 +32,12 @@ public abstract partial class SharedGunSystem
 
     private void OnAltVerb(EntityUid uid, GunComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract || args.Hands == null)
+        if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract)
             return;
 
         // 🌟Starlight🌟 — dual-wield verb: show when holding a gun in each hand
         var dualWield = EntitySystem.Get<SharedDualWieldSystem>();
-        if (dualWield.TryGetBothGuns(args.User, args.Hands, out var leftGun, out var rightGun)
+        if (dualWield.TryGetBothGuns(args.User, out var leftGun, out var rightGun)
             && (uid == leftGun || uid == rightGun))
         {
             var isActive = TryComp<DualWieldComponent>(args.User, out var dw) && dw.Active;

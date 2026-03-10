@@ -71,8 +71,11 @@ public sealed partial class StencilOverlay : Overlay
                 if (!_protoManager.Resolve<WeatherPrototype>(proto, out var weatherProto))
                     continue;
 
-                var alpha = _weather.GetPercent(weather, mapUid);
-                DrawWeather(args, res, weatherProto, alpha, invMatrix);
+                if (weatherProto.Sprite is not null) // SL
+                {
+                    var alpha = _weather.GetPercent(weather, mapUid);
+                    DrawWeather(args, res, weatherProto, alpha, invMatrix);
+                }
             }
         }
 

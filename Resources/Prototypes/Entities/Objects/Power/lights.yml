@@ -145,6 +145,7 @@
     lightSoftness: 1
     BurningTemperature: 350 #LEDs are colder than incandescent bulbs
     PowerUse: 6 #LEDs are more power efficient than incandescent bulbs
+    nightShiftCompatible: false # SL
   - type: Tag
     tags:
     - LightBulb
@@ -162,6 +163,7 @@
     lightEnergy: 0.5
     lightRadius: 5
     lightSoftness: 3
+    nightShiftCompatible: false # SL
   - type: Tag
     tags:
     - LightBulb
@@ -250,6 +252,7 @@
     lightRadius: 10
     lightSoftness: 1
     PowerUse: 10
+    nightShiftCompatible: false # SL
 
 - type: entity
   suffix: Broken

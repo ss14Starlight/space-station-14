@@ -459,13 +459,13 @@
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledHushpup
   name: Hushpup bundle
-  description: Contains the Hushpup, bundled with 2 boxes of buckshot. Quarter included.
+  description: Contains the Hushpup, bundled with a box of buckshot and a speedloader. Quarter included.
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
         - id: WeaponShotgunHushpup
-          amount: 2 #SL 1 > 2
+        - id: SpeedLoaderMagnumBasic # SL - Speedload > Extra box
         - id: BoxLethalshot
         - id: TreasureCoinIron
