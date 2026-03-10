@@ -483,6 +483,18 @@
       stock: 1
 
 - type: listing
+  id: BoxCourier
+  icon: { sprite: _Starlight/Interface/fashion.rsi, state: regalia }
+  productEntity: BoxCourier
+  cost:
+    NTCredit: 1000
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: ClothingOuterBrimstoneDT4
   productEntity: ClothingOuterBrimstoneDT4
   cost:
