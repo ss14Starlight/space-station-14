@@ -52,6 +52,13 @@
     - MechEquipmentKineticAccelerator
     - MechEquipmentHonkerBananaMortar
     - MechEquipmentHonkerMousetrapMortar
+  
+- type: latheRecipePack
+  id: StarlightMechReactors
+  recipes:
+    - MechReactorHigh
+    - MechReactorHyper
+    - MechReactorMicro
 
 - type: latheRecipePack
   id: StarlightMechWeapon

@@ -45,6 +45,7 @@
   cost: 7500
   recipeUnlocks:
   - PowerCellHigh
+  - MechReactorHigh #Starlight
   - TurboItemRechargerCircuitboard
   - SMESAdvancedMachineCircuitboard
   radioChannels:
@@ -225,6 +226,8 @@
   recipeUnlocks:
   - PowerCellMicroreactor
   - PowerCellHyper
+  - MechReactorMicro #Starlight
+  - MechReactorHyper #Starlight
   technologyPrerequisites:
   - AdvancedPowercells
   - PowerGeneration # starlight

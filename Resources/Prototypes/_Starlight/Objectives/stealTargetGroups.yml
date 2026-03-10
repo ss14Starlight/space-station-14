@@ -221,13 +221,6 @@
     state: adv-laser
 
 - type: stealTargetGroup
-  id: FiringPinSmartLMG
-  name: steal-target-groups-firing-pin-smart-lmg
-  sprite:
-    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
-    state: lmg
-
-- type: stealTargetGroup
   id: LogProbeCartridge
   name: steal-target-groups-log-probe-cartridge
   sprite:

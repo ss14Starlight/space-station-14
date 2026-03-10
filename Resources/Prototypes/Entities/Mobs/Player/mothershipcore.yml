@@ -126,6 +126,9 @@
   - type: WarpPoint
     location: Mothership Core
     follow: true
+    blacklist: # Starlight start
+      tags: # This is here because Wizard
+      - GhostOnlyWarp # Starlight end
   - type: VoiceOverride
     nameOverride: MOTHERSHIP CORE
   - type: TypingIndicator
@@ -159,6 +162,7 @@
     - SiliconEmotes
     - CanPilot
     - Structure
+    - GhostOnlyWarp # Starlight
   - type: GuideHelp
     guides:
     - Robotics

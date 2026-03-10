@@ -147,6 +147,8 @@ guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
 guide-entry-abductors = Abductors
 guide-entry-terror-spiders = Terror Spiders
 
+guide-entry-sl-deepfried-recipes = Deep Fried
+
 # Plumbing guides
 guide-entry-plumbing = Plumbing
 guide-entry-plumbingflow = Reagent Flow

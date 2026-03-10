@@ -892,9 +892,8 @@
     - item: EmagTeaParty
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-door-remote-module }
-  
-  
-
+    
+    
 - type: entity
   id: BorgModuleMiningDefense
   parent: [ BaseBorgModuleMining, BaseProviderBorgModule ]
@@ -929,3 +928,50 @@
           - GoliathPlate
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: salvage-defense-module }
+
+# derelcit xenoborg modules
+
+- type: entity
+  parent: [ BaseXenoborgModuleGeneric, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: DerelictXenoborgModuleBasic
+  name: basic xenoborg module
+  description: Essential items for any Xenoborg.
+  components:
+    - type: Sprite
+      layers:
+        - state: xenoborg_generic
+        - state: icon-xenoborg-basic
+    - type: ItemBorgModule
+      hands:
+        - hand:
+            emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+            emptyLabel: borg-slot-construction-empty
+            whitelist:
+              tags:
+                - ConstructionMaterial
+        - item: XenoborgMaterialBag
+        - item: PinpointerDerelictXenoborg
+        - item: HandheldGPSBasic
+    - type: BorgModuleIcon
+      icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-basic-module }
+
+- type: entity
+  parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: DerelictXenoborgModuleSpaceMovement
+  name: space movement xenoborg module
+  description: Module that helps a Xenoborg move better in space.
+  components:
+    - type: Sprite
+      layers:
+        - state: xenoborg_scout
+        - state: icon-xenoborg-space-movement
+    - type: ItemBorgModule
+      hands:
+        - item: HandheldGPSBasic
+        - item: HandHeldMassScannerBorg
+        - item: PinpointerDerelictXenoborg
+        - item: HandheldStationMapUnpowered
+        - item: WeaponGrapplingGun
+        - item: JetpackXenoborg
+    - type: BorgModuleIcon
+      icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }

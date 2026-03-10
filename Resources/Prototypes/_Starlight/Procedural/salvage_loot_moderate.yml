@@ -52,6 +52,18 @@
         - proto: PowerCellAntiqueProto
           cost: 5
           prob: 0.5
+        - proto: MechReactorAntique
+          cost: 5
+          prob: 0.5
+        - proto: MechReactorBurnout
+          cost: 5
+          prob: 0.5
+        - proto: MechReactorShielded
+          cost: 5
+          prob: 0.5
+        - proto: MechReactorCavalier
+          cost: 5
+          prob: 0.5
         - proto: ProtolatheMachineCircuitboard
         - proto: RandomArtifactSpawner
           cost: 2

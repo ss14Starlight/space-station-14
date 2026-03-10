@@ -146,7 +146,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
         _adminLogger.Add(LogType.Action,
             LogImpact.Low,
-            $"{ToPrettyString(msg.Actor):user} created new NanoChat conversation with #{msg.RecipientNumber:D4} ({msg.Content})");
+            $"{ToPrettyString(msg.Actor):player} created new NanoChat conversation with #{msg.RecipientNumber:D4} ({msg.Content})"); // Starlight Edit: user -> player
 
         var recipientEv = new NanoChatRecipientUpdatedEvent(card);
         RaiseLocalEvent(ref recipientEv);
@@ -196,7 +196,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
         _adminLogger.Add(LogType.Action,
             LogImpact.Low,
-            $"{ToPrettyString(msg.Actor):user} deleted NanoChat conversation with #{msg.RecipientNumber:D4}");
+            $"{ToPrettyString(msg.Actor):player} deleted NanoChat conversation with #{msg.RecipientNumber:D4}"); // Starlight Edit: user -> player
 
         UpdateUIForCard(card);
     }
@@ -261,7 +261,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
 
         _adminLogger.Add(LogType.Chat,
             LogImpact.Low,
-            $"{ToPrettyString(card):user} sent NanoChat message to {recipientsText}: {msg.Content}{(deliveryFailed ? " [DELIVERY FAILED]" : "")}");
+            $"{ToPrettyString(msg.Actor):player} sent NanoChat message to {recipientsText}: {msg.Content}{(deliveryFailed ? " [DELIVERY FAILED]" : "")}"); // Starlight Edit: user -> player
 
         // Starlight edit Start: Commented out
         // var msgEv = new NanoChatMessageReceivedEvent(card, message);

@@ -185,6 +185,14 @@ public sealed partial class MechComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float BatteryRemovalDelay = 2;
+    
+    //Starlight Start
+    /// <summary>
+    /// Whitelist for allowed batteries.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? BatteryWhitelist;
+    //Starlight End
 
     /// <summary>
     /// Whether or not the mech is airtight.
@@ -248,6 +256,13 @@ public sealed partial class MechComponent : Component
 
     [DataField]
     public bool PlayPowerSound = true;
+    //Starlight Start
+    [DataField]
+    public bool PlayPowerUpSound = false;
+
+    [DataField]
+    public SoundSpecifier PowerDownSound = new SoundPathSpecifier("/Audio/Mecha/internaldmgalarm.ogg");
+    //Starlight End
     #endregion
 
     [DataField] public EntityUid? MechCycleActionEntity;

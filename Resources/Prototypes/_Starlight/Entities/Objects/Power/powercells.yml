@@ -44,3 +44,199 @@
       startingCharge: 1080
     - type: BatterySelfRecharger
       autoRechargeRate: 5
+
+# Mech Reactors
+- type: entity
+  id: MechReactorBase
+  name: standard mech reactor
+  description: A miniaturised reactor core, built to be fit into a mech chassis.
+  parent: BasePowerCell
+  abstract: true
+  components:
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: Sprite
+    sprite: _Starlight/Objects/Power/mech_reactors.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: medium
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.BatteryVisuals.State:
+        enum.PowerCellVisualLayers.Unshaded:
+          Full: {visible: false}
+          Neither: {visible: true, state: o1}
+          Empty: {visible: true, state: o2}
+  - type: Battery
+    maxCharge: 720
+    startingCharge: 720
+  - type: Tag
+    tags:
+      - MechReactor
+
+- type: entity
+  id: MechReactorStandard
+  name: standard mech reactor
+  description: A miniaturised reactor core, built to be fit into a mech chassis. It is quite slow, and has to cool down for some time before it begins to generate power.
+  parent: MechReactorBase
+  components:
+  - type: BatterySelfRecharger
+    autoRechargeRate: 8
+    autoRechargePauseTime: 15
+
+- type: entity
+  id: MechReactorHigh
+  name: workhorse-class mech reactor
+  description: A miniaturised reactor core, built to be fit into a mech chassis. It is just as slow as the standard model, but has much a much higher heat capacity.
+  parent: MechReactorBase
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: high
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 1080
+    startingCharge: 1080
+  - type: BatterySelfRecharger
+    autoRechargeRate: 8
+    autoRechargePauseTime: 15
+
+- type: entity
+  id: MechReactorHyper
+  name: longhaul-class mech reactor
+  description: A miniaturised reactor core, built to be fit into a mech chassis. This model is outfitted with deep heatsinks and an upgraded coolant loop for extended operational time.
+  parent: MechReactorBase
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: hyper
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 1800
+    startingCharge: 1800
+  - type: BatterySelfRecharger
+    autoRechargeRate: 12
+    autoRechargePauseTime: 10
+
+- type: entity
+  id: MechReactorMicro
+  name: thor-class mech reactor
+  description: A miniaturised reactor core, built to be fit into a mech chassis. This model features superior cooling systems to facilitate low reactor latency, at the cost of deep heat sinks.
+  parent: MechReactorBase
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: microreactor
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 720
+    startingCharge: 720
+  - type: BatterySelfRecharger
+    autoRechargeRate: 20
+    autoRechargePauseTime: 5
+
+- type: entity
+  id: MechReactorAntique
+  name: emperor-class mech reactor
+  description: A miniaturised reactor core, built in a more civilised age. It is highly efficient, and will never overheat.
+  parent: MechReactorBase
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: antique
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 1200
+    startingCharge: 1200
+  - type: BatterySelfRecharger
+    autoRechargeRate: 60
+    autoRechargePauseTime: 0
+
+- type: entity
+  id: MechReactorShielded
+  name: paladin-class mech reactor
+  description: A miniaturised reactor core, built in a more civilised age. It is highly efficient, but trades some of the advanced cooling systems of the emperor-class reactor for an energy shield system. The device ports on this do not interface with modern mech systems, but we can probably jury-rig that with a multitool...
+  parent: MechReactorBase
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: paladin
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 1200
+    startingCharge: 1200
+  - type: BatterySelfRecharger
+    autoRechargeRate: 40
+    autoRechargePauseTime: 0
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 2
+    domePrototype: EnergyDomeSmallPink
+    canInteractUse: false
+    canDeviceNetworkUse: true
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 100
+  - type: DeviceLinkSink
+    ports:
+    - Toggle
+    - On
+    - Off
+
+- type: entity
+  id: MechReactorBurnout
+  name: burnout-class mech reactor
+  description: A miniaturised reactor core, built to be fit into a mech chassis. The burnout-class reactor series is controversial for their extreme focus on extended burst windows... at the cost of fully melting down as they are used.
+  parent: MechReactorBase
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: burnout
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 40000
+    startingCharge: 40000
+
+- type: entity
+  id: MechReactorCavalier
+  name: cavalier-class mech reactor
+  description: A miniaturised reactor core, built in a more civilised age. This model is overclocked, increasing operational speeds at the expense of both cooling systems and heat sinks.
+  parent: MechReactorBase
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: cavalier
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: BatterySelfRecharger
+    autoRechargeRate: 20
+    autoRechargePauseTime: 5
+  - type: MechSpeedModifier
+    sprintModifier: 1.5
+    walkModifier: 1

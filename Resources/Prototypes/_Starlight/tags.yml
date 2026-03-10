@@ -379,6 +379,9 @@
   id: MagicalEncounterTraitBackground
 
 - type: Tag
+  id: MechReactor
+
+- type: Tag
   id: MedCyberEyes
 
 # Used for the one-use disposable medipens

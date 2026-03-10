@@ -70,3 +70,51 @@
     rules: ghost-role-information-silicon-rules
     raffle:
       settings: default
+      
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: SpawnPointGhostDerelictCyborg
+  id: SpawnPointGhostXenoBorgHeavyDerelict
+  components:
+    - type: GhostRole
+      name: ghostrole-information-derelict-heavy-xenoborg-name
+      description: ghostrole-information-derelict-heavy-xenoborg-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+        
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: SpawnPointGhostDerelictCyborg
+  id: SpawnPointGhostXenoborgEngiDerelict
+  components:
+    - type: GhostRole
+      name: ghostrole-information-derelict-engi-xenoborg-name
+      description: ghostrole-information-derelict-engi-xenoborg-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+        
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: SpawnPointGhostDerelictCyborg
+  id: SpawnPointGhostXenoborgScoutDerelict
+  components:
+    - type: GhostRole
+      name: ghostrole-information-derelict-scout-xenoborg-name
+      description: ghostrole-information-derelict-scout-xenoborg-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: SpawnPointGhostDerelictCyborg
+  id: SpawnPointGhostXenoborgStealthDerelict
+  components:
+    - type: GhostRole
+      name: ghostrole-information-derelict-stealth-xenoborg-name
+      description: ghostrole-information-derelict-stealth-xenoborg-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default

@@ -34012,5 +34012,130 @@ Entries:
   id: 366301
   time: '2026-03-09T14:06:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3663
+- author: Conflee
+  changes:
+  - message: un-fucks the theif gamemode so it doesnt crash the round every time thief
+      rolls.
+    type: Fix
+  id: 367401
+  time: '2026-03-10T02:20:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3674
+- author: wonderfulnewworld
+  changes:
+  - message: Wizard can no longer warp to the mothership.
+    type: Tweak
+  - message: Fixed Solgov cyborg loc error.
+    type: Fix
+  id: 367101
+  time: '2026-03-10T03:44:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3671
+- author: CawsForConcern
+  changes:
+  - message: (Lobster) Cryogenic sleep unit in GenPop.
+    type: Add
+  - message: (Lobster) Performer job slots.
+    type: Add
+  - message: (Lobster) Moved the Medical Dispenser out of Surgery and into the Medbay.
+    type: Tweak
+  id: 367701
+  time: '2026-03-10T05:28:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3677
+- author: Xale
+  changes:
+  - message: Added deep fried recipes category to the guidebook.
+    type: Add
+  id: 366901
+  time: '2026-03-10T05:27:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3669
+- author: neomoth
+  changes:
+  - message: Reverted wizard's communication console announcement sound to war.ogg.
+    type: Tweak
+  id: 367301
+  time: '2026-03-10T06:23:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3673
+- author: neomoth
+  changes:
+  - message: Fixed a bug where using an abductor gizmo on someone who was parented
+      to another entity (such as being buckled) would result in erroneous behavior
+      upon teleporting them back from the abductor shuttle.
+    type: Fix
+  id: 367201
+  time: '2026-03-10T06:31:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3672
+- author: deltaVelocity
+  changes:
+  - message: Adds the ZOZ-82 'Jupiter', an unwieldy bullpup revolver, to the Salvage
+      vendor.
+    type: Add
+  - message: Adds .45 Magnum SP autoloaders to the salvage vendor to go with it.
+    type: Add
+  - message: Removes the Snub Revolver. It went mostly unused anyways, was broken
+      (no firing sounds) and in the two places it was mapped it has been replaced
+      by a Python (on Geiger) and the DIspatcher (on Lagan).
+    type: Remove
+  id: 367001
+  time: '2026-03-10T07:24:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3670
+- author: Cvlancer & CawsForConcern
+  changes:
+  - message: (Oasis) Maints expansion west & north of Atmospherics (Warehouse, Syndieshop,
+      Scrapyard, Evil AI).
+    type: Add
+  - message: (Oasis) Robotics Wardrobe in Robotics.
+    type: Add
+  - message: (Oasis) Reflective vest care in Armory.
+    type: Add
+  - message: (Oasis) "ON AIR" sign for Reporter.
+    type: Add
+  - message: (Oasis) HV wires to Perma Exile Security Dock (cable docking).
+    type: Add
+  - message: (Oasis) New web equipment in Spider Cave.
+    type: Add
+  - message: (Oasis) Two new classes added to Maints LARP.
+    type: Add
+  - message: (Oasis) Small easter egg to Salvage/Mining Dock.
+    type: Add
+  - message: (Oasis) Cleanbot in Artifact.
+    type: Add
+  - message: (Oasis) Artifact chambers now have scrubbers linked to air alarms.
+    type: Add
+  - message: (Oasis) Added one metal hydrogen bar to Atmos to remind Atmos techs that
+      they exist.
+    type: Add
+  - message: (Oasis) Firelocks to Perma Exile Medical.
+    type: Fix
+  - message: (Oasis) Perma Exile Medical defibs now spawn correctly.
+    type: Fix
+  - message: (Oasis) Security's Dock at Perma Exile is no longer backwards.
+    type: Fix
+  - message: (Oasis) Tesla cameras should no longer get shot by emitters.
+    type: Fix
+  - message: (Oasis) AI Core is now protected by MV wires in addition to HV wires.
+    type: Fix
+  - message: (Oasis) Walls around the Abyss are now invincible.
+    type: Fix
+  - message: (Oasis) Re-added makeshift laser pistol.
+    type: Fix
+  - message: (Oasis) Fixed NCT doors not having floor tiles under them.
+    type: Fix
+  - message: (Oasis) Artifact pads are now linked to their science consoles.
+    type: Fix
+  - message: (Oasis) Fixed around 200 invalid entities on the map.
+    type: Fix
+  - message: (Oasis) Locked pickaxes at Perma Exile behind Security access.
+    type: Tweak
+  - message: (Oasis) Removed some Security equipment that spawns on Perma Exile.
+    type: Tweak
+  id: 367801
+  time: '2026-03-10T07:32:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3678
+- author: Kirb
+  changes:
+  - message: Derelict Xenoborgs.
+    type: Add
+  id: 365901
+  time: '2026-03-10T08:59:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3659
 Order: -1
 

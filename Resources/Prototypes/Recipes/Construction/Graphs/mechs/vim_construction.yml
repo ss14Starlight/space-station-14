@@ -18,14 +18,17 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 1
-      - component: PowerCell
-        name: construction-graph-component-power-cell
+      #Starlight Start - Mech Reactors
+      - tag: MechReactor
+        name: construction-graph-tag-mech-reactor
         store: battery-container
         icon:
-          sprite: Objects/Power/power_cells.rsi
-          state: small
+          sprite: _Starlight/Objects/Power/mech_reactors.rsi
+          state: medium
       - tool: Screwing
         doAfter: 1
+      #Starlight End
+
   - node: vim
     actions:
     - !type:BuildMech
