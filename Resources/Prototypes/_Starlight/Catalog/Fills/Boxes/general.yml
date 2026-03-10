@@ -78,7 +78,7 @@
         - id: ClothingShoesBootsSpaceCourier
 
 - type: entity
-  parent: ClothingBackpackDuffelTrunkSpaceCourierAI
+  parent: ClothingBackpackDuffelTrunkSpaceCourierPAI
   id: BoxCourierPAI
   name: space courier trunk
   suffix: Bundle, Ghost Role

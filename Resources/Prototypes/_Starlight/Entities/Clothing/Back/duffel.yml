@@ -134,7 +134,7 @@
 
 - type: entity
   parent: ClothingBackpackDuffelTrunkSpaceCourier
-  id: ClothingBackpackDuffelTrunkSpaceCourierAI
+  id: ClothingBackpackDuffelTrunkSpaceCourierPAI
   name: space courier trunk
   description: A huge trunk themed after a legendary space courier.
   components:
