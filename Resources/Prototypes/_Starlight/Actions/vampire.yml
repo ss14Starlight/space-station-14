@@ -24,7 +24,7 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireGlare
-  name: Glare(Free)
+  name: Glare
   description: Put nearby targets to sleep for 10 seconds
   components:
     - type: Action
