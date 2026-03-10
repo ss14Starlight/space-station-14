@@ -18,6 +18,16 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorMail
 
+# Head/Eyes (Works for both)
+# Same as the coat, don't make these easier to get.
+- type: loadout
+  id: MailTechnicianGogglesSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    head: ClothingEyesSeniorMailGoggles
+
 # Trunks
 - type: loadout
   id: MailTechnicianTrunk

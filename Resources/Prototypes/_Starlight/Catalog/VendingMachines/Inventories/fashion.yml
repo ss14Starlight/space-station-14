@@ -484,7 +484,7 @@
 
 - type: listing
   id: BoxCourier
-  icon: { sprite: _Starlight/Interface/fashion.rsi, state: regalia }
+  icon: { sprite: _Starlight/Interface/fashion.rsi, state: courier }
   productEntity: BoxCourier
   cost:
     NTCredit: 1000

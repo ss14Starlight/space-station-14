@@ -67,6 +67,7 @@ loadout-group-civilian-shoes = Shoes
 loadout-group-mime-shoes = Mime shoes
 
 # Cargo
+loadout-group-mail-technician-head = Mail Technician head
 loadout-group-mail-technician-jumpsuit = Mail Technician jumpsuit
 loadout-group-mail-technician-backpack = Mail Technician backpack
 loadout-group-mail-technician-outerclothing = Mail Technician outer clothing

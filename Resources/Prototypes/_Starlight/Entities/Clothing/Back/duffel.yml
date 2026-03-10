@@ -56,7 +56,7 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 7
+        Blunt: 9
     soundHit:
       collection: MetalThud
 
@@ -78,7 +78,7 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 7
+        Blunt: 9
     soundHit:
       collection: MetalThud
 
@@ -128,7 +128,7 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 7
+        Blunt: 9
     soundHit:
       collection: MetalThud
 # Fashion-O-Mat END

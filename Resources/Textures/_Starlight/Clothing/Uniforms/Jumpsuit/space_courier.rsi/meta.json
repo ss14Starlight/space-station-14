@@ -8,19 +8,27 @@
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+	  "copyright": "retrobit23",
+	  "license": "CC-BY-SA-3.0"
     },
     {
       "name": "equipped-INNERCLOTHING",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "retrobit23",
+	  "license": "CC-BY-SA-3.0"
     },
     {
       "name": "inhand-left",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "retrobit23",
+	  "license": "CC-BY-SA-3.0"
     },
     {
       "name": "inhand-right",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "retrobit23",
+	  "license": "CC-BY-SA-3.0"
     }
   ]
 }

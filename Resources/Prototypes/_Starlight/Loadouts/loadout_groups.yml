@@ -510,6 +510,17 @@
 # Cargo
 # Mail Technician
 - type: loadoutGroup
+  id: MailTechnicianHead
+  name: loadout-group-mail-technician-head
+  minLimit: 0
+  loadouts:
+  - CargoTechnicianHead
+  - CargoTechnicianBeret
+  - CargoTechnicianHeadFormal
+  - CargoTechnicianBeretFormal
+  - MailTechnicianGogglesSenior
+
+- type: loadoutGroup
   id: MailTechnicianJumpsuit
   name: loadout-group-mail-technician-jumpsuit
   loadouts:

@@ -123,7 +123,7 @@
   id: JobMailTech
   groups:
   - GroupTankHarness
-  - CargoTechnicianHead
+  - MailTechnicianHead
   - MailTechnicianJumpsuit
   - MailTechnicianBackpack
   - MailTechnicianOuterClothing
