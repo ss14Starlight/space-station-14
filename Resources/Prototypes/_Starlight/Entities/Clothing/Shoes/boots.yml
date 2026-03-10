@@ -81,7 +81,7 @@
     sprite: _Starlight/Clothing/Shoes/Boots/slick_shoes.rsi
 
 - type: entity
-  parent: ClothingShoesBaseButcherable
+  parent: ClothingShoesBaseWinterBoots
   id: ClothingShoesBootsSpaceCourier
   name: space courier boots
   description: Pristine courier boots themed after a legendary courier who completed all of their deliveries within 9 days, 9 hours, and 9 minutes.

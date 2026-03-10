@@ -57,18 +57,18 @@
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/senior_mail_coat.rsi
   - type: TemperatureProtection
-    heatingCoefficient: 1.1
-    coolingCoefficient: 0.1
+    heatingCoefficient: 1.15
+    coolingCoefficient: 0.05
   - type: Pierceable
     level: Metal
   - type: Armor
     modifiers:
       coefficients:
-        Slash: 0.95
-        Heat: 0.90
+        Slash: 0.90
+        Heat: 0.85
     priceMultiplier: 0
   - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.55
+    zombificationResistanceCoefficient: 0.50
 
 - type: entity
   parent: ClothingOuterStorageFoldableBase
@@ -196,18 +196,18 @@
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/space_courier_coat.rsi
   - type: TemperatureProtection # Technically winter coat-type outfit
-    heatingCoefficient: 1.1
-    coolingCoefficient: 0.1
+    heatingCoefficient: 1.15
+    coolingCoefficient: 0.05
   - type: Pierceable
     level: Metal
   - type: Armor
     modifiers:
       coefficients:
-        Slash: 0.95
-        Heat: 0.90
+        Slash: 0.90
+        Heat: 0.85
     priceMultiplier: 0
   - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.55
+    zombificationResistanceCoefficient: 0.50
 # Fashion-O-Mat END
 
 
