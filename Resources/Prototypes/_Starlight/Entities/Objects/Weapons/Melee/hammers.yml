@@ -20,7 +20,7 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 35
+        Blunt: 25
         Structural: 110
   - type: Item
     size: Ginormous
