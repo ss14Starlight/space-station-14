@@ -9,7 +9,7 @@
     state: icon
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: 0.7
+    attackRate: 0.6
     damage:
       types:
         Blunt: 5
@@ -50,6 +50,8 @@
     slots:
     - back
     - suitStorage
+  - type: TileFrictionModifier
+    modifier: 40
   - type: ClothingSpeedModifier
     walkModifier: 0.6
     sprintModifier: 0.6
