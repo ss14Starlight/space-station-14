@@ -51,8 +51,8 @@
     - back
     - suitStorage
   - type: ClothingSpeedModifier
-    walkModifier: 0.6
-    sprintModifier: 0.6
+    walkModifier: 0.85
+    sprintModifier: 0.85
     requireActivated: false
   - type: HeldSpeedModifier
   - type: UseDelay
