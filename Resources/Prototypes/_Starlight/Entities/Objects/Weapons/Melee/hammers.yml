@@ -20,7 +20,7 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 25
+        Blunt: 35
         Structural: 110
   - type: Item
     size: Ginormous
@@ -53,8 +53,8 @@
   - type: TileFrictionModifier
     modifier: 40
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.6
+    sprintModifier: 0.6
     requireActivated: false
   - type: HeldSpeedModifier
   - type: UseDelay
