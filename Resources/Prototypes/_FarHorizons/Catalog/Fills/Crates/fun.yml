@@ -6,4 +6,4 @@
   components:
   - type: StorageFill
     contents:
-      - id: VehicleATVFueledwithKeys
+      - id: VehicleATVFilled

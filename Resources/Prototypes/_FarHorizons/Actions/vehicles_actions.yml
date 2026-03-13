@@ -49,7 +49,7 @@
   name: Unlocks/Lock Trunk
   components:
   - type: Action  
-    useDelay: 4
+    useDelay: 1
     icon:
       sprite: Structures/Storage/Crates/generic.rsi
       state: icon
@@ -57,3 +57,20 @@
     itemIconStyle: BigAction
   - type: InstantAction
     event: !type:ToggleTrunkActionEvent
+
+- type: entity
+  id: ActionVehicleFanToggle
+  name: Toggle Life Support
+  description: Start ventilating air from the external atmosphere with a gas tank back up.
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_internals_off
+    iconOn:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_internals_on
+  - type: InstantAction
+    event: !type:VehicleFanToggle

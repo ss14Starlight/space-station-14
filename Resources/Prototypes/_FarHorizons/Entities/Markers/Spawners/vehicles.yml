@@ -11,7 +11,7 @@
         state: vehicle
   - type: ConditionalSpawner
     prototypes:
-      - VehicleSecwayBatterywithKeys
+      - VehicleSecwayFilled
 
 - type: entity
   name: Secway Spawner
@@ -26,7 +26,7 @@
         state: vehicle
   - type: ConditionalSpawner
     prototypes:
-      - VehicleSecwayBatterywithKeysS
+      - VehicleSecwaySFilled
 
 - type: entity
   name: Segway Spawner
@@ -40,7 +40,7 @@
         state: vehicle
   - type: ConditionalSpawner
     prototypes:
-      - VehicleSegwayBatterywithKeys
+      - VehicleSegwayFilled
 
 - type: entity
   name: ATV Spawner
@@ -54,7 +54,7 @@
         state: vehicle
   - type: ConditionalSpawner
     prototypes:
-      - VehicleATVFueledwithKeys
+      - VehicleATVFilled
 
 - type: entity
   name: STV Spawner
@@ -68,7 +68,22 @@
         state: vehicle
   - type: ConditionalSpawner
     prototypes:
-      - VehicleATVFueledwithKeysNTSec
+      - VehicleATVNTSecFilled
+
+- type: entity
+  name: STV Spawner
+  id: SpawnVehicleSTVNoKeys
+  parent: MarkerBase
+  suffix: No keys
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
+        state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleATVNTSecFueled
 
 - type: entity
   name: Wheelchair Spawner
@@ -110,4 +125,4 @@
         state: vehicle
   - type: ConditionalSpawner
     prototypes:
-      - VehicleJanicartBatterywithKeys
+      - VehicleJanicartFilled

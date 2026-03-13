@@ -1,6 +1,6 @@
 - type: listing
   id: VendorVehicleSecway
-  productEntity: VehicleSecwayBatterywithKeys
+  productEntity: VehicleSecwayFilled
   cost:
     NTCredit: 1000
   categories:

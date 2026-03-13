@@ -8,7 +8,7 @@ using Content.Shared.Destructible;
 
 namespace Content.Server._FarHorizons.ReagantDraw.EntitySystems;
 
-public sealed class SharedReagantDrawSystem : EntitySystem
+public sealed class ReagantDrawSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;

@@ -73,4 +73,21 @@ public sealed partial class PowerCellSystem
         // 1 second of charge at the required draw rate.
         return HasCharge((ent, ent.Comp2), ent.Comp1.DrawRate, user, predicted);
     }
+
+    
+    /// <summary>
+    /// It sets draw charge. FarHorizon-Edit Why is this not a thing...?
+    /// </summary>
+    [PublicAPI]
+    public void SetDrawRate(Entity<PowerCellDrawComponent?> ent, float newRate)
+    {
+        if (!Resolve(ent, ref ent.Comp, false) || ent.Comp.DrawRate == newRate)
+            return;
+
+        ent.Comp.DrawRate = newRate;
+        Dirty(ent, ent.Comp);
+
+        if (TryGetBatteryFromSlot(ent.Owner, out var battery))
+            _battery.RefreshChargeRate(battery.Value.AsNullable());
+    }
 }

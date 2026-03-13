@@ -321,6 +321,8 @@
     - BorgModules
     - MechParts
     - MechEquipment
+    - FarHorizonsVehicleBasicPartsDynamic #FarHorizons
+    - FarHorizonsVehicleBasicAdvancedDynamic #FarHorizons
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -408,6 +410,7 @@
     - SecurityWeapons
     - SecurityDisablers
     - FarHorizonsSecurityArmorDynamic #FarHorizons
+    - FarHorizonsSecurityVehiclePartsDynamic #FarHorizons
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SyndicateAmmoStatic

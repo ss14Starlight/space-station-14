@@ -46,6 +46,10 @@
     ,
     {
       "name": "vehicle_broken"
+    },
+    {
+      "name": "lightarmor",
+      "directions": 4
     }
   ]
 }

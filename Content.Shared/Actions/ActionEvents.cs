@@ -16,7 +16,7 @@ namespace Content.Shared.Actions;
 ///     cref="GotEquippedHandEvent"/>. This exists mostly as a convenience event, while also helping to keep
 ///     action-granting logic separate from general equipment behavior.
 /// </remarks>
-public sealed class GetItemActionsEvent : EntityEventArgs
+public sealed class GetItemActionsEvent : CancellableEntityEventArgs // FarHorizons
 {
     private readonly ActionContainerSystem _system;
     public readonly SortedSet<EntityUid> Actions = new();

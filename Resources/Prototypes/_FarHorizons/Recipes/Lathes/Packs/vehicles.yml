@@ -1,0 +1,15 @@
+- type: latheRecipePack
+  id: FarHorizonsVehicleBasicPartsDynamic
+  recipes:
+  - BasicHeadlight
+  - BasicTires
+  - BasicEngine
+  - ElectricEngine
+
+- type: latheRecipePack
+  id: FarHorizonsVehicleBasicAdvancedDynamic
+  recipes:
+  - HeadlightLED
+  - AdvancedEngine
+  - ElectricTurboEngine
+  - BasicArmorKit

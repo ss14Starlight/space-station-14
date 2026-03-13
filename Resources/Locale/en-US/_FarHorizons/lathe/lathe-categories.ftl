@@ -1,1 +1,1 @@
-lathe-category-armor = Armor
+lathe-category-vehicle-parts = Vehicle Parts

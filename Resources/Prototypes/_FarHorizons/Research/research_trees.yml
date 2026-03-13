@@ -10,7 +10,7 @@
     - MechanicalCompress
     - RipleyMech
     - RiotControl
-    - VehicularArmorLight
+    - SecVehicleParts
     - SpecialAmmo
     - LaserGun
     - Atmospherics
@@ -90,3 +90,5 @@
     - SecBorg
     - SyringeGun
     - Cloning
+    - VehicleBasicParts
+    - VehicleAdvancedParts

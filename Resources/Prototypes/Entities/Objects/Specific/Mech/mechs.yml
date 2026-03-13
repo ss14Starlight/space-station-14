@@ -124,10 +124,10 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/Mechs/Basic/ripley.rsi
+    sprite: Objects/Specific/Mech/Mechs/Basic/ripleymkii.rsi #FarHorizons
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: base
+      state: base #FarHorizons
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
@@ -136,19 +136,11 @@
       tags:
       - IndustrialMech
       - RipleyMKIIUpgradeKit
-    baseState: base
-    openState: base-open
-    brokenState: base-broken
-  - type: Vehicle
-    transferDamageModifier:
-      coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
-        Cold: 0.75
-        Heat: 0.75
-        Shock: 0.75
-    operatorWhitelist:
+    baseState: base #FarHorizons
+    openState: base-open #FarHorizons
+    brokenState: base-broken #FarHorizons
+    mechToPilotDamageMultiplier: 0.75
+    pilotWhitelist:
       components:
         - HumanoidAppearance
   - type: VehicleHandBlocker

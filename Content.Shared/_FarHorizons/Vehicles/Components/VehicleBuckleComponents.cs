@@ -5,88 +5,84 @@ using System.Numerics;
 
 namespace Content.Shared._FarHorizons.Vehicles.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class VehicleBuckleComponent : Component
 {
     /// <summary>
     /// How long it will take to unbuckle a driver
     /// </summary>
-    [DataField("unbuckleTime"), AutoNetworkedField]
+    [DataField("unbuckleTime")]
     public TimeSpan duration = TimeSpan.FromSeconds(3f);
 
     /// <summary>
     /// Should stuns dismount the driver? 
     /// </summary>
-    [DataField("dismountOnStun"), AutoNetworkedField]
+    [DataField("dismountOnStun")]
     public bool stundismount = true;
 
     /// <summary>
     /// Should knockdowns dismount the driver?
     /// </summary>
-    [DataField("dismountOnKnockdown"), AutoNetworkedField]
+    [DataField("dismountOnKnockdown")]
     public bool knockdowndismount = true;
 
     /// <summary>
-    /// Should knockdowns dismount the driver?
+    /// Should armor slow down vehicle
     /// </summary>
-    [DataField("armorAffectsVehicle"), AutoNetworkedField]
+    [DataField("armorAffectsVehicle")]
     public bool armoraffectsvehicle = false;
     
     /// <summary>
-    /// Should knockdowns dismount the driver?
+    /// Should crashes eject driver
     /// </summary>
-    [DataField("ejectOnCrash"), AutoNetworkedField]
+    [DataField("ejectOnCrash")]
     public bool EjectOnCrash = false;
 
     /// <summary>
     /// What the buckle offset is used for north
     /// </summary>
-    [DataField("northOffset"), AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("northOffset")]
     public Vector2 NorthOffset = Vector2.Zero;
 
     /// <summary>
     /// What the buckle offset is used for south
     /// </summary>
-    [DataField("southOffset"), AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("southOffset")]
     public Vector2 SouthOffset = Vector2.Zero;
 
     /// <summary>
     /// What the buckle offset is used for west
     /// </summary>
-    [DataField("westOffset"), AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("westOffset")]
     public Vector2 WestOffset= Vector2.Zero;
 
     /// <summary>
     /// What the buckle offset is used for east
     /// </summary>
-    [DataField("eastOffset"), AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("eastOffset")]
     public Vector2 EastOffset = Vector2.Zero;
 
     /// <summary>
     /// What drawdepth is used for north
     /// </summary>
-    [DataField("northDrawDepth", customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>)), AutoNetworkedField]
-    public int northDrawDepth = DrawDepthTag.Default;
+    [DataField("northDrawDepth", customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>))]
+    public int northDrawDepth = DrawDepthTag.Default + 7;
 
     /// <summary>
     /// What drawdepth is used for south
     /// </summary>
-    [DataField("southDrawDepth", customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>)), AutoNetworkedField]
-    public int southDrawDepth = DrawDepthTag.Default;
+    [DataField("southDrawDepth", customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>))]
+    public int southDrawDepth = DrawDepthTag.Default + 7;
 
     /// <summary>
     /// What drawdepth is used for south
     /// </summary>
-    [DataField("eastDrawDepth", customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>)), AutoNetworkedField]
-    public int eastDrawDepth = DrawDepthTag.Default;
+    [DataField("eastDrawDepth", customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>))]
+    public int eastDrawDepth = DrawDepthTag.Default + 7;
 
     /// <summary>
     /// What drawdepth is used for south
     /// </summary>
-    [DataField("westDrawDepth", customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>)), AutoNetworkedField]
-    public int westDrawDepth = DrawDepthTag.Default;
+    [DataField("westDrawDepth", customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>))]
+    public int westDrawDepth = DrawDepthTag.Default + 7;
 }

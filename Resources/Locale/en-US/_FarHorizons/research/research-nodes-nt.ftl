@@ -82,4 +82,6 @@ research-tree-node-placeholder-3 = Placeholder Tech 3
 research-tree-node-mech-security = Mechanical Security
 research-tree-node-syringe-gun = Syringe Gun
 research-tree-node-cloning = Cloning Systems
-research-tree-node-vehicle-armor-light = Light Vehicular Armor
+research-tree-node-vehicle-security-parts = Security Vehicle Parts
+research-tree-node-vehicle-basic-parts = Basic Vehicle Parts
+research-tree-node-vehicle-advanced-parts = Advanced Vehicle Parts

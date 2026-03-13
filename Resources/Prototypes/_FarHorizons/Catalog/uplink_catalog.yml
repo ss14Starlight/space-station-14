@@ -87,7 +87,7 @@
   name: uplink-syndicate-secway-name
   description: uplink-syndicate-secway-description
   icon: { sprite: /Textures/_FarHorizons/Objects/Vehicles/syndicate_segway.rsi, state: icon}
-  productEntity: VehicleSegwayBatterywithKeysNST
+  productEntity: VehicleSegwayNST
   cost:
     Telecrystal: 2 # What's more loud than a bloodred? A red segway. Plus, not that useful in the grand theme of things, asides from the universal key you get.. Funny though.
   categories:
@@ -101,7 +101,7 @@
   name: uplink-syndicate-secway-armored-light-name
   description: uplink-syndicate-secway-armored-light-description
   icon: { sprite: /Textures/_FarHorizons/Objects/Vehicles/Armored/syndicate_segway_armored_light.rsi, state: icon}
-  productEntity: VehicleSegwayArmoredLightBatterywithKeysNST
+  productEntity: VehicleSegwayArmoredLightNST
   cost:
     Telecrystal: 4 # May I introduce you to it's slightly less useless cousin?
   categories:

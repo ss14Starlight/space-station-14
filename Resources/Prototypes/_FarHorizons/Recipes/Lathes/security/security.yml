@@ -2,10 +2,10 @@
 
 - type: latheRecipe
   abstract: true
-  id: BaseArmorRecipe
+  id: BaseVehiclePartsRecipe
   completetime: 6
   categories:
-  - Armor
+  - LatheVehicleParts
 
 - type: latheRecipe
   parent: BaseGoldBorgModuleRecipe
@@ -140,13 +140,36 @@
     Silver: 200
     Gold: 50
 
+#region Vehicles
 - type: latheRecipe
-  parent: BaseArmorRecipe
-  id: SecwayArmorLightKit
-  result: SecwayArmorLightKit
+  parent: BaseVehiclePartsRecipe
+  id: LightArmorKit
+  result: LightArmorKit
   categories:
-  - LatheArmor
+  - LatheVehicleParts
   materials:
     ReinforcedGlass: 1000
     Steel: 500
     Plastic: 500
+
+- type: latheRecipe
+  parent: BaseVehiclePartsRecipe
+  id: SecSiren
+  result: SecSiren
+  categories:
+  - LatheVehicleParts
+  materials:
+    Glass: 500
+    Steel: 250
+    Plastic: 1000
+
+#region Bags
+- type: latheRecipe
+  parent: BaseSoftPouchRecipe
+  id: SoftPouchSecurity
+  result: SoftPouchSecurity
+
+- type: latheRecipe
+  parent: BaseHardPouchRecipe
+  id: HardPouchSecurity
+  result: HardPouchSecurity

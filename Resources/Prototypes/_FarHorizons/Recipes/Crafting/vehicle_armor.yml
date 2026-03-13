@@ -1,9 +1,0 @@
-- type: construction
-  name: crafting-menu-name-SecwayArmoredLight
-  id: VehicleSecwayArmoredLightBatteryNT
-  graph: SecwayArmoredLightGraph
-  startNode: start
-  targetNode: vehicle
-  category: construction-category-vehicles
-  objectType: Item
-  description: crafting-menu-text-SecwayArmoredLight

@@ -3,6 +3,7 @@ vehicle-steal-vehicle-attempt = Someone starts to remove you from the driver sea
 
 vehicle-turn-keys-start = You turn the keys to start the vehicle
 vehicle-turn-keys-stop = You turn the keys to stop the vehicle
+vehicle-turn-keys-fail = Something is wrong with the vehicle and it won't start.
 
 vehicle-toggle-trunk-open = You popped open the trunk
 vehicle-toggle-trunk-close = You closed the trunk

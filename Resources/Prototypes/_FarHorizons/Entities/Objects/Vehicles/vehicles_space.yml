@@ -1,0 +1,142 @@
+- type: entity
+  id: VehicleSpaceshipBase
+  abstract: true
+  parent: BaseVehicleRideableDamageable
+  components:
+  - type: Vehicle
+    cellPowered: false
+    requireIgnition: true
+    allowCrashing: true
+    baseState: vehicle
+    brokenState: vehicle_broken
+    startupTime: 2
+    startUp: 
+      path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+      params:
+        volume: -3
+    hornSound: 
+      path: /Audio/Effects/Vehicle/carhorn.ogg
+      params:
+        volume: -3
+    riderWhitelist:
+      tags:
+        - CanPilot
+    soundHit:
+      collection: MetalThud
+  - type: VehicleContainer
+    seats: 2
+    passengerWhitelist:
+      components:
+        - Body
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.VehicleEquipmentUiKey.Key:
+        type: VehicleEquipmentBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: RadarConsole
+    followEntity: true
+  - type: VehicleCabinAir
+  - type: AtmosDevice
+    requireAnchored: false
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
+      vehicle_mods_container: !type:Container
+  - type: SolutionContainerManager
+    solutions:
+      fueltank:
+        maxVol: 150
+  - type: RefillableSolution
+    solution: fueltank
+  - type: ExaminableSolution
+    solution: fueltank
+    exactVolume: true
+  - type: ReagantDraw
+    enabled: false
+    solutionContainer: fueltank
+    whitelistedReagants: 
+    - WeldingFuel
+    drainRate: 0.25
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 360
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
+      params:
+        volume: -11
+        pitch: 1.15
+        variation: 0.10
+
+- type: entity
+  id: VehicleTransport
+  parent: VehicleSpaceshipBase
+  name: Transporter
+  description: Basic space faring vehicle dedicated to the transport of good or exploration.
+  components:
+  - type: VehicleContainer
+    seats: 1
+  - type: Sprite
+    drawdepth: OverMobs
+    sprite: _FarHorizons/Objects/Vehicles/transporter.rsi
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+    scale: 2.0, 2.0
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - ATVKeys
+  - type: Hitch
+  - type: VehicleMods
+    vehicleType: Spaceship
+    equipmentSlots: [TIRES, ENGINE, ARMOR, HEADLIGHT, AIRTANK, VENTFAN, THURSTERS, BOOSTER]
+
+- type: entity
+  id: VehicleTransportFueledwithKeys
+  parent: VehicleTransport
+  suffix: Filled
+  components: 
+    - type: SolutionContainerManager
+      solutions:
+        fueltank:
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 150
+          maxVol: 150
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - GroundEngine
+        - HeadlightLED
+        - VehicleAirTankFilled
+        - VentFan
+        - BasicThrusters
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeyATV

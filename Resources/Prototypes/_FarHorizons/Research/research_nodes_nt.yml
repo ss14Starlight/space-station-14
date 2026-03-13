@@ -101,15 +101,16 @@
     - Security
 
 - type: researchTreeNode
-  id: VehicularArmorLight
-  name: research-tree-node-vehicle-armor-light
+  id: SecVehicleParts
+  name: research-tree-node-vehicle-security-parts
   cost: 8000
   icon:
     state: kinetic
     color: "#003860"
   tier: Tier1
   unlocks:
-    - SecwayArmorLightKit
+    - LightArmorKit
+    - SecSiren
   announceTo:
     - Security
 
@@ -566,6 +567,20 @@
   announceTo:
     - Service
 
+#Vehicles
+- type: researchTreeNode
+  id: VehicleBasicParts
+  name: research-tree-node-vehicle-basic-parts
+  cost: 8000
+  icon:
+    state: kinetic
+    color: "#006020"
+  tier: Tier1
+  unlocks:
+    - BasicHeadlight
+    - BasicTires
+    - BasicEngine
+    - ElectricEngine
 ---
 
 # Tier 2
@@ -1216,6 +1231,23 @@
     - SyringeCryostasis
   announceTo:
     - Medical
+
+#Vehicles
+- type: researchTreeNode
+  id: VehicleAdvancedParts
+  name: research-tree-node-vehicle-advanced-parts
+  cost: 10000
+  icon:
+    state: kinetic
+    color: "#006020"
+  tier: Tier2
+  requires: 
+    - VehicleBasicParts
+  unlocks:
+  - HeadlightLED
+  - AdvancedEngine
+  - ElectricTurboEngine
+  - BasicArmorKit
 
 ---
 

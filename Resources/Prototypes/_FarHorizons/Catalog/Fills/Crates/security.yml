@@ -6,7 +6,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: VehicleSecwayBatterywithKeys
+      - id: VehicleSecwayFilled
 
 - type: entity
   id: CrateSecuritySecwayTurbo
@@ -16,7 +16,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: VehicleSecwayTurboBatterywithKeys
+      - id: VehicleSecwayTurboFilled
 
 - type: entity
   id: CrateSecuritySTV
@@ -26,4 +26,4 @@
   components:
   - type: StorageFill
     contents:
-      - id: VehicleATVFueledwithKeysNTSec
+      - id: VehicleATVNTSecFilled

@@ -17,7 +17,6 @@ using Content.Shared.Movement.Systems;
 using Content.Shared._FarHorizons.ReagantDraw.Components;
 using Content.Server._FarHorizons.ReagantDraw.EntitySystems;
 using Content.Shared.Hands;
-using Robust.Shared.Audio;
 using Content.Shared.Audio;
 
 namespace Content.Shared._FarHorizons.Tools.FloorBuffer.Systems;
@@ -30,7 +29,7 @@ public sealed partial class FloorBufferSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly SharedReagantDrawSystem _reagantDraw = default!;
+    [Dependency] private readonly ReagantDrawSystem _reagantDraw = default!;
     [Dependency] private readonly SharedAmbientSoundSystem _ambient = default!;
     static readonly public ProtoId<ReagentPrototype> ReplacementReagent = "Water";
     public override void Initialize()

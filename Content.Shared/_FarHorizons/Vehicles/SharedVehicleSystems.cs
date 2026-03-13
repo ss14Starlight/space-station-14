@@ -6,14 +6,13 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;
 using Content.Shared.Examine;
-using Content.Shared.Item.ItemToggle.Components;
-using Content.Shared.Toggleable;
-using Content.Shared.Light.Components;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Buckle;
+using Content.Shared.Movement.Components;
+using Content.Shared._FarHorizons.Vehicles.Events;
 
-namespace Content.Shared._FarHorizons.Vehicles.EntitySystems;
+namespace Content.Shared._FarHorizons.Vehicles;
 
 public abstract partial class SharedVehicleSystems : EntitySystem
 {
@@ -33,8 +32,6 @@ public abstract partial class SharedVehicleSystems : EntitySystem
         SubscribeLocalEvent<VehicleComponent, ExaminedEvent>(OnExamine);
 
         SubscribeLocalEvent<RiderComponent, PullAttemptEvent>(OnPullAttempt);
-
-        SubscribeLocalEvent<ItemToggleComponent, ToggleActionEvent>(OnSirenToggle);
     }
 
     protected virtual void OnTurnKeysEvent(Entity<VehicleComponent> ent, ref TurnKeysEvent args)
@@ -78,6 +75,7 @@ public abstract partial class SharedVehicleSystems : EntitySystem
     protected virtual void OnToggleTrunk(Entity<VehicleComponent> ent, ref ToggleTrunkActionEvent args)
     {
         if(args.Handled) return;
+        if(!_gameTiming.IsFirstTimePredicted) return;
         if(!TryComp<LockComponent>(ent.Owner, out var lockComp)) return;
 
         if(!_lock.IsLocked(ent.Owner))
@@ -97,10 +95,17 @@ public abstract partial class SharedVehicleSystems : EntitySystem
         var rider = ent.Comp.Rider.Value;
 
         if(!ent.Comp.AllowCrashing) return;
+        if(!TryComp<MovementSpeedModifierComponent>(ent.Owner, out var msmComp)) return;
 
         var speed = args.OurBody.LinearVelocity.Length();
+        var crashingSpeed = 8f;
 
-        if (speed < ent.Comp.CrashingSpeed) return;
+        if(msmComp.BaseSprintSpeed > msmComp.BaseWalkSpeed)
+            crashingSpeed = msmComp.BaseWalkSpeed+1;
+        else if(msmComp.BaseSprintSpeed < msmComp.BaseWalkSpeed)
+            crashingSpeed = msmComp.BaseSprintSpeed+1;
+
+        if (speed < crashingSpeed) return;
 
         if (args.OurFixture.Hard && args.OtherFixture.Hard)
         {
@@ -132,9 +137,9 @@ public abstract partial class SharedVehicleSystems : EntitySystem
 
     private void OnPullAttempt(Entity<RiderComponent> ent, ref PullAttemptEvent args)
     {
-        if(TryComp<MobStateComponent>(ent.Owner, out var mbState) 
-        && (mbState.CurrentState == Mobs.MobState.Critical 
-            || mbState.CurrentState == Mobs.MobState.Dead 
+        if(TryComp<MobStateComponent>(ent.Owner, out var mbState)
+        && (mbState.CurrentState == Mobs.MobState.Critical
+            || mbState.CurrentState == Mobs.MobState.Dead
             || mbState.CurrentState == Mobs.MobState.Invalid))
         {
             _buckle.Unbuckle(ent.Owner, args.PullerUid);

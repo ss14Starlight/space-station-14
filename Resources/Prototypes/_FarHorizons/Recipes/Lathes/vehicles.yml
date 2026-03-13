@@ -1,0 +1,71 @@
+- type: latheRecipe
+  parent: BaseVehiclePartsRecipe
+  id: BasicHeadlight
+  result: BasicHeadlight
+  categories:
+  - LatheVehicleParts
+  materials:
+    Glass: 100
+    Steel: 50
+    Plastic: 25
+
+- type: latheRecipe
+  parent: BaseVehiclePartsRecipe
+  id: HeadlightLED
+  result: HeadlightLED
+  categories:
+  - LatheVehicleParts
+  materials:
+    Glass: 100
+    Steel: 100
+    Plastic: 50
+
+- type: latheRecipe
+  parent: BaseVehiclePartsRecipe
+  id: BasicTires
+  result: BasicTires
+  categories:
+  - LatheVehicleParts
+  materials:
+    Steel: 100
+    Plastic: 200
+
+- type: latheRecipe
+  parent: BaseVehiclePartsRecipe
+  id: BasicEngine
+  result: BasicEngine
+  categories:
+  - LatheVehicleParts
+  materials:
+    Steel: 300
+    Plastic: 100
+
+- type: latheRecipe
+  parent: BaseVehiclePartsRecipe
+  id: AdvancedEngine
+  result: AdvancedEngine
+  categories:
+  - LatheVehicleParts
+  materials:
+    Steel: 400
+    Plastic: 200
+
+- type: latheRecipe
+  parent: BasicEngine
+  id: ElectricEngine
+  result: ElectricEngine
+
+- type: latheRecipe
+  parent: AdvancedEngine
+  id: ElectricTurboEngine
+  result: ElectricTurboEngine
+  
+- type: latheRecipe
+  parent: BaseVehiclePartsRecipe
+  id: BasicArmorKit
+  result: BasicArmorKit
+  categories:
+  - LatheVehicleParts
+  materials:
+    Steel: 50
+    Plastic: 100

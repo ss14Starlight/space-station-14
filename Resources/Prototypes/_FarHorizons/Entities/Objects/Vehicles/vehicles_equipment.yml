@@ -1,28 +1,48 @@
 - type: entity
-  id: ATVHeadlight
+  id: VehicleEquipmentBase
   parent: BaseItem
-  name: ATV Headlight
-  description: Standard headlight for ATVs. Mostly used to distract tiders as you run over them like they're deer in the middle of the road. 
+  abstract: true
   components:
-    - type: UnpoweredFlashlight
-    - type: PointLight
-      enabled: false
-      radius: 10
-      softness: 2
-      mask: /Textures/Effects/LightMasks/cone.png
-      autoRot: true
-      containerOccluded: true
-    - type: Sprite
-      sprite: Objects/Power/light_bulb.rsi
-      layers:
-        - map: [ enum.LightBulbVisualLayers.Base ]
-          state: normal
+    - type: Appearance
+    - type: Damageable
+      damageModifierSet: VehicleLightArmor
+      damageContainer: StructuralInorganic
+    - type: Item
+      size: Normal
+      shape:
+      - 0, 0, 1, 1
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:DoActsBehavior
+          acts: ["Breakage"]
 
 - type: entity
-  id: SecwayLight
-  parent: BaseItem
-  name: Secway Light
-  description: Standard light for Secways. Excellent for seeing those maints grilles before you crash into them! 
+  id: VehicleEquipmentBaseBig
+  parent: VehicleEquipmentBase
+  abstract: true
+  components:
+    - type: Item
+      size: Large
+      shape:
+      - 0, 0, 2, 2
+    - type: MultiHandedItem
+    - type: HeldSpeedModifier
+      sprintModifier: 0.7
+      walkModifier: 0.7
+
+#region Headlights
+- type: entity
+  id: BasicHeadlight
+  parent: VehicleEquipmentBase
+  name: Basic Headlights
+  description: Standard light for most vehicles. Excellent for seeing those maints grilles before you crash into them! 
   components:
     - type: UnpoweredFlashlight
     - type: PointLight
@@ -37,12 +57,17 @@
       layers:
         - map: [ enum.LightBulbVisualLayers.Base ]
           state: normal
+    - type: VehicleEquipment
+      actionProto: ActionToggleLight
+      slot: headlight
+      allowedVehicles: [Electric, Gas, Spaceship]
+    - type: Appearance
 
 - type: entity
-  id: SecwayLightBright
-  parent: BaseItem
-  name: Bright Secway Light
-  description: Upgraded light for Secways and Segways alike. Excellent for seeing those maints grilles before you crash into them! 
+  id: HeadlightLED
+  parent: VehicleEquipmentBase
+  name: LED Headlights
+  description: Upgraded light for most vehicles. Excellent for seeing those maints grilles before you crash into them! 
   components:
     - type: UnpoweredFlashlight
     - type: PointLight
@@ -57,13 +82,20 @@
       layers:
         - map: [ enum.LightBulbVisualLayers.Base ]
           state: normal
+    - type: VehicleEquipment
+      actionProto: ActionToggleLight
+      slot: headlight
+      allowedVehicles: [Electric, Gas, Spaceship]
+    - type: Appearance
 
+#region Lightbars
 - type: entity
   id: SecSiren
-  parent: BaseItem
+  parent: VehicleEquipmentBase
   name: Security Siren
   description: Turn this thing on and those tiders will scatter like roaches, or they will jump you... Who knows?
   components:
+    - type: UnpoweredFlashlight
     - type: ItemToggle
       onUse: false
       soundActivate:
@@ -79,10 +111,220 @@
     - type: RotatingLight
       speed: 360
     - type: Sprite
-      sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security.rsi
+      sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
       state: siren
     - type: ItemToggleActiveSound
       activeSound:
         path: /Audio/Effects/Vehicle/policesiren.ogg
         params:
           volume: -4
+    - type: VehicleEquipment
+      actionProto: ActionVehicleToggleSecuritySiren
+      slot: lightbar
+      allowedVehicles: [Electric, Gas, Spaceship]
+    - type: Appearance
+
+#region Tires
+- type: entity
+  id: BasicTires
+  parent: VehicleEquipmentBaseBig
+  name: Basic Tires
+  description: Basic tires that have basic acceleration and traction. 
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
+      state: tires
+    - type: VehicleEquipment
+      slot: tires
+      allowedVehicles: [Electric, Gas, Spaceship]
+    - type: MovementSpeedModifier
+      baseAcceleration: 2 
+      baseFriction: 4.5
+
+#region Engines
+- type: entity
+  id: BasicEngine
+  parent: VehicleEquipmentBaseBig
+  name: Basic Engine
+  description: A basic engine with basic speed.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
+      state: gas_engine
+      scale: 0.7, 0.7
+    - type: VehicleEquipment
+      slot: ENGINE
+      allowedVehicles: [Gas, Spaceship]
+    - type: MovementSpeedModifier
+      baseSprintSpeed: 7.5
+      baseWalkSpeed: 10
+    - type: ReagantDraw
+      drainRate: 0.25
+
+- type: entity
+  id: AdvancedEngine
+  parent: BasicEngine
+  name: Advanced Engine
+  description: An advanced engine with more power output but consumes more fuel.
+  components:
+    - type: MovementSpeedModifier
+      baseSprintSpeed: 10
+      baseWalkSpeed: 15
+    - type: ReagantDraw
+      drainRate: 0.375
+
+- type: entity
+  id: GroundEngine
+  parent: BasicEngine
+  name: Ground Engine
+  description: An engine designed to move a space ship from point A to B but thats it.
+  components:
+    - type: MovementSpeedModifier
+      baseSprintSpeed: 5
+      baseWalkSpeed: 2.5
+    - type: ReagantDraw
+      drainRate: 0.25
+
+- type: entity
+  id: ElectricEngine
+  parent: VehicleEquipmentBaseBig
+  name: Electric Motor
+  description: A cheap electric motor capable of decent power output.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
+      state: electric_engine
+      scale: 0.7, 0.7
+    - type: VehicleEquipment
+      slot: ENGINE
+      allowedVehicles: Electric
+    - type: MovementSpeedModifier
+      baseSprintSpeed: 5
+      baseWalkSpeed: 2.5
+    - type: PowerCellDraw
+      drawRate: 1
+
+- type: entity
+  id: ElectricTurboEngine
+  parent: ElectricEngine
+  name: Electric Turbo Motor
+  description: A higher quality electric egine that doubles the output of the engine at the cost of more power draw.
+  components:
+    - type: MovementSpeedModifier
+      baseSprintSpeed: 10
+      baseWalkSpeed: 5
+    - type: PowerCellDraw
+      drawRate: 1.5
+
+#region Thrusters
+- type: entity
+  id: BasicThrusters
+  parent: VehicleEquipmentBaseBig
+  name: Basic Thrusters
+  description: A a mass produced thruster with spaceflight capabilities but no FTL.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
+      state: gas_engine
+    - type: VehicleEquipment
+      slot: THURSTERS
+      allowedVehicles: Spaceship
+    - type: MovementSpeedModifier
+      baseWeightlessAcceleration: 2
+      baseWeightlessFriction: 3
+      baseWeightlessModifier: 3
+
+#region Airtanks
+- type: entity
+  id: VehicleAirTank
+  parent: VehicleEquipmentBase
+  name: Vehicle Air Tank
+  description: A special air canister capable of holding a large amount of air.
+  components:
+    - type: Item
+      storedRotation: 0
+    - type: Sprite
+      sprite: Objects/Specific/Mech/mecha_equipment.rsi
+      state: mecha_air_tank
+    - type: ActivatableUI
+      key: enum.SharedGasTankUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.SharedGasTankUiKey.Key:
+          type: GasTankBoundUserInterface
+    - type: GasTank
+      outputPressure: 21.3
+      air:
+        volume: 3000
+        temperature: 293.15
+      tankLowPressure: 30.0
+    - type: VehicleEquipment
+      slot: [AIRTANK]
+      allowedVehicles: Spaceship
+
+- type: entity
+  id: VehicleAirTankFilled
+  parent: VehicleAirTank
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 3000
+      moles:
+        Oxygen: 50.051379050
+      temperature: 293.15
+
+#region Ventfans
+- type: entity
+  id: VentFan
+  parent: VehicleEquipmentBase
+  name: Vent Fan
+  description: A special fan that pumps gas in and out of the vehicle cabin.
+  components:
+    - type: Item
+      storedRotation: 0
+    - type: Sprite
+      sprite: Objects/Specific/Mech/mecha_equipment.rsi
+      state: mecha_air_tank
+    - type: VehicleEquipment
+      actionProto: ActionVehicleFanToggle
+      slot: VENTFAN
+      allowedVehicles: Spaceship
+    - type: VehicleFanMod
+      gasProcessingRate: 100
+      filterGases: [ Plasma, CarbonDioxide, NitrousOxide ]
+
+#region Armor
+- type: entity
+  id: BasicArmorKit
+  parent: VehicleEquipmentBaseBig
+  name: Basic Armor Kit
+  description: This kit allows you to upgrade most vehicle's armor to tier I.
+  components:
+    - type: Item
+      size: Normal
+      heldPrefix: light
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Misc/Upgrade_Kits/secway_armor.rsi
+      state: light
+    - type: VehicleEquipment
+      slot: ARMOR
+      allowedVehicles: [Electric, Gas, Spaceship]
+    - type: Damageable
+      damageModifierSet: VehicleBasicArmor
+
+- type: entity
+  id: LightArmorKit
+  parent: BasicArmorKit
+  name: Light Armor Kit
+  description: This kit allows you to upgrade most vehicle's armor to tier II.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Misc/Upgrade_Kits/secway_armor.rsi
+      state: light
+    - type: Damageable
+      damageModifierSet: VehicleLightArmor
+    - type: Tag
+      tags:
+      - VehicleLightArmor

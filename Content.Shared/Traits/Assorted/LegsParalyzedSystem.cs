@@ -21,16 +21,18 @@ public sealed partial class LegsParalyzedSystem : EntitySystem
         SubscribeLocalEvent<LegsParalyzedComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<LegsParalyzedComponent, BuckledEvent>(OnBuckled);
         SubscribeLocalEvent<LegsParalyzedComponent, UnbuckledEvent>(OnUnbuckled);
+        //FarHorizons-Start
         /*SubscribeLocalEvent<LegsParalyzedComponent, ThrowPushbackAttemptEvent>(OnThrowPushbackAttempt);
         SubscribeLocalEvent<LegsParalyzedComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent);*/
+        //FarHorizons-End
     }
 
     private void OnStartup(EntityUid uid, LegsParalyzedComponent component, ComponentStartup args)
     {
         // TODO: In future probably must be surgery related wound
         /*_movementSpeedModifierSystem.ChangeBaseSpeed(uid, 0, 0, 20);*/
-        EnsureComp<WormComponent>(uid);
-        EnsureComp<KnockedDownComponent>(uid);
+        EnsureComp<WormComponent>(uid); //FarHorizons
+        EnsureComp<KnockedDownComponent>(uid);//FarHorizons
     }
 
     private void OnShutdown(EntityUid uid, LegsParalyzedComponent component, ComponentShutdown args)
@@ -42,17 +44,18 @@ public sealed partial class LegsParalyzedSystem : EntitySystem
     private void OnBuckled(EntityUid uid, LegsParalyzedComponent component, ref BuckledEvent args)
     {
         //_standingSystem.Stand(uid);
-        RemComp<WormComponent>(uid);
-        RemComp<KnockedDownComponent>(uid);
+        RemComp<WormComponent>(uid); //FarHorizons
+        RemComp<KnockedDownComponent>(uid); //FarHorizons
     }
 
     private void OnUnbuckled(EntityUid uid, LegsParalyzedComponent component, ref UnbuckledEvent args)
     {
         /*_standingSystem.Down(uid);*/
-        EnsureComp<WormComponent>(uid);
-        EnsureComp<KnockedDownComponent>(uid);
+        EnsureComp<WormComponent>(uid); //FarHorizons
+        EnsureComp<KnockedDownComponent>(uid); //FarHorizons
     }
 
+    //FarHorizons-edit Start
     /*private void OnUpdateCanMoveEvent(EntityUid uid, LegsParalyzedComponent component, UpdateCanMoveEvent args)
     {
          args.Cancel();
@@ -62,4 +65,5 @@ public sealed partial class LegsParalyzedSystem : EntitySystem
     {
         args.Cancel();
     }*/
+    //FarHorizons-edit End
 }

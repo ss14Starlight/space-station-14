@@ -50,9 +50,6 @@
   id: Secway
 
 - type: Tag
-  id: SecwayArmorLightKit
-
-- type: Tag
   id: Segway
 
 - type: Tag
@@ -60,6 +57,9 @@
 
 - type: Tag
   id: SyndicateSegwayKeys
+
+- type: Tag
+  id: VehicleLightArmor
 
 - type: Tag
   id: VehicleKey

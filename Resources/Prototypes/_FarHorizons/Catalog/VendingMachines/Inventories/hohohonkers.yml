@@ -1,6 +1,6 @@
 - type: listing
   id: VendorClownCar
-  productEntity: VehicleClownCarFueledwithKeys
+  productEntity: VehicleClownCarFilled
   cost:
     NTCredit: 2000
   categories:
