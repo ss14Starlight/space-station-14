@@ -545,7 +545,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 1000
+            damage: 2500 # Starlight - hull resilience buff
           behaviors:
             - !type:SpawnEntitiesBehavior
               spawn:
@@ -602,7 +602,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 2500 # Starlight - hull resilience buff
       behaviors:
         - !type:SpawnEntitiesBehavior
           spawn:
@@ -921,7 +921,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 600
+        damage: 1200 # Starlight - hull resilience buff
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -930,7 +930,7 @@
             collection: MetalSlam
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 700 # Starlight - hull resilience buff
       behaviors:
       - !type:ChangeConstructionNodeBehavior
         node: girder
@@ -959,7 +959,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 600
+        damage: 1200 # Starlight - hull resilience buff
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -968,7 +968,7 @@
           collection: MetalSlam
     - trigger:
         !type:DamageTrigger
-        damage: 400
+        damage: 800 # Starlight - hull resilience buff
       behaviors:
       - !type:PlaySoundBehavior
         sound:

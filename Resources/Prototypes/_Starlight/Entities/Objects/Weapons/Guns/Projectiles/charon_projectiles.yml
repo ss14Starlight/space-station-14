@@ -18,7 +18,7 @@
       types:
         Piercing: 500        # devastating kinetic impact on first hit
         Blunt: 150
-        Structural: 600      # tears through walls and hulls
+        Structural: 10000    # railgun tears through any wall or hull in one shot
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
