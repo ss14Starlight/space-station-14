@@ -2,16 +2,16 @@
   id: NamesFirstDollMale
   values:
     prefix: names-first-doll-male-dataset-
-    count: 200
+    count: 8
 
 - type: localizedDataset
   id: NamesFirstDollFemale
   values:
     prefix: names-first-doll-female-dataset-
-    count: 47
+    count: 51
 
 - type: localizedDataset
   id: NamesLastDoll
   values:
     prefix: names-last-doll-dataset-
-    count: 200
+    count: 1
