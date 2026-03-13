@@ -21,11 +21,13 @@ namespace Content.Server._Starlight.Weapons.Gunnery;
 /// </summary>
 public sealed class GunneryConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem   _ui        = default!;
-    [Dependency] private readonly ShuttleConsoleSystem  _console   = default!;
-    [Dependency] private readonly SharedGunSystem       _gun       = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IGameTiming           _timing    = default!;
+    [Dependency] private readonly UserInterfaceSystem   _ui         = default!;
+    [Dependency] private readonly ShuttleConsoleSystem  _console    = default!;
+    [Dependency] private readonly SharedGunSystem       _gun        = default!;
+    [Dependency] private readonly SharedTransformSystem _transform  = default!;
+    [Dependency] private readonly IGameTiming           _timing     = default!;
+    [Dependency] private readonly IMapManager           _mapManager = default!;
+    [Dependency] private readonly SharedMapSystem       _mapSystem  = default!;
 
     private const float UpdateInterval = 0.25f;
     private float _updateTimer;
@@ -101,9 +103,25 @@ public sealed class GunneryConsoleSystem : EntitySystem
 
         var targetCoords = GetCoordinates(msg.Target);
 
+        // Friendly-fire guard: block shots aimed at a filled tile on the cannon's own grid.
+        // Uses a two-stage check:
+        //   1. TryFindGridAt — is the target point within the bounds of the own grid at all?
+        //   2. TryGetTileRef — is there an actual non-empty tile there?
+        // The second check prevents false positives from chunk-AABB overlap in empty space
+        // near the shuttle edge, which would otherwise block legitimate outward shots.
+        var cannonGrid = Transform(cannon).GridUid;
+        var targetMapPos = _transform.ToMapCoordinates(targetCoords);
+        if (cannonGrid != null
+            && _mapManager.TryFindGridAt(targetMapPos, out var targetGridUid, out var targetGridComp)
+            && targetGridUid == cannonGrid.Value
+            && _mapSystem.TryGetTileRef(targetGridUid, targetGridComp, targetCoords, out var tileRef)
+            && !tileRef.Tile.IsEmpty)
+        {
+            return;
+        }
+
         // Rotate cannon to face the target before firing so it visually aims correctly.
         var cannonMapPos = _transform.GetMapCoordinates(cannon);
-        var targetMapPos = _transform.ToMapCoordinates(targetCoords);
         if (cannonMapPos.MapId == targetMapPos.MapId)
         {
             // Robust entity rotation uses 0=south as the sprite default (CCW positive).

@@ -42,9 +42,9 @@
   - type: Gun
     projectileSpeed: 50
     fireRate: 1.0
-    burstFireRate: 4
+    burstFireRate: 6
     shotsPerBurst: 2
-    burstCooldown: 75
+    burstCooldown: 45
     selectedMode: Burst
     angleDecay: 30
     minAngle: 0
@@ -64,6 +64,7 @@
       gun_magazine:
         name: Magazine
         priority: 2
+        startingItem: Magazine120mmGrenadeBlast
         whitelist:
           tags:
           - MagazineGrenade120mm
@@ -112,6 +113,7 @@
     slots:
       cell_slot:
         name: Magazine
+        startingItem: PowerCageOmega
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
@@ -123,15 +125,15 @@
   - type: RadarLaserTracker
     laserColor: "#FF44FF"
     traceDuration: 0.75
-    maxRange: 35.0
+    maxRange: 52.5
   - type: GunneryTrackable
 
-# Vanyk-MK2 60mm Rocket Launcher - Multi-rocket burst fire system
+# Vanyk-MK2 60mm Rocket Launcher - Guided semi-auto system
 - type: entity
   id: ShuttleGunVanyk
   parent: ShuttleGunBase
   name: Vanyk-MK2 Multi-Rocket System
-  description: A rapid-fire 60mm rocket launcher system designed for sustained fire. Launches rockets in bursts of 3. Uses magazine-fed ammunition with 30-round capacity.
+  description: A guided 60mm rocket launcher system. Fires one rocket at a time with a long inter-shot delay to allow the operator to guide each warhead to its target. Uses magazine-fed ammunition with 30-round capacity.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/vanyk-MK2.rsi
@@ -171,7 +173,7 @@
           acts: ["Destruction"]
   - type: Gun
     projectileSpeed: 40
-    fireRate: 0.5
+    fireRate: 0.1          # 1 shot per 10 seconds - guided, operator must steer each rocket
     selectedMode: SemiAuto
     angleDecay: 20
     minAngle: 0
@@ -191,6 +193,7 @@
       gun_magazine:
         name: Magazine
         priority: 2
+        startingItem: Magazine60mmRocket
         whitelist:
           tags:
           - Magazine60mmRocket
@@ -245,7 +248,7 @@
           acts: ["Destruction"]
   - type: Gun
     projectileSpeed: 150    # railgun slug velocity
-    fireRate: 100           # instant fire when loaded - delay is the manual reload
+    fireRate: 0.0167        # ~1 shot per 60 seconds
     selectedMode: SemiAuto
     angleDecay: 90
     minAngle: 0
@@ -338,6 +341,7 @@
     whitelist:
       tags:
         - Grenade
+    proto: GrenadeEMPTarnyx
     capacity: 4
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg

@@ -185,26 +185,6 @@
   - MenacingShuttleUplinkPirate
 
 - type: listing
-  id: ShuttleGunNTSFCyerxa120mmSet
-  name: NTSF-CYERXA Dual 120mm Cannons
-  description: A devastating dual 120mm cannon system for heavy shuttle combat. Fires 2 rounds per activation. Requires magazines.
-  productEntity: ShuttleGunNTSFCyerxa120mm
-  cost:
-    BuildToken: 15
-  categories:
-  - MenacingShuttleUplinkWeapons
-
-- type: listing
-  id: Magazine120mmGrenadeBlastSet
-  name: 120mm Blast Grenade Magazine
-  description: A 20-round magazine loaded with powerful blast grenades for the NTSF-CYERXA cannon system.
-  productEntity: Magazine120mmGrenadeBlast
-  cost:
-    BuildToken: 10
-  categories:
-  - MenacingShuttleUplinkWeapons
-
-- type: listing
   id: RemoteSignallerCombatSet
   name: Combat Remote Signaller
   description: Military-grade remote signaller with 100m range for triggering shuttle weapons systems.
@@ -214,13 +194,130 @@
   categories:
   - MenacingShuttleUplinkWeapons
 
+# ── SGS Artillery ─────────────────────────────────────────────────────────────
+# Gunnery console
+
 - type: listing
-  id: ShuttleWeaponsConsoleSet
-  name: Shuttle Weapons Control Console
-  description: Advanced weapons control console with device linking for shuttle guns and integrated mass scanner for tactical awareness.
-  productEntity: ShuttleWeaponsConsole
+  id: ComputerGunneryConsoleSet
+  name: SGS-GC1 Gunnery Console
+  description: Manufactured by Striskov-Galactic Systems. Fire-control station for all SGS shuttle artillery systems. Must be anchored to operate.
+  productEntity: ComputerGunneryConsole
+  cost:
+    BuildToken: 4
+  categories:
+  - MenacingShuttleUplinkWeapons
+
+# Cannons
+
+- type: listing
+  id: ShuttleGunNTSFCyerxa120mmUplinkSet
+  name: CYERXA Dual 120mm Cannons
+  description: SGS dual 120mm cannon. Fires 2 blast grenades per burst with a 45-second cooldown. Spawns loaded with one magazine.
+  productEntity: ShuttleGunNTSFCyerxa120mm
+  cost:
+    BuildToken: 18
+  categories:
+  - MenacingShuttleUplinkWeapons
+
+- type: listing
+  id: ShuttleGunApolloUplinkSet
+  name: Apollo Heavy Laser Cannon
+  description: SGS siege laser. Devastating single shots with a slow recharge. Spawns with an Omega power cage installed.
+  productEntity: ShuttleGunApollo
+  cost:
+    BuildToken: 20
+  categories:
+  - MenacingShuttleUplinkWeapons
+
+- type: listing
+  id: ShuttleGunVanykUplinkSet
+  name: Vanyk-MK2 Guided Rocket System
+  description: SGS guided 60mm rocket launcher. Fire and steer each rocket individually. Spawns loaded with one magazine.
+  productEntity: ShuttleGunVanyk
+  cost:
+    BuildToken: 14
+  categories:
+  - MenacingShuttleUplinkWeapons
+
+- type: listing
+  id: ShuttleGunCharonUplinkSet
+  name: M321-CHARYBDIS 'Thanatos' 280mm Railgun
+  description: Single-shot electromagnetic railgun of catastrophic power. One-minute cooldown. Spawns with one slug chambered.
+  productEntity: ShuttleGunCharon
+  cost:
+    BuildToken: 40
+  categories:
+  - MenacingShuttleUplinkWeapons
+
+- type: listing
+  id: ShuttleGunTarnyxUplinkSet
+  name: SSG-TARNYX EMP Grenade Cannon
+  description: SGS EMP grenade lobber. Disables ship electronics without structural damage. Spawns loaded with 4 EMP grenades.
+  productEntity: ShuttleGunTarnyx
+  cost:
+    BuildToken: 10
+  categories:
+  - MenacingShuttleUplinkWeapons
+
+# Ammunition
+
+- type: listing
+  id: Magazine120mmGrenadeBlastUplinkSet
+  name: 120mm Blast Grenade Magazine
+  description: 20-round magazine for the CYERXA cannon system.
+  productEntity: Magazine120mmGrenadeBlast
   cost:
     BuildToken: 8
+  categories:
+  - MenacingShuttleUplinkWeapons
+
+- type: listing
+  id: PowerCageOmegaUplinkSet
+  name: Omega-Charged Power Cage
+  description: SGS ultra-density power cage for the Apollo Heavy Laser Cannon. ~50 shots.
+  productEntity: PowerCageOmega
+  cost:
+    BuildToken: 10
+  categories:
+  - MenacingShuttleUplinkWeapons
+
+- type: listing
+  id: Magazine60mmRocketUplinkSet
+  name: 60mm Rocket Magazine
+  description: 30-round magazine of guided 60mm rockets for the Vanyk-MK2 system.
+  productEntity: Magazine60mmRocket
+  cost:
+    BuildToken: 6
+  categories:
+  - MenacingShuttleUplinkWeapons
+
+- type: listing
+  id: CartridgeCharon280mmSlugUplinkSet
+  name: CHARYBDIS 280mm Slug
+  description: 26.5kg depleted-tungsten penetrator for the M321-CHARYBDIS railgun.
+  productEntity: CartridgeCharon280mmSlug
+  cost:
+    BuildToken: 8
+  categories:
+  - MenacingShuttleUplinkWeapons
+
+- type: listing
+  id: CartridgeCharon280mmSubnuclearUplinkSet
+  name: CHARYBDIS 280mm Subnuclear Slug
+  description: 40kg subnuclear warhead for the M321-CHARYBDIS railgun. Massive area detonation on impact.
+  productEntity: CartridgeCharon280mmSubnuclear
+  cost:
+    BuildToken: 20
+  categories:
+  - MenacingShuttleUplinkWeapons
+
+- type: listing
+  id: GrenadeEMPTarnyxUplinkSet
+  name: EMP Artillery Grenade
+  description: Large EMP grenade for the SSG-TARNYX cannon.
+  productEntity: GrenadeEMPTarnyx
+  cost:
+    BuildToken: 2
   categories:
   - MenacingShuttleUplinkWeapons
 

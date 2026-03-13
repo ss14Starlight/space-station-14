@@ -221,6 +221,36 @@
     maxCharge: 40000
     startingCharge: 40000
 
+# SGS Omega-Charged Power Cage - high-capacity cage for the Apollo Heavy Laser Cannon
+- type: entity
+  id: PowerCageOmega
+  parent: BasePowerCage
+  name: omega-charged power cage
+  description: An SGS-manufactured ultra-density power cage developed specifically for the Apollo Heavy Laser Cannon. Stores enough charge for approximately 50 shots. The exotic energy matrix is difficult to produce and extremely expensive.
+  components:
+  - type: Tag
+    tags:
+      - PowerCage
+  - type: Sprite
+    sprite: Objects/Power/power_cages.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: high
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 25000
+    startingCharge: 25000
+
+- type: entity
+  id: PowerCageOmegaEmpty
+  parent: PowerCageOmega
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+
 - type: entity
   id: MechReactorCavalier
   name: cavalier-class mech reactor

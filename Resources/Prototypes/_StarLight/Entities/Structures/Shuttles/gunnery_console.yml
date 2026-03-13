@@ -1,16 +1,14 @@
 # SGS-GUNNERY — Starlight Gunnery Console
 # A targeting-radar station that lets crew aim and remotely fire shuttle-mounted
-# cannons, and guide EMP rockets via LMB-drag. Not anchorable; not researchable.
+# cannons, and guide EMP rockets via LMB-drag.
 
 - type: entity
+  parent: BaseComputer
   id: ComputerGunneryConsole
-  name: gunnery console
-  description: A dedicated fire-control station. Displays a tactical radar overlay showing shuttle cannons, draws aim lines, and allows guided control of EMP rockets. Cannot be anchored.
-  placement:
-    mode: SnapgridCenter
+  name: SGS-gunnery console
+  description: Manufactured by Striskov-Galactic Systems (SGS), the SGS-GC1 Gunnery Console is a dedicated fire-control station for shuttle-mounted artillery. Integrated with SGS cannon systems, it displays a live tactical radar overlay, draws targeting lines for all mounted weapons, and provides guided control for EMP rockets. SGS — 'Precision at any range.'
   components:
   - type: Sprite
-    sprite: Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
@@ -20,32 +18,8 @@
       state: solar_screen
     - map: ["computerLayerKeys"]
       state: generic_keys
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.ComputerVisuals.Powered:
-        computerLayerScreen:
-          True:  { visible: true,  shader: unshaded }
-          False: { visible: false }
-        computerLayerKeys:
-          True:  { visible: true,  shader: unshaded }
-          False: { visible: true,  shader: shaded }
-  - type: Physics
-    bodyType: Dynamic
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.35"
-        density: 300
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-  - type: Pullable
-  - type: Clickable
-  - type: InteractionOutline
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: generic_panel_open
   - type: GunneryConsole
     maxRange: 512
   - type: ActivatableUI
@@ -54,20 +28,12 @@
     interfaces:
       enum.GunneryConsoleUiKey.Key:
         type: GunneryConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: PointLight
     radius: 1.5
     energy: 3.0
     enabled: false
     color: "#ff6010"
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-        - !type:DoActsBehavior
-          acts: ["Destruction"]
   - type: StaticPrice
     price: 3500
-  - type: ContainerContainer
-    containers: {}
