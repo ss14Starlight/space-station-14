@@ -358,6 +358,7 @@
         weight: .8
       - id: ClothingOuterArmorMakeshift
       - id: WeaponMeleeSwitchblade 
+      - id: WeaponLaserSvalinn # STARLIGHT: it's a crappy laser pistol- perfect maints loot for blasting vent critters.
       - id: SpearSteel #Starlight End:
     # Rare Group
     - !type:GroupSelector
