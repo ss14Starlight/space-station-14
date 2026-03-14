@@ -43,6 +43,10 @@
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 10000
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
 
 #Clown Battlesuit
 - type: entity
@@ -116,30 +120,6 @@
     - CorgiWearable
 
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
-  id: ClothingHeadHelmetHardsuitNTNCConsortium
-  name: nt-nc naval hardsuit helmet
-  description: A protective hardsuit helmet worn by NT-NC Naval Officers.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hardsuits/ntnc_hardsuit_helmet.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hardsuits/ntnc_hardsuit_helmet.rsi
-  - type: Item
-    size: Small
-  - type: PointLight
-    color: "#addbff"
-  - type: Pierceable
-    level: HardenedMetal
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.9
-
-- type: entity
   parent: ClothingHeadHardsuitBase #[ ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitInfiltration
   categories: [ HideSpawnMenu ]
@@ -162,6 +142,10 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.8
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
 
 # USSP
 - type: entity
@@ -214,27 +198,6 @@
   - type: Tag
     tags:
     - WhitelistChameleon
-
-##ntcc-medics
-
-- type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
-  id: ClothingHeadHelmetHardsuitNTNCConsortiumMedic
-  name: nt-nc naval medic hardsuit helmet
-  description: A protective hardsuit helmet worn by NT-NC Naval medical personnel.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hardsuits/ntnc_med_hardsuit_helmet.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hardsuits/ntnc_med_hardsuit_helmet.rsi
-  - type: PointLight
-    color: "#addbff"
-  - type: Pierceable
-    level: HardenedMetal
-  - type: Armor
-    modifiers:
-      coefficients:
-        Heat: 0.9
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -706,7 +669,7 @@
   parent: [BaseTSFContraband, ClothingHeadHardsuitBase]
   id: ClothingHeadHelmetHardsuitTSFPhantom
   name: Phantom helmet
-  description: A helmet worn by marines of the Trans-Solar Federation's Marine pecial Operations Phantom. Armored, space ready, and stealthy.
+  description: A helmet worn by marines of the Trans-Solar Federation's Marine special Operations Phantom. Armored, space ready and stealthy.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hardsuits/tsf_phantom.rsi

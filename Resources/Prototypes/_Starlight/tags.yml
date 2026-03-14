@@ -346,7 +346,13 @@
   id: Cartridge60mmRocket
 
 - type: Tag
+  id: Cartridge50mmRocket
+
+- type: Tag
   id: Magazine60mmRocket
+
+- type: Tag
+  id: Magazine50mmRocket
 
 - type: Tag
   id: MagazineLightRiflePan

@@ -29,6 +29,7 @@
     requireInSpace: true
   - type: Ammo
     muzzleFlash: null
+  - type: PDTarget
 
 # Visual effect spawned at impact point when the EMP rocket detonates.
 - type: entity

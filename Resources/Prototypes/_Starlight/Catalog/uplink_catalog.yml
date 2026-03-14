@@ -912,7 +912,7 @@
   icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: darkgygax }
   productEntity: CrateCybersunDarkGygaxBundle
   cost:
-    Telecrystal: 40
+    Telecrystal: 30
   categories:
     - UplinkAllies
   conditions:
@@ -928,7 +928,7 @@
   icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: mauler }
   productEntity: CrateCybersunMaulerBundle
   cost:
-    Telecrystal: 65 # Butcher Renault and its all yours.
+    Telecrystal: 45
   categories:
     - UplinkAllies
   conditions:

@@ -1,7 +1,9 @@
+using Content.Server._Starlight.Bluespace;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.Body.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Light.EntitySystems;
+using Content.Server.Power.Components;
 using Content.Server.StationEvents.Components;
 using Content.Server.Stunnable;
 using Content.Shared.Administration.Components;
@@ -84,6 +86,10 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
             if (mob.CurrentState == MobState.Dead)
                 continue;
 
+            // Nullspace is Shunt for every mob.
+            var ev = new NullSpaceShuntEvent();
+            RaiseLocalEvent(ent, ref ev);
+
             if (HasComp<BloodstreamComponent>(ent))
             {
                 _popup.PopupEntity(Loc.GetString("station-event-psychicscreach-nosebleed"), ent, ent, PopupType.LargeCaution);
@@ -93,7 +99,7 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
                 _stunSystem.TryKnockdown(ent, TimeSpan.FromSeconds(1));
             }
 
-            // TODO: Check IPC and apply debuff on them too!
+            // TODO: Check IPC and apply debuff on them too! (Note if port the MIRCOWAVE IPC Effect, Replace it here!)
             if (HasComp<BorgChassisComponent>(ent))
             {
                 _popup.PopupEntity(Loc.GetString("station-event-psychicscreach-borg"), ent, ent, PopupType.LargeCaution);
@@ -116,8 +122,22 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
                     continue;
 
                 var battery = EnsureComp<BatteryComponent>(ent);
-                _batterySystem.SetCharge((ent, battery), 0);
+
+                var todrain = battery.LastCharge;
+
+                if (HasComp<BatteryInterfaceComponent>(ent)) // Only SMES/SubStation has BatteryInterface.
+                    todrain /= 3;
+                else
+                    todrain = 0;
+
+                
+                _batterySystem.SetCharge((ent, battery), todrain);
             }
         });
+    }
+
+    protected override void Ended(EntityUid uid, PsychicScreachRuleComponent comp, GameRuleComponent gameRule, GameRuleEndedEvent args)
+    {
+        // Yeah this is there just to avoid double announcement.
     }
 }

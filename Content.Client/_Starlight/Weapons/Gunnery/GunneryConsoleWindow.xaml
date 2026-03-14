@@ -11,6 +11,16 @@
 
     <BoxContainer Orientation="Horizontal">
 
+        <Label 
+            Name="NoServerLabel"
+            Text="{Loc crew-monitoring-ui-no-server-label}"
+            StyleClasses="LabelHeading"
+            FontColorOverride="Red"
+            HorizontalExpand="True"
+            VerticalExpand="True"
+            HorizontalAlignment="Center"
+            Visible="false" />
+
         <!-- Main radar display -->
         <gunnery:GunneryRadarControl
             Name="RadarControl"

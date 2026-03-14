@@ -4,7 +4,8 @@
   name: hydra refill crate
   description: Contains two refills for the Hydra cleanade launcher.
   components:
-  - type: StorageFill
-    contents:
-      - id: MagazineGrenadeCleanade
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: MagazineGrenadeCleanade
         amount: 2

@@ -35,14 +35,6 @@
   license: The use of the voice is authorized by the voice holder
 
 - type: voice
-  id: oliveOffender
-  voice: 4
-  name: tts-voice-name-4
-  sex: Male
-  silicon: false
-  license: The use of the voice is authorized by the voice holder
-
-- type: voice
   id: felinoid
   voice: 5
   name: tts-voice-name-5
@@ -2022,15 +2014,6 @@
   silicon: true
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
-
-- type: voice
-  id: borgOliveOffender
-  voice: 1004
-  name: tts-voice-name-4
-  sex: Unsexed
-  silicon: true
-  copyright: OliveOffender
-  license: The use of the voice is authorized by the voice holder
 
 - type: voice
   id: borgTalkBox

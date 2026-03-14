@@ -349,9 +349,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         var visualEnt = CreateExplosionVisualEntity(pos, queued.Proto.ID, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
 
-        // camera shake
-        // CameraShake(iterationIntensity.Count * 4f, pos, queued.TotalIntensity * 10f); // Starlight | ES Screenshake
-        
+        //Starlight begin | ES Screenshake
         // smoke
         
         SpawnSmokeInRadius(iterationIntensity.Count, pos, queued.TotalIntensity);
@@ -384,12 +382,9 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         var farSound = iterationIntensity.Count < queued.Proto.SmallSoundIterationThreshold
             ? queued.Proto.SmallSoundFar
             : queued.Proto.SoundFar;
-
-        //Starlight begin | ES Screenshake
-        var shakeParams = iterationIntensity.Count < queued.Proto.SmallSoundIterationThreshold
-            ? new ScreenshakeParameters { Trauma = 0.4f, DecayRate = 0.2f, Frequency = 0.014f }
-            : new ScreenshakeParameters { Trauma = 0.6f, DecayRate = 0.05f, Frequency = 0.014f };
-        _shake.Screenshake(filter, shakeParams, null);
+        
+        // camera shake - moved down here since as far as i can tell there is zero reason it can't be here
+        CameraShake(iterationIntensity, pos, queued);
         //Starlight end
         
         _audio.PlayGlobal(farSound, farFilter, true, farSound.Params);
@@ -439,8 +434,11 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         }
     }
 
-    private void CameraShake(float range, MapCoordinates epicenter, float totalIntensity)
+    //Starlight begin
+    private void CameraShake(List<float> rangeList, MapCoordinates epicenter, QueuedExplosion queued)
     {
+        var range = rangeList.Count * 4f;
+        var totalIntensity = queued.TotalIntensity * 10f;
         var players = Filter.Empty();
         players.AddInRange(epicenter, range, _playerManager, EntityManager);
 
@@ -458,7 +456,14 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             var distance = delta.Length();
             var effect = 5 * MathF.Pow(totalIntensity, 0.5f) * (1 - distance / range);
             if (effect > 0.01f)
-                _recoilSystem.KickCamera(uid, -delta.Normalized() * effect);
+            {
+                _recoilSystem.KickCamera(uid, -delta.Normalized() * effect * 0.4f);
+                var shakeParams = rangeList.Count < queued.Proto.SmallSoundIterationThreshold
+                    ? new ScreenshakeParameters { Trauma = 0.4f, DecayRate = 0.2f, Frequency = 0.014f }
+                    : new ScreenshakeParameters { Trauma = 0.6f, DecayRate = 0.05f, Frequency = 0.014f };
+                _shake.Screenshake(players, shakeParams, null);
+            }
         }
     }
+    //Starlight end
 }
