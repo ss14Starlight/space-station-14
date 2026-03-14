@@ -119,6 +119,7 @@
     slots: WITHOUT_POCKET
   - type: Tag
     tags:
+    - AtmosFireSuit
     - CorgiWearable
     - WhitelistChameleon
   - type: HideLayerClothing

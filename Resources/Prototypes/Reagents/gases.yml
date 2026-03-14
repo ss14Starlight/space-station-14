@@ -62,6 +62,7 @@
         - !type:MetabolizerTypeCondition
           type: [ Vox ]
         ignoreResistances: true
+        maxScale: 16 # Starlight: Cap damage at ~20 per breath (inhale+exhale) to be sure there is time to respond.
         damage:
           types:
             Poison: 0.7
@@ -232,6 +233,9 @@
         damage:
           types:
             Cold: 0.5 # liquid nitrogen is cold
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Cyclorite ]
     Gas:
       effects:
       - !type:Oxygenate
@@ -253,6 +257,13 @@
         ratios:
           NitrousOxide: 1.0
           Nitrogen: -1.0
+    Medicine:
+      effects:
+        - !type:ModifyBloodLevel
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          amount: 0.4
 
 - type: reagent
   id: NitrousOxide

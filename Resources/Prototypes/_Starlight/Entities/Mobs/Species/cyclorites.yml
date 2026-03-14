@@ -55,7 +55,7 @@
     damageOverlayGroups:
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
-        color: "#7a8bf2"
+        color: "#9457eb"
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
@@ -71,7 +71,7 @@
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
-      - ReagentId: CopperBlood
+      - ReagentId: CycloriteBlood
         Quantity: 300
   - type: MovementSpeedModifierScale
     movementSpeedScale: 0.5

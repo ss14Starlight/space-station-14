@@ -199,10 +199,10 @@
     state: icon
 
 - type: stealTargetGroup
-  id: WeaponEnergyShotgun
-  name: steal-target-groups-weapon-energy-shot-gun
+  id: SecurityRareGuns
+  name: steal-target-groups-security-rare-guns
   sprite:
-    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
+    sprite: _Starlight/Objects/Misc/secrareguns_objective.rsi
     state: icon
 
 
@@ -219,13 +219,6 @@
   sprite:
     sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
     state: adv-laser
-
-- type: stealTargetGroup
-  id: FiringPinSmartLMG
-  name: steal-target-groups-firing-pin-smart-lmg
-  sprite:
-    sprite: _Starlight/Objects/Weapons/Guns/Pins/firing_pins.rsi
-    state: lmg
 
 - type: stealTargetGroup
   id: LogProbeCartridge

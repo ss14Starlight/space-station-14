@@ -43,6 +43,10 @@
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 10000
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
 
 #Clown Battlesuit
 - type: entity
@@ -162,6 +166,10 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.8
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
 
 # USSP
 - type: entity
@@ -706,7 +714,7 @@
   parent: [BaseTSFContraband, ClothingHeadHardsuitBase]
   id: ClothingHeadHelmetHardsuitTSFPhantom
   name: Phantom helmet
-  description: A helmet worn by marines of the Trans-Solar Federation's Marine pecial Operations Phantom. Armored, space ready, and stealthy.
+  description: A helmet worn by marines of the Trans-Solar Federation's Marine special Operations Phantom. Armored, space ready and stealthy.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hardsuits/tsf_phantom.rsi

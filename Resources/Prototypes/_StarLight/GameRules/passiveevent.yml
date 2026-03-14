@@ -1,0 +1,171 @@
+- type: entity
+  parent: BaseGameRule
+  id: PsychicScreach
+  components:
+    - type: StationEvent
+      weight: 1
+      endAnnouncement: station-event-psychicscreach-announcement
+      endAudio:
+        path: /Audio/_Starlight/Announcements/announce_broken.ogg
+      duration: 20
+      maxDuration: 30
+      maxOccurrences: 1
+    - type: PsychicScreachRule
+    - type: SolarFlareRule
+      affectedChannels:
+        - Common
+        - Command
+        - Engineering
+        - Medical
+        - Science
+        - Security
+        - Service
+        - Supply
+        - Law
+
+- type: entity
+  parent: BaseGameRule
+  id: SecurityDrill
+  components:
+    - type: StationEvent
+      globalAnnouncement: false
+      weight: 8
+      startAudio:
+        path: /Audio/Announcements/announce.ogg
+    - type: SecurityDrillRule
+
+- type: entity
+  parent: BaseGameRule
+  id: DoorRuntime
+  components:
+    - type: StationEvent
+      globalAnnouncement: false
+      weight: 2
+      startAnnouncementColor: Red
+      startAnnouncement: station-event-doorrunetime-start-announcement
+      startAudio:
+        path: /Audio/Misc/notice1.ogg
+      endAnnouncement: station-event-doorrunetime-end-announcement
+      endAudio:
+        path: /Audio/Announcements/announce.ogg
+      duration: 90
+      reoccurrenceDelay: 20
+      maxOccurrences: 2
+    - type: DoorRunetimeRule
+      blacklist:
+      - External
+
+- type: entity
+  parent: BaseGameRule
+  id: RadStorm
+  components:
+    - type: StationEvent
+      weight: 2
+      startAnnouncementColor: Red
+      startAnnouncement: station-event-radstorm-start-announcement
+      startAudio:
+        path: /Audio/Misc/notice1.ogg
+      endAnnouncement: station-event-radstorm-end-announcement
+      endAudio:
+        path: /Audio/Announcements/announce.ogg
+      duration: 150
+      maxOccurrences: 1
+    - type: WeatherRule
+      weather: WeatherRadStorm
+      delay: 30
+
+- type: entity
+  parent: BaseGameRule
+  id: SolarFlare
+  components:
+    - type: StationEvent
+      weight: 8
+      startAnnouncementColor: Red
+      startAnnouncement: station-event-solarflare-start-announcement
+      startAudio:
+        path: /Audio/Misc/notice1.ogg
+      endAnnouncement: station-event-solarflare-end-announcement
+      endAudio:
+        path: /Audio/Announcements/announce.ogg
+      duration: 90
+      maxDuration: 150
+      reoccurrenceDelay: 30
+      maxOccurrences: 2
+    - type: WeatherRule
+      weather: WeatherSolarFlare
+      delay: 30
+
+- type: entity
+  parent: BaseGameRule
+  id: AuroraCaelus
+  components:
+    - type: StationEvent
+      weight: 1
+      startAnnouncement: station-event-auroracaelus-start-announcement
+      startAudio:
+        path: /Audio/Announcements/announce.ogg
+      endAnnouncement: station-event-auroracaelus-end-announcement
+      endAudio:
+        path: /Audio/Announcements/announce.ogg
+      duration: 240
+      maxOccurrences: 1
+    - type: WeatherRule
+      weather: WeatherAuroraCaelus
+      delay: 120
+
+- type: entity
+  parent: BaseGameRule
+  id: SpaceWhale
+  components:
+    - type: StationEvent
+      weight: 8
+      duration: 300
+      maxDuration: 600
+    - type: WeatherRule
+      weather: WeatherSpaceWhale
+
+- type: entity
+  parent: BaseGameRule
+  id: CommunicationBlackout
+  components:
+  - type: StationEvent
+    weight: 8
+    startAnnouncement: station-event-communicationblackout-start-announcement
+    startAudio:
+      path: /Audio/_Starlight/Announcements/announce_broken.ogg
+    duration: 120
+    maxDuration: 240
+  - type: SolarFlareRule
+    onlyJamHeadsets: true
+    affectedChannels:
+    - Common
+    extraChannels:
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    extraCount: 2
+    lightBreakChancePerSecond: 0.0003
+    doorToggleChancePerSecond: 0.001
+
+- type: entity
+  parent: BaseGameRule
+  id: NightShift
+  components:
+  - type: StationEvent
+    occursDuringRoundEnd: false
+    globalAnnouncement: false
+    weight: 50
+    startAnnouncement: station-event-nightshift-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-nightshift-end-announcement
+    endAudio:
+      path: /Audio/Announcements/attention.ogg
+    duration: 1200
+    maxDuration: 1800
+    maxOccurrences: 1
+  - type: NightShiftRule

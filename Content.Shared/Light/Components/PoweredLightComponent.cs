@@ -10,7 +10,7 @@ namespace Content.Shared.Light.Components
     /// <summary>
     ///     Component that represents a wall light. It has a light bulb that can be replaced when broken.
     /// </summary>
-    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause, Access(typeof(SharedPoweredLightSystem))]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
     public sealed partial class PoweredLightComponent : Component
     {
         /*
@@ -83,5 +83,8 @@ namespace Content.Shared.Light.Components
         /// </summary>
         [DataField]
         public TimeSpan UnarmedHitStun = TimeSpan.FromSeconds(5);
+
+        // Starlight
+        public bool NightModeEnabled = false;
     }
 }

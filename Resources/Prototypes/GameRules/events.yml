@@ -24,6 +24,14 @@
     - id: SpiderClownSpawn
     - id: SpiderSpawn
     - id: VentClog
+    - id: PsychicScreach # SL
+    - id: SecurityDrill # SL
+    - id: DoorRuntime # SL
+    - id: RadStorm # SL
+    - id: AuroraCaelus # SL
+    - id: SpaceWhale # SL
+    - id: CommunicationBlackout # SL
+    - id: NightShift # SL
 
 - type: entityTable
   id: BasicAntagEventsTable
@@ -431,33 +439,34 @@
     maxDuration: 120
   - type: PowerGridCheckRule
 
-- type: entity
-  parent: BaseGameRule
-  id: SolarFlare
-  components:
-  - type: StationEvent
-    weight: 8
-    startAnnouncement: station-event-solar-flare-start-announcement
-    endAnnouncement: station-event-solar-flare-end-announcement
-    startAudio:
-      path: /Audio/_Starlight/Announcements/attention.ogg
-    duration: 120
-    maxDuration: 240
-  - type: SolarFlareRule
-    onlyJamHeadsets: true
-    affectedChannels:
-    - Common
-    extraChannels:
-    - Command
-    - Engineering
-    - Medical
-    - Science
-    - Security
-    - Service
-    - Supply
-    extraCount: 2
-    lightBreakChancePerSecond: 0.0003
-    doorToggleChancePerSecond: 0.001
+# SL - Moved to WIP
+# - type: entity
+#   parent: BaseGameRule
+#   id: SolarFlare
+#   components:
+#   - type: StationEvent
+#     weight: 8
+#     startAnnouncement: station-event-solar-flare-start-announcement
+#     endAnnouncement: station-event-solar-flare-end-announcement
+#     startAudio:
+#       path: /Audio/_Starlight/Announcements/attention.ogg
+#     duration: 120
+#     maxDuration: 240
+#   - type: SolarFlareRule
+#     onlyJamHeadsets: true
+#     affectedChannels:
+#     - Common
+#     extraChannels:
+#     - Command
+#     - Engineering
+#     - Medical
+#     - Science
+#     - Security
+#     - Service
+#     - Supply
+#     extraCount: 2
+#     lightBreakChancePerSecond: 0.0003
+#     doorToggleChancePerSecond: 0.001
 
 - type: entity
   id: VentClog

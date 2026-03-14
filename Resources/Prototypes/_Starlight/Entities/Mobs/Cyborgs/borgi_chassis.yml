@@ -28,6 +28,9 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellHigh
+          blacklist:
+            tags:
+            - MechReactor
     - type: StartIonStormed
       ionStormAmount: 3
     - type: IonStormTarget
@@ -43,6 +46,9 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellHigh
+          blacklist:
+            tags:
+            - MechReactor
     - type: ContainerFill
       containers:
         borg_brain:
@@ -62,6 +68,9 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellHigh
+          blacklist:
+            tags:
+            - MechReactor
     - type: ContainerFill
       containers:
         borg_brain:
@@ -78,6 +87,9 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellHigh
+          blacklist:
+            tags:
+            - MechReactor
     - type: ContainerFill
       containers:
         borg_brain:
@@ -252,6 +264,9 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellHyper
+          blacklist:
+            tags:
+            - MechReactor
 
 - type: entity
   parent: XenoBorgiPrinted

@@ -503,6 +503,7 @@
   minLimit: 0
   defaultSelected: 1
   loadouts:
+  - JackBoots
   - CombatBoots
   - HighHeelBootsFilled
 

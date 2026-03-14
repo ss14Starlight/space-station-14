@@ -11,6 +11,19 @@
         - id: VendingMachineRestockSustenance
 
 - type: entity
+  id: CrateLabellerRefillPaperFilled
+  parent: CratePlastic
+  name: Labeller refill paper crate
+  description: Contains a refill paper for the Labeller.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: LabellerRefillPaper
+          amount: 5
+
+- type: entity
   id: CrateVendingMachineRestockDonkFilled
   parent: CratePlastic
   name: Donk on the Go restock crate

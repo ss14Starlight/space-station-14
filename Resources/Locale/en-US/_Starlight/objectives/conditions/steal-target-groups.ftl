@@ -21,7 +21,7 @@ steal-target-groups-clothing-shoes-boots-mag-bso = blue shield officer's magboot
 steal-target-groups-encryption-key-hybrid = salvage, med-sec, med-sci, or station master encryption key
 steal-target-groups-hopboard = bureaucratic digiboard
 steal-target-groups-hos-weapon = head of security's Proto-5x or WT550r
-steal-target-groups-weapon-energy-shot-gun = warden's energy shotgun
+steal-target-groups-security-rare-guns = warden's energy shotgun or the detective's energy magnum
 steal-target-groups-bso-weapon = blue shield officer's X-01 multiphase energy gun or sp8t
 
 # Thief single items

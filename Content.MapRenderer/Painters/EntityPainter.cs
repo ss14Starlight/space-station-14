@@ -46,7 +46,8 @@ public sealed class EntityPainter
 
         foreach (var entity in entities)
         {
-            Run(canvas, entity, xformSystem, customOffset);
+            if (_sEntityManager.HasComponent<TransformComponent>(entity.Owner))
+                Run(canvas, entity, xformSystem, customOffset);
         }
 
         Console.WriteLine($"{nameof(EntityPainter)} painted {entities.Count} entities in {(int)stopwatch.Elapsed.TotalMilliseconds} ms");

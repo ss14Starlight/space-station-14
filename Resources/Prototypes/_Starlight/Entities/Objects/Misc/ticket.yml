@@ -1,0 +1,84 @@
+- type: entity
+  parent: BaseItem
+  id: BaseTicket
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Paper
+  - type: Appearance
+  - type: Flammable
+    fireSpread: false
+    alwaysCombustible: true
+    firestacksOnIgnite: 3
+    damage:
+      types:
+        Heat: 5
+  - type: FireVisuals
+    sprite: _Starlight/Objects/Misc/ticket.rsi
+    normalState: burn
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Edible
+    solution: food
+    delay: 7
+    forceFeedDelay: 7
+  - type: FlavorProfile
+    flavors:
+    - paper
+  - type: BadFood
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 1
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 1
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      SheetPrinter: 100
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: ticket
+  parent: BaseTicket
+  id: Ticket
+  description: 'A piece of white paper with printed number and NT logo.'
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/ticket.rsi
+    layers:
+    - state: icon
+    - map: [ "enum.TicketVisualLayers.Number1" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+    - map: [ "enum.TicketVisualLayers.Number2" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.2, 0
+    - map: [ "enum.TicketVisualLayers.Number3" ]
+      sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+      color: "#1f1f1f"
+      offset: -0.4, 0
+  - type: Ticket

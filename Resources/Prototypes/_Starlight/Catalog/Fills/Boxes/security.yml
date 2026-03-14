@@ -4,18 +4,13 @@
   id: BoxTapeRecorder
   description: A box with colorful cassette tapes and a tape recorder.
   components:
-  - type: StorageFill
-    contents:
-      - id: CassetteTape
-        amount: 1
-      - id: CassetteTape
-        amount: 1
-      - id: CassetteTape
-        amount: 1
-      - id: CassetteTape
-        amount: 1
-      - id: TapeRecorder
-        amount: 1
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CassetteTape
+          amount: 4
+        - id: TapeRecorder
   - type: Sprite
     layers:
       - state: box_security

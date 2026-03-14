@@ -21,6 +21,9 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHyper
+        blacklist:
+          tags:
+          - MechReactor
 
 - type: entity
   id: PlayerBorgSyndicateStealthGhostRole
@@ -45,6 +48,9 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMedium
+        blacklist:
+          tags:
+          - MechReactor
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
@@ -70,6 +76,9 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        blacklist:
+          tags:
+          - MechReactor
   - type: RandomMetadata
     nameSegments: [NamesBorg]
 
@@ -87,6 +96,164 @@
     reregister: false
     job: Borg
   - type: GhostTakeoverAvailable
+  
+- type: entity
+  parent: XenoborgHeavyDerelict
+  id: PlayerXenoBorgHeavyDerelict
+  suffix: Battery, Module
+  components:
+    - type: ContainerFill
+      containers:
+        borg_brain:
+          - MMIFilled
+        borg_module:
+          - DerelictXenoborgModuleBasic
+          - XenoborgModuleTool
+          - XenoborgModuleLaser
+          - XenoborgModuleJammer
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellHigh
+          blacklist:
+            tags:
+            - MechReactor
+          
+- type: entity 
+  parent: PlayerXenoBorgHeavyDerelict
+  id: PlayerXenoBorgHeavyDerelictGhostRole
+  suffix: Ghost role
+  components:
+      - type: GhostRole
+        name: ghostrole-information-derelict-heavy-xenoborg-name
+        description: ghostrole-information-derelict-heavy-xenoborg-description
+        rules: ghost-role-information-silicon-rules
+        raffle:
+          settings: default
+        reregister: false
+        job: Borg
+      - type: GhostTakeoverAvailable
+          
+- type: entity
+  parent: XenoborgEngiDerelict
+  id: PlayerXenoBorgEngiDerelict
+  suffix: Battery, Module
+  components:
+    - type: ContainerFill
+      containers:
+        borg_brain:
+          - MMIFilled
+        borg_module:
+          - DerelictXenoborgModuleBasic
+          - BorgModuleAdvancedTool
+          - BorgModuleConstruction
+          - XenoborgModuleRCD # Starlight
+          - BorgModuleCable
+          - XenoborgModuleAccessBreaker
+          - XenoborgModuleFireExtinguisher
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellHigh
+          blacklist:
+            tags:
+            - MechReactor
+
+- type: entity
+  parent: PlayerXenoBorgEngiDerelict
+  id: PlayerXenoBorgEngiDerelictGhostRole
+  suffix: Ghost role
+  components:
+    - type: GhostRole
+      name: ghostrole-information-derelict-engi-xenoborg-name
+      description: ghostrole-information-derelict-engi-xenoborg-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+      reregister: false
+      job: Borg
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: XenoborgScoutDerelict
+  id: PlayerXenoborgScoutDerelict
+  suffix: Battery, Module
+  components:
+    - type: ContainerFill
+      containers:
+        borg_brain:
+          - MMIFilled
+        borg_module:
+          - DerelictXenoborgModuleBasic
+          - XenoborgModuleTool
+          - XenoborgModuleSword
+          - DerelictXenoborgModuleSpaceMovement
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellHigh
+          blacklist:
+            tags:
+            - MechReactor
+
+- type: entity
+  parent: PlayerXenoborgScoutDerelict
+  id: PlayerXenoborgScoutDerelictGhostRole
+  suffix: Ghost role
+  components:
+    - type: GhostRole
+      name: ghostrole-information-derelict-scout-xenoborg-name
+      description: ghostrole-information-derelict-scout-xenoborg-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+      reregister: false
+      job: Borg
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: XenoborgStealthDerelict
+  id: PlayerXenoborgStealthDerelict
+  suffix: Battery, Module
+  components:
+    - type: ContainerFill
+      containers:
+        # Starlight edit Start
+        borg_brain:
+          - MMIFilled
+        # Starlight edit End
+        borg_module:
+          - DerelictXenoborgModuleBasic
+          - XenoborgModuleTool
+          - XenoborgModuleHypo
+          - XenoborgModuleChameleonProjector
+          - XenoborgModuleCloakDevice
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellHigh
+          blacklist:
+            tags:
+            - MechReactor
+
+- type: entity
+  parent: PlayerXenoborgStealthDerelict
+  id: PlayerXenoborgStealthDerelictGhostRole
+  suffix: Ghost role
+  components:
+    - type: GhostRole
+      name: ghostrole-information-derelict-stealth-xenoborg-name
+      description: ghostrole-information-derelict-stealth-xenoborg-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+      reregister: false
+      job: Borg
+    - type: GhostTakeoverAvailable
 
 - type: entity
   id: PlayerBorgChassisTSFBattery
@@ -108,6 +275,9 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHyper
+        blacklist:
+          tags:
+          - MechReactor
 
 - type: entity
   parent: PlayerBorgChassisTSFBattery
@@ -123,3 +293,40 @@
     reregister: false
     job: Borg
   - type: GhostTakeoverAvailable
+
+- type: entity
+  id: TSFAiHeld
+  parent: AiHeld
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - TSF
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - TSF
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+  - type: ShowMindShieldIcons
+
+- type: entity
+  id: TSFtationAi
+  parent: PlayerStationAiEmpty
+  name: Solgov AI core
+  suffix: Solgov
+  components:
+  - type: ContainerComp
+    proto: TSFAiHeld
+    container: station_ai_mind_slot

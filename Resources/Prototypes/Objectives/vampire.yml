@@ -49,28 +49,28 @@
   - type: Objective
     difficulty: 1
 
-- type: entity
-  parent: BaseVampireStealObjective
-  id: EnergyMagnumVampireStealObjective
-  components:
-  - type: Objective
-    difficulty: 1.5 # Starlight, lowered difficulty since it's a lot easier to deal with Det than HoS
-  - type: NotJobRequirement
-    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Starlight - magnum to detective, and rest of department excluded
-  - type: StealCondition
-    stealGroup: WeaponEnergyMagnum
-    owner: job-name-detective
+#- type: entity Starlight start
+#  parent: BaseVampireStealObjective 
+#  id: EnergyMagnumVampireStealObjective # Removed in favor of combined shotgun-magnum objective
+#  components:
+#  - type: Objective
+#    difficulty: 1.5 # Starlight, lowered difficulty since it's a lot easier to deal with Det than HoS
+#  - type: NotJobRequirement
+#    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Starlight - magnum to detective, and rest of department excluded
+#  - type: StealCondition
+#    stealGroup: WeaponEnergyMagnum
+#    owner: job-name-detective # Starlight end
 
 - type: entity
   parent: BaseVampireStealObjective
-  id: EnergyShotgunVampireStealObjective
+  id: SecurityRareGunsVampireStealObjective # Starlight
   components:
   - type: Objective
     difficulty: 2
   - type: NotJobRequirement
     jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Too easy.
   - type: StealCondition
-    stealGroup: WeaponEnergyShotgun
+    stealGroup: SecurityRareGuns # Starlight
     owner: job-name-warden
 
 - type: entity

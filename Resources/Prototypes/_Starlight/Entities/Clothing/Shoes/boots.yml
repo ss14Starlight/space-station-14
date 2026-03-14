@@ -76,3 +76,14 @@
     sprite: _Starlight/Clothing/Shoes/Boots/ratvar_boots.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Shoes/Boots/ratvar_boots.rsi
+    
+- type: entity
+  parent: ClothingShoesBaseUnprotected
+  id: ClothingShoesPawBoots
+  name: Paw boots
+  description: Special boots made specifically for Felionoid paws, the thin soles do not protect against sharp objects
+  components:
+    - type: Clothing
+      sprite: _Starlight/Clothing/Shoes/Boots/pawboots.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/Shoes/Boots/pawboots.rsi

@@ -77,13 +77,63 @@
   id: CrushedPhosphorus1
   suffix: Single
   components:
-    - type: Sprite
-      state: phosphorus
-    - type: Stack
-      count: 1
-    - type: Construction
-      graph: CrushedPhosphorus
-      node: crushed
+  - type: Sprite
+    state: phosphorus
+  - type: Stack
+    count: 1
+  - type: Construction
+    graph: CrushedPhosphorus
+    node: crushed
+
+- type: entity
+  parent: MaterialBase
+  id: LabellerRefillPaper
+  name: labeller refill paper
+  suffix: Full
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      LabellerRefillPaper: 100
+  - type: Stack
+    count: 100
+    stackType: LabellerRefillPaper
+    baseLayer: base
+    layerStates:
+    - icon_0
+    - icon_50
+    - icon_100
+  - type: Sprite
+    sprite: _Starlight/Objects/Materials/paper_roll.rsi
+    state: icon_100
+    layers:
+    - state: icon_100
+      map: ["base"]
+  - type: Appearance
+  - type: Tag
+    tags:
+    - LabellerRefillPaper
+  - type: Item
+
+- type: entity
+  parent: LabellerRefillPaper
+  id: LabellerRefillPaper50
+  suffix: 50
+  components:
+  - type: Sprite
+    state: icon_50
+  - type: Stack
+    count: 50
+
+- type: entity
+  parent: LabellerRefillPaper
+  id: LabellerRefillPaper1
+  suffix: 1
+  components:
+  - type: Sprite
+    state: icon_0
+  - type: Stack
+    count: 1
 
 # Bluespace Crystals
 - type: entity

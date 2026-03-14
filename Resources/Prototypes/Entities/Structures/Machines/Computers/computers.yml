@@ -155,6 +155,14 @@
         whitelist:
           components:
           - ShuttleDestinationCoordinates
+      # Starlight-start: added PAI slot to shuttle console.
+      pai_slot:
+        name: Personal AI Device
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - PAI
+      # Starlight-end
   - type: ContainerContainer
     containers:
       board: !type:Container
@@ -486,11 +494,21 @@
       visible: false
   - type: GenericVisualizer
     visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
       enum.CrewMonitorVisuals.Alert:
         enum.CrewMonitorLayers.Alert:
-          True: { visible: true }
+          True: { visible: true, shader: unshaded }
           False: { visible: false }
-          enum.EdgeConnectionVisuals.ConnectionMask:
       enum.EdgeConnectionVisuals.ConnectionMask:
         computerLayerBody:
           None: { state: computer, sprite: Structures/Machines/computers.rsi }
@@ -744,7 +762,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerComms
-  name: communications computer
+  name: communications console # Starlight
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
   - type: Sprite
@@ -754,6 +772,7 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi # Starlight: Visual cohesion w/ departmental consoles
       state: comm
     - map: ["computerLayerKeys"]
       state: generic_keys
@@ -762,7 +781,7 @@
   - type: AccessReader
     access: [[ "Command" ]]
   - type: CommunicationsConsole
-    title: comms-console-announcement-title-station
+    title: comms-console-announcement-title-command # Starlight
     sound: /Audio/_Starlight/Announcements/announce2.ogg #Starlight
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -845,7 +864,7 @@
     canShuttle: false
     global: true #announce to everyone they're about to fuck shit up
     announceSentBy: false
-    sound: /Audio/_Starlight/Ambience/Antag/wizard.ogg # WIZARD TIME!
+    sound: /Audio/Announcements/war.ogg # SL - Revert this back to war sound
   - type: Computer
     board: WizardCommsComputerCircuitboard
   - type: PointLight

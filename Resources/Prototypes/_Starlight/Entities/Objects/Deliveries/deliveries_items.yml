@@ -158,8 +158,7 @@
         - CaptainGunStealObjective
         - CaptainJetpackStealObjective
         - HandTeleporterStealObjective
-        - EnergyMagnumStealObjective
-        - EnergyShotgunStealObjective
+        - SecurityRareGunsStealObjective
         - HOSWeaponStealObjective
         - BSOWeaponStealObjective
         # Limited Hardsuit objectives

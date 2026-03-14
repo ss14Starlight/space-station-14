@@ -19,7 +19,7 @@
   parent: Base120mmGrenade
   id: Grenade120mmBlast
   name: 120mm blast grenade
-  description: A devastating 120mm blast grenade designed for the NTSF-CYERXA cannon system. Three times more powerful than standard blast grenades.
+  description: A devastating 120mm blast grenade designed for the CYERXA cannon system. Three times more powerful than standard blast grenades.
   components:
   - type: CartridgeAmmo
     proto: BulletGrenade120mmBlast
@@ -40,7 +40,7 @@
   parent: BaseMagazineGrenade
   id: Magazine120mmGrenadeBlast
   name: 120mm blast grenade magazine
-  description: A large 20-round magazine loaded with powerful blast grenades for the NTSF-CYERXA cannon system.
+  description: A large 20-round magazine loaded with powerful blast grenades for the CYERXA cannon system.
   components:
   - type: Tag
     tags:

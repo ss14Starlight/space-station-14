@@ -52,3 +52,79 @@
         effectProto: StatusEffectTheDark
         type: Add
         time: 5
+
+- type: reagent
+  parent: Blood
+  id: CycloriteBlood
+  name: reagent-name-cyclorite-blood
+  group: Biological
+  desc: reagent-desc-cyclorite-blood
+  flavor: acid
+  color: "#9457eb"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-strong-smelling
+  plantMetabolism:
+    - !type:PlantAdjustToxins
+      amount: 5
+    - !type:PlantAdjustWeeds
+      amount: -1
+    - !type:PlantAdjustHealth
+      amount: -2
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+        - !type:HealthChange
+          ignoreResistances: false
+          damage:
+            types:
+              Caustic: 0.1
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Cyclorite ]
+            inverted: true
+        - !type:Emote
+          emote: Scream
+          probability: 0.1
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Cyclorite ]
+            inverted: true
+  metabolisms:
+    Poison:
+      metabolismRate: 1.00 # slightly faster metabolism for an acid
+      effects:
+        - !type:HealthChange
+          damage:
+            types:
+              Caustic: 1
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite, Bloodsucker ]
+              inverted: true
+        - !type:PopupMessage
+          type: Local
+          visualType: Large
+          messages: [ "generic-reagent-effect-burning-insides" ]
+          probability: 0.2
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite, Bloodsucker ]
+              inverted: true
+        - !type:Emote
+          emote: Scream
+          probability: 0.2
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite, Bloodsucker ]
+              inverted: true
+    Medicine:
+      effects:
+        - !type:HealthChange
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Bloodsucker ]
+          damage:
+            groups:
+              Brute: -3
+              Burn: -1.25

@@ -47,6 +47,9 @@
         - Handcuff
         - BallisticAmmoProvider
         - Ammo
+    blacklist:
+      tags:
+      - MechReactor
   - type: Appearance
   - type: StaticPrice
     price: 1000
@@ -123,7 +126,7 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Belt/blueshieldwebbing.rsi
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.1
 
 - type: entity
   parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseBlueShieldContraband]
@@ -140,7 +143,7 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Belt/blueshieldmedicalbelt.rsi
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.1
 
 - type: entity
   parent: [ClothingBeltBrigmedic]
@@ -246,6 +249,9 @@
         - Handcuff
         - BallisticAmmoProvider
         - Ammo
+    blacklist:
+      tags:
+      - MechReactor
   - type: ItemMapper
     mapLayers:
       flashbang:

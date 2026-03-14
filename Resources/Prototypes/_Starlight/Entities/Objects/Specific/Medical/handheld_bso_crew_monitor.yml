@@ -26,12 +26,12 @@
     visuals:
       enum.BatteryVisuals.State:
         enum.CrewMonitorLayers.Powered:
-          Full: { visible: true }
-          Neither: { visible: true }
+          Full: { visible: true, shader: unshaded }
+          Neither: { visible: true, shader: unshaded }
           Empty: { visible: false }
       enum.CrewMonitorVisuals.Alert:
         enum.CrewMonitorLayers.Alert:
-          True: { visible: true }
+          True: { visible: true, shader: unshaded }
           False: { visible: false }
   - type: ActivatableUI
     key: enum.CrewMonitoringUIKey.Key
@@ -65,3 +65,6 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        blacklist:
+          tags:
+          - MechReactor

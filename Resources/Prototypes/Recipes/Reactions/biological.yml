@@ -94,3 +94,18 @@
     Mold: 2
     Protein: 1
     Toxin: 1
+
+- type: reaction
+  id: CycloriteBloodBreakdown
+  source: true
+  requiredMixerCategories:
+    - Centrifuge
+  reactants:
+    CycloriteBlood:
+      amount: 20
+  products:
+    Nitrogen: 3
+    Hydrogen: 3
+    Oxygen: 9
+    CarbonDioxide: 1
+    Protein: 4

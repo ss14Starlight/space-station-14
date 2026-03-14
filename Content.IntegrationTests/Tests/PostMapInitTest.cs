@@ -153,7 +153,8 @@ namespace Content.IntegrationTests.Tests
             "StarlightPlasma",
 			"StarlightSpaceMall",
             "StarlightSepultum",
-            "StarlightBoxcars"
+            "StarlightBoxcars",
+            "StarlightSerpentcrest"
             #endregion
         };
 

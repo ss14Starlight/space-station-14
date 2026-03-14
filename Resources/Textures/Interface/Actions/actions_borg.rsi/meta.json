@@ -186,6 +186,9 @@
         },
         {
             "name": "security-unlethal-module"
+        },
+        {
+            "name": "salvage-defense-module"
         }
     ]
 }

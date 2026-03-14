@@ -83,10 +83,15 @@ namespace Content.Server.EUI
             eui.Shutdown();
             _playerData[eui.Player].OpenUIs.Remove(eui.Id);
 
-            var msg = new MsgEuiCtl();
-            msg.Id = eui.Id;
-            msg.Type = MsgEuiCtl.CtlType.Close;
-            _net.ServerSendMessage(msg, eui.Player.Channel);
+            // Starlight edit Start: Added a guard so it only sends the close message if the player's channel is still connected.
+            if (eui.Player.Channel?.IsConnected == true)
+            {
+                var msg = new MsgEuiCtl();
+                msg.Id = eui.Id;
+                msg.Type = MsgEuiCtl.CtlType.Close;
+                _net.ServerSendMessage(msg, eui.Player.Channel);
+            }
+            // Starlight edit End
         }
 
         private void RxMsgMessage(MsgEuiMessage message)

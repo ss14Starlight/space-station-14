@@ -21,7 +21,7 @@
 - type: entity
   parent: PosterBase
   id: PosterLegitEyeChart
-  name: "A chart for eye exams"
+  name: "Eye chart"
   description: "Is that third letter a P or an F?"
   components:
   - type: Sprite
@@ -371,7 +371,7 @@
 - type: entity
   parent: PosterBase
   id: PosterLegitClock
-  name: "Clock"
+  name: "clock"
   description: "A wall mounted analog clock. It's so retro, you can't even read it."
   components:
   - type: Sprite

@@ -17,3 +17,13 @@
   id: Launch
   name: signal-port-name-launch
   description: signal-port-description-launch
+
+- type: sinkPort
+  id: TicketMachineNextNumber
+  name: signal-port-name-ticket-machine-nextnumber
+  description: signal-port-description-ticket-machine-nextnumber
+
+- type: sinkPort
+  id: TicketMachineBurnTickets
+  name: signal-port-name-ticket-machine-burntickets
+  description: signal-port-description-ticket-machine-burntickets

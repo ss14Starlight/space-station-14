@@ -39,10 +39,10 @@ public sealed class ClientComponentControlSystem : EntitySystem
 
         foreach (var c in comp.ViewVariablesWrites)
         {
-            var resolved = _vvm.ResolvePath($"/entity/{uid}{c.Key}");
             var curr = _vvm.ReadPathSerialized(c.Key);
             if(curr == c.Value) continue;
-            resolved?.Set(c.Value);
+            _vvm.WritePath($"/entity/{uid}{c.Key}", c.Value);
+            // resolved?.Set(c.Value);
         }
     }
 }

@@ -251,18 +251,18 @@
 
 ## hos
 
-- type: entity
-  parent: BaseTraitorStealObjective
-  id: EnergyMagnumStealObjective
-  components:
-  - type: Objective
-    # HoS will have this on them a lot of the time so..
-    difficulty: 1.5 # Starlight, lowered difficulty since it's a lot easier to deal with Det than HoS
-  - type: NotJobRequirement
-    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Starlight - magnum to detective, and rest of department excluded
-  - type: StealCondition
-    stealGroup: WeaponEnergyMagnum
-    owner: job-name-detective # Starlight - magnum to detective
+# - type: entity # Starlight Start
+#  parent: BaseTraitorStealObjective 
+#  id: EnergyMagnumStealObjective # Removed in favor of combined shotgun-magnum objective
+#  components:
+#  - type: Objective
+#    # HoS will have this on them a lot of the time so..
+#    difficulty: 1.5 # Starlight, lowered difficulty since it's a lot easier to deal with Det than HoS
+#  - type: NotJobRequirement
+#    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Starlight - magnum to detective, and rest of department excluded
+#  - type: StealCondition
+#    stealGroup: WeaponEnergyMagnum
+#    owner: job-name-detective # Starlight end
 
 ## ce
 

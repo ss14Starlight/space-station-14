@@ -1,0 +1,28 @@
+﻿- type: entity
+  abstract: true
+  parent: Clothing
+  id: ClothingShoesBaseUnprotected 
+  components:
+    - type: Clothing
+      slots:
+        - FEET
+    - type: Sprite
+      state: icon
+    - type: Item
+      size: Normal
+    - type: Edible
+      requiresSpecialDigestion: true
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 10
+          reagents:
+            - ReagentId: Fiber
+              Quantity: 10
+    - type: OverrideShoesHinder
+      Modifier: 0 # remove hinder debuff by default
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - WhitelistChameleon

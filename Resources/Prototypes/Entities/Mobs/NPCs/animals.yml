@@ -303,6 +303,11 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Starlight Start
+  - type: HTN
+    rootTask:
+      task: RuminantCompound
+  # Starlight End
 
 - type: entity
   parent: MobChicken

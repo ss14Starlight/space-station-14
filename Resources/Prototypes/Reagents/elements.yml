@@ -180,7 +180,7 @@
       - !type:ModifyBloodLevel
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Arachnid ]
+          type: [ Arachnid, Cyclorite ]
           inverted: true
         amount: 0.4
   

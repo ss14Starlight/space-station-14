@@ -322,6 +322,9 @@
   id: Locker
   
 - type: Tag
+  id: LabellerRefillPaper
+  
+- type: Tag
   id: LoneOpsUplink
 
 - type: Tag
@@ -343,7 +346,13 @@
   id: Cartridge60mmRocket
 
 - type: Tag
+  id: Cartridge50mmRocket
+
+- type: Tag
   id: Magazine60mmRocket
+
+- type: Tag
+  id: Magazine50mmRocket
 
 - type: Tag
   id: MagazineLightRiflePan
@@ -374,6 +383,9 @@
 
 - type: Tag
   id: MagicalEncounterTraitBackground
+
+- type: Tag
+  id: MechReactor
 
 - type: Tag
   id: MedCyberEyes
@@ -509,6 +521,9 @@
 
 - type: Tag
   id: SpeedLoaderShotgun
+
+- type: Tag
+  id: Stairs
 
 - type: Tag
   id: StoveMachineBoard

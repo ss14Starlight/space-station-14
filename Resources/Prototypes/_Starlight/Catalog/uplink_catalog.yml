@@ -436,14 +436,14 @@
   productEntity: MagillitisSerumImplanter
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 5
   cost:
-    Telecrystal: 7
+    Telecrystal: 10
   categories:
     - UplinkImplants
   conditions:
     - !type:StoreWhitelistCondition
-      blacklist:
+      whitelist:
         tags:
           - NukeOpsUplink
 
@@ -452,19 +452,19 @@
   name: uplink-mind-control-implant-name
   description: uplink-mind-control-implant-desc
   productEntity: MindControlImplanter
-  discountCategory: rareDiscounts
+  discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 3
   cost:
-    Telecrystal: 9
+    Telecrystal: 7
   categories:
     - UplinkDisruption
     - UplinkImplants
-  conditions:
-    - !type:StoreWhitelistCondition
-      blacklist:
-        tags:
-          - NukeOpsUplink
+  #conditions:
+  #  - !type:StoreWhitelistCondition
+  #    blacklist:
+  #      tags:
+  #        - NukeOpsUplink
 
 - type: listing
   id: UplinkGearAcidifierImplanter

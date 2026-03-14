@@ -252,3 +252,54 @@
   materials:
     Steel: 1000
     Glass: 150
+
+# Reactors
+- type: latheRecipe
+  id: MechReactorStandard
+  result: MechReactorStandard
+  categories:
+  - Mech
+  completetime: 10
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 200
+    Gold: 50
+
+- type: latheRecipe
+  id: MechReactorHigh
+  result: MechReactorHigh
+  categories:
+  - Mech
+  completetime: 15
+  materials:
+    Steel: 800
+    Glass: 800
+    Plastic: 300
+    Gold: 100
+
+- type: latheRecipe
+  id: MechReactorHyper
+  result: MechReactorHyper
+  categories:
+  - Mech
+  completetime: 15
+  materials:
+    Steel: 1000
+    Glass: 1000
+    Plasma: 300
+    Gold: 200
+    Silver: 300
+
+- type: latheRecipe
+  id: MechReactorMicro
+  result: MechReactorMicro
+  categories:
+  - Mech
+  completetime: 15
+  materials:
+    Steel: 800
+    Glass: 800
+    Plastic: 300
+    Gold: 200
+    Uranium: 200

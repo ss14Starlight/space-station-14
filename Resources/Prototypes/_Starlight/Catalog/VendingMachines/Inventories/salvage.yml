@@ -196,15 +196,15 @@
   conditions:
   - !type:BuyerAccessCondition
 
-#- type: listing
-  #id: VendorSalvageWeaponPistolDeagle
-  #productEntity: WeaponPistolDeagle
-  #cost:
-    #SalvageTicket: 300
-  #categories:
-  #- SalvageWeapons
-  #conditions:
-  #- !type:BuyerAccessCondition
+- type: listing
+  id: VendorSalvageWeaponRevolverZOZ
+  productEntity: WeaponRevolverZOZ
+  cost:
+    SalvageTicket: 300
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvageWeaponPistolMK58
@@ -257,15 +257,15 @@
   conditions:
   - !type:BuyerAccessCondition
 
-#- type: listing
-  #id: VendorSalvageMagazineMagnum
-  #productEntity: MagazineMagnum
-  #cost:
-    #SalvageTicket: 150
-  #categories:
-  #- SalvageConsumeables
-  #conditions:
-  #- !type:BuyerAccessCondition
+- type: listing
+  id: VendorSalvageSpeedLoaderMagnumSP
+  productEntity: SpeedLoaderMagnumSP
+  cost:
+    SalvageTicket: 75
+  categories:
+  - SalvageConsumeables
+  conditions:
+  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvageMagazineMK58

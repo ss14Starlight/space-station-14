@@ -31,6 +31,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellSmall
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
@@ -177,6 +182,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: GenericVisualizer
     visuals:
       enum.FlashVisuals.Burnt:
@@ -224,6 +234,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMedium
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: Anchorable
   - type: Damageable
     damageContainer: StructuralInorganic
