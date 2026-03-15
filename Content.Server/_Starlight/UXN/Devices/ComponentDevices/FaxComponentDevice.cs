@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Text;
 using Content.Server._Starlight.Fax;
+using Content.Server._Starlight.UXN.Devices.Events;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Fax;
 using Content.Shared.DeviceNetwork;
@@ -267,18 +268,13 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
     public void MakeEvent(UXNProcessor uxn, MinimalFaxInfo info)
     {
         ReadQueue.Enqueue(info);
-        uxn.PushEvent(new FaxRecievedUxnEvent(
+        uxn.PushEvent(new GenericVectorEvent(
             uxn.DevMem.GetShort(
                 (byte)((uxn.SystemDevice.AttachedDevices[Id] << 0x4) + 0x0E)
                 )
             )
          );
     }
-}
-
-public sealed partial class FaxRecievedUxnEvent(ushort vector) : UxnEvent
-{
-    public override void PerformEvent(UXNProcessor proc) => proc.PC = vector;
 }
 
 public enum FaxDeviceCommand : byte

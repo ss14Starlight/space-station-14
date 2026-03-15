@@ -7,6 +7,7 @@ using Content.Server._Starlight.UXN.Devices.ComponentDevices;
 using Content.Shared._Starlight.UXN;
 using Content.Shared.Administration.Managers;
 using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Examine;
 using Content.Shared.Fax.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -47,6 +48,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
         SubscribeLocalEvent<UxnAttachedComponent, GetVerbsEvent<InteractionVerb>>(OnGetInteractionVerbAttached);
         SubscribeLocalEvent<UxnAttachedComponent, OnGetUxnDevices>(OnGetUxnDevicesAttached);
 
+        SubscribeLocalEvent<UxnComponent, DeviceNetworkPacketEvent>(OnChipRecievePacket);
         #region Device subscriptions
         SubscribeLocalEvent<FaxMachineComponent, OnGetUxnDevices>(OnGetUxnDevicesFaxMachine);
         SubscribeLocalEvent<UxnAttachedComponent, FaxRecievedEvent>(OnFaxRecieved);
@@ -178,9 +180,29 @@ public sealed partial class UxnSystem : SharedUxnSystem
     private void OnFaxRecieved(Entity<UxnAttachedComponent> ent, ref FaxRecievedEvent ev)
     {
         var uxn = ent.Comp.Uxn!;
-        var dev = (FaxComponentDevice)(uxn.SystemDevice.AttachableDevices[typeof(FaxMachineComponent).Name[..^"Component".Length].ToLower()]);
+        var attached = uxn.SystemDevice.AttachedDevices;
+        var id = new FaxComponentDevice().Id;
+        if (!attached.TryGetValue(id, out var value))
+            return; //it is not attached so dont have it listen for events. 
+        var dev = (FaxComponentDevice)uxn.Devices[value];
         dev.MakeEvent(uxn, ev.Info);
+    }
 
+    private void OnChipRecievePacket(Entity<UxnComponent> ent, ref DeviceNetworkPacketEvent ev)
+    {
+        var xform = Transform(ent);
+        var parent = xform.ParentUid;
+        if (!TryComp<UxnAttachedComponent>(parent, out var attachedComp))
+            return; //the parent does not have a UXN attached
+        if (attachedComp.ChipHolder.ContainedEntity != ent)
+            return; //the parent does not have *us* attached
+        var uxn = attachedComp.Uxn!;
+        var attached = uxn.SystemDevice.AttachedDevices;
+        var id = new NetworkDevice().Id;
+        if (!attached.TryGetValue(id, out var value))
+            return; //it is not attached so dont have it listen for events. 
+        var dev = (NetworkDevice)uxn.Devices[value];
+        dev.MakeEvent(uxn, ev);
     }
 
     private void OnGetUxnDevicesAttached(Entity<UxnAttachedComponent> ent, ref OnGetUxnDevices ev)
