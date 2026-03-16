@@ -2,7 +2,7 @@
   id: NamesFirstDollMale
   values:
     prefix: names-first-doll-male-dataset-
-    count: 8
+    count: 14
 
 - type: localizedDataset
   id: NamesFirstDollFemale
