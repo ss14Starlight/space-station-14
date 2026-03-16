@@ -6,6 +6,12 @@ names-first-doll-male-dataset-5 = Henry
 names-first-doll-male-dataset-6 = James
 names-first-doll-male-dataset-7 = Alistair
 names-first-doll-male-dataset-8 = Oliver
+names-first-doll-male-dataset-9 = Sebastian
+names-first-doll-male-dataset-10 = Quincy
+names-first-doll-male-dataset-11 = Richard
+names-first-doll-male-dataset-12 = Benedict
+names-first-doll-male-dataset-13 = Alfred
+names-first-doll-male-dataset-14 = Theodore
 
 names-first-doll-female-dataset-1 = Mary
 names-first-doll-female-dataset-2 = Elizabeth
