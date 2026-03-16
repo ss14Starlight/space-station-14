@@ -3,10 +3,12 @@
   parent: BigBox
   suffix: Syndicate, Filled
   components:
-    - type: EntityStorage
-      capacity: 12  # Base capacity is 5 but bumped to 12 to fit items
-    - type: StorageFill
-      contents:
+  - type: EntityStorage
+    capacity: 12  # Base capacity is 5 but bumped to 12 to fit items
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
         - id: WeaponPistolStechkin
         - id: MagazinePistol40FMJ
         - id: CombatKnife

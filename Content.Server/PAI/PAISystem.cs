@@ -9,21 +9,17 @@ using Content.Shared.Popups;
 using Content.Shared.Instruments;
 using Robust.Shared.Random;
 using System.Text;
-using Robust.Server.Containers; //Starlight pAI can open PDAs, see PR #3272
-using Content.Shared.PDA; //Starlight pAI can open PDAs, see PR #3272
-using Robust.Shared.Player; //Starlight pAI can open PDAs, see PR #3272
+
 
 namespace Content.Server.PAI;
 
-public sealed class PAISystem : EntitySystem
+public sealed partial class PAISystem : EntitySystem
 {
     [Dependency] private readonly InstrumentSystem _instrumentSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ToggleableGhostRoleSystem _toggleableGhostRole = default!;
-    [Dependency] private readonly ContainerSystem _containerSystem = default!; //Starlight pAI can open PDAs, see PR #3272
-    [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!; //Starlight pAI can open PDAs, see PR #3272
 
     /// <summary>
     /// Possible symbols that can be part of a scrambled pai's name.
@@ -38,7 +34,8 @@ public sealed class PAISystem : EntitySystem
         SubscribeLocalEvent<PAIComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<PAIComponent, MindRemovedMessage>(OnMindRemoved);
         SubscribeLocalEvent<PAIComponent, BeingMicrowavedEvent>(OnMicrowaved);
-        SubscribeLocalEvent<PAIComponent, PAIPDAActionEvent>(OnOpenPda); //Starlight pAI can open PDAs, see PR #3272
+
+        InitializePAISlotting(); // Starlight-edit: PAI's can be slotted into PDAs and computer consoles and use them.
     }
 
     private void OnUseInHand(EntityUid uid, PAIComponent component, UseInHandEvent args)
@@ -125,22 +122,4 @@ public sealed class PAISystem : EntitySystem
                 _metaData.SetEntityName(uid, proto.Name);
         }
     }
-
-    #region Starlight
-    private void OnOpenPda(Entity<PAIComponent> ent, ref PAIPDAActionEvent args)
-    {
-        bool inAContainer = _containerSystem.TryGetContainingContainer(ent.Owner, out var container);
-        if (!inAContainer || container == null) { return; }
-
-        bool containerHasPdaComponent = TryComp<PdaComponent>(container.Owner, out _);
-        bool containerHasUserInterfaceComponent = TryComp<UserInterfaceComponent>(container.Owner, out var ui_comp);
-        bool paiComponentHasPlayerActor = TryComp<ActorComponent>(ent.Owner, out var actor);
-        bool insideValidPda = inAContainer && containerHasPdaComponent && containerHasUserInterfaceComponent && paiComponentHasPlayerActor;
-        if (!insideValidPda || ui_comp == null || actor == null) { return; }
-
-        bool openPdaUiSuccess = _userInterface.TryToggleUi((container.Owner, ui_comp), PdaUiKey.Key, actor.PlayerSession);
-        if (!openPdaUiSuccess) { return; }
-        // Success.
-    }
-    #endregion
 }

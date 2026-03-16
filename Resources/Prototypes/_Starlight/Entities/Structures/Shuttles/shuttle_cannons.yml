@@ -1,14 +1,14 @@
 # Starlight Shuttle Cannons
 
-# NTSF-CYERXA Dual 120mm Cannon - Based on Duster, fires 2 shots per trigger
+# CYERXA Dual 120mm Cannon - Based on Duster, fires 2 shots per trigger
 - type: entity
-  id: ShuttleGunNTSFCyerxa120mm
+  id: ShuttleGunCyerxa120mm
   parent: ShuttleGunBase
   name: CYERXA Dual 120mm Cannons
   description: A powerful dual 120mm cannon system designed for heavy shuttle combat. Fires devastating blast grenades with extreme destructive power. Each activation fires both barrels in rapid succession.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/ntsf_cyerxa_120mm.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/cyerxa_120mm.rsi
     state: space_artillery
   - type: ContainerContainer
     containers:
@@ -72,8 +72,14 @@
           params:
             pitch: 2
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: GunneryTrackable
   - type: StaticPrice
     price: 5000
+  - type: AutoLoader
+    container: gun_magazine
+    whitelist:
+      tags:
+      - MagazineGrenade120mm
 
 # Apollo Heavy Laser Cannon - Slow firing devastating energy weapon
 - type: entity
@@ -123,6 +129,12 @@
     laserColor: "#FF44FF"
     traceDuration: 0.75
     maxRange: 35.0
+  - type: GunneryTrackable
+  - type: AutoLoader
+    container: cell_slot
+    whitelist:
+      tags:
+      - PowerCage
 
 # Vanyk-MK2 60mm Rocket Launcher - Multi-rocket burst fire system
 - type: entity
@@ -133,7 +145,11 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/vanyk-MK2.rsi
+    granularLayersRendering: true
     layers:
+    - sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
+      state: support
+      renderingStrategy: NoRotation
     - state: space_artillery
       map: ["enum.GunVisualLayers.Base"]
     - state: space_artillery
@@ -169,16 +185,13 @@
           acts: ["Destruction"]
   - type: Gun
     projectileSpeed: 40
-    fireRate: 3.0
-    burstFireRate: 6
-    shotsPerBurst: 3
-    burstCooldown: 30
-    selectedMode: Burst
+    fireRate: 0.5
+    selectedMode: SemiAuto
     angleDecay: 20
     minAngle: 0
     maxAngle: 8
     availableModes:
-    - Burst
+    - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
       params:
@@ -201,8 +214,14 @@
             pitch: 1.5
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
   - type: Appearance
+  - type: GunneryTrackable
   - type: StaticPrice
     price: 6000
+  - type: AutoLoader
+    container: gun_magazine
+    whitelist:
+      tags:
+      - Magazine60mmRocket
 
 # M321-CHARYBDIS 'Thanatos' 280mm Railgun - Single-shot, manually loaded, extreme damage
 - type: entity
@@ -275,6 +294,240 @@
       params:
         pitch: 0.6
         volume: 3
+  - type: GunneryTrackable
   - type: StaticPrice
     price: 25000
 
+# SSG-TARNYX EMP Grenade Cannon - lobs EMP grenades, 4-round capacity
+- type: entity
+  id: ShuttleGunTarnyx
+  parent: ShuttleGunBase
+  name: SSG-TARNYX EMP Grenade Cannon
+  description: A heavy-duty electromagnetic grenade lobber. Fires EMP grenades in a wide arc, designed to saturate an area with electromagnetic pulses and disable enemy ship systems. Holds 4 rounds. Does not cause structural damage.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/tarnyx.rsi
+    granularLayersRendering: true
+    layers:
+    - sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - state: space_artillery
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Anchorable
+    delay: 90
+  - type: Pullable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 25
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    angleDecay: 30
+    minAngle: 0
+    maxAngle: 20
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        pitch: 0.7
+        volume: 4
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - Grenade
+    capacity: 4
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Appearance
+  - type: GunneryTrackable
+  - type: StaticPrice
+    price: 5500
+  - type: AutoLoader
+    container: ballistic-ammo
+    whitelist:
+      tags:
+      - Grenade
+
+# ADMP-27 VESPERA 50mm Rapid-Fire Missile Rack
+- type: entity
+  id: WeaponTurretVespera
+  parent: ShuttleGunBase
+  name: ADMP-27 VESPERA 50mm Rapid-Fire Missile Rack
+  description: A rapid-fire swarm missile rack. Saturates targets with guided warheads to overwhelm defenses.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Vespera.rsi
+    granularLayersRendering: true
+    layers:
+    - sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - state: space_artillery
+      map: ["enum.GunVisualLayers.Base"]
+    - state: space_artillery
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Anchorable
+    delay: 90
+  - type: Pullable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    shotsPerBurst: 13
+    burstCooldown: 20
+    burstFireRate: 13
+    fireRate: 16
+    selectedMode: Burst
+    angleDecay: 20
+    minAngle: 4
+    maxAngle: 35
+    availableModes:
+    - Burst
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+      params:
+        variation: 0.08
+        volume: 6
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - Magazine50mmRocket
+        insertSound:
+          path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+          params:
+            pitch: 1.5
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: Appearance
+  - type: GunneryTrackable
+  - type: StaticPrice
+    price: 6000
+  - type: AutoLoader
+    container: gun_magazine
+    whitelist:
+      tags:
+      - Magazine50mmRocket
+
+- type: entity
+  id: ShuttleGunAutocannon
+  parent: ShuttleGunBase
+  name: L85 20mm autocannon
+  description: A light 20mm ballistic autocannon designed for rapid fire and suppressing smaller targets at close range. Cheap, light.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/50cal.rsi
+    granularLayersRendering: true
+    layers:
+    - sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
+      state: support
+      renderingStrategy: NoRotation
+    - state: space_artillery
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Anchorable
+    delay: 90
+  - type: Pullable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 12
+    projectileSpeed: 160
+    minAngle: 0
+    maxAngle: 5
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Shuttleguns/slammer.ogg
+      params:
+        variation: 0.05
+        volume: 5
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: BatteryAmmoProvider
+    proto: 20mmBullet
+    fireCost: 1
+  - type: Battery
+    maxCharge: 50
+    startingCharge: 50
+    netsync: false
+  - type: ApcPowerReceiverBattery
+    idleLoad: 100
+    batteryRechargeRate: 1
+    batteryRechargeEfficiency: 0.0
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: ExtensionCableReceiver
+  - type: GunneryTrackable

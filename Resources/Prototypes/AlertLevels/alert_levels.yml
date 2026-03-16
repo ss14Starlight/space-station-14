@@ -118,3 +118,12 @@
       forceEnableEmergencyLights: true
       shuttleTime: 600
       # end starlight
+    octarine: # Stellar - Cosmic Cult
+      announcement: alert-level-octarine-announcement
+      selectable: false
+      sound: /Audio/_ST/Announcements/Alerts/code_octarine.ogg
+      disableSelection: true
+      color: CadetBlue
+      emergencyLightColor: CadetBlue
+      forceEnableEmergencyLights: true
+      shuttleTime: 600

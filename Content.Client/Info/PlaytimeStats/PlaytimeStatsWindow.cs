@@ -18,6 +18,8 @@ public sealed partial class PlaytimeStatsWindow : FancyWindow
     private ISawmill _sawmill = Logger.GetSawmill("PlaytimeStatsWindow");
     private readonly Color _altColor = Color.FromHex("#292B38");
     private readonly Color _defaultColor = Color.FromHex("#2F2F3B");
+    private readonly Color _antagColor = Color.FromHex("#fe7676");
+    private readonly Color _ghostColor = Color.FromHex("#c996e0");
     private bool _useAltColor;
 
     public PlaytimeStatsWindow()
@@ -109,11 +111,12 @@ public sealed partial class PlaytimeStatsWindow : FancyWindow
 
         OverallPlaytimeLabel.Text = Loc.GetString("ui-playtime-overall", ("time", overallPlaytime));
 
-        var rolePlaytimes = _jobRequirementsManager.FetchPlaytimeByRoles();
-
-        //starlight
+        // Starlight BEGIN
+        var rolePlaytimes = _jobRequirementsManager.FetchPlaytimeByRoles().ToList();
         var departmentPlaytimes = _jobRequirementsManager.FetchPlaytimeByDepartments();
-        //starlight end
+        var antagPlaytimes = _jobRequirementsManager.FetchPlaytimeByAntags();
+        var miscellaneousPlaytimes = _jobRequirementsManager.FetchPlaytimeMiscellaneous(rolePlaytimes, antagPlaytimes);
+        // Starlight END
 
         RolesPlaytimeList.RemoveAllChildren();
         PopulatePlaytimeHeader();
@@ -131,6 +134,16 @@ public sealed partial class PlaytimeStatsWindow : FancyWindow
             var department = departmentPlaytime.Key;
             var playtime = departmentPlaytime.Value;
             AddRolePlaytimeEntryToTable(Loc.GetString(department.Name), playtime.ToString(), textColor: department.Color); //starlight edit
+        }
+        foreach (var antagPlaytime in antagPlaytimes)
+        {
+            AddRolePlaytimeEntryToTable(Loc.GetString(antagPlaytime.Key.Name), antagPlaytime.Value.ToString(), textColor: _antagColor);
+        }
+        foreach (var miscellaneousPlaytime in miscellaneousPlaytimes)
+        {
+            var role = miscellaneousPlaytime.Key;
+            var playtime = miscellaneousPlaytime.Value;
+            AddRolePlaytimeEntryToTable(Loc.GetString(role.Name), playtime.ToString(), textColor: _ghostColor);
         }
         //starlight end
     }

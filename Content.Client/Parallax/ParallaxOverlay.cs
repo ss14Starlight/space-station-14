@@ -1,9 +1,11 @@
 using System.Numerics;
 using Content.Client.Parallax.Managers;
 using Content.Client.Weather;
+using Content.Shared._Starlight.Weather;
 using Content.Shared.CCVar;
 using Content.Shared.Parallax.Biomes;
-using Content.Shared.Weather;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
@@ -26,6 +28,8 @@ public sealed class ParallaxOverlay : Overlay
     private readonly ParallaxSystem _parallax;
     private readonly WeatherSystem _weather; // SL
     private readonly SpriteSystem _sprite; // SL
+    private readonly StatusEffectsSystem _statusEffects; // SL
+    private HashSet<Entity<ParallaxStatusEffectComponent, StatusEffectComponent>>? _parallaxSet = new(); // SL
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowWorld;
 
@@ -37,6 +41,7 @@ public sealed class ParallaxOverlay : Overlay
         _parallax = _entManager.System<ParallaxSystem>();
         _weather = _entManager.System<WeatherSystem>(); // SL
         _sprite = _entManager.System<SpriteSystem>(); // SL
+        _statusEffects = _entManager.System<StatusEffectsSystem>(); // SL
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
@@ -66,15 +71,12 @@ public sealed class ParallaxOverlay : Overlay
 
         // Starlight - Start
         var mapUid = _mapSystem.GetMapOrInvalid(args.MapId);
-        if (_entManager.TryGetComponent<WeatherComponent>(mapUid, out var comp))
+        if (_statusEffects.TryEffectsWithComp(mapUid, out _parallaxSet))
         {
-            foreach (var (proto, weather) in comp.Weather)
+            foreach (var (uid, parallax, status) in _parallaxSet)
             {
-                if (!_prototypeManager.Resolve<WeatherPrototype>(proto, out var weatherProto) || weatherProto.Parallax is null)
-                    continue;
-
-                var alpha = _weather.GetPercent(weather, mapUid);
-                foreach (var layer in _parallax.GetParallaxLayers(weatherProto.Parallax))
+                var alpha = _weather.GetWeatherPercent((uid, status));
+                foreach (var layer in _parallax.GetParallaxLayers(parallax.Parallax))
                     Render(position, worldHandle, layer, realTime, args, Color.White.WithAlpha(alpha));
             }
         }

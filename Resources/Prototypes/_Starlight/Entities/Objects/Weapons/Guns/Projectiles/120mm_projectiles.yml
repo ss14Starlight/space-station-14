@@ -28,3 +28,4 @@
     scale: 1.0
     shape: Square
     requireInSpace: true
+  - type: PDTarget

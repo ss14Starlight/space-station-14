@@ -653,6 +653,12 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitLuxury
+# Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
 
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
@@ -723,6 +729,7 @@
   - type: Tag
     tags:
     - Hardsuit
+    - CorgiWearable # Starlight
     - WhitelistChameleon
 
 #Syndicate Elite Hardsuit

@@ -25,13 +25,13 @@
 
 	They transfer heat and interact with neutrons within the Reactor.
 
-	If a Reactor Rod's [color=#a4885c]Temperature[/color] reaches 1426C (1700k), it will begin to melt.
+	If a Reactor Rod's [color=#a4885c]Temperature[/color] reaches [color=orange][protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="MeltingPoint"/]k[/color], it will begin to melt.
 
 	Once melted it will become much more active and able to transfer heat into the Reactor, which may cause a total meltdown.
 
 	Handling hot Reactor Rods can cause serious burns.
 
-	If it is hotter than 80C you'll need gloves to be able to handle them. At 400C, not even gloves will protect you.
+	If it is hotter than [color=orange][protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="GuidebookHotTemp"/]C[/color] you'll need gloves to be able to handle them. At [color=orange][protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="GuidebookBurnTemp"/]C[/color], not even gloves will protect you.
 
 	There are four different types of Reactor Rods that can be manufactured from a variety of [textlink="materials" link="NuclearMaterials"] and placed into the Reactor grid: Fuel Rods, Control Rods, Gas Channels, and Heat Exchangers.
 
@@ -63,7 +63,7 @@
 	### Gas Channels
 	Gas Channels transfer heat from themselves into the coolant gas that flows through them.
 
-	Each Gas Channel will increase the flow rate by [color=#a4885c]100 L/s[/color], allowing the Reactor to process more gas at once.
+	Each Gas Channel will increase the flow rate by [color=orange][protodata="SteelReactorGasChannel" comp="ReactorPart" member="GasVolume"/] L/s[/color], allowing the Reactor to process more gas at once.
 
 	### Heat Exchangers
 	Heat Exchangers guide the spread of heat within the Reactor.
@@ -102,13 +102,13 @@
 	### Status Panel
 	The status panel gives information on the Reactor as a whole and provides control of the control rods.
 
-	The [color=#a4885c]Temperature Gauge[/color] shows the current temperature of the Reactor, in a range between -273C and 1726C (0k to 2000k).
+	The [color=#a4885c]Temperature Gauge[/color] shows the current temperature of the Reactor, in a range between [color=orange]0k[/color] and [color=orange][protodata="NuclearReactorNormal" comp="NuclearReactor" member="ReactorMeltdownTemp"/]k[/color].
 
-	If the Reactor ever reaches 1726C (2000k), it will [color=red]meltdown[/color].
+	If the Reactor ever reaches [color=orange][protodata="NuclearReactorNormal" comp="NuclearReactor" member="ReactorMeltdownTemp"/]k[/color], it will [color=red]meltdown[/color].
 
-	The [color=#a4885c]Radiation Gauge[/color] shows the current radiation being emitted by the Reactor, in a range between 0 and 50 rads.
+	The [color=#a4885c]Radiation Gauge[/color] shows the current radiation being emitted by the Reactor, in a range between [color=orange]0[/color] and [color=orange][protodata="NuclearReactorNormal" comp="NuclearReactor" member="MaximumRadiation"/][/color] rads.
 
-	The [color=#a4885c]Thermal Power Gauge[/color] shows an estimation of the amount of thermal power being made by the Reactor, in a range between 0 and 20 000 000 thermal watts (Wt).
+	The [color=#a4885c]Thermal Power Gauge[/color] shows an estimation of the amount of thermal power being made by the Reactor, in a range between [color=orange]0[/color] and [color=orange][protodata="NuclearReactorNormal" comp="NuclearReactor" member="MaximumThermalPower" format="N0"/][/color] thermal watts (Wt).
 
 	Thermal Power is a decent estimation of how much power can be extracted from the gas by the [textlink="Gas Turbine" link="GasTurbine"].
 

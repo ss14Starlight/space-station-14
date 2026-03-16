@@ -1,0 +1,22 @@
+- type: entity
+  id: 20mmBullet
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 10
+        Blunt: 25
+        Piercing: 75
+  - type: TimedDespawn
+    lifetime: 2
+  - type: PointLight
+    radius: 3.5
+    energy: 0.5
+    color: orange
+  - type: RadarBlip
+    scale: 0.85
+    shape: Square
+    color: "#FFDD00"
+    requireInSpace: true

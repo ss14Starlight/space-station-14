@@ -136,6 +136,9 @@
       slots:
         cell_slot:
           name: power-cell-slot-component-slot-name-default
+          blacklist:
+            tags:
+            - MechReactor
     - type: StatusEffects
       allowed:
       - Stun
@@ -279,5 +282,8 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellHyper
+          blacklist:
+            tags:
+            - MechReactor
     - type: AccessReader
       access: [["SyndicateAgent"], ["NuclearOperative"]]

@@ -36,9 +36,17 @@ public sealed class StationAiOverlay : Overlay
     private readonly NavMapControl _navMap = new(); // Carpmosia-edit - AI Navmap
 
     private readonly OverlayResourceCache<CachedResources> _resources = new();
-    private Dictionary<Color, Color> _sRGBLookUp = new(); // Carpmosia-edit - AI Navmap
 
-    private float _updateRate = 1f / 30f;
+    // Carpmosia-start - AI Navmap
+    private readonly Dictionary<Color, Color> _sRgbLookUp = new();
+    private static readonly RenderTargetFormatParameters RenderTargetFormatParameters = new(RenderTargetColorFormat.Rgba8Srgb);
+
+    private static readonly List<Vector2> TileLinesToDraw = [];
+    private static readonly List<Vector2> TileRectsToDraw = [];
+
+    private const float UpdateRate = 1f / 30f;
+    // Carpmosia-end - AI Navmap
+
     private float _accumulator;
 
     public StationAiOverlay()
@@ -59,30 +67,32 @@ public sealed class StationAiOverlay : Overlay
         {
             res.StaticTexture?.Dispose();
             res.StencilTexture?.Dispose();
-            res.StencilTexture = _clyde.CreateRenderTarget(args.Viewport.Size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "station-ai-stencil");
+
+            // Carpmosia-start - AI Navmap
+            res.StencilTexture = _clyde.CreateRenderTarget(args.Viewport.Size, RenderTargetFormatParameters, name: "station-ai-stencil");
             res.StaticTexture = _clyde.CreateRenderTarget(args.Viewport.Size,
-                new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb),
+                RenderTargetFormatParameters,
                 name: "station-ai-static");
+            // Carpmosia-end - AI Navmap
         }
 
         var worldHandle = args.WorldHandle;
 
         var worldBounds = args.WorldBounds;
-        // var playerEnt = _player.LocalEntity;
 
-         // Starlight-start: moved to be after new playerEnt definition with edit
-         var playerEnt = _player.LocalEntity;
+        // Starlight-start: moved to be after new playerEnt definition with edit
+        var playerEnt = _player.LocalEntity;
 
         // Check for cross-grid viewing (e.g., Abductor remote eye) BEFORE getting gridUid
-        if (_entManager.TryGetComponent(playerEnt, out StationAiOverlayComponent? stationAiOverlay) 
-            && stationAiOverlay.AllowCrossGrid 
+        if (_entManager.TryGetComponent(playerEnt, out StationAiOverlayComponent? stationAiOverlay)
+            && stationAiOverlay.AllowCrossGrid
             && _entManager.TryGetComponent(playerEnt, out RelayInputMoverComponent? relay))
             playerEnt = relay.RelayEntity;
 
         // Starlight - start
         _entManager.TryGetComponent(playerEnt, out StationAiOverlayComponent? relayStationAiOverlay);
         // Starlight - end
-    
+
         _entManager.TryGetComponent(playerEnt, out TransformComponent? playerXform);
         var gridUid = playerXform?.GridUid ?? EntityUid.Invalid;
         _entManager.TryGetComponent(gridUid, out MapGridComponent? grid);
@@ -101,10 +111,10 @@ public sealed class StationAiOverlay : Overlay
             if (stationAiOverlay is not null) // 🌟Starlight🌟
                 color = color.WithAlpha(stationAiOverlay.Alfa); // 🌟Starlight🌟
 
-            _navMap.AiFrameUpdate((float) _timing.FrameTime.TotalSeconds, gridUid); // Carpmosia-edit - AI Navmap
+            _navMap.AiFrameUpdate((float)_timing.FrameTime.TotalSeconds, gridUid); // Carpmosia-edit - AI Navmap
             if (_accumulator <= 0f)
             {
-                _accumulator = MathF.Max(0f, _accumulator + _updateRate);
+                _accumulator = MathF.Max(0f, _accumulator + UpdateRate); // Carpmosia-edit - AI Navmap
                 _visibleTiles.Clear();
                 // Starlight - start
                 _visibleTileTags.Clear();
@@ -212,64 +222,66 @@ public sealed class StationAiOverlay : Overlay
     // Carpmosia-start - AI Navmap
     protected void DrawNavMap(DrawingHandleWorld handle, MapGridComponent grid)
     {
-        if (!_sRGBLookUp.TryGetValue(_navMap.WallColor, out var wallsRGB))
+        if (!_sRgbLookUp.TryGetValue(_navMap.WallColor, out var wallsRgb))
         {
-            wallsRGB = Color.ToSrgb(_navMap.WallColor);
-            _sRGBLookUp[_navMap.WallColor] = wallsRGB;
+            wallsRgb = Color.ToSrgb(_navMap.WallColor);
+            _sRgbLookUp[_navMap.WallColor] = wallsRgb;
         }
 
         // Draw floor tiles
-        if (_navMap.TilePolygons.Any())
+        if (_navMap.TilePolygons.Count != 0)
         {
             foreach (var (polygonVerts, polygonColor) in _navMap.TilePolygons)
             {
-                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, polygonVerts[..polygonVerts.Length], polygonColor);
+                handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, polygonVerts.AsSpan()[..], polygonColor);
             }
         }
 
         // Draw map lines
-        if (_navMap.TileLines.Any())
+        if (_navMap.TileLines.Count != 0)
         {
-            var lines = new ValueList<Vector2>(_navMap.TileLines.Count * 2);
+            TileLinesToDraw.Clear();
+            TileLinesToDraw.EnsureCapacity(_navMap.TileLines.Count * 2);
 
             foreach (var (o, t) in _navMap.TileLines)
             {
-                var origin = new Vector2(o.X, -o.Y);
-                var terminus = new Vector2(t.X, -t.Y);
+                var origin = o with { Y = -o.Y };
+                var terminus = t with { Y = -t.Y };
 
-                lines.Add(origin);
-                lines.Add(terminus);
+                TileLinesToDraw.Add(origin);
+                TileLinesToDraw.Add(terminus);
             }
 
-            if (lines.Count > 0)
-                handle.DrawPrimitives(DrawPrimitiveTopology.LineList, lines.Span, wallsRGB);
+            if (TileLinesToDraw.Count > 0)
+                handle.DrawPrimitives(DrawPrimitiveTopology.LineList, TileLinesToDraw, wallsRgb);
         }
 
         // Draw map rects
-        if (_navMap.TileRects.Any())
+        if (_navMap.TileRects.Count != 0)
         {
-            var rects = new ValueList<Vector2>(_navMap.TileRects.Count * 8);
+            TileRectsToDraw.Clear();
+            TileRectsToDraw.EnsureCapacity(_navMap.TileRects.Count * 8);
 
             foreach (var (lt, rb) in _navMap.TileRects)
             {
-                var leftTop = new Vector2(lt.X, -lt.Y);
-                var rightBottom = new Vector2(rb.X, -rb.Y);
+                var leftTop = lt with { Y = -lt.Y };
+                var rightBottom = rb with { Y = -rb.Y };
 
                 var rightTop = new Vector2(rightBottom.X, leftTop.Y);
                 var leftBottom = new Vector2(leftTop.X, rightBottom.Y);
 
-                rects.Add(leftTop);
-                rects.Add(rightTop);
-                rects.Add(rightTop);
-                rects.Add(rightBottom);
-                rects.Add(rightBottom);
-                rects.Add(leftBottom);
-                rects.Add(leftBottom);
-                rects.Add(leftTop);
+                TileRectsToDraw.Add(leftTop);
+                TileRectsToDraw.Add(rightTop);
+                TileRectsToDraw.Add(rightTop);
+                TileRectsToDraw.Add(rightBottom);
+                TileRectsToDraw.Add(rightBottom);
+                TileRectsToDraw.Add(leftBottom);
+                TileRectsToDraw.Add(leftBottom);
+                TileRectsToDraw.Add(leftTop);
             }
 
-            if (rects.Count > 0)
-                handle.DrawPrimitives(DrawPrimitiveTopology.LineList, rects.Span, wallsRGB);
+            if (TileRectsToDraw.Count > 0)
+                handle.DrawPrimitives(DrawPrimitiveTopology.LineList, TileRectsToDraw, wallsRgb);
         }
     }
     // Carpmosia-end - AI Navmap

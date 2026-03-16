@@ -70,6 +70,10 @@ public sealed partial class TTSSystem : EntitySystem
 
             await GenerateAndStream(TTSType.System, protoVoice.Voice, previewText, filter);
         }
+        catch (TaskCanceledException ex)
+        {
+            _sawmill.Info($"TTS Preview was cancelled: {ex.Message}");
+        }
         catch (Exception ex)
         {
             _sawmill.Error($"TTS Preview error: {ex.Message}");
@@ -89,11 +93,18 @@ public sealed partial class TTSSystem : EntitySystem
         {
             var text = CleanText(args.Message.Tts);
             _chime.TryGetSenderHeadsetChime(args.Source, out var chime);
-            var filter = Filter.Entities(args.Receivers).RemovePlayers(_ignoredRecipients);
+            var filter = Filter.Entities(args.Receivers).RemovePlayers(_ignoredRecipients)
+                .RemoveWhere(x => x.AttachedEntity.HasValue
+                    && x.AttachedEntity != args.Source
+                    && !_language.CanUnderstand(x.AttachedEntity.Value, args.Language.ID));
             var voice = GetOrAssignVoice(args.Source);
             var channel = new ProtoId<RadioChannelPrototype>(args.Channel.ID);
 
             await GenerateAndStream(TTSType.Radio, voice, text, filter, TTSEffect.Walkie, chime, null, channel);
+        }
+        catch (TaskCanceledException ex)
+        {
+            _sawmill.Info($"TTS Radio was cancelled: {ex.Message}");
         }
         catch (Exception ex)
         {
@@ -115,6 +126,10 @@ public sealed partial class TTSSystem : EntitySystem
             var voice = GetOrAssignVoice(args.Source);
 
             await GenerateAndStream(TTSType.Mind, voice, text, filter, TTSEffect.Underwater);
+        }
+        catch (TaskCanceledException ex)
+        {
+            _sawmill.Info($"TTS Mind was cancelled: {ex.Message}");
         }
         catch (Exception ex)
         {
@@ -138,6 +153,10 @@ public sealed partial class TTSSystem : EntitySystem
                 : DefaultAnnounceVoice;
 
             await GenerateAndStream(TTSType.Announcement, voice, text, filter, TTSEffect.Megaphone, args.AnnouncementSound);
+        }
+        catch (TaskCanceledException ex)
+        {
+            _sawmill.Info($"TTS Announcement was cancelled: {ex.Message}");
         }
         catch (Exception ex)
         {
@@ -166,7 +185,12 @@ public sealed partial class TTSSystem : EntitySystem
                 _ => TTSEffect.None
             };
 
-            await GenerateAndStream(TTSType.IG, voice, text, filter, effect, null, uid, volume: args.IsWhisper ? WhisperVoiceVolumeModifier : 1f);
+            await GenerateAndStream(TTSType.IG, voice, text, filter, effect, null, uid,
+                volume: args.IsWhisper ? WhisperVoiceVolumeModifier : 1f);
+        }
+        catch (TaskCanceledException ex)
+        {
+            _sawmill.Info($"TTS Entity was cancelled: {ex.Message}");
         }
         catch (Exception ex)
         {

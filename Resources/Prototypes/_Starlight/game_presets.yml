@@ -28,7 +28,7 @@
   - allnt
   - allexceptroundenders
   name: all-at-once-except-zombieteors-title
-  minPlayers: 15 # Starlight, for Delta
+  minPlayers: 60
   description: all-at-once-except-zombieteors-description
   showInVote: false
   rules:
@@ -49,3 +49,45 @@
     - Brighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
 
+- type: gamePreset
+  id: AlmostAllerAtOnce
+  alias:
+  - almostallall
+  - allernt
+  - almostbadidea
+  - smallerpunishment
+  name: aller-at-once-except-zombieteors-title
+  description: aller-at-once-except-zombieteors-description
+  showInVote: false #Please god dont do this
+  minPlayers: 60
+  rules:
+    - Nukeops
+    - Traitor
+    - Revolutionary
+    - Wizard
+    - Xenoborgs
+    - BasicStationEventScheduler
+    - BasicStationEventScheduler # Starlight, ShitStation
+    - MeteorSwarmScheduler # Meteor mild isn't included in almost aller because in theory the idea is to have a round last more than 10 minutes.
+    - RampingStationEventScheduler
+    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlFriendlyEventScheduler
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation # Starlight, ShitStation
+    - BasicRoundstartVariation # Starlight, ShitStation
+    - BasicRoundstartVariation # Starlight, ShitStation
+    - BasicRoundstartVariation # Starlight, ShitStation
+    - DerelictGenericCyborgSpawn # Starlight, ShitStation
+    - DerelictGenericCyborgSpawn # Starlight, ShitStation
+    - IonStorm # Starlight, ShitStation
+    - IonStorm # Starlight, ShitStation
+    - CockroachMigration # Starlight, ShitStation
+    - MouseMigration # Starlight, ShitStation
+    - SLChangeling # Starlight
+    - Vampire #Starlight
+    - SiliconLiberation #Starlight
+    - Brighteye #Starlight
+    - ThiefGamerule # Starlight, Event Light
+    - LoneOpsSpawn # Starlight
+    - RailroadingTerminator # Starlight
+    - RailroadingMinor # Starlight

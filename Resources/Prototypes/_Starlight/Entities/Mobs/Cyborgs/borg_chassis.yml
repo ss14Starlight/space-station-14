@@ -131,6 +131,7 @@
   description: A purpose built assault silicon used by the TSMC.
   abstract: true
   components:
+  - type: TextToSpeech
   - type: Sprite
     sprite: _Starlight/Mobs/Silicon/Chassis/tsmc.rsi
     layers:
@@ -153,6 +154,8 @@
       - BorgModuleSecurity
     hasMindState: assault_l
     noMindState: assault_l
+  - type: BypassLock
+    bypassDelay: 15
   - type: Access
     tags:
     - Solgov
@@ -176,9 +179,8 @@
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate
-  - type: IonStormTarget
-    chance: 0.2
   - type: ShowJobIcons
+  - type: ShowMindShieldIcons
   - type: SiliconLawProvider
     laws: SolgovLawset
   - type: FootstepModifier

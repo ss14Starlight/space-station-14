@@ -62,3 +62,8 @@
   license: "CC0-1.0"
   copyright: "Created by A-Guy173"
   source: "https://github.com/A-Guy173/Music/tree/main"
+
+- files: ["RedefiningLines.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Redefining Lines by Beptol Corporation Acoustics"
+  source: "https://soundcloud.com/beptolacoustics"

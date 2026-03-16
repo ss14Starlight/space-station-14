@@ -1,3 +1,4 @@
+using Content.Server._Starlight; // SL
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Disposal.Tube;
 using Content.Shared.Body.Components;
@@ -25,9 +26,11 @@ namespace Content.Server.Disposal.Unit
         [Dependency] private readonly SharedMapSystem _maps = default!;
         [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
         [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
+        [Dependency] private readonly AutoLoaderSystem _autoLoader = default!; // SL
 
         private EntityQuery<DisposalTubeComponent> _disposalTubeQuery;
         private EntityQuery<DisposalUnitComponent> _disposalUnitQuery;
+        private EntityQuery<AutoLoaderComponent> _autoloaderQuery; // SL
         private EntityQuery<MetaDataComponent> _metaQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
         private EntityQuery<TransformComponent> _xformQuery;
@@ -38,6 +41,7 @@ namespace Content.Server.Disposal.Unit
 
             _disposalTubeQuery = GetEntityQuery<DisposalTubeComponent>();
             _disposalUnitQuery = GetEntityQuery<DisposalUnitComponent>();
+            _autoloaderQuery = GetEntityQuery<AutoLoaderComponent>(); // SL
             _metaQuery = GetEntityQuery<MetaDataComponent>();
             _physicsQuery = GetEntityQuery<PhysicsComponent>();
             _xformQuery = GetEntityQuery<TransformComponent>();
@@ -84,12 +88,13 @@ namespace Content.Server.Disposal.Unit
 
             EntityUid? disposalId = null;
             DisposalUnitComponent? duc = null;
+            AutoLoaderComponent? autoloader = null; // SL
             var gridUid = holderTransform.GridUid;
             if (TryComp<MapGridComponent>(gridUid, out var grid))
             {
                 foreach (var contentUid in _maps.GetLocal(gridUid.Value, grid, holderTransform.Coordinates))
                 {
-                    if (_disposalUnitQuery.TryGetComponent(contentUid, out duc))
+                    if (_disposalUnitQuery.TryGetComponent(contentUid, out duc) || _autoloaderQuery.TryGetComponent(contentUid, out autoloader)) // SL - Edited
                     {
                         disposalId = contentUid;
                         break;
@@ -115,6 +120,9 @@ namespace Content.Server.Disposal.Unit
 
                 if (duc != null)
                     _containerSystem.Insert((entity, xform, meta), duc.Container);
+                // Startlight
+                else if (autoloader is not null && holder.CurrentTube is not null && disposalId is not null && _containerSystem.TryGetContainer(disposalId.Value, autoloader.Container, out var autoloadercontainer))
+                    _autoLoader.Cycle(entity, (disposalId.Value, autoloader), autoloadercontainer, holder.CurrentTube.Value);
                 else
                 {
                     _xformSystem.AttachToGridOrMap(entity, xform);
@@ -205,13 +213,16 @@ namespace Content.Server.Disposal.Unit
             return true;
         }
 
+        // Starlight Edited
         public override void Update(float frameTime)
         {
+            var snapshot = new List<(EntityUid uid, DisposalHolderComponent holder)>();
             var query = EntityQueryEnumerator<DisposalHolderComponent>();
             while (query.MoveNext(out var uid, out var holder))
-            {
+                snapshot.Add((uid, holder));
+
+            foreach (var (uid, holder) in snapshot)
                 UpdateComp(uid, holder, frameTime);
-            }
         }
 
         private void UpdateComp(EntityUid uid, DisposalHolderComponent holder, float frameTime)

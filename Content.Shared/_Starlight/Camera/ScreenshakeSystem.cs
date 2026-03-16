@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Shared.Camera;
 using Content.Shared.CCVar;
+using Content.Shared.GameTicking;
 using Robust.Shared.Configuration;
 using Robust.Shared.Noise;
 using Robust.Shared.Player;
@@ -15,6 +16,11 @@ public sealed class ScreenshakeSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+
+    /// <summary>
+    /// Cooldowns take a string key so that multiple systems can apply their shake effects without one shake effect blocking the other.
+    /// </summary>
+    private readonly Dictionary<EntityUid, Dictionary<string, TimeSpan>> _shakeCooldowns = [];
     
     #region Internal
 
@@ -25,6 +31,7 @@ public sealed class ScreenshakeSystem : EntitySystem
         SubscribeLocalEvent<ScreenshakeComponent, GetEyeRotationEvent>(OnGetEyeRotation);
         SubscribeLocalEvent<ScreenshakeComponent, GetEyeOffsetEvent>(OnGetEyeOffset);
         SubscribeLocalEvent<ScreenshakeComponent, EntityUnpausedEvent>(OnEntityUnpaused);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
     }
     
     public override void Update(float frameTime)
@@ -128,6 +135,9 @@ public sealed class ScreenshakeSystem : EntitySystem
         shake.Commands = newSet;
         Dirty(uid, shake);
     }
+
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
+        => _shakeCooldowns.Clear();
     
     /// <summary>
     /// Calculates when both traumas will be at least = 0 given the decay rate and start time.
@@ -164,6 +174,38 @@ public sealed class ScreenshakeSystem : EntitySystem
     
     #region Public API
 
+    public bool IsOnCooldown(EntityUid uid, string key)
+    {
+        if (!_shakeCooldowns.TryGetValue(uid, out var cooldowns))
+        {
+            _shakeCooldowns.Add(uid, []);
+            return false;
+        }
+        if (!cooldowns.TryGetValue(key, out var cooldown)) return false;
+        if (_timing.CurTime < cooldown) return true;
+        _shakeCooldowns[uid].Remove(key); // remove from cooldowns if it shouldn't be on cooldown anymore
+        return false;
+    }
+    
+    public void Screenshake(EntityUid uid, ScreenshakeParameters? translation, ScreenshakeParameters? rotation,
+        string key, float? cooldown = null)
+        => Screenshake(uid, translation, rotation, key,
+            cooldown is not null ? TimeSpan.FromSeconds(cooldown.Value) : null);
+
+    public void Screenshake(EntityUid uid, ScreenshakeParameters? translation, ScreenshakeParameters? rotation, string key, TimeSpan? cooldown = null)
+    {
+        if(!_shakeCooldowns.ContainsKey(uid)) _shakeCooldowns.Add(uid, []);
+        if (_shakeCooldowns[uid].TryGetValue(key, out var time))
+        {
+            if (_timing.CurTime < time) return;
+            _shakeCooldowns[uid].Remove(key);
+        }
+        if(cooldown is not null)
+            _shakeCooldowns[uid].Add(key, _timing.CurTime + cooldown.Value);
+
+        Screenshake(uid, translation, rotation);
+    }
+
     public void Screenshake(EntityUid uid, ScreenshakeParameters? translation, ScreenshakeParameters? rotation)
     {
         if (!HasComp<EyeComponent>(uid)) return;
@@ -175,6 +217,18 @@ public sealed class ScreenshakeSystem : EntitySystem
 
         comp.Commands.Add(cmd);
         Dirty(uid, comp);
+    }
+
+    public void Screenshake(Filter filter, ScreenshakeParameters? translation, ScreenshakeParameters? rotation,
+        string key, float? cooldown = null)
+        => Screenshake(filter, translation, rotation, key,
+            cooldown is not null ? TimeSpan.FromSeconds(cooldown.Value) : null);
+    
+    public void Screenshake(Filter filter, ScreenshakeParameters? translation, ScreenshakeParameters? rotation, string key, TimeSpan? cooldown = null)
+    {
+        foreach (var player in filter.Recipients)
+            if (player.AttachedEntity is { } uid) 
+                Screenshake(uid, translation, rotation, key, cooldown);
     }
 
     public void Screenshake(Filter filter, ScreenshakeParameters? translation, ScreenshakeParameters? rotation)

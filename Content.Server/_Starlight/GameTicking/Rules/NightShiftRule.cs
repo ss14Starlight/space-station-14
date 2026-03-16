@@ -32,9 +32,14 @@ public sealed class NightShiftRule : StationEventSystem<NightShiftRuleComponent>
             return;
         }
 
-        var query = AllEntityQuery<PoweredLightComponent>();
-        while (query.MoveNext(out var ent, out var light))
+        var query = AllEntityQuery<PoweredLightComponent, TransformComponent>();
+        while (query.MoveNext(out var ent, out var light, out var xform))
+        {
+            if (CompOrNull<StationMemberComponent>(xform.GridUid)?.Station != chosenStation)
+                continue;
+
             _poweredLightSystem.SetNightMode(ent, true, light);
+        }
     }
 
     protected override void Ended(EntityUid uid, NightShiftRuleComponent comp, GameRuleComponent gameRule, GameRuleEndedEvent args)

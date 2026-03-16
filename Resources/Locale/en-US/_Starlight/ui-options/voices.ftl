@@ -2,7 +2,6 @@ tts-voice-name-0 = Colorfinger
 tts-voice-name-1 = Marcus
 tts-voice-name-2 = Vincent
 tts-voice-name-3 = Karma
-tts-voice-name-4 = OliveOffender
 tts-voice-name-5 = Felinoid
 tts-voice-name-7 = Xoan
 tts-voice-name-8 = Vika Pvi
