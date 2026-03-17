@@ -369,7 +369,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitMail
   name: mail technician jumpsuit
-  description: Pristine underclothing for the most senior of mail techs. Styled after a legendary space courier.
+  description: A stylish cargo yellow and mail-bag blue uniform custom made for mail technicians.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/mailtech.rsi
@@ -380,7 +380,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitSeniorMail
   name: senior mail technician jumpsuit
-  description: Pristine underclothing for the most senior of mail techs. Styled after a legendary space courier.
+  description: A more vibrant mail technician outfit made in the color of cargo's formal uniforms. Perfect for deliver the mail in style, and looking good while doing it.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_mail.rsi

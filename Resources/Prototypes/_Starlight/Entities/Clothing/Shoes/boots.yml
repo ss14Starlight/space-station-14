@@ -9,6 +9,20 @@
     - type: Clothing
       sprite: _Starlight/Clothing/Shoes/Boots/salvage.rsi
 
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsMail
+  name: mail technician boots
+  description: Perfect for delivering mail in the vacuum of space!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Shoes/Boots/mail_boots.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Shoes/Boots/mail_boots.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.025
+    coolingCoefficient: 0.5
+
 # Don't make these easier to get.
 - type: entity
   parent: ClothingShoesBaseButcherable

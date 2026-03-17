@@ -36,11 +36,19 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorMail
 
-# Head/Eyes (Works for both)
+# Head
 - type: loadout
   id: MailTechnicianHeadVisor
   equipment:
     head: ClothingHeadHatMailsoftVisor
+
+- type: loadout
+  id: MailTechnicianHeadVisorSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    head: ClothingHeadHatMailsoftVisorSenior
 
 # Trunks
 - type: loadout
