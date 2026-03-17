@@ -150,8 +150,7 @@ namespace Content.Client.Ghost
 
         private void OnGhostState(EntityUid uid, GhostComponent component, ref AfterAutoHandleStateEvent args)
         {
-            if (TryComp<SpriteComponent>(uid, out var sprite))
-                _sprite.LayerSetColor((uid, sprite), 0, component.Color);
+            // Starlight: Ignore GhostComponent color, instead rely on GhostThemeComponent appearance.
 
             if (uid != _playerManager.LocalEntity)
                 return;

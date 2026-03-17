@@ -1,0 +1,60 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "full",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "decay0",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "decay1",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "decay2",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "decay3",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "decay4",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "decay5",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "decay6",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "decay7",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "decay",
+            "copyright": "A custom item by AftrLite (Github).",
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]]
+        }
+    ]
+}

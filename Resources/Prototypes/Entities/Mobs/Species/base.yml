@@ -240,6 +240,7 @@
     - Pet
     - Boop
   # Starlight End
+  - type: CosmicCenserTarget # Stellar - Cosmic Cult
 
 - type: entity
   save: false

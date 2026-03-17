@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "base",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "fg_idle",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "fg_searching",
+            "copyright": "A custom item by AftrLite (Github).",
+            "delays": [[0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]]
+        },
+        {
+            "name": "fg_occupied",
+            "copyright": "A custom item by AftrLite (Github).",
+            "delays": [[0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]]
+        }
+    ]
+}

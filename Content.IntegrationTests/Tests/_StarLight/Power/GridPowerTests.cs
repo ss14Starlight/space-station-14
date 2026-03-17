@@ -52,6 +52,7 @@ public sealed class GridPowerTests
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/ShadowBorgiGrid.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/UnknownShuttleFireResponse.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/abductor_shuttle.yml"),
+        new("/Maps/_Starlight/Shuttles/ShuttleEvent/syndie_evacpod.yml.yml"),
         new("/Maps/_Starlight/Shuttles/Signaleer.yml"),
         new("/Maps/_Starlight/Shuttles/VoxATS.yml"),
         new("/Maps/_Starlight/Shuttles/blackhorse.yml"),
@@ -79,6 +80,8 @@ public sealed class GridPowerTests
         new("/Maps/_Starlight/Shuttles/mothership.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/montague.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/romeo.yml"),
+        new("/Maps/_Starlight/Shuttles/cargo_syndicate.yml"),
+        new("/Maps/_Starlight/Shuttles/emergency_syndicate.yml"),
     ];
 
     [Test, TestCaseSource(nameof(GridPaths))]

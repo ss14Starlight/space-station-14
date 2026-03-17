@@ -285,17 +285,6 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/clown_distinguished.rsi
 
-- type: entity
-  parent: [ClothingUniformBase, BaseCentcommContraband]
-  id: ClothingUniformNTNCFatigues
-  name: NTNC Fatigues
-  description: NT-NC Fatigues. Very airy.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/ntcc_fatigues.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/ntcc_fatigues.rsi
-
 # Fashion-O-Mat, not obtainable any other way, unless mapped
 
 - type: entity

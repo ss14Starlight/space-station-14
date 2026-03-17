@@ -31,8 +31,8 @@ public sealed class DamagedThroatSystem : EntitySystem
         if (args.IsWhisper)
             return;
 
-        // Don't damage if using excluded language (e.g., sign language)
-        if (args.Language != null && component.ExcludedLanguages.Contains(args.Language.ID))
+        // Don't damage if using excluded languages (languages that don't require verbal speech)
+        if (args.Language.SpeechOverride.RequireSpeech == false)
             return;
 
         // Don't damage if on cooldown

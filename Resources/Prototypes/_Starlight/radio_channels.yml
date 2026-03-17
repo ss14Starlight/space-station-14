@@ -50,7 +50,7 @@
 - type: radioChannel
   id: Aspace
   name: chat-radio-aspace
-  keycode: 'a'
+  keycode: 'k'
   frequency: 9999
   color: "#ab489f"
 

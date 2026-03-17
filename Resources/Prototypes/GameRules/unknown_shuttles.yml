@@ -103,7 +103,7 @@
     weight: 5 # lower because weird freelance roles
     maxOccurrences: 2
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/syndie_evacpod.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/syndie_evacpod.yml # Starlight
 
 - type: entity
   id: UnknownShuttleNTQuark

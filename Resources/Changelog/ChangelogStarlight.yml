@@ -34431,5 +34431,241 @@ Entries:
   id: 372401
   time: '2026-03-14T03:29:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3724
+- author: CawsForConcern
+  changes:
+  - message: (CBURN) Moved many items out of the wall lockers on the CBURN shuttle.
+      This makes it much easier to spot beakers & plasma in Chemistry and biomass
+      in the Clone Bay when playing an CBURN ghost roles.
+    type: Tweak
+  id: 372601
+  time: '2026-03-14T14:34:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3726
+- author: CawsForConcern
+  changes:
+  - message: The Syndicate 'Evac Pod' (used for Syndicate Visitors/Refugees) now has
+      braking thrusters.
+    type: Tweak
+  id: 372701
+  time: '2026-03-14T14:38:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3727
+- author: Tytos
+  changes:
+  - message: Added new station, Serpentcrest, along with its evac and cargo shuttle
+    type: Add
+  id: 365501
+  time: '2026-03-14T15:04:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3655
+- author: R3v3l4t1on, ItsAbby
+  changes:
+  - message: NTNC toolbelt, officer/ensign jumpsuit/jumpskirt/hat, glasses, hud, headset,
+      pauldrons.
+    type: Add
+  - message: Changed sprites for the existing NTNC hardsuit, hardsuit helmet, webbing,
+      outer vest, fatigues.
+    type: Tweak
+  - message: (hopefully) replaced all instances of 'ntnc naval officer' with 'NanoTrasen
+      Navy Marine' per Abby's request.
+    type: Tweak
+  - message: Fixed some random NTNC stuff having command contra tags and not CC contra
+      tags.
+    type: Fix
+  id: 371401
+  time: '2026-03-14T16:18:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3714
+- author: CawsForConcern
+  changes:
+  - message: (Oasis) Added a 3rd Chemist job slot.
+    type: Add
+  id: 372901
+  time: '2026-03-14T17:18:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3729
+- author: neomoth
+  changes:
+  - message: Removed "the" from the hat that kills you when you take it off.
+    type: Tweak
+  - message: The hat that kills you when you take it off now drops from your body
+      when you die.
+    type: Tweak
+  - message: The hat that kills you when you take it off can no longer damage people
+      who are already dead.
+    type: Tweak
+  - message: Made so putting on and taking off the hat that kills you when you take
+      it off repeatedly no longer stacks the damage.
+    type: Fix
+  id: 372501
+  time: '2026-03-14T17:23:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3725
+- author: redmushie
+  changes:
+  - message: Added 'Custom' split option to item stacks.
+    type: Add
+  - message: Added several large default split options for use with larger stacks.
+    type: Add
+  - message: Split options can be pressed multiple times without closing the menu.
+    type: Tweak
+  id: 373101
+  time: '2026-03-14T19:17:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3731
+- author: deltaVelocity
+  changes:
+  - message: Adds the Svalinn Laser Pistol to the maints locker loot pool, at a rate
+      comparable to makeshift weapons.
+    type: Add
+  id: 373201
+  time: '2026-03-14T19:21:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3732
+- author: mikeysaurus
+  changes:
+  - message: Tweaked CC Outpost G24 to have CC's stamp boxes readily available.
+    type: Tweak
+  - message: Tweaked CC Outpost SC17's disposals, made stamp boxes readily available,
+      and updated fax naming.
+    type: Tweak
+  id: 373601
+  time: '2026-03-15T05:42:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3736
+- author: R3v3l4t1on
+  changes:
+  - message: The NTNC fatigues and belt will now actually work and have sprites and
+      shit. Oops.
+    type: Fix
+  id: 373501
+  time: '2026-03-15T07:56:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3735
+- author: Tytos
+  changes:
+  - message: Added salv ticket vendor to serpentcrest.
+    type: Add
+  id: 373701
+  time: '2026-03-15T15:44:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3737
+- author: redmushie
+  changes:
+  - message: Ghost theme no longer reverts to white when you use certain actions.
+    type: Fix
+  id: 374101
+  time: '2026-03-15T15:49:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3741
+- author: R3v3l4t1on
+  changes:
+  - message: Custom sprite for lizzards for the Navy hardsuit.
+    type: Add
+  - message: Resomi's no longer have their body and skull squished trying to fit into
+      Navy armor.
+    type: Fix
+  id: 373901
+  time: '2026-03-15T15:54:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3739
+- author: CrazyPhantom
+  changes:
+  - message: Salvage will no longer accidentally FTL to the Nukie Outpost, Central
+      Command or The Brighteyes dark map after an expedition.
+    type: Fix
+  id: 374001
+  time: '2026-03-15T15:58:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3740
+- author: CrazyPhantom, AftrLite, TGRCDev, Toby, beckthompson, Darkmajia, ruddygreat,
+    widgetbeck, KipDotNet, formlessnameless, TheElement, Hivehum, Nahu Pyrope, Octofoss,
+    correspond, JoulesBerg, sowelipililimute, deltanedas, ferynn, Currot, Terkala,
+    neadsy and more!
+  changes:
+  - message: Cultists. Of the Cosmic Kind.
+    type: Add
+  id: 372201
+  time: '2026-03-15T16:51:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3722
+- author: walksanator
+  changes:
+  - message: Ghost (including admin ghost) can now see cosmic cult monument
+    type: Tweak
+  - message: Cosmic cult ghost now have universal language
+    type: Fix
+  - message: Cosmic cult Chantry no longer gives you a weird name when you are inside
+      it.
+    type: Fix
+  id: 374501
+  time: '2026-03-15T20:21:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3745
+- author: Shades
+  changes:
+  - message: Fix where Night Shift Event toggle EVERY LIGHTS instead of only station.
+    type: Fix
+  id: 374301
+  time: '2026-03-15T20:25:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3743
+- author: walksanatora
+  changes:
+  - message: Fixed Chantry wisp and Collusus now have language properly
+    type: Fix
+  id: 374601
+  time: '2026-03-15T21:23:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3746
+- author: mikeysaurus
+  changes:
+  - message: Centcomm has fixed their source of death rattle implants for their CentDrobes
+      to a CentComm approved variant instead of suspicious Syndicate ones.
+    type: Fix
+  - message: Adds Bluespace Implanters to the CentDrobe.
+    type: Add
+  id: 374401
+  time: '2026-03-16T11:11:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3744
+- author: R3v3l4t1on
+  changes:
+  - message: Fixed the fatigues for REAL this time.
+    type: Fix
+  id: 375101
+  time: '2026-03-16T14:47:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3751
+- author: CringeCursed
+  changes:
+  - message: Fixed problem when TTS plays on radio when you shouldn't understand the
+      language being spoken.
+    type: Fix
+  id: 375201
+  time: '2026-03-16T15:22:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3752
+- author: redmushie
+  changes:
+  - message: Various miscellaneous roles now track playtime correctly.
+    type: Fix
+  - message: Bright-eye playtime is now tracked.
+    type: Fix
+  id: 374201
+  time: '2026-03-16T16:04:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3742
+- author: redmushie
+  changes:
+  - message: The Playtime Stats window now shows all your tracked playtime, including
+      antagonists and tracked ghost roles.
+    type: Add
+  id: 375001
+  time: '2026-03-16T16:06:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3750
+- author: CrazyPhantom
+  changes:
+  - message: Cosmic Cult objects now have the magical Contraband level.
+    type: Add
+  - message: Entropic Armor's light now works.
+    type: Fix
+  - message: Cosmic Creatures now have the correct blood type.
+    type: Fix
+  id: 375901
+  time: '2026-03-17T06:37:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3759
+- author: BigfootBravo
+  changes:
+  - message: Chittin language no longer triggers damaged throat.
+    type: Fix
+  id: 375801
+  time: '2026-03-17T07:03:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3758
+- author: CrazyPhantom
+  changes:
+  - message: Revenants are no longer invisible to everything.
+    type: Fix
+  id: 375501
+  time: '2026-03-17T13:44:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3755
 Order: -1
 

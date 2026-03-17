@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "closed",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 1,
+            "delays": [[1.0]]
+        },
+        {
+            "name": "closing",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 1,
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]]
+        },
+        {
+            "name": "open",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 1,
+            "delays": [[1.0]]
+        },
+        {
+            "name": "opening",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 1,
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]]
+        }
+    ]
+}

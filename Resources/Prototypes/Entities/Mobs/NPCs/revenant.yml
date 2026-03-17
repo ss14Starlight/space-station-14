@@ -71,7 +71,7 @@
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
   - type: Visibility
-    layer: 32 # Starlight - nullspace vis layer
+    layer: 16384 # Starlight - nullspace vis layer (1 << 14)
   - type: ActionGrant
     actions:
     - ActionRevenantShop
