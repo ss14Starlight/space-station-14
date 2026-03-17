@@ -108,7 +108,7 @@ public sealed class AdminNotesEui : BaseEui
                     if (request.Network)
                     {
                         if (_actors.TryGetServerGrain(out var serverGrain))
-                            await serverGrain.RemoveNote(NotedPlayer, request.Id, null);
+                            await serverGrain.RemoveNote(NotedPlayer, request.Id, request.Project);
                         break;
                     }
 

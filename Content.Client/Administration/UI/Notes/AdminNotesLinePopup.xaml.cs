@@ -12,7 +12,7 @@ namespace Content.Client.Administration.UI.Notes;
 public sealed partial class AdminNotesLinePopup : Popup
 {
     public event Action<int, NoteType>? OnEditPressed;
-    public event Action<int, NoteType>? OnDeletePressed;
+    public event Action<int, NoteType, string?>? OnDeletePressed; // ID, Type, Project
 
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
@@ -23,6 +23,7 @@ public sealed partial class AdminNotesLinePopup : Popup
 
         NoteId = note.Id;
         NoteType = note.NoteType;
+        NoteProject = note.ProjectName;
         DeleteButton.Visible = showDelete;
         EditButton.Visible = showEdit;
 
@@ -55,6 +56,7 @@ public sealed partial class AdminNotesLinePopup : Popup
 
     public int NoteId { get; }
     public NoteType NoteType { get; }
+    public string? NoteProject { get; }
     private TimeSpan? DeleteResetOn { get; set; }
 
     private void EditPressed(ButtonEventArgs args)
@@ -74,7 +76,7 @@ public sealed partial class AdminNotesLinePopup : Popup
         }
 
         ResetDeleteButton();
-        OnDeletePressed?.Invoke(NoteId, NoteType);
+        OnDeletePressed?.Invoke(NoteId, NoteType, NoteProject);
         Close();
     }
 

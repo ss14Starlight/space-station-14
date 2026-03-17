@@ -20,7 +20,7 @@ public sealed partial class AdminNotesControl : Control
 
     public event Action<int, NoteType, string, NoteSeverity?, bool, DateTime?>? NoteChanged;
     public event Action<NoteType, string, NoteSeverity?, bool, DateTime?>? NewNoteEntered;
-    public event Action<int, NoteType>? NoteDeleted;
+    public event Action<int, NoteType, string?>? NoteDeleted; // ID, Type, Project
 
     private AdminNotesLinePopup? _popup;
     private readonly SpriteSystem _sprites;
@@ -86,7 +86,7 @@ public sealed partial class AdminNotesControl : Control
             noteEdit.OpenCentered();
         };
 
-        _popup.OnDeletePressed += (noteId, noteType) => NoteDeleted?.Invoke(noteId, noteType);
+        _popup.OnDeletePressed += (noteId, noteType, project) => NoteDeleted?.Invoke(noteId, noteType, project);
         _popup.OnPopupHide += OnPopupHide;
 
         var box = UIBox2.FromDimensions(UserInterfaceManager.MousePositionScaled.Position, Vector2.One);

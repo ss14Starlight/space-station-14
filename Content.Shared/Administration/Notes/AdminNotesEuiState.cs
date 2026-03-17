@@ -51,15 +51,17 @@ public static class AdminNoteEuiMsg
     [Serializable, NetSerializable]
     public sealed class DeleteNoteRequest : EuiMessageBase
     {
-        public DeleteNoteRequest(int id, NoteType type, bool network)
+        public DeleteNoteRequest(int id, NoteType type, string? project, bool network)
         {
             Id = id;
             Type = type;
             Network = network;
+            Project = project;
         }
 
         public int Id { get; set; }
         public NoteType Type { get; set; }
+        public string? Project { get; set; }
         public bool Network { get; set; }
     }
 
