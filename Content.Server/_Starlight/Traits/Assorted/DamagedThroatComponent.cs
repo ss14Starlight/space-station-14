@@ -20,15 +20,6 @@ public sealed partial class DamagedThroatComponent : Component
     public ProtoId<DamageTypePrototype> DamageType = "Blunt";
 
     /// <summary>
-    ///     Languages that should not trigger damage (e.g., sign language).
-    /// </summary>
-    [DataField]
-    public List<ProtoId<LanguagePrototype>> ExcludedLanguages = new()
-    {
-        "Sign"
-    };
-
-    /// <summary>
     ///     The base damage to apply when speaking normally (starts at this value).
     /// </summary>
     [DataField]

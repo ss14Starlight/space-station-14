@@ -309,6 +309,7 @@ public sealed class AirAlarmSystem : EntitySystem
     private void OnUpdateAutoMode(EntityUid uid, AirAlarmComponent component, AirAlarmUpdateAutoModeMessage args)
     {
         component.AutoMode = args.Enabled;
+        Dirty(uid, component); // Starlight
 
         _adminLogger.Add(LogType.AtmosDeviceSetting, LogImpact.Medium, $"{ToPrettyString(args.Actor)} changed {ToPrettyString(uid)} auto mode to {args.Enabled}");
         UpdateUI(uid, component);
@@ -437,6 +438,7 @@ public sealed class AirAlarmSystem : EntitySystem
 
             // send high to new state's port, along with updating the cached state
             component.State = args.AlarmType;
+            Dirty(uid, component); // Starlight
             _deviceLink.SendSignal(uid, GetPort(component), true, source);
         }
 
@@ -478,6 +480,7 @@ public sealed class AirAlarmSystem : EntitySystem
 
 
         controller.CurrentMode = mode;
+        Dirty(uid, controller); // Starlight
 
         // setting it to UI only means we don't have
         // to deal with the issue of not-single-owner

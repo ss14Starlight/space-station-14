@@ -1,7 +1,7 @@
 ## Cosmic Cult Entropy Mote
 
 - type: entity
-  parent: [ MaterialBase ]
+  parent: [ MaterialBase, BaseCosmicCultItem ] # Starlight Edit: Contraband
   id: MaterialCosmicCultEntropy
   name: mote of entropy
   description: A solidified mote of entropic essence. Feels numbing to the touch.

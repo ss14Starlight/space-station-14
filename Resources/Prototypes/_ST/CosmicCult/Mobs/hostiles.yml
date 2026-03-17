@@ -52,7 +52,7 @@
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
-      - ReagentId: Blood
+      - ReagentId: Entropy
         Quantity: 100
     maxBleedAmount: 10.75
     bleedReductionAmount: 0.1

@@ -39,6 +39,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             SubscribeLocalEvent<GasFilterComponent, AtmosDeviceDisabledEvent>(OnFilterLeaveAtmosphere);
             SubscribeLocalEvent<GasFilterComponent, ActivateInWorldEvent>(OnFilterActivate);
             SubscribeLocalEvent<GasFilterComponent, GasAnalyzerScanEvent>(OnFilterAnalyzed);
+            SubscribeLocalEvent<GasFilterComponent, AnchorStateChangedEvent>(OnAnchorChanged); // Starlight
             // Bound UI subscriptions
             SubscribeLocalEvent<GasFilterComponent, GasFilterChangeRateMessage>(OnTransferRateChangeMessage);
             SubscribeLocalEvent<GasFilterComponent, GasFilterSelectGasMessage>(OnSelectGasMessage);
@@ -139,11 +140,22 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             return actualTransferVolume;
         }
-        //starlight end
+
+        private void OnAnchorChanged(EntityUid uid, GasFilterComponent filter, ref AnchorStateChangedEvent args)
+        {
+            if (!args.Anchored)
+            {
+                filter.Enabled = false;
+                UpdateAppearance(uid, filter);
+                _ambientSoundSystem.SetAmbience(uid, false);
+                DirtyUI(uid, filter);
+            }
+        }
+        // Starlight End
 
         private void OnFilterLeaveAtmosphere(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceDisabledEvent args)
         {
-            filter.Enabled = false;
+            // filter.Enabled = false; // Starlight Edit: Moved to OnAnchorChanged
 
             UpdateAppearance(uid, filter);
             _ambientSoundSystem.SetAmbience(uid, false);

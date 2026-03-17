@@ -34642,5 +34642,46 @@ Entries:
   id: 375001
   time: '2026-03-16T16:06:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3750
+- author: CrazyPhantom
+  changes:
+  - message: Cosmic Cult objects now have the magical Contraband level.
+    type: Add
+  - message: Entropic Armor's light now works.
+    type: Fix
+  - message: Cosmic Creatures now have the correct blood type.
+    type: Fix
+  id: 375901
+  time: '2026-03-17T06:37:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3759
+- author: BigfootBravo
+  changes:
+  - message: Chittin language no longer triggers damaged throat.
+    type: Fix
+  id: 375801
+  time: '2026-03-17T07:03:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3758
+- author: CrazyPhantom
+  changes:
+  - message: Revenants are no longer invisible to everything.
+    type: Fix
+  id: 375501
+  time: '2026-03-17T13:44:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3755
+- author: CawsForConcern
+  changes:
+  - message: (Serpentcrest) BSO Hardsuit Locker to BSO's Room.
+    type: Add
+  - message: (Serpentcrest) Centcomm items from NTR's Room.
+    type: Remove
+  id: 376701
+  time: '2026-03-17T18:43:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3767
+- author: CrazyPhantom
+  changes:
+  - message: Mappers can now save the state of pumps, air alarms, mixers, ect.
+    type: Add
+  id: 375401
+  time: '2026-03-17T19:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3754
 Order: -1
 
