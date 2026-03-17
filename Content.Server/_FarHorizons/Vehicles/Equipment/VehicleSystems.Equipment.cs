@@ -137,25 +137,27 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
     #region Install Section
     private void OnInstallAttempt(Entity<VehicleModsComponent> ent, ref InteractUsingEvent args)
     {
-        if(!args.Handled 
-            && TryComp<VehicleEquipmentComponent>(args.Used, out var veComp) 
-            && TryComp<VehicleComponent>(ent.Owner, out var vehicle))
+        if(!args.Handled)
         {
-            if(vehicle.Started)
+            if(TryComp<VehicleEquipmentComponent>(args.Used, out var veComp) 
+                && TryComp<VehicleComponent>(ent.Owner, out var vehicle))
             {
-                _popupSystem.PopupCursor("Turn off vehicle before performing any maintenance.", args.User, PopupType.SmallCaution);
-                return;
-            }
-            _audio.PlayPredicted(new SoundPathSpecifier("/Audio/Items/drill_use.ogg"), ent.Owner, null);
-            var installEV = new InstallDoAfter(GetNetEntity(args.Used));
-            var installDoAfter = new DoAfterArgs(EntityManager, args.User, veComp.InstallandRemoveTime, installEV, ent.Owner)
-            {
-                BreakOnDamage = true,
-                BreakOnMove = true,
-                BreakOnWeightlessMove = true
-            };
-            _doAfter.TryStartDoAfter(installDoAfter);
-            args.Handled = true;   
+                if(vehicle.Started)
+                {
+                    _popupSystem.PopupCursor("Turn off vehicle before performing any maintenance.", args.User, PopupType.SmallCaution);
+                    return;
+                }
+                _audio.PlayPredicted(new SoundPathSpecifier("/Audio/Items/drill_use.ogg"), ent.Owner, null);
+                var installEV = new InstallDoAfter(GetNetEntity(args.Used));
+                var installDoAfter = new DoAfterArgs(EntityManager, args.User, veComp.InstallandRemoveTime, installEV, ent.Owner)
+                {
+                    BreakOnDamage = true,
+                    BreakOnMove = true,
+                    BreakOnWeightlessMove = true
+                };
+                _doAfter.TryStartDoAfter(installDoAfter);
+                args.Handled = true;   
+                }
         }
     }
 

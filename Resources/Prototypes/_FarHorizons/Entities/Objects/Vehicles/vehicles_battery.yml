@@ -80,7 +80,7 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         disableEject: true
-        swap: false
+        swap: true
   - type: Sprite
     drawdepth: OverMobs
     sprite: _FarHorizons/Objects/Vehicles/secway.rsi
@@ -170,7 +170,7 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           disableEject: true
-          swap: false
+          swap: true
 
 - type: entity
   id: VehicleSecwayTurboFilled
@@ -320,7 +320,7 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           disableEject: true
-          swap: false
+          swap: true
     - type: VehicleBuckle
       armorAffectsVehicle: true
     - type: VehicleMods
