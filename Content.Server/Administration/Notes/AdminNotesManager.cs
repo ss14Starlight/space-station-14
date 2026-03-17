@@ -147,6 +147,7 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
             (NetUserId) player,
             roundId,
             serverName,
+            "",
             playtime,
             type,
             message,
@@ -160,7 +161,8 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
             null,
             null,
             null,
-            seen
+            seen,
+            false
         );
         NoteAdded?.Invoke(note);
     }

@@ -13,10 +13,30 @@ public sealed class AdminNotesEui : BaseEui
     {
         NoteWindow = new AdminNotesWindow();
         NoteControl = NoteWindow.Notes;
+        NetworkNotesControl = NoteWindow.NetworkNotes;
 
-        NoteControl.NoteChanged += (id, type, text, severity, secret, expiryTime) => SendMessage(new EditNoteRequest(id, type, text, severity, secret, expiryTime));
-        NoteControl.NewNoteEntered += (type, text, severity, secret, expiryTime) => SendMessage(new CreateNoteRequest(type, text, severity, secret, expiryTime));
-        NoteControl.NoteDeleted += (id, type) => SendMessage(new DeleteNoteRequest(id, type));
+        NoteWindow.NotesTabButton.OnPressed += _ => {
+            NoteWindow.NotesTabButton.Disabled = true;
+            NoteWindow.NetworkNotesTabButton.Disabled = false;
+            NoteWindow.Notes.Visible = true;
+            NoteWindow.NetworkNotes.Visible = false;
+        };
+
+        NoteWindow.NetworkNotesTabButton.OnPressed += _ => {
+            NoteWindow.NotesTabButton.Disabled = false;
+            NoteWindow.NetworkNotesTabButton.Disabled = true;
+            NoteWindow.Notes.Visible = false;
+            NoteWindow.NetworkNotes.Visible = true;
+        };
+
+        NoteControl.NoteChanged += (id, type, text, severity, secret, expiryTime) => SendMessage(new EditNoteRequest(id, type, text, severity, secret, expiryTime, false));
+        NoteControl.NewNoteEntered += (type, text, severity, secret, expiryTime) => SendMessage(new CreateNoteRequest(type, text, severity, secret, expiryTime, false));
+        NoteControl.NoteDeleted += (id, type) => SendMessage(new DeleteNoteRequest(id, type, false));
+
+        NetworkNotesControl.NoteChanged += (id, type, text, severity, secret, expiryTime) => SendMessage(new EditNoteRequest(id, type, text, severity, secret, expiryTime, true));
+        NetworkNotesControl.NewNoteEntered += (type, text, severity, secret, expiryTime) => SendMessage(new CreateNoteRequest(type, text, severity, secret, expiryTime, true));
+        NetworkNotesControl.NoteDeleted += (id, type) => SendMessage(new DeleteNoteRequest(id, type, true));
+
         NoteWindow.OnClose += () => SendMessage(new CloseEuiMessage());
     }
 
@@ -30,6 +50,8 @@ public sealed class AdminNotesEui : BaseEui
 
     private AdminNotesControl NoteControl { get; }
 
+    private AdminNotesControl NetworkNotesControl { get; }
+
     public override void HandleState(EuiStateBase state)
     {
         if (state is not AdminNotesEuiState s)
@@ -41,6 +63,10 @@ public sealed class AdminNotesEui : BaseEui
         NoteControl.SetPlayerName(s.NotedPlayerName);
         NoteControl.SetNotes(s.Notes);
         NoteControl.SetPermissions(s.CanCreate, s.CanDelete, s.CanEdit);
+
+        NetworkNotesControl.SetPlayerName(s.NotedPlayerName)
+        NetworkNotesControl.SetNotes(s.NetworkNotes);
+        NetworkNotesControl.SetPermissions(s.CanCreate, s.CanDelete, s.CanEdit);
     }
 
     public override void Opened()
