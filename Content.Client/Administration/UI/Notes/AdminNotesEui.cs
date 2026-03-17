@@ -29,11 +29,11 @@ public sealed class AdminNotesEui : BaseEui
             NoteWindow.NetworkNotes.Visible = true;
         };
 
-        NoteControl.NoteChanged += (id, type, text, severity, secret, expiryTime) => SendMessage(new EditNoteRequest(id, type, text, severity, secret, expiryTime, false));
+        NoteControl.NoteChanged += (id, type, text, severity, secret, expiryTime, project) => SendMessage(new EditNoteRequest(id, type, text, severity, secret, expiryTime, false, project));
         NoteControl.NewNoteEntered += (type, text, severity, secret, expiryTime) => SendMessage(new CreateNoteRequest(type, text, severity, secret, expiryTime, false));
         NoteControl.NoteDeleted += (id, type, project) => SendMessage(new DeleteNoteRequest(id, type, project, false));
 
-        NetworkNotesControl.NoteChanged += (id, type, text, severity, secret, expiryTime) => SendMessage(new EditNoteRequest(id, type, text, severity, secret, expiryTime, true));
+        NetworkNotesControl.NoteChanged += (id, type, text, severity, secret, expiryTime, project) => SendMessage(new EditNoteRequest(id, type, text, severity, secret, expiryTime, true, project));
         NetworkNotesControl.NewNoteEntered += (type, text, severity, secret, expiryTime) => SendMessage(new CreateNoteRequest(type, text, severity, secret, expiryTime, true));
         NetworkNotesControl.NoteDeleted += (id, type, project) => SendMessage(new DeleteNoteRequest(id, type, project, true));
 

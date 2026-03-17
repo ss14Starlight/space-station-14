@@ -127,6 +127,13 @@ public sealed class AdminNotesEui : BaseEui
                         break;
                     }
 
+                    if (request.Network)
+                    {
+                        if (_actors.TryGetServerGrain(out var serverGrain))
+                            await serverGrain.AddOrUpdateNote(NotedPlayer, await GenerateNote(Player, NotedPlayer, request.Type, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime), request.Project);
+                        break;
+                    }
+
                     await _notesMan.ModifyAdminRemark(request.Id, request.Type, Player, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime);
                     break;
                 }
@@ -213,9 +220,8 @@ public sealed class AdminNotesEui : BaseEui
         return true;
     }
 
-    private async Task<SharedAdminNote?> GenerateNote(ICommonSession createdBy, Guid player, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime)
+    private async Task<SharedAdminNote> GenerateNote(ICommonSession createdBy, Guid player, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime)
     {
-        SharedAdminNote? note = null;
         message = message.Trim();
 
         var sb = new StringBuilder($"{createdBy.Name} added a");
@@ -277,7 +283,7 @@ public sealed class AdminNotesEui : BaseEui
                 throw new ArgumentOutOfRangeException(nameof(type), type, "Unknown note type");
         }
 
-        note = new SharedAdminNote(
+        var note = new SharedAdminNote(
             noteId,
             (NetUserId)player,
             roundId,

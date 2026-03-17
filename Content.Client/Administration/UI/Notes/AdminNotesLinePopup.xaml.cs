@@ -11,7 +11,7 @@ namespace Content.Client.Administration.UI.Notes;
 [GenerateTypedNameReferences]
 public sealed partial class AdminNotesLinePopup : Popup
 {
-    public event Action<int, NoteType>? OnEditPressed;
+    public event Action<int, NoteType, string?>? OnEditPressed; // ID, Type, Project
     public event Action<int, NoteType, string?>? OnDeletePressed; // ID, Type, Project
 
     [Dependency] private readonly IGameTiming _gameTiming = default!;
@@ -23,7 +23,7 @@ public sealed partial class AdminNotesLinePopup : Popup
 
         NoteId = note.Id;
         NoteType = note.NoteType;
-        NoteProject = note.ProjectName;
+        NoteProject = string.IsNullOrEmpty(note.ProjectName) ? null : note.ProjectName;
         DeleteButton.Visible = showDelete;
         EditButton.Visible = showEdit;
 
@@ -61,7 +61,7 @@ public sealed partial class AdminNotesLinePopup : Popup
 
     private void EditPressed(ButtonEventArgs args)
     {
-        OnEditPressed?.Invoke(NoteId, NoteType);
+        OnEditPressed?.Invoke(NoteId, NoteType, NoteProject);
         Close();
     }
 

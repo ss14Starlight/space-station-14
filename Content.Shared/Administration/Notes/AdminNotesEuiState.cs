@@ -68,7 +68,7 @@ public static class AdminNoteEuiMsg
     [Serializable, NetSerializable]
     public sealed class EditNoteRequest : EuiMessageBase
     {
-        public EditNoteRequest(int id, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime, bool network)
+        public EditNoteRequest(int id, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime, bool network, string? project)
         {
             Id = id;
             Type = type;
@@ -77,6 +77,7 @@ public static class AdminNoteEuiMsg
             Secret = secret;
             ExpiryTime = expiryTime;
             Network = network;
+            Project = project;
         }
 
         public int Id { get; set; }
@@ -85,6 +86,7 @@ public static class AdminNoteEuiMsg
         public NoteSeverity? NoteSeverity { get; set; }
         public bool Secret { get; set; }
         public DateTime? ExpiryTime { get; set; }
+        public string? Project { get; set; }
         public bool Network { get; set; }
     }
 }

@@ -18,7 +18,7 @@ public sealed partial class AdminNotesControl : Control
     [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
-    public event Action<int, NoteType, string, NoteSeverity?, bool, DateTime?>? NoteChanged;
+    public event Action<int, NoteType, string, NoteSeverity?, bool, DateTime?, string?>? NoteChanged;
     public event Action<NoteType, string, NoteSeverity?, bool, DateTime?>? NewNoteEntered;
     public event Action<int, NoteType, string?>? NoteDeleted; // ID, Type, Project
 
@@ -55,12 +55,12 @@ public sealed partial class AdminNotesControl : Control
 
     private void OnNewNoteButtonPressed(BaseButton.ButtonEventArgs obj)
     {
-        var noteEdit = new NoteEdit(null, PlayerName, CanCreate, CanEdit);
+        var noteEdit = new NoteEdit(null, PlayerName, CanCreate, CanEdit, null);
         noteEdit.SubmitPressed += OnNoteSubmitted;
         noteEdit.OpenCentered();
     }
 
-    private void OnNoteSubmitted(int id, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime)
+    private void OnNoteSubmitted(int id, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime, string? project)
     {
         if (id == 0)
         {
@@ -68,20 +68,20 @@ public sealed partial class AdminNotesControl : Control
             return;
         }
 
-        NoteChanged?.Invoke(id, type, message, severity, secret, expiryTime);
+        NoteChanged?.Invoke(id, type, message, severity, secret, expiryTime, project);
     }
 
     private bool NoteClicked(AdminNotesLine line)
     {
         _popup = new AdminNotesLinePopup(line.Note, PlayerName, CanDelete, CanEdit);
-        _popup.OnEditPressed += (noteId, noteType) =>
+        _popup.OnEditPressed += (noteId, noteType, project) =>
         {
             if (!Inputs.TryGetValue((noteId, noteType), out var input))
             {
                 return;
             }
 
-            var noteEdit = new NoteEdit(input.Note, PlayerName, CanCreate, CanEdit);
+            var noteEdit = new NoteEdit(input.Note, PlayerName, CanCreate, CanEdit, project);
             noteEdit.SubmitPressed += OnNoteSubmitted;
             noteEdit.OpenCentered();
         };
