@@ -220,7 +220,7 @@ public sealed class AdminNotesEui : BaseEui
         return true;
     }
 
-    private async Task<SharedAdminNote> GenerateNote(ICommonSession createdBy, Guid player, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime)
+    private async Task<AdminNote> GenerateNote(ICommonSession createdBy, Guid player, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime)
     {
         message = message.Trim();
 
@@ -283,28 +283,26 @@ public sealed class AdminNotesEui : BaseEui
                 throw new ArgumentOutOfRangeException(nameof(type), type, "Unknown note type");
         }
 
-        var note = new SharedAdminNote(
-            noteId,
-            (NetUserId)player,
-            roundId,
-            serverName,
-            "",
-            playtime,
-            type,
-            message,
-            severity,
-            secret,
-            createdBy.Name,
-            createdBy.Name,
-            createdAt,
-            createdAt,
-            expiryTime,
-            null,
-            null,
-            null,
-            seen,
-            true
-        );
+        var note = new AdminNote() {
+            Id =  noteId,
+            Player = player,
+            Round = roundId,
+            ServerName = serverName,
+            ProjectName = null,
+            PlaytimeAtNote = playtime,
+            NoteType = type.ToString(),
+            Message = message,
+            NoteSeverity = severity.ToString(),
+            Secret = secret,
+            CreatedByName = createdBy.Name,
+            CreatedAt = createdAt,
+            ExpiryTime = expiryTime,
+            BannedRoles = null,
+            UnbannedTime = null,
+            UnbannedByName = null,
+            LastEditedAt = null,
+            Seen = seen,
+        };
 
         return note;
     }
