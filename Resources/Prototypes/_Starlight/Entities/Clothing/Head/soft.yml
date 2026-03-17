@@ -24,3 +24,30 @@
     - ClothMade
     - Recyclable
     - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadHeadHatBaseFlippable
+  id: ClothingHeadHatMailsoftVisor
+  name: mail visor
+  description: A baseball cap colored to match cargo's formal uniforms.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Soft/mailvisor.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Soft/mailvisor.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatMailsoftVisor]
+  id: ClothingHeadHatMailsoftVisorFlipped
+  name: mail visor
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable

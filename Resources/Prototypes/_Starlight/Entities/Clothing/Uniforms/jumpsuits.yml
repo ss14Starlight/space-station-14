@@ -148,16 +148,6 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/mining.rsi
 
-- type: entity
-  parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitSeniorMail
-  name: senior mail technician underclothes
-  description: Pristine underclothing for the most senior of mail techs. Styled after a legendary space courier.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_mail.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_mail.rsi
 
 - type: entity
   parent: [ClothingUniformBase, ClothingUniformFoldableBase]
@@ -374,6 +364,28 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/cargoformal.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/cargoformal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMail
+  name: mail technician jumpsuit
+  description: Pristine underclothing for the most senior of mail techs. Styled after a legendary space courier.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/mailtech.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/mailtech.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSeniorMail
+  name: senior mail technician jumpsuit
+  description: Pristine underclothing for the most senior of mail techs. Styled after a legendary space courier.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_mail.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_mail.rsi
 
 - type: entity
   parent: ClothingUniformBase

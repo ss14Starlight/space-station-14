@@ -514,18 +514,19 @@
   name: loadout-group-mail-technician-head
   minLimit: 0
   loadouts:
-  - CargoTechnicianHead
+  - MailTechnicianHeadVisor
   - CargoTechnicianBeret
   - CargoTechnicianHeadFormal
   - CargoTechnicianBeretFormal
-  - MailTechnicianGogglesSenior
 
 - type: loadoutGroup
   id: MailTechnicianJumpsuit
   name: loadout-group-mail-technician-jumpsuit
   loadouts:
-  - CargoTechnicianJumpsuit
-  - CargoTechnicianJumpskirt
+  - MailTechnicianJumpsuit
+  - MailTechnicianJumpskirt
+  - MailTechnicianJumpsuitSenior
+  - MailTechnicianJumpskirtSenior
   - CargoTechnicianJumpsuitAlt # afterlight start
   - CargoTechnicianJumpsuitFormal
   - CargoTechnicianJumpskirtFormal # afterlight end
@@ -553,7 +554,6 @@
   loadouts:
   - CargoTechnicianWintercoat
   - SeniorCourierWintercoat
-  - MailTechnicianCoatSenior
   - WindbreakerCargo
 
 - type: loadoutGroup

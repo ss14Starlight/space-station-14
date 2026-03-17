@@ -378,6 +378,28 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/cargoformal.rsi
 
 - type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtMail
+  name: mail technician jumpskirt
+  description: Pristine underclothing for the most senior of mail techs. Styled after a legendary space courier.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/mailtech.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/mailtech.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtSeniorMail
+  name: senior mail technician jumpskirt
+  description: Pristine underclothing for the most senior of mail techs. Styled after a legendary space courier.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_mail.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_mail.rsi
+
+- type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtScientistFormal
   name: formal scientist jumpskirt

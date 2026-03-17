@@ -9,7 +9,7 @@
     - type: Clothing
       sprite: _Starlight/Clothing/Shoes/Boots/salvage.rsi
 
-# Same as the coat, don't make these easier to get.
+# Don't make these easier to get.
 - type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesBootsSeniorMail

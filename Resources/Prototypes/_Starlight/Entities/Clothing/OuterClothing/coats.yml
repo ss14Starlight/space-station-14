@@ -45,31 +45,6 @@
   id: ClothingOuterCoatNtrepOpen
   name: nt representive jacket
 
-# Do not make a non-senior version of the mail coat, it should be earned. A green one can be bought at the Fashion vendor, but this outfit should otherwise be limited.
-- type: entity
-  parent: ClothingOuterStorageBase
-  id: ClothingOuterCoatSeniorMail
-  name: senior mail technician heavy coat
-  description: Pristine overclothing for the most senior of mail techs. Styled after a legendary space courier.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Coats/senior_mail_coat.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Coats/senior_mail_coat.rsi
-  - type: TemperatureProtection
-    heatingCoefficient: 1.15
-    coolingCoefficient: 0.05
-  - type: Pierceable
-    level: Metal
-  - type: Armor
-    modifiers:
-      coefficients:
-        Slash: 0.90
-        Heat: 0.85
-    priceMultiplier: 0
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.50
-
 - type: entity
   parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatLabSeniorChemist

@@ -11,6 +11,16 @@
 
 # Jumpsuits
 - type: loadout
+  id: MailTechnicianJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMail
+
+- type: loadout
+  id: MailTechnicianJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtMail
+
+- type: loadout
   id: MailTechnicianJumpsuitSenior
   effects:
   - !type:GroupLoadoutEffect
@@ -18,15 +28,19 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorMail
 
-# Head/Eyes (Works for both)
-# Same as the coat, don't make these easier to get.
 - type: loadout
-  id: MailTechnicianGogglesSenior
+  id: MailTechnicianJumpskirtSenior
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorMailTechnician
   equipment:
-    head: ClothingEyesSeniorMailGoggles
+    jumpsuit: ClothingUniformJumpskirtSeniorMail
+
+# Head/Eyes (Works for both)
+- type: loadout
+  id: MailTechnicianHeadVisor
+  equipment:
+    head: ClothingHeadHatMailsoftVisor
 
 # Trunks
 - type: loadout
@@ -42,18 +56,8 @@
   equipment:
     back: ClothingBackpackDuffelTrunkMailSenior
 
-# Outer clothes
-# Do not make a non-senior version of the mail coat, it should be earned. A green one can be bought at the Fashion vendor, but this outfit should otherwise be limited.
-- type: loadout
-  id: MailTechnicianCoatSenior
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorMailTechnician
-  equipment:
-    outerClothing: ClothingOuterCoatSeniorMail
-
 # Shoes
-# Same as the coat, don't make these easier to get.
+# Don't make these easier to get.
 - type: loadout
   id: MailTechnicianBootsSenior
   effects:
