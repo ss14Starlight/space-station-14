@@ -34683,5 +34683,13 @@ Entries:
   id: 375401
   time: '2026-03-17T19:01:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3754
+- author: redmushie
+  changes:
+  - message: High alert levels such as Delta(excluding Epsilon) now dim all lights
+      to 20% brightness instead of turning them off entirely.
+    type: Tweak
+  id: 376301
+  time: '2026-03-18T05:49:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3763
 Order: -1
 

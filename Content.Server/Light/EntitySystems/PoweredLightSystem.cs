@@ -1,6 +1,7 @@
 using Content.Server.Ghost;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
+using AlertLevelDimmedLightComponent = Content.Shared._Starlight.Light.AlertLevelDimmedLightComponent;
 
 #region Starlight
 using Content.Server.Administration.Logs;
@@ -25,6 +26,8 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
 {
     [Dependency] private readonly GameTicker _gameTicker = default!; // SL
     [Dependency] private readonly ChatSystem _chat = default!; // SL
+    [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // SL
+    
     public override void Initialize()
     {
         base.Initialize();
@@ -73,51 +76,28 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
     #region Starlight
     private void OnAlertLevelChanged(AlertLevelChangedEvent args)
     {
-        var nightshiftannonced = false;
+        if (!TryComp<AlertLevelComponent>(args.Station, out var alertLevelComp)) return;
+        if (alertLevelComp.AlertLevels == null) return;
+        if (!alertLevelComp.AlertLevels.Levels.TryGetValue(args.AlertLevel, out var levelAfter)) return;
+        
         var query = EntityQueryEnumerator<PoweredLightComponent>();
         while (query.MoveNext(out var uid, out var light))
         {
             if (!TryComp<StationMemberComponent>(Transform(uid).GridUid, out var stationMember)) continue;
             if (stationMember.Station != args.Station) continue;
 
-            var nightshiftquery = EntityQueryEnumerator<NightShiftRuleComponent, GameRuleComponent>();
-            while (nightshiftquery.MoveNext(out var shift, out var _, out var gameRule))
-                if (_gameTicker.IsGameRuleActive(shift, gameRule))
-                {
-                    var allPlayersOnStation = Filter.Empty().AddWhere(session =>
-                    {
-                        if (session.AttachedEntity is null) return false;
-                        if (!TryComp<StationMemberComponent>(Transform(session.AttachedEntity.Value).GridUid,
-                            out var stationGrid)) return false;
-                        return stationGrid.Station == args.Station;
-                    });
-
-                    if (light.NightModeEnabled && !(args.AlertLevel == "green" || args.AlertLevel == "blue"))
-                    {
-                        if (!nightshiftannonced)
-                        {
-                            nightshiftannonced = true;
-                            _chat.DispatchFilteredAnnouncement(allPlayersOnStation, Loc.GetString("station-event-nightshift-alert"));
-                        }
-
-                        SetNightMode(uid, false, light);
-                    }
-                    else if (!light.NightModeEnabled)
-                    {
-                        if (!nightshiftannonced)
-                        {
-                            nightshiftannonced = true;
-                            _chat.DispatchFilteredAnnouncement(allPlayersOnStation, Loc.GetString("station-event-nightshift-calm"));
-                        }
-
-                        SetNightMode(uid, true, light);
-                    }
-                }
-
-            if (args.AlertLevel == "delta" || args.AlertLevel == "epsilon" || args.AlertLevel == "omega" || args.AlertLevel == "theta")
-                SetState(uid, false, light);
-            else
-                SetState(uid, true, light);
+            // If the new alert level requires no dimming, remove our dimming component.
+            if (!levelAfter.DimmedLightMultiplier.HasValue)
+            {
+                RemComp<AlertLevelDimmedLightComponent>(uid);
+                UpdateLight(uid, light);
+                continue;
+            }
+            
+            // Otherwise, ensure the component exists and set its value.
+            var alertLevelDimming = EnsureComp<AlertLevelDimmedLightComponent>(uid);
+            alertLevelDimming.LightEnergyMultiplier = levelAfter.DimmedLightMultiplier.Value;
+            UpdateLight(uid, light);
         }
     }
     #endregion Starlight

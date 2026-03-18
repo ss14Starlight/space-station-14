@@ -66,6 +66,11 @@ public sealed partial class AlertLevelDetail
     /// Will this alert level force emergency lights on for the station that's active?
     /// </summary>
     [DataField("forceEnableEmergencyLights")] public bool ForceEnableEmergencyLights { get; private set; } = false;
+    
+    /// <summary>
+    /// Will this alert level dim regular lights, and with what multiplier?
+    /// </summary>
+    [DataField("dimmedLightMultiplier")] public float? DimmedLightMultiplier { get; private set; }
 
     /// <summary>
     /// How long it takes for the shuttle to arrive when called.

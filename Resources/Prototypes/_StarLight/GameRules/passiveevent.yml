@@ -169,3 +169,9 @@
     maxDuration: 1800
     maxOccurrences: 1
   - type: NightShiftRule
+    disableAnnouncement: station-event-nightshift-disable
+    enableAnnouncement: station-event-nightshift-enable
+    lightEnergyMultiplier: 0.5
+    permittedAlertLevels:
+      - green
+      - blue
