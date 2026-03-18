@@ -21,7 +21,11 @@ public abstract partial class SharedGeneticsSystem : EntitySystem
     /// <summary>
     /// Metadata about a component that participates in the genetics system.
     /// </summary>
-    protected sealed record GeneticComponentInfo(Type ComponentType, int Complexity, int Stability);
+    protected sealed record GeneticComponentInfo(
+        Type ComponentType,
+        int Complexity,
+        int Stability,
+        int VariableCodonCount);
 
     /// <summary>
     /// Maps a component type to its per-round DNA region and canonical sequence.
@@ -31,7 +35,11 @@ public abstract partial class SharedGeneticsSystem : EntitySystem
         string CanonicalSequence,
         int StartIndex)
     {
-        public int Length => Gene.Complexity + Gene.Stability;
+        /// <summary>Total codons for this gene: existence region + variable region.</summary>
+        public int Length => Gene.Complexity + Gene.Stability + Gene.VariableCodonCount;
+
+        /// <summary>Number of codons in the existence-check region only.</summary>
+        public int ExistenceLength => Gene.Complexity + Gene.Stability;
     }
 
     /// <summary>
@@ -51,6 +59,20 @@ public abstract partial class SharedGeneticsSystem : EntitySystem
     /// Used to determine which component is affected when a codon is mutated.
     /// </summary>
     protected readonly Dictionary<int, RoundGeneticRecord> CurrentRoundIndexToType = new();
+
+    /// <summary>
+    /// Per-component delegate that writes current field values into DNA variable codons.
+    /// Registered by generated code for components that have <c>[GeneticMultiValueVariable]</c> fields.
+    /// Signature: (EntityUid uid, char[] dnaChars, RoundGeneticRecord record).
+    /// </summary>
+    protected readonly Dictionary<Type, Action<EntityUid, char[], RoundGeneticRecord>> VariableSyncWriteDna = new();
+
+    /// <summary>
+    /// Per-component delegate that reads DNA variable codons and applies values to component fields.
+    /// Registered by generated code for components that have <c>[GeneticMultiValueVariable]</c> fields.
+    /// Signature: (EntityUid uid, string dna, RoundGeneticRecord record).
+    /// </summary>
+    protected readonly Dictionary<Type, Action<EntityUid, string, RoundGeneticRecord>> VariableSyncReadDna = new();
 
     // How much to inflate genomes with non-coding genes — makes everyone more
     // resistant to mutagens, but harder to isolate useful genes to flip.
@@ -121,7 +143,7 @@ public abstract partial class SharedGeneticsSystem : EntitySystem
         var codingLength = 0;
         foreach (var info in GeneticComponents.Values)
         {
-            codingLength += info.Complexity + info.Stability;
+            codingLength += info.Complexity + info.Stability + info.VariableCodonCount;
         }
 
         DnaLength = (int) MathF.Ceiling(codingLength * GeneticsStabilityFactor);
@@ -156,7 +178,7 @@ public abstract partial class SharedGeneticsSystem : EntitySystem
         for (var g = 0; g < components.Count; g++)
         {
             var info = components[g];
-            var geneLength = info.Complexity + info.Stability;
+            var geneLength = info.Complexity + info.Stability + info.VariableCodonCount;
 
             // Generate a random canonical sequence — the "most stable encoding"
             // of this gene for this round.
@@ -184,12 +206,12 @@ public abstract partial class SharedGeneticsSystem : EntitySystem
 
     /// <summary>
     /// Count the number of mismatched codons between the DNA at the gene's
-    /// region and the canonical sequence.
+    /// existence region and the canonical sequence.
     /// </summary>
     protected static int CountMismatches(ReadOnlySpan<char> dna, RoundGeneticRecord record)
     {
         var mismatches = 0;
-        for (var i = 0; i < record.Length; i++)
+        for (var i = 0; i < record.ExistenceLength; i++)
         {
             if (dna[record.StartIndex + i] != record.CanonicalSequence[i])
                 mismatches++;
@@ -198,12 +220,70 @@ public abstract partial class SharedGeneticsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Returns true if the gene region in the DNA matches the canonical
+    /// Returns true if the gene's existence region in the DNA matches the canonical
     /// sequence within the gene's Stability tolerance (Hamming distance).
     /// </summary>
     protected static bool CheckGeneMatch(ReadOnlySpan<char> dna, RoundGeneticRecord record)
     {
         return CountMismatches(dna, record) <= record.Gene.Stability;
+    }
+
+    /// <summary>
+    /// Count how many codons in a variable's sub-region match the canonical sequence.
+    /// </summary>
+    /// <param name="dna">The full DNA string.</param>
+    /// <param name="record">The gene record for the component.</param>
+    /// <param name="variableOffset">Offset of this variable within the gene block (after existence codons).</param>
+    /// <param name="variableCodonCount">Number of codons this variable uses.</param>
+    protected static int CountVariableMatches(
+        ReadOnlySpan<char> dna,
+        RoundGeneticRecord record,
+        int variableOffset,
+        int variableCodonCount)
+    {
+        var matches = 0;
+        var start = record.StartIndex + record.ExistenceLength + variableOffset;
+        var canonStart = record.ExistenceLength + variableOffset;
+        for (var i = 0; i < variableCodonCount; i++)
+        {
+            if (dna[start + i] == record.CanonicalSequence[canonStart + i])
+                matches++;
+        }
+        return matches;
+    }
+
+    /// <summary>
+    /// Write exactly <paramref name="targetMatches"/> canonical codons into a variable's
+    /// sub-region, scrambling the rest. Codons are matched from the start of the region.
+    /// </summary>
+    protected void WriteVariableMatches(
+        char[] chars,
+        RoundGeneticRecord record,
+        int variableOffset,
+        int variableCodonCount,
+        int targetMatches)
+    {
+        var start = record.StartIndex + record.ExistenceLength + variableOffset;
+        var canonStart = record.ExistenceLength + variableOffset;
+        targetMatches = Math.Clamp(targetMatches, 0, variableCodonCount);
+
+        for (var i = 0; i < variableCodonCount; i++)
+        {
+            if (i < targetMatches)
+            {
+                chars[start + i] = record.CanonicalSequence[canonStart + i];
+            }
+            else
+            {
+                var canonical = record.CanonicalSequence[canonStart + i];
+                char newChar;
+                do
+                {
+                    newChar = Nucleotides[_random.Next(Nucleotides.Length)];
+                } while (newChar == canonical);
+                chars[start + i] = newChar;
+            }
+        }
     }
 
     // ──────────────────────────────────────────────────────────────
@@ -231,6 +311,10 @@ public abstract partial class SharedGeneticsSystem : EntitySystem
             {
                 _reconcilingDna = false;
             }
+
+            // Apply variable values from DNA to the newly-added component
+            if (VariableSyncReadDna.TryGetValue(record.Gene.ComponentType, out var syncRead))
+                syncRead(uid, dna.ToString(), record);
         }
         else if (!matches && has)
         {
@@ -243,6 +327,12 @@ public abstract partial class SharedGeneticsSystem : EntitySystem
             {
                 _reconcilingDna = false;
             }
+        }
+        else if (matches && has)
+        {
+            // Component still present — but variable codons may have changed, so resync values
+            if (VariableSyncReadDna.TryGetValue(record.Gene.ComponentType, out var syncRead))
+                syncRead(uid, dna.ToString(), record);
         }
     }
 
@@ -300,9 +390,19 @@ public abstract partial class SharedGeneticsSystem : EntitySystem
 
         var chars = dna.ToCharArray();
 
-        // Write the canonical sequence at the gene's position
-        for (var i = 0; i < record.Length; i++)
+        // Write the canonical sequence for the existence region only
+        for (var i = 0; i < record.ExistenceLength; i++)
             chars[record.StartIndex + i] = record.CanonicalSequence[i];
+
+        // For variable codons, encode the component's current field values
+        if (VariableSyncWriteDna.TryGetValue(componentType, out var syncWrite))
+            syncWrite(uid, chars, record);
+        else
+        {
+            // No variable fields — write canonical for any variable codons too
+            for (var i = record.ExistenceLength; i < record.Length; i++)
+                chars[record.StartIndex + i] = record.CanonicalSequence[i];
+        }
 
         dnaComp.DNA = new string(chars);
         Dirty(uid, dnaComp);

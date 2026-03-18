@@ -67,11 +67,23 @@ public sealed partial class GeneticsSystem : SharedGeneticsSystem
         {
             if (EntityManager.HasComponent(subject.Owner, type))
             {
-                for (var i = 0; i < record.Length; i++)
+                // Write canonical for existence region
+                for (var i = 0; i < record.ExistenceLength; i++)
                     chars[record.StartIndex + i] = record.CanonicalSequence[i];
+
+                // For variable codons, encode the component's current field values
+                if (VariableSyncWriteDna.TryGetValue(type, out var syncWrite))
+                    syncWrite(subject.Owner, chars, record);
+                else
+                {
+                    // No variable fields — write canonical for variable codons too
+                    for (var i = record.ExistenceLength; i < record.Length; i++)
+                        chars[record.StartIndex + i] = record.CanonicalSequence[i];
+                }
             }
             else
             {
+                // Entity doesn't have the component — write non-matching for the entire gene block
                 for (var i = 0; i < record.Length; i++)
                 {
                     while(chars[record.StartIndex + i] == record.CanonicalSequence[i])
@@ -86,6 +98,36 @@ public sealed partial class GeneticsSystem : SharedGeneticsSystem
     // ──────────────────────────────────────────────────────────────
     //  Public DNA manipulation API
     // ──────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Sync the current field values of a genetic component back into the entity's DNA.
+    /// Call this after externally modifying a <c>[GeneticMultiValueVariable]</c>-tagged field.
+    /// </summary>
+    /// <returns>True if the sync was performed.</returns>
+    public bool SyncVariablesToDna<T>(EntityUid uid) where T : IComponent
+    {
+        if (!TryGetDnaForUpdate(uid, out var dnaComp, out var dna))
+            return false;
+
+        if (!EntityManager.HasComponent<T>(uid))
+            return false;
+
+        if (!CurrentRoundRecords.TryGetValue(typeof(T), out var record))
+        {
+            Log.Warning($"SyncVariablesToDna<{typeof(T).Name}>: no gene record found.");
+            return false;
+        }
+
+        if (!VariableSyncWriteDna.TryGetValue(typeof(T), out var syncWrite))
+            return false;
+
+        var chars = dna.ToCharArray();
+        syncWrite(uid, chars, record);
+
+        dnaComp.DNA = new string(chars);
+        Dirty(uid, dnaComp);
+        return true;
+    }
 
     /// <summary>
     /// Move the gene region for <typeparamref name="T"/> closer to its canonical

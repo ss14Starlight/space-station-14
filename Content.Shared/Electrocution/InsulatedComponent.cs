@@ -1,10 +1,13 @@
 using Robust.Shared.GameStates;
+
+#region Starlight
 using Content.Shared.Genetics;
+#endregion Starlight
 
 namespace Content.Shared.Electrocution
 {
     [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-    [Access(typeof(SharedElectrocutionSystem))]
+    [Access(typeof(SharedElectrocutionSystem), typeof(SharedGeneticsSystem))] // Starlight-edit - add GeneticsSystem access
     [GeneticComponent(5,2)] // Starlight - add genetics for biological insulation
     public sealed partial class InsulatedComponent : Component
     {
@@ -14,6 +17,7 @@ namespace Content.Shared.Electrocution
         ///     Siemens coefficient. Zero means completely insulated.
         /// </summary>
         [DataField, AutoNetworkedField]
+        [GeneticMultiValueVariable<float>(0f, 4f, 2f, 1.5f, 0.5f, 0f)] // Starlight
         public float Coefficient { get; set; } = 0f;
     }
 }

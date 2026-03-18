@@ -1,6 +1,9 @@
-using Content.Shared.Genetics;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+
+#region Starlight
+using Content.Shared.Genetics;
+#endregion Starlight
 
 namespace Content.Shared.Prying.Components;
 

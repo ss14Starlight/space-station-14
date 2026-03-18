@@ -357,7 +357,8 @@ public sealed class GeneticsEdgeCaseTest
     }
 
     /// <summary>
-    /// Test that EggLayerComponent field values exist (future encoding placeholder).
+    /// Test that [GeneticMultiValueVariable] fields are encoded into DNA.
+    /// InsulatedComponent.Coefficient is annotated — its value should survive a DNA round-trip.
     /// </summary>
     [Test]
     public async Task TestGeneticsFieldValuesAttribute()
@@ -369,17 +370,35 @@ public sealed class GeneticsEdgeCaseTest
 
         var server = pair.Server;
         var entMan = server.EntMan;
+        var geneticsSys = server.System<GeneticsSystem>();
 
         await server.WaitAssertion(() =>
         {
             var entity = entMan.SpawnEntity(null, MapCoordinates.Nullspace);
             var dnaComp = entMan.AddComponent<DnaComponent>(entity);
-            entMan.AddComponent<EggLayerComponent>(entity);
 
-            // For now, only component presence is encoded, not field values
-            Assert.That(dnaComp.DNA, Is.Not.Null);
+            // IncreaseCloseness to add InsulatedComponent with full canonical match
+            geneticsSys.IncreaseCloseness<InsulatedComponent>(entity, 100);
+            Assert.That(entMan.HasComponent<InsulatedComponent>(entity), Is.True);
+
+            // Coefficient should be 0f (best value = all 4 variable codons match)
+            var insulated = entMan.GetComponent<InsulatedComponent>(entity);
+            Assert.That(insulated.Coefficient, Is.EqualTo(0f),
+                "Full canonical match should give best Coefficient (0f)");
+
+            // Transfer DNA to another entity to verify round-trip
+            var recipient = entMan.SpawnEntity(null, MapCoordinates.Nullspace);
+            entMan.AddComponent<DnaComponent>(recipient);
+            geneticsSys.ReplaceDna(recipient, dnaComp.DNA!);
+
+            Assert.That(entMan.HasComponent<InsulatedComponent>(recipient), Is.True,
+                "Recipient should gain InsulatedComponent from DNA");
+            var recipientInsulated = entMan.GetComponent<InsulatedComponent>(recipient);
+            Assert.That(recipientInsulated.Coefficient, Is.EqualTo(0f),
+                "Coefficient should round-trip through DNA encoding");
 
             entMan.DeleteEntity(entity);
+            entMan.DeleteEntity(recipient);
         });
 
         await pair.CleanReturnAsync();

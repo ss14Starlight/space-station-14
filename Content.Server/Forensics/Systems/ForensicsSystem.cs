@@ -337,9 +337,9 @@ namespace Content.Server.Forensics
             {
                 conev.DNA = GenerateDNA();
             }
+            ent.Comp.DNA = conev.DNA;
             // Starlight end
             //ent.Comp.DNA = GenerateDNA();
-            ent.Comp.DNA = conev.DNA;
             Dirty(ent);
 
             var ev = new GenerateDnaEvent { Owner = ent.Owner, DNA = ent.Comp.DNA };
