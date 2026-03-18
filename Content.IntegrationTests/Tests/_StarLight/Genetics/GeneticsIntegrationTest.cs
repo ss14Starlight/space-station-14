@@ -168,7 +168,7 @@ public sealed class GeneticsIntegrationTest
     }
 
     /// <summary>
-    /// Test that genetic mutations can be represented in DNA.
+    /// Test that genetic mutations can be represented in DNA via MutateRandom.
     /// </summary>
     [Test]
     public async Task TestGeneticMutations()
@@ -180,20 +180,24 @@ public sealed class GeneticsIntegrationTest
 
         var server = pair.Server;
         var entMan = server.EntMan;
+        var geneticsSys = server.System<GeneticsSystem>();
 
         await server.WaitAssertion(() =>
         {
             // Create baseline entity
             var entity = entMan.SpawnEntity(null, MapCoordinates.Nullspace);
             var dnaComp = entMan.AddComponent<DnaComponent>(entity);
-            entMan.AddComponent<InsulatedComponent>(entity); // Stability=2
+            entMan.AddComponent<InsulatedComponent>(entity);
 
             var originalDna = dnaComp.DNA;
             Assert.That(originalDna, Is.Not.Null);
             Assert.That(originalDna!.Length, Is.GreaterThan(0));
 
-            // TODO: Mutation application and stability threshold tests will be added
-            // when ApplyDnaToEntity is implemented.
+            // Apply a small mutation — should change DNA but likely preserve the component
+            // (InsulatedComponent has Stability=2, so a single mutation shouldn't remove it)
+            geneticsSys.MutateRandom(entity, 1);
+            Assert.That(dnaComp.DNA, Is.Not.EqualTo(originalDna),
+                "DNA should change after mutation");
 
             entMan.DeleteEntity(entity);
         });

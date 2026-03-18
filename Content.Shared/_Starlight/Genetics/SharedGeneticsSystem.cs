@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Forensics.Components;
 using Robust.Shared.GameObjects;
+using Robust.Shared.GameObjects.Components;
 using Robust.Shared.Random;
 
 namespace Content.Shared.Genetics;
@@ -15,6 +16,7 @@ namespace Content.Shared.Genetics;
 public abstract partial class SharedGeneticsSystem : EntitySystem
 {
     [Dependency] protected readonly IRobustRandom _random = default!;
+    [Dependency] protected readonly IComponentFactory _compFactory = default!;
 
     /// <summary>
     /// Metadata about a component that participates in the genetics system.
@@ -69,6 +71,13 @@ public abstract partial class SharedGeneticsSystem : EntitySystem
     /// between gene regions that absorbs random mutations.
     /// </summary>
     protected int NonCodingLength;
+
+    /// <summary>
+    /// When true, the OnGeneticComponentAdded/Removed handlers skip DNA updates.
+    /// Set during reconciliation to avoid circular updates when we add/remove
+    /// components in response to DNA changes.
+    /// </summary>
+    private bool _reconcilingDna;
 
     private EntityQuery<DnaComponent> _dnaQuery;
 
@@ -169,12 +178,111 @@ public abstract partial class SharedGeneticsSystem : EntitySystem
         }
     }
 
+    // ──────────────────────────────────────────────────────────────
+    //  Gene matching helpers
+    // ──────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Count the number of mismatched codons between the DNA at the gene's
+    /// region and the canonical sequence.
+    /// </summary>
+    protected static int CountMismatches(ReadOnlySpan<char> dna, RoundGeneticRecord record)
+    {
+        var mismatches = 0;
+        for (var i = 0; i < record.Length; i++)
+        {
+            if (dna[record.StartIndex + i] != record.CanonicalSequence[i])
+                mismatches++;
+        }
+        return mismatches;
+    }
+
+    /// <summary>
+    /// Returns true if the gene region in the DNA matches the canonical
+    /// sequence within the gene's Stability tolerance (Hamming distance).
+    /// </summary>
+    protected static bool CheckGeneMatch(ReadOnlySpan<char> dna, RoundGeneticRecord record)
+    {
+        return CountMismatches(dna, record) <= record.Gene.Stability;
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    //  Reconciliation — sync component state to DNA
+    // ──────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Check whether a single gene's DNA region matches its canonical sequence
+    /// and add or remove the corresponding component as necessary.
+    /// </summary>
+    protected void ReconcileGene(EntityUid uid, ReadOnlySpan<char> dna, RoundGeneticRecord record)
+    {
+        var matches = CheckGeneMatch(dna, record);
+        var has = EntityManager.HasComponent(uid, record.Gene.ComponentType);
+
+        if (matches && !has)
+        {
+            var comp = _compFactory.GetComponent(record.Gene.ComponentType);
+            _reconcilingDna = true;
+            try
+            {
+                EntityManager.AddComponent(uid, comp);
+            }
+            finally
+            {
+                _reconcilingDna = false;
+            }
+        }
+        else if (!matches && has)
+        {
+            _reconcilingDna = true;
+            try
+            {
+                EntityManager.RemoveComponent(uid, record.Gene.ComponentType);
+            }
+            finally
+            {
+                _reconcilingDna = false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Check every gene region against the DNA and add/remove components to match.
+    /// </summary>
+    protected void ReconcileAllGenes(EntityUid uid, ReadOnlySpan<char> dna)
+    {
+        foreach (var record in CurrentRoundRecords.Values)
+            ReconcileGene(uid, dna, record);
+    }
+
+    /// <summary>
+    /// Reconcile only the genes whose regions overlap with the modified span
+    /// <c>[startIndex, startIndex + length)</c>.
+    /// </summary>
+    protected void ReconcileOverlappingGenes(EntityUid uid, ReadOnlySpan<char> dna, int startIndex, int length)
+    {
+        var endIndex = startIndex + length;
+        foreach (var record in CurrentRoundRecords.Values)
+        {
+            var geneEnd = record.StartIndex + record.Length;
+            if (record.StartIndex < endIndex && geneEnd > startIndex)
+                ReconcileGene(uid, dna, record);
+        }
+    }
+
+    // ──────────────────────────────────────────────────────────────
+    //  Component lifecycle handlers (called by generated code / global event)
+    // ──────────────────────────────────────────────────────────────
+
     /// <summary>
     /// Called by generated code when a genetic component is added to an entity.
     /// Writes the canonical gene sequence into the entity's DNA.
     /// </summary>
     protected void OnGeneticComponentAdded(EntityUid uid, Type componentType)
     {
+        if (_reconcilingDna)
+            return;
+
         if (!TryGetDnaForUpdate(uid, out var dnaComp, out var dna))
             return;
 
@@ -206,6 +314,9 @@ public abstract partial class SharedGeneticsSystem : EntitySystem
     /// </summary>
     protected void OnGeneticComponentRemoved(EntityUid uid, Type componentType)
     {
+        if (_reconcilingDna)
+            return;
+
         if (!TryGetDnaForUpdate(uid, out var dnaComp, out var dna))
             return;
 
