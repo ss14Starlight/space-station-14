@@ -302,7 +302,7 @@
       slots:
       - HEAD
       - EYES
-    - type: ItemToggle # Starts in unactivated state
+    - type: ItemToggle # Starts in activated state
       activated: true
     - type: ToggleClothing
       action: ActionToggleWeldingMask

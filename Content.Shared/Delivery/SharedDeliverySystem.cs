@@ -19,7 +19,6 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Emag.Systems; //Starlight
 using Content.Shared._Starlight.Railroading.Events; // starlight
 
-
 namespace Content.Shared.Delivery;
 
 /// <summary>
@@ -146,7 +145,7 @@ public abstract class SharedDeliverySystem : EntitySystem
             return;
 
         var user = args.User;
-        var access = _accessReader.IsAllowed(user, ent.Owner); //Starlight
+        var access = _accessReader.IsAllowed(user, ent.Owner); //Starlight, for Mail Access.
         args.Verbs.Add(new AlternativeVerb()
         {
             Act = () =>
