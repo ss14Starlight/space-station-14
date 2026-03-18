@@ -37,7 +37,7 @@ public abstract class SharedDeliverySystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly NameModifierSystem _nameModifier = default!;
     [Dependency] private readonly EmagSystem _emag = default!; //Starlight
-    private readonly AccessReaderSystem _accessReader = default!; //Starlight
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!; //Starlight
     private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
     private static readonly ProtoId<TagPrototype> RecyclableTag = "Recyclable";
 
@@ -163,7 +163,7 @@ public abstract class SharedDeliverySystem : EntitySystem
 
                 UpdateDeliverySpawnerVisuals(ent, ent.Comp.ContainedDeliveryAmount);
             },
-            Text = Loc.GetString("delivery-teleporter-empty-verb"),
+            Text = access ? Loc.GetString("delivery-teleporter-empty-verb") : Loc.GetString("delivery-teleporter-no-access-verb"),
             Disabled = !access, //Starlight
         });
     }
