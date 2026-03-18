@@ -67,6 +67,11 @@
 # Shoes
 # Don't make these easier to get.
 - type: loadout
+  id: MailTechnicianBoots
+  equipment:
+    shoes: ClothingShoesBootsMail
+
+- type: loadout
   id: MailTechnicianBootsSenior
   effects:
   - !type:GroupLoadoutEffect

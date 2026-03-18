@@ -560,11 +560,12 @@
   minLimit: 0
   defaultSelected: 1
   loadouts:
+  - MailTechnicianBoots
+  - MailTechnicianBootsSenior
   - BlackShoes
   - YellowShoes
   - CargoWinterBoots
   - SeniorCourierWinterBoots
-  - MailTechnicianBootsSenior
   - LeatherShoes
   - WorkBoots
   - Heels
