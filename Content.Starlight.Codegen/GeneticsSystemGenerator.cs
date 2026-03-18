@@ -14,17 +14,17 @@ public sealed class GeneticsSystemGenerator : IIncrementalGenerator
 {
     private const string AttributeName = "Content.Shared.Genetics.GeneticComponentAttribute";
     private const string VariableAttrMetadataName = "GeneticMultiValueVariableAttribute`1";
+    private const string EnumBaseAttrFullName = "Content.Shared.Genetics.GeneticsEnumBasedVariableAttribute";
+    private const string EnumEntryAttrFullName = "Content.Shared.Genetics.GeneticsEnumEntryAttribute";
     private const string VariableAttrNamespace = "Content.Shared.Genetics";
 
-    // Each target the generator can emit into: (namespace, class name, class modifiers).
-    // The generator will produce output for whichever targets are defined in the
-    // current compilation's source, so Content.Shared gets SharedGeneticsSystem
-    // and Content.Server gets GeneticsSystem.
     private static readonly (string Namespace, string ClassName, string Modifiers)[] Targets =
     {
         ("Content.Shared.Genetics", "SharedGeneticsSystem", "public abstract partial class"),
         ("Content.Server.Genetics", "GeneticsSystem",       "public sealed partial class"),
     };
+
+    // ── Data models (no records — netstandard2.0 compat) ──
 
     private sealed class VariableInfo
     {
@@ -42,6 +42,40 @@ public sealed class GeneticsSystemGenerator : IIncrementalGenerator
             DefaultValue = defaultValue;
             Values = values;
             CodonCount = codonCount;
+            OffsetInVariableRegion = offsetInVariableRegion;
+        }
+    }
+
+    private sealed class EnumEntryInfo
+    {
+        public readonly int Complexity;
+        public readonly int Stability;
+        public readonly string Key;
+
+        public EnumEntryInfo(int complexity, int stability, string key)
+        {
+            Complexity = complexity;
+            Stability = stability;
+            Key = key;
+        }
+    }
+
+    private sealed class EnumVariableInfo
+    {
+        public readonly string MemberName;
+        public readonly string GetterMethod;
+        public readonly string SetterMethod;
+        public readonly List<EnumEntryInfo> Entries;
+        public readonly int RegionLength;
+        public readonly int OffsetInVariableRegion;
+
+        public EnumVariableInfo(string memberName, string getterMethod, string setterMethod, List<EnumEntryInfo> entries, int regionLength, int offsetInVariableRegion)
+        {
+            MemberName = memberName;
+            GetterMethod = getterMethod;
+            SetterMethod = setterMethod;
+            Entries = entries;
+            RegionLength = regionLength;
             OffsetInVariableRegion = offsetInVariableRegion;
         }
     }
@@ -70,8 +104,6 @@ public sealed class GeneticsSystemGenerator : IIncrementalGenerator
         {
             var targetSymbol = compilation.GetTypeByMetadataName($"{ns}.{className}");
 
-            // Only generate if the partial class is defined in this compilation's
-            // source (not in a referenced assembly).
             if (targetSymbol == null || targetSymbol.DeclaringSyntaxReferences.Length == 0)
                 continue;
 
@@ -90,7 +122,6 @@ public sealed class GeneticsSystemGenerator : IIncrementalGenerator
 
         sb.AppendLine("using Robust.Shared.GameObjects;");
 
-        // Collect unique namespaces from component types
         var namespaces = allComponents
             .Select(c => c.Class.ContainingNamespace.ToDisplayString())
             .Distinct()
@@ -106,13 +137,22 @@ public sealed class GeneticsSystemGenerator : IIncrementalGenerator
         sb.AppendLine($"{targetModifiers} {targetClassName}");
         sb.AppendLine("{");
 
+        // Collect per-component info
+        var componentMultiValueVars = new Dictionary<string, List<VariableInfo>>();
+        var componentEnumVars = new Dictionary<string, List<EnumVariableInfo>>();
+
+        foreach (var componentDef in allComponents)
+        {
+            var multiVars = GetMultiValueVariables(componentDef.Class);
+            var enumVars = GetEnumVariables(componentDef.Class, multiVars.Sum(v => v.CodonCount));
+            componentMultiValueVars[componentDef.Class.Name] = multiVars;
+            componentEnumVars[componentDef.Class.Name] = enumVars;
+        }
+
         // ── InitializeGenerated ──
         sb.AppendLine("    private void InitializeGenerated()");
         sb.AppendLine("    {");
         sb.AppendLine("");
-
-        // Collect per-component variable info for later method generation
-        var componentVariables = new Dictionary<string, List<VariableInfo>>();
 
         foreach (var componentDef in allComponents)
         {
@@ -125,17 +165,36 @@ public sealed class GeneticsSystemGenerator : IIncrementalGenerator
             var complexity = GetAttributeArg(componentDef.Attribute, 0, 2);
             var stability = GetAttributeArg(componentDef.Attribute, 1, 1);
 
-            var variables = GetVariables(componentDef.Class);
-            componentVariables[componentDef.Class.Name] = variables;
-
-            var varCodonCount = variables.Sum(v => v.CodonCount);
+            var multiVars = componentMultiValueVars[componentDef.Class.Name];
+            var enumVars = componentEnumVars[componentDef.Class.Name];
+            var varCodonCount = multiVars.Sum(v => v.CodonCount) + enumVars.Sum(v => v.RegionLength);
+            var hasAnyVariables = multiVars.Count > 0 || enumVars.Count > 0;
 
             sb.AppendLine($"        GeneticComponents[typeof({componentDef.Class.Name})] = new GeneticComponentInfo(typeof({componentDef.Class.Name}), {complexity}, {stability}, {varCodonCount});");
 
-            if (variables.Count > 0)
+            if (hasAnyVariables)
             {
                 sb.AppendLine($"        VariableSyncWriteDna[typeof({componentDef.Class.Name})] = SyncWrite{componentDef.Class.Name}Variables;");
                 sb.AppendLine($"        VariableSyncReadDna[typeof({componentDef.Class.Name})] = SyncRead{componentDef.Class.Name}Variables;");
+            }
+
+            // Register enum variables
+            foreach (var ev in enumVars)
+            {
+                sb.AppendLine($"        EnumVariables[(typeof({componentDef.Class.Name}), \"{ev.MemberName}\")] = new EnumVariableInfo");
+                sb.AppendLine($"        {{");
+                sb.AppendLine($"            GetterMethod = \"{ev.GetterMethod}\",");
+                sb.AppendLine($"            SetterMethod = \"{ev.SetterMethod}\",");
+                sb.AppendLine($"            RegionLength = {ev.RegionLength},");
+                sb.AppendLine($"            OffsetInVariableRegion = {ev.OffsetInVariableRegion},");
+                sb.AppendLine($"            Entries = new System.Collections.Generic.List<EnumEntryDefinition>");
+                sb.AppendLine($"            {{");
+                foreach (var entry in ev.Entries)
+                {
+                    sb.AppendLine($"                new EnumEntryDefinition({entry.Complexity}, {entry.Stability}, \"{EscapeString(entry.Key)}\"),");
+                }
+                sb.AppendLine($"            }},");
+                sb.AppendLine($"        }};");
             }
         }
 
@@ -155,19 +214,20 @@ public sealed class GeneticsSystemGenerator : IIncrementalGenerator
         // ── Per-component variable sync methods ──
         foreach (var componentDef in allComponents)
         {
-            var variables = componentVariables[componentDef.Class.Name];
-            if (variables.Count == 0)
+            var multiVars = componentMultiValueVars[componentDef.Class.Name];
+            var enumVars = componentEnumVars[componentDef.Class.Name];
+            if (multiVars.Count == 0 && enumVars.Count == 0)
                 continue;
 
             var className = componentDef.Class.Name;
 
-            // SyncWrite: value → DNA (encode current field values into DNA variable codons)
+            // SyncWrite: value → DNA
             sb.AppendLine($"    private void SyncWrite{className}Variables(EntityUid uid, char[] chars, RoundGeneticRecord record)");
             sb.AppendLine("    {");
             sb.AppendLine($"        if (!EntityManager.TryGetComponent<{className}>(uid, out var comp))");
             sb.AppendLine("            return;");
 
-            foreach (var v in variables)
+            foreach (var v in multiVars)
             {
                 var typeName = v.FieldType.ToDisplayString();
                 var valuesLiteral = FormatValuesArray(v.FieldType, v.Values);
@@ -185,16 +245,40 @@ public sealed class GeneticsSystemGenerator : IIncrementalGenerator
                 sb.AppendLine($"        }}");
             }
 
+            foreach (var ev in enumVars)
+            {
+                sb.AppendLine($"        if (EnumVariables.TryGetValue((typeof({className}), \"{ev.MemberName}\"), out var enumInfo_{ev.MemberName}))");
+                sb.AppendLine($"        {{");
+                sb.AppendLine($"            var key = comp.{ev.GetterMethod}();");
+                sb.AppendLine($"            var entryIndex = -1;");
+                sb.AppendLine($"            if (key != null)");
+                sb.AppendLine($"            {{");
+                sb.AppendLine($"                for (var i = 0; i < enumInfo_{ev.MemberName}.Entries.Count; i++)");
+                sb.AppendLine($"                {{");
+                sb.AppendLine($"                    if (enumInfo_{ev.MemberName}.Entries[i].Key == key)");
+                sb.AppendLine($"                    {{");
+                sb.AppendLine($"                        entryIndex = i;");
+                sb.AppendLine($"                        break;");
+                sb.AppendLine($"                    }}");
+                sb.AppendLine($"                }}");
+                sb.AppendLine($"            }}");
+                sb.AppendLine($"            if (entryIndex >= 0)");
+                sb.AppendLine($"                WriteEnumCanonical(chars, record, enumInfo_{ev.MemberName}, entryIndex);");
+                sb.AppendLine($"            else");
+                sb.AppendLine($"                ScrambleEnumRegion(chars, record, enumInfo_{ev.MemberName});");
+                sb.AppendLine($"        }}");
+            }
+
             sb.AppendLine("    }");
             sb.AppendLine("");
 
-            // SyncRead: DNA → value (read DNA variable codons and apply to component fields)
+            // SyncRead: DNA → value
             sb.AppendLine($"    private void SyncRead{className}Variables(EntityUid uid, string dna, RoundGeneticRecord record)");
             sb.AppendLine("    {");
             sb.AppendLine($"        if (!EntityManager.TryGetComponent<{className}>(uid, out var comp))");
             sb.AppendLine("            return;");
 
-            foreach (var v in variables)
+            foreach (var v in multiVars)
             {
                 var typeName = v.FieldType.ToDisplayString();
                 var valuesLiteral = FormatValuesArray(v.FieldType, v.Values);
@@ -203,6 +287,18 @@ public sealed class GeneticsSystemGenerator : IIncrementalGenerator
                 sb.AppendLine($"            var matches = CountVariableMatches(dna.AsSpan(), record, {v.OffsetInVariableRegion}, {v.CodonCount});");
                 sb.AppendLine($"            var values = new {typeName}[] {{ {valuesLiteral} }};");
                 sb.AppendLine($"            comp.{v.MemberName} = values[Math.Min(matches, values.Length - 1)];");
+                sb.AppendLine($"        }}");
+            }
+
+            foreach (var ev in enumVars)
+            {
+                sb.AppendLine($"        if (EnumVariables.TryGetValue((typeof({className}), \"{ev.MemberName}\"), out var enumInfo_{ev.MemberName}))");
+                sb.AppendLine($"        {{");
+                sb.AppendLine($"            var bestEntry = FindBestEnumMatch(dna.AsSpan(), record, enumInfo_{ev.MemberName});");
+                sb.AppendLine($"            if (bestEntry >= 0)");
+                sb.AppendLine($"                comp.{ev.SetterMethod}(enumInfo_{ev.MemberName}.Entries[bestEntry].Key);");
+                sb.AppendLine($"            else");
+                sb.AppendLine($"                comp.{ev.SetterMethod}(null);");
                 sb.AppendLine($"        }}");
             }
 
@@ -215,10 +311,12 @@ public sealed class GeneticsSystemGenerator : IIncrementalGenerator
         return sb.ToString();
     }
 
+    // ── Member scanning ──
+
     /// <summary>
-    /// Scan members of a [GeneticComponent] class for [GeneticMultiValueVariable] attributes.
+    /// Scan members for [GeneticMultiValueVariable] attributes.
     /// </summary>
-    private static List<VariableInfo> GetVariables(INamedTypeSymbol classSymbol)
+    private static List<VariableInfo> GetMultiValueVariables(INamedTypeSymbol classSymbol)
     {
         var result = new List<VariableInfo>();
         var currentOffset = 0;
@@ -261,16 +359,66 @@ public sealed class GeneticsSystemGenerator : IIncrementalGenerator
     }
 
     /// <summary>
-    /// Format an array of TypedConstants as a C# array initializer.
+    /// Scan members for [GeneticsEnumBasedVariable] + [GeneticsEnumEntry] attribute pairs.
     /// </summary>
+    private static List<EnumVariableInfo> GetEnumVariables(INamedTypeSymbol classSymbol, int startingOffset)
+    {
+        var result = new List<EnumVariableInfo>();
+        var currentOffset = startingOffset;
+
+        foreach (var member in classSymbol.GetMembers())
+        {
+            if (member is not (IFieldSymbol or IPropertySymbol))
+                continue;
+
+            // Look for the marker attribute
+            string? getterMethod = null;
+            string? setterMethod = null;
+            var entries = new List<EnumEntryInfo>();
+
+            foreach (var attr in member.GetAttributes())
+            {
+                var fullName = attr.AttributeClass?.ToDisplayString();
+                if (fullName == EnumBaseAttrFullName)
+                {
+                    getterMethod = attr.ConstructorArguments[0].Value as string;
+                    setterMethod = attr.ConstructorArguments[1].Value as string;
+                }
+                else if (fullName == EnumEntryAttrFullName
+                         && attr.ConstructorArguments[0].Value is int complexity
+                         && attr.ConstructorArguments[1].Value is int stability
+                         && attr.ConstructorArguments[2].Value is string key)
+                {
+                    entries.Add(new EnumEntryInfo(complexity, stability, key));
+                }
+            }
+
+            if (getterMethod != null && setterMethod != null && entries.Count > 0)
+            {
+                var regionLength = entries.Max(e => e.Complexity + e.Stability);
+
+                result.Add(new EnumVariableInfo(
+                    member.Name,
+                    getterMethod,
+                    setterMethod,
+                    entries,
+                    regionLength,
+                    currentOffset));
+
+                currentOffset += regionLength;
+            }
+        }
+
+        return result;
+    }
+
+    // ── Formatting helpers ──
+
     private static string FormatValuesArray(ITypeSymbol type, ImmutableArray<TypedConstant> values)
     {
         return string.Join(", ", values.Select(v => FormatLiteral(type, v)));
     }
 
-    /// <summary>
-    /// Format a single TypedConstant as a C# literal.
-    /// </summary>
     private static string FormatLiteral(ITypeSymbol type, TypedConstant tc)
     {
         if (tc.Value is float f)
@@ -284,9 +432,6 @@ public sealed class GeneticsSystemGenerator : IIncrementalGenerator
         return tc.Value?.ToString() ?? "default";
     }
 
-    /// <summary>
-    /// Returns the type to use for distance calculation (Math.Abs cast target).
-    /// </summary>
     private static string FormatDistanceType(ITypeSymbol type)
     {
         return type.SpecialType switch
@@ -295,14 +440,15 @@ public sealed class GeneticsSystemGenerator : IIncrementalGenerator
             SpecialType.System_Double => "double",
             SpecialType.System_Int32 => "int",
             SpecialType.System_Int64 => "long",
-            _ => "double" // fallback: cast to double for distance comparison
+            _ => "double"
         };
     }
 
-    /// <summary>
-    /// Reads a constructor argument from an AttributeData, falling back to a default value
-    /// if the argument is missing.
-    /// </summary>
+    private static string EscapeString(string s)
+    {
+        return s.Replace("\\", "\\\\").Replace("\"", "\\\"");
+    }
+
     private static int GetAttributeArg(AttributeData attribute, int index, int defaultValue)
     {
         if (attribute.ConstructorArguments.Length > index
