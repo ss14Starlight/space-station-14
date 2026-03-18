@@ -556,7 +556,9 @@
       - state: equipped-head-unshaded
         shader: unshaded
   - type: PointLight
-    color: "#b4eb8f"
+    color: "#b8dfff"
+    radius: 9
+    energy: 4
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -608,6 +610,8 @@
         shader: unshaded
   - type: PointLight
     color: "#b4eb8f"
+    radius: 9
+    energy: 4
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000

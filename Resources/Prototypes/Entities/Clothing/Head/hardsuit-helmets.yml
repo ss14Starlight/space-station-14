@@ -83,7 +83,7 @@
         shader: unshaded
       # Starlight - End
   - type: PointLight
-    color: "#adffe6"
+    color: "#7ef6f6" # Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -175,7 +175,7 @@
         shader: unshaded
       # Starlight - End
   - type: PointLight
-    color: "#ffdbad"
+    color: "#fcce4f" # Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.1
     lowPressureMultiplier: 1000
@@ -534,6 +534,10 @@
     sprite: Clothing/Head/Hardsuits/capspace.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/capspace.rsi
+  - type: PointLight # Starlight BEGIN
+    energy: 4
+    radius: 7
+    color: "#FCDF9C" # Starlight END
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -620,7 +624,9 @@
         shader: unshaded
       # Starlight - End
   - type: PointLight
-    color: "#daffad"
+    color: "#ffffff" # Starlight
+    radius: 7 # Starlight
+    energy: 3.5 # Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -734,7 +740,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/syndicate.rsi
   - type: PointLight
-    color: green
+    color: '#50ff50'
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -762,7 +768,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/syndiemedic.rsi
   - type: PointLight
-    color: green
+    color: '#50ffa0'
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -791,7 +797,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/syndieelite.rsi
   - type: PointLight
-    color: red
+    color: '#ff5050' # Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -824,7 +830,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
   - type: PointLight
-    color: green
+    color: '#50ff50' # Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
