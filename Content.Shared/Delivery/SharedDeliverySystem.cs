@@ -1,5 +1,7 @@
 using System.Linq;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Access.Components; // Starlight
+using Content.Shared.Access.Systems; // Starlight
 using Content.Shared.Examine;
 using Content.Shared.FingerprintReader;
 using Content.Shared.Hands.EntitySystems;
@@ -16,6 +18,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Content.Shared.Emag.Systems; //Starlight
 using Content.Shared._Starlight.Railroading.Events; // starlight
+
 
 namespace Content.Shared.Delivery;
 
@@ -34,6 +37,7 @@ public abstract class SharedDeliverySystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly NameModifierSystem _nameModifier = default!;
     [Dependency] private readonly EmagSystem _emag = default!; //Starlight
+    private readonly AccessReaderSystem _accessReader = default!; //Starlight
     private static readonly ProtoId<TagPrototype> TrashTag = "Trash";
     private static readonly ProtoId<TagPrototype> RecyclableTag = "Recyclable";
 
@@ -142,7 +146,7 @@ public abstract class SharedDeliverySystem : EntitySystem
             return;
 
         var user = args.User;
-
+        var access = _accessReader.IsAllowed(user, ent.Owner); //Starlight
         args.Verbs.Add(new AlternativeVerb()
         {
             Act = () =>
@@ -160,6 +164,7 @@ public abstract class SharedDeliverySystem : EntitySystem
                 UpdateDeliverySpawnerVisuals(ent, ent.Comp.ContainedDeliveryAmount);
             },
             Text = Loc.GetString("delivery-teleporter-empty-verb"),
+            Disabled = !access, //Starlight
         });
     }
 
