@@ -1,10 +1,11 @@
 using Content.Shared.DoAfter;
+using Content.Shared.Genetics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.VentCrawl;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), GeneticComponent(10,12)]
 public sealed partial class VentCrawlerComponent : Component
 {
     [ViewVariables, AutoNetworkedField]

@@ -4,6 +4,10 @@ using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
+#region Starlight
+using Content.Shared.Genetics;
+#endregion Starlight
+
 namespace Content.Shared.Animals;
 
 /// <summary>
@@ -11,6 +15,7 @@ namespace Content.Shared.Animals;
 ///     produces endlessly if the owner does not have a HungerComponent.
 /// </summary>
 [RegisterComponent, AutoGenerateComponentState, AutoGenerateComponentPause, NetworkedComponent]
+[GeneticComponent(4,6)] // Starlight
 public sealed partial class WoolyComponent : Component
 {
     /// <summary>

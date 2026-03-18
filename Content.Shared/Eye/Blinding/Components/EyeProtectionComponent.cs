@@ -1,9 +1,13 @@
+#region Starlight
+using Content.Shared.Genetics;
+#endregion Starlight
 namespace Content.Shared.Eye.Blinding.Components;
 
 /// <summary>
 /// For welding masks, sunglasses, etc.
 /// </summary>
 [RegisterComponent]
+[GeneticComponent(7,2)] // Starlight
 public sealed partial class EyeProtectionComponent : Component
 {
     /// <summary>

@@ -4,12 +4,17 @@ using Content.Shared.Tag;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
+#region Starlight
+using Content.Shared.Genetics;
+#endregion Starlight
+
 namespace Content.Shared.Nutrition.Components;
 
 /// <summary>
 /// Entities with this component occasionally spill some of the solution they're ingesting.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[GeneticComponent(2,5)] // Starlight
 public sealed partial class MessyDrinkerComponent : Component
 {
     [DataField, AutoNetworkedField]
