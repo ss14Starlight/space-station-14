@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprites by retrobit23.",
+  "copyright": "Sprites by retrobit23, equipped-INNERCLOTHING modified based on semkagamez's Cargo Formal, modified further by wonderfulnewworld (Github).",
   "size": {
     "x": 32,
     "y": 32
@@ -15,7 +15,7 @@
     {
       "name": "equipped-INNERCLOTHING",
       "directions": 4,
-	  "copyright": "retrobit23",
+	  "copyright": "retrobit23, semkagamez, wonderfulnewworld",
 	  "license": "CC-BY-SA-3.0"
     },
     {
