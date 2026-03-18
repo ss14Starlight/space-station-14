@@ -5,10 +5,11 @@ using Content.Shared.Atmos.Piping.Unary.Components;
 using Content.Shared.DeviceLinking;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.GameStates; // Starlight
 
 namespace Content.Server.Atmos.Monitor.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent] // Starlight Edit: Added NetworkedComponent
 public sealed partial class AirAlarmComponent : Component
 {
     [DataField] public AirAlarmMode CurrentMode { get; set; } = AirAlarmMode.Filtering;
