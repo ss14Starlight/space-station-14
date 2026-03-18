@@ -95,7 +95,14 @@ public sealed class AdminNotesEui : BaseEui
                         break;
                     }
 
-                    await _notesMan.AddAdminRemark(Player, NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime);
+                    if (request.Network)
+                    {
+                        if (_actors.TryGetServerGrain(out var serverGrain))
+                            await serverGrain.AddOrUpdateNote(NotedPlayer, await GenerateNote(Player, NotedPlayer, request.Type, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime));
+                        break;
+                    }
+
+                    await _notesMan.AddAdminRemark(NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime);
                     break;
                 }
             case DeleteNoteRequest request:
