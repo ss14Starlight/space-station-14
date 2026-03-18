@@ -580,8 +580,8 @@
   id: MailTechnicianBag
   name: loadout-group-mail-technician-bag
   loadouts:
-  - MailPDA
-  - SeniorMailPDA
+  - MailBag
+  - SeniorMailBag
 
 # Salvage Lead
 - type: loadoutGroup
