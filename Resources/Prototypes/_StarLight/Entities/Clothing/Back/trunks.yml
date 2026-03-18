@@ -27,7 +27,7 @@
   description: A huge trunk made of every aspiring mail technician's dreams.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Back/Duffels/mailtrunk.rsi
+    sprite: _Starlight/Clothing/Back/Trunks/mailtrunk.rsi
 
 - type: entity
   parent: ClothingBackpackTrunk
@@ -36,7 +36,7 @@
   description: A huge trunk for the station's strongest mail technicians.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Back/Duffels/mailseniortrunk.rsi
+    sprite: _Starlight/Clothing/Back/Trunks/mailseniortrunk.rsi
 
 # Fashion-O-Mat
 - type: entity
@@ -46,7 +46,7 @@
   description: A huge trunk themed after a legendary space courier.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Back/Duffels/space_courier_trunk.rsi
+    sprite: _Starlight/Clothing/Back/Trunks/space_courier_trunk.rsi
 
 - type: entity
   parent: ClothingBackpackTrunkSpaceCourier
