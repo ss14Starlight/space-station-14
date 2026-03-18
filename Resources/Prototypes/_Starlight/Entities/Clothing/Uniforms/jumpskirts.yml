@@ -381,7 +381,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtMail
   name: mail technician jumpskirt
-  description: A stylish cargo yellow and mail-bag blue uniform custom made for mail technicians.
+  description: A stylish cargo yellow and mail bag-blue uniform custom made for mail technicians.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/mailtech.rsi

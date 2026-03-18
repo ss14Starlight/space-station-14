@@ -369,7 +369,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitMail
   name: mail technician jumpsuit
-  description: A stylish cargo yellow and mail-bag blue uniform custom made for mail technicians.
+  description: A stylish cargo yellow and mail bag-blue uniform custom made for mail technicians.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/mailtech.rsi
