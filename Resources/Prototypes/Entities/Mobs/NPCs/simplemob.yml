@@ -65,6 +65,7 @@
   - type: MobPrice
     price: 1000 # Living critters are valuable in space.
   - type: Perishable
+  - type: Dna # Starlight - allow simple space mobs to have genetic sequences that can be studied
 
 - type: entity
   parent:
@@ -107,3 +108,4 @@
   - type: MobPrice
     price: 150
   - type: FloatingVisuals
+  - type: Dna # Starlight - allow simple mobs, from which our animals derive, to have genetic sequences that can be studied
