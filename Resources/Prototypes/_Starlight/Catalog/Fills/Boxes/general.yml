@@ -61,7 +61,7 @@
         - id: SlickShoes
 
 - type: entity
-  parent: ClothingBackpackDuffelTrunkSpaceCourier
+  parent: ClothingBackpackTrunkSpaceCourier
   id: BoxCourier
   name: space courier trunk
   suffix: Bundle
@@ -78,7 +78,7 @@
         - id: ClothingShoesBootsSpaceCourier
 
 - type: entity
-  parent: ClothingBackpackDuffelTrunkSpaceCourierPAI
+  parent: ClothingBackpackTrunkSpaceCourierPAI
   id: BoxCourierPAI
   name: space courier trunk
   suffix: Bundle, Ghost Role

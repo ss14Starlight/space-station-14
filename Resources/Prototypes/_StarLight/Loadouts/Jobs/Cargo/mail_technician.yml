@@ -54,7 +54,7 @@
 - type: loadout
   id: MailTechnicianTrunk
   equipment:
-    back: ClothingBackpackDuffelTrunkMail
+    back: ClothingBackpackTrunkMail
 
 - type: loadout
   id: MailTechnicianTrunkSenior
@@ -62,7 +62,7 @@
   - !type:GroupLoadoutEffect
     proto: SeniorMailTechnician
   equipment:
-    back: ClothingBackpackDuffelTrunkMailSenior
+    back: ClothingBackpackTrunkMailSenior
 
 # Shoes
 # Don't make these easier to get.
