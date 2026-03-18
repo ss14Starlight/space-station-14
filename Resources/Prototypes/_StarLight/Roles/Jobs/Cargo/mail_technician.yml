@@ -8,6 +8,7 @@
   supervisors: job-supervisors-qm
   access:
   - Cargo
+  - Mail
   - Maintenance
   special:
   - !type:GiveItemOnHolidaySpecial

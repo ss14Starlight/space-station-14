@@ -186,6 +186,32 @@
 ## AirlockSalvage is in Wizden airlocks.yml
 ## AirlockSalvageGlass is in Wizden airlocks.yml
 
+# Mail
+- type: entity
+  parent: Airlock
+  id: AirlockMail
+  suffix: Mail
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/mail.rsi
+  - type: Wires
+    layoutId: AirlockCargo
+  - type: Paintable
+    group: AirlockStandard
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockMailGlass 
+  suffix: Mail
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/mail.rsi
+  - type: Wires
+    layoutId: AirlockCargo
+  - type: Paintable
+    group: AirlockGlass
+
+
 #EVA
 - type: entity
   parent: Airlock

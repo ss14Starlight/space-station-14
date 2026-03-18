@@ -310,6 +310,32 @@
     containers:
       board: [ DoorElectronicsSalvageMining ]
 
+# Mail/Cargo Shared
+- type: entity
+  parent: AirlockMail
+  id: AirlockMailLocked
+  suffix: Mail, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMail ]
+
+- type: entity
+  parent: AirlockMailGlass
+  id: AirlockMailGlassLocked
+  suffix: Mail, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMail ]
+
+- type: entity
+  parent: AirlockMailLocked
+  id: AirlockMaintMailLocked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
 # Xenoborg
 - type: entity
   parent: AirlockXenoborgGlass

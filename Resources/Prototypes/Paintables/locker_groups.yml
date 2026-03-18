@@ -9,6 +9,7 @@
     botanist: LockerBotanist
     brigmedic: LockerBrigmedic
     captain: LockerCaptain
+    cargo: LockerCargo # Starlight
     ce: LockerChiefEngineer
     chemical: LockerChemistry
     clown: LockerClown
@@ -21,6 +22,7 @@
     hos: LockerHeadOfSecurity
     iaa: LockerIAA # Starlight
     magistrate: LockerMagistrate # Starlight
+    mail: LockerMail # Starlight
     mime: LockerMime
     mining: LockerMiningSpecialist # Starlight
     medicine: LockerMedicine

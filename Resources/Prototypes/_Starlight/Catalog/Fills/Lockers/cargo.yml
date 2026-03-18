@@ -164,3 +164,94 @@
     - id: Pickaxe
     - id: Shovel
     - id: OreBag
+
+# Cargo Techs and Mail Techs
+- type: entity
+  id: LockerCargoFilled
+  suffix: Filled
+  parent: LockerCargo
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHatCargosoft
+        - id: ClothingUniformJumpsuitCargo
+        - id: ClothingUniformJumpskirtCargo
+        - !type:GroupSelector
+          children: 
+          - id: ClothingBackpackCargo
+          - id: ClothingBackpackSatchelCargo
+          - id: ClothingBackpackDuffelCargo
+        - id: ClothingShoesColorBlack
+        - id: ClothingHandsGlovesFingerless
+        - id: AppraisalTool
+        - id: WeaponMeleeBoxcutter
+        - id: PaperAcquisitionSlip
+          amount: 8
+        - !type:GroupSelector
+          children: 
+          - id: BoxFolderClipboard
+            weight: 0.1
+          - id: BoxFolderClipboardEmpty
+          - id: BoxFolderClipboardThreePapers
+            weight: 0.3
+          - id: BoxFolderPlasticClipboard
+            weight: 0.1
+          - id: BoxFolderPlasticClipboardEmpty
+          - id: BoxFolderPlasticClipboardThreePapers
+            weight: 0.3
+        - !type:GroupSelector
+          children:
+          - id: Crowbar
+          - id: Wrench
+          - id: Screwdriver
+        - !type:GroupSelector
+          children:
+          - id: Pen
+          - id: LuxuryPen
+            weight: 0.2
+        - id: PlushieLizardJobCargotechnician
+          prob: 0.02
+
+- type: entity
+  id: LockerMailFilled
+  suffix: Filled
+  parent: LockerMail
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHatMailsoftVisor
+        - id: ClothingUniformJumpsuitMail
+        - id: ClothingUniformJumpskirtMail
+        - !type:GroupSelector
+          children: 
+          - id: ClothingBackpackCargo
+          - id: ClothingBackpackSatchelCargo
+          - id: ClothingBackpackDuffelCargo
+          - id: ClothingBackpackTrunkMail
+        - id: MailBag
+        - id: ClothingShoesBootsMail
+        - id: ClothingHandsGlovesFingerless
+        - id: WeaponMeleeBoxcutter
+        - !type:GroupSelector
+          children: 
+          - id: BoxFolderClipboard
+            weight: 0.1
+          - id: BoxFolderClipboardEmpty
+          - id: BoxFolderClipboardThreePapers
+            weight: 0.3
+          - id: BoxFolderPlasticClipboard
+            weight: 0.1
+          - id: BoxFolderPlasticClipboardEmpty
+          - id: BoxFolderPlasticClipboardThreePapers
+            weight: 0.3
+        - !type:GroupSelector
+          children:
+          - id: Pen
+          - id: LuxuryPen
+            weight: 0.5
+        - id: PlushieLizardJobCargotechnician
+          prob: 0.02
