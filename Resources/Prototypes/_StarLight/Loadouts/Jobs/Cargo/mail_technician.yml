@@ -87,3 +87,17 @@
     proto: SeniorMailTechnician
   equipment:
     id: SeniorMailPDA
+
+# Mail Bags
+- type: loadout
+  id: MailBag
+  equipment:
+    belt: MailBag
+
+- type: loadout
+  id: SeniorMailBag
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    belt: SeniorMailBag

@@ -576,6 +576,13 @@
   - MailPDA
   - SeniorMailPDA
 
+- type: loadoutGroup
+  id: MailTechnicianBag
+  name: loadout-group-mail-technician-bag
+  loadouts:
+  - MailPDA
+  - SeniorMailPDA
+
 # Salvage Lead
 - type: loadoutGroup
   id: SalvageLeadJumpsuit

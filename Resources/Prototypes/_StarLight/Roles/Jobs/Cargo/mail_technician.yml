@@ -18,7 +18,6 @@
   id: MailTechGear
   equipment:
     ears: ClothingHeadsetCargo
-    belt: MailBag
   storage:
     back:
     - MailTrolleyFlatpack
