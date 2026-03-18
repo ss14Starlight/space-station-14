@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "license": "CC-BY-SA-3.0 and CC-BY-SA-4.0",
-  "copyright": "By AraiMaia for FunkyStation, combined with semkagamez's Cargo Formal (Dead Space) and Vordenburg's mailman (Goob) and recolored for Senior Mail by wonderfulnewworld (Github) for Starlight",
+  "license": "Custom",
+  "copyright": "By AraiMaia for FunkyStation (CC-BY-SA-3.0), combined with semkagamez's Cargo Formal (Dead Space) (CC-BY-SA-3.0) and Vordenburg's mailman (Goob) (CC-BY-SA-4.0) and recolored for Senior Mail by wonderfulnewworld (Github) for Starlight (CC-BY-SA-4.0)",
   "size": {
     "x": 32,
     "y": 32
@@ -10,25 +10,25 @@
     {
       "name": "icon",
 	  "copyright": "AraiMaia, semkagamez, Vordenburg, wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0 and CC-BY-SA-4.0"
+	  "license": "Custom"
     },
     {
       "name": "equipped-INNERCLOTHING",
       "directions": 4,
 	  "copyright": "AraiMaia, semkagamez, Vordenburg, wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0 and CC-BY-SA-4.0"
+	  "license": "Custom"
     },
     {
       "name": "inhand-left",
       "directions": 4,
 	  "copyright": "AraiMaia, semkagamez, Vordenburg, wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0 and CC-BY-SA-4.0"
+	  "license": "Custom"
     },
     {
       "name": "inhand-right",
       "directions": 4,
 	  "copyright": "AraiMaia, semkagamez, Vordenburg, wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0 and CC-BY-SA-4.0"
+	  "license": "Custom"
     }
   ]
 }
