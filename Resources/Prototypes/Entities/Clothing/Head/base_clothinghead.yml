@@ -223,8 +223,8 @@
   - type: ItemTogglePointLight
   - type: PointLight
     enabled: false
-    radius: 6.5 # Starlight: up from 3
-    energy: 3 # Starlight: up from 2
+    radius: 6.5 # Starlight
+    energy: 3 # Starlight
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     netsync: false

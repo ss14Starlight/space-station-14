@@ -318,7 +318,7 @@
         - state: equipped-head-unshaded-avali
           shader: unshaded
   - type: PointLight
-    radius: 6
+    radius: 7.5
   - type: PressureProtection
     highPressureMultiplier: 0.72
     lowPressureMultiplier: 1000
@@ -396,7 +396,6 @@
     lowPressureMultiplier: 1000
   - type: PointLight
     radius: 9
-    energy: 3
   - type: Armor
     modifiers:
       coefficients:
@@ -477,8 +476,7 @@
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
   - type: PointLight
-    radius: 9
-    energy: 3
+    radius: 7
   - type: Tag
     tags:
       - CorgiWearable
