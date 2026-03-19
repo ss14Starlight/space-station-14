@@ -13,12 +13,14 @@ public sealed partial class DamnationActionDeductCredits : DamnationAction
 
     public override bool Action(Entity<DamnedComponent> victim)
     {
-        if (_playerRoles.GetPlayerData(victim) is not PlayerData playerData
+        /*if (_playerRoles.GetPlayerData(victim) is not PlayerData playerData
             || playerData.Balance < Amount
             || Amount <= 0) return false;
         
         playerData.Balance -= Amount;
-        return true;
+        return true;*/
+
+        return false;
     }
 
     public override void ResolveIoC()
