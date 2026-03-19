@@ -196,6 +196,8 @@
         - id: ClothingShoesColorBlack
         - id: ClothingShoesBootsWork
       - id: ClothingHandsGlovesFingerless
+      - id: ClothingBeltCargo
+        prob: 0.5
       - id: AppraisalTool
       - id: WeaponMeleeBoxcutter
       - id: HandheldGPSBasic
