@@ -213,7 +213,7 @@
       - state: on-equipped-HELMET-unshaded-avali
         shader: unshaded
   - type: PointLight
-    color: '#50ff50' # Starlight
+    color: '#50ff50'
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -262,8 +262,6 @@
     sprite: _Starlight/Clothing/Head/Hardsuits/experimental_security.rsi
   - type: PointLight
     color: "#ffeead"
-    radius: 7
-    energy: 3
   - type: Armor
     modifiers:
       coefficients:
@@ -276,7 +274,7 @@
 
 #Spationaut Lead Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSpatioLead
   name: spationaut lead hardsuit helmet
   description: A sturdy decorated helmet designed for complex industrial operations in space.
@@ -346,8 +344,6 @@
         - state: equipped-head-avali
         - state: equipped-head-unshaded-avali
           shader: unshaded
-  - type: PointLight
-    radius: 7.5
   - type: PressureProtection
     highPressureMultiplier: 0.72
     lowPressureMultiplier: 1000
@@ -631,8 +627,6 @@
         shader: unshaded
   - type: PointLight
     color: "#b4eb8f"
-    radius: 9
-    energy: 4
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
