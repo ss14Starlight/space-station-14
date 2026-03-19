@@ -175,7 +175,7 @@
         shader: unshaded
       # Starlight - End
   - type: PointLight
-    color: "#fdd568" # Starlight
+    color: "#fddc81" # Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.1
     lowPressureMultiplier: 1000
