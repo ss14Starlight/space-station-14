@@ -118,3 +118,20 @@
       rules: ghost-role-information-silicon-rules
       raffle:
         settings: default
+
+- type: entity
+  id: SpawnPointGhostFamiliarPlayerSpecies
+  name: ghost role spawn point
+  suffix: Friendship Familiar
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: ghost-role-information-familiar-player-name
+    description: ghost-role-information-familiar-player-description
+    rules: ghost-role-information-familiar-rules
+    mindRoles:
+    - MindRoleGhostRoleFamiliar
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: RandomHumanoidFriendshipFamiliar
