@@ -7,9 +7,9 @@
   description: Can hold a various amount of gear used by Cargo.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/cargoutility.rsi
+    sprite: _Starlight/Clothing/Belt/cargo_utility.rsi # Starlight
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/cargoutility.rsi
+    sprite: _Starlight/Clothing/Belt/cargo_utility.rsi # Starlight
   - type: Storage
     whitelist:
       tags:
