@@ -174,22 +174,6 @@
   - type: AccessReader
     access: [["Mining"]]
 
-# Mail Technician
-- type: entity
-  id: LockerMail
-  name: mail technician's locker
-  parent: LockerBaseSecure
-  components:
-    - type: Appearance
-    - type: Sprite
-      sprite: _Starlight/Structures/Storage/closet.rsi
-    - type: EntityStorageVisuals
-      stateBaseClosed: janitor
-      stateDoorOpen: janitor_open
-      stateDoorClosed: janitor_door
-    - type: AccessReader
-      access: [["Mail"]]
-
 # Cargo Technician
 - type: entity
   id: LockerCargo
@@ -200,11 +184,27 @@
     - type: Sprite
       sprite: _Starlight/Structures/Storage/closet.rsi
     - type: EntityStorageVisuals
-      stateBaseClosed: janitor
-      stateDoorOpen: janitor_open
-      stateDoorClosed: janitor_door
+      stateBaseClosed: cargo
+      stateDoorOpen: cargo_open
+      stateDoorClosed: cargo_door
     - type: AccessReader
       access: [["Cargo"]]
+
+# Mail Technician
+- type: entity
+  id: LockerMail
+  name: mail technician's locker
+  parent: LockerBaseSecure
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: mail
+      stateDoorOpen: mail_open
+      stateDoorClosed: mail_door
+    - type: AccessReader
+      access: [["Mail"]]
 
 # Janitor locker
 - type: entity
