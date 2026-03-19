@@ -112,8 +112,8 @@
         Heat: 0.90
         Radiation: 0.75
   - type: PointLight
-    color: "#00ffff"
     # Starlight: PointLight radius/energy parameters from parents
+    color: "#00ffff"
   - type: Tag
     tags:
     - CorgiWearable
