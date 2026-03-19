@@ -1,0 +1,50 @@
+- type: entity
+  name: construction bag
+  id: MatBag
+  parent: BaseStorageItem
+  description: A rough, dirty, heavy duty construction bag with a magnet messily welded onto its side, it can be placed inside your backpack or attached to the hip like a belt.
+  components:
+  - type: ItemToggle
+    onUse: false
+    onActivate: false
+    verbToggleOn: "Activate Magnet"
+    verbToggleOff: "Deactivate Magnet"
+    soundActivate:
+      collection: sparks
+      params:
+        variation: 0.250
+    soundDeactivate:
+      collection: sparks
+      params:
+        variation: 0.250
+  - type: AltUseToggle
+  - type: ComponentToggler
+    components: 
+    - type: MagnetPickup
+      requiresEquipping: false
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Engineering/mat_bag.rsi
+    state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Specific/Engineering/mat_bag.rsi
+    slots: belt
+  - type: Item
+    size: Large
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,5,3
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      tags:
+        - ConstructionMaterial
+        - CableCoil
+  - type: Dumpable
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: "magnet" }
+          False: { state: "icon" }

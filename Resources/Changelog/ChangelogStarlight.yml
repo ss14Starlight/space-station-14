@@ -34806,5 +34806,15 @@ Entries:
   id: 378901
   time: '2026-03-19T06:42:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3789
+- author: Hanzdegloker & Nyxilath
+  changes:
+  - message: The hairflower can now change color, bringing 13 new flower colors to
+      choose from!.
+    type: Tweak
+  - message: Removes the lily from loadout in favor of the color changing flower.
+    type: Remove
+  id: 379701
+  time: '2026-03-19T06:45:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3797
 Order: -1
 

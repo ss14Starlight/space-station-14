@@ -7,4 +7,7 @@
   id: GasTurbineStator
 
 - type: Tag
+  id: GrappleGun
+
+- type: Tag
   id: ReactorPart
