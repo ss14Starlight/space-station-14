@@ -175,7 +175,7 @@
         shader: unshaded
       # Starlight - End
   - type: PointLight
-    color: "#fcce4f" # Starlight
+    color: "#fdd568" # Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.1
     lowPressureMultiplier: 1000
@@ -400,8 +400,7 @@
       - state: equipped-head-dog
       - state: equipped-head-unshaded-dog
         shader: unshaded
-  - type: PointLight
-    radius: 6
+#  - type: PointLight # Starlight: Inherited from parents
   - type: PressureProtection
     highPressureMultiplier: 0.72
     lowPressureMultiplier: 1000
@@ -422,8 +421,8 @@
     sprite: Clothing/Head/Hardsuits/maxim.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/maxim.rsi
-  - type: PointLight # starlight
-    color: "#ffade8"
+  - type: PointLight # Starlight
+    color: "#ffc2ee" # Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -777,7 +776,7 @@
 
 #Syndicate Elite Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ] # Starlight: WithLightAdvanced
   id: ClothingHeadHelmetHardsuitSyndieElite
   name: syndicate elite helmet
   description: An elite version of the blood-red hardsuit's helmet, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
