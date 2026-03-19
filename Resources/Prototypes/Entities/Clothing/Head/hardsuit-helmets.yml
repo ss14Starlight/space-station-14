@@ -530,8 +530,8 @@
     sprite: Clothing/Head/Hardsuits/capspace.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/capspace.rsi
-  - type: PointLight # Starlight BEGIN
-    color: "#FCDF9C" # Starlight END
+  - type: PointLight # Starlight
+    color: "#FCDF9C" # Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -710,9 +710,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
-  - type: PointLight
-    #radius: 7
-    #energy: 3
+#  - type: PointLight # Starlight: Inherited from parents
 # Starlight
   - type: Tag
     tags:
@@ -732,7 +730,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/syndicate.rsi
   - type: PointLight
-    color: '#50ff50'
+    color: '#50ff50' # Starlight: Full color component, more white to identify colors easier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -760,7 +758,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/syndiemedic.rsi
   - type: PointLight
-    color: '#50ffa0'
+    color: '#50ffa0' # Starlight: Full color component, more white to identify colors easier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -789,7 +787,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/syndieelite.rsi
   - type: PointLight
-    color: '#ff5050' # Starlight
+    color: '#ff5050' # Starlight: Full color component, more white to identify colors easier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -822,7 +820,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
   - type: PointLight
-    color: '#50ff50' # Starlight
+    color: '#50ff50' # Starlight: Full color component, more white to identify colors easier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -961,8 +959,7 @@
         shader: unshaded
   - type: PointLight # Color matches visor colors, radius/energy same as mining hardsuit for the big captain.
     color: "#f3ea9c"
-#    radius: 7
-#    energy: 3
+    # Starlight: Inherit radius/energy parameters from parents
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
