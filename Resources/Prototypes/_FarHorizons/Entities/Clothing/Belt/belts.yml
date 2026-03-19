@@ -4,7 +4,7 @@
   parent: ClothingBeltStorageBase
   id: ClothingBeltCargo
   name: cargo utility belt # Starlight
-  description: Can hold with various cargo related things. # Starlight
+  description: Can hold various cargo related things. # Starlight
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Belt/cargo_utility.rsi # Starlight
