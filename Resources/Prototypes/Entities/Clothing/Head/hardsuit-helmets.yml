@@ -411,7 +411,7 @@
 
 #Maxim Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightFloodlight, ClothingHeadSuitWithLightBase ] # starlight, added lights
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ] # starlight, added lights
   id: ClothingHeadHelmetHardsuitMaxim
   categories: [ HideSpawnMenu ]
   name: salvager maxim helmet
@@ -474,7 +474,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/brigmedic.rsi
   - type: PointLight
-    color: "#00FFFF"
+    color: "#80FFFF" # Starlight
   - type: Armor
     modifiers:
       coefficients:
@@ -506,7 +506,7 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hardsuits/security-warden.rsi #Starlight
   - type: PointLight
-    color: "#ffeead"
+    color: "#ffffff" # Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
@@ -682,7 +682,7 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hardsuits/security-red.rsi #Starlight
   - type: PointLight
-    color: "#ffeead"
+    color: "#ffcccc" # Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
@@ -757,7 +757,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/syndiemedic.rsi
   - type: PointLight
-    color: '#50ffa0' # Starlight: Full color component, more white to identify colors easier
+    color: '#50ffb6' # Starlight: Full color component, more white to identify colors easier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
