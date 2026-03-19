@@ -3,8 +3,8 @@
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltCargo
-  name: Cargo Utility Belt
-  description: Can hold a various amount of gear used by Cargo.
+  name: cargo utility belt # Starlight
+  description: Can hold a various amount of gear used by Cargo. # Starlight
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Belt/cargo_utility.rsi # Starlight
