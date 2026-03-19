@@ -8,9 +8,6 @@
     },
     "states": [
         {
-            "name": "absorb_dna"
-        },
-        {
             "name": "anatomic_panacea"
         },
         {
@@ -95,9 +92,6 @@
         },
         {
             "name": "transform"
-        },
-        {
-            "name": "transform_cycle"
         }
     ]
 }

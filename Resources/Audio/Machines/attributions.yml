@@ -93,11 +93,6 @@
   copyright: "sukaton on freesound.org"
   source: "https://freesound.org/people/sukaton/sounds/60640/"
 
-- files: ["vaccinator_running.ogg"]
-  license: "CC0-1.0"
-  copyright: "Rutger Muller www.rutgermuller.nl"
-  source: "https://freesound.org/people/RutgerMuller/sounds/365413/"
-
 - files: ["vending_jingle.ogg"]
   license: "CC-BY-3.0"
   copyright: "hubismal on GitHub"
@@ -214,11 +209,6 @@
   license: "CC-BY-3.0"
   copyright: "Created by Tomlija, converted to OGG and modified by themias."
   source: "https://freesound.org/people/Tomlija/sounds/99565/"
-  
-- files: ["energyshield_up.ogg"]
-  license: "CC0-1.0"
-  copyright: "unfa on freesound.org"
-  source: "https://freesound.org/people/unfa/sounds/584173/"
 
 - files: ["energyshield_down.ogg"]
   license: "CC-BY-4.0"

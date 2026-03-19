@@ -2,11 +2,6 @@
   license: "CC-BY-ND-4.0"
   copyright: "Cosmonaut by Artifyber, for InanimateIJK & their associated projects."
   source: "https://soundcloud.com/r3dz3r/cosmonaut"
-  
-- files: ["chasing-cosmic-dreams.ogg"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "Created by Darkrell in Udio v1.5"
-  source: "https://github.com/ss14Starlight/space-station-14"
 
 - files: ["breacher.ogg"]
   license: "CC-BY-ND-4.0"
@@ -47,7 +42,7 @@
   license: "CC-BY-NC-SA-3.0"
   copyright: "melcom, https://modarchive.org/index.php?request=view_profile&query=68864"
   source: "https://modarchive.org/index.php?request=view_by_moduleid&query=176234"
-  
+
 - files: ["Unity.ogg"]
   license: "CC-BY-ND-4.0"
   copyright: "Unity by Artifyber, for InanimateIJK & their associated projects."
