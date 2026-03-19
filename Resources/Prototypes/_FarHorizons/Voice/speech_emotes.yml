@@ -1,0 +1,8 @@
+- type: emote
+  id: DeathgaspIPC
+  name: chat-emote-name-deathgasp
+  icon: Interface/Emotes/deathgasp.png
+  whitelist:
+    components:
+    - MobState
+  chatMessages: ["chat-emote-msg-deathgaspipc"]

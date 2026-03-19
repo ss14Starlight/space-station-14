@@ -11,6 +11,10 @@
   - !type:DepartmentTimeRequirement # Mainly to know that you can treat yourself. Also teaches you what your primary target as an II is.
     department: Medical
     time: 4h
+  - !type:SpeciesRequirement
+    species:
+    - IPC
+    inverted: true
   playTimeTracker: AntagInitialInfected # Starlight end
 
 - type: antag

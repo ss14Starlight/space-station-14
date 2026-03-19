@@ -1,0 +1,25 @@
+<Document>
+  # IPCs
+
+  <Box>
+    <GuideEntityEmbed Entity="MobIPC" Caption=""/>
+  </Box>
+
+  [color=#ffa500]Warning! This species is not recommended for new players due to major gameplay changes![/color]
+
+  IPC (Placeholder text)
+
+  ## Racial Features
+
+  - Receive [color=#8147ff]50% more shock damage[/color], [color=#FF3636]20% more blunt damage[/color] and [color=#B9BF93]30% less slash/piercing damage[/color].
+  - Deal [color=red]6[/color] blunt damage with your mighty fists of steel!
+  - You don't need to eat or drink, but you do need to stay charged. You can take power directly from APCs or sit in a borg recharger- both work.
+  - You're functionally immune to spacing, as temperature doesn't effect you and you don't need to breathe.. You will still overheat in a vaccum, though.
+  - Play music with your in-built MIDI synthesiser!
+  - Chemicals don't work on you, and your "doctor" is a roboticist. Welding heals physical injuries, cables fix electrical damage, glass fixes your eyes, plasma fixes radiation and Oil packs restore your "blood".
+  - EMPs are [color=red]lethal[/color] to you! Don't let yourself get hit, or you'll run out of power and require manual rebooting.
+  - Internal Headset! It has two slots. Choose wisely!
+
+  Helpful tip - You need to unlock your panel and then use a screwdriver to get access to your internals, this includes the comm keys! Once open, right click yourself and go to "Eject" - You'll then pull out the last key you put in.
+
+</Document>

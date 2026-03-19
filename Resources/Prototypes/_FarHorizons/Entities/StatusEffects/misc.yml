@@ -1,0 +1,9 @@
+# Flash right now uses old status effect system, yes, there are 2 running. This entity is for new one.
+# So I need to create an entity, a component, a system that listens for events on this component and adds old status effect to target.
+# What the fuck?
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectBlinded
+  name: blinded
+  components:
+    - type: BlindnessStatusEffect

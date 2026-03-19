@@ -114,6 +114,26 @@
     - ConstructionMaterial
     - SheetPlasma # Funky atmos - /tg/ gases # Starlight Edit: PlasmaSheet -> SheetPlasma
     - TiderAnvilParts # Starlight
+  - type: ConditionalHealing
+    healingDefinitions:
+      - allowedTags: [IPC]
+        healing:
+          damageContainers:
+            - Biological
+          delay: 2
+          damage:
+            groups:
+              Toxin: -20 # 10 each
+          healingBeginSound:
+            path: "/Audio/Items/Medical/ointment_begin.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+          healingEndSound:
+            path: "/Audio/Items/Medical/ointment_end.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
 
 - type: entity
   parent: SheetPlasma

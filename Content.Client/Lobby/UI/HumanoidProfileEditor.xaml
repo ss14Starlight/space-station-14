@@ -92,6 +92,13 @@
                                     ToolTip="{Loc 'humanoid-profile-editor-guidebook-button-tooltip'}" />
                                 <OptionButton Name="SpeciesButton" HorizontalAlignment="Right" />
                             </BoxContainer>
+                            <!-- Far Horizons - subspecies -->
+                                <BoxContainer Name="CSubspecies" HorizontalExpand="True">
+                                    <Label Text="{Loc 'humanoid-profile-editor-subspecies-label'}" />
+                                    <Control HorizontalExpand="True"/>
+                                    <OptionButton Name="SubspeciesButton" HorizontalAlignment="Right" />
+                                </BoxContainer>
+                                <!-- Far Horizons end -->
                             <!--  Species // Starlight  -->
                             <BoxContainer Name="CCustomSpecieName" HorizontalExpand="True">
                                 <Label Text="{Loc 'humanoid-profile-editor-customspeciename-label'}" />
@@ -153,6 +160,12 @@
                             </BoxContainer>
                             <!--  Starlight End  -->
                         </BoxContainer>
+                        <!--Far Horizons species loadouts-->
+                                <BoxContainer HorizontalExpand="True" Name="CSpeciesLoadout">
+                                    <Label Text="{Loc 'humanoid-profile-editor-species-loadout'}" />
+                                    <Control HorizontalExpand="True"/>
+                                    <Button Name="SpeciesLoadout" Text="{Loc 'loadout-window'}" HorizontalAlignment="Right" />
+                                </BoxContainer>
                         <!--  STARLIGHT - Species Size  -->
                         <BoxContainer
                             Margin="10"

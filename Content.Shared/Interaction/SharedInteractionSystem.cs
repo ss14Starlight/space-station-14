@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._FarHorizons.Util;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
@@ -555,6 +556,12 @@ namespace Content.Shared.Interaction
             if (IsDeleted(user) || IsDeleted(used) || IsDeleted(target))
                 return;
 
+            // Far Horizons, whitelist/blacklists for usable items
+            var ev = new CheckItemCanBeUsedEvent(user, target);
+            RaiseLocalEvent(used, ev, true);
+            if (ev.Cancelled)
+                return;
+
             if (target != null)
             {
                 _adminLogger.Add(
@@ -1054,6 +1061,12 @@ namespace Content.Shared.Interaction
                 return false;
 
             if (checkCanUse && !_actionBlockerSystem.CanUseHeldEntity(user, used))
+                return false;
+
+            // Far Horizons, whitelist/blacklists for usable items
+            var ev = new CheckItemCanBeUsedEvent(user, target);
+            RaiseLocalEvent(used, ev, true);
+            if (ev.Cancelled)
                 return false;
 
             _adminLogger.Add(

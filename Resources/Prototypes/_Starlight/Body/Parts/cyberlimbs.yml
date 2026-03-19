@@ -34,6 +34,14 @@
         left hand: LeftHandCyber
     - type: RoundstartImplantable
       cost: 1
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: RightArmCyber
@@ -55,6 +63,14 @@
         right hand: RightHandCyber
     - type: RoundstartImplantable
       cost: 1
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: LeftHandCyber
@@ -73,6 +89,14 @@
       state: "l_hand"
     - type: RoundstartImplantable
       cost: 1
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 5
 
 - type: entity
   id: RightHandCyber
@@ -91,6 +115,14 @@
       state: "r_hand"
     - type: RoundstartImplantable
       cost: 1
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 5
 
 - type: entity
   id: LeftLegCyber
@@ -115,6 +147,16 @@
         left foot: LeftFootCyber
     - type: RoundstartImplantable
       cost: 2
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        knockdownAmount: 1.0
+        slowdownAmount: 1.0
+        walkSpeedModifier: 0.6
+        sprintSpeedModifier: 0.6
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: RightLegCyber
@@ -139,6 +181,16 @@
         right foot: RightFootCyber
     - type: RoundstartImplantable
       cost: 2
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        knockdownAmount: 1.0
+        slowdownAmount: 1.0
+        walkSpeedModifier: 0.6
+        sprintSpeedModifier: 0.6
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: LeftFootCyber
@@ -157,6 +209,16 @@
       state: "l_foot"
     - type: RoundstartImplantable
       cost: 1
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        knockdownAmount: 0.5
+        slowdownAmount: 0.5
+        walkSpeedModifier: 0.8
+        sprintSpeedModifier: 0.8
+        damageAmount:
+          types:
+            Shock: 5
 
 - type: entity
   id: RightFootCyber
@@ -175,6 +237,16 @@
       state: "r_foot"
     - type: RoundstartImplantable
       cost: 1
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        knockdownAmount: 0.5
+        slowdownAmount: 0.5
+        walkSpeedModifier: 0.8
+        sprintSpeedModifier: 0.8
+        damageAmount:
+          types:
+            Shock: 5
 
 # Speed legs
 - type: entity
@@ -287,6 +359,14 @@
       handWhitelist:
         tags:
           - CyberHandItem
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: RightArmCyberReaper
@@ -307,6 +387,14 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyberReaper
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: RightHandCyberReaper
@@ -366,6 +454,14 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyberMechwright
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: LeftHandCyberMechwright
@@ -421,6 +517,14 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyberMechwright
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: RightHandCyberMechwright
@@ -585,6 +689,14 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyberBulwark
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: LeftHandCyberBulwark
@@ -635,6 +747,14 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyberBulwark
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: RightHandCyberBulwark
@@ -686,6 +806,14 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyberMantisBlade
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: LeftHandCyberMantisBlade
@@ -735,6 +863,14 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyberMantisBlade
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 15
         
 - type: entity
   id: RightHandCyberMantisBlade
@@ -789,6 +925,14 @@
     - type: Construction
       graph: RipperLeftGraph
       node: left
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: LeftHandCyberRipper
@@ -851,6 +995,14 @@
     - type: Construction
       graph: RipperRightGraph
       node: right
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: RightHandCyberRipper
