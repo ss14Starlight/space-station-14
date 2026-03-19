@@ -40,7 +40,8 @@
         - UtilityKnife # Starlight start
         - Document # Relevant cargo gear
         - Folder
-        - Write # Starlight end
+        - Write
+        - Stamp # Starlight end
       components:
         - StationMap
 #        - SprayPainter # Starlight start
