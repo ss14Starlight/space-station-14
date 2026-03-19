@@ -57,8 +57,8 @@ public sealed partial class DevilSystem : SharedDevilSystem
         // here we check if we are going to banish with this message
         if(!devilComp.BeingBanished) return;
         if(HasComp<DevilComponent>(args.Source) || HasComp<DamnedComponent>(args.Source)) return;
-        if(!args.Message.Contains(devilComp.TrueName, StringComparison.InvariantCultureIgnoreCase)) return;
-        if(!MessageContainsBanish(args.Message)) return;
+        if(!args.OriginalMessage.Contains(devilComp.TrueName, StringComparison.InvariantCultureIgnoreCase)) return;
+        if(!MessageContainsBanish(args.OriginalMessage)) return;
 
         // ok so we are trying to stop them, can we?
         if(devilComp.LastBanishedList.TryGetValue(args.Source, out var last) && (last + devilComp.BanishCooldown) > _time.CurTime) return;
