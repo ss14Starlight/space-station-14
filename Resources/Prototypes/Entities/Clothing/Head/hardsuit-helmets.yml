@@ -729,7 +729,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/syndicate.rsi
   - type: PointLight
-    color: '#50ff50' # Starlight: Full color component, more white to identify colors easier
+    color: "#50ff50" # Starlight: Full color component, more white to identify colors easier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -757,7 +757,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/syndiemedic.rsi
   - type: PointLight
-    color: '#50ffb6' # Starlight: Full color component, more white to identify colors easier
+    color: "#50ffb6" # Starlight: Full color component, more white to identify colors easier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -786,7 +786,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/syndieelite.rsi
   - type: PointLight
-    color: '#ff5050' # Starlight: Full color component, more white to identify colors easier
+    color: "#ff5050" # Starlight: Full color component, more white to identify colors easier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -819,7 +819,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
   - type: PointLight
-    color: '#50ff50' # Starlight: Full color component, more white to identify colors easier
+    color: "#50ff50" # Starlight: Full color component, more white to identify colors easier
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
