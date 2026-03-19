@@ -199,6 +199,15 @@
       - id: AppraisalTool
       - id: WeaponMeleeBoxcutter
       - id: HandheldGPSBasic
+      - !type:GroupSelector
+        children: 
+        - id: BoxFolderRedCargo
+        - id: BoxFolderBlueCargo
+        - id: BoxFolderYellowCargo
+        - id: BoxFolderGreyCargo
+        - id: BoxFolderBlackCargo
+        - id: BoxFolderGreenCargo
+        - id: BoxFolderWhiteCargo
       - !type:AllSelector
         children:
         - id: BoxCardboard
