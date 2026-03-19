@@ -12,6 +12,7 @@
   extendedAccess:
   - Salvage
   - Mining # Starlight
+  - Mail # Starlight
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: BoxingDay

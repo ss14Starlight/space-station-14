@@ -10,6 +10,9 @@
   - Cargo
   - Mail
   - Maintenance
+  extendedAccess:
+  - Salvage
+  - Mining
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: BoxingDay
