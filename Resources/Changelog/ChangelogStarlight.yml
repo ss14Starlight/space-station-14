@@ -34816,5 +34816,68 @@ Entries:
   id: 379701
   time: '2026-03-19T06:45:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3797
+- author: Roro, sprites by Abby
+  changes:
+  - message: Ports muh Construction bag for Engineering, holds materials, cables,
+      inflatable walls, tiles and magnetises any aforementioned item whether its attached
+      to your belt or in your bag, you can find it in your locker roundstart as well
+      as in vendor.
+    type: Add
+  - message: All Engineering lockers start with mats respective to their job now,
+      Engis and CE get a stack of steel and glass while Atmos gets 2 stacks of steel.
+    type: Tweak
+  - message: Added grappling hooks to engineer lockers and vendor, also fits in belt.
+    type: Tweak
+  - message: All Engineering PDA's have Astronav installed now (GPS).
+    type: Tweak
+  id: 378801
+  time: '2026-03-19T06:54:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3788
+- author: Way & Cvlancer
+  changes:
+  - message: (Ming) Added new department communications consoles. - Cvlancer.
+    type: Add
+  - message: (Sepultum) Added new department communications consoles. - Cvlancer.
+    type: Add
+  - message: (Orwell) Added new department communications consoles. - Way.
+    type: Add
+  - message: (Lobster) Added new department communications consoles. - Way.
+    type: Add
+  - message: (Lagan) Added new department communications consoles. - Way.
+    type: Add
+  - message: (Lagan) Moved the Exofabs inside Robotics to hopefully prevent objects
+      from getting stuck. - Way.
+    type: Fix
+  - message: (Ming & Sepultum) Added botany tools, changed AI cores around. -Cvlancer.
+    type: Tweak
+  id: 378501
+  time: '2026-03-19T07:00:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3785
+- author: Conflee
+  changes:
+  - message: Added Dept Comms Consoles to Box, Cog, Fland, Kiloton, and Spacemall,
+      and ensured these 5 have both Performer spawn points and job slots since some
+      were missing one or both.
+    type: Tweak
+  id: 378401
+  time: '2026-03-19T07:03:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3784
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Added the DYNMARE, SCYLLIA, AK570, DRAVON to the naval war aresneal.
+    type: Add
+  - message: Changed plastitium and shuttle walls to be stronger.
+    type: Tweak
+  id: 373801
+  time: '2026-03-19T07:07:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3738
+- author: CaptainFothel
+  changes:
+  - message: Informed the cameras that languages exist so they will no longer automatically
+      translate all speech into universal.
+    type: Fix
+  id: 379601
+  time: '2026-03-19T07:11:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3796
 Order: -1
 
