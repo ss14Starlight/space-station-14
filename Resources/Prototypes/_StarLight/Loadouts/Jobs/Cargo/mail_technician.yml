@@ -120,7 +120,8 @@
 - type: loadout
   id: MailTrolleyFlatpack
   storage:
-    back: MailTrolleyFlatpack
+    back:
+    - MailTrolleyFlatpack
 
 - type: loadout
   id: GoldenMailTrolleyFlatpack
@@ -128,4 +129,5 @@
   - !type:GroupLoadoutEffect
     proto: StarOfMail
   storage:
-    back: GoldenMailTrolleyFlatpack
+    back:
+    - GoldenMailTrolleyFlatpack

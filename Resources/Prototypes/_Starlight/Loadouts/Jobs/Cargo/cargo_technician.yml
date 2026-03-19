@@ -102,7 +102,8 @@
 - type: loadout
   id: AppraisalTool
   storage:
-    belt: AppraisalTool
+    belt:
+    - AppraisalTool
 
 - type: loadout
   id: GoldenAppraisalTool
@@ -110,4 +111,5 @@
   - !type:GroupLoadoutEffect
     proto: StarOfCargo
   storage:
-    belt: GoldenAppraisalTool
+    belt:
+    - GoldenAppraisalTool
