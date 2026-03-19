@@ -86,10 +86,10 @@
   description: uplink-energycrossbow-desc
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 2 # Starlight-edit: 3 -> 2
   productEntity: WeaponEnergyCrossbow
   cost:
-    Telecrystal: 5
+    Telecrystal: 3 # Starlight-edit: 5 -> 3
   categories:
   - UplinkWeaponry
   conditions:
@@ -129,11 +129,8 @@
   description: uplink-gloves-knuckleduster-desc
   icon: { sprite: Clothing/Hands/Gloves/KnuckleDusters/syndicateknuckleduster.rsi, state: syndicateknuckleduster }
   productEntity: ClothingHandsKnuckleDustersSyndicate
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 3
   cost:
-    Telecrystal: 6
+    Telecrystal: 1 # Starlight-edit: 6 -> 1
   categories:
   - UplinkWeaponry
 
@@ -196,9 +193,9 @@
   productEntity: FireAxeFlaming
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 10
+    Telecrystal: 4 # Starlight-edit: 10 -> 4
   cost:
-    Telecrystal: 15
+    Telecrystal: 6 # Starlight-edit: 15 -> 6
   categories:
   - UplinkWeaponry
 
@@ -238,9 +235,9 @@
   productEntity: ClothingBackpackDuffelSyndicateFilledRifle
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 11
+    Telecrystal: 9 # Starlight-edit: 11 -> 9
   cost:
-    Telecrystal: 18
+    Telecrystal: 16 # Starlight-edit: 18 -> 16
   categories:
   - UplinkWeaponry
 
@@ -266,9 +263,9 @@
   productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 24
+    Telecrystal: 20 # Starlight-edit: 24 -> 20
   cost:
-    Telecrystal: 30
+    Telecrystal: 26 # Starlight-edit: 30 -> 26
   categories:
   - UplinkWeaponry
 
@@ -677,6 +674,7 @@
       blacklist:
         components:
           - SurplusBundle
+
 
 #Chemicals
 
@@ -2380,11 +2378,8 @@
   description: uplink-cane-blade-desc
   icon: { sprite:  Objects/Weapons/Melee/cane.rsi, state: cane}
   productEntity: CaneSheathFilled
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 2
   cost:
-    Telecrystal: 3
+    Telecrystal: 1 # Starlight-edit: 3 -> 1
   categories:
   - UplinkJob
   conditions:

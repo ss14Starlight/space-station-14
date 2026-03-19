@@ -1,49 +1,17 @@
-using Content.Server.Administration.Logs;
+using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.EUI;
-using Content.Server.GameTicking;
-using Content.Server.Ghost.Roles.Components;
-using Content.Server.Ghost.Roles.Events;
-using Content.Server.Ghost.Roles.UI;
-using Content.Server.Mind.Commands;
-using Content.Server.Popups;
-using Content.Server.RoundEnd;
+using Content.Shared._Starlight.GhostTheme;
 using Content.Shared.Administration;
-using Content.Shared.CCVar;
-using Content.Shared.Database;
-using Content.Shared.Follower;
-using Content.Shared.GameTicking;
-using Content.Shared.Ghost.Roles.Components;
-using Content.Shared.Ghost.Roles.Raffles;
-using Content.Shared.Ghost.Roles;
 using Content.Shared.Ghost;
-using Content.Shared.Mind.Components;
-using Content.Shared.Mind;
-using Content.Shared.Mobs;
-using Content.Shared.Players;
-using Content.Shared.Roles;
-using Content.Shared.Starlight.GhostTheme;
 using Content.Shared.Starlight;
-using Content.Shared.Verbs;
-using Content.Shared.Weapons.Ranged.Systems;
-using Content.Shared._NullLink;
 using JetBrains.Annotations;
-using Robust.Server.GameObjects;
 using Robust.Server.Player;
-using Robust.Shared.Collections;
-using Robust.Shared.Configuration;
 using Robust.Shared.Console;
-using Robust.Shared.Enums;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
-using System.Linq;
 
-namespace Content.Server.Ghost.Roles;
+namespace Content.Server._Starlight.GhostTheme;
 
 [UsedImplicitly]
 public sealed class GhostThemeSystem : EntitySystem
@@ -61,10 +29,6 @@ public sealed class GhostThemeSystem : EntitySystem
     }
 
     private readonly Dictionary<ICommonSession, GhostThemeEui> _openUis = [];
-    public override void Shutdown()
-    {
-        base.Shutdown();
-    }
 
     public void OpenEui(ICommonSession session)
     {
@@ -78,7 +42,7 @@ public sealed class GhostThemeSystem : EntitySystem
         HashSet<string> availableThemes = [];
 
         foreach (var ghostTheme in _prototypeManager.EnumeratePrototypes<GhostThemePrototype>())
-            if(ghostTheme.Requirements.Count == 0 || ghostTheme.Requirements.All(x => x.Handle(session)))
+            if (ghostTheme.Requirements.Count == 0 || ghostTheme.Requirements.All(x => x.Handle(session)))
                 availableThemes.Add(ghostTheme.ID);
 
         var eui = _openUis[session] = new GhostThemeEui(availableThemes);
@@ -86,6 +50,7 @@ public sealed class GhostThemeSystem : EntitySystem
         _euiManager.OpenEui(eui, session);
         eui.StateDirty();
     }
+    
     public void CloseEui(ICommonSession session)
     {
         if (!_openUis.ContainsKey(session))
@@ -95,6 +60,7 @@ public sealed class GhostThemeSystem : EntitySystem
 
         eui?.Close();
     }
+    
     public void ChangeColor(ICommonSession session, Color color)
     {
         if (session.AttachedEntity is not { Valid: true } attached ||
@@ -113,13 +79,14 @@ public sealed class GhostThemeSystem : EntitySystem
 
         _appearance.SetData(attached, GhostThemeVisualLayers.Color, color);
     }
+    
     public void ChangeTheme(ICommonSession session, string theme)
     {
         if (session.AttachedEntity is not { Valid: true } attached ||
             !EntityManager.TryGetComponent<GhostThemeComponent>(attached, out var themes))
             return;
 
-        if(!_prototypeManager.TryIndex<GhostThemePrototype>(theme, out var proto))
+        if (!_prototypeManager.TryIndex<GhostThemePrototype>(theme, out var proto))
             return;
 
         if (proto.Requirements.Count != 0 && proto.Requirements.Any(x => !x.Handle(session)))
@@ -134,6 +101,7 @@ public sealed class GhostThemeSystem : EntitySystem
 
         _appearance.SetData(attached, GhostThemeVisualLayers.Base, theme);
     }
+    
     public void UpdateAllEui()
     {
         foreach (var eui in _openUis.Values)
@@ -142,10 +110,6 @@ public sealed class GhostThemeSystem : EntitySystem
         }
     }
 
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-    }
     private void OnPlayerAttached(EntityUid uid, GhostComponent component, PlayerAttachedEvent args)
     {
         var theme = EnsureComp<GhostThemeComponent>(uid);

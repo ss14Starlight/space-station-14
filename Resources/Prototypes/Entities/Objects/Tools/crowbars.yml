@@ -29,9 +29,9 @@
       Steel: 100
   - type: StaticPrice
     price: 22
-  - type: Prying
-    useSoundOnDoafter: /Audio/Machines/airlock_creaking.ogg
-    playSoundOnDoafter: true
+  - type: Prying 
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
+    playSoundOnDoafter: true #SL
   - type: Sprite
     sprite: Objects/Tools/crowbar.rsi
   - type: Clothing

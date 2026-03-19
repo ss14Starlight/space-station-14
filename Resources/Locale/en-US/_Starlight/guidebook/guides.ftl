@@ -78,6 +78,8 @@ guide-entry-sl-security-sop-parole = Parole
 guide-entry-sl-security-sop-permitacquisition = Permit Acquisiton
 guide-entry-sl-security-sop-specialsituations = Special Situations
 
+guide-entry-rules-changeling-clause = Changeling Clause
+
 guide-entry-sl-legal-sop-intro = Legal
 
 guide-entry-sl-engineering-sop-intro = Engineering
@@ -144,6 +146,8 @@ guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
 
 guide-entry-abductors = Abductors
 guide-entry-terror-spiders = Terror Spiders
+
+guide-entry-sl-deepfried-recipes = Deep Fried
 
 # Plumbing guides
 guide-entry-plumbing = Plumbing

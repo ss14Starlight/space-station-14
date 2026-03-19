@@ -1,0 +1,17 @@
+- type: alert
+  id: ShoelacesUntied
+  clickEvent: !type:RemoveTiedShoelacesAlertEvent
+  icons:
+  - sprite: /Textures/Interface/Alerts/ensnared.rsi
+    state: ensnared
+  name: alerts-shoelaces-untied-name
+  description: alerts-shoelaces-untied-desc
+
+- type: alert
+  id: ShoelacesTiedTogether
+  clickEvent: !type:RemoveTiedShoelacesAlertEvent
+  icons:
+  - sprite: /Textures/Interface/Alerts/ensnared.rsi
+    state: ensnared
+  name: alerts-shoelaces-tied-name
+  description: alerts-shoelaces-tied-desc

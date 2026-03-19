@@ -12,6 +12,7 @@
     - CanPilot
     - BypassInteractionRangeChecks
     - BypassDropChecks
+    - BypassUserTagChecks # Starlight-edit
     - NoConsoleSound
     - SilentStorageUser
     - PreventAccessLogging
@@ -47,6 +48,7 @@
     - NuclearOperative
     - SyndicateAgent
     - CentralCommand
+    - Solgov # SL
   - type: UserInterface
     interfaces:
       enum.SolarControlConsoleUiKey.Key:

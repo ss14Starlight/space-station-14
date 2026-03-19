@@ -14,7 +14,7 @@
       time: 7h # Starlight
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 30h # Starlight
+      time: 20h # Starlight
   weight: 10
   startingGear: CMOGear
   icon: "JobIconChiefMedicalOfficer"

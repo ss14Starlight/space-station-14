@@ -17,7 +17,7 @@
 
 	Flow Rate is usually set to allow maximum flow through the Reactor core, which can be found by the following equation: 
     <Box>
-        [color=#a4885c]100 * number of gas channels + 200[/color]
+        [italic][protodata="SteelReactorGasChannel" comp="ReactorPart" member="GasVolume"/] * number of gas channels + [protodata="NuclearReactorNormal" comp="NuclearReactor" member="ReactorVesselGasVolume"/] L/s[/italic]
     </Box>
 
 	### Stator Load
@@ -49,7 +49,7 @@
 	### Overtemp
 	The gas going into the Turbine is too hot.
 
-	If the gas coming into the Turbine is hotter than 2726C (3000k), it will trigger an emergency purge valve and dump the gas into the room.
+	If the gas coming into the Turbine is hotter than [color=orange][protodata="GasTurbineNormal" comp="GasTurbine" member="MaxTemp"/]k[/color], it will trigger an emergency purge valve and dump the gas into the room.
 
 	This hot gas can cause serious burns to personnel or even a fire, if the gas is flammable.
 
@@ -61,7 +61,7 @@
 	### Undertemp
 	The gas going into the Turbine is too cold.
 
-	If the gas is at or below room temperature (20C), there is no energy for the Turbine to take out of it.
+	If the gas is at or below [color=orange][protodata="GasTurbineNormal" comp="GasTurbine" member="MinTemp"/]k[/color], there is no energy for the Turbine to take out of it.
 
 	## Turbine Parts
 	<Box>

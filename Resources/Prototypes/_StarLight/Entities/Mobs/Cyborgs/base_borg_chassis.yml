@@ -1,0 +1,103 @@
+﻿# Derelict
+
+- type: entity
+  parent: BaseBorgChassis
+  id: BaseXenoborgChassisDerelict
+  name: xenoborg
+  description: A man-machine hybrid that aims to replicate itself. This one has seen better days.
+  abstract: true
+  components:
+  - type: RandomMetadata
+    nameSegments:
+     - NamesXenoborg
+  - type: StartIonStormed
+    ionStormAmount: 4
+  - type: IonStormTarget
+    chance: 1
+  #- type: ShowJobIcons
+  - type: Sprite
+    sprite: Mobs/Silicon/Chassis/generic.rsi
+  - type: MobThresholds
+    thresholds: # slightly tankier than a normal borg
+      0: Alive
+      125: Critical
+      375: Dead
+  - type: SiliconLawProvider
+    laws: XenoborgLawset
+  - type: EmagSiliconLaw # should xenoborgs be emagable?
+    stunTime: 5
+  - type: IntrinsicRadioTransmitter # can only use binary and xenoborg channel
+    channels:
+      - Xenoborg
+      - Binary # the derelicts CAN have nice things :)
+  - type: ActiveRadio # but can hear the mothership channel
+    channels:
+      - Mothership
+      - Xenoborg
+      - Binary
+  - type: BorgChassis
+    maxModules: 3
+    hasMindState: robot_e
+    noMindState: robot_e_r
+    moduleWhitelist:
+      tags:
+        - XenoborgModuleGeneric
+  - type: TypingIndicator
+    proto: xenoborg
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Xenoborg
+    allowedEmotes:
+      - Laugh
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconXenoborg
+    wilhelmProbability: 0
+  - type: DamagedSiliconAccent
+  - type: UnblockableSpeech
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepXenoborg
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 90
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              path: /Audio/Machines/warning_buzzer_xenoborg.ogg
+              params:
+                volume: 5
+      - trigger:
+          !type:DamageTrigger
+          damage: 375
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalBreak
+          - !type:EmptyContainersBehaviour
+            containers:
+              - borg_brain
+              - borg_module
+              - cell_slot
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+  - type: PointLight
+    color: "#3010ff"
+    energy: 7
+  - type: GuideHelp
+    guides:
+      - Cyborgs
+      - Robotics
+  - type: Access
+    tags:
+      - Xenoborg
+  - type: AccessReader
+    access: [ [ "Xenoborg" ] ]
+  - type: ShowJobIcons # not sure if it is needed
+  - type: InteractionPopup
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: BypassLock
+    bypassDelay: 15 # We don't want people to easily be able to remove xenoborg brains.

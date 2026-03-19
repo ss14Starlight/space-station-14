@@ -1,0 +1,77 @@
+- type: entity
+  id: BaseTicketMachine
+  parent: [ BaseWallmountMachine ]
+  abstract: true
+  components:
+  - type: TicketMachine
+  - type: WallMount
+  - type: Appearance
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Transform
+    anchored: true
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+      - TicketMachineNextNumber
+      - TicketMachineBurnTickets
+  - type: ContainerContainer
+    containers:
+      TicketMachinePaper: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      TicketMachinePaper:
+        whitelist:
+          tags:
+          - LabellerRefillPaper
+
+- type: entity
+  id: TicketMachine
+  parent: BaseTicketMachine
+  name: ticket machine
+  description: It prints out numbered tickets for queue management.
+  suffix: No Access, Empty
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/ticket_machine.rsi
+    layers:
+    - state: base
+    - state: paper_3
+      map: [ "enum.TicketMachineVisualLayers.Paper" ]
+    - map: [ "enum.TicketMachineVisualLayers.Display1" ]
+    - map: [ "enum.TicketMachineVisualLayers.Display2" ]
+      offset: -0.15, 0
+    - map: [ "enum.TicketMachineVisualLayers.Display3" ]
+      offset: -0.3, 0
+
+- type: entity
+  id: TicketMachineFilled
+  parent: TicketMachine
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      TicketMachinePaper:
+        - LabellerRefillPaper
+
+- type: entity
+  id: TicketMachineHOP
+  parent: TicketMachineFilled
+  suffix: HOP, Filled
+  components:
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]

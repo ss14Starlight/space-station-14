@@ -1,0 +1,175 @@
+- type: entity
+  parent: [BaseComputerCircuitboard, BaseGrandTheftContraband]
+  id: RecruitmentComputerCircuitboard
+  name: recruitment computer computer board
+  description: A computer printed circuit board for an recruitment computer.
+  components:
+    - type: Sprite
+      state: cpu_command
+    - type: ComputerBoard
+      prototype: RecruitmentComputer
+    - type: StaticPrice
+      price: 750
+    - type: Tag
+      tags:
+      - HighRiskItem
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: SalvageShuttleConsoleCircuitboard
+  name: salvage shuttle console board
+  description: A computer printed circuit board for a salvage shuttle console.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: CompuerShuttleSalvage
+  - type: StealTarget
+    stealGroup: SalvageShuttleConsoleCircuitboard
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: MassDriverComputerCircuitboard
+  name: mass driver computer board
+  description: A computer printed circuit board for an mass driver computer.
+  components:
+    - type: Sprite
+      state: net_wired
+    - type: ComputerBoard
+      prototype: MassDriverComputer
+    - type: StaticPrice
+      price: 200
+
+- type: entity
+  parent: [BaseComputerCircuitboard, BaseCommandContraband]
+  id: UniversalIdConsoleCircuitboard
+  name: Universal ID console board
+  description: A circuit board for a Universal ID console.
+  components:
+    - type: Sprite
+      state: cpu_command
+    - type: ComputerBoard
+      prototype: UniversalIdConsole
+    - type: StaticPrice
+      price: 750
+    - type: Tag
+      tags:
+      - HighRiskItem
+    
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: MiningShuttleConsoleCircuitboard
+  name: mining shuttle console board
+  description: A computer printed circuit board for a mining shuttle console.
+  components:
+    - type: Sprite
+      state: cpu_supply
+    - type: ComputerBoard
+      prototype: ComputerShuttleMining
+    - type: StealTarget
+      stealGroup: MiningShuttleConsoleCircuitboard
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: SecurityShuttleConsoleCircuitboard
+  name: security shuttle console board
+  description: A computer printed circuit board for a security shuttle console.
+  components:
+    - type: Sprite
+      state: cpu_supply
+    - type: ComputerBoard
+      prototype: ComputerShuttleSecurity
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: XenobiologyConsoleCircuitboard
+  name: xenobiology console board
+  description: A computer printed circuit board for a xenobiology console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: XenobiologyConsole
+
+
+## Departmental Communications Consoles BEGIN
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: EngineeringCommsComputerCircuitboard
+  name: engineering communications console board
+  description: A computer printed circuit board for a engineering communications console.
+  components:
+    - type: Sprite
+      state: cpu_engineering
+    - type: ComputerBoard
+      prototype: ComputerCommsEngineering
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: MedicalCommsComputerCircuitboard
+  name: medical communications console board
+  description: A computer printed circuit board for a medical communications console.
+  components:
+    - type: Sprite
+      state: cpu_medical
+    - type: ComputerBoard
+      prototype: ComputerCommsMedical
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: ScienceCommsComputerCircuitboard
+  name: science communications console board
+  description: A computer printed circuit board for a science communications console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerCommsScience
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: SecurityCommsComputerCircuitboard
+  name: security communications console board
+  description: A computer printed circuit board for a security communications console.
+  components:
+    - type: Sprite
+      state: cpu_security
+    - type: ComputerBoard
+      prototype: ComputerCommsSecurity
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: ServiceCommsComputerCircuitboard
+  name: service communications console board
+  description: A computer printed circuit board for a service communications console.
+  components:
+    - type: Sprite
+      state: cpu_service
+    - type: ComputerBoard
+      prototype: ComputerCommsService
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: CargoCommsComputerCircuitboard
+  name: cargo communications console board
+  description: A computer printed circuit board for a cargo communications console.
+  components:
+    - type: Sprite
+      state: cpu_supply
+    - type: ComputerBoard
+      prototype: ComputerCommsCargo
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: LawCommsComputerCircuitboard
+  name: law communications console board
+  description: A computer printed circuit board for a law communications console.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/module.rsi
+      state: cpu_law
+    - type: ComputerBoard
+      prototype: ComputerCommsLaw
+
+## Departmental Communications Consoles END

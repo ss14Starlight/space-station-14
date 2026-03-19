@@ -1,0 +1,18 @@
+- type: entity
+  name: tape recorder box
+  parent: BoxCardboard
+  id: BoxTapeRecorder
+  description: A box with colorful cassette tapes and a tape recorder.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CassetteTape
+          amount: 4
+        - id: TapeRecorder
+  - type: Sprite
+    layers:
+      - state: box_security
+      - sprite: _Starlight/Objects/Storage/boxes.rsi
+        state: recorder

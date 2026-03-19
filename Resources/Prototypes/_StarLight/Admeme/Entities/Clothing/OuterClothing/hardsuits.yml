@@ -1,0 +1,30 @@
+#CCNT Consortium BSOs
+- type: entity
+  parent: [BaseCentcommContraband, ClothingOuterHardsuitSyndieElite] #sl Change
+  id: ClothingOuterHardsuitNTNCConsortium
+  name: nanotrasen navy marine hardsuit
+  description: A protective hardsuit worn by NanoTrasen Navy Marines.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitNTNCConsortium
+
+- type: entity
+  parent: [BaseCentcommContraband, ClothingOuterHardsuitSyndieMedic] #sl Change
+  id: ClothingOuterHardsuitNTNCConsortiumMedic
+  name: nanotrasen navy marine medic hardsuit
+  description: A protective hardsuit worn by NanoTrasen Navy Marine medical personnel.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/ntnc_med_hardsuit.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/ntnc_med_hardsuit.rsi
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitNTNCConsortiumMedic
+    - type: Tag
+      tags:
+        - Hardsuit
+        - WhitelistChameleon

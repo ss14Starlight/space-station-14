@@ -100,7 +100,7 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
         // Update paging status for all currently seen sensors.
         foreach (var (address, sensor) in component.SensorStatus)
         {
-            var critOrDead = !sensor.IsAlive || (sensor.DamagePercentage != null && sensor.DamagePercentage >= 0.5);
+            var critOrDead = !sensor.IsAlive || (sensor.DamagePercentage != null && sensor.DamagePercentage >= 1.0);
             seen.Add(address);
 
             // If person isn't crit or dead, discard status if it exists and ignore.

@@ -35,15 +35,6 @@ public sealed partial class EvolvingComponent : Component
     public List<EntityUid> Objectives = [];
 }
 
-[RegisterComponent]
-public sealed partial class EvolveConditionComponent : Component
-{
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public EvolveType? ConditionType;
-    [DataField("count"), ViewVariables(VVAccess.ReadWrite)]
-    public int Count = 0;
-}
-
 public enum EvolveType
 {
     EggsInjected,

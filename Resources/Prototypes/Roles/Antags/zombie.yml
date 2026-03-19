@@ -8,9 +8,9 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 24h # Starlight start. It's like legal raiding.
-  - !type:RoleTimeRequirement # Mainly to know that you can treat yourself. Cannot be department since you can bypass that with Psychologist. Also teaches you what your primary target as an II is.
-    role: JobMedicalDoctor
-    time: 2h
+  - !type:DepartmentTimeRequirement # Mainly to know that you can treat yourself. Also teaches you what your primary target as an II is.
+    department: Medical
+    time: 4h
   playTimeTracker: AntagInitialInfected # Starlight end
 
 - type: antag

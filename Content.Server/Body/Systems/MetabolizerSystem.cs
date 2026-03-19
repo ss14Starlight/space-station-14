@@ -222,6 +222,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                 {
                     if (scale < effect.MinScale)
                         continue;
+                    scale = Math.Min(scale, effect.MaxScale ?? scale); // Starlight
 
                     if (effect.Probability < 1.0f && !_random.Prob(effect.Probability))
                         continue;

@@ -17,6 +17,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         playerData.DiscordId = ev.DiscordId;
 
         MentorCheck(ev.Player, playerData);
+        AdminCheck(ev.Player, playerData);
 
         RebuildTitle(ev.Player, playerData);
 
@@ -32,6 +33,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         playerData.DiscordId = ev.DiscordId;
 
         MentorCheck(ev.Player, playerData);
+        AdminCheck(ev.Player, playerData);
 
         RebuildTitle(ev.Player, playerData);
 

@@ -86,12 +86,12 @@
     sprite: Objects/Misc/nukedisk.rsi
     state: icon
 
-- type: stealTargetGroup
-  id: WeaponEnergyMagnum
-  name: steal-target-groups-weapon-energy-magnum
-  sprite:
-    sprite: Objects/Weapons/Guns/Battery/energy_magnum.rsi
-    state: icon
+#- type: stealTargetGroup # Starlight start
+#  id: WeaponEnergyMagnum # Removed in favor of combined objective
+#  name: steal-target-groups-weapon-energy-magnum
+#  sprite:
+#    sprite: Objects/Weapons/Guns/Battery/energy_magnum.rsi
+#    state: icon # Starlight end
 
 # Thief Collection
 

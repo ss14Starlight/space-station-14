@@ -126,6 +126,7 @@
   parent: BaseWeaponBattery
   abstract: true
   components:
+  - type: CanDualWield # 🌟Starlight🌟
   - type: Item
     size: Small
     shape:
@@ -146,6 +147,7 @@
   parent: BaseWeaponPowerCell
   abstract: true
   components:
+  - type: CanDualWield # 🌟Starlight🌟
   - type: Item
     size: Small
   - type: Tag
@@ -537,6 +539,8 @@
   id: WeaponDisablerPractice
   description: A self-defense weapon that exhausts organic targets, weakening them until they collapse. This one has been undertuned for cadets making it mostly harmless.
   components:
+  - type: CanDualWield # 🌟Starlight🌟
+    dualWieldInaccuracyPenalty: 30
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/practice_disabler.rsi
     layers:
@@ -609,6 +613,8 @@
   id: WeaponDisablerSMG
   description: Advanced weapon that exhausts organic targets, weakening them until they collapse.
   components:
+  - type: CanDualWield # 🌟Starlight🌟
+    dualWieldInaccuracyPenalty: 25
   - type: Item
     size: Large
     shape:
@@ -914,7 +920,7 @@
     tags:
     - HighRiskItem
   - type: StealTarget
-    stealGroup: WeaponEnergyShotgun
+    stealGroup: SecurityRareGuns # Starlight, combined with detective magnum in target
   - type: Gun
     fireRate: 2
     soundGunshot:
@@ -965,7 +971,7 @@
     - HighRiskItem
     - Sidearm
   - type: StealTarget
-    stealGroup: WeaponEnergyMagnum
+    stealGroup: SecurityRareGuns # Starlight, combined with eshotgun
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg

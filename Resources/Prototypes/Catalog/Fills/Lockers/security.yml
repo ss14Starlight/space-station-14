@@ -158,6 +158,7 @@
       prob: 0.15
     - id: PlushieMorgana #starlight
     - id: PlushieKiller #starlight
+    - id: JawsOfLifeMed #Starlight
 
 
 - type: entity

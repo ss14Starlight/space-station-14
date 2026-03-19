@@ -1,0 +1,7 @@
+- type: alert
+  id: Doomed
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/skull.rsi
+    state: skull
+  name: alerts-doomed-name
+  description: alerts-doomed-desc

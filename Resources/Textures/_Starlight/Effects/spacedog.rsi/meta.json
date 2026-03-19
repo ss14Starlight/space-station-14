@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from CHOMPost21",
+    "size": {
+        "x": 736,
+        "y": 736
+    },
+    "states": [
+        {
+            "name": "space_dog",
+            "delays": [
+                [
+                    10,
+                    0.1,
+                    1,
+                    0.1
+                ]
+            ]
+        }
+    ]
+}

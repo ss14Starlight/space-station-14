@@ -20,7 +20,7 @@
   id: StatusEffectBloodloss
   name: bloodloss
   components:
-  #- type: StutteringAccent #Starlight
+  - type: StutteringAccent
   - type: DrunkStatusEffect
 
 - type: entity

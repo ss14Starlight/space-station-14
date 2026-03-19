@@ -84,3 +84,6 @@ thaven-mood-opposite-day-desc = You must act the opposite of your namesake.
 
 thaven-mood-sirens-song-name = Siren's Song
 thaven-mood-sirens-song-desc = Thaven are incredibly proud of their wonderful musical language and should use it as much as possible.
+
+thaven-mood-bloodbank-name = Bloodbank
+thaven-mood-bloodbank-desc = Thaven have a strong culture of mutual aid, going so far to even offer their blood freely to people in need.

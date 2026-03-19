@@ -60,7 +60,7 @@ public sealed class BureaucraticErrorRule : StationEventSystem<BureaucraticError
                 if (_stationJobs.IsJobUnlimited(chosenStation.Value, chosenJob))
                     continue;
 
-                _stationJobs.TryAdjustJobSlot(chosenStation.Value, chosenJob, RobustRandom.Next(-3, 6), clamp: true);
+                _stationJobs.TryAdjustJobSlot(chosenStation.Value, chosenJob, RobustRandom.Next(0, 6), clamp: true); //Starlight Edit: No removing job slots - we don't have enough as it is.
             }
         }
     }

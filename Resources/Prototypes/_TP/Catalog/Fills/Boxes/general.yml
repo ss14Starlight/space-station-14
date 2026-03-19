@@ -10,5 +10,5 @@
         children:
         - id: TP14ClothingShoesBootsDarkPerformer
         - id: TP14ClothingUniformJumpskirtDarkPerformer
-        - id: ClothingHeadHatHairflower
+        - id: ClothingHeadHatHairFlowerWhite # Starlight
         - id: FoodBreadBaguette

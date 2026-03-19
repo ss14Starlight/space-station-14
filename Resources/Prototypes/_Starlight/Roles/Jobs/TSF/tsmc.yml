@@ -1,0 +1,254 @@
+- type: job
+  id: TSFMCCrew
+  name: ghost-role-information-tsf-crew-name
+  description: ghost-role-information-tsf-marine-desc
+  playTimeTracker: JobTSFCrew
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000 # 20h
+  setPreference: false
+  icon: JobIconTSF
+  rules: job-rules-tsf-aligned
+  supervisors: job-supervisors-solgov
+  canBeAntag: false
+  access:
+    - Solgov
+  special:
+    - !type:AddImplantSpecial
+      implants: [TSFMindShieldImplant]
+
+- type: job
+  id: TSFMarine
+  name: ghost-role-information-tsf-marine-name
+  description: ghost-role-information-tsf-marine-desc
+  playTimeTracker: JobTSFMarine
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000 # 20h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5h
+  setPreference: false
+  icon: JobIconTSF
+  rules: job-rules-tsf-aligned
+  supervisors: job-supervisors-solgov
+  canBeAntag: false
+  access:
+    - Solgov
+  special:
+    - !type:AddImplantSpecial
+      implants: [TSFMindShieldImplant, DeathRattleImplantTSF]
+
+- type: job
+  id: TSFMarineElite
+  name: ghost-role-information-tsf-specops-name
+  description: ghost-role-information-tsf-marine-desc
+  playTimeTracker: TSFMarineElite
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000 # 20h
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5h
+    - !type:RolesRequirement
+      proto: ExtRolesReq
+  setPreference: false
+  icon: JobIconTSF
+  rules: job-rules-tsf-aligned
+  supervisors: job-supervisors-solgov
+  canBeAntag: false
+  access:
+    - Solgov
+  special:
+    - !type:AddImplantSpecial
+      implants: [TSFMindShieldImplant, DeathRattleImplantTSF, DeathAcidifierImplant, FreedomImplant]
+
+- type: startingGear
+  id: TSFCrewGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTSF
+    back: ClothingBackpackTSF
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHatBeretTSF
+    gloves: ClothingHandsGlovesCombat
+    id: SolGovPDACrew
+    ears: ClothingHudTSF
+    belt: ClothingBeltUtilityEngineering
+    pocket1: FlashlightSeclite
+
+- type: startingGear
+  id: TSFMarineGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTSF
+    back: ClothingBackpackTSF
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHelmetTSF
+    neck: ClothingDogTags
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorTSF
+    id: SolGovPDAMarine
+    ears: ClothingHudTSF
+    belt: ClothingBeltTSFMarineWebbing
+    pocket1: FlashlightSeclite
+    pocket2: WeaponPistolTSFModel17
+    suitstorage: WeaponRifleARG
+  storage:
+    back:
+      - CrowbarRed
+      - MedkitCombatFilled
+      - AccessOverider
+      - TSFBatonModel5
+      - TSFZiptiePack
+    belt:
+      - MagazineBoxLightRifleFMJ
+      - MagazineLightRifleFMJ
+      - MagazineLightRifleFMJ
+      - MagazineLightRifleFMJ
+      - MagazineLightRifleFMJ
+      - MagazineBoxPistolFMJ
+      - MagazinePistolFMJ
+      - MagazinePistolFMJ
+
+- type: startingGear
+  id: TSFMarineCorpsmanGear
+  parent: TSFMarineGear
+  equipment:
+    neck: ClothingNeckMantleCMO
+    shoes: ClothingShoesBootsMagERT
+    eyes: ClothingEyesHudMedical
+    suitstorage: WeaponRifleLecter
+  storage:
+    back:
+      - Hypospray
+      - JugPunctTranex
+      - JugPyraDerma
+      - JugDexPlusSaline
+      - JugTrico
+      - BeakerSmallArith
+      - DefibrillatorCompact
+      - MedkitCombatFilled
+      - ClothingEyesGlassesChemical
+      - ChemistryBottleOmnizine
+    belt:
+      - MagazineBoxRifleSP
+      - MagazineRifleSP
+      - MagazineRifleSP
+      - AccessOverider
+      - CrowbarRed
+      - MagazineBoxPistolFMJ
+      - MagazinePistolFMJ
+      - MagazinePistolFMJ
+
+- type: startingGear
+  id: TSFMarineLeaderGear
+  parent: TSFMarineGear
+  equipment:
+    back: ClothingBackpackRadioTSF
+    head: ClothingHeadHelmetTSFLeader
+    outerClothing: ClothingOuterArmorTSFLeader
+  storage:
+    back:
+      - TSFZiptiePack
+      - MedkitCombatFilled
+      - TSFBatonModel5
+    belt:
+      - MagazineBoxLightRifleFMJ
+      - MagazineLightRifleFMJ
+      - MagazineLightRifleFMJ
+      - AccessOverider
+      - CrowbarRed
+      - MagazineBoxPistolFMJ
+      - MagazinePistolFMJ
+      - MagazinePistolFMJ
+
+- type: startingGear
+  id: TSFPhantomGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTSFElite
+    back: ClothingBackpackThermalCloakTSF
+    shoes: ClothingShoesBootsMagERT
+    neck: ClothingDogTags
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitTSFPhantom
+    id: SolGovPDASpecOps
+    ears: ClothingHudTSF
+    belt: ClothingBeltTSFMarineWebbing
+    pocket1: EnergyShield
+    pocket2: WeaponPistolTSFModel17
+    suitstorage: WeaponSubMachineGunAtreides
+  storage:
+    back:
+      - TSFZiptiePack
+      - MedkitCombatFilled
+      - TSFBatonModel5
+      - Hypospray
+      - WelderExperimental
+      - AccessOveriderUnlimited
+      - ToolDebug
+    belt:
+      - MagazineBoxPistolFMJ
+      - MagazinePistolSubMachineGunFMJ
+      - MagazinePistolSubMachineGunFMJ
+      - MagazinePistolSubMachineGunFMJ
+      - MagazinePistolSubMachineGunFMJ
+      - MagazineBoxPistolAP
+      - MagazinePistolAP
+      - MagazinePistolAP
+
+- type: startingGear
+  id: TSFMARSOCGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTSFElite
+    back: ClothingBackpackRadioTSF
+    shoes: ClothingShoesBootsMagERT
+    neck: ClothingDogTags
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitTSFMARSOC
+    id: SolGovPDASpecOps
+    ears: ClothingHudTSF
+    belt: ClothingBeltTSFMarineWebbing
+    pocket1: AccessOveriderUnlimited
+    pocket2: WeaponPistolTSFModel17
+    suitstorage: WeaponRifleM52
+  storage:
+    back:
+      - ToolDebug
+      - WelderExperimental
+      - MedkitCombatFilled
+      - Hypospray
+      - TSFBatonModel5
+    belt:
+      - MagazineRifleM52FMJ
+      - MagazineRifleM52FMJ
+      - MagazineRifleM52FMJ
+      - MagazineRifleM52AP
+      - MagazineRifleM52AP
+      - MagazineBoxPistolAP
+      - MagazinePistolAP
+      - MagazinePistolAP
+
+- type: startingGear
+  id: TSFGeneralGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTSFElite
+    back: ClothingBackpackRadioTSF
+    shoes: ClothingShoesBootsCombatFilled
+    neck: ClothingDogTags
+    gloves: ClothingHandsGlovesCombat
+    belt: ClothingBeltTSFMarineWebbing
+    head: ClothingHeadHatBeretTSFElite
+    outerClothing: ClothingOuterVestRetroOfficer
+    id: TSFIdCard
+    ears: ClothingHudTSF
+    pocket1: WeaponShotgunGA12
+    pocket2: TSFMindShieldImplanter
+  storage:
+    back:
+      - CrowbarRed
+      - MedkitCombatFilled
+    belt:
+      - SpeedLoaderMagnumBasic
+      - BoxLethalshot
+      - BoxLethalshot
+  inhand:
+    - DeathRattleImplanterTSF

@@ -1,0 +1,5 @@
+- type: nameIdentifierGroup
+  id: CosmicPositronicBrain
+  format: name-identifier-format-positronic-brain
+  minValue: 0
+  maxValue: 10

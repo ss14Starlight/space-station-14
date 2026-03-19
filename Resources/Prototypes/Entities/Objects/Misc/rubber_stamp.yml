@@ -208,7 +208,7 @@
 
 - type: entity
   name: syndicate rubber stamp
-  parent: [RubberStampBase, BaseSyndicateContraband]
+  parent: [RubberStampBase, BaseMinorContraband] #SL Edit Syndie > Minor Contra
   id: RubberStampSyndicate
   categories: [ DoNotMap ]
   components:

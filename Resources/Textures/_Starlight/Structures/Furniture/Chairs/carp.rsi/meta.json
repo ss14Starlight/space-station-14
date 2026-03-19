@@ -10,10 +10,6 @@
     {
       "name": "carp",
       "directions": 4
-    },
-    {
-      "name": "carp-overlay",
-      "directions": 4
     }
   ]
 }

@@ -452,18 +452,14 @@ public sealed partial class DamageableSystem
         Dirty(ent);
     }
 
-    // STARLIGHT START
-    /// <summary>
-    /// Set the damage container for an entity
-    /// </summary>
-    public void SetDamageContainerId(Entity<DamageableComponent?> ent, ProtoId<DamageContainerPrototype>? damageContainerId)
+    // Begin Stellar - We need to be able to change DamageContainer to make cultists vulnerable to Holy Damage
+    public void SetDamageContainerID(Entity<DamageableComponent?> ent, ProtoId<DamageContainerPrototype>? damageContainerId)
     {
         if (!_damageableQuery.Resolve(ent, ref ent.Comp, false))
             return;
-        
-        ent.Comp.DamageContainerID = damageContainerId;
 
+        ent.Comp.DamageContainerID = damageContainerId;
         Dirty(ent);
     }
-    // STARTLIGHT END
+    // End Stellar
 }

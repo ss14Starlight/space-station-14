@@ -6,6 +6,7 @@ using Robust.Client.UserInterface;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Client._NullLink;
 
 namespace Content.Client.Administration.Managers;
 
@@ -14,6 +15,7 @@ public sealed class ClientPlayerManager : IClientPlayerRolesManager, IPostInject
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IClientNetManager _netMgr = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private readonly INullLinkPlayerResourcesManager _nullLinkResourcesManager = default!;
 
     private PlayerData? _playerData;
     private ISawmill _sawmill = default!;
@@ -21,7 +23,20 @@ public sealed class ClientPlayerManager : IClientPlayerRolesManager, IPostInject
     public event Action? PlayerStatusUpdated;
 
     public void Initialize()
-        => _netMgr.RegisterNetMessage<MsgUpdatePlayerStatus>(UpdateMessageRx);
+    {
+        _netMgr.RegisterNetMessage<MsgUpdatePlayerStatus>(UpdateMessageRx);
+
+        _nullLinkResourcesManager.PlayerResourcesChanged += OnPlayerResourcesUpdated;
+    }
+
+    private void OnPlayerResourcesUpdated()
+    {
+        if (!_nullLinkResourcesManager.TryGetResources(out var resources) 
+            || _player.LocalSession == null || _playerData == null)
+            return;
+
+        _playerData!.Resources = resources;
+    }
 
     private void UpdateMessageRx(MsgUpdatePlayerStatus message)
     {

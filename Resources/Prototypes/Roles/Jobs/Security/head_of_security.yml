@@ -15,7 +15,7 @@
       time: 15h # Starlight
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 60h # Starlight - Literally the most pressured role in the game, you need extensive knowledge of your department
+      time: 50h # Starlight - Literally the most pressured role in the game, you need extensive knowledge of your department
 
   weight: 10
   startingGear: HoSGear

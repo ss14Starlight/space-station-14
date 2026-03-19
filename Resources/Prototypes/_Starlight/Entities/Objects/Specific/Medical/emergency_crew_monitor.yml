@@ -1,0 +1,51 @@
+- type: entity
+  name: emergency crew monitor
+  parent: [ BaseHandheldComputer, BaseMedicalContraband ]
+  id: EmergencyHandheldCrewMonitor
+  description: A hand-held crew monitor displaying the status of suit sensors of injured crew.
+  components:
+  - type: Item
+    heldPrefix: scanner
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/handheld_para_crewmonitor.rsi
+    layers:
+      - state: frame
+        map: ["enum.CrewMonitorLayers.Frame"]
+      - state: powered
+        map: [ "enum.CrewMonitorLayers.Powered" ]
+        visible: true
+      - state: alert
+        map: ["enum.CrewMonitorLayers.Alert"]
+        visible: false
+  - type: Appearance
+  - type: BatteryVisuals
+  - type: GenericVisualizer
+    visuals:
+      enum.BatteryVisuals.State:
+        enum.CrewMonitorLayers.Powered:
+          Full: { visible: true, shader: unshaded }
+          Neither: { visible: true, shader: unshaded }
+          Empty: { visible: false }
+      enum.CrewMonitorVisuals.Alert:
+        enum.CrewMonitorLayers.Alert:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+  - type: ActivatableUI
+    key: enum.CrewMonitoringUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+  - type: CrewMonitoringConsole
+  - type: CrewMonitoringFilter
+    onlyShowWoundedOrDead: true
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CrewMonitor
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: StationLimitedNetwork
+  - type: StaticPrice
+    price: 200
+  - type: StealTarget
+    stealGroup: CrewMonitorCollection

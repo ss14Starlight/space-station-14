@@ -385,6 +385,9 @@
             True: { state: base-unshaded }
             False: { state: base-unshaded-off }
     - type: PacifismAllowedGun
+    - type: Tag #FH
+      tags:
+      - GrappleGun
 
 # Admeme
 - type: entity

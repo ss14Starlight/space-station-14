@@ -20,6 +20,7 @@
   - Abyss
   - SyndicateSilicon
   - Vampire
+  - Pirate # starlight
   #Starlight end
 
 - type: npcFaction
@@ -95,6 +96,7 @@
     - Xeno
     - Gorilla
     - Abductor # starlight
+    - Pirate # starlight
 
 - type: npcFaction
   id: SimpleNeutral
@@ -119,6 +121,7 @@
     - Dragon
     - Gorilla
     - Abductor # starlight
+    - Pirate # starlight
 
 - type: npcFaction
   id: Xeno
@@ -141,6 +144,7 @@
     - Dragon
     - Xenoborg
     - Gorilla
+    - Pirate # starlight
 
 - type: npcFaction
   id: Zombie
@@ -162,6 +166,7 @@
     - Dragon
     - Gorilla
     - Abductor # starlight
+    - Pirate # starlight
 
 - type: npcFaction
   id: Revolutionary
@@ -179,6 +184,7 @@
     - AllHostile
     - Gorilla
     - Abductor # starlight
+    - Pirate # starlight
 
 - type: npcFaction
   id: Changeling
@@ -191,6 +197,7 @@
     - Revolutionary
     - AllHostile
     - Gorilla
+    - Pirate # starlight
 
 - type: npcFaction
   id: Vampire
@@ -205,6 +212,7 @@
     - Changeling
     - AllHostile
     - Gorilla
+    - Pirate # starlight
 
 - type: npcFaction
   id: HonkHostile
@@ -220,6 +228,7 @@
     - Wizard
     - Xenoborg
     - Gorilla
+    - Pirate # starlight
 
 - type: npcFaction
   id: HonkNeutral
@@ -257,6 +266,7 @@
     - Xenoborg
     - Gorilla
     - Abductor # starlight
+    - Pirate # starlight
 
 - type: npcFaction
   id: Wizard
@@ -278,6 +288,7 @@
     - Xenoborg
     - Gorilla
     - Abductor # starlight
+    - Pirate # starlight
 
 - type: npcFaction
   id: Xenoborg
@@ -299,3 +310,4 @@
     - AllHostile
     - Abductor # starlight
     - Gorilla # starlight
+    - Pirate # starlight

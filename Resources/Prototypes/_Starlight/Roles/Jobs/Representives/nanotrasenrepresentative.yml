@@ -1,0 +1,73 @@
+- type: job
+  id: NanoTrasenRepresentative
+  name: job-name-ntrep
+  description: job-description-ntrep
+  playTimeTracker: JobNanoTrasenRepresentative
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 30h # Still less than Magistrate. You should be experienced with Command before you tell them how to do their jobs.
+    - !type:RolesRequirement
+      proto: ExtRolesReq
+  startingGear: NanoTrasenRepresentativeGear
+  icon: JobIconNanoTrasenRepresentative
+  rules: job-rules-corporate-aligned
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  access:
+    - Cryogenics
+    - Lawyer
+    - Command
+    - Bar
+    - Service
+    - Maintenance
+    - Janitor
+    - Theatre
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - External
+    - Chemistry
+    - Engineering
+    - Research
+    - Robotics
+    - Detective
+    - Salvage
+    - Mining
+    - SalvageLead
+    - Security
+    - Brig
+    - Cargo
+    - Atmospherics
+    - Medical
+    - IAA
+    - Ntrep
+    - Brigmedic
+    - Surgery
+    - Paramedic
+  special:
+    - !type:AddImplantSpecial
+      implants: [MindShieldImplant]
+    - !type:AddComponentSpecial
+      components:
+        - type: CommandStaff
+
+- type: startingGear
+  id: NanoTrasenRepresentativeGear
+  equipment:
+    #shoes: ClothingShoesBootsLaceup
+    #head: ClothingHeadHatCapNtrep
+    id: NanoTrasenRepresentativePDA
+    ears: ClothingHeadsetAltCommand
+    outerClothing: ClothingOuterCoatNtrep
+    belt: BoxFolderNanoTrasenClipboard
+  storage:
+    back:
+    - RubberStampNtrep
+    - CaneNT
+
+- type: chameleonOutfit
+  id: NanoTrasenRepresentativeChameleonOutfit
+  job: NanoTrasenRepresentative
+  equipment:
+    outerClothing: ClothingOuterCoatNtrep

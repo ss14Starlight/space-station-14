@@ -10,6 +10,10 @@ uplink-deagle-name = Desert Eagle
 uplink-deagle-desc = A robust magnum handgun.
 uplink-stechkin-name = Stechkin pistol
 uplink-stechkin-desc = A small, easily concealable 10mm handgun. Has a threaded barrel for suppressors.
+
+uplink-stechkin-bundle-name = Solid Operative Bundle
+uplink-stechkin-bundle-desc = A mysterious cardboard box containing a slew of equipment for only the most solid of operatives.
+
 uplink-pistol-magnum-magazine-name = Pistol Magazine (.45 magnum)
 uplink-pistol-magnum-magazine-desc = Pistol magazine with 10 cartridges. Compatible with the Desert Eagle.
 
@@ -99,3 +103,9 @@ uplink-breaching-hammer-desc = A heavy-duty powered breaching tool disguised as 
 
 uplink-explosive-collar-name = Explosive Collar
 uplink-explosive-collar-desc = The legally distinct reverse beartrap from a certin movie franchise.
+
+uplink-syndie-elegant-raid-name = Syndicate Elegant Raid Suit
+uplink-syndie-elegant-raid-desc = Even contract, nuclear killers have the right to remain fabulous.
+
+uplink-clothing-murder-socks-name = MURDER socks !!11!!!1
+uplink-clothing-murder-socks-desc = lets KILL people sisters!1!!! comes with noslip.

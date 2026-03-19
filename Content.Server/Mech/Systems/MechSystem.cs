@@ -48,6 +48,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Timing;
+using Content.Shared.Movement.Systems; //Starlight
 #endregion Starlight
 
 namespace Content.Server.Mech.Systems;
@@ -75,6 +76,8 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly NpcFactionSystem _factionSystem = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly IGameTiming Timing = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private readonly GasTankSystem _gasTank = default!;
 #endregion Starlight
 
 
@@ -109,9 +112,8 @@ public sealed partial class MechSystem : SharedMechSystem
         SubscribeLocalEvent<MechPilotComponent, InhaleLocationEvent>(OnInhale);
         SubscribeLocalEvent<MechPilotComponent, ExhaleLocationEvent>(OnExhale);
         SubscribeLocalEvent<MechPilotComponent, AtmosExposedGetAirEvent>(OnExpose);
-        SubscribeLocalEvent<MechAirComponent, AtmosDeviceUpdateEvent>(OnAirUpdate); // Starlight
 
-        SubscribeLocalEvent<MechAirComponent, GetFilterAirEvent>(OnGetFilterAir);
+        SubscribeLocalEvent<MechAirComponent, MapInitEvent>(OnInitializeAir); // STARLIGHT
 
         #region Equipment UI message relays
         SubscribeLocalEvent<MechComponent, MechGrabberEjectMessage>(ReceiveEquipmentUiMesssages);
@@ -136,10 +138,16 @@ public sealed partial class MechSystem : SharedMechSystem
                 // Try to draw charge if this mech has thrusters and they're enabled
                 if (TryComp<MechThrustersComponent>(uid, out var thrusters) && thrusters.ThrustersEnabled)
                 {
-                    _battery.TryUseCharge((mechComp.BatterySlot.ContainedEntity.Value, battery), thrusters.DrawRate);
+                    TryChangeEnergy(uid, thrusters.DrawRate);
                 }
 
                 var currentCharge = _battery.GetCharge((mechComp.BatterySlot.ContainedEntity.Value, battery));
+                if( mechComp.PlayPowerUpSound && (int)(currentCharge / battery.MaxCharge * 100) > 0 )
+                {
+                    _audioSystem.PlayPredicted(mechComp.PowerupSound, uid, uid);
+                    mechComp.PlayPowerUpSound = false;
+                    mechComp.PlayPowerSound = true;
+                }
                 if (mechComp.Energy != currentCharge)
                 {
                     var ev = new ChargeChangedEvent(currentCharge, 0, battery.ChargeRate, battery.MaxCharge);
@@ -233,8 +241,16 @@ public sealed partial class MechSystem : SharedMechSystem
 
     private void OnChargeChanged(EntityUid uid, MechComponent component, ref ChargeChangedEvent args)
     {
-        if (args.CurrentCharge == 0 && component.Light)
-            ToggleLight(uid, component);
+        if ((int)(args.CurrentCharge / args.MaxCharge * 100) == 0) //We run this off of the mech's % power readout, rather than absolute values
+        {
+            if(component.Light)
+                ToggleLight(uid, component);
+            if (TryComp(uid, out MechThrustersComponent? mechThrusters) && mechThrusters.ThrustersEnabled)
+                OnMechToggleThrusters(uid, component, new MechToggleThrustersEvent());
+            if(!component.PlayPowerUpSound)
+                _audioSystem.PlayPredicted(component.PowerDownSound, uid, uid);
+            component.PlayPowerUpSound = true;
+        }
 
         component.Energy = args.CurrentCharge;
         component.MaxEnergy = args.MaxCharge;
@@ -252,8 +268,16 @@ public sealed partial class MechSystem : SharedMechSystem
 
         var mech = component.Mech;
 
-        if (args.CurrentCharge == 0 && mechComp.Light)
-            ToggleLight(mech, mechComp);
+        if ((int)(args.CurrentCharge / args.MaxCharge * 100) == 0) //We run this off of the mech's % power readout, rather than absolute values
+        {
+            if(mechComp.Light)
+                ToggleLight(mech, mechComp);
+            if (TryComp(uid, out MechThrustersComponent? mechThrusters) && mechThrusters.ThrustersEnabled)
+                OnMechToggleThrusters(uid, mechComp, new MechToggleThrustersEvent());
+            if(!mechComp.PlayPowerUpSound)
+                _audioSystem.PlayPredicted(mechComp.PowerDownSound, uid, uid);
+            mechComp.PlayPowerUpSound = true;
+        }
 
         mechComp.Energy = args.CurrentCharge;
         mechComp.MaxEnergy = args.MaxCharge;
@@ -289,7 +313,8 @@ public sealed partial class MechSystem : SharedMechSystem
         if (TryComp<WiresPanelComponent>(uid, out var panel) && !panel.Open)
             return;
 
-        if (component.BatterySlot.ContainedEntity == null && TryComp<BatteryComponent>(args.Used, out var battery))
+        if (component.BatterySlot.ContainedEntity == null && TryComp<BatteryComponent>(args.Used, out var battery)
+        && _whitelistSystem.IsWhitelistPassOrNull(component.BatteryWhitelist, args.Used)) // Starlight - Mech Reactors
         {
             InsertBattery(uid, args.Used, component, battery);
             UpdateCanMove(uid, component); // Starlight-edit: fix movement block
@@ -358,6 +383,7 @@ public sealed partial class MechSystem : SharedMechSystem
         args.Handled = true;
     }
 
+    // STARLIGHT
     private void OnRemoveGasTank(EntityUid uid, MechComponent component, RemoveGasTankEvent args)
     {
         if (args.Cancelled || args.Handled)
@@ -366,6 +392,9 @@ public sealed partial class MechSystem : SharedMechSystem
         _container.EmptyContainer(component.GasTankSlot);
 
         args.Handled = true;
+
+        component.Internals = false;
+        _actions.SetToggled(component.MechToggleInternalsActionEntity, component.Internals);
     }
 
     private void OnMapInit(EntityUid uid, MechComponent component, MapInitEvent args)
@@ -610,10 +639,20 @@ public sealed partial class MechSystem : SharedMechSystem
         if (battery == null)
             return false;
 
-        if (!TryComp<BatteryComponent>(battery, out var batteryComp))
-            return false;
+        //Starlight Start - use the actual battery system to handle charge
+        if (component.BatterySlot.ContainedEntity != null &&
+            TryComp<BatteryComponent>(component.BatterySlot.ContainedEntity.Value, out var batteryComp))
+        {
+            _battery.TryUseCharge((component.BatterySlot.ContainedEntity.Value, batteryComp), (float)FixedPoint2.Abs(delta));
 
-        _battery.SetCharge(battery.Value, _battery.GetCharge(battery.Value) + delta.Float());
+            var currentCharge = _battery.GetCharge((component.BatterySlot.ContainedEntity.Value, batteryComp));
+            if (component.Energy != currentCharge)
+            {
+                var ev = new ChargeChangedEvent(currentCharge, 0, batteryComp.ChargeRate, batteryComp.MaxCharge);
+                RaiseLocalEvent(uid, ref ev);
+            }
+        }
+        //Starlight End
         // TODO: Power cells are predicted now, so no need to duplicate the charge level
         var charge = _battery.GetCharge(battery.Value);
         if (charge != component.Energy) //if there's a discrepency, we have to resync them
@@ -650,6 +689,8 @@ public sealed partial class MechSystem : SharedMechSystem
         _container.Insert(toInsert, component.BatterySlot);
         component.Energy = _battery.GetCharge(toInsert);
         component.MaxEnergy = battery.MaxCharge;
+        
+        _movementSpeedModifier.RefreshMovementSpeedModifiers(uid); //Starlight - mech reactors with speed mods
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
 
@@ -675,19 +716,29 @@ public sealed partial class MechSystem : SharedMechSystem
     }
 
     #region Atmos Handling
-    private void OnInhale(EntityUid uid, MechPilotComponent component, InhaleLocationEvent args)
+
+    // STARLIGHT BEGIN
+    private void OnInhale(EntityUid uid, MechPilotComponent component, ref InhaleLocationEvent args)
     {
-        if (!TryComp<MechComponent>(component.Mech, out var mech) ||
-            !TryComp<MechAirComponent>(component.Mech, out var mechAir))
+        if (!TryComp<MechComponent>(component.Mech, out var mech))
         {
             return;
         }
 
-        if (mech.Airtight)
-            args.Gas = mechAir.Air;
+        // Breathe in surrounding gas if you don't have internals on or equipped. Even if Airtight.
+        if (!mech.Internals || mech.GasTankSlot.ContainedEntity == null)
+        {
+            args.Gas = _atmosphere.GetContainingMixture(component.Mech);
+            return;
+        }
+
+        var tankEnt = mech.GasTankSlot.ContainedEntity.Value;
+        if (TryComp<GasTankComponent>(tankEnt, out var gasTank) && gasTank.Air.Volume > 0)
+            args.Gas = _gasTank.RemoveAirVolume((tankEnt, gasTank), args.Respirator.BreathVolume);
     }
+    // STARLIGHT END
 
-    private void OnExhale(EntityUid uid, MechPilotComponent component, ExhaleLocationEvent args)
+    private void OnExhale(EntityUid uid, MechPilotComponent component, ref ExhaleLocationEvent args)
     {
         if (!TryComp<MechComponent>(component.Mech, out var mech) ||
             !TryComp<MechAirComponent>(component.Mech, out var mechAir))
@@ -695,8 +746,7 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
         }
 
-        if (mech.Airtight)
-            args.Gas = mechAir.Air;
+        args.Gas = _atmosphere.GetContainingMixture(component.Mech); // STARLIGHT
     }
 
     private void OnExpose(EntityUid uid, MechPilotComponent component, ref AtmosExposedGetAirEvent args)
@@ -718,25 +768,15 @@ public sealed partial class MechSystem : SharedMechSystem
         args.Handled = true;
     }
 
-    private void OnAirUpdate(EntityUid uid, MechAirComponent comp, ref AtmosDeviceUpdateEvent args)
+    // STARLIGHT BEGIN
+    private void OnInitializeAir(EntityUid uid, MechAirComponent comp, MapInitEvent args)
     {
-        if (!TryComp<MechComponent>(uid, out var mech) || !mech.Airtight || mech.GasTankSlot.ContainedEntity == null || !mech.Internals)
-            return;
-
-        var gasTank = Comp<GasTankComponent>(mech.GasTankSlot.ContainedEntity.Value);
-        _atmosphere.PumpGasTo(gasTank.Air, comp.Air, 70);
+        var moles = Atmospherics.OneAtmosphere * comp.Air.Volume / (Atmospherics.R * Atmospherics.T20C);
+        // "Skin" interactions will still have issues (ex. slime + h2o), so choosing a safe gas here
+        comp.Air.SetMoles(Gas.Frezon, moles); // You will get in the LCL and you will like it
+        comp.Air.Temperature = Atmospherics.T20C;
+        comp.Air.MarkImmutable(); // Disallow changes explicitly to prevent gas reactions.
     }
-
-    private void OnGetFilterAir(EntityUid uid, MechAirComponent comp, ref GetFilterAirEvent args)
-    {
-        if (args.Air != null)
-            return;
-
-        // only airtight mechs get internal air
-        if (!TryComp<MechComponent>(uid, out var mech) || !mech.Airtight)
-            return;
-
-        args.Air = comp.Air;
-    }
+    // STARLIGHT END
     #endregion
 }
