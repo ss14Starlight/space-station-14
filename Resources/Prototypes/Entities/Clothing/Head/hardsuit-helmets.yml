@@ -260,8 +260,6 @@
       - state: equipped-head-unshaded-resomi
         shader: unshaded
       # Starlight - End
-  - type: PointLight
-    radius: 6
   - type: PressureProtection
     highPressureMultiplier: 0.72
     lowPressureMultiplier: 1000
@@ -272,7 +270,7 @@
 
 #Salvage Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSalvage
   name: salvage hardsuit helmet
   description: A special helmet designed for work in a hazardous, low pressure environment. Has reinforced plating for wildlife encounters and dual floodlights.
@@ -355,7 +353,7 @@
 
 #Goliath Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitGoliath
   name: goliath hardsuit helmet
   description: A sturdy hardsuit helmet, infused with a goliath's hide and an eerie, unblinking eye cut from its mass.
@@ -416,7 +414,7 @@
 
 #Maxim Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ] # starlight, added lights
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightFloodlight, ClothingHeadSuitWithLightBase ] # starlight, added lights
   id: ClothingHeadHelmetHardsuitMaxim
   categories: [ HideSpawnMenu ]
   name: salvager maxim helmet
@@ -501,7 +499,7 @@
 
 #Warden's Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitWarden
   name: warden's hardsuit helmet
   description: A modified riot helmet. Oddly comfortable.
@@ -526,7 +524,7 @@
 
 #Captain's Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitCap
   name: captain's hardsuit helmet
   description: Special hardsuit helmet, made for the captain of the station.
@@ -536,8 +534,6 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/capspace.rsi
   - type: PointLight # Starlight BEGIN
-    energy: 4
-    radius: 7.5
     color: "#FCDF9C" # Starlight END
   - type: PressureProtection
     highPressureMultiplier: 0.3
@@ -549,7 +545,7 @@
 
 #Chief Engineer's Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitEngineeringWhite
   name: chief engineer's hardsuit helmet
   description: Special hardsuit helmet, made for the chief engineer of the station.
@@ -626,8 +622,6 @@
       # Starlight - End
   - type: PointLight
     color: "#ffffff" # Starlight
-    radius: 7 # Starlight
-    energy: 3.5 # Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -682,7 +676,7 @@
 
 #Head of Security's hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSecurityRed
   name: head of security's hardsuit helmet
   description: Security hardsuit helmet with the latest top secret NT-HUD software. Belongs to the HoS.
@@ -707,7 +701,7 @@
 
 #Luxury Mining Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitLuxury #DO NOT MAP - https://github.com/space-wizards/space-station-14/pull/19738#issuecomment-1703486738
   name: luxury mining hardsuit helmet
   description: A refurbished mining hardsuit helmet, fitted with satin cushioning and an extra (non-functioning) antenna, because you're that extra.
@@ -721,8 +715,8 @@
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
   - type: PointLight
-    radius: 7
-    energy: 3
+    #radius: 7
+    #energy: 3
 # Starlight
   - type: Tag
     tags:
@@ -822,7 +816,7 @@
 
 #Syndicate Commander Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSyndieCommander
   name: syndicate commander helmet
   description: A bulked up version of the blood-red hardsuit's helmet, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
@@ -833,7 +827,6 @@
     sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
   - type: PointLight
     color: '#50ff50' # Starlight
-    radius: 7.5 # Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -936,7 +929,7 @@
 
 #Pirate Captain Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitPirateCap
   name: pirate captain's hardsuit helmet
   suffix: Pirate
@@ -972,8 +965,8 @@
         shader: unshaded
   - type: PointLight # Color matches visor colors, radius/energy same as mining hardsuit for the big captain.
     color: "#f3ea9c"
-    radius: 7
-    energy: 3
+#    radius: 7
+#    energy: 3
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -988,7 +981,7 @@
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieCommander ]
+  parent: [ BaseCentcommContraband, ClothingHeadSuitWithLightAdvanced, ClothingHeadHelmetHardsuitSyndieCommander ]
   id: ClothingHeadHelmetHardsuitERTLeader
   name: ERT leader hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1014,7 +1007,7 @@
 
 #ERT Chaplain Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseCentcommContraband, ClothingHeadSuitWithLightAdvanced, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitERTChaplain
   name: ERT chaplain hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1033,7 +1026,7 @@
 
 #ERT Engineer Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseCentcommContraband, ClothingHeadSuitWithLightAdvanced, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitERTEngineer
   name: ERT engineer hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1061,7 +1054,7 @@
 
 #ERT Medical Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieElite ]
+  parent: [ BaseCentcommContraband, ClothingHeadSuitWithLightAdvanced, ClothingHeadHelmetHardsuitSyndieElite ]
   id: ClothingHeadHelmetHardsuitERTMedical
   name: ERT medic hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1080,7 +1073,7 @@
 
 #ERT Security Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseCentcommContraband, ClothingHeadSuitWithLightAdvanced, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitERTSecurity
   name: ERT security hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1108,7 +1101,7 @@
 
 #ERT Janitor Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseCentcommContraband, ClothingHeadSuitWithLightAdvanced, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitERTJanitor
   name: ERT janitor hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1127,7 +1120,7 @@
 
 #CBURN Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetCBURN
   name: CBURN exosuit helmet
   description: A pressure resistant and fireproof hood worn by special cleanup units.

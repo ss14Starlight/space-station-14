@@ -1,3 +1,34 @@
+## ARCHETYPES
+# Helmet light archetypes. These are the archetypes we've identified and group hardsuits into.
+# Note that these are additive and don't replace the existing bases like ClothingHeadSuitWithLightBase.
+
+# Base parameters are in ClothingHeadSuitWithLightBase, so you probably don't need to use this.
+- type: entity
+  abstract: true
+  id: ClothingHeadSuitWithLightBasic # Basic, intended for most jobs.
+  components:
+  - type: PointLight
+    radius: 6.5
+    energy: 3
+
+- type: entity
+  abstract: true
+  id: ClothingHeadSuitWithLightAdvanced # Advanced, for e.g. HOS/CE/Captain, Nukies Commander, basic ERT and NTSF.
+  components:
+    - type: PointLight
+      radius: 7.5
+      energy: 4
+
+- type: entity
+  abstract: true
+  id: ClothingHeadSuitWithLightFloodlight # Floodlight, for Mining, ERT Leader and Decimus.
+  components:
+    - type: PointLight
+      radius: 9
+      energy: 4
+
+## END OF ARCHETYPES
+
 #BSO Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -182,9 +213,7 @@
       - state: on-equipped-HELMET-unshaded-avali
         shader: unshaded
   - type: PointLight
-    color: green
-    radius: 6
-    energy: 5
+    color: '#50ff50' # Starlight
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -200,7 +229,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitLuxmax
   categories: [ HideSpawnMenu ]
   name: QM's luxury maxim hardsuit helmet
@@ -328,7 +357,7 @@
 
 #Advanced Mining Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightFloodlight, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitAdvancedMining
   name: advanced mining hardsuit helmet
   description: A specially designed helmet for mining operations.
@@ -394,8 +423,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
-  - type: PointLight
-    radius: 9
   - type: Armor
     modifiers:
       coefficients:
@@ -409,7 +436,7 @@
 
 #Mining Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitMining
   name: mining hardsuit helmet
   description: A special helmet designed for work in a hazardous, low pressure environments encountered during space mining. Has dual floodlights.
@@ -475,8 +502,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
-  - type: PointLight
-    radius: 7
   - type: Tag
     tags:
       - CorgiWearable
@@ -522,7 +547,7 @@
 # NanoTrasen Special Forces
 
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitNTSF
   name: nanotrasen special forces hardsuit helmet
   description: A robust helmet for special operations.
@@ -555,8 +580,6 @@
         shader: unshaded
   - type: PointLight
     color: "#b8dfff"
-    radius: 9
-    energy: 4
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -575,7 +598,7 @@
         Caustic: 0.80
 
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightFloodlight, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitDecimus
   name: decimus hardsuit helmet
   description: A robust helmet for special operations.
