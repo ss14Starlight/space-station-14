@@ -563,18 +563,6 @@
   groupBy: "pAI"
 
 - type: loadout
-  id: Boxblacklight
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:SpeciesRequirement
-      species:
-      - Shadekin
-  storage:
-    back: 
-      - Boxblacklight
-
-- type: loadout
   id: RoadCone
   effects:
     - !type:JobRequirementLoadoutEffect

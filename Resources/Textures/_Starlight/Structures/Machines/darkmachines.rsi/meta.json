@@ -11,9 +11,6 @@
             "name": "collector"
         },
         {
-            "name": "collector_unlit"
-        },
-        {
             "name": "generator"
         },
         {

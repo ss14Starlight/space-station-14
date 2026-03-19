@@ -18,11 +18,6 @@
   copyright: "sadtrombone.ogg by Citadel Station 13"
   source: "https://github.com/Citadel-Station-13/Citadel-Station-13/commit/35a1723e98a60f375df590ca572cc90f1bb80bd5"
 
-- files: ["box_deploy.ogg"]
-  license: "CC-BY-NC-SA-3.0"
-  copyright: "box_deploy.ogg by Citadel Station 13"
-  source: "https://github.com/Citadel-Station-13/Citadel-Station-13/commit/b604390f334343be80045d955705cf48ee056c61"
-
 - files: ["chime.ogg"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "chime.ogg by Citadel Station 13"
@@ -172,11 +167,6 @@
   license: CC0-1.0
   source: https://freesound.org/people/domiscz/sounds/461728/
 
-- files: [poster_being_set.ogg]
-  copyright: '"poster_being_created.ogg" by /tg/station'
-  license: CC-BY-SA-3.0
-  source: https://github.com/tgstation/tgstation/blob/2834383245d2129a106acef3afd17b81e1e64777/sound/items/poster_being_created.ogg
-
 - files: [poster_broken.ogg]
   copyright: '"poster_ripped.ogg" by /tg/station'
   license: CC-BY-SA-3.0
@@ -241,7 +231,7 @@
   copyright: 'created by Vrymaa on Freesound and modified by Chaboricks'
   license: "CC0-1.0"
   source: https://freesound.org/people/Vrymaa/sounds/785128/
-  
+
 - files: [changeling_shriek.ogg]
   copyright: whateverusername0
   license: CC-BY-SA-3.0

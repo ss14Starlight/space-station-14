@@ -103,7 +103,7 @@ public sealed partial class StoreListingControl : Control
                 var m = _priceNumberRegex.Match(_price);
                 if (m.Success)
                 {
-                    StoreItemBuyButton.Text = $"{m.Groups[1].Value}¢";
+                    StoreItemBuyButton.Text = $"{m.Groups[1].Value}Â¢";
                 }
                 else
                 {
