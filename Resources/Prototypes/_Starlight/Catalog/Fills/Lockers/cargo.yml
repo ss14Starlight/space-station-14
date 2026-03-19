@@ -310,7 +310,7 @@
         children:
         - id: Pen
         - id: LuxuryPen
-          weight: 0.5
+          weight: 0.3
       - id: PlushieLizardJobCargotechnician
         prob: 0.02
       - id: MailSpamDontYouWantMore
