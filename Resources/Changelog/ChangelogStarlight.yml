@@ -34791,5 +34791,20 @@ Entries:
   id: 344501
   time: '2026-03-18T19:39:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3445
+- author: Makeshift
+  changes:
+  - message: (Plasma) Departmental communication consoles.
+    type: Add
+  - message: (Plasma) Genpop's oven has a stove now.
+    type: Fix
+  - message: (Packed) Departmental communication consoles.
+    type: Add
+  - message: (Packed) More maintenance lockers in maints.
+    type: Add
+  - message: (Elkridge) Departmental communication consoles.
+    type: Add
+  id: 378901
+  time: '2026-03-19T06:42:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3789
 Order: -1
 

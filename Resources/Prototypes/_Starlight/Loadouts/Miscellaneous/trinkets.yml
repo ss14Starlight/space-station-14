@@ -574,12 +574,6 @@
     head: ClothingHeadHatCone
 
 - type: loadout
-  id: LilyFlower
-  equipment:
-    head: ClothingHeadHatLilyFlower
-  groupBy: "flowers"
-
-- type: loadout
   id: ClothWrapShoeTrinket
   equipment:
     shoes: ClothingClothWrap

@@ -374,14 +374,29 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatHairflower
+  id: ClothingHeadHatHairFlowerBase # Moffstation - Color Changing Hairflower
   name: hairflower
   description: A beautiful hairflower that can be inserted between locks of hair.
+  # Moffstation - Begin - Color Changing Hairflower
+  abstract: true
   components:
   - type: Sprite
-    sprite: Clothing/Head/Misc/hairflower.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Misc/hairflower.rsi
+    sprite: _Moffstation/Clothing/Head/Misc/hairflower.rsi
+  - type: ChameleonClothing
+    slot: HEAD
+#    default: idfk
+    requireTag: HairFlower
+    affectedByEmp: false
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags:
+    - ClothMade #idk man its on the parent
+    - WhitelistChameleon
+    - HairFlower
+# Moffstation - Color Changing Hairflower End
 
 - type: entity
   parent: ClothingHeadBase

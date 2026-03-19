@@ -18,7 +18,7 @@
 - type: loadout
   id: Hairflower
   equipment:
-    head: ClothingHeadHatHairflower # Starlight: Roundstart equipped
+    head: ClothingHeadHatHairFlowerWhite  # Moffstation - Color changing hairflower + Starlight: Roundstart equipped
   groupBy: "flowers" # Starlight 
 
 # Headphones
