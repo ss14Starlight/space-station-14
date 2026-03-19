@@ -34676,5 +34676,215 @@ Entries:
   id: 376701
   time: '2026-03-17T18:43:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3767
+- author: CrazyPhantom
+  changes:
+  - message: Mappers can now save the state of pumps, air alarms, mixers, ect.
+    type: Add
+  id: 375401
+  time: '2026-03-17T19:01:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3754
+- author: redmushie
+  changes:
+  - message: High alert levels such as Delta(excluding Epsilon) now dim all lights
+      to 20% brightness instead of turning them off entirely.
+    type: Tweak
+  id: 376301
+  time: '2026-03-18T05:49:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3763
+- author: Cvlancer
+  changes:
+  - message: (Oasis) Space koi for Zookeepers.
+    type: Add
+  - message: (Oasis) Drugstore, as a secondary Chems producing area.
+    type: Add
+  - message: (Oasis) Added new departmental communications consoles in their respective
+      Heads' offices.
+    type: Add
+  - message: (Oasis) Hydra in Armory.
+    type: Add
+  - message: (Oasis) Pirate to Maints LARP.
+    type: Add
+  - message: (Oasis) Tablet of Ratvat to Maints LARP.
+    type: Add
+  - message: (Oasis) Slow Boots to Maints Scrapyard.
+    type: Add
+  - message: (Oasis) Smart Fridge and decor in Brigmed.
+    type: Add
+  - message: (Oasis) Brigmed chemical capabilities replaced with topicals, ChemMaster
+      and other chemical production phased out.
+    type: Tweak
+  - message: (Oasis) Moved one of the new Chemist spawns to the Drugstore (still 3
+      total Chemists).
+    type: Tweak
+  - message: (Oasis) Cleaned up some scrapped floor decals that weren't intended for
+      release.
+    type: Fix
+  - message: (Oasis) Fixed a distro pipe that would unanchor due to new ChemMaster
+      piping changes.
+    type: Fix
+  - message: (Oasis) Security Records computer from HOP Office.
+    type: Remove
+  - message: (Oasis) Cargo Shuttle Console from QM's Office.
+    type: Remove
+  - message: (Oasis) Protection values from the Clockwork LARP's shield. It's for
+      LARPing, not for powergaming.
+    type: Remove
+  id: 377901
+  time: '2026-03-18T13:30:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3779
+- author: redmushie
+  changes:
+  - message: Crystal shards actually spawn from their recipe.
+    type: Fix
+  id: 378301
+  time: '2026-03-18T16:01:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3783
+- author: STARLIGHT TEAM
+  changes:
+  - message: Cosmic Cult metashield
+    type: Add
+  - message: Cosmic Cult corporate secrets which can now be found in NTRep's locker
+      and count for the steal objective.
+    type: Tweak
+  - message: Guidebook mentions of Epistemics are now Science
+    type: Fix
+  - message: The Mystagogue (RD's Alter Ego) is not a licenced chaplain and cannot
+      make holy water.
+    type: Fix
+  - message: The cosmic cult's ghost form no longer cryos them after being used too
+      long
+    type: Fix
+  - message: The Cosmic Colossi guidebook is now in it's propper place
+    type: Fix
+  id: 377401
+  time: '2026-03-18T16:14:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3774
+- author: Way
+  changes:
+  - message: (Starboard) Added new department communications consoles.
+    type: Add
+  - message: (Starboard) Fixed duplicate walls stuck inside eachother.
+    type: Fix
+  id: 378201
+  time: '2026-03-18T16:49:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3782
+- author: STARLIGHT TEAM
+  changes:
+  - message: Removed a lot of UNUSED textures and sounds from in-game build.
+    type: Tweak
+  id: 368801
+  time: '2026-03-18T18:40:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3688
+- author: redmushie
+  changes:
+  - message: The blacklight box loadout option has been removed.
+    type: Remove
+  id: 377801
+  time: '2026-03-18T18:51:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3778
+- author: Rinary, Neenner
+  changes:
+  - message: Added shoelaces for shoes.
+    type: Add
+  - message: Added ability to tie shoelaces together on shoes.
+    type: Add
+  id: 344501
+  time: '2026-03-18T19:39:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3445
+- author: Makeshift
+  changes:
+  - message: (Plasma) Departmental communication consoles.
+    type: Add
+  - message: (Plasma) Genpop's oven has a stove now.
+    type: Fix
+  - message: (Packed) Departmental communication consoles.
+    type: Add
+  - message: (Packed) More maintenance lockers in maints.
+    type: Add
+  - message: (Elkridge) Departmental communication consoles.
+    type: Add
+  id: 378901
+  time: '2026-03-19T06:42:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3789
+- author: Hanzdegloker & Nyxilath
+  changes:
+  - message: The hairflower can now change color, bringing 13 new flower colors to
+      choose from!.
+    type: Tweak
+  - message: Removes the lily from loadout in favor of the color changing flower.
+    type: Remove
+  id: 379701
+  time: '2026-03-19T06:45:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3797
+- author: Roro, sprites by Abby
+  changes:
+  - message: Ports muh Construction bag for Engineering, holds materials, cables,
+      inflatable walls, tiles and magnetises any aforementioned item whether its attached
+      to your belt or in your bag, you can find it in your locker roundstart as well
+      as in vendor.
+    type: Add
+  - message: All Engineering lockers start with mats respective to their job now,
+      Engis and CE get a stack of steel and glass while Atmos gets 2 stacks of steel.
+    type: Tweak
+  - message: Added grappling hooks to engineer lockers and vendor, also fits in belt.
+    type: Tweak
+  - message: All Engineering PDA's have Astronav installed now (GPS).
+    type: Tweak
+  id: 378801
+  time: '2026-03-19T06:54:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3788
+- author: Way & Cvlancer
+  changes:
+  - message: (Ming) Added new department communications consoles. - Cvlancer.
+    type: Add
+  - message: (Sepultum) Added new department communications consoles. - Cvlancer.
+    type: Add
+  - message: (Orwell) Added new department communications consoles. - Way.
+    type: Add
+  - message: (Lobster) Added new department communications consoles. - Way.
+    type: Add
+  - message: (Lagan) Added new department communications consoles. - Way.
+    type: Add
+  - message: (Lagan) Moved the Exofabs inside Robotics to hopefully prevent objects
+      from getting stuck. - Way.
+    type: Fix
+  - message: (Ming & Sepultum) Added botany tools, changed AI cores around. -Cvlancer.
+    type: Tweak
+  id: 378501
+  time: '2026-03-19T07:00:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3785
+- author: Conflee
+  changes:
+  - message: Added Dept Comms Consoles to Box, Cog, Fland, Kiloton, and Spacemall,
+      and ensured these 5 have both Performer spawn points and job slots since some
+      were missing one or both.
+    type: Tweak
+  id: 378401
+  time: '2026-03-19T07:03:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3784
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Added the DYNMARE, SCYLLIA, AK570, DRAVON to the naval war aresneal.
+    type: Add
+  - message: Changed plastitium and shuttle walls to be stronger.
+    type: Tweak
+  id: 373801
+  time: '2026-03-19T07:07:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3738
+- author: CaptainFothel
+  changes:
+  - message: Informed the cameras that languages exist so they will no longer automatically
+      translate all speech into universal.
+    type: Fix
+  id: 379601
+  time: '2026-03-19T07:11:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3796
+- author: STARLIGHT TEAM
+  changes:
+  - message: Made Rule 2 more explicit, closing a loophole with Antag Rolling.
+    type: Tweak
+  id: 380501
+  time: '2026-03-19T16:20:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3805
 Order: -1
 

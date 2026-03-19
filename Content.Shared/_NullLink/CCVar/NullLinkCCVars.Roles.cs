@@ -19,4 +19,7 @@ public sealed partial class NullLinkCCVars
 
     public static readonly CVarDef<string> BunkerBypass =
         CVarDef.Create("nulllink.roles_req.panic_bunker_bypass", "PanicBunkerBypassReq", CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<string> AdminRankBuilder =
+        CVarDef.Create("nulllink.roles_req.admin_builder", "", CVar.SERVER);
 }

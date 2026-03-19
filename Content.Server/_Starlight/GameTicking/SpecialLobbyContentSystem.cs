@@ -1,4 +1,5 @@
 using Content.Server.Audio;
+using Content.Shared._Starlight.GameTicking.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.GameTicking.Prototypes;
 using Robust.Shared.GameObjects;

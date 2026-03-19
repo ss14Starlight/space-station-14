@@ -19,10 +19,10 @@ public sealed partial class LightBulbComponent : Component
 
     /// <summary>
     /// Starlight
-    /// Is LightBulb NightShift Compatible?
+    /// Is this light dimmable?
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool NightShiftCompatible = true;
+    public bool Dimmable = true;
 
     /// <summary>
     /// The type of lightbulb. Tube/bulb/etc...

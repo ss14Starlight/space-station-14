@@ -6,6 +6,7 @@ using Content.Shared.Damage;
 using Content.Shared.Mind;
 using Content.Shared.Stunnable;
 using Content.Shared.Damage.Systems;
+using Content.Shared._Starlight.Polymorph.Components;
 
 namespace Content.Server._ST.CosmicCult.Abilities;
 
@@ -30,6 +31,7 @@ public sealed class CosmicReturnSystem : EntitySystem
         if (_mind.TryGetMind(args.User, out var mindId, out var _))
             _mind.TransferTo(mindId, projectionEnt);
         EnsureComp<CosmicBlankComponent>(args.User);
+        EnsureComp<UncryoableComponent>(args.User); //Starlight: autocryo fix
         EnsureComp<CosmicAstralBodyComponent>(projectionEnt, out var astralComp);
         var mind = Comp<MindComponent>(mindId);
         mind.PreventGhosting = true;
@@ -48,6 +50,7 @@ public sealed class CosmicReturnSystem : EntitySystem
         mind.PreventGhosting = false;
         QueueDel(uid);
         RemComp<CosmicBlankComponent>(uid.Comp.OriginalBody);
+        RemComp<UncryoableComponent>(uid.Comp.OriginalBody); //Starlight: autocryo fix
         RemComp<CosmicCultExamineComponent>(uid.Comp.OriginalBody);
     }
 }

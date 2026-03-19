@@ -706,6 +706,15 @@
     accentHColor: "#447987"
   - type: Icon
     state: pda-ce
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge #FH
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -725,6 +734,15 @@
     accentVColor: "#A32D26"
   - type: Icon
     state: pda-engineer
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge #FH
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1070,6 +1088,15 @@
     accentVColor: "#447987"
   - type: Icon
     state: pda-atmos
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge #FH
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -1491,6 +1518,15 @@
     accentVColor: "#CD6900"
   - type: Icon
     state: pda-seniorengineer
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge #FH
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA

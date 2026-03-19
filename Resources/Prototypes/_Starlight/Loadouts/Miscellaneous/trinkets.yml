@@ -563,18 +563,6 @@
   groupBy: "pAI"
 
 - type: loadout
-  id: Boxblacklight
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:SpeciesRequirement
-      species:
-      - Shadekin
-  storage:
-    back: 
-      - Boxblacklight
-
-- type: loadout
   id: RoadCone
   effects:
     - !type:JobRequirementLoadoutEffect
@@ -584,12 +572,6 @@
         time: 144000 # 40 hours of being a STMS
   equipment:
     head: ClothingHeadHatCone
-
-- type: loadout
-  id: LilyFlower
-  equipment:
-    head: ClothingHeadHatLilyFlower
-  groupBy: "flowers"
 
 - type: loadout
   id: ClothWrapShoeTrinket

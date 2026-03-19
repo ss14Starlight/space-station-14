@@ -83,8 +83,5 @@ namespace Content.Shared.Light.Components
         /// </summary>
         [DataField]
         public TimeSpan UnarmedHitStun = TimeSpan.FromSeconds(5);
-
-        // Starlight
-        public bool NightModeEnabled = false;
     }
 }

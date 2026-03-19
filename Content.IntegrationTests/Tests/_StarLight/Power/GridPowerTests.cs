@@ -52,7 +52,7 @@ public sealed class GridPowerTests
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/ShadowBorgiGrid.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/UnknownShuttleFireResponse.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/abductor_shuttle.yml"),
-        new("/Maps/_Starlight/Shuttles/ShuttleEvent/syndie_evacpod.yml.yml"),
+        new("/Maps/_Starlight/Shuttles/ShuttleEvent/syndie_evacpod.yml"),
         new("/Maps/_Starlight/Shuttles/Signaleer.yml"),
         new("/Maps/_Starlight/Shuttles/VoxATS.yml"),
         new("/Maps/_Starlight/Shuttles/blackhorse.yml"),
