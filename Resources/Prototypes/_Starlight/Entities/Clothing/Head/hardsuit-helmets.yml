@@ -13,7 +13,7 @@
 
 - type: entity
   abstract: true
-  id: ClothingHeadSuitWithLightAdvanced # Advanced, for e.g. HOS/CE/Captain, Nukies Commander, basic ERT and NTSF.
+  id: ClothingHeadSuitWithLightAdvanced # Advanced, for e.g. HOS/CE/Captain.
   components:
     - type: PointLight
       radius: 7.5
@@ -21,7 +21,7 @@
 
 - type: entity
   abstract: true
-  id: ClothingHeadSuitWithLightFloodlight # Floodlight, for Mining, ERT Leader and Decimus.
+  id: ClothingHeadSuitWithLightFloodlight # Floodlight, such as Mining has.
   components:
     - type: PointLight
       radius: 9
