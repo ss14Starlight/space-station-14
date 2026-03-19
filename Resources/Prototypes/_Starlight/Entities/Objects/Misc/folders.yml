@@ -198,3 +198,60 @@
         children:
         - id: PrintedDocumentSalvageLeadReport
           amount: 7
+
+- type: entity
+  parent: [BoxFolderRedEmpty, BoxFolderFillAcquisitionSlips]
+  id: BoxFolderRedCargo
+  suffix: Red, Acquisition Slips
+
+- type: entity
+  parent: [BoxFolderBlueEmpty, BoxFolderFillAcquisitionSlips]
+  id: BoxFolderBlueCargo
+  suffix: Blue, Acquisition Slips
+
+- type: entity
+  parent: [BoxFolderYellowEmpty, BoxFolderFillAcquisitionSlips]
+  id: BoxFolderYellowCargo
+  suffix: Yellow, Acquisition Slips
+
+- type: entity
+  parent: [BoxFolderGreyEmpty, BoxFolderFillAcquisitionSlips]
+  id: BoxFolderGreyCargo
+  suffix: Grey, Acquisition Slips
+
+- type: entity
+  parent: [BoxFolderBlackEmpty, BoxFolderFillAcquisitionSlips]
+  id: BoxFolderBlackCargo
+  suffix: Black, Acquisition Slips
+
+- type: entity
+  parent: [BoxFolderGreenEmpty, BoxFolderFillAcquisitionSlips]
+  id: BoxFolderGreenCargo
+  suffix: Green, Acquisition Slips
+
+- type: entity
+  parent: [BoxFolderWhiteEmpty, BoxFolderFillAcquisitionSlips]
+  id: BoxFolderWhiteCargo
+  suffix: White, Acquisition Slips
+
+- type: entity
+  abstract: true
+  id: BoxFolderFillAcquisitionSlips # For cargo locker folders
+  suffix: Acquisition Slips
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PaperAcquisitionSlipCargo
+          amount: 3
+        - id: PaperAcquisitionSlipEngineering
+          amount: 3
+        - id: PaperAcquisitionSlipMedical
+          amount: 3
+        - id: PaperAcquisitionSlipScience
+          amount: 3
+        - id: PaperAcquisitionSlipSecurity
+          amount: 3
+        - id: PaperAcquisitionSlipService
+          amount: 3
