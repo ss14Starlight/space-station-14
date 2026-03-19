@@ -8,6 +8,15 @@
       role: JobMailTech
       time: 216000 # 60 hrs
 
+# Star Time
+- type: loadoutEffectGroup
+  id: StarOfMail
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMailTech
+      time: 360000 # 100 hrs
 
 # Jumpsuits
 - type: loadout
@@ -106,3 +115,17 @@
     proto: SeniorMailTechnician
   equipment:
     belt: SeniorMailBag
+
+# Mail Trolley
+- type: loadout
+  id: MailTrolleyFlatpack
+  storage:
+    back: MailTrolleyFlatpack
+
+- type: loadout
+  id: GoldenMailTrolleyFlatpack
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: StarOfMail
+  storage:
+    back: GoldenMailTrolleyFlatpack

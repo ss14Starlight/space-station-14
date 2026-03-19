@@ -22,10 +22,9 @@
   equipment:
     ears: ClothingHeadsetCargo
     belt: ClothingBeltCargo # Starlight start
-    #pocket1: AppraisalTool 
+    #pocket1: AppraisalTool # Moved to loadout
   storage:
     belt:
-    - AppraisalTool
     - WeaponMeleeBoxcutter # Starlight end
 
 - type: chameleonOutfit

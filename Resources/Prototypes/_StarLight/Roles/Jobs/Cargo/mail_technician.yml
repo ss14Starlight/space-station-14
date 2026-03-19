@@ -21,7 +21,6 @@
     ears: ClothingHeadsetCargo
   storage:
     back:
-    - MailTrolleyFlatpack
     - Multitool #maybe not a good idea? idk makes unpacking it quick
 
 - type: chameleonOutfit

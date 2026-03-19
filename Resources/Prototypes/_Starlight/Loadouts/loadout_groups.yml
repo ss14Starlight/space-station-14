@@ -508,6 +508,14 @@
   - HighHeelBootsFilled
 
 # Cargo
+# Cargo Technician
+- type: loadoutGroup
+  id: CargoTechnicianAppraisalTool
+  name: loadout-group-cargo-technician-appraisal-tool
+  loadouts:
+  - AppraisalTool
+  - GoldenAppraisalTool
+
 # Mail Technician
 - type: loadoutGroup
   id: MailTechnicianHead
@@ -562,6 +570,7 @@
   loadouts:
   - MailTechnicianBoots
   - MailTechnicianBootsSenior
+  - RollerSkatesLoadout
   - BlackShoes
   - YellowShoes
   - CargoWinterBoots
@@ -583,6 +592,13 @@
   loadouts:
   - MailBag
   - SeniorMailBag
+
+- type: loadoutGroup
+  id: MailTechnicianTrolley
+  name: loadout-group-mail-technician-trolley
+  loadouts:
+  - MailTrolleyFlatpack
+  - GoldenMailTrolleyFlatpack
 
 # Salvage Lead
 - type: loadoutGroup

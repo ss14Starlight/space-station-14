@@ -5,9 +5,8 @@
   description: A golden appraisal tool, reserved for the most elite of cargo technicians. Can it determine the worth of the universe?
   components:
   - type: Sprite
-    sprite: Objects/Tools/appraisal-tool.rsi
+    sprite: _Starlight/Objects/Tools/golden_appraisal_tool.rsi
     state: icon
   - type: Item
-    sprite: Objects/Tools/appraisal-tool.rsi
+    sprite: _Starlight/Objects/Tools/golden_appraisal_tool.rsi
     size: Small
-
