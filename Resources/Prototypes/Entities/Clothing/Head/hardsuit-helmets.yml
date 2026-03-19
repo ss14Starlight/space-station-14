@@ -837,7 +837,7 @@
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
-  parent: ClothingHeadHardsuitBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBasic, ClothingHeadSuitWithLightBase ] # Starlight: Add light.
   id: ClothingHeadHelmetHardsuitCybersun
   name: cybersun juggernaut helmet
   description: Made of compressed red matter, this helmet was designed in the Tau chromosphere facility.
@@ -860,6 +860,8 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+  - type: PointLight # Starlight: Actually give jugsuit a light
+    color: "#ff5050" # Starlight
 
 #Wizard Hardsuit
 - type: entity
