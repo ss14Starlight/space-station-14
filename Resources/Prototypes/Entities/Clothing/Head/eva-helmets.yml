@@ -72,7 +72,7 @@
 
 #Paramedic Void Helmet
 - type: entity
-  parent: [ ClothingHeadSuitWithLightBase, ClothingHeadEVAHelmetBase, ClothingHeadSuitWithLightBasic ] #Despite acting like a hardsuit helmet, since it inherits from EVA Helmet, it goes here.
+  parent: [ ClothingHeadSuitWithLightBasic, ClothingHeadSuitWithLightBase, ClothingHeadEVAHelmetBase ] #Despite acting like a hardsuit helmet, since it inherits from EVA Helmet, it goes here.
   id: ClothingHeadHelmetVoidParamed
   name: paramedic void helmet
   description: A void helmet made for paramedics.
@@ -113,6 +113,7 @@
         Radiation: 0.75
   - type: PointLight
     color: "#00ffff"
+    # Starlight: PointLight radius/energy parameters from parents
   - type: Tag
     tags:
     - CorgiWearable
