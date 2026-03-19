@@ -9,7 +9,7 @@
   components:
   - type: PointLight
     radius: 6.5
-    energy: 3
+    energy: 2.5
 
 - type: entity
   abstract: true
@@ -17,7 +17,7 @@
   components:
     - type: PointLight
       radius: 7.5
-      energy: 4
+      energy: 3.5
 
 - type: entity
   abstract: true
