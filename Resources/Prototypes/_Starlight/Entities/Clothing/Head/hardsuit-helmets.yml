@@ -5,7 +5,7 @@
 # Base parameters are in ClothingHeadSuitWithLightBase, so you probably don't need to use this.
 - type: entity
   abstract: true
-  id: ClothingHeadSuitWithLightBasic # Basic, intended for most jobs.
+  id: ClothingHeadSuitWithLightBasic # Basic, intended for non-combat jobs.
   components:
   - type: PointLight
     radius: 6
@@ -13,7 +13,15 @@
 
 - type: entity
   abstract: true
-  id: ClothingHeadSuitWithLightAdvanced # Advanced, for e.g. HOS/CE/Captain.
+  id: ClothingHeadSuitWithLightIntermediate # Intermediate, intended for combatant jobs.
+  components:
+    - type: PointLight
+      radius: 6.5
+      energy: 3
+
+- type: entity
+  abstract: true
+  id: ClothingHeadSuitWithLightAdvanced # Advanced, for e.g. CE, ERT, Mining hardsuit.
   components:
     - type: PointLight
       radius: 7.5
@@ -21,7 +29,7 @@
 
 - type: entity
   abstract: true
-  id: ClothingHeadSuitWithLightFloodlight # Floodlight, such as Mining has.
+  id: ClothingHeadSuitWithLightFloodlight # Floodlight, for e.g. Advanced mining hardsuit, Decimus.
   components:
     - type: PointLight
       radius: 9
@@ -31,7 +39,7 @@
 
 #BSO Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightIntermediate, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitBlueshield
   categories: [ HideSpawnMenu ]
   name: blue shield hardsuit helmet
@@ -229,7 +237,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightIntermediate, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitLuxmax
   categories: [ HideSpawnMenu ]
   name: QM's luxury maxim hardsuit helmet
@@ -251,7 +259,7 @@
 
 # Experimental Security Hardsuit
 - type: entity
-  parent: [ ClothingHeadHelmetHardsuitSecurity, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHelmetHardsuitSecurity, ClothingHeadSuitWithLightsIntermediate, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSecurityExperimental
   name: experimental security hardsuit helmet
   description: Heavily armored hardsuit helmet for security needs, now with lights!
@@ -274,7 +282,7 @@
 
 #Spationaut Lead Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightIntermediate, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSpatioLead
   name: spationaut lead hardsuit helmet
   description: A sturdy decorated helmet designed for complex industrial operations in space.
