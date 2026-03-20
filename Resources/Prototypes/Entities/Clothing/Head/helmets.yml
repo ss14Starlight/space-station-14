@@ -320,7 +320,7 @@
 
 #Atmos Fire Helmet
 - type: entity
-  parent: [ClothingHeadSuitWithLightBasic, ClothingHeadLightBase, BaseEngineeringContraband] # Starlight +WithLightsBasic
+  parent: [ClothingHeadWithLightBasic, ClothingHeadLightBase, BaseEngineeringContraband] # Starlight +WithLightsBasic
   id: ClothingHeadHelmetAtmosFire
   name: atmos fire helmet
   description: An atmos fire helmet, able to keep the user cool in any situation.

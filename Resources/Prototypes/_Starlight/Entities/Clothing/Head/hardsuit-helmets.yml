@@ -5,7 +5,7 @@
 # Base parameters are in ClothingHeadSuitWithLightBase, so you probably don't need to use this.
 - type: entity
   abstract: true
-  id: ClothingHeadSuitWithLightBasic # Basic, intended for non-combat jobs.
+  id: ClothingHeadWithLightBasic # Basic, intended for non-combat jobs.
   components:
   - type: PointLight
     radius: 6
@@ -13,7 +13,7 @@
 
 - type: entity
   abstract: true
-  id: ClothingHeadSuitWithLightIntermediate # Intermediate, intended for combatant jobs.
+  id: ClothingHeadWithLightIntermediate # Intermediate, intended for combatant jobs.
   components:
     - type: PointLight
       radius: 6.5
@@ -21,7 +21,7 @@
 
 - type: entity
   abstract: true
-  id: ClothingHeadSuitWithLightAdvanced # Advanced, for e.g. CE, ERT, Mining hardsuit.
+  id: ClothingHeadWithLightAdvanced # Advanced, for e.g. CE, ERT, Mining hardsuit.
   components:
     - type: PointLight
       radius: 7.5
@@ -29,7 +29,7 @@
 
 - type: entity
   abstract: true
-  id: ClothingHeadSuitWithLightFloodlight # Floodlight, for e.g. Advanced mining hardsuit, Decimus.
+  id: ClothingHeadWithLightFloodlight # Floodlight, for e.g. Advanced mining hardsuit, Decimus.
   components:
     - type: PointLight
       radius: 9
@@ -39,7 +39,7 @@
 
 #BSO Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightIntermediate, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadWithLightIntermediate, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitBlueshield
   categories: [ HideSpawnMenu ]
   name: blue shield hardsuit helmet
@@ -237,7 +237,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightIntermediate, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadWithLightIntermediate, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitLuxmax
   categories: [ HideSpawnMenu ]
   name: QM's luxury maxim hardsuit helmet
@@ -282,7 +282,7 @@
 
 #Spationaut Lead Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightIntermediate, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadWithLightIntermediate, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSpatioLead
   name: spationaut lead hardsuit helmet
   description: A sturdy decorated helmet designed for complex industrial operations in space.
@@ -361,7 +361,7 @@
 
 #Advanced Mining Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightFloodlight, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadWithLightFloodlight, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitAdvancedMining
   name: advanced mining hardsuit helmet
   description: A specially designed helmet for mining operations.
@@ -440,7 +440,7 @@
 
 #Mining Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitMining
   name: mining hardsuit helmet
   description: A special helmet designed for work in a hazardous, low pressure environments encountered during space mining. Has dual floodlights.
@@ -551,7 +551,7 @@
 # NanoTrasen Special Forces
 
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightAdvanced, ClothingHeadSuitWithLightBase ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitNTSF
   name: nanotrasen special forces hardsuit helmet
   description: A robust helmet for special operations.
@@ -602,7 +602,7 @@
         Caustic: 0.80
 
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightFloodlight, ClothingHeadSuitWithLightBase ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadWithLightFloodlight, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitDecimus
   name: decimus hardsuit helmet
   description: A robust helmet for special operations.

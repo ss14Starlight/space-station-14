@@ -201,7 +201,7 @@
 
 - type: entity
   abstract: true
-  parent: ClothingHeadSuitWithLightBasic # Starlight: Basic light intensity
+  parent: ClothingHeadWithLightBasic # Starlight: Basic light intensity
   # must parent both this and the desired helmet base when using
   id: ClothingHeadSuitWithLightBase
   name: base hardsuit helmet with light
