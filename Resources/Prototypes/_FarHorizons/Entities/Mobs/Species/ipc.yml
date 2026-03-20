@@ -132,7 +132,10 @@
       metabolites:
         canReact: false
   - type: Bloodstream
-    bloodReagent: Oil
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Oil
+        Quantity: 300
     bleedReductionAmount: 0 # No natural wound closing whatsoever
     bloodlossThreshold: 0.75 # Everyone else start taking bloodloss damage at 90%, but with no natural bleeding stop - IPC can last for a bit longer
   - type: IPCWeldClosesWounds
@@ -156,6 +159,7 @@
       Male: MaleIPC
       Female: FemaleIPC
       Unsexed: MaleIPC
+  # - type: VisionOrganRequiredForVision
   # IPC slots
   - type: ContainerContainer
     containers:
@@ -172,6 +176,9 @@
   - type: ContainerFill
     containers:
       borg_brain: [ PositronicBrain ]
+  # - type: GlitchOnIonStorm
+  #   duration: 40
+  #   ramp: 5
   # Battery
   - type: IPCBattery
     dieWithoutPowerAfter: 15.0 # 10 was too short
@@ -180,6 +187,7 @@
     warningSound:
       params:
         loop: true
+        maxDistance: 5
       path: /Audio/_FarHorizons/Effects/Alerts/healthpanel-alert.ogg
     drainAllowedTargets:
       - APCBasic
@@ -229,6 +237,7 @@
     damagedSound:
       params:
         loop: true
+        maxDistance: 5
       path: /Audio/_FarHorizons/Effects/Alerts/healthpanel-alert.ogg
     damagedThreshold:
       min: 85
@@ -316,6 +325,13 @@
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
+      enum.ThavenMoodsUiKey.Key: # impstation edit
+        type: ThavenMoodsBoundUserInterface
+        requireInputValidation: false
+      enum.VampireClassUiKey.Key: # SL
+        type: VampireClassBui
+      enum.VampireLocateUiKey.Key: # SL
+        type: VampireLocateBui
   - type: ActivatableUI
     key: enum.IPCUiKey.Key
   - type: UIRequiresLock
@@ -323,15 +339,16 @@
     - enum.IPCUiKey.Key
   # Thermals
   - type: Temperature
-    heatDamageThreshold: 373 # ~100C
-    coldDamageThreshold: 253 # Temperature alert works funky, basically requred for "ideal temperature" to be in the middle between 2
-    coldDamage: {} # Since we had to set treshold for damage, but we don't actually want any damage
+    currentTemperature: 313
+    specificHeat: 10 # IPC's metal body has very low heat capacity. Fast to heat and fast to cool
+  - type: TemperatureDamage
     disableAlerts: true
+    heatDamageThreshold: 373 # ~100C
+    coldDamageThreshold: 285 # Temperature alert works funky, basically requred for "ideal temperature" to be in the middle between 2
+    coldDamage: {} # Since we had to set treshold for damage, but we don't actually want any damage
     heatDamage:
       types:
         Heat: 2.5 #per second, scales with temperature & other constants
-    currentTemperature: 313
-    specificHeat: 10 # IPC's metal body has very low heat capacity. Fast to heat and fast to cool
   - type: IPCThermalRegulation
     produceHeat: 2000 # How much heat generated inside the body per second (only when on)
     radiateHeat: 300 # Passive heat loss, even when dead and/or spaced

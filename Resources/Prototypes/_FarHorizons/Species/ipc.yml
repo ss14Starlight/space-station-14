@@ -46,19 +46,21 @@
       points: 0
       required: false
     Head:
-      points: 2
+      points: 1
       required: true
+      defaultMarkings: [ MarkingBishopHead ]
     HeadSide:
-      points: 2
+      points: 1
       required: true
+      defaultMarkings: [ ScreenBsod ]
     Chest:
-      points: 3
+      points: 1
       required: false
     Legs:
-      points: 4
+      points: 1
       required: false
     Arms:
-      points: 4
+      points: 1
       required: false
 
 - type: humanoidBaseSprite

@@ -207,6 +207,10 @@
   - type: Stack
     stackType: RedOintment
     count: 20
+  - type: InteractRestriction #FH - Edit
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
 
 - type: entity
   name: red ointment
@@ -269,6 +273,10 @@
   - type: Stack
     stackType: RedBrutePack
     count: 20
+  - type: InteractRestriction #FH - Edit
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
 
 - type: entity
   name: red bruise pack
@@ -334,6 +342,10 @@
   - type: Stack
     stackType: RedPunctPack
     count: 20
+  - type: InteractRestriction #FH - Edit
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
 
 - type: entity
   name: red punct-laced brute pack
@@ -399,6 +411,10 @@
   - type: Stack
     stackType: RedLacePack
     count: 20
+  - type: InteractRestriction #FH - Edit
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
 
 - type: entity
   name: red lace-laced brute pack
