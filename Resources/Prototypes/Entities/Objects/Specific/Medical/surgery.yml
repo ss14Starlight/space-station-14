@@ -33,11 +33,11 @@
     soundHit:
       path: /Audio/Effects/lightburn.ogg
   - type: SurgeryTool
+  - type: Cautery
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
-  - type: Cautery
 
 - type: entity
   name: abductor's cautery
@@ -207,8 +207,8 @@
         Slash: 8
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
-  - type: Scalpel
   - type: SurgeryTool
+  - type: Scalpel
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
     endSound:
@@ -330,9 +330,14 @@
     state: laser
   - type: Item
     heldPrefix: laser
-  - type: Hemostat
-  - type: Cautery
   - type: SurgeryTool
+  - type: Hemostat
+    speed: 0.3
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+  - type: Cautery
     speed: 0.3
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
@@ -359,8 +364,8 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/scissors.rsi #Starlight
-  - type: Retractor
   - type: SurgeryTool
+  - type: Retractor
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
     endSound:
@@ -458,9 +463,9 @@
     heldPrefix: hemostat
     storedRotation: 90
   - type: SurgeryTool
+  - type: Hemostat
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
-  - type: Hemostat
 
 - type: entity
   name: advanced hemostat
@@ -539,8 +544,8 @@
   - type: Item
     heldPrefix: setter
     storedRotation: 90
-  - type: BoneSetter
   - type: SurgeryTool
+  - type: BoneSetter
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
 
@@ -642,9 +647,9 @@
     qualities:
       - Sawing
   - type: SurgeryTool
+  - type: BoneSaw
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/bone_saw.ogg
-  - type: BoneSaw
 
 # No melee for regular saw because have you ever seen someone use a band saw as a weapon? It's dumb.
 
@@ -668,10 +673,10 @@
   - type: Tool
     speedModifier: 0.5
   - type: SurgeryTool
+  - type: BoneSaw
     speed: 0.8
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/bone_saw.ogg
-  - type: BoneSaw
 
 - type: entity
   name: circular saw

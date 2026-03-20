@@ -32,8 +32,8 @@
       - behavior: Screwing
         useSound: /Audio/Items/screwdriver.ogg
         SpeedModifier: 0.05
-  - type: Scalpel
   - type: SurgeryTool
+  - type: Scalpel
     successRate: 0.9
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg

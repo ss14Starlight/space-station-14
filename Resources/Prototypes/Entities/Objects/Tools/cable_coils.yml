@@ -47,8 +47,8 @@
   # 🌟Starlight-start🌟
   - type: ItemPrice
     priceCategory: miscellaneous
-  - type: Retractor
   - type: SurgeryTool
+  - type: Retractor
     successRate: 0.6 # really not ideal, but in a pinch...
     speed: 1.5
     startSound:

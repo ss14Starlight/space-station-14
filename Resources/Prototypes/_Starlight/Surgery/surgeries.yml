@@ -17,6 +17,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
 
 - type: entity
   parent: SurgeryOpenIncision
@@ -49,6 +50,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
