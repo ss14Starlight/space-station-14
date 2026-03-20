@@ -259,7 +259,7 @@
 
 # Experimental Security Hardsuit
 - type: entity
-  parent: [ ClothingHeadHelmetHardsuitSecurity, ClothingHeadSuitWithLightsIntermediate, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHelmetHardsuitSecurity, ClothingHeadWithLightIntermediate, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSecurityExperimental
   name: experimental security hardsuit helmet
   description: Heavily armored hardsuit helmet for security needs, now with lights!
