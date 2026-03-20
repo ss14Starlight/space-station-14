@@ -68,7 +68,17 @@
       keySlots: 4
       canBeExamined: false
     
-
+- type: entity
+  id: BrainImplantPacifism
+  name: pacifism brain implant
+  description: Try talking out your problems!
+  parent: BaseEntityBrainImplant
+  components:
+    - type: Sprite
+      state: brain_implant_comms
+    - type: FunctionalOrgan
+      comps:
+        - type: Pacified
 - type: entity
   id: BrainImplantNexus
   name: Nexus Uplink
