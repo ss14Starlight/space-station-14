@@ -8,8 +8,8 @@
   id: ClothingHeadSuitWithLightBasic # Basic, intended for most jobs.
   components:
   - type: PointLight
-    radius: 6.5
-    energy: 2.5
+    radius: 6
+    energy: 2
 
 - type: entity
   abstract: true
