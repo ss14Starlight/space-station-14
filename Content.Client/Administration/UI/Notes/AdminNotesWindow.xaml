@@ -33,12 +33,14 @@
         <notes:AdminNotesControl
             Name="Notes"
             Margin="4"
-            Access="Public" />
+            Access="Public"
+            VerticalExpand="True" />
 
         <notes:AdminNotesControl
             Name="NetworkNotes"
             Margin="4"
             Access="Public"
+            VerticalExpand="True"
             Visible="False" />
     </BoxContainer>
 </ui:FancyWindow>

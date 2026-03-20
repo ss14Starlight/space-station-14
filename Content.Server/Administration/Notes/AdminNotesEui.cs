@@ -22,11 +22,11 @@ namespace Content.Server.Administration.Notes;
 
 public sealed class AdminNotesEui : BaseEui
 {
+    [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly IAdminManager _admins = default!;
     [Dependency] private readonly IAdminNotesManager _notesMan = default!;
     [Dependency] private readonly IPlayerLocator _locator = default!;
     [Dependency] private readonly IActorRouter _actors = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     public AdminNotesEui()
@@ -95,14 +95,10 @@ public sealed class AdminNotesEui : BaseEui
                         break;
                     }
 
-                    if (request.Network)
-                    {
-                        if (_actors.TryGetServerGrain(out var serverGrain))
-                            await serverGrain.AddOrUpdateNote(NotedPlayer, await GenerateNote(Player, NotedPlayer, request.Type, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime));
-                        break;
-                    }
+                    if (_actors.TryGetServerGrain(out var serverGrain))
+                        await serverGrain.AddOrUpdateNote(NotedPlayer, await GenerateNote(Player, NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime));
 
-                    await _notesMan.AddAdminRemark(NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime);
+                    await _notesMan.AddAdminRemark(Player, NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime);
                     break;
                 }
             case DeleteNoteRequest request:
@@ -201,7 +197,7 @@ public sealed class AdminNotesEui : BaseEui
         }
     }
 
-    private Dictionary<(int, NoteType), SharedAdminNote> Convert(HashSet<AdminNote> notes)
+    private Dictionary<(int, NoteType), SharedAdminNote> Convert(IEnumerable<AdminNote> notes)
     {
         Dictionary<(int, NoteType), SharedAdminNote> pairs = [];
 
@@ -262,7 +258,8 @@ public sealed class AdminNotesEui : BaseEui
             sb.Append($" which expires on {expiryTime.Value.ToUniversalTime(): yyyy-MM-dd HH:mm:ss} UTC");
         }
 
-        int? roundId = _gameTicker.RoundId == 0 ? null : _gameTicker.RoundId;
+        var gameTicker = _entities.System<GameTicker>();
+        int? roundId = gameTicker.RoundId == 0 ? null : gameTicker.RoundId;
         var serverName = _config.GetCVar(CCVars.AdminLogsServerName); // This could probably be done another way, but this is fine. For displaying only.
         var createdAt = DateTime.UtcNow;
         var playtime = (await _db.GetPlayTimes(player)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall)?.TimeSpent ?? TimeSpan.Zero;
