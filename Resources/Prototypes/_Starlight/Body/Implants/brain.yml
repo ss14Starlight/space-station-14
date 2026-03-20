@@ -70,7 +70,7 @@
     
 - type: entity
   id: BrainImplantPacifism
-  name: pacifism brain implant
+  name: anti-aggression implant
   description: Try talking out your problems!
   parent: BaseEntityBrainImplant
   components:
