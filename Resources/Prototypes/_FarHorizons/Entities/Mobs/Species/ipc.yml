@@ -147,9 +147,6 @@
   - type: ZombieImmune
   - type: TypingIndicator
     proto: robot
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepBorg
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
@@ -175,8 +172,6 @@
   - type: ContainerFill
     containers:
       borg_brain: [ PositronicBrain ]
-      key_slots:
-      - EncryptionKeyTrinary
   # Battery
   - type: IPCBattery
     dieWithoutPowerAfter: 15.0 # 10 was too short

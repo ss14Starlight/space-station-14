@@ -196,6 +196,9 @@ public sealed partial class IPCMenu : FancyWindow
             batteryCharge = _batterySystem.GetChargeLevel((checkedBattery.Owner, checkedBattery.Comp));
         }
 
+        if (_entity.TryGetComponent<MobStateComponent>(Entity, out var mobState))
+            LastKnownState = mobState.CurrentState;
+
         FullText = PrintConsole(LastKnownState.ToString(), batteryInserted, batteryCharge, eyeDamage, _bloodLevel, temp, fanMode, fansEfficiency, Brain, damage);
         UpdateBrainButton(Brain);
         EjectBatteryButton.Disabled = !batteryInserted;
