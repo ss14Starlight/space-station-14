@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/20/2026 18:33:46
-  entityCount: 44244
+  time: 03/20/2026 18:53:42
+  entityCount: 44248
 maps:
 - 1
 grids:
@@ -6178,6 +6178,12 @@ entities:
             7264: 52.069767,-27.15631
             7498: -0.17333913,76.36505
         - node:
+            cleanable: True
+            color: '#FFFFFFFF'
+            id: Bushi1
+          decals:
+            7789: -105.16361,-12.119099
+        - node:
             color: '#FFFFFFFF'
             id: Bushi2
           decals:
@@ -6194,6 +6200,12 @@ entities:
             6542: 57.85658,-7.707409
             6543: 59.317516,-9.019909
         - node:
+            cleanable: True
+            color: '#FFFFFFFF'
+            id: Bushi2
+          decals:
+            7787: -105.05424,-4.9003487
+        - node:
             color: '#FFFFFFFF'
             id: Bushi3
           decals:
@@ -6205,6 +6217,12 @@ entities:
             2669: -20.547426,-14.055494
             3549: 36.811375,20.988317
             4160: 96.01064,14.070396
+        - node:
+            cleanable: True
+            color: '#FFFFFFFF'
+            id: Bushi3
+          decals:
+            7788: -105.55424,-8.009724
         - node:
             color: '#FFFFFFFF'
             id: Bushi4
@@ -6263,6 +6281,12 @@ entities:
             5622: -10.984017,-51.702847
             7292: 10.8360195,76.119736
         - node:
+            cleanable: True
+            color: '#FFFFFFFF'
+            id: Bushk1
+          decals:
+            7791: -102.376366,-4.947673
+        - node:
             color: '#FFFFFFFF'
             id: Bushk2
           decals:
@@ -6288,6 +6312,12 @@ entities:
           decals:
             300: -102.06569,2.9734414
             3666: 71.135796,16.380838
+        - node:
+            cleanable: True
+            color: '#FFFFFFFF'
+            id: Bushk3
+          decals:
+            7790: -102.70449,-12.947673
         - node:
             color: '#FFFFFFFF'
             id: Bushl2
@@ -6352,6 +6382,37 @@ entities:
             2400: 65.12469,-5.546216
             2401: 74.26534,-0.3352561
             6137: -41.217495,-37.894875
+        - node:
+            cleanable: True
+            color: '#FFFFFFFF'
+            id: CactiLarge1
+          decals:
+            7781: -105.99174,-7.3534737
+        - node:
+            cleanable: True
+            color: '#FFFFFFFF'
+            id: CactiLarge3
+          decals:
+            7782: -103.16361,-3.5253487
+            7786: -106.53861,-9.494099
+        - node:
+            cleanable: True
+            color: '#FFFFFFFF'
+            id: CactiSmall1
+          decals:
+            7784: -103.75736,-7.6347237
+        - node:
+            cleanable: True
+            color: '#FFFFFFFF'
+            id: CactiSmall2
+          decals:
+            7785: -100.63236,-5.1503487
+        - node:
+            cleanable: True
+            color: '#FFFFFFFF'
+            id: CactiSmall3
+          decals:
+            7783: -104.38236,-11.494099
         - node:
             color: '#FFFFFFFF'
             id: Caution
@@ -9384,6 +9445,7 @@ entities:
             4064: 98.41568,33.005764
             4476: -15.972034,50.921497
             6599: 94.41813,-12.986174
+            7792: -103,-7
         - node:
             angle: -0.15707963267948966 rad
             color: '#FFFFFFFF'
@@ -19126,7 +19188,7 @@ entities:
     - type: AccessReader
       accessListsOriginal: []
     - type: Door
-      secondsUntilStateChange: -94147.22
+      secondsUntilStateChange: -95331.36
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -20483,7 +20545,7 @@ entities:
       pos: -14.5,11.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -98070.82
+      secondsUntilStateChange: -99254.96
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -21020,7 +21082,7 @@ entities:
       pos: 70.5,-16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -87290.54
+      secondsUntilStateChange: -88474.68
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -21311,7 +21373,7 @@ entities:
       pos: 30.5,49.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -94275.016
+      secondsUntilStateChange: -95459.16
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -109573,11 +109635,6 @@ entities:
     - type: Transform
       pos: 39.5,-11.5
       parent: 2
-  - uid: 44196
-    components:
-    - type: Transform
-      pos: -41.5,30.5
-      parent: 2
 - proto: ClosetMaintenanceFilledRandom
   entities:
   - uid: 16918
@@ -115465,7 +115522,7 @@ entities:
       pos: 66.5,9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -49770.72
+      secondsUntilStateChange: -50954.863
       state: Closing
   - uid: 17621
     components:
@@ -201254,7 +201311,7 @@ entities:
       pos: -21.5,84.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -91422.88
+      secondsUntilStateChange: -92607.02
       state: Closing
   - uid: 30119
     components:
@@ -204819,10 +204876,16 @@ entities:
       bodyType: Static
 - proto: LootSpawnerCableCoil
   entities:
-  - uid: 33595
+  - uid: 44196
     components:
     - type: Transform
       pos: 53.5,44.5
+      parent: 2
+  - uid: 44248
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,30.5
       parent: 2
 - proto: LootSpawnerIndustrialFluff
   entities:
@@ -215498,7 +215561,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 68.5,8.5
       parent: 2
-  - uid: 32485
+  - uid: 33595
     components:
     - type: Transform
       pos: 59.5,42.5
@@ -215509,21 +215572,40 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 71.5,-31.5
       parent: 2
+  - uid: 44246
+    components:
+    - type: Transform
+      pos: -84.5,67.5
+      parent: 2
+  - uid: 44247
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -86.5,62.5
+      parent: 2
+- proto: PoweredLEDLightPostSmall
+  entities:
+  - uid: 44245
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -72.5,38.5
+      parent: 2
 - proto: PoweredLEDSmallLight
   entities:
-  - uid: 32338
+  - uid: 32483
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 65.5,42.5
       parent: 2
-  - uid: 32483
+  - uid: 32484
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 63.5,40.5
       parent: 2
-  - uid: 32484
+  - uid: 32485
     components:
     - type: Transform
       pos: 63.5,44.5
@@ -219073,6 +219155,12 @@ entities:
       parent: 2
 - proto: Rack
   entities:
+  - uid: 32338
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,30.5
+      parent: 2
   - uid: 32615
     components:
     - type: Transform
