@@ -176,9 +176,9 @@
   - type: ContainerFill
     containers:
       borg_brain: [ PositronicBrain ]
-  # - type: GlitchOnIonStorm
-  #   duration: 40
-  #   ramp: 5
+  - type: GlitchOnIonStorm
+    duration: 40
+    ramp: 5
   # Battery
   - type: IPCBattery
     dieWithoutPowerAfter: 15.0 # 10 was too short

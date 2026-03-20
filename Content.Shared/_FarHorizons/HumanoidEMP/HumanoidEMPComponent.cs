@@ -33,6 +33,8 @@ public sealed partial class HumanoidEMPEffect
     [DataField]
     public Dictionary<EntProtoId, TimeSpan> AdditionalEffects = [];
 
+    [DataField] public TimeSpan GlitchDuration = TimeSpan.Zero;
+
     public static HumanoidEMPEffect operator +(HumanoidEMPEffect a, HumanoidEMPEffect b) => new()
     {
         StunAmount = a.StunAmount + b.StunAmount,
@@ -42,7 +44,8 @@ public sealed partial class HumanoidEMPEffect
         WalkSpeedModifier = Math.Min(a.WalkSpeedModifier, b.WalkSpeedModifier),
         SprintSpeedModifier = Math.Min(a.SprintSpeedModifier, b.SprintSpeedModifier),
         DropItemsFrom = [.. a.DropItemsFrom.Union(b.DropItemsFrom)],
-        AdditionalEffects = CombineEffects(a.AdditionalEffects, b.AdditionalEffects)
+        AdditionalEffects = CombineEffects(a.AdditionalEffects, b.AdditionalEffects),
+        GlitchDuration = a.GlitchDuration + b.GlitchDuration
     };
 
     public static Dictionary<EntProtoId, TimeSpan> CombineEffects(Dictionary<EntProtoId, TimeSpan> a, Dictionary<EntProtoId, TimeSpan> b)

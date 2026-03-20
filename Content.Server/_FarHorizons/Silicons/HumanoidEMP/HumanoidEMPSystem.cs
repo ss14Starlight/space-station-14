@@ -1,9 +1,8 @@
 using Content.Server.Body.Systems;
-using Content.Server.Emp;
+using Content.Server._FarHorizons.Silicons.Glitching;
 using Content.Server.Hands.Systems;
 using Content.Server.Stunnable;
 using Content.Shared._FarHorizons.Silicons.HumanoidEMP;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Emp;
 using Content.Shared.Movement.Systems;
@@ -21,6 +20,7 @@ public sealed partial class HumanoidEMPSystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _status = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly GlitchingSystem _glitching = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -74,5 +74,9 @@ public sealed partial class HumanoidEMPSystem : EntitySystem
         _movementMod.TryAddMovementSpeedModDuration(ent, MovementModStatusSystem.FlashSlowdown, effect.SlowdownAmount, effect.WalkSpeedModifier, effect.SprintSpeedModifier);
         foreach (var hand in effect.DropItemsFrom)
             _hands.DoDrop(ent, hand);
+
+        if (effect.GlitchDuration <= TimeSpan.Zero) return;
+        var rampTime = effect.GlitchDuration / 4;
+        _glitching.ApplyGlitch(ent, effect.GlitchDuration, rampTime);
     }
 }
