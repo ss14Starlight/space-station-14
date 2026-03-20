@@ -19,7 +19,7 @@
   id: ActionDevilRejuvenate
   parent: BaseAction
   name: Rejuvenate Self
-  description: Restore your body. Package does not include the SureRevive (tm) SuperRads (R) radiation damage cover. Fifteen mintue cooldown.
+  description: Restore your body. Package does not include the SureRevive (tm) SuperCell (R) cellular damage cover. Fifteen mintue cooldown.
   components:
   - type: Action
     checkCanInteract: false
@@ -27,4 +27,4 @@
     icon: { sprite: Objects/Specific/Medical/medical.rsi, state: gauze }
     useDelay: 900 # 15 minutes
   - type: InstantAction
-    event: !type:RejuvenateInstantActionEvent { preserveDamageTypes: [ Radiation ] }
+    event: !type:RejuvenateInstantActionEvent { preserveDamageTypes: [ Cellular ] }

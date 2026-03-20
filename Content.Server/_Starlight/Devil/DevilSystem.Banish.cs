@@ -6,9 +6,8 @@ using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Popups;
-using Robust.Shared.Random;
-using Content.Server.Jittering;
-using Content.Server.Chat.Systems;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Traits.Assorted;
 
 namespace Content.Server._Starlight.Devil;
 
@@ -16,9 +15,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
 {
     [Dependency] private readonly IGameTiming _time = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly JitteringSystem _jittering = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     private ProtoId<LocalizedDatasetPrototype> BanishPhraseDataset = "DevilBanishPhrases";
     private List<string> BanishPhrases = new();
@@ -54,8 +51,6 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
     private void OnListen(EntityUid uid, DevilComponent devilComp, ref ListenEvent args)
     {
-        // here we check if we are going to banish with this message
-        if(!devilComp.BeingBanished) return;
         if(HasComp<DevilComponent>(args.Source) || HasComp<DamnedComponent>(args.Source)) return;
         if(!args.OriginalMessage.Contains(devilComp.TrueName, StringComparison.InvariantCultureIgnoreCase)) return;
         if(!MessageContainsBanish(args.OriginalMessage)) return;
@@ -73,39 +68,14 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
     private void OnBibleThwack(EntityUid uid, DevilComponent devilComp, ref BibleThwackEvent args)
     {
-        if (devilComp.BeingBanished) return;
+        if (!_mobState.IsIncapacitated(uid)) return;
 
-        devilComp.BeingBanished = true;
-        devilComp.LastBanishModeActivate = _time.CurTime;
+        // hit while crit/dead, this should super kill them
+        _damageable.TryChangeDamage(uid, devilComp.BibleBanishDamage, true);
+        var unrevivable = AddComp<UnrevivableComponent>(uid);
+        unrevivable.ReasonMessage = "defibrillator-damned";
+
         args.Handled = true;
-
         _popup.PopupEntity(Loc.GetString("devil-banish-initiate", ("devil", Name(uid))), uid, PopupType.MediumCaution);
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var query = EntityQueryEnumerator<DevilComponent>();
-        while (query.MoveNext(out var uid, out var devilComp))
-        {
-            // handle turning off banishment
-            if (devilComp.BeingBanished && (devilComp.LastBanishModeActivate + devilComp.BanishModeLength) < _time.CurTime)
-            {
-                devilComp.BeingBanished = false;
-            }
-
-            if (devilComp.BeingBanished)
-            {
-                _jittering.DoJitter(uid, TimeSpan.FromSeconds(3), true, amplitude: 5, frequency: 12);
-
-                bool random = _random.Prob(0.33f);
-                if (random)
-                {
-                    string emote = _random.Prob(0.5f) ? "screams" : "spasms";
-                    _chat.TryEmoteWithChat(uid, emote, forceEmote: true);
-                }
-            }
-        }
     }
 }

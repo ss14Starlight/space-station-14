@@ -17,7 +17,7 @@ public sealed class RejuvenateSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
 
-    private SoundPathSpecifier Sound = new("/Audio/Magic/staff_change.ogg");
+    private SoundPathSpecifier Sound = new("/Audio/_Starlight/Misc/rejuvenate.ogg");
 
     public override void Initialize()
     {

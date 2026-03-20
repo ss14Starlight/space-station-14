@@ -81,24 +81,6 @@ public sealed partial class DevilComponent : Component
     public DevilChangeCriteria BidentAction = new(7);
 
     /// <summary>
-    /// Is the devil currently being banished?
-    /// </summary>
-    [AutoNetworkedField, ViewVariables]
-    public bool BeingBanished = false;
-
-    /// <summary>
-    /// Time of the last banish shift starting
-    /// </summary>
-    [AutoNetworkedField, ViewVariables]
-    public TimeSpan LastBanishModeActivate = TimeSpan.Zero;
-
-    /// <summary>
-    /// How long should devil be stuck being banished?
-    /// </summary>
-    [DataField]
-    public TimeSpan BanishModeLength = TimeSpan.FromMinutes(2);
-
-    /// <summary>
     /// How long is the damage cooldown per person?
     /// </summary>
     [DataField]
@@ -118,7 +100,7 @@ public sealed partial class DevilComponent : Component
     {
         DamageDict = new()
         {
-            { "Cellular", 10 },
+            { "Cellular", 20 },
         }
     };
 
@@ -127,6 +109,18 @@ public sealed partial class DevilComponent : Component
     /// </summary>
     [DataField]
     public float BanishDamageStamina = 40.0f;
+
+    /// <summary>
+    /// How much damage to take from bible kill
+    /// </summary>
+    [DataField]
+    public DamageSpecifier BibleBanishDamage = new()
+    {
+        DamageDict = new()
+        {
+            { "Cellular", 777 },
+        }
+    };
 }
 
 [Serializable, NetSerializable]
