@@ -79,6 +79,7 @@
     - type: FunctionalOrgan
       comps:
         - type: Pacified
+          
 - type: entity
   id: BrainImplantNexus
   name: Nexus Uplink
