@@ -96,7 +96,7 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
             if (HasComp<BorgChassisComponent>(ent) || HasComp<GlitchOnEMPComponent>(ent) || HasComp<GlitchOnIonStormComponent>(ent))
             {
                 _popup.PopupEntity(Loc.GetString("station-event-psychicscreach-borg"), ent, ent, PopupType.LargeCaution);
-                _statusEffect.TryAddStatusEffectDuration(ent, "StatusEffectBlinded", TimeSpan.FromSeconds(5));
+                _statusEffect.TryAddStatusEffectDuration(ent, "StatusEffectTemporaryBlindness", TimeSpan.FromSeconds(5));
                 _glitching.ApplyGlitch(ent, TimeSpan.FromSeconds(35), TimeSpan.FromSeconds(5));
                 _stunSystem.TryAddStunDuration(ent, TimeSpan.FromSeconds(5));
             }

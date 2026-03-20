@@ -39,7 +39,7 @@
     effect:
       glitchDuration: 10.0
       additionalEffects:
-        StatusEffectBlinded: 2.0
+        StatusEffectTemporaryBlindness: 2.0
       damageAmount:
         types:
           Shock: 5
@@ -65,7 +65,7 @@
     effect:
       glitchDuration: 10.0
       additionalEffects:
-        StatusEffectBlinded: 2.0
+        StatusEffectTemporaryBlindness: 2.0
       damageAmount:
         types:
           Shock: 5
@@ -103,7 +103,7 @@
     effect:
       glitchDuration: 10.0
       additionalEffects:
-        StatusEffectBlinded: 2.0
+        StatusEffectTemporaryBlindness: 2.0
       damageAmount:
         types:
           Shock: 5
