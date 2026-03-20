@@ -9,9 +9,9 @@
   id: BaseMobSpecies
   abstract: true
   components:
-  # Starlight-start
-  - type: Railroadable
-  - type: SurgeryTarget
+  - type: Railroadable # 🌟Starlight🌟
+  - type: SurgeryTarget # 🌟Starlight🌟
+  # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
