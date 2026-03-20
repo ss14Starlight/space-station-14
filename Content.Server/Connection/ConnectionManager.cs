@@ -81,12 +81,12 @@ namespace Content.Server.Connection
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
         private IPIntel.IPIntel _ipintel = default!;
 
-        private RoleRequirementPrototype? _roleReqPeacefulBypass;
+        private RoleRequirementPrototype? _bunkerBypass; // NullLink
         public void PostInit()
         {
             InitializeWhitelist();
-            _cfg.OnValueChanged(NullLinkCCVars.RoleReqPeacefulBypass, reqProtoId
-                => _roleReqPeacefulBypass = _prototypeManager.Index<RoleRequirementPrototype>(reqProtoId), true); // NullLink
+            _cfg.OnValueChanged(NullLinkCCVars.BunkerBypass, reqProtoId
+                => _bunkerBypass = _prototypeManager.TryIndex<RoleRequirementPrototype>(reqProtoId, out var proto) ? proto : null, true); // NullLink
         }
 
         public void Initialize()
@@ -275,10 +275,10 @@ namespace Content.Server.Connection
                 // NullLink Bypass start
                 try
                 {
-                    if (!validAccountAge
-                        && _roleReqPeacefulBypass is not null
+                    if (!bypassAllowed
+                        && _bunkerBypass is not null
                         && _actors.TryGetServerGrain(out var serverGrain))
-                        validAccountAge = await serverGrain.HasPlayerAnyRole(userId, _roleReqPeacefulBypass.Roles);
+                        bypassAllowed = await serverGrain.HasPlayerAnyRole(userId, _bunkerBypass.Roles);
                 }
                 catch (Exception)
                 {
@@ -315,7 +315,7 @@ namespace Content.Server.Connection
                             ("reason", Loc.GetString("panic-bunker-account-reason-overall", ("minutes", minOverallMinutes)))), null);
                 }
 
-                if (!validAccountAge || !haveMinOverallTime && !bypassAllowed)
+                if ((!validAccountAge || !haveMinOverallTime) && !bypassAllowed) // starlight
                 {
                     return (ConnectionDenyReason.Panic, Loc.GetString("panic-bunker-account-denied"), null);
                 }
