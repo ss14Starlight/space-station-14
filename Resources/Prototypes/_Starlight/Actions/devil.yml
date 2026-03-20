@@ -14,14 +14,14 @@
 
 - type: entity
   id: ActionDamnationsMenu
-  name: View Available Damnations
-  description: Refer to your book of the damned, see what ways you can oblige the crew.
+  name: Open Book of the Damned
+  description: Refer to your list of damnations, see what ways you can oblige the crew.
   components:
   - type: Action
     itemIconStyle: NoItem
     icon:
-      sprite: Changeling/changeling_abilities.rsi
-      state: evolution_menu # todo make new
+      sprite: Objects/Misc/books.rsi
+      state: book_icon
   - type: InstantAction
     event: !type:OpenDamnationsMenuEvent {}
 

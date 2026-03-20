@@ -30,7 +30,7 @@ public sealed partial class DevilComponent : Component
         "Pacifism",
         "Blindness",
         "SpaceImmunity",
-        //"Credits",
+        "Credits",
         "AllSeeing",
         "Magic",
         "Purpose",

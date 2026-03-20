@@ -36,15 +36,14 @@
   components:
   - type: Doomed
 
-# todo get working with new null-link
-#- type: damnation
-#  id: Credits
-#  name: give up my riches
-#  description: The signator forfeits 5000 credits.
-#  cost: -5
-#  actions:
-#  - !type:DamnationActionDeductCredits
-#    amount: 5000
+- type: damnation
+  id: Credits
+  name: give up my riches
+  description: The signator forfeits 5000 credits.
+  cost: -5
+  actions:
+  - !type:DamnationActionDeductCredits
+    amount: 5000
 
 - type: damnation
   id: Purpose
