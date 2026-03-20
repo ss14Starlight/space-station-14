@@ -260,6 +260,7 @@
     whitelist:
       components:
       - BorgChassis
+      tags:
       - IPC
   - type: Construction
     containers:
@@ -304,6 +305,7 @@
     whitelist:
       components:
       - BorgChassis
+      tags:
       - IPC
   - type: ContainerContainer
     containers:

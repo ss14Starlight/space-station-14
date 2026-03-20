@@ -30,7 +30,8 @@
     heldPrefix: eyeballs
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobHumanoidEyes
+    prototypes:
+      Default: MobHumanoidEyes
   - type: HumanoidEMPCompositeElement
     effect:
       glitchDuration: 10.0
