@@ -5,3 +5,11 @@
     state: skull
   name: alerts-doomed-name
   description: alerts-doomed-desc
+
+- type: alert
+  id: SoulDebt
+  icons:
+  - sprite: /Textures/Mobs/Ghosts/ghost_human.rsi
+    state: icon
+  name: alerts-souldebt-name
+  description: alerts-souldebt-desc

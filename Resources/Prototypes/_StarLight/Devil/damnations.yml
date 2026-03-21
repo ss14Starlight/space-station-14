@@ -8,6 +8,10 @@
   components:
   - type: Unrevivable
     reasonMessage: defibrillator-damned
+  actions:
+  - !type:DamnationActionAddAlert
+    alerts:
+    - SoulDebt
 
 - type: damnation
   id: Pacifism
