@@ -445,7 +445,7 @@
   description: "Made of the same cheap aluminium as all the other signs, but with a glossy finish!"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/posters/nanotrasen_fancy.rsi
+    sprite: _Starlight/Structures/Wallmounts/posters/nt_fancy.rsi
     state: nanotrasen_monke
 
 - type: entity

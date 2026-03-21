@@ -5,7 +5,7 @@
   description: A shooting target. This one is a changeling.
   components:
   - type: Sprite
-    sprite: _Starlight/Furniture/targets.rsi
+    sprite: _Starlight/Structures/Furniture/targets.rsi
     state: changeling
 
 - type: entity
@@ -15,7 +15,7 @@
   description: A shooting target. This one is a tider- better lethal it.
   components:
   - type: Sprite
-    sprite: _Starlight/Furniture/targets.rsi
+    sprite: _Starlight/Structures/Furniture/targets.rsi
     state: tider
 
 - type: entity
@@ -25,5 +25,5 @@
   description: A shooting target. This one is a wizard.
   components:
   - type: Sprite
-    sprite: _Starlight/Furniture/targets.rsi
+    sprite: _Starlight/Structures/Furniture/targets.rsi
     state: wizard
