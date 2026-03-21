@@ -1,0 +1,68 @@
+# Starlight - M321-CHARYBDIS 'Thanatos' 280mm Railgun Ammunition
+
+# Base Charybdis 280mm cartridge (abstract)
+- type: entity
+  abstract: true
+  parent: [BaseItem, BaseMajorContraband]
+  id: BaseCharon280mmCartridge
+  name: base 280mm Charybdis cartridge
+  components:
+  - type: Tag
+    tags:
+    - Cartridge280mmSlug
+  - type: Item
+    size: Huge
+
+# M381 CHARYBDIS 280mm 26.5kg Slug
+# A massive kinetic penetrator. Pierces through targets and structures before detonating.
+- type: entity
+  parent: BaseCharon280mmCartridge
+  id: CartridgeCharon280mmSlug
+  name: M381 CHARYBDIS 280mm 26.5kg slug
+  description: >-
+    A 26.5 kilogram depleted-tungsten penetrator round for the M321-CHARYBDIS 'Thanatos' railgun system.
+    The slug punches through multiple targets and structural layers before its delayed fuse detonates.
+    Handle with extreme care. Requires manual chamber loading.
+  suffix: Slug
+  components:
+  - type: CartridgeAmmo
+    proto: BulletCharon280mmSlug
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Artillery Ammo/charon_ammo.rsi
+    layers:
+    - state: railgun_slug
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: railgun_slug
+    suffix: false
+  - type: StaticPrice
+    price: 2000
+
+# M381 CHARYBDIS 280mm 40KG Subnuclear Slug
+# A subnuclear warhead. Detonates on impact with a catastrophic area-of-effect blast.
+- type: entity
+  parent: BaseCharon280mmCartridge
+  id: CartridgeCharon280mmSubnuclear
+  name: M381 CHARYBDIS 280mm 40kg subnuclear slug
+  description: >-
+    A 40 kilogram subnuclear warhead packaged as a railgun slug for the M321-CHARYBDIS 'Thanatos' system.
+    Detonates on first contact, producing a massive subnuclear detonation with significant residual radiation.
+    RESTRICTED to authorized combat operations only. Requires manual chamber loading.
+  suffix: Subnuclear
+  components:
+  - type: CartridgeAmmo
+    proto: BulletCharon280mmSubnuclear
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Artillery Ammo/charon_ammo.rsi
+    layers:
+    - state: subnuclear
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: subnuclear
+    suffix: false
+  - type: StaticPrice
+    price: 8000

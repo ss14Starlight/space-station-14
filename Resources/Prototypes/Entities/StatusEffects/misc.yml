@@ -47,7 +47,7 @@
 - type: entity
   parent: MobStatusEffectDebuff
   id: StatusEffectForcedSleeping
-  name: forced sleep
+  name: status-effect-misc-forced-sleep # Starlight: Localize
   components:
   # Starlight START
   - type: StatusEffect
@@ -64,7 +64,7 @@
 - type: entity
   parent: MobStatusEffectBase # Not even rejuvenate can cure SSD...
   id: StatusEffectSSDSleeping
-  name: forced sleep
+  name: status-effect-misc-ssd-sleep # Starlight: Localize
   components:
   - type: ForcedSleepingStatusEffect
   - type: StunnedStatusEffect
@@ -74,7 +74,7 @@
 - type: entity
   parent: MobStatusEffectDebuff
   id: StatusEffectDrowsiness
-  name: drowsiness
+  name: status-effect-misc-drowsiness # Starlight: Localize
   components:
   - type: DrowsinessStatusEffect
   # Starlight START
@@ -89,7 +89,7 @@
 - type: entity
   parent: MobStatusEffectDebuff
   id: StatusEffectSeeingRainbow
-  name: hallucinations
+  name: status-effect-misc-hallucinations # Starlight: Localize
   components:
   - type: SeeingRainbowsStatusEffect
   # Starlight START
@@ -104,7 +104,7 @@
 - type: entity
   parent: MobStatusEffectDebuff
   id: StatusEffectWoozy
-  name: woozy
+  name: status-effect-misc-woozy # Starlight: Localize
   components:
   - type: DrunkStatusEffect
   # Starlight START
@@ -119,4 +119,4 @@
 - type: entity
   parent: [ StatusEffectWoozy, StatusEffectSlurred ]
   id: StatusEffectDrunk
-  name: drunk
+  name: status-effect-misc-drunk # Starlight: Localize

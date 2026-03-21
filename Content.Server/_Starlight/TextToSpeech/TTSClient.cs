@@ -129,8 +129,8 @@ public sealed class TTSClient : ITTSClient
             return null;
 
         var cacheKey = effect != TTSEffect.None
-            ? $"cache:{voice}:{(int)effect}:{text}"
-            : $"cache:{voice}:{text}";
+            ? $"cache:2:{voice}:{(int)effect}:{text}"
+            : $"cache:2:{voice}:{text}";
 
         var cached = await _db.StringGetAsync(cacheKey);
         return cached.HasValue ? (byte[])cached! : null;
@@ -151,7 +151,7 @@ public sealed class TTSClient : ITTSClient
         }
 
         var jobId = Guid.NewGuid().ToString("N");
-        var channel = effect != TTSEffect.None ? $"result:{jobId}:{(int)effect}" : $"result:{jobId}";
+        var channel = effect != TTSEffect.None ? $"result:2:{jobId}:{(int)effect}" : $"result:2:{jobId}";
 
         var pending = new byte[]?[256];
         byte nextSeq = 0;
