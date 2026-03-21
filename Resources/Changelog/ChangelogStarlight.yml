@@ -35051,5 +35051,28 @@ Entries:
   id: 382001
   time: '2026-03-21T05:30:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3820
+- author: mikeysaurus
+  changes:
+  - message: changed _StarLight folder instance in Prototypes to _Starlight.
+    type: Tweak
+  id: 383401
+  time: '2026-03-21T05:53:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3834
+- author: NEVEC
+  changes:
+  - message: Added the Mail Companion for Mail Technicians to scan deliveries and
+      track recipients through suit sensors.
+    type: Add
+  - message: Added a dedicated crew-monitor style HUD and custom Mail Companion sprites.
+    type: Add
+  - message: Mail Companion tracking now expires after 1 minute and enters a 30 second
+      recalibration cooldown.
+    type: Tweak
+  - message: Opening the tracked delivery now immediately resets the Mail Companion
+      so it can be used again.
+    type: Fix
+  id: 381901
+  time: '2026-03-21T07:33:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3819
 Order: -1
 

@@ -22,6 +22,7 @@
   id: MailTechGear
   equipment:
     ears: ClothingHeadsetCargo
+    pocket1: MailCompanion
   storage:
     back: # literally just comment to update folder
     - Multitool #maybe not a good idea? idk makes unpacking it quick 
