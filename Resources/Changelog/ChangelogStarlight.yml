@@ -34963,5 +34963,183 @@ Entries:
   id: 381501
   time: '2026-03-20T12:54:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3815
+- author: Rinary
+  changes:
+  - message: Added bullet holes visual effect when shooting in objects like walls.
+    type: Add
+  - message: Added sparks visual effect when shooting in metal piercable objects.
+    type: Add
+  - message: 'Added new options tab: "User Interface".'
+    type: Add
+  - message: Added a lot of options for sights(I bored, pls help me).
+    type: Add
+  - message: Added ability to change crosshair at options.
+    type: Add
+  - message: Changed wielding bonus on all weapons, now when you're wielding weapon
+      it wouldn't be 100% accurate, now it only 50%.
+    type: Tweak
+  - message: Changed wielding bonus, now when you're wielding weapon it would increase
+      current spread angle slower in 2 times.
+    type: Tweak
+  - message: Changed spread, now when you're moving your spread will be bigger(x2
+      for sprint, 1.5x for walk).
+    type: Tweak
+  - message: Changed spread stats of large amount of weapons. (Check PR body for detailed
+      information).
+    type: Tweak
+  - message: Now all pistols are wieldable.
+    type: Tweak
+  - message: Now all smgs are wieldable.
+    type: Tweak
+  - message: Removed cursor visibility when entering at combat for some crosshairs.
+    type: Remove
+  id: 315401
+  time: '2026-03-21T04:41:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3154
+- author: CawsForConcern
+  changes:
+  - message: Scurret ghost theme sprite issues with side-facing sprites.
+    type: Fix
+  id: 383101
+  time: '2026-03-21T05:00:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3831
+- author: neomoth
+  changes:
+  - message: Added a new moth wing (Double swirl).
+    type: Add
+  - message: Added a new hairstyle (Cool spikes).
+    type: Add
+  - message: Added a new vulpkanin tail (Extra fluffy).
+    type: Add
+  id: 383301
+  time: '2026-03-21T05:09:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3833
+- author: Conflee
+  changes:
+  - message: Added boxing ropes, for true boxing rings finally! .
+    type: Add
+  - message: Added Platforms. These function like railings, but the textures imply
+      depth allowing for more convincing false-depth illusions for mappers to play
+      with, for pits or steps up or false flower beds etc.
+    type: Add
+  - message: Changed railing textures to be 3/4ths perspective, using TGstation sprites.
+      This is so they match the platforms and don't stand out next to them.
+    type: Tweak
+  - message: Added Yellow and Wooden railings. More decorative options for mappers
+      to use- Yellow fits better in industrial areas as hazard railing, while the
+      wood fix very well in bar and on stages in the theater.
+    type: Add
+  - message: Fixed the CentComm Flag! It now renders and exists.
+    type: Fix
+  - message: Added shadow decals, to help sell fake depth. Allows mappers to manually
+      place shading similar to the ambient occlusion the game has.
+    type: Add
+  id: 381101
+  time: '2026-03-21T05:15:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3811
+- author: BigfootBravo
+  changes:
+  - message: New speech and whisper verbs to the chittin language
+    type: Add
+  id: 382901
+  time: '2026-03-21T05:30:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3829
+- author: TaserTheFox
+  changes:
+  - message: Capitalization changes.
+    type: Tweak
+  id: 382001
+  time: '2026-03-21T05:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3820
+- author: mikeysaurus
+  changes:
+  - message: changed _StarLight folder instance in Prototypes to _Starlight.
+    type: Tweak
+  id: 383401
+  time: '2026-03-21T05:53:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3834
+- author: NEVEC
+  changes:
+  - message: Added the Mail Companion for Mail Technicians to scan deliveries and
+      track recipients through suit sensors.
+    type: Add
+  - message: Added a dedicated crew-monitor style HUD and custom Mail Companion sprites.
+    type: Add
+  - message: Mail Companion tracking now expires after 1 minute and enters a 30 second
+      recalibration cooldown.
+    type: Tweak
+  - message: Opening the tracked delivery now immediately resets the Mail Companion
+      so it can be used again.
+    type: Fix
+  id: 381901
+  time: '2026-03-21T07:33:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3819
+- author: redmushie, Rinary
+  changes:
+  - message: Fixed crash from putting shoes on while moving.
+    type: Fix
+  id: 383601
+  time: '2026-03-21T08:46:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3836
+- author: Rinary1
+  changes:
+  - message: Changed wield logic, now you wield guns with chamber, when you have free
+      hands or when your bolt is closed, in another cases you will close bolt first.
+    type: Tweak
+  id: 384501
+  time: '2026-03-21T15:46:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3845
+- author: TaserTheFox
+  changes:
+  - message: Capitalization and naming inconsistency.
+    type: Tweak
+  id: 384701
+  time: '2026-03-21T15:52:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3847
+- author: Shades
+  changes:
+  - message: Added Ghost Ping for Important Ghost Roles.
+    type: Add
+  id: 384601
+  time: '2026-03-21T16:21:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3846
+- author: CawsForConcern
+  changes:
+  - message: Fixed custom / event admin grids failing to load.
+    type: Fix
+  id: 384401
+  time: '2026-03-21T16:38:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3844
+- author: STARLIGHT TEAM
+  changes:
+  - message: The chime wait time is limited to 3 seconds.
+    type: Fix
+  id: 383801
+  time: '2026-03-21T16:44:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3838
+- author: redmushie
+  changes:
+  - message: All handheld crew monitors now come with medium batteries.
+    type: Tweak
+  - message: All handheld crew monitors now use 25% less energy per opening of the
+      UI or receiving an alert.
+    type: Tweak
+  id: 385001
+  time: '2026-03-21T17:58:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3850
+- author: redmushie
+  changes:
+  - message: Re-randomize the randomness. You should hear less Wilhelm screams.
+    type: Fix
+  id: 384301
+  time: '2026-03-21T18:01:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3843
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Added reinforced shuttle and plastitium wall varients for admemes.
+    type: Add
+  id: 382101
+  time: '2026-03-21T18:17:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3821
 Order: -1
 

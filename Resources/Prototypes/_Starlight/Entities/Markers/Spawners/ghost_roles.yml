@@ -26,6 +26,7 @@
   suffix: brighteye
   components:
   - type: GhostRole
+    important: true # SL
     name: roles-antag-brighteye-name
     description: roles-antag-brighteye-description
     mindRoles:
@@ -46,6 +47,7 @@
   name: exterminator spawn point
   components:
   - type: GhostRole
+    important: true # SL
     name: ghost-role-information-terminator-name
     description: ghost-role-information-terminator-description
     rules: ghost-role-information-terminator-rules

@@ -33,6 +33,7 @@ public sealed class TextToSpeechSystem : EntitySystem
     private readonly MemoryContentRoot _contentRoot = new();
     private (EntityUid Entity, AudioComponent Component)? _currentPlaying;
 
+    private static readonly TimeSpan _maxChimeLength = TimeSpan.FromSeconds(3);
     private const float CrossFade = 0.010f;
     private float _volume;
     private float _radioVolume;
@@ -88,12 +89,13 @@ public sealed class TextToSpeechSystem : EntitySystem
         var ent = _audio.PlayGlobal(audio, EntityUid.Invalid, AudioParams.Default.WithVolume(_chimeVolume));
         if (ent != null)
         {
+            var audioLength = _audio.GetAudioLength(audio);
             var comp = EnsureComp<TTSAudioStreamComponent>(ent.Value.Entity);
             comp.Data = data;
             comp.EntityUid = ent.Value.Entity;
             comp.SourceUid = entity;
             comp.AudioParams = audioParams;
-            comp.AudioLength = _audio.GetAudioLength(audio);
+            comp.AudioLength = audioLength > _maxChimeLength ? _maxChimeLength : audioLength;
             _currentPlaying = ent;
             return true;
         }

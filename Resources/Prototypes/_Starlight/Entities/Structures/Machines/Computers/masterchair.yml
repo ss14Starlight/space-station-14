@@ -2,7 +2,7 @@
   parent: BaseStructureComputer
   id: Masterchair
   name: observation masterchair
-  description: If you think you are safe from prying eyes, you would be dead wrong— Big Brother from 1984 trembles whenever John Nanotrasen sits in this, watching every move, fining you for each inconsistency, and noting down collective failures.
+  description: If you think you are safe from prying eyes, you would be dead wrong— Big Brother from 1984 trembles whenever John NanoTrasen sits in this, watching every move, fining you for each inconsistency, and noting down collective failures.
   placement:
     mode: SnapgridCenter
   components:
