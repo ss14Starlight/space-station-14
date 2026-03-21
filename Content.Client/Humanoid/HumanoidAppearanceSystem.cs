@@ -155,6 +155,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             return;
         }
 
+        if (!humanoid.AllowProfileOverride) return; //Starlight
+
         var customBaseLayers = new Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo>();
 
         var speciesPrototype = _prototypeManager.Index<SpeciesPrototype>(profile.Species);

@@ -199,7 +199,7 @@
 - type: entity
   parent: BasePDA
   id: NanoTrasenRepresentativePDA
-  name: NanoTrasen representative PDA
+  name: nanotrasen representative PDA
   components:
   - type: Pda
     id: NanoTrasenRepresentativeIDCard
@@ -639,7 +639,7 @@
 - type: entity
   parent: BasePDA
   id: NanotrasenCareerTrainerPDA
-  name: Nanotrasen Career Trainer PDA
+  name: nanotrasen career trainer PDA
   components:
   - type: Pda
     id: NanotrasenCareerTrainerIDCard

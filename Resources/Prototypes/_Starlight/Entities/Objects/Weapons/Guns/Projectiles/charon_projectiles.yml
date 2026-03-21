@@ -1,0 +1,70 @@
+# Starlight - M321-CHARYBDIS 'Thanatos' 280mm Railgun Projectiles
+
+# M381 CHARYBDIS 280mm 26.5kg Slug
+# Pierces through soft targets while dealing massive kinetic damage, then detonates.
+- type: entity
+  id: BulletCharon280mmSlug
+  name: M381 CHARYBDIS 280mm slug
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Artillery Ammo/charon_ammo.rsi
+    layers:
+      - state: railgun_slug
+    scale: 2, 2
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 500        # devastating kinetic impact on first hit
+        Blunt: 150
+        Structural: 600      # tears through walls and hulls
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 350      # ~4-5 tile radius - punishing but focused
+    intensitySlope: 10
+    maxIntensity: 28
+    canCreateVacuum: true
+  - type: PointLight
+    enabled: true
+    radius: 4
+    energy: 3
+    color: "#ffaa22"
+  - type: RadarBlip
+    color: "#FF6600"
+    scale: 1.2
+    requireInSpace: true
+
+# M381 CHARYBDIS 280mm 40KG Subnuclear Slug
+# Does not pierce - detonates on first impact with a devastating subnuclear explosion.
+- type: entity
+  id: BulletCharon280mmSubnuclear
+  name: M381 CHARYBDIS 280mm subnuclear slug
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Artillery Ammo/charon_ammo.rsi
+    layers:
+      - state: subnuclear
+    scale: 2.5, 2.5
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 1400     # enormous subnuclear AOE - ~10+ tile radius
+    intensitySlope: 4        # shallow slope = wide blast, damage carries far
+    maxIntensity: 60
+    canCreateVacuum: true
+  - type: PointLight
+    enabled: true
+    radius: 6
+    energy: 5
+    color: "#dd44ff"
+  - type: RadarBlip
+    color: "#CC44FF"
+    scale: 1.8
+    requireInSpace: true
+  - type: RadiationSource   # subnuclear residue
+    intensity: 8
+    slope: 0.5

@@ -43,6 +43,7 @@ using Content.Shared._Starlight.Weapons.DualWield;
 using Content.Shared.Mech.Components;
 using Content.Shared.Starlight.Utility;
 using Content.Shared.Weapons.Hitscan.Events;
+using Content.Shared.Movement.Components;
 using Content.Shared._Starlight.Camera;
 #endregion Starlight
 
@@ -576,6 +577,43 @@ public abstract partial class SharedGunSystem : EntitySystem
     }
 
     #region Starlight
+
+    public Angle GetCurrentAngle(Entity<GunComponent?> gun, TimeSpan? curTime = null)
+    {
+        if (!Resolve(gun, ref gun.Comp))
+            return new Angle(0);
+        curTime ??= Timing.CurTime;
+        var timeSinceLastFire = (curTime - gun.Comp.LastFire).Value.TotalSeconds;
+        var newTheta = MathHelper.Clamp(gun.Comp.CurrentAngle.Theta + gun.Comp.AngleIncreaseModified.Theta - gun.Comp.AngleDecayModified.Theta * timeSinceLastFire, gun.Comp.MinAngleModified.Theta, gun.Comp.MaxAngleModified.Theta);
+        gun.Comp.CurrentAngle = new Angle(newTheta);
+        return gun.Comp.CurrentAngle;
+    }
+
+    public Angle GetRecoilAngle(Entity<GunComponent> gun, Angle direction, TimeSpan? curTime = null)
+    {
+        GetCurrentAngle(gun.AsNullable(), curTime);
+        var spreadModifier = 1f;
+
+        var xform = Transform(gun);
+        if (TryComp<InputMoverComponent>(xform.ParentUid, out var mover) && mover.CanMove && mover.HasDirectionalMovement)
+        {
+            if (mover.Sprinting)
+                spreadModifier += gun.Comp.SprintSpreadModifier;
+            else
+                spreadModifier += gun.Comp.WalkSpreadModifier;
+        }
+
+        // Convert it so angle can go either side.
+        var random = Random.NextFloat(-0.5f, 0.5f);
+
+        var finalSpread = gun.Comp.CurrentAngle.Theta * spreadModifier;
+        var spread = finalSpread * random;
+
+        var angle = new Angle(direction.Theta + gun.Comp.CurrentAngle.Theta * random);
+        DebugTools.Assert(spread <= gun.Comp.MaxAngleModified.Theta);
+        return angle;
+    }
+
     public bool IsChamberClosed(EntityUid gunEntity)
         => Appearance.TryGetData(gunEntity, AmmoVisuals.BoltClosed, out bool boltClosed) && boltClosed;
     #endregion
