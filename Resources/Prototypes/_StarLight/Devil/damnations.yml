@@ -70,6 +70,14 @@
   actions:
   - !type:DamnationActionRemoveOrgan
 
+- type: damnation
+  id: Terminator
+  name: become a target
+  description: The future is imperceptibly modified, putting the signator square in the sights of a vengeful actor.
+  cost: -7
+  actions:
+  - !type:DamnationActionTerminator
+
 # REWARDS
 
 - type: damnation
@@ -125,10 +133,20 @@
   id: Power
   name: gain power over others
   description: The signator gains a piece of armor and a blade, so that they can rend their will upon the world.
-  cost: 9
+  cost: 7
   actions:
   - !type:DamnationActionSpawnLoot
     table: PowerDamnationRandomEquipment
+
+- type: damnation
+  id: Gun
+  name: receive a great equalizer
+  description: The signator receives a gun. We bought some arms futures and it didn't exactly turn out, need to get this crap off our hands.
+  cost: 10
+  actions:
+  - !type:DamnationActionSpawnLoot
+    table: GunDamnationKit
+
 
 #- type: damnation
 #  id: Friendship

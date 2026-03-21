@@ -1,0 +1,116 @@
+# here we have the gun loadout
+# we want them to be sufficiently cool, but not exactly supplying them to be a budget nukeop either
+
+- type: entityTable
+  id: GunDamnationKit
+  table: !type:AllSelector
+    children:
+    - id: BriefcaseBrownDevilGunKit
+
+- type: entity
+  id: BriefcaseBrownDevilGunKit
+  parent: BriefcaseBrown
+  suffix: Random Gun Kit
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:GroupSelector
+          children:
+          - !type:NestedSelector
+            tableId: DGCobraKit
+          - !type:NestedSelector
+            tableId: DGUziKit
+          - !type:NestedSelector
+            tableId: DGLMGKit
+            weight: 0.5
+          - !type:NestedSelector
+            tableId: DGRiflemanKit
+          - !type:NestedSelector
+            tableId: DGClownKit
+          - !type:NestedSelector
+            tableId: DGSniperKit
+          - !type:NestedSelector
+            tableId: DGShotgunKit
+          - !type:NestedSelector
+            tableId: DGTiderKit
+            weight: 0.7
+
+- type: entityTable
+  id: DGCobraKit
+  table: !type:AllSelector
+    children:
+    - id: WeaponPistolCobra
+    - id: MagazinePistolCaselessRifle
+      amount: 2
+    - id: ClothingMaskGas
+    - id: ClothingHandsGlovesColorBlack
+    - id: SmokeGrenade
+
+- type: entityTable
+  id: DGUziKit
+  table: !type:AllSelector
+    children:
+    - id: WeaponSubMachineGunUzi
+    - id: MagazinePistolSubMachineGunUzi
+    - id: ClothingOuterHoodieBlack
+
+- type: entityTable
+  id: DGLMGKit
+  table: !type:AllSelector
+    children:
+    - id: WeaponLightMachineGunL6
+    - id: ClothingHeadHatSolidHeadband
+    - id: CigaretteSyndicate
+    - id: FlippoEngravedLighter
+
+- type: entityTable
+  id: DGRiflemanKit
+  table: !type:AllSelector
+    children:
+    - id: WeaponRifleM90GrenadeLauncher
+    - id: MagazineRifleFMJ
+    - id: ClothingMaskGasMerc
+    - id: ClothingHeadHatBeretMerc
+
+- type: entityTable
+  id: DGClownKit
+  table: !type:AllSelector
+    children:
+    - id: RevolverCapGun
+      amount: 2
+    - id: ClothingMaskClown
+    - id: FoodPieBananaCream
+    - id: WeaponRifleFoam
+    - id: SpeedLoaderCap
+      amount: 2
+    - id: GrenadeFoamDart
+      amount: 2
+
+- type: entityTable
+  id: DGSniperKit
+  table: !type:AllSelector
+    children:
+    - id: WeaponSniperHristov
+    - id: ClothingUniformJumpsuitHawaiBlue
+    - id: ClothingEyesGlassesSunglasses
+
+- type: entityTable
+  id: DGShotgunKit
+  table: !type:AllSelector
+    children:
+    - id: WeaponShotgunHushpup
+    - id: SpeedLoaderMagnumBasic
+      amount: 2
+    - id: ClothingEyesGlassesSunglasses
+    - id: ClothingUniformJumpsuitColorBlack
+
+- type: entityTable
+  id: DGTiderKit
+  table: !type:AllSelector
+    children:
+    - id: WeaponShotgunDoubleBarreled
+    - id: ClothingUniformJumpsuitAncient
+    - id: FireBomb
+      amount: 2
+    - id: SpeedLoaderShotgunIncendiary
+    - id: CrazyLube
