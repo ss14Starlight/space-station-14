@@ -27,7 +27,10 @@ using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using FTLMapComponent = Content.Shared.Shuttles.Components.FTLMapComponent;
 using Content.Server._Starlight.Station; // Starlight
+using Content.Server.Camera; // Starlight
+using Content.Shared._Starlight.Camera; // Starlight
 using Content.Shared.Station.Components; // Starlight
+using Robust.Server.Player; // Starlight
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -36,6 +39,9 @@ public sealed partial class ShuttleSystem
     /*
      * This is a way to move a shuttle from one location to another, via an intermediate map for fanciness.
      */
+    [Dependency] private readonly ScreenshakeSystem _shake = default!; // Starlight
+    [Dependency] private readonly IPlayerManager _plr = default!; // Starlight
+    [Dependency] private readonly CameraRecoilSystem _recoil = default!; // Starlight
 
     private readonly SoundSpecifier _startupSound = new SoundPathSpecifier("/Audio/Effects/Shuttle/hyperspace_begin.ogg")
     {
@@ -54,6 +60,7 @@ public sealed partial class ShuttleSystem
     private TimeSpan ArrivalsFTLCooldown;
     public float FTLMassLimit;
     private TimeSpan _hyperspaceKnockdownTime = TimeSpan.FromSeconds(5);
+    private readonly string ShakeKey = "ftlShake"; // Starlight
 
     /// <summary>
     /// Left-side of the station we're allowed to use
@@ -369,6 +376,7 @@ public sealed partial class ShuttleSystem
 
         component = AddComp<FTLComponent>(uid);
         component.State = FTLState.Starting;
+        component.SourceMapUid = Transform(uid).MapUid; // Starlight
         var audio = _audio.PlayPvs(_startupSound, uid);
         _audio.SetGridAudio(audio);
         component.StartupStream = audio?.Entity;
@@ -493,13 +501,53 @@ public sealed partial class ShuttleSystem
 
         if (!Exists(entity.Comp1.TargetCoordinates.EntityId))
         {
-            // Uhh good luck
-            // Pick earliest map?
-            var maps = EntityQuery<MapComponent>().Select(o => o.MapId).ToList();
-            var map = maps.Min(o => o.GetHashCode());
+            // Starlight edit Start: Yeah... Lets not do the first map in the list. 
+            // Fallback chain:
+            // 1) map we started from, 2) any map with a station grid, 3) first map entity.
+            EntityUid? fallbackMap = null;
 
-            mapId = new MapId(map);
-            TryFTLProximity(uid, _mapSystem.GetMap(mapId));
+            if (entity.Comp1.SourceMapUid is { } sourceMap && Exists(sourceMap))
+            {
+                fallbackMap = sourceMap;
+            }
+            else
+            {
+                var stationQuery = EntityQueryEnumerator<StationDataComponent>();
+
+                while (stationQuery.MoveNext(out _, out var stationData) && fallbackMap == null)
+                {
+                    foreach (var grid in stationData.Grids)
+                    {
+                        if (!TryComp<TransformComponent>(grid, out var gridXform))
+                            continue;
+
+                        if (gridXform.MapUid is not { } stationMap || !Exists(stationMap))
+                            continue;
+
+                        fallbackMap = stationMap;
+                        break;
+                    }
+                }
+            }
+
+            if (fallbackMap == null)
+            {
+                var mapQuery = EntityQueryEnumerator<MapComponent>();
+                if (mapQuery.MoveNext(out var firstMap, out _))
+                    fallbackMap = firstMap;
+            }
+
+            if (fallbackMap is { } validFallback)
+            {
+                mapId = _transform.GetMapId(validFallback);
+                TryFTLProximity(uid, validFallback);
+            }
+            else
+            {
+                mapId = xform.MapID;
+                TryFTLProximity(uid, _mapSystem.GetMap(mapId));
+            }
+            // Starlight edit End
         }
         // Docking FTL
         else if (HasComp<MapGridComponent>(target.EntityId) &&
@@ -590,6 +638,61 @@ public sealed partial class ShuttleSystem
 
         while (query.MoveNext(out var uid, out var comp, out var shuttle))
         {
+            //Starlight begin
+            switch (comp.State)
+            {
+                case FTLState.Starting:
+                    {
+                        var elapsed = curTime - comp.StateTime.Start;
+                        var duration = comp.StateTime.End - comp.StateTime.Start;
+                        var progress = (float)(elapsed.TotalSeconds / duration.TotalSeconds);
+                        progress = Math.Clamp(progress, 0, 1);
+
+                        var shakers = _plr.Sessions.Where(session =>
+                            session.AttachedEntity is not null &&
+                            Transform(session.AttachedEntity.Value).GridUid == uid);
+
+                        foreach (var shaker in shakers.ToList().Where(shaker =>
+                                     shaker.AttachedEntity is { } player &&
+                                     !_shake.IsOnCooldown(player, ShakeKey)))
+                        {
+                            var shake = new ScreenshakeParameters
+                            {
+                                Trauma = 0.7f * progress, // Should now build up
+                                DecayRate = 1.7f,
+                                Frequency = 0.02f,
+                            };
+                            _shake.Screenshake(shaker.AttachedEntity!.Value, shake, null, "ftlShake", 0.2f);
+                        }
+
+                        break;
+                    }
+                case FTLState.Travelling:
+                case FTLState.Arriving:
+                    {
+                        var shakers = _plr.Sessions.Where(session =>
+                            session.AttachedEntity is not null &&
+                            Transform(session.AttachedEntity.Value).GridUid == uid);
+
+                        foreach (var shaker in shakers.ToList().Where(shaker =>
+                                     shaker.AttachedEntity is {} player &&
+                                     !_shake.IsOnCooldown(player, ShakeKey)))
+                        {
+                            var shake = new ScreenshakeParameters
+                            {
+                                Trauma = 0.1f, DecayRate = 0.23f, Frequency = 0.015f,
+                            };
+                            var rotation = new ScreenshakeParameters
+                            {
+                                Trauma = 0.014f, DecayRate = 0.12f, Frequency = 0.012f,
+                            };
+                            _shake.Screenshake(shaker.AttachedEntity!.Value, shake, rotation, "ftlShake", 0.2f);
+                        }
+
+                        break;
+                    }
+            }
+            
             if (curTime < comp.StateTime.End)
                 continue;
 
@@ -599,24 +702,65 @@ public sealed partial class ShuttleSystem
             {
                 // Startup time has elapsed and in hyperspace.
                 case FTLState.Starting:
-                    UpdateFTLStarting(entity);
-                    break;
+                    {
+                        UpdateFTLStarting(entity);
+                        var shakers = _plr.Sessions.Where(session =>
+                            session.AttachedEntity is not null &&
+                            Transform(session.AttachedEntity.Value).GridUid == uid);
+
+                        foreach (var shaker in shakers.ToList().Where(shaker =>
+                                     shaker.AttachedEntity is not null))
+                        {
+                            if (shaker.AttachedEntity is null) continue;
+                            var shake = new ScreenshakeParameters
+                            {
+                                Trauma = 1.2f, DecayRate = 0.9f, Frequency = 0.015f,
+                            };
+                            _shake.Screenshake(shaker.AttachedEntity.Value, shake, null);
+                            _recoil.KickCamera(shaker.AttachedEntity.Value,
+                                Transform(uid).LocalRotation.ToWorldVec() * 4f);
+                        }
+                        break;
+                    }
                 // Arriving, play effects
                 case FTLState.Travelling:
-                    UpdateFTLTravelling(entity);
-                    break;
+                    {
+                        UpdateFTLTravelling(entity);
+                        break;
+                    }
                 // Arrived
                 case FTLState.Arriving:
-                    UpdateFTLArriving(entity);
-                    break;
+                    {
+                        UpdateFTLArriving(entity);
+                        var shakers = _plr.Sessions.Where(session =>
+                            session.AttachedEntity is not null &&
+                            Transform(session.AttachedEntity.Value).GridUid == uid);
+
+                        foreach (var shaker in shakers.ToList().Where(shaker =>
+                                     shaker.AttachedEntity is not null))
+                        {
+                            if (shaker.AttachedEntity is null) continue;
+                            var shake = new ScreenshakeParameters
+                            {
+                                Trauma = 1.2f, DecayRate = 0.9f, Frequency = 0.015f,
+                            };
+                            _shake.Screenshake(shaker.AttachedEntity.Value, shake, null);
+                            _recoil.KickCamera(shaker.AttachedEntity.Value,
+                                -Transform(uid).LocalRotation.ToWorldVec() * 4f);
+                        }
+                        break;
+                    }
                 case FTLState.Cooldown:
-                    UpdateFTLCooldown(entity);
-                    break;
+                    {
+                        UpdateFTLCooldown(entity);
+                        break;
+                    }
                 default:
                     Log.Error($"Found invalid FTL state {comp.State} for {uid}");
                     RemCompDeferred<FTLComponent>(uid);
                     break;
             }
+            // Starlight end
         }
     }
 

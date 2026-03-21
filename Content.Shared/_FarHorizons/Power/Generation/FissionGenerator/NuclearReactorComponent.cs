@@ -1,6 +1,7 @@
 using Content.Shared.Atmos;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.DeviceLinking;
+using Content.Shared.Guidebook;
 using Content.Shared.Materials;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -33,6 +34,7 @@ public sealed partial class NuclearReactorComponent : Component
 
     public readonly int ReactorOverheatTemp = 1200;
     public readonly int ReactorFireTemp = 1500;
+    [GuidebookData]
     public readonly int ReactorMeltdownTemp = 2000;
 
     // Making this a DataField causes the game to explode, neat
@@ -86,6 +88,7 @@ public sealed partial class NuclearReactorComponent : Component
     /// Volume of gas to process each tick
     /// </summary>
     [DataField]
+    [GuidebookData]
     public float ReactorVesselGasVolume = 200;
 
     /// <summary>
@@ -164,6 +167,7 @@ public sealed partial class NuclearReactorComponent : Component
     /// The soft maximum radiation the reactor is expected to produce, beyond which radiation increases logarithmically. Also used for alarms and UI.
     /// </summary>
     [DataField]
+    [GuidebookData]
     public float MaximumRadiation = 50;
 
     /// <summary>
@@ -171,6 +175,7 @@ public sealed partial class NuclearReactorComponent : Component
     /// </summary>
     /// <remarks>This will NOT stop the reactor from making more than this value</remarks>
     [DataField]
+    [GuidebookData]
     public float MaximumThermalPower = 20000000;
 
     /// <summary>

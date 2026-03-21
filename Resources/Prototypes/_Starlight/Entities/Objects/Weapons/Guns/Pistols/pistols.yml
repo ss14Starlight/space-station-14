@@ -174,31 +174,37 @@
   parent: [WeaponPistolDP, BaseBlueShieldContraband, BaseGrandTheftContraband]
   id: WeaponPistolSP8T
   components:
-    - type: Gun
-      soundGunshot:
-        path: /Audio/_Starlight/Weapons/Guns/Gunshots/sp8t.ogg
-    - type: Sprite
-      sprite: _Starlight/Objects/Weapons/Guns/Pistols/sp8t.rsi
-    - type: ChamberMagazineAmmoProvider
-      availablePrefixes:
-        - ""
-        - dust
-    - type: StealTarget
-      stealGroup: BSOWeapon
-      
+  - type: Gun
+    maxAngle: 15
+    angleIncrease: 10
+    angleDecay: 20
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/sp8t.ogg
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/sp8t.rsi
+  - type: ChamberMagazineAmmoProvider
+    availablePrefixes:
+    - ""
+    - dust
+  - type: StealTarget
+    stealGroup: BSOWeapon
+
 - type: entity
   name: sp-8ar
   parent: [WeaponPistolDP, BaseSecurityContraband]
   id: WeaponPistolSP8AR
   components:
-    - type: Gun
-      soundGunshot:
-        path: /Audio/_Starlight/Weapons/Guns/Gunshots/sp8ar.ogg
-    - type: Sprite
-      sprite: _Starlight/Objects/Weapons/Guns/Pistols/sp8ar.rsi
-    - type: ChamberMagazineAmmoProvider
-      availablePrefixes:
-        - ""
+  - type: Gun
+    maxAngle: 15
+    angleIncrease: 10
+    angleDecay: 20
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/sp8ar.ogg
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/sp8ar.rsi
+  - type: ChamberMagazineAmmoProvider
+    availablePrefixes:
+    - ""
 
 - type: entity
   name: stechkin pistol
@@ -279,18 +285,18 @@
   id: WeaponPistolDeagle
   description: A high-caliber handgun designed for putting down large game.
   components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Weapons/Guns/Pistols/deagle.rsi
-    - type: Clothing
-      sprite: _Starlight/Objects/Weapons/Guns/Pistols/deagle.rsi
-    - type: Gun
-      minAngle: 1
-      maxAngle: 15
-      angleIncrease: 6
-      angleDecay: 7
-      fireRate: 5
-      soundGunshot:
-        path: /Audio/_Starlight/Weapons/Guns/Gunshots/deagle.ogg
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/deagle.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/deagle.rsi
+  - type: Gun
+    minAngle: 10
+    maxAngle: 30
+    angleIncrease: 20
+    angleDecay: 30
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/deagle.ogg
 
 - type: entity
   name: m1911
@@ -298,68 +304,18 @@
   id: WeaponPistolM1911
   description: A classic .45 handgun with a small magazine capacity.
   components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Weapons/Guns/Pistols/m1911.rsi
-    - type: Clothing
-      sprite: _Starlight/Objects/Weapons/Guns/Pistols/m1911.rsi
-    - type: Gun
-      minAngle: 1
-      maxAngle: 20
-      angleIncrease: 8
-      angleDecay: 7
-      fireRate: 7
-      soundGunshot:
-        path: /Audio/_Starlight/Weapons/Guns/Gunshots/colt.ogg
-
-# Doesn't work and idk why
-
-#- type: entity
-#name: mk 64
-#parent: [BaseWeaponPistol, BaseSecurityContraband]
-#id: WeaponMachinePistolMk64
-#description: Designed by Nanotrasen’s Small Arms Division, the Mk64 is an unconventional full-auto machine pistol with questionable accuracy, though it can be fired one-handed. Feeds from .35 machine pistol magazines.
-#components:
-#- type: Sprite
-#sprite: _Starlight/Objects/Weapons/Guns/Pistols/mk64.rsi
-#layers:
-#- state: base
-#map: ["enum.GunVisualLayers.Base"]
-#- state: mag-0
-#map: ["enum.GunVisualLayers.Mag"]
-#- type: Clothing
-#sprite: _Starlight/Objects/Weapons/Guns/Pistols/mk64.rsi
-#- type: Gun
-#fireRate: 6
-#availableModes:
-#- FullAuto
-#soundGunshot:
-#path: _Starlight/Audio/Weapons/Guns/Gunshots/uzi.ogg
-#- type: ChamberMagazineAmmoProvider
-#soundRack:
-#path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
-#- type: ItemSlots
-#slots:
-#gun_magazine:
-#name: Magazine
-#startingItem: MagazinePistolHighCapacitySP
-#insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-#ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-#priority: 2
-#whitelist:
-#tags:
-#- MagazinePistolHighCapacity
-#whitelistFailPopup: gun-magazine-whitelist-fail
-#gun_chamber:
-#name: Chamber
-#startingItem: CartridgePistolSP
-#priority: 1
-#whitelist:
-#tags:
-#- CartridgePistol
-#- type: ContainerContainer
-#containers:
-#gun_magazine: !type:ContainerSlot
-#gun_chamber: !type:ContainerSlot
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/m1911.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Pistols/m1911.rsi
+  - type: Gun
+    minAngle: 10
+    maxAngle: 30
+    angleIncrease: 20
+    angleDecay: 30
+    fireRate: 7
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/colt.ogg
 
 - type: entity
   name: makeshift pistol

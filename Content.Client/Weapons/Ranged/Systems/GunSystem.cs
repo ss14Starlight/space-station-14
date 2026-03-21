@@ -26,17 +26,19 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using SharedGunSystem = Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
+using Content.Shared.CCVar; // Starlight | ES Screenshake
 
 #region Starlight
 using Content.Client.DisplacementMap;
 using Content.Shared._Starlight.Effects;
-using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.Mech.Components;
 using Content.Shared.Starlight.Utility;
 using Content.Shared.Starlight.CCVar;
 using Content.Shared.Weapons.Hitscan.Events;
 using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
+using Robust.Shared.Random;
+using Content.Shared._Starlight.Combat.Ranged.Pierce;
 #endregion Starlight
 
 namespace Content.Client.Weapons.Ranged.Systems;
@@ -61,19 +63,33 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly DisplacementMapSystem _displacement = default!;
-#endregion Starlight
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public static readonly EntProtoId HitscanProto = "HitscanEffect";
     public const string ImpactProto = "ImpactEffect";
+    public const string BulletHoleProto = "BulletHoleEffect";
+    public const string SparksProto = "ImpactSparksEffect";
     private DisplacementEffect _displacementEffect = null!;
     private bool _tracesEnabled = true;
+    private bool _holesEnabled = true;
+    private bool _sparksEnabled = true;
     public override void Shutdown()
     {
         base.Shutdown();
         _cfg.UnsubValueChanged(StarlightCCVars.TracesEnabled, OnTracesEnabledChanged);
+        _cfg.UnsubValueChanged(StarlightCCVars.HolesEnabled, OnHolesEnabledChanged);
+        _cfg.UnsubValueChanged(StarlightCCVars.SparksEnabled, OnSparksEnabledChanged);
     }
     private void OnTracesEnabledChanged(bool tracesEnabled)
         => _tracesEnabled = tracesEnabled;
+
+    private void OnHolesEnabledChanged(bool holesEnabled) 
+        => _holesEnabled = holesEnabled;
+
+    private void OnSparksEnabledChanged(bool sparksEnabled)
+        => _sparksEnabled = sparksEnabled;
+
+    #endregion Starlight
 
     public bool SpreadOverlay
     {
@@ -108,7 +124,9 @@ public sealed partial class GunSystem : SharedGunSystem
     public override void Initialize()
     {
         base.Initialize();
-        _cfg.OnValueChanged(StarlightCCVars.TracesEnabled, OnTracesEnabledChanged, true);
+        _cfg.OnValueChanged(StarlightCCVars.TracesEnabled, OnTracesEnabledChanged, true); // Starlight-edit
+        _cfg.OnValueChanged(StarlightCCVars.HolesEnabled, OnHolesEnabledChanged, true); // Starlight-edit
+        _cfg.OnValueChanged(StarlightCCVars.SparksEnabled, OnSparksEnabledChanged, true); // Starlight-edit
 
         UpdatesOutsidePrediction = true;
         SubscribeLocalEvent<AmmoCounterComponent, ItemStatusCollectMessage>(OnAmmoCounterCollect);
@@ -120,7 +138,7 @@ public sealed partial class GunSystem : SharedGunSystem
         InitializeMagazineVisuals();
         InitializeSpentAmmo();
 
-        _displacementEffect = _proto.Index<DisplacementEffect>("displacementEffect");
+        _displacementEffect = _proto.Index<DisplacementEffect>("ImpactDisplacement"); // Starlight-edit
     }
 
 
@@ -163,20 +181,18 @@ public sealed partial class GunSystem : SharedGunSystem
                     RenderFlash(trace.ImpactCoordinates, trace.Angle, impact, 1f, false, true, length, delay);
 
                 if (trace.ImpactedEnt is { } netEnt && GetEntity(netEnt) is EntityUid ent)
-                    RenderDisplacementImpact(GetCoordinates(trace.ImpactCoordinates), trace.Angle, ent);
+                    RenderDisplacements(GetCoordinates(trace.ImpactCoordinates), trace.Angle, ent);
             });
         return delay;
     }
 
-    private void RenderDisplacementImpact(EntityCoordinates coords, Angle angle, EntityUid target)
+    private void RenderDisplacements(EntityCoordinates coords, Angle angle, EntityUid target)
     {
-        if (!TryComp<SpriteComponent>(target, out var sprite))
+        if (!TryComp<SpriteComponent>(target, out var sprite) 
+            || !TryComp(coords.EntityId, out TransformComponent? relativeXform))
             return;
 
-        if (!TryComp(coords.EntityId, out TransformComponent? relativeXform))
-            return;
-
-        if (!sprite!.AllLayers.TryFirstOrDefault(x => (x.ActualRsi ?? x.Rsi) != null && x.RsiState != null, out var layer))
+        if (!sprite.AllLayers.TryFirstOrDefault(x => (x.ActualRsi ?? x.Rsi) != null && x.RsiState != null, out var layer))
             return;
 
         if (layer.PixelSize.X != 32 || layer.PixelSize.Y != 32)
@@ -194,6 +210,18 @@ public sealed partial class GunSystem : SharedGunSystem
         _sprite.LayerSetRsiState((ent, spriteComp), "unshaded", layer.RsiState);
         spriteComp["unshaded"].Visible = true;
         _displacement.TryAddDisplacement(_displacementEffect.Displacement, (ent, spriteComp), 0, "unshaded", out _);
+
+        if (_holesEnabled)
+        {
+            var radians = MathF.PI / 180f * (float)angle.Degrees;
+            var holeCoords = coords.Offset(new Vector2(MathF.Cos(radians), MathF.Sin(radians)) * _random.NextFloat(0f, 0.5f));
+            Spawn(BulletHoleProto, holeCoords);
+        }
+
+        if (_sparksEnabled 
+            && TryComp<PierceableComponent>(target, out var pierceable) 
+            && pierceable.Level >= PierceLevel.Metal)
+            Spawn(SparksProto, coords);
     }
     private void RenderBullet(NetCoordinates coordinates, Angle angle, ExtendedSpriteSpecifier sprite, float distance, float length, float delay)
     {
@@ -423,9 +451,10 @@ public sealed partial class GunSystem : SharedGunSystem
     }
 
     public override void Shoot(Entity<GunComponent> gun, List<(EntityUid? Entity, IShootable Shootable)> ammo,
-        EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, out bool userImpulse, EntityUid? user = null, bool throwItems = false)
+        EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, out bool userImpulse, out bool fired, EntityUid? user = null, bool throwItems = false) // Starlight-edit
     {
         userImpulse = true;
+        fired = false; // Starlight
 
         // Rather than splitting client / server for every ammo provider it's easier
         // to just delete the spawned entities. This is for programmer sanity despite the wasted perf.
@@ -433,12 +462,18 @@ public sealed partial class GunSystem : SharedGunSystem
         var direction = TransformSystem.ToMapCoordinates(fromCoordinates).Position - TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var worldAngle = direction.ToAngle().Opposite();
 
+        // Starlight-start: Update angle on client
+        GetCurrentAngle(gun.AsNullable());
+        gun.Comp.LastFire = gun.Comp.NextFire;
+        // Starlight-end
+
         foreach (var (ent, shootable) in ammo)
         {
             if (throwItems)
             {
                 Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user); // Starlight-edit: fix pneumatic cannon sounds
                 Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                fired = true; // Starlight
                 if (IsClientSide(ent!.Value))
                     Del(ent.Value);
                 else
@@ -456,6 +491,7 @@ public sealed partial class GunSystem : SharedGunSystem
                         MuzzleFlash(gun, cartridge, worldAngle, user);
                         Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
                         Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                        fired = true; // Starlight
                         // TODO: Can't predict entity deletions.
                         //if (cartridge.DeleteOnSpawn)
                         //    Del(cartridge.Owner);
@@ -474,6 +510,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     MuzzleFlash(gun, newAmmo, worldAngle, user);
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
                     Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                    fired = true; // Starlight
                     if (IsClientSide(ent!.Value))
                         Del(ent.Value);
                     else
@@ -482,6 +519,7 @@ public sealed partial class GunSystem : SharedGunSystem
                 case HitscanAmmoComponent:
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
                     Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                    fired = true; // Starlight
                     break;
             }
         }
@@ -492,7 +530,10 @@ public sealed partial class GunSystem : SharedGunSystem
         if (!Timing.IsFirstTimePredicted || user == null || recoil == Vector2.Zero || recoilScalar == 0)
             return;
 
-        _recoil.KickCamera(user.Value, recoil.Normalized() * 0.5f * recoilScalar);
+        //Starlight begin | ES Screenshake
+        var shakeIntensity = _cfg.GetCVar(CCVars.ScreenShakeIntensity);
+        _recoil.KickCamera(user.Value, recoil.Normalized() * (0.5f + ((0.13f - 0.5f) * shakeIntensity)) * recoilScalar);
+        //Starlight end
     }
 
     protected override void Popup(string message, EntityUid? uid, EntityUid? user)

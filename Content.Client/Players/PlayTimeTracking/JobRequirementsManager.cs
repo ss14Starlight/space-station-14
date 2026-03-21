@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.JobWhitelist;
@@ -373,6 +374,50 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
                 continue;
 
             yield return new KeyValuePair<DepartmentPrototype, TimeSpan>(department, departmentTime);
+        }
+    }
+
+    /// <summary>
+    /// Fetches playtime per antag prototype.
+    /// </summary>b
+    public IEnumerable<KeyValuePair<AntagPrototype, TimeSpan>> FetchPlaytimeByAntags()
+    {
+        var antagsToMap = _prototypes.EnumeratePrototypes<AntagPrototype>();
+        foreach (var antag in antagsToMap)
+        {
+            if (antag.PlayTimeTracker == null)
+                continue;
+            
+            if (_mergedRoles.TryGetValue(antag.PlayTimeTracker, out var time))
+                yield return new KeyValuePair<AntagPrototype, TimeSpan>(antag, time);
+        }
+    }
+
+    /// <summary>
+    /// Fetches playtime for all PlayTimeTracker prototypes that we don't see in any job or antag.
+    /// This covers ghost roles and various admin spawns.
+    /// </summary>
+    public IEnumerable<KeyValuePair<PlayTimeTrackerPrototype, TimeSpan>> FetchPlaytimeMiscellaneous(
+        IEnumerable<KeyValuePair<JobPrototype, TimeSpan>> jobPlaytimes,
+        IEnumerable<KeyValuePair<AntagPrototype, TimeSpan>> antagPlaytimes)
+    {
+        var trackers = _prototypes.EnumeratePrototypes<PlayTimeTrackerPrototype>();
+        var exclude = new HashSet<string> { "Overall" };
+        foreach (var jobPlaytime in jobPlaytimes)
+            exclude.Add(jobPlaytime.Key.PlayTimeTracker);
+        foreach (var antagPlaytime in antagPlaytimes)
+            if (antagPlaytime.Key.PlayTimeTracker != null)
+                exclude.Add(antagPlaytime.Key.PlayTimeTracker);
+        
+        foreach (var tracker in trackers)
+        {
+            if (exclude.Contains(tracker.ID))
+                continue;
+
+            if (!_mergedRoles.TryGetValue(tracker.ID, out var rolePlaytime))
+                continue;
+            
+            yield return new KeyValuePair<PlayTimeTrackerPrototype, TimeSpan>(tracker, rolePlaytime);
         }
     }
     //starlight end

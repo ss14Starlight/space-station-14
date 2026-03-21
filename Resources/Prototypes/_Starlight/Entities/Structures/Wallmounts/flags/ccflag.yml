@@ -6,3 +6,4 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/flags/ccflag.rsi
+    state: centcomm

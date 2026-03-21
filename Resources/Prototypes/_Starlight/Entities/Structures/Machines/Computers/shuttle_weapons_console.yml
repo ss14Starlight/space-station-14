@@ -34,12 +34,10 @@
     - Gun5
     - Gun6
   - type: ActivatableUI
-    key: enum.SignalLinkerUiKey.Key
+    key: enum.RadarConsoleUiKey.Key
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
-      enum.SignalLinkerUiKey.Key:
-        type: SignalPortSelectorBoundUserInterface
       enum.RadarConsoleUiKey.Key:
         type: RadarConsoleBoundUserInterface
   - type: DeviceNetworkRequiresPower

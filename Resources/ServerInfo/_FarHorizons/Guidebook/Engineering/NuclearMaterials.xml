@@ -56,37 +56,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                4
+                [protodata="BananiumReactorFuelRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                37.5%
+                [protodata="BananiumReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                11.25% 
+                [protodata="BananiumReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                52.5%
+                [protodata="BananiumReactorFuelRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                7.5%
+                [protodata="BananiumReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                35%
+                [protodata="BananiumReactorFuelRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                20%
+                [protodata="BananiumReactorFuelRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
         
@@ -97,37 +97,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                5.5
+                [protodata="BohrumReactorControlRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                45%
+                [protodata="BohrumReactorControlRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
- 
+                [protodata="BohrumReactorControlRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="BohrumReactorControlRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="BohrumReactorControlRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="BohrumReactorControlRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                25%
+                [protodata="BohrumReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
         
@@ -138,37 +138,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                6.5
+                [protodata="BrassReactorControlRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                37.5%
+                [protodata="BrassReactorControlRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="BrassReactorControlRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="BrassReactorControlRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="BrassReactorControlRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="BrassReactorControlRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                10%
+                [protodata="BrassReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
         
@@ -179,37 +179,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                6
+                [protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                30%
+                [protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
- 
+                [protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                37.5%
+                [protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                25%
+                [protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                10%
+                [protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
         
@@ -220,37 +220,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                3
+                [protodata="DiamondReactorControlRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                45%
+                [protodata="DiamondReactorControlRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="DiamondReactorControlRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="DiamondReactorControlRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="DiamondReactorControlRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="DiamondReactorControlRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                35%
+                [protodata="DiamondReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
         
@@ -261,37 +261,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                3
+                [protodata="GlassReactorControlRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                15%
+                [protodata="GlassReactorControlRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="GlassReactorControlRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="GlassReactorControlRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="GlassReactorControlRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="GlassReactorControlRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                15%
+                [protodata="GlassReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
         
@@ -302,37 +302,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                7
+                [protodata="GoldReactorControlRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                45%
+                [protodata="GoldReactorControlRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="GoldReactorControlRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="GoldReactorControlRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="GoldReactorControlRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="GoldReactorControlRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                10%
+                [protodata="GoldReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
         
@@ -343,37 +343,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                4
+                [protodata="PlasmaReactorFuelRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                7.5%
+                [protodata="PlasmaReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="PlasmaReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                15%
+                [protodata="PlasmaReactorFuelRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="PlasmaReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                10%
+                [protodata="PlasmaReactorFuelRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                10%
+                [protodata="PlasmaReactorFuelRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
         
@@ -384,37 +384,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                3
+                [protodata="PlasmaGlassReactorControlRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                22.5%
+                [protodata="PlasmaGlassReactorControlRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="PlasmaGlassReactorControlRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="PlasmaGlassReactorControlRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="PlasmaGlassReactorControlRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="PlasmaGlassReactorControlRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                35%
+                [protodata="PlasmaGlassReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
         
@@ -425,37 +425,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                5.5
+                [protodata="PlasteelReactorControlRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                52.5%
+                [protodata="PlasteelReactorControlRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="PlasteelReactorControlRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="PlasteelReactorControlRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="PlasteelReactorControlRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="PlasteelReactorControlRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                15%
+                [protodata="PlasteelReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
         
@@ -466,37 +466,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                6.5
+                [protodata="PlutoniumReactorFuelRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                60%
+                [protodata="PlutoniumReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                37.5% 
+                [protodata="PlutoniumReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                22.5%
+                [protodata="PlutoniumReactorFuelRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                25%
+                [protodata="PlutoniumReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                15%
+                [protodata="PlutoniumReactorFuelRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                35%
+                [protodata="PlutoniumReactorFuelRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
         
@@ -507,37 +507,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                6
+                [protodata="SilverReactorControlRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                30%
+                [protodata="SilverReactorControlRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="SilverReactorControlRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="SilverReactorControlRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="SilverReactorControlRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="SilverReactorControlRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                10%
+                [protodata="SilverReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
         
@@ -548,37 +548,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                5.5
+                [protodata="SteelReactorControlRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                30%
+                [protodata="SteelReactorControlRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="SteelReactorControlRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="SteelReactorControlRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="SteelReactorControlRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-
+                [protodata="SteelReactorControlRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                15%
+                [protodata="SteelReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
         
@@ -589,37 +589,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                3.5
+                [protodata="UraniumReactorFuelRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                52.5%
+                [protodata="UraniumReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                22.5%
+                [protodata="UraniumReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                30%
+                [protodata="UraniumReactorFuelRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                15%
+                [protodata="UraniumReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                20%
+                [protodata="UraniumReactorFuelRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                25%
+                [protodata="UraniumReactorFuelRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
         
@@ -630,37 +630,37 @@
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                3.25
+                [protodata="UraniumGlassReactorFuelRod" comp="ReactorPart" member="GuidebookThermalTransferValue"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                33.75%
+                [protodata="UraniumGlassReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronInteractChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                11.25% 
+                [protodata="UraniumGlassReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                15%
+                [protodata="UraniumGlassReactorFuelRod" comp="ReactorPart" member="GuidebookStimulatedEmmissionChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                7.5%
+                [protodata="UraniumGlassReactorFuelRod" comp="ReactorPart" member="GuidebookNeutronDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                10%
+                [protodata="UraniumGlassReactorFuelRod" comp="ReactorPart" member="GuidebookDecayChance"/]
             </Box>
         </ColorBox>
         <ColorBox>
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-                20%
+                [protodata="UraniumGlassReactorFuelRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
     </Table>
@@ -699,12 +699,12 @@
 		</ColorBox>
 		<ColorBox>
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				10
+                [protodata="BrassGasTurbineBlade" comp="GasTurbineBlade" member="GuidebookIntegrity"/]
 			</Box>
 		</ColorBox>
 		<ColorBox>
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				1000
+                [protodata="BrassGasTurbineBlade" comp="GasTurbineBlade" member="GuidebookInertia" format="N0"/]
 			</Box>
 		</ColorBox>
 
@@ -715,12 +715,12 @@
 		</ColorBox>
 		<ColorBox>
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				35
+                [protodata="DiamondGasTurbineBlade" comp="GasTurbineBlade" member="GuidebookIntegrity"/]
 			</Box>
 		</ColorBox>
 		<ColorBox>
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				1200
+                [protodata="DiamondGasTurbineBlade" comp="GasTurbineBlade" member="GuidebookInertia" format="N0"/]
 			</Box>
 		</ColorBox>
 
@@ -731,12 +731,12 @@
 		</ColorBox>
 		<ColorBox>
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				10
+                [protodata="GoldGasTurbineBlade" comp="GasTurbineBlade" member="GuidebookIntegrity"/]
 			</Box>
 		</ColorBox>
 		<ColorBox>
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				1200
+                [protodata="GoldGasTurbineBlade" comp="GasTurbineBlade" member="GuidebookInertia" format="N0"/]
 			</Box>
 		</ColorBox>
 
@@ -747,12 +747,12 @@
 		</ColorBox>
 		<ColorBox>
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				15
+                [protodata="PlasteelGasTurbineBlade" comp="GasTurbineBlade" member="GuidebookIntegrity"/]
 			</Box>
 		</ColorBox>
 		<ColorBox>
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				1400
+                [protodata="PlasteelGasTurbineBlade" comp="GasTurbineBlade" member="GuidebookInertia" format="N0"/]
 			</Box>
 		</ColorBox>
 
@@ -763,12 +763,12 @@
 		</ColorBox>
 		<ColorBox>
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				15
+                [protodata="SteelGasTurbineBlade" comp="GasTurbineBlade" member="GuidebookIntegrity"/]
 			</Box>
 		</ColorBox>
 		<ColorBox>
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				800
+                [protodata="SteelGasTurbineBlade" comp="GasTurbineBlade" member="GuidebookInertia" format="N0"/]
 			</Box>
 		</ColorBox>
     </Table>
@@ -793,7 +793,7 @@
 		</ColorBox>
 		<ColorBox>
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				140%
+                [protodata="GoldGasTurbineStator" comp="GasTurbineStator" member="GuidebookEfficiency" format="P0"/]
 			</Box>
 		</ColorBox>
 
@@ -804,7 +804,7 @@
 		</ColorBox>
 		<ColorBox>
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				120%
+                [protodata="SilverGasTurbineStator" comp="GasTurbineStator" member="GuidebookEfficiency" format="P0"/]
 			</Box>
 		</ColorBox>
 
@@ -815,7 +815,7 @@
 		</ColorBox>
 		<ColorBox>
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
-				100%
+                [protodata="SteelGasTurbineStator" comp="GasTurbineStator" member="GuidebookEfficiency" format="P0"/]
 			</Box>
 		</ColorBox>
     </Table>

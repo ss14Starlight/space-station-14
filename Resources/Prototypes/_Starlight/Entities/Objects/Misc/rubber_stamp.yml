@@ -380,3 +380,69 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/stamps.rsi
     state: stamp-salvagelead
+
+# TSF/Solgov stamp
+- type: entity
+  name: Trans-Solar Federation rubber stamp
+  parent: RubberStampBase
+  id: RubberStampTSF
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: "Trans-Solar Federation"
+    stampedColor: "#22a7ff"
+    stampState: "paper_stamp-cap"
+  - type: Sprite
+    state: stamp-hop
+
+- type: entity
+  name: Trans-Solar Marine Corps rubber stamp
+  parent: RubberStampBase
+  id: RubberStampTSMC
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: "Trans-Solar Marine Corps"
+    stampedColor: "#22a7ff"
+    stampState: "paper_stamp-bso"
+  - type: Sprite
+    state: stamp-hop
+
+- type: entity
+  name: Solgov Law Enforcement rubber stamp
+  parent: RubberStampBase
+  id: RubberStampSolgovLaw
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: "Solgov Law Enforcement"
+    stampedColor: "#22a7ff"
+    stampState: "paper_stamp-lawyer"
+  - type: Sprite
+    state: stamp-hop
+
+- type: entity
+  name: Solgov Representative rubber stamp
+  parent: RubberStampBase
+  id: RubberStampSolgovRep
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: "Solgov Representative"
+    stampedColor: "#22a7ff"
+    stampState: "paper_stamp-bso"
+  - type: Sprite
+    state: stamp-hop
+
+- type: entity
+  name: Solgov Traders rubber stamp
+  parent: RubberStampBase
+  id: RubberStampSolgovTraders
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: "Solgov Traders"
+    stampedColor: "#B45F06"
+    stampState: "paper_stamp-qm"
+  - type: Sprite
+    state: stamp-detective

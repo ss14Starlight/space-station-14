@@ -18,6 +18,10 @@ ghost-role-information-horrific-tie-name = Horrific Necktie
 ghost-role-information-horrific-tie-description = You are a horrific necktie from Disco Elysium.
 ghost-role-information-horrific-tie-rules = [bold][color=cyan]ADMIN WARNING: Do not take this role if you don't know what Disco Elysium is and how to roleplay as necktie from it.[/color][/bold]
 
+ghost-role-information-space-courier-trunk-name = Space Courier Trunk pAI
+ghost-role-information-space-courier-trunk-description = You are the personal AI included inside of a space courier's trunk.
+ghost-role-information-space-courier-trunk-rules = Ensure your owner makes all of their deliveries! Give yourself a name, too.
+
 ghost-role-information-corporate-aligned-rules = You are [color={role-type-corporate-aligned-alternate-color}][bold]{role-type-corporate-aligned-name}[/bold][/color].
                                              You are to serve the interests of NanoTrasen and Central Command, even if they differ from the stations'. Remember, you do [color=red]NOT[/color] serve the crew.
                                              You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
@@ -64,6 +68,17 @@ ghost-role-information-terminator-rules = You are a [color={role-type-team-antag
 ghost-role-information-derelict-purrfus-cyborg-name = Derelict Purrfus Cyborg
 ghost-role-information-derelict-purrfus-cyborg-description = You are a purrfus cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station. ERR urrfus lo-es you purrfus loves you puRrfus loves yo- ERR
 
+ghostrole-information-derelict-heavy-xenoborg-name = Derelict Heavy Xenoborg
+ghostrole-information-derelict-heavy-xenoborg-description = You are a heavy xenoborg the mothership left behind, After years of exposure to ion storms you find yourself near a space station.
+
+ghostrole-information-derelict-engi-xenoborg-name = Derelict Engi Xenoborg
+ghostrole-information-derelict-engi-xenoborg-description = You are a engineering xenoborg the mothership left behind, After years of exposure to ion storms you find yourself near a space station.
+
+ghostrole-information-derelict-scout-xenoborg-name = Derelict Scout Xenoborg
+ghostrole-information-derelict-scout-xenoborg-description = You are a scout xenoborg the mothership left behind, After years of exposure to ion storms you find yourself near a space station.
+
+ghostrole-information-derelict-stealth-xenoborg-name = Derelict Stealth Xenoborg
+ghostrole-information-derelict-stealth-xenoborg-description = You are a stealth xenoborg the mothership left behind, After years of exposure to ion storms you find yourself near a space station.
 
 
 

@@ -8,3 +8,4 @@ construction-graph-tag-undamaged-shadekin-core = bright-eye core
 
 construction-graph-tag-fireextinguisher = fire extinguisher
 construction-graph-tag-airtank = any gas tank
+construction-graph-tag-mech-reactor = mech reactor

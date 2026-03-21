@@ -589,3 +589,11 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_hair.rsi
       state: ziegler
+
+- type: marking
+  id: HumanHairCoolSpikes
+  bodyPart: Hair
+  markingCategory: Hair
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: coolspikes

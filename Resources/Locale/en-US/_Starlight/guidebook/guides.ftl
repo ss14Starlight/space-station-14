@@ -78,6 +78,8 @@ guide-entry-sl-security-sop-parole = Parole
 guide-entry-sl-security-sop-permitacquisition = Permit Acquisiton
 guide-entry-sl-security-sop-specialsituations = Special Situations
 
+guide-entry-rules-changeling-clause = Changeling Clause
+
 guide-entry-sl-legal-sop-intro = Legal
 
 guide-entry-sl-engineering-sop-intro = Engineering
@@ -135,7 +137,7 @@ guide-entry-sl-nano-trasen-employee-sop-nt-rep = NanoTrasen Representative
 guide-entry-sl-nano-trasen-employee-sop-bso = BlueShield Officer
 guide-entry-sl-nano-trasen-employee-sop-magistrate = Magistrate
 guide-entry-sl-nano-trasen-employee-sop-iaa = Internal Affairs Agent
-guide-entry-sl-nano-trasen-employee-sop-nct = Nanotrasen Career Trainer
+guide-entry-sl-nano-trasen-employee-sop-nct = NanoTrasen Career Trainer
 
 guide-entry-sl-service-sop-intro = Service
 guide-entry-sl-service-sop-genproc-intro = General Procedures
@@ -144,6 +146,8 @@ guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
 
 guide-entry-abductors = Abductors
 guide-entry-terror-spiders = Terror Spiders
+
+guide-entry-sl-deepfried-recipes = Deep Fried
 
 # Plumbing guides
 guide-entry-plumbing = Plumbing

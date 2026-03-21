@@ -68,6 +68,7 @@
             Mime: [ 1, 1 ]
             Musician: [ 1, 2 ]
             Boxer: [ 2, 2]
+            Performer: [ 2, 3 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 4, 5 ]

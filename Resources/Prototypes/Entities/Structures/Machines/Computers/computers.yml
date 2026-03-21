@@ -155,6 +155,14 @@
         whitelist:
           components:
           - ShuttleDestinationCoordinates
+      # Starlight-start: added PAI slot to shuttle console.
+      pai_slot:
+        name: Personal AI Device
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - PAI
+      # Starlight-end
   - type: ContainerContainer
     containers:
       board: !type:Container
@@ -856,7 +864,7 @@
     canShuttle: false
     global: true #announce to everyone they're about to fuck shit up
     announceSentBy: false
-    sound: /Audio/_Starlight/Ambience/Antag/wizard.ogg # WIZARD TIME!
+    sound: /Audio/Announcements/war.ogg # SL - Revert this back to war sound
   - type: Computer
     board: WizardCommsComputerCircuitboard
   - type: PointLight

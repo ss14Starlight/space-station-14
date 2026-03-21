@@ -473,6 +473,10 @@
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
 
 #Bone Helmet
 #No need to hide the hair on this one
@@ -600,6 +604,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellSmall
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: PowerCellDraw
     drawRate: 2
   - type: ToggleCellDraw
@@ -619,6 +628,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: HideLayerClothing
     layers:
       Hair: HEAD

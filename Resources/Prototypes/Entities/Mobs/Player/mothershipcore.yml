@@ -126,6 +126,9 @@
   - type: WarpPoint
     location: Mothership Core
     follow: true
+    blacklist: # Starlight start
+      tags: # This is here because Wizard
+      - GhostOnlyWarp # Starlight end
   - type: VoiceOverride
     nameOverride: MOTHERSHIP CORE
   - type: TypingIndicator
@@ -159,6 +162,7 @@
     - SiliconEmotes
     - CanPilot
     - Structure
+    - GhostOnlyWarp # Starlight
   - type: GuideHelp
     guides:
     - Robotics
@@ -199,6 +203,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMicroreactor
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: Puller
     needsHands: false
   - type: Eye

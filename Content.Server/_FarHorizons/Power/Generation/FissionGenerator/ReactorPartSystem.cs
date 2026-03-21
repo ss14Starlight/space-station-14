@@ -11,20 +11,25 @@ namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 // CC-BY-NC-SA-3.0
 // https://github.com/goonstation/goonstation/blob/ff86b044/code/obj/nuclearreactor/reactorcomponents.dm
 
-public sealed partial class ReactorPartSystem : EntitySystem
+public sealed partial class ReactorPartSystem : SharedReactorPartSystem
 {
     [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     /// <summary>
+    /// Processing multiplier based on atmospherics time and speedup cvar
+    /// </summary>
+    public float ProcMult => _atmosphereSystem.AtmosTime * _atmosphereSystem.Speedup * 6; // The 6 is a magic number to make things work at a reasonable rate
+
+    /// <summary>
     /// Processes gas flowing through a reactor part.
     /// </summary>
     /// <param name="reactorPart">The reactor part.</param>
-    /// <param name="reactorEnt">The entity representing the reactor this part is inserted into.</param>
+    /// <param name="reactor">The entity representing the reactor this part is inserted into.</param>
     /// <param name="inGas">The gas to be processed.</param>
     /// <returns></returns>
-    public GasMixture? ProcessGas(ReactorPartComponent reactorPart, Entity<NuclearReactorComponent> reactorEnt, GasMixture inGas)
+    public GasMixture? ProcessGas(ReactorPartComponent reactorPart, EntityUid reactor, GasMixture inGas)
     {
         if (!reactorPart.HasRodType(ReactorPartComponent.RodTypes.GasChannel))
             return null;
@@ -61,7 +66,7 @@ public sealed partial class ReactorPartSystem : EntitySystem
 
             if (reactorPart.Melted)
             {
-                var T = _atmosphereSystem.GetTileMixture(reactorEnt.Owner, excite: true);
+                var T = _atmosphereSystem.GetTileMixture(reactor, excite: true);
                 if (T != null)
                     _atmosphereSystem.Merge(T, reactorPart.AirContents);
             }

@@ -103,6 +103,14 @@
           - Bottle
           - PillCanister
           - PatchPack # Starlight-edit
+      # Starlight-start: for PAI slotting
+      pai_slot:
+        name: Personal AI Device
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - PAI
+      # Starlight-end
   - type: SolutionContainerManager
     solutions:
       buffer:

@@ -38,9 +38,10 @@
             Ringing: { state: ring }
             InCall: { state: ear }
             EndingCall: { state: ring }
-    - type: StorageFill
-      contents:
-        - id: HandLabeler
+    - type: EntityTableContainerFill
+      containers:
+        storagebase:
+          id: HandLabeler
 
 - type: entity
   parent: [BaseTSFContraband, ClothingBackpackSatchel, BaseToggleClothing]
@@ -81,3 +82,6 @@
           whitelist:
             tags:
               - PowerCell
+          blacklist:
+            tags:
+            - MechReactor

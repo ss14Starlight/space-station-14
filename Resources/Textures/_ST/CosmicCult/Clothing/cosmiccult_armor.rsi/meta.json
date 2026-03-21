@@ -1,0 +1,73 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "copyright": "A custom item by AftrLite (Github), sprites for vulps feroxis and harpies made by HTMLSystem (AftrLite edited the harpy one too)"
+        },
+        {
+            "name": "icon-light",
+            "copyright": "A custom item by AftrLite (Github), sprites for vulps feroxis and harpies made by HTMLSystem (AftrLite edited the harpy one too)"
+        },
+        {
+            "name": "icon-helmet",
+            "copyright": "A custom item by AftrLite (Github), sprites for vulps feroxis and harpies made by HTMLSystem (AftrLite edited the harpy one too)"
+        },
+        {
+            "name": "inhand-left",
+            "copyright": "A custom item by AftrLite (Github), sprites for vulps feroxis and harpies made by HTMLSystem (AftrLite edited the harpy one too)",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "copyright": "A custom item by AftrLite (Github), sprites for vulps feroxis and harpies made by HTMLSystem (AftrLite edited the harpy one too)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING",
+            "copyright": "A custom item by AftrLite (Github), sprites for vulps feroxis and harpies made by HTMLSystem (AftrLite edited the harpy one too)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-harpy",
+            "copyright": "A custom item by AftrLite (Github), sprites for vulps feroxis and harpies made by HTMLSystem (AftrLite edited the harpy one too)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-light",
+            "copyright": "A custom item by AftrLite (Github), sprites for vulps feroxis and harpies made by HTMLSystem (AftrLite edited the harpy one too)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-HELMET",
+            "copyright": "A custom item by AftrLite (Github), sprites for vulps feroxis and harpies made by HTMLSystem (AftrLite edited the harpy one too)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-vox",
+            "copyright": "A custom item by AftrLite (Github), sprites for vulps feroxis and harpies made by HTMLSystem (AftrLite edited the harpy one too)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-HELMET-vox",
+            "copyright": "A custom item by AftrLite (Github), sprites for vulps feroxis and harpies made by HTMLSystem (AftrLite edited the harpy one too)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-HELMET-vulpkanin",
+            "copyright": "A custom item by AftrLite (Github), sprites for vulps feroxis and harpies made by HTMLSystem (AftrLite edited the harpy one too)",
+            "directions": 4
+        },
+        {
+            "name": "equipped-HELMET-feroxi",
+            "copyright": "A custom item by AftrLite (Github), sprites for vulps feroxis and harpies made by HTMLSystem (AftrLite edited the harpy one too)",
+            "directions": 4
+        }
+    ]
+}

@@ -24,6 +24,7 @@
     name: abductors-ghost-role-name
     description: abductors-ghost-role-desc
     rules: abductors-ghost-role-rules
+    important: true # SL
     raffle:
       settings: default
     mindRoles:
@@ -48,6 +49,7 @@
     name: abductora-ghost-role-name
     description: abductora-ghost-role-desc
     rules: abductors-ghost-role-rules
+    important: true # SL
     raffle:
       settings: default
     mindRoles:
@@ -106,6 +108,7 @@
     name: abductora-ghost-role-name
     description: abductora-ghost-role-desc
     rules: abductors-ghost-role-rules
+    important: true # SL
     mindRoles:
     - MindRoleLoneAbductor
   - type: Sprite
@@ -137,6 +140,7 @@
     name: abductors-ghost-role-name
     description: abductors-ghost-role-desc
     rules: abductors-ghost-role-rules
+    important: true # SL
     mindRoles:
     - MindRoleLoneAbductor
   - type: Sprite

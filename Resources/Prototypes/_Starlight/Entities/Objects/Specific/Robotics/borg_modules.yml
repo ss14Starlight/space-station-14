@@ -595,6 +595,49 @@
       tags:
         - BorgModuleSyndicate
 
+- type: entity
+  id: BorgModuleSyndicatePaperwork
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
+  name: syndicate paperwork module
+  description: Allows for the forging of documents.
+  components:
+  - type: Sprite
+    layers:
+      - state: syndicate
+      - state: icon-syndicate
+  - type: ItemBorgModule
+    hands:
+    - item: CyberPen
+    - item: BoxFolderCyborgClipboard
+    - item: RubberStampSyndicate
+    - item: HandLabeler
+    - hand:
+        emptyLabel: borg-slot-papers-empty
+        emptyRepresentative: BorgModulePaperStampPlaceholder
+        whitelist:
+          tags:
+          - Document
+          components:
+          - Stamp
+    - hand:
+        emptyLabel: borg-slot-papers-empty
+        emptyRepresentative: BorgModulePaperStampPlaceholder
+        whitelist:
+          tags:
+          - Document
+          components:
+          - Stamp
+    - hand:
+        emptyLabel: borg-slot-papers-empty
+        emptyRepresentative: BorgModulePaperStampPlaceholder
+        whitelist:
+          tags:
+          - Document
+          components:
+          - Stamp
+  - type: BorgModuleIcon
+    icon: { sprite: Objects/Misc/pens.rsi, state: overpriced_pen }
+
 # xenoborg
 # region Medical
 - type: entity
@@ -892,5 +935,86 @@
     - item: EmagTeaParty
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-door-remote-module }
-  
-  
+    
+    
+- type: entity
+  id: BorgModuleMiningDefense
+  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ]
+  name: mining defense cyborg module
+  description: Enables the borg to provide some measaure of defense. Is Law 1 still intact?
+  components:
+  - type: Sprite
+    layers:
+    - state: mining 
+    - state: icon-salvage-defense
+  - type: ItemBorgModule
+    hands:
+    - item: WeaponProtoKineticAccelerator
+    - hand:
+        emptyRepresentative: PKAUpgradeDamage
+        emptyLabel: borg-slot-pkaupgrade-empty
+        whitelist:
+          tags:
+          - PKAUpgrade
+    - item: KitchenKnife
+      hand:
+        emptyRepresentative: KitchenKnife
+        emptyLabel: borg-slot-knives-empty
+        whitelist:
+          tags:
+          - Knife
+    - hand:
+        emptyRepresentative: MaterialGoliathHide
+        emptyLabel: borg-slot-goliath-empty
+        whitelist:
+          tags:
+          - GoliathPlate
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: salvage-defense-module }
+
+# derelcit xenoborg modules
+
+- type: entity
+  parent: [ BaseXenoborgModuleGeneric, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: DerelictXenoborgModuleBasic
+  name: basic xenoborg module
+  description: Essential items for any Xenoborg.
+  components:
+    - type: Sprite
+      layers:
+        - state: xenoborg_generic
+        - state: icon-xenoborg-basic
+    - type: ItemBorgModule
+      hands:
+        - hand:
+            emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+            emptyLabel: borg-slot-construction-empty
+            whitelist:
+              tags:
+                - ConstructionMaterial
+        - item: XenoborgMaterialBag
+        - item: PinpointerDerelictXenoborg
+        - item: HandheldGPSBasic
+    - type: BorgModuleIcon
+      icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-basic-module }
+
+- type: entity
+  parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: DerelictXenoborgModuleSpaceMovement
+  name: space movement xenoborg module
+  description: Module that helps a Xenoborg move better in space.
+  components:
+    - type: Sprite
+      layers:
+        - state: xenoborg_scout
+        - state: icon-xenoborg-space-movement
+    - type: ItemBorgModule
+      hands:
+        - item: HandheldGPSBasic
+        - item: HandHeldMassScannerBorg
+        - item: PinpointerDerelictXenoborg
+        - item: HandheldStationMapUnpowered
+        - item: WeaponGrapplingGun
+        - item: JetpackXenoborg
+    - type: BorgModuleIcon
+      icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }

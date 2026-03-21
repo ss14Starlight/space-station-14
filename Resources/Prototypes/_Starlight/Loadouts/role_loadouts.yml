@@ -123,11 +123,14 @@
   id: JobMailTech
   groups:
   - GroupTankHarness
-  - CargoTechnicianHead
-  - CargoTechnicianJumpsuit
-  - CargoTechnicianBackpack
-  - CargoTechnicianOuterClothing
-  - CargoTechnicianShoes
+  - MailTechnicianHead
+  - MailTechnicianJumpsuit
+  - MailTechnicianBackpack
+  - MailTechnicianOuterClothing
+  - MailTechnicianShoes
+  - MailTechnicianPDA
+  - MailTechnicianBag
+  - MailTechnicianTrolley
   - Glasses
   - Survival
   - Trinkets

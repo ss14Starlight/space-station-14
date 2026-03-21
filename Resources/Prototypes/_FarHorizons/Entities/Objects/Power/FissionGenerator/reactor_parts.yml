@@ -260,8 +260,6 @@
   parent: [BaseReactorControlRod, ReactorPartMaterialBohrum]
   name: Bohrum Control Rod # what the crew start with
   components:
-  - type: ReactorPart
-    material: Bohrum
   - type: PhysicalComposition
     materialComposition:
       Steel: 500

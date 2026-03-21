@@ -34,7 +34,7 @@
   alias:
   - all
   name: all-at-once-title
-  minPlayers: 15 # Starlight, for Delta
+  minPlayers: 50 # Starlight
   description: all-at-once-description
   showInVote: false
   rules:
@@ -67,7 +67,7 @@
   name: aller-at-once-title
   description: aller-at-once-description
   showInVote: false #Please god dont do this
-  minPlayers: 15 # Starlight, for Delta
+  minPlayers: 50 # Starlight
   rules:
     - Nukeops
     - Traitor
@@ -95,9 +95,11 @@
     - CockroachMigration # Starlight, ShitStation
     - MouseMigration # Starlight, ShitStation
     - SLChangeling # Starlight
+    - Vampire #Starlight
     - SiliconLiberation #Starlight
     - Brighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
+    - LoneOpsSpawn # Starlight
     - RailroadingTerminator # Starlight
     - RailroadingMinor # Starlight
 

@@ -35,6 +35,11 @@ using Content.Shared.Verbs;
 using Robust.Shared.Collections;
 using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.Roles.Components;
+using Robust.Server.Audio;
+using Robust.Shared.Audio;
+using Content.Server.Chat.Managers;
+using Content.Shared.Chat;
+using Content.Shared.Starlight.CCVar;
 
 namespace Content.Server.Ghost.Roles;
 
@@ -55,6 +60,8 @@ public sealed class GhostRoleSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly AudioSystem _audio = default!; // SL
+    [Dependency] private readonly IChatManager _chat = default!; // SL
 
     private uint _nextRoleIdentifier;
     private bool _needsUpdateGhostRoleCount = true;
@@ -318,6 +325,29 @@ public sealed class GhostRoleSystem : EntitySystem
         if (_ghostRoles.ContainsValue(role))
             return;
 
+        // Starlight - Start
+        if (role.Comp.Important)
+        {
+            var message = Loc.GetString("ghost-important-role", ("rolename", role.Comp.RoleName));
+            TryPrototypes(role, out var antags, out var jobs);
+
+            var query = EntityQueryEnumerator<GhostComponent>();
+            while (query.MoveNext(out var uid, out var _))
+            {
+                if (!_playerManager.TryGetSessionByEntity(uid, out var player))
+                    continue;
+
+                // If his unable to select the role, we dont need to notify him.
+                if (_ban.IsRoleBanned(player, antags) || _ban.IsRoleBanned(player, jobs) || !IsRoleAllowed(player, jobs, antags))
+                    continue;
+
+                _audio.PlayGlobal(new SoundPathSpecifier("/Audio/_Starlight/Misc/ghost_ping.ogg"), Filter.SinglePlayer(player), false);
+                _chat.ChatMessageToOne(ChatChannel.Server, message, message, default, false, player.Channel);
+            }
+        }
+        role.Comp.Important = false; // Ghost Role cannot be important after being showed to all Ghost, meaning no poping in/out to spam it.
+        // Starlight - End
+
         _ghostRoles[role.Comp.Identifier = GetNextRoleIdentifier()] = role;
         UpdateAllEui();
     }
@@ -367,7 +397,7 @@ public sealed class GhostRoleSystem : EntitySystem
 
         var raffle = ent.Comp;
         raffle.Identifier = ghostRole.Identifier;
-        var countdown = _cfg.GetCVar(CCVars.GhostQuickLottery)? 1 : settings.InitialDuration;
+        var countdown = _cfg.GetCVar(CCVars.GhostQuickLottery) ? 1 : settings.InitialDuration;
         raffle.Countdown = TimeSpan.FromSeconds(countdown);
         raffle.CumulativeTime = TimeSpan.FromSeconds(settings.InitialDuration);
         // we copy these settings into the component because they would be cumbersome to access otherwise
@@ -410,8 +440,8 @@ public sealed class GhostRoleSystem : EntitySystem
         if (raffle.AllMembers.Add(player) && raffle.AllMembers.Count > 1
             && raffle.CumulativeTime.Add(raffle.JoinExtendsDurationBy) <= raffle.MaxDuration)
         {
-                raffle.Countdown += raffle.JoinExtendsDurationBy;
-                raffle.CumulativeTime += raffle.JoinExtendsDurationBy;
+            raffle.Countdown += raffle.JoinExtendsDurationBy;
+            raffle.CumulativeTime += raffle.JoinExtendsDurationBy;
         }
 
         UpdateAllEui();
@@ -512,7 +542,7 @@ public sealed class GhostRoleSystem : EntitySystem
         {
             foreach (var role in mind.MindRoleContainer.ContainedEntities)
             {
-                if(!TryComp<MindRoleComponent>(role, out var comp))
+                if (!TryComp<MindRoleComponent>(role, out var comp))
                     continue;
 
                 if (comp.JobPrototype is not null)
@@ -605,7 +635,7 @@ public sealed class GhostRoleSystem : EntitySystem
 
         // After taking a ghost role, the player cannot return to the original body, so wipe the player's current mind
         // unless it is a visiting mind
-        if(_mindSystem.TryGetMind(player.UserId, out _, out var mind) && !mind.IsVisitingEntity)
+        if (_mindSystem.TryGetMind(player.UserId, out _, out var mind) && !mind.IsVisitingEntity)
             _mindSystem.WipeMind(player);
 
         var newMind = _mindSystem.CreateMind(player.UserId,
@@ -660,7 +690,7 @@ public sealed class GhostRoleSystem : EntitySystem
                 }
             }
 
-            var rafflePlayerCount = (uint?) raffle?.CurrentMembers.Count ?? 0;
+            var rafflePlayerCount = (uint?)raffle?.CurrentMembers.Count ?? 0;
             var raffleEndTime = raffle is not null
                 ? _timing.CurTime.Add(raffle.Countdown)
                 : TimeSpan.MinValue;
@@ -706,7 +736,7 @@ public sealed class GhostRoleSystem : EntitySystem
 
         if (ghostRole.JobProto != null)
         {
-            _roleSystem.MindAddJobRole(args.Mind, args.Mind, silent:false,ghostRole.JobProto);
+            _roleSystem.MindAddJobRole(args.Mind, args.Mind, silent: false, ghostRole.JobProto);
         }
 
         ghostRole.Taken = true;

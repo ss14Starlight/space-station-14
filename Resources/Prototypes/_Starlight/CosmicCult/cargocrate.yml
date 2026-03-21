@@ -1,0 +1,41 @@
+- type: entity
+  parent: Jug
+  suffix: holywater
+  id: JugHolywater
+  components:
+  - type: Label
+    currentLabel: reagent-name-holywater
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Holywater
+          Quantity: 200
+
+- type: entity
+  parent: CratePlastic
+  id: CrateChaplain
+  name: religious crate
+
+- type: entity
+  id: CrateServiceReligious
+  parent: CrateChaplain
+  name: religious supplies crate
+  description: Contains holy water, a bible, and a spare censer.
+  components:
+    - type: StorageFill
+      contents:
+        - id: Bible
+        - id: JugHolywater
+          amount: 2
+        - id: CosmicCenser
+
+- type: cargoProduct
+  id: ServiceReligiousSupplies
+  icon:
+    sprite: _ST/CosmicCult/Objects/censer.rsi
+    state: icon
+  product: CrateServiceReligious
+  cost: 2000
+  category: cargoproduct-category-name-service
+  group: market

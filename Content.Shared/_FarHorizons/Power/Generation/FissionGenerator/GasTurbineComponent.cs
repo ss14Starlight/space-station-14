@@ -5,6 +5,7 @@ using Content.Shared.Atmos;
 using Content.Shared.DeviceLinking;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using System.Numerics;
+using Content.Shared.Guidebook;
 
 namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -76,8 +77,10 @@ public sealed partial class GasTurbineComponent : Component
     /// Max/min temperatures
     /// </summary>
     [DataField]
+    [GuidebookData]
     public float MaxTemp = 3000;
     [DataField]
+    [GuidebookData]
     public float MinTemp = Atmospherics.T20C;
 
     /// <summary>
