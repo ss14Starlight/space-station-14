@@ -155,12 +155,12 @@
       max: 1
       playerRatio: 20
       lateJoinAdditional: false
-      allowNonHumans: false
+      allowNonHumans: true
       multiAntagSetting: NotExclusive
       mindRoles:
       - MindRoleDevil
       briefing:
-        sound: "/Audio/Misc/thief_greeting.ogg" # todo awesome sound
+        sound: "/Audio/_Starlight/Misc/devil_greeting.ogg"
       components:
       - type: ActiveListener
       - type: Unholy
