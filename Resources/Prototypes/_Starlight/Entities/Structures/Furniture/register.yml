@@ -11,7 +11,7 @@
     grid:
     - 0,0,9,1
     maxItemSize: Small
-  - type: Sprite
+  - type: Sprite # this is a comment
     drawdepth: SmallObjects
     sprite: _Starlight/Structures/Furniture/register.rsi
     state: register
