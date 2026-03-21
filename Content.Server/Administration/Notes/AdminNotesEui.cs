@@ -114,6 +114,11 @@ public sealed class AdminNotesEui : BaseEui
                             await serverGrain.RemoveNote(NotedPlayer, request.Id, request.Project);
                         break;
                     }
+                    else
+                    {
+                        if (_actors.TryGetServerGrain(out var serverGrain))
+                            await serverGrain.RemoveNote(NotedPlayer, request.Id);
+                    }
 
                     await _notesMan.DeleteAdminRemark(request.Id, request.Type, Player);
                     break;
