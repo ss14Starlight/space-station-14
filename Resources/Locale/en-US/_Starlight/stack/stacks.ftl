@@ -28,6 +28,12 @@ chess-black-wood-floor = black wooden chess floor
 chess-dark-wood-floor = dark wooden chess floor
 chess-light-wood-floor = light wooden chess floor
 chess-red-wood-floor = red wooden chess floor
+stack-metal-dark-floor = dark metal floor
+stack-metal-brown-floor = brown metal floor
+stack-metal-blue-floor = blue metal floor
+stack-metal-purple-floor = purple metal floor
+stack-metal-red-floor = red metal floor
+stack-metal-green-floor = green metal floor
 
 stack-bluespacecrystal = {$amount ->
     [1] bluespace

@@ -159,35 +159,35 @@
 - type: stack
   id: FloorTileMetalDark
   name: stack-metal-dark-floor
-  spawn: FloorTileMetalDark
+  spawn: FloorTileItemMetalDark
   maxCount: 30
 
 - type: stack
   id: FloorTileMetalBrown
   name: stack-metal-brown-floor
-  spawn: FloorTileMetalBrown
+  spawn: FloorTileItemMetalBrown
   maxCount: 30
 
 - type: stack
   id: FloorTileMetalBlue
   name: stack-metal-blue-floor
-  spawn: FloorTileMetalBlue
+  spawn: FloorTileItemMetalBlue
   maxCount: 30
 
 - type: stack
   id: FloorTileMetalPurple
   name: stack-metal-purple-floor
-  spawn: FloorTileMetalPurple
+  spawn: FloorTileItemMetalPurple
   maxCount: 30
 
 - type: stack
   id: FloorTileMetalRed
   name: stack-metal-red-floor
-  spawn: FloorTileMetalRed
+  spawn: FloorTileItemMetalRed
   maxCount: 30
 
 - type: stack
   id: FloorTileMetalGreen
   name: stack-metal-green-floor
-  spawn: FloorTileMetalGreen
+  spawn: FloorTileItemMetalGreen
   maxCount: 30
