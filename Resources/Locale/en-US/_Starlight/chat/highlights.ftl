@@ -1,7 +1,7 @@
 # Command
 
 # NanoTrasen
-highlights-blue-shield-officer = Blue Shield Officer, Blue Shield, "BSO"
+highlights-blue-shield-officer = Blue Shield Officer, Blue Shield, Blueshield, "BSO"
 highlights-magistrate = Magistrate, "Law", "Magi"
 highlights-nanotrasen-representative = NanoTrasen Representative, "NTR", NT Rep, NTRep, "Law", "SOP", Standard Operating Procedure
 highlights-nanotrasen-career-trainer = NanoTrasen Career Trainer, Career Trainer, "NCT"

@@ -7,6 +7,7 @@
     name: ghost-role-information-colossus-name
     description: ghost-role-information-colossus-description
     rules: ghost-role-information-colossus-rules
+    important: true
     makeSentient: true
     allowSpeech: true
     allowMovement: true

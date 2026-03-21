@@ -35081,5 +35081,27 @@ Entries:
   id: 383601
   time: '2026-03-21T08:46:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3836
+- author: Rinary1
+  changes:
+  - message: Changed wield logic, now you wield guns with chamber, when you have free
+      hands or when your bolt is closed, in another cases you will close bolt first.
+    type: Tweak
+  id: 384501
+  time: '2026-03-21T15:46:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3845
+- author: TaserTheFox
+  changes:
+  - message: Capitalization and naming inconsistency.
+    type: Tweak
+  id: 384701
+  time: '2026-03-21T15:52:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3847
+- author: Shades
+  changes:
+  - message: Added Ghost Ping for Important Ghost Roles.
+    type: Add
+  id: 384601
+  time: '2026-03-21T16:21:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3846
 Order: -1
 

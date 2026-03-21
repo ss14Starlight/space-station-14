@@ -104,5 +104,12 @@ public sealed partial class GhostRoleComponent : Component
     [DataField("job")]
     [Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // also FIXME Friends
     public ProtoId<JobPrototype>? JobProto = null;
+
+    /// <summary>
+    /// Starlight
+    /// Important Ghost Roles will leave a sound and chat info.
+    /// </summary>
+    [DataField]
+    public bool Important = false;
 }
 

@@ -73,6 +73,7 @@
   description: THAT'S THE FUCKING MOUSE IT CAME FOR A FUCKING CHEESE
   components:
   - type: GhostRole
+    important: true # SL
     allowMovement: true
     allowSpeech: true
     makeSentient: true
