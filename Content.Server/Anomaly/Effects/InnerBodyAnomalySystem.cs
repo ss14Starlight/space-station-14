@@ -1,9 +1,9 @@
 using Content.Server.Administration.Logs;
-using Content.Server.Body.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Jittering;
 using Content.Server.Mind;
 using Content.Server.Stunnable;
+using Content.Shared.Actions;
 using Content.Shared.Anomaly;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Anomaly.Effects;
@@ -36,6 +36,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly ActionGrantSystem _actionGrant = default!;
 
     private readonly Color _messageColor = Color.FromSrgb(new Color(201, 22, 94));
 
@@ -240,4 +241,62 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         ent.Comp.Injected = false;
         RemCompDeferred<AnomalyComponent>(ent);
     }
+
+    // FH - Start
+    private void AddComponentsCarefully(EntityUid target, ComponentRegistry components)
+    {
+        foreach (var comp in components)
+        {
+            switch(comp.Key) 
+            {
+                case "ActionGrant":
+                    if (comp.Value.Component is ActionGrantComponent actionGrantComp)
+                        HandleActionGrantAdd(target, actionGrantComp);
+                    break;
+                default: 
+                    EntityManager.AddComponent(target, comp.Value);
+                    break;
+            }
+        }
+    }
+
+    private void RemoveComponentsCarefully(EntityUid target, ComponentRegistry components)
+    {
+        foreach (var comp in components)
+        {
+            switch(comp.Key) 
+            {
+                case "ActionGrant":
+                    if (comp.Value.Component is ActionGrantComponent actionGrantComp)
+                        HandleActionGrantRemove(target, actionGrantComp);
+                    break;
+                default: 
+                    EntityManager.RemoveComponent(target, comp.Value.Component);
+                    break;
+            }
+        }
+    }
+
+    private void HandleActionGrantAdd(EntityUid target, ActionGrantComponent component)
+    {
+        if (!TryComp<ActionGrantComponent>(target, out var comp))
+        {
+            EntityManager.AddComponent(target, component);
+            return;
+        }
+
+        _actionGrant.AddActions((target, comp), component.Actions);
+    }
+
+    private void HandleActionGrantRemove(EntityUid target, ActionGrantComponent component)
+    {
+        if (!TryComp<ActionGrantComponent>(target, out var comp))
+        {
+            EntityManager.AddComponent(target, component);
+            return;
+        }
+
+        _actionGrant.RemoveActions((target, comp), component.Actions);
+    }
+    // FH - End
 }

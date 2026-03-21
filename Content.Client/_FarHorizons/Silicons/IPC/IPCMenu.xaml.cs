@@ -29,7 +29,7 @@ namespace Content.Client._FarHorizons.Silicons.IPC;
 public sealed partial class IPCMenu : FancyWindow
 {
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
+    [Dependency] private readonly IEntityManager _entitymanager = default!;
     [Dependency] private readonly IResourceCache _cache = default!;
 
     public VectorFont ConsoleFont;
@@ -41,67 +41,57 @@ public sealed partial class IPCMenu : FancyWindow
     public Action? EjectBatteryButtonPressed;
     public Action<string>? NameChanged;
 
-    public float AccumulatedTime;
+    private float _accumulatedTime;
     private string _lastValidName;
 
-    public string FullText = "";
-    public float CharsPerSecond = 150;
+    private string _fullText = "";
+    private float _charsPerSecond = 150;
 
     private int _shownCharacters = 0;
 
     // CCVar.
     private readonly int _maxNameLength;
 
-    public EntityUid Entity;
+    private EntityUid _entity;
 
     private float _bloodLevel;
 
     private DamageableComponent? _damage = null;
     public DamageableComponent? Damage
     {
-        get => _damage ?? TryGetAssignComp(_entity, Entity, ref _damage);
+        get => _damage ?? TryGetAssignComp(_entitymanager, _entity, ref _damage);
         set => _damage = value;
     }
 
     private BlindableComponent? _blind = null;
     public BlindableComponent? Blind
     {
-        get => _blind ?? TryGetAssignComp(_entity, Entity, ref _blind);
+        get => _blind ?? TryGetAssignComp(_entitymanager, _entity, ref _blind);
         set => _blind = value;
     }
 
     private MobStateComponent? _state = null;
     public MobStateComponent? State
     {
-        get => _state ?? TryGetAssignComp(_entity, Entity, ref _state);
+        get => _state ?? TryGetAssignComp(_entitymanager, _entity, ref _state);
         set => _state = value;
     }
 
     private IPCBrainHolderComponent? _brain = null;
     public IPCBrainHolderComponent? Brain
     {
-        get => _brain ?? TryGetAssignComp(_entity, Entity, ref _brain);
+        get => _brain ?? TryGetAssignComp(_entitymanager, _entity, ref _brain);
         set => _brain = value;
     }
     
     private IPCThermalRegulationComponent? _thermals = null;
     public IPCThermalRegulationComponent? Thermals
     {
-        get => _thermals ?? TryGetAssignComp(_entity, Entity, ref _thermals);
+        get => _thermals ?? TryGetAssignComp(_entitymanager, _entity, ref _thermals);
         set => _thermals = value;
     }
 
-    private IPCBatteryComponent? _battery = null;
-    public IPCBatteryComponent? Battery
-    {
-        get => _battery ?? TryGetAssignComp(_entity, Entity, ref _battery);
-        set => _battery = value;
-    }
-
-    public bool LastKnownBattery = false;
-    public float LastKnownCharge = 0;
-
-    public MobState LastKnownState = MobState.Dead;
+    private MobState _lastKnownState = MobState.Dead;
 
     public IPCMenu()
     {
@@ -111,9 +101,9 @@ public sealed partial class IPCMenu : FancyWindow
         ConsoleFont = new(_cache.GetResource<FontResource>("/Fonts/_FarHorizons/VT323/vt323-latin-400-normal.ttf"), 14);
         StatusLabel.FontOverride = ConsoleFont;
 
-        _nameModifier = _entity.System<NameModifierSystem>();
-        _powerCell = _entity.System<PowerCellSystem>();
-        _batterySystem = _entity.System<SharedBatterySystem>();
+        _nameModifier = _entitymanager.System<NameModifierSystem>();
+        _powerCell = _entitymanager.System<PowerCellSystem>();
+        _batterySystem = _entitymanager.System<SharedBatterySystem>();
 
         _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
 
@@ -132,10 +122,10 @@ public sealed partial class IPCMenu : FancyWindow
 
     public void SetEntity(EntityUid entity)
     {
-        Entity = entity;
+        _entity = entity;
         IPCSprite.SetEntity(entity);
 
-        if (_entity.TryGetComponent<NameIdentifierComponent>(Entity, out var nameIdentifierComponent))
+        if (_entitymanager.TryGetComponent<NameIdentifierComponent>(_entity, out var nameIdentifierComponent))
         {
             NameIdentifierLabel.Visible = true;
             NameIdentifierLabel.Text = nameIdentifierComponent.FullIdentifier;
@@ -145,7 +135,7 @@ public sealed partial class IPCMenu : FancyWindow
         else
         {
             NameIdentifierLabel.Visible = false;
-            NameLineEdit.Text = _entity.GetComponent<MetaDataComponent>(Entity).EntityName;
+            NameLineEdit.Text = _entitymanager.GetComponent<MetaDataComponent>(_entity).EntityName;
         }
 
         UpdateWindow();
@@ -155,11 +145,11 @@ public sealed partial class IPCMenu : FancyWindow
     {
         base.FrameUpdate(args);
 
-        AccumulatedTime += args.DeltaSeconds;
-        IPCSprite.OverrideDirection = (Direction) ((int) AccumulatedTime % 4 * 2);
+        _accumulatedTime += args.DeltaSeconds;
+        IPCSprite.OverrideDirection = (Direction) ((int) _accumulatedTime % 4 * 2);
 
-        _shownCharacters = Math.Min((int)Math.Ceiling(CharsPerSecond * AccumulatedTime), FullText.Length);
-        StatusLabel.Text = FullText[.._shownCharacters];
+        _shownCharacters = Math.Min((int)Math.Ceiling(_charsPerSecond * _accumulatedTime), _fullText.Length);
+        StatusLabel.Text = _fullText[.._shownCharacters];
 
         UpdateWindow();
     }
@@ -190,16 +180,16 @@ public sealed partial class IPCMenu : FancyWindow
 
         var batteryInserted = false;
         float batteryCharge = 0;
-        if (_powerCell.TryGetBatteryFromSlot(Entity, out var batteryEnt) && batteryEnt is Entity<BatteryComponent> checkedBattery)
+        if (_powerCell.TryGetBatteryFromSlot(_entity, out var batteryEnt) && batteryEnt is Entity<BatteryComponent> checkedBattery)
         {
             batteryInserted = true;
             batteryCharge = _batterySystem.GetChargeLevel((checkedBattery.Owner, checkedBattery.Comp));
         }
 
-        if (_entity.TryGetComponent<MobStateComponent>(Entity, out var mobState))
-            LastKnownState = mobState.CurrentState;
+        if (_entitymanager.TryGetComponent<MobStateComponent>(_entity, out var mobState))
+            _lastKnownState = mobState.CurrentState;
 
-        FullText = PrintConsole(LastKnownState.ToString(), batteryInserted, batteryCharge, eyeDamage, _bloodLevel, temp, fanMode, fansEfficiency, Brain, damage);
+        _fullText = PrintConsole(_lastKnownState.ToString(), batteryInserted, batteryCharge, eyeDamage, _bloodLevel, temp, fanMode, fansEfficiency, Brain, damage);
         UpdateBrainButton(Brain);
         EjectBatteryButton.Disabled = !batteryInserted;
         ChargeBar.Value = batteryCharge;
@@ -295,7 +285,7 @@ public sealed partial class IPCMenu : FancyWindow
         if (brainComp != null && 
             brainComp.BrainEntity is EntityUid brain)
         {
-            BrainButton.Text = _entity.GetComponent<MetaDataComponent>(brain).EntityName;
+            BrainButton.Text = _entitymanager.GetComponent<MetaDataComponent>(brain).EntityName;
             BrainView.Visible = true;
             BrainView.SetEntity(brain);
             BrainButton.Disabled = false;
