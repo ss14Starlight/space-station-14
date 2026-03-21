@@ -11,17 +11,20 @@
     noRot: false
     sprite: _Starlight/Structures/Wallmounts/junctionbox.rsi
     state: junctionbox_closed
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 20
+        damage: 100
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 10
+        damage: 20
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]

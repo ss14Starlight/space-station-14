@@ -8,7 +8,7 @@
     volume: -5
     range: 4
     sound: 
-      path: /Audio/Ambience/Objects/clock.ogg
+      path: /Audio/_Starlight/Ambience/Objects/clock.ogg
   - type: Rotatable
   - type: Anchorable
     delay: 1

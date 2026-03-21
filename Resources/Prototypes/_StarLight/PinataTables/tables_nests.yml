@@ -9,10 +9,10 @@
     - id: Honeycomb
 
 - type: entityTable
-  id: RatNestTable
+  id: SnakeNestTable
   table: !type:GroupSelector
     children:
-    - id: MobRatServant
+    - id: MobSnake
 
 - type: entityTable
   id: MouseNestTable

@@ -1,5 +1,42 @@
+# BASE
+
 - type: entity
-  parent: BasePinata
+  parent: BaseStructure
+  id: BaseNest
+  abstract: true
+  name: Base Nest
+  components:
+  - type: Anchorable
+    delay: 1
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+  - type: StaticPrice
+    price: 10
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Appearance
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 100
+        mask:
+        - TableMask
+
+# NESTS
+
+- type: entity
+  parent: BaseNest
   id: NestBeeHive
   name: bee hive
   description: You probably shouldnt anger them.
@@ -15,13 +52,13 @@
     thresholds:
     - trigger: # Overkill threshold
         !type:DamageTrigger
-        damage: 30
+        damage: 80
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 15
+        damage: 40
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -36,7 +73,7 @@
     state: bee_hive_monke
 
 - type: entity
-  parent: BasePinata
+  parent: BaseNest
   id: NestBeeBox
   name: bee box
   description: You probably shouldnt anger them.
@@ -52,13 +89,13 @@
     thresholds:
     - trigger: # Overkill threshold
         !type:DamageTrigger
-        damage: 30
+        damage: 100
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 15
+        damage: 50
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -73,29 +110,29 @@
     state: bee_box
 
 - type: entity
-  parent: BasePinata
-  id: NestRat
-  name: rat nest
-  description: Smells like ammonia and rotten meat.
+  parent: BaseNest
+  id: NestSnake
+  name: snake nest
+  description: Smells like sulfur and rotten meat.
   components:
   - type: Pinata
     hitTable: !type:NestedSelector
-      tableId: RatNestTable
+      tableId: SnakeNestTable
     gibTable: !type:NestedSelector
-      tableId: RatNestTable
+      tableId: SnakeNestTable
       rolls: !type:RangeNumberSelector
         range: 2, 3
   - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
     thresholds:
     - trigger: # Overkill threshold
         !type:DamageTrigger
-        damage: 30
+        damage: 60
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 15
+        damage: 30
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -104,7 +141,7 @@
     state: rat_nest
 
 - type: entity
-  parent: BasePinata
+  parent: BaseNest
   id: NestMouse
   name: mouse nest
   description: Smells like ammonia and cheese.
@@ -120,13 +157,13 @@
     thresholds:
     - trigger: # Overkill threshold
         !type:DamageTrigger
-        damage: 30
+        damage: 60
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 15
+        damage: 30
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]

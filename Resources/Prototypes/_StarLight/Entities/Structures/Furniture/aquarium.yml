@@ -5,7 +5,7 @@
   description: Do not tap the glass.
   components:
   - type: AmbientSound 
-    volume: -7 
+    volume: -4
     range: 3
     sound: 
       path: /Audio/Ambience/Objects/flowing_water_open.ogg
@@ -71,12 +71,12 @@
   - type: SolutionContainerManager
     solutions:
       tank:
-        maxVol: 125
+        maxVol: 225
         reagents:
         - ReagentId: Water
-          Quantity: 50
+          Quantity: 100
         - ReagentId: Mopwata
-          Quantity: 50
+          Quantity: 100
   - type: DrainableSolution
     solution: tank
   - type: ReagentTank

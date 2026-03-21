@@ -10,18 +10,18 @@
     gibTable: !type:NestedSelector
       tableId: PiggyBankTable
       rolls: !type:RangeNumberSelector
-        range: 3, 5
+        range: 5, 8
   - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
     thresholds:
     - trigger: # Overkill threshold
         !type:DamageTrigger
-        damage: 30
+        damage: 100
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 15
+        damage: 50
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
