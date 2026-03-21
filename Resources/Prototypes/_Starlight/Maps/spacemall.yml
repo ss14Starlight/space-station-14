@@ -2,7 +2,7 @@
   id: StarlightSpaceMall
   mapName: 'Space Mall'
   mapPath: /Maps/_Starlight/Stations/SpaceMall.yml
-  minPlayers: 100
+  minPlayers: 80
   maxPlayers: 350
   stations:
     StarlightSpaceMall:
