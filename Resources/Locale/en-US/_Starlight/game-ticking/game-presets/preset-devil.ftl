@@ -8,6 +8,6 @@ devil-role-briefing =
 
     Remember, the crew can use your true name against you.
 
-objective-issuer-devil = [color=#d90b0b]8th Office for Soul Reclamation, Ops Division[/color]
+objective-issuer-devil = [color=#d90b0b]8th Office for Soul Reclamation, Field Division[/color]
 
 devil-round-end-agent-name = devil
