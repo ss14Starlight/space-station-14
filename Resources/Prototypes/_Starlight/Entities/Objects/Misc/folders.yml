@@ -1,7 +1,7 @@
 - type: entity
   id: BoxFolderNanoTrasenClipboard
   parent: BoxFolderClipboard
-  name: NanoTrasen clipboard
+  name: nanotrasen clipboard
   description: A stylish clipboard in NanoTrasen colors.
   components:
     - type: Sprite
@@ -30,7 +30,7 @@
   id: BoxFolderCyborgClipboard
   parent: BoxFolderClipboard
   categories: [ HideSpawnMenu ]
-  name: Cyborg clipboard
+  name: cyborg clipboard
   description: A clipboard mounted to a cyborg's chassis.
   components:
     - type: Sprite
@@ -62,7 +62,7 @@
 - type: entity
   id: BoxFolderHoPClipboard
   parent: [BoxFolderClipboard, BaseGrandTheftContraband]
-  name: Bureaucratic Digi-Board
+  name: bureaucratic digi-board
   description: A bulky electric clipboard, filled with bureaucracy. Contains a portable ID card computer. Vulnerable to assistants.
   components:
     - type: Sprite

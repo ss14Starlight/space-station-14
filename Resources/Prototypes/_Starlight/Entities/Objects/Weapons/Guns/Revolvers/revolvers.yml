@@ -93,7 +93,7 @@
   name: NT Model-7 'Dispatcher' Service Revolver
   parent: [BaseWeaponRevolver, BaseSecurityContraband]
   id: WeaponRevolverDispatcher
-  description: The Model 7, known unofficially as the 'Dispatcher.' chambered in .45 Magnum with robust stopping power for putting an end to any non-compliance. A true timeless classic carried amongst Nanotrasen's elite security staff.
+  description: The Model 7, known unofficially as the 'Dispatcher.' chambered in .45 Magnum with robust stopping power for putting an end to any non-compliance. A true timeless classic carried amongst NanoTrasen's elite security staff.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Revolvers/Dispatcher.rsi

@@ -1,7 +1,7 @@
 job-name-magistrate = Magistrate
 job-name-ntrep = NanoTrasen Representative
 job-name-iaa = Internal Affairs Agent
-job-name-blueshield = Blue Shield Officer
+job-name-blueshield = Blueshield Officer
 job-name-ntncblueshield = NanoTrasen Navy Corps Marine
 job-name-miningspec = Mining Specialist
 job-name-surgeon = Surgeon

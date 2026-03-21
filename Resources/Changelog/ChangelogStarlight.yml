@@ -35074,5 +35074,72 @@ Entries:
   id: 381901
   time: '2026-03-21T07:33:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3819
+- author: redmushie, Rinary
+  changes:
+  - message: Fixed crash from putting shoes on while moving.
+    type: Fix
+  id: 383601
+  time: '2026-03-21T08:46:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3836
+- author: Rinary1
+  changes:
+  - message: Changed wield logic, now you wield guns with chamber, when you have free
+      hands or when your bolt is closed, in another cases you will close bolt first.
+    type: Tweak
+  id: 384501
+  time: '2026-03-21T15:46:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3845
+- author: TaserTheFox
+  changes:
+  - message: Capitalization and naming inconsistency.
+    type: Tweak
+  id: 384701
+  time: '2026-03-21T15:52:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3847
+- author: Shades
+  changes:
+  - message: Added Ghost Ping for Important Ghost Roles.
+    type: Add
+  id: 384601
+  time: '2026-03-21T16:21:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3846
+- author: CawsForConcern
+  changes:
+  - message: Fixed custom / event admin grids failing to load.
+    type: Fix
+  id: 384401
+  time: '2026-03-21T16:38:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3844
+- author: STARLIGHT TEAM
+  changes:
+  - message: The chime wait time is limited to 3 seconds.
+    type: Fix
+  id: 383801
+  time: '2026-03-21T16:44:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3838
+- author: redmushie
+  changes:
+  - message: All handheld crew monitors now come with medium batteries.
+    type: Tweak
+  - message: All handheld crew monitors now use 25% less energy per opening of the
+      UI or receiving an alert.
+    type: Tweak
+  id: 385001
+  time: '2026-03-21T17:58:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3850
+- author: redmushie
+  changes:
+  - message: Re-randomize the randomness. You should hear less Wilhelm screams.
+    type: Fix
+  id: 384301
+  time: '2026-03-21T18:01:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3843
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Added reinforced shuttle and plastitium wall varients for admemes.
+    type: Add
+  id: 382101
+  time: '2026-03-21T18:17:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3821
 Order: -1
 
