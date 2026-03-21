@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseStructureDynamic
-  id: Aquarium
+  id: FurnitureAquarium
   name: aquarium
   description: Do not tap the glass.
   components:
@@ -15,6 +15,7 @@
     state: base
   - type: Transform
     anchored: true
+    noRot: true
   - type: Physics
     bodyType: Static
   - type: InteractionOutline
@@ -79,5 +80,3 @@
   - type: DrainableSolution
     solution: tank
   - type: ReagentTank
-  - type: Transform
-    noRot: true

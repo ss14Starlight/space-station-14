@@ -1,6 +1,6 @@
 - type: entity
   name: grandfather clock
-  id: GrandfatherClock
+  id: FurnitureGrandfatherClock
   parent: BaseStructure
   description: Tick, tock. Old but reliable.
   components:

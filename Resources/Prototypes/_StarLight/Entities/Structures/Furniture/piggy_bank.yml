@@ -1,6 +1,6 @@
 - type: entity
   parent: BasePinata
-  id: PiggyBank
+  id: PropPiggyBank
   name: piggy bank
   description: It squeals in fear, for it knows what comes next.
   components:

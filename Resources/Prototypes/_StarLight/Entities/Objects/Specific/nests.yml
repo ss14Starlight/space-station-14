@@ -1,6 +1,6 @@
 - type: entity
   parent: BasePinata
-  id: BeeHive
+  id: NestBeeHive
   name: bee hive
   description: You probably shouldnt anger them.
   components:
@@ -37,7 +37,7 @@
 
 - type: entity
   parent: BasePinata
-  id: BeeBox
+  id: NestBeeBox
   name: bee box
   description: You probably shouldnt anger them.
   components:
@@ -74,7 +74,7 @@
 
 - type: entity
   parent: BasePinata
-  id: RatNest
+  id: NestRat
   name: rat nest
   description: Smells like ammonia and rotten meat.
   components:
@@ -105,7 +105,7 @@
 
 - type: entity
   parent: BasePinata
-  id: MouseNest
+  id: NestMouse
   name: mouse nest
   description: Smells like ammonia and cheese.
   components:

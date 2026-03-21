@@ -1,6 +1,6 @@
 - type: entity
   name: coat rack
-  id: CoatRack
+  id: FurnitureCoatRack
   parent: BaseStructure
   description: Holds your coat or hat, and is always mistaken for a person in the dark.
   components:
