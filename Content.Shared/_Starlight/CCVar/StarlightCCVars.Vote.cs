@@ -28,7 +28,7 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("vote.votings_delay", 90);
     
     public static readonly CVarDef<int> MapVotingCount = 
-        CVarDef.Create("vote.map_voting_count", 3);
+        CVarDef.Create("vote.map_voting_count", 5);
     
     public static readonly CVarDef<int> RoundVotingCount = 
         CVarDef.Create("vote.round_voting_count", 3);
