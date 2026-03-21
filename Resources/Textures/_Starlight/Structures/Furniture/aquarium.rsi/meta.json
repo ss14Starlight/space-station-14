@@ -8,7 +8,7 @@
   },
     "states": [
         {
-            "name": "aquarium_tg",
+            "name": "base",
             "delays": [
                 [
                     0.2,
