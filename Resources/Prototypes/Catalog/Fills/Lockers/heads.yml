@@ -430,7 +430,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingNeckCloakHosElite # Starlight
-    - id: WeaponEnergySMG # Starlight
+    - id: WeaponSubMachineGunEnergy # Starlight
     # - id: WeaponEnergyMagnum # Starlight - Removed, given to det
     - id: BookSpaceLaw
     - id: BoxEncryptionKeySecurity

@@ -17,16 +17,15 @@
     slots:
     - Back
     - suitStorage
-  - type: GunRequiresWield
   - type: MagazineVisuals
     magState: mag
     steps: 4
     zeroVisible: true
   - type: Gun
-    minAngle: 20
+    minAngle: 25
     maxAngle: 35
-    angleIncrease: 2
-    angleDecay: 10
+    angleIncrease: 4
+    angleDecay: 16
     fireRate: 6  
   - type: Appearance
   - type: RestrictByEquippedTag

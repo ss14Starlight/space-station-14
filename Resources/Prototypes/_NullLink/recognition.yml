@@ -4,21 +4,31 @@
   # DB1
     alfa:
   #    - STARLIGHT.delta
+      - STARLIGHT.epsilon
       - TRIESTEPORT.main
       - AFTERLIGHT.main
       - CLOVER.main
     beta:
   #    - STARLIGHT.delta
+      - STARLIGHT.epsilon
       - TRIESTEPORT.main
       - AFTERLIGHT.main
       - CLOVER.main
     gamma:
   #    - STARLIGHT.delta
+      - STARLIGHT.epsilon
       - TRIESTEPORT.main
       - AFTERLIGHT.main
       - CLOVER.main
   # DB2
     delta: 
+      - STARLIGHT.alfa
+      - STARLIGHT.epsilon
+      - TRIESTEPORT.main
+      - AFTERLIGHT.main
+      - CLOVER.main
+  # MRP
+    epsilon:
       - STARLIGHT.alfa
       - TRIESTEPORT.main
       - AFTERLIGHT.main
@@ -27,6 +37,7 @@
     test:
       - STARLIGHT.alfa
       - STARLIGHT.delta
+      - STARLIGHT.epsilon
       - TRIESTEPORT.main
       - AFTERLIGHT.main
       - CLOVER.main
@@ -37,6 +48,7 @@
     main: #TODO @pixeltheaertist
       #- STARLIGHT.alfa
       #- STARLIGHT.delta
+      #- STARLIGHT.epsilon
       #- AFTERLIGHT.main
       #- CLOVER.main
 
@@ -46,6 +58,7 @@
     main: #TODO @drsmugleaf
       #- STARLIGHT.alfa
       #- STARLIGHT.delta
+      #- STARLIGHT.epsilon
       #- TRIESTEPORT.main
       #- CLOVER.main
 
@@ -55,5 +68,6 @@
     main: #TODO @ai_ivo
       #- STARLIGHT.alfa
       #- STARLIGHT.delta
+      #- STARLIGHT.epsilon
       #- TRIESTEPORT.main
       #- AFTERLIGHT.main
