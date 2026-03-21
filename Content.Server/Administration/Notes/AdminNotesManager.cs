@@ -68,7 +68,7 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
         await ui.UpdateNotes();
     }
 
-    public async Task AddAdminRemark(ICommonSession createdBy, Guid player, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime)
+    public async Task<int?> AddAdminRemark(ICommonSession createdBy, Guid player, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime) // Starlight-edit: return note id
     {
         message = message.Trim();
 
@@ -76,7 +76,7 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
         // Not like there's much use in adding notes on accounts that have never connected.
         // You can still ban them just fine, which is why we should allow admins to view their bans with the notes panel
         if (await _db.GetPlayerRecordByUserId((NetUserId) player) is null)
-            return;
+            return null;
 
         var sb = new StringBuilder($"{createdBy.Name} added a");
 
@@ -165,6 +165,8 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
             false
         );
         NoteAdded?.Invoke(note);
+
+        return noteId;
     }
 
     private async Task<SharedAdminNote?> GetAdminRemark(int id, NoteType type)

@@ -95,10 +95,10 @@ public sealed class AdminNotesEui : BaseEui
                         break;
                     }
 
-                    if (_actors.TryGetServerGrain(out var serverGrain))
-                        await serverGrain.AddOrUpdateNote(NotedPlayer, await GenerateNote(Player, NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime));
+                    var noteId = await _notesMan.AddAdminRemark(Player, NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime);
 
-                    await _notesMan.AddAdminRemark(Player, NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime);
+                    if (_actors.TryGetServerGrain(out var serverGrain) && noteId != null)
+                        await serverGrain.AddOrUpdateNote(NotedPlayer, await GenerateNote(Player, NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime, noteId.Value));
                     break;
                 }
             case DeleteNoteRequest request:
@@ -135,11 +135,16 @@ public sealed class AdminNotesEui : BaseEui
                         break;
                     }
 
-                    if (request.Network)
+
+                    if (_actors.TryGetServerGrain(out var serverGrain))
                     {
-                        if (_actors.TryGetServerGrain(out var serverGrain))
-                            await serverGrain.AddOrUpdateNote(NotedPlayer, await GenerateNote(Player, NotedPlayer, request.Type, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime), request.Project);
-                        break;
+                        if (request.Network)
+                        {
+                            await serverGrain.AddOrUpdateNote(NotedPlayer, await GenerateNote(Player, NotedPlayer, request.Type, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime, request.Id), request.Project);
+                            break;
+                        }
+                        else
+                            await serverGrain.AddOrUpdateNote(NotedPlayer, await GenerateNote(Player, NotedPlayer, request.Type, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime, request.Id));
                     }
 
                     await _notesMan.ModifyAdminRemark(request.Id, request.Type, Player, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime);
@@ -228,7 +233,7 @@ public sealed class AdminNotesEui : BaseEui
         return true;
     }
 
-    private async Task<AdminNote> GenerateNote(ICommonSession createdBy, Guid player, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime)
+    private async Task<AdminNote> GenerateNote(ICommonSession createdBy, Guid player, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime, int noteId)
     {
         message = message.Trim();
 
@@ -268,28 +273,16 @@ public sealed class AdminNotesEui : BaseEui
         var serverName = _config.GetCVar(CCVars.AdminLogsServerName); // This could probably be done another way, but this is fine. For displaying only.
         var createdAt = DateTime.UtcNow;
         var playtime = (await _db.GetPlayTimes(player)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall)?.TimeSpent ?? TimeSpan.Zero;
-        int noteId;
         bool? seen = null;
 
         switch (type)
         {
-            case NoteType.Note:
-                if (severity is null)
-                    throw new ArgumentException("Severity cannot be null for a note", nameof(severity));
-                noteId = await _db.AddAdminNote(roundId, player, playtime, message, severity.Value, secret, createdBy.UserId, createdAt, expiryTime);
-                break;
             case NoteType.Watchlist:
                 secret = true;
-                noteId = await _db.AddAdminWatchlist(roundId, player, playtime, message, createdBy.UserId, createdAt, expiryTime);
                 break;
             case NoteType.Message:
-                noteId = await _db.AddAdminMessage(roundId, player, playtime, message, createdBy.UserId, createdAt, expiryTime);
                 seen = false;
                 break;
-            case NoteType.ServerBan: // Add bans using the ban panel, not note edit
-            case NoteType.RoleBan:
-            default:
-                throw new ArgumentOutOfRangeException(nameof(type), type, "Unknown note type");
         }
 
         var note = new AdminNote() {
