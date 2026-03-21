@@ -12,7 +12,7 @@
   id: SnakeNestTable
   table: !type:GroupSelector
     children:
-    - id: MobSnake
+    - id: MobCobraSpace
 
 - type: entityTable
   id: MouseNestTable

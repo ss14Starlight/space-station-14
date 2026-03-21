@@ -1,0 +1,20 @@
+- type: entity
+  id: RandomNest
+  name: random nest spawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _Starlight/Structures/Specific/Nests/nests.rsi
+        state: mouse_nest
+  - type: RandomSpawner
+    prototypes:
+      - NestBeeHive
+      - NestBeeHive
+      - NestMouse
+      - NestMouse
+      - NestMouse
+      - NestMouse
+      - NestSnake
+    chance: 50

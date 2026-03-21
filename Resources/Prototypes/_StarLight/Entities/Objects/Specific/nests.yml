@@ -23,6 +23,7 @@
   - type: InteractionOutline
   - type: Physics
     bodyType: Dynamic
+    canCollide: false
   - type: Fixtures
     fixtures:
       fix1:
@@ -121,18 +122,18 @@
     gibTable: !type:NestedSelector
       tableId: SnakeNestTable
       rolls: !type:RangeNumberSelector
-        range: 2, 3
+        range: 1, 1
   - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
     thresholds:
     - trigger: # Overkill threshold
         !type:DamageTrigger
-        damage: 60
+        damage: 40
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 30
+        damage: 20
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
