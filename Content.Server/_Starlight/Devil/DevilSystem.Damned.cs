@@ -1,6 +1,12 @@
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Popups;
+using Content.Shared.Popups;
+using Content.Server.Stunnable;
 using Content.Shared._Starlight.Devil;
+using Content.Shared.Chat;
+using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Audio;
 
 namespace Content.Server._Starlight.Devil;
 
@@ -8,10 +14,15 @@ public sealed partial class DevilSystem : SharedDevilSystem
 {
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly FlammableSystem _flammable = default!;
+    [Dependency] private readonly StunSystem _stun = default!;
+
+    private SoundSpecifier DamnedPunishmentSound = new SoundPathSpecifier("/Audio/Effects/snap.ogg");
     private void SubscribeDamned()
     {
         SubscribeLocalEvent<DamnedComponent, DamnationInitFailEvent>(OnDamnationInitFail);
         SubscribeLocalEvent<DamnedComponent, ComponentShutdown>(OnDamnationShutdown);
+        SubscribeLocalEvent<DamnedComponent, EntitySpokeEvent>(OnEntitySpoke);
     }
 
     private bool CanDamn(Entity<DamnedComponent> entity, ProtoId<DamnationPrototype> proto)
@@ -109,7 +120,24 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
     private void OnDamnationShutdown(Entity<DamnedComponent> ent, ref ComponentShutdown args)
     {
-        if(TryComp<DevilComponent>(ent.Comp.DamnedBy, out var devilComp))
+        if (TryComp<DevilComponent>(ent.Comp.DamnedBy, out var devilComp))
             devilComp.DamnedSouls.Remove(ent.Owner);
+    }
+
+    // misc section
+    private void OnEntitySpoke(EntityUid uid, DamnedComponent damned, EntitySpokeEvent args)
+    {
+        if (!TryComp<DevilComponent>(damned.DamnedBy, out var devil)) return;
+        if (!args.Message.OriginalText.Contains(devil.TrueName, StringComparison.InvariantCultureIgnoreCase)) return;
+
+        // damned person spoke the devil's name, fire time
+        _flammable.AdjustFireStacks(uid, 10f);
+        _flammable.Ignite(uid, uid);
+        _stun.TryKnockdown(uid, TimeSpan.FromSeconds(5));
+        _popup.PopupEntity(Loc.GetString("damned-attempts-utter-name", ("name", Name(uid))), uid, PopupType.LargeCaution);
+        DamageSpecifier dspec = new();
+        dspec.DamageDict.Add("Heat", 150);
+        _damageable.TryChangeDamage(uid, dspec, true);
+        _audio.PlayPvs(DamnedPunishmentSound, uid);
     }
 }
