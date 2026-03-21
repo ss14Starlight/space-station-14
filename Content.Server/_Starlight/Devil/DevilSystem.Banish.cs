@@ -68,7 +68,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
     private void OnBibleThwack(EntityUid uid, DevilComponent devilComp, ref BibleThwackEvent args)
     {
-        if (!_mobState.IsIncapacitated(uid)) return;
+        if (!_mobState.IsDead(uid)) return;
 
         // hit while crit/dead, this should super kill them
         _damageable.TryChangeDamage(uid, devilComp.BibleBanishDamage, true);

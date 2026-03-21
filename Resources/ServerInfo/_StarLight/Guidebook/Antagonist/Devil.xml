@@ -11,9 +11,9 @@
     ## The Infernal Contract
     Your job is to convince crew to sign a legally binding contract for their soul. To convince them of this deal, we have given you financial delegation to issue lower class material desires to make the deal more desirable.
     You can summon [color=purple]Infernal Contracts[/color], which is the skeleton agreement that your target client will sign. Contracts contain multiple [color=cyan]damnations[/color] which you choose.
-    Damnations are either [color=red]hellweighted[/color] meaning they benefit us, or [color=green]Mortalsided[/color] which means they benefit the crewmember.
+    Damnations are either [color=red]hellweighted[/color] meaning they benefit us, or [color=green]mortalsided[/color] which means they benefit the crewmember.
     Hellweighted damnations have a negative "cost" associated with them, as they procure resources for us, and Mortalsided damnations have a positive cost.
-    In order to balance the books, in order for a contract to be valid, the sum of damnations in a contract [color=yellow]must add to below zero[/color], so we make a profit.
+    In order to balance the books, the sum of damnations in a contract [color=yellow]must be zero or below[/color], so we make a profit.
     <Box>
         <GuideEntityEmbed Entity="PenQuillBurnt" Caption=""/>
     </Box>
