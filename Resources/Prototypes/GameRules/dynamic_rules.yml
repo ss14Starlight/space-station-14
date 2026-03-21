@@ -112,3 +112,13 @@
             min: 20
           - !type:RoundDurationCondition
             min: 2100 # 35 minutes
+        - id: Brighteye # Starlight
+          weight: 1
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+            max: 2
+          - !type:PlayerCountCondition
+            min: 20
+          - !type:RoundDurationCondition
+            min: 600 # 10 minutes

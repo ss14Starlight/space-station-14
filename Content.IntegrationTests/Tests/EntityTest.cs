@@ -248,6 +248,7 @@ namespace Content.IntegrationTests.Tests
                 // Starlight start
                 // Most of the filled xenobiology slime cores intentionally spawn an entity
                 "FilledSlimeExtract",
+                "Loadout",
                 // Starlight end
             };
 

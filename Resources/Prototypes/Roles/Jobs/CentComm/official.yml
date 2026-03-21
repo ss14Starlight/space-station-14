@@ -8,7 +8,7 @@
     proto: StaffAndMentorOnlyRolesReq
   setPreference: false
   startingGear: CentcommGear
-  icon: "JobIconCentComm"
+  icon: "JobIconCentralCommandOfficial" #Starlight
   supervisors: job-supervisors-hos
   canBeAntag: false
   accessGroups:

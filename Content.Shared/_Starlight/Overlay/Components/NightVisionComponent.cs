@@ -1,12 +1,9 @@
-using Content.Shared.Eye.Blinding.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Eye.Blinding.Components;
 
-[RegisterComponent]
-[NetworkedComponent]
-[AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class NightVisionComponent : Component
 {
     [DataField, AutoNetworkedField]
@@ -14,4 +11,10 @@ public sealed partial class NightVisionComponent : Component
 
     [DataField]
     public EntProtoId EffectPrototype = "EffectNightVision";
+    
+    public bool Clothes;
 }
+
+[RegisterComponent]
+public sealed partial class ClothesNightVisionComponent : Component
+{ }

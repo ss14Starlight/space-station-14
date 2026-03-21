@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
+using Robust.Shared.Prototypes; // Starlight
 
 // ReSharper disable CheckNamespace
 
@@ -22,6 +23,8 @@ public sealed partial class HumanoidCharacterProfile
     [DataField] public string ExploitableInfo { get; set; } = string.Empty;
 
     [DataField] public string CustomSpecieName { get; set; } = "";
+    
+    [DataField] public string ForcedPrototype { get; set; } = ""; // Starlight
 
     [DataField] public List<string> Cybernetics = [];
 
@@ -76,6 +79,11 @@ public sealed partial class HumanoidCharacterProfile
     public HumanoidCharacterProfile WithCustomSpecieName(string customspeciename)
     {
         return new(this) { CustomSpecieName = customspeciename };
+    }
+
+    public HumanoidCharacterProfile WithForcedPrototype(string forcedPrototype)
+    {
+        return new(this) { ForcedPrototype = forcedPrototype };
     }
 
     public HumanoidCharacterProfile WithCybernetics(List<string> cybernetics)

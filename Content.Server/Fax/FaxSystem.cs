@@ -32,6 +32,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 #region Starlight
+using Content.Shared.Cargo.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.Ghost;
 using Content.Shared.Inventory;
@@ -59,11 +60,10 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly FaxecuteSystem _faxecute = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
-    //starlight
+
+    // Starlight start
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly EntityStorageSystem _storage = default!;
-    //end
+    // Starlight end
 
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
 
@@ -258,6 +258,7 @@ public sealed class FaxSystem : EntitySystem
         });
 
         args.Handled = true;
+        
     }
 
     private void OnEmagged(EntityUid uid, FaxMachineComponent component, ref GotEmaggedEvent args)
@@ -313,8 +314,29 @@ public sealed class FaxSystem : EntitySystem
                     args.Data.TryGetValue(FaxConstants.FaxPaperStampedByData, out List<StampDisplayInfo>? stampedBy);
                     args.Data.TryGetValue(FaxConstants.FaxPaperPrototypeData, out string? prototypeId);
                     args.Data.TryGetValue(FaxConstants.FaxPaperLockedData, out bool? locked);
+                    // Starlight-start
+                    args.Data.TryGetValue(FaxConstants.FaxSlipProduct, out string? slipProduct); 
+                    args.Data.TryGetValue(FaxConstants.FaxSlipRequester,  out string? slipRequester);
+                    args.Data.TryGetValue(FaxConstants.FaxSlipReason, out string? slipReason);
+                    args.Data.TryGetValue(FaxConstants.FaxSlipOrderQuantity, out int? slipOrderQuantity);
+                    args.Data.TryGetValue(FaxConstants.FaxSlipOrderAccount, out string? slipAccount);
+                    // Starlight-end
 
-                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false);
+
+                    var printout = new FaxPrintout(
+                        content,
+                        name,
+                        label,
+                        prototypeId,
+                        stampState,
+                        stampedBy,
+                        locked ?? false,
+                        // Starlight-start
+                        slipProduct,
+                        slipRequester,
+                        slipReason,
+                        slipOrderQuantity,
+                        slipAccount); // Starlight-end
                     Receive(uid, printout, args.SenderAddress);
 
                     break;
@@ -478,6 +500,7 @@ public sealed class FaxSystem : EntitySystem
             return;
 
         TryComp<LabelComponent>(sendEntity, out var labelComponent);
+        TryComp<CargoSlipComponent>(sendEntity, out var cargoSlipComponent); // Starlight-edit this is a starlight compoent
         TryComp<NameModifierComponent>(sendEntity, out var nameMod);
 
         // TODO: See comment in 'Send()' about not being able to copy whole entities
@@ -487,7 +510,13 @@ public sealed class FaxSystem : EntitySystem
                                        metadata.EntityPrototype?.ID ?? component.PrintPaperId,
                                        paper.StampState,
                                        paper.StampedBy,
-                                       paper.EditingDisabled);
+                                       paper.EditingDisabled,
+                                       //starlight-start
+                                       cargoSlipComponent?.Product.Id,
+                                       cargoSlipComponent?.Requester,
+                                       cargoSlipComponent?.Reason,
+                                       cargoSlipComponent?.OrderQuantity,
+                                       cargoSlipComponent?.Account); //starlight-end
 
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
@@ -533,7 +562,8 @@ public sealed class FaxSystem : EntitySystem
         TryComp<NameModifierComponent>(sendEntity, out var nameMod);
 
         TryComp<LabelComponent>(sendEntity, out var labelComponent);
-
+        
+        
         var payload = new NetworkPayload()
         {
             { DeviceNetworkConstants.Command, FaxConstants.FaxPrintCommand },
@@ -557,6 +587,21 @@ public sealed class FaxSystem : EntitySystem
             payload[FaxConstants.FaxPaperStampStateData] = paper.StampState;
             payload[FaxConstants.FaxPaperStampedByData] = paper.StampedBy;
         }
+        
+        //starlight start
+        //This feels bad and hacky, probably better ways to do this...
+        //chnaged faxConstants.cs and FaxMachineComponent.cs with hacky
+        if (TryComp<CargoSlipComponent>(sendEntity, out var cargoSlipComponent))
+        {
+            payload[FaxConstants.FaxSlipProduct] = cargoSlipComponent?.Product.Id;
+            payload[FaxConstants.FaxSlipRequester] = cargoSlipComponent?.Requester;
+            payload[FaxConstants.FaxSlipReason] = cargoSlipComponent?.Reason;
+            payload[FaxConstants.FaxSlipOrderQuantity] = cargoSlipComponent?.OrderQuantity;
+            payload[FaxConstants.FaxSlipOrderAccount] = cargoSlipComponent?.Account.Id;
+        }
+        
+        
+        //starlight end
 
         _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, payload);
 
@@ -605,7 +650,7 @@ public sealed class FaxSystem : EntitySystem
 
         var entityToSpawn = printout.PrototypeId.Length == 0 ? component.PrintPaperId.ToString() : printout.PrototypeId;
         var printed = Spawn(entityToSpawn, Transform(uid).Coordinates);
-
+        
         if (TryComp<PaperComponent>(printed, out var paper))
         {
             _paperSystem.SetContent((printed, paper), printout.Content);
@@ -620,6 +665,7 @@ public sealed class FaxSystem : EntitySystem
             }
 
             paper.EditingDisabled = printout.Locked;
+            
         }
 
         _metaData.SetEntityName(printed, printout.Name);
@@ -628,7 +674,19 @@ public sealed class FaxSystem : EntitySystem
         {
             _labelSystem.Label(printed, label);
         }
-
+        
+        // Starlight Start || this is such a hack T-T
+        if (printout.Product != null && printout.Requester != null && printout.Reason != null && printout.OrderQuantity != null && printout.Account != null)
+        {
+            var slip = EnsureComp<CargoSlipComponent>(printed);
+            slip.Product = printout.Product;
+            slip.Requester = printout.Requester;
+            slip.Reason = printout.Reason;
+            slip.OrderQuantity = printout.OrderQuantity.Value;
+            slip.Account = printout.Account;
+        }
+        // Starlight end
+        
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"\"{component.FaxName}\" {ToPrettyString(uid):tool} printed {ToPrettyString(printed):subject}: {printout.Content}");
     }
 
@@ -652,12 +710,12 @@ public sealed class FaxSystem : EntitySystem
             if (!TryComp<GhostComponent>(client.AttachedEntity.Value, out var ghostComp))
                 continue;
 
-            Logger.Info($"Admin {client.Name} is a ghost, sending fax to them.");
+            Log.Info($"Admin {client.Name} is a ghost, sending fax to them.");
 
             //get their inventory
             if (_inventory.TryGetSlotEntity(client.AttachedEntity.Value, "back", out var worn))
             {
-                Logger.Info($"Admin {client.Name} has a back slot, sending fax to them.");
+                Log.Info($"Admin {client.Name} has a back slot, sending fax to them.");
                 //generate the entity
                 var entityToSpawn = printout.PrototypeId;
                 if (EntityManager.TrySpawnInContainer(entityToSpawn, worn.Value, "storagebase", out var printed))

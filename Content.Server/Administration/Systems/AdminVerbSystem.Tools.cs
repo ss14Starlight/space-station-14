@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Cargo.Components;
@@ -822,10 +822,10 @@ public sealed partial class AdminVerbSystem
             Priority = (int)TricksVerbPriorities.ToggleOverlays,
         };
         args.Verbs.Add(toggleOverlays);
-
-        // Reaper arm verb
+        
         if (TryComp<BodyComponent>(args.Target, out var bodyComp))
         {
+            // Reaper arm verb
             Verb reaperArm = new()
             {
                 Text = "Replace the right hand with a Reaper arm.",
@@ -839,7 +839,7 @@ public sealed partial class AdminVerbSystem
                         return;
 
                     if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Target, out var body)
-                    && _entitySystem.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(rightArm.Id, out var partEnt))
+                        && _entitySystem.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(rightArm.Id, out var partEnt))
                     {
                         _limbSystem.Amputatate(body, partEnt);
                         var reaper = Spawn("RightArmCyberReaper", body.Comp1.Coordinates);
@@ -852,6 +852,62 @@ public sealed partial class AdminVerbSystem
                 Priority = (int)TricksVerbPriorities.SetBulletAmount,
             };
             args.Verbs.Add(reaperArm);
+            
+            // Left Speg
+            Verb leftSpeg = new()
+            {
+                Text = "Replace the left leg with a speg.",
+                Category = VerbCategory.Tricks,
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/_Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi"), "l_leg"),
+                Act = () =>
+                {
+                    var torso = _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Torso).FirstOrDefault();
+                    var leftLeg = _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Leg).FirstOrDefault(part => part.Component.Symmetry == BodyPartSymmetry.Left);
+                    if (torso == default || leftLeg == default)
+                        return;
+
+                    if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Target, out var body)
+                        && _entitySystem.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(leftLeg.Id, out var partEnt))
+                    {
+                        _limbSystem.Amputatate(body, partEnt);
+                        var reaper = Spawn("LeftLegCyberSpeed", body.Comp1.Coordinates);
+                        if (_entitySystem.TryEntity<BodyPartComponent>(reaper, out var reaperEnt))
+                            _limbSystem.AttachLimb((body.Owner, body.Comp2), "left leg", torso, reaperEnt);
+                    }
+                },
+                Impact = LogImpact.Medium,
+                Message = "Replace the left leg with a Speg.",
+                Priority = (int)TricksVerbPriorities.SetBulletAmount,
+            };
+            args.Verbs.Add(leftSpeg);
+            
+            // Right Speg
+            Verb rightSpeg = new()
+            {
+                Text = "Replace the right leg with a speg.",
+                Category = VerbCategory.Tricks,
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/_Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi"), "r_leg"),
+                Act = () =>
+                {
+                    var torso = _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Torso).FirstOrDefault();
+                    var rightLeg = _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Leg).FirstOrDefault(part => part.Component.Symmetry == BodyPartSymmetry.Right);
+                    if (torso == default || rightLeg == default)
+                        return;
+
+                    if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Target, out var body)
+                        && _entitySystem.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(rightLeg.Id, out var partEnt))
+                    {
+                        _limbSystem.Amputatate(body, partEnt);
+                        var reaper = Spawn("RightLegCyberSpeed", body.Comp1.Coordinates);
+                        if (_entitySystem.TryEntity<BodyPartComponent>(reaper, out var reaperEnt))
+                            _limbSystem.AttachLimb((body.Owner, body.Comp2), "right leg", torso, reaperEnt);
+                    }
+                },
+                Impact = LogImpact.Medium,
+                Message = "Replace the right leg with a Speg.",
+                Priority = (int)TricksVerbPriorities.SetBulletAmount,
+            };
+            args.Verbs.Add(rightSpeg);
         }
 
 

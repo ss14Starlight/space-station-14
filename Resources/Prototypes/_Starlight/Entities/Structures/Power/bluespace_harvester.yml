@@ -1,0 +1,75 @@
+- type: entity
+  id: BluespaceHarvester
+  parent: BaseMachine
+  name: Bluespace Harvester
+  description: A massive bluespace harvester that converts energy into research points.
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Machine
+    board: BluespaceHarvesterMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board
+  - type: Sprite
+    sprite: _Starlight/Structures/Power/bluespace_harvester.rsi
+    layers:
+      - state: bluespace_tap
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.5, -1.5, 1.5, 1.5"
+        density: 50
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: PowerConsumer
+    voltage: High
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: input
+    collectionName: bluespaceHarvester
+    sprite: _Starlight/Structures/Power/bluespace_harvester.rsi
+    state: bluespace_monitor
+  - type: BluespaceHarvester
+  - type: UserInterface
+    interfaces:
+      enum.BluespaceHarvesterUiKey.Key:
+        type: BluespaceHarvesterBoundUserInterface
+  - type: ActivatableUI
+    key: enum.BluespaceHarvesterUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Appearance
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 600 # Big boye
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]

@@ -30,12 +30,22 @@ phase-fail-generic = I can't phase!
 hubportal-rejuvenate = You can't use this so soon after an emergency warp!
 shadekin-rejuvenate-compleated = You feel like you can leave the Dark again
 shadekin-shunt = Something resonates with your core and brings you to your knees.
+shadekin-too-bright = The light is too intense here!
 
 shadekin-core-undamaged = [color=yellow]The core flows with power![/color]
 shadekin-core-owner = [color=yellow]This core belongs to you.[/color]
 
 brighteye-thedark = [bold]The Dark[/bold]
 brighteye-darktiles = [color=red]{$darkCount}[/color] dark tiles on station.
+brighteye-darkstation = the station was [color=red]not[/color] dragged into the dark.
 
 admin-verb-text-make-brighteye = Make Bright-eye
 admin-verb-make-brighteye = Make the target into a Bright-eye.
+
+shadekinTrap-trigger = A set of crystals spring out of the ground and shadowy tendrils start wrapping around {$user}
+shadekinTrap-trigger-fail = The shadowy tendrils fail to catch anything and dissipate.
+
+alerts-shadekin-thedark-name = The Dark
+alerts-shadekin-thedark-desc = Your in The Dark... and without protection or being a shadekin... Its taking an effect on you.
+
+dark-breacher-window-title = Dark Breacher

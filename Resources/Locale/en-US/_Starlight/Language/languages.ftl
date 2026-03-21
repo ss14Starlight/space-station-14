@@ -1,3 +1,5 @@
+language-chat-confirmation = Message will send in {$lang}.
+
 language-Universal-name = Universal
 language-Universal-description = What are you?
 
@@ -55,6 +57,9 @@ language-Sylvan-description = Plants speaks this language.
 language-Chittin-name = Chittin
 language-Chittin-description = The noise made by rubbing its antennae together is actually a complex form of communication.
 chat-speech-verb-chittin-1 = rubs their antennae together
+chat-speech-verb-chittin-2 = rustles with their antennae
+chat-speech-verb-chittin-3 = shakes their antennae together
+chat-chittin-whisper-wrap = [italic][BubbleHeader][Name]{$entityName}[/Name][/BubbleHeader] [BubbleContent]subtly rustles "[font="{$fontType}" size={$fontSize}][color={$color}]{$message}[/color][/font]"[/italic][/BubbleContent]
 
 language-VoxPidgin-name = Vox-Pidgin
 language-VoxPidgin-description = The common tongue of the various Vox ships making up the Shoal. It sounds like chaotic shrieking to everyone else.
@@ -98,6 +103,9 @@ language-Thaveyan-description = A lyrical sing-songy language common to the Thav
 language-Darktongue-name = Darktongue
 language-Darktongue-description = Sounds a bit like clearing your throat, or perhaps slitting someone else's.
 
+language-Felyaic-name = Felyaic
+language-Felyaic-description = A more ponderous form of Darktongue spoken in deep, dark places by the detarii.
+
 language-Grumbakul-name = Grumbakul
 language-Grumbakul-description = A terse, sturdy language fit for drink and industry.
 
@@ -105,7 +113,7 @@ language-Classical-name = Classical
 language-Classical-description = Once upon a time, everyone spoke this language. They were mostly quite bad at it.
 
 language-Aielic-name = Aielic
-language-Aielic-description = The musical language of a nearly-extinct species known for its beautiful literature, pointy ears, once-vast empire.
+language-Aielic-description = Supposedly the original language of the aielithii, now only spoken by the Queli.
 
 language-Lagomorphian-name = Laguine
 language-Lagomorphian-description = A very lynarxical tongue, developed as an integration language for the Lagomorph's differing vocal structure.

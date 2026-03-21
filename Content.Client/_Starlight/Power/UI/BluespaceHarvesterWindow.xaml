@@ -1,0 +1,98 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+               x:Class="Content.Client._Starlight.Power.UI.BluespaceHarvesterWindow"
+               MinSize="540 400"
+               Title="{Loc bluespace-harvester-window-title}">
+
+    <BoxContainer Orientation="Vertical" Margin="8 8 8 8" SeparationOverride="6">
+
+        <PanelContainer>
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#1a1a2e" BorderColor="#4a4a6a" BorderThickness="1 1 1 1" ContentMarginLeftOverride="8" ContentMarginRightOverride="8" ContentMarginTopOverride="6" ContentMarginBottomOverride="6"/>
+            </PanelContainer.PanelOverride>
+            <BoxContainer Orientation="Vertical" SeparationOverride="4">
+                <Label Text="{Loc bluespace-harvester-input-management}" StyleClasses="LabelHeadingBigger" />
+                <cc:HSeparator Color="#4a4a6a" Margin="0 2 0 4"/>
+
+                <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                    <Label Text="{Loc bluespace-harvester-input-level}" StyleClasses="LabelKeyText" />
+                    <Label Name="InputLevelValue" StyleClasses="LabelSecondaryColor" />
+                </BoxContainer>
+
+                <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                    <Label Text="{Loc bluespace-harvester-desired-level}" StyleClasses="LabelKeyText" />
+                    <Label Name="DesiredLevelValue" StyleClasses="LabelSecondaryColor" />
+                </BoxContainer>
+
+                <BoxContainer Orientation="Horizontal" SeparationOverride="4" Margin="0 4 0 4">
+                    <Button Name="DesiredMinButton" Text="MIN" StyleClasses="OpenRight" MinWidth="42" />
+                    <Button Name="DesiredDecrementButton" Text="-" StyleClasses="OpenBoth" MinWidth="32" />
+                    <Slider Name="DesiredLevelSlider" HorizontalExpand="True" Margin="4 0 4 0" MouseFilter="Ignore" />
+                    <Button Name="DesiredIncrementButton" Text="+" StyleClasses="OpenBoth" MinWidth="32" />
+                    <Button Name="DesiredMaxButton" Text="MAX" StyleClasses="OpenLeft" MinWidth="42" />
+                </BoxContainer>
+
+                <cc:HSeparator Color="#3a3a5a" Margin="0 2 0 2"/>
+
+                <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                    <Label Text="{Loc bluespace-harvester-current-power-use}" StyleClasses="LabelKeyText" />
+                    <Label Name="CurrentPowerValue" Modulate="#FFD700" />
+                </BoxContainer>
+
+                <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                    <Label Text="{Loc bluespace-harvester-power-for-next-level}" StyleClasses="LabelKeyText" />
+                    <Label Name="NextLevelPowerValue" Modulate="#87CEEB" />
+                </BoxContainer>
+
+                <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                    <Label Text="{Loc bluespace-harvester-network-supply}" StyleClasses="LabelKeyText" />
+                    <Label Name="NetworkSupplyValue" Modulate="#90EE90" />
+                </BoxContainer>
+
+                <PanelContainer Name="DangerWarningPanel" Visible="False">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#4a1a1a" BorderColor="#ff4444" BorderThickness="1 1 1 1" ContentMarginLeftOverride="6" ContentMarginRightOverride="6" ContentMarginTopOverride="4" ContentMarginBottomOverride="4"/>
+                    </PanelContainer.PanelOverride>
+                    <Label Name="DangerWarningLabel" Text="{Loc bluespace-harvester-danger-warning}" Modulate="#ff6666" />
+                </PanelContainer>
+
+                <PanelContainer Name="BlockedWarningPanel" Visible="False">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#5a1a3a" BorderColor="#ff00ff" BorderThickness="2 2 2 2" ContentMarginLeftOverride="6" ContentMarginRightOverride="6" ContentMarginTopOverride="4" ContentMarginBottomOverride="4"/>
+                    </PanelContainer.PanelOverride>
+                    <Label Name="BlockedWarningLabel" Text="{Loc bluespace-harvester-blocked-warning}" Modulate="#ff77ff" />
+                </PanelContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <PanelContainer VerticalExpand="True">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#1e1e3a" BorderColor="#5a5a8a" BorderThickness="1 1 1 1" ContentMarginLeftOverride="8" ContentMarginRightOverride="8" ContentMarginTopOverride="6" ContentMarginBottomOverride="6"/>
+            </PanelContainer.PanelOverride>
+            <BoxContainer Orientation="Vertical" SeparationOverride="4" VerticalExpand="True">
+                <Label Text="{Loc bluespace-harvester-output}" StyleClasses="LabelHeadingBigger" />
+                <cc:HSeparator Color="#5a5a8a" Margin="0 2 0 4"/>
+
+                <BoxContainer Orientation="Horizontal" SeparationOverride="16" Margin="0 2 0 4">
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                        <Label Text="{Loc bluespace-harvester-available-points}" StyleClasses="LabelKeyText" />
+                        <Label Name="AvailablePointsValue" Modulate="#00FF7F" StyleClasses="LabelHeading" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                        <Label Text="{Loc bluespace-harvester-total-points}" StyleClasses="LabelKeyText" />
+                        <Label Name="TotalPointsValue" Modulate="#9370DB" StyleClasses="LabelHeading" />
+                    </BoxContainer>
+                </BoxContainer>
+
+                <cc:HSeparator Color="#4a4a7a" Margin="0 2 0 4"/>
+
+                <ScrollContainer VerticalExpand="True" MinSize="0 120" HScrollEnabled="False">
+                    <BoxContainer Name="PoolsContainer" Orientation="Vertical" SeparationOverride="4" />
+                </ScrollContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+    </BoxContainer>
+</DefaultWindow>

@@ -1,0 +1,13 @@
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectCyberneticDisruption
+  name: status-effect-cybernetics-cybernetics-disrupted
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+      - HumanoidAppearance
+  - type: StatusEffectAlert
+    alert: CyberneticDisruption
+  - type: CyberneticDisruptionStatusEffect

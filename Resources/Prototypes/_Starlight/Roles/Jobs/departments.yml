@@ -1,0 +1,37 @@
+- type: department
+  id: Law
+  name: department-Law
+  description: department-Law-description
+  color: "#ff178b"
+  weight: -10
+  roles:
+  - Magistrate
+  - IAA
+  
+- type: department
+  id: Representives
+  name: department-Representives
+  description: department-Representives-description
+  color: "#05255D"
+  roles:
+  - BlueShield
+  - Magistrate
+  - NanoTrasenRepresentative
+  - Decimus
+  - NanoTrasenSpecialForces
+  - NanotrasenCareerTrainer
+  primary: false
+  weight: 50
+
+- type: department
+  id: TSF
+  name: department-TSF
+  description: department-TSF
+  color: "#22a7ff"
+  roles:
+  - SolGovOfficer
+  - SolGovOfficerSheriff
+  - TSFMCCrew
+  - TSFMarine
+  - TSFMarineElite
+  editorHidden: true

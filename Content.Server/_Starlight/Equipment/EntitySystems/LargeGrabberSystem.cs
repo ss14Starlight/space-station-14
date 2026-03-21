@@ -14,6 +14,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Utility;
+using Content.Shared.Whitelist;
 
 namespace Content.Server._Starlight.Equipment.EntitySystems;
 
@@ -30,6 +31,7 @@ public sealed class LargeGrabberSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -38,6 +40,8 @@ public sealed class LargeGrabberSystem : EntitySystem
 
         SubscribeLocalEvent<LargeGrabberComponent, AfterInteractEvent>(OnInteract);
         SubscribeLocalEvent<LargeGrabberComponent, GrabberDoAfterEvent>(OnGrab);
+
+        SubscribeLocalEvent<LargeGrabberComponent, EntGotRemovedFromContainerMessage>(OnRemovedFromContainer);
     }
 
     /// <summary>
@@ -79,17 +83,16 @@ public sealed class LargeGrabberSystem : EntitySystem
             if (target == args.User || component.DoAfter != null)
                 return;
 
-            if (TryComp<PhysicsComponent>(target, out var physics) && physics.BodyType == BodyType.Static ||
-                HasComp<WallMountComponent>(target) ||
-                HasComp<MobStateComponent>(target))
-            {
+            if (TryComp<PhysicsComponent>(target, out var physics) && physics.BodyType == BodyType.Static)
                 return;
-            }
 
             if (Transform(target).Anchored)
                 return;
 
             if (!_interaction.InRangeUnobstructed(args.User, target))
+                return;
+
+            if (_whitelistSystem.IsWhitelistPass(component.Blacklist, target))
                 return;
 
             if (!_powerCell.TryUseCharge(uid, component.GrabEnergyCost))
@@ -115,6 +118,23 @@ public sealed class LargeGrabberSystem : EntitySystem
             UpdateState(uid, component);
             args.Handled = true;
         }
+    }
+
+    private void OnRemovedFromContainer(EntityUid uid, LargeGrabberComponent component, EntGotRemovedFromContainerMessage args)
+    { 
+        if (!component.DropOnContainerChange)
+            return;
+
+        while (component.ItemContainer.Count > 0)
+        {
+            var targetCoords = new EntityCoordinates(args.Container.Owner, component.DepositOffset);
+            if (!_interaction.InRangeUnobstructed(args.Container.Owner, targetCoords))
+                return;
+
+            if (component.ItemContainer.ContainedEntities.TryFirstOrNull(out var item) && item.HasValue)
+                RemoveItem(uid, args.Container.Owner, item.Value, component);
+        }
+        UpdateState(uid, component);
     }
 
     private void OnGrab(EntityUid uid, LargeGrabberComponent component, DoAfterEvent args)

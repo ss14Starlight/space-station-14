@@ -1,0 +1,31 @@
+- type: entity
+  id: EffectNightVision
+  categories: [ HideSpawnMenu ]
+  name: night vision
+  components:
+  - type: PointLight
+    color: "#D6E4FF" 
+    energy: 0.8
+    radius: 20
+    softness: 20
+  - type: DarkLight
+
+- type: entity
+  id: EffectThermalVision
+  categories: [ HideSpawnMenu ]
+  name: thermal vision
+  components:
+  - type: PointLight
+    color: "#FFE4D6" 
+    energy: 1.8
+    radius: 20
+    softness: 20
+  - type: DarkLight
+
+- type: entity
+  id: EffectThermalVisionRevenant
+  parent: EffectThermalVision
+  components:
+  - type: PointLight
+    castShadows: false
+  - type: DarkLight

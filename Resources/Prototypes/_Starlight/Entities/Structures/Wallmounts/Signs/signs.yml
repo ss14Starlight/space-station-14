@@ -1,0 +1,131 @@
+- type: entity
+  parent: BaseSign
+  id: SignBrigmed
+  name: brigmed sign
+  description: A sign indicating the brig medical bay.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: brigmed
+    
+- type: entity
+  parent: BaseSign
+  id: SignDisposalProper
+  name: disposals sign
+  description: A sign indicating a disposal area.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: disposals_proper
+    
+- type: entity
+  parent: BaseSign
+  id: SignSecureAreaSmall
+  name: secure area sign
+  description: A sign indicating a secure area.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: secureareasmall
+    
+- type: entity
+  parent: BaseSign
+  id: SignWallBiohazard
+  name: wall biohazard sign
+  description: A sign indicating a biohazard.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: wall_biohazard
+    
+- type: entity
+  parent: BaseSign
+  id: SignWallExtremeHeat
+  name: wall extreme heat sign
+  description: A sign indicating extreme heat.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: wall_extremeheat
+    
+- type: entity
+  parent: BaseSign
+  id: SignNoSmoking
+  name: no smoking sign
+  description: A sign indicating you can not smoke here.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: nosmoking
+    
+- type: entity
+  parent: BaseSign
+  id: SignYesSmoking
+  name: yes smoking sign
+  description: A sign indicating you can smoke here.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: yessmoking
+    
+- type: entity
+  parent: BaseSignDirectional
+  id: SignDirectionalMining
+  name: mining sign
+  description: A direction sign, pointing out which way the Mining department is.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/signs.rsi
+      state: direction_mining
+
+- type: entity
+  parent: BaseSign
+  id: SignMining
+  name: mining sign
+  description: A sign indicating the mining area.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/signs.rsi
+      state: mining
+
+# Xenoborg
+
+- type: entity
+  parent: BaseSign
+  id: SignCoreXeno
+  name: core sign
+  description: A sign indicating the xenoborg core. Nice of them to mark this for you.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/xeno_signs.rsi
+      state: core
+
+- type: entity
+  parent: BaseSign
+  id: SignDoorsXeno
+  name: doors sign
+  description: A sign warning of doors. Don't stand in them when closing, you wouldn't want to be gibbed would you?
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/xeno_signs.rsi
+      state: doors
+
+- type: entity
+  parent: BaseSign
+  id: SignPowerXeno
+  name: power sign
+  description: A sign indicating the xenoborg power systems. Electrical hazards ahead.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/xeno_signs.rsi
+      state: power
+
+- type: entity
+  parent: BaseSign
+  id: SignSpaceXeno
+  name: space sign
+  description: A sign indicating these doors leads to space. That heavy xenoborg might be lost forever! Don't end up like them.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/xeno_signs.rsi
+      state: space

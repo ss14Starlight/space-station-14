@@ -362,16 +362,15 @@ namespace Content.Client.Access.UI
 
         private void SubmitData()
         {
+            // Don't send this if it isn't dirty.
             var jobProtoDirty = _lastJobProto != null &&
                                 _jobPrototypeIds[JobPresetOptionButton.SelectedId] != _lastJobProto;
-            // Starlight-edit: Start
-            // Only submit access levels that are allowed by the server
-            var filteredAccess = _pendingPressedAccessLevels.Where(x => _allowedAccessLevels.Contains(x)).ToList();
 
+            // Starlight-edit: Start
             _owner?.SubmitData(
                 FullNameLineEdit.Text,
                 JobTitleLineEdit.Text,
-                filteredAccess,
+                _pendingPressedAccessLevels.ToList(),
                 jobProtoDirty ? _jobPrototypeIds[JobPresetOptionButton.SelectedId] : string.Empty);
 
             // Clear the override after submit so next UpdateState can update pressed state as normal

@@ -9,9 +9,9 @@
   id: BaseMobSpecies
   abstract: true
   components:
-  - type: Railroadable # 🌟Starlight🌟
-  - type: SurgeryTarget # 🌟Starlight🌟
-  # Starlight-start: Languages
+  # Starlight-start
+  - type: Railroadable
+  - type: SurgeryTarget
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
@@ -201,8 +201,10 @@
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
-      enum.VampireMutationUiKey.Key:
-        type: VampireMutationBoundUserInterface
+      enum.VampireClassUiKey.Key: # SL
+        type: VampireClassBui
+      enum.VampireLocateUiKey.Key: # SL
+        type: VampireLocateBui
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
         requireInputValidation: false
@@ -238,6 +240,7 @@
     - Pet
     - Boop
   # Starlight End
+  - type: CosmicCenserTarget # Stellar - Cosmic Cult
 
 - type: entity
   save: false
@@ -250,6 +253,27 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
+  - type: UserInterface
+    interfaces:
+    # Starlight-edit: start
+      enum.HumanoidMarkingModifierKey.Key: 
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StrippingUiKey.Key: 
+        type: StrippableBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+    # Starlight-edit: end
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.VampireClassUiKey.Key: # SL
+        type: VampireClassBui
+      enum.VampireLocateUiKey.Key: # SL
+        type: VampireLocateBui
+      enum.ThavenMoodsUiKey.Key: # impstation edit
+        type: ThavenMoodsBoundUserInterface
+        requireInputValidation: false
   - type: Barotrauma
     damage:
       types:

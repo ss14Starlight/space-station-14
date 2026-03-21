@@ -277,6 +277,10 @@
   - GasPipeSensor
   - GasPipeSensorAlt1
   - GasPipeSensorAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeSensorAlt3
+  - GasPipeSensorAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeSensorAlt1
@@ -292,6 +296,10 @@
   - GasPipeSensor
   - GasPipeSensorAlt1
   - GasPipeSensorAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeSensorAlt3
+  - GasPipeSensorAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeSensorAlt2
@@ -307,6 +315,10 @@
   - GasPipeSensor
   - GasPipeSensorAlt1
   - GasPipeSensorAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeSensorAlt3
+  - GasPipeSensorAlt4
+  # Carpmosia-end - 5 pipe layers
 
 # ATMOS PIPES
 - type: construction
@@ -322,6 +334,10 @@
   - GasPipeHalf
   - GasPipeHalfAlt1
   - GasPipeHalfAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeHalfAlt3
+  - GasPipeHalfAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeHalfAlt1
@@ -336,6 +352,10 @@
   - GasPipeHalf
   - GasPipeHalfAlt1
   - GasPipeHalfAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeHalfAlt3
+  - GasPipeHalfAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeHalfAlt2
@@ -350,6 +370,10 @@
   - GasPipeHalf
   - GasPipeHalfAlt1
   - GasPipeHalfAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeHalfAlt3
+  - GasPipeHalfAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeStraight
@@ -363,6 +387,10 @@
   - GasPipeStraight
   - GasPipeStraightAlt1
   - GasPipeStraightAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeStraightAlt3
+  - GasPipeStraightAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeStraightAlt1
@@ -377,6 +405,10 @@
   - GasPipeStraight
   - GasPipeStraightAlt1
   - GasPipeStraightAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeStraightAlt3
+  - GasPipeStraightAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeStraightAlt2
@@ -391,6 +423,10 @@
   - GasPipeStraight
   - GasPipeStraightAlt1
   - GasPipeStraightAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeStraightAlt3
+  - GasPipeStraightAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeBend
@@ -405,6 +441,10 @@
   - GasPipeBend
   - GasPipeBendAlt1
   - GasPipeBendAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeBendAlt3
+  - GasPipeBendAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeBendAlt1
@@ -419,6 +459,10 @@
   - GasPipeBend
   - GasPipeBendAlt1
   - GasPipeBendAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeBendAlt3
+  - GasPipeBendAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeBendAlt2
@@ -433,6 +477,10 @@
   - GasPipeBend
   - GasPipeBendAlt1
   - GasPipeBendAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeBendAlt3
+  - GasPipeBendAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeTJunction
@@ -447,6 +495,10 @@
   - GasPipeTJunction
   - GasPipeTJunctionAlt1
   - GasPipeTJunctionAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeTJunctionAlt3
+  - GasPipeTJunctionAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeTJunctionAlt1
@@ -461,6 +513,10 @@
   - GasPipeTJunction
   - GasPipeTJunctionAlt1
   - GasPipeTJunctionAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeTJunctionAlt3
+  - GasPipeTJunctionAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeTJunctionAlt2
@@ -475,6 +531,10 @@
   - GasPipeTJunction
   - GasPipeTJunctionAlt1
   - GasPipeTJunctionAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeTJunctionAlt3
+  - GasPipeTJunctionAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeFourway
@@ -489,6 +549,10 @@
   - GasPipeFourway
   - GasPipeFourwayAlt1
   - GasPipeFourwayAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeFourwayAlt3
+  - GasPipeFourwayAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeFourwayAlt1
@@ -503,6 +567,10 @@
   - GasPipeFourway
   - GasPipeFourwayAlt1
   - GasPipeFourwayAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeFourwayAlt3
+  - GasPipeFourwayAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeFourwayAlt2
@@ -517,6 +585,10 @@
   - GasPipeFourway
   - GasPipeFourwayAlt1
   - GasPipeFourwayAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPipeFourwayAlt3
+  - GasPipeFourwayAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPipeManifold
@@ -534,16 +606,18 @@
   startNode: start
   targetNode: ventpump
   category: construction-category-utilities
-  placementMode: AlignAtmosPipeLayers # starlight
+  placementMode: AlignAtmosPipeLayers # Carpmosia-edit - Atmos Alt Prototypes
   canBuildInImpassable: false
   conditions:
   - !type:NoUnstackableInTile
-  # region starlight
+  # Carpmosia-start - Atmos Alt Prototypes
   alternativePrototypes:
   - GasVentPump
   - GasVentPumpAlt1
   - GasVentPumpAlt2
-  # end region
+  - GasVentPumpAlt3
+  - GasVentPumpAlt4
+  # Carpmosia-end - Atmos Alt Prototypes
 
 - type: construction
   id: GasPassiveVent
@@ -551,16 +625,18 @@
   startNode: start
   targetNode: passivevent
   category: construction-category-utilities
-  placementMode: AlignAtmosPipeLayers # starlight
+  placementMode: AlignAtmosPipeLayers # Carpmosia-edit - Atmos Alt Prototypes
   canBuildInImpassable: false
   conditions:
   - !type:NoUnstackableInTile
-  # region starlight
+  # Carpmosia-start - Atmos Alt Prototypes
   alternativePrototypes:
   - GasPassiveVent
   - GasPassiveVentAlt1
   - GasPassiveVentAlt2
-  # end region
+  - GasPassiveVentAlt3
+  - GasPassiveVentAlt4
+  # Carpmosia-end - Atmos Alt Prototypes
 
 - type: construction
   id: GasVentScrubber
@@ -568,16 +644,18 @@
   startNode: start
   targetNode: ventscrubber
   category: construction-category-utilities
-  placementMode: AlignAtmosPipeLayers # starlight
+  placementMode: AlignAtmosPipeLayers # Carpmosia-edit - Atmos Alt Prototypes
   canBuildInImpassable: false
   conditions:
   - !type:NoUnstackableInTile
-  # region starlight
+  # Carpmosia-start - Atmos Alt Prototypes
   alternativePrototypes:
   - GasVentScrubber
   - GasVentScrubberAlt1
   - GasVentScrubberAlt2
-  # end region
+  - GasVentScrubberAlt3
+  - GasVentScrubberAlt4
+  # Carpmosia-end - Atmos Alt Prototypes
 
 - type: construction
   id: GasOutletInjector
@@ -585,16 +663,18 @@
   startNode: start
   targetNode: outletinjector
   category: construction-category-utilities
-  placementMode: AlignAtmosPipeLayers # starlight
+  placementMode: AlignAtmosPipeLayers # Carpmosia-edit - Atmos Alt Prototypes
   canBuildInImpassable: false
   conditions:
   - !type:NoUnstackableInTile
-  # region starlight
+  # Carpmosia-start - Atmos Alt Prototypes
   alternativePrototypes:
   - GasOutletInjector
   - GasOutletInjectorAlt1
   - GasOutletInjectorAlt2
-  # end region
+  - GasOutletInjectorAlt3
+  - GasOutletInjectorAlt4
+  # Carpmosia-end - Atmos Alt Prototypes
 
 # ATMOS BINARY
 - type: construction
@@ -611,6 +691,10 @@
   - GasPressurePump
   - GasPressurePumpAlt1
   - GasPressurePumpAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPressurePumpAlt3
+  - GasPressurePumpAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPressurePumpAlt1
@@ -627,6 +711,10 @@
   - GasPressurePump
   - GasPressurePumpAlt1
   - GasPressurePumpAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPressurePumpAlt3
+  - GasPressurePumpAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPressurePumpAlt2
@@ -643,6 +731,10 @@
   - GasPressurePump
   - GasPressurePumpAlt1
   - GasPressurePumpAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPressurePumpAlt3
+  - GasPressurePumpAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasVolumePump
@@ -658,6 +750,10 @@
   - GasVolumePump
   - GasVolumePumpAlt1
   - GasVolumePumpAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasVolumePumpAlt3
+  - GasVolumePumpAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasVolumePumpAlt1
@@ -674,6 +770,10 @@
   - GasVolumePump
   - GasVolumePumpAlt1
   - GasVolumePumpAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasVolumePumpAlt3
+  - GasVolumePumpAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasVolumePumpAlt2
@@ -690,6 +790,10 @@
   - GasVolumePump
   - GasVolumePumpAlt1
   - GasVolumePumpAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasVolumePumpAlt3
+  - GasVolumePumpAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPassiveGate
@@ -705,6 +809,10 @@
   - GasPassiveGate
   - GasPassiveGateAlt1
   - GasPassiveGateAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPassiveGateAlt3
+  - GasPassiveGateAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPassiveGateAlt1
@@ -721,6 +829,10 @@
   - GasPassiveGate
   - GasPassiveGateAlt1
   - GasPassiveGateAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPassiveGateAlt3
+  - GasPassiveGateAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPassiveGateAlt2
@@ -737,6 +849,10 @@
   - GasPassiveGate
   - GasPassiveGateAlt1
   - GasPassiveGateAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPassiveGateAlt3
+  - GasPassiveGateAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPressureRegulator
@@ -752,6 +868,10 @@
   - GasPressureRegulator
   - GasPressureRegulatorAlt1
   - GasPressureRegulatorAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPressureRegulatorAlt3
+  - GasPressureRegulatorAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPressureRegulatorAlt1
@@ -768,6 +888,10 @@
   - GasPressureRegulator
   - GasPressureRegulatorAlt1
   - GasPressureRegulatorAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPressureRegulatorAlt3
+  - GasPressureRegulatorAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPressureRegulatorAlt2
@@ -784,6 +908,10 @@
   - GasPressureRegulator
   - GasPressureRegulatorAlt1
   - GasPressureRegulatorAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasPressureRegulatorAlt3
+  - GasPressureRegulatorAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasValve
@@ -799,6 +927,10 @@
   - GasValve
   - GasValveAlt1
   - GasValveAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasValveAlt3
+  - GasValveAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasValveAlt1
@@ -815,6 +947,10 @@
   - GasValve
   - GasValveAlt1
   - GasValveAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasValveAlt3
+  - GasValveAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasValveAlt2
@@ -831,6 +967,10 @@
   - GasValve
   - GasValveAlt1
   - GasValveAlt2
+  # Carpmosia-start - 5 pipe layers
+  - GasValveAlt3
+  - GasValveAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: SignalControlledValve
@@ -846,6 +986,10 @@
   - SignalControlledValve
   - SignalControlledValveAlt1
   - SignalControlledValveAlt2
+  # Carpmosia-start - 5 pipe layers
+  - SignalControlledValveAlt3
+  - SignalControlledValveAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: SignalControlledValveAlt1
@@ -862,6 +1006,10 @@
   - SignalControlledValve
   - SignalControlledValveAlt1
   - SignalControlledValveAlt2
+  # Carpmosia-start - 5 pipe layers
+  - SignalControlledValveAlt3
+  - SignalControlledValveAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: SignalControlledValveAlt2
@@ -878,6 +1026,10 @@
   - SignalControlledValve
   - SignalControlledValveAlt1
   - SignalControlledValveAlt2
+  # Carpmosia-start - 5 pipe layers
+  - SignalControlledValveAlt3
+  - SignalControlledValveAlt4
+  # Carpmosia-end - 5 pipe layers
 
 - type: construction
   id: GasPort
@@ -885,16 +1037,18 @@
   startNode: start
   targetNode: port
   category: construction-category-utilities
-  placementMode: AlignAtmosPipeLayers # starlight
+  placementMode: AlignAtmosPipeLayers # Carpmosia-edit - Atmos Alt Prototypes
   canBuildInImpassable: false
   conditions:
     - !type:NoUnstackableInTile
-  # region starlight
+  # Carpmosia-start - Atmos Alt Prototypes
   alternativePrototypes:
   - GasPort
   - GasPortAlt1
   - GasPortAlt2
-  # end starlight
+  - GasPortAlt3
+  - GasPortAlt4
+  # Carpmosia-end - Atmos Alt Prototypes
 
 - type: construction
   id: GasDualPortVentPump
@@ -902,14 +1056,16 @@
   startNode: start
   targetNode: dualportventpump
   category: construction-category-utilities
-  placementMode: AlignAtmosPipeLayers # starlight
+  placementMode: AlignAtmosPipeLayers # Carpmosia-edit - Atmos Alt Prototypes
   canBuildInImpassable: false
-  # region starlight
+  # Carpmosia-start - Atmos Alt Prototypes
   alternativePrototypes:
   - GasDualPortVentPump
   - GasDualPortVentPumpAlt1
   - GasDualPortVentPumpAlt2
-  # end starlight
+  - GasDualPortVentPumpAlt3
+  - GasDualPortVentPumpAlt4
+  # Carpmosia-end - Atmos Alt Prototypes
 
 - type: construction
   id: HeatExchanger
@@ -942,13 +1098,15 @@
   mirror: GasFilterFlipped
   conditions:
     - !type:NoUnstackableInTile
-  # region starlight
+  # Carpmosia-start - Atmos Alt Prototypes
   alternativePrototypes:
   - GasFilter
   - GasFilterAlt1
   - GasFilterAlt2
-  # end starlight
-  
+  - GasFilterAlt3
+  - GasFilterAlt4
+  # Carpmosia-end - Atmos Alt Prototypes
+
 - type: construction
   id: GasFilterFlipped
 #  hide: true starlight let me build the flipped version
@@ -961,12 +1119,14 @@
   mirror: GasFilter
   conditions:
     - !type:NoUnstackableInTile
-  # region starlight
+  # Carpmosia-start - Atmos Alt Prototypes
   alternativePrototypes:
   - GasFilterFlipped
   - GasFilterFlippedAlt1
   - GasFilterFlippedAlt2
-  # end region
+  - GasFilterFlippedAlt3
+  - GasFilterFlippedAlt4
+  # Carpmosia-end - Atmos Alt Prototypes
 
 - type: construction
   id: GasMixer
@@ -979,12 +1139,14 @@
   mirror: GasMixerFlipped
   conditions:
     - !type:NoUnstackableInTile
-  # region starlight
+  # Carpmosia-start - Atmos Alt Prototypes
   alternativePrototypes:
   - GasMixer
   - GasMixerAlt1
   - GasMixerAlt2
-  # end starlight
+  - GasMixerAlt3
+  - GasMixerAlt4
+  # Carpmosia-end - Atmos Alt Prototypes
 
 - type: construction
   id: GasMixerFlipped
@@ -998,12 +1160,14 @@
   mirror: GasMixer
   conditions:
     - !type:NoUnstackableInTile
-  # region starlight
+  # Carpmosia-start - Atmos Alt Prototypes
   alternativePrototypes:
   - GasMixerFlipped
   - GasMixerFlippedAlt1
   - GasMixerFlippedAlt2
-  # end starlight
+  - GasMixerFlippedAlt3
+  - GasMixerFlippedAlt4
+  # Carpmosia-end - Atmos Alt Prototypes
 
 - type: construction
   id: PressureControlledValve
@@ -1011,16 +1175,18 @@
   startNode: start
   targetNode: pneumaticvalve
   category: construction-category-utilities
-  placementMode: AlignAtmosPipeLayers # starlight
+  placementMode: AlignAtmosPipeLayers # Carpmosia-edit - Atmos Alt Prototypes
   canBuildInImpassable: false
   conditions:
     - !type:NoUnstackableInTile
-  # region starlight
+  # Carpmosia-start - Atmos Alt Prototypes
   alternativePrototypes:
   - PressureControlledValve
   - PressureControlledValveAlt1
   - PressureControlledValveAlt2
-  # end starlight
+  - PressureControlledValveAlt3
+  - PressureControlledValveAlt4
+  # Carpmosia-end - Atmos Alt Prototypes
 
 # INTERCOM
 - type: construction

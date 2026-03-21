@@ -11,7 +11,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.PhysicalSocialInteraction.Systems;
 
-public class PhysicalSocialInteractionSystem : EntitySystem
+public sealed class PhysicalSocialInteractionSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
@@ -35,7 +35,7 @@ public class PhysicalSocialInteractionSystem : EntitySystem
             return;
 
         //create a verb subcategory
-        var category = new VerbCategory("Physical Social Interaction", null);
+        var category = new VerbCategory("physical-social-interaction-component-verb", null);
 
         //enumerate all the physical social interaction prototypes
         foreach (var protoid in component.InteractionPrototypes)

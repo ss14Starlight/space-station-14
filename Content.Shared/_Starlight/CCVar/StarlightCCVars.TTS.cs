@@ -9,23 +9,8 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<bool> TTSEnabled =
         CVarDef.Create("tts.enabled", false, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
-    /// <summary>
-    /// URL of the TTS server API.
-    /// </summary>
-    public static readonly CVarDef<string> TTSApiUrl =
-        CVarDef.Create("tts.api_url", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
-
-    /// <summary>
-    /// Auth token of the TTS server API.
-    /// </summary>
-    public static readonly CVarDef<string> TTSApiToken =
-        CVarDef.Create("tts.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
-
-    /// <summary>
-    /// Amount of seconds before timeout for API
-    /// </summary>
-    public static readonly CVarDef<int> TTSApiTimeout =
-        CVarDef.Create("tts.api_timeout", 5, CVar.SERVERONLY | CVar.ARCHIVE);
+    public static readonly CVarDef<string> TTSConnectionString =
+        CVarDef.Create("tts.connection_string", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
     /// <summary>
     /// Option to disable TTS events for client
@@ -43,11 +28,14 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("tts.radio_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
     
     public static readonly CVarDef<bool> TTSRadioQueueEnabled =
-        CVarDef.Create("tts.radio_queue_enabled", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("tts.radio_queue_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> TTSAnnounceVolume =
         CVarDef.Create("tts.announce_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
-        
+
+    public static readonly CVarDef<float> TTSChimeVolume =
+        CVarDef.Create("tts.chime_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /// <summary>
     /// Option to mute radio chime sounds
     /// </summary>

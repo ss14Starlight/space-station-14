@@ -16,6 +16,7 @@ public sealed class StatusIconOverlay : Overlay
     [Dependency] private readonly IEntityManager _entity = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly Robust.Shared.Configuration.IConfigurationManager _cfg = default!; // Starlight
 
     private readonly SpriteSystem _sprite;
     private readonly TransformSystem _transform;
@@ -72,13 +73,17 @@ public sealed class StatusIconOverlay : Overlay
             var accOffsetR = 0;
             icons.Sort();
 
+            var disableJobAnim = _cfg.GetCVar(Content.Shared.CCVar.CCVars.DisableJobIconAnimation); // Starlight
+
             foreach (var proto in icons)
             {
                 if (!_statusIcon.IsVisible((uid, meta), proto))
                     continue;
 
                 var curTime = _timing.RealTime;
-                var texture = _sprite.GetFrame(proto.Icon, curTime);
+                var texture = (_cfg.GetCVar(Content.Shared.CCVar.CCVars.DisableJobIconAnimation) && proto is Content.Shared.StatusIcon.JobIconPrototype) // Starlight (disable animation for status icon)
+                    ? _sprite.Frame0(proto.Icon)
+                    : _sprite.GetFrame(proto.Icon, curTime);
 
                 float yOffset;
                 float xOffset;

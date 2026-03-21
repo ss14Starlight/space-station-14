@@ -8,6 +8,6 @@
   guides: [ Changelings ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 3h
+    time: 24h
   playTimeTracker: AntagChangeling
   # Starlight end

@@ -1,28 +1,38 @@
 <Control xmlns="https://spacestation14.io">
-    <BoxContainer Margin="8,0,8,8" Orientation="Vertical">
+    <!--  Reduced margins to tighten spacing between shop items  -->
+    <BoxContainer Margin="4,0,4,4" Orientation="Vertical">
+        <!--  Starlight  -->
         <BoxContainer Orientation="Horizontal">
             <Label Name="StoreItemName" HorizontalExpand="True" />
         </BoxContainer>
-        <PanelContainer StyleClasses="HighDivider" Margin="0,1,0,2"/>
+        <PanelContainer
+            Name="StoreItemDivider"
+            Margin="0,1,0,1"
+            Access="Public"
+            StyleClasses="HighDivider" />
+        <!--  Starlight  -->
         <BoxContainer HorizontalExpand="True" Orientation="Horizontal">
-            <BoxContainer Orientation="Vertical" VerticalAlignment="Center" Margin="0,0,4,0">
+            <BoxContainer
+                Margin="0,0,2,0"
+                VerticalAlignment="Center"
+                Orientation="Vertical">
+                <!--  Starlight  -->
                 <TextureRect
                     Name="StoreItemTexture"
-                    Margin="0,0,4,0"
+                    Margin="0,0,2,0"
                     MinSize="48 48"
                     Stretch="KeepAspectCentered" />
                 <Button
                     Name="StoreItemBuyButton"
                     MinWidth="48"
                     MaxHeight="48"
+                    Margin="0,2,0,0"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
-                    Margin="0,4,0,0"
                     Access="Public" />
-                <Label Name="DiscountSubText"
-                       HorizontalAlignment="Center"/>
+                <Label Name="DiscountSubText" HorizontalAlignment="Center" />
             </BoxContainer>
-            <RichTextLabel Name="StoreItemDescription" VerticalAlignment="Top"/>
+            <RichTextLabel Name="StoreItemDescription" VerticalAlignment="Top" />
         </BoxContainer>
     </BoxContainer>
 </Control>

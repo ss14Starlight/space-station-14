@@ -155,6 +155,10 @@ public sealed class PryingSystem : EntitySystem
         {
             _adminLog.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user)} is prying {ToPrettyString(target)}");
         }
+        // Starlight Start
+        if (tool != null && TryComp(tool, out PryingComponent? comp) && comp.PlaySoundOnDoafter)
+            _audioSystem.PlayPredicted(comp.useSoundOnDoafter, tool.Value, user);
+        // Starlight End
         return _doAfterSystem.TryStartDoAfter(doAfterArgs, out id);
     }
 
@@ -174,7 +178,8 @@ public sealed class PryingSystem : EntitySystem
             return;
         }
 
-        if (args.Used != null && comp != null)
+        if (args.Used != null && comp != null
+        )//&& !comp.PlaySoundOnDoafter) //Starlight
         {
             _audioSystem.PlayPredicted(comp.UseSound, args.Used.Value, args.User);
         }

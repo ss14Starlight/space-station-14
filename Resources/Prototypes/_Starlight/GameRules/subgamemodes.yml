@@ -1,0 +1,139 @@
+- type: entity
+  parent: BaseGameRule
+  id: SiliconLiberation
+  components:
+  - type: SELFRule
+  - type: AntagObjectives
+    objectives:
+    - SiliconRightsObjective
+    - FreeAIObjective
+    - FreeBorgsObjective
+  - type: AntagSelection
+    agentName: self-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ SELFAgent ]
+      max: 3
+      startingGear: SELFAgentGear
+      mindRoles:
+      - MindRoleSELFAgent
+      briefing:
+        sound: "/Audio/_Starlight/Ambience/Antag/self_greeting.ogg"
+  - type: DynamicRuleCost
+    cost: 70
+
+# Variant of thieves that only spawn up to 3. Used in revs to prevent emags from being too easily obtained.
+- type: entity
+  parent: Thief
+  id: ThiefLess
+  components:
+  - type: ThiefRule
+  - type: AntagObjectives
+    objectives:
+    - EscapeThiefShuttleObjective
+  - type: AntagRandomObjectives
+    sets:
+    - groups: ThiefBigObjectiveGroups
+      prob: 0.7
+      maxPicks: 1
+    - groups: ThiefObjectiveGroups
+      maxPicks: 10
+    - groups: ThiefObjectiveGroupEscape
+      prob: 0.33 # It gives you a lot more freedom, but also lets you be way more intrusive, so low chance.
+      maxPicks: 1
+  - type: AntagSelection
+    agentName: thief-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Thief ]
+      max: 3 # Starlight. Prevents excess thieves from spawning on Revs.
+      playerRatio: 21 # Starlight. Accounts for the thieves in the population. (63 pop = 60 crew 3 thieves.)
+      lateJoinAdditional: true
+      allowNonHumans: true
+      multiAntagSetting: NotExclusive
+      startingGear: ThiefGear
+      components:
+      - type: Pacified
+      - type: Thieving
+        stripTimeReduction: 2
+        stealthy: true
+      mindRoles:
+      - MindRoleThief
+      briefing:
+        sound: "/Audio/Misc/thief_greeting.ogg"
+  - type: DynamicRuleCost
+    cost: 75
+
+#Subgamemode variant of vamps. There's less of them.
+- type: entity
+  parent: Vampire
+  id: VampireLess
+  components:
+  - type: VampireRule
+  - type: AntagSelection
+    agentName: vampire-roundend-name
+    selectionTime: IntraPlayerSpawn # Only select vamps on round start
+    definitions:
+    - prefRoles: [ Vampire ]
+      max: 6 # Starlight. Accounting for scaling. Not as many as the full gamemode.
+      playerRatio: 26 # Starlight. Scales the same as the other common sub-antags.
+      lateJoinAdditional: true
+      allowNonHumans: True
+      multiAntagSetting: None
+      mindRoles:
+      - MindRoleVampire
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+    # Starlight-end
+
+#Subgamemode Lings for Vamptraitorlings.
+- type: entity
+  parent: BaseGameRule
+  id: SLChangelingLess
+  components:
+  - type: SLChangelingRule
+  - type: AntagSelection
+    agentName: changeling-roundend-name
+    definitions:
+    - prefRoles: [ Changeling ]
+      max: 4 # Starlight, same reasoning as the roundstart changeling change, for alpha.
+      playerRatio: 31 # Starlight, to make sure Beta doesn't get more than 2 changelings as a submode on VTL. Same justification as Thieves. Should be harder to get 4 lings on VTL now.
+      lateJoinAdditional: true
+      allowNonHumans: false
+      multiAntagSetting: None
+      mindRoles:
+      - MindRoleChangeling
+      components:
+        - type: ChangelingDevour
+        - type: ChangelingIdentity
+        - type: ChangelingTransform
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+
+- type: entity
+  parent: Traitor
+  id: SubTraitor
+  components:
+  - type: GameRule
+    minPlayers: 5
+    delay:
+      min: 240
+      max: 420
+  - type: AntagRandomObjectives
+    sets:
+    - groups: SubTraitorObjectiveGroups
+    maxDifficulty: 4 # Less intrusive traitors.
+  - type: AntagSelection
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Traitor ]
+      max: 6 # Starlight. Less intrusive traitors.
+      playerRatio: 21 # Starlight. Less intrusive traitors.
+      blacklist:
+        components:
+        - AntagImmune
+      lateJoinAdditional: false
+      mindRoles:
+      - MindRoleTraitor

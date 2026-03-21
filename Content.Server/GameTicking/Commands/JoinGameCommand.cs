@@ -71,7 +71,7 @@ namespace Content.Server.GameTicking.Commands
                 {
                     shell.WriteError(Loc.GetString("shell-argument-must-be-number"));
                 }
-                
+
                 if (ticker.PlayerGameStatuses.TryGetValue(player.UserId, out var status) && status == PlayerGameStatus.JoinedGame)
                 {
                     //🌟Starlight🌟 start

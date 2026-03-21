@@ -30,4 +30,7 @@ public sealed partial class LimbItemDeployerComponent  : Component, IWithAction
 
     [DataField]
     public EntityWhitelist HandWhitelist;
+
+    [DataField]
+    public bool IsCybernetic = true;
 }

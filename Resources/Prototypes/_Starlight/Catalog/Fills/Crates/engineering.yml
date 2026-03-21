@@ -1,0 +1,109 @@
+- type: entity
+  id: CrateSupermatterFlatpack
+  parent: CrateEngineeringSecure
+  name: Supermatter Crate
+  description: Supermatter, your solution for things regular matter can't handle.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SupermatterFlatpack
+
+- type: entity
+  id: CrateTEGFlatpack
+  parent: CrateEngineeringSecure
+  name: TEG Crate
+  description: A crate containing a flatpacked Thermo-Electric Generator.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: TEGCenterFlatpack
+        - id: TEGCirculatorFlatpack
+          amount: 2
+
+- type: entity
+  id: CrateEngineeringReflector
+  parent: CrateEngineeringSecure
+  name: Reflector Crate
+  description: Reflector, for when you need to deflect your problems.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ReflectorFlatpack
+
+- type: entity
+  parent: CrateEngineeringSecure
+  id: CrateRPD
+  name: RPD crate
+  description: A crate containing a single rapid piping device.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: RPD
+
+- type: entity
+  parent: CrateMedicalSecure
+  id: CrateRPLD
+  name: RPLD crate
+  description: A crate containing a single rapid plumbing device.
+  components:
+  - type: AccessReader
+    access: [["Engineering"], ["Medical"]]
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: RPLD
+
+- type: entity
+  id: CrateNuclearReactorFlatpack
+  parent: CrateEngineeringSecure
+  name: Nuclear Reactor Crate
+  description: A crate containing a flatpacked Nuclear Reactor. Parts sold Separately.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: NuclearReactorFlatpack
+
+- type: entity
+  id: CrateGasTurbineFlatpack
+  parent: CrateEngineeringSecure
+  name: Gas Turbine Crate
+  description: A crate containing a flatpacked Gas Turbine. Parts sold Separately.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: GasTurbineFlatpack
+
+- type: entity
+  id: CrateNuclearReactorSmallFlatpack
+  parent: CrateEngineeringSecure
+  name: Small Nuclear Reactor Crate
+  description: A crate containing a flatpacked  Small Nuclear Reactor. Parts sold Separately.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: NuclearReactorSmallFlatpack
+
+- type: entity
+  id: CrateGasTurbineSmallFlatpack
+  parent: CrateEngineeringSecure
+  name: Small Gas Turbine Crate
+  description: A crate containing a flatpacked Small Gas Turbine. Parts sold Separately.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: GasTurbineSmallFlatpack

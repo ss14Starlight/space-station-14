@@ -1,0 +1,108 @@
+﻿<Document>
+    # Code Orange
+
+
+    ## Called by:
+
+
+    Any command member.
+
+
+    ## Conditions:
+
+
+    There is an extreme atmospheric or structural disaster on the station that makes recovery almost certainly impossible.
+
+
+    ## Security:
+
+    1. Verify cause of station damage.
+
+    2. Evacuate non-engineering crew from the area.
+
+    4. Direct crew to the evacuation shuttle upon its arrival.
+
+
+    ## Secure Areas:
+
+
+    1. Secure areas except for the Armory, Gravity Generator, and Vault should be given emergency access.
+    
+
+    ## Medical:
+
+
+    1. Medical personnel should be ready to treat a large number of disaster victims.
+
+
+    ## Engineering:
+
+
+    1. Immediately coordinate with your chief engineer to determine the level of damage to the station.
+
+    2. If feasible, work with your department to first end the ongoing disaster, then repair the station.
+
+
+    ## General Crew:
+
+
+    1. Avoid the disaster area.
+
+
+    2. Follow the directives of security.
+
+
+    ## Command:
+
+
+    The evacuation shuttle should be called immediately. If the crew successfully ends the disaster, the shuttle should be recalled if the station is operational.
+
+
+    ## Special Situations
+
+
+    ## Loss of singularity containment:
+
+
+    1. The Gravitational Singularity must be tracked.
+
+
+    2. Any able-bodied crew, with priority to Engineering are to use decelerators against the Gravitational Singularity
+
+
+    3. If station damage appears recoverable, an ERT is recommended. If the engineering team is confident in their abilities, ERT may be waived.
+
+
+    ## Supermatter crystal delamination:
+
+
+    1. The Supermatter Crystal is to be vented to space.
+
+    2. In such a case as the Supermatter Crystal containment was not equipped with a way to space the Crystal, the area around the Crystal is to be evacuated, and all personnel involved in the construction shall be fired and brigged for Destruction of Property and Endangerment.
+
+
+    ## Loss of Tesla Ball containment:
+
+
+    1. The Tesla Ball must be tracked.
+
+
+    2. Any able-bodied crew, with priority to Engineering are to use decelerators against the Tesla Ball. NOTE: it is extremely difficult to stop a loose Tesla Ball.
+
+
+    3. If station damage appears recoverable, an ERT is recommended. If the engineering team is confident in their abilities, ERT may be waived.
+
+
+    ## Severe meteor storms:
+
+
+    1. Personnel are to seek shelter in the most protected area of the station.
+
+    2. Repair activities are to be postponed until the end of the storm.
+
+    3. All personnel performing EVA duty are to immediately return to the station.
+
+    4. At the conclusion of the storm Engineering personnel are to repair the station if feasible..
+
+
+</Document>

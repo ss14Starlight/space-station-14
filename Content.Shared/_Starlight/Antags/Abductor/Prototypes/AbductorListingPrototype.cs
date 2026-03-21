@@ -5,7 +5,6 @@ using Robust.Shared.Utility;
 namespace Content.Shared.Starlight.Antags.Abductor;
 
 [Prototype("abductorListing")]
-[Serializable, NetSerializable]
 [DataDefinition]
 public sealed partial class AbductorListingPrototype : IPrototype
 {

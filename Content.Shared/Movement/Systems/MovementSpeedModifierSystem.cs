@@ -5,6 +5,10 @@ using Content.Shared.Standing;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 
+// Starlight-start
+using Content.Shared._Starlight.Movement.Events;
+// Starlight-end
+
 namespace Content.Shared.Movement.Systems
 {
     public sealed class MovementSpeedModifierSystem : EntitySystem
@@ -105,23 +109,28 @@ namespace Content.Shared.Movement.Systems
             Dirty(uid, move);
         }
 
-        public void RefreshMovementSpeedModifiers(EntityUid uid, MovementSpeedModifierComponent? move = null)
+        public void RefreshMovementSpeedModifiers(EntityUid uid, MovementSpeedModifierComponent? move = null) // Starlight-edit
         {
             if (!Resolve(uid, ref move, false))
                 return;
 
             if (_timing.ApplyingState)
                 return;
-
+            
             var ev = new RefreshMovementSpeedModifiersEvent();
             RaiseLocalEvent(uid, ev);
-
+            
             if (MathHelper.CloseTo(ev.WalkSpeedModifier, move.WalkSpeedModifier) &&
                 MathHelper.CloseTo(ev.SprintSpeedModifier, move.SprintSpeedModifier))
                 return;
 
-            move.WalkSpeedModifier = ev.WalkSpeedModifier;
-            move.SprintSpeedModifier = ev.SprintSpeedModifier;
+            // Starlight-start
+            var applyScale = new ApplyMovementScaleModifierEvent(ev.WalkSpeedModifier, ev.SprintSpeedModifier);
+            RaiseLocalEvent(uid, applyScale);
+
+            move.WalkSpeedModifier = applyScale.ChangedWalkSpeedModifier ?? ev.WalkSpeedModifier;
+            move.SprintSpeedModifier = applyScale.ChangedSprintSpeedModifier ?? ev.SprintSpeedModifier;
+            // Starlight-end
             Dirty(uid, move);
         }
 

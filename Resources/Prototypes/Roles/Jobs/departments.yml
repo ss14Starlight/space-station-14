@@ -33,6 +33,7 @@
   - Visitor
   - ServiceWorker
   # Starlight start
+  - Performer
   - Boxer
   - Zookeeper
   # Starlight end
@@ -53,7 +54,7 @@
   - ERTEngineer
   - DeathSquad
   - CentralCommandOperator # Starlight Addition
-  - NTNCBlueshield ## Starlight Addition
+  - NTNCBlueShield ## Starlight Addition
   editorHidden: true
   weight: 120
 

@@ -1,33 +1,36 @@
 {
-    "version": 1,
-    "license": "CC-BY-SA-3.0",
-    "copyright": "Based off of sec glasses, Made by Happyrobot33",
-    "size":
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Based off of sec glasses, Made by Happyrobot33",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
     {
-        "x": 32,
-        "y": 32
+      "name": "icon",
+      "directions": 1
     },
-    "states":
-    [
-        {
-            "name": "icon",
-            "directions": 1
-        },
-        {
-            "name": "equipped-EYES",
-            "directions": 4
-        },
-        {
-            "name": "inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "inhand-right",
-            "directions": 4
-        },
-        {
-            "name": "equipped-EYES-hamster",
-            "directions": 4
-        }
-    ]
+    {
+      "name": "equipped-EYES",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "equipped-EYES-hamster",
+      "directions": 4
+    },
+    {
+      "name": "equipped-EYES-dog",
+      "directions": 4,
+      "copyright":  "Made by Sparlight (GitHub)."
+    }
+  ]
 }

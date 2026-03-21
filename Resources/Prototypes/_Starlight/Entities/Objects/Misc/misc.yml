@@ -1,0 +1,27 @@
+- type: entity
+  name: TSF ziptie pack
+  parent: [BaseItem, BaseTSFContraband]
+  id: TSFZiptiePack
+  description: A compact pack containing ten single-use zipties. Standard issue for Trans Solar Federation peacekeepers for quick restraint of multiple suspects. Use it to dispense zipties one at a time.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/ziptie_pack.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Storage
+    maxItemSize: Tiny
+    grid:
+    - 0,0,4,1
+    whitelist:
+      components:
+      - Handcuff
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: Zipties
+        amount: 10
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface

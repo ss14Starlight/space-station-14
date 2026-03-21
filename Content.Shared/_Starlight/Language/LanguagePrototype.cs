@@ -39,6 +39,12 @@ public sealed partial class LanguagePrototype : IPrototype
     /// </summary>
     [DataField("speech")]
     public SpeechOverrideInfo SpeechOverride = new();
+    
+    /// <summary>
+    /// Prefix used in chat to send message with this language.
+    /// Leave null if you don't want this feature for some reason.
+    /// </summary>
+    [DataField] public string? ChatPrefix;
 
     #region utility
     /// <summary>

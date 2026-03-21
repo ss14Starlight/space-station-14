@@ -14,8 +14,8 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Serialization;
-using Robust.Shared.Utility;
-
+using Content.Shared.Tag; // Starlight
+using Robust.Shared.Timing; // Starlight
 namespace Content.Shared.Projectiles;
 
 public abstract partial class SharedProjectileSystem : EntitySystem
@@ -28,6 +28,8 @@ public abstract partial class SharedProjectileSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!; //Starlight -- arming time
+    [Dependency] private readonly TagSystem _tag = default!; //Starlight -- arming time
 
     public override void Initialize()
     {
@@ -226,7 +228,8 @@ public abstract partial class SharedProjectileSystem : EntitySystem
 
     private void PreventCollision(EntityUid uid, ProjectileComponent component, ref PreventCollideEvent args)
     {
-        if (component.IgnoreShooter && (args.OtherEntity == component.Shooter || args.OtherEntity == component.Weapon))
+        if ((component.IgnoreShooter && (args.OtherEntity == component.Shooter || args.OtherEntity == component.Weapon)) //Starlight edit
+        || (!component.Armed && !_tag.HasAnyTag(args.OtherEntity, component.NotArmedCollideWith))) //Starlight
         {
             args.Cancelled = true;
         }
@@ -246,6 +249,33 @@ public abstract partial class SharedProjectileSystem : EntitySystem
     {
         public override DoAfterEvent Clone() => this;
     }
+
+    //Starlight Start
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        // Analogous to how SharedTimedDespawnSystem does this
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
+        var query = EntityQueryEnumerator<ProjectileComponent>();
+
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if(comp.Armed) //No need to arm twice
+                continue;
+            
+            comp.ArmingTime -= frameTime;
+
+            if(comp.ArmingTime <= 0)
+            {
+                comp.Armed = true;
+                Dirty(uid, comp);
+            }
+        }
+    }
+    //Starlight End
 }
 
 [Serializable, NetSerializable]

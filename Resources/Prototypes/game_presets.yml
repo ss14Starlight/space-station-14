@@ -34,7 +34,7 @@
   alias:
   - all
   name: all-at-once-title
-  minPlayers: 40
+  minPlayers: 50 # Starlight
   description: all-at-once-description
   showInVote: false
   rules:
@@ -49,7 +49,13 @@
     - SLChangeling #Starlight
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
-#    - SiliconLiberation #Starlight
+    - BasicRoundstartVariation # Starlight, ShitStation
+    - DerelictGenericCyborgSpawn # Starlight, ShitStation
+    - IonStorm # Starlight, ShitStation
+    - Vampire #Starlight
+    - SiliconLiberation #Starlight
+    - Brighteye #Starlight
+    - ThiefGamerule # Starlight, Event Light
 
 - type: gamePreset
   id: AllerAtOnce
@@ -61,7 +67,7 @@
   name: aller-at-once-title
   description: aller-at-once-description
   showInVote: false #Please god dont do this
-  minPlayers: 40
+  minPlayers: 50 # Starlight
   rules:
     - Nukeops
     - Traitor
@@ -70,6 +76,7 @@
     - Wizard
     - Xenoborgs
     - BasicStationEventScheduler
+    - BasicStationEventScheduler # Starlight, ShitStation
     - KesslerSyndromeScheduler
     - MeteorSwarmMildScheduler
     - MeteorSwarmScheduler
@@ -77,7 +84,24 @@
     - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
-#    - SiliconLiberation #Starlight
+    - BasicRoundstartVariation # Starlight, ShitStation
+    - BasicRoundstartVariation # Starlight, ShitStation
+    - BasicRoundstartVariation # Starlight, ShitStation
+    - BasicRoundstartVariation # Starlight, ShitStation
+    - DerelictGenericCyborgSpawn # Starlight, ShitStation
+    - DerelictGenericCyborgSpawn # Starlight, ShitStation
+    - IonStorm # Starlight, ShitStation
+    - IonStorm # Starlight, ShitStation
+    - CockroachMigration # Starlight, ShitStation
+    - MouseMigration # Starlight, ShitStation
+    - SLChangeling # Starlight
+    - Vampire #Starlight
+    - SiliconLiberation #Starlight
+    - Brighteye #Starlight
+    - ThiefGamerule # Starlight, Event Light
+    - LoneOpsSpawn # Starlight
+    - RailroadingTerminator # Starlight
+    - RailroadingMinor # Starlight
 
 - type: gamePreset
   id: Extended
@@ -193,7 +217,7 @@
   rules:
   - Nukeops
   # - DummyNonAntagChance 🌟Starlight🌟
-  - SubGamemodesRule
+  - SubGamemodesRuleNuclearOperativeScaling # Starlight
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -297,11 +321,11 @@
   - vampires
   name: vampire-gamemode-title
   description: vampire-gamemode-description
-  showInVote: false # 🌟Starlight🌟 - Leave disabled until they are reworked
+  showInVote: True # 🌟Starlight🌟 they have been reworked
   minPlayers: 50 # 🌟Starlight🌟
   rules:
   - Vampire
-  - SubGamemodesRule
+  - SubGamemodesRuleNoVampires
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - BasicRoundstartVariation
@@ -317,7 +341,8 @@
   showInVote: false
   rules:
     - SLChangeling #Starlight
-    - SubGamemodesRule
+    - SLChangelingLess # Starlight. This is their mode after all, and this is how it was prior.
+    - SubGamemodesRuleNoChangelings # Starlight
     - BasicStationEventScheduler
     - BasicRoundstartVariation
 

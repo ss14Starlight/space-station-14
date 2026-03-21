@@ -297,12 +297,12 @@
           tags:
           - CartridgeRifle
   - type: SpeedModifiedOnWield
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.80 #SL 75% -> 80% speed
+    sprintModifier: 0.80 #SL 75% -> 80% speed
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 2
-    pvsIncrease: 0.2
+    maxOffset: 2.5 #SL 2 -> 2.5
+    pvsIncrease: 0.25 #SL 0.2 -> 0.25
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

@@ -1,5 +1,0 @@
-- type: dungeonRoomPack
-  id: ArenaRoomPack
-  size: 50,50
-  rooms:
-    - 0,0,50,50

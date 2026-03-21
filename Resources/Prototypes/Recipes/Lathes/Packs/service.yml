@@ -41,6 +41,7 @@
   - SodaDispenserMachineCircuitboard
   - SmartFridgeCircuitboard
   - PersonalCircuitboardDesktop #Starlight
+  - TP14DeepFryerCircuitboardRecipe #starlight/tp14 port
 
 ## Dynamic
 
@@ -51,6 +52,7 @@
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
   - MegaSprayBottle
+  - Hydra # Starlight
 
 - type: latheRecipePack
   id: Instruments

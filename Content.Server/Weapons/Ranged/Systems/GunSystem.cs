@@ -56,7 +56,6 @@ using Robust.Shared.Maths;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using static Content.Server.Starlight.TextToSpeech.TTSManager;
 #endregion Starlight
 
 namespace Content.Server.Weapons.Ranged.Systems;
@@ -68,11 +67,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
 #region Starlight
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly DecalSystem _decals = default!;
 #endregion Starlight
 
     private const float DamagePitchVariation = 0.05f;
@@ -100,8 +95,9 @@ public sealed partial class GunSystem : SharedGunSystem
     }
 
     public override void Shoot(Entity<GunComponent> gun, List<(EntityUid? Entity, IShootable Shootable)> ammo,
-        EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, out bool userImpulse, EntityUid? user = null, bool throwItems = false)
+        EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, out bool userImpulse, out bool fired, EntityUid? user = null, bool throwItems = false) // Starlight-edit
     {
+        fired = false; // Starlight
         userImpulse = true;
 
         if (user != null)
@@ -119,7 +115,8 @@ public sealed partial class GunSystem : SharedGunSystem
         var toMap = TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var mapDirection = toMap - fromMap.Position;
         var mapAngle = mapDirection.ToAngle();
-        var angle = GetRecoilAngle(Timing.CurTime, gun, mapDirection.ToAngle());
+        var angle = GetRecoilAngle(gun, mapDirection.ToAngle()); // Starlight-edit
+        gun.Comp.LastFire = gun.Comp.NextFire; // Stalright-edit
 
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
         var fromEnt = MapManager.TryFindGridAt(fromMap, out var gridUid, out _)
@@ -141,6 +138,7 @@ public sealed partial class GunSystem : SharedGunSystem
             if (throwItems && ent != null)
             {
                 ShootOrThrow(ent.Value, mapDirection, gunVelocity, gun, user);
+                fired = true; // Starlight
                 continue;
             }
 
@@ -163,6 +161,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
                         if (cartridge.DeleteOnSpawn)
                             Del(ent.Value);
+                        fired = true; // Starlight
                     }
                     else
                     {
@@ -182,6 +181,7 @@ public sealed partial class GunSystem : SharedGunSystem
                         break;
                     CreateAndFireProjectiles(ent.Value, newAmmo);
 
+                    fired = true; // Starlight
                     break;
                 case HitscanAmmoComponent:
                     if (ent == null)
@@ -190,6 +190,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     var hitscanEv = new HitscanTraceEvent
                     {
                         FromCoordinates = fromCoordinates,
+                        ToCoordinates = toCoordinates, // Starlight-edit
                         ShotDirection = mapDirection.Normalized(),
                         Gun = gun,
                         Shooter = user,
@@ -200,6 +201,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     Del(ent);
 
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
+                    fired = true; // Starlight
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -291,9 +293,11 @@ public sealed partial class GunSystem : SharedGunSystem
         // Starlight start - cartridges can hold hitscans
         if (HasComp<HitscanAmmoComponent>(uid))
         {
+            var coordinates = EntityManager.GetComponent<TransformComponent>(uid).Coordinates; // Starlight-edit
             var hitscanEv = new HitscanTraceEvent
             {
-                FromCoordinates = EntityManager.GetComponent<TransformComponent>(uid).Coordinates,
+                FromCoordinates = coordinates,
+                ToCoordinates = coordinates.Offset(mapDirection), // Starlight-edit
                 ShotDirection = mapDirection.Normalized(),
                 Gun = gun,
                 Shooter = user,
@@ -358,20 +362,9 @@ public sealed partial class GunSystem : SharedGunSystem
         return angles;
     }
 
-    private Angle GetRecoilAngle(TimeSpan curTime, GunComponent component, Angle direction)
-    {
-        var timeSinceLastFire = (curTime - component.LastFire).TotalSeconds;
-        var newTheta = MathHelper.Clamp(component.CurrentAngle.Theta + component.AngleIncreaseModified.Theta - component.AngleDecayModified.Theta * timeSinceLastFire, component.MinAngleModified.Theta, component.MaxAngleModified.Theta);
-        component.CurrentAngle = new Angle(newTheta);
-        component.LastFire = component.NextFire;
-
-        // Convert it so angle can go either side.
-        var random = Random.NextFloat(-0.5f, 0.5f);
-        var spread = component.CurrentAngle.Theta * random;
-        var angle = new Angle(direction.Theta + component.CurrentAngle.Theta * random);
-        DebugTools.Assert(spread <= component.MaxAngleModified.Theta);
-        return angle;
-    }
+    // Starlight-start: Fully rework recoil
+    //private Angle GetRecoilAngle(TimeSpan curTime, Entity<GunComponent> gun, Angle direction)
+    // Starlight-end
 
     protected override void Popup(string message, EntityUid? uid, EntityUid? user) { }
 

@@ -3,6 +3,7 @@ using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Content.Shared.Tag; // Starlight
 
 namespace Content.Shared.Projectiles;
 
@@ -38,6 +39,22 @@ public sealed partial class ProjectileComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool IgnoreShooter = true;
+
+    //Starlight Start
+    /// <summary>
+    /// How long the projectile does not collide for
+    /// </summary>
+    [DataField]
+    public float ArmingTime = 0f;
+
+    /// <summary>
+    /// What tags entities need to have for the projectile to collide with them while not yet armed.
+    /// </summary>
+    [DataField]
+    public ProtoId<TagPrototype>[] NotArmedCollideWith = ["Wall", "Window", "Airlock", "BulletUnarmedCollide"];
+
+    public bool Armed = false;
+    //Starlight End
 
     /// <summary>
     ///     The amount of damage the projectile will do.

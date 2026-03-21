@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 268.0.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 01/20/2026 16:47:40
-  entityCount: 4163
+  time: 02/23/2026 03:22:22
+  entityCount: 4168
 maps:
 - 1
 grids:
@@ -61,6 +61,9 @@ entities:
         moles:
           Oxygen: 21.824879
           Nitrogen: 82.10312
+    - type: Tag
+      tags:
+      - NukiePlanet
   - uid: 2
     components:
     - type: MetaData
@@ -11183,6 +11186,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -27.47224,-1.1415508
       parent: 2
+  - uid: 4168
+    components:
+    - type: Transform
+      pos: 7.4778786,-11.35613
+      parent: 2
 - proto: ChairPilotSeat
   entities:
   - uid: 1743
@@ -11830,6 +11838,14 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -21.5,9.5
+      parent: 2
+- proto: ComputerNukieDelivery
+  entities:
+  - uid: 4167
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 7.5,-12.5
       parent: 2
 - proto: ComputerPowerMonitoring
   entities:
@@ -14378,6 +14394,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -25.592627,11.645234
       parent: 2
+- proto: HandheldStationMapNukeops
+  entities:
+  - uid: 4166
+    components:
+    - type: Transform
+      pos: 2.3107953,0.7194423
+      parent: 2
 - proto: HandLabeler
   entities:
   - uid: 2283
@@ -14781,14 +14804,14 @@ entities:
   - uid: 2316
     components:
     - type: Transform
-      pos: 8.434806,-12.26442
+      pos: 8.743504,-12.340505
       parent: 2
 - proto: MedkitBruteFilled
   entities:
   - uid: 2317
     components:
     - type: Transform
-      pos: 8.959348,-12.265577
+      pos: 8.493504,-12.278005
       parent: 2
   - uid: 2318
     components:
@@ -14800,35 +14823,42 @@ entities:
   - uid: 2319
     components:
     - type: Transform
-      pos: 9.4917555,-12.265577
+      pos: 9.290379,-12.26238
+      parent: 2
+- proto: MedkitCombatFilled
+  entities:
+  - uid: 4164
+    components:
+    - type: Transform
+      pos: 10.524754,-12.35613
       parent: 2
 - proto: MedkitFilled
   entities:
   - uid: 2320
     components:
     - type: Transform
-      pos: 10.552851,-11.173365
+      pos: 10.446629,-11.403005
       parent: 2
 - proto: MedkitOxygenFilled
   entities:
   - uid: 2321
     components:
     - type: Transform
-      pos: 10.021189,-12.265577
+      pos: 9.540379,-12.340505
       parent: 2
 - proto: MedkitRadiationFilled
   entities:
   - uid: 2322
     components:
     - type: Transform
-      pos: 10.5535965,-12.293355
+      pos: 9.931004,-12.29363
       parent: 2
 - proto: MedkitToxinFilled
   entities:
   - uid: 2323
     components:
     - type: Transform
-      pos: 10.552851,-11.738179
+      pos: 10.571629,-11.559255
       parent: 2
 - proto: MetalDoor
   entities:
@@ -14838,7 +14868,7 @@ entities:
       pos: -3.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -17805.096
+      secondsUntilStateChange: -18059.734
       state: Opening
   - uid: 2325
     components:
@@ -14846,7 +14876,7 @@ entities:
       pos: -3.5,2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -17805.963
+      secondsUntilStateChange: -18060.602
       state: Opening
 - proto: MinimoogInstrument
   entities:
@@ -15243,6 +15273,13 @@ entities:
     components:
     - type: Transform
       pos: 8.5,5.5
+      parent: 2
+- proto: PluoxiumCanister
+  entities:
+  - uid: 4165
+    components:
+    - type: Transform
+      pos: -17.5,5.5
       parent: 2
 - proto: PlushieLizard
   entities:
@@ -19089,6 +19126,8 @@ entities:
     - type: Transform
       pos: 1.4812105,4.649179
       parent: 2
+    - type: IntrinsicRadioTransmitter
+      channels: []
 - proto: SyndieFlag
   entities:
   - uid: 2989
@@ -25207,7 +25246,7 @@ entities:
       pos: -15.5,-5.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -20074.658
+      secondsUntilStateChange: -20329.297
       state: Opening
   - uid: 4163
     components:
@@ -25215,6 +25254,6 @@ entities:
       pos: -15.5,-4.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -20075.092
+      secondsUntilStateChange: -20329.73
       state: Opening
 ...

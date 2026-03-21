@@ -22,7 +22,6 @@ public abstract class SharedInternalsSystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!; // Starlight edit
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedGasTankSystem _gasTank = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;

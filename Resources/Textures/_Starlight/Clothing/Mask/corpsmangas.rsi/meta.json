@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation at commit https://github.com/RemieRichards/-tg-station/blob/f8c05e21694cd3cb703e40edc5cfc375017944b1/icons/obj/clothing/masks.dmi. Reptilian edit by Nairod(Github). equipped-MASK-vox state taken from Paradise at https://github.com/ParadiseSS13/Paradise/blob/bc095ad398790a2b718b2bab4f2157cdd80a51da/icons/mob/clothing/species/vox/mask.dmi, made blue and given a snout/vulp sprite by Killer Tamashi (Discord), recolored from Tamashi's into red by wonderfulnewworld (GitHub)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "TG Station, Killer Tamashi, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-MASK",
+      "directions": 4,
+	  "copyright": "TG Station, Killer Tamashi, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-MASK-reptilian",
+      "directions": 4,
+	  "copyright": "TG Station, Nairod, Killer Tamashi, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-MASK-vox",
+      "directions": 4,
+	  "copyright": "TG Station, Paradise Station, Killer Tamashi, wonderfulnewworld"
+    },
+    {
+      "name": "equipped-MASK-vulpkanin",
+      "directions": 4,
+	  "copyright": "TG Station, Killer Tamashi, wonderfulnewworld"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "TG Station, Killer Tamashi, wonderfulnewworld"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "TG Station, Killer Tamashi, wonderfulnewworld"
+    }
+  ]
+}

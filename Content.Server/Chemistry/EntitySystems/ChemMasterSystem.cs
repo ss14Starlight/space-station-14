@@ -1,6 +1,7 @@
 using Content.Server.Chemistry.Components;
 using Content.Server.Popups;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared._Starlight.Plumbing.Components; // Starlight-edit: Plumbing valve
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
@@ -43,6 +44,8 @@ namespace Content.Server.Chemistry.EntitySystems
 
         private static readonly EntProtoId PillPrototypeId = "Pill";
         private static readonly EntProtoId PatchPrototypeId = "Patch"; //Starlight
+        private static readonly ProtoId<TagPrototype> PatchPackTag = "PatchPack"; // Starlight
+
         public override void Initialize()
         {
             base.Initialize();
@@ -61,6 +64,7 @@ namespace Content.Server.Chemistry.EntitySystems
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterCreatePatchesMessage>(OnCreatePatchesMessage); // Starlight
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterOutputToBottleMessage>(OnOutputToBottleMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterOutputDrawSourceMessage>(OnSetDrawSourceMessage);
+            SubscribeLocalEvent<ChemMasterComponent, ChemMasterToggleValveMessage>(OnToggleValveMessage); // Starlight-edit: Plumbing valve
         }
 
         private void SubscribeUpdateUiState<T>(Entity<ChemMasterComponent> ent, ref T ev)
@@ -79,9 +83,10 @@ namespace Content.Server.Chemistry.EntitySystems
             var bufferReagents = bufferSolution.Contents;
             var bufferCurrentVolume = bufferSolution.Volume;
 
+            var valveOpen = TryComp<PlumbingOutletComponent>(owner, out var plumbingOutlet) && plumbingOutlet.Enabled; // Starlight-edit: Plumbing valve
             var state = new ChemMasterBoundUserInterfaceState(
                 chemMaster.Mode, chemMaster.SortingType, BuildInputContainerInfo(inputContainer), BuildOutputContainerInfo(outputContainer),
-                bufferReagents, bufferCurrentVolume, chemMaster.PillType, chemMaster.PillDosageLimit, chemMaster.PatchDosageLimit, updateLabel, chemMaster.DrawSource); // Starlight-edit - add patch limit
+                bufferReagents, bufferCurrentVolume, chemMaster.PillType, chemMaster.PillDosageLimit, chemMaster.PatchDosageLimit, updateLabel, chemMaster.DrawSource, valveOpen); // Starlight-edit - add patch limit, valveOpen
 
             _userInterfaceSystem.SetUiState(owner, ChemMasterUiKey.Key, state);
         }
@@ -155,7 +160,7 @@ namespace Content.Server.Chemistry.EntitySystems
             var container = _itemSlotsSystem.GetItemOrNull(chemMaster, SharedChemMaster.InputSlotName);
             if (container is null ||
                 !_solutionContainerSystem.TryGetFitsInDispenser(container.Value, out var containerSoln, out var containerSolution) ||
-                !_solutionContainerSystem.TryGetSolution(chemMaster.Owner, SharedChemMaster.BufferSolutionName, out _, out var bufferSolution))
+                !_solutionContainerSystem.TryGetSolution(chemMaster.Owner, SharedChemMaster.BufferSolutionName, out var bufferSoln, out var bufferSolution)) //Starlight-edit
             {
                 return;
             }
@@ -168,9 +173,11 @@ namespace Content.Server.Chemistry.EntitySystems
             }
             else // Container to buffer
             {
-                amount = FixedPoint2.Min(amount, containerSolution.GetReagentQuantity(id));
+                // Starlight-Start: No longer force transfer as the buffer container no longer is infinitely big.
+                amount = FixedPoint2.Min(amount, containerSolution.GetReagentQuantity(id), bufferSolution.AvailableVolume);
                 _solutionContainerSystem.RemoveReagent(containerSoln.Value, id, amount);
-                bufferSolution.AddReagent(id, amount);
+                _solutionContainerSystem.TryAddReagent(bufferSoln.Value, id, amount, out _);
+                // Starlight-End
             }
 
             UpdateUiState(chemMaster, updateLabel: true);
@@ -450,17 +457,18 @@ namespace Content.Server.Chemistry.EntitySystems
                     var quantity = solution?.Volume ?? FixedPoint2.Zero;
                     return (Name(pill), quantity);
                 }
+                else if (_solutionContainerSystem.TryGetSolution(pill, SharedChemMaster.PatchSolutionName, out _, out var patchSolution))
+                {
+                    var patchQuantity = patchSolution?.Volume ?? FixedPoint2.Zero;
+                    return (Name(pill), patchQuantity);
+                }
                 else
                 {
-                    if (_solutionContainerSystem.TryGetSolution(pill, SharedChemMaster.PatchSolutionName, out _, out var patchSolution));
-                    {
-                        var patchQuantity = patchSolution?.Volume ?? FixedPoint2.Zero;
-                        return (Name(pill), patchQuantity);
-                    }
+                    return ("none", FixedPoint2.Zero);
                 }
             })).ToList();
 
-            if (_tag.HasTag(container.Value, "PatchPack"))
+            if (_tag.HasTag(container.Value, PatchPackTag))
             {
                 return new ContainerInfo(name, _storageSystem.GetCumulativeItemAreas((container.Value, storage)) / 2, storage.Grid.GetArea() / 2)
                 {
@@ -482,5 +490,18 @@ namespace Content.Server.Chemistry.EntitySystems
                 Reagents = solution.Contents
             };
         }
+
+        // Starlight-start: Plumbing valve toggle
+        private void OnToggleValveMessage(Entity<ChemMasterComponent> chemMaster, ref ChemMasterToggleValveMessage message)
+        {
+            if (!TryComp<PlumbingOutletComponent>(chemMaster.Owner, out var plumbingOutlet))
+                return;
+
+            plumbingOutlet.Enabled = !plumbingOutlet.Enabled;
+            Dirty(chemMaster.Owner, plumbingOutlet);
+            UpdateUiState(chemMaster);
+            ClickSound(chemMaster);
+        }
+        // Starlight-end
     }
 }

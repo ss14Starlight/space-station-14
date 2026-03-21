@@ -1,0 +1,17 @@
+- type: entity
+  id: BluespaceHarvesterMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: bluespace harvester machine board
+  description: A highly advanced circuit board for constructing a Bluespace Harvester. Handle with care.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: engineering
+  - type: MachineBoard
+    prototype: BluespaceHarvester
+    stackRequirements:
+      Manipulator: 3
+      Steel: 5
+      Cable: 5
+      BluespaceCrystal: 2
+      

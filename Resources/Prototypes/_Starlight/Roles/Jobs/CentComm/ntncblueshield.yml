@@ -1,0 +1,24 @@
+- type: job
+  id: NTNCBlueShield
+  name: job-name-ntncblueshield
+  description: job-description-ntncblueshield
+  playTimeTracker: JobConsortiumBlueShield
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 72000 # 20h
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer
+    time: 18000 # 5h
+  setPreference: false
+  startingGear: NTNCHardsuitGear
+  icon: JobIconNTNCBlueShield
+  rules: job-rules-corporate-aligned
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant, DeathRattleImplantCentcomm, RadioImplantCentcomm ]

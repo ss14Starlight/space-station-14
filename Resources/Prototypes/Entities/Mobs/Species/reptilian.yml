@@ -21,6 +21,7 @@
     - Snout
     - HeadTop
     - HeadSide
+    - Hair # Starlight
     - Tail
     undergarmentBottom: UndergarmentBottomBoxersReptilian
   - type: Hunger

@@ -12,11 +12,15 @@
   - MinorAntagonists
   - SpaceNinja
   - Thieves
-  - Vampires
-  - Abductors
   - Wizard
-  - Brighteye # Starlight
-  - SELFAgent # Starlight
+  # Starlight-start
+  - Abductors
+  - Vampires
+  - TerrorSpiders
+  - Brighteye
+  - SELFAgent
+  # Starlight-end
+  - CosmicCult # Stellar - Cosmic Cult
 
 - type: guideEntry
   id: Traitors
@@ -57,16 +61,6 @@
   id: Thieves
   name: guide-entry-thieves
   text: "/ServerInfo/Guidebook/Antagonist/Thieves.xml"
-
-- type: guideEntry
-  id: Vampires
-  name: guide-entry-vampires
-  text: "/ServerInfo/Guidebook/Antagonist/Vampires.xml"
-  
-- type: guideEntry
-  id: Abductors
-  name: guide-entry-abductors
-  text: "/ServerInfo/Guidebook/Antagonist/Abductors.xml"
   
 - type: guideEntry
   id: Wizard
@@ -77,3 +71,4 @@
   id: Xenoborgs
   name: guide-entry-xenoborgs
   text: "/ServerInfo/Guidebook/Antagonist/Xenoborgs.xml"
+  

@@ -93,6 +93,19 @@ public sealed partial class NpcFactionSystem
             IgnoreEntity(ent, ignore);
         }
     }
+    
+    //Starlight begin
+    /// <summary>
+    /// Removes ignore exception from an entity to the target entity.
+    /// </summary>
+    public void UnIgnoreEntity(Entity<FactionExceptionComponent?> ent, Entity<FactionExceptionTrackerComponent?> target)
+    {
+        ent.Comp ??= EnsureComp<FactionExceptionComponent>(ent);
+        ent.Comp.Ignored.Remove(target);
+        target.Comp ??= EnsureComp<FactionExceptionTrackerComponent>(target);
+        target.Comp.Entities.Remove(ent);
+    }
+    //Starlight end
 
     /// <summary>
     /// Makes an entity always be considered hostile.

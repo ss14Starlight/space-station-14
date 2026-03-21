@@ -45,12 +45,23 @@ using Content.Shared.Tag;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
+using Prometheus;
 // Starlight End
 
 namespace Content.Server.Antag;
 
 public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelectionComponent>
 {
+    // Starlight edit start
+    #region Starlight data collection
+    private static readonly Counter _antagsSpawned = Metrics.CreateCounter(
+        "sl_antags_spawned",
+        "Number of antagonists spawned by type",
+        ["type"]
+    );
+    #endregion
+    // Starlight edit end
+
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IBanManager _ban = default!;
     [Dependency] private readonly IChatManager _chat = default!;
@@ -330,17 +341,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                     Log.Warning($"Somehow picked {session} for an antag when this rule already selected them previously");
                     continue;
                 }
-                
-                if (session != null && HasComp<VampireRuleComponent>(ent))
-                {
-                    var playerEntity = session.AttachedEntity;
-                    
-                    if (playerEntity == null 
-                        || HasComp<BibleUserComponent>(playerEntity)
-                        || !TryComp<BodyComponent>(playerEntity, out var body) 
-                        || !_body.TryGetBodyOrganEntityComps<StomachComponent>((playerEntity.Value, body), out var stomachs))
-                        continue;
-                }
             }
 
             if (session == null)
@@ -545,6 +545,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             _adminLogger.Add(LogType.AntagSelection, $"Assigned {ToPrettyString(curMind)} as antagonist: {ToPrettyString(ent)}");
         }
 
+        // Starlight edit start - add stats
+        _antagsSpawned.WithLabels(Prototype(ent)?.ID ?? "unknown").Inc();
+        // Starlight edit end
+
         var afterEv = new AfterAntagEntitySelectedEvent(session, player, ent, def);
         RaiseLocalEvent(ent, ref afterEv, true);
     }
@@ -704,6 +708,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (_whitelist.IsValid(def.Blacklist, entity.Value))
                 return false;
         }
+
+        // Starlight: Chaplainsusers should never be selected as vampires.
+        if (def.MindRoles != null && def.MindRoles.Contains("MindRoleVampire") && HasComp<BibleUserComponent>(entity.Value))
+            return false;
 
         return true;
     }

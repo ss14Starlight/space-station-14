@@ -5,7 +5,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Lightning;
 using Content.Server.Radio.EntitySystems;
-using Content.Server.Starlight.Energy.Supermatter;
+using Content.Server._Starlight.Energy.Supermatter;
 using Content.Shared.Abilities.Goliath;
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
@@ -20,7 +20,9 @@ using Content.Shared.Radiation.Components;
 using Content.Shared.Radio;
 using Content.Shared.Singularity.Components;
 using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Starlight.Energy.Supermatter;
+using Content.Shared._Starlight.Energy.Supermatter;
+using Content.Shared._Starlight.Supermatter.Components;
+using Content.Shared.Inventory;
 using Microsoft.CodeAnalysis;
 using Robust.Server.Audio;
 using Robust.Shared.Physics;
@@ -29,7 +31,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Toolshed.TypeParsers;
 
-namespace Content.Server.Starlight.Energy.Supermatter;
+namespace Content.Server._Starlight.Energy.Supermatter;
 
 public sealed class SupermatterSystem : AccUpdateEntitySystem
 {
@@ -43,6 +45,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
 
     private readonly Dictionary<EntityUid, Entity<SupermatterComponent>> _supermatters = [];
     private DamageGroupPrototype? _brute;
@@ -60,6 +63,10 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     private void OnInteract(Entity<SupermatterComponent> ent, ref InteractHandEvent args)
     {
         if (HasComp<GhostComponent>(args.User)) return;
+
+        // Check for supermatter immunity
+        if (IsImmune(args.User))
+            return;
 
         _audio.PlayPvs(Const.AudioEvaporate, ent.Owner);
 
@@ -80,6 +87,10 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
         if (HasComp<ProjectileComponent>(args.OtherEntity)
         || HasComp<SingularityComponent>(args.OtherEntity)) return;
 
+        // Check for supermatter immunity
+        if (IsImmune(args.OtherEntity))
+            return;
+
         _audio.PlayPvs(Const.AudioEvaporate, ent.Owner);
         float damage = 1;
         if (TryComp<FixturesComponent>(args.OtherEntity, out var fixture))
@@ -90,6 +101,22 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
 
         QueueDel(args.OtherEntity);
     }
+
+    // Check if entity is immune to supermatter (directly or via worn items)
+    private bool IsImmune(EntityUid uid)
+    {
+        // Check if entity itself has immunity
+        if (HasComp<SupermatterImmuneComponent>(uid))
+            return true;
+
+        // Check if entity is wearing something with immunity in outerclothing slot
+        if (_inventory.TryGetSlotEntity(uid, "outerClothing", out var outer) &&
+            TryComp<SupermatterImmuneComponent>(outer, out var comp) && comp.Worn)
+            return true;
+
+        return false;
+    }
+
     private void AddSupermatter(Entity<SupermatterComponent> ent, ref ComponentInit args) => _supermatters.TryAdd(ent.Owner, ent);
     private void RemoveSupermatter(Entity<SupermatterComponent> ent, ref ComponentShutdown args) => _supermatters.Remove(ent.Owner);
 

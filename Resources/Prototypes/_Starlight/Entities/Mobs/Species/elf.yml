@@ -1,0 +1,57 @@
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobElf
+  name: Urist McElgi
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+#    - Aielic
+    understands:
+    - GalacticCommon
+#    - Aielic
+#    - SolCommon
+#    - Darktongue
+#    - Sylvan
+  - type: Absorbable
+  - type: Hunger
+  - type: Icon
+    sprite: _Starlight/Mobs/Species/Elf/parts.rsi
+    state: full
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Elf
+  - type: Thirst
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: Speech
+    speechSounds: Tenor
+  - type: HumanoidAppearance
+    species: Elf
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobElfDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

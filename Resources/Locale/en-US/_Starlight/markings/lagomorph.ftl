@@ -1,3 +1,4 @@
+
 # ears
 marking-LagomorphEarsTall = Tall
 marking-LagomorphEarsTall-tall_ears_outer = Outer
@@ -34,6 +35,37 @@ marking-LagomorphEarsTallCutLeft-tall_ears_cut_L_outer = Outer
 marking-LagomorphEarsTallCutLeft-tall_ears_cut_L_inner = Inner
 marking-LagomorphAntlers = Antlers
 marking-LagomorphAntlers-antlers = Antlers
+marking-LagomorphEarsAntlersFloppy = Floppy Antlers
+marking-LagomorphEarsAntlersFloppy-floppy_ears = Ears
+marking-LagomorphEarsAntlersFloppy-antlers-floppy-ears = Antlers
+marking-LagomorphEarsAntlersLoppy = Loppy Antlers
+marking-LagomorphEarsAntlersLoppy-loppy = Outer
+marking-LagomorphEarsAntlersLoppy-loppy_inner = Inner
+marking-LagomorphEarsAntlersLoppy-antlers-loppy-ears = Antlers
+marking-LagomorphEarsAntlersLoppyLarge = Large Loppy Antlers
+marking-LagomorphEarsAntlersLoppyLarge-loppy_large = Outer
+marking-LagomorphEarsAntlersLoppyLarge-loppy_large_inner = Inner
+marking-LagomorphEarsAntlersLoppyLarge-antlers-loppy-large-ears = Antlers
+marking-LagomorphEarsAntlersRotund = Rotund Antlers
+marking-LagomorphEarsAntlersRotund-rotund = Outer
+marking-LagomorphEarsAntlersRotund-rotund_inner = Inner
+marking-LagomorphEarsAntlersRotund-antlers-rotund-ears = Antlers
+marking-LagomorphEarsAntlersSharp = Sharp Antlers
+marking-LagomorphEarsAntlersSharp-sharp = Outer
+marking-LagomorphEarsAntlersSharp-sharp_inner = Inner
+marking-LagomorphEarsAntlersSharp-antlers-sharp-ears = Antlers
+marking-LagomorphEarsAntlersShort = Short Antlers
+marking-LagomorphEarsAntlersShort-short = Outer
+marking-LagomorphEarsAntlersShort-short_inner = Inner
+marking-LagomorphEarsAntlersShort-antlers-short-ears = Antlers
+marking-LagomorphEarsAntlersMedium = Medium Antlers
+marking-LagomorphEarsAntlersMedium-standard = Outer
+marking-LagomorphEarsAntlersMedium-standard_inner = Inner
+marking-LagomorphEarsAntlersMedium-antlers-standard-ears = Antlers
+marking-LagomorphEarsAntlersTall = Tall Antlers
+marking-LagomorphEarsAntlersTall-tall_ears_outer = Outer
+marking-LagomorphEarsAntlersTall-tall_ears_inner = Inner
+marking-LagomorphEarsAntlersTall-antlers-tall-ears = Antlers
 
 # tails
 marking-LagomorphTailCotton = Cotton Tail

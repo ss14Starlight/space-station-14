@@ -2,6 +2,7 @@
 using Content.Server._Starlight.Language;
 using Content.Server.Humanoid;
 using Content.Shared._Starlight.Language.Components.Translators;
+using Content.Shared.Actions;
 using Content.Shared.CollectiveMind;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -12,11 +13,15 @@ using Content.Shared.Humanoid;
 using Content.Shared.Radio.Components;
 using Content.Shared.Speech.Muting;
 using Content.Shared.Starlight.Antags.Abductor;
+using Content.Shared._Starlight.Cybernetics;
+using Content.Shared._Starlight.Cybernetics.Components;
 using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Tag;
-using Content.Shared.VentCraw;
+using Content.Shared.VentCrawl;
 using Robust.Shared.Containers;
+using Robust.Shared.Network;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Medical.Surgery;
 public sealed partial class OrganSystem : EntitySystem
@@ -29,6 +34,9 @@ public sealed partial class OrganSystem : EntitySystem
     [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
 
     public override void Initialize()
     {
@@ -38,6 +46,9 @@ public sealed partial class OrganSystem : EntitySystem
 
         SubscribeLocalEvent<TaggedOrganComponent, SurgeryOrganImplantationCompleted>(OnTaggedOrganImplanted);
         SubscribeLocalEvent<TaggedOrganComponent, SurgeryOrganExtracted>(OnTaggedOrganExtracted);
+
+        SubscribeLocalEvent<StorageOrganComponent, SurgeryOrganImplantationCompleted>(OnStorageOrganImplanted);
+        SubscribeLocalEvent<StorageOrganComponent, SurgeryOrganExtracted>(OnStorageOrganExtracted);
 
         SubscribeLocalEvent<OrganEyesComponent, SurgeryOrganImplantationCompleted>(OnEyeImplanted);
         SubscribeLocalEvent<OrganEyesComponent, SurgeryOrganExtracted>(OnEyeExtracted);
@@ -53,6 +64,8 @@ public sealed partial class OrganSystem : EntitySystem
 
         SubscribeLocalEvent<OrganVisualizationComponent, SurgeryOrganImplantationCompleted>(OnVisualizationImplanted);
         SubscribeLocalEvent<OrganVisualizationComponent, SurgeryOrganExtracted>(OnVisualizationExtracted);
+
+        SubscribeLocalEvent<FunctionalOrganComponent, CyberneticDisruptionEvent>(OnCyberneticsDisrupted);
     }
 
     //
@@ -124,6 +137,31 @@ public sealed partial class OrganSystem : EntitySystem
         if(ent.Comp.RemoveTags.Count > 0)
             _tag.AddTags(args.Body, ent.Comp.RemoveTags);
         UpdateEntity(args.Body, ent.Comp);
+    }
+
+    //
+
+    private void OnStorageOrganImplanted(Entity<StorageOrganComponent> ent, ref SurgeryOrganImplantationCompleted args)
+    {
+        // The results of the container change are already networked on their own
+        if (_timing.ApplyingState)
+            return;
+
+        Dirty(ent);
+
+        if (ent.Comp.OrganAction != null)
+            _actions.AddAction(args.Body, ref ent.Comp.ActionEntity, ent.Comp.OrganAction, ent.Owner);
+
+    }
+
+    private void OnStorageOrganExtracted(Entity<StorageOrganComponent> ent, ref SurgeryOrganExtracted args)
+    {
+        // The results of the container change are already networked on their own
+        if (_timing.ApplyingState)
+            return;
+
+        _actions.RemoveAction(args.Body, ent.Comp.ActionEntity);
+        ent.Comp.ActionEntity = null;
     }
 
     //
@@ -210,5 +248,17 @@ public sealed partial class OrganSystem : EntitySystem
         _humanoidAppearanceSystem.SetBaseLayerId(args.Body, ent.Comp.Layer, 
         TryComp(args.Body, out HumanoidAppearanceComponent? humanoid) && ent.Comp.Prototypes.TryGetValue(humanoid.Species, out var layer)? layer :
         ent.Comp.Prototypes.TryGetValue("Default", out var defaultLayer)? defaultLayer : null);
+    }
+
+    private void OnCyberneticsDisrupted(Entity<FunctionalOrganComponent> ent, ref CyberneticDisruptionEvent args)
+    {
+        if(!ent.Comp.IsCybernetic)
+            return;
+
+        if (TryComp(args.Target, out CyberneticDisruptionComponent? _))
+        {
+            // Nothing happens here yet
+            return;
+        }
     }
 }

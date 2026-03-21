@@ -1,0 +1,7 @@
+- type: entity
+  id: PaperWrittenSupermatterGuide
+  suffix: "Supermatter Guide"
+  parent: Paper
+  components:
+  - type: Paper
+    content: book-text-supermatter-guide

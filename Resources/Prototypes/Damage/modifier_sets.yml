@@ -174,8 +174,8 @@
   id: Slime
   coefficients:
     Blunt: 0.6
-    Slash: 1.2
-    Piercing: 1.2
+    Slash: 1.1 # Starlight-edit: 1.2 -> 1.1
+    Piercing: 1.1 # Starlight-edit
     Cold: 1.5
     Poison: 0.8
 

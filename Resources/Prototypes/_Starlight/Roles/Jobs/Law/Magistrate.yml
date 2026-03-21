@@ -1,0 +1,66 @@
+- type: job
+  id: Magistrate
+  name: job-name-magistrate
+  description: job-description-magistrate
+  playTimeTracker: JobMagistrate
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 180000 #50 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 36000 # 10h
+    - !type:RolesRequirement
+      proto: ExtRolesReq
+  startingGear: MagistrateGear
+  icon: "JobIconMagistrate"
+  rules: job-rules-corporate-aligned
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  setPreference: true
+  access:
+  - Magistrate
+  - IAA
+  - Lawyer
+  - Brig
+  - Security
+  - Command
+  - Maintenance
+  - GenpopEnter
+  - GenpopLeave
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+
+- type: startingGear
+  id: MagistrateGear
+  equipment:
+    #jumpsuit: MagistrateUniformSuit
+    #shoes: ClothingShoesBootsLaceup
+    #eyes: ClothingEyesGlassesSecurity
+    #gloves: ClothingHandsGlovesColorWhite
+    #outerClothing: ClothingOuterRobesJudge
+    id: MagistratePDA
+    ears: ClothingHeadsetMagistrate
+    #head: ClothingHeadHatPwig
+    belt: BoxFolderNanoTrasenClipboard
+  storage:
+    back:
+    - RubberStampMagistrate
+    - ClothingNeckLawyerbadge
+    - GavelHammer
+    - GavelBlock
+    #- MagistrateUniformSkirt
+
+- type: chameleonOutfit
+  id: MagistrateChameleonOutfit
+  job: Magistrate
+  equipment:
+    head: ClothingHeadHatPwig
+    eyes: ClothingEyesGlassesSecurity
+    outerClothing: ClothingOuterRobesJudge
+    misc: ClothingNeckLawyerbadge # Starlight change slot to misc.
+    gloves: ClothingHandsGlovesColorWhite

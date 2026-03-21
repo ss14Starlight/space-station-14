@@ -1,0 +1,10 @@
+- type: antag
+  id: Vampire
+  name: roles-antag-vamire-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-vampire-description
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 24h # Mostly just to ensure you know basic controls. Didn't want to make them too high since they're a thing unique to us in their functionality right now, so they've got an appeal to them.
+  playTimeTracker: AntagVampire

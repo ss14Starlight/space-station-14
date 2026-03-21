@@ -17,6 +17,13 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
+#region Starlight
+using Content.Shared._Starlight.Antags.Traitor;
+using Content.Shared._Starlight.Implants.Components;
+using Content.Shared.Mind;
+using Content.Shared.Mindshield.Components;
+#endregion
+
 namespace Content.Shared.Implants;
 
 public abstract class SharedImplanterSystem : EntitySystem
@@ -29,6 +36,7 @@ public abstract class SharedImplanterSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!; // Starlight-edit
 
     public override void Initialize()
     {
@@ -171,9 +179,9 @@ public abstract class SharedImplanterSystem : EntitySystem
         }
 
         // STARLIGHT START: Check if the implant is a USSP uplink implant (revolutionary implant)
+        //TODO this could probably be moved to rev system
         var isUSSPImplant = false;
-        if (TryComp<MetaDataComponent>(implant.Value, out var metadata) && 
-            metadata.EntityPrototype?.ID == "USSPUplinkImplant")
+        if (MetaData(implant.Value).EntityPrototype?.ID == "USSPUplinkImplant")
         {
             isUSSPImplant = true;
         }
@@ -184,32 +192,31 @@ public abstract class SharedImplanterSystem : EntitySystem
             // Check if the target is a revolutionary or head revolutionary
             var targetIsRev = HasComp<RevolutionaryComponent>(target);
             var targetIsHeadRev = HasComp<HeadRevolutionaryComponent>(target);
-            
+
             // Check if the user is a head revolutionary
             var userIsHeadRev = HasComp<HeadRevolutionaryComponent>(user);
             var userIsRev = HasComp<RevolutionaryComponent>(user);
-            
+
             // If the user is not a revolutionary or head revolutionary, they can't use the implant
             if (!userIsHeadRev && !userIsRev)
             {
                 _popup.PopupEntity(Loc.GetString("Useless junk."), user, user);
                 return false;
             }
-            
+
             // Check if the target already has a USSP uplink implant
             if (TryComp<ImplantedComponent>(target, out var implanted) && implanted.ImplantContainer != null)
             {
                 foreach (var existingImplant in implanted.ImplantContainer.ContainedEntities)
                 {
-                    if (TryComp<MetaDataComponent>(existingImplant, out var existingMetadata) && 
-                        existingMetadata.EntityPrototype?.ID == "USSPUplinkImplant")
+                    if (MetaData(existingImplant).EntityPrototype?.ID == "USSPUplinkImplant")
                     {
                         _popup.PopupEntity(Loc.GetString("Already has an uplink implant."), user, user);
                         return false;
                     }
                 }
             }
-            
+
             // If the target is a head revolutionary, prevent implantation unless it's self-implantation
             // Only show "Can't implant another headrev!" if the user is a revolutionary or head revolutionary
             if (targetIsHeadRev && target != user)
@@ -224,10 +231,10 @@ public abstract class SharedImplanterSystem : EntitySystem
                 }
                 return false;
             }
-            
+
             // Check if the implant has an owner component
             var hasOwner = TryComp<USSPUplinkOwnerComponent>(implant.Value, out var ownerComp);
-            
+
             // If the user is a head revolutionary
             if (userIsHeadRev)
             {
@@ -237,20 +244,20 @@ public abstract class SharedImplanterSystem : EntitySystem
                     _popup.PopupEntity(Loc.GetString("Not converted by you."), user, user);
                     return false;
                 }
-                
+
                 // If the target is a revolutionary, check if they were converted by a different head revolutionary
                 if (targetIsRev)
                 {
                     // First check if the target has a RevolutionaryConverterComponent
-                    if (TryComp<RevolutionaryConverterComponent>(target, out var converterComp) && 
-                        converterComp.ConverterUid != null && 
+                    if (TryComp<RevolutionaryConverterComponent>(target, out var converterComp) &&
+                        converterComp.ConverterUid != null &&
                         converterComp.ConverterUid != user)
                     {
                         // If the target was converted by a different head revolutionary, prevent implantation
                         _popup.PopupEntity(Loc.GetString("Not converted by you."), user, user);
                         return false;
                     }
-                    
+
                     // If the target doesn't have a RevolutionaryConverterComponent or it's not set,
                     // fall back to checking the implant owner
                     if (hasOwner && ownerComp != null && ownerComp.OwnerUid != null)
@@ -271,8 +278,8 @@ public abstract class SharedImplanterSystem : EntitySystem
                         {
                             foreach (var existingImplant in targetImplanted.ImplantContainer.ContainedEntities)
                             {
-                                if (TryComp<USSPUplinkOwnerComponent>(existingImplant, out var existingOwnerComp) && 
-                                    existingOwnerComp.OwnerUid != null && 
+                                if (TryComp<USSPUplinkOwnerComponent>(existingImplant, out var existingOwnerComp) &&
+                                    existingOwnerComp.OwnerUid != null &&
                                     existingOwnerComp.OwnerUid != user)
                                 {
                                     // If the target has an implant owned by a different head revolutionary,
@@ -292,7 +299,7 @@ public abstract class SharedImplanterSystem : EntitySystem
                 if (user == target && userIsRev && !userIsHeadRev)
                 {
                     // First check if the user has a RevolutionaryConverterComponent
-                    if (TryComp<RevolutionaryConverterComponent>(user, out var converterComp) && 
+                    if (TryComp<RevolutionaryConverterComponent>(user, out var converterComp) &&
                         converterComp.ConverterUid != null)
                     {
                         // If the implant has an owner component
@@ -310,13 +317,13 @@ public abstract class SharedImplanterSystem : EntitySystem
                             // If the implant doesn't have an owner yet, we need to check if the user
                             // already has an implant with an owner that matches their converter
                             bool hasMatchingImplant = false;
-                            
+
                             if (TryComp<ImplantedComponent>(user, out var userImplanted) && userImplanted.ImplantContainer != null)
                             {
                                 foreach (var existingImplant in userImplanted.ImplantContainer.ContainedEntities)
                                 {
-                                    if (TryComp<USSPUplinkOwnerComponent>(existingImplant, out var existingOwnerComp) && 
-                                        existingOwnerComp.OwnerUid != null && 
+                                    if (TryComp<USSPUplinkOwnerComponent>(existingImplant, out var existingOwnerComp) &&
+                                        existingOwnerComp.OwnerUid != null &&
                                         existingOwnerComp.OwnerUid == converterComp.ConverterUid)
                                     {
                                         // Found an implant owned by the user's converter
@@ -325,7 +332,7 @@ public abstract class SharedImplanterSystem : EntitySystem
                                     }
                                 }
                             }
-                            
+
                             // If no matching implant was found, prevent implantation
                             if (!hasMatchingImplant)
                             {
@@ -336,7 +343,7 @@ public abstract class SharedImplanterSystem : EntitySystem
                     }
                     else
                     {
-                        // If the user doesn't have a RevolutionaryConverterComponent, 
+                        // If the user doesn't have a RevolutionaryConverterComponent,
                         // they shouldn't be able to implant themselves with any USSP uplink
                         _popup.PopupEntity(Loc.GetString("Not your headrev."), user, user);
                         return false;
@@ -350,10 +357,12 @@ public abstract class SharedImplanterSystem : EntitySystem
                 }
             }
         }
+        
+        
         // STARLIGHT END
 
         var ev = new AddImplantAttemptEvent(user, target, implant.Value, implanter);
-        RaiseLocalEvent(target, ev);
+        RaiseLocalEvent(implant.Value, ev); //Starlight edit - raising on the implant instead of target 
         return !ev.Cancelled;
     }
 

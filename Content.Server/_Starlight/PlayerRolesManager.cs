@@ -6,6 +6,8 @@ using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Server._NullLink.Core;
+using Content.Shared._NullLink;
 
 namespace Content.Server.Starlight;
 
@@ -14,13 +16,19 @@ public sealed partial class PlayerRolesManager : IPlayerRolesManager, IPostInjec
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
     [Dependency] private readonly IServerNetManager _netMgr = default!;
+    [Dependency] private readonly ILogManager _logger = default!;
 
     private readonly Dictionary<ICommonSession, PlayerReg> _players = new();
 
     public IEnumerable<PlayerReg> Players => _players.Values;
 
+    private ISawmill _sawmill = default!;
+
     public void Initialize() 
-        => _netMgr.RegisterNetMessage<MsgUpdatePlayerStatus>();
+    {
+        _netMgr.RegisterNetMessage<MsgUpdatePlayerStatus>();
+        _sawmill = _logger.GetSawmill("player_manager");
+    }
 
     void IPostInjectInit.PostInject()
         => _playerManager.PlayerStatusChanged += PlayerStatusChanged;
@@ -33,12 +41,15 @@ public sealed partial class PlayerRolesManager : IPlayerRolesManager, IPostInjec
             Login(e.Session);
         else if (e.NewStatus == SessionStatus.Disconnected)
         {
-            if(_players.Remove(e.Session, out var data))
-            _ = _dbManager.SetPlayerDataForAsync(e.Session.UserId, new StarLightModel.PlayerDataDTO
+            if (_players.Remove(e.Session, out var data))
             {
-                GhostTheme = data!.Data.GhostTheme,
-                Balance = data!.Data.Balance
-            });
+                data!.Data.Resources.TryGetValue("credits", out var balance);
+                _ = _dbManager.SetPlayerDataForAsync(e.Session.UserId, new StarLightModel.PlayerDataDTO
+                {
+                    GhostTheme = data!.Data.GhostTheme,
+                    Balance = (int)balance
+                });
+            }
         }
     }
     private void UpdatePlayerStatus(ICommonSession session)
@@ -77,12 +88,15 @@ public sealed partial class PlayerRolesManager : IPlayerRolesManager, IPostInjec
             await _dbManager.SetPlayerDataForAsync(session.UserId, dbData);
         }
 
-        return new PlayerData
+        var data = new PlayerData
         {
             Title = dbData.Title,
-            Balance = dbData.Balance,
             GhostTheme = dbData.GhostTheme
         };
+
+        data.Resources["credits"] = dbData.Balance;
+
+        return data;
     }
     public PlayerData? GetPlayerData(EntityUid uid)
     {

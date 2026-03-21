@@ -1,0 +1,145 @@
+- type: entity
+  parent: BaseStructureDynamic
+  id: BaseStructureFlatpack
+  name: base structure flatpack
+  description: A flatpack used for constructing something.
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Animateable
+  - type: Transform
+    noRot: true
+  - type: Icon
+    sprite: Structures/Storage/Crates/generic.rsi
+    state: base
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: base
+    - state: overlay
+      color: "#cec8ac"
+      map: ["enum.FlatpackVisualLayers.Overlay"]
+    - state: icon-default
+  - type: InteractionOutline
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.29"
+        density: 50
+        mask:
+        - CrateMask #this is so they can go under plastic flaps
+        layer:
+        - MachineLayer
+  - type: Appearance
+  - type: Flatpack
+    boardColors:
+      command: "#334E6D"
+      medical: "#52B4E9"
+      service: "#9FED58"
+      engineering: "#EFB341"
+      security: "#DE3A3A"
+      science: "#D381C9"
+      supply: "#A46106"
+      cpu_command: "#334E6D"
+      cpu_medical: "#52B4E9"
+      cpu_service: "#9FED58"
+      cpu_engineering: "#EFB341"
+      cpu_security: "#DE3A3A"
+      cpu_science: "#D381C9"
+      cpu_supply: "#A46106"
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: [BaseStructureFlatpack, BaseEngineeringContraband]
+  id: SupermatterFlatpack
+  name: supermatter flatpack
+  description: A flatpack used for constructing a Supermatter Crystal.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: large
+  - type: Flatpack
+    entity: SupermatterCrystal
+
+- type: entity
+  parent: [ BaseStructureFlatpack, BaseEngineeringContraband ]
+  id: TEGCenterFlatpack
+  name: teg center flatpack
+  description: A flatpack used for constructing the main component of a Thermo-Electric Generator.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: large
+  - type: Flatpack
+    entity: TegCenter
+
+- type: entity
+  parent: [ BaseStructureFlatpack, BaseEngineeringContraband ]
+  id: TEGCirculatorFlatpack
+  name: teg circulator flatpack
+  description: A flatpack used for constructing a Circulator for a Thermo-Electric Generator.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: large
+  - type: Flatpack
+    entity: TegCirculator
+
+- type: entity
+  parent: BaseStructureFlatpack
+  id: ReflectorFlatpack
+  name: Reflector Flatpack
+  description: A flatpack used for constructing a Reflector.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: reflector
+  - type: Flatpack
+    entity: Reflector
+
+- type: entity
+  parent: BaseFlatpack
+  id: ShuttleGunKineticFlatpack
+  name: PTK-800 "Matter Dematerializer" Flatpack
+  description: A flatpack used for constructing a PTK-800 "Matter Dematerializer".
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/flatpack.rsi
+      layers:
+        - state: matterdematerializer
+    - type: Flatpack
+      entity: ShuttleGunKinetic
+
+- type: entity
+  parent: [BaseStructureFlatpack, BaseEngineeringContraband]
+  id: NuclearReactorSmallFlatpack
+  name: Small Nuclear Reactor Flatpack
+  description: A flatpack used for constructing a small nuclear reactor. Parts sold separately.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: large
+  - type: Flatpack
+    entity: NuclearReactorSmallEmpty
+
+- type: entity
+  parent: [BaseStructureFlatpack, BaseEngineeringContraband]
+  id: GasTurbineSmallFlatpack
+  name: Small Gas Turbine Flatpack
+  description: A flatpack used for constructing a small gas turbine. Parts sold separately.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/flatpack.rsi
+    layers:
+    - state: large
+  - type: Flatpack
+    entity: GasTurbineSmallEmpty

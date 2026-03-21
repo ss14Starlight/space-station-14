@@ -7,7 +7,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Nutrition.Components;
 
-[RegisterComponent, NetworkedComponent, Access(typeof(ThirstSystem), typeof(SharedStaminaSurgeSystem))] // Starlight edit
+[RegisterComponent, NetworkedComponent, Access(typeof(ThirstSystem))]
 [AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 public sealed partial class ThirstComponent : Component
 {
@@ -72,7 +72,7 @@ public sealed partial class ThirstComponent : Component
     /// <summary>
     /// A list of values to drain thirst by every update tick. Gets multiplied by decay rate.
     /// </summary>
-    [DataField] public List<(EntityUid, float, TimeSpan)> ThirstDrains = [];
+    [DataField] public List<(EntityUid, float, TimeSpan?)> ThirstDrains = [];
     //Starlight end
 }
 

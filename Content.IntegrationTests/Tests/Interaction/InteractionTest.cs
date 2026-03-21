@@ -274,8 +274,16 @@ public abstract partial class InteractionTest
     [TearDown]
     public async Task TearDownInternal()
     {
-        await Server.WaitPost(() => MapSystem.DeleteMap(MapId));
-        await Pair.CleanReturnAsync();
+        // Starlight edit Start
+        if (Pair.Server != null)
+        {
+            await Server.WaitPost(() => MapSystem.DeleteMap(MapId));
+        }
+        if (Pair != null!)
+        {
+            await Pair.CleanReturnAsync();
+        }
+        // Starlight edit End
         await TearDown();
     }
 

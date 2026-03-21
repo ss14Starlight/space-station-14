@@ -2,10 +2,10 @@ using Content.Server.Chat.Managers;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Chat;
-using Content.Shared.Clothing;
 using Content.Shared.Delivery;
 using Content.Shared.FingerprintReader;
 using Content.Shared.Labels.EntitySystems;
+using Content.Shared.Mind;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.StationRecords;
 using Content.Shared._Starlight.Railroading.Events;
@@ -26,7 +26,7 @@ public sealed partial class RailroadingDeliveryRewardSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly LabelSystem _label = default!;
-    [Dependency] private readonly LoadoutSystem _loadout = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
     [Dependency] private readonly StationRecordsSystem _records = default!;
@@ -35,7 +35,16 @@ public sealed partial class RailroadingDeliveryRewardSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<RailroadDeliveryRewardComponent, RailroadingCardChosenEvent>(OnChosen);
         SubscribeLocalEvent<RailroadDeliveryRewardComponent, RailroadingCardCompletedEvent>(OnCompleted);
+    }
+
+    private void OnChosen(Entity<RailroadDeliveryRewardComponent> ent, ref RailroadingCardChosenEvent args)
+    {
+        ent.Comp.RecipientMind = null;
+        // Capture recipient identity at card selection time so it does not depend on mutable display names.
+        if (_mind.TryGetMind(args.Subject.Owner, out var mindId, out _))
+            ent.Comp.RecipientMind = mindId;
     }
 
     private void OnCompleted(Entity<RailroadDeliveryRewardComponent> ent, ref RailroadingCardCompletedEvent args)
@@ -56,9 +65,6 @@ public sealed partial class RailroadingDeliveryRewardSystem : EntitySystem
             if (!_power.IsPowered(spawnerUid))
                 continue;
 
-            if (spawnerComp.ContainedDeliveryAmount >= spawnerComp.MaxContainedDeliveryAmount)
-                continue;
-
             spawner = spawnerUid;
             break;
         }
@@ -66,9 +72,14 @@ public sealed partial class RailroadingDeliveryRewardSystem : EntitySystem
         if (spawner == null)
             return;
 
+        if (ent.Comp.RecipientMind is not { } recipientMind
+            || !TryComp<MindComponent>(recipientMind, out var trackedMind)
+            || string.IsNullOrWhiteSpace(trackedMind.CharacterName))
+            return;
+
         var delivery = Spawn(ent.Comp.Delivery, Transform(spawner.Value).Coordinates);
-        var profile = _loadout.GetProfile(args.Subject);
-        var recordID = _records.GetRecordByName(station, MetaData(args.Subject).EntityName);
+        var subjectName = trackedMind.CharacterName!;
+        var recordID = _records.GetRecordByName(station, subjectName);
 
         if (ent.Comp.Dataset != null && _playerManager.TryGetSessionByEntity(args.Subject, out var session))
         {
@@ -76,27 +87,29 @@ public sealed partial class RailroadingDeliveryRewardSystem : EntitySystem
             var pick = _random.Pick(dataset.Values);
             if (ent.Comp.WrappedDataset != null)
             {
-                var wrappedDataset = _protoMan.Index(ent.Comp.Dataset);
+                var wrappedDataset = _protoMan.Index(ent.Comp.WrappedDataset.Value);
                 _chat.ChatMessageToOne(ChatChannel.Notifications, Loc.GetString(pick), Loc.GetString(wrappedDataset.Values[dataset.Values.IndexOf(pick)]), default, false, session.Channel, Color.FromHex("#57A3F7"));
             }
         }
 
-        if (!TryComp<DeliveryComponent>(delivery, out var deliveryComp)
-            || recordID == null
-            || !_records.TryGetRecord<GeneralStationRecord>(_records.Convert((GetNetEntity(station), recordID.Value)), out var entry))
+        if (!TryComp<DeliveryComponent>(delivery, out var deliveryComp))
             return;
 
-
-        deliveryComp.RecipientName = entry.Name;
-        deliveryComp.RecipientJobTitle = entry.JobTitle;
+        deliveryComp.RecipientName = subjectName;
         deliveryComp.RecipientStation = station;
 
-        _appearance.SetData(delivery, DeliveryVisuals.JobIcon, entry.JobIcon);
+        if (recordID != null
+            && _records.TryGetRecord<GeneralStationRecord>(_records.Convert((GetNetEntity(station), recordID.Value)), out var entry))
+        {
+            deliveryComp.RecipientName = entry.Name;
+            deliveryComp.RecipientJobTitle = entry.JobTitle;
+            _appearance.SetData(delivery, DeliveryVisuals.JobIcon, entry.JobIcon);
+
+            if (TryComp<FingerprintReaderComponent>(delivery, out var reader) && entry.Fingerprint != null)
+                _fingerprintReader.AddAllowedFingerprint((delivery, reader), entry.Fingerprint);
+        }
 
         _label.Label(delivery, deliveryComp.RecipientName);
-
-        if (TryComp<FingerprintReaderComponent>(delivery, out var reader) && entry.Fingerprint != null)
-            _fingerprintReader.AddAllowedFingerprint((delivery, reader), entry.Fingerprint);
 
         Dirty(delivery, deliveryComp);
     }

@@ -84,6 +84,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - NanoChatCartridge # CD
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -98,6 +99,7 @@
   - type: UserInterface
     interfaces:
       enum.PdaUiKey.Key:
+        requireInputValidation: false #Starlight pAI can open PDAs, see PR #3272
         type: PdaBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
@@ -155,6 +157,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -169,6 +172,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -481,6 +485,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -526,6 +531,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -700,6 +706,15 @@
     accentHColor: "#447987"
   - type: Icon
     state: pda-ce
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge #FH
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -719,6 +734,15 @@
     accentVColor: "#A32D26"
   - type: Icon
     state: pda-engineer
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge #FH
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BaseMedicalPDA
@@ -794,6 +818,18 @@
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi #Starlight
     state: pda-paramedic
+    # Starlight BEGIN
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - AstroNavCartridge
+      - NanoChatCartridge
+    # Starlight END
 
 - type: entity
   parent: BaseMedicalPDA
@@ -879,6 +915,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BaseSecurityPDA
@@ -951,6 +988,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: CentcomPDA
@@ -977,6 +1015,7 @@
       - WantedListCartridge
       - MedTekCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # CD
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1049,6 +1088,15 @@
     accentVColor: "#447987"
   - type: Icon
     state: pda-atmos
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge #FH
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -1101,6 +1149,7 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: [ SyndiPDA, BaseSyndicateContraband ]
@@ -1139,6 +1188,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - MedTekCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
@@ -1187,6 +1237,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: ERTLeaderPDA
@@ -1356,6 +1407,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1384,6 +1436,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: ClownPDA
@@ -1465,6 +1518,15 @@
     accentVColor: "#CD6900"
   - type: Icon
     state: pda-seniorengineer
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge #FH
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA

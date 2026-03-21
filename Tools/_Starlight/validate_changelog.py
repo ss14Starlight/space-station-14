@@ -43,19 +43,18 @@ if ":cl:" not in changelog_without_comments:
     print("::error::Changelog is missing the :cl: command")
     sys.exit(1)
 
-# Check that after :cl: there is a non-empty author
-cl_line = None
-for line in changelog_without_comments.splitlines():
-    if line.strip().startswith(':cl:'):
-        cl_line = line
-        break
+lines = changelog_without_comments.splitlines()
 
-if cl_line is None or not cl_line.strip()[4:].strip():
-    print("::error::After ':cl:' you must specify your nickname e.g. ':cl: Rinary'")
+# --- Check that after :cl: there is a non-empty author ---
+cl_lines = [line for line in lines if line.strip().startswith(':cl:')]
+
+if not cl_lines:
+    print("::error::You must specify at least one ':cl:'")
     sys.exit(1)
 
-# Check for valid tags 
+# --- Check for valid tags ---
 valid_tags = ["add", "remove", "tweak", "fix"]
+
 entry_pattern = re.compile(r'^[ \t]*[^a-zA-Z0-9]?[ \t]*(add|remove|tweak|fix):', re.MULTILINE)
 entries = entry_pattern.findall(changelog_without_comments)
 
@@ -68,7 +67,24 @@ if invalid_entries:
     print(f"::error::Invalid changelog tags found: {', '.join(invalid_entries)}. Valid tags are: {', '.join(valid_tags)}")
     sys.exit(1)
 
-# Check for proper formatting (tag: description)
-if not re.search(r'^[ \t]*[^a-zA-Z0-9]?[ \t]*(add|remove|tweak|fix): .+', changelog_without_comments, re.MULTILINE):
-    print("::error::Changelog entries must follow the format: 'tag: description'")
+# --- Check for proper formatting and dot at the end ---
+bad_format_lines = []
+no_dot_lines = []
+
+for idx, line in enumerate(lines, start=1):
+    stripped = line.strip()
+
+    if re.match(r'^[ \t]*[^a-zA-Z0-9]?[ \t]*(add|remove|tweak|fix):', line):
+        if not re.match(r'^[ \t]*[^a-zA-Z0-9]?[ \t]*(add|remove|tweak|fix): .+', line):
+            bad_format_lines.append(idx)
+        elif not stripped.endswith('.'):
+            no_dot_lines.append(idx)
+
+
+if bad_format_lines:
+    print(f"::error::Changelog entries must follow the format 'tag: description'. Bad lines: {bad_format_lines}")
+    sys.exit(1)
+
+if no_dot_lines:
+    print(f"::error::Each changelog entry must end with a dot. Missing dots on lines: {no_dot_lines}")
     sys.exit(1)

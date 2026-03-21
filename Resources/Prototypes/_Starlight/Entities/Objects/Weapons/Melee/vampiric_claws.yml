@@ -1,0 +1,32 @@
+- type: entity
+  id: VampiricClawsItem
+  name: vampiric claws
+  parent: BaseItem
+  description: Blood-forged claws that siphon vitae on hit. They will dissipate after a 15 swings, or if dispelled.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/vampire_claws.rsi
+    state: vamp_claws_item
+  - type: Item
+    size: Tiny
+    inhandVisuals:
+      left:
+        - state: vamp_claws_l
+          sprite: _Starlight/Objects/Weapons/Melee/vampire_claws.rsi
+      right:
+        - state: vamp_claws_r
+          sprite: _Starlight/Objects/Weapons/Melee/vampire_claws.rsi
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 18
+  - type: VampiricClaws
+    hitsRemaining: 15
+    bloodPerHit: 5
+  - type: Wieldable
+    unwieldOnUse: false
+    freeHandsRequired: 1
+  - type: MeleeRequiresWield

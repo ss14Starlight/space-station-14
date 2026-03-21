@@ -40,7 +40,7 @@ public sealed class ScreenSystem : EntitySystem
         else
             ScreenText(uid, component, args);
     }
-    
+
     private void OnAlertLevelChanged(AlertLevelChangedEvent args)
     {
         var query = EntityQueryEnumerator<ScreenComponent>();
@@ -60,26 +60,26 @@ public sealed class ScreenSystem : EntitySystem
     private void ScreenText(EntityUid uid, ScreenComponent component, DeviceNetworkPacketEvent args)
     {
         // don't allow text updates if there's an active timer
-        if (HasComp<ScreenTimerComponent>(uid) 
+        if (HasComp<ScreenTimerComponent>(uid)
             && _appearanceSystem.TryGetData(uid, TextScreenVisuals.TargetTime, out TimeSpan target)
             && target > _gameTiming.CurTime)
             return;
 
         var screenMap = Transform(uid).MapUid;
         var argsMap = Transform(args.Sender).MapUid;
-        
+
         if (screenMap == null || argsMap == null || screenMap != argsMap)
         {
-            Logger.Error($"Can't update screen text, while sender or screen on another map!");
+            Log.Error($"Can't update screen text, while sender or screen on another map!");
             return;
         }
-        
+
         if (!args.Data.TryGetValue(ScreenMasks.Text, out string? text) || text == null)
         {
-            Logger.Error($"Can't update screen text, while input text was null!");
+            Log.Error($"Can't update screen text, while input text was null!");
             return;
         }
-        
+
         _appearanceSystem.SetData(uid, TextScreenVisuals.DefaultText, text);
         _appearanceSystem.SetData(uid, TextScreenVisuals.ScreenText, text);
     }

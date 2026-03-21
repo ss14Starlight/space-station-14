@@ -1,0 +1,26 @@
+- type: dungeonRoomPack
+  id: ArenaRoomPack
+  size: 50,50
+  rooms:
+    - 0,0,50,50
+
+- type: dungeonRoomPack
+  id: BigRoomSoviet
+  size: 17,17
+  rooms:
+    - 0,1,17,16
+
+- type: dungeonRoomPack
+  id: LongRoomSoviet
+  size: 17,17
+  rooms:
+    - 0,0,11,3
+    - 7,3,8,10
+    - 3,13,10,16
+    - 14,4,17,17
+
+- type: dungeonRoomPack
+  id: CafeteriaSoviet
+  size: 17,17
+  rooms:
+    - 0,4,17,13

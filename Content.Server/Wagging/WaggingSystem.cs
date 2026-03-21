@@ -19,7 +19,7 @@ public sealed class WaggingSystem : EntitySystem
 {
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    //[Dependency] private readonly IPrototypeManager _prototype = default!; // Starlight-removed - we dropped the last use of this from upstream
 
     [Dependency] private readonly StarlightMarkingSystem _starlightMarking = default!; //starlight edit
 

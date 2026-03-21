@@ -23,6 +23,10 @@ public sealed partial class ReplacementAccentPrototype : IPrototype
     [DataField]
     public Dictionary<string, string>? WordReplacements;
 
+    // Starlight
+    [DataField]
+    public Dictionary<string, string>? TTSWordReplacements; 
+
     /// <summary>
     /// Allows you to substitute words, not always, but with some chance
     /// </summary>

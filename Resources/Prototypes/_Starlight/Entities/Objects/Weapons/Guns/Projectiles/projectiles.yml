@@ -1,0 +1,217 @@
+- type: entity
+  id: BaseBulletStarlight
+  name: BaseBullet
+  description: If you can see this you're probably dead!
+  abstract: true
+  components:
+  - type: Reflective
+  - type: FlyBySound
+  - type: Clickable
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: bullet
+      shader: unshaded
+  - type: Physics
+    bodyType: Dynamic
+    linearDamping: 0
+    angularDamping: 0
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+      fly-by: &flybyfixture
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    damage:
+      types:
+        Piercing: 14
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
+  - type: TimedDespawn
+    lifetime: 10
+
+- type: entity
+  name: taser bolt
+  id: BulletAdvTaser
+  parent: BaseBulletStarlight
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    noRot: true
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    color: "#ffff33"
+    layers:
+    - state: spark
+      shader: unshaded
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.45,0.15,0.15"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+      fly-by: *flybyfixture
+  - type: Ammo
+  - type: Projectile
+    damage:
+      types:
+        Heat: 5
+    soundHit:
+      path: "/Audio/Weapons/Guns/Hits/taser_hit.ogg"
+    forceSound: true
+  - type: TimedDespawn
+    lifetime: 0.2
+  - type: StaminaDamageOnCollide
+    damage: 33
+  - type: StunOnCollide
+    knockdownAmount: 0.5
+
+- type: entity
+  id: BaseBulletRubber
+  parent: BaseBulletStarlight
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: rubber
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/snap.ogg
+  - type: StaminaDamageOnCollide
+    damage: 12 # 9 hits to stun sounds reasonable
+
+
+- type: entity
+  name : laser bolt
+  id: BulletEnergySMGLaser
+  parent: BulletEnergyTurretBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectHeavyLaser
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: heavylaser
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectOrangeDisabler
+    damage:
+      types:
+        Heat: 10
+
+- type: entity
+  name : disabler bolt
+  id: BulletEnergySMGDisabler
+  parent: BulletEnergyTurretBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffectOmnilaser
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 15
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 0
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+
+- type: entity
+  parent: BaseBullet
+  id: RadOrb
+  name: radiation orb
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: PointLight
+    enabled: true
+    color: "#38c23f"
+    radius: 2.0
+    energy: 7.0
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+      - state: bluespace
+        shader: unshaded
+    color: "#80c000"
+  - type: Ammo
+    muzzleFlash: null
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        mask:
+        - Opaque
+      fly-by: *flybyfixture
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 20
+    impactEffect: BulletImpactEffectDisabler
+    ignoreShooter: false
+    armingTime: 0.5
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Reflective
+    reflective:
+    - Energy
+    
+- type: entity
+  parent: [ BulletGrenadeCleanade, BaseSyndicateContraband ]
+  id: BulletGrenadeCleanadeSyndicate
+  name: evil cleanade grenade round
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SmokeOnTrigger
+      duration: 3.5
+      spreadAmount: 10
+      smokePrototype: Foam
+      solution:
+        reagents:
+          - ReagentId: SyndicateSpaceCleaner
+            Quantity: 15

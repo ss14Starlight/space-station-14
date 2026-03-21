@@ -10,7 +10,6 @@ namespace Content.Shared.Eye.Blinding.Components;
 
 public abstract class SharedThermalVisionSystem : EntitySystem
 {
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
 
     protected virtual bool IsPredict() => false;

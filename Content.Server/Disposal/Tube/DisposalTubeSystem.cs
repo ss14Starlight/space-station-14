@@ -21,7 +21,7 @@ namespace Content.Server.Disposal.Tube
 {
     public sealed class DisposalTubeSystem : SharedDisposalTubeSystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
+        //[Dependency] private readonly IRobustRandom _random = default!; // Starlight-removed - we made disposal tubes deterministic
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly PopupSystem _popups = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;

@@ -409,7 +409,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         if (!PrototypeManager.TryIndex(component.PackPrototypeId, out VendingMachineInventoryPrototype? packPrototype))
             return;
 
-        if (initialRestock && HasComp<EmptyVendingMachineComponent>(component.Owner)) // Starlight
+        if (initialRestock && HasComp<EmptyVendingMachineComponent>(uid)) // Starlight
             return; // Starlight
 
         AddInventoryFromPrototype(uid, packPrototype.StartingInventory, InventoryType.Regular, component, restockQuality);

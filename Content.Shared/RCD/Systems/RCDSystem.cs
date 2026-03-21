@@ -23,8 +23,19 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using System.Linq;
 // Starlight Start
-using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
+using Content.Shared.Atmos.Components;
+using Content.Shared._Starlight.Atmos.EntitySystems;
+using Content.Shared.Hands.Components;
+using System.Numerics;
+using Content.Shared.Verbs;
+using Robust.Shared.Utility;
+using Content.Shared.NodeContainer;
+using Content.Shared.Atmos;
+using Content.Shared._Starlight.Atmos;
+using Content.Shared._Starlight.Atmos.Components;
+using Content.Shared.Prototypes;
+using Content.Shared._Starlight.Plumbing.Components;
 // Starlight End
 
 namespace Content.Shared.RCD.Systems;
@@ -47,7 +58,11 @@ public sealed class RCDSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly TagSystem _tags = default!;
-    [Dependency] private readonly SharedAtmosPipeLayersSystem _pipeLayers = default!; // Starlight: RPD
+    // Starlight Start
+    [Dependency] private readonly SharedAtmosPipeLayersSystem _pipeLayersSystem = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly PipeRestrictOverlapSystem _pipeOverlap = default!;
+    // Starlight End
 
     private readonly int _instantConstructionDelay = 0;
     private readonly EntProtoId _instantConstructionFx = "EffectRCDConstruct0";
@@ -68,9 +83,12 @@ public sealed class RCDSystem : EntitySystem
         SubscribeLocalEvent<RCDComponent, DoAfterAttemptEvent<RCDDoAfterEvent>>(OnDoAfterAttempt);
         SubscribeLocalEvent<RCDComponent, RCDSystemMessage>(OnRCDSystemMessage);
         SubscribeNetworkEvent<RCDConstructionGhostRotationEvent>(OnRCDconstructionGhostRotationEvent);
-        // Starlight Start: RPD
-        SubscribeNetworkEvent<RCDConstructionGhostLayerEvent>(OnRCDConstructionGhostLayerEvent);
+        // Starlight Start
+        SubscribeLocalEvent<RCDComponent, ComponentStartup>(OnStartup);
         SubscribeNetworkEvent<RCDConstructionGhostFlipEvent>(OnRCDConstructionGhostFlipEvent);
+        SubscribeNetworkEvent<RPDSelectedLayerEvent>(OnRPDSelectedLayerEvent);
+        SubscribeLocalEvent<RCDComponent, GetVerbsEvent<UtilityVerb>>(OnGetUtilityVerb);
+        SubscribeLocalEvent<RCDComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerb);
         // Starlight End
     }
 
@@ -81,7 +99,12 @@ public sealed class RCDSystem : EntitySystem
         // On init, set the RCD to its first available recipe
         if (component.AvailablePrototypes.Count > 0)
         {
-            component.ProtoId = component.AvailablePrototypes.ElementAt(0);
+            // Starlight edit Start: RPD
+            if (component.IsRpd)
+                component.ProtoId = "PipeStraight";
+            else
+                component.ProtoId = component.AvailablePrototypes.ElementAt(0);
+            // Starlight edit End: RPD
             Dirty(uid, component);
 
             return;
@@ -90,6 +113,16 @@ public sealed class RCDSystem : EntitySystem
         // The RCD has no valid recipes somehow? Get rid of it
         QueueDel(uid);
     }
+
+    // Starlight Start: RPD
+    private void OnStartup(EntityUid uid, RCDComponent component, ComponentStartup args)
+    {
+        UpdateCachedPrototype(uid, component);
+        Dirty(uid, component);
+
+        return;
+    }
+    // Starlight End: RPD
 
     private void OnRCDSystemMessage(EntityUid uid, RCDComponent component, RCDSystemMessage args)
     {
@@ -102,6 +135,7 @@ public sealed class RCDSystem : EntitySystem
 
         // Set the current RCD prototype to the one supplied
         component.ProtoId = args.ProtoId;
+        UpdateCachedPrototype(uid, component); // Starlight: RPD
 
         _adminLogger.Add(LogType.RCD, LogImpact.Low, $"{args.Actor} set RCD mode to: {prototype.Mode} : {prototype.Prototype}");
 
@@ -113,7 +147,10 @@ public sealed class RCDSystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
 
-        var prototype = _protoManager.Index(component.ProtoId);
+        // Starlight edit Start
+        UpdateCachedPrototype(uid, component);
+        var prototype = component.CachedPrototype;
+        // Starlight edit End
 
         var msg = Loc.GetString("rcd-component-examine-mode-details", ("mode", Loc.GetString(prototype.SetName)));
 
@@ -129,6 +166,72 @@ public sealed class RCDSystem : EntitySystem
         }
 
         args.PushMarkup(msg);
+
+    // Starlight Start
+        if (component.IsRpd || component.IsRPLD)
+        {
+            var modeLoc = $"rcd-rpd-mode-{component.CurrentMode.ToString().ToLowerInvariant()}";
+            args.PushMarkup(Loc.GetString("rcd-component-examine-rpd-mode", ("mode", Loc.GetString(modeLoc))));
+        }
+    }
+
+    private void OnRPDSelectedLayerEvent(RPDSelectedLayerEvent ev, EntitySessionEventArgs session)
+    {
+        var uid = GetEntity(ev.NetEntity);
+
+        if (session.SenderSession.AttachedEntity is not { } player)
+            return;
+
+        if (_hands.GetActiveItem(player) != uid)
+            return;
+
+        if (!TryComp<RCDComponent>(uid, out var rcd))
+            return;
+
+        var layerInt = Math.Clamp(ev.Layer, (byte) AtmosPipeLayer.Primary, (byte) AtmosPipeLayer.Quinary);
+        var selectedLayer = (AtmosPipeLayer) layerInt;
+
+        if (rcd.IsRPLD && selectedLayer > AtmosPipeLayer.Tertiary)
+            selectedLayer = AtmosPipeLayer.Tertiary;
+
+        rcd.LastSelectedLayer = selectedLayer;
+    }
+
+    private void OnGetUtilityVerb(EntityUid uid, RCDComponent component, GetVerbsEvent<UtilityVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || (!component.IsRpd && !component.IsRPLD))
+            return;
+
+        var verb = new UtilityVerb
+        {
+            Act = () => SwitchPipeMode(uid, component, args.User),
+            Text = Loc.GetString("rcd-verb-switch-mode"),
+            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
+            Impact = LogImpact.Low
+        };
+
+        args.Verbs.Add(verb);
+    }
+
+    private void OnGetAlternativeVerb(EntityUid uid, RCDComponent component, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || (!component.IsRpd && !component.IsRPLD) || !args.Using.HasValue)
+            return;
+
+        // Only show when alt-clicking the RPD itself (args.Using is the held item)
+        if (args.Using.Value != uid)
+            return;
+
+        var verb = new AlternativeVerb
+        {
+            Act = () => SwitchPipeMode(uid, component, args.User),
+            Text = Loc.GetString("rcd-verb-switch-mode"),
+            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
+            Impact = LogImpact.Low
+        };
+
+        args.Verbs.Add(verb);
+    // Starlight End
     }
 
     private void OnAfterInteract(EntityUid uid, RCDComponent component, AfterInteractEvent args)
@@ -136,9 +239,11 @@ public sealed class RCDSystem : EntitySystem
         if (args.Handled || !args.CanReach)
             return;
 
+        UpdateCachedPrototype(uid, component); // Starlight Edit: Refresh cached prototype before any interaction time layer logic.
+
         var user = args.User;
         var location = args.ClickLocation;
-        var prototype = _protoManager.Index(component.ProtoId);
+        var prototype = component.CachedPrototype; // Starlight Edit: _protoManager.Index(component.ProtoId) -> component.CachedPrototype
 
         // Initial validity checks
         if (!location.IsValid(EntityManager))
@@ -153,6 +258,45 @@ public sealed class RCDSystem : EntitySystem
         }
         var tile = _mapSystem.GetTileRef(gridUid.Value, mapGrid, location);
         var position = _mapSystem.TileIndicesFor(gridUid.Value, mapGrid, location);
+
+        // Starlight Start
+        var placementLayer = AtmosPipeLayer.Primary;
+        if ((component.IsRpd || component.IsRPLD) && prototype.HasLayers)
+        {
+            placementLayer = AtmosPipeLayer.Primary;
+
+            switch (component.CurrentMode)
+            {
+                case RpdMode.Primary:
+                    placementLayer = AtmosPipeLayer.Primary;
+                    break;
+
+                case RpdMode.Secondary:
+                    placementLayer = AtmosPipeLayer.Secondary;
+                    break;
+
+                case RpdMode.Tertiary:
+                    placementLayer = AtmosPipeLayer.Tertiary;
+                    break;
+
+                case RpdMode.Quaternary:
+                    placementLayer = component.IsRPLD ? AtmosPipeLayer.Tertiary : AtmosPipeLayer.Quaternary;
+                    break;
+
+                case RpdMode.Quinary:
+                    placementLayer = component.IsRPLD ? AtmosPipeLayer.Tertiary : AtmosPipeLayer.Quinary;
+                    break;
+
+                case RpdMode.Free:
+                    // Free mode layer is selected client-side and synced explicitly.
+                    if (component.LastSelectedLayer.HasValue)
+                    {
+                        placementLayer = component.LastSelectedLayer.Value;
+                    }
+                    break;
+            }
+        }
+        // Starlight End
 
         if (!IsRCDOperationStillValid(uid, component, gridUid.Value, mapGrid, tile, position, args.Target, args.User))
             return;
@@ -217,7 +361,7 @@ public sealed class RCDSystem : EntitySystem
 
         // Try to start the do after
         var effect = Spawn(effectPrototype, location);
-        var ev = new RCDDoAfterEvent(GetNetCoordinates(location), component.ConstructionDirection, component.ProtoId, cost, GetNetEntity(effect));
+        var ev = new RCDDoAfterEvent(GetNetCoordinates(location), component.ConstructionDirection, placementLayer, component.ProtoId, cost, GetNetEntity(effect));      // Starlight Edit: Include layer as well in snapshot at start so finalize uses consistent placement state.
 
         var doAfterArgs = new DoAfterArgs(EntityManager, user, delay, ev, uid, target: args.Target, used: uid)
         {
@@ -296,7 +440,7 @@ public sealed class RCDSystem : EntitySystem
             return;
 
         // Finalize the operation (this should handle prediction properly)
-        FinalizeRCDOperation(uid, component, gridUid.Value, mapGrid, tile, position, args.Direction, args.Target, args.User);
+        FinalizeRCDOperation(uid, component, gridUid.Value, mapGrid, tile, position, args.Direction, args.PipeLayer, args.Target, args.User);         // Starlight Edit: Include layer from do-after event to avoid finalize time drift.
 
         // Play audio and consume charges
         _audio.PlayPredicted(component.SuccessSound, uid, args.User);
@@ -323,49 +467,10 @@ public sealed class RCDSystem : EntitySystem
     }
 
     // Starlight Start: RPD
-    private void OnRCDConstructionGhostLayerEvent(RCDConstructionGhostLayerEvent ev, EntitySessionEventArgs session)
-    {
-        var uid = GetEntity(ev.NetEntity);
-
-        if (session.SenderSession.AttachedEntity is not { } player)
-            return;
-
-        if (_hands.GetActiveItem(player) != uid)
-            return;
-
-        if (!TryComp<RCDComponent>(uid, out var rcd) || !rcd.IsRPD)
-            return;
-
-        if (rcd.SelectedPipeLayer == ev.Layer)
-            return;
-
-        rcd.SelectedPipeLayer = ev.Layer;
-        Dirty(uid, rcd);
-    }
-
-    /// <summary>
-    /// Client-side helper to set the desired pipe layer for the currently held RPD and notify the server.
-    /// </summary>
-    public void SetGhostPipeLayer(EntityUid uid, AtmosPipeLayer layer)
-    {
-        if (!TryComp<RCDComponent>(uid, out var rcd) || !rcd.IsRPD)
-            return;
-
-        if (rcd.SelectedPipeLayer == layer)
-            return;
-
-        rcd.SelectedPipeLayer = layer;
-
-        if (_net.IsClient)
-            RaiseNetworkEvent(new RCDConstructionGhostLayerEvent(GetNetEntity(uid), layer));
-        else
-            Dirty(uid, rcd);
-    }
     private void OnRCDConstructionGhostFlipEvent(RCDConstructionGhostFlipEvent ev, EntitySessionEventArgs session)
     {
         var uid = GetEntity(ev.NetEntity);
 
-        // Ensure the sender is the player holding the RCD
         if (session.SenderSession.AttachedEntity is not { } player)
             return;
 
@@ -378,7 +483,44 @@ public sealed class RCDSystem : EntitySystem
         rcd.UseMirrorPrototype = ev.UseMirrorPrototype;
         Dirty(uid, rcd);
     }
-    // Starlight End
+
+    private void SwitchPipeMode(EntityUid uid, RCDComponent component, EntityUid? user = null)
+    {
+        if (!component.IsRpd && !component.IsRPLD)
+            return;
+
+        // RPD cycles all 5 layers + free. RPLD only cycles 3 layers + free.
+        if (component.IsRPLD)
+        {
+            component.CurrentMode = component.CurrentMode switch
+            {
+                RpdMode.Primary => RpdMode.Secondary,
+                RpdMode.Secondary => RpdMode.Tertiary,
+                RpdMode.Tertiary => RpdMode.Free,
+                RpdMode.Free => RpdMode.Primary,
+                _ => RpdMode.Primary
+            };
+        }
+        else
+        {
+            component.CurrentMode = component.CurrentMode switch
+            {
+                RpdMode.Primary => RpdMode.Secondary,
+                RpdMode.Secondary => RpdMode.Tertiary,
+                RpdMode.Tertiary => RpdMode.Quaternary,
+                RpdMode.Quaternary => RpdMode.Quinary,
+                RpdMode.Quinary => RpdMode.Free,
+                RpdMode.Free => RpdMode.Primary,
+                _ => RpdMode.Free
+            };
+        }
+
+        Dirty(uid, component);
+
+        if (user != null)
+            _audio.PlayPredicted(component.SoundSwitchMode, uid, user.Value);
+        // Starlight End: RPD
+    }
 
     #endregion
 
@@ -386,7 +528,9 @@ public sealed class RCDSystem : EntitySystem
 
     public bool IsRCDOperationStillValid(EntityUid uid, RCDComponent component, EntityUid gridUid, MapGridComponent mapGrid, TileRef tile, Vector2i position, EntityUid? target, EntityUid user, bool popMsgs = true)
     {
-        var prototype = _protoManager.Index(component.ProtoId);
+        UpdateCachedPrototype(uid, component); // Starlight
+
+        var prototype = component.CachedPrototype; // Starlight Edit: _protoManager.Index(component.ProtoId) -> component.CachedPrototype
 
         // Check that the RCD has enough ammo to get the job done
         var charges = _sharedCharges.GetCurrentCharges(uid);
@@ -423,7 +567,7 @@ public sealed class RCDSystem : EntitySystem
             case RcdMode.ConstructObject:
                 return IsConstructionLocationValid(uid, component, gridUid, mapGrid, tile, position, user, popMsgs);
             case RcdMode.Deconstruct:
-                return IsDeconstructionStillValid(uid, tile, target, user, popMsgs);
+                return IsDeconstructionStillValid(uid, component, tile, target, user, popMsgs); // Starlight Edit: Added ``component``
         }
 
         return false;
@@ -431,7 +575,9 @@ public sealed class RCDSystem : EntitySystem
 
     private bool IsConstructionLocationValid(EntityUid uid, RCDComponent component, EntityUid gridUid, MapGridComponent mapGrid, TileRef tile, Vector2i position, EntityUid user, bool popMsgs = true)
     {
-        var prototype = _protoManager.Index(component.ProtoId);
+        UpdateCachedPrototype(uid, component); // Starlight
+
+        var prototype = component.CachedPrototype; // Starlight Edit: _protoManager.Index(component.ProtoId) -> component.CachedPrototype
 
         // Check rule: Must build on empty tile
         if (prototype.ConstructionRules.Contains(RcdConstructionRule.MustBuildOnEmptyTile) && !tile.Tile.IsEmpty)
@@ -490,7 +636,12 @@ public sealed class RCDSystem : EntitySystem
         // Check rule: The tile is unoccupied
         var isWindow = prototype.ConstructionRules.Contains(RcdConstructionRule.IsWindow);
         var isCatwalk = prototype.ConstructionRules.Contains(RcdConstructionRule.IsCatwalk);
-
+        // Starlight Start: RPLD
+        var isPlumbingMachinePlacement = component.IsRPLD
+            && prototype.Prototype != null
+            && _protoManager.TryIndex<EntityPrototype>(prototype.Prototype, out var constructionProto)
+            && constructionProto.HasComponent<PlumbingConnectorAppearanceComponent>(_entityManager.ComponentFactory);
+        // Starlight End: RPLD
         _intersectingEntities.Clear();
         _lookup.GetLocalEntitiesIntersecting(gridUid, position, _intersectingEntities, -0.05f, LookupFlags.Uncontained);
 
@@ -498,7 +649,15 @@ public sealed class RCDSystem : EntitySystem
         {
             if (isWindow && HasComp<SharedCanBuildWindowOnTopComponent>(ent))
                 continue;
+            // Starlight Start: RPLD
+            if (isPlumbingMachinePlacement && Transform(ent).Anchored && HasComp<PlumbingConnectorAppearanceComponent>(ent))
+            {
+                if (popMsgs)
+                    _popup.PopupClient(Loc.GetString("rcd-component-cannot-build-on-occupied-tile-message"), uid, user);
 
+                return false;
+            }
+            // Starlight End: RPLD
             if (isCatwalk && _tags.HasTag(ent, CatwalkTag))
             {
                 if (popMsgs)
@@ -512,7 +671,7 @@ public sealed class RCDSystem : EntitySystem
                 foreach (var fixture in fixtures.Fixtures.Values)
                 {
                     // Continue if no collision is possible
-                    if (!fixture.Hard || fixture.CollisionLayer <= 0 || (fixture.CollisionLayer & (int) prototype.CollisionMask) == 0)
+                    if (!fixture.Hard || fixture.CollisionLayer <= 0 || (fixture.CollisionLayer & (int)prototype.CollisionMask) == 0)
                         continue;
 
                     // Continue if our custom collision bounds are not intersected
@@ -532,19 +691,20 @@ public sealed class RCDSystem : EntitySystem
         return true;
     }
 
-    private bool IsDeconstructionStillValid(EntityUid uid, TileRef tile, EntityUid? target, EntityUid user, bool popMsgs = true)
+    private bool IsDeconstructionStillValid(EntityUid uid, RCDComponent component, TileRef tile, EntityUid? target, EntityUid user, bool popMsgs = true) // Starlight Edit: Added ``RCDComponent component``
     {
         // Attempt to deconstruct a floor tile
         if (target == null)
         {
-            // Starlight Start: RPD
-            if (TryComp<RCDComponent>(uid, out var rcd) && rcd.IsRPD)
+            // Starlight Start: RPD/RPLD
+            if (component.IsRpd || component.IsRPLD)
             {
                 if (popMsgs)
                     _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
+
                 return false;
             }
-            // Starlight End
+            // Starlight End: RPD
 
             // The tile is empty
             if (tile.Tile.IsEmpty)
@@ -579,37 +739,25 @@ public sealed class RCDSystem : EntitySystem
         // Attempt to deconstruct an object
         else
         {
-            // The object is not in the whitelist
-            if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructible)) // Starlight edit: RPD
+            // Starlight Start: RPD/RPLD
+            // The object is not in the RPD whitelist
+            if (!TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !deconstructible.RpdDeconstructable && component.IsRpd || !deconstructible.RpldDeconstructable && component.IsRPLD)
             {
                 if (popMsgs)
                     _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
 
                 return false;
             }
+            // Starlight End: RPD/RPLD
 
-            // Starlight Start: RPD
-            if (TryComp<RCDComponent>(uid, out var rcd) && rcd.IsRPD)
+            // The object is not in the whitelist
+            if (!deconstructible.Deconstructable) // Starlight Edit: RPD - Removed ``TryComp<RCDDeconstructableComponent>(target, out var deconstructible) || !``
             {
-                // RPD can only deconstruct entities flagged rpd: true
-                if (!deconstructible.RpdDeconstructable)
-                {
-                    if (popMsgs)
-                        _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
-                    return false;
-                }
+                if (popMsgs)
+                    _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
+
+                return false;
             }
-            else
-            {
-                // Normal RCD cannot deconstruct RPD-only entities
-                if (!deconstructible.Deconstructable || deconstructible.RpdDeconstructable)
-                {
-                    if (popMsgs)
-                        _popup.PopupClient(Loc.GetString("rcd-component-deconstruct-target-not-on-whitelist-message"), uid, user);
-                    return false;
-                }
-            }
-            // Starlight End
         }
 
         return true;
@@ -619,36 +767,80 @@ public sealed class RCDSystem : EntitySystem
 
     #region Entity construction/deconstruction
 
-    private void FinalizeRCDOperation(EntityUid uid, RCDComponent component, EntityUid gridUid, MapGridComponent mapGrid, TileRef tile, Vector2i position, Direction direction, EntityUid? target, EntityUid user)
+    // Starlight Edit: Add layer to finalize for deterministic layer placement.
+    private void FinalizeRCDOperation(EntityUid uid, RCDComponent component, EntityUid gridUid, MapGridComponent mapGrid, TileRef tile, Vector2i position, Direction direction, AtmosPipeLayer pipeLayer, EntityUid? target, EntityUid user)
     {
         if (!_net.IsServer)
             return;
 
-        var prototype = _protoManager.Index(component.ProtoId);
+        var prototype = component.CachedPrototype; // Starlight Edit: _protoManager.Index(component.ProtoId) -> component.CachedPrototype
 
-        // Starlight edit Start: RPD
-        var entityProtoId = prototype.Prototype;
-        if (component.UseMirrorPrototype && !string.IsNullOrEmpty(prototype.MirrorPrototype))
-            entityProtoId = prototype.MirrorPrototype;
-
-        if (component.IsRPD)
-            entityProtoId = ResolvePipeLayerPrototype(entityProtoId, component.SelectedPipeLayer);
-
-        if (string.IsNullOrEmpty(entityProtoId))
-        // Starlight edit End
+        if (prototype.Prototype == null)
             return;
 
         switch (prototype.Mode)
         {
             case RcdMode.ConstructTile:
-                // Starlight edit Start: RPD
-                _mapSystem.SetTile(gridUid, mapGrid, position, new Tile(_tileDefMan[entityProtoId].TileId));
-                _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used RCD to set grid: {gridUid} {position} to {entityProtoId}");
-                // Starlight edit End
+                _mapSystem.SetTile(gridUid, mapGrid, position, new Tile(_tileDefMan[prototype.Prototype].TileId));
+                _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used RCD to set grid: {gridUid} {position} to {prototype.Prototype}");
                 break;
 
             case RcdMode.ConstructObject:
-                var ent = Spawn(entityProtoId, _mapSystem.GridTileToLocal(gridUid, mapGrid, position)); // Starlight edit: RPD
+                // Starlight edit Start: RPD/RPLD
+                var proto = (component.UseMirrorPrototype && !string.IsNullOrEmpty(prototype.MirrorPrototype))
+                    ? prototype.MirrorPrototype
+                    : prototype.Prototype;
+
+                if ((component.IsRpd || component.IsRPLD) && prototype.HasLayers)
+                {
+                    if (_protoManager.TryIndex<EntityPrototype>(proto, out var entityProto) &&
+                        entityProto.TryGetComponent<AtmosPipeLayersComponent>(out var atmosPipeLayers, _entityManager.ComponentFactory) &&
+                        _pipeLayersSystem.TryGetAlternativePrototype(atmosPipeLayers, pipeLayer, out var newProtoId))
+                    {
+                        proto = newProtoId;
+                    }
+                }
+
+                // Calculate rotation before spawn
+                var rotation = GetConstructionRotation(uid, prototype, direction);
+
+                // For RPD/RPLD, if overlapping existing pipe, replace the pipe
+                if (component.IsRpd || component.IsRPLD)
+                {
+                    // We need to know what the pipe *would* look like to check for overlaps
+                    if (_protoManager.TryIndex<EntityPrototype>(proto, out var pipeProto) &&
+                        pipeProto.TryGetComponent<NodeContainerComponent>(out var nodeContainer, _entityManager.ComponentFactory))
+                    {
+                        // Check every node in the prototype to see if it overlaps something on the grid
+                        foreach (var node in nodeContainer.Nodes.Values)
+                        {
+                            if (node is IPipeNode pipeNode)
+                            {
+                                var proposed = new PipeRestrictOverlapSystem.ProposedPipe(
+                                    pipeNode.Direction,
+                                    pipeLayer,
+                                    rotation
+                                );
+
+                                // If there is a conflict, delete the old pipe first
+                                var conflict = _pipeOverlap.CheckIfWouldConflict(gridUid, position, proposed);
+                                if (Exists(conflict) && HasComp<RCDDeconstructableComponent>(conflict))
+                                {
+                                    _adminLogger.Add(LogType.RCD, LogImpact.Medium,
+                                        $"{ToPrettyString(user):user} RPD/RPLD replaced {ToPrettyString(conflict.Value)} at {position}");
+                                    Del(conflict.Value);
+                                    _audio.PlayPvs(component.SuccessSound, uid);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                var entityCoords = _mapSystem.GridTileToLocal(gridUid, mapGrid, position);
+                var mapCoords = new MapCoordinates(entityCoords.ToMapPos(EntityManager, _transform), entityCoords.GetMapId(EntityManager));
+
+                var ent = Spawn(proto, mapCoords, rotation: rotation);
+                // Starlight edit End: RPD/RPLD
 
                 switch (prototype.Rotation)
                 {
@@ -661,6 +853,15 @@ public sealed class RCDSystem : EntitySystem
                     case RcdRotation.User:
                         Transform(ent).LocalRotation = direction.ToAngle();
                         break;
+                }
+
+                if ((component.IsRpd || component.IsRPLD) && prototype.HasLayers && HasComp<PipeRestrictOverlapComponent>(ent))
+                {
+                    var entXformPost = Transform(ent);
+                    var overlapNow = _pipeOverlap.CheckOverlap(ent);
+
+                    if (!entXformPost.Anchored && !overlapNow)
+                        _transform.AnchorEntity(ent, entXformPost);
                 }
 
                 _adminLogger.Add(LogType.RCD, LogImpact.High, $"{ToPrettyString(user):user} used RCD to spawn {ToPrettyString(ent)} at {position} on grid {gridUid}");
@@ -690,24 +891,6 @@ public sealed class RCDSystem : EntitySystem
 
     #region Utility functions
 
-    // Starlight Start: RPD
-    private string? ResolvePipeLayerPrototype(string? entityProtoId, AtmosPipeLayer layer)
-    {
-        if (string.IsNullOrEmpty(entityProtoId))
-            return entityProtoId;
-
-        if (!_protoManager.TryIndex<EntityPrototype>(entityProtoId, out var entityProto))
-            return entityProtoId;
-
-        if (!entityProto.TryGetComponent(out AtmosPipeLayersComponent? pipeLayers, EntityManager.ComponentFactory))
-            return entityProtoId;
-
-        return _pipeLayers.TryGetAlternativePrototype(pipeLayers, layer, out var altProto)
-            ? altProto
-            : entityProtoId;
-    }
-    // Starlight End
-
     private bool DoesCustomBoundsIntersectWithFixture(PolygonShape boundingPolygon, Transform boundingTransform, EntityUid fixtureOwner, Fixture fixture)
     {
         var entXformComp = Transform(fixtureOwner);
@@ -715,6 +898,38 @@ public sealed class RCDSystem : EntitySystem
 
         return boundingPolygon.ComputeAABB(boundingTransform, 0).Intersects(fixture.Shape.ComputeAABB(entXform, 0));
     }
+
+    // Starlight Start: RPD/RPLD
+    // Break out GetConstructionRotation into its own helper method since it's used in multiple places and the logic is a bit more complex with the addition of RPD/RPLD rotation options.
+    private Angle GetConstructionRotation(EntityUid rcdUid, RCDPrototype prototype, Direction direction)
+    {
+        return prototype.Rotation switch
+        {
+            RcdRotation.Fixed => Angle.Zero,
+            RcdRotation.Camera => Transform(rcdUid).LocalRotation,
+            RcdRotation.User => direction.ToAngle(),
+            _ => Angle.Zero
+        };
+    }
+
+    public void UpdateCachedPrototype(EntityUid uid, RCDComponent component)
+    {
+        if (component.ProtoId.Id != component.CachedPrototype?.Prototype ||
+            (component.CachedPrototype?.MirrorPrototype != null &&
+             component.ProtoId.Id != component.CachedPrototype?.MirrorPrototype))
+        {
+            component.CachedPrototype = _protoManager.Index(component.ProtoId);
+        }
+    }
+
+    public RpdMode GetCurrentRpdMode(EntityUid uid, RCDComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return RpdMode.Free; // default to Free mode
+
+        return component.CurrentMode;
+    }
+    // Starlight End: RPD
 
     #endregion
 }
@@ -729,6 +944,9 @@ public sealed partial class RCDDoAfterEvent : DoAfterEvent
     public Direction Direction { get; private set; }
 
     [DataField]
+    public AtmosPipeLayer PipeLayer { get; private set; } = AtmosPipeLayer.Primary;     // Starlight Edit: Layer snapshot captured at doafter start and replayed on finalize.
+
+    [DataField]
     public ProtoId<RCDPrototype> StartingProtoId { get; private set; }
 
     [DataField]
@@ -739,10 +957,12 @@ public sealed partial class RCDDoAfterEvent : DoAfterEvent
 
     private RCDDoAfterEvent() { }
 
-    public RCDDoAfterEvent(NetCoordinates location, Direction direction, ProtoId<RCDPrototype> startingProtoId, int cost, NetEntity? effect = null)
+    // Starlight Edit: Constructor stores layer placement snapshot.
+    public RCDDoAfterEvent(NetCoordinates location, Direction direction, AtmosPipeLayer pipeLayer, ProtoId<RCDPrototype> startingProtoId, int cost, NetEntity? effect = null)
     {
         Location = location;
         Direction = direction;
+        PipeLayer = pipeLayer;        // Starlight Edit
         StartingProtoId = startingProtoId;
         Cost = cost;
         Effect = effect;

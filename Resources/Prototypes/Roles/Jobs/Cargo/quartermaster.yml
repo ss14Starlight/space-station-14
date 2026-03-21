@@ -12,14 +12,10 @@
       time: 5h # Starlight
     - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 20h # Starlight
-    - !type:TraitsRequirement
-      traits:
-      - Iterator
-      inverted: true
+      time: 30h # Starlight
   weight: 10
   startingGear: QuartermasterGear
-  icon: "JobIconQuarterMaster"
+  icon: "JobIconQuartermaster" #Starlight
   supervisors: job-supervisors-captain
   canBeAntag: false
   access:
@@ -27,6 +23,7 @@
   - Salvage
   - SalvageLead # Starlight
   - Mining # Starlight
+  - Mail # Starlight
   - Quartermaster
   - Maintenance
   - External

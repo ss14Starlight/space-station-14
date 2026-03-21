@@ -104,6 +104,20 @@ public sealed partial class StrapComponent : Component
     /// </summary>
     [DataField]
     public bool BuckleOnInteractHand = true;
+
+    #region Starlight
+    /// <summary>
+    /// Whether the user needs hands to buckle.
+    /// </summary>
+    [DataField]
+    public bool NeedsHands = true;
+
+    /// <summary>
+    /// Whether the target needs to be unvisible.
+    /// </summary>
+    [DataField]
+    public bool SetVisible = false;
+    #endregion
 }
 
 public enum StrapPosition

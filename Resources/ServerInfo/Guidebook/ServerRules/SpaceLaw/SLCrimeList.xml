@@ -124,6 +124,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Tampering with Machinery (4)
       </Box>
     </ColorBox>
     <ColorBox Color="#2e422e">
@@ -156,11 +157,12 @@
     </ColorBox>
     <ColorBox Color="#453a59">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Mass Destruction (4)
+        Destruction of Property (4)
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Mass Destruction (4)
       </Box>
     </ColorBox>
     <ColorBox Color="#453a59">
@@ -409,7 +411,7 @@
   
   3. Petty Theft, Grand Theft, and Armed Robbery
   
-  4. Vandalism, Damage of Property, Mass Destruction, Terrorism
+  4. Vandalism, Tampering with Machinery, Damage of Property, Destruction of Property, Mass Destruction, Terrorism
   
   5. Trespass, Secure Trespass
   
@@ -539,7 +541,17 @@
     </ColorBox>
     <ColorBox Color="#453a59">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Damage/Destruction of Property
+        Tampering with Machinery
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#453a59">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        To tamper with a machine such as cutting wires or modifying their functions. Includes but is not limited to; consoles, airlocks, and Silicons.
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#453a59">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Damage of Property
       </Box>
     </ColorBox>
     <ColorBox Color="#453a59">
@@ -662,16 +674,6 @@
         	To intentionally resist and flee arrest or detainment by an authorized staff. This only applies if someone is actively being physically arrested. People uncuffing or assisting others out of an arrest can also be charged with this. Breach of custody is a separate crime.
       </Box>
     </ColorBox>
-    <ColorBox Color="#453a59">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Mass Destruction
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#453a59">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-    	  To cause massive damage to an area or major station system. This includes major bombings and sabotage of critical station systems like power, medical, chemistry, substations, and atmospherics.
-      </Box>
-    </ColorBox>
     <ColorBox Color="#2e422e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         Grand Theft
@@ -684,12 +686,12 @@
     </ColorBox>
     <ColorBox Color="#2e422e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-       Mass Destruction
+       Destruction of Property
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-      	To cause massive damage to an area or major station system. This includes major bombings and sabotage of critical station systems like power, medical, chemistry, substations, and atmospherics.
+      	To destroy the property of another or the station. This includes but is not limited to work consoles, airlocks, and destroying or critically damaging a Cyborg's chassis.
       </Box>
     </ColorBox>
     <ColorBox Color="#59563a">
@@ -754,9 +756,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To break out of a cell or custody with the intention of escaping. This applies to people breaking others out. Repeat offenses may have this charge increased to permanent confinement and later elevated to an execution with the Captain's authority only if the suspect has repeatedly committed breach of custody.
-        
-        Breach of custody for the preservation of life, not including to escape execution, such as to vacate a location made dangerous due to gunfire, fire, spacing, or lack of oxygen- may be reduced or ignored at the Warden or Head of Security's discretion.
+        To break out of a cell or custody with the intention of escaping. This applies to people breaking others out. Repeat offenses may have this charge increased to permanent confinement and later elevated to an execution with the Captain's authority only if the suspect has repeatedly committed breach of custody. Breach of custody for the preservation of life, not including to escape execution, such as to vacate a location made dangerous due to gunfire, fire, spacing, or lack of oxygen- may be reduced or ignored at the Warden or Head of Security's discretion.
       </Box>
     </ColorBox>
     <ColorBox Color="#2f3832">
@@ -766,9 +766,17 @@
     </ColorBox>
     <ColorBox Color="#2f3832">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To make, hold, or use Significant Syndicate contraband. Significant Syndicate contraband may only be used in emergencies, and only to prevent death or gross bodily harm.
-        
-        Significant Syndicate contraband is any Syndicate contraband that can be used to hinder the station or aid it's enemies in an obvious way. Any syndicate contraband that does not meet this definition is to be considered minor contraband.
+        To make, hold, or use Significant Syndicate contraband. Significant Syndicate contraband may only be used in emergencies, and only to prevent death or gross bodily harm. Significant Syndicate contraband is any Syndicate contraband that can be used to hinder the station or aid it's enemies in an obvious way. Any syndicate contraband that does not meet this definition is to be considered minor contraband.
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2e422e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+       Mass Destruction
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      	To cause massive damage to an area or major station system. This includes major bombings and sabotage of critical station systems like power, medical, chemistry, substations, and atmospherics.
       </Box>
     </ColorBox>
     <ColorBox>
@@ -818,7 +826,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To consume any part of a sentient humanoid. Consumption of vital components should be treated more harshly. This can be charged on top of other charges such as Murder or Assault if the suspect committed these crimes to obtain the parts consumed. Consumption of blood is not considered cannibalism, but if the source is non-consensual or stolen it may be assault or theft.
+        To consume any part of a sentient humanoid. Consumption of vital components should be treated more harshly. This can be charged on top of other charges such as Murder or Assault if the suspect committed these crimes to obtain the parts consumed. Consumption of blood is considered cannibalism unless the source is consensual under the Religious Freedoms act (Paperwork with the Chaplin and Captian's stamp are required for this exception). Discarded blood (Such as blood that a janitor would mop) is considered consensually given and does not reqire paperwork to be consumed.
       </Box>
     </ColorBox>
   </Table>

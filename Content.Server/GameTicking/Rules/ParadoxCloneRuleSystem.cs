@@ -13,6 +13,12 @@ using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Mind;
 using NetCord;
 using Robust.Shared.Random;
+// Starlight start
+using Content.Shared._Starlight.Antags.Vampires.Components;
+using Content.Shared._Starlight.Antags.Vampires.Prototypes;
+using Robust.Shared.Prototypes; 
+using Content.Shared.Eye.Blinding.Components;
+// Starlight end
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -25,6 +31,8 @@ public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComp
     [Dependency] private readonly SuitSensorSystem _sensor = default!;
     [Dependency] private readonly SharedCollectiveMindSystem _collectiveMindUpdate = default!;
     [Dependency] private readonly IChatManager _chatManager = default!; // SL add
+    [Dependency] private readonly IPrototypeManager _proto = default!; // SL add
+    [Dependency] private readonly IComponentFactory _componentFactory = default!; // SL add
 
     public override void Initialize()
     {
@@ -122,6 +130,9 @@ public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComp
         //starlight fix for collective minds
         _collectiveMindUpdate.ForceCloneFrom(ent.Comp.OriginalBody.Value, clone.Value); // copy over the collective mind data from the original to the clone
         //starlight end
+
+        // Starlight-edit
+        TryCopyVampireAbilities(ent.Comp.OriginalBody.Value, clone.Value);
     }
 
     private void AfterAntagEntitySelected(Entity<ParadoxCloneRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
@@ -134,13 +145,40 @@ public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComp
 
         _mind.CopyObjectives(ent.Comp.OriginalMind.Value, (cloneMindId, cloneMindComp), ent.Comp.ObjectiveWhitelist, ent.Comp.ObjectiveBlacklist);
     }
-    
+
     // SL start
     private Entity<MindComponent>? FindValidPlayer()
     {
         var validPlayers = _mind.GetAliveHumans().Where(mind => !HasComp<NoObjectiveTargetComponent>(mind.Comp.OwnedEntity)).ToHashSet();
         if (validPlayers.Count == 0) return null;
         return _random.Pick(validPlayers);
+    }
+
+    private void TryCopyVampireAbilities(EntityUid original, EntityUid clone)
+    {
+        if (!TryComp<VampireComponent>(original, out var originalVampire))
+            return;
+
+        var cloneVampire = EnsureComp<VampireComponent>(clone);
+
+        cloneVampire.TotalBlood = originalVampire.TotalBlood;
+        cloneVampire.DrunkBlood = originalVampire.DrunkBlood;
+        cloneVampire.BloodFullness = originalVampire.BloodFullness;
+        cloneVampire.ChosenClassId = originalVampire.ChosenClassId;
+        cloneVampire.FullPower = originalVampire.FullPower;
+
+        Dirty(clone, cloneVampire);
+
+        if (!string.IsNullOrWhiteSpace(originalVampire.ChosenClassId)
+            && _proto.TryIndex<VampireClassPrototype>(originalVampire.ChosenClassId, out var classProto))
+        {
+            var reg = _componentFactory.GetRegistration(classProto.ClassComponent, ignoreCase: true);
+            var classComp = _componentFactory.GetComponent(reg.Type);
+            EntityManager.AddComponent(clone, classComp);
+
+            if (classProto.ID == "Umbrae")
+                EnsureComp<NightVisionComponent>(clone);
+        }
     }
     // SL end
 }

@@ -17,7 +17,7 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconShaftMiner
+  id: JobIconMiningSpecialist #Starlight
   icon:
     sprite: *icon-rsi
     state: ShaftMiner
@@ -75,7 +75,7 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconQuarterMaster
+  id: JobIconQuartermaster #Starlight
   icon:
     sprite: *icon-rsi
     state: QuarterMaster
@@ -471,7 +471,7 @@
   parent: JobIcon
   id: JobIconXenoborg
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi #Starlight
     state: Xenoborg
   jobName: chat-radio-xenoborg
 
@@ -479,7 +479,7 @@
   parent: JobIcon
   id: JobIconXenoborgMothership
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi #Starlight
     state: Mothership
   jobName: chat-radio-mothership
 
@@ -489,7 +489,7 @@
   parent: JobIcon
   id: JobIconCBURN
   icon:
-    sprite: *icon-rsi
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi #Starlight
     state: CBURN
   jobName: job-name-cburn
 
@@ -505,7 +505,7 @@
   parent: JobIcon
   id: JobIconERTLeader
   icon:
-    sprite: *icon-rsi
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi #Starlight
     state: ERTLeader
   jobName: job-name-ertleader
 
@@ -513,7 +513,7 @@
   parent: JobIcon
   id: JobIconERTChaplain
   icon:
-    sprite: *icon-rsi
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi #Starlight
     state: ERTChaplain
   jobName: job-name-ertchaplain
 
@@ -521,7 +521,7 @@
   parent: JobIcon
   id: JobIconERTEngineer
   icon:
-    sprite: *icon-rsi
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi #Starlight
     state: ERTEngineer
   jobName: job-name-ertengineer
 
@@ -529,15 +529,15 @@
   parent: JobIcon
   id: JobIconERTSecurity
   icon:
-    sprite: *icon-rsi
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi #Starlight
     state: ERTSecurity
   jobName: job-name-ertsecurity
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconERTMedic
+  id: JobIconERTMedical #Starlight
   icon:
-    sprite: *icon-rsi
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi #Starlight
     state: ERTMedical
   jobName: job-name-ertmedic
 
@@ -545,13 +545,13 @@
   parent: JobIcon
   id: JobIconERTJanitor
   icon:
-    sprite: *icon-rsi
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi #Starlight
     state: ERTJanitor
   jobName: job-name-ertjanitor
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconNanotrasen
+  id: JobIconNanoTrasenRepresentative
   icon:
     sprite: *icon-rsi
     state: Nanotrasen
@@ -595,24 +595,6 @@
   icon:
     sprite: *icon-rsi
     state: SeniorResearcher
-  allowSelection: false
-
-# Admeme
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconSkub
-  icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
-    state: Skub
-  allowSelection: false
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconCultistChaplain
-  icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
-    state: CultistChaplain
   allowSelection: false
 
 # Other

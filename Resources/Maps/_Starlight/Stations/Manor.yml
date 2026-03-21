@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 270.1.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 01/27/2026 21:47:40
-  entityCount: 31666
+  time: 02/02/2026 06:50:11
+  entityCount: 31668
 maps:
 - 1
 grids:
@@ -5640,12 +5640,12 @@ entities:
           -17,8:
             0: 239
             1: 32768
-            4: 12288
+            3: 12288
           -16,9:
             0: 65278
           -17,9:
             0: 61584
-            4: 99
+            3: 99
           -16,10:
             0: 65535
           -17,10:
@@ -6267,11 +6267,11 @@ entities:
           -17,1:
             1: 65280
           -16,2:
-            3: 4368
+            4: 4368
             0: 52416
           -17,2:
-            3: 52416
-            6: 4368
+            4: 52416
+            5: 4368
           -16,3:
             1: 240
             0: 61440
@@ -6286,7 +6286,7 @@ entities:
             1: 65280
           -15,2:
             0: 4368
-            4: 52416
+            3: 52416
           -15,3:
             1: 240
             0: 61440
@@ -6299,7 +6299,7 @@ entities:
           -14,1:
             1: 65280
           -14,2:
-            4: 4368
+            3: 4368
             1: 52428
           -14,3:
             1: 252
@@ -6371,17 +6371,17 @@ entities:
           -20,8:
             0: 52974
           -19,6:
-            4: 3959
+            3: 3959
           -19,7:
             0: 65535
           -19,3:
             0: 61811
             1: 136
           -19,4:
-            4: 60928
+            3: 60928
             0: 12
           -19,5:
-            5: 3808
+            6: 3808
           -19,8:
             0: 65535
           -18,6:
@@ -6398,7 +6398,7 @@ entities:
             0: 61166
           -18,8:
             0: 223
-            4: 57344
+            3: 57344
           -21,8:
             0: 32223
             1: 544
@@ -6424,7 +6424,7 @@ entities:
           -18,10:
             0: 47342
           -18,9:
-            4: 14
+            3: 14
             1: 3584
             0: 57344
           -24,4:
@@ -6564,7 +6564,7 @@ entities:
             1: 65280
           -18,2:
             1: 4369
-            6: 52416
+            5: 52416
           -18,-1:
             1: 17544
             0: 2048
@@ -7054,19 +7054,19 @@ entities:
             Nitrogen: 82.10312
         - volume: 2500
           temperature: 293.15
-          moles:
-            Nitrogen: 6666.982
-        - volume: 2500
-          temperature: 293.15
           moles: {}
         - volume: 2500
           temperature: 293.15
           moles:
-            Plasma: 6666.982
+            Nitrogen: 6666.982
         - volume: 2500
           temperature: 293.15
           moles:
             Oxygen: 6666.982
+        - volume: 2500
+          temperature: 293.15
+          moles:
+            Plasma: 6666.982
         chunkSize: 4
     - type: GasTileOverlay
     - type: IFF
@@ -10956,7 +10956,7 @@ entities:
       pos: 18.5,53.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -143306.1
+      secondsUntilStateChange: -143637.3
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -17037,13 +17037,6 @@ entities:
     components:
     - type: Transform
       pos: -37.611095,42.493416
-      parent: 2
-- proto: BaseChemistryEmptyVial
-  entities:
-  - uid: 1409
-    components:
-    - type: Transform
-      pos: 12.735142,-25.525002
       parent: 2
 - proto: BaseComputer
   entities:
@@ -42052,6 +42045,11 @@ entities:
     - type: Transform
       pos: 55.5,37.5
       parent: 2
+  - uid: 11232
+    components:
+    - type: Transform
+      pos: 29.5,56.5
+      parent: 2
   - uid: 12638
     components:
     - type: Transform
@@ -42131,6 +42129,11 @@ entities:
     components:
     - type: Transform
       pos: 59.5,38.5
+      parent: 2
+  - uid: 31668
+    components:
+    - type: Transform
+      pos: 28.5,56.5
       parent: 2
 - proto: CableApcStack
   entities:
@@ -66291,12 +66294,7 @@ entities:
   - uid: 11231
     components:
     - type: Transform
-      pos: 28.5,57.5
-      parent: 2
-  - uid: 11232
-    components:
-    - type: Transform
-      pos: 28.5,58.5
+      pos: 29.5,56.5
       parent: 2
   - uid: 11233
     components:
@@ -66382,6 +66380,11 @@ entities:
     components:
     - type: Transform
       pos: 62.5,32.5
+      parent: 2
+  - uid: 31667
+    components:
+    - type: Transform
+      pos: 29.5,57.5
       parent: 2
 - proto: CableTerminal
   entities:
@@ -77308,6 +77311,13 @@ entities:
     components:
     - type: Transform
       pos: 31.5,56.5
+      parent: 2
+- proto: ChemistryEmptyVial
+  entities:
+  - uid: 1409
+    components:
+    - type: Transform
+      pos: 12.735142,-25.525002
       parent: 2
 - proto: ChemistryHotplate
   entities:
@@ -149470,6 +149480,13 @@ entities:
     - type: Transform
       pos: 28.5,89.5
       parent: 2
+    - type: StationAiCore
+      lawConsole: 25946
+    - type: DeviceLinkSource
+      linkedPorts:
+        25946:
+        - - AiLawConsoleSender
+          - AiLawConsoleReceiver
 - proto: PlushieLizard
   entities:
   - uid: 23443
@@ -164700,6 +164717,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 33.5,75.5
       parent: 2
+    - type: SiliconLawUpdater
+      core: 23442
     - type: AccessReader
       accessListsOriginal:
       - - ResearchDirector
@@ -171658,6 +171677,9 @@ entities:
     - type: Transform
       pos: 29.5,56.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Chemistry
 - proto: VendingMachineCigs
   entities:
   - uid: 26994

@@ -36,6 +36,7 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -70,6 +71,7 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
         _eye.SetDrawFov(actor, true);
 
         QueueDel(relay);
+        _mover.ResetCamera(actor);
     }
 
     private void OnActivatableUIOpenAttemptEvent(Entity<RemoteEyeConsoleComponent> ent, ref ActivatableUIOpenAttemptEvent args)
@@ -167,8 +169,9 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
         Dirty(ent);
 
         _mover.SetRelay(viewer, eye);
+        _mover.ResetCamera(viewer);
 
-        if(TryComp<InputMoverComponent>(viewer, out var mover))
+        if (TryComp<InputMoverComponent>(viewer, out var mover))
         {
             mover.CanMove = true;
             Dirty(viewer, mover);

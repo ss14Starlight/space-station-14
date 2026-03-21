@@ -44,7 +44,9 @@
   - Surgery
   - Paramedic
   - Mining
-  - SalvageLead # Starlight end
+  - SalvageLead
+  - Mail
+  - Pirate # Starlight end
 
 
 - type: accessGroup

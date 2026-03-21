@@ -6,6 +6,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using Content.Shared.Humanoid; // Starlight
+using Content.Shared._Starlight.Cybernetics; // Starlight
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Emp;
@@ -17,6 +19,7 @@ public abstract class SharedEmpSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedCyberneticDisruptionSystem _disrupt = default!; // Starlight
 
     private HashSet<EntityUid> _entSet = new();
     private EntityQuery<EmpResistanceComponent> _resistanceQuery;
@@ -124,6 +127,12 @@ public abstract class SharedEmpSystem : EntitySystem
         // TODO: replace with PredictedSpawn once it works with animated sprites
         if (ev.Affected && _net.IsServer)
             Spawn(EmpDisabledEffectPrototype, Transform(uid).Coordinates);
+        
+        //Starlight Start
+        //Disrupt humanoids.
+        if(TryComp(uid, out HumanoidAppearanceComponent? _))
+            _disrupt.TryAddCyberneticDisruptionDuration(uid, duration);
+        //Starlight End
 
         if (!ev.Disabled)
             return ev.Affected;

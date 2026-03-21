@@ -1,0 +1,109 @@
+## Static Recipes
+
+- type: latheRecipePack
+  id: StarlightMedicalStatic
+  recipes:
+    - PatchPack # Starlight
+
+## Dynamic recipes
+
+- type: latheRecipePack
+  id: StarlightSurgeryDynamic
+  recipes:
+  - BoneSetter
+  - BoneGel
+  - Scalpel
+  - Retractor
+  - Cautery
+  - Saw
+  - Hemostat
+  - Drill
+  - SawAdvanced
+  - ScalpelAdvanced
+  - BoneSetterAdvanced
+  - RetractorAdvanced
+  - HemostatAdvanced
+
+#
+
+- type: latheRecipePack
+  id: StarlightAutomendersDynamic
+  recipes:
+  - AutoMenderBrute
+  - AutoMenderBurn
+
+#
+
+- type: latheRecipePack
+  id: StarlightCyberlimbDynamic
+  recipes:
+  - LeftArmCyber
+  - RightArmCyber
+  - LeftHandCyber
+  - RightHandCyber
+  - LeftLegCyber
+  - RightLegCyber
+  - LeftFootCyber
+  - RightFootCyber
+  - LeftLegCyberHydraulic
+  - RightLegCyberHydraulic
+  - LeftLegCyberPilebunker
+  - RightLegCyberPilebunker
+  - LeftLegCyberCargo
+  - RightLegCyberCargo
+
+  - LeftArmCyberReaper
+  - RightArmCyberReaper
+  - LeftArmCyberMechwright
+  - RightArmCyberMechwright
+  - LeftLegCyberSpeed
+  - RightLegCyberSpeed
+  - LeftArmCyberSpacer
+  - RightArmCyberSpacer
+  - LeftArmCyberRiplet
+  - RightArmCyberRiplet
+  - LeftArmCyberAngel
+  - RightArmCyberAngel
+  - LeftArmCyberPersephone
+  - RightArmCyberPersephone
+  - LeftArmCyberGorilla
+  - RightArmCyberGorilla
+  - LeftArmCyberEngineer
+  - RightArmCyberEngineer
+  - LeftArmCyberInvestigator
+  - RightArmCyberInvestigator
+  - LeftArmCyberScribe
+  - RightArmCyberScribe
+
+#
+
+- type: latheRecipePack
+  id: StarlightCyberOrgansDynamic
+  recipes:
+  - CyberEyeNightVision
+  - CyberEyeThermal
+
+#
+
+- type: latheRecipePack
+  id: StarlightImplantDynamic
+  recipes:
+  - EyeImplantWelding
+  - EyeImplantMedical
+  - EyeImplantChemistry
+  - EyeImplantDiagnostic
+  - EyeImplantSecurity
+  - HandImplantInsulated
+  - HandImplantThrusters
+  - BrainImplantComms
+  - BrainImplantTranslator
+  - CyberRebreather # For now i will be lazy and put it here, not sure if i can excuse making a new pack for just 1 recipe
+
+- type: latheRecipePack
+  id: StarlightBudgetCyberOrgansDynamic
+  recipes:
+  - BudgetCyberEyes
+  - BudgetCyberTongue
+  - BudgetCyberLiver
+  - BudgetCyberStomach
+  - BudgetCyberKidneys

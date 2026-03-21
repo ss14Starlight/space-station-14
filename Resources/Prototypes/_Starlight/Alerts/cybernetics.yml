@@ -1,0 +1,7 @@
+- type: alert
+  id: CyberneticDisruption
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/cybernetic_disruption.rsi
+    state: cybernetic_disruption
+  name: alerts-cybernetic-disruption-name
+  description: alerts-cybernetic-disruption-desc

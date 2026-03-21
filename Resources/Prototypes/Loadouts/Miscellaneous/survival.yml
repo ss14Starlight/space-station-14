@@ -33,13 +33,6 @@
     species:
     - Vox
 
-- type: loadoutEffectGroup #🌟Starlight🌟
-  id: NonBreather
-  effects:
-  - !type:SpeciesLoadoutEffect
-    species:
-    - Shadekin
-
 # Basic
 - type: loadout
   id: EmergencyOxygen
@@ -59,16 +52,6 @@
     back:
     - BoxSurvivalNitrogen
 
-# NonBreathers, ie. Shadekin 🌟Starlight🌟
-- type: loadout
-  id: EmergencyNonBreather
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxSurvivalNonBreather
-
 # Clown
 - type: loadout
   id: EmergencyOxygenClown
@@ -87,15 +70,6 @@
   storage:
     back:
     - BoxHugNitrogen
-
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherClown
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxHugNonBreather
 
 # Mime
 - type: loadoutEffectGroup
@@ -144,15 +118,6 @@
     back:
     - BoxMimeMoth
 
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherMime
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-      - BoxMimeNonBreather
-
 # Engineering / Extended
 - type: loadout
   id: EmergencyOxygenExtended
@@ -171,15 +136,6 @@
   storage:
     back:
     - BoxSurvivalEngineeringNitrogen
-
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherExtended
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxSurvivalEngineeringNonBreather
 
 # Medical
 - type: loadout
@@ -200,15 +156,6 @@
     back:
     - BoxSurvivalMedicalNitrogen
 
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherMedical
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxSurvivalMedicalNonBreather
-
 # Security
 - type: loadout
   id: EmergencyOxygenSecurity
@@ -227,15 +174,6 @@
   storage:
     back:
     - BoxSurvivalSecurityNitrogen
-
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonbreatherSecurity
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxSurvivalSecurityNonBreather
 
 # Syndicate
 - type: loadout
@@ -278,15 +216,6 @@
   storage:
     back:
     - BoxSurvivalMilitaryDoubleNitrogen
-
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherSyndicate
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxSurvivalNonBreatherSyndicate
 
 # Pre-equipped species gear
 

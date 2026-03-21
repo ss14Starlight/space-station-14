@@ -1,0 +1,7 @@
+# Funky atmos - metal hydrogen
+- type: stack
+  id: MetalHydrogen
+  name: stack-metal-hydrogen
+  icon: { sprite: /Textures/Objects/Materials/ingots.rsi, state: hydrogen }
+  spawn: MetalHydrogen1
+  maxCount: 30

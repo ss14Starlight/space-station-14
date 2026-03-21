@@ -48,6 +48,8 @@
             <!-- Description -->
             <RichTextLabel Name="TraitDescriptionLabel"
                            StyleClasses="TraitsEntryDescriptionLabel"
+                           MaxWidth="1100"
+                           HorizontalAlignment="Left"
                            Margin="0 4 0 0"/>
         </BoxContainer>
     </BoxContainer>

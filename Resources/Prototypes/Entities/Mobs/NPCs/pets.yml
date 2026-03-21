@@ -58,6 +58,7 @@
     tags:
     - CannotSuicide
     - VimPilot
+    - DogEmotes # Starlight
   - type: StealTarget
     stealGroup: AnimalIan
 
@@ -417,6 +418,11 @@
     - Dog
     - GalacticCommon
     - Canilunzt
+  - type: Vocal
+    sounds:
+      Male: Dog
+      Female: Dog
+      Unsexed: Dog
   # Starlight-end
   - type: Sprite
     drawdepth: Mobs
@@ -478,10 +484,12 @@
   - type: Speech
     speechVerb: Canine
     speechSounds: Dog
+    allowedEmotes: [ 'Bark', 'Snarl', 'Whine', 'Howl', 'Growl', 'Yip' ] # Starlight
   - type: Tag
     tags:
     - CannotSuicide
     - VimPilot
+    - DogEmotes # Starlight
   - type: StealTarget
     stealGroup: AnimalMcGriff
   - type: MessyDrinker
@@ -535,6 +543,12 @@
     - Dog
     - GalacticCommon
     - Canilunzt
+  - type: Vocal
+    sounds:
+      Male: Dog
+      Female: Dog
+      Unsexed: Dog
+  - type: Emoting
   # Starlight-end
   - type: Sprite
     drawdepth: Mobs
@@ -584,11 +598,13 @@
     tags:
     - CannotSuicide
     - VimPilot
+    - DogEmotes # Starlight
   - type: StealTarget
     stealGroup: AnimalWalter
   - type: Speech
     speechVerb: Canine
     speechSounds: Dog
+    allowedEmotes: [ 'Bark', 'Snarl', 'Whine', 'Howl', 'Growl', 'Yip' ] # Starlight
   - type: MessyDrinker
 
 - type: entity

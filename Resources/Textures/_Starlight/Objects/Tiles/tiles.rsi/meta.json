@@ -33,6 +33,23 @@
         },
         {
             "name": "tile_white_bitile"
+        },
+        {
+            "name": "darkwood"
+        },
+        {
+            "name": "darkwood-large"
+        },
+        {
+            "name": "darkwoodpatternfloor"
+        },
+        {
+            "name": "darkwood-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "darkwood-inhand-left",
+            "directions": 4
         }
     ]
 }

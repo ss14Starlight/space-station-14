@@ -111,8 +111,9 @@
   - type: Tag # Redundant
     tags:
     - Sheet
-    - TiderAnvilParts #SL
     - ConstructionMaterial
+    - SheetPlasma # Funky atmos - /tg/ gases # Starlight Edit: PlasmaSheet -> SheetPlasma
+    - TiderAnvilParts # Starlight
 
 - type: entity
   parent: SheetPlasma
@@ -206,6 +207,13 @@
   name: uranium
   suffix: Full
   components:
+  # Funky atmos Start - /tg/ gases
+  - type: Tag
+    tags:
+    - Sheet
+    - ConstructionMaterial
+    - SheetUranium # Starlight Edit: UraniumSheet -> SheetUranium
+  # Funky atmos End - /tg/ gases
   - type: Material
   - type: Edible
     transferAmount: 10

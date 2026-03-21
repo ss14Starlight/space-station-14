@@ -1,0 +1,137 @@
+# Fashion-O-Mat-Start
+- type: entity
+  name: sweet pastry set bag
+  parent: ClothingBackpackDuffel
+  id: BoxPancakes
+  description: Look like someone who cares more about pancakes than what others think of her. Look like-A ROBOT??!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingHeadHoney
+        - id: ClothingUniformPastryDress
+        - id: ClothingUniformApron
+        - id: FoodBakedPancake
+          amount: 2
+
+- type: entity
+  name: aristocrat set bag
+  parent: ClothingBackpackDuffel
+  id: BoxBloodstained
+  description: I never drink… wine.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitVampir
+        - id: ClothingUniformBootsVampir
+        - id: ClothingUniformShinelVampir
+
+- type: entity
+  name: belpero set bag
+  parent: ClothingBackpackDuffel
+  id: BoxBelpero
+  description: Standard-issue attire authorized for formal duels. Any damage sustained during engagement is considered acceptable under Association bylaws.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingHeadBase0121
+        - id: ClothingNeckTieGeoffroyblack12
+        - id: ClothingUniformDama235123
+        - id: ClothingShoesBootsSalvage1208134
+
+- type: entity
+  parent: ClothingBackpackDuffelBundle
+  id: BoxRegalia
+  name: regalia set bag
+  description: A fancy red mobster costume. The bag that contains it is marked with a shield insignia of what looks like a thumb.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: RedRegaliaHat
+        - id: RedRegaliaSuit
+        - id: RedRegaliaGloves
+        - id: RedRegaliaCloak
+        - id: SlickShoes
+
+- type: entity
+  parent: ClothingBackpackTrunkSpaceCourier
+  id: BoxCourier
+  name: space courier trunk
+  suffix: Bundle
+  description: A stylish green costume bundle themed after a legendary space courier. Ranked 9/13 on popular review websites!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingEyesSpaceCourierGoggles
+        - id: ClothingUniformJumpsuitSpaceCourier
+        - id: ClothingHandsGlovesColorBlack
+        - id: ClothingOuterCoatSpaceCourier
+        - id: ClothingShoesBootsSpaceCourier
+
+- type: entity
+  parent: ClothingBackpackTrunkSpaceCourierPAI
+  id: BoxCourierPAI
+  name: space courier trunk
+  suffix: Bundle, Ghost Role
+  description: A stylish green costume bundle themed after a legendary space courier. Ranked 9/13 on popular review websites!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingEyesSpaceCourierGoggles
+        - id: ClothingUniformJumpsuitSpaceCourier
+        - id: ClothingHandsGlovesColorBlack
+        - id: ClothingOuterCoatSpaceCourier
+        - id: ClothingShoesBootsSpaceCourier
+# Fashion-O-Mat-End
+
+# Expedition Encryption Keys
+- type: entity
+  name: expedition encryption key box
+  parent: BoxEncryptionKeyAssistant
+  id: BoxEncryptionKeyExpedition
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: EncryptionKeyExpedition
+            amount: 4
+
+- type: entity
+  name: salvage encryption key box
+  parent: BoxEncryptionKeyAssistant
+  id: BoxEncryptionKeySalvage
+  suffix: DO NOT MAP, Steal Objective
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: EncryptionKeySalvage
+            amount: 4
+
+- type: entity
+  name: blacklight box
+  parent: BoxLightbulb
+  id: Boxblacklight
+  components:
+  - type: Sprite
+    layers:
+      - state: box
+      - state: lighttube
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: BlackLightTube
+        amount: 12

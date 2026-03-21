@@ -1,0 +1,197 @@
+- type: entity
+  id: OrganCyber
+  parent: BaseItem
+  name: "cyber organ"
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+  - type: Organ
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Iron
+        Quantity: 30
+
+- type: entity
+  id: CyberEyeNightVision
+  name: NightVision cyber eyes
+  description: Enables you to see in the dark.
+  parent: [OrganCyber, BaseOrganEyes]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: eyes_night
+  - type: FunctionalOrgan
+    comps: 
+    - type: NightVision
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: CyberEyesNightVision
+      Resomi: ResomiCyberEyesNightVision
+
+- type: entity
+  id: CyberEyeThermal
+  name: ThermalVision cyber eyes
+  description: Enables you to see in the dark and detect warm objects through walls.
+  parent: [OrganCyber, BaseOrganEyes]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    state: eyes_thermal
+  - type: FunctionalOrgan
+    comps: 
+    - type: ThermalVision
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: CyberEyesThermalVision
+      Resomi: ResomiCyberEyesThermalVision
+
+- type: entity
+  id: BudgetCyberEyes
+  name: budget cyber eyes
+  description: Cold and soulless. Just as depressing to look out of as to look into.
+  parent: [OrganCyber, BaseOrganEyes]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
+    layers:
+      - state: eyeball-l
+      - state: eyeball-r
+  - type: FunctionalOrgan
+    comps: 
+    - type: NoirOverlay
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobHumanoidEyes
+      Resomi: MobResomiEyes
+      Moth: MobMothEyes
+      Felionoid: MobFelionoidEyes
+      Thaven: MobThavenEyes
+      Avali: MobAvaliEyes
+      Shadekin: MobShadekinEyes
+      Arachnid: MobArachnidEyes
+      Diona: MobDionaEyes
+      Vox: MobVoxEyes
+      Cyclorite: MobCycloriteEyes
+      Abductor: MobAbductorEyes
+
+- type: entity
+  id: BudgetCyberTongue
+  name: budget cyber tongue
+  description: An artificial tongue with full range of movement. Taste buds not included.
+  parent: [OrganCyber, BaseOrganTongue]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
+    state: tongue
+  - type: FunctionalOrgan
+    comps: 
+    - type: UnableToTaste
+
+- type: entity
+  id: BudgetCyberLiver
+  name: budget cyber liver
+  description: "Design so reliable, it didn't have to be changed for the last 237 years! Warning: This product isn't meant for recreational drinking!"
+  parent: [OrganCyber, OrganHumanLiver]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
+    state: liver
+  - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
+    maxReagents: 1
+    metabolizerTypes: [BudgetCyber]
+    groups:
+    - id: Alcohol
+      rateModifier: 0.2 # removes alcohol very slowly along with the stomach removing it as a drink
+
+- type: entity
+  id: BudgetCyberStomach
+  name: budget cyber stomach
+  description: An artifical stomach. Its lack of elasticity is a desired feature for those who want to control their eating habits.
+  parent: [OrganCyber, OrganHumanStomach]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
+    state: stomach
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 30
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Metabolizer
+    maxReagents: 3
+    metabolizerTypes: [BudgetCyber]
+    groups:
+    - id: Food
+    - id: Drink
+
+- type: entity
+  id: BudgetCyberKidneys
+  name: budget cyber kidneys
+  description: A pair of artificial kidneys. Due to cheap materials used, they waste significantly more water than organic ones.
+  parent: [OrganCyber, OrganHumanKidneys]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
+    layers:
+      - state: kidney-l
+      - state: kidney-r
+  - type: FunctionalOrgan
+    comps: 
+    - type: ThirstRateMultiplier
+      multiplier: 1.25
+
+- type: entity
+  id: CyberRebreather
+  name: cyber rebreather
+  description: Artificial lungs with an integrated gas tank system. Can be filled with any breathable gas mixture.
+  parent: [OrganCyber, OrganHumanLungs]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/breathable_cyber_lungs.rsi
+    layers:
+      - state: lung-l
+      - state: lung-r
+  - type: Metabolizer
+    metabolizerTypes: [ Human ]
+  - type: Lung
+    alert: LowOxygen
+  - type: Item
+    size: Normal
+    heldPrefix: lungs
+    sprite: _Starlight/Objects/Specific/Medical/breathable_cyber_lungs.rsi
+    shape:
+    - 0,0,3,3
+  - type: BreathMask
+  - type: OrganBreathTool
+    startActivated: false
+  - type: GasTank
+    air:
+      volume: 2.5
+      temperature: 293.15
+    outputPressure: 21.3
+  - type: OrganGasTankFillable
+    targetPressure: 1000.0
+  - type: UseDelay
+    delays:
+      gasTank:
+        length: 1.0
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
+      enum.SharedGasTankUiKey.OrganKey:
+        type: BreathableOrganBoundUserInterface
+  - type: Tag
+    tags:
+    - GasTank

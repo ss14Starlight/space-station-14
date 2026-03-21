@@ -36,12 +36,15 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.VentCraw;
+using Content.Shared.VentCrawl;
 
 #region Starlight
+using Content.Shared._Starlight.Weapons.DualWield;
 using Content.Shared.Mech.Components;
 using Content.Shared.Starlight.Utility;
 using Content.Shared.Weapons.Hitscan.Events;
+using Content.Shared.Movement.Components;
+using Content.Shared._Starlight.Camera;
 #endregion Starlight
 
 namespace Content.Shared.Weapons.Ranged.Systems;
@@ -74,6 +77,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] protected readonly TagSystem TagSystem = default!;
     [Dependency] protected readonly ThrowingSystem ThrowingSystem = default!;
+    [Dependency] private readonly ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
 
     /// <summary>
     /// Default projectile speed
@@ -116,6 +120,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         InitializeClothing();
         InitializeContainer();
         InitializeSolution();
+        InitializeMech(); //Starlight
 
         // Interactions
         SubscribeLocalEvent<GunComponent, GetVerbsEvent<AlternativeVerb>>(OnAltVerb);
@@ -160,7 +165,11 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
         }
 
-        if (gun.Owner != GetEntity(msg.Gun))
+        // 🌟Starlight🌟 — in dual-wield mode, TryGetGun already picks the correct alternating gun;
+        // skip the gun-ID match check so the server fires the right gun even when the client's
+        // NextIsLeft state hasn't synced back yet.
+        var isDualWield = TryComp<DualWieldComponent>(user.Value, out var dualWield) && dualWield.Active;
+        if (!isDualWield && gun.Owner != GetEntity(msg.Gun))
             return;
 
         if (TryComp(user, out VentCrawlerComponent? crawlerComp) //🌟Starlight🌟
@@ -169,7 +178,14 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         gun.Comp.ShootCoordinates = GetCoordinates(msg.Coordinates);
         gun.Comp.Target = GetEntity(msg.Target);
-        AttemptShoot(user.Value, gun);
+        var fired = AttemptShoot(user.Value, gun);
+
+        // 🌟Starlight🌟 — dual-wield: only alternate after an actual shot so both guns stay in sync
+        if (isDualWield && fired)
+        {
+            dualWield!.NextIsLeft = !dualWield.NextIsLeft;
+            Dirty(user.Value, dualWield);
+        }
     }
 
     private void OnStopShootRequest(RequestStopShootEvent ev, EntitySessionEventArgs args)
@@ -206,6 +222,20 @@ public abstract partial class SharedGunSystem : EntitySystem
     public bool TryGetGun(EntityUid entity, out Entity<GunComponent> gun)
     {
         gun = default;
+
+        // 🌟Starlight🌟 — dual-wield: return the alternating gun instead of the active-hand gun
+        if (TryComp<DualWieldComponent>(entity, out var dualWieldComp) && dualWieldComp.Active)
+        {
+            var dwGunUid = dualWieldComp.NextIsLeft ? dualWieldComp.LeftGun : dualWieldComp.RightGun;
+            if (TryComp<GunComponent>(dwGunUid, out var dwGunComp))
+            {
+                gun = (dwGunUid, dwGunComp);
+                return true;
+            }
+            // Gun no longer valid — disable dual-wield and fall through
+            dualWieldComp.Active = false;
+            Dirty(entity, dualWieldComp);
+        }
 
         if (_hands.GetActiveItem(entity) is { } held &&
             TryComp(held, out GunComponent? gunComp))
@@ -439,10 +469,23 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
 
         // Shoot confirmed - sounds also played here in case it's invalid (e.g. cartridge already spent).
-        Shoot(gun, ev.Ammo, fromCoordinates, toCoordinates.Value, out var userImpulse, user, throwItems: attemptEv.ThrowItems);
+        Shoot(gun, ev.Ammo, fromCoordinates, toCoordinates.Value, out var userImpulse, out var fired, user, throwItems: attemptEv.ThrowItems);
         var shotEv = new GunShotEvent(user, ev.Ammo);
         RaiseLocalEvent(gun, ref shotEv);
 
+        //Starlight begin | ES Screenshake
+        if (fired)
+        {
+            var gunShakeRotation = new ScreenshakeParameters()
+            {
+                Trauma = 0.035f * gun.Comp.CameraRecoilScalarModified,
+                DecayRate = 1.2f,
+                Frequency = 0.008f
+            };
+            _shake.Screenshake(user, null, gunShakeRotation);
+        }
+        //Starlight end
+        
         if (!userImpulse || !TryComp<PhysicsComponent>(user, out var userPhysics))
             return true;
 
@@ -460,11 +503,12 @@ public abstract partial class SharedGunSystem : EntitySystem
         EntityCoordinates fromCoordinates,
         EntityCoordinates toCoordinates,
         out bool userImpulse,
+        out bool fired, // Starlight-edit
         EntityUid? user = null,
         bool throwItems = false)
     {
         var shootable = EnsureShootable(ammo);
-        Shoot(gun, new List<(EntityUid? Entity, IShootable Shootable)>(1) { (ammo, shootable) }, fromCoordinates, toCoordinates, out userImpulse, user, throwItems);
+        Shoot(gun, new List<(EntityUid? Entity, IShootable Shootable)>(1) { (ammo, shootable) }, fromCoordinates, toCoordinates, out userImpulse, out fired, user, throwItems); // Starlight-edit
     }
 
     public abstract void Shoot(
@@ -473,6 +517,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         EntityCoordinates fromCoordinates,
         EntityCoordinates toCoordinates,
         out bool userImpulse,
+        out bool fired, // Starlight-edit
         EntityUid? user = null,
         bool throwItems = false);
 
@@ -532,6 +577,43 @@ public abstract partial class SharedGunSystem : EntitySystem
     }
 
     #region Starlight
+
+    public Angle GetCurrentAngle(Entity<GunComponent?> gun, TimeSpan? curTime = null)
+    {
+        if (!Resolve(gun, ref gun.Comp))
+            return new Angle(0);
+        curTime ??= Timing.CurTime;
+        var timeSinceLastFire = (curTime - gun.Comp.LastFire).Value.TotalSeconds;
+        var newTheta = MathHelper.Clamp(gun.Comp.CurrentAngle.Theta + gun.Comp.AngleIncreaseModified.Theta - gun.Comp.AngleDecayModified.Theta * timeSinceLastFire, gun.Comp.MinAngleModified.Theta, gun.Comp.MaxAngleModified.Theta);
+        gun.Comp.CurrentAngle = new Angle(newTheta);
+        return gun.Comp.CurrentAngle;
+    }
+
+    public Angle GetRecoilAngle(Entity<GunComponent> gun, Angle direction, TimeSpan? curTime = null)
+    {
+        GetCurrentAngle(gun.AsNullable(), curTime);
+        var spreadModifier = 1f;
+
+        var xform = Transform(gun);
+        if (TryComp<InputMoverComponent>(xform.ParentUid, out var mover) && mover.CanMove && mover.HasDirectionalMovement)
+        {
+            if (mover.Sprinting)
+                spreadModifier += gun.Comp.SprintSpreadModifier;
+            else
+                spreadModifier += gun.Comp.WalkSpreadModifier;
+        }
+
+        // Convert it so angle can go either side.
+        var random = Random.NextFloat(-0.5f, 0.5f);
+
+        var finalSpread = gun.Comp.CurrentAngle.Theta * spreadModifier;
+        var spread = finalSpread * random;
+
+        var angle = new Angle(direction.Theta + gun.Comp.CurrentAngle.Theta * random);
+        DebugTools.Assert(spread <= gun.Comp.MaxAngleModified.Theta);
+        return angle;
+    }
+
     public bool IsChamberClosed(EntityUid gunEntity)
         => Appearance.TryGetData(gunEntity, AmmoVisuals.BoltClosed, out bool boltClosed) && boltClosed;
     #endregion

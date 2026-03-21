@@ -1,0 +1,33 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "made by neomoth",
+    "size":
+    {
+        "x": 32,
+        "y": 32
+    },
+    "states":
+    [
+        {
+            "name": "koni_ears",
+            "directions": 4
+        },
+        {
+            "name": "generic_cat_ears",
+            "directions": 4
+        },
+        {
+            "name": "koni_cheeks",
+            "directions": 4
+        },
+        {
+            "name": "koni_fluff",
+            "directions": 4
+        },
+        {
+            "name": "koni_wings",
+            "directions": 4
+        }
+    ]
+}

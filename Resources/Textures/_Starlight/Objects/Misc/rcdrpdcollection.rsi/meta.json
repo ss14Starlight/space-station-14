@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "RCD taken from CEV-Eris at commit https://github.com/discordia-space/CEV-Eris/commit/ce025775f73b66934ca96f3a8edc30993ea70b4d and modified by Swept, RPD taken from CEV-Eris at https://github.com/discordia-space/CEV-Eris/blob/8009c1d3db5ca5244f14899ffafaae93be0e318d/icons/obj/items.dmi, and then stuck into the same icon by wonderfulnewworld (GitHub)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "CEV-Eris, Swept",
+	  "license": "CC-BY-SA-3.0"
+    }
+  ]
+}

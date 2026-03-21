@@ -19,6 +19,7 @@ using Robust.Shared.Prototypes;
 
 #region Starlight
 using Content.Shared.Interaction.Components;
+using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 #endregion Starlight
 
@@ -29,16 +30,21 @@ public sealed class CluwneSystem : EntitySystem
 
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly AutoEmoteSystem _autoEmote = default!;
     [Dependency] private readonly NameModifierSystem _nameMod = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly OutfitSystem _outfitSystem = default!;
+
+    // Starlight start
     [Dependency] private readonly NpcFactionSystem _faction = default!;
 
-    [Dependency] private readonly OutfitSystem _outfitSystem = default!;
+    private static readonly ProtoId<NpcFactionPrototype> NanoTrasenFactionId = "NanoTrasen";
+    private static readonly ProtoId<NpcFactionPrototype> HonkNeutralFactionId = "HonkNeutral";
+    // Starlight end
 
     public override void Initialize()
     {
@@ -96,8 +102,8 @@ public sealed class CluwneSystem : EntitySystem
             _popupSystem.PopupEntity(transformMessage, ent.Owner, PopupType.LargeCaution);
             _audio.PlayPvs(ent.Comp.SpawnSound, ent.Owner);
 
-            _faction.RemoveFaction(ent.Owner, "NanoTrasen", false);
-            _faction.AddFaction(ent.Owner, "HonkNeutral");
+            _faction.RemoveFaction(ent.Owner, NanoTrasenFactionId, false);
+            _faction.AddFaction(ent.Owner, HonkNeutralFactionId);
         }
         else
         {
@@ -124,13 +130,13 @@ public sealed class CluwneSystem : EntitySystem
 
         args.Handled = _chat.TryPlayEmoteSound(ent.Owner, EmoteSounds, args.Emote);
 
-        if (_random.Prob(ent.Comp.GiggleRandomChance))
+        if (_robustRandom.Prob(ent.Comp.GiggleRandomChance))
         {
             _audio.PlayPvs(ent.Comp.SpawnSound, ent.Owner);
             _chat.TrySendInGameICMessage(ent.Owner, Loc.GetString(ent.Comp.GiggleEmote), InGameICChatType.Emote, ChatTransmitRange.Normal);
         }
 
-        else if (_random.Prob(ent.Comp.KnockChance))
+        else if (_robustRandom.Prob(ent.Comp.KnockChance))
         {
             _audio.PlayPvs(ent.Comp.KnockSound, ent.Owner);
             _stunSystem.TryUpdateParalyzeDuration(ent.Owner, TimeSpan.FromSeconds(ent.Comp.ParalyzeTime));

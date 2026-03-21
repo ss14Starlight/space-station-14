@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken/modified by Taral from tgstation at commit https://github.com/tgstation/tgstation/commit/dbc2435fa562f4ef130a7112d2a4cc9c80099894. Vox states by Flareguy for Space Station 14, Modifed by Killer Tamashi to be more in line with actual bulletproof armor. Resomi state created by Huaqas (GitHub).",
+    "copyright": "Taken/modified by Taral from tgstation at commit https://github.com/tgstation/tgstation/commit/dbc2435fa562f4ef130a7112d2a4cc9c80099894. Vox states by Flareguy for Space Station 14, Modifed by Killer Tamashi to be more in line with actual bulletproof armor. Resomi state created by Huaqas (GitHub). Dog state created by Swonkus (Github)",
     "size": {
         "x": 32,
         "y": 32
@@ -20,6 +20,10 @@
         },
         {
             "name": "equipped-OUTERCLOTHING-resomi",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-dog",
             "directions": 4
         },
         {

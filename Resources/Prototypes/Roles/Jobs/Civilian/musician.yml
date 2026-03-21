@@ -17,7 +17,7 @@
 - type: startingGear
   id: MusicianGear
   equipment:
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesMusicianSunglasses # Starlight
     #shoes: ClothingShoesBootsLaceup # 🌟Starlight🌟
     id: MusicianPDA
     ears: ClothingHeadsetService
@@ -30,6 +30,7 @@
   job: Musician
   equipment:
     head: ClothingHeadHatTophat
+    eyes: ClothingEyesGlassesMusicianSunglasses # Starlight
     mask: ClothingMaskBreath
     neck: ClothingMultipleHeadphones
     outerClothing: ClothingOuterWinterMusician

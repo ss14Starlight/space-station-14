@@ -59,12 +59,12 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             && TryComp(component.Headset, out EncryptionKeyHolderComponent? keys)
             && keys.Channels.Contains(args.Channel.ID))
         {
-            _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset);
+            _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset, args.Language); // Starlight-edit: This literally never specified language??? bruh.
             args.Channel = null; // prevent duplicate messages from other listeners.
         }
         //Starlight begin
         if (args.UsingCustomChannel && args.CustomChannel is not null)
-            _radio.SendCustomRadioMessage(uid, args.Message, args.CustomChannel, component.Headset); // Custom channel data is already confirmed to exist on this headset
+            _radio.SendCustomRadioMessage(uid, args.Message.Text, args.CustomChannel, component.Headset, args.Language); // Custom channel data is already confirmed to exist on this headset
         //Starlight end
     }
 

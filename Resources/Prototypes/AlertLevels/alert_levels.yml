@@ -58,6 +58,7 @@
       emergencyLightColor: '#ffba9c' #Starlight
       forceEnableEmergencyLights: true
       shuttleTime: 1200
+      dimmedLightMultiplier: 0.2 # Starlight
     epsilon:
       announcement: alert-level-epsilon-announcement
       selectable: false
@@ -70,18 +71,33 @@
       emergencyLightColor: '#938aff' #Starlight
       forceEnableEmergencyLights: true
       shuttleTime: 1200
+      dimmedLightMultiplier: 0 # Starlight
     omega: # begin starlight
       announcement: alert-level-omega-announcement
       selectable: false
       sound:
-        path: /Audio/_Starlight/Misc/omega.ogg
+        path: /Audio/_Starlight/Misc/omega_alt.ogg
         params:
           volume: -2
       disableSelection: true
-      color: '#454545'
-      emergencyLightColor: '#454545'
+      color: '#FFE4E1'
+      emergencyLightColor: '#FFE4E1'
       forceEnableEmergencyLights: true
       shuttleTime: 1200
+      dimmedLightMultiplier: 0.2
+    theta:
+      announcement: alert-level-theta-announcement
+      selectable: false
+      sound:
+        path: /Audio/_Starlight/StationEvents/Burn_The_Hive_by_Bolgarich.ogg
+        params:
+          volume: -2
+      disableSelection: true
+      color: '#741b47'
+      emergencyLightColor: '#741b47'
+      forceEnableEmergencyLights: true
+      shuttleTime: 1200
+      dimmedLightMultiplier: 0.2
     psi:
       announcement: alert-level-psi-announcement
       selectable: false
@@ -106,3 +122,12 @@
       forceEnableEmergencyLights: true
       shuttleTime: 600
       # end starlight
+    octarine: # Stellar - Cosmic Cult
+      announcement: alert-level-octarine-announcement
+      selectable: false
+      sound: /Audio/_ST/Announcements/Alerts/code_octarine.ogg
+      disableSelection: true
+      color: CadetBlue
+      emergencyLightColor: CadetBlue
+      forceEnableEmergencyLights: true
+      shuttleTime: 600

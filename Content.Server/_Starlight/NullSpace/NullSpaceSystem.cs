@@ -2,7 +2,6 @@ using Content.Shared.Eye;
 using Robust.Server.GameObjects;
 using Content.Server.Atmos.Components;
 using Content.Shared.Temperature.Components;
-using Content.Shared.Movement.Components;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using System.Linq;
@@ -12,7 +11,6 @@ using Content.Shared._Starlight.NullSpace;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server._Starlight.Weapons.Ranged;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -22,6 +20,9 @@ using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Enums;
 using Content.Server._Starlight.Bluespace;
+using Content.Shared.Shuttles.Components;
+using Content.Shared.Stunnable;
+using Content.Shared.Gravity;
 
 namespace Content.Server._Starlight.NullSpace;
 
@@ -36,11 +37,13 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly NullSpacePhaseSystem _phaseSystem = default!;
+    [Dependency] private readonly SharedGravitySystem _gravity = default!;
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<NullSpaceComponent, MapInitEvent>(OnStartup);
         SubscribeLocalEvent<NullSpaceComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<NullSpaceComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<NullSpaceComponent, AtmosExposedGetAirEvent>(OnExpose);
         SubscribeLocalEvent<NullSpaceComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
         SubscribeLocalEvent<NullSpaceComponent, NullSpaceShuntEvent>(NullSpaceShunt);
@@ -82,8 +85,13 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 
         SuppressFactions(uid, component, true);
 
+        RemComp<KnockedDownComponent>(uid);
+
         EnsureComp<PressureImmunityComponent>(uid);
-        EnsureComp<MovementIgnoreGravityComponent>(uid);
+        EnsureComp<FTLSmashImmuneComponent>(uid);
+
+        if (TryComp<GravityAffectedComponent>(uid, out var grav))
+            _gravity.RefreshWeightless((uid, grav), false);
 
         if (TryComp<HandsComponent>(uid, out var handsComponent))
         {
@@ -138,9 +146,15 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 
         RemComp<StealthComponent>(uid);
         RemComp<PressureImmunityComponent>(uid);
-        RemComp<MovementIgnoreGravityComponent>(uid);
+        RemComp<FTLSmashImmuneComponent>(uid);
 
         _virtualItem.DeleteInHandsMatching(uid, uid);
+    }
+
+    public void OnRemove(EntityUid uid, NullSpaceComponent component, ComponentRemove args)
+    {
+        if (TryComp<GravityAffectedComponent>(uid, out var grav))
+            _gravity.RefreshWeightless((uid, grav));
     }
 
     private void OnVirtualItemDeleted(EntityUid uid, NullSpaceComponent component, VirtualItemDeletedEvent args)

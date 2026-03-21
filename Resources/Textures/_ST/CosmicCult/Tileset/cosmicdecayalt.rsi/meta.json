@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "full",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "void0",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "void1",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "void2",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "void3",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "void4",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "void5",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "void6",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "void7",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        }
+    ]
+}

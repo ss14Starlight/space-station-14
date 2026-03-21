@@ -1,7 +1,7 @@
 - type: vendingMachineInventory
   id: ChemVendInventory
   startingInventory:
-    Jug: 4
+    Jug: 8 # Starlight - four jugs isn't nearly enough for high populations.
     JugAluminium: 2
     JugCarbon: 4
     JugChlorine: 1
@@ -30,7 +30,7 @@
 - type: vendingMachineInventory
   id: ChemVendInventorySyndicate
   startingInventory:
-    Jug: 4
+    Jug: 8 # Starlight - four jugs isn't nearly enough for high populations.
     JugAluminium: 2
     JugCarbon: 4
     JugChlorine: 1
