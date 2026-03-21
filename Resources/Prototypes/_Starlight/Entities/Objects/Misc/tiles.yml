@@ -566,7 +566,7 @@
   - type: FloorTile
     outputs:
       - Plating
-      - FloorMetalPurpe
+      - FloorMetalPurple
   - type: Stack
     stackType: FloorTileMetalPurple
 
