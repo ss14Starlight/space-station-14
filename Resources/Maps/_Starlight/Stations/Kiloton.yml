@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/27/2026 19:31:10
-  entityCount: 38956
+  time: 03/18/2026 18:54:28
+  entityCount: 39005
 maps:
 - 1
 grids:
@@ -173,7 +173,7 @@ entities:
           version: 7
         1,-4:
           ind: 1,-4
-          tiles: AgAAAAAAAAIAAAAAAAAJAAAAAAIAAgAAAAAAAAIAAAAAAAAJAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAQAAAAAAAAEAAAAAAAAAgAAAAAAAAYAAAAAAwAGAAAAAAIABgAAAAACAAkAAAAAAgAJAAAAAAIACQAAAAADAAkAAAAAAAAJAAAAAAEACQAAAAADAAkAAAAAAwACAAAAAAAAAgAAAAAAAAIAAAAAAAAEAAAAAAAABAAAAAAAAAIAAAAAAAAGAAAAAAEABgAAAAABAAYAAAAAAAAPAAAAAAEADwAAAAADAA8AAAAAAwAPAAAAAAIADwAAAAABAA8AAAAAAgAPAAAAAAAAEQAAAAACAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAYAAAAAAAACAAAAAAAADwAAAAABAA8AAAAAAAAPAAAAAAMADwAAAAACAA8AAAAAAQAPAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAcAAAAAAwAHAAAAAAEABwAAAAACAAcAAAAAAgAGAAAAAAMABgAAAAADAA8AAAAAAQAPAAAAAAAAAgAAAAAAAA8AAAAAAAAPAAAAAAMADwAAAAABAAIAAAAAAAARAAAAAAMAAgAAAAAAABEAAAAAAQAGAAAAAAIABgAAAAABAAYAAAAAAAAHAAAAAAEABgAAAAACAAYAAAAAAAAPAAAAAAEADwAAAAACAAIAAAAAAAAPAAAAAAAADwAAAAADAA8AAAAAAwACAAAAAAAAEQAAAAACAAIAAAAAAAACAAAAAAAABgAAAAAAAAYAAAAAAQAGAAAAAAMABwAAAAADAAYAAAAAAgAGAAAAAAMADwAAAAABAA8AAAAAAAACAAAAAAAADwAAAAADAA8AAAAAAgAPAAAAAAMAAgAAAAAAABEAAAAAAgACAAAAAAAAAgAAAAAAAAYAAAAAAwAGAAAAAAEABgAAAAABAAcAAAAAAAAGAAAAAAEABgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAARAAAAAAAAAgAAAAAAAAIAAAAAAAAGAAAAAAEABgAAAAABAAYAAAAAAgAHAAAAAAIABgAAAAACAAYAAAAAAwA6AAAAAAAAOgAAAAAAADoAAAAAAAA6AAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAABgAAAAABAAYAAAAAAgAGAAAAAAEABwAAAAABAAYAAAAAAQAGAAAAAAEAOgAAAAAAADoAAAAAAAA6AAAAAAAAOgAAAAAAAAIAAAAAAAARAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAcAAAAAAQAHAAAAAAAABwAAAAABAAcAAAAAAQAGAAAAAAMABgAAAAAAADoAAAAAAAA6AAAAAAAAOgAAAAAAADoAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAYAAAAAAAACAAAAAAAABgAAAAACAAIAAAAAAAA6AAAAAAAAOgAAAAAAADoAAAAAAAA6AAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAA8AAAAAAgAPAAAAAAEADwAAAAACAA8AAAAAAwAPAAAAAAMAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAARAAAAAAMAAgAAAAAAAAIAAAAAAAAPAAAAAAEADwAAAAADAA8AAAAAAwAPAAAAAAAADwAAAAABAA8AAAAAAAAPAAAAAAAADwAAAAAAAA8AAAAAAAACAAAAAAAADwAAAAAAAA8AAAAAAAAPAAAAAAAADwAAAAAAAA8AAAAAAAAwAAAAAAIADwAAAAAAADcAAAAAAAA3AAAAAAADNwAAAAAAAzcAAAAAAAMPAAAAAAAADwAAAAAAAA8AAAAAAAAPAAAAAAAAAgAAAAAAAA8AAAAAAAAPAAAAAAAADwAAAAAAAA8AAAAAAAAPAAAAAAAAMAAAAAABAA8AAAAAAwA3AAAAAAAABgAAAAACAAYAAAAAAwAGAAAAAAAADwAAAAAAAA8AAAAAAAAPAAAAAAAADwAAAAAAADAAAAAAAgAPAAAAAAAADwAAAAAAAA8AAAAAAAAPAAAAAAAADwAAAAAAAAIAAAAAAAAPAAAAAAMANwAAAAAAAAYAAAAAAwAGAAAAAAIABgAAAAADAA==
+          tiles: AgAAAAAAAAIAAAAAAAAJAAAAAAIAAgAAAAAAAAIAAAAAAAAJAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAYAAAAAAwAGAAAAAAIABgAAAAACAAkAAAAAAgAJAAAAAAIACQAAAAADAAkAAAAAAAAJAAAAAAEACQAAAAADAAkAAAAAAwACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAGAAAAAAEABgAAAAABAAYAAAAAAAAPAAAAAAEADwAAAAADAA8AAAAAAwAPAAAAAAIADwAAAAABAA8AAAAAAgAPAAAAAAAAEQAAAAACAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAYAAAAAAAACAAAAAAAADwAAAAABAA8AAAAAAAAPAAAAAAMADwAAAAACAA8AAAAAAQAPAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAcAAAAAAwAHAAAAAAEABwAAAAACAAcAAAAAAgAGAAAAAAMABgAAAAADAA8AAAAAAQAPAAAAAAAAAgAAAAAAAA8AAAAAAAAPAAAAAAMADwAAAAABAAIAAAAAAAARAAAAAAMAAgAAAAAAABEAAAAAAQAGAAAAAAIABgAAAAABAAYAAAAAAAAHAAAAAAEABgAAAAACAAYAAAAAAAAPAAAAAAEADwAAAAACAAIAAAAAAAAPAAAAAAAADwAAAAADAA8AAAAAAwACAAAAAAAAEQAAAAACAAIAAAAAAAACAAAAAAAABgAAAAAAAAYAAAAAAQAGAAAAAAMABwAAAAADAAYAAAAAAgAGAAAAAAMADwAAAAABAA8AAAAAAAACAAAAAAAADwAAAAADAA8AAAAAAgAPAAAAAAMAAgAAAAAAABEAAAAAAgACAAAAAAAAAgAAAAAAAAYAAAAAAwAGAAAAAAEABgAAAAABAAcAAAAAAAAGAAAAAAEABgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAARAAAAAAAAAgAAAAAAAAIAAAAAAAAGAAAAAAEABgAAAAABAAYAAAAAAgAHAAAAAAIABgAAAAACAAYAAAAAAwA6AAAAAAAAOgAAAAAAADoAAAAAAAA6AAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAABgAAAAABAAYAAAAAAgAGAAAAAAEABwAAAAABAAYAAAAAAQAGAAAAAAEAOgAAAAAAADoAAAAAAAA6AAAAAAAAOgAAAAAAAAIAAAAAAAARAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAcAAAAAAQAHAAAAAAAABwAAAAABAAcAAAAAAQAGAAAAAAMABgAAAAAAADoAAAAAAAA6AAAAAAAAOgAAAAAAADoAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAYAAAAAAAACAAAAAAAABgAAAAACAAIAAAAAAAA6AAAAAAAAOgAAAAAAADoAAAAAAAA6AAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAA8AAAAAAgAPAAAAAAEADwAAAAACAA8AAAAAAwAPAAAAAAMAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAARAAAAAAMAAgAAAAAAAAIAAAAAAAAPAAAAAAEADwAAAAADAA8AAAAAAwAPAAAAAAAADwAAAAABAA8AAAAAAAAPAAAAAAAADwAAAAAAAA8AAAAAAAACAAAAAAAADwAAAAAAAA8AAAAAAAAPAAAAAAAADwAAAAAAAA8AAAAAAAAwAAAAAAIADwAAAAAAADcAAAAAAAA3AAAAAAADNwAAAAAAAzcAAAAAAAMPAAAAAAAADwAAAAAAAA8AAAAAAAAPAAAAAAAAAgAAAAAAAA8AAAAAAAAPAAAAAAAADwAAAAAAAA8AAAAAAAAPAAAAAAAAMAAAAAABAA8AAAAAAwA3AAAAAAAABgAAAAACAAYAAAAAAwAGAAAAAAAADwAAAAAAAA8AAAAAAAAPAAAAAAAADwAAAAAAADAAAAAAAgAPAAAAAAAADwAAAAAAAA8AAAAAAAAPAAAAAAAADwAAAAAAAAIAAAAAAAAPAAAAAAMANwAAAAAAAAYAAAAAAwAGAAAAAAIABgAAAAADAA==
           version: 7
         2,-3:
           ind: 2,-3
@@ -341,7 +341,7 @@ entities:
           version: 7
         1,-5:
           ind: 1,-5
-          tiles: JAAAAAAAAAIAAAAAAAAjAAAAAAIAJAAAAAABAA8AAAAAAwACAAAAAAAAHwAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAACQAAAAAAgAjAAAAAAIAAgAAAAAAACQAAAAAAwAPAAAAAAEAAgAAAAAAAB8AAAAAAAAfAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAACAAAAAAAAAgAAAAAAACMAAAAAAgAkAAAAAAMADwAAAAAAAAIAAAAAAAAfAAAAAAAAHwAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAIwAAAAABACMAAAAAAQACAAAAAAAAAgAAAAAAAA8AAAAAAAACAAAAAAAAHwAAAAAAAB8AAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAA8AAAAAAQAjAAAAAAEAAgAAAAAAAB8AAAAAAAAfAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAPAAAAAAEAJAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAgAAAAAAAB8AAAAAAAAfAAAAAAMAAgAAAAAAAA8AAAAAAQAjAAAAAAEADwAAAAAAAA8AAAAAAwAkAAAAAAQAIwAAAAABAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAIAAAAAAAAfAAAAAAAAAgAAAAAAAAMAAAAAAAAPAAAAAAEADwAAAAADAA8AAAAAAAAkAAAAAAMAIwAAAAABACMAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAACAAAAAAAAHwAAAAAAAAIAAAAAAAAkAAAAAAIADwAAAAACAA8AAAAAAQAjAAAAAAEAJAAAAAAAACQAAAAAAQADAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAA8AAAAAAQAkAAAAAAQADwAAAAACAAIAAAAAAAACAAAAAAAAAgAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAEQAAAAAAAAIAAAAAAAAEAAAAAAAABAAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAABAAAAAAAAAQAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAQAAAAAAAAEAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAEAAAAAAAABAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAACQAAAAADAAkAAAAAAAACAAAAAAAACQAAAAABAAkAAAAAAgACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAABAAAAAAAAAQAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAkAAAAAAwAJAAAAAAEAAgAAAAAAAAkAAAAAAwAJAAAAAAMAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAQAAAAAAAAEAAAAAAAAAgAAAAAAAAIAAAAAAAAGAAAAAAMABgAAAAACAA==
+          tiles: JAAAAAAAAAIAAAAAAAAjAAAAAAIAJAAAAAABAA8AAAAAAwACAAAAAAAAHwAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAACQAAAAAAgAjAAAAAAIAAgAAAAAAACQAAAAAAwAPAAAAAAEAAgAAAAAAAB8AAAAAAAAfAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAACAAAAAAAAAgAAAAAAACMAAAAAAgAkAAAAAAMADwAAAAAAAAIAAAAAAAAfAAAAAAAAHwAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAIwAAAAABACMAAAAAAQACAAAAAAAAAgAAAAAAAA8AAAAAAAACAAAAAAAAHwAAAAAAAB8AAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAA8AAAAAAQAjAAAAAAEAAgAAAAAAAB8AAAAAAAAfAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAPAAAAAAEAJAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAgAAAAAAAB8AAAAAAAAfAAAAAAMAAgAAAAAAAA8AAAAAAQAjAAAAAAEADwAAAAAAAA8AAAAAAwAkAAAAAAQAIwAAAAABAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAIAAAAAAAAfAAAAAAAAAgAAAAAAAAMAAAAAAAAPAAAAAAEADwAAAAADAA8AAAAAAAAkAAAAAAMAIwAAAAABACMAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAACAAAAAAAAHwAAAAAAAAIAAAAAAAAkAAAAAAIADwAAAAACAA8AAAAAAQAjAAAAAAEAJAAAAAAAACQAAAAAAQADAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAA8AAAAAAQAkAAAAAAQADwAAAAACAAIAAAAAAAACAAAAAAAAAgAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAEQAAAAAAAAIAAAAAAAAEAAAAAAAABAAAAAAAAAMAAAAAAAADAAAAAAAAAwAAAAAAAAMAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAABAAAAAAAAAQAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAQAAAAAAAAEAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAEAAAAAAAABAAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAACQAAAAADAAkAAAAAAAACAAAAAAAACQAAAAABAAkAAAAAAgACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAABAAAAAAAAAQAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAkAAAAAAwAJAAAAAAEAAgAAAAAAAAkAAAAAAwAJAAAAAAMAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAAGAAAAAAMABgAAAAACAA==
           version: 7
         2,-5:
           ind: 2,-5
@@ -23288,70 +23288,190 @@ entities:
       rot: 3.141592653589793 rad
       pos: -45.5,68.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1069
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -20.5,-35.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1070
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 12.5,-36.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1071
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 33.5,-5.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1072
     components:
     - type: Transform
       pos: 19.5,12.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1073
     components:
     - type: Transform
       pos: -17.5,12.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1074
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -18.5,-21.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1075
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -32.5,-24.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1076
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -40.5,12.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1077
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -36.5,29.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1078
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -46.5,56.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1079
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,-54.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 1080
@@ -24678,6 +24798,13 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+- proto: BarSignLights
+  entities:
+  - uid: 25400
+    components:
+    - type: Transform
+      pos: -11.5,32.5
+      parent: 2
 - proto: BarSpoon
   entities:
   - uid: 1326
@@ -25820,29 +25947,95 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 39.5,-13.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1520
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 40.5,-15.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1521
     components:
     - type: Transform
       pos: -48.5,-3.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1522
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 37.5,15.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 1523
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 40.5,-13.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 23545
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -18.5,5.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: BodyBagFolded
   entities:
   - uid: 1524
@@ -25920,8 +26113,7 @@ entities:
   - uid: 1534
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -7.478449,-12.370681
+      pos: -11.471181,-10.38281
       parent: 2
 - proto: BookIanMountain
   entities:
@@ -26113,11 +26305,6 @@ entities:
     components:
     - type: Transform
       pos: -52.5,6.5
-      parent: 2
-  - uid: 1570
-    components:
-    - type: Transform
-      pos: -55.5,5.5
       parent: 2
   - uid: 1571
     components:
@@ -51862,11 +52049,21 @@ entities:
     - type: Transform
       pos: -5.4734783,29.575748
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 6692
     components:
     - type: Transform
       pos: 49.10138,41.446068
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: CablecuffsBroken
   entities:
   - uid: 6693
@@ -63630,6 +63827,11 @@ entities:
       parent: 2
     - type: Stack
       count: 4
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: CableMV
   entities:
   - uid: 9044
@@ -73792,6 +73994,24 @@ entities:
     - type: Transform
       pos: 34.5,26.5
       parent: 2
+  - uid: 38959
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 31.5,28.5
+      parent: 2
+  - uid: 38960
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 31.5,27.5
+      parent: 2
+  - uid: 38961
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 31.5,26.5
+      parent: 2
 - proto: CarpetPurple
   entities:
   - uid: 11050
@@ -74343,6 +74563,31 @@ entities:
     - type: Transform
       pos: -26.5,15.5
       parent: 2
+- proto: CashRegister
+  entities:
+  - uid: 38994
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -19.5,-0.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+  - uid: 38995
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -21.5,-30.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+  - uid: 39005
+    components:
+    - type: Transform
+      pos: -5.5,33.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
 - proto: Catwalk
   entities:
   - uid: 11150
@@ -80654,16 +80899,82 @@ entities:
     - type: Transform
       pos: -39.5,-18.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        beakerSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        outputSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12320
     components:
     - type: Transform
       pos: -44.5,38.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        beakerSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        outputSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12321
     components:
     - type: Transform
       pos: -44.5,34.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        beakerSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        outputSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ChessBoard
   entities:
   - uid: 12322
@@ -82232,7 +82543,7 @@ entities:
   - uid: 12623
     components:
     - type: Transform
-      pos: -5.6235247,33.716866
+      pos: -5.6904774,32.397453
       parent: 2
 - proto: ClothingHeadHatCapcap
   entities:
@@ -82258,7 +82569,7 @@ entities:
   - uid: 12627
     components:
     - type: Transform
-      pos: -11.496869,-10.280187
+      pos: -7.455556,-11.44531
       parent: 2
 - proto: ClothingHeadHatCone
   entities:
@@ -82704,7 +83015,7 @@ entities:
   - uid: 12697
     components:
     - type: Transform
-      pos: -5.2328997,33.591866
+      pos: -5.2998524,32.35058
       parent: 2
   - uid: 12698
     components:
@@ -83711,6 +84022,20 @@ entities:
     - type: Transform
       pos: 34.5,-56.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        disk_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerAlert
   entities:
   - uid: 12851
@@ -83719,28 +84044,78 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-9.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12852
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 20.5,23.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12853
     components:
     - type: Transform
       pos: 40.5,11.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12854
     components:
     - type: Transform
       pos: 51.5,19.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12855
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 12.5,60.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerAnalysisConsole
   entities:
   - uid: 12856
@@ -83749,6 +84124,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: -24.5,-55.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
     - type: AnalysisConsole
       analyzerEntity: 21628
     - type: DeviceLinkSource
@@ -83762,6 +84147,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: -26.5,-55.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
     - type: AnalysisConsole
       analyzerEntity: 21629
     - type: DeviceLinkSource
@@ -83777,28 +84172,78 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-10.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12859
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 20.5,22.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12860
     components:
     - type: Transform
       pos: 41.5,11.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12861
     components:
     - type: Transform
       pos: 53.5,19.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12862
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 12.5,59.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerBroken
   entities:
   - uid: 12863
@@ -83856,12 +84301,32 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-13.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12872
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 25.5,-48.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerCargoOrders
   entities:
   - uid: 12873
@@ -83870,30 +84335,80 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-13.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12874
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 21.5,-42.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12875
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 19.5,-44.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12876
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 31.5,-37.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12877
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 25.5,-46.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerCargoOrdersEngineering
   entities:
   - uid: 12878
@@ -83902,6 +84417,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 37.5,16.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerCargoOrdersMedical
   entities:
   - uid: 38912
@@ -83910,6 +84435,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -54.5,31.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerCargoOrdersScience
   entities:
   - uid: 12880
@@ -83918,12 +84453,32 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -23.5,-39.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12881
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -17.5,-60.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerCargoOrdersSecurity
   entities:
   - uid: 12882
@@ -83931,6 +84486,16 @@ entities:
     - type: Transform
       pos: -44.5,-18.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerCargoOrdersService
   entities:
   - uid: 12883
@@ -83939,12 +84504,32 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -22.5,-1.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12884
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 28.5,-0.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerComms
   entities:
   - uid: 12885
@@ -83952,12 +84537,171 @@ entities:
     - type: Transform
       pos: 0.5,-5.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12886
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 14.5,-18.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+- proto: ComputerCommsCargo
+  entities:
+  - uid: 14912
+    components:
+    - type: Transform
+      pos: 34.5,-36.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+- proto: ComputerCommsEngineering
+  entities:
+  - uid: 26431
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 31.5,26.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+- proto: ComputerCommsLaw
+  entities:
+  - uid: 1570
+    components:
+    - type: Transform
+      pos: -55.5,5.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+- proto: ComputerCommsMedical
+  entities:
+  - uid: 38958
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -63.5,22.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+- proto: ComputerCommsScience
+  entities:
+  - uid: 22476
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -17.5,-57.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+- proto: ComputerCommsSecurity
+  entities:
+  - uid: 26472
+    components:
+    - type: Transform
+      pos: -49.5,-12.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 38957
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -50.5,-33.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+- proto: ComputerCommsService
+  entities:
+  - uid: 27247
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -7.5,-12.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerCrewMonitoring
   entities:
   - uid: 12887
@@ -83965,52 +84709,142 @@ entities:
     - type: Transform
       pos: -5.5,-7.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12888
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -12.5,-13.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12889
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -4.5,-22.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12890
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -45.5,-13.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12891
     components:
     - type: Transform
       pos: 0.5,19.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12892
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -47.5,21.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12893
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -41.5,32.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12894
     components:
     - type: Transform
       pos: -67.5,23.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12895
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -65.5,15.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerCriminalRecords
   entities:
   - uid: 12896
@@ -84018,73 +84852,203 @@ entities:
     - type: Transform
       pos: -46.5,-29.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12897
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,-10.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12898
     components:
     - type: Transform
       pos: 27.5,-34.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12899
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -37.5,-29.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12900
     components:
     - type: Transform
       pos: -53.5,-25.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12901
     components:
     - type: Transform
       pos: -47.5,-12.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12902
     components:
     - type: Transform
       pos: -34.5,-30.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12903
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -50.5,1.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12904
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -54.5,9.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12905
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -58.5,4.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12906
     components:
     - type: Transform
       pos: -56.5,15.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12907
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -31.5,72.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12908
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -46.5,-23.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerCriminalRecordsDesktop
   entities:
   - uid: 12909
@@ -84093,6 +85057,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -37.5,-14.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerFrame
   entities:
   - uid: 12910
@@ -84113,12 +85087,32 @@ entities:
     - type: Transform
       pos: 0.5,-12.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12913
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -10.5,-16.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerId
   entities:
   - uid: 12914
@@ -84126,11 +85120,47 @@ entities:
     - type: Transform
       pos: -0.5,-5.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        IdCardConsole-privilegedId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        IdCardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12915
     components:
     - type: Transform
       pos: -12.5,-15.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        IdCardConsole-privilegedId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        IdCardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerIFF
   entities:
   - uid: 12916
@@ -84138,6 +85168,16 @@ entities:
     - type: Transform
       pos: -77.5,-16.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerIFFCircuitboard
   entities:
   - uid: 12917
@@ -84152,6 +85192,16 @@ entities:
     - type: Transform
       pos: -45.5,53.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerMassMediaCircuitboard
   entities:
   - uid: 12919
@@ -84166,34 +85216,94 @@ entities:
     - type: Transform
       pos: -4.5,-7.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12921
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -16.5,20.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12922
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -47.5,23.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12923
     components:
     - type: Transform
       pos: -68.5,23.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12924
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -67.5,15.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12925
     components:
     - type: Transform
       pos: -89.5,23.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerPowerMonitoring
   entities:
   - uid: 12926
@@ -84202,104 +85312,284 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-9.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12927
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -12.5,-22.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12928
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 22.5,-6.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12929
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -6.5,-55.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12930
     components:
     - type: Transform
       pos: -34.5,-38.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12931
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -59.5,-29.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12932
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 16.5,22.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12933
     components:
     - type: Transform
       pos: -5.5,16.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12934
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 26.5,17.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12935
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 32.5,26.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12936
     components:
     - type: Transform
       pos: 56.5,31.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12937
     components:
     - type: Transform
       pos: 40.5,39.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12938
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -57.5,-7.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12939
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -57.5,68.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12940
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -46.5,-48.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12941
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 67.5,-20.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12942
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 12.5,61.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12943
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 45.5,16.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerRadar
   entities:
   - uid: 12944
@@ -84308,47 +85598,127 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,-9.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12945
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 36.5,-64.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12946
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -31.5,73.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12947
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,81.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12948
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -72.5,-20.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12949
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 73.5,57.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12950
     components:
     - type: Transform
       pos: -79.5,-16.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12951
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 28.5,-58.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerResearchAndDevelopment
   entities:
   - uid: 12952
@@ -84356,22 +85726,62 @@ entities:
     - type: Transform
       pos: 6.5,-7.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12953
     components:
     - type: Transform
       pos: -22.5,-39.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12954
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -9.5,-60.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12955
     components:
     - type: Transform
       pos: -4.5,-52.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerRoboticsControl
   entities:
   - uid: 12956
@@ -84379,12 +85789,32 @@ entities:
     - type: Transform
       pos: 5.5,-7.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12957
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -13.5,-37.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerSalvageExpedition
   entities:
   - uid: 12958
@@ -84393,6 +85823,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: 34.5,-58.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerSalvageJobBoard
   entities:
   - uid: 12959
@@ -84401,6 +85841,16 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 34.5,-64.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerShuttle
   entities:
   - uid: 12960
@@ -84408,6 +85858,20 @@ entities:
     - type: Transform
       pos: -78.5,-16.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        disk_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerShuttleCargo
   entities:
   - uid: 12961
@@ -84416,12 +85880,40 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 31.5,-36.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        disk_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12962
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 36.5,-47.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        disk_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerShuttleMining
   entities:
   - uid: 12963
@@ -84429,6 +85921,20 @@ entities:
     - type: Transform
       pos: 28.5,-56.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        disk_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerSolarControl
   entities:
   - uid: 12964
@@ -84437,36 +85943,96 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-10.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12965
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 16.5,23.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12966
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -60.5,68.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12967
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -46.5,-49.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12968
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 67.5,-19.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12969
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 22.5,17.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerStationRecords
   entities:
   - uid: 12970
@@ -84474,24 +86040,64 @@ entities:
     - type: Transform
       pos: 1.5,-5.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12971
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -12.5,-14.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12972
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -45.5,-14.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12973
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -58.5,5.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerSurveillanceCameraMonitor
   entities:
   - uid: 12974
@@ -84500,62 +86106,172 @@ entities:
       rot: 3.141592653589793 rad
       pos: -45.5,-23.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12975
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,-9.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12976
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -4.5,-21.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12977
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 27.5,-36.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12978
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -37.5,-30.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12979
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -53.5,-27.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12980
     components:
     - type: Transform
       pos: -45.5,-29.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12981
     components:
     - type: Transform
       pos: -46.5,-12.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12982
     components:
     - type: Transform
       pos: -0.5,19.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12983
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -31.5,71.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12984
     components:
     - type: Transform
       pos: -35.5,-30.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerSurveillanceWirelessCameraMonitor
   entities:
   - uid: 12985
@@ -84564,11 +86280,31 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-10.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12986
     components:
     - type: Transform
       pos: 1.5,19.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerTechnologyDiskTerminal
   entities:
   - uid: 12987
@@ -84576,6 +86312,16 @@ entities:
     - type: Transform
       pos: -5.5,-52.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerTelevision
   entities:
   - uid: 12988
@@ -84583,38 +86329,108 @@ entities:
     - type: Transform
       pos: -11.5,-8.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12989
     components:
     - type: Transform
       pos: -21.5,5.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12990
     components:
     - type: Transform
       pos: 16.5,-52.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12991
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -11.5,-62.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12992
     components:
     - type: Transform
       pos: -73.5,23.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12993
     components:
     - type: Transform
       pos: 43.5,-30.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 12994
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 24.5,31.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ContainmentFieldGenerator
   entities:
   - uid: 12995
@@ -85487,6 +87303,26 @@ entities:
     components:
     - type: Transform
       pos: 91.5,68.5
+      parent: 2
+- proto: CurtainsBlackOpen
+  entities:
+  - uid: 38987
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 39.5,-27.5
+      parent: 2
+  - uid: 38988
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 39.5,-26.5
+      parent: 2
+  - uid: 38989
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 39.5,-25.5
       parent: 2
 - proto: CurtainsBlueOpen
   entities:
@@ -95581,14 +97417,6 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-  - uid: 14862
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -52.5,56.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
   - uid: 14863
     components:
     - type: Transform
@@ -95744,6 +97572,14 @@ entities:
     components:
     - type: Transform
       pos: 25.5,-54.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 39001
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -47.5,64.5
       parent: 2
     - type: Fixtures
       fixtures: {}
@@ -95949,11 +97785,6 @@ entities:
     components:
     - type: Transform
       pos: 14.5,-13.5
-      parent: 2
-  - uid: 14912
-    components:
-    - type: Transform
-      pos: 34.5,-36.5
       parent: 2
   - uid: 14913
     components:
@@ -99937,6 +101768,11 @@ entities:
       parent: 2
     - type: Stack
       count: 12
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 15321
     components:
     - type: Transform
@@ -99944,6 +101780,11 @@ entities:
       parent: 2
     - type: Stack
       count: 29
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: FloorWaterEntity
   entities:
   - uid: 15322
@@ -143459,7 +145300,7 @@ entities:
   - uid: 21354
     components:
     - type: Transform
-      pos: -7.353449,-11.761306
+      pos: -7.471181,-8.35156
       parent: 2
 - proto: IDComputerCircuitboard
   entities:
@@ -143524,16 +145365,31 @@ entities:
     - type: Transform
       pos: 23.948122,-72.686615
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 21365
     components:
     - type: Transform
       pos: 10.963747,-81.440994
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 21366
     components:
     - type: Transform
       pos: 48.488033,-24.457249
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: IngotGold1
   entities:
   - uid: 21367
@@ -143543,6 +145399,11 @@ entities:
       parent: 2
     - type: Stack
       count: 15
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: IngotSilver1
   entities:
   - uid: 21368
@@ -143552,6 +145413,11 @@ entities:
       parent: 2
     - type: Stack
       count: 15
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: Intellicard
   entities:
   - uid: 21369
@@ -144690,6 +146556,13 @@ entities:
     - type: Transform
       pos: 49.5,24.5
       parent: 2
+- proto: LockerBlueshieldFilled
+  entities:
+  - uid: 21500
+    components:
+    - type: Transform
+      pos: -4.5,-18.5
+      parent: 2
 - proto: LockerBooze
   entities:
   - uid: 12592
@@ -144745,13 +146618,6 @@ entities:
     components:
     - type: Transform
       pos: -39.5,-23.5
-      parent: 2
-- proto: LockerBSOFilled
-  entities:
-  - uid: 21500
-    components:
-    - type: Transform
-      pos: -4.5,-18.5
       parent: 2
 - proto: LockerCaptainFilledNoLaser
   entities:
@@ -145287,12 +147153,12 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: LockerWardenFilled
+- proto: LockerWardenFilledHardsuit
   entities:
   - uid: 21576
     components:
     - type: Transform
-      pos: -49.5,-12.5
+      pos: -50.5,-12.5
       parent: 2
 - proto: LockerWeldingSuppliesFilled
   entities:
@@ -146425,6 +148291,11 @@ entities:
     - type: Transform
       pos: 25.505556,-42.514297
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: MaterialCloth
   entities:
   - uid: 21786
@@ -146432,6 +148303,11 @@ entities:
     - type: Transform
       pos: -10.564564,-18.550138
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: MaterialWoodPlank
   entities:
   - uid: 21787
@@ -146439,11 +148315,21 @@ entities:
     - type: Transform
       pos: -10.38915,31.519478
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 21788
     components:
     - type: Transform
       pos: 45.45006,-29.412392
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: MaterialWoodPlank10
   entities:
   - uid: 21789
@@ -146451,6 +148337,11 @@ entities:
     - type: Transform
       pos: -83.450554,21.110868
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: Mattress
   entities:
   - uid: 21790
@@ -146724,26 +148615,51 @@ entities:
     - type: Transform
       pos: 42.3856,31.813902
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 21838
     components:
     - type: Transform
       pos: 42.463726,31.704527
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 21839
     components:
     - type: Transform
       pos: 42.3231,31.485777
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 21840
     components:
     - type: Transform
       pos: 38.35435,26.688902
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 21841
     components:
     - type: Transform
       pos: 38.619976,26.548277
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: MicrophoneInstrument
   entities:
   - uid: 21842
@@ -147217,34 +149133,94 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -24.5,-28.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 21919
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -40.5,-31.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 21920
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -19.5,-50.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 21921
     components:
     - type: Transform
       pos: 35.5,-41.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 21922
     components:
     - type: Transform
       pos: -53.5,28.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 21923
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 29.5,13.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: NitrogenCanister
   entities:
   - uid: 21924
@@ -147332,11 +149308,21 @@ entities:
     - type: Transform
       pos: -46.55158,63.54589
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 21939
     components:
     - type: Transform
       pos: -46.48908,63.686516
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: NTDefaultCircuitBoard
   entities:
   - uid: 21940
@@ -147350,6 +149336,28 @@ entities:
     components:
     - type: Transform
       pos: 0.5,0.5
+      parent: 2
+- proto: OpenBarSignLights
+  entities:
+  - uid: 22312
+    components:
+    - type: Transform
+      pos: -49.5,56.5
+      parent: 2
+  - uid: 38997
+    components:
+    - type: Transform
+      pos: -18.5,-4.5
+      parent: 2
+  - uid: 38998
+    components:
+    - type: Transform
+      pos: -18.5,6.5
+      parent: 2
+  - uid: 39002
+    components:
+    - type: Transform
+      pos: -8.5,23.5
       parent: 2
 - proto: OperatingTable
   entities:
@@ -147658,19 +149666,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 13.922506,-62.3915
       parent: 2
-  - uid: 21987
-    components:
-    - type: Transform
-      pos: -14.558083,-58.425854
-      parent: 2
-    - type: Paper
-      stampState: paper_stamp-rd
-      stampedBy:
-      - font: /Fonts/NotoSans/NotoSans-Regular.ttf
-        type: RubberStamp
-        stampedColor: '#1F66A0FF'
-        stampedName: stamp-component-stamped-name-rd
-      content: 'note to self: linking a portal to engineering might be more useful than to cargo'
 - proto: PaperBin10
   entities:
   - uid: 21988
@@ -147987,36 +149982,71 @@ entities:
     - type: Transform
       pos: 36.519478,-43.351433
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 22037
     components:
     - type: Transform
       pos: 35.53312,44.609722
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 22038
     components:
     - type: Transform
       pos: 35.673744,44.219097
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 22039
     components:
     - type: Transform
       pos: 59.42499,45.484722
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 22040
     components:
     - type: Transform
       pos: 27.472029,-60.410633
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 22041
     components:
     - type: Transform
       pos: -72.5084,-22.471127
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 22042
     components:
     - type: Transform
       pos: 80.54942,67.6068
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: PartRodMetal1
   entities:
   - uid: 22043
@@ -148026,6 +150056,11 @@ entities:
       parent: 2
     - type: Stack
       count: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 22044
     components:
     - type: Transform
@@ -148033,6 +150068,11 @@ entities:
       parent: 2
     - type: Stack
       count: 3
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 22045
     components:
     - type: Transform
@@ -148040,6 +150080,11 @@ entities:
       parent: 2
     - type: Stack
       count: 4
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: PartRodMetal10
   entities:
   - uid: 22046
@@ -148048,11 +150093,21 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 32.53435,50.473877
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 22047
     components:
     - type: Transform
       pos: -17.59499,54.192627
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 22048
     components:
     - type: Transform
@@ -148060,6 +150115,11 @@ entities:
       parent: 2
     - type: Stack
       count: 20
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: Pen
   entities:
   - uid: 22049
@@ -149704,18 +151764,19 @@ entities:
       fixtures: {}
 - proto: PosterContrabandRevolver
   entities:
+  - uid: 14862
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -45.5,56.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 22311
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -34.5,-37.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
-  - uid: 22312
-    components:
-    - type: Transform
-      pos: -49.5,56.5
       parent: 2
     - type: Fixtures
       fixtures: {}
@@ -150424,11 +152485,6 @@ entities:
     - type: Transform
       pos: 28.5,15.5
       parent: 2
-  - uid: 22413
-    components:
-    - type: Transform
-      pos: 29.5,30.5
-      parent: 2
   - uid: 22414
     components:
     - type: Transform
@@ -150743,10 +152799,10 @@ entities:
       parent: 2
 - proto: PottedPlantRD
   entities:
-  - uid: 22476
+  - uid: 21987
     components:
     - type: Transform
-      pos: -17.5,-57.5
+      pos: -17.5,-56.5
       parent: 2
 - proto: PowerCellMedium
   entities:
@@ -156217,12 +158273,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -17.5,54.5
       parent: 2
-  - uid: 23422
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -16.5,53.5
-      parent: 2
   - uid: 23423
     components:
     - type: Transform
@@ -156728,12 +158778,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -30.5,79.5
       parent: 2
-  - uid: 23513
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -16.5,54.5
-      parent: 2
   - uid: 23514
     components:
     - type: Transform
@@ -156907,20 +158951,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 55.5,-30.5
-      parent: 2
-- proto: RandomArcade
-  entities:
-  - uid: 23544
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -18.5,4.5
-      parent: 2
-  - uid: 23545
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -18.5,5.5
       parent: 2
 - proto: RandomArtifactSpawner
   entities:
@@ -165766,27 +167796,52 @@ entities:
     - type: Transform
       pos: 18.50615,-50.257847
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25159
     components:
     - type: Transform
       pos: -20.28902,-42.40218
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25160
     components:
     - type: Transform
       pos: -55.505177,-16.459677
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25161
     components:
     - type: Transform
       pos: 22.439623,20.515057
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25162
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 50.521206,12.553826
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: SheetGlass10
   entities:
   - uid: 25163
@@ -165794,6 +167849,11 @@ entities:
     - type: Transform
       pos: -3.5545912,-54.342045
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: SheetPlasma
   entities:
   - uid: 25164
@@ -165801,11 +167861,21 @@ entities:
     - type: Transform
       pos: 11.504709,62.520462
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25165
     components:
     - type: Transform
       pos: -20.613983,-42.487766
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: SheetPlasma1
   entities:
   - uid: 25166
@@ -165815,6 +167885,11 @@ entities:
       parent: 2
     - type: Stack
       count: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: SheetPlasma10
   entities:
   - uid: 25167
@@ -165822,36 +167897,71 @@ entities:
     - type: Transform
       pos: 37.45375,39.637695
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25168
     components:
     - type: Transform
       pos: 55.630287,34.476234
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25169
     components:
     - type: Transform
       pos: 10.521756,25.52164
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25170
     components:
     - type: Transform
       pos: 4.5544944,75.53454
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25171
     components:
     - type: Transform
       pos: -66.44994,42.359184
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25172
     components:
     - type: Transform
       pos: -55.35561,-5.542238
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25173
     components:
     - type: Transform
       pos: -71.55281,-20.570732
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: SheetPlasteel
   entities:
   - uid: 25174
@@ -165859,6 +167969,11 @@ entities:
     - type: Transform
       pos: 62.56667,27.585537
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: SheetPlastic
   entities:
   - uid: 25175
@@ -165866,26 +167981,51 @@ entities:
     - type: Transform
       pos: 18.803024,-50.320347
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25176
     components:
     - type: Transform
       pos: -23.50777,-42.355305
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25177
     components:
     - type: Transform
       pos: -55.192677,-16.553427
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25178
     components:
     - type: Transform
       pos: 22.689623,20.468182
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25179
     components:
     - type: Transform
       pos: -48.3655,29.490797
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: SheetRGlass
   entities:
   - uid: 25180
@@ -165893,6 +168033,11 @@ entities:
     - type: Transform
       pos: 61.47292,27.616787
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: SheetRGlass1
   entities:
   - uid: 25181
@@ -165902,6 +168047,11 @@ entities:
       parent: 2
     - type: Stack
       count: 10
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: SheetSteel
   entities:
   - uid: 25182
@@ -165909,70 +168059,135 @@ entities:
     - type: Transform
       pos: 18.3499,-50.226597
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25183
     components:
     - type: Transform
       pos: -20.551508,-42.33968
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25184
     components:
     - type: Transform
       pos: -11.525599,-41.474552
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25185
     components:
     - type: Transform
       pos: -55.67705,-16.381552
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25186
     components:
     - type: Transform
       pos: 22.205248,20.546307
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25187
     components:
     - type: Transform
       pos: 43.646145,7.544772
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25188
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 50.53683,17.6007
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25189
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 58.521633,8.550033
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25190
     components:
     - type: Transform
       pos: 56.47182,6.5857525
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25191
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 50.549946,1.6951275
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25192
     components:
     - type: Transform
       pos: -48.631126,29.615797
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25193
     components:
     - type: Transform
       pos: 62.03542,27.632412
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25194
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 59.155872,51.59004
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: SheetSteel1
   entities:
   - uid: 25195
@@ -165984,6 +168199,11 @@ entities:
     - type: CollisionWake
       enabled: False
     - type: Conveyed
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25196
     components:
     - type: Transform
@@ -165993,6 +168213,11 @@ entities:
     - type: CollisionWake
       enabled: False
     - type: Conveyed
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25197
     components:
     - type: Transform
@@ -166002,6 +168227,11 @@ entities:
     - type: CollisionWake
       enabled: False
     - type: Conveyed
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: SheetSteel10
   entities:
   - uid: 25198
@@ -166009,17 +168239,32 @@ entities:
     - type: Transform
       pos: 9.445496,-44.43242
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25199
     components:
     - type: Transform
       pos: -3.4608412,-54.70142
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25200
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -16.507273,-67.492546
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: ShelfBar
   entities:
   - uid: 25201
@@ -167010,6 +169255,22 @@ entities:
           - Toggle
     - type: Fixtures
       fixtures: {}
+  - uid: 38999
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -19.5,5.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        38998:
+        - - Pressed
+          - Toggle
+        38997:
+        - - Pressed
+          - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignalButtonDirectional
   entities:
   - uid: 23808
@@ -167668,6 +169929,35 @@ entities:
           - Toggle
     - type: Fixtures
       fixtures: {}
+  - uid: 39000
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -53.5,56.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        22312:
+        - - Pressed
+          - Toggle
+    - type: Fixtures
+      fixtures: {}
+  - uid: 39004
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,31.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        39002:
+        - - Pressed
+          - Toggle
+        25400:
+        - - Pressed
+          - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignAnomaly
   entities:
   - uid: 25389
@@ -167759,18 +170049,18 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-  - uid: 25400
-    components:
-    - type: Transform
-      pos: -8.5,23.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
   - uid: 25401
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 43.5,-29.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 39003
+    components:
+    - type: Transform
+      pos: -11.5,26.5
       parent: 2
     - type: Fixtures
       fixtures: {}
@@ -171744,11 +174034,21 @@ entities:
     - type: Transform
       pos: -4.509322,0.48456347
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
   - uid: 25955
     components:
     - type: Transform
       pos: -4.399947,0.68768847
       parent: 2
+    - type: UserInterface
+      actors: {}
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
 - proto: SpaceHeater
   entities:
   - uid: 25956
@@ -171795,35 +174095,101 @@ entities:
       parent: 2
 - proto: SpaceVillainArcadeFilled
   entities:
+  - uid: 23544
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -18.5,4.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 25964
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 39.5,-15.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 25965
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 39.5,-14.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 25966
     components:
     - type: Transform
       pos: -49.5,-3.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 25967
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 37.5,14.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 25968
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 40.5,-14.5
       parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: SpawnMechRipley
   entities:
   - uid: 25969
@@ -174634,10 +177000,10 @@ entities:
       parent: 2
 - proto: SuitStorageCE
   entities:
-  - uid: 26431
+  - uid: 22413
     components:
     - type: Transform
-      pos: 31.5,26.5
+      pos: 29.5,30.5
       parent: 2
 - proto: SuitStorageCMO
   entities:
@@ -174858,13 +177224,6 @@ entities:
     components:
     - type: Transform
       pos: -63.5,-16.5
-      parent: 2
-- proto: SuitStorageWarden
-  entities:
-  - uid: 26472
-    components:
-    - type: Transform
-      pos: -50.5,-12.5
       parent: 2
 - proto: SurveillanceCameraCommand
   entities:
@@ -175173,6 +177532,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -9.5,-58.5
       parent: 2
+    - type: StationAiVision
+      range: 8.5
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraCommand
@@ -175334,6 +177695,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 7.5,81.5
       parent: 2
+    - type: StationAiVision
+      range: 5
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraCommand
@@ -175345,6 +177708,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 13.5,77.5
       parent: 2
+    - type: StationAiVision
+      range: 6
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraCommand
@@ -175356,6 +177721,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,77.5
       parent: 2
+    - type: StationAiVision
+      range: 6
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraCommand
@@ -175367,6 +177734,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,56.5
       parent: 2
+    - type: StationAiVision
+      range: 6
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraCommand
@@ -175378,6 +177747,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 13.5,56.5
       parent: 2
+    - type: StationAiVision
+      range: 6
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraCommand
@@ -175402,6 +177773,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 35.5,46.5
       parent: 2
+    - type: StationAiVision
+      range: 10
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
@@ -175563,6 +177936,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 59.5,46.5
       parent: 2
+    - type: StationAiVision
+      range: 10
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
@@ -175574,6 +177949,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 59.5,56.5
       parent: 2
+    - type: StationAiVision
+      range: 10
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
@@ -175585,6 +177962,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 35.5,56.5
       parent: 2
+    - type: StationAiVision
+      range: 10
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
@@ -175710,6 +178089,8 @@ entities:
     - type: Transform
       pos: -47.5,-50.5
       parent: 2
+    - type: StationAiVision
+      range: 6
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
@@ -175720,6 +178101,8 @@ entities:
     - type: Transform
       pos: -60.5,67.5
       parent: 2
+    - type: StationAiVision
+      range: 6
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
@@ -175753,11 +178136,35 @@ entities:
       rot: 3.141592653589793 rad
       pos: 15.5,-75.5
       parent: 2
+    - type: StationAiVision
+      range: 5
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraEngineering
       nameSet: True
       id: Atmo?ERR Test R0om
+  - uid: 38990
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 50.5,59.5
+      parent: 2
+  - uid: 38991
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 44.5,59.5
+      parent: 2
+  - uid: 38992
+    components:
+    - type: Transform
+      pos: 50.5,45.5
+      parent: 2
+  - uid: 38993
+    components:
+    - type: Transform
+      pos: 44.5,45.5
+      parent: 2
 - proto: SurveillanceCameraGeneral
   entities:
   - uid: 26556
@@ -175776,6 +178183,8 @@ entities:
     - type: Transform
       pos: 2.5,-50.5
       parent: 2
+    - type: StationAiVision
+      range: 10
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
@@ -175787,6 +178196,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-44.5
       parent: 2
+    - type: StationAiVision
+      range: 10
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
@@ -175820,6 +178231,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 8.5,-76.5
       parent: 2
+    - type: StationAiVision
+      range: 6.5
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
@@ -175830,6 +178243,8 @@ entities:
     - type: Transform
       pos: 0.5,-62.5
       parent: 2
+    - type: StationAiVision
+      range: 8.5
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
@@ -175841,6 +178256,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 14.5,-57.5
       parent: 2
+    - type: StationAiVision
+      range: 9
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
@@ -176045,6 +178462,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 36.5,-27.5
       parent: 2
+    - type: StationAiVision
+      range: 8
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
@@ -176173,6 +178592,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -44.5,71.5
       parent: 2
+    - type: StationAiVision
+      range: 9
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
@@ -176183,6 +178604,8 @@ entities:
     - type: Transform
       pos: -30.5,77.5
       parent: 2
+    - type: StationAiVision
+      range: 6
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
@@ -176193,6 +178616,8 @@ entities:
     - type: Transform
       pos: -53.5,79.5
       parent: 2
+    - type: StationAiVision
+      range: 6
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
@@ -176204,6 +178629,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -29.5,69.5
       parent: 2
+    - type: StationAiVision
+      range: 6
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
@@ -176215,6 +178642,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -60.5,58.5
       parent: 2
+    - type: StationAiVision
+      range: 6
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
@@ -176226,6 +178655,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -34.5,-69.5
       parent: 2
+    - type: StationAiVision
+      range: 5
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraGeneral
@@ -176241,6 +178672,18 @@ entities:
       - SurveillanceCameraGeneral
       nameSet: True
       id: HONK :o)
+  - uid: 38985
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 12.5,-32.5
+      parent: 2
+  - uid: 38986
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 39.5,-18.5
+      parent: 2
 - proto: SurveillanceCameraMedical
   entities:
   - uid: 26601
@@ -176366,6 +178809,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -69.5,12.5
       parent: 2
+    - type: StationAiVision
+      range: 9
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraMedical
@@ -176377,6 +178822,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -87.5,19.5
       parent: 2
+    - type: StationAiVision
+      range: 5
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraMedical
@@ -176514,6 +178961,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -28.5,-51.5
       parent: 2
+    - type: StationAiVision
+      range: 9
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraScience
@@ -176584,6 +179033,12 @@ entities:
       - SurveillanceCameraScience
       nameSet: True
       id: Xenobio Large
+  - uid: 38984
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -8.5,-49.5
+      parent: 2
 - proto: SurveillanceCameraSecurity
   entities:
   - uid: 26636
@@ -177165,6 +179620,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -23.5,51.5
       parent: 2
+    - type: StationAiVision
+      range: 6
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraService
@@ -177222,6 +179679,12 @@ entities:
       - SurveillanceCameraService
       nameSet: True
       id: Restroom South
+  - uid: 38996
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -27.5,-25.5
+      parent: 2
 - proto: SurveillanceCameraSupply
   entities:
   - uid: 26696
@@ -177365,6 +179828,8 @@ entities:
     - type: Transform
       pos: 75.5,57.5
       parent: 2
+    - type: StationAiVision
+      range: 5
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraSupply
@@ -177375,6 +179840,8 @@ entities:
     - type: Transform
       pos: 82.5,64.5
       parent: 2
+    - type: StationAiVision
+      range: 5
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraSupply
@@ -177386,6 +179853,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 83.5,56.5
       parent: 2
+    - type: StationAiVision
+      range: 5
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraSupply
@@ -177397,6 +179866,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 69.5,74.5
       parent: 2
+    - type: StationAiVision
+      range: 5
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraSupply
@@ -180334,11 +182805,6 @@ entities:
     - type: Transform
       pos: 9.5,-21.5
       parent: 2
-  - uid: 27247
-    components:
-    - type: Transform
-      pos: -7.5,-12.5
-      parent: 2
   - uid: 27248
     components:
     - type: Transform
@@ -182552,6 +185018,88 @@ entities:
     components:
     - type: Transform
       pos: 95.11409,79.57395
+      parent: 2
+- proto: TrashWallLootSpawner
+  entities:
+  - uid: 23422
+    components:
+    - type: Transform
+      pos: -16.5,50.5
+      parent: 2
+  - uid: 23513
+    components:
+    - type: Transform
+      pos: -16.5,53.5
+      parent: 2
+  - uid: 38967
+    components:
+    - type: Transform
+      pos: 27.5,-64.5
+      parent: 2
+  - uid: 38970
+    components:
+    - type: Transform
+      pos: 23.5,-75.5
+      parent: 2
+  - uid: 38971
+    components:
+    - type: Transform
+      pos: 23.5,-77.5
+      parent: 2
+  - uid: 38972
+    components:
+    - type: Transform
+      pos: 22.5,-79.5
+      parent: 2
+  - uid: 38973
+    components:
+    - type: Transform
+      pos: 18.5,-78.5
+      parent: 2
+  - uid: 38974
+    components:
+    - type: Transform
+      pos: 13.5,-77.5
+      parent: 2
+  - uid: 38975
+    components:
+    - type: Transform
+      pos: 15.5,-80.5
+      parent: 2
+  - uid: 38976
+    components:
+    - type: Transform
+      pos: 19.5,-74.5
+      parent: 2
+  - uid: 38977
+    components:
+    - type: Transform
+      pos: 22.5,-71.5
+      parent: 2
+  - uid: 38978
+    components:
+    - type: Transform
+      pos: 40.5,-69.5
+      parent: 2
+  - uid: 38979
+    components:
+    - type: Transform
+      pos: 36.5,-66.5
+      parent: 2
+  - uid: 38980
+    components:
+    - type: Transform
+      pos: -23.5,54.5
+      parent: 2
+  - uid: 38981
+    components:
+    - type: Transform
+      pos: -16.5,47.5
+      parent: 2
+  - uid: 38983
+    components:
+    - type: Transform
+      pos: -14.5,46.5
       parent: 2
 - proto: trayScanner
   entities:
@@ -199581,11 +202129,6 @@ entities:
     components:
     - type: Transform
       pos: -13.5,42.5
-      parent: 2
-  - uid: 30769
-    components:
-    - type: Transform
-      pos: -17.5,48.5
       parent: 2
   - uid: 30770
     components:
@@ -237553,6 +240096,53 @@ entities:
     components:
     - type: Transform
       pos: 55.5,-33.5
+      parent: 2
+- proto: WallTrash
+  entities:
+  - uid: 30769
+    components:
+    - type: Transform
+      pos: -17.5,48.5
+      parent: 2
+  - uid: 38962
+    components:
+    - type: Transform
+      pos: 26.5,-62.5
+      parent: 2
+  - uid: 38963
+    components:
+    - type: Transform
+      pos: 26.5,-63.5
+      parent: 2
+  - uid: 38964
+    components:
+    - type: Transform
+      pos: 26.5,-64.5
+      parent: 2
+  - uid: 38965
+    components:
+    - type: Transform
+      pos: 27.5,-62.5
+      parent: 2
+  - uid: 38966
+    components:
+    - type: Transform
+      pos: 27.5,-63.5
+      parent: 2
+  - uid: 38968
+    components:
+    - type: Transform
+      pos: 22.5,-77.5
+      parent: 2
+  - uid: 38969
+    components:
+    - type: Transform
+      pos: 22.5,-76.5
+      parent: 2
+  - uid: 38982
+    components:
+    - type: Transform
+      pos: -16.5,54.5
       parent: 2
 - proto: WallWood
   entities:

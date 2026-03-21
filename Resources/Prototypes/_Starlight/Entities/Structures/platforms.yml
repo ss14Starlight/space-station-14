@@ -1,0 +1,349 @@
+﻿- type: entity
+  abstract: true
+  id: CMPlatformBase
+  name: platform
+  description: A raised surface. Wait, thats illegal!
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+  - type: InteractionOutline
+  - type: Clickable
+
+- type: entity
+  parent: CMPlatformBase
+  id: CMPlatform
+  name: platform
+  suffix: Steel
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform
+  - type: Climbable
+
+- type: entity
+  parent: CMPlatformBase
+  id: CMPlatformCorner
+  name: platform
+  suffix: Steel, Corner
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.49,0.49,0.36,-0.49"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_corner
+  - type: Climbable
+
+- type: entity
+  parent: CMPlatformBase
+  id: RMCPlatformCornerSmall
+  name: platform
+  suffix: Steel, Corner Small
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.49,-0.36,0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_deco
+  - type: Climbable
+
+- type: entity
+  parent: CMPlatform
+  id: RMCPlatformStairRight
+  suffix: Steel, Stairs, Right
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_stair
+
+- type: entity
+  parent: CMPlatform
+  id: RMCPlatformStairLeft
+  suffix: Steel, Stairs, Left
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_stair_alt
+
+# New Dark
+
+- type: entity
+  parent: CMPlatformBase
+  id: CMPlatformDark
+  name: platform
+  suffix: Dark
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_dark
+  - type: Climbable
+
+- type: entity
+  parent: CMPlatformBase
+  id: CMPlatformCornerDark
+  name: platform
+  suffix: Dark, Corner
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.49,0.49,0.36,-0.49"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_corner_dark
+  - type: Climbable
+
+- type: entity
+  parent: CMPlatformBase
+  id: RMCPlatformCornerSmallDark
+  name: platform
+  suffix: Dark, Corner Small
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.49,-0.36,0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_deco_dark
+  - type: Climbable
+
+- type: entity
+  parent: CMPlatform
+  id: RMCPlatformStairRightDark
+  suffix: Dark, Stairs, Right
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_stair_dark
+
+- type: entity
+  parent: CMPlatform
+  id: RMCPlatformStairLeftDark
+  suffix: Dark, Stairs, Left
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_stair_dark_alt
+
+# New Wood
+
+- type: entity
+  parent: CMPlatformBase
+  id: CMPlatformWood
+  name: platform
+  suffix: Wood
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_wood
+  - type: Climbable
+
+- type: entity
+  parent: CMPlatformBase
+  id: CMPlatformCornerWood
+  name: platform
+  suffix: Wood, Corner
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.49,0.49,0.36,-0.49"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_corner_wood
+  - type: Climbable
+
+- type: entity
+  parent: CMPlatformBase
+  id: RMCPlatformCornerSmallWood
+  name: platform
+  suffix: Wood, Corner Small
+  description: A raised surface. Wait, thats illegal!
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.49,-0.36,0.36"
+        density: 1500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_deco_wood
+  - type: Climbable
+
+- type: entity
+  parent: CMPlatform
+  id: RMCPlatformStairRightWood
+  suffix: Wood, Stairs, Right
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_stair_wood
+
+- type: entity
+  parent: CMPlatform
+  id: RMCPlatformStairLeftWood
+  suffix: Wood, Stairs, Left
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/platforms.rsi
+    state: platform_stair_wood_alt

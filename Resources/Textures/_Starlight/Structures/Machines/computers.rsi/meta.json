@@ -118,10 +118,6 @@
             "directions": 4
         },
         {
-            "name": "universal_id_key_off",
-            "directions": 4
-        },
-        {
             "name": "universal_id",
             "directions": 4,
             "delays": [

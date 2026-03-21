@@ -30,7 +30,6 @@ public sealed class StereoTest
             new ResPath("/Audio/Misc/ninja_greeting.ogg"), // Global
             new ResPath("/Audio/Misc/paradox_clone_greeting.ogg"), // Global
             new ResPath("/Audio/Misc/ratvar_reveal.ogg"), // Global
-            new ResPath("/Audio/Misc/ratvar_rises.ogg"), // Global
             new ResPath("/Audio/Mecha/powerup.ogg"), // Global
             new ResPath("/Audio/Mecha/skyfall_power_up.ogg"), // Global
             new ResPath("/Audio/_Starlight/Admeme/announcement_horror.ogg"), // Global

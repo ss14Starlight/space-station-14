@@ -34739,5 +34739,347 @@ Entries:
   id: 378301
   time: '2026-03-18T16:01:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3783
+- author: STARLIGHT TEAM
+  changes:
+  - message: Cosmic Cult metashield
+    type: Add
+  - message: Cosmic Cult corporate secrets which can now be found in NTRep's locker
+      and count for the steal objective.
+    type: Tweak
+  - message: Guidebook mentions of Epistemics are now Science
+    type: Fix
+  - message: The Mystagogue (RD's Alter Ego) is not a licenced chaplain and cannot
+      make holy water.
+    type: Fix
+  - message: The cosmic cult's ghost form no longer cryos them after being used too
+      long
+    type: Fix
+  - message: The Cosmic Colossi guidebook is now in it's propper place
+    type: Fix
+  id: 377401
+  time: '2026-03-18T16:14:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3774
+- author: Way
+  changes:
+  - message: (Starboard) Added new department communications consoles.
+    type: Add
+  - message: (Starboard) Fixed duplicate walls stuck inside eachother.
+    type: Fix
+  id: 378201
+  time: '2026-03-18T16:49:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3782
+- author: STARLIGHT TEAM
+  changes:
+  - message: Removed a lot of UNUSED textures and sounds from in-game build.
+    type: Tweak
+  id: 368801
+  time: '2026-03-18T18:40:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3688
+- author: redmushie
+  changes:
+  - message: The blacklight box loadout option has been removed.
+    type: Remove
+  id: 377801
+  time: '2026-03-18T18:51:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3778
+- author: Rinary, Neenner
+  changes:
+  - message: Added shoelaces for shoes.
+    type: Add
+  - message: Added ability to tie shoelaces together on shoes.
+    type: Add
+  id: 344501
+  time: '2026-03-18T19:39:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3445
+- author: Makeshift
+  changes:
+  - message: (Plasma) Departmental communication consoles.
+    type: Add
+  - message: (Plasma) Genpop's oven has a stove now.
+    type: Fix
+  - message: (Packed) Departmental communication consoles.
+    type: Add
+  - message: (Packed) More maintenance lockers in maints.
+    type: Add
+  - message: (Elkridge) Departmental communication consoles.
+    type: Add
+  id: 378901
+  time: '2026-03-19T06:42:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3789
+- author: Hanzdegloker & Nyxilath
+  changes:
+  - message: The hairflower can now change color, bringing 13 new flower colors to
+      choose from!.
+    type: Tweak
+  - message: Removes the lily from loadout in favor of the color changing flower.
+    type: Remove
+  id: 379701
+  time: '2026-03-19T06:45:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3797
+- author: Roro, sprites by Abby
+  changes:
+  - message: Ports muh Construction bag for Engineering, holds materials, cables,
+      inflatable walls, tiles and magnetises any aforementioned item whether its attached
+      to your belt or in your bag, you can find it in your locker roundstart as well
+      as in vendor.
+    type: Add
+  - message: All Engineering lockers start with mats respective to their job now,
+      Engis and CE get a stack of steel and glass while Atmos gets 2 stacks of steel.
+    type: Tweak
+  - message: Added grappling hooks to engineer lockers and vendor, also fits in belt.
+    type: Tweak
+  - message: All Engineering PDA's have Astronav installed now (GPS).
+    type: Tweak
+  id: 378801
+  time: '2026-03-19T06:54:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3788
+- author: Way & Cvlancer
+  changes:
+  - message: (Ming) Added new department communications consoles. - Cvlancer.
+    type: Add
+  - message: (Sepultum) Added new department communications consoles. - Cvlancer.
+    type: Add
+  - message: (Orwell) Added new department communications consoles. - Way.
+    type: Add
+  - message: (Lobster) Added new department communications consoles. - Way.
+    type: Add
+  - message: (Lagan) Added new department communications consoles. - Way.
+    type: Add
+  - message: (Lagan) Moved the Exofabs inside Robotics to hopefully prevent objects
+      from getting stuck. - Way.
+    type: Fix
+  - message: (Ming & Sepultum) Added botany tools, changed AI cores around. -Cvlancer.
+    type: Tweak
+  id: 378501
+  time: '2026-03-19T07:00:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3785
+- author: Conflee
+  changes:
+  - message: Added Dept Comms Consoles to Box, Cog, Fland, Kiloton, and Spacemall,
+      and ensured these 5 have both Performer spawn points and job slots since some
+      were missing one or both.
+    type: Tweak
+  id: 378401
+  time: '2026-03-19T07:03:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3784
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Added the DYNMARE, SCYLLIA, AK570, DRAVON to the naval war aresneal.
+    type: Add
+  - message: Changed plastitium and shuttle walls to be stronger.
+    type: Tweak
+  id: 373801
+  time: '2026-03-19T07:07:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3738
+- author: CaptainFothel
+  changes:
+  - message: Informed the cameras that languages exist so they will no longer automatically
+      translate all speech into universal.
+    type: Fix
+  id: 379601
+  time: '2026-03-19T07:11:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3796
+- author: STARLIGHT TEAM
+  changes:
+  - message: Made Rule 2 more explicit, closing a loophole with Antag Rolling.
+    type: Tweak
+  id: 380501
+  time: '2026-03-19T16:20:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3805
+- author: STARLIGHT TEAM
+  changes:
+  - message: A new batch of voices has been added.
+    type: Add
+  - message: The logs command allows you to persistently change the log level for
+      specific sawmills.
+    type: Add
+  - message: Crossfade has been applied to the audio chunks, and clicks and pops have
+      been removed.
+    type: Tweak
+  - message: The ogg quality has been increased from 3 to 6.
+    type: Tweak
+  id: 380801
+  time: '2026-03-19T22:21:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3808
+- author: TaserTheFox
+  changes:
+  - message: Missing localization strings for agent ID card copy function.
+    type: Fix
+  id: 381001
+  time: '2026-03-20T05:53:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3810
+- author: redmushie
+  changes:
+  - message: Tracking implanters now also activate a radio callout on death.
+    type: Add
+  id: 380701
+  time: '2026-03-20T06:03:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3807
+- author: Tytos
+  changes:
+  - message: serpentcrest, added salv ticket vendor and dept comms pc.
+    type: Add
+  - message: serpentcrest, linked ai core and upload.
+    type: Fix
+  id: 380001
+  time: '2026-03-20T06:08:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3800
+- author: Tess the Evil
+  changes:
+  - message: Adjusted minimum player counts for round-ending antags on beta.
+    type: Tweak
+  id: 378701
+  time: '2026-03-20T07:19:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3787
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed panic bunker bypass for mentors, staff, extRoles, and the new PBB
+      role.
+    type: Fix
+  id: 381401
+  time: '2026-03-20T11:22:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3814
+- author: FeralCreature
+  changes:
+  - message: The plumbing smart dispenser now supports manual reagent dispensing to
+      held unlabelled containers.
+    type: Tweak
+  - message: Fixed a bug preventing some plumbing machines from being dragged around.
+    type: Fix
+  id: 373401
+  time: '2026-03-20T11:23:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3734
+- author: Rinary
+  changes:
+  - message: Fixed shoelaces tooltips.
+    type: Fix
+  - message: Fixed untie shoelaces verb.
+    type: Fix
+  - message: Fixed prediction crash when trying to unequip shoes with shoelaces.
+    type: Fix
+  - message: Fixed bug when magboots, moon boots, speed boots, socks and other specific
+      types of shoes have shoelaces.
+    type: Fix
+  id: 381501
+  time: '2026-03-20T12:54:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3815
+- author: Rinary
+  changes:
+  - message: Added bullet holes visual effect when shooting in objects like walls.
+    type: Add
+  - message: Added sparks visual effect when shooting in metal piercable objects.
+    type: Add
+  - message: 'Added new options tab: "User Interface".'
+    type: Add
+  - message: Added a lot of options for sights(I bored, pls help me).
+    type: Add
+  - message: Added ability to change crosshair at options.
+    type: Add
+  - message: Changed wielding bonus on all weapons, now when you're wielding weapon
+      it wouldn't be 100% accurate, now it only 50%.
+    type: Tweak
+  - message: Changed wielding bonus, now when you're wielding weapon it would increase
+      current spread angle slower in 2 times.
+    type: Tweak
+  - message: Changed spread, now when you're moving your spread will be bigger(x2
+      for sprint, 1.5x for walk).
+    type: Tweak
+  - message: Changed spread stats of large amount of weapons. (Check PR body for detailed
+      information).
+    type: Tweak
+  - message: Now all pistols are wieldable.
+    type: Tweak
+  - message: Now all smgs are wieldable.
+    type: Tweak
+  - message: Removed cursor visibility when entering at combat for some crosshairs.
+    type: Remove
+  id: 315401
+  time: '2026-03-21T04:41:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3154
+- author: CawsForConcern
+  changes:
+  - message: Scurret ghost theme sprite issues with side-facing sprites.
+    type: Fix
+  id: 383101
+  time: '2026-03-21T05:00:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3831
+- author: neomoth
+  changes:
+  - message: Added a new moth wing (Double swirl).
+    type: Add
+  - message: Added a new hairstyle (Cool spikes).
+    type: Add
+  - message: Added a new vulpkanin tail (Extra fluffy).
+    type: Add
+  id: 383301
+  time: '2026-03-21T05:09:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3833
+- author: Conflee
+  changes:
+  - message: Added boxing ropes, for true boxing rings finally! .
+    type: Add
+  - message: Added Platforms. These function like railings, but the textures imply
+      depth allowing for more convincing false-depth illusions for mappers to play
+      with, for pits or steps up or false flower beds etc.
+    type: Add
+  - message: Changed railing textures to be 3/4ths perspective, using TGstation sprites.
+      This is so they match the platforms and don't stand out next to them.
+    type: Tweak
+  - message: Added Yellow and Wooden railings. More decorative options for mappers
+      to use- Yellow fits better in industrial areas as hazard railing, while the
+      wood fix very well in bar and on stages in the theater.
+    type: Add
+  - message: Fixed the CentComm Flag! It now renders and exists.
+    type: Fix
+  - message: Added shadow decals, to help sell fake depth. Allows mappers to manually
+      place shading similar to the ambient occlusion the game has.
+    type: Add
+  id: 381101
+  time: '2026-03-21T05:15:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3811
+- author: BigfootBravo
+  changes:
+  - message: New speech and whisper verbs to the chittin language
+    type: Add
+  id: 382901
+  time: '2026-03-21T05:30:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3829
+- author: TaserTheFox
+  changes:
+  - message: Capitalization changes.
+    type: Tweak
+  id: 382001
+  time: '2026-03-21T05:30:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3820
+- author: mikeysaurus
+  changes:
+  - message: changed _StarLight folder instance in Prototypes to _Starlight.
+    type: Tweak
+  id: 383401
+  time: '2026-03-21T05:53:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3834
+- author: NEVEC
+  changes:
+  - message: Added the Mail Companion for Mail Technicians to scan deliveries and
+      track recipients through suit sensors.
+    type: Add
+  - message: Added a dedicated crew-monitor style HUD and custom Mail Companion sprites.
+    type: Add
+  - message: Mail Companion tracking now expires after 1 minute and enters a 30 second
+      recalibration cooldown.
+    type: Tweak
+  - message: Opening the tracked delivery now immediately resets the Mail Companion
+      so it can be used again.
+    type: Fix
+  id: 381901
+  time: '2026-03-21T07:33:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3819
+- author: redmushie, Rinary
+  changes:
+  - message: Fixed crash from putting shoes on while moving.
+    type: Fix
+  id: 383601
+  time: '2026-03-21T08:46:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3836
 Order: -1
 
