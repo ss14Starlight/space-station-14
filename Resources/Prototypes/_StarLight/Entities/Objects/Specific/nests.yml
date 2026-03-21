@@ -1,0 +1,135 @@
+- type: entity
+  parent: BasePinata
+  id: BeeHive
+  name: bee hive
+  description: You probably shouldnt anger them.
+  components:
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: BeeHiveTable
+    gibTable: !type:NestedSelector
+      tableId: BeeHiveTable
+      rolls: !type:RangeNumberSelector
+        range: 3, 5
+  - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Honeycomb:
+            min: 2
+            max: 3
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    sprite: _Starlight/Structures/Specific/Nests/nests.rsi
+    state: bee_hive_monke
+
+- type: entity
+  parent: BasePinata
+  id: BeeBox
+  name: bee box
+  description: You probably shouldnt anger them.
+  components:
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: BeeBoxTable
+    gibTable: !type:NestedSelector
+      tableId: BeeBoxTable
+      rolls: !type:RangeNumberSelector
+        range: 3, 5
+  - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 2
+            max: 3
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    sprite: _Starlight/Structures/Specific/Nests/bee_box.rsi
+    state: bee_box
+
+- type: entity
+  parent: BasePinata
+  id: RatNest
+  name: rat nest
+  description: Smells like ammonia and rotten meat.
+  components:
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: RatNestTable
+    gibTable: !type:NestedSelector
+      tableId: RatNestTable
+      rolls: !type:RangeNumberSelector
+        range: 2, 3
+  - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    sprite: _Starlight/Structures/Specific/Nests/nests.rsi
+    state: rat_nest
+
+- type: entity
+  parent: BasePinata
+  id: MouseNest
+  name: mouse nest
+  description: Smells like ammonia and cheese.
+  components:
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: MouseNestTable
+    gibTable: !type:NestedSelector
+      tableId: MouseNestTable
+      rolls: !type:RangeNumberSelector
+        range: 2, 3
+  - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    sprite: _Starlight/Structures/Specific/Nests/nests.rsi
+    state: mouse_nest
