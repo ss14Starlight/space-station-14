@@ -1,0 +1,48 @@
+- type: marking
+  id: pawmittens_armsL
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  pawmittens_armsL
+- type: marking
+  id: pawmittens_armsR
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  pawmittens_armsR
+- type: marking
+  id: FelionoidTabby_ArmL
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  Tabby_armL
+- type: marking
+  id: FelionoidTabby_ArmR
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state:  Tabby_armR
+- type: marking
+  id: FelionoidCailco_RArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: cailco2_ArmR
+- type: marking
+  id: FelionoidCailco_LArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: cailco2_ArmL

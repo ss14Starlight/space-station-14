@@ -1,0 +1,26 @@
+- type: marking
+  id: felionoidBelly
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: bellymark
+- type: marking
+  id: FelionoidTabby
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: Tabby_chest
+- type: marking
+  id: FelionoidCailco_Chest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: calico1_chest
+    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+      state: cailco2_chest
