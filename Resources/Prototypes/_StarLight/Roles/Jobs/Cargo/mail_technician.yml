@@ -23,8 +23,8 @@
   equipment:
     ears: ClothingHeadsetCargo
   storage:
-    back:
-    - Multitool #maybe not a good idea? idk makes unpacking it quick
+    back: # literally just comment to update folder
+    - Multitool #maybe not a good idea? idk makes unpacking it quick 
 
 - type: chameleonOutfit
   id: MailTechChameleonOutfit
