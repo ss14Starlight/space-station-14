@@ -2,7 +2,7 @@
   id: StarlightSepultum
   mapName: 'Sepultum Station'
   mapPath: /Maps/_Starlight/Stations/Sepultum.yml
-  minPlayers: 50
+  minPlayers: 80
   stations:
     Sepultum:
       stationProto: StandardNanotrasenStation
