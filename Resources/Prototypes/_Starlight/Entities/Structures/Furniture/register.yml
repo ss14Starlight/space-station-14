@@ -7,6 +7,7 @@
   - type: Anchorable
     delay: 1
   - type: Clickable
+  - type: Rotatable
   - type: Storage
     grid:
     - 0,0,9,1
@@ -16,6 +17,7 @@
     sprite: _Starlight/Structures/Furniture/register.rsi
     state: register
     snapCardinals: true
+    noRot: true
     offset: 0, 0.2
   - type: Appearance
   - type: UserInterface

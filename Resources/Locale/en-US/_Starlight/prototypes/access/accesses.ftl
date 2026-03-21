@@ -1,5 +1,5 @@
 id-card-access-level-magistrate = Magistrate
-id-card-access-level-ntrep = NanoTrasen representive
+id-card-access-level-ntrep = NanoTrasen Representive
 id-card-access-level-blueshield = BlueShield
 id-card-access-level-iaa = Internal Affairs
 
@@ -24,6 +24,7 @@ id-card-access-level-commie = Commie
 
 id-card-access-level-salvagelead = Salvage Lead
 id-card-access-level-mining = Mining
+id-card-access-level-mail = Mail
 
 id-card-access-level-solgov = SolGov
 
