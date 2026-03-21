@@ -94,7 +94,7 @@
 - type: entity
   parent: [ClothingUniformBase, BaseBlueShieldContraband]
   id: ClothingUniformJumpsuitBlueShield
-  name: blue shield suit
+  name: blueshield suit
   description: The suit of a glorified bodyguard.
   components:
   - type: Sprite
@@ -105,7 +105,7 @@
 - type: entity
   parent: [ClothingUniformBase, BaseBlueShieldContraband]
   id: ClothingUniformJumpsuitEliteBlueShield
-  name: elite blue shield suit
+  name: elite blueshield suit
   description: The suit of an elite BSO. To reach such a level, you must have protected Command from [REDACTED].
   components:
   - type: Sprite
@@ -147,6 +147,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/mining.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/mining.rsi
+
 
 - type: entity
   parent: [ClothingUniformBase, ClothingUniformFoldableBase]
@@ -366,6 +367,28 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMail
+  name: mail technician jumpsuit
+  description: A stylish cargo yellow and mail bag-blue uniform custom made for mail technicians.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/mailtech.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/mailtech.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSeniorMail
+  name: senior mail technician jumpsuit
+  description: A more vibrant mail technician outfit made in the color of cargo's formal uniforms. Perfect for deliver the mail in style, and looking good while doing it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_mail.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_mail.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitSalvageFormal
   name: formal salvage jumpsuit
   description: A practical and durable outfit designed for waste management and reclamation tasks, combining functionality with a professional look. Perfect for those in the field, ensuring comfort, efficiency, and a polished appearance.
@@ -435,7 +458,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitCentcomAdmiral
   name: admiral's uniform
-  description: A uniform worn by those with the rank Admiral in the Nanotrasen Navy.
+  description: A uniform worn by those with the rank Admiral in the NanoTrasen Navy.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcom_admiral.rsi
@@ -500,13 +523,24 @@
 - type: entity
   parent: [ClothingUniformBase, BaseBlueShieldContraband]
   id: ClothingUniformJumpsuitFormalBlueShield
-  name: formal blue shield officer suit
+  name: formal blueshield officer suit
   description: A textile jumpsuit, reinforced with thick leather in some areas.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/formal_blueshield.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/formal_blueshield.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSpaceCourier
+  name: space courier underclothes
+  description: Luxurious underclothes, styled after a legendary space courier. Fly, my space courier!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/space_courier.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/space_courier.rsi
 
 # Fashion-O-Mat END
 

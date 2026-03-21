@@ -45,6 +45,7 @@
     name: ghost-role-information-revenant-name
     description: ghost-role-information-revenant-description
     rules: ghost-role-information-antagonist-rules
+    important: true # SL
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
     raffle:

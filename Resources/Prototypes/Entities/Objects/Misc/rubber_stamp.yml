@@ -21,6 +21,9 @@
     size: Tiny
   - type: StealTarget
     stealGroup: Stamp
+  - type: Tag # Starlight start
+    tags:
+    - Stamp # Starlight end
 
 - type: entity
   name: alternate rubber stamp
