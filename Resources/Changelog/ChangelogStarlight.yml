@@ -35209,5 +35209,16 @@ Entries:
   id: 385201
   time: '2026-03-21T19:49:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3852
+- author: Xale
+  changes:
+  - message: Chicken shawarma is now classified as a meat food.
+    type: Fix
+  - message: Doner kebab is now classified as a meat food.
+    type: Fix
+  - message: Souvlaki gyros sandwich is now classified as a meat food.
+    type: Fix
+  id: 385501
+  time: '2026-03-21T21:09:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3855
 Order: -1
 
