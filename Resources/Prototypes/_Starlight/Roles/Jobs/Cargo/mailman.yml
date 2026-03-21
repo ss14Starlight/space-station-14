@@ -20,6 +20,7 @@
     id: MailPDA
     ears: ClothingHeadsetCargo
     belt: MailBag
+    pocket1: MailCompanion # Starlight
   storage:
     back:
     - MailTrolleyFlatpack

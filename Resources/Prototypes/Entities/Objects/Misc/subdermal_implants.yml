@@ -102,6 +102,7 @@
     - type: TriggerOnMobstateChange
       mobState:
       - Critical
+      - Dead
     - type: RattleOnTrigger
       targetUser: true
       radioChannel: Security

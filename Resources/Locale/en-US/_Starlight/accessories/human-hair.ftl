@@ -74,3 +74,4 @@ marking-HumanHairVictory = Victory
 marking-HumanHairViper = Viper
 marking-HumanHairWife = Wife
 marking-HumanHairZiegler = Ziegler
+marking-HumanHairCoolSpikes = Cool Spikes

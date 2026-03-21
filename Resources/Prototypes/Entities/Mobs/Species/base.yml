@@ -9,9 +9,9 @@
   id: BaseMobSpecies
   abstract: true
   components:
-  - type: Railroadable # 🌟Starlight🌟
-  - type: SurgeryTarget # 🌟Starlight🌟
-  # Starlight-start: Languages
+  # Starlight-start
+  - type: Railroadable
+  - type: SurgeryTarget
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
@@ -240,6 +240,7 @@
     - Pet
     - Boop
   # Starlight End
+  - type: CosmicCenserTarget # Stellar - Cosmic Cult
 
 - type: entity
   save: false

@@ -42,6 +42,7 @@
       name: ghost-role-information-ntnc-consortium-officer-name
       description: ghost-role-information-ntnc-consortium-officer-description
       rules: ghost-role-information-corporate-aligned-rules
+      important: true # SL
       raffle:
         settings: default
       job: NTNCBlueShield
@@ -63,6 +64,7 @@
       name: ghost-role-information-ntnc-consortium-officer-name
       description: ghost-role-information-ntnc-consortium-officer-description
       rules: ghost-role-information-corporate-aligned-rules
+      important: true # SL
       raffle:
         settings: default
       job: NTNCBlueShield
@@ -100,6 +102,7 @@
       name: ghost-role-information-soviet-marine-name
       description: ghost-role-information-soviet-marine-desc
       rules: ghost-role-information-soviet-marine-rules
+      important: true # SL
       raffle:
         settings: default
       mindRoles:
@@ -153,6 +156,7 @@
       name: ghost-role-information-nanotrasen-special-forces-name
       description: ghost-role-information-nanotrasen-special-forces-description
       rules: ghost-role-information-corporate-aligned-rules # Starlight
+      important: true # SL
       raffle:
         settings: short
       mindRoles:
@@ -203,6 +207,7 @@
       name: ghost-role-information-decimus-name
       description: ghost-role-information-decimus-description
       rules: ghost-role-information-corporate-aligned-rules # Starlight
+      important: true # SL
       raffle:
         settings: short
       mindRoles:
@@ -324,6 +329,7 @@
       name: ghost-role-information-tsf-officer-name
       description: ghost-role-information-tsf-officer-desc
       rules: ghost-role-information-tsf-aligned-rules
+      important: true # SL
       raffle:
         settings: default
       mindRoles:
@@ -340,6 +346,7 @@
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-officer-Sheriff-name
+      important: true # SL
       mindRoles:
         - MindRoleGhostTSFAligned
       job: SolGovOfficerSheriff
@@ -364,6 +371,7 @@
       name: ghost-role-information-tsf-crew-name
       description: ghost-role-information-tsf-marine-desc
       rules: ghost-role-information-tsf-aligned-rules
+      important: true # SL
       raffle:
         settings: default
       mindRoles:
@@ -407,6 +415,7 @@
       name: ghost-role-information-tsf-marine-name
       description: ghost-role-information-tsf-marine-desc
       rules: ghost-role-information-tsf-aligned-rules
+      important: true # SL
       raffle:
         settings: default
       mindRoles:
@@ -443,6 +452,7 @@
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-leader-name
+      important: true # SL
       job: TSFMarine
     - type: Loadout
       prototypes: [TSFMarineLeaderGear]
@@ -458,6 +468,7 @@
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-Phantom-name
+      important: true # SL
       job: TSFMarineElite
     - type: Loadout
       prototypes: [TSFPhantomGear]
@@ -479,6 +490,7 @@
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-MARSOC-name
+      important: true # SL
       job: TSFMarineElite
     - type: Loadout
       prototypes: [TSFMARSOCGear]

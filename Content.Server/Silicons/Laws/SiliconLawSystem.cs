@@ -364,6 +364,10 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             // Components on lawboards TODO remove components provided by the old board when it is removed.
             if (provider.Components != null)
                 _entMan.AddComponents(update, provider.Components);
+            // Start Stellar - AILawUpdatedEvent
+            var evt = new Content.Server._ST.Silicons.AILawUpdatedEvent(update, provider.Laws);
+            RaiseLocalEvent(ref evt);
+            // End Stellar - AILawUpdatedEvent
         }
         // Starlight-end
 

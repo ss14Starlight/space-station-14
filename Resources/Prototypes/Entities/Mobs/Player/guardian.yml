@@ -126,6 +126,7 @@
       name: ghost-role-information-holoparasite-name
       description: ghost-role-information-holoparasite-description
       rules: ghost-role-information-familiar-rules
+      important: true # SL
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
@@ -159,6 +160,7 @@
       name: ghost-role-information-ifrit-name
       description: ghost-role-information-ifrit-description
       rules: ghost-role-information-familiar-rules
+      important: true # SL
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
@@ -188,6 +190,7 @@
       name: ghost-role-information-holoclown-name
       description: ghost-role-information-holoclown-description
       rules: ghost-role-information-familiar-rules
+      important: true # SL
       raffle:
         settings: default
     - type: GhostTakeoverAvailable

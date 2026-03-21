@@ -376,6 +376,7 @@ public sealed partial class ShuttleSystem
 
         component = AddComp<FTLComponent>(uid);
         component.State = FTLState.Starting;
+        component.SourceMapUid = Transform(uid).MapUid; // Starlight
         var audio = _audio.PlayPvs(_startupSound, uid);
         _audio.SetGridAudio(audio);
         component.StartupStream = audio?.Entity;
@@ -500,13 +501,53 @@ public sealed partial class ShuttleSystem
 
         if (!Exists(entity.Comp1.TargetCoordinates.EntityId))
         {
-            // Uhh good luck
-            // Pick earliest map?
-            var maps = EntityQuery<MapComponent>().Select(o => o.MapId).ToList();
-            var map = maps.Min(o => o.GetHashCode());
+            // Starlight edit Start: Yeah... Lets not do the first map in the list. 
+            // Fallback chain:
+            // 1) map we started from, 2) any map with a station grid, 3) first map entity.
+            EntityUid? fallbackMap = null;
 
-            mapId = new MapId(map);
-            TryFTLProximity(uid, _mapSystem.GetMap(mapId));
+            if (entity.Comp1.SourceMapUid is { } sourceMap && Exists(sourceMap))
+            {
+                fallbackMap = sourceMap;
+            }
+            else
+            {
+                var stationQuery = EntityQueryEnumerator<StationDataComponent>();
+
+                while (stationQuery.MoveNext(out _, out var stationData) && fallbackMap == null)
+                {
+                    foreach (var grid in stationData.Grids)
+                    {
+                        if (!TryComp<TransformComponent>(grid, out var gridXform))
+                            continue;
+
+                        if (gridXform.MapUid is not { } stationMap || !Exists(stationMap))
+                            continue;
+
+                        fallbackMap = stationMap;
+                        break;
+                    }
+                }
+            }
+
+            if (fallbackMap == null)
+            {
+                var mapQuery = EntityQueryEnumerator<MapComponent>();
+                if (mapQuery.MoveNext(out var firstMap, out _))
+                    fallbackMap = firstMap;
+            }
+
+            if (fallbackMap is { } validFallback)
+            {
+                mapId = _transform.GetMapId(validFallback);
+                TryFTLProximity(uid, validFallback);
+            }
+            else
+            {
+                mapId = xform.MapID;
+                TryFTLProximity(uid, _mapSystem.GetMap(mapId));
+            }
+            // Starlight edit End
         }
         // Docking FTL
         else if (HasComp<MapGridComponent>(target.EntityId) &&
