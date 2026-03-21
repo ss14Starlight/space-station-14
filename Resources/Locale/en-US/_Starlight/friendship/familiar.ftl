@@ -1,1 +1,0 @@
-friendship-familiar-death-soon = {CAPITALIZE($name)} begins to convulse, their flesh slowly disintegrating!
