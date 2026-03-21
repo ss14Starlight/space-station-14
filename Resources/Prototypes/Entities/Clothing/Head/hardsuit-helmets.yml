@@ -776,7 +776,7 @@
 
 #Syndicate Elite Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadWithLightIntermediate, ClothingHeadSuitWithLightBase ] # Starlight
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadWithLightBasic, ClothingHeadSuitWithLightBase ] # Starlight
   id: ClothingHeadHelmetHardsuitSyndieElite
   name: syndicate elite helmet
   description: An elite version of the blood-red hardsuit's helmet, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
@@ -809,7 +809,7 @@
 
 #Syndicate Commander Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadWithLightIntermediate, ClothingHeadSuitWithLightBase ] # Starlight
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadWithLightBasic, ClothingHeadSuitWithLightBase ] # Starlight
   id: ClothingHeadHelmetHardsuitSyndieCommander
   name: syndicate commander helmet
   description: A bulked up version of the blood-red hardsuit's helmet, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
