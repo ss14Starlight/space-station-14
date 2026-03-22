@@ -40,9 +40,9 @@ public sealed partial class ItemSummonSystem : EntitySystem
             _popup.PopupPredicted(Loc.GetString("item-summon-action-recall", ("item", Name(itemUid))), args.Performer, args.Performer, PopupType.Small);
         }
 
-        if(_net.IsServer && (ent.Comp.SummonedItem == null || !Exists(ent.Comp.SummonedItem)))
+        if(ent.Comp.SummonedItem == null || !Exists(ent.Comp.SummonedItem))
         {
-            var uid = Spawn(ent.Comp.SummonableItem, Transform(args.Performer).Coordinates);
+            var uid = PredictedSpawnAtPosition(ent.Comp.SummonableItem, Transform(args.Performer).Coordinates);
             _hands.TryForcePickupAnyHand(args.Performer, uid);
 
             ent.Comp.SummonedItem = uid;
