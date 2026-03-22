@@ -587,3 +587,78 @@
     collection: BarestepWood
   itemDrop: FloorTileItemWoodRed
   heatCapacity: 10000
+
+# Metal
+
+- type: tile
+  id: FloorMetalDark
+  name: tiles-metal-dark-floor
+  sprite: /Textures/_Starlight/Tiles/metal_dark_monke.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemMetalDark
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorMetalBrown
+  name: tiles-metal-brown-floor
+  sprite: /Textures/_Starlight/Tiles/metal_engie_monke.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemMetalBrown
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorMetalBlue
+  name: tiles-metal-blue-floor
+  sprite: /Textures/_Starlight/Tiles/metal_med_monke.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemMetalBlue
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorMetalPurple
+  name: tiles-metal-pruple-floor
+  sprite: /Textures/_Starlight/Tiles/metal_sci_monke.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemMetalPurple
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorMetalRed
+  name: tiles-metal-red-floor
+  sprite: /Textures/_Starlight/Tiles/metal_sec_monke.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemMetalRed
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorMetalGreen
+  name: tiles-metal-green-floor
+  sprite: /Textures/_Starlight/Tiles/metal_service_monke.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemMetalGreen
+  heatCapacity: 10000
+

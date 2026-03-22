@@ -1,7 +1,7 @@
 - type: entity
   parent: [ DrinkVisualsAllFilled, DrinkBottleGlassBaseFull ]
   id: DrinkVodkizineBottleFull
-  name: Vodkizine bottle
+  name: vodkizine bottle
   description: The best cure for and cause of a hangover.
   components:
   - type: SolutionContainerManager
