@@ -325,7 +325,7 @@
   description: It's a medical drug dispenser by Interdyne Pharmaceutics. For the Health of Humankind.
   components:
   - type: VendingMachine
-    pack: NanoMedCivilianInventory # TODO: Change sprites
+    pack: NanoMedCivilianInventory # TODO: Change options
     offState: off-civilian
     brokenState: broken
     normalState: normal-unshaded
@@ -336,7 +336,7 @@
   - type: DatasetVocalizer
     dataset: NanoMedAds # TODO: Change to Interdyne
   - type: Sprite
-    sprite: Structures/Machines/VendingMachines/medical.rsi
+    sprite: _Starlight/Structures/Machines/VendingMachines/interdyne_medical.rsi
     layers:
     - state: "off-civilian"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -371,7 +371,7 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
-    access: [["Medical"]]
+    access: [["Medical"], ["SyndicateAgent"]]
 
 # Wallmounts
 - type: entity
@@ -425,7 +425,7 @@
     - texture: Structures/Machines/VendingMachines/maintenance_panel.png
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
-    access: [["Medical"]]
+    access: [["Medical"], ["SyndicateAgent"]]
 
 # Empty
 - type: entity
