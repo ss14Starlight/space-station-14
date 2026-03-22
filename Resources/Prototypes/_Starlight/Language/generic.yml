@@ -47,6 +47,7 @@
   speech:
     allowRadio: false
     requireSpeech: false
+    requireSound: false
     requireHands: true
     color: "#dddddd"
     messageWrapOverrides:

@@ -5,6 +5,7 @@
   speech:
     allowRadio: false
     requireSpeech: false
+    requireSound:
     requireHands: true
     color: "#dddddd"
     messageWrapOverrides:
