@@ -5,6 +5,11 @@
   description: A rooty tooty point and shooty.
   abstract: true
   components:
+  # Starlight-start
+  - type: GunWieldBonus
+    maxAngle: -20
+    minAngle: -20
+  # Starlight-end
   - type: RestrictByUserTag
     doestContain:
     - Abductor
@@ -74,9 +79,6 @@
   description: A weapon of the masses, a true relic. The Kardashev-Mosin has served in nearly every armed conflict since its creation 670 years ago. The bolt-action design of the rifle remains virtually identical to its original design, whether used for hunting, sniping, or endless trench warfare. Uses .45 magnum ammo.
   components:
   # Starlight-start
-  - type: GunWieldBonus
-    maxAngle: -10
-    minAngle: -10
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 2
@@ -147,7 +149,7 @@
     maxTransferAmount: 2
   - type: Sharp
     butcherDelayModifier: 2 #It's a bayonet
-  - type: GunRequiresWield
+  #- type: GunRequiresWield Starlight: remove requirement
   - type: StaticPrice
     price: 500
 
@@ -157,11 +159,6 @@
   id: WeaponSniperHristov
   description: For when you absolutely, positively need to make someone regret their life choices from a safe distance. Uses .60 anti-materiel ammo.
   components:
-  # Starlight-start
-  - type: GunWieldBonus
-    maxAngle: -10
-    minAngle: -10
-  # Starlight-end
   - type: Item
     size: Huge
     shape:

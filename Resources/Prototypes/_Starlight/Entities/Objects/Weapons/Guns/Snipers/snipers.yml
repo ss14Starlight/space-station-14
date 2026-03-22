@@ -151,9 +151,6 @@
   id: WeaponSniperLionhunter
   description: A one of a kind bolt-action rifle fitted with an integrated scope. Chambered for a proprietary .48 round developed by parties unknown. Built to drop targets at range with authority. Each shot demands a deliberate recycle of the action.
   components:
-  - type: GunWieldBonus
-    maxAngle: -10
-    minAngle: -10
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/lionhunter_icons.rsi
     layers:
