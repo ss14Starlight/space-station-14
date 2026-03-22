@@ -35220,5 +35220,89 @@ Entries:
   id: 385501
   time: '2026-03-21T21:09:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3855
+- author: TaserTheFox
+  changes:
+  - message: Slightly tweaked the wording of the evac shuttle dock message.
+    type: Tweak
+  id: 385901
+  time: '2026-03-22T08:06:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3859
+- author: BigfootBravo
+  changes:
+  - message: Chittin now can use the tts system.
+    type: Fix
+  id: 386101
+  time: '2026-03-22T08:14:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3861
+- author: wonderfulnewworld
+  changes:
+  - message: (Bagel) Adds a mail room w/Mail Technician lockers + 1 extra mail tech
+      round start slot.
+    type: Add
+  - message: (Bagel) Adds Cargo Technician lockers.
+    type: Add
+  - message: (Bagel) Adds Departmental Communications Consoles.
+    type: Add
+  - message: (Bagel) Expands Law Department to have a bedroom room for Magistrate.
+    type: Add
+  - message: (Bagel) Removes Chemistry from Brigmed.
+    type: Remove
+  - message: (Bagel) Tweaks Mains around Law to account for Magistrate's room.
+    type: Tweak
+  - message: (Bagel) Adds a couple more emergency lights in the east main hallways.
+    type: Fix
+  id: 385601
+  time: '2026-03-22T08:49:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3856
+- author: wonderfulnewworld and Conflee
+  changes:
+  - message: Added Interdyne Enterprise/Commercial vendors & wall versions. These
+      should replace the NanoMeds on Serpentscrest/can be mapped on Nukie Bases/used
+      for admins. The Enterprise ones can accept Medical or SyndicateAgent access.
+    type: Add
+  - message: Added new posters for Interdyne, Waffle Corp, DONK CO., and Comitas Systems.
+      These can randomly show up in the ContraPoster pool.
+    type: Add
+  - message: Added a new poster for DeForest Medical. This can randomly show up in
+      the LegitPoster pool.
+    type: Add
+  - message: Added new flags for Cybersun, Interdyne, Waffle Corp, and DONK CO.
+    type: Add
+  - message: Adds Interdyne bruise packs/ointments. They use the sprites of the red
+      ones from security, but only stack to 10. They can only be found in the Interdyne
+      vendors.
+    type: Add
+  - message: The SyndieJuice has a unique sprite now.
+    type: Add
+  - message: Added Ominous Pills. These are similar to Strange Pills, but have a much
+      higher chance of killing you. They do, however, have *more* of each chemical,
+      so if you get lucky...
+    type: Add
+  - message: Added Strange Pills to NanoMed MNGR inventories.
+    type: Tweak
+  - message: You can now emag NanoMeds to get some Desoxy and Ominous Pills.
+    type: Tweak
+  - message: You can now emag the ChemVend to get Ominous Pills.
+    type: Tweak
+  id: 386501
+  time: '2026-03-22T17:16:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3865
+- author: SevenShades
+  changes:
+  - message: (Boxcars) Added a public crew monitoring console to medical.
+    type: Add
+  - message: (Boxcars) Departmental announcement consoles.
+    type: Add
+  - message: (Boxcars) Added more emergency lights.
+    type: Add
+  - message: (Boxcars) Sec front doors are now brig access.
+    type: Fix
+  - message: (Boxcars) AI console is now linked to the core by default.
+    type: Fix
+  - message: (Boxcars) Fixed engineering fax machine name.
+    type: Fix
+  id: 385701
+  time: '2026-03-22T17:23:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3857
 Order: -1
 
