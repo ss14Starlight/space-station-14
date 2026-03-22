@@ -13,7 +13,7 @@
   parent: [BaseDevilObjective, BaseLivingObjective]
   id: SurviveDevilObjective
   name: Extract alive and unrestrained.
-  description: It's going to be a lot of paperwork if NanoTrasen finds out they aren't the only ones stealing souls in this sector.
+  description: It's going to be a lot of paperwork if NanoTrasen finds out we are working in this sector.
   components:
   - type: Objective
     difficulty: 1
