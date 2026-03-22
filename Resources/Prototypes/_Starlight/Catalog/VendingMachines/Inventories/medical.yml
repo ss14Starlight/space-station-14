@@ -234,11 +234,11 @@
 
 # Interdyne Vendor stuff
 - type: vendingMachineInventory
-  id: IntedyneEnterpriseWallInventory
+  id: InterdyneEnterpriseWallInventory
   startingInventory:
     HandheldHealthAnalyzer: 1
     Gauze: 3
-    SyndicateBrutepack: 3
+    SyndicateBrutePack: 3
     SyndicateOintment: 3
     Bloodpack: 3
     ChemistryBottleEpinephrine: 3
@@ -259,7 +259,7 @@
     HandheldHealthAnalyzer: 1
     AloeCream: 2
     Gauze: 3
-    SyndicateBrutepack: 3
+    SyndicateBrutePack: 3
     SyndicateOintment: 2
     Bloodpack: 3
     ChemistryBottleEpinephrine: 3
@@ -278,7 +278,7 @@
   startingInventory:
     HandheldHealthAnalyzer: 3
     Gauze: 5
-    SyndicateBrutepack: 5
+    SyndicateBrutePack: 5
     SyndicateOintment: 5
     Bloodpack: 5
     Tourniquet: 2

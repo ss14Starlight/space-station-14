@@ -234,16 +234,23 @@
     stackType: RedOintment
     count: 10
 
+- type: stack
+  id: RedOintment
+  name: stack-redointment
+  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: redointment }
+  spawn: RedOintment1
+  maxCount: 20
+
 #"Syndicate" red ointment
 - type: entity
   name: interdyne ointment
   description: Interdyne's special blend of pyrazine and aloe, used to treat severe burns. Does nothing for caustic.
   parent: RedOintment
   id: SyndicateOintment
-  suffix: 10
+  suffix: Full
   components:
   - type: Sprite
-    state: redointment2
+    state: redointment3
   - type: Item
     heldPrefix: interdyneointment
   - type: Stack
@@ -255,7 +262,7 @@
   description: Interdyne's special blend of pyrazine and aloe, used to treat severe burns. Does nothing for caustic. The red ones are supposedly rare.
   parent: SyndicateOintment
   id: SyndicateOintment1
-  suffix: 1
+  suffix: Single
   components:
   - type: Sprite
     state: redointment
@@ -268,13 +275,6 @@
   name: stack-interdyneointment
   spawn: SyndicateOintment1
   maxCount: 10
-
-- type: stack
-  id: RedOintment
-  name: stack-redointment
-  icon: { sprite: "/Textures/_Starlight/Objects/Specific/Medical/medical.rsi", state: redointment }
-  spawn: RedOintment1
-  maxCount: 20
 
 - type: entity
   name: red bruise pack
@@ -344,7 +344,7 @@
   description: Interdyne-Graded Bruise Packs for all your needs.
   parent: RedBrutePack
   id: SyndicateBrutePack
-  suffix: 10
+  suffix: Full
   components:
   - type: Sprite
     state: redbrutepack2
@@ -359,7 +359,7 @@
   description: Interdyne-Graded Bruise Packs for all your needs. The red ones are supposedly rare.
   parent: SyndicateBrutePack
   id: SyndicateBrutePack1
-  suffix: 1
+  suffix: Single
   components:
   - type: Sprite
     state: redbrutepack

@@ -436,7 +436,7 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/deforest.rsi
-    state: deforest
+    state: deforest_med
 
 - type: entity
   parent: PosterBase
