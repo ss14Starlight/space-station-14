@@ -25,13 +25,6 @@
           - MobMask
         layer:
           - MobLayer
-      fix2:
-        shape:
-          !type:PhysShapeCircle
-          radius: 8
-        hard: false
-        mask: 
-          - MobLayer
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
