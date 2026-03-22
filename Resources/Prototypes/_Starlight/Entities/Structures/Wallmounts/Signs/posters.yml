@@ -468,6 +468,7 @@
     sprite: _Starlight/Structures/Wallmounts/posters/waffle.rsi
     state: waffle
 
+- type: entity
   id: PosterLegit247
   name: "24/7"
   description: "Open 24 hours a spaceday, seven days a spaceweek!"
