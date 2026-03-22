@@ -8,7 +8,11 @@
   supervisors: job-supervisors-qm
   access:
   - Cargo
+  - Mail
   - Maintenance
+  extendedAccess:
+  - Salvage
+  - Mining
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: BoxingDay
@@ -17,14 +21,11 @@
 - type: startingGear
   id: MailTechGear
   equipment:
-    id: MailPDA
     ears: ClothingHeadsetCargo
-    belt: MailBag
-    pocket1: MailCompanion # Starlight
+    pocket1: MailCompanion
   storage:
-    back:
-    - MailTrolleyFlatpack
-    - Multitool #maybe not a good idea? idk makes unpacking it quick
+    back: # literally just comment to update folder
+    - Multitool #maybe not a good idea? idk makes unpacking it quick 
 
 - type: chameleonOutfit
   id: MailTechChameleonOutfit

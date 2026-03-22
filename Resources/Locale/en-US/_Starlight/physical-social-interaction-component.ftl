@@ -1,3 +1,5 @@
+physical-social-interaction-component-verb = Physical Social Interaction
+
 pet-verb = Pet
 petting-success = You pet { THE($target) } on {POSS-ADJ($target)} head.
 petting-success-others = { CAPITALIZE(THE($user)) } pets {THE($target)} on {POSS-ADJ($target)} head.
