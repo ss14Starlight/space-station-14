@@ -42,8 +42,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
         SubscribeLocalEvent<DevilComponent, OpenDamnationsMenuEvent>(OnOpenDamnationsMenu);
 
         SubscribeLocalEvent<DevilComponent, DevilSoulsDamnedCountChangedEvent>(OnDevilSoulsDamnedCountChanged);
-
-        SubscribeContract();
+        
         SubscribeDamned();
         SubscribeBanish();
     }

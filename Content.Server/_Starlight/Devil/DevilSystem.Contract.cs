@@ -14,11 +14,6 @@ public sealed partial class DevilSystem : SharedDevilSystem
     private readonly string InfernalContractPrototype = "InfernalContract";
     private SoundPathSpecifier ContractSummonSound = new("/Audio/Effects/thudswoosh.ogg");
 
-    private void SubscribeContract()
-    {
-
-    }
-
     private EntityUid CreateContract(EntityUid author, DevilComponent devilComp)
     {
         var paper = Spawn(InfernalContractPrototype, Transform(author).Coordinates);

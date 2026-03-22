@@ -17,10 +17,7 @@ public sealed class DamnConditionSystem : EntitySystem
         SubscribeLocalEvent<DamnConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
     }
 
-    public void OnAfterAssign(Entity<DamnConditionComponent> condition, ref ObjectiveAfterAssignEvent args)
-    {
-        _metadata.SetEntityDescription(condition.Owner, Loc.GetString(condition.Comp.DescriptionText, ("amount", condition.Comp.Amount)));
-    }
+    public void OnAfterAssign(Entity<DamnConditionComponent> condition, ref ObjectiveAfterAssignEvent args) => _metadata.SetEntityDescription(condition.Owner, Loc.GetString(condition.Comp.DescriptionText, ("amount", condition.Comp.Amount)));
 
     public void OnGetProgress(Entity<DamnConditionComponent> condition, ref ObjectiveGetProgressEvent args)
     {

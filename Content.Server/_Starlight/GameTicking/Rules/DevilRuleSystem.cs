@@ -24,13 +24,7 @@ public sealed partial class DevilRuleSystem : GameRuleSystem<DevilRuleComponent>
         _antag.SendBriefing(args.EntityUid, MakeBriefing(), null, null);
     }
 
-    private void OnGetBriefing(EntityUid uid, DevilRuleComponent comp, ref GetBriefingEvent args)
-    {
-        args.Append(MakeBriefing());
-    }
+    private void OnGetBriefing(EntityUid uid, DevilRuleComponent comp, ref GetBriefingEvent args) => args.Append(MakeBriefing());
 
-    private string MakeBriefing()
-    {
-        return Loc.GetString("devil-role-briefing");
-    }
+    private string MakeBriefing() => Loc.GetString("devil-role-briefing");
 }

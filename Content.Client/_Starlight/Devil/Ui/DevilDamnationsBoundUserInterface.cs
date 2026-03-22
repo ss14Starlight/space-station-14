@@ -27,7 +27,7 @@ public sealed class DevilDamnationsBoundUserInterface : BoundUserInterface
     {
         base.UpdateState(state);
 
-        if(state is not DevilDamnationsBuiState msg) return;
+        if (state is not DevilDamnationsBuiState msg) return;
         _menu?.Update(msg);
     }
 }

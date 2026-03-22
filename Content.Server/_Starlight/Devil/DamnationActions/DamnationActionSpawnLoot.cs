@@ -2,7 +2,6 @@ using Content.Server.Hands.Systems;
 using Content.Shared._Starlight.Devil.DamnationActions;
 using Content.Shared.EntityTable;
 using Robust.Server.GameObjects;
-using Robust.Shared.Physics;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Devil.DamnationActions;

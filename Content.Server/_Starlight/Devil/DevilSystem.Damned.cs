@@ -25,10 +25,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
         SubscribeLocalEvent<DamnedComponent, EntitySpokeEvent>(OnEntitySpoke);
     }
 
-    private bool CanDamn(Entity<DamnedComponent> entity, ProtoId<DamnationPrototype> proto)
-    {
-        return !entity.Comp.Damnations.Contains(proto);
-    }
+    private bool CanDamn(Entity<DamnedComponent> entity, ProtoId<DamnationPrototype> proto) => !entity.Comp.Damnations.Contains(proto);
 
     private bool AddDamnation(Entity<DamnedComponent> entity, ProtoId<DamnationPrototype> proto)
     {

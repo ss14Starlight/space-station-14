@@ -22,13 +22,13 @@ public sealed partial class AppliedSpriteLayerSystem : EntitySystem
         Entity<SpriteComponent?> spriteEnt = (ent.Owner, spriteComp);
         var index = _sprite.LayerMapReserve(spriteEnt, ent.Comp.Layer);
         _sprite.LayerSetSprite(spriteEnt, index, ent.Comp.Sprite);
-        if(ent.Comp.Glowing) spriteComp.LayerSetShader(index, "unshaded");
+        if (ent.Comp.Glowing) spriteComp.LayerSetShader(index, "unshaded");
         _sprite.LayerSetVisible(spriteEnt, index, true);
     }
 
     private void OnShutdown(Entity<AppliedSpriteLayerComponent> ent, ref ComponentShutdown args)
     {
-        if(!TryComp<SpriteComponent>(ent.Owner, out var spriteComp)) return;
+        if (!TryComp<SpriteComponent>(ent.Owner, out var spriteComp)) return;
 
         Entity<SpriteComponent?> spriteEnt = (ent.Owner, spriteComp);
         var index = _sprite.LayerMapReserve(spriteEnt, ent.Comp.Layer);

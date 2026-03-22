@@ -1,8 +1,5 @@
-using Content.Shared.Starlight;
-using Content.Server.Administration.Managers;
 using Content.Shared._Starlight.Devil.DamnationActions;
 using Content.Shared._NullLink;
-using Robust.Shared.Toolshed.Commands.Math;
 
 namespace Content.Server._Starlight.Devil.DamnationActions;
 
