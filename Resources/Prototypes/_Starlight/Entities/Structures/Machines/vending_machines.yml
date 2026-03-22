@@ -325,7 +325,7 @@
   description: It's a medical drug dispenser by Interdyne Pharmaceutics. For the Health of Humankind.
   components:
   - type: VendingMachine
-    pack: NanoMedCivilianInventory # TODO: Change options
+    pack: InterdyneCommercialInventory
     offState: off-civilian
     brokenState: broken
     normalState: normal-unshaded
@@ -356,12 +356,12 @@
   name: Interdyne Enterprise
   components:
   - type: VendingMachine
-    pack: NanoMedPlusInventory
+    pack: InterdyneEnterpriseInventory
     offState: off
     showPrices: false  # Starlight-edit: Vending Machines Prices
   - type: Machine # Starlight-edit: Vending Machine boards
     board: VendingMachineMedicalCircuitboard # Starlight-edit: Vending Machine boards
-  - type: Sprite # TODO: Change sprites
+  - type: Sprite
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -377,11 +377,11 @@
 - type: entity
   parent: VendingMachineWallmount
   id: VendingMachineWallMedicalCivilianSyndicate
-  name: Interdyne life-aid
+  name: Interdyne life-aid commercial
   description: It's a wall-mounted medical equipment dispenser by Interdyne Pharmaceutics. For the Health of Humankind.
   components:
   - type: VendingMachine
-    pack: NanoMedCivilianWallInventory
+    pack: InterdyneCommercialWallInventory
     offState: off-civilian
     showPrices: True # Starlight-edit: Vending Machines Prices
     brokenState: broken
@@ -389,8 +389,8 @@
     denyState: deny-unshaded
   - type: Machine # Starlight-edit: Vending Machine boards
     board: VendingMachineWallMedicalCivilianCircuitboard # Starlight-edit: Vending Machine boards
-  - type: Sprite # TODO: Change sprites
-    sprite: Structures/Machines/VendingMachines/wallmed.rsi
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/interdyne_wallmed.rsi
     layers:
     - state: "off-civilian"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -407,15 +407,15 @@
 - type: entity
   parent: VendingMachineWallMedicalCivilianSyndicate
   id: VendingMachineWallMedicalSyndicate
-  name: NanoMed
+  name: Interdyne life-aid enterprise
   components:
   - type: VendingMachine
-    pack: NanoMedInventory
+    pack: IntedyneEnterpriseWallInventory
     offState: off
     showPrices: false # Starlight-edit: Vending Machines Prices
   - type: Machine # Starlight-edit: Vending Machine boards
     board: VendingMachineWallMedicalCircuitboard # Starlight-edit: Vending Machine boards
-  - type: Sprite # TODO: Change sprites
+  - type: Sprite
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
