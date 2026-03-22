@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat;
 using Content.Server.Chat.Managers;
@@ -13,11 +14,14 @@ namespace Content.Server.Administration.UI
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
         private readonly ChatSystem _chatSystem;
+        private readonly AutoDiscordLogSystem _autoLog; //Starlight
 
         public AdminAnnounceEui()
         {
             IoCManager.InjectDependencies(this);
-            _chatSystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<ChatSystem>();
+            var entSysMan = IoCManager.Resolve<IEntitySystemManager>(); //Starlight
+            _chatSystem = entSysMan.GetEntitySystem<ChatSystem>(); //Starlight 
+            _autoLog = entSysMan.GetEntitySystem<AutoDiscordLogSystem>(); //Starlight
         }
 
         public override void Opened()
@@ -53,7 +57,8 @@ namespace Content.Server.Administration.UI
                             _chatSystem.DispatchGlobalAnnouncement(doAnnounce.Announcement, doAnnounce.Announcer, colorOverride: Color.Gold);
                             break;
                     }
-
+                    var admin = Player?.Name ?? "Unknown"; //Starlight
+                    _autoLog.LogToDiscord(Loc.GetString("autolog-announce", ("sender", doAnnounce.Announcer), ("message", doAnnounce.Announcement), ("admin", admin)), admin); //Starlight
                     StateDirty();
 
                     if (doAnnounce.CloseAfter)

@@ -7,6 +7,7 @@ using Content.Shared.Verbs;
 using Content.Server._ST.CosmicCult.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
+using Content.Server._Starlight.Administration.Systems;
 
 namespace Content.Server._ST.Administration;
 
@@ -14,6 +15,7 @@ public sealed partial class StellarAdminVerbSystem : EntitySystem
 {
     [Dependency] private readonly AntagSelectionSystem _antagSelection = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
+    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!; //Starlight
 
     public override void Initialize()
     {
@@ -44,6 +46,7 @@ public sealed partial class StellarAdminVerbSystem : EntitySystem
             Act = () =>
             {
                 _antagSelection.ForceMakeAntag<CosmicCultRuleComponent>(targetPlayer, "CosmicCult");
+                _autolog.LogToDiscord(string.Join(": ", cosmicCultName, Loc.GetString("admin-verb-make-cosmiccultist")), player.Name); //Starlight
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", cosmicCultName, Loc.GetString("admin-verb-make-cosmiccultist")),
