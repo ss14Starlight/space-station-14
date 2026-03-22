@@ -38,15 +38,12 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
     private bool MessageContainsBanish(string message)
     {
-        bool containsBanish = false;
         foreach (var banish in BanishPhrases)
         {
-            if(!message.Contains(banish, StringComparison.InvariantCultureIgnoreCase)) continue;
-            containsBanish = true;
-            break;
+            if (message.Contains(banish, StringComparison.InvariantCultureIgnoreCase)) return true;
         }
 
-        return containsBanish;
+        return false;
     }
 
     private void OnListen(EntityUid uid, DevilComponent devilComp, ref ListenEvent args)

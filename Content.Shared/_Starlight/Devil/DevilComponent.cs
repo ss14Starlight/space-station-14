@@ -21,7 +21,7 @@ public sealed partial class DevilComponent : Component
     };
 
     /// <summary>
-    /// What damnatios can the devil use in their contracts?
+    /// What damnations can the devil use in their contracts?
     /// </summary>
     [DataField]
     public List<ProtoId<DamnationPrototype>> AvailableDamnations = new()

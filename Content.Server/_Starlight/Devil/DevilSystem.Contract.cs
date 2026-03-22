@@ -3,15 +3,15 @@ using Content.Shared._Starlight.Paper;
 using Robust.Shared.Audio;
 using Content.Shared.Paper;
 using System.Text.RegularExpressions;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Devil;
 
 public sealed partial class DevilSystem : SharedDevilSystem
 {
     [Dependency] private readonly PaperSystem _paper = default!;
-    [Dependency] private readonly ParsablePaperSystem _parsablePaper = default!;
 
-    private readonly string InfernalContractPrototype = "InfernalContract";
+    private readonly EntProtoId InfernalContractPrototype = "InfernalContract";
     private SoundPathSpecifier ContractSummonSound = new("/Audio/Effects/thudswoosh.ogg");
 
     private EntityUid CreateContract(EntityUid author, DevilComponent devilComp)

@@ -16,20 +16,16 @@ public sealed partial class DoomedSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<DoomedComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<DoomedComponent, StatusEffectRemovedEvent>(OnStatusEffectRemoved);
     }
 
-    private void OnMapInit(Entity<DoomedComponent> ent, ref MapInitEvent args)
-    {
-        ent.Comp.TimeApplied = _timing.CurTime;
-        _statusEffects.TryAddStatusEffectDuration(ent.Owner, ent.Comp.StatusEffect, ent.Comp.TimeToDeath);
-        Timer.Spawn(ent.Comp.TimeToDeath, () => Die(ent));
-    }
+    private void OnMapInit(Entity<DoomedComponent> ent, ref MapInitEvent args) => _statusEffects.TryAddStatusEffectDuration(ent.Owner, ent.Comp.StatusEffect, ent.Comp.TimeToDeath);
 
-    private void Die(Entity<DoomedComponent> ent)
+    private void OnStatusEffectRemoved(EntityUid uid, DoomedComponent doomed, ref StatusEffectRemovedEvent args)
     {
-        if(HasComp<TransformComponent>(ent.Owner))
-            Spawn(ent.Comp.DamageEffect, Transform(ent.Owner).Coordinates);
+        if (HasComp<TransformComponent>(args.Target))
+            Spawn(doomed.DamageEffect, Transform(args.Target).Coordinates);
 
-        _damageable.TryChangeDamage(ent.Owner, ent.Comp.Damage);
+        _damageable.TryChangeDamage(uid, doomed.Damage);
     }
 }

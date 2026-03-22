@@ -11,7 +11,7 @@ infernal-contract-base =
     • [form]
     • [form]
     To the eternal fires of hell, in exchange for:
-    • [form]
+    • Gain self rejuvenation
     • [form]
 
     I understand that there is no way to retrieve these sacrifices. If I offer my soul, [bold]I understand that upon my demise my soul will fall into the fires of hell. My body will not be able to be resurrected, cloned, or brought back to life in any way.[/bold] I will not be able to utter the true name of the devil, doing such will incinerate me.

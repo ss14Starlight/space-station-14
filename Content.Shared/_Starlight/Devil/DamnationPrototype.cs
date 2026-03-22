@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Devil;
 
-[Prototype("damnation")]
+[Prototype]
 public sealed partial class DamnationPrototype : IPrototype
 {
     [IdDataField]

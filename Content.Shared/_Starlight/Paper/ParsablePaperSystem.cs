@@ -5,13 +5,6 @@ namespace Content.Shared._Starlight.Paper;
 
 public sealed partial class ParsablePaperSystem : EntitySystem
 {
-    [Dependency] private readonly PaperSystem _paper = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-    }
-
     /// <summary>
     /// Does the paper fit all of the regex requirements?
     /// </summary>

@@ -6,7 +6,6 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Doomed;
 
 [RegisterComponent, NetworkedComponent]
-[AutoGenerateComponentState]
 public sealed partial class DoomedComponent : Component
 {
     /// <summary>
@@ -35,11 +34,4 @@ public sealed partial class DoomedComponent : Component
     /// </summary>
     [DataField]
     public EntProtoId StatusEffect = "StatusEffectDoomedIcon";
-
-    /// <summary>
-    /// When was the component applied?
-    /// Used to calculate when to explode the player
-    /// </summary>
-    [AutoNetworkedField]
-    public TimeSpan TimeApplied = default!;
 }
