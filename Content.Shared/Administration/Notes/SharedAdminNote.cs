@@ -10,7 +10,7 @@ public sealed record SharedAdminNote(
     NetUserId Player, // Notes player
     int? Round, // Which round was it added in?
     string? ServerName, // Which server was this added on?
-    string? ProjectName, // Which project was this added on?
+    string? ProjectName, // Starlight-edit: Which project was this added on?
     TimeSpan PlaytimeAtNote, // Playtime at the time of getting the note
     NoteType NoteType, // Type of note
     string Message, // Attached message
@@ -25,5 +25,5 @@ public sealed record SharedAdminNote(
     DateTime? UnbannedTime, // Only valid for bans. Set if unbanned
     string? UnbannedByName, // Only valid for bans. Set if unbanned
     bool? Seen, // Only valid for messages, otherwise should be null. Has the user seen this message?
-    bool IsNetwork // Does this note from NullLink network?
+    bool IsNetwork // Starlight-edit: Does this note from NullLink network?
     );

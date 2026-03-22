@@ -1,38 +1,42 @@
+using Content.Server.Administration.Managers;
+using Content.Server.EUI;
+using Content.Shared.Administration.Notes;
+using Content.Shared.Database;
+using Content.Shared.Eui;
+using Robust.Shared.Network;
+using static Content.Shared.Administration.Notes.AdminNoteEuiMsg;
+
+#region Starlight
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.EventBus;
-using Content.Server.Administration.Managers;
 using Content.Server.Database;
-using Content.Server.EUI;
 using Content.Server.GameTicking;
-using Content.Shared.Administration.Notes;
 using Content.Shared.CCVar;
-using Content.Shared.Database;
-using Content.Shared.Eui;
 using Content.Shared.Players.PlayTimeTracking;
-using Orleans;
-using Orleans.Runtime;
 using Robust.Shared.Configuration;
-using Robust.Shared.Network;
 using Robust.Shared.Player;
-using static Content.Shared.Administration.Notes.AdminNoteEuiMsg;
 using AdminNote = Starlight.NullLink.AdminNote;
+#endregion
 
 namespace Content.Server.Administration.Notes;
 
 public sealed class AdminNotesEui : BaseEui
 {
-    [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly IAdminManager _admins = default!;
     [Dependency] private readonly IAdminNotesManager _notesMan = default!;
     [Dependency] private readonly IPlayerLocator _locator = default!;
+
+    #region Starlight
+    [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly IActorRouter _actors = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly INullLinkEventBusManager _eventBus = default!;
+    #endregion
 
     public AdminNotesEui()
     {
@@ -43,7 +47,7 @@ public sealed class AdminNotesEui : BaseEui
     private string NotedPlayerName { get; set; } = string.Empty;
     private bool HasConnectedBefore { get; set; }
     private Dictionary<(int, NoteType), SharedAdminNote> Notes { get; set; } = new();
-    private Dictionary<(int, NoteType), SharedAdminNote> NetworkNotes { get; set; } = new();
+    private Dictionary<(int, NoteType), SharedAdminNote> NetworkNotes { get; set; } = new(); // Starlight-edit
 
     public override async void Opened()
     {
@@ -66,9 +70,11 @@ public sealed class AdminNotesEui : BaseEui
         _notesMan.NoteAdded -= NoteModified;
         _notesMan.NoteModified -= NoteModified;
         _notesMan.NoteDeleted -= NoteDeleted;
+        // Starlight-start
         _eventBus.NoteAdded -= NoteModified;
         _eventBus.NoteChanged -= NoteModified;
         _eventBus.NoteRemoved -= NoteDeleted;
+        // Starlight-end
     }
 
     public override EuiStateBase GetNewState()
@@ -79,7 +85,7 @@ public sealed class AdminNotesEui : BaseEui
             _notesMan.CanCreate(Player) && HasConnectedBefore,
             _notesMan.CanDelete(Player),
             _notesMan.CanEdit(Player),
-            NetworkNotes
+            NetworkNotes // Starlight-edit
         );
     }
 
@@ -106,10 +112,12 @@ public sealed class AdminNotesEui : BaseEui
                         break;
                     }
 
-                    var noteId = await _notesMan.AddAdminRemark(Player, NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime);
+                    var noteId = await _notesMan.AddAdminRemark(Player, NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime); // Starlight-edit
 
+                    // Starlight-start
                     if (_actors.TryGetServerGrain(out var serverGrain) && noteId != null)
                         await serverGrain.AddOrUpdateNote(await GenerateNote(Player, NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime, noteId.Value));
+                    // Starlight-end
                     break;
                 }
             case DeleteNoteRequest request:
@@ -119,6 +127,7 @@ public sealed class AdminNotesEui : BaseEui
                         break;
                     }
 
+                    // Starlight-start
                     if (request.Network)
                     {
                         if (_actors.TryGetServerGrain(out var serverGrain))
@@ -130,8 +139,9 @@ public sealed class AdminNotesEui : BaseEui
                         if (_actors.TryGetServerGrain(out var serverGrain))
                             await serverGrain.RemoveNote(NotedPlayer, request.Id, removedBy: Player.UserId);
                     }
+                    // Starlight-end
 
-                    await _notesMan.DeleteAdminRemark(request.Id, request.Type, Player, null);
+                    await _notesMan.DeleteAdminRemark(request.Id, request.Type, Player, null); // Starlight-edit
                     break;
                 }
             case EditNoteRequest request:
@@ -147,8 +157,9 @@ public sealed class AdminNotesEui : BaseEui
                     }
 
 
-                    var note = await _notesMan.ModifyAdminRemark(request.Id, request.Type, Player, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime, null, null);
+                    var note = await _notesMan.ModifyAdminRemark(request.Id, request.Type, Player, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime, null, null); // Starlight-edit
 
+                    // Starlight-start
                     if (note != null && _actors.TryGetServerGrain(out var serverGrain))
                     {
                         var newNote = new AdminNote() {
@@ -182,6 +193,7 @@ public sealed class AdminNotesEui : BaseEui
                         else
                             await serverGrain.AddOrUpdateNote(newNote);
                     }
+                    // Starlight-end
 
                     break;
                 }
@@ -192,35 +204,6 @@ public sealed class AdminNotesEui : BaseEui
     {
         NotedPlayer = notedPlayer;
         await LoadFromDb();
-    }
-
-    private async void NoteModified(AdminNote note)
-    {
-        if (note.Player != NotedPlayer || !TryConvert(note, out var converted))
-            return;
-
-        NetworkNotes[(converted.Id, converted.NoteType)] = converted;
-        if (converted.ProjectName == _actors.Project && converted.ServerName == _actors.Server)
-        {
-            NoteModified(converted);
-            return;
-        }
-
-        StateDirty();
-    }
-
-    private void NoteDeleted(AdminNote note)
-    {
-        if (note.Player != NotedPlayer || !Enum.TryParse<NoteType>(note.NoteType, true, out var type))
-            return;
-
-        NetworkNotes.Remove((note.Id, type));
-        if (note.ProjectName == _actors.Project && note.ServerName == _actors.Server)
-        {
-            Notes.Remove((note.Id, type));
-        }
-
-        StateDirty();
     }
 
     private void NoteModified(SharedAdminNote note)
@@ -269,6 +252,37 @@ public sealed class AdminNotesEui : BaseEui
         {
             StateDirty();
         }
+    }
+
+    #region Starlight
+
+    private async void NoteModified(AdminNote note)
+    {
+        if (note.Player != NotedPlayer || !TryConvert(note, out var converted))
+            return;
+
+        NetworkNotes[(converted.Id, converted.NoteType)] = converted;
+        if (converted.ProjectName == _actors.Project && converted.ServerName == _actors.Server)
+        {
+            NoteModified(converted);
+            return;
+        }
+
+        StateDirty();
+    }
+
+    private void NoteDeleted(AdminNote note)
+    {
+        if (note.Player != NotedPlayer || !Enum.TryParse<NoteType>(note.NoteType, true, out var type))
+            return;
+
+        NetworkNotes.Remove((note.Id, type));
+        if (note.ProjectName == _actors.Project && note.ServerName == _actors.Server)
+        {
+            Notes.Remove((note.Id, type));
+        }
+
+        StateDirty();
     }
 
     private Dictionary<(int, NoteType), SharedAdminNote> Convert(IEnumerable<AdminNote> notes)
@@ -372,4 +386,6 @@ public sealed class AdminNotesEui : BaseEui
 
         return note;
     }
+
+    #endregion
 }

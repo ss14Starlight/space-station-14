@@ -13,6 +13,8 @@ public sealed class AdminNotesEui : BaseEui
     {
         NoteWindow = new AdminNotesWindow();
         NoteControl = NoteWindow.Notes;
+
+        // Starlight-start
         NetworkNotesControl = NoteWindow.NetworkNotes;
 
         NoteWindow.NotesTabButton.OnPressed += _ => {
@@ -36,6 +38,7 @@ public sealed class AdminNotesEui : BaseEui
         NetworkNotesControl.NoteChanged += (id, type, text, severity, secret, expiryTime, project) => SendMessage(new EditNoteRequest(id, type, text, severity, secret, expiryTime, true, project));
         NetworkNotesControl.NewNoteEntered += (type, text, severity, secret, expiryTime) => SendMessage(new CreateNoteRequest(type, text, severity, secret, expiryTime, true));
         NetworkNotesControl.NoteDeleted += (id, type, project) => SendMessage(new DeleteNoteRequest(id, type, project, true));
+        // Starlight-end
 
         NoteWindow.OnClose += () => SendMessage(new CloseEuiMessage());
     }
@@ -50,7 +53,7 @@ public sealed class AdminNotesEui : BaseEui
 
     private AdminNotesControl NoteControl { get; }
 
-    private AdminNotesControl NetworkNotesControl { get; }
+    private AdminNotesControl NetworkNotesControl { get; } // Starlight-edit
 
     public override void HandleState(EuiStateBase state)
     {
@@ -64,9 +67,11 @@ public sealed class AdminNotesEui : BaseEui
         NoteControl.SetNotes(s.Notes);
         NoteControl.SetPermissions(s.CanCreate, s.CanDelete, s.CanEdit);
 
+        // Starlight-start
         NetworkNotesControl.SetPlayerName(s.NotedPlayerName);
         NetworkNotesControl.SetNotes(s.NetworkNotes);
         NetworkNotesControl.SetPermissions(s.CanCreate, s.CanDelete, s.CanEdit);
+        // Starlight-end
     }
 
     public override void Opened()
