@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Administration;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
@@ -11,6 +12,7 @@ namespace Content.Server.AlertLevel.Commands
     {
         [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
+        [Dependency] private readonly AutoDiscordLogSystem _autoLog = default!; //Starlight
 
         public override string Command => "setalertlevel";
 
@@ -73,6 +75,9 @@ namespace Content.Server.AlertLevel.Commands
             }
 
             _alertLevelSystem.SetLevel(stationUid.Value, level, true, true, true, locked);
+            if (IsAdmemeAlert(stationUid.Value, level)) //Starlight
+                _autoLog.LogToDiscord(Loc.GetString("autolog-setalertlevel", ("level", level), ("locked", locked), ("admin", player.Name)), player.Name); //Starlight
+            
         }
 
         private string[] GetStationLevelNames(EntityUid station)
@@ -85,5 +90,18 @@ namespace Content.Server.AlertLevel.Commands
 
             return alertLevelComp.AlertLevels.Levels.Keys.ToArray();
         }
+        
+        #region Starlight
+        private bool IsAdmemeAlert(EntityUid station, string level)
+        {
+            if (!EntityManager.TryGetComponent<AlertLevelComponent>(station, out var alertLevelComp))
+                return false;
+
+            if (alertLevelComp.AlertLevels == null)
+                return false;
+
+            return !alertLevelComp.AlertLevels.Levels[level].Selectable;
+        }
+        #endregion
     }
 }
