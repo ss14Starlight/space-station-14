@@ -47,7 +47,6 @@ public sealed partial class DevilSystem : SharedDevilSystem
     [GeneratedRegex("^[-, a-zA-Z0-9]")]
     private static partial Regex NameSanitizeRegex();
 
-    #region events
     protected override void OnSignedEvent(EntityUid uid, InfernalContractComponent contractComp, ref PaperSignedEvent args)
     {
         base.OnSignedEvent(uid, contractComp, ref args);
@@ -62,5 +61,4 @@ public sealed partial class DevilSystem : SharedDevilSystem
         contractComp.Completed = true;
         Dirty(uid, contractComp);
     }
-    #endregion
 }

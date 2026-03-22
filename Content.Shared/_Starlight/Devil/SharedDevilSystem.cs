@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using Content.Shared._Starlight.Paper;
 using Content.Shared.Examine;
 using Content.Shared.Paper;
+using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Devil;
@@ -56,8 +57,6 @@ public abstract partial class SharedDevilSystem : EntitySystem
 
         var rawSacrifices = listSplitterRegex.Matches(rawSacrificesGroup).Cast<Match>().Select(m => m.Groups[1].Value).ToList();
         var rawBenefits = listSplitterRegex.Matches(rawBenefitsGroup).Cast<Match>().Select(m => m.Groups[1].Value).ToList();
-
-        // todo refactor this craziness, make sacrifices/benefits not seperate?
         var rawDamnations = rawSacrifices.Concat(rawBenefits);
 
         // we now have our string arrays of the wanted effects. Now we need to check them against existing ones.
@@ -119,7 +118,9 @@ public abstract partial class SharedDevilSystem : EntitySystem
             return;
         }
 
-        if (HasComp<DevilComponent>(args.Signer) || HasComp<DamnedComponent>(args.Signer))
+        // majority of the damnations wont work on cyborgs, and i dont want to make an edge case for literally everything - lets just stick to humanoids for now...
+        // do borgs even have souls? we did recently downgrade them to property damage only to hurt them
+        if (HasComp<DevilComponent>(args.Signer) || HasComp<DamnedComponent>(args.Signer) || HasComp<BorgChassisComponent>(args.Signer))
         {
             args.FailReason = Loc.GetString("infernal-contract-popup-fail-self");
             args.Cancelled = true;

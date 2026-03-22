@@ -58,11 +58,11 @@ public sealed partial class DevilComponent : Component
     // todo make actual devil names
     public List<ProtoId<LocalizedDatasetPrototype>> NameSegments = new()
     {
-        "NamesDragon",
-        "NamesDragonTitle"
+        "NamesDevil",
+        "NamesDevilTitle"
     };
 
-    public LocId NameFormat = "name-format-dragon";
+    public LocId NameFormat = "name-format-devil";
 
     [AutoNetworkedField, ViewVariables]
     public string TrueName = "Hellish McEvil";

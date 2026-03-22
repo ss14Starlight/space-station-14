@@ -2,7 +2,7 @@ infernal-contract-base =
    ⠀[center][sigil][/center]
 
    ⠀[color=#fbd8ae][head=2]CONTRACT FOR WORLDLY GAIN[/head]
-    ────────────────────────────────────────
+    ───────────────────────────────────────
    ⠀I, [signature], in sound mind, hereby declare that I willingly engage in demonic exchange with {$truename}, an agent of hell.
 
    ⠀I offer the following:
@@ -14,7 +14,7 @@ infernal-contract-base =
     • [form]
     • [form]
 
-    I understand that there is no way to retrieve these sacrifices. If I offer my soul, [bold]I understand that upon my demise my soul will fall into the fires of hell. My body will not be able to be resurrected, cloned, or brought back to life in any way.[/bold]
+    I understand that there is no way to retrieve these sacrifices. If I offer my soul, [bold]I understand that upon my demise my soul will fall into the fires of hell. My body will not be able to be resurrected, cloned, or brought back to life in any way.[/bold] I will not be able to utter the true name of the devil, doing such will incinerate me.
 
     Signed: [signature][/color]
 
