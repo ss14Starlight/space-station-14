@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared._Starlight.Shoelaces.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
@@ -298,15 +299,14 @@ public sealed class SharedShoelacesSystem : EntitySystem
 
         if (ent.Comp.TiedShoes is not { } tiedShoes)
             return;
-
-        _random.SetSeed(_gameTiming.CurTime.Seconds);
+        
         if (!tiedShoes.Comp.Tied
-            && _random.Prob(tiedShoes.Comp.KnockDownChance)
+            && _random.ProbPredicted(_gameTiming, tiedShoes.Comp.KnockDownChance, GetNetEntity(ent).Id)
             && _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(ent.Comp.TripKnockdownTime), force: true))
             _popup.PopupPredicted(Loc.GetString("shoelaces-popup-trip"), ent, ent, PopupType.MediumCaution);
         else if (tiedShoes.Comp.TiedTogether && _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(ent.Comp.TripKnockdownTime), force: true))
         {
-            if (_random.Prob(tiedShoes.Comp.ForceUntieChance))
+            if (_random.ProbPredicted(_gameTiming, tiedShoes.Comp.ForceUntieChance, GetNetEntity(ent).Id))
             {
                 _alerts.ShowAlert(ent.Owner, tiedShoes.Comp.AlertUntied);
                 _alerts.ClearAlert(ent.Owner, tiedShoes.Comp.AlertTiedTogether);

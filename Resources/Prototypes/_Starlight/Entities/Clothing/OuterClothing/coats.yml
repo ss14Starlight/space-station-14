@@ -159,6 +159,33 @@
   id: ClothingOuterCoatLabCorpsmanOpened
   name: corpsman's nostalgic overcoat
 
+# Fashion-O-Mat
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatSpaceCourier
+  name: space courier heavy coat
+  description: A luxurious coat, made to honor a legendary space courier. Fly, space courier!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/space_courier_coat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/space_courier_coat.rsi
+  - type: TemperatureProtection # Technically winter coat-type outfit
+    heatingCoefficient: 1.15
+    coolingCoefficient: 0.05
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.90
+        Heat: 0.85
+    priceMultiplier: 0
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.50
+# Fashion-O-Mat END
+
+
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatSquidPrisoner

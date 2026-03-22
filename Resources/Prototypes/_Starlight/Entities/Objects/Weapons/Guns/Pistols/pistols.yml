@@ -132,10 +132,10 @@
       stealGroup: OfficerHandgun
 
 - type: entity
-  name: Due Process
+  name: due process
   parent: [BaseWeaponPistol, BaseSecurityContraband]
   id: WeaponPistolDP
-  description: A pistol that packs a punch for brig defense, just as NanoTransen intended.
+  description: A pistol that packs a punch for brig defense, just as NanoTrasen intended.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/dp.rsi
@@ -240,7 +240,7 @@
               - CartridgePistolDP
 
 - type: entity
-  name: Stechkin APS
+  name: stechkin APS
   parent: [WeaponPistolMk58, BaseSovietContraband]
   id: WeaponPistolAPS
   description: A high quality firearm issued to SNKVD elites and high ranking officials. It's half pistol, half closing argument. Uses .40 ammo.
@@ -280,7 +280,7 @@
               - CartridgePistolDP
 
 - type: entity
-  name: Jungle Hawk
+  name: jungle hawk
   parent: [BaseSyndicateContraband, WeaponPistolN1984]
   id: WeaponPistolDeagle
   description: A high-caliber handgun designed for putting down large game.

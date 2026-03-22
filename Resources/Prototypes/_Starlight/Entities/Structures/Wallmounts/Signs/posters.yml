@@ -427,3 +427,44 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/fashion.rsi
     state: fashion_sing
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitDeforestMedical
+  name: "DeForest Medical: Health that Touches the Sky"
+  description: "A poster for DeForest Medical, a respected intergalactic healthcare provider. Really beams a smile on to your face."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/deforest.rsi
+    state: deforest_med
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandInterdyneSyndicate
+  name: "Interdyne Pharmaceutics?"
+  description: "A blood-red colored version of a Interdyne Pharmaceutics advertisement. 'Become the captain of your soul.'"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/interdyne.rsi
+    state: interdyne_syndicate
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandComitas
+  name: "Comitas Systems: We are looking for highly intelligent individuals."
+  description: "An old poster for the derelict Comitas Systems company. Supposedly, there is a message hidden in this poster."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/comitas.rsi
+    state: comitas
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandWaffleCorpTwo
+  name: "Waffle Corp: Affordable, and Practical."
+  description: "A poster for Waffle Corp. Why does a waffle company make firearms...?"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/waffle.rsi
+    state: waffle
+

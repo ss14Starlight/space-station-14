@@ -1732,6 +1732,71 @@
         state: impact_blue
 
 
+# Scylla Laser Railgun - Wide cyan beam, extreme range, grid-powered
+- type: entity
+  id: ScyllaWideLaser
+  name: scylla railgun beam
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 750
+        Structural: 1100
+  - type: HitscanReflect
+    reflectiveType: None
+  - type: HitscanBasicRaycast
+    collisionMask: BulletImpassable
+    maxDistance: 1200.0
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_beam_heavy
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_heavy
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_beam_heavy
+    bullet:
+      color: "#00CCFF"
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+        state: heavylaser
+
+# AMX-9 DYNAMRE Dual Turbolaser - Double Apollo-class laser beam
+- type: entity
+  id: DynamreDualLaser
+  name: dynamre dual turbolaser beam
+  parent: BasicHitscan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 500
+        Structural: 200
+  - type: HitscanReflect
+    reflectiveType: None
+  - type: HitscanBasicRaycast
+    collisionMask: BulletImpassable
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_beam_heavy
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_heavy
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_beam_heavy
+    bullet:
+      color: "#FF44FF"
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+        state: heavylaser
+
 # Starlight
 
 

@@ -1,6 +1,6 @@
 - type: entity
   name: CommandFriend™ X-02
-  parent: [ BaseHandheldComputer, BaseBlueShieldContraband, BaseGrandTheftContraband ]
+  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer, BaseBlueShieldContraband, BaseGrandTheftContraband ]
   id: HandheldBSOCrewMonitor
   description: Does not monitor the competence levels of command members.
   components:
@@ -68,3 +68,5 @@
         blacklist:
           tags:
           - MechReactor
+  - type: PowerCellDraw
+    useCharge: 15

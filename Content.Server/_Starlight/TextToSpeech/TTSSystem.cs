@@ -169,7 +169,8 @@ public sealed partial class TTSSystem : EntitySystem
         args.Message.Tts ??= args.Message.Text;
         if (!_isEnabled
             || args.Message.Tts.Length > MaxChars
-            || !args.Language.SpeechOverride.RequireSpeech)
+            || (!args.Language.SpeechOverride.RequireSpeech && !args.Language.SpeechOverride.RequireSound)
+            )
             return;
 
         await Task.Yield();

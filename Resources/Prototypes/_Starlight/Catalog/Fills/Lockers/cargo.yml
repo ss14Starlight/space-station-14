@@ -164,3 +164,154 @@
     - id: Pickaxe
     - id: Shovel
     - id: OreBag
+
+# Cargo Techs and Mail Techs
+- type: entity
+  id: LockerCargoFilled
+  suffix: Filled
+  parent: LockerCargo
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillCargo
+
+
+- type: entityTable
+  id: LockerFillCargo
+  table: !type:AllSelector
+    children:
+      - id: ClothingHeadHatCargosoft
+      - id: ClothingUniformJumpsuitCargo
+      - id: ClothingUniformJumpskirtCargo
+      - !type:GroupSelector
+        children: 
+        - id: ClothingBackpackCargo
+        - id: ClothingBackpackSatchelCargo
+        - id: ClothingBackpackDuffelCargo
+      - !type:GroupSelector
+        children:
+        - id: ClothingShoesColorBlack
+        - id: ClothingShoesBootsWork
+      - id: ClothingHandsGlovesFingerless
+      - id: ClothingBeltCargo
+        prob: 0.5
+      - id: AppraisalTool
+      - id: WeaponMeleeBoxcutter
+      - id: HandheldGPSBasic
+      - !type:GroupSelector
+        children: 
+        - id: BoxFolderRedCargo
+        - id: BoxFolderBlueCargo
+        - id: BoxFolderYellowCargo
+        - id: BoxFolderGreyCargo
+        - id: BoxFolderBlackCargo
+        - id: BoxFolderGreenCargo
+        - id: BoxFolderWhiteCargo
+      - !type:AllSelector
+        children:
+        - id: BoxCardboard
+          prob: 0.6
+        - id: BoxCardboardSmall
+          prob: 0.5
+        - id: BoxCardboardSmall
+          prob: 0.4
+        - id: BoxCardboardSmall
+          prob: 0.3
+        - id: BoxCardboard
+          prob: 0.3
+      - !type:GroupSelector
+        children: 
+        - id: BoxFolderClipboard
+          weight: 0.1
+        - id: BoxFolderClipboardEmpty
+        - id: BoxFolderClipboardThreePapers
+          weight: 0.3
+        - id: BoxFolderPlasticClipboard
+          weight: 0.1
+        - id: BoxFolderPlasticClipboardEmpty
+        - id: BoxFolderPlasticClipboardThreePapers
+          weight: 0.3
+      - !type:GroupSelector
+        prob: 0.6
+        children:
+        - id: Crowbar
+        - id: Wrench
+        - id: Screwdriver
+      - !type:GroupSelector
+        children:
+        - id: Pen
+        - id: LuxuryPen
+          weight: 0.2
+      - id: DrinkMREFlask
+        prob: 0.1
+      - id: PlushieLizardJobCargotechnician
+        prob: 0.02
+      - id: MailSpamDontYouWantMore
+        prob: 0.001
+
+- type: entity
+  id: LockerMailFilled
+  suffix: Filled
+  parent: LockerMail
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillMail
+
+- type: entityTable
+  id: LockerFillMail
+  table: !type:AllSelector
+    children:
+      - id: ClothingHeadHatMailsoftVisor
+      - id: ClothingUniformJumpsuitMail
+      - id: ClothingUniformJumpskirtMail
+      - !type:GroupSelector
+        children: 
+        - id: ClothingBackpackCargo
+        - id: ClothingBackpackSatchelCargo
+        - id: ClothingBackpackDuffelCargo
+        - id: ClothingBackpackTrunkMail
+      - id: MailBag
+      - id: ClothingShoesBootsMail
+      - id: ClothingHandsGlovesFingerless
+      - id: WeaponMeleeBoxcutter
+      - id: HandheldGPSBasic
+      - !type:AllSelector
+        children:
+        - id: BoxCardboard
+          prob: 0.5
+        - id: BoxCardboardSmall
+          prob: 0.4
+        - id: BoxCardboardSmall
+          prob: 0.3
+        - id: BoxCardboardSmall
+          prob: 0.2
+        - id: BoxCardboard
+          prob: 0.2
+      - !type:GroupSelector
+        children: 
+        - id: BoxFolderClipboard
+          weight: 0.1
+        - id: BoxFolderClipboardEmpty
+        - id: BoxFolderClipboardThreePapers
+          weight: 0.3
+        - id: BoxFolderPlasticClipboard
+          weight: 0.1
+        - id: BoxFolderPlasticClipboardEmpty
+        - id: BoxFolderPlasticClipboardThreePapers
+          weight: 0.3
+      - !type:GroupSelector
+        children:
+        - id: Pen
+        - id: LuxuryPen
+          weight: 0.3
+      - id: PlushieLizardJobCargotechnician
+        prob: 0.02
+      - id: MailSpamDontYouWantMore
+        prob: 0.001

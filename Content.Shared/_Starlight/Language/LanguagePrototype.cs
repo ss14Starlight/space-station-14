@@ -90,6 +90,12 @@ public sealed partial class SpeechOverrideInfo
     /// </summary>
     [DataField]
     public bool RequireSpeech = true;
+    
+    /// <summary>
+    ///     If false, the entity can use this language even when it's unable to make sound.
+    /// </summary>
+    [DataField]
+    public bool RequireSound = true;
 
     /// <summary>
     ///     If true, requires the entity to have usable hands and be able to interact (not be cuffed, etc).

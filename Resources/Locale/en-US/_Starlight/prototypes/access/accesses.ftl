@@ -24,6 +24,7 @@ id-card-access-level-commie = Commie
 
 id-card-access-level-salvagelead = Salvage Lead
 id-card-access-level-mining = Mining
+id-card-access-level-mail = Mail
 
 id-card-access-level-solgov = SolGov
 

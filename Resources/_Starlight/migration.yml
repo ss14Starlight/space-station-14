@@ -72,3 +72,6 @@ ShuttleGunNTSFCyerxa120mm: ShuttleGunCyerxa120mm
 
 #2026-03-11
 WeaponRevolverSnubRevolver: null
+
+#2026-03-21
+WeaponRifleLionhunter: WeaponSniperLionhunter

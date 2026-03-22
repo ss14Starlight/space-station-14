@@ -434,7 +434,7 @@
   parent: BasePDA
   id: MailPDA
   name: mail PDA
-  description: watch out for papercuts.
+  description: Watch out for papercuts.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Devices/pda.rsi
@@ -451,6 +451,28 @@
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi
     state: pda-mailtech
+
+- type: entity
+  parent: BasePDA
+  id: SeniorMailPDA
+  name: senior mail PDA
+  description: Nothing stops the mail.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: MailTechIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-seniormailtech
+  - type: PdaBorderColor
+    borderColor: "#e39751"
+    accentVColor: "#6ec8fa"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-seniormailtech
 
 - type: entity
   parent: BasePDA
