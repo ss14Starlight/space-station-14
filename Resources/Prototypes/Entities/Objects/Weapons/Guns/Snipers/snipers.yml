@@ -73,7 +73,14 @@
   id: WeaponSniperMosin
   description: A weapon of the masses, a true relic. The Kardashev-Mosin has served in nearly every armed conflict since its creation 670 years ago. The bolt-action design of the rifle remains virtually identical to its original design, whether used for hunting, sniping, or endless trench warfare. Uses .45 magnum ammo.
   components:
-  - type: KnockbackByUserTag # Starlight
+  # Starlight-start
+  - type: GunWieldBonus
+    maxAngle: -10
+    minAngle: -10
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 2
+  - type: KnockbackByUserTag
     doestContain:
       Resomi:
         knockback: 2
@@ -81,6 +88,7 @@
         knockback: 1 # half of what resomi take
       Felionoid:
         knockback: 1 # half of what resomi take
+  # Starlight-end
   - type: BallisticAmmoProvider # Starlight
     capacity: 10
     proto: CartridgeMagnumSP
@@ -149,6 +157,11 @@
   id: WeaponSniperHristov
   description: For when you absolutely, positively need to make someone regret their life choices from a safe distance. Uses .60 anti-materiel ammo.
   components:
+  # Starlight-start
+  - type: GunWieldBonus
+    maxAngle: -10
+    minAngle: -10
+  # Starlight-end
   - type: Item
     size: Huge
     shape:
@@ -157,7 +170,7 @@
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
-  - type: GunRequiresWield
+  #- type: GunRequiresWield Starlight-edit: Remove requirement
   - type: Gun
     pump: true
     fireRate: 0.5

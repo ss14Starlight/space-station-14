@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared._Starlight.Shoelaces.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
@@ -6,7 +7,6 @@ using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
-using Content.Shared.Localizations;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
@@ -35,7 +35,6 @@ public sealed class SharedShoelacesSystem : EntitySystem
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
@@ -60,9 +59,9 @@ public sealed class SharedShoelacesSystem : EntitySystem
         var user = args.User;
         var parent = Transform(ent).ParentUid;
 
-        if (CanManipulate(user, ent))
+        if (CanManipulate(user, ent) && (ent.Comp.Tied || ent.Comp.TiedTogether))
         {
-            if (user == parent && ent.Comp.Tied)
+            if (user == parent)
             {
                 var selfUntie = new Verb
                 {
@@ -73,7 +72,7 @@ public sealed class SharedShoelacesSystem : EntitySystem
                 args.Verbs.Add(selfUntie);
                 return;
             }
-            else if (ent.Comp.Tied)
+            else
             {
                 var assistUntie = new Verb
                 {
@@ -198,7 +197,8 @@ public sealed class SharedShoelacesSystem : EntitySystem
             Dirty(ent, ent.Comp);
             RemComp<ShoelaceTiedComponent>(parentUid);
             _popup.PopupPredicted(Loc.GetString("shoelaces-popup-tying-success-user"), args.Args.User, args.Args.User, PopupType.Medium);
-            _popup.PopupPredicted(Loc.GetString("shoelaces-popup-tying-success-target", ("user", args.Args.User)), ent, parentUid, PopupType.MediumCaution);
+            if (args.Args.User != parentUid)
+                _popup.PopupPredicted(Loc.GetString("shoelaces-popup-tying-success-target", ("user", args.Args.User)), ent, null, Filter.Entities(parentUid), true, PopupType.MediumCaution);
         }
         else
         {
@@ -206,15 +206,8 @@ public sealed class SharedShoelacesSystem : EntitySystem
             Dirty(ent, ent.Comp);
             _alerts.ShowAlert(parentUid, ent.Comp.AlertTiedTogether);
             _popup.PopupPredicted(Loc.GetString("shoelaces-popup-tying-together-success-user"), args.Args.User, args.Args.User, PopupType.Medium);
-            if (_net.IsServer)
-            {
-                _popup.PopupEntity(
-                    Loc.GetString("shoelaces-popup-tying-together-success-target", ("user", args.Args.User)),
-                    ent,
-                    Filter.Entities(parentUid),
-                    true,
-                    PopupType.MediumCaution);
-            }
+            if (args.Args.User != parentUid)
+                _popup.PopupPredicted(Loc.GetString("shoelaces-popup-tying-together-success-target", ("user", args.Args.User)), ent, null, Filter.Entities(parentUid), true, PopupType.MediumCaution);
         }
 
         args.Handled = true;
@@ -282,6 +275,8 @@ public sealed class SharedShoelacesSystem : EntitySystem
             _alerts.ShowAlert(parent, ent.Comp.AlertUntied);
             _alerts.ClearAlert(parent, ent.Comp.AlertTiedTogether);
             EnsureComp<ShoelaceTiedComponent>(parent);
+            ent.Comp.Tied = false;
+            ent.Comp.TiedTogether = false;
         }
         _popup.PopupPredicted(Loc.GetString("shoelaces-popup-untie-success"), ent, args.Args.User, PopupType.Medium);
 
@@ -290,7 +285,7 @@ public sealed class SharedShoelacesSystem : EntitySystem
 
     private void OnMoveInput(Entity<ShoelaceTiedComponent> ent, ref MoveInputEvent args)
     {
-        if (!args.State || !args.HasDirectionalMovement)
+        if (!args.State || !args.HasDirectionalMovement || !_gameTiming.IsFirstTimePredicted)
             return;
 
         if (!args.Entity.Comp.Sprinting)
@@ -304,15 +299,14 @@ public sealed class SharedShoelacesSystem : EntitySystem
 
         if (ent.Comp.TiedShoes is not { } tiedShoes)
             return;
-
-        _random.SetSeed(_gameTiming.CurTime.Seconds);
-        if (!tiedShoes.Comp.Tied 
-            && _random.Prob(tiedShoes.Comp.KnockDownChance) 
+        
+        if (!tiedShoes.Comp.Tied
+            && _random.ProbPredicted(_gameTiming, tiedShoes.Comp.KnockDownChance, GetNetEntity(ent).Id)
             && _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(ent.Comp.TripKnockdownTime), force: true))
             _popup.PopupPredicted(Loc.GetString("shoelaces-popup-trip"), ent, ent, PopupType.MediumCaution);
         else if (tiedShoes.Comp.TiedTogether && _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(ent.Comp.TripKnockdownTime), force: true))
         {
-            if (_random.Prob(tiedShoes.Comp.ForceUntieChance))
+            if (_random.ProbPredicted(_gameTiming, tiedShoes.Comp.ForceUntieChance, GetNetEntity(ent).Id))
             {
                 _alerts.ShowAlert(ent.Owner, tiedShoes.Comp.AlertUntied);
                 _alerts.ClearAlert(ent.Owner, tiedShoes.Comp.AlertTiedTogether);
@@ -347,7 +341,7 @@ public sealed class SharedShoelacesSystem : EntitySystem
 
     private void OnShoesEquipped(Entity<ShoelaceTieableComponent> ent, ref GotEquippedEvent args)
     {
-        if (args.Slot != "shoes")
+        if (args.Slot != "shoes" || !_gameTiming.IsFirstTimePredicted)
             return;
 
         if (IsShoelaceTieBlocked(ent.Owner))

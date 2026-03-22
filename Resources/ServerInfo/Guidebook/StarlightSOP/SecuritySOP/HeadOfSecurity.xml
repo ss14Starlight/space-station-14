@@ -7,7 +7,7 @@
 <Box>
 	<GuideEntityEmbed Entity="WeaponSubMachineGunWt550"/>
 	or
-	<GuideEntityEmbed Entity="WeaponEnergySMG"/>
+	<GuideEntityEmbed Entity="WeaponSubMachineGunEnergy"/>
 </Box>
 <Box>
 	<GuideEntityEmbed Entity="Stunbaton"/>

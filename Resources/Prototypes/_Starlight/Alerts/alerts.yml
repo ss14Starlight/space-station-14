@@ -1,0 +1,33 @@
+- type: alert
+  id: ShoelacesUntied
+  clickEvent: !type:RemoveTiedShoelacesAlertEvent
+  icons:
+  - sprite: /Textures/Interface/Alerts/ensnared.rsi
+    state: ensnared
+  name: alerts-shoelaces-untied-name
+  description: alerts-shoelaces-untied-desc
+
+- type: alert
+  id: ShoelacesTiedTogether
+  clickEvent: !type:RemoveTiedShoelacesAlertEvent
+  icons:
+  - sprite: /Textures/Interface/Alerts/ensnared.rsi
+    state: ensnared
+  name: alerts-shoelaces-tied-name
+  description: alerts-shoelaces-tied-desc
+
+- type: alert
+  id: Doomed
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/skull.rsi
+    state: skull
+  name: alerts-doomed-name
+  description: alerts-doomed-desc
+
+- type: alert
+  id: SoulDebt
+  icons:
+  - sprite: /Textures/Mobs/Ghosts/ghost_human.rsi
+    state: icon
+  name: alerts-souldebt-name
+  description: alerts-souldebt-desc

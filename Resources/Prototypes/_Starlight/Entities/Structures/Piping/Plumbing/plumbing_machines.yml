@@ -114,11 +114,10 @@
   name: plumbing buffer
   description: Stores up to 200u of reagents. Useful for supplying separate duct networks with its unconnected outlets.
   components:
+  - type: CollideOnAnchor
   - type: Physics
     bodyType: Static
     canCollide: false
-  - type: Fixtures
-    fixtures: {}
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
@@ -145,11 +144,10 @@
   name: plumbing input
   description: A small tank you pour reagents into. Other machines pull from this. Connects in all directions.
   components:
+  - type: CollideOnAnchor
   - type: Physics
     bodyType: Static
     canCollide: false
-  - type: Fixtures
-    fixtures: {}
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
@@ -287,11 +285,10 @@
   name: plumbing output
   description: A small tank that pulls reagents from the network. Draw from it with a container. Connects in all directions.
   components:
+  - type: CollideOnAnchor
   - type: Physics
     bodyType: Static
     canCollide: false
-  - type: Fixtures
-    fixtures: {}
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
@@ -432,7 +429,7 @@
   parent: PlumbingMachineBase
   id: PlumbingSmartDispenser
   name: plumbing smart dispenser
-  description: Pulls in all reagents from its inlets and stores up to 200u of each type. Use a labeled jug on the dispenser to fill it with the matching reagent. Requires power.
+  description: Pulls in all reagents from its inlets and stores up to 200u of each type. Use a labeled container to auto-dispense a matching reagent, or use a refillable container on it to manually dispense. Requires power.
   components:
   - type: Sprite
     sprite: Structures/Machines/smartfridge.rsi
@@ -594,11 +591,10 @@
   name: plumbing filter
   description: Filters up to 4 specific reagents from a duct network. Filtered reagents are sent to the side outlet while other reagents passthrough.
   components:
+  - type: CollideOnAnchor
   - type: Physics
     bodyType: Static
     canCollide: false
-  - type: Fixtures
-    fixtures: {}
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
@@ -676,8 +672,6 @@
   - type: Physics
     bodyType: Static
     canCollide: false
-  - type: Fixtures
-    fixtures: {}
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/plumbers.rsi
     layers:
@@ -823,11 +817,10 @@
         enum.PlumbingVisualLayers.Base:
           True: { state: disposal_working }
           False: { state: disposal }
+  - type: CollideOnAnchor
   - type: Physics
     bodyType: Static
     canCollide: false
-  - type: Fixtures
-    fixtures: {}
   - type: PlumbingDevice
     updateInterval: 1
   - type: PlumbingInlet
@@ -884,11 +877,10 @@
     - map: [ "enum.SolutionContainerLayers.Fill" ]
       state: fill-1
       visible: false
+  - type: CollideOnAnchor
   - type: Physics
     bodyType: Static
     canCollide: false
-  - type: Fixtures
-    fixtures: {}
   - type: AmbientSound
     enabled: false
     volume: -8

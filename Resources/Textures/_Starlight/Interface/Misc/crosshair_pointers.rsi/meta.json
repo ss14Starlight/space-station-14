@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "license": "CC0-1.0",
+  "copyright": "Kenney assets, https://kenney-assets.itch.io/crosshair-pack",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "arrows",
+      "delays": [
+        [
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "arrows_dot",
+      "delays": [
+        [
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "arrows_outer",
+      "delays": [
+        [
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "arrows_outer_double",
+      "delays": [
+        [
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "basic",
+      "delays": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "basic_dot",
+      "delays": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "brackets",
+      "delays": [
+        [
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "cross_dot"
+    },
+    {
+      "name": "cross_small"
+    },
+    {
+      "name": "cross_small2"
+    },
+    {
+      "name": "dot"
+    },
+    {
+      "name": "double_dot",
+      "delays": [
+        [
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "triple",
+      "delays": [
+        [
+          1,
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "triple_dot",
+      "delays": [
+        [
+          1,
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "melee_sight",
+      "license": "CC-BY-SA-3.0",
+      "copyright": "https://github.com/Arteben",
+      "delays": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ]
+    }
+  ]
+}

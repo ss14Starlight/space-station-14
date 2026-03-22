@@ -128,7 +128,7 @@ public sealed partial class NullLinkPlayerManager
                     existing.Title = matchedName;
                     await _dbManager.UpdateAdminAsync(existing);
                 }
-                _adminManager.ReloadAdmin(playerData.Session);
+                _taskManager.RunOnMainThread(() => _adminManager.ReloadAdmin(playerData.Session));
             }
             else
             {
@@ -136,7 +136,7 @@ public sealed partial class NullLinkPlayerManager
                 if (existing != null && _adminRankIds.ContainsValue(existing.AdminRankId ?? -1))
                 {
                     await _dbManager.RemoveAdminAsync(netUserId);
-                    _adminManager.ReloadAdmin(playerData.Session);
+                    _taskManager.RunOnMainThread(() => _adminManager.ReloadAdmin(playerData.Session));
                 }
             }
         }

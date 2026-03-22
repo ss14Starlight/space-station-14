@@ -13,7 +13,7 @@
   parent: [ClothingHeadBase, BaseBlueShieldContraband]
   id: ClothingHeadHatBeretBlueShield
   name: blueshield beret
-  description: This beret completes the outfit of any true Blue Shield Officer.
+  description: This beret completes the outfit of any true Blueshield Officer.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/blueshield.rsi
@@ -406,7 +406,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatNTRTophat
   name: NT rep tophat
-  description: A fancy black tophat, handmade for the Nanotrasen rep. It looks expensive.
+  description: A fancy black tophat, handmade for the NanoTrasen Rep. It looks expensive.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/ntr_tophat.rsi
