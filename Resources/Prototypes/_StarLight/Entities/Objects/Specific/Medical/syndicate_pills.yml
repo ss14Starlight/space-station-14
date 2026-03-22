@@ -1,17 +1,3 @@
-- type: entity
-  name: ominous pill
-  parent: Pill
-  id: OminousPill
-  description: This unusual pill bears no markings. You feel a sense of dread, but also... curiosity.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25 # Let's go gambling!
-  - type: RandomFillSolution
-    solution: food
-    weightedRandomId: RandomFillOminousPill
-
 # Lead
 - type: entity
   name: lead
