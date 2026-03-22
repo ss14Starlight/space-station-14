@@ -18,11 +18,12 @@ public sealed class LightGridSystem : EntitySystem
     // Reused every tick so we dont murder GC
     private readonly HashSet<Entity<OccluderComponent>> _occluders = new();
     private EntityQuery<OccluderComponent> _occluderQuery;
+    private EntityQuery<TransformComponent> _xformQuery;
     private TimeSpan _nextUpdate = TimeSpan.Zero;
     private readonly TimeSpan _updateInterval = TimeSpan.FromSeconds(1f);
 
     private readonly HashSet<Vector2i> _opaque = new();
-    private readonly List<LightSourceData> _lightSources = new();
+    private readonly HashSet<Vector2i> _scanTiles = new();
 
     private LightJob _job; 
 
@@ -36,6 +37,7 @@ public sealed class LightGridSystem : EntitySystem
     {
         base.Initialize();
         _occluderQuery = GetEntityQuery<OccluderComponent>();
+        _xformQuery = GetEntityQuery<TransformComponent>();
 
         _job = new LightJob
         {
@@ -52,32 +54,28 @@ public sealed class LightGridSystem : EntitySystem
 
         _nextUpdate = _timing.CurTime + _updateInterval;
 
+        var grids = new Dictionary<EntityUid, (MapGridComponent Grid, BroadphaseComponent Broadphase)>();
+        var lightSourcesByGrid = new Dictionary<EntityUid, List<LightSourceData>>();
+        var shadegenZonesByGrid = new Dictionary<EntityUid, List<(Vector2i Tile, float Range)>>();
+
         var gridQuery = EntityQueryEnumerator<MapGridComponent, BroadphaseComponent>();
         while (gridQuery.MoveNext(out var gridUid, out var gridComp, out var broadphase))
         {
-            RebuildGrid(gridUid, gridComp, broadphase);
-        }
-    }
-
-    private void RebuildGrid(EntityUid gridUid, MapGridComponent gridComp, BroadphaseComponent broadphase)
-    {
-        if (!_lightGrids.TryGetValue(gridUid, out var lightMap))
-        {
-            lightMap = new Dictionary<Vector2i, float>();
-            _lightGrids[gridUid] = lightMap;
+            grids[gridUid] = (gridComp, broadphase);
         }
 
-        lightMap.Clear();
-        _opaque.Clear();
-        _lightSources.Clear();
+        if (grids.Count == 0)
+            return;
 
         var lightQuery = EntityQueryEnumerator<PointLightComponent, TransformComponent>();
         while (lightQuery.MoveNext(out var lightUid, out var lightComp, out var xform))
         {
-            if (xform.GridUid != gridUid)
+            if (xform.GridUid is not { } gridUid)
                 continue;
 
-            // Blacklights and shadegen victimы
+            if (!grids.TryGetValue(gridUid, out var gridData))
+                continue;
+
             if (HasComp<DarkLightComponent>(lightUid) || HasComp<ShadegenAffectedComponent>(lightUid))
                 continue;
 
@@ -87,21 +85,70 @@ public sealed class LightGridSystem : EntitySystem
                 || lightComp.Energy <= 0)
                 continue;
 
-            var tile = _maps.LocalToTile(gridUid, gridComp, xform.Coordinates);
+            var tile = _maps.LocalToTile(gridUid, gridData.Grid, xform.Coordinates);
+            var sources = GetOrCreateBucket(lightSourcesByGrid, gridUid);
 
-            _lightSources.Add(new LightSourceData(
+            sources.Add(new LightSourceData(
                 tile,
                 lightComp.Radius,
                 lightComp.Energy,
                 lightComp.CastShadows));
         }
 
-        if (_lightSources.Count == 0)
+        var shadegenQuery = EntityQueryEnumerator<ShadegenComponent, TransformComponent>();
+        while (shadegenQuery.MoveNext(out _, out var shadegen, out var shadegenXform))
+        {
+            if (shadegenXform.GridUid is not { } gridUid)
+                continue;
+
+            if (!grids.TryGetValue(gridUid, out var gridData))
+                continue;
+
+            var tile = _maps.LocalToTile(gridUid, gridData.Grid, shadegenXform.Coordinates);
+            var zones = GetOrCreateBucket(shadegenZonesByGrid, gridUid);
+            zones.Add((tile, shadegen.Range));
+        }
+
+        foreach (var (gridUid, gridData) in grids)
+        {
+            lightSourcesByGrid.TryGetValue(gridUid, out var lightSources);
+            shadegenZonesByGrid.TryGetValue(gridUid, out var shadegenZones);
+            RebuildGrid(gridUid, gridData.Grid, gridData.Broadphase, lightSources, shadegenZones);
+        }
+    }
+
+    private static List<T> GetOrCreateBucket<T>(Dictionary<EntityUid, List<T>> buckets, EntityUid uid)
+    {
+        if (buckets.TryGetValue(uid, out var bucket))
+            return bucket;
+
+        bucket = new List<T>();
+        buckets[uid] = bucket;
+        return bucket;
+    }
+
+    private void RebuildGrid(
+        EntityUid gridUid,
+        MapGridComponent gridComp,
+        BroadphaseComponent broadphase,
+        List<LightSourceData>? lightSources,
+        List<(Vector2i Tile, float Range)>? shadegenZones)
+    {
+        if (!_lightGrids.TryGetValue(gridUid, out var lightMap))
+        {
+            lightMap = new Dictionary<Vector2i, float>();
+            _lightGrids[gridUid] = lightMap;
+        }
+
+        lightMap.Clear();
+        _opaque.Clear();
+        _scanTiles.Clear();
+
+        if (lightSources is null || lightSources.Count == 0)
             return;
 
         // Only scan tiles near lights, rather than scanning the entire grid
-        var grid = (gridUid, broadphase, gridComp);
-        foreach (var source in _lightSources)
+        foreach (var source in lightSources)
         {
             var range = (int)Math.Ceiling(source.Radius);
             for (var x = -range; x <= range; x++)
@@ -109,27 +156,20 @@ public sealed class LightGridSystem : EntitySystem
                 for (var y = -range; y <= range; y++)
                 {
                     var tile = source.Tile + new Vector2i(x, y);
-                    if (_opaque.Contains(tile))
-                        continue; // wall => moving on
-
-                    if (IsOccluded(grid, tile))
-                        _opaque.Add(tile);
+                    _scanTiles.Add(tile);
                 }
             }
         }
-        // Collect the "please make it dark here" zones. Shadekins paid extra for this.
-        var shadegenQuery = EntityQueryEnumerator<ShadegenComponent, TransformComponent>();
-        var shadegenZones = new List<(Vector2i Tile, float Range)>();
-        while (shadegenQuery.MoveNext(out _, out var shadegen, out var shadegenXform))
-        {
-            if (shadegenXform.GridUid != gridUid)
-                continue;
 
-            var tile = _maps.LocalToTile(gridUid, gridComp, shadegenXform.Coordinates);
-            shadegenZones.Add((tile, shadegen.Range));
+        var grid = (gridUid, broadphase, gridComp);
+        foreach (var tile in _scanTiles)
+        {
+            if (IsOccluded(grid, tile))
+                _opaque.Add(tile);
         }
+
         // Pre allocate slots for new light sources
-        for (var i = _job.Vis1.Count; i < _lightSources.Count; i++)
+        for (var i = _job.Vis1.Count; i < lightSources.Count; i++)
         {
             _job.Vis1.Add(new Dictionary<Vector2i, int>());
             _job.Vis2.Add(new Dictionary<Vector2i, int>());
@@ -138,10 +178,10 @@ public sealed class LightGridSystem : EntitySystem
             _job.LocalResults.Add(new Dictionary<Vector2i, float>());
         }
 
-        _job.LightSources = _lightSources;
-        _parallel.ProcessNow(_job, _lightSources.Count);
+        _job.LightSources = lightSources;
+        _parallel.ProcessNow(_job, lightSources.Count);
 
-        for (var i = 0; i < _lightSources.Count; i++)
+        for (var i = 0; i < lightSources.Count; i++)
         {
             foreach (var (tile, intensity) in _job.LocalResults[i])
             {
@@ -149,6 +189,10 @@ public sealed class LightGridSystem : EntitySystem
                 lightMap[tile] = existing + intensity;
             }
         }
+
+        if (shadegenZones is null)
+            return;
+
         // wipe everything in shadegen radius
         foreach (var (center, range) in shadegenZones)
         {
@@ -175,7 +219,13 @@ public sealed class LightGridSystem : EntitySystem
         foreach (var occluder in _occluders)
         {
             if (!occluder.Comp.Enabled)
-                continue; 
+                continue;
+
+            // Verify the occluder actually belongs to this tile, not a neighbor
+            var xform = _xformQuery.GetComponent(occluder.Owner);
+            var occTile = _maps.LocalToTile(grid.Owner, grid.Comp2, xform.Coordinates);
+            if (occTile != tile)
+                continue;
 
             return true;
         }
@@ -225,7 +275,7 @@ public sealed class LightGridSystem : EntitySystem
         return Math.Abs(delta.X) + Math.Abs(delta.Y);
     }
 
-    private static bool CheckNeighborsVis(Dictionary<Vector2i, int> vis, Vector2i index, int d)
+    private static bool CheckNeighborsVis(Dictionary<Vector2i, int> vis, HashSet<Vector2i> opaque, Vector2i index, int d)
     {
         for (var x = -1; x <= 1; x++)
         {
@@ -235,34 +285,56 @@ public sealed class LightGridSystem : EntitySystem
                     continue;
 
                 var neighbor = index + new Vector2i(x, y);
-                if (vis.GetValueOrDefault(neighbor) == d)
-                    return true;
+                if (!vis.TryGetValue(neighbor, out var depth) || depth != d)
+                    continue;
+
+                if (x != 0 && y != 0)
+                {
+                    var cardinalA = index + new Vector2i(x, 0);
+                    var cardinalB = index + new Vector2i(0, y);
+                    if (opaque.Contains(cardinalA) && opaque.Contains(cardinalB))
+                        continue;
+                }
+
+                return true;
             }
         }
         return false;
     }
-    // Pain
-    private static bool IsCorner(
+    private static bool HasVisibleFace(
         HashSet<Vector2i> tiles,
         HashSet<Vector2i> blocked,
         Dictionary<Vector2i, int> vis1,
         Vector2i index,
-        Vector2i delta)
+        Vector2i center)
     {
-        var diagonalIndex = index + delta;
+        var delta = index - center;
+        var stepX = Math.Sign(delta.X);
+        var stepY = Math.Sign(delta.Y);
 
-        if (!tiles.TryGetValue(diagonalIndex, out var diagonal))
-            return false;
+        if (stepX != 0)
+        {
+            var neighbor = index - new Vector2i(stepX, 0);
+            if (tiles.Contains(neighbor) &&
+                !blocked.Contains(neighbor) &&
+                vis1.ContainsKey(neighbor))
+            {
+                return true;
+            }
+        }
 
-        var cardinal1 = new Vector2i(index.X, diagonal.Y);
-        var cardinal2 = new Vector2i(diagonal.X, index.Y);
+        if (stepY != 0)
+        {
+            var neighbor = index - new Vector2i(0, stepY);
+            if (tiles.Contains(neighbor) &&
+                !blocked.Contains(neighbor) &&
+                vis1.ContainsKey(neighbor))
+            {
+                return true;
+            }
+        }
 
-        return vis1.GetValueOrDefault(diagonal) != 0 &&
-               vis1.GetValueOrDefault(cardinal1) != 0 &&
-               vis1.GetValueOrDefault(cardinal2) != 0 &&
-               blocked.Contains(cardinal1) &&
-               blocked.Contains(cardinal2) &&
-               !blocked.Contains(diagonal);
+        return false;
     }
 
     #endregion
@@ -270,7 +342,7 @@ public sealed class LightGridSystem : EntitySystem
     // The shadowcasting beast
     private record struct LightJob() : IParallelRobustJob
     {
-        public int BatchSize => 2; // basically 2 lights per thread
+        public int BatchSize => 16; // basically 16 lights per thread
 
         public required LightGridSystem System;
 
@@ -340,12 +412,15 @@ public sealed class LightGridSystem : EntitySystem
                 }
             }
 
+            vis1[eyePos] = 0;
+            vis2[eyePos] = 0;
+
             for (var d = 0; d < maxDepthMax; d++)
             {
                 foreach (var tile in seedTiles)
                 {
                     var maxDelta = GetMaxDelta(tile, eyePos);
-                    if (maxDelta == d + 1 && CheckNeighborsVis(vis2, tile, d))
+                    if (maxDelta == d + 1 && CheckNeighborsVis(vis2, System._opaque, tile, d))
                     {
                         vis2[tile] = System._opaque.Contains(tile) ? -1 : d + 1;
                     }
@@ -357,7 +432,7 @@ public sealed class LightGridSystem : EntitySystem
                 foreach (var tile in seedTiles)
                 {
                     var sumDelta = GetSumDelta(tile, eyePos);
-                    if (sumDelta == d + 1 && CheckNeighborsVis(vis1, tile, d))
+                    if (sumDelta == d + 1 && CheckNeighborsVis(vis1, System._opaque, tile, d))
                     {
                         if (System._opaque.Contains(tile))
                             vis1[tile] = -1;
@@ -367,25 +442,15 @@ public sealed class LightGridSystem : EntitySystem
                 }
             }
 
-            vis1[eyePos] = 1;
-
-            foreach (var tile in seedTiles)
-            {
-                vis2[tile] = vis1.GetValueOrDefault(tile, 0);
-            }
-
             foreach (var tile in seedTiles)
             {
                 if (!System._opaque.Contains(tile))
                     continue;
 
-                if (vis1.GetValueOrDefault(tile) != 0)
+                if (vis1.ContainsKey(tile))
                     continue;
 
-                if (IsCorner(seedTiles, System._opaque, vis1, tile, Vector2i.UpRight) ||
-                    IsCorner(seedTiles, System._opaque, vis1, tile, Vector2i.UpLeft) ||
-                    IsCorner(seedTiles, System._opaque, vis1, tile, Vector2i.DownLeft) ||
-                    IsCorner(seedTiles, System._opaque, vis1, tile, Vector2i.DownRight))
+                if (HasVisibleFace(seedTiles, System._opaque, vis1, tile, eyePos))
                 {
                     boundary.Add(tile);
                 }
@@ -399,11 +464,7 @@ public sealed class LightGridSystem : EntitySystem
             
             foreach (var tile in seedTiles)
             {
-                var tileVis = vis1.GetValueOrDefault(tile, 0);
-                if (tileVis == 0)
-                    continue; 
-
-                if (tileVis == -1)
+                if (!vis1.TryGetValue(tile, out _))
                     continue; 
 
                 var delta = tile - eyePos;
