@@ -3,10 +3,13 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.Helpers;
+using Content.Server.Administration.Managers;
+using Content.Server.Database;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
 using Robust.Server.Player;
+using Robust.Shared.Asynchronous;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
@@ -25,6 +28,9 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly PlayTimeTrackingManager _playTimeTrackingManager = default!;
     [Dependency] private readonly ISharedNullLinkPlayerResourcesManager _playerResourcesManager = default!;
+    [Dependency] private readonly IServerDbManager _dbManager = default!;
+    [Dependency] private readonly IAdminManager _adminManager = default!;
+    [Dependency] private readonly ITaskManager _taskManager = default!;
 
     private readonly ConcurrentDictionary<Guid, PlayerData> _playerById = [];
     private readonly ConcurrentDictionary<Guid, ICommonSession> _mentors = [];
@@ -46,6 +52,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         _playerManager.PlayerStatusChanged += PlayerStatusChanged;
         InitializeLinking();
         _cfg.OnValueChanged(NullLinkCCVars.RoleReqMentors, UpdateMentors, true);
+        _cfg.OnValueChanged(NullLinkCCVars.AdminRankBuilder, UpdateAdminBuilder, true);
         _cfg.OnValueChanged(NullLinkCCVars.TitleBuild, UpdateTitleBuilder, true);
         _cfg.OnValueChanged(NullLinkCCVars.Project, UpdateProject, true);
         _cfg.OnValueChanged(NullLinkCCVars.Server, UpdateServer, true);

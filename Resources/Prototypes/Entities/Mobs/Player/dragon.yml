@@ -31,6 +31,7 @@
     name: ghost-role-information-space-dragon-name
     description: ghost-role-information-space-dragon-description
     rules: ghost-role-information-space-dragon-rules
+    important: true # SL
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist
     raffle:
@@ -239,6 +240,7 @@
   - type: GhostRole
     description: ghost-role-information-space-dragon-dungeon-description
     rules: ghost-role-information-space-dragon-dungeon-rules
+    important: true # SL
     raffle:
       settings: default
   - type: SlowOnDamage

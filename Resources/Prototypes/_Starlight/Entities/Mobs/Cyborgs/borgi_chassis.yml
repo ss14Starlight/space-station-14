@@ -278,6 +278,7 @@
       name: XenoBorgi
       description: Your job is to assist the mothership with their duties with your pair of hands. You of inferior flesh have a job to do.
       rules: Check your laws upon being fitted to your chassis. You are a team antagonist, and your goal is to kill everyone you can on the station, bring them back to your ship, gib them, and borg them. Exercise prudence about your targetting as you are made of flesh, and therefore feeble.
+      important: true # SL
       raffle:
         settings: default
     - type: GhostTakeoverAvailable

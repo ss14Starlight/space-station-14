@@ -1,0 +1,70 @@
+- type: entity
+  name: cash register
+  id: CashRegister
+  parent: [ BaseStructureDynamic, BaseBagOpenClose ]
+  description: A vaguely secure way to store currency. Wheres the lock...?
+  components:
+  - type: Anchorable
+    delay: 1
+  - type: Clickable
+  - type: Rotatable
+  - type: Storage
+    grid:
+    - 0,0,9,1
+    maxItemSize: Small
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _Starlight/Structures/Furniture/register.rsi
+    state: register
+    noRot: true
+    offset: 0, 0.2
+  - type: Appearance
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Transform
+    anchored: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 100
+        mask:
+        - TabletopMachineMask
+        layer:
+        - BulletImpassable
+  - type: InteractionOutline
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2

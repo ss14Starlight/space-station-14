@@ -58,6 +58,7 @@
       emergencyLightColor: '#ffba9c' #Starlight
       forceEnableEmergencyLights: true
       shuttleTime: 1200
+      dimmedLightMultiplier: 0.2 # Starlight
     epsilon:
       announcement: alert-level-epsilon-announcement
       selectable: false
@@ -70,6 +71,7 @@
       emergencyLightColor: '#938aff' #Starlight
       forceEnableEmergencyLights: true
       shuttleTime: 1200
+      dimmedLightMultiplier: 0 # Starlight
     omega: # begin starlight
       announcement: alert-level-omega-announcement
       selectable: false
@@ -82,6 +84,7 @@
       emergencyLightColor: '#FFE4E1'
       forceEnableEmergencyLights: true
       shuttleTime: 1200
+      dimmedLightMultiplier: 0.2
     theta:
       announcement: alert-level-theta-announcement
       selectable: false
@@ -94,6 +97,7 @@
       emergencyLightColor: '#741b47'
       forceEnableEmergencyLights: true
       shuttleTime: 1200
+      dimmedLightMultiplier: 0.2
     psi:
       announcement: alert-level-psi-announcement
       selectable: false

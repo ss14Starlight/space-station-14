@@ -1,7 +1,7 @@
 - type: entity
   id: BoxFolderNanoTrasenClipboard
   parent: BoxFolderClipboard
-  name: NanoTrasen clipboard
+  name: nanotrasen clipboard
   description: A stylish clipboard in NanoTrasen colors.
   components:
     - type: Sprite
@@ -30,7 +30,7 @@
   id: BoxFolderCyborgClipboard
   parent: BoxFolderClipboard
   categories: [ HideSpawnMenu ]
-  name: Cyborg clipboard
+  name: cyborg clipboard
   description: A clipboard mounted to a cyborg's chassis.
   components:
     - type: Sprite
@@ -62,7 +62,7 @@
 - type: entity
   id: BoxFolderHoPClipboard
   parent: [BoxFolderClipboard, BaseGrandTheftContraband]
-  name: Bureaucratic Digi-Board
+  name: bureaucratic digi-board
   description: A bulky electric clipboard, filled with bureaucracy. Contains a portable ID card computer. Vulnerable to assistants.
   components:
     - type: Sprite
@@ -198,3 +198,50 @@
         children:
         - id: PrintedDocumentSalvageLeadReport
           amount: 7
+
+- type: entity
+  parent: [BoxFolderRedEmpty, BoxFolderFillProductOrder]
+  id: BoxFolderRedCargo
+  suffix: Red, Product Orders
+
+- type: entity
+  parent: [BoxFolderBlueEmpty, BoxFolderFillProductOrder]
+  id: BoxFolderBlueCargo
+  suffix: Blue, Product Orders
+
+- type: entity
+  parent: [BoxFolderYellowEmpty, BoxFolderFillProductOrder]
+  id: BoxFolderYellowCargo
+  suffix: Yellow, Product Orders
+
+- type: entity
+  parent: [BoxFolderGreyEmpty, BoxFolderFillProductOrder]
+  id: BoxFolderGreyCargo
+  suffix: Grey, Product Orders
+
+- type: entity
+  parent: [BoxFolderBlackEmpty, BoxFolderFillProductOrder]
+  id: BoxFolderBlackCargo
+  suffix: Black, Product Orders
+
+- type: entity
+  parent: [BoxFolderGreenEmpty, BoxFolderFillProductOrder]
+  id: BoxFolderGreenCargo
+  suffix: Green, Product Orders
+
+- type: entity
+  parent: [BoxFolderWhiteEmpty, BoxFolderFillProductOrder]
+  id: BoxFolderWhiteCargo
+  suffix: White, Product Orders
+
+- type: entity
+  abstract: true
+  id: BoxFolderFillProductOrder # For cargo locker folders
+  suffix: Product Orders
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PrintedDocumentProductOrder
+          amount: 18

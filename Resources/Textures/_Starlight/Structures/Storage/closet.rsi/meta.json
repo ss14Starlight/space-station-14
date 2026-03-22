@@ -5,7 +5,7 @@
         "x": 32,
         "y": 32
     },
-    "copyright": "Taken from tgstation. Resprite BlueShield Closet by CatBG (Discord:catbg), Miner by Conflee | SalvageLead by mikeysaurus | Magi & IAA by wonderfulnewworld",
+    "copyright": "Taken from tgstation. Resprite BlueShield Closet by CatBG (Discord:catbg), Miner by Conflee | SalvageLead by mikeysaurus | Cargo, Mail, Magi, and IAA by wonderfulnewworld",
     "license": "CC-BY-SA-3.0",
     "states":
     [
@@ -94,6 +94,30 @@
         },
         {
             "name": "iaa_open",
+			"copyright": "wonderfulnewworld"
+        },
+		{
+            "name": "cargo",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "cargo_door",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "cargo_open",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "mail",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "mail_door",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "mail_open",
 			"copyright": "wonderfulnewworld"
         }
     ]

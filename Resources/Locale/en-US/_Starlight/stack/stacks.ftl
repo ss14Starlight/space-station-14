@@ -58,6 +58,14 @@ stack-redbrutepack = {$amount ->
     [1] redbrutepack
     *[other] redbrutepacks
 }
+stack-interdyneointment = {$amount ->
+    [1] interdyneointment
+    *[other] interdyneointments
+}
+stack-interdynebrutepack = {$amount ->
+    [1] interdynebrutepack
+    *[other] interdynebrutepacks
+}
 stack-redpunctpack = {$amount ->
     [1] redpunctpack
     *[other] redpunctpacks

@@ -14,7 +14,7 @@ cmd-launchemergencyshuttle-desc = Early launches the emergency shuttle if possib
 cmd-launchemergencyshuttle-help = Usage: launchemergencyshuttle
 
 # Emergency shuttle # Starlight edit: reword due to potential existence of multiple stations/shuttles
-emergency-shuttle-left = Any emergency shuttles have now departed. Estimate {$transitTime} seconds until shuttles arrive at CentComm.
+emergency-shuttle-left = All emergency shuttles have now departed. Estimate {$transitTime} seconds until shuttles arrive at CentComm.
 emergency-shuttle-launch-time = Emergency shuttles will launch in {$consoleAccumulator} seconds.
 emergency-shuttle-docked = The Emergency Shuttle has docked {$direction} of the station, {$location}. It will leave in {$time} seconds.{$extended}
 emergency-shuttle-good-luck = The Emergency Shuttle is unable to find a station. Good luck.

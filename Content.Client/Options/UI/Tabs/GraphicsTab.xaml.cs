@@ -70,7 +70,11 @@ public sealed partial class GraphicsTab : Control
         Control.AddOption(new OptionIntegerScaling(Control, _cfg, IntegerScalingCheckBox));
         Control.AddOptionCheckBox(CCVars.ViewportScaleRender, ViewportLowResCheckBox, invert: true);
         Control.AddOptionCheckBox(CCVars.ParallaxLowQuality, ParallaxLowQualityCheckBox);
+        // Starlight-start
         Control.AddOptionCheckBox(StarlightCCVars.TracesEnabled, TracesCheckBox);
+        Control.AddOptionCheckBox(StarlightCCVars.HolesEnabled, HolesCheckBox);
+        Control.AddOptionCheckBox(StarlightCCVars.SparksEnabled, SparksCheckBox);
+        // Starlight-end
         Control.AddOptionCheckBox(CCVars.HudFpsCounterVisible, FpsCounterCheckBox);
 
         Control.Initialize();

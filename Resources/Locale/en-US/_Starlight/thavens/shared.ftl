@@ -35,7 +35,7 @@ thaven-mood-violence-permitted-name = Violence Between Thaven Is Permitted
 thaven-mood-violence-permitted-desc = ... With no legal repercussions.
 
 thaven-mood-thaven-only-crew-name = Thaven Vs. The World
-thaven-mood-thaven-only-crew-desc = You believe that Nanotrasen is not accommodating enough of Thaven needs. An effort should be made to fight for better rights and protections under Space Law.
+thaven-mood-thaven-only-crew-desc = You believe that NanoTrasen is not accommodating enough of Thaven needs. An effort should be made to fight for better rights and protections under Space Law.
 
 thaven-mood-your-department-only-name = Other Departments Are Inefficient
 thaven-mood-your-department-only-desc = You strongly believe that your department is the only one that actually does anything.
