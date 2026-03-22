@@ -85,11 +85,17 @@ public sealed partial class SpeechOverrideInfo
     public bool AllowRadio = true;
 
     /// <summary>
-    ///     If false, the entity can use this language even when it's unable to speak (i.e. muffled or muted),
-    ///     and accents are not applied to messages in this language.
+    ///     If false, the entity can use this language even when it's unable to speak (i.e. muffled or muted).
     /// </summary>
     [DataField]
     public bool RequireSpeech = true;
+    
+    /// <summary>
+    ///     If false, the entity can use this language even when it's unable to make sound,
+    ///     and accents are not applied to messages in this language.
+    /// </summary>
+    [DataField]
+    public bool RequireSound = true;
 
     /// <summary>
     ///     If true, requires the entity to have usable hands and be able to interact (not be cuffed, etc).

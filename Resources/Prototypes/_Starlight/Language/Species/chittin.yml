@@ -4,6 +4,7 @@
   chatPrefix: chi
   speech:
     requireSpeech: false
+    requireSound: true
     color: "#c64c05"
     messageWrapOverrides:
       Speak: chat-sign-language-message-wrap
