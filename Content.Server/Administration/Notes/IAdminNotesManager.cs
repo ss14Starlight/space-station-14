@@ -19,8 +19,8 @@ public interface IAdminNotesManager
     Task OpenEui(ICommonSession admin, Guid notedPlayer);
     Task OpenUserNotesEui(ICommonSession player);
     Task<int?> AddAdminRemark(ICommonSession createdBy, Guid player, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime); // Starlight-edit: Return note id
-    Task DeleteAdminRemark(int noteId, NoteType type, ICommonSession deletedBy);
-    Task ModifyAdminRemark(int noteId, NoteType type, ICommonSession editedBy, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime);
+    Task DeleteAdminRemark(int noteId, NoteType type, ICommonSession? deletedBy, Guid? deletedByGuid);
+    Task<SharedAdminNote?> ModifyAdminRemark(int noteId, NoteType type, ICommonSession? editedBy, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime, string? editedByName, Guid? editedById);
     /// <summary>
     /// Queries the database and retrieves all notes, secret and visible
     /// </summary>

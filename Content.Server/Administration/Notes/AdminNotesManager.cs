@@ -1,5 +1,6 @@
 using System.Text;
 using System.Threading.Tasks;
+using Content.Server._NullLink.EventBus;
 using Content.Server.Administration.Managers;
 using Content.Server.Database;
 using Content.Server.EUI;
@@ -12,6 +13,7 @@ using Content.Shared.Players.PlayTimeTracking;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using StarlightAdminNote = Starlight.NullLink.AdminNote;
 
 namespace Content.Server.Administration.Notes;
 
@@ -23,6 +25,7 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
     [Dependency] private readonly EuiManager _euis = default!;
     [Dependency] private readonly IEntitySystemManager _systems = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly INullLinkEventBusManager _eventBus = default!;
 
     public const string SawmillId = "admin.notes";
 
@@ -182,44 +185,58 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
         };
     }
 
-    public async Task DeleteAdminRemark(int noteId, NoteType type, ICommonSession deletedBy)
+    public async Task DeleteAdminRemark(int noteId, NoteType type, ICommonSession? deletedBy, Guid? deletedByGuid)
     {
+        if (deletedBy == null && deletedByGuid == null)
+            return;
         var note = await GetAdminRemark(noteId, type);
         if (note == null)
         {
-            _sawmill.Warning($"Player {deletedBy.Name} has tried to delete non-existent {type} {noteId}");
+            if (deletedBy != null)
+                _sawmill.Warning($"Player {deletedBy.Name} has tried to delete non-existent {type} {noteId}");
             return;
         }
 
         var deletedAt = DateTime.UtcNow;
 
+        NetUserId userId;
+        if (deletedBy != null)
+            userId = deletedBy.UserId;
+        else if (deletedByGuid != null)
+            userId = new NetUserId(deletedByGuid.Value);
+        else
+            return;
+
         switch (type)
         {
             case NoteType.Note:
-                await _db.DeleteAdminNote(noteId, deletedBy.UserId, deletedAt);
+                await _db.DeleteAdminNote(noteId, userId, deletedAt);
                 break;
             case NoteType.Watchlist:
-                await _db.DeleteAdminWatchlist(noteId, deletedBy.UserId, deletedAt);
+                await _db.DeleteAdminWatchlist(noteId, userId, deletedAt);
                 break;
             case NoteType.Message:
-                await _db.DeleteAdminMessage(noteId, deletedBy.UserId, deletedAt);
+                await _db.DeleteAdminMessage(noteId, userId, deletedAt);
                 break;
             case NoteType.ServerBan:
-                await _db.HideServerBanFromNotes(noteId, deletedBy.UserId, deletedAt);
+                await _db.HideServerBanFromNotes(noteId, userId, deletedAt);
                 break;
             case NoteType.RoleBan:
-                await _db.HideServerRoleBanFromNotes(noteId, deletedBy.UserId, deletedAt);
+                await _db.HideServerRoleBanFromNotes(noteId, userId, deletedAt);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, "Unknown note type");
         }
 
-        _sawmill.Info($"{deletedBy.Name} has deleted {type} {noteId}");
+        _sawmill.Info($"{deletedBy?.Name ?? userId.ToString()} has deleted {type} {noteId}");
         NoteDeleted?.Invoke(note);
     }
 
-    public async Task ModifyAdminRemark(int noteId, NoteType type, ICommonSession editedBy, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime)
+    public async Task<SharedAdminNote?> ModifyAdminRemark(int noteId, NoteType type, ICommonSession? editedBy, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime, string? editedByName, Guid? editedById)
     {
+        if (editedBy == null && (editedByName == null || editedById == null))
+            return null;
+
         message = message.Trim();
 
         var note = await GetAdminRemark(noteId, type);
@@ -231,10 +248,12 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
             note.Secret == secret &&
             note.ExpiryTime == expiryTime)
         {
-            return;
+            return null;
         }
 
-        var sb = new StringBuilder($"{editedBy.Name} has modified {type} {noteId}");
+        string name = editedBy?.Name ?? editedByName ?? "";
+
+        var sb = new StringBuilder($"{name} has modified {type} {noteId}");
 
         if (note.Message != message)
         {
@@ -271,28 +290,37 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
 
         var editedAt = DateTime.UtcNow;
 
+        NetUserId userId;
+
+        if (editedBy != null)
+            userId = editedBy.UserId;
+        else if (editedById != null)
+            userId = new NetUserId(editedById.Value);
+        else
+            return null;
+
         switch (type)
         {
             case NoteType.Note:
                 if (severity is null)
                     throw new ArgumentException("Severity cannot be null for a note", nameof(severity));
-                await _db.EditAdminNote(noteId, message, severity.Value, secret, editedBy.UserId, editedAt, expiryTime);
+                await _db.EditAdminNote(noteId, message, severity.Value, secret, userId, editedAt, expiryTime);
                 break;
             case NoteType.Watchlist:
-                await _db.EditAdminWatchlist(noteId, message, editedBy.UserId, editedAt, expiryTime);
+                await _db.EditAdminWatchlist(noteId, message, userId, editedAt, expiryTime);
                 break;
             case NoteType.Message:
-                await _db.EditAdminMessage(noteId, message, editedBy.UserId, editedAt, expiryTime);
+                await _db.EditAdminMessage(noteId, message, userId, editedAt, expiryTime);
                 break;
             case NoteType.ServerBan:
                 if (severity is null)
                     throw new ArgumentException("Severity cannot be null for a ban", nameof(severity));
-                await _db.EditServerBan(noteId, message, severity.Value, expiryTime, editedBy.UserId, editedAt);
+                await _db.EditServerBan(noteId, message, severity.Value, expiryTime, userId, editedAt);
                 break;
             case NoteType.RoleBan:
                 if (severity is null)
                     throw new ArgumentException("Severity cannot be null for a role ban", nameof(severity));
-                await _db.EditServerRoleBan(noteId, message, severity.Value, expiryTime, editedBy.UserId, editedAt);
+                await _db.EditServerRoleBan(noteId, message, severity.Value, expiryTime, userId, editedAt);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, "Unknown note type");
@@ -304,10 +332,12 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
             NoteSeverity = severity,
             Secret = secret,
             LastEditedAt = editedAt,
-            EditedByName = editedBy.Name,
+            EditedByName = name,
             ExpiryTime = expiryTime
         };
         NoteModified?.Invoke(newNote);
+
+        return newNote;
     }
 
     public async Task<List<IAdminRemarksRecord>> GetAllAdminRemarks(Guid player)
@@ -340,8 +370,27 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
         await _db.MarkMessageAsSeen(id, dismissedToo);
     }
 
+    private async void NoteRemoved(StarlightAdminNote note)
+    {
+        if (!Enum.TryParse<NoteType>(note.NoteType, out var type))
+            return;
+        if (note.RemovedBy != null)
+            await DeleteAdminRemark(note.Id, type, null, note.RemovedBy);
+    }
+
+    private async void NoteUpdated(StarlightAdminNote note)
+    {
+        if (!Enum.TryParse<NoteType>(note.NoteType, out var type) || !Enum.TryParse<NoteSeverity>(note.NoteSeverity, out var severity))
+            return;
+        if (note.EditedBy != null && note.EditedByName != null)
+            await ModifyAdminRemark(note.Id, type, null, note.Message, severity, note.Secret, note.ExpiryTime, note.EditedByName, note.EditedBy);
+    }
+
     public void PostInject()
     {
         _sawmill = _logManager.GetSawmill(SawmillId);
+        _eventBus.NoteRemoved += NoteRemoved;
+        _eventBus.NoteChanged += NoteUpdated;
+
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Content.Server._NullLink.Core;
+using Content.Server._NullLink.EventBus;
 using Content.Server.Administration.Managers;
 using Content.Server.Database;
 using Content.Server.EUI;
@@ -12,6 +13,8 @@ using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Eui;
 using Content.Shared.Players.PlayTimeTracking;
+using Orleans;
+using Orleans.Runtime;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -29,6 +32,8 @@ public sealed class AdminNotesEui : BaseEui
     [Dependency] private readonly IActorRouter _actors = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly INullLinkEventBusManager _eventBus = default!;
+
     public AdminNotesEui()
     {
         IoCManager.InjectDependencies(this);
@@ -48,6 +53,9 @@ public sealed class AdminNotesEui : BaseEui
         _notesMan.NoteAdded += NoteModified;
         _notesMan.NoteModified += NoteModified;
         _notesMan.NoteDeleted += NoteDeleted;
+        _eventBus.NoteAdded += NoteModified;
+        _eventBus.NoteChanged += NoteModified;
+        _eventBus.NoteRemoved += NoteDeleted;
     }
 
     public override void Closed()
@@ -58,6 +66,9 @@ public sealed class AdminNotesEui : BaseEui
         _notesMan.NoteAdded -= NoteModified;
         _notesMan.NoteModified -= NoteModified;
         _notesMan.NoteDeleted -= NoteDeleted;
+        _eventBus.NoteAdded -= NoteModified;
+        _eventBus.NoteChanged -= NoteModified;
+        _eventBus.NoteRemoved -= NoteDeleted;
     }
 
     public override EuiStateBase GetNewState()
@@ -98,7 +109,7 @@ public sealed class AdminNotesEui : BaseEui
                     var noteId = await _notesMan.AddAdminRemark(Player, NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime);
 
                     if (_actors.TryGetServerGrain(out var serverGrain) && noteId != null)
-                        await serverGrain.AddOrUpdateNote(NotedPlayer, await GenerateNote(Player, NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime, noteId.Value));
+                        await serverGrain.AddOrUpdateNote(await GenerateNote(Player, NotedPlayer, request.NoteType, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime, noteId.Value));
                     break;
                 }
             case DeleteNoteRequest request:
@@ -111,16 +122,16 @@ public sealed class AdminNotesEui : BaseEui
                     if (request.Network)
                     {
                         if (_actors.TryGetServerGrain(out var serverGrain))
-                            await serverGrain.RemoveNote(NotedPlayer, request.Id, request.Project);
+                            await serverGrain.RemoveNote(NotedPlayer, request.Id, request.Project, Player.UserId);
                         break;
                     }
                     else
                     {
                         if (_actors.TryGetServerGrain(out var serverGrain))
-                            await serverGrain.RemoveNote(NotedPlayer, request.Id);
+                            await serverGrain.RemoveNote(NotedPlayer, request.Id, removedBy: Player.UserId);
                     }
 
-                    await _notesMan.DeleteAdminRemark(request.Id, request.Type, Player);
+                    await _notesMan.DeleteAdminRemark(request.Id, request.Type, Player, null);
                     break;
                 }
             case EditNoteRequest request:
@@ -136,18 +147,42 @@ public sealed class AdminNotesEui : BaseEui
                     }
 
 
-                    if (_actors.TryGetServerGrain(out var serverGrain))
+                    var note = await _notesMan.ModifyAdminRemark(request.Id, request.Type, Player, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime, null, null);
+
+                    if (note != null && _actors.TryGetServerGrain(out var serverGrain))
                     {
+                        var newNote = new AdminNote() {
+                            Id = note.Id,
+                            Player = note.Player,
+                            ProjectName = note.ProjectName,
+                            ServerName = note.ServerName ?? _actors.Server ?? "Unknown",
+                            Round = note.Round,
+                            PlaytimeAtNote = note.PlaytimeAtNote,
+                            NoteType = note.NoteType.ToString(),
+                            Message = note.Message,
+                            NoteSeverity = note.NoteSeverity.ToString(),
+                            Secret = note.Secret,
+                            CreatedByName = note.CreatedByName,
+                            EditedByName = note.EditedByName,
+                            CreatedAt = note.CreatedAt,
+                            LastEditedAt = note.LastEditedAt,
+                            ExpiryTime = note.ExpiryTime,
+                            BannedRoles = note.BannedRoles,
+                            UnbannedTime = note.UnbannedTime,
+                            UnbannedByName = note.UnbannedByName,
+                            Seen = note.Seen,
+                            EditedBy = Player.UserId,
+                            RemovedBy = null
+                        };
                         if (request.Network)
                         {
-                            await serverGrain.AddOrUpdateNote(NotedPlayer, await GenerateNote(Player, NotedPlayer, request.Type, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime, request.Id), request.Project);
+                            await serverGrain.AddOrUpdateNote(newNote, request.Project);
                             break;
                         }
                         else
-                            await serverGrain.AddOrUpdateNote(NotedPlayer, await GenerateNote(Player, NotedPlayer, request.Type, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime, request.Id));
+                            await serverGrain.AddOrUpdateNote(newNote);
                     }
 
-                    await _notesMan.ModifyAdminRemark(request.Id, request.Type, Player, request.Message, request.NoteSeverity, request.Secret, request.ExpiryTime);
                     break;
                 }
         }
@@ -157,6 +192,35 @@ public sealed class AdminNotesEui : BaseEui
     {
         NotedPlayer = notedPlayer;
         await LoadFromDb();
+    }
+
+    private async void NoteModified(AdminNote note)
+    {
+        if (note.Player != NotedPlayer || !TryConvert(note, out var converted))
+            return;
+
+        NetworkNotes[(converted.Id, converted.NoteType)] = converted;
+        if (converted.ProjectName == _actors.Project && converted.ServerName == _actors.Server)
+        {
+            NoteModified(converted);
+            return;
+        }
+
+        StateDirty();
+    }
+
+    private void NoteDeleted(AdminNote note)
+    {
+        if (note.Player != NotedPlayer || !Enum.TryParse<NoteType>(note.NoteType, true, out var type))
+            return;
+
+        NetworkNotes.Remove((note.Id, type));
+        if (note.ProjectName == _actors.Project && note.ServerName == _actors.Server)
+        {
+            Notes.Remove((note.Id, type));
+        }
+
+        StateDirty();
     }
 
     private void NoteModified(SharedAdminNote note)
