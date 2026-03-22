@@ -12,9 +12,9 @@ public sealed partial class AppliedSpriteLayerComponent : Component
     [DataField, AutoNetworkedField]
     public SpriteSpecifier Sprite = default!;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public string Layer = "applied_sprite_layer";
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool Glowing = false;
 }

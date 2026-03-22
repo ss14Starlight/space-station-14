@@ -4,14 +4,11 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Server.RandomMetadata;
 using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
-using Content.Shared.Speech.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Vampire.Components;
 using Content.Server.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared._Starlight.Sprite;
 using Robust.Shared.Utility;
-using Robust.Shared.Serialization.Manager;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Content.Shared.Audio;
@@ -92,17 +89,14 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         if (FitsChangeCriteria(devilComp, devilComp.EvilHaloAppearance))
         {
-            AppliedSpriteLayerComponent appliedSpriteLayer = new()
-            {
-                Sprite = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Devil/evilhalo.rsi"), "halo"),
-                Layer = "devil_halo"
-            };
-            EntityManager.AddComponent(uid, appliedSpriteLayer, true);
+            EntityManager.EnsureComponent<AppliedSpriteLayerComponent>(uid, out var appliedSpriteLayer);
+            appliedSpriteLayer.Sprite = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Devil/evilhalo.rsi"), "halo");
+            appliedSpriteLayer.Layer = "devil_halo";
         }
 
         if (FitsChangeCriteria(devilComp, devilComp.OminousHum))
         {
-            AddComp<AmbientSoundComponent>(uid);
+            EnsureComp<AmbientSoundComponent>(uid);
             _ambientSound.SetSound(uid, new SoundPathSpecifier(new ResPath("/Audio/Weapons/ebladehum.ogg")));
             _ambientSound.SetVolume(uid, -8);
             _ambientSound.SetRange(uid, 3);
@@ -110,7 +104,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         if (FitsChangeCriteria(devilComp, devilComp.RedAuraAppearance))
         {
-            AddComp<PointLightComponent>(uid);
+            EnsureComp<PointLightComponent>(uid);
             _pointLight.SetColor(uid, Color.Red);
             _pointLight.SetRadius(uid, 2);
             _pointLight.SetEnergy(uid, 3);

@@ -82,13 +82,21 @@
   actions:
   - !type:DamnationActionTerminator
 
+- type: damnation
+  id: Mute
+  name: lose my voice
+  description: Makes the signator mute
+  cost: -2
+  components:
+  - type: Muted
+
 # REWARDS
 
 - type: damnation
   id: SpaceImmunity
   name: gain immunity to space
   description: The signator becomes immune to space, no longer bound by their fear.
-  cost: 10
+  cost: 8
   removedComponents:
   - type: Barotrauma
     damage:
@@ -108,7 +116,7 @@
   id: AllSeeing
   name: gain knowledge of my surroundings
   description: the signator can perceive through walls.
-  cost: 7
+  cost: 6
   components:
     - type: ThermalVision
   reverseOnRemove: true
@@ -137,7 +145,7 @@
   id: Power
   name: gain power over others
   description: The signator gains a piece of armor and a blade, so that they can rend their will upon the world.
-  cost: 7
+  cost: 6
   actions:
   - !type:DamnationActionSpawnLoot
     table: PowerDamnationRandomEquipment
@@ -150,3 +158,19 @@
   actions:
   - !type:DamnationActionSpawnLoot
     table: GunDamnationKit
+
+- type: damnation
+  id: Electricity
+  name: gain immunity to electricity
+  description: The signator becomes.... insulated
+  cost: 4
+  components:
+  - type: Insulated
+
+- type: damnation
+  id: Noslip
+  name: gain a sure footing
+  description: The signator cannot slip anymore
+  cost: 5
+  components:
+  - type: NoSlip

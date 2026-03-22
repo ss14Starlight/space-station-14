@@ -40,7 +40,10 @@ public sealed partial class DevilComponent : Component
         "Organ",
         "Power",
         "Terminator",
-        "Gun"
+        "Gun",
+        "Electricity",
+        "Noslip",
+        "Mute"
     };
 
     /// <summary>
