@@ -543,4 +543,4 @@
   components:
   - type: RandomGridFill
     pathWeights:
-      "/Maps/_Starlight/Shuttles/escape_pod_lifeboat.yml": 40
+      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_lifeboat.yml": 40
