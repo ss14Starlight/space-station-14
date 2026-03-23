@@ -26,17 +26,17 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                 var button = new GhostRoleEntryButtons(role);
                 button.RequestButton.OnPressed += _ => OnRoleSelected?.Invoke(role);
                 button.FollowButton.OnPressed += _ => OnRoleFollow?.Invoke(role);
+                
+                if (reason != null && !reason.IsEmpty) // Starlight: Always show role requirements
+                {
+                    var tooltip = new Tooltip();
+                    tooltip.SetMessage(reason);
+                    button.RequestButton.TooltipSupplier = _ => tooltip;
+                } // Starlight END
 
                 if (!hasAccess)
                 {
                     button.RequestButton.Disabled = true;
-
-                    if (reason != null && !reason.IsEmpty)
-                    {
-                        var tooltip = new Tooltip();
-                        tooltip.SetMessage(reason);
-                        button.RequestButton.TooltipSupplier = _ => tooltip;
-                    }
 
                     button.RequestButton.AddChild(new TextureRect
                     {
