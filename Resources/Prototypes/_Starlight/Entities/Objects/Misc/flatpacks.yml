@@ -29,6 +29,15 @@
 
 - type: entity
   parent: BaseFlatpack
+  id: GoldenMailTrolleyFlatpack
+  name: golden mail trolley flatpack
+  description: A flatpack used for constructing a brilliant golden mail trolley.
+  components:
+  - type: Flatpack
+    entity: GoldenMailTrolley
+
+- type: entity
+  parent: BaseFlatpack
   id: KitchenStoveFlatpack
   name: stove flatpack
   description: A flatpack used for constructing an stove.

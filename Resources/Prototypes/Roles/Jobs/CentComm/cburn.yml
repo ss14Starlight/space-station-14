@@ -46,7 +46,7 @@
 #    - WeaponShotgunDoubleBarreled Starlight: Replaced with starlight weaponry
 #    - BoxShotgunIncendiary
     # Starlight-start: Starlight incendiary weaponry
-    - WeaponIK60
+    - WeaponRifleIK60
     - MagazineBatteryLr30
     - MagazineBatteryLr30
     - MagazineBatteryLr30

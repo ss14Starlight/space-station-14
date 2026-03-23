@@ -153,6 +153,25 @@
     sprite: Structures/Doors/Airlocks/Glass/mining.rsi
     state: "assembly"
 
+# Mail
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyMail
+  suffix: Mail
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/mail.rsi
+    state: "assembly"
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyMailGlass
+  suffix: Mail, Glass
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/mail.rsi
+    state: "assembly"
+
 #EVA
 - type: entity
   parent: AirlockAssembly

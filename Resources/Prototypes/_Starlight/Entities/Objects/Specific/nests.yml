@@ -1,0 +1,173 @@
+# BASE
+
+- type: entity
+  parent: BaseStructure
+  id: BaseNest
+  abstract: true
+  name: Base Nest
+  components:
+  - type: Anchorable
+    delay: 1
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+  - type: StaticPrice
+    price: 10
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Appearance
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 100
+        mask:
+        - TableMask
+
+# NESTS
+
+- type: entity
+  parent: BaseNest
+  id: NestBeeHive
+  name: bee hive
+  description: You probably shouldnt anger them.
+  components:
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: BeeHiveTable
+    gibTable: !type:NestedSelector
+      tableId: BeeHiveTable
+      rolls: !type:RangeNumberSelector
+        range: 3, 5
+  - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Honeycomb:
+            min: 2
+            max: 3
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    sprite: _Starlight/Structures/Specific/Nests/nests.rsi
+    state: bee_hive_monke
+
+- type: entity
+  parent: BaseNest
+  id: NestBeeBox
+  name: bee box
+  description: You probably shouldnt anger them.
+  components:
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: BeeBoxTable
+    gibTable: !type:NestedSelector
+      tableId: BeeBoxTable
+      rolls: !type:RangeNumberSelector
+        range: 3, 5
+  - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 2
+            max: 3
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    sprite: _Starlight/Structures/Specific/Nests/bee_box.rsi
+    state: bee_box
+
+- type: entity
+  parent: BaseNest
+  id: NestSnake
+  name: snake nest
+  description: Smells like sulfur and rotten meat.
+  components:
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: SnakeNestTable
+    gibTable: !type:NestedSelector
+      tableId: SnakeNestTable
+      rolls: !type:RangeNumberSelector
+        range: 1, 1
+  - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    sprite: _Starlight/Structures/Specific/Nests/nests.rsi
+    state: rat_nest
+
+- type: entity
+  parent: BaseNest
+  id: NestMouse
+  name: mouse nest
+  description: Smells like ammonia and cheese.
+  components:
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: MouseNestTable
+    gibTable: !type:NestedSelector
+      tableId: MouseNestTable
+      rolls: !type:RangeNumberSelector
+        range: 2, 3
+  - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    sprite: _Starlight/Structures/Specific/Nests/nests.rsi
+    state: mouse_nest

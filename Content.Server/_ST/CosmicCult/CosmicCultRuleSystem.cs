@@ -754,6 +754,8 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             return;
         var cosmicGamerule = cult.Comp;
 
+        if (TerminatingOrDeleted(uid.Owner)) //Starlight-edit: dev-crash
+            return; //Starlight-edit: dev-crash
         _stun.TryAddStunDuration(uid.Owner, TimeSpan.FromSeconds(2));
         foreach (var actionEnt in uid.Comp.ActionEntities) _actions.RemoveAction(actionEnt);
 

@@ -635,6 +635,7 @@
       name: ghost-role-information-syndicate-cyborg-assault-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       raffle:
         settings: default
       job: Borg
@@ -687,6 +688,7 @@
       name: ghost-role-information-syndicate-cyborg-saboteur-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       raffle:
         settings: default
       job: Borg
@@ -739,6 +741,7 @@
       name: ghost-role-information-syndicate-cyborg-medical-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       raffle:
         settings: default
     - type: GhostTakeoverAvailable

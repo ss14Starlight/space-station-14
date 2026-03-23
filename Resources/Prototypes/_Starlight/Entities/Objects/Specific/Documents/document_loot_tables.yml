@@ -7,6 +7,7 @@
       - id: ClassifiedCorporateDocumentNinjas
       - id: ClassifiedCorporateDocumentNukies
       - id: ClassifiedCorporateDocumentRomerol
+      - id: ClassifiedCorporateDocumentCultCosmic
 
 - type: entityTable
   id: CriminalDocumentTable

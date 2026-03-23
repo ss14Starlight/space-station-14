@@ -16,13 +16,13 @@ steal-target-groups-clothing-outer-hardsuit-qm = QM's luxury maxim hardsuit
 steal-target-groups-clothing-outer-hardsuit-salvlead = spationaut lead hardsuit
 steal-target-groups-clothing-outer-hardsuit-captain = captain's armored spacesuit
 steal-target-groups-clothing-outer-hardsuit-ntr = nanotrasen representative's hardsuit
-steal-target-groups-clothing-outer-hardsuit-bso = blue shield officer's hardsuit
-steal-target-groups-clothing-shoes-boots-mag-bso = blue shield officer's magboots
+steal-target-groups-clothing-outer-hardsuit-bso = blueshield officer's hardsuit
+steal-target-groups-clothing-shoes-boots-mag-bso = blueshield officer's magboots
 steal-target-groups-encryption-key-hybrid = salvage, med-sec, med-sci, or station master encryption key
-steal-target-groups-hopboard = bureaucratic digiboard
+steal-target-groups-hopboard = bureaucratic digi-board
 steal-target-groups-hos-weapon = head of security's Proto-5x or WT550r
 steal-target-groups-security-rare-guns = warden's energy shotgun or the detective's energy magnum
-steal-target-groups-bso-weapon = blue shield officer's X-01 multiphase energy gun or sp8t
+steal-target-groups-bso-weapon = blueshield officer's X-01 multiphase energy gun or sp8t
 
 # Thief single items
 steal-target-groups-strange-brigmed-bedsheet = strange brigmedic's bedsheet
