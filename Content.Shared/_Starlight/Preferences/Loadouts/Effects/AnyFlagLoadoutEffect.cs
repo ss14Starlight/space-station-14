@@ -26,7 +26,7 @@ public sealed partial class RolesReqLoadoutEffect : LoadoutEffect
             return true;
 
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
-            "roles-req-any-role-required",
+            "roles-req-any-role-required-fail",
             ("discord", Loc.GetString(requirement.Discord)),
             ("roles", Loc.GetString(requirement.RolesLoc))));
         return false;
