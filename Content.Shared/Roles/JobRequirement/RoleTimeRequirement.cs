@@ -42,8 +42,8 @@ public sealed partial class RoleTimeRequirement : JobRequirement
 
         string proto = Role;
         //NullLink start
-        if (player is not null && IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAllRolesAvailable(player))
-            return true;
+        var bypass = player is not null &&
+                     IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAllRolesAvailable(player);
         //NullLink end
 
         playTimes.TryGetValue(proto, out var roleTime);
@@ -76,7 +76,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
                     ("required", formattedRequired),
                     ("job", tracker.LocalizedName),
                     ("departmentColor", departmentColor.ToHex())));
-                return false;
+                return bypass;
             }
             else
             {
@@ -88,7 +88,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
                         ("required", formattedRequired),
                         ("job", tracker.LocalizedName),
                         ("departmentColor", departmentColor.ToHex())));
-                    return false;
+                    return bypass;
                 }
                 return true;
             }
@@ -99,7 +99,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
             departmentColor = departmentProto.Color;
 
         if (!protoManager.TryIndex<JobPrototype>(jobProto, out var indexedJob))
-            return false;
+            return bypass;
 
         details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-not-too-high" : "role-timer-role-sufficient",
@@ -119,7 +119,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
                 ("required", formattedRequired),
                 ("job", indexedJob.LocalizedName),
                 ("departmentColor", departmentColor.ToHex())));
-            return false;
+            return bypass;
         }
 
         if (roleDiff <= 0)
@@ -130,7 +130,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
                 ("required", formattedRequired),
                 ("job", indexedJob.LocalizedName),
                 ("departmentColor", departmentColor.ToHex())));
-            return false;
+            return bypass;
         }
 
         return true;

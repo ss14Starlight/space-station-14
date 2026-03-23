@@ -25,13 +25,14 @@ public sealed partial class RolesRequirement : JobRequirement
     {
         var requirement = protoManager.Index(Proto);
         reason = new FormattedMessage();
-        if (player is not null && IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAnyRole(player, requirement.Roles))
-            return true;
+
+        var met = player is not null &&
+                  IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAnyRole(player, requirement.Roles);
 
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
-            "roles-req-any-role-required",
+            met ? "roles-req-any-role-required-met" : "roles-req-any-role-required-unmet",
             ("discord", Loc.GetString(requirement.Discord)),
             ("roles", Loc.GetString(requirement.RolesLoc))));
-        return false;
+        return met;
     }
 }

@@ -43,8 +43,8 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
         var playtime = TimeSpan.Zero;
 
         //NullLink start
-        if (player is not null && IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAllRolesAvailable(player))
-            return true;
+        var bypass = player is not null &&
+                     IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAllRolesAvailable(player);
         //NullLink end
 
         // Check all jobs' departments
@@ -91,7 +91,7 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
                 ("required", formattedRequired),
                 ("department", Loc.GetString(nameDepartment)),
                 ("departmentColor", department.Color.ToHex())));
-            return false;
+            return bypass;
         }
 
         if (deptDiff <= 0)
@@ -102,7 +102,7 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
                 ("required", formattedRequired),
                 ("department", Loc.GetString(nameDepartment)),
                 ("departmentColor", department.Color.ToHex())));
-            return false;
+            return bypass;
         }
 
         return true;

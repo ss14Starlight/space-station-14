@@ -34,8 +34,8 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
             return true;
 
         //NullLink start
-        if (player is not null && IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAllRolesAvailable(player))
-            return true;
+        var bypass = player is not null &&
+                     IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAllRolesAvailable(player);
         //NullLink end
 
         var overallTime = playTimes.GetValueOrDefault(PlayTimeTrackingShared.TrackerOverall);
@@ -58,7 +58,7 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
                 "role-timer-overall-insufficient",
                 ("current", formattedCurrent),
                 ("required", formattedRequired)));
-            return false;
+            return bypass;
         }
 
         if (overallDiff <= 0 || overallTime >= Time)
@@ -67,7 +67,7 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
                 Loc.GetString("role-timer-overall-too-high",
                 ("current", formattedCurrent),
                 ("required", formattedRequired)));
-            return false;
+            return bypass;
         }
 
         return true;

@@ -1,4 +1,6 @@
-roles-req-any-role-required = You require any of the following roles on {$discord}: {$roles}.
+roles-req-any-role-required-met = You require any of the following roles on {$discord}: [color=limegreen]{$roles}[/color].
+roles-req-any-role-required-unmet = You require any of the following roles on {$discord}: [color=yellow]{$roles}[/color].
+
 requirements-playtime = 
     { $tracker ->
         [overall] You still need {$time} of total gameplay time on the {$server} server.
