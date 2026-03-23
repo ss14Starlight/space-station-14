@@ -32,9 +32,9 @@
             ServiceWorker: [ 2, 4 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
-            AtmosphericTechnician: [ 2, 2 ]
-            StationEngineer: [ 4, 4 ]
-            TechnicalAssistant: [ 2, 2 ]
+            AtmosphericTechnician: [ 3, 4 ]
+            StationEngineer: [ 4, 5 ]
+            TechnicalAssistant: [ 2, 3 ]
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
             Chemist: [ 2, 2 ]
@@ -68,6 +68,8 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 2, 2 ]
+            Performer: [ 2, 4 ]
+            Boxer: [ 2, 2 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 4 ]
