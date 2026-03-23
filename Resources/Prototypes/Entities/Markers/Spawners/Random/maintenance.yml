@@ -292,6 +292,7 @@
       - id: TwinPointerKit # Starlight: Added twinpointer to maints loot
       - id: JetpackImprovisedFilled #Starlight
       - id: Flash0Use # Starlight
+        weight: 0.75 # Starlight
       - id: Flash1Use # Starlight
       - id: Flash2Use # Starlight
         weight: 0.5 # Starlight
