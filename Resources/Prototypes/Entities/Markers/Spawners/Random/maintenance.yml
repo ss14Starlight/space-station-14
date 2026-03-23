@@ -322,11 +322,10 @@
         weight: 0.05
       - id: MakeshiftID # Starlight
       - id: Flash3Use # Starlight
-        weight: 0.7 # Starlight
       - id: Flash4Use # Starlight
-        weight: 0.25 # Starlight
+        weight: 0.8 # Starlight
       - id: Flash # Starlight
-        weight: 0.1 # Starlight
+        weight: 0.5 # Starlight
 
 - type: entity
   name: Maint Loot Spawner
