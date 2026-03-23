@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Numerics;
 using Content.Client.DisplacementMap;
@@ -7,7 +6,6 @@ using Content.Shared.Item;
 using Content.Shared.Starlight.Medical.Surgery;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.Medical.Surgery;
 
@@ -26,27 +24,26 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
 
     private void OnChanged(Entity<CustomLimbVisualizerComponent> ent, ref AfterAutoHandleStateEvent _) => OnChanged(ent);
 
-    private void OnChanged(Entity<CustomLimbVisualizerComponent> ent, bool repeat = true)
+    private void OnChanged(Entity<CustomLimbVisualizerComponent> ent)
     {
-        if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
+        if (Deleted(ent.Owner) || !TryComp<SpriteComponent>(ent.Owner, out var sprite))
             return;
 
         var spriteEnt = (ent.Owner, sprite);
         var old = ent.Comp.CachedLayers.ToHashSet();
-        ent.Comp.CachedLayers.Clear();
+        var updatedLayers = new HashSet<HumanoidVisualLayers>();
 
         foreach (var item in ent.Comp.Layers)
         {
-            if (!item.Value.HasValue || !TryComp<SpriteComponent>(GetEntity(item.Value), out var layerSprite))
-            {
-                if (repeat)
-                    Timer.Spawn(TimeSpan.FromMilliseconds(150), () => OnChanged(ent, false));
+            if (!item.Value.HasValue)
+                continue;
 
-                return;
-            }
+            var limb = GetEntity(item.Value);
+            if (Deleted(limb) || !TryComp<SpriteComponent>(limb, out var layerSprite))
+                continue;
 
             string? state = null;
-            if (TryComp<ItemComponent>(GetEntity(item.Value), out var itemComp) && itemComp.HeldPrefix is not null)
+            if (TryComp<ItemComponent>(limb, out var itemComp) && itemComp.HeldPrefix is not null)
                 state = $"{itemComp.HeldPrefix}-";
 
             var offset = Vector2.Zero;
@@ -93,7 +90,7 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
                 _sprite.LayerSetRsi(spriteEnt, index, layerSprite.BaseRSI, rsiState.StateId);
                 _sprite.LayerSetOffset(spriteEnt, index, offset);
                 _sprite.LayerSetVisible(spriteEnt, index, true);
-                ent.Comp.CachedLayers.Add(item.Key);
+                updatedLayers.Add(item.Key);
             }
 
             // if (ent.Comp.Displacements.TryGetValue(item.Key, out var displacementData) && !ent.Comp.CachedLayers.Contains($"{item.Key}-displacement"))
@@ -105,11 +102,13 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
 
         foreach (var layer in old)
         {
-            if (ent.Comp.CachedLayers.Contains(layer))
+            if (updatedLayers.Contains(layer))
                 continue;
 
-            var index = _sprite.LayerMapReserve(spriteEnt, $"custom-{layer}");
-            _sprite.LayerSetVisible(spriteEnt, index, false);
+            if (_sprite.LayerMapTryGet(spriteEnt, $"custom-{layer}", out var index, false))
+                _sprite.LayerSetVisible(spriteEnt, index, false);
         }
+
+        ent.Comp.CachedLayers = updatedLayers;
     }
 }
