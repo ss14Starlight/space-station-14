@@ -8,7 +8,7 @@ public sealed class VisualPickupableSystem : SharedVisualPickupableSystem
 {
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    private static EntProtoId _cloneEnt = "VisualPickupableCloneEntity";
+    private const EntProtoId _cloneEnt = "VisualPickupableCloneEntity";
 
     public override void Initialize()
     {
