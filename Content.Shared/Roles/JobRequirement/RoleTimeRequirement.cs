@@ -49,7 +49,6 @@ public sealed partial class RoleTimeRequirement : JobRequirement
         playTimes.TryGetValue(proto, out var roleTime);
         var roleDiffSpan = Time - roleTime;
         var roleDiff = roleDiffSpan.TotalMinutes;
-        var formattedRoleDiff = ContentLocalizationManager.FormatPlaytime(roleDiffSpan);
         var formattedCurrent = ContentLocalizationManager.FormatPlaytime(roleTime);
         var formattedRequired = ContentLocalizationManager.FormatPlaytime(Time);
         var departmentColor = Color.Yellow;
@@ -73,7 +72,8 @@ public sealed partial class RoleTimeRequirement : JobRequirement
 
                 details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                     "role-timer-role-insufficient",
-                    ("time", formattedRoleDiff),
+                    ("current", formattedCurrent),
+                    ("required", formattedRequired),
                     ("job", tracker.LocalizedName),
                     ("departmentColor", departmentColor.ToHex())));
                 return false;
@@ -84,7 +84,8 @@ public sealed partial class RoleTimeRequirement : JobRequirement
                 {
                     details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                         "role-timer-role-too-high",
-                        ("time", formattedRoleDiff),
+                        ("current", formattedCurrent),
+                        ("required", formattedRequired),
                         ("job", tracker.LocalizedName),
                         ("departmentColor", departmentColor.ToHex())));
                     return false;
@@ -102,8 +103,8 @@ public sealed partial class RoleTimeRequirement : JobRequirement
 
         details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-not-too-high" : "role-timer-role-sufficient",
-            ("current", roleTime.TotalMinutes),
-            ("required", Time.TotalMinutes),
+            ("current", formattedCurrent),
+            ("required", formattedRequired),
             ("job", Loc.GetString(proto)),
             ("departmentColor", departmentColor.ToHex())));
 
@@ -114,8 +115,8 @@ public sealed partial class RoleTimeRequirement : JobRequirement
 
             details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-role-insufficient",
-                ("current", roleTime.TotalMinutes),
-                ("required", Time.TotalMinutes),
+                ("current", formattedCurrent),
+                ("required", formattedRequired),
                 ("job", indexedJob.LocalizedName),
                 ("departmentColor", departmentColor.ToHex())));
             return false;
@@ -125,8 +126,8 @@ public sealed partial class RoleTimeRequirement : JobRequirement
         {
             details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-role-too-high",
-                ("current", roleTime.TotalMinutes),
-                ("required", Time.TotalMinutes),
+                ("current", formattedCurrent),
+                ("required", formattedRequired),
                 ("job", indexedJob.LocalizedName),
                 ("departmentColor", departmentColor.ToHex())));
             return false;

@@ -918,8 +918,6 @@ namespace Content.Client.Lobby.UI
 
                 var title = Loc.GetString(antag.Name);
                 var description = FormattedMessage.FromMarkupPermissive(Loc.GetString(antag.Objective));
-                selector.Setup(items, title, 250, description, guides: antag.Guides);
-                selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
 
                 if (!_requirements.IsAllowed(
                         antag,
