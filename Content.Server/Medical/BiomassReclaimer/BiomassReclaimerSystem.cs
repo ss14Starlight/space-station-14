@@ -243,14 +243,25 @@ namespace Content.Server.Medical.BiomassReclaimer
             if (!isPlant && !HasComp<MobStateComponent>(dragged))
                 return false;
 
+            // Starlight BEGIN: Added popups to inform the player of the refusal reason.
             if (!Transform(reclaimer).Anchored)
+            {
+                _popup.PopupEntity(Loc.GetString("biomass-reclaimer-not-anchored"), reclaimer, PopupType.Large);
                 return false;
+            }
 
             if (TryComp<ApcPowerReceiverComponent>(reclaimer, out var power) && !power.Powered)
+            {
+                _popup.PopupEntity(Loc.GetString("biomass-reclaimer-not-powered"), reclaimer, PopupType.Large);
                 return false;
+            }
 
             if (!isPlant && reclaimer.Comp.SafetyEnabled && !_mobState.IsDead(dragged))
+            {
+                _popup.PopupEntity(Loc.GetString("biomass-reclaimer-safety-on"), reclaimer, PopupType.Large);
                 return false;
+            }
+            // Starlight END
 
             // Reject souled bodies in easy mode.
             if (_configManager.GetCVar(CCVars.BiomassEasyMode) &&
@@ -258,7 +269,11 @@ namespace Content.Server.Medical.BiomassReclaimer
                 _minds.TryGetMind(dragged, out _, out var mind))
             {
                 if (mind.UserId != null && _playerManager.TryGetSessionById(mind.UserId.Value, out _))
+                {
+                    // Starlight BEGIN: Added popup for player feedback 
+                    _popup.PopupEntity(Loc.GetString("biomass-reclaimer-soulful"), reclaimer, PopupType.Large);
                     return false;
+                } // Starlight END
             }
 
             return true;
