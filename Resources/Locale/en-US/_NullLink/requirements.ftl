@@ -1,5 +1,5 @@
-roles-req-any-role-required-met = You require any of the following roles on {$discord}: [color=limegreen]{$roles}[/color].
-roles-req-any-role-required-unmet = You require any of the following roles on {$discord}: [color=yellow]{$roles}[/color].
+roles-req-any-role-required-pass = You require any of the following roles on {$discord}: [color=limegreen]{$roles}[/color].
+roles-req-any-role-required-fail = You require any of the following roles on {$discord}: [color=yellow]{$roles}[/color].
 
 requirements-playtime = 
     { $tracker ->

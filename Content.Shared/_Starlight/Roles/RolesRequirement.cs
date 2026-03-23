@@ -30,7 +30,7 @@ public sealed partial class RolesRequirement : JobRequirement
                   IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAnyRole(player, requirement.Roles);
 
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
-            success ? "roles-req-any-role-required-met" : "roles-req-any-role-required-unmet",
+            success ? "roles-req-any-role-required-pass" : "roles-req-any-role-required-fail",
             ("discord", Loc.GetString(requirement.Discord)),
             ("roles", Loc.GetString(requirement.RolesLoc))));
         return success;
