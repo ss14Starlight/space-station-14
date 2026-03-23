@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Text;
 using Content.Shared._Starlight.Traits;
 using Content.Shared.Humanoid.Prototypes;
@@ -28,7 +27,7 @@ public sealed partial class TraitsRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        out FormattedMessage reason)
+        out FormattedMessage reason) // Starlink: Always return reason
     {
         reason = new FormattedMessage();
 
@@ -36,17 +35,18 @@ public sealed partial class TraitsRequirement : JobRequirement
             return true;
 
         var sb = new StringBuilder();
+        // Starlight: No color here, in .ftl instead
         foreach (var t in Traits)
         {
             sb.Append(Loc.GetString(protoManager.Index(t).Name) + " ");
         }
+        // Starlight: No color here, in .ftl instead
         
-        // Default message is success.
+        // Starlight BEGIN
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-blacklisted-traits-pass" : "role-timer-whitelisted-traits-pass",
             ("traits", sb)));
-        
-        var hasAnyTrait = Traits.Any(trait => profile.TraitPreferences.Contains(trait));
+        var hasAnyTrait = Traits.Overlaps(profile.TraitPreferences);
 
         // !Inverted = Whitelist mode, meaning player must have ONE of the traits.
         // Inverted = Blacklist mode, meaning player must have NONE of the traits.
@@ -58,5 +58,30 @@ public sealed partial class TraitsRequirement : JobRequirement
             Inverted ? "role-timer-blacklisted-traits-fail" : "role-timer-whitelisted-traits-fail",
             ("traits", sb)));
         return false;
+        
+        /*
+        if (!Inverted)
+        {
+            reason = FormattedMessage.FromMarkupPermissive($"{Loc.GetString("role-timer-whitelisted-traits")}\n{sb}");
+            //at least one of
+            foreach (var trait in Traits)
+            {
+                if (profile.TraitPreferences.Contains(trait))
+                    return true;
+            }
+            return false;
+        }
+        else
+        {
+            reason = FormattedMessage.FromMarkupPermissive($"{Loc.GetString("role-timer-blacklisted-traits")}\n{sb}");
+
+            foreach (var trait in Traits)
+            {
+                if (profile.TraitPreferences.Contains(trait))
+                    return false;
+            }
+        }
+
+        return true; */ // Starlight END
     }
 }
