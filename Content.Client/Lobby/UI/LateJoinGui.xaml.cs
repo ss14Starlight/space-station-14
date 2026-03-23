@@ -300,15 +300,12 @@ namespace Content.Client.Lobby.UI
                         jobButton.OnPressed += _ => SelectedId.Invoke((id, _selectedSlot ?? -1, jobButton.JobId));
 
                         // Starlight BEGIN
-                        var allowed = _jobRequirements.IsAllowed(prototype, humanoid, out var details);
+                        var allowed = _jobRequirements.IsAllowed(prototype, humanoid, out var reason);
                         jobButton.Disabled = !allowed;
-
-                        if (details is { IsEmpty: false })
-                        {
-                            var tooltip = new Tooltip();
-                            tooltip.SetMessage(details);
-                            jobButton.TooltipSupplier = _ => tooltip;
-                        }
+                        
+                        var tooltip = new Tooltip();
+                        tooltip.SetMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("role-no-requirements")));
+                        jobButton.TooltipSupplier = _ => tooltip;
 
                         if (allowed && value == 0) // Starlight END
                         {

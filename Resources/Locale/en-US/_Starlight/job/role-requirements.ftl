@@ -1,6 +1,9 @@
+role-no-requirements = This job has no requirements.
+ghost-role-no-requirements = This role has no requirements.
+
 # Coloring rule of thumb: limegreen for met requirement, yellow for unmet requirement that can still be met, red for unmeetable
 
-role-timer-department-sufficient = You have [color=limegreen]{TOSTRING($current, "0")}[/color] of the [color=lightblue]{TOSTRING($required, "0")} playtime required in the [color={$departmentColor}]{$department}[/color] department.
+role-timer-department-sufficient = You have [color=limegreen]{TOSTRING($current, "0")}[/color] of the [color=lightblue]{TOSTRING($required, "0")}[/color] playtime required in the [color={$departmentColor}]{$department}[/color] department.
 role-timer-department-insufficient = You have [color=yellow]{TOSTRING($current, "0")}[/color] of the [color=lightblue]{TOSTRING($required, "0")}[/color] playtime required in the [color={$departmentColor}]{$department}[/color] department.
 role-timer-department-not-too-high = You have [color=limegreen]{TOSTRING($current, "0")}[/color] of at most [color=lightblue]{TOSTRING($required, "0")}[/color] playtime in the [color={$departmentColor}]{$department}[/color] department.
 role-timer-department-too-high = You have [color=red]{TOSTRING($current, "0")}[/color] of at most [color=lightblue]{TOSTRING($required, "0")}[/color] playtime in the [color={$departmentColor}]{$department}[/color] department. (Are you trying to play a trainee role?)

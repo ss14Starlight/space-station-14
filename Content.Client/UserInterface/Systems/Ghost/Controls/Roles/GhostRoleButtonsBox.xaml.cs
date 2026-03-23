@@ -27,12 +27,11 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                 button.RequestButton.OnPressed += _ => OnRoleSelected?.Invoke(role);
                 button.FollowButton.OnPressed += _ => OnRoleFollow?.Invoke(role);
                 
-                if (reason != null && !reason.IsEmpty) // Starlight: Always show role requirements
-                {
-                    var tooltip = new Tooltip();
-                    tooltip.SetMessage(reason);
-                    button.RequestButton.TooltipSupplier = _ => tooltip;
-                } // Starlight END
+                // Starlight: Always show role requirements
+                var tooltip = new Tooltip();
+                tooltip.SetMessage(reason is { IsEmpty: false } ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("role-no-requirements")));
+                button.RequestButton.TooltipSupplier = _ => tooltip;
+                // Starlight END
 
                 if (!hasAccess)
                 {

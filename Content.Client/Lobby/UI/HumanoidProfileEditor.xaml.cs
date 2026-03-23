@@ -1239,15 +1239,12 @@ namespace Content.Client.Lobby.UI
                     var allowed = _requirements.IsAllowed(job, Profile, out var reason);
                     
                     // Append the reason to the description.
-                    if (reason is { IsEmpty: false })
+                    if (!description.IsEmpty)
                     {
-                        if (!description.IsEmpty)
-                        {
-                            description.PushNewline();
-                            description.PushNewline();
-                        }
-                        description.AddMessage(reason);
+                        description.PushNewline();
+                        description.PushNewline();
                     }
+                    description.AddMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("role-no-requirements")));
                     
                     selector.Setup(items, job.LocalizedName, 200, description, icon, job.Guides);
 
