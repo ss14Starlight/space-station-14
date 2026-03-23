@@ -49,8 +49,8 @@ public sealed partial class RoleTimeRequirement : JobRequirement
         playTimes.TryGetValue(proto, out var roleTime);
         var roleDiffSpan = Time - roleTime;
         var roleDiff = roleDiffSpan.TotalMinutes;
-        var formattedCurrent = ContentLocalizationManager.FormatPlaytime(roleTime);
-        var formattedRequired = ContentLocalizationManager.FormatPlaytime(Time);
+        var formattedCurrent = ContentLocalizationManager.FormatPlaytime(roleTime); // Starlight
+        var formattedRequired = ContentLocalizationManager.FormatPlaytime(Time); // Starlight
         var departmentColor = Color.Yellow;
 
         if (!entManager.EntitySysManager.TryGetEntitySystem(out SharedJobSystem? jobSystem))
@@ -60,6 +60,13 @@ public sealed partial class RoleTimeRequirement : JobRequirement
 
         // Starlight start
         // Handle non-job role time requirements
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            Inverted ? "role-timer-not-too-high" : "role-timer-role-sufficient",
+            ("current", formattedCurrent),
+            ("required", formattedRequired),
+            ("job", Loc.GetString(proto)),
+            ("departmentColor", departmentColor.ToHex())));
+        
         if (jobProto is null)
         {
             if (!protoManager.TryIndex<PlayTimeTrackerPrototype>(proto, out var tracker))
@@ -72,11 +79,11 @@ public sealed partial class RoleTimeRequirement : JobRequirement
 
                 reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                     "role-timer-role-insufficient",
-                    ("current", formattedCurrent),
-                    ("required", formattedRequired),
+                    ("current", formattedCurrent), // Starlight
+                    ("required", formattedRequired), // Starlight
                     ("job", tracker.LocalizedName),
                     ("departmentColor", departmentColor.ToHex())));
-                return bypass;
+                return bypass; // NullLink
             }
             else
             {
@@ -84,11 +91,11 @@ public sealed partial class RoleTimeRequirement : JobRequirement
                 {
                     reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                         "role-timer-role-too-high",
-                        ("current", formattedCurrent),
-                        ("required", formattedRequired),
+                        ("current", formattedCurrent), // Starlight
+                        ("required", formattedRequired), // Starlight
                         ("job", tracker.LocalizedName),
                         ("departmentColor", departmentColor.ToHex())));
-                    return bypass;
+                    return bypass; // NullLink
                 }
                 return true;
             }
@@ -99,14 +106,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
             departmentColor = departmentProto.Color;
 
         if (!protoManager.TryIndex<JobPrototype>(jobProto, out var indexedJob))
-            return bypass;
-
-        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
-            Inverted ? "role-timer-not-too-high" : "role-timer-role-sufficient",
-            ("current", formattedCurrent),
-            ("required", formattedRequired),
-            ("job", Loc.GetString(proto)),
-            ("departmentColor", departmentColor.ToHex())));
+            return bypass; // NullLink
 
         if (!Inverted)
         {
@@ -115,22 +115,22 @@ public sealed partial class RoleTimeRequirement : JobRequirement
 
             reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-role-insufficient",
-                ("current", formattedCurrent),
-                ("required", formattedRequired),
+                ("current", formattedCurrent), // Starlight
+                ("required", formattedRequired), // Starlight
                 ("job", indexedJob.LocalizedName),
                 ("departmentColor", departmentColor.ToHex())));
-            return bypass;
+            return bypass; // NullLink
         }
 
         if (roleDiff <= 0)
         {
             reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-role-too-high",
-                ("current", formattedCurrent),
-                ("required", formattedRequired),
+                ("current", formattedCurrent), // Starlight
+                ("required", formattedRequired), // Starlight
                 ("job", indexedJob.LocalizedName),
                 ("departmentColor", departmentColor.ToHex())));
-            return bypass;
+            return bypass; // NullLink
         }
 
         return true;

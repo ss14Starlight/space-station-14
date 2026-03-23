@@ -60,7 +60,7 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
                 "role-timer-overall-insufficient",
                 ("current", formattedCurrent), // Starlight
                 ("required", formattedRequired))); // Starlight
-            return bypass; // Starlight
+            return bypass; // NullLink
         }
 
         if (overallDiff <= 0 || overallTime >= Time)
@@ -68,8 +68,8 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
             reason = FormattedMessage.FromMarkupPermissive( // Starlight BEGIN
                 Loc.GetString("role-timer-overall-too-high",
                 ("current", formattedCurrent),
-                ("required", formattedRequired)));
-            return bypass; // Starlight END
+                ("required", formattedRequired))); // Starlight END
+            return bypass; // NullLink
         }
 
         return true;

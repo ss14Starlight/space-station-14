@@ -93,7 +93,7 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
                 ("required", formattedRequired), // Starlight
                 ("department", Loc.GetString(nameDepartment)),
                 ("departmentColor", department.Color.ToHex())));
-            return bypass;
+            return bypass; // NullLink
         }
 
         if (deptDiff <= 0)
@@ -104,7 +104,7 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
                 ("required", formattedRequired), // Starlight
                 ("department", Loc.GetString(nameDepartment)),
                 ("departmentColor", department.Color.ToHex())));
-            return bypass;
+            return bypass; // NullLink
         }
 
         return true;

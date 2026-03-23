@@ -25,7 +25,7 @@ public sealed partial class SpeciesRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        out FormattedMessage reason)
+        out FormattedMessage reason) // Starlink: Always return reason
     {
         reason = new FormattedMessage();
 
@@ -33,28 +33,36 @@ public sealed partial class SpeciesRequirement : JobRequirement
             return true;
 
         var sb = new StringBuilder();
+        // Starlight: No color here, in .ftl instead
         foreach (var s in Species)
         {
             sb.Append(Loc.GetString(protoManager.Index(s).Name) + " ");
         }
+        // Starlight: No color here, in .ftl instead
 
+        // Starlight BEGIN
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-blacklisted-species-pass" : "role-timer-whitelisted-species-pass",
             ("species", sb)));
+        // Starlight END
 
         if (!Inverted)
         {
+            // Starlight BEGIN
             if (Species.Contains(profile.Species))
                 return true;
-
             reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-whitelisted-species-fail", ("species", sb)));
-            return false;
+            // Starlight END
         }
-
-        if (!Species.Contains(profile.Species))
-            return true;
-
-        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-blacklisted-species-fail", ("species", sb)));
+        else
+        {
+            // Starlight BEGIN
+            if (!Species.Contains(profile.Species))
+                return true;
+            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-blacklisted-species-fail", ("species", sb)));
+            // Starlight END
+        }
+        
         return false;
     }
 }
