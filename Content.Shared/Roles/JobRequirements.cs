@@ -21,14 +21,14 @@ public static class JobRequirements
         JobPrototype job,
         ICommonSession? player,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        out List<FormattedMessage> reasons,
+        out List<FormattedMessage> reason, // Starlight: List
         IEntityManager entManager,
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile)
     {
         var sys = entManager.System<SharedRoleSystem>();
         var requirements = sys.GetRoleRequirements(job);
-        return TryRequirementsMet(requirements, player, playTimes, out reasons, entManager, protoManager, profile);
+        return TryRequirementsMet(requirements, player, playTimes, out reason, entManager, protoManager, profile);
     }
 
     /// <summary>
@@ -42,30 +42,26 @@ public static class JobRequirements
         HashSet<JobRequirement>? requirements,
         ICommonSession? player,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        out List<FormattedMessage> reasons,
+        out List<FormattedMessage> reasons, // Starlight
         IEntityManager entManager,
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile)
     {
-        reasons = new List<FormattedMessage>();
+        reasons = new List<FormattedMessage>(); // Starlight
         if (requirements == null)
             return true;
 
-        var success = true;
+        var success = true; // Starlight
         foreach (var requirement in requirements)
         {
-            success = requirement.Check(entManager,
-                          player,
-                          protoManager,
-                          profile,
-                          playTimes,
-                          out var reason)
-                      && success;
-
+            // Starlight BEGIN: Accumulate reason texts
+            if (!requirement.Check(entManager, player, protoManager, profile, playTimes, out var reason))
+                success = false;
             reasons.Add(reason);
+            // Starlight END
         }
 
-        return success;
+        return success; // Starlight
     }
 
     public static bool TryRequirementsMet(
@@ -101,5 +97,5 @@ public abstract partial class JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        out FormattedMessage reason);
+        out FormattedMessage reason); // Starlight: Always return requirement description
 }
