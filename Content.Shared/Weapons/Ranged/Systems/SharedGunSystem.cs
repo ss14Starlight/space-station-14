@@ -730,24 +730,6 @@ public abstract partial class SharedGunSystem : EntitySystem
         return MathHelper.Clamp(cappedMax, minSpread, maxSpread);
     }
 
-    public Angle GetDisplayCurrentAngle(Entity<GunComponent?> gun, TimeSpan? curTime = null)
-    {
-        if (!Resolve(gun, ref gun.Comp))
-            return new Angle(0);
-
-        return AdvanceSpreadState(gun, curTime, mutate: false);
-    }
-
-    public Angle GetDisplayMaxAngle(Entity<GunComponent?> gun, TimeSpan? curTime = null)
-    {
-        if (!Resolve(gun, ref gun.Comp))
-            return new Angle(0);
-
-        curTime ??= Timing.CurTime;
-        var movementModifier = GetMovementSpreadModifier(gun, curTime, mutate: false);
-        return new Angle(GetCappedMaxSpread(gun, movementModifier));
-    }
-
     public Angle GetCurrentAngle(Entity<GunComponent?> gun, TimeSpan? curTime = null)
         => AdvanceSpreadState(gun, curTime);
 
