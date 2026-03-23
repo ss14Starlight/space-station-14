@@ -25,7 +25,7 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        out FormattedMessage reason)
+        out FormattedMessage reason) // Starlight: Always return requirement description
     {
         reason = new FormattedMessage();
 
@@ -41,13 +41,15 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
         var overallTime = playTimes.GetValueOrDefault(PlayTimeTrackingShared.TrackerOverall);
         var overallDiffSpan = Time - overallTime;
         var overallDiff = overallDiffSpan.TotalMinutes;
+        
+        // Starlight BEGIN
         var formattedCurrent = ContentLocalizationManager.FormatPlaytime(overallTime);
         var formattedRequired = ContentLocalizationManager.FormatPlaytime(Time);
-
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-overall-not-too-high" : "role-timer-overall-sufficient",
             ("current", formattedCurrent),
             ("required", formattedRequired)));
+        // Starlight END
 
         if (!Inverted)
         {
@@ -56,18 +58,18 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
 
             reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-overall-insufficient",
-                ("current", formattedCurrent),
-                ("required", formattedRequired)));
-            return bypass;
+                ("current", formattedCurrent), // Starlight
+                ("required", formattedRequired))); // Starlight
+            return bypass; // Starlight
         }
 
         if (overallDiff <= 0 || overallTime >= Time)
         {
-            reason = FormattedMessage.FromMarkupPermissive(
+            reason = FormattedMessage.FromMarkupPermissive( // Starlight BEGIN
                 Loc.GetString("role-timer-overall-too-high",
                 ("current", formattedCurrent),
                 ("required", formattedRequired)));
-            return bypass;
+            return bypass; // Starlight END
         }
 
         return true;
