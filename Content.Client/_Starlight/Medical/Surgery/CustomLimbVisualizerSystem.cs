@@ -27,6 +27,7 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
 {
     [Dependency] private readonly DisplacementMapSystem _displacement = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -40,6 +41,7 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
         if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
             return;
 
+        var spriteEnt = (ent.Owner, sprite);
         var old = ent.Comp.CachedLayers.ToHashSet();
         ent.Comp.CachedLayers.Clear();
 
@@ -101,11 +103,11 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
             }
             if (layerSprite?.BaseRSI?.TryGetState(state, out var rsiState) ?? false)
             {
-                var index = sprite.LayerMapReserveBlank($"custom-{item.Key}");
+                var index = _sprite.LayerMapReserve(spriteEnt, $"custom-{item.Key}");
 
-                sprite.LayerSetState(index, rsiState.StateId, layerSprite.BaseRSI);
-                sprite.LayerSetOffset(index, offset);
-                sprite.LayerSetVisible(index, true);
+                _sprite.LayerSetState(spriteEnt, index, rsiState.StateId, layerSprite.BaseRSI);
+                _sprite.LayerSetOffset(spriteEnt, index, offset);
+                _sprite.LayerSetVisible(spriteEnt, index, true);
                 ent.Comp.CachedLayers.Add(item.Key);
             }
 
@@ -119,8 +121,8 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
         foreach (var layer in old)
             if (!ent.Comp.CachedLayers.Contains(layer))
             {
-                var index = sprite.LayerMapReserveBlank($"custom-{layer}");
-                sprite.LayerSetVisible(layer, false);
+                var index = _sprite.LayerMapReserve(spriteEnt, $"custom-{layer}");
+                _sprite.LayerSetVisible(spriteEnt, index, false);
             }
     }
 }
