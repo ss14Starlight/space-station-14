@@ -925,9 +925,9 @@ namespace Content.Client.Lobby.UI
                         //(HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter,
                         Profile,
                         // Starlight end
-                        out var details))
+                        out var reason))
                 {
-                    selector.LockRequirements(details);
+                    selector.LockRequirements(reason);
                     Profile = Profile?.WithAntagPreference(antag.ID, false);
                     SetDirty();
                 }
@@ -937,14 +937,14 @@ namespace Content.Client.Lobby.UI
                 }
 
                 // Append requirement details to description, separated by a clear line
-                if (!details.IsEmpty)
+                if (!reason.IsEmpty)
                 {
                     if (!description.IsEmpty)
                     {
                         description.PushNewline();
                         description.PushNewline();
                     }
-                    description.AddMessage(details);
+                    description.AddMessage(reason);
                 }
 
                 selector.Setup(items, title, 250, description, guides: antag.Guides);
