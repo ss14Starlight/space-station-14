@@ -217,7 +217,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         // Check the player's bans
         if (_jobBans.Contains(job.ID))
         {
-            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-ban"));
+            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-ban")); // Starlight: Formatted
             return false;
         }
 

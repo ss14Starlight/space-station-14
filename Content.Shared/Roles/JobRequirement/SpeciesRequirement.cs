@@ -44,25 +44,35 @@ public sealed partial class SpeciesRequirement : JobRequirement
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-blacklisted-species-pass" : "role-timer-whitelisted-species-pass",
             ("species", sb)));
-        // Starlight END
+        var hasRequiredSpecies = Species.Contains(profile.Species);
 
+        // !Inverted = Whitelist mode, meaning player must be ONE of the species.
+        // Inverted = Blacklist mode, meaning player must be NONE of the species.
+        if (!Inverted == hasRequiredSpecies)
+            return true;
+        
+        // Change to fail message.
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            Inverted ? "role-timer-blacklisted-species-fail" : "role-timer-whitelisted-species-fail",
+            ("species", sb)));
+        return false;
+
+        /*
         if (!Inverted)
         {
-            // Starlight BEGIN
-            if (Species.Contains(profile.Species))
-                return true;
-            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-whitelisted-species-fail", ("species", sb)));
-            // Starlight END
+            reason = FormattedMessage.FromMarkupPermissive($"{Loc.GetString("role-timer-whitelisted-species")}\n{sb}");
+
+            if (!Species.Contains(profile.Species))
+                return false;
         }
         else
         {
-            // Starlight BEGIN
-            if (!Species.Contains(profile.Species))
-                return true;
-            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-blacklisted-species-fail", ("species", sb)));
-            // Starlight END
+            reason = FormattedMessage.FromMarkupPermissive($"{Loc.GetString("role-timer-blacklisted-species")}\n{sb}");
+
+            if (Species.Contains(profile.Species))
+                return false;
         }
-        
-        return false;
+
+        return true; */ // Starlight END
     }
 }
