@@ -210,6 +210,8 @@ binds:
   key: MouseLeft
   canFocus: true
   mod1: Shift
+  # Allows Shift+LMB combinations to continue through the input stack when examine declines them.
+  allowSubCombs: true
 - function: ActivateItemInWorld
   type: State
   key: E

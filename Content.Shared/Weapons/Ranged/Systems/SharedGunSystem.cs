@@ -612,6 +612,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         var timeSinceLastFire = Math.Max(0, (curTime - gun.Comp.LastFire).Value.TotalSeconds);
         var burstMultiplier = GetBurstRecoveryMultiplier(gun, timeSinceLastFire);
         var movementModifier = GetMovementSpreadModifier(gun, curTime, mutate);
+        // Movement does not add a separate random multiplier at fire time.
+        // Instead it lowers the current ceiling, so still / walk / sprint stay readable while sharing one spread state.
         var cappedMax = GetCappedMaxSpread(gun, movementModifier);
         var currentTheta = gun.Comp.CurrentAngle.Theta - gun.Comp.AngleDecayModified.Theta * delta * burstMultiplier;
         currentTheta = MathHelper.Clamp(currentTheta, gun.Comp.MinAngleModified.Theta, cappedMax);
@@ -676,6 +678,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             }
         }
 
+        // Smooth buildup/decay avoids spread snapping when the player toggles between still, walk, and sprint.
         var blend = delta <= 0f ? 0f : 1f - MathF.Exp(-delta * rate);
         var next = MathHelper.Lerp(current, target, blend);
 
@@ -742,6 +745,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         AdvanceSpreadState(gun, curTime);
         var cappedMax = GetCappedMaxSpread(gun);
 
+        // Shots grow the same shared spread state that passive recovery decays.
         var nextAngle = MathHelper.Clamp(
             gun.Comp.CurrentAngle.Theta + gun.Comp.AngleIncreaseModified.Theta,
             gun.Comp.MinAngleModified.Theta,
@@ -755,6 +759,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     {
         var currentAngle = GetCurrentAngle(gun.AsNullable(), curTime);
 
+        // Use the full tuned spread range so YAML recoil values are not visually dampened.
         var random = Random.NextFloat(-1f, 1f);
 
         var finalSpread = currentAngle.Theta;
