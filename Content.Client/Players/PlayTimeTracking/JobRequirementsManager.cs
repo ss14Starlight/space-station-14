@@ -181,14 +181,14 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         List<ProtoId<JobPrototype>>? jobs,
         List<ProtoId<AntagPrototype>>? antags,
         HumanoidCharacterProfile? profile,
-        out FormattedMessage details)
+        out FormattedMessage reason)
     {
-        details = new FormattedMessage();
+        reason = new FormattedMessage();
         if (antags is not null)
         {
             foreach (var proto in antags)
             {
-                if (!IsAllowed(_prototypes.Index(proto), profile, out details))
+                if (!IsAllowed(_prototypes.Index(proto), profile, out reason))
                     return false;
             }
         }
@@ -197,7 +197,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         {
             foreach (var proto in jobs)
             {
-                if (!IsAllowed(_prototypes.Index(proto), profile, out details))
+                if (!IsAllowed(_prototypes.Index(proto), profile, out reason))
                     return false;
             }
         }
