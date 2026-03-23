@@ -35,10 +35,15 @@
     - Belt
   - type: Gun
     # Starlight-start
-    minAngle: 5
-    maxAngle: 20
-    angleDecay: 22.5
-    angleIncrease: 15
+    minAngle: 0.5
+    maxAngle: 5
+    angleDecay: 18
+    angleIncrease: 4.5
+    walkSpreadModifier: 0.35
+    sprintSpreadModifier: 0.8
+    walkSpreadBuildUpRate: 5
+    sprintSpreadBuildUpRate: 8
+    movementSpreadDecayRate: 6
     # Starlight-end
     fireRate: 6
     selectedMode: SemiAuto
@@ -84,9 +89,9 @@
     price: 500
   # starlight start
   - type: GunWieldBonus
-    angleIncreaseDivider: 1.5
-    minAngleDivider: 1.5
-    maxAngleDivider: 1.5
+    angleIncreaseDivider: 1.1
+    minAngleDivider: 1.1
+    maxAngleDivider: 1.1
   - type: ContainerFill
     containers:
       firing_pin:
@@ -260,10 +265,15 @@
     sprite: Objects/Weapons/Guns/Pistols/N1984.rsi
   - type: Gun
     # Starlight-start
-    minAngle: 10
-    maxAngle: 30
-    angleIncrease: 20
-    angleDecay: 30
+    minAngle: 1.5
+    maxAngle: 6
+    angleIncrease: 6.5
+    angleDecay: 12
+    walkSpreadModifier: 0.45
+    sprintSpreadModifier: 0.95
+    walkSpreadBuildUpRate: 5
+    sprintSpreadBuildUpRate: 8
+    movementSpreadDecayRate: 5
     # Starlight-end
     fireRate: 4
     availableModes:

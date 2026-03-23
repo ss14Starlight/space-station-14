@@ -25,12 +25,17 @@
   - type: CanDualWield # 🌟Starlight🌟
     dualWieldInaccuracyPenalty: 68
   - type: Gun
-    minAngle: 2
-    maxAngle: 16
+    minAngle: 0.9
+    maxAngle: 22
     fireRate: 8
     burstFireRate: 8
-    angleIncrease: 3
-    angleDecay: 16
+    angleIncrease: 10.25
+    angleDecay: 5.75
+    walkSpreadModifier: 1.5
+    sprintSpreadModifier: 3
+    walkSpreadBuildUpRate: 7
+    sprintSpreadBuildUpRate: 11
+    movementSpreadDecayRate: 2.5
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -116,11 +121,18 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -19
-    maxAngle: -16
+    minAngle: -1
+    maxAngle: -2
   - type: Gun
-    minAngle: 21
-    maxAngle: 32
+    minAngle: 0.75
+    maxAngle: 21
+    angleIncrease: 9.5
+    angleDecay: 5.25
+    walkSpreadModifier: 1.55
+    sprintSpreadModifier: 3.1
+    walkSpreadBuildUpRate: 7
+    sprintSpreadBuildUpRate: 11
+    movementSpreadDecayRate: 2.4
     shotsPerBurst: 5
     availableModes:
     - Burst
@@ -207,11 +219,18 @@
     - type: Wieldable
       unwieldOnUse: false
     - type: GunWieldBonus
-      minAngle: -19
-      maxAngle: -16
+      minAngle: -1
+      maxAngle: -2
     - type: Gun
-      minAngle: 21
-      maxAngle: 32
+      minAngle: 0.75
+      maxAngle: 18
+      angleIncrease: 7.75
+      angleDecay: 8
+      walkSpreadModifier: 1.45
+      sprintSpreadModifier: 2.85
+      walkSpreadBuildUpRate: 7
+      sprintSpreadBuildUpRate: 11
+      movementSpreadDecayRate: 2.4
       fireRate: 6
       burstFireRate: 18
       soundGunshot:
@@ -272,10 +291,15 @@
     boltClosed: null
   - type: Gun
     fireRate: 5.5
-    minAngle: 1
-    maxAngle: 6
-    angleIncrease: 1.5
-    angleDecay: 6
+    minAngle: 0.5
+    maxAngle: 14
+    angleIncrease: 5.75
+    angleDecay: 7.25
+    walkSpreadModifier: 1.15
+    sprintSpreadModifier: 2.25
+    walkSpreadBuildUpRate: 6
+    sprintSpreadBuildUpRate: 9
+    movementSpreadDecayRate: 3
     selectedMode: FullAuto
     shotsPerBurst: 5
     burstCooldown: 0.2
@@ -335,8 +359,10 @@
       map: ["enum.GunVisualLayers.Base"]
   - type: Gun
     fireRate: 9
-    minAngle: 25
-    maxAngle: 32
+    minAngle: 5
+    maxAngle: 14
+    angleIncrease: 8
+    angleDecay: 6
     availableModes:
     - FullAuto
     soundGunshot:

@@ -34,6 +34,15 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    minAngle: 0.35
+    maxAngle: 16
+    angleIncrease: 6.75
+    angleDecay: 8.75
+    walkSpreadModifier: 1.35
+    sprintSpreadModifier: 2.7
+    walkSpreadBuildUpRate: 7
+    sprintSpreadBuildUpRate: 12
+    movementSpreadDecayRate: 2.1
     fireRate: 5
     selectedMode: FullAuto
     availableModes:
@@ -267,8 +276,15 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/estocshot.ogg
-    minAngle: 30
-    maxAngle: 43
+    minAngle: 0
+    maxAngle: 6
+    angleIncrease: 2.5
+    angleDecay: 6.5
+    walkSpreadModifier: 1.45
+    sprintSpreadModifier: 2.95
+    walkSpreadBuildUpRate: 8
+    sprintSpreadBuildUpRate: 13
+    movementSpreadDecayRate: 2.0
     shotsPerBurst: 3
     selectedMode: Burst
     availableModes:
@@ -276,8 +292,8 @@
     - SemiAuto
     burstFireRate: 14
   - type: GunWieldBonus
-    minAngle: -28
-    maxAngle: -25
+    minAngle: 0
+    maxAngle: -1
   - type: ItemSlots
     slots:
       gun_magazine:

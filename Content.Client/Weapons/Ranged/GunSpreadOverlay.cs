@@ -58,11 +58,9 @@ public sealed class GunSpreadOverlay : Overlay
             return;
 
         // (☞ﾟヮﾟ)☞
-        var maxSpread = gun.Comp.MaxAngleModified;
+        var maxSpread = _guns.GetDisplayMaxAngle(gun.AsNullable(), _timing.CurTime);
         var minSpread = gun.Comp.MinAngleModified;
-        var timeSinceLastFire = (_timing.CurTime - gun.Comp.NextFire).TotalSeconds;
-        var currentAngle = new Angle(MathHelper.Clamp(gun.Comp.CurrentAngle.Theta - gun.Comp.AngleDecayModified.Theta * timeSinceLastFire,
-            gun.Comp.MinAngleModified.Theta, gun.Comp.MaxAngleModified.Theta));
+        var currentAngle = _guns.GetDisplayCurrentAngle(gun.AsNullable(), _timing.CurTime);
         var direction = mousePos.Position - mapPos.Position;
 
         worldHandle.DrawLine(mapPos.Position, mousePos.Position + direction, Color.Orange);

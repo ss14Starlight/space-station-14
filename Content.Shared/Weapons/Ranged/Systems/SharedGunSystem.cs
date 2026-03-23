@@ -578,39 +578,232 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     #region Starlight
 
-    public Angle GetCurrentAngle(Entity<GunComponent?> gun, TimeSpan? curTime = null)
+    private float GetBurstRecoveryMultiplier(Entity<GunComponent?> gun, double timeSinceLastFire)
+    {
+        if (!Resolve(gun, ref gun.Comp))
+            return 1f;
+
+        return timeSinceLastFire >= gun.Comp.BurstRecoveryTime
+            ? gun.Comp.BurstRecoveryDecayMultiplier
+            : 1f;
+    }
+
+    private Angle AdvanceSpreadState(Entity<GunComponent?> gun, TimeSpan? curTime = null, bool mutate = true)
     {
         if (!Resolve(gun, ref gun.Comp))
             return new Angle(0);
+
         curTime ??= Timing.CurTime;
-        var timeSinceLastFire = (curTime - gun.Comp.LastFire).Value.TotalSeconds;
-        var newTheta = MathHelper.Clamp(gun.Comp.CurrentAngle.Theta + gun.Comp.AngleIncreaseModified.Theta - gun.Comp.AngleDecayModified.Theta * timeSinceLastFire, gun.Comp.MinAngleModified.Theta, gun.Comp.MaxAngleModified.Theta);
-        gun.Comp.CurrentAngle = new Angle(newTheta);
-        return gun.Comp.CurrentAngle;
+
+        if (gun.Comp.LastSpreadUpdate == TimeSpan.Zero)
+        {
+            var initial = gun.Comp.MinAngleModified;
+
+            if (mutate)
+            {
+                gun.Comp.LastSpreadUpdate = curTime.Value;
+                gun.Comp.TargetAngle = initial;
+                gun.Comp.CurrentAngle = initial;
+            }
+
+            return initial;
+        }
+
+        var delta = Math.Max(0f, (float) (curTime.Value - gun.Comp.LastSpreadUpdate).TotalSeconds);
+        var timeSinceLastFire = Math.Max(0, (curTime - gun.Comp.LastFire).Value.TotalSeconds);
+        var burstMultiplier = GetBurstRecoveryMultiplier(gun, timeSinceLastFire);
+        var movementModifier = GetMovementSpreadModifier(gun, curTime, mutate);
+
+        // Weapon spread and movement spread are combined here:
+        // recoil tries to decay toward a target, while movement raises the minimum practical target.
+        var cappedMax = GetCappedMaxSpread(gun, movementModifier);
+        var decayedTarget = gun.Comp.TargetAngle.Theta - gun.Comp.AngleDecayModified.Theta * delta * burstMultiplier;
+        decayedTarget = MathHelper.Clamp(decayedTarget, gun.Comp.MinAngleModified.Theta, cappedMax);
+
+        var maxMovementModifier = Math.Max(gun.Comp.WalkSpreadModifier, gun.Comp.SprintSpreadModifier);
+        if (maxMovementModifier > 0f)
+        {
+            var movementRatio = Math.Clamp(movementModifier / maxMovementModifier, 0f, 1f);
+            movementRatio = MathF.Pow(movementRatio, 0.7f);
+            // As movement builds up, the gun is pushed toward the movement-capped ceiling
+            // instead of only applying a last-second multiplier at fire time.
+            var movementTarget = MathHelper.Lerp(
+                gun.Comp.MinAngleModified.Theta,
+                cappedMax,
+                movementRatio);
+            decayedTarget = Math.Max(decayedTarget, movementTarget);
+        }
+
+        var approachBlend = delta <= 0f ? 0f : 1f - MathF.Exp(-delta * gun.Comp.SpreadApproachRate);
+        var currentTheta = MathHelper.Lerp(gun.Comp.CurrentAngle.Theta, decayedTarget, approachBlend);
+        currentTheta = MathHelper.Clamp(currentTheta, gun.Comp.MinAngleModified.Theta, cappedMax);
+
+        var current = new Angle(currentTheta);
+        var target = new Angle(decayedTarget);
+
+        if (mutate)
+        {
+            gun.Comp.TargetAngle = target;
+            gun.Comp.CurrentAngle = current;
+            gun.Comp.LastSpreadUpdate = curTime.Value;
+        }
+
+        return current;
+    }
+
+    private float GetMovementSpreadModifier(Entity<GunComponent?> gun, TimeSpan? curTime = null, bool mutate = true)
+    {
+        if (!Resolve(gun, ref gun.Comp))
+            return 0f;
+
+        curTime ??= Timing.CurTime;
+
+        if (gun.Comp.LastMovementSpreadUpdate == TimeSpan.Zero)
+        {
+            if (mutate)
+                gun.Comp.LastMovementSpreadUpdate = curTime.Value;
+            return gun.Comp.CurrentMovementSpreadModifier;
+        }
+
+        var delta = Math.Max(0f, (float) (curTime.Value - gun.Comp.LastMovementSpreadUpdate).TotalSeconds);
+        var current = gun.Comp.CurrentMovementSpreadModifier;
+
+        var target = 0f;
+        var rate = gun.Comp.MovementSpreadDecayRate;
+        var xform = Transform(gun);
+
+        if (TryComp<InputMoverComponent>(xform.ParentUid, out var mover) &&
+            mover.CanMove &&
+            mover.HasDirectionalMovement)
+        {
+            if (mover.Sprinting)
+            {
+                target = gun.Comp.SprintSpreadModifier;
+                rate = gun.Comp.SprintSpreadBuildUpRate;
+            }
+            else
+            {
+                target = gun.Comp.WalkSpreadModifier;
+                rate = gun.Comp.WalkSpreadBuildUpRate;
+            }
+        }
+
+        // Movement spread ramps in and out smoothly so walk/sprint transitions feel progressive.
+        var blend = delta <= 0f ? 0f : 1f - MathF.Exp(-delta * rate);
+        var next = MathHelper.Lerp(current, target, blend);
+
+        if (mutate)
+        {
+            gun.Comp.CurrentMovementSpreadModifier = next;
+            gun.Comp.LastMovementSpreadUpdate = curTime.Value;
+        }
+
+        return next;
+    }
+
+    private float GetSpreadCapReduction(Entity<GunComponent?> gun, float movementModifier)
+    {
+        if (!Resolve(gun, ref gun.Comp))
+            return 0f;
+
+        var maxMovementModifier = Math.Max(gun.Comp.WalkSpreadModifier, gun.Comp.SprintSpreadModifier);
+        if (maxMovementModifier <= 0f)
+            return gun.Comp.StationarySpreadCapReduction;
+
+        // Cap reduction is blended progressively from still -> walk -> sprint using the
+        // accumulated movement spread, so the ceiling changes with motion instead of snapping.
+        var normalizedMovement = Math.Clamp(movementModifier / maxMovementModifier, 0f, 1f);
+        var walkThreshold = Math.Clamp(gun.Comp.WalkSpreadModifier / maxMovementModifier, 0f, 1f);
+
+        if (normalizedMovement <= walkThreshold)
+        {
+            var walkBlend = walkThreshold <= 0f ? 1f : normalizedMovement / walkThreshold;
+            return MathHelper.Lerp(
+                gun.Comp.StationarySpreadCapReduction,
+                gun.Comp.WalkSpreadCapReduction,
+                walkBlend);
+        }
+
+        var sprintBlend = walkThreshold >= 1f ? 1f : (normalizedMovement - walkThreshold) / (1f - walkThreshold);
+        return MathHelper.Lerp(
+            gun.Comp.WalkSpreadCapReduction,
+            gun.Comp.SprintSpreadCapReduction,
+            sprintBlend);
+    }
+
+    private float GetCappedMaxSpread(Entity<GunComponent?> gun, float? movementModifier = null)
+    {
+        if (!Resolve(gun, ref gun.Comp))
+            return 0f;
+
+        var minSpread = (float) gun.Comp.MinAngleModified.Theta;
+        var maxSpread = (float) gun.Comp.MaxAngleModified.Theta;
+        var spreadRange = Math.Max(0f, maxSpread - minSpread);
+        var currentMovementModifier = movementModifier ?? GetMovementSpreadModifier(gun, mutate: false);
+        var capReduction = Math.Clamp(GetSpreadCapReduction(gun, currentMovementModifier), 0f, 1f);
+        var cappedMax = maxSpread - spreadRange * capReduction;
+        return MathHelper.Clamp(cappedMax, minSpread, maxSpread);
+    }
+
+    public Angle GetDisplayCurrentAngle(Entity<GunComponent?> gun, TimeSpan? curTime = null)
+    {
+        if (!Resolve(gun, ref gun.Comp))
+            return new Angle(0);
+
+        return AdvanceSpreadState(gun, curTime, mutate: false);
+    }
+
+    public Angle GetDisplayMaxAngle(Entity<GunComponent?> gun, TimeSpan? curTime = null)
+    {
+        if (!Resolve(gun, ref gun.Comp))
+            return new Angle(0);
+
+        curTime ??= Timing.CurTime;
+        var movementModifier = GetMovementSpreadModifier(gun, curTime, mutate: false);
+        return new Angle(GetCappedMaxSpread(gun, movementModifier));
+    }
+
+    public Angle GetCurrentAngle(Entity<GunComponent?> gun, TimeSpan? curTime = null)
+        => AdvanceSpreadState(gun, curTime);
+
+    public void ApplyPostShotSpread(Entity<GunComponent?> gun, TimeSpan? curTime = null)
+    {
+        if (!Resolve(gun, ref gun.Comp))
+            return;
+
+        curTime ??= Timing.CurTime;
+        AdvanceSpreadState(gun, curTime);
+        var cappedMax = GetCappedMaxSpread(gun);
+
+        // Shots only raise the spread target; the visible/current spread converges toward it over time.
+        var nextTarget = MathHelper.Clamp(
+            gun.Comp.TargetAngle.Theta + gun.Comp.AngleIncreaseModified.Theta,
+            gun.Comp.MinAngleModified.Theta,
+            cappedMax);
+
+        gun.Comp.TargetAngle = new Angle(nextTarget);
+        gun.Comp.LastFire = curTime.Value;
     }
 
     public Angle GetRecoilAngle(Entity<GunComponent> gun, Angle direction, TimeSpan? curTime = null)
     {
-        GetCurrentAngle(gun.AsNullable(), curTime);
-        var spreadModifier = 1f;
+        var currentAngle = GetCurrentAngle(gun.AsNullable(), curTime);
 
-        var xform = Transform(gun);
-        if (TryComp<InputMoverComponent>(xform.ParentUid, out var mover) && mover.CanMove && mover.HasDirectionalMovement)
-        {
-            if (mover.Sprinting)
-                spreadModifier += gun.Comp.SprintSpreadModifier;
-            else
-                spreadModifier += gun.Comp.WalkSpreadModifier;
-        }
+        // Apply the full current spread to either side of the aim direction.
+        // Using +/- 0.5 was effectively halving the impact of all recoil tuning.
+        var random = Random.NextFloat(-1f, 1f);
 
-        // Convert it so angle can go either side.
-        var random = Random.NextFloat(-0.5f, 0.5f);
+        var finalSpread = currentAngle.Theta;
+        var maxSpread = Math.Max(0d, gun.Comp.MaxAngleModified.Theta);
+        if (!double.IsFinite(finalSpread) || !double.IsFinite(maxSpread))
+            return direction;
 
-        var finalSpread = gun.Comp.CurrentAngle.Theta * spreadModifier;
-        var spread = finalSpread * random;
+        var clampedSpread = Math.Clamp(finalSpread, 0d, maxSpread);
+        var spread = clampedSpread * random;
 
-        var angle = new Angle(direction.Theta + gun.Comp.CurrentAngle.Theta * random);
-        DebugTools.Assert(spread <= gun.Comp.MaxAngleModified.Theta);
+        // Apply the movement-adjusted spread to the final firing angle so walking/sprinting
+        // meaningfully changes shot deviation.
+        var angle = new Angle(direction.Theta + spread);
         return angle;
     }
 

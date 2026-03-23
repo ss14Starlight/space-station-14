@@ -114,18 +114,14 @@ public sealed partial class GunSystem : SharedGunSystem
         var fromMap = TransformSystem.ToMapCoordinates(fromCoordinates);
         var toMap = TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var mapDirection = toMap - fromMap.Position;
-        var mapAngle = mapDirection.ToAngle();
-        var angle = GetRecoilAngle(gun, mapDirection.ToAngle()); // Starlight-edit
-        gun.Comp.LastFire = gun.Comp.NextFire; // Stalright-edit
+        var baseMapDirection = mapDirection;
+        var shotDistance = mapDirection.Length();
 
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
         var fromEnt = MapManager.TryFindGridAt(fromMap, out var gridUid, out _)
             ? TransformSystem.WithEntityId(fromCoordinates, gridUid)
             : new EntityCoordinates(_map.GetMapOrInvalid(fromMap.MapId), fromMap.Position);
 
-        // Update shot based on the recoil
-        toMap = fromMap.Position + angle.ToVec() * mapDirection.Length();
-        mapDirection = toMap - fromMap.Position;
         var gunVelocity = Physics.GetMapLinearVelocity(fromEnt);
 
         // I must be high because this was getting tripped even when true.
@@ -134,10 +130,16 @@ public sealed partial class GunSystem : SharedGunSystem
 
         foreach (var (ent, shootable) in ammo)
         {
+            var angle = GetRecoilAngle(gun, baseMapDirection.ToAngle()); // Starlight-edit
+            var shotTargetMap = fromMap.Position + angle.ToVec() * shotDistance;
+            var shotMapDirection = shotTargetMap - fromMap.Position;
+            var shotAngle = shotMapDirection.ToAngle();
+
             // pneumatic cannon doesn't shoot bullets it just throws them, ignore ammo handling
             if (throwItems && ent != null)
             {
-                ShootOrThrow(ent.Value, mapDirection, gunVelocity, gun, user);
+                ShootOrThrow(ent.Value, shotMapDirection, gunVelocity, gun, user);
+                ApplyPostShotSpread(gun.AsNullable(), gun.Comp.NextFire);
                 fired = true; // Starlight
                 continue;
             }
@@ -150,7 +152,8 @@ public sealed partial class GunSystem : SharedGunSystem
                     if (!cartridge.Spent)
                     {
                         var uid = Spawn(cartridge.Prototype, fromEnt);
-                        CreateAndFireProjectiles(uid, cartridge);
+                        CreateAndFireProjectiles(uid, cartridge, shotAngle, shotMapDirection);
+                        ApplyPostShotSpread(gun.AsNullable(), gun.Comp.NextFire);
 
                         RaiseLocalEvent(ent!.Value, new AmmoShotEvent()
                         {
@@ -179,7 +182,8 @@ public sealed partial class GunSystem : SharedGunSystem
                 case AmmoComponent newAmmo:
                     if (ent == null)
                         break;
-                    CreateAndFireProjectiles(ent.Value, newAmmo);
+                    CreateAndFireProjectiles(ent.Value, newAmmo, shotAngle, shotMapDirection);
+                    ApplyPostShotSpread(gun.AsNullable(), gun.Comp.NextFire);
 
                     fired = true; // Starlight
                     break;
@@ -190,8 +194,8 @@ public sealed partial class GunSystem : SharedGunSystem
                     var hitscanEv = new HitscanTraceEvent
                     {
                         FromCoordinates = fromCoordinates,
-                        ToCoordinates = toCoordinates, // Starlight-edit
-                        ShotDirection = mapDirection.Normalized(),
+                        ToCoordinates = fromEnt.Offset(angle.ToVec() * shotDistance),
+                        ShotDirection = shotMapDirection.Normalized(),
                         Gun = gun,
                         Shooter = user,
                         Target = gun.Comp.Target,
@@ -201,6 +205,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     Del(ent);
 
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
+                    ApplyPostShotSpread(gun.AsNullable(), gun.Comp.NextFire);
                     fired = true; // Starlight
                     break;
                 default:
@@ -214,7 +219,7 @@ public sealed partial class GunSystem : SharedGunSystem
             Shooter = user, //starlight
         });
 
-        void CreateAndFireProjectiles(EntityUid ammoEnt, AmmoComponent ammoComp)
+        void CreateAndFireProjectiles(EntityUid ammoEnt, AmmoComponent ammoComp, Angle shotAngle, Vector2 shotMapDirection)
         {
             // Startlight-edit: start
             var isMechShooter = user != null && TryComp<MechPilotComponent>(user.Value, out _);
@@ -241,8 +246,8 @@ public sealed partial class GunSystem : SharedGunSystem
                 var spreadEvent = new GunGetAmmoSpreadEvent(ammoSpreadComp.Spread);
                 RaiseLocalEvent(gun, ref spreadEvent);
 
-                var angles = LinearSpread(mapAngle - spreadEvent.Spread / 2,
-                    mapAngle + spreadEvent.Spread / 2, ammoSpreadComp.Count);
+                var angles = LinearSpread(shotAngle - spreadEvent.Spread / 2,
+                    shotAngle + spreadEvent.Spread / 2, ammoSpreadComp.Count);
                 // Startlight-edit: start
                 if (isMechShooter)
                 {
@@ -268,15 +273,15 @@ public sealed partial class GunSystem : SharedGunSystem
                 // Startlight-edit: start
                 if (isMechShooter)
                 {
-                    var spawn = SpawnFrom(mapDirection.ToAngle());
+                    var spawn = SpawnFrom(shotMapDirection.ToAngle());
                     _transform.SetCoordinates(ammoEnt, Transform(ammoEnt), spawn);
                 }
                 // Startlight-edit: end
-                ShootOrThrow(ammoEnt, mapDirection, gunVelocity, gun, user);
+                ShootOrThrow(ammoEnt, shotMapDirection, gunVelocity, gun, user);
                 shotProjectiles.Add(ammoEnt);
             }
 
-            MuzzleFlash(gun, ammoComp, mapDirection.ToAngle(), user);
+            MuzzleFlash(gun, ammoComp, shotMapDirection.ToAngle(), user);
             Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
         }
     }

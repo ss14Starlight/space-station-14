@@ -25,10 +25,15 @@
   - type: AmmoCounter
   - type: Gun
     # Starlight-start
-    minAngle: 5
-    maxAngle: 20
-    angleDecay: 22.5
-    angleIncrease: 15
+    minAngle: 0.75
+    maxAngle: 5.5
+    angleDecay: 9
+    angleIncrease: 7
+    walkSpreadModifier: 0.45
+    sprintSpreadModifier: 1.0
+    walkSpreadBuildUpRate: 5.5
+    sprintSpreadBuildUpRate: 8.5
+    movementSpreadDecayRate: 5
     # Starlight-end
     selectedMode: SemiAuto
     fireRate: 1.5
@@ -60,9 +65,9 @@
     price: 500
   # Starlight-start
   - type: GunWieldBonus
-    angleIncreaseDivider: 1.5
-    minAngleDivider: 1.5
-    maxAngleDivider: 1.5
+    angleIncreaseDivider: 1.15
+    minAngleDivider: 1.15
+    maxAngleDivider: 1.15
   # Starlight-end
 
 - type: entity

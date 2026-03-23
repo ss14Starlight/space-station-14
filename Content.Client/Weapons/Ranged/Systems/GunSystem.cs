@@ -462,17 +462,16 @@ public sealed partial class GunSystem : SharedGunSystem
         var direction = TransformSystem.ToMapCoordinates(fromCoordinates).Position - TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var worldAngle = direction.ToAngle().Opposite();
 
-        // Starlight-start: Update angle on client
-        GetCurrentAngle(gun.AsNullable());
-        gun.Comp.LastFire = gun.Comp.NextFire;
-        // Starlight-end
-
         foreach (var (ent, shootable) in ammo)
         {
+            var angle = GetRecoilAngle(gun, worldAngle);
+            var shotDirection = angle.ToVec();
+
             if (throwItems)
             {
                 Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user); // Starlight-edit: fix pneumatic cannon sounds
-                Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                Recoil(user, shotDirection, gun.Comp.CameraRecoilScalarModified);
+                ApplyPostShotSpread(gun.AsNullable(), gun.Comp.NextFire);
                 fired = true; // Starlight
                 if (IsClientSide(ent!.Value))
                     Del(ent.Value);
@@ -488,9 +487,10 @@ public sealed partial class GunSystem : SharedGunSystem
                     if (!cartridge.Spent)
                     {
                         SetCartridgeSpent(ent!.Value, cartridge, true);
-                        MuzzleFlash(gun, cartridge, worldAngle, user);
+                        MuzzleFlash(gun, cartridge, angle, user);
                         Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
-                        Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                        Recoil(user, shotDirection, gun.Comp.CameraRecoilScalarModified);
+                        ApplyPostShotSpread(gun.AsNullable(), gun.Comp.NextFire);
                         fired = true; // Starlight
                         // TODO: Can't predict entity deletions.
                         //if (cartridge.DeleteOnSpawn)
@@ -507,9 +507,10 @@ public sealed partial class GunSystem : SharedGunSystem
 
                     break;
                 case AmmoComponent newAmmo:
-                    MuzzleFlash(gun, newAmmo, worldAngle, user);
+                    MuzzleFlash(gun, newAmmo, angle, user);
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
-                    Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                    Recoil(user, shotDirection, gun.Comp.CameraRecoilScalarModified);
+                    ApplyPostShotSpread(gun.AsNullable(), gun.Comp.NextFire);
                     fired = true; // Starlight
                     if (IsClientSide(ent!.Value))
                         Del(ent.Value);
@@ -518,7 +519,8 @@ public sealed partial class GunSystem : SharedGunSystem
                     break;
                 case HitscanAmmoComponent:
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
-                    Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                    Recoil(user, shotDirection, gun.Comp.CameraRecoilScalarModified);
+                    ApplyPostShotSpread(gun.AsNullable(), gun.Comp.NextFire);
                     fired = true; // Starlight
                     break;
             }
