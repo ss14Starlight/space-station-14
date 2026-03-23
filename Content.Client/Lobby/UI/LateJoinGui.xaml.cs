@@ -299,13 +299,13 @@ namespace Content.Client.Lobby.UI
                         // just send a -1 if there is no selected slot... catch it later
                         jobButton.OnPressed += _ => SelectedId.Invoke((id, _selectedSlot ?? -1, jobButton.JobId));
 
-                        var allowed = _jobRequirements.IsAllowed(prototype, humanoid, out var reason);
+                        var allowed = _jobRequirements.IsAllowed(prototype, humanoid, out var details);
                         jobButton.Disabled = !allowed;
 
-                        if (reason is { IsEmpty: false })
+                        if (details is { IsEmpty: false })
                         {
                             var tooltip = new Tooltip();
-                            tooltip.SetMessage(reason);
+                            tooltip.SetMessage(details);
                             jobButton.TooltipSupplier = _ => tooltip;
                         }
 

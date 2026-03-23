@@ -32,9 +32,9 @@ public sealed partial class RoleTimeRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        out FormattedMessage reason)
+        out FormattedMessage details)
     {
-        reason = new FormattedMessage();
+        details = new FormattedMessage();
 
         // If playTimes is null, we're not going to check against playtime requirements
         if (playTimes == null)
@@ -71,7 +71,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
                 if (roleDiff <= 0)
                     return true;
 
-                reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+                details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                     "role-timer-role-insufficient",
                     ("time", formattedRoleDiff),
                     ("job", tracker.LocalizedName),
@@ -82,7 +82,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
             {
                 if (roleDiff <= 0)
                 {
-                    reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+                    details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                         "role-timer-role-too-high",
                         ("time", formattedRoleDiff),
                         ("job", tracker.LocalizedName),
@@ -100,7 +100,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
         if (!protoManager.TryIndex<JobPrototype>(jobProto, out var indexedJob))
             return false;
 
-        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+        details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-not-too-high" : "role-timer-role-sufficient",
             ("current", roleTime.TotalMinutes),
             ("required", Time.TotalMinutes),
@@ -112,7 +112,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
             if (roleDiff <= 0)
                 return true;
 
-            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-role-insufficient",
                 ("current", roleTime.TotalMinutes),
                 ("required", Time.TotalMinutes),
@@ -123,7 +123,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
 
         if (roleDiff <= 0)
         {
-            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-role-too-high",
                 ("current", roleTime.TotalMinutes),
                 ("required", Time.TotalMinutes),

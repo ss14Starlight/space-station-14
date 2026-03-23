@@ -32,9 +32,9 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        out FormattedMessage reason)
+        out FormattedMessage details)
     {
-        reason = new FormattedMessage();
+        details = new FormattedMessage();
 
         // If playTimes is null, we're not going to check against playtime requirements
         if (playTimes == null)
@@ -73,7 +73,7 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
             nameDepartment = departmentIndexed.Name;
         }
 
-        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+        details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-department-not-too-high" : "role-timer-department-sufficient",
             ("current", formattedCurrent),
             ("required", formattedRequired),
@@ -85,7 +85,7 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
             if (deptDiff <= 0)
                 return true;
 
-            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-department-insufficient",
                 ("current", formattedCurrent),
                 ("required", formattedRequired),
@@ -96,7 +96,7 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
 
         if (deptDiff <= 0)
         {
-            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-department-too-high",
                 ("current", formattedCurrent),
                 ("required", formattedRequired),
