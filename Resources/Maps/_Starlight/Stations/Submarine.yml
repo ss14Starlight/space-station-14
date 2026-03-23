@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/22/2026 23:28:10
-  entityCount: 44181
+  time: 03/22/2026 23:58:50
+  entityCount: 44178
 maps:
 - 1
 grids:
@@ -15388,6 +15388,8 @@ entities:
     - type: ExplosionAirtightGrid
     - type: BecomesStation
       id: StarlightSubmarine
+    - type: Parallax
+      parallax: Sky
 - proto: ActionToggleBlock
   entities:
   - uid: 4
@@ -19359,7 +19361,7 @@ entities:
     - type: AccessReader
       accessListsOriginal: []
     - type: Door
-      secondsUntilStateChange: -134439.67
+      secondsUntilStateChange: -135642.77
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -20547,30 +20549,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -7.5,98.5
       parent: 2
-  - uid: 43957
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -83.5,70.5
-      parent: 2
-  - uid: 43993
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -83.5,72.5
-      parent: 2
-  - uid: 43994
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -83.5,78.5
-      parent: 2
-  - uid: 43995
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -83.5,80.5
-      parent: 2
 - proto: AirlockExternalGlassShuttleEscapeLocked
   entities:
   - uid: 469
@@ -20590,6 +20568,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 85.5,0.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal: []
 - proto: AirlockExternalGlassShuttleLocked
   entities:
   - uid: 472
@@ -20738,7 +20718,7 @@ entities:
       pos: -14.5,11.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -138363.28
+      secondsUntilStateChange: -139566.38
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -21279,7 +21259,7 @@ entities:
       pos: 70.5,-16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -127582.99
+      secondsUntilStateChange: -128786.086
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -21578,7 +21558,7 @@ entities:
       pos: 30.5,49.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -134567.47
+      secondsUntilStateChange: -135770.56
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -22597,7 +22577,7 @@ entities:
       pos: 53.5,61.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -7922.1787
+      secondsUntilStateChange: -9125.273
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -23065,6 +23045,30 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -27.5,-12.5
+      parent: 2
+- proto: AirlockShuttle
+  entities:
+  - uid: 35681
+    components:
+    - type: Transform
+      pos: -83.5,80.5
+      parent: 2
+    - type: AccessReader
+      accessListsOriginal: []
+  - uid: 35692
+    components:
+    - type: Transform
+      pos: -83.5,78.5
+      parent: 2
+  - uid: 35693
+    components:
+    - type: Transform
+      pos: -83.5,70.5
+      parent: 2
+  - uid: 37988
+    components:
+    - type: Transform
+      pos: -83.5,72.5
       parent: 2
 - proto: AirlockSurgeryGlassLocked
   entities:
@@ -115911,7 +115915,7 @@ entities:
       pos: 66.5,9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -90063.17
+      secondsUntilStateChange: -91266.266
       state: Closing
   - uid: 17621
     components:
@@ -201468,7 +201472,7 @@ entities:
       pos: -21.5,84.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -131715.34
+      secondsUntilStateChange: -132918.44
       state: Closing
   - uid: 30119
     components:
@@ -237845,13 +237849,6 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-  - uid: 35681
-    components:
-    - type: Transform
-      pos: -83.5,82.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
   - uid: 35682
     components:
     - type: Transform
@@ -237925,20 +237922,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 30.5,69.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
-  - uid: 35692
-    components:
-    - type: Transform
-      pos: -83.5,75.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
-  - uid: 35693
-    components:
-    - type: Transform
-      pos: -83.5,68.5
       parent: 2
     - type: Fixtures
       fixtures: {}
