@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge]
   id: BaseMobCyclorite
   abstract: true
   components:
