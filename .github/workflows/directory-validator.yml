@@ -1,0 +1,24 @@
+name: Check for StarLight Directory
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  check-typo-directory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: List Prototypes directory
+        run: ls -l Resources/Prototypes
+
+      - name: Check for Resources/Prototypes/_StarLight directory
+        run: |
+          if [ -d "Resources/Prototypes/_StarLight" ]; then
+            echo "::error::Directory Resources/Prototypes/_StarLight exists! It should be _Starlight."
+            exit 1
+          else
+            echo "No typo directory found."
+          fi
