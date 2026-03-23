@@ -16,6 +16,7 @@
     drawdepth: SmallObjects
     sprite: _Starlight/Structures/Furniture/register.rsi
     state: register
+    snapCardinals: true
     noRot: true
     offset: 0, 0.2
   - type: Appearance

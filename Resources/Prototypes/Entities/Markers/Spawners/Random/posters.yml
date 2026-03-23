@@ -111,6 +111,9 @@
       - PosterContrabandWantedStirStir
       - PosterContrabandWantedTraitor
       - PosterContrabandSELF
+      - PosterContrabandInterdyneSyndicate
+      - PosterContrabandComitas
+      - PosterContrabandWaffleCorpTwo
       #endregion Starlight
     chance: 1
 
@@ -197,5 +200,6 @@
       - PosterLegitKeepItClean
       - PosterLegitClock
       - PosterLegitBonk
+      - PosterLegitDeforestMedical
       #endregion Starlight
     chance: 1

@@ -10,6 +10,34 @@
     sprite: _Starlight/Structures/platforms.rsi
   - type: InteractionOutline
   - type: Clickable
+  - type: RCDDeconstructable
+    cost: 5
+    delay: 7
+    fx: EffectRCDDeconstruct8
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 175
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
 
 - type: entity
   parent: CMPlatformBase

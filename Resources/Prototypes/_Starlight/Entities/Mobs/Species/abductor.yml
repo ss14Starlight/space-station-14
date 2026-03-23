@@ -5,6 +5,7 @@
   - MobBloodstream
   - MobFlammable
   - BaseMobSpecies
+  - BaseSpeciesPickupableLarge
   id: BaseMobAbductor
   abstract: true
   components:

@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McWebs
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge] # Starlight
   id: BaseMobArachnid
   abstract: true
   components:

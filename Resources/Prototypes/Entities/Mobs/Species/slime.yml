@@ -1,6 +1,6 @@
 - type: entity
   name: Urist McSlime
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge] # Starlight
   id: BaseMobSlimePerson
   abstract: true
   components:
