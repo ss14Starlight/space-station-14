@@ -25,9 +25,9 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        out FormattedMessage details)
+        out FormattedMessage reason)
     {
-        details = new FormattedMessage();
+        reason = new FormattedMessage();
 
         // If playTimes is null, we're not going to check against playtime requirements
         if (playTimes == null)
@@ -44,7 +44,7 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
         var formattedCurrent = ContentLocalizationManager.FormatPlaytime(overallTime);
         var formattedRequired = ContentLocalizationManager.FormatPlaytime(Time);
 
-        details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-overall-not-too-high" : "role-timer-overall-sufficient",
             ("current", formattedCurrent),
             ("required", formattedRequired)));
@@ -54,7 +54,7 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
             if (overallDiff <= 0 || overallTime >= Time)
                 return true;
 
-            details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-overall-insufficient",
                 ("current", formattedCurrent),
                 ("required", formattedRequired)));
@@ -63,7 +63,7 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
 
         if (overallDiff <= 0 || overallTime >= Time)
         {
-            details = FormattedMessage.FromMarkupPermissive(
+            reason = FormattedMessage.FromMarkupPermissive(
                 Loc.GetString("role-timer-overall-too-high",
                 ("current", formattedCurrent),
                 ("required", formattedRequired)));

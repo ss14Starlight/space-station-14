@@ -25,9 +25,9 @@ public sealed partial class SpeciesRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        out FormattedMessage details)
+        out FormattedMessage reason)
     {
-        details = new FormattedMessage();
+        reason = new FormattedMessage();
 
         if (profile is null) //the profile could be null if the player is a ghost. In this case we don't need to block the role selection for ghostrole
             return true;
@@ -38,7 +38,7 @@ public sealed partial class SpeciesRequirement : JobRequirement
             sb.Append(Loc.GetString(protoManager.Index(s).Name) + " ");
         }
 
-        details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-blacklisted-species-pass" : "role-timer-whitelisted-species-pass",
             ("species", sb)));
 
@@ -47,14 +47,14 @@ public sealed partial class SpeciesRequirement : JobRequirement
             if (Species.Contains(profile.Species))
                 return true;
 
-            details = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-whitelisted-species-fail", ("species", sb)));
+            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-whitelisted-species-fail", ("species", sb)));
             return false;
         }
 
         if (!Species.Contains(profile.Species))
             return true;
 
-        details = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-blacklisted-species-fail", ("species", sb)));
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-blacklisted-species-fail", ("species", sb)));
         return false;
     }
 }

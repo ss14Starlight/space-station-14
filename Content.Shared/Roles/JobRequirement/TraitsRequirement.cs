@@ -28,9 +28,9 @@ public sealed partial class TraitsRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        out FormattedMessage details)
+        out FormattedMessage reason)
     {
-        details = new FormattedMessage();
+        reason = new FormattedMessage();
 
         if (profile is null) //the profile could be null if the player is a ghost. In this case we don't need to block the role selection for ghostrole
             return true;
@@ -42,7 +42,7 @@ public sealed partial class TraitsRequirement : JobRequirement
         }
         
         // Default message is success.
-        details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-blacklisted-traits-pass" : "role-timer-whitelisted-traits-pass",
             ("traits", sb)));
         
@@ -54,7 +54,7 @@ public sealed partial class TraitsRequirement : JobRequirement
             return true;
 
         // Change to fail message.
-        details = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-blacklisted-traits-fail" : "role-timer-whitelisted-traits-fail",
             ("traits", sb)));
         return false;
