@@ -320,18 +320,12 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
         if (instrument.Playing)
         {
-            // Component shutdown on the client already tears down the renderer when the
-            // instrument entity itself is being deleted. Avoid emitting stop events for an
-            // entity that is already terminating, as those can arrive after deletion and
-            // dirty integration tests with late net-entity messages.
-            if (!TerminatingOrDeleted(uid))
-            {
-                var netUid = GetNetEntity(uid);
+            var netUid = GetNetEntity(uid);
 
-                // Reset puppet instruments too.
-                RaiseNetworkEvent(new InstrumentMidiEventEvent(netUid, new[]{RobustMidiEvent.SystemReset(0)}));
-                RaiseNetworkEvent(new InstrumentStopMidiEvent(netUid));
-            }
+            // Reset puppet instruments too.
+            RaiseNetworkEvent(new InstrumentMidiEventEvent(netUid, new[]{RobustMidiEvent.SystemReset(0)}));
+
+            RaiseNetworkEvent(new InstrumentStopMidiEvent(netUid));
         }
 
         instrument.Playing = false;

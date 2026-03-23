@@ -776,7 +776,7 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     public bool IsChamberClosed(EntityUid gunEntity)
         => Appearance.TryGetData(gunEntity, AmmoVisuals.BoltClosed, out bool boltClosed) && boltClosed;
-    #endregion
+    #endregion Starlight
 
     /// <summary>
     /// Drops a single cartridge / shell

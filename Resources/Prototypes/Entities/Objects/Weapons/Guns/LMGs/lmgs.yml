@@ -41,7 +41,7 @@
     minAngle: -4
     maxAngle: -4
   - type: Gun
-    # LMGs own the largest sustained spread ceiling in exchange for suppression and ammo volume.
+    # Starlight-start
     minAngle: 5
     maxAngle: 34
     angleIncrease: 8.5
@@ -51,6 +51,7 @@
     walkSpreadBuildUpRate: 8
     sprintSpreadBuildUpRate: 13
     movementSpreadDecayRate: 1.4
+    # Starlight-end
     fireRate: 8
     selectedMode: FullAuto
     availableModes:
@@ -163,6 +164,7 @@
   description: An L6 SAW, modified for use by cyborgs. # starlight, our L6 takes ammo
   components:
     - type: Gun
+      # Starlight-start
       minAngle: 4
       maxAngle: 34
       angleIncrease: 8.5
@@ -172,6 +174,7 @@
       walkSpreadBuildUpRate: 8
       sprintSpreadBuildUpRate: 13
       movementSpreadDecayRate: 1.4
+      # Starlight-end
       fireRate: 8
       selectedMode: FullAuto
       availableModes:
@@ -187,7 +190,7 @@
           map: [ "enum.GunVisualLayers.Base" ]
         - state: mag-3
           map: [ "enum.GunVisualLayers.Mag" ]
-    # region starlight - L6C takes ammo
+    # Starlight-start
     - type: ChamberMagazineAmmoProvider
       soundRack:
         path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
@@ -213,6 +216,7 @@
       containers:
         gun_magazine: !type:ContainerSlot
         gun_chamber: !type:ContainerSlot
+    # Starlight-end
     #- type: BallisticAmmoProvider
     #  whitelist:
     #    tags:

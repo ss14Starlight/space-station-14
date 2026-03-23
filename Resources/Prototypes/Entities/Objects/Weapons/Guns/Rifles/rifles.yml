@@ -34,7 +34,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
-    # Rifles should reward controlled fire: tighter than SMGs while still opening up under sustained spray.
+    # Starlight-start
     minAngle: 0.35
     maxAngle: 16
     angleIncrease: 6.75
@@ -44,6 +44,7 @@
     walkSpreadBuildUpRate: 7
     sprintSpreadBuildUpRate: 12
     movementSpreadDecayRate: 2.1
+    # Starlight-end
     fireRate: 5
     selectedMode: FullAuto
     availableModes:
@@ -277,7 +278,7 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/estocshot.ogg
-    # Estoc is the precision rifle anchor and should stay meaningfully tighter than the automatic rifle baseline.
+    # Starlight-start
     minAngle: 0
     maxAngle: 6
     angleIncrease: 2.5
@@ -287,6 +288,7 @@
     walkSpreadBuildUpRate: 8
     sprintSpreadBuildUpRate: 13
     movementSpreadDecayRate: 2.0
+    # Starlight-end
     shotsPerBurst: 3
     selectedMode: Burst
     availableModes:
