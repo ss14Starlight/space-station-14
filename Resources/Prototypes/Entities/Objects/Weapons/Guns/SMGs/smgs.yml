@@ -25,11 +25,9 @@
   - type: CanDualWield # 🌟Starlight🌟
     dualWieldInaccuracyPenalty: 68
   - type: Gun
-    # SMGs are the spray baseline: more movement-sensitive and less stable under sustained fire than rifles.
+    # Starlight-start
     minAngle: 0.9
     maxAngle: 22
-    fireRate: 8
-    burstFireRate: 8
     angleIncrease: 10.25
     angleDecay: 5.75
     walkSpreadModifier: 1.5
@@ -37,6 +35,9 @@
     walkSpreadBuildUpRate: 7
     sprintSpreadBuildUpRate: 11
     movementSpreadDecayRate: 2.5
+    # Starlight-end
+    fireRate: 8
+    burstFireRate: 8
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -125,7 +126,7 @@
     minAngle: -1
     maxAngle: -2
   - type: Gun
-    # C-20r is the aggressive magdump reference for the class.
+    # Starlight-start
     minAngle: 0.75
     maxAngle: 21
     angleIncrease: 9.5
@@ -135,6 +136,7 @@
     walkSpreadBuildUpRate: 7
     sprintSpreadBuildUpRate: 11
     movementSpreadDecayRate: 2.4
+    # Starlight-end
     shotsPerBurst: 5
     availableModes:
     - Burst
@@ -159,10 +161,12 @@
   description: A burst-fire C-20r submachine gun for use by cyborgs. Creates .35 caliber ammo on the fly from an internal ammo fabricator, which slowly self-charges.
   components:
   - type: Gun
+    # Starlight-start
     minAngle: 2
     maxAngle: 16
     angleIncrease: 4
     angleDecay: 16
+    # Starlight-end
     fireRate: 8
     burstFireRate: 8
     shotsPerBurst: 5 # Starlight
@@ -180,12 +184,12 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-5
       map: ["enum.GunVisualLayers.Mag"]
-  #region starlight: Ammo visuals for the C-20
+  # Starlight-start
   - type: MagazineVisuals
     magState: mag
     steps: 6
     zeroVisible: true
-  #end region
+  # Starlight-end
   - type: Item
     size: Huge
   - type: ContainerContainer
@@ -224,7 +228,7 @@
       minAngle: -1
       maxAngle: -2
     - type: Gun
-      # Drozd should sit between rifle discipline and full spray SMGs, especially around burst control.
+      # Starlight-start
       minAngle: 0.75
       maxAngle: 18
       angleIncrease: 7.75
@@ -234,6 +238,7 @@
       walkSpreadBuildUpRate: 7
       sprintSpreadBuildUpRate: 11
       movementSpreadDecayRate: 2.4
+      # Starlight-end
       fireRate: 6
       burstFireRate: 18
       soundGunshot:
@@ -293,8 +298,7 @@
   - type: ChamberMagazineAmmoProvider
     boltClosed: null
   - type: Gun
-    # WT550 is the softest SMG entry point and should remain the easiest SMG to keep on target.
-    fireRate: 5.5
+    # Starlight-start
     minAngle: 0.5
     maxAngle: 14
     angleIncrease: 5.75
@@ -304,6 +308,8 @@
     walkSpreadBuildUpRate: 6
     sprintSpreadBuildUpRate: 9
     movementSpreadDecayRate: 3
+    # Starlight-end
+    fireRate: 5.5
     selectedMode: FullAuto
     shotsPerBurst: 5
     burstCooldown: 0.2
@@ -362,11 +368,13 @@
     - state: icon-muzzle
       map: ["enum.GunVisualLayers.Base"]
   - type: Gun
-    fireRate: 9
+    # Starlight-start
     minAngle: 5
     maxAngle: 14
     angleIncrease: 8
     angleDecay: 6
+    # Starlight-end
+    fireRate: 9
     availableModes:
     - FullAuto
     soundGunshot:

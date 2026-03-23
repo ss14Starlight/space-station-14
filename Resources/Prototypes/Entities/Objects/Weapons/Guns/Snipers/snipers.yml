@@ -38,7 +38,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
-    # Snipers stay tight while planted, but movement should punish them harder than recoil spam does.
+    # Starlight-start
     minAngle: 0
     maxAngle: 3
     angleIncrease: 4
@@ -48,6 +48,7 @@
     walkSpreadBuildUpRate: 8
     sprintSpreadBuildUpRate: 13
     movementSpreadDecayRate: 1.8
+    # Starlight-end
     pump: true
     fireRate: 0.75
     selectedMode: SemiAuto
@@ -182,10 +183,11 @@
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   #- type: GunRequiresWield Starlight-edit: Remove requirement
   - type: Gun
-    # Hristov is the harshest precision weapon: very punishing if unstable, but still centered on accurate first shots.
+    # Starlight-start
     maxAngle: 4
     angleIncrease: 6
     angleDecay: 3.5
+    # Starlight-end
     pump: true
     fireRate: 0.5
     selectedMode: SemiAuto

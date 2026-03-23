@@ -85,10 +85,7 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
 
     private void OnShutdown(EntityUid uid, InstrumentComponent component, ComponentShutdown args)
     {
-        // Component shutdown is local teardown for a disappearing instrument entity.
-        // Treat it like a state-driven stop so we do not emit a fresh stop event back
-        // to the server while the entity is already being deleted.
-        EndRenderer(uid, true, component);
+        EndRenderer(uid, false, component);
     }
 
     public void SetMaster(EntityUid uid, EntityUid? masterUid)
@@ -228,7 +225,6 @@ public sealed partial class InstrumentSystem : SharedInstrumentSystem
         if (instrument.Renderer is { } renderer)
         {
             renderer.Master = null;
-            renderer.TrackingEntity = null;
             renderer.SystemReset();
             renderer.ClearAllEvents();
 

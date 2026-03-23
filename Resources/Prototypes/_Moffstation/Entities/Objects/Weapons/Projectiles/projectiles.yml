@@ -6,6 +6,7 @@
   components:
   - type: Sprite
     sprite: _Moffstation/Objects/Weapons/Guns/Launchers/chainsickle.rsi
+    state: hook
   - type: Ammo
     muzzleFlash: null
   - type: Projectile
