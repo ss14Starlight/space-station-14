@@ -7,6 +7,7 @@ using Content.Shared.Item;
 using Content.Shared.Starlight.Medical.Surgery;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.Medical.Surgery;
 
@@ -89,7 +90,7 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
             if (layerSprite.BaseRSI?.TryGetState(state, out var rsiState) ?? false)
             {
                 var index = _sprite.LayerMapReserve(spriteEnt, $"custom-{item.Key}");
-                _sprite.LayerSetRsiState(spriteEnt, index, rsiState.StateId, layerSprite.BaseRSI);
+                _sprite.LayerSetRsi(spriteEnt, index, layerSprite.BaseRSI, rsiState.StateId);
                 _sprite.LayerSetOffset(spriteEnt, index, offset);
                 _sprite.LayerSetVisible(spriteEnt, index, true);
                 ent.Comp.CachedLayers.Add(item.Key);
