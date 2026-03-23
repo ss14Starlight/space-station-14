@@ -304,7 +304,7 @@ namespace Content.Client.Lobby.UI
                         jobButton.Disabled = !allowed;
                         
                         var tooltip = new Tooltip();
-                        tooltip.SetMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("role-no-requirements")));
+                        tooltip.SetMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("job-no-requirements")));
                         jobButton.TooltipSupplier = _ => tooltip;
 
                         if (allowed && value == 0) // Starlight END

@@ -29,7 +29,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                 
                 // Starlight: Always show role requirements
                 var tooltip = new Tooltip();
-                tooltip.SetMessage(reason is { IsEmpty: false } ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("role-no-requirements")));
+                tooltip.SetMessage(reason is { IsEmpty: false } ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("ghost-role-no-requirements")));
                 button.RequestButton.TooltipSupplier = _ => tooltip;
                 // Starlight END
 

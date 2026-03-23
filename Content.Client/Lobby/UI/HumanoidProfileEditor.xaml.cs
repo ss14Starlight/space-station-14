@@ -1244,7 +1244,7 @@ namespace Content.Client.Lobby.UI
                         description.PushNewline();
                         description.PushNewline();
                     }
-                    description.AddMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("role-no-requirements")));
+                    description.AddMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("job-no-requirements")));
                     
                     selector.Setup(items, job.LocalizedName, 200, description, icon, job.Guides);
 

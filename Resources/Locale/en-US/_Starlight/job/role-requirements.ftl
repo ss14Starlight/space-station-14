@@ -1,4 +1,4 @@
-role-no-requirements = This job has no requirements.
+job-no-requirements = This job has no requirements.
 ghost-role-no-requirements = This role has no requirements.
 
 # Coloring rule of thumb: limegreen for met requirement, yellow for unmet requirement that can still be met, red for unmeetable
