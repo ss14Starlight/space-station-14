@@ -130,6 +130,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
         foreach (var (ent, shootable) in ammo)
         {
+            // Server applies the same per-shot recoil step so actual ballistics match the progressive client feel.
             var angle = GetRecoilAngle(gun, baseMapDirection.ToAngle()); // Starlight-edit
             var shotTargetMap = fromMap.Position + angle.ToVec() * shotDistance;
             var shotMapDirection = shotTargetMap - fromMap.Position;

@@ -278,6 +278,7 @@ public sealed partial class GunComponent : Component
     [DataField]
     public TimeSpan LastMovementSpreadUpdate = TimeSpan.Zero;
 
+    // Tracks the smoothed movement penalty separately from shot-driven recoil.
     [DataField]
     public float CurrentMovementSpreadModifier = 0f;
 
@@ -299,9 +300,12 @@ public sealed partial class GunComponent : Component
     [DataField]
     public float BurstRecoveryTime = 0.22f;
 
+    // After a brief pause between bursts, decay is allowed to recover faster than a full magdump.
     [DataField]
     public float BurstRecoveryDecayMultiplier = 1.35f;
 
+    // These trim the available spread range based on movement state.
+    // Still gets the lowest ceiling, walking gets a partial ceiling, sprint gets the full one.
     [DataField]
     public float StationarySpreadCapReduction = 0.43f;
 
