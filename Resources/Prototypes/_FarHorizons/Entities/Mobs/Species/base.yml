@@ -13,6 +13,7 @@
   - type: CanEscapeInventory
     baseResistTime: 2
   - type: VisualPickupable
+  - type: PickupableSpeedRelay
 
 - type: entity
   id: VisualPickupableCloneEntity

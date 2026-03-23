@@ -12,9 +12,10 @@
   - type: MultiHandedItem
   - type: CanEscapeInventory
     baseResistTime: 2
-  - type: VisualPickupable # Far Horizons
+  - type: VisualPickupable # Far Horizons start
     offsetFront: 0.0, -0.15
     offsetBack: 0.0, 0.05
+  - type: PickupableSpeedRelay # Far Horizons end
 
 - type: entity
   save: false
@@ -30,3 +31,5 @@
   - type: MultiHandedItem
   - type: CanEscapeInventory
     baseResistTime: 2
+  - type: VisualPickupable # Far Horizons, technically
+  - type: PickupableSpeedRelay # Far Horizons, technically
