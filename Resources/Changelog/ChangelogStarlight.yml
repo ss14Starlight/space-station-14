@@ -35632,5 +35632,15 @@ Entries:
   id: 388401
   time: '2026-03-23T13:50:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3884
+- author: CawsForConcern
+  changes:
+  - message: Lifeboats, larger escape pods that can be mapped to stations.
+    type: Add
+  - message: New sprites for "internals crates" which reflect the fact they contain
+      both O2 and N2 emergency equipment.
+    type: Add
+  id: 388901
+  time: '2026-03-23T17:30:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3889
 Order: -1
 

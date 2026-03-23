@@ -534,3 +534,13 @@
   - type: ContainerFill
     containers:
       board: [DoorElectronicsSolgov]
+
+# Escape Pods (gridfills)
+- type: entity
+  parent: AirlockExternalGlassShuttleEscape
+  id: AirlockExternalGlassShuttleEscapeLifeboat
+  suffix: External, Escape 5x6, Glass, Docking
+  components:
+  - type: RandomGridFill
+    pathWeights:
+      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_lifeboat.yml": 40
