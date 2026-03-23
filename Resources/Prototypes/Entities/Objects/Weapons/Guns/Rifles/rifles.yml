@@ -34,6 +34,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    # Rifles should reward controlled fire: tighter than SMGs while still opening up under sustained spray.
     minAngle: 0.35
     maxAngle: 16
     angleIncrease: 6.75
@@ -276,6 +277,7 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/estocshot.ogg
+    # Estoc is the precision rifle anchor and should stay meaningfully tighter than the automatic rifle baseline.
     minAngle: 0
     maxAngle: 6
     angleIncrease: 2.5

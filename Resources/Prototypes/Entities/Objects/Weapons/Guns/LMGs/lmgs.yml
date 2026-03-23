@@ -41,6 +41,7 @@
     minAngle: -4
     maxAngle: -4
   - type: Gun
+    # LMGs own the largest sustained spread ceiling in exchange for suppression and ammo volume.
     minAngle: 5
     maxAngle: 34
     angleIncrease: 8.5

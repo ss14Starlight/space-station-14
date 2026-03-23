@@ -34,7 +34,7 @@
     - suitStorage
     - Belt
   - type: Gun
-    # Starlight-start
+    # Pistols are the reliability baseline: low spread ceiling, fast recovery, light movement punishment.
     minAngle: 0.5
     maxAngle: 5
     angleDecay: 18
@@ -44,7 +44,6 @@
     walkSpreadBuildUpRate: 5
     sprintSpreadBuildUpRate: 8
     movementSpreadDecayRate: 6
-    # Starlight-end
     fireRate: 6
     selectedMode: SemiAuto
     availableModes:
@@ -264,7 +263,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/N1984.rsi
   - type: Gun
-    # Starlight-start
+    # N1984 is the heavy sidearm anchor: stronger recoil than the Mk58 baseline, but still manageable in short strings.
     minAngle: 1.5
     maxAngle: 6
     angleIncrease: 6.5
@@ -274,7 +273,6 @@
     walkSpreadBuildUpRate: 5
     sprintSpreadBuildUpRate: 8
     movementSpreadDecayRate: 5
-    # Starlight-end
     fireRate: 4
     availableModes:
     - SemiAuto
