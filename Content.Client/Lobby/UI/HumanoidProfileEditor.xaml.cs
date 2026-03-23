@@ -900,9 +900,10 @@ namespace Content.Client.Lobby.UI
             // If our species isn't available then reset it to default.
             if (Profile != null)
             {
-                // Far Horizons
+                // Far Horizons Start
                 var parentSpecies = _species.Find(p => p.ID == Profile?.Species)?.SubspeciesOf ?? Profile.Species;
                 if (!speciesIds.Contains(parentSpecies))
+                //  Far Horizons End
                 {
                     SetSpecies(SharedHumanoidAppearanceSystem.DefaultSpecies);
                 }

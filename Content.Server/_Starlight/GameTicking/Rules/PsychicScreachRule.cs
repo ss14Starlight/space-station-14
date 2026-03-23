@@ -38,7 +38,7 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly SharedBatterySystem _batterySystem = default!;
-    [Dependency] private readonly GlitchingSystem _glitching = default!;
+    [Dependency] private readonly GlitchingSystem _glitching = default!; // Far Horizons
 
     protected override void Started(EntityUid uid, PsychicScreachRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

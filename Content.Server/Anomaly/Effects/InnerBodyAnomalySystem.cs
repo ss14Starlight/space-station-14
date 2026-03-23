@@ -243,60 +243,26 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
     }
 
     // FH - Start
-    private void AddComponentsCarefully(EntityUid target, ComponentRegistry components)
+    private void AddComponents(EntityUid target, ComponentRegistry components)
     {
         foreach (var comp in components)
         {
-            switch(comp.Key) 
-            {
-                case "ActionGrant":
-                    if (comp.Value.Component is ActionGrantComponent actionGrantComp)
-                        HandleActionGrantAdd(target, actionGrantComp);
-                    break;
-                default: 
-                    EntityManager.AddComponent(target, comp.Value);
-                    break;
-            }
+            if (comp.Key == "ActionGrant" && comp.Value.Component is ActionGrantComponent actionGrantComp && TryComp<ActionGrantComponent>(target, out var oldComp))
+                _actionGrant.AddActions((target, oldComp), actionGrantComp.Actions);
+            else
+                EntityManager.AddComponent(target, comp.Value);
         }
     }
 
-    private void RemoveComponentsCarefully(EntityUid target, ComponentRegistry components)
+    private void RemoveComponents(EntityUid target, ComponentRegistry components)
     {
         foreach (var comp in components)
         {
-            switch(comp.Key) 
-            {
-                case "ActionGrant":
-                    if (comp.Value.Component is ActionGrantComponent actionGrantComp)
-                        HandleActionGrantRemove(target, actionGrantComp);
-                    break;
-                default: 
-                    EntityManager.RemoveComponent(target, comp.Value.Component);
-                    break;
-            }
+            if (comp.Key == "ActionGrant" && comp.Value.Component is ActionGrantComponent actionGrantComp && TryComp<ActionGrantComponent>(target, out var oldComp))
+                _actionGrant.RemoveActions((target, oldComp), actionGrantComp.Actions);
+            else
+                EntityManager.RemoveComponent(target, comp.Value.Component);
         }
-    }
-
-    private void HandleActionGrantAdd(EntityUid target, ActionGrantComponent component)
-    {
-        if (!TryComp<ActionGrantComponent>(target, out var comp))
-        {
-            EntityManager.AddComponent(target, component);
-            return;
-        }
-
-        _actionGrant.AddActions((target, comp), component.Actions);
-    }
-
-    private void HandleActionGrantRemove(EntityUid target, ActionGrantComponent component)
-    {
-        if (!TryComp<ActionGrantComponent>(target, out var comp))
-        {
-            EntityManager.AddComponent(target, component);
-            return;
-        }
-
-        _actionGrant.RemoveActions((target, comp), component.Actions);
     }
     // FH - End
 }

@@ -30,10 +30,7 @@ public sealed partial class HumanoidEMPSystem : EntitySystem
 
     private void OnHumanoidEMP(Entity<HumanoidEMPComponent> ent, ref EmpPulseEvent args)
     {
-        if (args.Disabled)
-            return;
-
-        if (_timing.CurTime < ent.Comp.NextEffect)
+        if (args.Disabled || _timing.CurTime < ent.Comp.NextEffect)
             return;
         
         ent.Comp.NextEffect = _timing.CurTime + ent.Comp.EffectCooldown;
