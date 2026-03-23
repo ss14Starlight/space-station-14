@@ -211,17 +211,17 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     public bool IsAllowed(
         JobPrototype job,
         HumanoidCharacterProfile? profile,
-        out FormattedMessage details)
+        out FormattedMessage reason)
     {
         // Check the player's bans
         if (_jobBans.Contains(job.ID))
         {
-            details = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-ban"));
+            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-ban"));
             return false;
         }
 
         // Check whitelist requirements
-        if (!CheckWhitelist(job, out details))
+        if (!CheckWhitelist(job, out reason))
             return false;
 
         var player = _playerManager.LocalSession;
@@ -230,7 +230,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
         // Check other role requirements
         var reqs = _entManager.System<SharedRoleSystem>().GetRoleRequirements(job);
-        if (!CheckRoleRequirements(reqs, player, profile, out details))
+        if (!CheckRoleRequirements(reqs, player, profile, out reason))
             return false;
 
         return true;
@@ -242,17 +242,17 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     public bool IsAllowed(
         AntagPrototype antag,
         HumanoidCharacterProfile? profile,
-        out FormattedMessage details)
+        out FormattedMessage reason)
     {
         // Check the player's bans
         if (_antagBans.Contains(antag.ID))
         {
-            details = FormattedMessage.FromUnformatted(Loc.GetString("role-ban"));
+            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-ban"));
             return false;
         }
 
         // Check whitelist requirements
-        if (!CheckWhitelist(antag, out details))
+        if (!CheckWhitelist(antag, out reason))
             return false;
 
         var player = _playerManager.LocalSession;
@@ -261,7 +261,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
         // Check other role requirements
         var reqs = _entManager.System<SharedRoleSystem>().GetRoleRequirements(antag);
-        if (!CheckRoleRequirements(reqs, player, profile, out details))
+        if (!CheckRoleRequirements(reqs, player, profile, out reason))
             return false;
 
         return true;
