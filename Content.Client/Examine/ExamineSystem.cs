@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Numerics;
 using System.Threading;
-using Content.Client.CombatMode;
 using Content.Client.Verbs;
 using Content.Shared._Starlight.Utility;
 using Content.Shared.Examine;
@@ -33,8 +32,6 @@ namespace Content.Client.Examine
         [Dependency] private readonly IEyeManager _eyeManager = default!;
         [Dependency] private readonly VerbSystem _verbSystem = default!;
         [Dependency] private readonly SpriteSystem _sprite = default!;
-        [Dependency] private readonly CombatModeSystem _combatMode = default!;
-
         private List<Verb> _verbList = new();
 
         public const string StyleClassEntityTooltip = "entity-tooltip";
@@ -123,9 +120,6 @@ namespace Content.Client.Examine
             {
                 return false;
             }
-
-            if (_combatMode.IsInCombatMode(player))
-                return false;
 
             DoExamine(entity);
             return true;

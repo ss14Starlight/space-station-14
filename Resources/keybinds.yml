@@ -210,7 +210,6 @@ binds:
   key: MouseLeft
   canFocus: true
   mod1: Shift
-  allowSubCombs: true
 - function: ActivateItemInWorld
   type: State
   key: E
