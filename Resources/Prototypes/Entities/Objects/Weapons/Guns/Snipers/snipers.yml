@@ -38,6 +38,15 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    minAngle: 0
+    maxAngle: 3
+    angleIncrease: 4
+    angleDecay: 5
+    walkSpreadModifier: 1.5
+    sprintSpreadModifier: 3.1
+    walkSpreadBuildUpRate: 8
+    sprintSpreadBuildUpRate: 13
+    movementSpreadDecayRate: 1.8
     pump: true
     fireRate: 0.75
     selectedMode: SemiAuto
@@ -75,8 +84,8 @@
   components:
   # Starlight-start
   - type: GunWieldBonus
-    maxAngle: -10
-    minAngle: -10
+    maxAngle: -1
+    minAngle: 0
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 2
@@ -159,8 +168,8 @@
   components:
   # Starlight-start
   - type: GunWieldBonus
-    maxAngle: -10
-    minAngle: -10
+    maxAngle: -1
+    minAngle: 0
   # Starlight-end
   - type: Item
     size: Huge
@@ -172,6 +181,9 @@
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   #- type: GunRequiresWield Starlight-edit: Remove requirement
   - type: Gun
+    maxAngle: 4
+    angleIncrease: 6
+    angleDecay: 3.5
     pump: true
     fireRate: 0.5
     selectedMode: SemiAuto

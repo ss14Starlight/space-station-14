@@ -78,6 +78,13 @@ public sealed partial class GunComponent : Component
     public Angle CurrentAngle;
 
     /// <summary>
+    /// The recoil/spread angle the weapon is currently converging toward.
+    /// </summary>
+    [DataField]
+    [AutoNetworkedField]
+    public Angle TargetAngle;
+
+    /// <summary>
     /// The base value for how much the spread increases every time the gun fires.
     /// </summary>
     [DataField]
@@ -273,10 +280,50 @@ public sealed partial class GunComponent : Component
 
     #region Starlight
     [DataField]
-    public float SprintSpreadModifier = 1f;
+    public TimeSpan LastSpreadUpdate = TimeSpan.Zero;
 
     [DataField]
-    public float WalkSpreadModifier = 0.5f;
+    public TimeSpan LastMovementSpreadUpdate = TimeSpan.Zero;
+
+    [DataField]
+    public float CurrentMovementSpreadModifier = 0f;
+
+    // Movement spread is accumulated separately from weapon spread so walking/sprinting
+    // can push the gun toward a worse spread ceiling without making the first shot jump instantly.
+    [DataField]
+    public float SprintSpreadModifier = 1.7f;
+
+    [DataField]
+    public float WalkSpreadModifier = 0.9f;
+
+    [DataField]
+    public float SprintSpreadBuildUpRate = 12f;
+
+    [DataField]
+    public float WalkSpreadBuildUpRate = 7f;
+
+    [DataField]
+    public float MovementSpreadDecayRate = 2.5f;
+
+    [DataField]
+    public float BurstRecoveryTime = 0.22f;
+
+    [DataField]
+    public float BurstRecoveryDecayMultiplier = 1.35f;
+
+    [DataField]
+    public float SpreadApproachRate = 12f;
+
+    // These values remove part of the weapon's spread range from the current ceiling.
+    // Standing still gets the strongest cap reduction, walk gets a lighter one, sprint gets none.
+    [DataField]
+    public float StationarySpreadCapReduction = 0.43f;
+
+    [DataField]
+    public float WalkSpreadCapReduction = 0.29f;
+
+    [DataField]
+    public float SprintSpreadCapReduction = 0f;
     #endregion
 }
 

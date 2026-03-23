@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using System.Threading;
+using Content.Client.CombatMode;
 using Content.Client.Verbs;
 using Content.Shared._Starlight.Utility;
 using Content.Shared.Examine;
@@ -32,6 +33,7 @@ namespace Content.Client.Examine
         [Dependency] private readonly IEyeManager _eyeManager = default!;
         [Dependency] private readonly VerbSystem _verbSystem = default!;
         [Dependency] private readonly SpriteSystem _sprite = default!;
+        [Dependency] private readonly CombatModeSystem _combatMode = default!;
 
         private List<Verb> _verbList = new();
 
@@ -121,6 +123,11 @@ namespace Content.Client.Examine
             {
                 return false;
             }
+
+            // Let Shift+LMB continue through to normal use actions while the player is in combat mode,
+            // so walking does not suppress gunfire.
+            if (_combatMode.IsInCombatMode(player))
+                return false;
 
             DoExamine(entity);
             return true;
