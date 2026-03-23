@@ -266,12 +266,11 @@ return false;
                 HasComp<HumanoidAppearanceComponent>(dragged) &&
                 _minds.TryGetMind(dragged, out _, out var mind))
             {
-                if (mind.UserId != null && _playerManager.TryGetSessionById(mind.UserId.Value, out _))
+if (mind.UserId != null && _playerManager.TryGetSessionById(mind.UserId.Value, out _))
                 {
-                    // Starlight BEGIN: Added popup for player feedback 
-                    _popup.PopupEntity(Loc.GetString("biomass-reclaimer-soulful"), reclaimer, PopupType.Large);
-                    return false;
-                } // Starlight END
+                    _popup.PopupEntity(Loc.GetString("biomass-reclaimer-soulful"), reclaimer, PopupType.Large); // Starlight-edit: Added popup for player feedback
+return false;
+                }
             }
 
             return true;
