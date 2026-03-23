@@ -917,8 +917,8 @@ namespace Content.Client.Lobby.UI
                 selector.OnOpenGuidebook += OnOpenGuidebook;
 
                 var title = Loc.GetString(antag.Name);
-                var description = FormattedMessage.FromMarkupPermissive(Loc.GetString(antag.Objective));
-                // Starlight: Setup call moved down since we append requirements to the description.
+                var description = FormattedMessage.FromMarkupPermissive(Loc.GetString(antag.Objective)); // Starlight
+                // Starlight: Setup & Select call moved down since we append requirements to the description.
 
                 if (!_requirements.IsAllowed(
                         antag,
