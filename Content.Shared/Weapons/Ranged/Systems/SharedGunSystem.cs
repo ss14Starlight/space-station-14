@@ -602,7 +602,6 @@ public abstract partial class SharedGunSystem : EntitySystem
             if (mutate)
             {
                 gun.Comp.LastSpreadUpdate = curTime.Value;
-                gun.Comp.TargetAngle = initial;
                 gun.Comp.CurrentAngle = initial;
             }
 
@@ -613,37 +612,26 @@ public abstract partial class SharedGunSystem : EntitySystem
         var timeSinceLastFire = Math.Max(0, (curTime - gun.Comp.LastFire).Value.TotalSeconds);
         var burstMultiplier = GetBurstRecoveryMultiplier(gun, timeSinceLastFire);
         var movementModifier = GetMovementSpreadModifier(gun, curTime, mutate);
-
-        // Weapon spread and movement spread are combined here:
-        // recoil tries to decay toward a target, while movement raises the minimum practical target.
         var cappedMax = GetCappedMaxSpread(gun, movementModifier);
-        var decayedTarget = gun.Comp.TargetAngle.Theta - gun.Comp.AngleDecayModified.Theta * delta * burstMultiplier;
-        decayedTarget = MathHelper.Clamp(decayedTarget, gun.Comp.MinAngleModified.Theta, cappedMax);
+        var currentTheta = gun.Comp.CurrentAngle.Theta - gun.Comp.AngleDecayModified.Theta * delta * burstMultiplier;
+        currentTheta = MathHelper.Clamp(currentTheta, gun.Comp.MinAngleModified.Theta, cappedMax);
 
         var maxMovementModifier = Math.Max(gun.Comp.WalkSpreadModifier, gun.Comp.SprintSpreadModifier);
         if (maxMovementModifier > 0f)
         {
             var movementRatio = Math.Clamp(movementModifier / maxMovementModifier, 0f, 1f);
             movementRatio = MathF.Pow(movementRatio, 0.7f);
-            // As movement builds up, the gun is pushed toward the movement-capped ceiling
-            // instead of only applying a last-second multiplier at fire time.
             var movementTarget = MathHelper.Lerp(
                 gun.Comp.MinAngleModified.Theta,
                 cappedMax,
                 movementRatio);
-            decayedTarget = Math.Max(decayedTarget, movementTarget);
+            currentTheta = Math.Max(currentTheta, movementTarget);
         }
 
-        var approachBlend = delta <= 0f ? 0f : 1f - MathF.Exp(-delta * gun.Comp.SpreadApproachRate);
-        var currentTheta = MathHelper.Lerp(gun.Comp.CurrentAngle.Theta, decayedTarget, approachBlend);
-        currentTheta = MathHelper.Clamp(currentTheta, gun.Comp.MinAngleModified.Theta, cappedMax);
-
         var current = new Angle(currentTheta);
-        var target = new Angle(decayedTarget);
 
         if (mutate)
         {
-            gun.Comp.TargetAngle = target;
             gun.Comp.CurrentAngle = current;
             gun.Comp.LastSpreadUpdate = curTime.Value;
         }
@@ -688,7 +676,6 @@ public abstract partial class SharedGunSystem : EntitySystem
             }
         }
 
-        // Movement spread ramps in and out smoothly so walk/sprint transitions feel progressive.
         var blend = delta <= 0f ? 0f : 1f - MathF.Exp(-delta * rate);
         var next = MathHelper.Lerp(current, target, blend);
 
@@ -710,8 +697,6 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (maxMovementModifier <= 0f)
             return gun.Comp.StationarySpreadCapReduction;
 
-        // Cap reduction is blended progressively from still -> walk -> sprint using the
-        // accumulated movement spread, so the ceiling changes with motion instead of snapping.
         var normalizedMovement = Math.Clamp(movementModifier / maxMovementModifier, 0f, 1f);
         var walkThreshold = Math.Clamp(gun.Comp.WalkSpreadModifier / maxMovementModifier, 0f, 1f);
 
@@ -775,13 +760,12 @@ public abstract partial class SharedGunSystem : EntitySystem
         AdvanceSpreadState(gun, curTime);
         var cappedMax = GetCappedMaxSpread(gun);
 
-        // Shots only raise the spread target; the visible/current spread converges toward it over time.
-        var nextTarget = MathHelper.Clamp(
-            gun.Comp.TargetAngle.Theta + gun.Comp.AngleIncreaseModified.Theta,
+        var nextAngle = MathHelper.Clamp(
+            gun.Comp.CurrentAngle.Theta + gun.Comp.AngleIncreaseModified.Theta,
             gun.Comp.MinAngleModified.Theta,
             cappedMax);
 
-        gun.Comp.TargetAngle = new Angle(nextTarget);
+        gun.Comp.CurrentAngle = new Angle(nextAngle);
         gun.Comp.LastFire = curTime.Value;
     }
 
@@ -789,8 +773,6 @@ public abstract partial class SharedGunSystem : EntitySystem
     {
         var currentAngle = GetCurrentAngle(gun.AsNullable(), curTime);
 
-        // Apply the full current spread to either side of the aim direction.
-        // Using +/- 0.5 was effectively halving the impact of all recoil tuning.
         var random = Random.NextFloat(-1f, 1f);
 
         var finalSpread = currentAngle.Theta;
@@ -801,8 +783,6 @@ public abstract partial class SharedGunSystem : EntitySystem
         var clampedSpread = Math.Clamp(finalSpread, 0d, maxSpread);
         var spread = clampedSpread * random;
 
-        // Apply the movement-adjusted spread to the final firing angle so walking/sprinting
-        // meaningfully changes shot deviation.
         var angle = new Angle(direction.Theta + spread);
         return angle;
     }

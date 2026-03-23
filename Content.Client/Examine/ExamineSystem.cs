@@ -124,8 +124,6 @@ namespace Content.Client.Examine
                 return false;
             }
 
-            // Let Shift+LMB continue through to normal use actions while the player is in combat mode,
-            // so walking does not suppress gunfire.
             if (_combatMode.IsInCombatMode(player))
                 return false;
 
