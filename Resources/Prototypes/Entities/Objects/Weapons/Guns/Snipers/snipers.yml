@@ -38,9 +38,9 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
-    # Starlight-start
     minAngle: 0
-    maxAngle: 3
+    maxAngle: 3 # Starlight-edit: 30 -> 3
+    # Starlight-start
     angleIncrease: 4
     angleDecay: 5
     walkSpreadModifier: 1.5
