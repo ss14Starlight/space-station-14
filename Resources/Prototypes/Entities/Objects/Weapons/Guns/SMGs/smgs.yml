@@ -25,11 +25,11 @@
   - type: CanDualWield # 🌟Starlight🌟
     dualWieldInaccuracyPenalty: 68
   - type: Gun
+    minAngle: 0.9 # Starlight-edit: 2 -> 0.9
+    maxAngle: 22 # Starlight-edit: 16 -> 22
+    angleIncrease: 10.25 # Starlight-edit: 3 -> 10.25
+    angleDecay: 5.75 # Starlight-edit: 16 -> 5.75
     # Starlight-start
-    minAngle: 0.9
-    maxAngle: 22
-    angleIncrease: 10.25
-    angleDecay: 5.75
     walkSpreadModifier: 1.5
     sprintSpreadModifier: 3
     walkSpreadBuildUpRate: 7
@@ -123,12 +123,12 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -1
-    maxAngle: -2
+    minAngle: -1 # Starlight-edit: -19 -> -1
+    maxAngle: -2 # Starlight-edit: -16 -> -2
   - type: Gun
+    minAngle: 0.75 # Starlight-edit: 21 -> 0.75
+    maxAngle: 21 # Starlight-edit: 32 -> 21
     # Starlight-start
-    minAngle: 0.75
-    maxAngle: 21
     angleIncrease: 9.5
     angleDecay: 5.25
     walkSpreadModifier: 1.55
@@ -161,12 +161,10 @@
   description: A burst-fire C-20r submachine gun for use by cyborgs. Creates .35 caliber ammo on the fly from an internal ammo fabricator, which slowly self-charges.
   components:
   - type: Gun
-    # Starlight-start
     minAngle: 2
     maxAngle: 16
     angleIncrease: 4
     angleDecay: 16
-    # Starlight-end
     fireRate: 8
     burstFireRate: 8
     shotsPerBurst: 5 # Starlight
@@ -225,12 +223,12 @@
     - type: Wieldable
       unwieldOnUse: false
     - type: GunWieldBonus
-      minAngle: -1
-      maxAngle: -2
+      minAngle: -1 # Starlight-edit: -19 -> -1
+      maxAngle: -2 # Starlight-edit: -16 -> -2
     - type: Gun
+      minAngle: 0.75 # Starlight-edit: 21 -> 0.75
+      maxAngle: 18 # Starlight-edit: 32 -> 18
       # Starlight-start
-      minAngle: 0.75
-      maxAngle: 18
       angleIncrease: 7.75
       angleDecay: 8
       walkSpreadModifier: 1.45
@@ -298,11 +296,11 @@
   - type: ChamberMagazineAmmoProvider
     boltClosed: null
   - type: Gun
+    minAngle: 0.5 # Starlight-edit: 1 -> 0.5
+    maxAngle: 14 # Starlight-edit: 6 -> 14
+    angleIncrease: 5.75 # Starlight-edit: 1.5 -> 5.75
+    angleDecay: 7.25 # Starlight-edit: 6 -> 7.25
     # Starlight-start
-    minAngle: 0.5
-    maxAngle: 14
-    angleIncrease: 5.75
-    angleDecay: 7.25
     walkSpreadModifier: 1.15
     sprintSpreadModifier: 2.25
     walkSpreadBuildUpRate: 6
@@ -368,9 +366,9 @@
     - state: icon-muzzle
       map: ["enum.GunVisualLayers.Base"]
   - type: Gun
+    minAngle: 5 # Starlight-edit: 25 -> 5
+    maxAngle: 14 # Starlight-edit: 32 -> 14
     # Starlight-start
-    minAngle: 5
-    maxAngle: 14
     angleIncrease: 8
     angleDecay: 6
     # Starlight-end
