@@ -79,7 +79,7 @@ public sealed partial class RequirementsSelector : BoxContainer
         (string, int)[] items,
         string title,
         int titleSize,
-        FormattedMessage description,
+        FormattedMessage description, // Starlight
         TextureRect? icon = null,
         List<ProtoId<GuideEntryPrototype>>? guides = null)
     {
@@ -93,9 +93,9 @@ public sealed partial class RequirementsSelector : BoxContainer
 
         TitleLabel.Text = title;
         TitleLabel.MinSize = new Vector2(titleSize, 0f);
-        var tooltip = new Tooltip();
+        var tooltip = new Tooltip(); // Starlight BEGIN
         tooltip.SetMessage(description);
-        TitleLabel.TooltipSupplier = (_) => tooltip;
+        TitleLabel.TooltipSupplier = (_) => tooltip; // Starlight END
 
         if (icon != null)
         {

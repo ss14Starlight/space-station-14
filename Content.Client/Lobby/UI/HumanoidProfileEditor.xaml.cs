@@ -918,6 +918,7 @@ namespace Content.Client.Lobby.UI
 
                 var title = Loc.GetString(antag.Name);
                 var description = FormattedMessage.FromMarkupPermissive(Loc.GetString(antag.Objective));
+                // Starlight: Setup call moved down since we append requirements to the description.
 
                 if (!_requirements.IsAllowed(
                         antag,
@@ -935,7 +936,8 @@ namespace Content.Client.Lobby.UI
                 {
                     selector.UnlockRequirements();
                 }
-
+                
+                // Starlight BEGIN: Always show job requirements, even when they're met
                 // Append requirement details to description, separated by a clear line
                 if (!reason.IsEmpty)
                 {
@@ -946,9 +948,9 @@ namespace Content.Client.Lobby.UI
                     }
                     description.AddMessage(reason);
                 }
-
                 selector.Setup(items, title, 250, description, guides: antag.Guides);
                 selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
+                // Starlight END
 
                 selector.OnSelected += preference =>
                 {
@@ -1230,15 +1232,13 @@ namespace Content.Client.Lobby.UI
                     };
                     var jobIcon = _prototypeManager.Index(job.Icon);
                     icon.Texture = _sprite.Frame0(jobIcon.Icon);
-                    
+                    // Starlight BEGIN: Always show job requirements
                     var description = job.LocalizedDescription != null
                         ? FormattedMessage.FromUnformatted(job.LocalizedDescription)
                         : FormattedMessage.Empty;
-                    var allowed = _requirements.IsAllowed(job,
-                        Profile,
-                        out var reason);
+                    var allowed = _requirements.IsAllowed(job, Profile, out var reason);
                     
-                    // Append the reason to the description
+                    // Append the reason to the description.
                     if (reason is { IsEmpty: false })
                     {
                         if (!description.IsEmpty)
@@ -1246,7 +1246,6 @@ namespace Content.Client.Lobby.UI
                             description.PushNewline();
                             description.PushNewline();
                         }
-
                         description.AddMessage(reason);
                     }
                     
@@ -1255,6 +1254,7 @@ namespace Content.Client.Lobby.UI
                     if (!allowed)
                     {
                         selector.LockRequirements(description);
+                        // Starlight END
                         Profile = Profile?.WithoutJob(job);
                         SetDirty();
                     }
