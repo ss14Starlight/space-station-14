@@ -155,10 +155,10 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
             var layerName = layerKey.ToString();
             if (_sprite.LayerMapTryGet((uid, args.Sprite), layerName, out var layerKey2, false))
             {
-                var layer = args.Sprite[layerKey2];
-                layer.Visible = hasNode && !coveredByFloor;
-                
-                if (layer.Visible)
+                var visible = hasNode && !coveredByFloor;
+                _sprite.LayerSetVisible((uid, args.Sprite), layerKey2, visible);
+
+                if (visible)
                 {
                     // Swap sprite based on connection state
                     if (isConnected)
@@ -173,7 +173,7 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
                         _sprite.LayerSetRsiState((uid, args.Sprite), layerKey2, component.Disconnected.RsiState);
                         _sprite.LayerSetOffset((uid, args.Sprite), layerKey2, GetDirectionOffset(dir, component.Offset));
                     }
-                    layer.Color = color;
+                    _sprite.LayerSetColor((uid, args.Sprite), layerKey2, color);
                 }
             }
         }
@@ -201,18 +201,18 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
             if (!_sprite.LayerMapTryGet((uid, sprite), layerName, out var layerKey, false))
                 continue;
 
-            var layer = sprite[layerKey];
             var slotMask = ReadPackedDirectionNibble(localPacked, direction);
             var isConnected = (slotMask & (1 << slotIndex)) != 0;
-            layer.Visible = isConnected && !coveredByFloor;
-            if (!layer.Visible)
+            var visible = isConnected && !coveredByFloor;
+            _sprite.LayerSetVisible((uid, sprite), layerKey, visible);
+            if (!visible)
                 continue;
 
             _sprite.LayerSetRsiState((uid, sprite), layerKey, component.Connected.RsiState);
             const float forwardOffset = 0f;
             _sprite.LayerSetOffset((uid, sprite), layerKey,
                 GetManifoldSlotOffset(direction, slotIndex, slotCount, forwardOffset, ManifoldSlotSpacing, component.Offset, localRotation));
-            layer.Color = Color.White;
+            _sprite.LayerSetColor((uid, sprite), layerKey, Color.White);
         }
     }
 
@@ -258,7 +258,7 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
         {
             var layerName = layerKey.ToString();
             if (_sprite.LayerMapTryGet((uid, sprite), layerName, out var key, false))
-                sprite[key].Visible = false;
+                _sprite.LayerSetVisible((uid, sprite), key, false);
         }
     }
 
