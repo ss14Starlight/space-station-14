@@ -917,7 +917,7 @@ namespace Content.Client.Lobby.UI
                 selector.OnOpenGuidebook += OnOpenGuidebook;
 
                 var title = Loc.GetString(antag.Name);
-                var description = Loc.GetString(antag.Objective);
+                var description = FormattedMessage.FromMarkupPermissive(Loc.GetString(antag.Objective));
                 selector.Setup(items, title, 250, description, guides: antag.Guides);
                 selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
 
@@ -1218,11 +1218,31 @@ namespace Content.Client.Lobby.UI
                     };
                     var jobIcon = _prototypeManager.Index(job.Icon);
                     icon.Texture = _sprite.Frame0(jobIcon.Icon);
-                    selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
-
-                    if (!_requirements.IsAllowed(job, Profile, out var reason))
+                    
+                    var description = job.LocalizedDescription != null
+                        ? FormattedMessage.FromUnformatted(job.LocalizedDescription)
+                        : FormattedMessage.Empty;
+                    var allowed = _requirements.IsAllowed(job,
+                        Profile,
+                        out var reason);
+                    
+                    // Append the reason to the description
+                    if (reason is { IsEmpty: false })
                     {
-                        selector.LockRequirements(reason);
+                        if (!description.IsEmpty)
+                        {
+                            description.PushNewline();
+                            description.PushNewline();
+                        }
+
+                        description.AddMessage(reason);
+                    }
+                    
+                    selector.Setup(items, job.LocalizedName, 200, description, icon, job.Guides);
+
+                    if (!allowed)
+                    {
+                        selector.LockRequirements(description);
                         Profile = Profile?.WithoutJob(job);
                         SetDirty();
                     }

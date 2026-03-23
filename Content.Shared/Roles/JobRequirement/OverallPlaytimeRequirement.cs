@@ -25,7 +25,7 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason)
+        out FormattedMessage reason)
     {
         reason = new FormattedMessage();
 
@@ -41,7 +41,13 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
         var overallTime = playTimes.GetValueOrDefault(PlayTimeTrackingShared.TrackerOverall);
         var overallDiffSpan = Time - overallTime;
         var overallDiff = overallDiffSpan.TotalMinutes;
-        var formattedOverallDiff = ContentLocalizationManager.FormatPlaytime(overallDiffSpan);
+        var formattedCurrent = ContentLocalizationManager.FormatPlaytime(overallTime);
+        var formattedRequired = ContentLocalizationManager.FormatPlaytime(Time);
+
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            Inverted ? "role-timer-overall-not-too-high" : "role-timer-overall-sufficient",
+            ("current", formattedCurrent),
+            ("required", formattedRequired)));
 
         if (!Inverted)
         {
@@ -50,14 +56,17 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
 
             reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-overall-insufficient",
-                ("time", formattedOverallDiff)));
+                ("current", formattedCurrent),
+                ("required", formattedRequired)));
             return false;
         }
 
         if (overallDiff <= 0 || overallTime >= Time)
         {
-            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-overall-too-high",
-                ("time", formattedOverallDiff)));
+            reason = FormattedMessage.FromMarkupPermissive(
+                Loc.GetString("role-timer-overall-too-high",
+                ("current", formattedCurrent),
+                ("required", formattedRequired)));
             return false;
         }
 

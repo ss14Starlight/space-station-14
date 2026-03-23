@@ -21,14 +21,14 @@ public static class JobRequirements
         JobPrototype job,
         ICommonSession? player,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason,
+        out List<FormattedMessage> reasons,
         IEntityManager entManager,
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile)
     {
         var sys = entManager.System<SharedRoleSystem>();
         var requirements = sys.GetRoleRequirements(job);
-        return TryRequirementsMet(requirements, player, playTimes, out reason, entManager, protoManager, profile);
+        return TryRequirementsMet(requirements, player, playTimes, out reasons, entManager, protoManager, profile);
     }
 
     /// <summary>
@@ -42,22 +42,30 @@ public static class JobRequirements
         HashSet<JobRequirement>? requirements,
         ICommonSession? player,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason,
+        out List<FormattedMessage> reasons,
         IEntityManager entManager,
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile)
     {
-        reason = null;
+        reasons = new List<FormattedMessage>();
         if (requirements == null)
             return true;
 
+        var success = true;
         foreach (var requirement in requirements)
         {
-            if (!requirement.Check(entManager, player, protoManager, profile, playTimes, out reason))
-                return false;
+            success = requirement.Check(entManager,
+                          player,
+                          protoManager,
+                          profile,
+                          playTimes,
+                          out var reason)
+                      && success;
+
+            reasons.Add(reason);
         }
 
-        return true;
+        return success;
     }
 
     public static bool TryRequirementsMet(
@@ -93,5 +101,5 @@ public abstract partial class JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason);
+        out FormattedMessage reason);
 }

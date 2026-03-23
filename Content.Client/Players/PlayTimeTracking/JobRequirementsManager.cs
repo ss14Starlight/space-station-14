@@ -217,7 +217,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         // Check the player's bans
         if (_jobBans.Contains(job.ID))
         {
-            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-ban"));
+            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-ban"));
             return false;
         }
 
@@ -279,22 +279,26 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     // This must be private so code paths can't accidentally skip requirement overrides. Call this through IsAllowed()
     private bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, ICommonSession? player, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
     {
-        reason = null;
+        reason = new FormattedMessage();
 
         if (requirements == null || !_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
 
-        var reasons = new List<string>();
+        var success = true;
         foreach (var requirement in requirements)
         {
-            if (requirement.Check(_entManager, player, _prototypes, profile, _mergedRoles, out var jobReason))
-                continue;
+            success = requirement.Check(_entManager, player,
+                _prototypes,
+                profile,
+                _mergedRoles,
+                out var jobReason) && success;
 
-            reasons.Add(jobReason.ToMarkup());
+            if (!reason.IsEmpty)
+                reason.PushNewline();
+            reason.AddMessage(jobReason);
         }
-
-        reason = reasons.Count == 0 ? null : FormattedMessage.FromMarkupOrThrow(string.Join('\n', reasons));
-        return reason == null;
+        
+        return success;
     }
 
     public bool CheckWhitelist(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)

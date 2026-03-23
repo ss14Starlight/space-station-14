@@ -21,7 +21,7 @@ public sealed partial class RolesRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason)
+        out FormattedMessage reason)
     {
         var requirement = protoManager.Index(Proto);
         reason = new FormattedMessage();
