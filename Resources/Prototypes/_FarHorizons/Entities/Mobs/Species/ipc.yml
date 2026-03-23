@@ -180,6 +180,9 @@
     duration: 40
     ramp: 5
   # Battery
+  - type: BatteryAlert
+    batteryAlert: IPCBattery
+    noBatteryAlert: IPCBatteryNone
   - type: IPCBattery
     dieWithoutPowerAfter: 15.0 # 10 was too short
     numWarnings: 2 #warn player that they are about to die

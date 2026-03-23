@@ -56,43 +56,6 @@ public sealed partial class IPCMenu : FancyWindow
 
     private float _bloodLevel;
 
-    private DamageableComponent? _damage = null;
-    public DamageableComponent? Damage
-    {
-        get => _damage ?? TryGetAssignComp(_entitymanager, _entity, ref _damage);
-        set => _damage = value;
-    }
-
-    private BlindableComponent? _blind = null;
-    public BlindableComponent? Blind
-    {
-        get => _blind ?? TryGetAssignComp(_entitymanager, _entity, ref _blind);
-        set => _blind = value;
-    }
-
-    private MobStateComponent? _state = null;
-    public MobStateComponent? State
-    {
-        get => _state ?? TryGetAssignComp(_entitymanager, _entity, ref _state);
-        set => _state = value;
-    }
-
-    private IPCBrainHolderComponent? _brain = null;
-    public IPCBrainHolderComponent? Brain
-    {
-        get => _brain ?? TryGetAssignComp(_entitymanager, _entity, ref _brain);
-        set => _brain = value;
-    }
-    
-    private IPCThermalRegulationComponent? _thermals = null;
-    public IPCThermalRegulationComponent? Thermals
-    {
-        get => _thermals ?? TryGetAssignComp(_entitymanager, _entity, ref _thermals);
-        set => _thermals = value;
-    }
-
-    private MobState _lastKnownState = MobState.Dead;
-
     public IPCMenu()
     {
         RobustXamlLoader.Load(this);
@@ -146,7 +109,7 @@ public sealed partial class IPCMenu : FancyWindow
         base.FrameUpdate(args);
 
         _accumulatedTime += args.DeltaSeconds;
-        IPCSprite.OverrideDirection = (Direction) ((int) _accumulatedTime % 4 * 2);
+        IPCSprite.OverrideDirection = (Direction)((int)_accumulatedTime % 4 * 2);
 
         _shownCharacters = Math.Min((int)Math.Ceiling(_charsPerSecond * _accumulatedTime), _fullText.Length);
         StatusLabel.Text = _fullText[.._shownCharacters];
@@ -157,25 +120,25 @@ public sealed partial class IPCMenu : FancyWindow
     private void UpdateWindow()
     {
         var eyeDamage = 0;
-        if (Blind != null)
-            eyeDamage = Blind.EyeDamage;
+        if (_entitymanager.TryGetComponent<BlindableComponent>(_entity, out var blind))
+            eyeDamage = blind.EyeDamage;
 
         var damage = new DamageSpecifier();
-        if (Damage != null)
-            damage = Damage.Damage;
+        if (_entitymanager.TryGetComponent<DamageableComponent>(_entity, out var damagecomp))
+            damage = damagecomp.Damage;
 
         var temp = 0f;
         LocId fanMode = "";
         var fansEfficiency = "";
-        if (Thermals != null)
+        if (_entitymanager.TryGetComponent<IPCThermalRegulationComponent>(_entity, out var thermals))
         {
-            temp = Thermals.CurrentTemp;
-            fanMode = Thermals.FansCurrentlyOff || Thermals.CurrentMode == null ? 
-                        Thermals.FansOffDiagnosticsText : 
-                        Thermals.CurrentMode.DiagnosticsText;
-            fansEfficiency = Thermals.FansCurrentlyOff || Thermals.CurrentMode == null ?
+            temp = thermals.CurrentTemp;
+            fanMode = thermals.FansCurrentlyOff || thermals.CurrentMode == null ?
+                        thermals.FansOffDiagnosticsText :
+                        thermals.CurrentMode.DiagnosticsText;
+            fansEfficiency = thermals.FansCurrentlyOff || thermals.CurrentMode == null ?
                                 Loc.GetString("ipc-ui-console-fans-efficiency-none") :
-                                (Thermals.CurrentEfficiency * 100).ToString("F2") + "%";
+                                (thermals.CurrentEfficiency * 100).ToString("F2") + "%";
         }
 
         var batteryInserted = false;
@@ -186,15 +149,20 @@ public sealed partial class IPCMenu : FancyWindow
             batteryCharge = _batterySystem.GetChargeLevel((checkedBattery.Owner, checkedBattery.Comp));
         }
 
-        if (_entitymanager.TryGetComponent<MobStateComponent>(_entity, out var mobState))
-            _lastKnownState = mobState.CurrentState;
+        var mobstate = MobState.Invalid;
+        if (_entitymanager.TryGetComponent<MobStateComponent>(_entity, out var mobStatecomp))
+            mobstate = mobStatecomp.CurrentState;
 
-        _fullText = PrintConsole(_lastKnownState.ToString(), batteryInserted, batteryCharge, eyeDamage, _bloodLevel, temp, fanMode, fansEfficiency, Brain, damage);
-        UpdateBrainButton(Brain);
+        IPCBrainHolderComponent? brain = null;
+        if (_entitymanager.TryGetComponent<IPCBrainHolderComponent>(_entity, out var brainComp))
+            brain = brainComp;
+
+        _fullText = PrintConsole(mobstate.ToString(), batteryInserted, batteryCharge, eyeDamage, _bloodLevel, temp, fanMode, fansEfficiency, brain, damage);
+        UpdateBrainButton(brain);
         EjectBatteryButton.Disabled = !batteryInserted;
         ChargeBar.Value = batteryCharge;
         ChargeLabel.Text = Loc.GetString("borg-ui-charge-label",
-            ("charge", (int) MathF.Round(batteryCharge * 100)));
+            ("charge", (int)MathF.Round(batteryCharge * 100)));
     }
 
     private static string PrintConsole(string currentState, bool hasBattery, float batteryCharge, int eyeDamage, float bloodLevel, float currentTemp, string fansMode, string fansEfficiency, IPCBrainHolderComponent? brain, DamageSpecifier damageSpec)
@@ -207,7 +175,7 @@ public sealed partial class IPCMenu : FancyWindow
         {
             var index = $"ipc-ui-console-header-{i}";
             var line = Loc.GetString(index);
-            if(line == index)
+            if (line == index)
                 break;
 
             header += line + '\n';
@@ -246,7 +214,8 @@ public sealed partial class IPCMenu : FancyWindow
             foreach (var (name, value) in damageSpec.DamageDict.OrderByDescending(p => p.Value))
                 if (value != 0)
                     damage.Add((name, value.ToString()));
-        } else
+        }
+        else
             damageText += Loc.GetString("ipc-ui-console-damage-none") + '\n';
 
         damageText += AestheticJoin(damage);
@@ -261,7 +230,7 @@ public sealed partial class IPCMenu : FancyWindow
         var longestName = items.Select(p => p.name.Length).OrderDescending().FirstOrDefault(0);
         if (longestName < 1)
             return result;
-        
+
         foreach (var (name, value) in items)
         {
             var lenDiff = longestName - name.Length;
@@ -273,7 +242,7 @@ public sealed partial class IPCMenu : FancyWindow
 
     private static T? TryGetAssignComp<T>(IEntityManager entSys, EntityUid ent, ref T? assign) where T : Component
     {
-        if(!entSys.TryGetComponent<T>(ent, out var comp))
+        if (!entSys.TryGetComponent<T>(ent, out var comp))
             return null;
 
         assign = comp;
@@ -282,7 +251,7 @@ public sealed partial class IPCMenu : FancyWindow
 
     private void UpdateBrainButton(IPCBrainHolderComponent? brainComp)
     {
-        if (brainComp != null && 
+        if (brainComp != null &&
             brainComp.BrainEntity is EntityUid brain)
         {
             BrainButton.Text = _entitymanager.GetComponent<MetaDataComponent>(brain).EntityName;
@@ -314,7 +283,7 @@ public sealed partial class IPCMenu : FancyWindow
         obj.Control.Text = _lastValidName;
     }
 
-    private void OnNameEntered(LineEdit.LineEditEventArgs _) => 
+    private void OnNameEntered(LineEdit.LineEditEventArgs _) =>
         NameChanged?.Invoke(_lastValidName);
 
     private void OnNameFocusExit(LineEdit.LineEditEventArgs obj)

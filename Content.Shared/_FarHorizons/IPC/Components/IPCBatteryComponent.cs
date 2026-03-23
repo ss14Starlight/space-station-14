@@ -15,8 +15,6 @@ namespace Content.Shared._FarHorizons.Silicons.IPC.Components;
 public sealed partial class IPCBatteryComponent : Component
 {
     [DataField]
-    public string BatteryContainerSlotID = "cell_slot";
-    [DataField]
     public float DieWithoutPowerAfter = 30f;
     [DataField]
     public int NumWarnings = 0;
@@ -26,12 +24,6 @@ public sealed partial class IPCBatteryComponent : Component
     public SoundSpecifier? WarningSound = null;
     [DataField]
     public ProtoId<AlertPrototype> ChargeCritical = "IPCBatteryCrit";
-    [DataField]
-    public ProtoId<AlertPrototype> NoBatteryAlert = "IPCBatteryNone";
-    [DataField]
-    public ProtoId<AlertPrototype> BatteryAlert = "IPCBattery";
-    [DataField]
-    public ProtoId<AlertCategoryPrototype> BatteryAlertsCategory = "IPCBattery";
 
     [DataField]
     public List<EntProtoId> DrainAllowedTargets = [];

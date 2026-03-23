@@ -97,7 +97,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
 
         ent.Comp.Injected = true;
 
-        AddComponentsCarefully(ent, injectedAnom.Components); // Far Horizons
+        AddComponents(ent, injectedAnom.Components); // Far Horizons
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
         _jitter.DoJitter(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration), true);
@@ -214,7 +214,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
             return;
 
         if (_proto.Resolve(ent.Comp.InjectionProto, out var injectedAnom))
-            RemoveComponentsCarefully(ent, injectedAnom.Components); // Far Horizons
+            RemoveComponents(ent, injectedAnom.Components); // Far Horizons
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
 
