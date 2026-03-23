@@ -25,7 +25,7 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        out FormattedMessage reason) // Starlight: Always return requirement description
+        out FormattedMessage reason) // Starlight: Always return reason
     {
         reason = new FormattedMessage();
 

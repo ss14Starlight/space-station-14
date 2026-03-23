@@ -181,7 +181,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         List<ProtoId<JobPrototype>>? jobs,
         List<ProtoId<AntagPrototype>>? antags,
         HumanoidCharacterProfile? profile,
-        out FormattedMessage reason) // Starlight: Always return requirement description
+        out FormattedMessage reason) // Starlight: Always return reason
     {
         reason = new FormattedMessage(); // Starlight
 
@@ -212,7 +212,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     public bool IsAllowed(
         JobPrototype job,
         HumanoidCharacterProfile? profile,
-        out FormattedMessage reason) // Starlight: Always return requirement description
+        out FormattedMessage reason) // Starlight: Always return reason
     {
         // Check the player's bans
         if (_jobBans.Contains(job.ID))
@@ -243,7 +243,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     public bool IsAllowed(
         AntagPrototype antag,
         HumanoidCharacterProfile? profile,
-        out FormattedMessage reason) // Starlight: Always return requirement description
+        out FormattedMessage reason) // Starlight: Always return reason
     {
         // Check the player's bans
         if (_antagBans.Contains(antag.ID))
@@ -271,13 +271,13 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     /// <summary>
     /// SL: Check against a requirements list without a role. Avoid using if there's a role, as this doesn't check bans.
     /// </summary>
-    public bool CheckRequirementsForNonRole(HashSet<JobRequirement>? requirements, ICommonSession? player, HumanoidCharacterProfile? profile, out FormattedMessage reason) // Starlight: Always return requirement description
+    public bool CheckRequirementsForNonRole(HashSet<JobRequirement>? requirements, ICommonSession? player, HumanoidCharacterProfile? profile, out FormattedMessage reason) // Starlight: Always return reason
     {
         return CheckRoleRequirements(requirements, player, profile, out reason);
     }
 
     // This must be private so code paths can't accidentally skip requirement overrides. Call this through IsAllowed()
-    private bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, ICommonSession? player, HumanoidCharacterProfile? profile, out FormattedMessage reason) // Starlight: Always return requirement description
+    private bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, ICommonSession? player, HumanoidCharacterProfile? profile, out FormattedMessage reason) // Starlight: Always return reason
     {
         reason = new FormattedMessage(); // Starlight
 
@@ -298,7 +298,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         return success; // Starlight
     }
 
-    public bool CheckWhitelist(JobPrototype job, out FormattedMessage reason) // Starlight: Always return requirements description
+    public bool CheckWhitelist(JobPrototype job, out FormattedMessage reason) // Starlight: Always return reason
     {
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-whitelisted")); // Starlight: Markup
 
@@ -314,7 +314,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         return true;
     }
 
-    public bool CheckWhitelist(AntagPrototype antag, out FormattedMessage reason) // Starlight: Always return requirements description
+    public bool CheckWhitelist(AntagPrototype antag, out FormattedMessage reason) // Starlight: Always return reason
     {
         reason = FormattedMessage.Empty; // Starlight
 
