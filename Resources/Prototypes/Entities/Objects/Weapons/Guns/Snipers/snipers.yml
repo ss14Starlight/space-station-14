@@ -38,6 +38,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    # Snipers stay tight while planted, but movement should punish them harder than recoil spam does.
     minAngle: 0
     maxAngle: 3
     angleIncrease: 4
@@ -181,6 +182,7 @@
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   #- type: GunRequiresWield Starlight-edit: Remove requirement
   - type: Gun
+    # Hristov is the harshest precision weapon: very punishing if unstable, but still centered on accurate first shots.
     maxAngle: 4
     angleIncrease: 6
     angleDecay: 3.5

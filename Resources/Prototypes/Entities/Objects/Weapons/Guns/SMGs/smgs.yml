@@ -25,6 +25,7 @@
   - type: CanDualWield # 🌟Starlight🌟
     dualWieldInaccuracyPenalty: 68
   - type: Gun
+    # SMGs are the spray baseline: more movement-sensitive and less stable under sustained fire than rifles.
     minAngle: 0.9
     maxAngle: 22
     fireRate: 8
@@ -124,6 +125,7 @@
     minAngle: -1
     maxAngle: -2
   - type: Gun
+    # C-20r is the aggressive magdump reference for the class.
     minAngle: 0.75
     maxAngle: 21
     angleIncrease: 9.5
@@ -222,6 +224,7 @@
       minAngle: -1
       maxAngle: -2
     - type: Gun
+      # Drozd should sit between rifle discipline and full spray SMGs, especially around burst control.
       minAngle: 0.75
       maxAngle: 18
       angleIncrease: 7.75
@@ -290,6 +293,7 @@
   - type: ChamberMagazineAmmoProvider
     boltClosed: null
   - type: Gun
+    # WT550 is the softest SMG entry point and should remain the easiest SMG to keep on target.
     fireRate: 5.5
     minAngle: 0.5
     maxAngle: 14
