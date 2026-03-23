@@ -4,6 +4,7 @@
   parent:
   - MobFlammable
   - BaseMobSpecies
+  - BaseSpeciesPickupableLarge # Starlight
   id: BaseMobSkeletonPerson
   abstract: true
   components:

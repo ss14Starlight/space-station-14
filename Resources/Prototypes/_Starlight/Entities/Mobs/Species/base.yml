@@ -12,3 +12,24 @@
   - type: MultiHandedItem
   - type: CanEscapeInventory
     baseResistTime: 2
+  - type: VisualPickupable # Far Horizons start
+    offsetFront: 0.0, -0.15
+    offsetBack: 0.0, 0.05
+  - type: PickupableSpeedRelay # Far Horizons end
+
+- type: entity
+  save: false
+  id: BaseSpeciesPickupableHuge # Stuff like Cyclorites/IPCs/Plasmamen/Vulps/Shadekin/Diona. Things that are just *too big**
+  abstract: true
+  components:
+  - type: Item
+    size: Huge
+    allowDirectHandPickup: false
+    shape:
+    - 0, 0, 12, 10 # I'm not sure *what* you'd be able to fit this in.
+  - type: RestrictNestingItem
+  - type: MultiHandedItem
+  - type: CanEscapeInventory
+    baseResistTime: 2
+  - type: VisualPickupable # Far Horizons, technically
+  - type: PickupableSpeedRelay # Far Horizons, technically

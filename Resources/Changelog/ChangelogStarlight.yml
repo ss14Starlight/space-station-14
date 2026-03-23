@@ -35503,5 +35503,144 @@ Entries:
   id: 387301
   time: '2026-03-22T20:56:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3873
+- author: mikeysaurus
+  changes:
+  - message: Adds new GitHub workflow to verify that the Prototypes/_StarLight directory
+      no longer exists.
+    type: Add
+  id: 387901
+  time: '2026-03-23T02:39:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3879
+- author: Tytos
+  changes:
+  - message: Added to serpentcrest, new syndicate corporation banners and interdyne
+      medical vendor.
+    type: Add
+  - message: added to serpentcrest document printers in sec.
+    type: Tweak
+  id: 387201
+  time: '2026-03-23T04:11:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3872
+- author: CawsForConcern
+  changes:
+  - message: (Silica) Performers.
+    type: Add
+  - message: (Silica) Boxers.
+    type: Add
+  - message: (Silica) Boxing Ring, replaces old HOP.
+    type: Add
+  - message: (Silica) New HOP Office, replaces old Vault and Command Washrooms.
+    type: Add
+  - message: (Silica) New Vault, replaces old Service Washrooms.
+    type: Add
+  - message: (Silica) Widened Medical Maints and added new loot and some more nooks.
+    type: Add
+  - message: (Silica) Widened Science Maints and added new loot.
+    type: Add
+  - message: (Silica) New Washrooms by Dorms.
+    type: Add
+  - message: (Silica) Expanded Maints by Dorms.
+    type: Add
+  - message: (Silica) Doubled the size of Atmospherics.
+    type: Add
+  - message: (Silica) Second burn chamber for Atmospherics.
+    type: Add
+  - message: (Silica) Polly the Parrot to CE's Office.
+    type: Add
+  - message: (Silica) New Cryosleep, west of Arrivals.
+    type: Add
+  - message: (Silica) Made it so that non-Engineers can pass-thru Engineering maints.
+    type: Add
+  - message: (Silica) Implemented new railings and new platforms ported by Conf to
+      appropriate areas.
+    type: Add
+  - message: (Silica) Replaced all of the stairs with the new ones ported by Conf.
+    type: Add
+  - message: (Silica) 2 more Atmos Tech job slots (one roundstart, one latejoin).
+    type: Add
+  - message: (Silica) 1 more Engineer job slot (latejoin).
+    type: Add
+  - message: (Silica) Expanded the Engineering and Atmos Locker Rooms slightly.
+    type: Add
+  - message: (Silica) Nicer decals for Arrivals.
+    type: Tweak
+  - message: (Silica) Drastically cut the amount of lights in Maints and many rooms
+      in general - should reduce visual glitches where light rendering starts flickering.
+    type: Tweak
+  - message: (Silica) Emergency shuttle has its distro turned on automatically.
+    type: Tweak
+  - message: (Silica) Cargo shuttle distro and waste pipes are now colored accordingly.
+    type: Tweak
+  - message: (Silica) Added a Station Beacon for Disposals.
+    type: Fix
+  - message: (Silica) Xenobio APC was unnamed.
+    type: Fix
+  - message: (Silica) Cargo shuttle now uses the correct shuttle computer.
+    type: Fix
+  id: 377001
+  time: '2026-03-23T04:43:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3770
+- author: Conflee
+  changes:
+  - message: Made Platforms able to take damage and be broken. They are slightly weaker
+      than solid walls.
+    type: Fix
+  id: 388001
+  time: '2026-03-23T06:11:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3880
+- author: SevenShades
+  changes:
+  - message: Added wooden diagonal decals.
+    type: Add
+  - message: Added rotated versions of existing diagonal decals to make them easier
+      to use.
+    type: Add
+  id: 386601
+  time: '2026-03-23T08:42:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3866
+- author: wonderfulnewworld, princess_gurchi, Killer Tamashi
+  changes:
+  - message: You can now carry every species. Bigger species won't even fit in bags
+      of holding.
+    type: Add
+  - message: You can now see when someone is carrying someone.
+    type: Tweak
+  id: 387701
+  time: '2026-03-23T08:47:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3877
+- author: redmushie
+  changes:
+  - message: Biomass reclaimers now tell you why they are refusing to work via popup
+      text.
+    type: Add
+  id: 388301
+  time: '2026-03-23T09:21:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3883
+- author: wonderfulnewworld & [pcaessayrs](https://github.com/pcaessayrs)
+  changes:
+  - message: The ninja now spawns with a chain sickle. They can use this to grapple
+      to things _very_ quickly, or can be thrown as a bola in a pinch. Also deals
+      solid damage, too, giving ninja an easier to use ranged weapon than the shurikens.
+    type: Add
+  id: 388101
+  time: '2026-03-23T09:37:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3881
+- author: Roro
+  changes:
+  - message: Fixed Construction bag not quick opening inhand.
+    type: Fix
+  id: 388401
+  time: '2026-03-23T13:50:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3884
+- author: CawsForConcern
+  changes:
+  - message: Lifeboats, larger escape pods that can be mapped to stations.
+    type: Add
+  - message: New sprites for "internals crates" which reflect the fact they contain
+      both O2 and N2 emergency equipment.
+    type: Add
+  id: 388901
+  time: '2026-03-23T17:30:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3889
 Order: -1
 
