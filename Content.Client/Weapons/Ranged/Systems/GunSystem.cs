@@ -464,6 +464,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
         foreach (var (ent, shootable) in ammo)
         {
+            // Re-evaluate recoil per projectile so burst / automatic fire opens up progressively on the client too.
             var angle = GetRecoilAngle(gun, worldAngle);
             var shotDirection = angle.ToVec();
 
