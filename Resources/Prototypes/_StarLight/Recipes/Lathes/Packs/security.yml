@@ -101,6 +101,8 @@
   - MagazinePistolSubMachineGunEmpty
   - MagazinePistolSubMachineGunTopMounted
   - MagazinePistolSubMachineGunTopMountedEmpty
+  - MagazinePistolSubMachineGunTopMountedHP
+  - MagazinePistolSubMachineGunTopMountedFMJ
   - MagazinePistolSubMachineGunUzi
   - MagazinePistolSubMachineGunPPSH
 # Rifle
@@ -221,6 +223,9 @@
   - MagazinePistolSubMachineGunIncendiary
   - MagazinePistolSubMachineGunUranium
   - MagazinePistolSubMachineGunAP
+  - MagazinePistolSubMachineGunTopMountedIncendiary
+  - MagazinePistolSubMachineGunTopMountedUranium
+  - MagazinePistolSubMachineGunTopMountedAP
 # Rifle
   - MagazineRifleIncendiary
   - MagazineRifleUranium

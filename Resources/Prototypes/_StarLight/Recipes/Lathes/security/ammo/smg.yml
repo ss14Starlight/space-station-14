@@ -66,6 +66,44 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGunTopMountedHP
+  result: MagazinePistolSubMachineGunTopMountedHP
+  materials:
+    Steel: 300
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGunTopMountedFMJ
+  result: MagazinePistolSubMachineGunTopMountedFMJ
+  materials:
+    Steel: 300
+
+- type: latheRecipe
+  parent: BaseEmptyAmmoRecipe
+  id: MagazinePistolSubMachineGunTopMountedIncendiary
+  result: MagazinePistolSubMachineGunTopMountedIncendiary
+  materials:
+    Plastic: 310
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGunTopMountedUranium
+  result: MagazinePistolSubMachineGunTopMountedUranium
+  materials:
+    Plastic: 160
+    Uranium: 310
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGunTopMountedAP
+  result: MagazinePistolSubMachineGunTopMountedAP
+  materials:
+    Plastic: 150
+    Steel: 150
+    Uranium: 300
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
   id: MagazinePistolSubMachineGunUzi
   result: MagazinePistolSubMachineGunUzi
   materials:

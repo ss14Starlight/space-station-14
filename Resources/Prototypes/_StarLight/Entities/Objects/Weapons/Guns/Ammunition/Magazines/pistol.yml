@@ -153,6 +153,51 @@
   - type: BallisticAmmoProvider
     proto: null
 
+- type: entity
+  id: MagazinePistolSubMachineGunTopMountedHP
+  name: WT550 magazine (.35 auto HP top-mounted)
+  parent: MagazinePistolSubMachineGunTopMounted
+  description: Unconventional 30-round top feeding magazine for the WT550 SMG. Loaded with hollow-point rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolHP
+
+- type: entity
+  id: MagazinePistolSubMachineGunTopMountedFMJ
+  name: WT550 magazine (.35 auto FMJ top-mounted)
+  parent: MagazinePistolSubMachineGunTopMounted
+  description: Unconventional 30-round top feeding magazine for the WT550 SMG. Loaded with full metal jacket rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolFMJ
+
+- type: entity
+  id: MagazinePistolSubMachineGunTopMountedAP
+  name: WT550 magazine (.35 auto AP top-mounted)
+  parent: MagazinePistolSubMachineGunTopMounted
+  description: Unconventional 30-round top feeding magazine for the WT550 SMG. Loaded with armor-piercing rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolAP
+
+- type: entity
+  id: MagazinePistolSubMachineGunTopMountedIncendiary
+  name: WT550 magazine (.35 auto incendiary top-mounted)
+  parent: MagazinePistolSubMachineGunTopMounted
+  description: Unconventional 30-round top feeding magazine for the WT550 SMG. Loaded with incendiary rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolIncendiary
+
+- type: entity
+  id: MagazinePistolSubMachineGunTopMountedUranium
+  name: WT550 magazine (.35 auto uranium top-mounted)
+  parent: MagazinePistolSubMachineGunTopMounted
+  description: Unconventional 30-round top feeding magazine for the WT550 SMG. Loaded with exotic uranium-core rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolUranium
+
 #########################################################
 
 - type: entity

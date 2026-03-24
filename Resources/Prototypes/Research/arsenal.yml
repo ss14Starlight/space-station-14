@@ -43,6 +43,7 @@
   - MagazineBoxRifleIncendiary
   - MagazineDMRIncendiary # Starlight
   - MagazinePistolSubMachineGunIncendiary
+  - MagazinePistolSubMachineGunTopMountedIncendiary # Starlight
   - SpeedLoaderShotgunIncendiary
   radioChannels:
   - Security
@@ -113,6 +114,7 @@
   - BoxShotgunUranium
   - MagazineDMRUranium # Starlight
   - MagazinePistolSubMachineGunUranium
+  - MagazinePistolSubMachineGunTopMountedUranium # Starlight
   - SpeedLoaderShotgunUranium
   radioChannels:
   - Security
