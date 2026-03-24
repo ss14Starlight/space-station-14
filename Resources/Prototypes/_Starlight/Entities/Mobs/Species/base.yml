@@ -12,7 +12,7 @@
     doAfter: 3
   - type: MultiHandedItem
   - type: CanEscapeInventory
-    baseResistTime: 3
+    baseResistTime: 5
   - type: VisualPickupable # Far Horizons start
     offsetFront: 0.0, -0.15
     offsetBack: 0.0, 0.05
