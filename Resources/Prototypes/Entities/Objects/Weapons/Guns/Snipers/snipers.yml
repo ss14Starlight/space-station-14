@@ -76,7 +76,11 @@
       - FiringPin
   - type: FiringPinHolder
     supportedPins: [ Rifle, GunUpgrade ]
-  # starlight end
+  # Starlight-start
+  - type: GunWieldBonus
+    maxAngle: -31
+    minAngle: 0
+  # Starlight-end
 
 - type: entity
   name: Kardashev-Mosin
@@ -85,9 +89,6 @@
   description: A weapon of the masses, a true relic. The Kardashev-Mosin has served in nearly every armed conflict since its creation 670 years ago. The bolt-action design of the rifle remains virtually identical to its original design, whether used for hunting, sniping, or endless trench warfare. Uses .45 magnum ammo.
   components:
   # Starlight-start
-  - type: GunWieldBonus
-    maxAngle: -31
-    minAngle: 0
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 2
@@ -168,11 +169,6 @@
   id: WeaponSniperHristov
   description: For when you absolutely, positively need to make someone regret their life choices from a safe distance. Uses .60 anti-materiel ammo.
   components:
-  # Starlight-start
-  - type: GunWieldBonus
-    maxAngle: -31
-    minAngle: 0
-  # Starlight-end
   - type: Item
     size: Huge
     shape:
