@@ -1,6 +1,5 @@
 ﻿using Content.Server.Inventory;
 using Content.Shared.Inventory;
-using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
@@ -25,13 +24,12 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
         //Starlight begin
         TryComp(ent, out IntrinsicRadioTransmitterComponent? transmitter);
         TryComp(ent, out ActiveRadioComponent? activeRadio);
-        
 
         string[] radioChannels = [.. ent.Comp.InherentRadioChannels, .. prototype.RadioChannels,
             //If the borg has the Syndicate channel already (emagged before picking a chassis), they should not lose it when picking a chassis.
-            .. ((transmitter != null && transmitter.Channels.Contains("Syndicate")) || (activeRadio != null && activeRadio.Channels.Contains("Syndicate"))
+            .. (transmitter != null && transmitter.Channels.Contains("Syndicate")) || (activeRadio != null && activeRadio.Channels.Contains("Syndicate"))
                 ? new[] { "Syndicate" }
-                : [])];
+                : []];
         
         if (transmitter != null)
         {
