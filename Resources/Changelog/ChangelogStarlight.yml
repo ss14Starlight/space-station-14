@@ -35642,5 +35642,13 @@ Entries:
   id: 388901
   time: '2026-03-23T17:30:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3889
+- author: R3v3l4t1on
+  changes:
+  - message: Cyborgs no longer have any access when out of power. Better manage that
+      power cell.
+    type: Remove
+  id: 389001
+  time: '2026-03-24T06:21:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3890
 Order: -1
 
