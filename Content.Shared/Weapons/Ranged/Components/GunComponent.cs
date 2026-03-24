@@ -273,80 +273,79 @@ public sealed partial class GunComponent : Component
 
     #region Starlight
     /// <summary>
-    /// Starlight-edit: Timestamp of the last spread decay tick, used to compute delta-time for angle recovery.
+    /// Timestamp of the last spread decay tick, used to compute delta-time for angle recovery.
     /// </summary>
     [DataField]
     public TimeSpan LastSpreadUpdate = TimeSpan.Zero;
 
     /// <summary>
-    /// Starlight-edit: Timestamp of the last movement spread update tick.
+    /// Timestamp of the last movement spread update tick.
     /// </summary>
     [DataField]
     public TimeSpan LastMovementSpreadUpdate = TimeSpan.Zero;
 
     /// <summary>
-    /// Starlight-edit: Tracks the smoothed movement penalty separately from shot-driven recoil.
+    /// Tracks the smoothed movement penalty separately from shot-driven recoil.
     /// </summary>
     [DataField]
     public float CurrentMovementSpreadModifier = 0f;
 
     /// <summary>
-    /// Starlight-edit: Additional spread multiplier applied while the shooter is sprinting.
+    /// Additional spread multiplier applied while the shooter is sprinting.
     /// </summary>
     [DataField]
     public float SprintSpreadModifier = 1.7f;
 
     /// <summary>
-    /// Starlight-edit: Additional spread multiplier applied while the shooter is walking.
+    /// Additional spread multiplier applied while the shooter is walking.
     /// </summary>
     [DataField]
     public float WalkSpreadModifier = 0.9f;
 
     /// <summary>
-    /// Starlight-edit: Rate at which movement spread builds up per second while sprinting.
+    /// Rate at which movement spread builds up per second while sprinting.
     /// </summary>
     [DataField]
     public float SprintSpreadBuildUpRate = 12f;
 
     /// <summary>
-    /// Starlight-edit: Rate at which movement spread builds up per second while walking.
+    /// Rate at which movement spread builds up per second while walking.
     /// </summary>
     [DataField]
     public float WalkSpreadBuildUpRate = 7f;
 
     /// <summary>
-    /// Starlight-edit: Rate at which movement spread decays per second when the shooter stops moving.
+    /// Rate at which movement spread decays per second when the shooter stops moving.
     /// </summary>
     [DataField]
     public float MovementSpreadDecayRate = 2.5f;
 
     /// <summary>
-    /// Starlight-edit: Time in seconds after a burst ends before faster burst-recovery decay kicks in.
+    /// Time in seconds after a burst ends before faster burst-recovery decay kicks in.
     /// </summary>
     [DataField]
     public float BurstRecoveryTime = 0.22f;
 
     /// <summary>
-    /// Starlight-edit: After a brief pause between bursts, decay is allowed to recover faster than a full magdump.
+    /// After a brief pause between bursts, decay is allowed to recover faster than a full magdump.
     /// </summary>
     [DataField]
     public float BurstRecoveryDecayMultiplier = 1.35f;
 
     /// <summary>
-    /// Starlight-edit: These trim the available spread range based on movement state.
-    /// Still gets the lowest ceiling, walking gets a partial ceiling, sprint gets the full one.
+    /// Spread cap reduction applied while stationary. Still gets the lowest ceiling, walking gets a partial ceiling, sprint gets the full one.
     /// </summary>
     [DataField]
     public float StationarySpreadCapReduction = 0.43f;
 
     /// <summary>
-    /// Starlight-edit: Spread cap reduction applied while walking. Less reduction than stationary.
+    /// Spread cap reduction applied while walking. Less reduction than stationary.
     /// </summary>
     [DataField]
     public float WalkSpreadCapReduction = 0.29f;
 
     /// <summary>
-    /// Starlight-edit: Spread cap reduction applied while sprinting. No reduction — full spread ceiling active.
+    /// Spread cap reduction applied while sprinting. No reduction — full spread ceiling active.
     /// </summary>
     [DataField]
     public float SprintSpreadCapReduction = 0f;
