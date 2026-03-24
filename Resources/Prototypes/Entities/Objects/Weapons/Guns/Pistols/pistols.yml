@@ -36,11 +36,11 @@
   - type: Gun
     # Starlight-start
     minAngle: 0.5
-    maxAngle: 5
+    maxAngle: 12
     angleDecay: 18
     angleIncrease: 4.5
-    walkSpreadModifier: 0.35
-    sprintSpreadModifier: 0.8
+    walkSpreadModifier: 1.0
+    sprintSpreadModifier: 2.2
     walkSpreadBuildUpRate: 5
     sprintSpreadBuildUpRate: 8
     movementSpreadDecayRate: 6
@@ -264,13 +264,13 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/N1984.rsi
   - type: Gun
-    minAngle: 1.5 # Starlight-edit: 1 -> 1.5
-    maxAngle: 6 # Starlight-edit: 20 -> 6
-    angleIncrease: 6.5 # Starlight-edit: 8 -> 6.5
-    angleDecay: 12 # Starlight-edit: 9 -> 12
     # Starlight-start
-    walkSpreadModifier: 0.45
-    sprintSpreadModifier: 0.95
+    minAngle: 1.5
+    maxAngle: 15
+    angleIncrease: 6.5
+    angleDecay: 12
+    walkSpreadModifier: 1.2
+    sprintSpreadModifier: 2.3
     walkSpreadBuildUpRate: 5
     sprintSpreadBuildUpRate: 8
     movementSpreadDecayRate: 5

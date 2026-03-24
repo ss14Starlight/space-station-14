@@ -578,6 +578,9 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     #region Starlight
 
+    /// <summary>
+    /// Returns an accelerated decay multiplier when sufficient time has passed since the last burst, allowing faster spread recovery between bursts.
+    /// </summary>
     private float GetBurstRecoveryMultiplier(Entity<GunComponent?> gun, double timeSinceLastFire)
     {
         if (!Resolve(gun, ref gun.Comp))
@@ -588,6 +591,10 @@ public abstract partial class SharedGunSystem : EntitySystem
             : 1f;
     }
 
+    /// <summary>
+    /// Advances the gun's spread state by applying decay and movement modifiers, returning the current spread angle.
+    /// When <paramref name="mutate"/> is false the state is read without being written back.
+    /// </summary>
     private Angle AdvanceSpreadState(Entity<GunComponent?> gun, TimeSpan? curTime = null, bool mutate = true)
     {
         if (!Resolve(gun, ref gun.Comp))
@@ -641,6 +648,9 @@ public abstract partial class SharedGunSystem : EntitySystem
         return current;
     }
 
+    /// <summary>
+    /// Computes the smoothed movement spread modifier based on whether the shooter is stationary, walking, or sprinting.
+    /// </summary>
     private float GetMovementSpreadModifier(Entity<GunComponent?> gun, TimeSpan? curTime = null, bool mutate = true)
     {
         if (!Resolve(gun, ref gun.Comp))
@@ -691,6 +701,9 @@ public abstract partial class SharedGunSystem : EntitySystem
         return next;
     }
 
+    /// <summary>
+    /// Returns how much the max spread ceiling is reduced based on movement state (stationary gets the most reduction, sprinting gets none).
+    /// </summary>
     private float GetSpreadCapReduction(Entity<GunComponent?> gun, float movementModifier)
     {
         if (!Resolve(gun, ref gun.Comp))
@@ -719,6 +732,9 @@ public abstract partial class SharedGunSystem : EntitySystem
             sprintBlend);
     }
 
+    /// <summary>
+    /// Returns the effective max spread ceiling after applying the movement-based cap reduction.
+    /// </summary>
     private float GetCappedMaxSpread(Entity<GunComponent?> gun, float? movementModifier = null)
     {
         if (!Resolve(gun, ref gun.Comp))
@@ -733,9 +749,15 @@ public abstract partial class SharedGunSystem : EntitySystem
         return MathHelper.Clamp(cappedMax, minSpread, maxSpread);
     }
 
+    /// <summary>
+    /// Returns the gun's current spread angle, advancing the spread state as time passes.
+    /// </summary>
     public Angle GetCurrentAngle(Entity<GunComponent?> gun, TimeSpan? curTime = null)
         => AdvanceSpreadState(gun, curTime);
 
+    /// <summary>
+    /// Increases the gun's current spread by <see cref="GunComponent.AngleIncreaseModified"/> after each shot and records the fire time.
+    /// </summary>
     public void ApplyPostShotSpread(Entity<GunComponent?> gun, TimeSpan? curTime = null)
     {
         if (!Resolve(gun, ref gun.Comp))
@@ -755,6 +777,9 @@ public abstract partial class SharedGunSystem : EntitySystem
         gun.Comp.LastFire = curTime.Value;
     }
 
+    /// <summary>
+    /// Returns a randomised shot direction offset by the gun's current spread angle.
+    /// </summary>
     public Angle GetRecoilAngle(Entity<GunComponent> gun, Angle direction, TimeSpan? curTime = null)
     {
         var currentAngle = GetCurrentAngle(gun.AsNullable(), curTime);

@@ -39,8 +39,8 @@
     maxAngle: 16
     angleIncrease: 6.75
     angleDecay: 8.75
-    walkSpreadModifier: 1.35
-    sprintSpreadModifier: 2.7
+    walkSpreadModifier: 1.8
+    sprintSpreadModifier: 3.2
     walkSpreadBuildUpRate: 7
     sprintSpreadBuildUpRate: 12
     movementSpreadDecayRate: 2.1
@@ -278,9 +278,9 @@
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/estocshot.ogg
-    minAngle: 0 # Starlight-edit: 30 -> 0
-    maxAngle: 6 # Starlight-edit: 43 -> 6
     # Starlight-start
+    minAngle: 0
+    maxAngle: 6
     angleIncrease: 2.5
     angleDecay: 6.5
     walkSpreadModifier: 1.45
@@ -296,8 +296,9 @@
     - SemiAuto
     burstFireRate: 14
   - type: GunWieldBonus
-    minAngle: 0 # Starlight-edit: -28 -> 0
-    maxAngle: -1 # Starlight-edit: -25 -> -1
+    # Starlight-start
+    maxAngle: -1
+    # Starlight-end
   - type: ItemSlots
     slots:
       gun_magazine:

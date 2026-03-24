@@ -38,14 +38,16 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -4 # Starlight-edit: -20 -> -4
-    maxAngle: -4 # Starlight-edit: -20 -> -4
-  - type: Gun
-    minAngle: 5 # Starlight-edit: 24 -> 5
-    maxAngle: 34 # Starlight-edit: 45 -> 34
-    angleIncrease: 8.5 # Starlight-edit: 4 -> 8.5
-    angleDecay: 6 # Starlight-edit: 16 -> 6
     # Starlight-start
+    minAngle: -4
+    maxAngle: -4
+    # Starlight-end
+  - type: Gun
+    # Starlight-start
+    minAngle: 5
+    maxAngle: 34
+    angleIncrease: 8.5
+    angleDecay: 6
     walkSpreadModifier: 1.9
     sprintSpreadModifier: 3.8
     walkSpreadBuildUpRate: 8
@@ -164,11 +166,11 @@
   description: An L6 SAW, modified for use by cyborgs. # starlight, our L6 takes ammo
   components:
     - type: Gun
-      minAngle: 4
-      maxAngle: 34 # Starlight-edit: 25 -> 34
-      angleIncrease: 8.5 # Starlight-edit: 4 -> 8.5
-      angleDecay: 6 # Starlight-edit: 16 -> 6
       # Starlight-start
+      minAngle: 4
+      maxAngle: 34
+      angleIncrease: 8.5
+      angleDecay: 6
       walkSpreadModifier: 1.9
       sprintSpreadModifier: 3.8
       walkSpreadBuildUpRate: 8

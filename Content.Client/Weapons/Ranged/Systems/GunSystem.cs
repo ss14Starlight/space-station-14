@@ -464,15 +464,18 @@ public sealed partial class GunSystem : SharedGunSystem
 
         foreach (var (ent, shootable) in ammo)
         {
-            // Re-evaluate recoil per projectile so burst / automatic fire opens up progressively on the client too.
+            // Starlight-start
             var angle = GetRecoilAngle(gun, worldAngle);
             var shotDirection = angle.ToVec();
+            // Starlight-end
 
             if (throwItems)
             {
                 Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user); // Starlight-edit: fix pneumatic cannon sounds
+                // Starlight-start
                 Recoil(user, shotDirection, gun.Comp.CameraRecoilScalarModified);
                 ApplyPostShotSpread(gun.AsNullable(), gun.Comp.NextFire);
+                // Starlight-end
                 fired = true; // Starlight
                 if (IsClientSide(ent!.Value))
                     Del(ent.Value);
@@ -488,10 +491,12 @@ public sealed partial class GunSystem : SharedGunSystem
                     if (!cartridge.Spent)
                     {
                         SetCartridgeSpent(ent!.Value, cartridge, true);
+                        // Starlight-start
                         MuzzleFlash(gun, cartridge, angle, user);
                         Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
                         Recoil(user, shotDirection, gun.Comp.CameraRecoilScalarModified);
                         ApplyPostShotSpread(gun.AsNullable(), gun.Comp.NextFire);
+                        // Starlight-end
                         fired = true; // Starlight
                         // TODO: Can't predict entity deletions.
                         //if (cartridge.DeleteOnSpawn)
@@ -508,10 +513,12 @@ public sealed partial class GunSystem : SharedGunSystem
 
                     break;
                 case AmmoComponent newAmmo:
+                    // Starlight-start
                     MuzzleFlash(gun, newAmmo, angle, user);
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
                     Recoil(user, shotDirection, gun.Comp.CameraRecoilScalarModified);
                     ApplyPostShotSpread(gun.AsNullable(), gun.Comp.NextFire);
+                    // Starlight-end
                     fired = true; // Starlight
                     if (IsClientSide(ent!.Value))
                         Del(ent.Value);
@@ -520,8 +527,10 @@ public sealed partial class GunSystem : SharedGunSystem
                     break;
                 case HitscanAmmoComponent:
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
+                    // Starlight-start
                     Recoil(user, shotDirection, gun.Comp.CameraRecoilScalarModified);
                     ApplyPostShotSpread(gun.AsNullable(), gun.Comp.NextFire);
+                    // Starlight-end
                     fired = true; // Starlight
                     break;
             }

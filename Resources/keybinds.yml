@@ -210,8 +210,7 @@ binds:
   key: MouseLeft
   canFocus: true
   mod1: Shift
-  # Allows Shift+LMB combinations to continue through the input stack when examine declines them.
-  allowSubCombs: true
+  allowSubCombs: true # Starlight-edit
 - function: ActivateItemInWorld
   type: State
   key: E
