@@ -26,10 +26,8 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
         TryComp(ent, out ActiveRadioComponent? activeRadio);
 
         string[] radioChannels = [.. ent.Comp.InherentRadioChannels, .. prototype.RadioChannels,
-            //If the borg has the Syndicate channel already (emagged before picking a chassis), they should not lose it when picking a chassis.
             .. (transmitter != null && transmitter.Channels.Contains("Syndicate")) || (activeRadio != null && activeRadio.Channels.Contains("Syndicate"))
-                ? new[] { "Syndicate" }
-                : []];
+                ? new[] { "Syndicate" } : []]; //If the borg has the Syndicate channel already (emagged before picking a chassis), they should not lose it when picking a chassis.
         
         if (transmitter != null)
         {
