@@ -77,7 +77,7 @@
 
 - type: entity
   name: Atreides
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseMajorContraband]
+  parent: [BaseWeaponSubMachineGun, BaseMajorContraband]
   id: WeaponSubMachineGunAtreides
   description: A rare machine pistol hailing from the Corporate Wars. Its extremely high fire rate and compact profile make it useful in close quarters combat. Despite its age, it is in remarkably good condition. Feeds from .35 SMG magazines.
   components:
@@ -249,7 +249,7 @@
 
 - type: entity
   name: WT550
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband] # Starlight
+  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband] # Starlight
   id: WeaponSubMachineGunWt550
   description: A truly unique firearm, the WT550 was designed by Nanotrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from special top-mounted .35 magazines.
   components:

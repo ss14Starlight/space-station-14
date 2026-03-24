@@ -26,7 +26,7 @@
 - type: entity
   name: lr-30
   parent: [BaseItem, BaseGunWieldable, BaseSecuritySalvageContraband]
-  id: WeaponRifleLr30
+  id: WeaponLr30
   description: Energy carbine with lethal mode.
   components:
   - type: Sprite
@@ -78,7 +78,7 @@
 - type: entity
   name: IK-60 laser carbine
   parent: [BaseItem, BaseGunWieldable, BaseSecurityContraband]
-  id: WeaponRifleIK60
+  id: WeaponIK60
   description: A short, compact rifle-like carbine that relies more on battery-powered ammunition rather than a built-in battery. Used by the Nanotrasen Space Force in combat operations.
   components:
   - type: Sprite
@@ -282,9 +282,6 @@
   id: WeaponRifleL10
   description: "A scoped marksman rifle for medium range engagements, built on the Lecter platform.\nChambered in .45 magnum."
   components:
-  - type: GunWieldBonus
-    maxAngle: -10
-    minAngle: -10
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/L10.rsi
     layers:
@@ -296,12 +293,12 @@
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/L10.rsi
   - type: Gun
     fireRate: 2
-    angleIncrease: 2
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+  - type: GunRequiresWield
   - type: SpeedModifiedOnWield
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -449,6 +446,8 @@
     - type: Wieldable
       unwieldOnUse: false
     - type: GunWieldBonus
+      minAngle: -13
+      maxAngle: -10
     - type: Gun
       minAngle: 21
       maxAngle: 32
@@ -490,3 +489,57 @@
     - type: EyeCursorOffset
       maxOffset: 0.5
       pvsIncrease: 1.4
+
+# Starlight start
+- type: entity
+  name: SPC-Lionhunter
+  parent: [ BaseWeaponSniper, BaseGunWieldable, BaseMajorContraband ]
+  id: WeaponRifleLionhunter
+  description: A one of a kind bolt-action rifle fitted with an integrated scope. Chambered for a proprietary .48 round developed by parties unknown. Built to drop targets at range with authority. Each shot demands a deliberate recycle of the action.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/lionhunter_icons.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,2
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/lionhunter_inhands.rsi
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/lionhunter_inhands.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    fireRate: 1
+    pump: true
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - Cartridge48Rifle
+    capacity: 10
+    proto: Cartridge48Rifle
+    soundRack:
+      path: /Audio/_Starlight/Weapons/Guns/Cock/cycle_bolt.ogg
+      params:
+        variation: 0.1
+  - type: GunRequiresWield
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 5.4
+    pvsIncrease: 0.54
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+      firing_pin: !type:Container
+  - type: Appearance
+# Starlight end

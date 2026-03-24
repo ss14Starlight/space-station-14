@@ -35677,5 +35677,12 @@ Entries:
   id: 390001
   time: '2026-03-24T11:00:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3900
+- author: STARLIGHT TEAM
+  changes:
+  - message: Reverted shooting 3.0 update.
+    type: Remove
+  id: 390901
+  time: '2026-03-24T18:02:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3909
 Order: -1
 
