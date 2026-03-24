@@ -395,7 +395,7 @@
     - id: BoxFiringPinLaser # Starlight, firing pins
     - id: WeaponLaserCarbine
       amount: 3
-    - id: WeaponRifleLr30
+    - id: WeaponLr30
       amount: 1
     - id: MagazineBatteryLr30
       amount: 2
