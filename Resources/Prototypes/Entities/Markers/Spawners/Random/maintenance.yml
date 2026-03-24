@@ -295,7 +295,7 @@
         weight: 0.5 # Starlight
       - id: Flash1Use # Starlight
         weight: 0.6 # Starlight
-      - id: Flash2Use # Starlight
+      - id: SciFlash # Starlight
         weight: 0.7 # Starlight
       - !type:GroupSelector
         children:
