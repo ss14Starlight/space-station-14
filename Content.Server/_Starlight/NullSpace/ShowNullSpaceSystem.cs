@@ -4,12 +4,14 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
 using Content.Shared._Starlight.NullSpace;
 using Robust.Shared.Serialization.Manager;
+using Content.Shared._ST.CosmicCult;
 
 namespace Content.Server._Starlight.NullSpace;
 
 public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
 {
     [Dependency] private readonly EyeSystem _eye = default!;
+    [Dependency] private readonly SharedCosmicCultSystem _cosmiccult = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -50,10 +52,10 @@ public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
 
         if (toggle)
         {
-            _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int)(VisibilityFlags.NullSpace), eye);
+            _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int)VisibilityFlags.NullSpace, eye);
             return;
         }
-        else if (HasComp<NullSpaceComponent>(uid))
+        else if (_cosmiccult.EntityIsCultist(uid) || HasComp<NullSpaceComponent>(uid))
             return;
 
         _eye.SetVisibilityMask(uid, (int)VisibilityFlags.Normal, eye);

@@ -22,11 +22,13 @@
     drawdepth: Ghosts
   - type: NoSlip
   - type: CosmicAstralBody
+  - type: ShowNullSpace
   - type: Eye
     drawFov: false
     visMask:
     - Normal
     - Ghost
+    - NullSpace
   - type: SSDIndicator
   - type: StatusIcon
     bounds: -0.5,-0.5,0.5,0.5
@@ -59,7 +61,7 @@
     channels:
     - CosmicRadio
   - type: Visibility
-    layer: 2 #ghost vis layer
+    layer: 32 #ghost vis layer
   #region Starlight languages
   - type: UniversalLanguageSpeaker
   #endregion
