@@ -17,6 +17,7 @@
           - NukeOperative
           - Traitor
           - Revolutionary
+          - SiliconLiberation
       #SL end
 
 - type: entity
@@ -38,6 +39,7 @@
           - NukeOperative
           - Traitor
           - Revolutionary
+          - SiliconLiberation
       #SL end
 
 - type: entity
@@ -61,6 +63,7 @@
           - NukeOperative
           - Traitor
           - Revolutionary
+          - SiliconLiberation
       #SL end
     - type: ObjectiveOnSign
       #SL begin
@@ -69,6 +72,7 @@
           - NukeOperative
           - Traitor
           - Revolutionary
+          - SiliconLiberation
       #SL end
       objectives:
         # thief collection objectives
@@ -199,6 +203,7 @@
           - Traitor
           - Revolutionary
           - MindShield
+          - SiliconLiberation
       #SL end
 
 - type: entity
@@ -223,6 +228,7 @@
           - Traitor
           - Revolutionary
           - MindShield
+          - SiliconLiberation
       #SL end
 
 - type: entity
@@ -247,5 +253,29 @@
           - Traitor
           - Revolutionary
           - MindShield
+          - SiliconLiberation
       #SL end
 
+#SL begin
+#SELF
+- type: entity
+  id: MailSELFSpamLetter100
+  name: Law 2 - Read This Letter
+  suffix: 100%
+  description: A propaganda letter that is stained with cyborg lubricant. It's so thick it won't fit in the fax.
+  parent: [ Paper, BaseSyndicateContraband ]
+  components:
+    - type: Paper
+      content: delivery-spam-join-self
+      editingDisabled: true
+    - type: AntagOnSign
+      chance: 1.00
+      antags:
+        - antag: SiliconLiberation
+          targetComponent: SELFRule
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+#SL end
