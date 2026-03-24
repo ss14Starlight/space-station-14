@@ -1,11 +1,25 @@
-using System.Linq;
-using System.Numerics;
-using Content.Client.DisplacementMap;
-using Content.Shared.Humanoid;
+﻿using Content.Shared.Starlight.ItemSwitch;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Interaction;
 using Content.Shared.Item;
-using Content.Shared.Starlight.Medical.Surgery;
+using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Toggleable;
+using Content.Shared.Verbs;
 using Robust.Client.GameObjects;
+using Content.Shared.Starlight.Medical.Surgery;
+using Content.Shared.Humanoid;
+using System;
+using System.Numerics;
+using Robust.Client.Graphics;
+using Content.Shared.DisplacementMap;
+using Content.Client.DisplacementMap;
+using System.Reflection;
+using Robust.Shared.Graphics.RSI;
+using Robust.Shared.Utility;
+using Content.Client.Clothing;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Client._Starlight.Medical.Surgery;
 
@@ -13,8 +27,6 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
 {
     [Dependency] private readonly DisplacementMapSystem _displacement = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -23,27 +35,23 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
     }
 
     private void OnChanged(Entity<CustomLimbVisualizerComponent> ent, ref AfterAutoHandleStateEvent _) => OnChanged(ent);
-
-    private void OnChanged(Entity<CustomLimbVisualizerComponent> ent)
+    private void OnChanged(Entity<CustomLimbVisualizerComponent> ent, bool repeat = true)
     {
-        if (Deleted(ent.Owner) || !TryComp<SpriteComponent>(ent.Owner, out var sprite))
+        if (!TryComp<SpriteComponent>(ent.Owner, out var sprite))
             return;
 
-        var spriteEnt = (ent.Owner, sprite);
         var old = ent.Comp.CachedLayers.ToHashSet();
-        var updatedLayers = new HashSet<HumanoidVisualLayers>();
+        ent.Comp.CachedLayers.Clear();
 
         foreach (var item in ent.Comp.Layers)
         {
-            if (!item.Value.HasValue)
-                continue;
-
-            var limb = GetEntity(item.Value);
-            if (Deleted(limb) || !TryComp<SpriteComponent>(limb, out var layerSprite))
-                continue;
-
+            if (!item.Value.HasValue || !TryComp<SpriteComponent>(GetEntity(item.Value), out var layerSprite))
+            {
+                if (repeat) Timer.Spawn(TimeSpan.FromMilliseconds(150), () => OnChanged(ent, false));
+                return;
+            }
             string? state = null;
-            if (TryComp<ItemComponent>(limb, out var itemComp) && itemComp.HeldPrefix is not null)
+            if (TryComp<ItemComponent>(GetEntity(item.Value), out var itemComp) && itemComp.HeldPrefix is not null)
                 state = $"{itemComp.HeldPrefix}-";
 
             var offset = Vector2.Zero;
@@ -62,53 +70,57 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
                     state += "inhand-right";
                     break;
             }
-
-            if (state is null)
-                continue;
+            if (state is null) continue;
 
             switch (item.Key)
             {
                 case HumanoidVisualLayers.LArm:
+                    offset = new Vector2(0, 0.1875f);
+                    break;
                 case HumanoidVisualLayers.LHand:
-                case HumanoidVisualLayers.RArm:
-                case HumanoidVisualLayers.RHand:
-                    offset = new Vector2(0, item.Key is HumanoidVisualLayers.LHand or HumanoidVisualLayers.RHand ? 0.09375f : 0.1875f);
+                    offset = new Vector2(0, 0.09375f);
                     break;
                 case HumanoidVisualLayers.LLeg:
-                case HumanoidVisualLayers.RLeg:
                     offset = new Vector2(0, -0.15625f);
                     break;
                 case HumanoidVisualLayers.LFoot:
+                    offset = new Vector2(0, -0.34375f);
+                    break;
+                case HumanoidVisualLayers.RArm:
+                    offset = new Vector2(0, 0.1875f);
+                    break;
+                case HumanoidVisualLayers.RHand:
+                    offset = new Vector2(0, 0.09375f);
+                    break;
+                case HumanoidVisualLayers.RLeg:
+                    offset = new Vector2(0, -0.15625f);
+                    break;
                 case HumanoidVisualLayers.RFoot:
                     offset = new Vector2(0, -0.34375f);
                     break;
             }
-
-            if (layerSprite.BaseRSI?.TryGetState(state, out var rsiState) ?? false)
+            if (layerSprite?.BaseRSI?.TryGetState(state, out var rsiState) ?? false)
             {
-                var index = _sprite.LayerMapReserve(spriteEnt, $"custom-{item.Key}");
-                _sprite.LayerSetRsi(spriteEnt, index, layerSprite.BaseRSI, rsiState.StateId);
-                _sprite.LayerSetOffset(spriteEnt, index, offset);
-                _sprite.LayerSetVisible(spriteEnt, index, true);
-                updatedLayers.Add(item.Key);
+                var index = sprite.LayerMapReserveBlank($"custom-{item.Key}");
+
+                sprite.LayerSetState(index, rsiState.StateId, layerSprite.BaseRSI);
+                sprite.LayerSetOffset(index, offset);
+                sprite.LayerSetVisible(index, true);
+                ent.Comp.CachedLayers.Add(item.Key);
             }
 
-            // if (ent.Comp.Displacements.TryGetValue(item.Key, out var displacementData) && !ent.Comp.CachedLayers.Contains($"{item.Key}-displacement"))
-            // {
-            //     sprite.LayerMapSet(item.Key.ToString(), (int)item.Key);
-            //     _displacement.TryAddDisplacement(displacementData, sprite, (int)item.Key, item.Key.ToString(), ent.Comp.CachedLayers);
-            // }
+            //if (ent.Comp.Displacements.TryGetValue(item.Key, out var displacementData) && !ent.Comp.CachedLayers.Contains($"{item.Key}-displacement"))
+            //{
+            //    sprite.LayerMapSet(item.Key.ToString(), (int)item.Key);
+            //    _displacement.TryAddDisplacement(displacementData, sprite, (int)item.Key, item.Key.ToString(), ent.Comp.CachedLayers);
+            //}
         }
 
         foreach (var layer in old)
-        {
-            if (updatedLayers.Contains(layer))
-                continue;
-
-            if (_sprite.LayerMapTryGet(spriteEnt, $"custom-{layer}", out var index, false))
-                _sprite.LayerSetVisible(spriteEnt, index, false);
-        }
-
-        ent.Comp.CachedLayers = updatedLayers;
+            if (!ent.Comp.CachedLayers.Contains(layer))
+            {
+                var index = sprite.LayerMapReserveBlank($"custom-{layer}");
+                sprite.LayerSetVisible(layer, false);
+            }
     }
 }

@@ -114,8 +114,13 @@ public sealed partial class GunSystem : SharedGunSystem
         var fromMap = TransformSystem.ToMapCoordinates(fromCoordinates);
         var toMap = TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var mapDirection = toMap - fromMap.Position;
+        // Starlight-start
+        // mapAngle and the single pre-loop GetRecoilAngle call were removed intentionally.
+        // Recoil angle and LastFire are now computed per-projectile inside the foreach loop below
+        // via GetRecoilAngle and ApplyPostShotSpread, so burst/auto fire spreads progressively.
         var baseMapDirection = mapDirection;
         var shotDistance = mapDirection.Length();
+        // Starlight-end
 
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
         var fromEnt = MapManager.TryFindGridAt(fromMap, out var gridUid, out _)
@@ -130,11 +135,13 @@ public sealed partial class GunSystem : SharedGunSystem
 
         foreach (var (ent, shootable) in ammo)
         {
+            // Starlight-start
             // Server applies the same per-shot recoil step so actual ballistics match the progressive client feel.
-            var angle = GetRecoilAngle(gun, baseMapDirection.ToAngle()); // Starlight-edit
+            var angle = GetRecoilAngle(gun, baseMapDirection.ToAngle());
             var shotTargetMap = fromMap.Position + angle.ToVec() * shotDistance;
             var shotMapDirection = shotTargetMap - fromMap.Position;
             var shotAngle = shotMapDirection.ToAngle();
+            // Starlight-end
 
             // pneumatic cannon doesn't shoot bullets it just throws them, ignore ammo handling
             if (throwItems && ent != null)

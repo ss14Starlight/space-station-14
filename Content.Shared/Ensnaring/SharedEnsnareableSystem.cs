@@ -209,15 +209,6 @@ public abstract class SharedEnsnareableSystem : EntitySystem
         if (!TryComp<EnsnareableComponent>(component.Ensnared, out var ensnared))
             return;
 
-        // Recursive deletion can remove the ensnare and its target in the same pass.
-        // In that case the container relationship is already being torn down, so
-        // trying to force-remove the child again can explode during component disposal.
-        if (TerminatingOrDeleted(component.Ensnared.Value))
-        {
-            component.Ensnared = null;
-            return;
-        }
-
         if (ensnared.IsEnsnared)
             ForceFree(uid, component);
     }
@@ -294,12 +285,12 @@ public abstract class SharedEnsnareableSystem : EntitySystem
 
         Container.Remove(ensnare, ensnareable.Container, force: true);
         ensnareable.IsEnsnared = ensnareable.Container.ContainedEntities.Count > 0;
-        Dirty(target, ensnareable);
+        Dirty(component.Ensnared.Value, ensnareable);
         component.Ensnared = null;
 
         UpdateAlert(target, ensnareable);
         var ev = new EnsnareRemoveEvent(component.WalkSpeed, component.SprintSpeed);
-        RaiseLocalEvent(target, ev);
+        RaiseLocalEvent(ensnare, ev);
     }
 
     /// <summary>

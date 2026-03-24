@@ -38,16 +38,16 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
-    minAngle: 0
-    maxAngle: 3 # Starlight-edit: 30 -> 3
     # Starlight-start
-    angleIncrease: 4
-    angleDecay: 5
-    walkSpreadModifier: 1.5
-    sprintSpreadModifier: 3.1
+    minAngle: 5
+    maxAngle: 34
+    angleIncrease: 8.5
+    angleDecay: 6
+    walkSpreadModifier: 1.9
+    sprintSpreadModifier: 3.8
     walkSpreadBuildUpRate: 8
     sprintSpreadBuildUpRate: 13
-    movementSpreadDecayRate: 1.8
+    movementSpreadDecayRate: 1.4
     # Starlight-end
     pump: true
     fireRate: 0.75
@@ -86,7 +86,7 @@
   components:
   # Starlight-start
   - type: GunWieldBonus
-    maxAngle: -1
+    maxAngle: -31
     minAngle: 0
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
@@ -170,7 +170,7 @@
   components:
   # Starlight-start
   - type: GunWieldBonus
-    maxAngle: -1
+    maxAngle: -31
     minAngle: 0
   # Starlight-end
   - type: Item
@@ -184,7 +184,6 @@
   #- type: GunRequiresWield Starlight-edit: Remove requirement
   - type: Gun
     # Starlight-start
-    maxAngle: 4
     angleIncrease: 6
     angleDecay: 3.5
     # Starlight-end
