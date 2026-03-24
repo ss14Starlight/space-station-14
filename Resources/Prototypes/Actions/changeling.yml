@@ -36,6 +36,7 @@
   - type: TargetAction
   - type: EntityTargetAction
     event: !type:ChangelingDevourActionEvent
+  - type: AntagonisticAction
 
 - type: entity
   id: ActionChangelingTransform

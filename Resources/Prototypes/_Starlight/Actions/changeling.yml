@@ -40,6 +40,7 @@
   - type: ChangelingAction
     chemicalCost: 25
     useInLesserForm: true
+  - type: AntagonisticAction
 
 
 - type: entity
@@ -162,6 +163,7 @@
     chemicalCost: 30
     useInLesserForm: true
     requireAbsorbed: 1
+  - type: AntagonisticAction
 
 - type: entity
   id: ActionShriekResonant
@@ -181,6 +183,7 @@
     chemicalCost: 30
     useInLesserForm: true
     requireAbsorbed: 1
+  - type: AntagonisticAction
 
 - type: entity
   id: ActionToggleStrainedMuscles
@@ -224,6 +227,7 @@
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
+  - type: AntagonisticAction
 
 - type: entity
   id: ActionStingCryo
@@ -246,10 +250,10 @@
     event: !type:StingChemEvent {
       chems: { Fresium: 20, ChloralHydrate: 20 }
     }
-
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
+  - type: AntagonisticAction
 
 - type: entity
   id: ActionStingLethargic
@@ -273,6 +277,7 @@
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
+  - type: AntagonisticAction
 
 - type: entity
   id: ActionStingMute
@@ -296,6 +301,7 @@
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
+  - type: AntagonisticAction
 
 - type: entity
   id: ActionStingFakeArmblade
@@ -319,6 +325,7 @@
   - type: ChangelingAction
     chemicalCost: 50
     useInLesserForm: true
+  - type: AntagonisticAction
 
 - type: entity
   id: ActionStingTransform
@@ -342,6 +349,7 @@
   - type: ChangelingAction
     chemicalCost: 75
     useInLesserForm: true
+  - type: AntagonisticAction
 
 # utility
 - type: entity
@@ -398,6 +406,7 @@
     event: !type:ActionBiodegradeEvent {}
   - type: ChangelingAction
     chemicalCost: 30
+  - type: AntagonisticAction
 
 - type: entity
   id: ActionChameleonSkin

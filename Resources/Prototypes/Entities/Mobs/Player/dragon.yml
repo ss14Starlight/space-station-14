@@ -296,6 +296,7 @@
       tags:
       - Wall
     event: !type:DevourActionEvent
+  - type: AntagonisticAction # Starlight
 
 - type: entity
   parent: BaseAction
@@ -313,3 +314,4 @@
     range: 0
   - type: WorldTargetAction
     event: !type:ActionGunShootEvent
+  - type: AntagonisticAction # Starlight
