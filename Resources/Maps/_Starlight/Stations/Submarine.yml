@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/24/2026 04:23:50
-  entityCount: 44341
+  time: 03/24/2026 20:19:12
+  entityCount: 44351
 maps:
 - 1
 grids:
@@ -233,7 +233,7 @@ entities:
           version: 7
         -3,-2:
           ind: -3,-2
-          tiles: fQAAAAAAAH0AAAAAAgB9AAAAAAAAfQAAAAABAH0AAAAAAAB9AAAAAAIAfQAAAAABAE8AAAAAAQBPAAAAAAIAfQAAAAADAH0AAAAAAQB9AAAAAAIAfQAAAAAAAH8AAAAAAABvAAAAAAMAbwAAAAADAGMAAAAAAwBjAAAAAAEAYwAAAAADAGMAAAAAAwBjAAAAAAMAYwAAAAAAAGMAAAAAAgBjAAAAAAIAQAAAAAAAAAIAAAAAAABPAAAAAAIAAgAAAAAAAAIAAAAAAAB/AAAAAAAAbwAAAAABAG8AAAAAAQBjAAAAAAMADgAAAAAAAA4AAAAAAwAOAAAAAAAADgAAAAADAA4AAAAAAwAOAAAAAAAAYwAAAAAAAE8AAAAAAAB7AAAAAAIAewAAAAADAHsAAAAAAgB7AAAAAAEAfwAAAAAAAH8AAAAAAAB/AAAAAAAAYwAAAAAAAA4AAAAAAgAOAAAAAAIADgAAAAAAAA4AAAAAAQAOAAAAAAIADgAAAAADAGMAAAAAAgBpAAAAAAIAaQAAAAABAHsAAAAAAgB7AAAAAAIAewAAAAACAE8AAAAAAQBuAAAAAAAAbwAAAAACAGMAAAAAAwAOAAAAAAEADgAAAAADAHsAAAAAAAB7AAAAAAAAewAAAAADAHsAAAAAAwB7AAAAAAEAewAAAAAAAGkAAAAAAAB7AAAAAAAAewAAAAACAHsAAAAAAQBPAAAAAAMAfwAAAAAAAH8AAAAAAABjAAAAAAEADgAAAAABAA4AAAAAAAB7AAAAAAAAewAAAAAAAHsAAAAAAAB7AAAAAAMAewAAAAACAHsAAAAAAwBpAAAAAAIAewAAAAADAHsAAAAAAgB7AAAAAAIATwAAAAADAH8AAAAAAABuAAAAAAAAYwAAAAABAA4AAAAAAgAOAAAAAAIAewAAAAADAHsAAAAAAQB7AAAAAAMAewAAAAACAHsAAAAAAwB7AAAAAAEATwAAAAAAAHsAAAAAAAB7AAAAAAMAewAAAAADAH8AAAAAAAB/AAAAAAAAbwAAAAACAE8AAAAAAwApAAAAAAEADgAAAAAAAA4AAAAAAwAOAAAAAAIADgAAAAAAAA4AAAAAAwAOAAAAAAMATwAAAAADAF4AAAAAAgBPAAAAAAEAKQAAAAAAACkAAAAAAgB/AAAAAAAAfwAAAAAAAG8AAAAAAABeAAAAAAIAXgAAAAAAAF4AAAAAAABeAAAAAAMAXgAAAAABAF4AAAAAAABeAAAAAAEAXgAAAAACAF4AAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAfwAAAAAAAH8AAAAAAABvAAAAAAIATwAAAAAAAE8AAAAAAwBPAAAAAAEAXgAAAAADAE8AAAAAAQBPAAAAAAIATwAAAAAAAF4AAAAAAQBPAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAE8AAAAAAAB/AAAAAAAAbwAAAAADAE8AAAAAAgBPAAAAAAEATwAAAAADAF4AAAAAAwBPAAAAAAAATwAAAAAAAE8AAAAAAQBeAAAAAAIATwAAAAACAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAB/AAAAAAAAfwAAAAAAAG8AAAAAAABPAAAAAAIATwAAAAACAE8AAAAAAQBeAAAAAAEATwAAAAAAAE8AAAAAAgBPAAAAAAIAXgAAAAABAE8AAAAAAwBAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAfwAAAAAAAH8AAAAAAABuAAAAAAAAXgAAAAABAF4AAAAAAABeAAAAAAAAXgAAAAAAAF4AAAAAAABeAAAAAAIAXgAAAAACAF4AAAAAAQBeAAAAAAMAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAH8AAAAAAAB/AAAAAAAAbgAAAAAAAE8AAAAAAwBPAAAAAAAATwAAAAABAF4AAAAAAwBPAAAAAAIATwAAAAACAE8AAAAAAwBeAAAAAAEAXgAAAAACAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAB/AAAAAAAAfwAAAAAAAG8AAAAAAgBPAAAAAAIATwAAAAACAE8AAAAAAABeAAAAAAAATwAAAAABAE8AAAAAAQBPAAAAAAAAXgAAAAAAAF4AAAAAAAB/AAAAAAAAUAAAAAAAAFAAAAAAAABQAAAAAAAAfwAAAAAAAH8AAAAAAAB/AAAAAAAATwAAAAABAE8AAAAAAgBPAAAAAAIAXgAAAAACAE8AAAAAAQBPAAAAAAMATwAAAAADAF4AAAAAAQBeAAAAAAMAXgAAAAAAAF4AAAAAAgBeAAAAAAAAXgAAAAADAFAAAAAAAABeAAAAAAMAXgAAAAAAAA==
+          tiles: fQAAAAAAAH0AAAAAAgB9AAAAAAAAfQAAAAABAH0AAAAAAAB9AAAAAAIAfQAAAAABAE8AAAAAAQBPAAAAAAIAfQAAAAADAH0AAAAAAQB9AAAAAAIAfQAAAAAAAH8AAAAAAABvAAAAAAMAbwAAAAADAGMAAAAAAwBjAAAAAAEAYwAAAAADAGMAAAAAAwBjAAAAAAMAYwAAAAAAAGMAAAAAAgBjAAAAAAIAQAAAAAAAAAIAAAAAAABPAAAAAAIAAgAAAAAAAAIAAAAAAAB/AAAAAAAAbwAAAAABAG8AAAAAAQBjAAAAAAMADgAAAAAAAA4AAAAAAwAOAAAAAAAADgAAAAADAA4AAAAAAwAOAAAAAAAAYwAAAAAAAE8AAAAAAAB7AAAAAAIAewAAAAADAHsAAAAAAgB7AAAAAAEAfwAAAAAAAH8AAAAAAAB/AAAAAAAAYwAAAAAAAA4AAAAAAgAOAAAAAAIADgAAAAAAAA4AAAAAAQAOAAAAAAIADgAAAAADAGMAAAAAAgBpAAAAAAIAaQAAAAABAHsAAAAAAgB7AAAAAAIAewAAAAACAE8AAAAAAQBuAAAAAAAAbwAAAAACAGMAAAAAAwAOAAAAAAEADgAAAAADAHsAAAAAAAB7AAAAAAAAewAAAAADAHsAAAAAAwB7AAAAAAEAewAAAAAAAGkAAAAAAAB7AAAAAAAAewAAAAACAHsAAAAAAQBPAAAAAAMAfwAAAAAAAH8AAAAAAABjAAAAAAEADgAAAAABAA4AAAAAAAB7AAAAAAAAewAAAAAAAHsAAAAAAAB7AAAAAAMAewAAAAACAHsAAAAAAwBpAAAAAAIAewAAAAADAHsAAAAAAgB7AAAAAAIATwAAAAADAH8AAAAAAABuAAAAAAAAYwAAAAABAA4AAAAAAgAOAAAAAAIAewAAAAADAHsAAAAAAQB7AAAAAAMAewAAAAACAHsAAAAAAwB7AAAAAAEATwAAAAAAAHsAAAAAAAB7AAAAAAMAewAAAAADAH8AAAAAAAB/AAAAAAAAbwAAAAACAE8AAAAAAwApAAAAAAEADgAAAAAAAA4AAAAAAwAOAAAAAAIADgAAAAAAAA4AAAAAAwAOAAAAAAMATwAAAAADAF4AAAAAAgBPAAAAAAEAKQAAAAAAACkAAAAAAgB/AAAAAAAAfwAAAAAAAG8AAAAAAABeAAAAAAIAXgAAAAAAAF4AAAAAAABeAAAAAAMAXgAAAAABAF4AAAAAAABeAAAAAAEAXgAAAAACAF4AAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAfwAAAAAAAH8AAAAAAABvAAAAAAIATwAAAAAAAE8AAAAAAwBPAAAAAAEAXgAAAAADAE8AAAAAAQBPAAAAAAIATwAAAAAAAF4AAAAAAQBPAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAE8AAAAAAAB/AAAAAAAAbwAAAAADAE8AAAAAAgBPAAAAAAEATwAAAAADAF4AAAAAAwBPAAAAAAAATwAAAAAAAE8AAAAAAQBeAAAAAAIATwAAAAACAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAB/AAAAAAAAfwAAAAAAAG8AAAAAAABPAAAAAAIATwAAAAACAE8AAAAAAQBeAAAAAAEATwAAAAAAAE8AAAAAAgBPAAAAAAIAXgAAAAABAE8AAAAAAwBAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAfwAAAAAAAH8AAAAAAABuAAAAAAAAXgAAAAABAF4AAAAAAABeAAAAAAAAfwAAAAAAAF4AAAAAAABeAAAAAAIAXgAAAAACAF4AAAAAAQBeAAAAAAMAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAH8AAAAAAAB/AAAAAAAAbgAAAAAAAE8AAAAAAwBPAAAAAAAATwAAAAABAF4AAAAAAwBPAAAAAAIATwAAAAACAE8AAAAAAwBeAAAAAAEAXgAAAAACAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAB/AAAAAAAAfwAAAAAAAG8AAAAAAgBPAAAAAAIATwAAAAACAE8AAAAAAABeAAAAAAAATwAAAAABAE8AAAAAAQBPAAAAAAAAXgAAAAAAAF4AAAAAAAB/AAAAAAAAUAAAAAAAAFAAAAAAAABQAAAAAAAAfwAAAAAAAH8AAAAAAAB/AAAAAAAATwAAAAABAE8AAAAAAgBPAAAAAAIAXgAAAAACAE8AAAAAAQBPAAAAAAMATwAAAAADAF4AAAAAAQBeAAAAAAMAXgAAAAAAAF4AAAAAAgBeAAAAAAAAXgAAAAADAFAAAAAAAABeAAAAAAMAXgAAAAAAAA==
           version: 7
         3,1:
           ind: 3,1
@@ -19461,7 +19461,7 @@ entities:
     - type: AccessReader
       accessListsOriginal: []
     - type: Door
-      secondsUntilStateChange: -153634.45
+      secondsUntilStateChange: -155157.28
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -20816,7 +20816,7 @@ entities:
       pos: -14.5,11.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -157558.06
+      secondsUntilStateChange: -159080.89
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -21357,7 +21357,7 @@ entities:
       pos: 70.5,-16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -146777.78
+      secondsUntilStateChange: -148300.61
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -21658,7 +21658,7 @@ entities:
       pos: 30.5,49.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -153762.25
+      secondsUntilStateChange: -155285.08
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -22677,7 +22677,7 @@ entities:
       pos: 53.5,61.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -27116.941
+      secondsUntilStateChange: -28639.777
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -25657,8 +25657,6 @@ entities:
       fixtures: {}
   - uid: 1162
     components:
-    - type: MetaData
-      name: Chem Lab APC
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 22.5,-3.5
@@ -25998,6 +25996,14 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - Engineering
+    - type: Fixtures
+      fixtures: {}
+  - uid: 44351
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 14.5,-4.5
+      parent: 2
     - type: Fixtures
       fixtures: {}
 - proto: APCHighCapacity
@@ -114609,21 +114615,6 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-  - uid: 17374
-    components:
-    - type: Transform
-      pos: -44.5,-19.5
-      parent: 2
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        pai_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
   - uid: 17375
     components:
     - type: Transform
@@ -116268,7 +116259,7 @@ entities:
       pos: 66.5,9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -109257.94
+      secondsUntilStateChange: -110780.77
       state: Closing
   - uid: 17621
     components:
@@ -140617,7 +140608,7 @@ entities:
   - uid: 21571
     components:
     - type: Transform
-      pos: -54.438126,-22.026546
+      pos: -54.527767,-22.266169
       parent: 2
 - proto: FoodFriedfelionoid
   entities:
@@ -189506,6 +189497,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: -26.5,27.5
       parent: 2
+  - uid: 17374
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -44.5,-19.5
+      parent: 2
   - uid: 22342
     components:
     - type: Transform
@@ -202025,7 +202022,7 @@ entities:
       pos: -21.5,84.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -150910.12
+      secondsUntilStateChange: -152432.95
       state: Closing
   - uid: 30119
     components:
@@ -204871,6 +204868,9 @@ entities:
     - type: Transform
       pos: -53.5,-14.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Kitchen
   - uid: 30445
     components:
     - type: Transform
@@ -208024,14 +208024,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -7.5,-22.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
-  - uid: 30904
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -51.5,-18.5
       parent: 2
     - type: Fixtures
       fixtures: {}
@@ -218383,6 +218375,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -30.5,-23.5
       parent: 2
+  - uid: 37158
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -59.5,-22.5
+      parent: 2
   - uid: 38249
     components:
     - type: Transform
@@ -218451,6 +218449,18 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -32.5,-16.5
+      parent: 2
+  - uid: 44347
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -49.5,-11.5
+      parent: 2
+  - uid: 44348
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -50.5,-18.5
       parent: 2
 - proto: PoweredlightCyan
   entities:
@@ -219111,6 +219121,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -13.5,-37.5
       parent: 2
+  - uid: 30904
+    components:
+    - type: Transform
+      pos: -55.5,-14.5
+      parent: 2
   - uid: 32584
     components:
     - type: Transform
@@ -219246,6 +219261,11 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 91.5,-12.5
+      parent: 2
+  - uid: 37131
+    components:
+    - type: Transform
+      pos: -54.5,-20.5
       parent: 2
   - uid: 42680
     components:
@@ -232841,6 +232861,12 @@ entities:
     components:
     - type: Transform
       pos: -23.5,-18.5
+      parent: 2
+  - uid: 44349
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -44.5,-19.5
       parent: 2
 - proto: ReinforcedWindowDiagonal
   entities:
@@ -249253,11 +249279,6 @@ entities:
     - type: Transform
       pos: -54.5,-22.5
       parent: 2
-  - uid: 37131
-    components:
-    - type: Transform
-      pos: -54.5,-21.5
-      parent: 2
   - uid: 37132
     components:
     - type: Transform
@@ -249402,12 +249423,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 6.5,-20.5
-      parent: 2
-  - uid: 37158
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -57.5,-17.5
       parent: 2
   - uid: 37159
     components:
@@ -253841,6 +253856,18 @@ entities:
     - type: Transform
       pos: 27.45737,21.675447
       parent: 2
+- proto: TP14KitchenDeepFryer
+  entities:
+  - uid: 17760
+    components:
+    - type: Transform
+      pos: -54.5,-21.5
+      parent: 2
+  - uid: 17764
+    components:
+    - type: Transform
+      pos: -57.5,-17.5
+      parent: 2
 - proto: TrackingImplanter
   entities:
   - uid: 37870
@@ -254313,12 +254340,23 @@ entities:
     - type: Transform
       pos: -57.5,-25.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Kitchen
 - proto: VendingMachineChefvend
   entities:
   - uid: 37936
     components:
     - type: Transform
       pos: -58.5,-25.5
+      parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Service
+  - uid: 42482
+    components:
+    - type: Transform
+      pos: -55.5,-14.5
       parent: 2
 - proto: VendingMachineChemDrobe
   entities:
@@ -254469,11 +254507,19 @@ entities:
       parent: 2
 - proto: VendingMachineDinnerware
   entities:
+  - uid: 37849
+    components:
+    - type: Transform
+      pos: -53.5,-18.5
+      parent: 2
   - uid: 37962
     components:
     - type: Transform
       pos: -59.5,-25.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Kitchen
 - proto: VendingMachineDonut
   entities:
   - uid: 37963
@@ -255255,6 +255301,14 @@ entities:
       parent: 2
 - proto: WallmountMassScanner
   entities:
+  - uid: 17726
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -88.5,6.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 36466
     components:
     - type: Transform
@@ -255307,6 +255361,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -12.5,27.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 44350
+    components:
+    - type: Transform
+      pos: -93.5,10.5
       parent: 2
     - type: Fixtures
       fixtures: {}
