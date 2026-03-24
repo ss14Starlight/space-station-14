@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/24/2026 03:51:24
-  entityCount: 44347
+  time: 03/24/2026 04:23:50
+  entityCount: 44341
 maps:
 - 1
 grids:
@@ -117,6 +117,8 @@ entities:
     - type: GridTree
     - type: Broadphase
     - type: OccluderTree
+    - type: Parallax
+      parallax: AstroParallaxAlt
   - uid: 2
     components:
     - type: MetaData
@@ -19459,7 +19461,7 @@ entities:
     - type: AccessReader
       accessListsOriginal: []
     - type: Door
-      secondsUntilStateChange: -152662.7
+      secondsUntilStateChange: -153634.45
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -20814,7 +20816,7 @@ entities:
       pos: -14.5,11.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -156586.31
+      secondsUntilStateChange: -157558.06
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -21355,7 +21357,7 @@ entities:
       pos: 70.5,-16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -145806.03
+      secondsUntilStateChange: -146777.78
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -21656,7 +21658,7 @@ entities:
       pos: 30.5,49.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -152790.5
+      secondsUntilStateChange: -153762.25
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -22675,7 +22677,7 @@ entities:
       pos: 53.5,61.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -26145.184
+      secondsUntilStateChange: -27116.941
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -116266,7 +116268,7 @@ entities:
       pos: 66.5,9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -108286.18
+      secondsUntilStateChange: -109257.94
       state: Closing
   - uid: 17621
     components:
@@ -117201,11 +117203,6 @@ entities:
       parent: 2
 - proto: DefaultStationBeaconChemistry
   entities:
-  - uid: 17726
-    components:
-    - type: Transform
-      pos: 17.5,-5.5
-      parent: 2
   - uid: 17727
     components:
     - type: Transform
@@ -117248,11 +117245,6 @@ entities:
       parent: 2
 - proto: DefaultStationBeaconCryosleep
   entities:
-  - uid: 17730
-    components:
-    - type: Transform
-      pos: 29.5,-10.5
-      parent: 2
   - uid: 36844
     components:
     - type: Transform
@@ -117287,6 +117279,10 @@ entities:
     - type: Transform
       pos: -85.5,75.5
       parent: 2
+    - type: NavMapBeacon
+      text: Engineering Dock
+    - type: WarpPoint
+      location: Engineering Dock
 - proto: DefaultStationBeaconEngineering
   entities:
   - uid: 17733
@@ -117394,6 +117390,15 @@ entities:
       parent: 2
 - proto: DefaultStationBeaconMedical
   entities:
+  - uid: 17730
+    components:
+    - type: Transform
+      pos: -21.5,12.5
+      parent: 2
+    - type: NavMapBeacon
+      text: Medbay Dorms
+    - type: WarpPoint
+      location: Medbay Dorms
   - uid: 17746
     components:
     - type: Transform
@@ -117481,24 +117486,23 @@ entities:
     - type: Transform
       pos: 1.5,-23.5
       parent: 2
+- proto: DefaultStationBeaconService
+  entities:
+  - uid: 17759
+    components:
+    - type: Transform
+      pos: 33.5,-29.5
+      parent: 2
+    - type: NavMapBeacon
+      text: Boxing
+    - type: WarpPoint
+      location: Boxing
 - proto: DefaultStationBeaconSingularity
   entities:
   - uid: 17758
     components:
     - type: Transform
       pos: 82.5,-16.5
-      parent: 2
-- proto: DefaultStationBeaconSolars
-  entities:
-  - uid: 17759
-    components:
-    - type: Transform
-      pos: 56.5,-33.5
-      parent: 2
-  - uid: 17760
-    components:
-    - type: Transform
-      pos: -65.5,-34.5
       parent: 2
 - proto: DefaultStationBeaconSolarsSE
   entities:
@@ -117542,29 +117546,12 @@ entities:
     - type: Transform
       pos: -77.5,14.5
       parent: 2
-  - uid: 37849
-    components:
-    - type: Transform
-      pos: -77.5,13.5
-      parent: 2
-- proto: DefaultStationBeaconTheater
-  entities:
-  - uid: 17764
-    components:
-    - type: Transform
-      pos: 72.5,-9.5
-      parent: 2
 - proto: DefaultStationBeaconToolRoom
   entities:
   - uid: 37846
     components:
     - type: Transform
       pos: -68.5,1.5
-      parent: 2
-  - uid: 44347
-    components:
-    - type: Transform
-      pos: -68.5,2.5
       parent: 2
 - proto: DefaultStationBeaconVault
   entities:
@@ -202038,7 +202025,7 @@ entities:
       pos: -21.5,84.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -149938.38
+      secondsUntilStateChange: -150910.12
       state: Closing
   - uid: 30119
     components:
@@ -278840,13 +278827,6 @@ entities:
       parent: 2
     - type: WarpPoint
       location: Minotaur's Den
-  - uid: 42482
-    components:
-    - type: Transform
-      pos: 17.5,-5.5
-      parent: 2
-    - type: WarpPoint
-      location: Chemistry
   - uid: 42485
     components:
     - type: Transform

@@ -14,7 +14,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'SEA'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_spacemall.yml
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_ming.yml
         - type: StationJobs
           availableJobs:
             # All WIP. will be changed at some point

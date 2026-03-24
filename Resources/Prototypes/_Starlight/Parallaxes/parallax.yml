@@ -329,7 +329,7 @@
         !type:ImageParallaxTextureSource
         path: "/Textures/_Starlight/Parallaxes/AstroDustAlt.png"
       slowness: 0.987265625
-      scale: "1, 1"
+      scale: "1.5, 1.5"
       scrolling: "-0.1, 0.1"
     - texture:
         !type:ImageParallaxTextureSource
