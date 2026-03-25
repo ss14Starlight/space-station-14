@@ -1,3 +1,4 @@
+using Content.Shared.Destructible.Thresholds;
 using Content.Shared.Eui;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
@@ -20,6 +21,9 @@ public sealed class Card
     public Color IconColor { get; set; }
     public string Description { get; set; } = string.Empty;
     public Texture? Image { get; set; }
+
+    public MinMax? CreditReward { get; set; }
+    public bool HasSecretAccess { get; set; }
 }
 
 [Serializable, NetSerializable]

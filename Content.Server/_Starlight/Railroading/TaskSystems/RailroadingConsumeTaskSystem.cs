@@ -45,9 +45,6 @@ public sealed partial class RailroadingConsumeTaskSystem : EntitySystem
 
     private void OnCollectObjectiveInfo(Entity<RailroadConsumeTaskComponent> ent, ref CollectObjectiveInfoEvent args)
     {
-        if (!TryComp<RailroadCardComponent>(ent.Owner, out var card))
-            return;
-
         var prototype = _proto.Index(ent.Comp.Objects.FirstOrDefault());
         args.Objectives.Add(new ObjectiveInfo
         {

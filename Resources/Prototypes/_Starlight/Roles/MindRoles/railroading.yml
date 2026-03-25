@@ -6,3 +6,14 @@
   - type: MindRole
     exclusiveAntag: true
     subtype: rr-criminal
+  
+- type: entity
+  id: RRMindRoleDeserter
+  name: Deserter Role
+  components:
+  - type: MindRole
+    roleType: HarmlessAntagonist
+    subtype: rr-war-deserter
+    antag: true
+    antagPrototype: RRMindRoleDeserter
+    sortWeight: 40
