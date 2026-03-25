@@ -35838,5 +35838,12 @@ Entries:
   id: 392201
   time: '2026-03-25T00:10:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3922
+- author: wonderfulnewworld
+  changes:
+  - message: Fixes WeaponRifleLionhunter migration causing a fail to launch.
+    type: Fix
+  id: 392501
+  time: '2026-03-25T00:43:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3925
 Order: -1
 
