@@ -1,7 +1,6 @@
 ipc-revive-cant-revive = Unable to reboot!
 ipc-revive-reboot-started = Rebooting...
 ipc-cant-eject-own-brain = Can't eject your own brain!
-ipc-cant-eject-own-battery = Can't eject your own battery!
 ipc-brain-ejected = Brain ejected!
 ipc-brain-inserted = Brain inserted!
 ipc-warning-critical-charge = Danger! Internal power low! Safety shutdown is imminent!
