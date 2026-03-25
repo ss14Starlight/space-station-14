@@ -20232,7 +20232,7 @@ entities:
     - type: Transform
       pos: 101.5,89.5
       parent: 2
-- proto: AirlockCentralCommandCommandGlassLocked
+- proto: AirlockCentralCommandGlassLocked
   entities:
   - uid: 992
     components:
@@ -47511,50 +47511,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -5.7262545,-49.40436
-      parent: 2
-- proto: BluespaceSender
-  entities:
-  - uid: 6267
-    components:
-    - type: Transform
-      pos: -94.5,51.5
-      parent: 2
-- proto: BluespaceVendor
-  entities:
-  - uid: 45278
-    components:
-    - type: Transform
-      pos: -65.5,4.5
-      parent: 2
-  - uid: 45279
-    components:
-    - type: Transform
-      pos: -85.5,51.5
-      parent: 2
-  - uid: 45280
-    components:
-    - type: Transform
-      pos: 60.5,175.5
-      parent: 2
-  - uid: 45281
-    components:
-    - type: Transform
-      pos: 96.5,95.5
-      parent: 2
-  - uid: 45282
-    components:
-    - type: Transform
-      pos: 61.5,-10.5
-      parent: 2
-  - uid: 45283
-    components:
-    - type: Transform
-      pos: 8.5,-35.5
-      parent: 2
-  - uid: 45284
-    components:
-    - type: Transform
-      pos: -15.5,-13.5
       parent: 2
 - proto: BodyBag
   entities:
@@ -93214,20 +93170,13 @@ entities:
     - type: Transform
       pos: -103.5,42.5
       parent: 2
-- proto: CargoComputerComms
+- proto: ComputerCommsCargo
   entities:
   - uid: 7303
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 112.5,101.5
-      parent: 2
-- proto: CargoTechFab
-  entities:
-  - uid: 2474
-    components:
-    - type: Transform
-      pos: 103.5,83.5
       parent: 2
 - proto: Carpet
   entities:
@@ -110055,7 +110004,7 @@ entities:
     - type: Transform
       pos: 103.5,99.5
       parent: 2
-- proto: ComputerShuttleSalvage
+- proto: CompuerShuttleSalvage
   entities:
   - uid: 41803
     components:
@@ -112707,13 +112656,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 73.5,152.5
       parent: 2
-- proto: CrystallizerMachineCircuitboard
-  entities:
-  - uid: 11422
-    components:
-    - type: Transform
-      pos: -87.498375,51.624496
-      parent: 2
 - proto: CrystalOrange
   entities:
   - uid: 436
@@ -114064,7 +114006,7 @@ entities:
     - type: Transform
       pos: 37.5,165.5
       parent: 2
-- proto: DefaultStationBeaconInternalAffairs
+- proto: DefaultStationBeaconIAA
   entities:
   - uid: 45199
     components:
@@ -127828,7 +127770,7 @@ entities:
     - type: Transform
       pos: -31.301506,-24.17789
       parent: 2
-- proto: EngiComputerComms
+- proto: ComputerCommsEngineering
   entities:
   - uid: 21738
     components:
@@ -201429,7 +201371,7 @@ entities:
     - type: Transform
       pos: 108.50493,73.61866
       parent: 2
-- proto: MailTeleporter
+- proto: CargoMailTeleporter
   entities:
   - uid: 42251
     components:
@@ -202105,14 +202047,7 @@ entities:
     - type: Transform
       pos: 32.5,164.5
       parent: 2
-- proto: MedicalBiofabricator
-  entities:
-  - uid: 8634
-    components:
-    - type: Transform
-      pos: 13.5,-41.5
-      parent: 2
-- proto: MedicalComputerComms
+- proto: ComputerCommsMedical
   entities:
   - uid: 15499
     components:
@@ -204628,13 +204563,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 80.31531,16.47032
       parent: 2
-- proto: PlushieCirno
-  entities:
-  - uid: 6052
-    components:
-    - type: Transform
-      pos: 3.4493709,-19.407887
-      parent: 2
 - proto: PlushieDiona
   entities:
   - uid: 9256
@@ -205241,19 +205169,6 @@ entities:
     components:
     - type: Transform
       pos: 70.5,156.5
-      parent: 2
-- proto: PosterContrabandGreyTide
-  entities:
-  - uid: 10142
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 67.5,-1.5
-      parent: 2
-  - uid: 35794
-    components:
-    - type: Transform
-      pos: -64.5,155.5
       parent: 2
 - proto: PosterContrabandRevolt
   entities:
@@ -227957,7 +227872,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 30.708376,178.54793
       parent: 2
-- proto: ScienceComputerComms
+- proto: ComputerCommsScience
   entities:
   - uid: 16768
     components:
@@ -228182,7 +228097,7 @@ entities:
     - type: Transform
       pos: 13.190279,-14.754189
       parent: 2
-- proto: SecurityComputerComms
+- proto: ComputerCommsSecurity
   entities:
   - uid: 21534
     components:
@@ -228219,7 +228134,7 @@ entities:
     - type: Transform
       pos: -50.5,164.5
       parent: 2
-- proto: ServiceComputerComms
+- proto: ComputerCommsService
   entities:
   - uid: 21615
     components:
@@ -235884,14 +235799,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 45.5,-21.5
       parent: 2
-- proto: SignIAA
-  entities:
-  - uid: 6292
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 67.5,150.5
-      parent: 2
 - proto: SignInterrogation
   entities:
   - uid: 28397
@@ -239354,7 +239261,7 @@ entities:
     - type: Transform
       pos: 15.5,-7.5
       parent: 2
-- proto: SpawnPointInternalAffairsAgent
+- proto: SpawnPointIAA
   entities:
   - uid: 1397
     components:
@@ -239577,7 +239484,7 @@ entities:
     - type: Transform
       pos: 59.5,-23.5
       parent: 2
-- proto: SpawnPointNanotrasenRepresentative
+- proto: SpawnPointNtrep
   entities:
   - uid: 8715
     components:
@@ -251038,7 +250945,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 14.5,-15.5
       parent: 2
-- proto: UniqueLockerNanorepFilled
+- proto: LockerRepresentativeFilled
   entities:
   - uid: 3608
     components:
