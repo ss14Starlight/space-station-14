@@ -18,7 +18,7 @@
 - type: speciesBaseSprites
   id: MobIPCSprites
   sprites:
-    Head: MobIPCHeadTest
+    Head: MobIPCHead
     Snout: MobHumanoidAnyMarking
     Chest: MobIPCTorso
     HeadTop: MobHumanoidAnyMarking
@@ -74,12 +74,6 @@
 - type: humanoidBaseSprite
   id: MobIPCMarkingMatchSkin
   markingsMatchSkin: true
-
-- type: humanoidBaseSprite
-  id: MobIPCHeadTest
-  baseSprite:
-    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
-    state: ipc_test
 
 - type: humanoidBaseSprite
   id: MobIPCHead

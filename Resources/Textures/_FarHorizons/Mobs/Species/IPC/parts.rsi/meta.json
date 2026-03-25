@@ -58,10 +58,6 @@
       "directions": 4
     },
     {
-      "name": "ipc_test",
-      "directions": 4
-    },
-    {
       "name": "l_foot",
       "directions": 4
     }
