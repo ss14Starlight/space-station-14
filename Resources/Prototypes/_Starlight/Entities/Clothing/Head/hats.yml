@@ -619,7 +619,7 @@
 - type: entity
   parent: [ClothingHeadBase, BaseTSFContraband]
   id: ClothingHeadHatRetroOfficer
-  name:  tsf officer's cap
+  name: tsf officer's cap
   description: A peaked cap from the Trans Solar Federation's law enforcement division. This peacekeeping headgear symbolizes TSF authority across known space.
   components:
   - type: Sprite
