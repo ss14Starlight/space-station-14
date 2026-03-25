@@ -35845,5 +35845,12 @@ Entries:
   id: 392501
   time: '2026-03-25T00:43:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3925
+- author: Shades
+  changes:
+  - message: Fix IPCs
+    type: Fix
+  id: 392801
+  time: '2026-03-25T01:14:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3928
 Order: -1
 
