@@ -1,0 +1,68 @@
+- type: gameMap
+  id: StarlightEclipse
+  mapName: 'Eclipse'
+  mapPath: /Maps/_Starlight/Stations/eclipse.yml
+  minPlayers: 75
+  stations:
+    StarlightEclipse:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Eclipse LUNA-{1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationEmergencyShuttle
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_totality.yml
+        - type: StationCargoShuttle
+          path: /Maps/_Starlight/Shuttles/cargo_eclipse.yml
+        - type: StationJobs
+          availableJobs:
+            #command
+            Captain: [ 1, 1 ]
+            NanotrasenRepresentative: [ 1, 1 ]
+            InternalAffairsAgent: [ 2, 2 ]
+            #service
+            HeadOfPersonnel: [ 1, 1 ]
+            Bartender: [ 2, 2 ]
+            Botanist: [ 2, 3 ]
+            Chef: [ 2, 2 ]
+            Janitor: [ 2, 3 ]
+            Chaplain: [ 1, 1 ]
+            Librarian: [ 1, 1 ]
+            ServiceWorker: [ 3, 5 ]
+            #engineering
+            ChiefEngineer: [ 1, 1 ]
+            AtmosphericTechnician: [ 3, 4 ]
+            StationEngineer: [ 5, 8 ]
+            TechnicalAssistant: [ 3, 5 ]
+            #medical
+            ChiefMedicalOfficer: [ 1, 1 ]
+            Chemist: [ 2, 2 ]
+            MedicalDoctor: [ 6, 8 ]
+            MedicalIntern: [ 3, 4 ]
+            Paramedic: [ 2, 2 ]
+            #science
+            ResearchDirector: [ 1, 1 ]
+            Scientist: [ 4, 6 ]
+            ResearchAssistant: [ 3, 6 ]
+            #security
+            HeadOfSecurity: [ 1, 1 ]
+            Warden: [ 1, 1 ]
+            SecurityOfficer: [ 8, 8 ]
+            Detective: [ 2, 2 ]
+            SecurityCadet: [ 4, 6 ]
+            Lawyer: [ 2, 2 ]
+            #supply
+            Quartermaster: [ 1, 1 ]
+            SalvageSpecialist: [ 3, 3 ]
+            CargoTechnician: [ 6, 8 ]
+            #civilian
+            Passenger: [ -1, -1 ]
+            Clown: [ 1, 1 ]
+            Mime: [ 1, 1 ]
+            Musician: [ 1, 2 ]
+            Reporter: [ 1, 2 ]
+            #silicon
+            StationAi: [ 2, 2 ]
+            Borg: [ 3, 3 ]
