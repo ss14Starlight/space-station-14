@@ -11,8 +11,6 @@
     size: Tiny
     shape:
     - 0,0,0,1
-  - type: Throwable
-  - type: DragDropTarget
   - type: PlasmamanSuitRecharger
 # Starlight-end
 
