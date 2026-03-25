@@ -844,15 +844,21 @@
             - !type:ReagentCondition
               reagent: Ambuzol
               min: 10
-        - !type:ReduceRotting # starlight
+    Digestion:
+      effects:
+        - !type:CureZombieInfection
+          conditions:
+            - !type:ReagentCondition
+              reagent: Ambuzol
+              min: 10
+        - !type:ReduceRotting # Starlight start
           seconds: 20
         - !type:AdjustReagent
           conditions:
           - !type:MetabolizerTypeCondition
             type: [ Cyclorite ]
           reagent: Ambuzol
-          amount: -0.5
-        # Starlight-End
+          amount: -0.5 # Starlight end
 
 - type: reagent
   id: AmbuzolPlus
@@ -872,19 +878,26 @@
             - !type:ReagentCondition
               reagent: AmbuzolPlus
               min: 5
-        - !type:HealthChange # starlight
-          damage:
-            types:
-             Cellular: -6
-        - !type:ReduceRotting # starlight
-          seconds: 60
-        - !type:AdjustReagent
-          conditions:
-          - !type:MetabolizerTypeCondition
-            type: [ Cyclorite ]
+    Digestion:
+      effects:
+      - !type:CureZombieInfection
+        innoculate: true
+        conditions:
+        - !type:ReagentCondition
           reagent: AmbuzolPlus
-          amount: -0.5
-        # Starlight-End
+          min: 5
+      - !type:HealthChange # Starlight start
+        damage:
+          types:
+           Cellular: -6
+      - !type:ReduceRotting
+        seconds: 60
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: AmbuzolPlus
+        amount: -0.5 # Starlight end
 
 - type: reagent
   id: PulpedBananaPeel
