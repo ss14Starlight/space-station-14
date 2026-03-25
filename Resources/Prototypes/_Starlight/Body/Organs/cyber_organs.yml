@@ -20,7 +20,7 @@
 
 - type: entity
   id: CyberEyeNightVision
-  name: NightVision cyber eyes
+  name: nightvision cyber eyes
   description: Enables you to see in the dark.
   parent: [OrganCyber, BaseOrganEyes]
   components:
@@ -46,7 +46,7 @@
 
 - type: entity
   id: CyberEyeThermal
-  name: ThermalVision cyber eyes
+  name: thermalvision cyber eyes
   description: Enables you to see in the dark and detect warm objects through walls.
   parent: [OrganCyber, BaseOrganEyes]
   components:

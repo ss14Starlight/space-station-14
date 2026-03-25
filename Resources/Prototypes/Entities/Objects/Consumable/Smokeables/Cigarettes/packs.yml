@@ -152,7 +152,7 @@
 - type: entity
   id: CigPackGreen
   parent: CigPackBase
-  name: Spessman's Smokes packet
+  name: spessman's smokes packet #starlight edit
   description: A label on the packaging reads, Wouldn't a slow death make a change?
   components:
   - type: Sprite
@@ -167,7 +167,7 @@
 - type: entity
   id: CigPackRed
   parent: CigPackBase
-  name: DromedaryCo packet
+  name: dromedaryco packet #starlight edit
   description: The most popular brand of Space Cigarettes, sponsors of the Space Olympics.
   components:
   - type: Sprite
@@ -182,7 +182,7 @@
 - type: entity
   id: CigPackBlue
   parent: CigPackBase
-  name: AcmeCo packet
+  name: acmeco packet #starlight edit
   description: For those who somehow want to obtain the record for the most amount of cancerous tumors.
   components:
   - type: Sprite
@@ -197,7 +197,7 @@
 - type: entity
   id: CigPackBlack
   parent: CigPackBase
-  name: Nomads packet
+  name: nomads packet #starlight edit
   description: Nomads's extra strong, for when your life is more extra hard.
   components:
   - type: Sprite
@@ -212,7 +212,7 @@
 - type: entity
   id: CigPackSyndicate  #SL EDIT, Syndie to non-contra
   parent: CigPackBase
-  name: Interdyne herbals packet
+  name: interdyne herbals packet #starlight edit
   description: Medicinal cigarettes infused with medicine for when you need to do more than calm your nerves.  #SL EDIT, desc change for lore
   components:
   - type: Sprite
@@ -228,7 +228,7 @@
 - type: entity
   id: CigPackMixed
   parent: CigPackMixedBase
-  name: Dan's soaked smokes
+  name: dan's soaked smokes #starlight edit
   suffix: Mixed
   description: Dan worked with NT chemistry to dispose of excess chemicals, ENJOY.
   components:
@@ -311,7 +311,7 @@
 - type: entity
   id: CigPackRollie
   parent: PackPaperRolling
-  name: Rollie Packet
+  name: rollie packet
   description: An old rolling paper packet full of things to make rollies with.
   components:
   - type: EntityTableContainerFill
