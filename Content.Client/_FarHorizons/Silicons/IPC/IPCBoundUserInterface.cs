@@ -20,7 +20,8 @@ public sealed partial class IPCBoundUserInterface(EntityUid owner, Enum uiKey) :
             SendMessage(new IPCEjectBrainBuiMessage());
         };
 
-        _menu.EjectBatteryButtonPressed += () =>
+        /* The eject battery button is currently bugged and freezes the individual who uses it. Uncomment this when a fix is applied!
+         _menu.EjectBatteryButtonPressed += () =>
         {
             SendMessage(new IPCEjectBatteryBuiMessage());
         };
@@ -29,6 +30,7 @@ public sealed partial class IPCBoundUserInterface(EntityUid owner, Enum uiKey) :
         {
             SendMessage(new IPCSetNameBuiMessage(name));
         };
+        */
     }
 
     // This is cringe

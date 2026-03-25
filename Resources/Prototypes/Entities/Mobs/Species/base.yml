@@ -232,6 +232,7 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
+    - NotLabelable # Starlight, no more labeling people. 
   - type: ActiveInputMover # Starlight
   # Starlight Start: Social Interactions
   - type: PhysicalSocialInteractionGiver
