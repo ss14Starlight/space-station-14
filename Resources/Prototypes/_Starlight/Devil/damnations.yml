@@ -125,7 +125,7 @@
   id: Magic
   name: gain arcane powers
   description: The signator learns some magical transport spells.
-  cost: 10
+  cost: 16
   components:
     - type: Jaunt
   reverseOnRemove: true
