@@ -8,10 +8,6 @@
   },
   "states": [
     {
-      "name": "blank",
-      "directions": 4
-    },
-    {
       "name": "full"
     },
     {
