@@ -18,7 +18,7 @@
 - type: speciesBaseSprites
   id: MobIPCSprites
   sprites:
-    Head: MobIPCHead
+    Head: MobIPCHeadBlank
     Snout: MobHumanoidAnyMarking
     Chest: MobIPCTorso
     HeadTop: MobHumanoidAnyMarking
@@ -48,6 +48,7 @@
     Head:
       points: 1
       required: false
+      defaultMarkings: [ MarkingStandardHead ]
     HeadSide:
       points: 1
       required: false
@@ -79,6 +80,12 @@
   baseSprite:
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
     state: head_m
+    
+- type: humanoidBaseSprite
+  id: MobIPCHeadBlank
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+    state: blank
 
 - type: humanoidBaseSprite
   id: MobIPCHeadMale

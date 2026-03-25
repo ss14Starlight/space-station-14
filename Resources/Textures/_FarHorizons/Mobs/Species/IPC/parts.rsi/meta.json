@@ -1,12 +1,16 @@
 {
   "version": 2,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Original drawn by @robustyanka on Discord, modified by @pspritechologist",
+  "copyright": "Original drawn by @robustyanka on Discord, modified by @pspritechologist. Blank inserted by BigfootBravo (https://github.com/BigfootBravo)",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
+    {
+      "name": "blank",
+      "directions": 4
+    },
     {
       "name": "full"
     },
