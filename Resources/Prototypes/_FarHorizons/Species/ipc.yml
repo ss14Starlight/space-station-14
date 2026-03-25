@@ -18,7 +18,7 @@
 - type: speciesBaseSprites
   id: MobIPCSprites
   sprites:
-    Head: MobIPCHead
+    Head: MobIPCHeadTest
     Snout: MobHumanoidAnyMarking
     Chest: MobIPCTorso
     HeadTop: MobHumanoidAnyMarking
@@ -38,7 +38,7 @@
   points:
     HeadTop:
       points: 1
-      required: true
+      required: false
     Hair:
       points: 0
       required: false
@@ -51,16 +51,15 @@
       defaultMarkings: [ MarkingBishopHead ]
     HeadSide:
       points: 1
-      required: true
-      defaultMarkings: [ ScreenBsod ]
+      required: false
     Chest:
       points: 1
       required: false
     Legs:
-      points: 1
+      points: 4
       required: false
     Arms:
-      points: 1
+      points: 4
       required: false
 
 - type: humanoidBaseSprite
@@ -75,6 +74,12 @@
 - type: humanoidBaseSprite
   id: MobIPCMarkingMatchSkin
   markingsMatchSkin: true
+
+- type: humanoidBaseSprite
+  id: MobIPCHeadTest
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+    state: ipc_test
 
 - type: humanoidBaseSprite
   id: MobIPCHead

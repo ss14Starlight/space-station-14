@@ -171,7 +171,7 @@ public sealed partial class IPCMenu : FancyWindow
 
         var header = separator;
         var i = 1;
-        while (true)
+        while (i < 7)
         {
             var index = $"ipc-ui-console-header-{i}";
             var line = Loc.GetString(index);

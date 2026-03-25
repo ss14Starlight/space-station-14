@@ -162,6 +162,12 @@ public sealed partial class IPCSystem
 
     public void EjectBattery(Entity<IPCBatteryComponent?> ent, EntityUid user)
     {
+        if (ent.Owner == user)
+        {
+            _popup.PopupEntity(Loc.GetString("ipc-cant-eject-own-battery"), user, user);
+            return;
+        }
+        
         if (!Resolve(ent, ref ent.Comp) ||
             ent.Comp.BatteryContainerSlot.ContainedEntity == null)
             return;
