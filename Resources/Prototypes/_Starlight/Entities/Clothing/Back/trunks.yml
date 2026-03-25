@@ -65,9 +65,69 @@
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 0
-    baseSprintSpeed: 0
+  - type: Instrument
+    allowPercussion: false
+    handheld: false
+    program: 2
+    bank: 100 # Defined in space-station-14.sf2
+  - type: BlockMovement
+  - type: LanguageSpeaker
   - type: TextToSpeech
     voice: karma
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+        requireInputValidation: false
+      # available in pai shop
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+        requireInputValidation: false
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
+        requireInputValidation: false
+      enum.StationMapUiKey.Key:
+        type: StationMapBoundUserInterface
+        requireInputValidation: false
+  - type: Examiner
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter #Starlight pAI comms rework, see PR #3299
+  - type: ActiveRadio
+  - type: ContainerContainer #Starlight pAI comms rework, see PR #3299
+    containers:
+      key_slots: !type:Container
+  - type: EncryptionKeyHolder #Starlight pAI comms rework, see PR #3299
+    keySlots: 1
+  - type: DoAfter
+  - type: Actions
+  - type: ActionGrant
+    actions:
+    - ActionPAIOpenShop
+  - type: Store
+    name: store-preset-name-pai #Starlight name change for data purity
+    categories:
+    - PAIAbilities
+    - Languages #Starlight
+    currencyWhitelist:
+    - SiliconMemory
+    balance:
+      SiliconMemory: 30
+  - type: RadarConsole
+    maxRange: 256
+    followEntity: true
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Pai
+  - type: MobState
+    allowedStates:
+      - Alive
+  - type: StationMap
+  - type: Blindable
+  - type: ParentCanBlockVision
+  - type: ContentEye
+
 # Fashion-O-Mat END
