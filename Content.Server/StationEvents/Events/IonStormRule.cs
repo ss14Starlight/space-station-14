@@ -5,12 +5,15 @@ using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Station.Components;
 using Content.Server._Starlight.Thaven; //Starlight
 using Content.Shared._Starlight.Thaven.Components; //Starlight 
+using Content.Server._FarHorizons.Silicons.Glitching;
+using Content.Shared._FarHorizons.Silicons.Glitching;
 
 namespace Content.Server.StationEvents.Events;
 
 public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
 {
     [Dependency] private readonly IonStormSystem _ionStorm = default!;
+    [Dependency] private readonly GlitchingSystem _glitching = default!; // Far Horizons
     [Dependency] private readonly ThavenMoodsSystem _thavenMood = default!; //Starlight
 
     protected override void Started(EntityUid uid, IonStormRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -35,6 +38,13 @@ public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
 
             _ionStorm.IonStormTarget((ent, lawBound, target));
         }
+
+        // Far Horizons start
+        // this entire thing should be events...
+        var query2 = EntityQueryEnumerator<GlitchOnIonStormComponent>();
+        while (query2.MoveNext(out var ent, out var glitch))
+            _glitching.TriggerIonStorm((ent, glitch));
+        // Far Horizons end
 
         //Starlight begin | Ion storm affects Thaven moods
         var moodsQuery = EntityQueryEnumerator<ThavenMoodsComponent, TransformComponent>();

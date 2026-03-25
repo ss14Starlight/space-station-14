@@ -35816,5 +35816,27 @@ Entries:
   id: 388501
   time: '2026-03-24T21:45:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3885
+- author: Shades, Killer Tamashi (Prototypes/Sprites) & Princess Gurchi (C#/Protoypes)
+  changes:
+  - message: Added IPCs.
+    type: Add
+  - message: Anyone with cybernetics/cyberlimbs are now effected by emp (Eg. If you
+      have cyber eyes you'll go blind for a bit).
+    type: Add
+  - message: Barotrauma no longer does direct temperature damage, and is instead dependent
+      on the temperature of the environment you're in.
+    type: Tweak
+  - message: Borgs will also experience 10 seconds of glitching on EMP.
+    type: Add
+  id: 382201
+  time: '2026-03-24T23:50:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3822
+- author: STARLIGHT TEAM
+  changes:
+  - message: Porting part of the Wizden changes.
+    type: Tweak
+  id: 392201
+  time: '2026-03-25T00:10:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3922
 Order: -1
 

@@ -17,6 +17,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryLimbSlotCondition
     slot: head
   - type: Sprite

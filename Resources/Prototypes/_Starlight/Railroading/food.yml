@@ -13,7 +13,9 @@
       - Abductor
       - Moth
       - Skeleton
+      - Terminator
       - Reptilian
+      - IPC
     - !type:SubjectMindAntagCondition
       blacklist:
       - Brighteye
@@ -33,6 +35,8 @@
       - Abductor
       - Moth
       - Skeleton
+      - Terminator
+      - IPC
     - !type:SubjectMindAntagCondition
       blacklist:
       - Brighteye

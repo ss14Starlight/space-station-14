@@ -277,8 +277,8 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.85 #per second, scales with pressure and other constants.
-        Heat: 0.1
+        Blunt: 0.9 #per second, scales with pressure and other constants.
+# FH - Removal
   - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
     allowedStates:
     - Alive
@@ -333,6 +333,9 @@
   - type: FireVisuals
     alternateState: Standing
   - type: StunVisuals
+  - type: HumanoidEMP # Far Horizons - HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
+    effectCooldown: 2
+  - type: HumanoidEMPComposite # Far Horizons - HumanoidEMPComposite is used to gather EMP effects from HumanoidEMPCompositeElement components on all limbs and organs. These effects added in addition to effects in HumanoidEMP and won't work without it
 
 - type: entity
   save: false

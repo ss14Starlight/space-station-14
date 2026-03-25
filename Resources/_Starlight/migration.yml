@@ -67,4 +67,4 @@ ShuttleGunNTSFCyerxa120mm: ShuttleGunCyerxa120mm
 WeaponRevolverSnubRevolver: null
 
 #2026-03-21
-WeaponRifleLionhunter: WeaponSniperLionhunter
+#WeaponRifleLionhunter: WeaponSniperLionhunter Re-enable when Shooting 3.0 is back
