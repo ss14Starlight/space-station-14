@@ -107,8 +107,8 @@ public sealed partial class IPCSystem
         else
             StopDeathTimer(ent);
         
-        if (slotChangedEv != null && !slotChangedEv.Value.Ejected)
-            _drainer.SetBattery((ent, ent.Comp.BatteryDrainer), ent.Comp.BatteryContainerSlot.ContainedEntity);
+        if (slotChangedEv != null && !slotChangedEv.Value.Ejected && _powerCell.TryGetBatteryFromSlot(ent.Owner, out var battery))
+            _drainer.SetBattery(ent.Owner, battery);
     }
 
     public void StartDeathTimer(Entity<IPCBatteryComponent> ent){
