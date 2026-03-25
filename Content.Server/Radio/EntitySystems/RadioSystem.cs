@@ -86,9 +86,12 @@ public sealed class RadioSystem : EntitySystem
 
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
+        // Starlight - Start
+        if (args.Language.RadioChannel is not null && _language.CanUnderstand(uid, args.Language.ID))
+            return;
+
         if (TryComp(uid, out ActorComponent? actor))
         {
-            // Starlight - Start
             var msg = args.OriginalChatMsg;
 
             if (!_language.CanUnderstand(uid, args.Language.ID))
@@ -188,7 +191,7 @@ public sealed class RadioSystem : EntitySystem
         var sourceServerExempt = _exemptQuery.HasComp(radioSource);
 
         // Starlight - Start - Languages - Radio
-        if (language.RadioChannel is not null)
+        if (language.RadioChannel is not null && channel == language.RadioChannel)
         {
             var languageQuery = EntityQueryEnumerator<LanguageKnowledgeComponent>();
             while (canSend && languageQuery.MoveNext(out var receiver, out var _))
