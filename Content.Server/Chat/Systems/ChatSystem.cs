@@ -51,6 +51,7 @@ using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Systems;
 using Content.Shared.Popups;
 using Content.Shared._Starlight.Radio;
+using Content.Server.Radio.EntitySystems;
 // Starlight End
 
 namespace Content.Server.Chat.Systems;
@@ -80,6 +81,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!; // Starlight
     [Dependency] private readonly LanguageSystem _language = default!; // Starlight
     [Dependency] private readonly SharedPopupSystem _popups = default!; // Starlight
+    [Dependency] private readonly RadioSystem _radioSystem = default!; // Starlight
 
     public const float DefaultObfuscationFactor = 0.2f; // Percentage of symbols in a whispered message that can be seen even by "far" listeners - Starlight
     public readonly Color DefaultSpeakColor = Color.LightGray; // Starlight
@@ -246,21 +248,27 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (string.IsNullOrEmpty(message.Text)) //Starlight
             return;
 
-        // Starlight
+        // Starlight being
         if (language.SpeechOverride.ChatTypeOverride is { } chatTypeOverride)
             desiredType = chatTypeOverride;
+        
 
         // This message may have a radio prefix, and should then be whispered to the resolved radio channel
         if (checkRadioPrefix)
         {
-            //Starlight begin
             if (TryProcessRadioMessage(source, message.Text, out var modMessage, out var channel, out var customChannel))
             {
+                if (language.RadioChannel is not null)
+                    _radioSystem.SendRadioMessage(source, modMessage, language.RadioChannel.Value, source, language);
+
                 SendEntityWhisper(source, modMessage, range, channel, nameOverride, language, hideLog, ignoreActionBlocker, customChannel);
                 return;
             }
-            //Starlight end
         }
+        
+        if (language.RadioChannel is not null)
+            _radioSystem.SendRadioMessage(source, message.Text, language.RadioChannel.Value, source, language);
+        // Starlight end
 
         if (desiredType == InGameICChatType.CollectiveMind)
         {

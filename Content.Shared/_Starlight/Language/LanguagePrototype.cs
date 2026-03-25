@@ -1,4 +1,5 @@
 using Content.Shared.Chat;
+using Content.Shared.Radio;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 
@@ -27,6 +28,12 @@ public sealed partial class LanguagePrototype : IPrototype
     /// </summary>
     [DataField("iconNotUnderstood")]
     public bool IconVisibleIfNotUnderstood = true;
+
+    /// <summary>
+    /// Radio channel to relay the speech.
+    /// </summary>
+    [DataField]
+    public ProtoId<RadioChannelPrototype>? RadioChannel;
 
     /// <summary>
     ///     Obfuscation method used by this language. By default, uses <see cref="ObfuscationMethod.Default"/>.

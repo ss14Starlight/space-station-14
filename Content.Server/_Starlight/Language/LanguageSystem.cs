@@ -1,21 +1,26 @@
 using System.Linq;
-using Content.Shared._Starlight.Language;
+using Content.Server.Radio;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared._Starlight.Language.Events;
 using Content.Shared._Starlight.Language.Systems;
+using Content.Shared.Chat;
+using Content.Shared.Starlight.TextToSpeech;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.Language;
 
 public sealed partial class LanguageSystem : SharedLanguageSystem
 {
+    [Dependency] private readonly INetManager _netMan = default!;
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<LanguageSpeakerComponent, MapInitEvent>(OnInitLanguageSpeaker);
         SubscribeLocalEvent<LanguageSpeakerComponent, ComponentGetState>(OnGetLanguageState);
+        SubscribeLocalEvent<LanguageKnowledgeComponent, RadioReceiveEvent>(OnRadioReceiveEvent);
         SubscribeLocalEvent<UniversalLanguageSpeakerComponent, DetermineEntityLanguagesEvent>(OnDetermineUniversalLanguages);
         SubscribeNetworkEvent<LanguagesSetMessage>(OnClientSetLanguage);
 
@@ -58,6 +63,17 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
             return;
 
         SetLanguage(uid, language.ID);
+    }
+
+    private void OnRadioReceiveEvent(EntityUid uid, LanguageKnowledgeComponent _, ref RadioReceiveEvent args)
+    {
+        if (args.Language.RadioChannel is null || !TryComp<ActorComponent>(uid, out var actor))
+            return;
+
+        _netMan.ServerSendMessage(new MsgChatMessage{ Message = args.OriginalChatMsg }, actor.PlayerSession.Channel);
+
+        if (uid != args.MessageSource)
+            args.Receivers.Add(uid);
     }
 
     #endregion

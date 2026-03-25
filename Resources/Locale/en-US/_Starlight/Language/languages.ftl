@@ -117,3 +117,6 @@ language-Aielic-description = Supposedly the original language of the aielithii,
 
 language-Lagomorphian-name = Laguine
 language-Lagomorphian-description = A very lynarxical tongue, developed as an integration language for the Lagomorph's differing vocal structure.
+
+language-Cosmic-name = Astral Murmur
+language-Cosmic-description = THE CURTAINS MUST FALL

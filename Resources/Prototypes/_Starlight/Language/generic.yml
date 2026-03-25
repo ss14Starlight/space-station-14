@@ -70,3 +70,16 @@
   icon: LanguageIconCodeSpeak
   chatPrefix: cde
   iconNotUnderstood: false
+
+- type: language
+  id: Cosmic
+  chatPrefix: cos
+  iconUnderstood: false
+  iconNotUnderstood: false
+  radioChannel: CosmicRadio
+  speech:
+    color: "#4cabb3"
+    fontId: Cosmic
+    obfuscationFont: true
+  obfuscation:
+    !type:RandomObfuscation
