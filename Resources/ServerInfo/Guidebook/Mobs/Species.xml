@@ -13,6 +13,7 @@
   </Box>
   <Box>
   <GuideEntityEmbed Entity="MobMoth" Caption="Moth Person"/>
+  <GuideEntityEmbed Entity="MobPlasmaman" Caption="Plasmaman"/>
   <GuideEntityEmbed Entity="MobReptilian" Caption="Reptilian"/>
   <GuideEntityEmbed Entity="MobSlimePerson" Caption="Laspi"/>
   <GuideEntityEmbed Entity="MobVox" Caption="Vox"/>

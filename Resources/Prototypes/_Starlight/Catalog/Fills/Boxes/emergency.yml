@@ -55,3 +55,193 @@
         - id: EmergencyMedipen
         - id: FoodBreadNutriBatard #Never 4 get. the day wizden took mime's baugettes ## Hey actually why can't we just. Give them back lol ### yeah let's do that
         - id: DrinkWaterBottleFull
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxSurvivalPlasma
+  name: survival box
+  description: It's a box with basic survival supplies tailored for plasmamen.
+  suffix: Plasma
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyPlasmaTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: PlasmamanSuitRecharger # Starlight-edit: added recharge crystal
+  - type: Sprite
+    sprite: _Starlight/Objects/Storage/plasma_emergencybox.rsi
+    layers:
+    - state: internals
+    - state: plasmatank
+  - type: Item
+    shape:
+      - 0,0,1,3
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,1,3
+  - type: Label
+    currentLabel: reagent-name-plasma
+
+- type: entity
+  parent: BoxSurvivalPlasma
+  id: BoxSurvivalEngineeringPlasma
+  suffix: Plasma, Extended
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyPlasmaTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: PlasmamanSuitRecharger # Starlight-edit: added recharge crystal
+  - type: Sprite
+    sprite: _Starlight/Objects/Storage/plasma_emergencybox.rsi
+    layers:
+    - state: internals
+    - state: plasmatank
+
+- type: entity
+  parent: BoxSurvivalPlasma
+  id: BoxSurvivalSecurityPlasma
+  suffix: Plasma, Security
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSecurity
+        - id: ExtendedEmergencyPlasmaTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: PlasmamanSuitRecharger # Starlight-edit: added recharge crystal
+  - type: Sprite
+    sprite: _Starlight/Objects/Storage/plasma_emergencybox.rsi
+    layers:
+    - state: internals
+    - state: plasmatank
+
+- type: entity
+  parent: BoxSurvivalPlasma
+  id: BoxSurvivalMedicalPlasma
+  suffix: Plasma, Medical
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreathMedical
+        - id: EmergencyPlasmaTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: PlasmamanSuitRecharger # Starlight-edit: added recharge crystal
+  - type: Sprite
+    sprite: _Starlight/Objects/Storage/plasma_emergencybox.rsi
+    layers:
+    - state: internals
+    - state: plasmatank
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxHugPlasma
+  name: box of hugs
+  description: A special survival box for sensitive plasmamen.
+  suffix: Plasma, Emergency
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Storage/plasma_emergencybox.rsi
+    layers:
+    - state: internals
+    - state: plasmatank
+  - type: Item
+    heldPrefix: hug
+    shape:
+      - 0,0,1,3
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,1,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyPlasmaTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+  - type: Tag
+    tags:
+    - BoxCardboard
+    - BoxHug
+  - type: Label
+    currentLabel: reagent-name-plasma
+
+- type: entity
+  parent: BoxSurvivalPlasma
+  id: BoxSurvivalSyndicatePlasma
+  suffix: Plasma, Syndicate
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSyndicate
+        - id: EmergencyPlasmaTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: PlasmamanSuitRecharger # Starlight-edit: added recharge crystal
+  - type: Sprite
+    sprite: _Starlight/Objects/Storage/plasma_emergencybox.rsi
+    layers:
+    - state: internals
+    - state: plasmatank
+
+- type: entity
+  parent: BoxSurvivalPlasma
+  id: BoxMimePlasma
+  suffix: Plasma, Mime
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyPlasmaTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodBreadNutriBatard
+        - id: PlasmamanSuitRecharger # Starlight-edit: added recharge crystal
+
+- type: entity
+  parent: BoxCardboardSmall
+  id: BoxSurvivalMilitaryDoublePlasma
+  name: survival box
+  description: It's a compact survival box with supplies for plasmamen.
+  suffix: Military Plasma
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DoubleEmergencyPlasmaTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+  - type: Sprite
+    sprite: _Starlight/Objects/Storage/plasma_emergencybox.rsi
+    layers:
+    - state: internals
+    - state: plasmatank
+  - type: Label
+    currentLabel: reagent-name-plasma

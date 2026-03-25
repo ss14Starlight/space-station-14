@@ -5,6 +5,7 @@
   children:
   - Elf # Starlight
   - Arachnid
+  - Plasmaman # Starlight-edit: added
   - Avali
   - Cyclorite
   - Diona
@@ -56,6 +57,11 @@
   id: SlimePerson
   name: species-name-slime
   text: "/ServerInfo/Guidebook/Mobs/SlimePerson.xml"
+
+- type: guideEntry
+  id: Plasmaman
+  name: species-name-plasmaman
+  text: "/ServerInfo/Guidebook/Mobs/Plasmaman.xml"
 
 - type: guideEntry
   id: Vox

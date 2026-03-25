@@ -40,6 +40,7 @@ public sealed class UnpoweredFlashlightSystem : EntitySystem
     private void OnMapInit(EntityUid uid, UnpoweredFlashlightComponent component, MapInitEvent args)
     {
         _actionContainer.EnsureAction(uid, ref component.ToggleActionEntity, component.ToggleAction);
+        _appearance.SetData(uid, ToggleableVisuals.Enabled, component.LightOn);
         Dirty(uid, component);
     }
 
@@ -119,6 +120,7 @@ public sealed class UnpoweredFlashlightSystem : EntitySystem
         ent.Comp.LightOn = value;
         _light.SetEnabled(ent, value, light);
         _appearance.SetData(ent, UnpoweredFlashlightVisuals.LightOn, value);
+        _appearance.SetData(ent, ToggleableVisuals.Enabled, value);
 
         if (!quiet)
             _audioSystem.PlayPredicted(ent.Comp.ToggleSound, ent, user);

@@ -6,6 +6,7 @@ using Content.Server.Administration.Systems;
 using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
 using Content.Server.Ghost.Roles;
+using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Preferences.Managers;
@@ -40,6 +41,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly SharedJobSystem _jobs = default!;
         [Dependency] private readonly AdminSystem _admin = default!;
+        [Dependency] private readonly PlayTimeTrackingManager _playTimeTrackingManager = default!;
         [Dependency] private readonly NewLifeSystem _newLifeSystem = default!; //🌟Starlight🌟
         [Dependency] private readonly INullLinkPlayerManager _playerRolesManager = default!; //🌟Starlight🌟
         [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
@@ -52,6 +54,49 @@ namespace Content.Server.GameTicking
         /// Useful for game rules to look at. Doesn't count observers, people in lobby, etc.
         /// </summary>
         public int PlayersJoinedRoundNormally;
+
+        #region Starlight
+        /// <summary>
+        /// Species ID constant for Plasmaman used throughout the spawning logic.
+        /// </summary>
+        private const string PlasmamanSpeciesId = "Plasmaman";
+
+        /// <summary>
+        /// Jobs where a Plasmaman player spawns as a fallback species instead.
+        /// Used for jobs that lack proper Plasmaman envirosuit gear.
+        /// </summary>
+        private static readonly HashSet<ProtoId<JobPrototype>> PlasmamanUnsupportedFallbackJobs =
+        [
+            "Performer",
+        ];
+
+        /// <summary>
+        /// Jobs that are entirely blocked for Plasmaman players.
+        /// These jobs have no gear support and no valid fallback.
+        /// </summary>
+        private static readonly HashSet<ProtoId<JobPrototype>> PlasmamanUnsupportedBlockedJobs =
+        [
+            "Passenger",
+            "Visitor",
+            "Borg",
+            "StationAi",
+            "ERTLeader",
+            "ERTChaplain",
+            "ERTEngineer",
+            "ERTMedical",
+            "ERTSecurity",
+            "ERTJanitor",
+            "DeathSquad",
+            "CBURN",
+            "Decimus",
+            "SolGovOfficer",
+            "SolGovOfficerSheriff",
+            "TSFMCCrew",
+            "TSFMarine",
+            "TSFMarineElite",
+            "NTNCBlueShield",
+        ];
+        #endregion
 
         // Mainly to avoid allocations.
         private readonly List<EntityCoordinates> _possiblePositions = new();
@@ -308,9 +353,30 @@ namespace Content.Server.GameTicking
                     Loc.GetString("game-ticker-player-no-character-for-job-available-when-joining", ("job", jobId)));
                 return;
             }
+            var selectedCharacterSlot = playerPreferences.IndexOfCharacter(character);
+            var selectedJobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
+            var fallbackCharacter = ResolveSpeciesFallbackForUnsupportedPlasmaman(player, character, selectedJobPrototype);
+            if (fallbackCharacter == null)
+            {
+                if (!LobbyEnabled)
+                {
+                    JoinAsObserver(player);
+                }
+
+                _chatManager.DispatchServerMessage(player,
+                    Loc.GetString(
+                        character.Species == PlasmamanSpeciesId && PlasmamanUnsupportedBlockedJobs.Contains(selectedJobPrototype.ID)
+                            ? "game-ticker-player-plasmaman-job-blocked-when-joining"
+                            : "game-ticker-player-no-valid-species-for-job-when-joining",
+                        ("job", selectedJobPrototype.LocalizedName)));
+                return;
+            }
+
+            character = fallbackCharacter;
             //starlight end
             
-            _newLifeSystem.SaveCharacterToUsed(player.UserId, playerPreferences.IndexOfCharacter(character));     //🌟Starlight🌟
+            if (selectedCharacterSlot != -1)
+                _newLifeSystem.SaveCharacterToUsed(player.UserId, selectedCharacterSlot);     //🌟Starlight🌟
 
             DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName);
 
@@ -384,6 +450,72 @@ namespace Content.Server.GameTicking
                 station,
                 character);
             RaiseLocalEvent(mob, aev, true);
+        }
+
+        private HumanoidCharacterProfile? ResolveSpeciesFallbackForUnsupportedPlasmaman(
+            ICommonSession player,
+            HumanoidCharacterProfile character,
+            JobPrototype jobPrototype)
+        {
+            if (character.Species != PlasmamanSpeciesId)
+                return character;
+
+            if (PlasmamanUnsupportedBlockedJobs.Contains(jobPrototype.ID))
+            {
+                Log.Info($"Blocking plasmaman profile for unsupported special job {jobPrototype.ID}.");
+                return null;
+            }
+
+            if (!PlasmamanUnsupportedFallbackJobs.Contains(jobPrototype.ID))
+                return character;
+
+            IReadOnlyDictionary<string, TimeSpan>? playTimes = null;
+            if (_cfg.GetCVar(CCVars.GameRoleTimers))
+                playTimes = _playTimeTrackingManager.GetPlayTimes(player);
+
+            foreach (var speciesId in GetRoundStartFallbackSpeciesIds())
+            {
+                if (speciesId == character.Species)
+                    continue;
+
+                var candidate = CreateFallbackSpeciesProfile(character, speciesId);
+                if (!JobRequirements.TryRequirementsMet(jobPrototype, player, playTimes, out _, EntityManager, _prototypeManager, candidate))
+                    continue;
+
+                Log.Info($"Using species fallback {character.Species} -> {speciesId} for {player.Name} on unsupported plasmaman job {jobPrototype.ID}.");
+                return candidate;
+            }
+
+            Log.Warning($"Unable to find fallback species for unsupported plasmaman job {jobPrototype.ID}; denying spawn.");
+            return null;
+        }
+
+        private IEnumerable<string> GetRoundStartFallbackSpeciesIds()
+        {
+            yield return SharedHumanoidAppearanceSystem.DefaultSpecies;
+
+            foreach (var species in _prototypeManager.EnumeratePrototypes<SpeciesPrototype>())
+            {
+                if (!species.RoundStart || species.ID == SharedHumanoidAppearanceSystem.DefaultSpecies)
+                    continue;
+
+                yield return species.ID;
+            }
+        }
+
+        private HumanoidCharacterProfile CreateFallbackSpeciesProfile(HumanoidCharacterProfile profile, string speciesId)
+        {
+            var species = _prototypeManager.Index<SpeciesPrototype>(speciesId);
+            var sex = species.Sexes.Contains(profile.Sex) ? profile.Sex : species.Sexes[0];
+            var age = Math.Clamp(profile.Age, species.MinAge, species.MaxAge);
+
+            return profile
+                .WithSpecies(speciesId)
+                .WithCharacterAppearance(HumanoidCharacterAppearance.DefaultWithSpecies(speciesId))
+                .WithCustomSpecieName(string.Empty)
+                .WithForcedPrototype(string.Empty)
+                .WithSex(sex)
+                .WithAge(age);
         }
 
         /// <summary>

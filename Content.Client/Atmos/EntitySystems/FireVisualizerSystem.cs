@@ -18,6 +18,7 @@ public sealed class FireVisualizerSystem : VisualizerSystem<FireVisualsComponent
         base.Initialize();
 
         SubscribeLocalEvent<FireVisualsComponent, ComponentInit>(OnComponentInit);
+        SubscribeLocalEvent<FireVisualsComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<FireVisualsComponent, ComponentShutdown>(OnShutdown);
     }
 
@@ -48,6 +49,15 @@ public sealed class FireVisualizerSystem : VisualizerSystem<FireVisualsComponent
         sprite.LayerSetShader(FireVisualLayers.Fire, "unshaded");
         if (component.Sprite != null)
             SpriteSystem.LayerSetRsi((uid, sprite), FireVisualLayers.Fire, new ResPath(component.Sprite));
+
+        if (!Initializing(uid))
+            UpdateAppearance(uid, component, sprite, appearance);
+    }
+
+    private void OnMapInit(EntityUid uid, FireVisualsComponent component, MapInitEvent args)
+    {
+        if (!TryComp<SpriteComponent>(uid, out var sprite) || !TryComp(uid, out AppearanceComponent? appearance))
+            return;
 
         UpdateAppearance(uid, component, sprite, appearance);
     }

@@ -4,6 +4,7 @@ using Content.Shared.Random.Helpers;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Enums;
+using Content.Shared._Starlight.Humanoid;
 
 namespace Content.Shared.Humanoid
 {
@@ -16,6 +17,7 @@ namespace Content.Shared.Humanoid
 
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly RomanNamingSystem _romanNamingSystem = default!;
 
         public string GetName(string species, Gender? gender = null)
         {
@@ -38,6 +40,9 @@ namespace Content.Shared.Humanoid
                 case SpeciesNaming.FirstDashFirst:
                     return Loc.GetString("namepreset-firstdashfirst",
                         ("first1", GetFirstName(speciesProto, gender)), ("first2", GetFirstName(speciesProto, gender)));
+                case SpeciesNaming.FirstRoman:
+                    return Loc.GetString("namepreset-firstlast",
+                        ("first", GetFirstName(speciesProto, gender)), ("last", _romanNamingSystem.GenerateRomanNumeral()));
                 case SpeciesNaming.FirstLast:
                 default:
                     return Loc.GetString("namepreset-firstlast",

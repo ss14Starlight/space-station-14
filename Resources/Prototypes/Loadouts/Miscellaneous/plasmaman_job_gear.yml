@@ -1,0 +1,1031 @@
+# Starlight-start
+- type: loadout
+  id: LoadoutPlasmamanNukeopsGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanSyndicate
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitSyndicate
+    gloves: ClothingHandsGlovesPlasmamanSyndicate
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: GroupNukeopsPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanNukeopsGear
+
+- type: roleLoadout
+  id: NukeopsPlasmamanGear
+  groups:
+  - GroupNukeopsPlasmamanGear
+# Starlight-end
+
+- type: loadout
+  id: LoadoutPlasmamanCaptainGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanCaptain
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitCaptain
+    gloves: ClothingHandsGlovesPlasmamanCaptain
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: CaptainPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanCaptainGear
+
+- type: loadout
+  id: LoadoutPlasmamanHoPGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanHoP
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitHoP
+    gloves: ClothingHandsGlovesPlasmamanHoP
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: HoPPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanHoPGear
+
+- type: loadout
+  id: LoadoutPlasmamanAssistantGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanAssistant
+    jumpsuit: ClothingUniformPlasmamanEnvirosuit
+    gloves: ClothingHandsGlovesPlasmaman
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: AssistantPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanAssistantGear
+
+- type: loadout
+  id: LoadoutPlasmamanBartenderGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanBartender
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitBartender
+    gloves: ClothingHandsGlovesPlasmamanBartender
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: BartenderPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanBartenderGear
+
+- type: loadout
+  id: LoadoutPlasmamanServiceWorkerGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanServiceWorker
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitServiceWorker
+    gloves: ClothingHandsGlovesPlasmamanServiceWorker
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: ServiceWorkerPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanServiceWorkerGear
+
+- type: loadout
+  id: LoadoutPlasmamanChefGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanChef
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitChef
+    gloves: ClothingHandsGlovesPlasmamanChef
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: ChefPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanChefGear
+
+- type: loadout
+  id: LoadoutPlasmamanLibrarianGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanLibrarian
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitLibrarian
+    gloves: ClothingHandsGlovesPlasmaman
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: LibrarianPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanLibrarianGear
+
+- type: loadout
+  id: LoadoutPlasmamanLawyerGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanLawyer
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitLawyer
+    gloves: ClothingHandsGlovesPlasmamanLawyer
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: LawyerPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanLawyerGear
+
+- type: loadout
+  id: LoadoutPlasmamanChaplainGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanChaplain
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitChaplain
+    gloves: ClothingHandsGlovesPlasmamanChaplain
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: ChaplainPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanChaplainGear
+
+- type: loadout
+  id: LoadoutPlasmamanJanitorGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanJanitor
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitJanitor
+    gloves: ClothingHandsGlovesPlasmaman
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: JanitorPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanJanitorGear
+
+- type: loadout
+  id: LoadoutPlasmamanBotanistGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanBotanist
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitBotanist
+    gloves: ClothingHandsGlovesPlasmamanBotanist
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: BotanistPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanBotanistGear
+
+- type: loadout
+  id: LoadoutPlasmamanClownGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanClown
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitClown
+    gloves: ClothingHandsGlovesPlasmamanClown
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: ClownPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanClownGear
+
+- type: loadout
+  id: LoadoutPlasmamanMimeGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanMime
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitMime
+    gloves: ClothingHandsGlovesPlasmamanMime
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: MimePlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanMimeGear
+
+- type: loadout
+  id: LoadoutPlasmamanMusicianGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanMusician
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitMusician
+    gloves: ClothingHandsGlovesPlasmamanMusician
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: MusicianPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanMusicianGear
+
+- type: loadout
+  id: LoadoutPlasmamanQuartermasterGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanQuartermaster
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitQuartermaster
+    gloves: ClothingHandsGlovesPlasmamanCargo
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: QuartermasterPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanQuartermasterGear
+
+- type: loadout
+  id: LoadoutPlasmamanCargoTechnicianGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanCargoTechnician
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitCargoTechnician
+    gloves: ClothingHandsGlovesPlasmamanCargo
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: CargoTechnicianPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanCargoTechnicianGear
+
+- type: loadout
+  id: LoadoutPlasmamanSalvageSpecialistGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanSalvageSpecialist
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitSalvageSpecialist
+    gloves: ClothingHandsGlovesPlasmamanCargo
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: SalvageSpecialistPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanSalvageSpecialistGear
+
+- type: loadout
+  id: LoadoutPlasmamanChiefEngineerGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanChiefEngineer
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitChiefEngineer
+    gloves: ClothingHandsGlovesPlasmamanEngineering
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: ChiefEngineerPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanChiefEngineerGear
+
+- type: loadout
+  id: LoadoutPlasmamanTechnicalAssistantGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanTechnicalAssistant
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitTechnicalAssistant
+    gloves: ClothingHandsGlovesPlasmamanEngineering
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: TechnicalAssistantPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanTechnicalAssistantGear
+
+- type: loadout
+  id: LoadoutPlasmamanStationEngineerGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanStationEngineer
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitStationEngineer
+    gloves: ClothingHandsGlovesPlasmamanEngineering
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: StationEngineerPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanStationEngineerGear
+
+- type: loadout
+  id: LoadoutPlasmamanAtmosphericTechnicianGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanAtmosphericTechnician
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitAtmosphericTechnician
+    gloves: ClothingHandsGlovesPlasmamanEngineering
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: AtmosphericTechnicianPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanAtmosphericTechnicianGear
+
+- type: loadout
+  id: LoadoutPlasmamanResearchDirectorGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanResearchDirector
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitResearchDirector
+    gloves: ClothingHandsGlovesPlasmaman
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: ResearchDirectorPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanResearchDirectorGear
+
+- type: loadout
+  id: LoadoutPlasmamanRoboticistGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanRoboticist
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitRoboticist
+    gloves: ClothingHandsGlovesPlasmamanRoboticist
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: RoboticistPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanRoboticistGear
+
+- type: loadout
+  id: LoadoutPlasmamanScientistGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanScientist
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitScientist
+    gloves: ClothingHandsGlovesPlasmaman
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: ScientistPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanScientistGear
+
+- type: loadout
+  id: LoadoutPlasmamanResearchAssistantGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanResearchAssistant
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitResearchAssistant
+    gloves: ClothingHandsGlovesPlasmaman
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: ResearchAssistantPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanResearchAssistantGear
+
+- type: loadout
+  id: LoadoutPlasmamanHeadOfSecurityGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanHeadOfSecurity
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitHeadOfSecurity
+    gloves: ClothingHandsGlovesPlasmamanHeadOfSecurity
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: HeadOfSecurityPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanHeadOfSecurityGear
+
+- type: loadout
+  id: LoadoutPlasmamanWardenGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanWarden
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitWarden
+    gloves: ClothingHandsGlovesPlasmamanWarden
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: WardenPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanWardenGear
+
+- type: loadout
+  id: LoadoutPlasmamanSecurityOfficerGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanSecurityOfficer
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitSecurityOfficer
+    gloves: ClothingHandsGlovesPlasmamanSecurityOfficer
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: SecurityOfficerPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanSecurityOfficerGear
+
+- type: loadout
+  id: LoadoutPlasmamanDetectiveGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanDetective
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitDetective
+    gloves: ClothingHandsGlovesPlasmamanDetective
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: DetectivePlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanDetectiveGear
+
+- type: loadout
+  id: LoadoutPlasmamanSecurityCadetGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanSecurityCadet
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitSecurityCadet
+    gloves: ClothingHandsGlovesPlasmamanSecurityCadet
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: SecurityCadetPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanSecurityCadetGear
+
+- type: loadout
+  id: LoadoutPlasmamanChiefMedicalOfficerGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanChiefMedicalOfficer
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitChiefMedicalOfficer
+    gloves: ClothingHandsGlovesPlasmamanMedical
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: ChiefMedicalOfficerPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanChiefMedicalOfficerGear
+
+- type: loadout
+  id: LoadoutPlasmamanMedicalDoctorGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanMedicalDoctor
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitMedicalDoctor
+    gloves: ClothingHandsGlovesPlasmamanMedical
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: MedicalDoctorPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanMedicalDoctorGear
+
+- type: loadout
+  id: LoadoutPlasmamanMedicalInternGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanMedicalIntern
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitMedicalIntern
+    gloves: ClothingHandsGlovesPlasmamanMedical
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: MedicalInternPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanMedicalInternGear
+
+- type: loadout
+  id: LoadoutPlasmamanChemistGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanChemist
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitChemist
+    gloves: ClothingHandsGlovesPlasmamanMedical
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: ChemistPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanChemistGear
+
+- type: loadout
+  id: LoadoutPlasmamanParamedicGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanParamedic
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitParamedic
+    gloves: ClothingHandsGlovesPlasmamanMedical
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: ParamedicPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanParamedicGear
+
+- type: loadout
+  id: LoadoutPlasmamanReporterGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanReporter
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitReporter
+    gloves: ClothingHandsGlovesPlasmamanReporter
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: ReporterPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanReporterGear
+
+- type: loadout
+  id: LoadoutPlasmamanPsychologistGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanPsychologist
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitPsychologist
+    gloves: ClothingHandsGlovesPlasmamanPsychologist
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: PsychologistPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanPsychologistGear
+
+- type: loadout
+  id: LoadoutPlasmamanBoxerGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanBoxing
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitBoxing
+    gloves: ClothingHandsGlovesPlasmamanBoxer
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: BoxerPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanBoxerGear
+
+
+
+
+# Starlight-start
+- type: loadout
+  id: LoadoutPlasmamanIAAGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanIAA
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitIAA
+    gloves: ClothingHandsGlovesPlasmamanIAA
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: IAAPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanIAAGear
+
+- type: loadout
+  id: LoadoutPlasmamanMagistrateGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanMagistrate
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitMagistrate
+    gloves: ClothingHandsGlovesPlasmamanMagistrate
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: MagistratePlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanMagistrateGear
+
+- type: loadout
+  id: LoadoutPlasmamanNTRGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanNTR
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitNTR
+    gloves: ClothingHandsGlovesPlasmamanNTR
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: NanoTrasenRepresentativePlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanNTRGear
+
+- type: loadout
+  id: LoadoutPlasmamanNanotrasenCareerTrainerGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanNanotrasenCareerTrainer
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitNanotrasenCareerTrainer
+    gloves: ClothingHandsGlovesPlasmamanNanotrasenCareerTrainer
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: NanotrasenCareerTrainerPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanNanotrasenCareerTrainerGear
+
+- type: loadout
+  id: LoadoutPlasmamanBlueShieldGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanBlueShield
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitBlueShield
+    gloves: ClothingHandsGlovesPlasmamanBlueShield
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: BlueShieldPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanBlueShieldGear
+
+- type: loadout
+  id: LoadoutPlasmamanZookeeperGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanZookeeper
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitZookeeper
+    gloves: ClothingHandsGlovesPlasmamanZookeeper
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: ZookeeperPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanZookeeperGear
+
+- type: loadout
+  id: LoadoutPlasmamanCentralCommandOperatorGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanCentralCommandOperator
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitCentralCommandOperator
+    gloves: ClothingHandsGlovesPlasmamanCentCom
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: CentralCommandOperatorPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanCentralCommandOperatorGear
+
+- type: loadout
+  id: LoadoutPlasmamanCentralCommandOfficialGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanCentralCommandOfficial
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitCentralCommandOfficial
+    gloves: ClothingHandsGlovesPlasmamanCentCom
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: CentralCommandOfficialPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanCentralCommandOfficialGear
+
+- type: loadout
+  id: LoadoutPlasmamanNanoTrasenSpecialForcesGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanNanoTrasenSpecialForces
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitNanoTrasenSpecialForces
+    gloves: ClothingHandsGlovesPlasmamanCentCom
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: NanoTrasenSpecialForcesPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanNanoTrasenSpecialForcesGear
+
+- type: loadout
+  id: LoadoutPlasmamanMailTechGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanMailTech
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitMailTech
+    gloves: ClothingHandsGlovesPlasmamanCargo
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: MailTechPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanMailTechGear
+
+- type: loadout
+  id: LoadoutPlasmamanMiningSpecialistGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanMiningSpecialist
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitMiningSpecialist
+    gloves: ClothingHandsGlovesPlasmamanCargo
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: MiningSpecialistPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanMiningSpecialistGear
+
+- type: loadout
+  id: LoadoutPlasmamanSalvageLeadGear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    head: ClothingHeadHelmetPlasmamanSalvageLead
+    jumpsuit: ClothingUniformPlasmamanEnvirosuitSalvageLead
+    gloves: ClothingHandsGlovesPlasmamanCargo
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadoutGroup
+  id: SalvageLeadPlasmamanGear
+  name: loadout-group-breath-tool
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - LoadoutPlasmamanSalvageLeadGear
+# Starlight-end

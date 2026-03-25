@@ -163,6 +163,7 @@
     #Species that do not work with nukies should be included in this list.
     #Once the issues are fixed the species should be removed from this list to be enabled.
     #Balance concerns are not a valid reason to disable a species, except for high-impact Nukie-specific exploits.
+    #- Plasmaman # Starlight-edit: plasmaman nukeops gear added
     #- Vox
 
 - type: entity
@@ -193,6 +194,7 @@
       startingGear: SyndicateCommanderGearFull
       roleLoadout:
       - RoleSurvivalNukie
+      - NukeopsPlasmamanGear # Starlight-edit: plasmaman gear
       components:
       - type: NukeOperative
       - type: RandomMetadata
@@ -214,6 +216,7 @@
       startingGear: SyndicateOperativeMedicFull
       roleLoadout:
       - RoleSurvivalNukie
+      - NukeopsPlasmamanGear # Starlight-edit: plasmaman gear
       components:
       - type: NukeOperative
       - type: RandomMetadata
@@ -237,6 +240,7 @@
       startingGear: SyndicateOperativeGearFull
       roleLoadout:
       - RoleSurvivalNukie
+      - NukeopsPlasmamanGear # Starlight-edit: plasmaman gear
       components:
       - type: NukeOperative
       - type: RandomMetadata
@@ -422,6 +426,8 @@
   - type: AntagSelection
   - type: AntagLoadProfileRule
     speciesOverride: Human
+    speciesOverrideBlacklist:
+    - Plasmaman
 
 - type: entity
   parent: BaseWizardRule

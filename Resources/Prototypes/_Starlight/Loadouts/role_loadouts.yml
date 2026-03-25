@@ -14,6 +14,7 @@
   - Pins
   - Pens
   - GroupSpeciesBreathTool
+  - RoboticistPlasmamanGear
 
 - type: roleLoadout
   id: JobMagistrate
@@ -31,6 +32,7 @@
   - Pins
   - LuxuryPens
   - GroupSpeciesBreathTool
+  - MagistratePlasmamanGear # Starlight-edit
 
 
 - type: roleLoadout
@@ -52,6 +54,7 @@
   - Pins
   - Pens
   - GroupSpeciesBreathToolMedical
+  - MedicalDoctorPlasmamanGear
 
 - type: roleLoadout
   id: JobNanoTrasenRepresentative
@@ -67,6 +70,7 @@
   - NTRPens
   - Survival
   - GroupSpeciesBreathTool
+  - NanoTrasenRepresentativePlasmamanGear # Starlight-edit
 
 - type: roleLoadout
   id: JobIAA
@@ -81,6 +85,7 @@
   - LuxuryPens
   - Survival
   - GroupSpeciesBreathTool
+  - IAAPlasmamanGear # Starlight-edit
 
 - type: roleLoadout
   id: JobBlueShield
@@ -101,11 +106,13 @@
   - Pens
   - SurvivalSecurity
   - GroupSpeciesBreathToolSecurity
+  - BlueShieldPlasmamanGear # Starlight-edit
 
 - type: roleLoadout
   id: JobMiningSpecialist
   groups:
   - GroupTankHarness
+  - MiningSpecialistPlasmamanGear # Starlight-edit
   - SalvageSpecialistBackpack
   - MiningSpecialistJumpsuit
   - SalvageSpecialistOuterClothing
@@ -118,11 +125,13 @@
   - Pins
   - Pens
   - GroupSpeciesBreathTool
+  - SalvageSpecialistPlasmamanGear
 
 - type: roleLoadout
   id: JobMailTech
   groups:
   - GroupTankHarness
+  - MailTechPlasmamanGear # Starlight-edit
   - MailTechnicianHead
   - MailTechnicianJumpsuit
   - MailTechnicianBackpack
@@ -138,6 +147,7 @@
   - Pins
   - Pens
   - GroupSpeciesBreathTool
+  - CargoTechnicianPlasmamanGear
 
 - type: roleLoadout
   id: JobBrigmedic
@@ -163,6 +173,7 @@
   - Pens
   - SecurityJobTrinkets
   - GroupSpeciesBreathToolSecurity
+  - SecurityOfficerPlasmamanGear
 
 - type: roleLoadout
   id: JobDutyOfficer
@@ -184,11 +195,13 @@
   - Pens
   - SecurityJobTrinkets
   - GroupSpeciesBreathToolSecurity
+  - SecurityOfficerPlasmamanGear
 
 - type: roleLoadout
   id: JobSalvageLead
   groups:
     - GroupTankHarness
+    - SalvageLeadPlasmamanGear # Starlight-edit
     - SalvageSpecialistBackpack
     - SalvageLeadJumpsuit
     - SalvageLeadNeck
@@ -202,6 +215,7 @@
     - Pins
     - Pens
     - GroupSpeciesBreathTool
+    - SalvageSpecialistPlasmamanGear
 
 - type: roleLoadout
   id: JobPerformer
@@ -234,6 +248,7 @@
   - Pens
   - ZookeeperJobTrinkets
   - GroupSpeciesBreathTool
+  - ZookeeperPlasmamanGear # Starlight-edit
 
 - type: roleLoadout
   id: JobBoxer
@@ -249,6 +264,7 @@
   - Pens
   - BoxerJobTrinkets
   - GroupSpeciesBreathTool
+  - BoxerPlasmamanGear
 
 # Antagonist Loadouts
 - type: roleLoadout
@@ -284,3 +300,21 @@
   - Trinkets
   - Survival
   - GroupSpeciesBreathTool
+  - NanotrasenCareerTrainerPlasmamanGear # Starlight-edit
+
+# Starlight-start
+- type: roleLoadout
+  id: JobCentralCommandOperator
+  groups:
+  - CentralCommandOperatorPlasmamanGear
+
+- type: roleLoadout
+  id: JobCentralCommandOfficial
+  groups:
+  - CentralCommandOfficialPlasmamanGear
+
+- type: roleLoadout
+  id: JobNanoTrasenSpecialForces
+  groups:
+  - NanoTrasenSpecialForcesPlasmamanGear
+# Starlight-end

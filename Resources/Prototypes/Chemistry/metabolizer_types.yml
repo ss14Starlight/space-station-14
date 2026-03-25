@@ -38,6 +38,10 @@
   name: metabolizer-type-vox
 
 - type: metabolizerType
+  id: Plasmaman
+  name: metabolizer-type-plasmaman
+
+- type: metabolizerType
   id: Rat
   name: metabolizer-type-rat
 

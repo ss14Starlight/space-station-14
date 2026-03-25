@@ -1,0 +1,40 @@
+- type: entity
+  parent: [ClothingUniformBase, AllowSuitStorageClothingGasTanks]
+  id: ClothingUniformPlasmamanEnvirosuit
+  name: plasmaman envirosuit
+  description: A sealed envirosuit designed to keep plasmamen alive in standard station atmospheres.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/plain.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/plain.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/plain.rsi
+  - type: HideLayerClothing
+    slots:
+    - LFoot
+    - RFoot
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.8
+  - type: SelfExtinguisher
+    cooldown: 10
+    sound:
+      path: /Audio/Effects/extinguish.ogg
+  - type: LimitedCharges
+    maxCharges: 4
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - PlasmamanSafe

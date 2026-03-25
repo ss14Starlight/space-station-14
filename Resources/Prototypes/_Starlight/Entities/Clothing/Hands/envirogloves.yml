@@ -1,0 +1,782 @@
+- type: entity
+  parent: ClothingHandsGlovesColorPurple
+  id: ClothingHandsGlovesPlasmaman
+  name: plasmaman envirosuit gloves
+  description: Protective gloves intended for use with a plasmaman envirosuit.
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - PlasmamanSafe
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanCaptain
+  name: captain's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/captain.rsi
+    layers:
+    - state: icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffffff"
+      right:
+      - state: inhand-right
+        color: "#ffffff"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/captain.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#ffffff"
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanHoP
+  name: head of personnel's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#0089EF"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#0089EF"
+      right:
+      - state: inhand-right
+        color: "#0089EF"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#0089EF"
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanChef
+  name: chef's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Gloves/chef.rsi
+    layers:
+    - state: icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffffff"
+      right:
+      - state: inhand-right
+        color: "#ffffff"
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Gloves/chef.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#ffffff"
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanMusician
+  name: musician's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Gloves/musician.rsi
+    layers:
+    - state: icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffffff"
+      right:
+      - state: inhand-right
+        color: "#ffffff"
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Gloves/musician.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#ffffff"
+
+# Starlight-start
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanHeadOfSecurity
+  name: head of security's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#292929"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#292929"
+      right:
+      - state: inhand-right
+        color: "#292929"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#292929"
+  - type: Insulated
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanWarden
+  name: warden's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#292929"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#292929"
+      right:
+      - state: inhand-right
+        color: "#292929"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#292929"
+  - type: Insulated
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanSecurityOfficer
+  name: security officer's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#292929"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#292929"
+      right:
+      - state: inhand-right
+        color: "#292929"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#292929"
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanSecurityCadet
+  name: security cadet's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#292929"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#292929"
+      right:
+      - state: inhand-right
+        color: "#292929"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#292929"
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanLawyer
+  name: lawyer's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#292929"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#292929"
+      right:
+      - state: inhand-right
+        color: "#292929"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#292929"
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanSyndicate
+  name: syndicate plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#323232"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#323232"
+      right:
+      - state: inhand-right
+        color: "#323232"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#323232"
+  - type: Insulated
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanDetective
+  name: detective's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/forensic.rsi
+    layers:
+    - state: icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffffff"
+      right:
+      - state: inhand-right
+        color: "#ffffff"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/forensic.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#ffffff"
+  - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanBartender
+  name: bartender's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#ffffff"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffffff"
+      right:
+      - state: inhand-right
+        color: "#ffffff"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#ffffff"
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanReporter
+  name: reporter's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#79121b"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#79121b"
+      right:
+      - state: inhand-right
+        color: "#79121b"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#79121b"
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanPsychologist
+  name: psychologist's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#ffffff"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffffff"
+      right:
+      - state: inhand-right
+        color: "#ffffff"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#ffffff"
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanIAA
+  name: IAA plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#292929"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#292929"
+      right:
+      - state: inhand-right
+        color: "#292929"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#292929"
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanMagistrate
+  name: magistrate's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#ebebeb"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ebebeb"
+      right:
+      - state: inhand-right
+        color: "#ebebeb"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#ebebeb"
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanNTR
+  name: NanoTrasen representative's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#292929"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#292929"
+      right:
+      - state: inhand-right
+        color: "#292929"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#292929"
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmamanNTR
+  id: ClothingHandsGlovesPlasmamanNanotrasenCareerTrainer
+  name: NanoTrasen career trainer's plasmaman envirosuit gloves
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanBlueShield
+  name: blueshield's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#0044d4"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#0044d4"
+      right:
+      - state: inhand-right
+        color: "#0044d4"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#0044d4"
+  - type: Insulated
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanZookeeper
+  name: zookeeper's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#d3b986"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#d3b986"
+      right:
+      - state: inhand-right
+        color: "#d3b986"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#d3b986"
+
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanCentCom
+  name: centcom plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#f2b050"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#f2b050"
+      right:
+      - state: inhand-right
+        color: "#f2b050"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#f2b050"
+  - type: Insulated
+
+# Engineering - #c2a000 + insulated
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanEngineering
+  name: engineer's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#c2a000"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#c2a000"
+      right:
+      - state: inhand-right
+        color: "#c2a000"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#c2a000"
+  - type: Insulated
+
+# Roboticist - #232323
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanRoboticist
+  name: roboticist's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#232323"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#232323"
+      right:
+      - state: inhand-right
+        color: "#232323"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#232323"
+
+# Medical - #a5a5a5
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanMedical
+  name: medical staff's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#a5a5a5"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#a5a5a5"
+      right:
+      - state: inhand-right
+        color: "#a5a5a5"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#a5a5a5"
+
+# Cargo - #6a6a6a
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanCargo
+  name: cargo staff's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#6a6a6a"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#6a6a6a"
+      right:
+      - state: inhand-right
+        color: "#6a6a6a"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#6a6a6a"
+
+# ServiceWorker - #ffffff
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanServiceWorker
+  name: service worker's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#ffffff"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffffff"
+      right:
+      - state: inhand-right
+        color: "#ffffff"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#ffffff"
+
+# Botanist - #467a16
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanBotanist
+  name: botanist's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#467a16"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#467a16"
+      right:
+      - state: inhand-right
+        color: "#467a16"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#467a16"
+
+# Clown - #acac04
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanClown
+  name: clown's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#acac04"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#acac04"
+      right:
+      - state: inhand-right
+        color: "#acac04"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#acac04"
+
+# Mime - #ffffff
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanMime
+  name: mime's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#ffffff"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffffff"
+      right:
+      - state: inhand-right
+        color: "#ffffff"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#ffffff"
+
+# Boxer - #a81818
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanBoxer
+  name: boxer's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#a81818"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#a81818"
+      right:
+      - state: inhand-right
+        color: "#a81818"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#a81818"
+
+# Chaplain - #232323
+- type: entity
+  parent: ClothingHandsGlovesPlasmaman
+  id: ClothingHandsGlovesPlasmamanChaplain
+  name: chaplain's plasmaman envirosuit gloves
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#232323"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#232323"
+      right:
+      - state: inhand-right
+        color: "#232323"
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#232323"
+# Starlight-end

@@ -21,7 +21,7 @@
       - !type:ModifyLungGas
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Vox ]
+          type: [ Vox, Plasmaman ]
           inverted: true
         ratios:
           CarbonDioxide: 1.0
@@ -34,12 +34,20 @@
         damage:
           types:
             Poison: 1.5
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plasmaman ]
+        ignoreResistances: true
+        damage:
+          types:
+            Poison: 1.5
       - !type:AdjustAlert
         alertType: Toxins
         minScale: 1
         conditions:
           - !type:MetabolizerTypeCondition
-            type: [ Vox ]
+            type: [ Vox, Plasmaman ]
         clear: true
         time: 5
     Gas:
@@ -52,7 +60,7 @@
       - !type:ModifyLungGas
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Vox ]
+          type: [ Vox, Plasmaman ]
           inverted: true
         ratios:
           CarbonDioxide: 1.0
@@ -66,12 +74,21 @@
         damage:
           types:
             Poison: 0.7
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plasmaman ]
+        ignoreResistances: true
+        scaling: true
+        damage:
+          types:
+            Asphyxiation: 7
       - !type:AdjustAlert
         alertType: Toxins
         minScale: 0.5
         conditions:
           - !type:MetabolizerTypeCondition
-            type: [ Vox ]
+            type: [ Vox, Plasmaman ]
         clear: true
         time: 5
 
@@ -92,23 +109,51 @@
     Poison:
       effects:
       - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plasmaman ]
+          inverted: true
         damage:
           types:
             Poison: 1.5
       - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plasmaman ]
+          inverted: true
         reagent: Inaprovaline
         amount: -2.0
     Gas:
       effects:
       - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plasmaman ]
+          inverted: true
         ignoreResistances: true
         damage:
           types:
             Poison:
               0.1
+      - !type:Oxygenate
+        factor: 4
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plasmaman ]
+      - !type:ModifyLungGas
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plasmaman ]
+        ratios:
+          Nitrogen: 1.0
+          Plasma: -1.0
       # We need a metabolism effect on reagent removal
       - !type:AdjustAlert
         alertType: Toxins
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plasmaman ]
+          inverted: true
         minScale: 1.5
         clear: True
         time: 5

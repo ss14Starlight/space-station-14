@@ -3,10 +3,12 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Fluids.Components;
+using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Storage;
+using Content.Shared.Tag;
 using Content.Shared.Weapons.Ranged.Systems;
 
 namespace Content.Shared.Nutrition.EntitySystems;
@@ -14,6 +16,7 @@ namespace Content.Shared.Nutrition.EntitySystems;
 public sealed partial class IngestionSystem
 {
     [Dependency] private readonly OpenableSystem _openable = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     public void InitializeBlockers()
     {
@@ -61,6 +64,13 @@ public sealed partial class IngestionSystem
     {
         if (args.Args.Cancelled || !entity.Comp.Enabled)
             return;
+
+        if (TryComp<HumanoidAppearanceComponent>(args.Owner, out var humanoid) &&
+            humanoid.Species == "Plasmaman" &&
+            _tag.HasTag(entity.Owner, "PlasmamanSafe"))
+        {
+            return;
+        }
 
         args.Args.Cancelled = true;
         args.Args.Blocker = entity;

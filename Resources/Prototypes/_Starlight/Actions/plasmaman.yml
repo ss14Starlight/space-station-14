@@ -1,0 +1,29 @@
+- type: entity
+  id: ActionSelfExtinguish
+  name: Self-Extinguish
+  description: Fires the envirosuit's extinguisher while you are on fire.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+    icon:
+      sprite: Objects/Misc/fire_extinguisher.rsi
+      state: fire_extinguisher_open
+  - type: InstantAction
+    event: !type:SelfExtinguishEvent
+
+- type: entity
+  id: ActionTogglePlasmamanHelmetLight
+  parent: BaseToggleAction
+  name: Toggle Helmet Light
+  description: Toggles the envirosuit helmet lamp.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+    icon:
+      sprite: Objects/Tools/flashlight.rsi
+      state: flashlight
+    iconOn:
+      sprite: Objects/Tools/flashlight.rsi
+      state: flashlight-on

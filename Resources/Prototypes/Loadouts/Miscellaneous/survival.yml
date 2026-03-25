@@ -295,3 +295,110 @@
     proto: EffectSpeciesVox
   equipment:
     mask: ClothingMaskGasSecurity
+
+- type: loadoutEffectGroup
+  id: PlasmaBreather
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Plasmaman
+
+- type: loadout
+  id: EmergencyPlasma
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  storage:
+    back:
+    - BoxSurvivalPlasma
+
+- type: loadout
+  id: EmergencyPlasmaClown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  storage:
+    back:
+    - BoxHugPlasma
+
+- type: loadout
+  id: EmergencyPlasmaMime
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  storage:
+    back:
+    - BoxMimePlasma
+
+- type: loadout
+  id: EmergencyPlasmaExtended
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  storage:
+    back:
+    - BoxSurvivalEngineeringPlasma
+
+- type: loadout
+  id: EmergencyPlasmaMedical
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  storage:
+    back:
+    - BoxSurvivalMedicalPlasma
+
+- type: loadout
+  id: EmergencyPlasmaSecurity
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  storage:
+    back:
+    - BoxSurvivalSecurityPlasma
+
+- type: loadout
+  id: EmergencyPlasmaSyndicate
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    jumpsuit: ClothingUniformPlasmamanEnvirosuit
+    gloves: ClothingHandsGlovesPlasmaman
+    head: ClothingHeadHelmetPlasmaman
+    suitstorage: PlasmamanPlasmaTankFilled
+  storage:
+    back:
+    - BoxSurvivalSyndicatePlasma
+
+- type: loadout
+  id: EmergencyPlasmaMilitaryDouble
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    jumpsuit: ClothingUniformPlasmamanEnvirosuit
+    gloves: ClothingHandsGlovesPlasmaman
+    head: ClothingHeadHelmetPlasmaman
+    suitstorage: PlasmamanPlasmaTankFilled
+    pocket1: DoubleExtendedEmergencyPlasmaTankFilled
+  storage:
+    back:
+    - BoxSurvivalMilitaryDoublePlasma
+
+- type: loadout
+  id: LoadoutSpeciesEVAPlasma
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    suitstorage: PlasmamanPlasmaTankFilled
+
+- type: loadout
+  id: LoadoutSpeciesPocketDoublePlasma
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PlasmaBreather
+  equipment:
+    pocket1: DoubleExtendedEmergencyPlasmaTankFilled
+

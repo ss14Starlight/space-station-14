@@ -1,0 +1,65 @@
+- type: entity
+  id: PlasmamanPlasmaTankFilled
+  parent: PlasmamanPlasmaTank
+  name: plasma tank
+  suffix: Plasmaman, Filled
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 5
+      moles:
+        Plasma: 2.051379050
+      temperature: 293.15
+
+- type: entity
+  id: EmergencyPlasmaTankFilled
+  parent: EmergencyPlasmaTank
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 0.66
+      moles:
+        Plasma: 0.270782035
+      temperature: 293.15
+
+- type: entity
+  id: DoubleEmergencyPlasmaTankFilled
+  parent: DoubleEmergencyPlasmaTank
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 2.5
+      moles:
+        Plasma: 1.025689525
+      temperature: 293.15
+
+- type: entity
+  id: ExtendedEmergencyPlasmaTankFilled
+  parent: ExtendedEmergencyPlasmaTank
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 1.5
+      moles:
+        Plasma: 0.615413715
+      temperature: 293.15
+
+- type: entity
+  id: DoubleExtendedEmergencyPlasmaTankFilled
+  parent: DoubleExtendedEmergencyPlasmaTank
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 3
+      moles:
+        Plasma: 1.230827430
+      temperature: 293.15

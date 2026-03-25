@@ -8,6 +8,7 @@ species-name-diona = Diona
 species-name-arachnid = Arachnid
 species-name-moth = Moth Person
 species-name-skeleton = Skeleton
+species-name-plasmaman = Plasmaman
 species-name-vox = Vox
 species-name-gingerbread = delicious baked good
 species-name-vulpkanin = Vulpkanin

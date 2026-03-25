@@ -1,0 +1,23 @@
+- type: emoteSounds
+  id: UnisexPlasmaman
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/_Starlight/Voice/Plasmaman/plasmaman_scream_1.ogg
+    Laugh:
+      path: /Audio/_Starlight/Voice/Plasmaman/plasmaman_scream_2.ogg
+    Cough:
+      path: /Audio/_Starlight/Voice/Plasmaman/plasmaman_scream_3.ogg
+    Honk:
+      collection: BikeHorn
+    Crying:
+      path: /Audio/_Starlight/Voice/Plasmaman/plasmaman_scream_2.ogg
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: DeathGasp
+    DefaultDeathgasp:
+      collection: DeathGasp

@@ -147,6 +147,7 @@
   minLimit: 3
   hidden: true
   loadouts:
+  - EmergencyPlasma
   - EmergencyNitrogen
   - EmergencyOxygen
   - EmergencyElfOxygen # Starlight
@@ -159,6 +160,7 @@
   name: loadout-group-EVA-tank
   hidden: true
   loadouts:
+  - LoadoutSpeciesEVAPlasma
   - LoadoutSpeciesEVANitrogen
   - LoadoutSpeciesEVAOxygen
 
@@ -175,6 +177,7 @@
   name: loadout-group-pocket-tank-double
   hidden: true
   loadouts:
+  - LoadoutSpeciesPocketDoublePlasma
   - LoadoutSpeciesPocketDoubleNitrogen
   - LoadoutSpeciesPocketDoubleOxygen
 
@@ -758,6 +761,7 @@
   minLimit: 2
   hidden: true
   loadouts:
+  - EmergencyPlasmaClown
   - EmergencyNitrogenClown
   - EmergencyOxygenClown
   - EmergencyElfOxygenClown # Starlight
@@ -826,6 +830,7 @@
   minLimit: 2
   hidden: true
   loadouts:
+  - EmergencyPlasmaMime
   - EmergencyNitrogenMime
   - EmergencyOxygenMime
   - EmergencyElfOxygenMime # Starlight
@@ -1245,6 +1250,7 @@
   minLimit: 2
   hidden: true
   loadouts:
+  - EmergencyPlasmaExtended
   - EmergencyNitrogenExtended
   - EmergencyOxygenExtended
   - EmergencyElfOxygenExtended # Starlight
@@ -1716,6 +1722,7 @@
   minLimit: 2
   hidden: true
   loadouts:
+  - EmergencyPlasmaSecurity
   - EmergencyNitrogenSecurity
   - EmergencyOxygenSecurity
   - EmergencyElfOxygenSecurity # Starlight
@@ -1988,6 +1995,7 @@
   minLimit: 2
   hidden: true
   loadouts:
+  - EmergencyPlasmaMedical
   - EmergencyNitrogenMedical
   - EmergencyOxygenMedical
   - EmergencyElfOxygenMedical # Starlight
@@ -2035,6 +2043,7 @@
   minLimit: 2
   hidden: true
   loadouts:
+  - EmergencyPlasmaSyndicate
   - EmergencyNitrogenSyndicate
   - EmergencyOxygenSyndicate
   - EmergencyElfOxygenSyndicate # Starlight
@@ -2047,6 +2056,7 @@
   minLimit: 2
   hidden: true
   loadouts:
+  - EmergencyPlasmaMilitaryDouble
   - EmergencyNitrogenMilitaryDouble
   - EmergencyOxygenMilitaryDouble
   - EmergencyElfOxygenMilitaryDouble # Starlight

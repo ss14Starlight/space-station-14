@@ -1,0 +1,111 @@
+# Starlight-start
+- type: entity
+  id: PlasmamanSuitRecharger
+  name: plasmaman suit recharge crystal
+  description: A small plasma crystal that restores the self-extinguisher charges on a plasmaman envirosuit. Click on the suit to use it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/plasmaman_recharger.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+    shape:
+    - 0,0,0,1
+  - type: PlasmamanSuitRecharger
+# Starlight-end
+
+- type: entity
+  parent: PlasmaTank
+  id: PlasmamanPlasmaTank
+  name: plasma tank
+  description: Contains dangerous plasma. Do not inhale. Extremely flammable. It can hold 5 L of gas.
+  components:
+  - type: Sprite
+    sprite: Objects/Tanks/plasmaman.rsi
+  - type: Item
+    sprite: Objects/Tanks/plasmaman.rsi
+  - type: Clothing
+    sprite: Objects/Tanks/plasmaman.rsi
+
+- type: entity
+  parent: PlasmaTank
+  id: EmergencyPlasmaTank
+  name: emergency plasma tank
+  description: An emergency plasma supply for a plasmaman. Small, dangerous, and better than suffocating.
+  components:
+  - type: Sprite
+    sprite: Objects/Tanks/emergency_orange.rsi
+  - type: Item
+    sprite: Objects/Tanks/emergency_orange.rsi
+    size: Tiny
+    storedSprite:
+      state: storage
+      sprite: Objects/Tanks/emergency_orange.rsi
+  - type: GasTank
+    air:
+      volume: 0.66
+      temperature: 293.15
+  - type: Clothing
+    sprite: Objects/Tanks/emergency_orange.rsi
+    slots:
+    - Pocket
+    - Belt
+    - suitStorage
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+
+- type: entity
+  parent: EmergencyPlasmaTank
+  id: ExtendedEmergencyPlasmaTank
+  name: extended-capacity emergency plasma tank
+  description: An emergency plasma tank with extended capacity. Technically rated for prolonged plasmaman use.
+  components:
+  - type: Sprite
+    sprite: Objects/Tanks/emergency_extended_orange.rsi
+  - type: Item
+    sprite: Objects/Tanks/emergency_extended_orange.rsi
+    storedSprite:
+      state: storage
+      sprite: Objects/Tanks/emergency_extended_orange.rsi
+  - type: GasTank
+    air:
+      volume: 1.5
+      temperature: 293.15
+  - type: Clothing
+    sprite: Objects/Tanks/emergency_extended_orange.rsi
+
+- type: entity
+  parent: PlasmaTank
+  id: DoubleEmergencyPlasmaTank
+  name: double emergency plasma tank
+  description: A compact dual plasma tank for plasmaman emergency use.
+  components:
+  - type: Sprite
+    sprite: Objects/Tanks/emergency_double_orange.rsi
+  - type: Item
+    sprite: Objects/Tanks/emergency_double_orange.rsi
+    size: Small
+    shape:
+    - 0,0,0,1
+    storedSprite:
+      state: storage
+      sprite: Objects/Tanks/emergency_double_orange.rsi
+  - type: GasTank
+    air:
+      volume: 2.5
+      temperature: 293.15
+  - type: Clothing
+    sprite: Objects/Tanks/emergency_double_orange.rsi
+
+- type: entity
+  parent: DoubleEmergencyPlasmaTank
+  id: DoubleExtendedEmergencyPlasmaTank
+  name: double extended-capacity emergency plasma tank
+  description: A high-capacity dual plasma tank for prolonged plasmaman emergency use.
+  components:
+  - type: GasTank
+    air:
+      volume: 3
+      temperature: 293.15

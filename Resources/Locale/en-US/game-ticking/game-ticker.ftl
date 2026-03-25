@@ -26,6 +26,8 @@ game-ticker-get-info-preround-text = Hi and welcome to [color=white]Space Statio
 game-ticker-no-map-selected = [color=yellow]Map not yet selected![/color]
 game-ticker-player-no-jobs-available-when-joining = When attempting to join to the game, no jobs were available.
 game-ticker-player-no-character-for-job-available-when-joining = When attempting to join the game, no characters were available for selected job {$job}.
+game-ticker-player-no-valid-species-for-job-when-joining = Your selected character could not join {$job} and no valid fallback species was available. You have been kept in the lobby.
+game-ticker-player-plasmaman-job-blocked-when-joining = Plasmamen are not supported for {$job}. You have been kept in the lobby.
 
 # Displayed in chat to admins when a player joins
 player-join-message = Player {$name} joined.

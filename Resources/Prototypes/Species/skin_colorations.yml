@@ -10,6 +10,13 @@
     lightness: [0.85, 1]
 
 - type: skinColoration
+  id: PlasmamanHues
+  strategy: !type:ClampedHsvColoration
+    hue: [0.76, 0.86]
+    saturation: [0.45, 1]
+    value: [0.45, 0.85]
+
+- type: skinColoration
   id: VoxFeathers
   strategy: !type:ClampedHsvColoration
     hue: [0.081, 0.48]

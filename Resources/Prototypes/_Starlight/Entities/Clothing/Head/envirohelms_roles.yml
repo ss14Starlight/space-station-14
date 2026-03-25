@@ -1,0 +1,816 @@
+# Starlight-start
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanCustomBase
+  abstract: true
+  components:
+  - type: ToggleableVisuals
+    spriteLayer: light
+    inhandVisuals:
+      left:
+      - state: on-inhand-left
+        shader: unshaded
+      right:
+      - state: on-inhand-right
+        shader: unshaded
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+        shader: unshaded
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/custom.rsi
+    layers:
+    - state: icon
+      color: "#FFFFFF"
+    - state: accent-icon
+      color: "#FF0000"
+    - state: visor-icon
+    - state: icon-flash
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#FFFFFF"
+      - state: accent-inhand-left
+        color: "#FF0000"
+      - state: visor-inhand-left
+      right:
+      - state: inhand-right
+        color: "#FFFFFF"
+      - state: accent-inhand-right
+        color: "#FF0000"
+      - state: visor-inhand-right
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        color: "#FFFFFF"
+      - state: accent-equipped-HELMET
+        color: "#FF0000"
+      - state: visor-equipped-HELMET
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanCentralCommandOperator
+  name: centcom operator's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/centcom_agent.rsi
+    layers:
+    - state: icon
+    - state: icon-flash
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Item
+    sprite: _Starlight/Clothing/Head/Envirohelms/centcom_agent.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/centcom_agent.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanCentralCommandOfficial
+  name: centcom official's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/centcom_official.rsi
+    layers:
+    - state: icon
+    - state: icon-flash
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Item
+    sprite: _Starlight/Clothing/Head/Envirohelms/centcom_official.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/centcom_official.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanNanoTrasenSpecialForces
+  name: NTSF plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/centcom_officer.rsi
+    layers:
+    - state: icon
+    - state: icon-flash
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Item
+    sprite: _Starlight/Clothing/Head/Envirohelms/centcom_officer.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/centcom_officer.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanSyndicate
+  name: syndicate plasmaman envirosuit helmet
+  components:
+  - type: ToggleableVisuals
+    spriteLayer: light
+    inhandVisuals:
+      left:
+      - state: on-inhand-left
+        shader: unshaded
+        color: "#ff0000"
+      right:
+      - state: on-inhand-right
+        shader: unshaded
+        color: "#ff0000"
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+        shader: unshaded
+        color: "#ff0000"
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/syndicate.rsi
+    layers:
+    - state: icon
+    - state: icon-flash
+      visible: false
+      shader: unshaded
+      color: "#ff0000"
+      map: [ "light" ]
+  - type: Item
+    sprite: _Starlight/Clothing/Head/Envirohelms/syndicate.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/syndicate.rsi
+  - type: PointLight
+    color: "#ff0000"
+# Starlight-end
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanIAA
+  name: IAA's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/iaa.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/iaa.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmamanCustomBase
+  id: ClothingHeadHelmetPlasmamanMagistrate
+  name: magistrate's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#ebebeb"
+    - state: accent-icon
+      color: "#ffce5b"
+    - state: visor-icon
+    - state: icon-flash
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ebebeb"
+      - state: accent-inhand-left
+        color: "#ffce5b"
+      - state: visor-inhand-left
+      right:
+      - state: inhand-right
+        color: "#ebebeb"
+      - state: accent-inhand-right
+        color: "#ffce5b"
+      - state: visor-inhand-right
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        color: "#ebebeb"
+      - state: accent-equipped-HELMET
+        color: "#ffce5b"
+      - state: visor-equipped-HELMET
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmamanCustomBase
+  id: ClothingHeadHelmetPlasmamanNTR
+  name: nanotrasen representative's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#292929"
+    - state: accent-icon
+      color: "#ffce5b"
+    - state: midaccent-icon
+      color: "#266199"
+    - state: visor-icon
+    - state: icon-flash
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#292929"
+      - state: accent-inhand-left
+        color: "#ffce5b"
+      - state: midaccent-inhand-left
+        color: "#266199"
+      - state: visor-inhand-left
+      right:
+      - state: inhand-right
+        color: "#292929"
+      - state: accent-inhand-right
+        color: "#ffce5b"
+      - state: midaccent-inhand-right
+        color: "#266199"
+      - state: visor-inhand-right
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        color: "#292929"
+      - state: accent-equipped-HELMET
+        color: "#ffce5b"
+      - state: midaccent-equipped-HELMET
+        color: "#266199"
+      - state: visor-equipped-HELMET
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmamanNTR
+  id: ClothingHeadHelmetPlasmamanNanotrasenCareerTrainer
+  name: nanotrasen career trainer's plasmaman envirosuit helmet
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmamanCustomBase
+  id: ClothingHeadHelmetPlasmamanBlueShield
+  name: blueshield's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#535353"
+    - state: accent-icon
+      color: "#0044d4"
+    - state: visor-icon
+    - state: icon-flash
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#535353"
+      - state: accent-inhand-left
+        color: "#0044d4"
+      - state: visor-inhand-left
+      right:
+      - state: inhand-right
+        color: "#535353"
+      - state: accent-inhand-right
+        color: "#0044d4"
+      - state: visor-inhand-right
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        color: "#535353"
+      - state: accent-equipped-HELMET
+        color: "#0044d4"
+      - state: visor-equipped-HELMET
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmamanCustomBase
+  id: ClothingHeadHelmetPlasmamanZookeeper
+  name: zookeeper's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#d3b986"
+    - state: accent-icon
+      color: "#a349a4"
+    - state: visor-icon
+    - state: icon-flash
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#d3b986"
+      - state: accent-inhand-left
+        color: "#a349a4"
+      - state: visor-inhand-left
+      right:
+      - state: inhand-right
+        color: "#d3b986"
+      - state: accent-inhand-right
+        color: "#a349a4"
+      - state: visor-inhand-right
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        color: "#d3b986"
+      - state: accent-equipped-HELMET
+        color: "#a349a4"
+      - state: visor-equipped-HELMET
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanCaptain
+  name: captain's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/captain.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/captain.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanHoP
+  name: head of personnel's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/hop.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/hop.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanAssistant
+  name: plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/plain.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/plain.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanBartender
+  name: bartender's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/white.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/white.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanServiceWorker
+  name: service worker's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/plain.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/plain.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanChef
+  name: chef's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/chef.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/chef.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanLibrarian
+  name: librarian's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/plain.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/plain.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanLawyer
+  name: lawyer's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/iaa.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/iaa.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanChaplain
+  name: chaplain's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/chaplain.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/chaplain.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanJanitor
+  name: janitor's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/janitor.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/janitor.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanBotanist
+  name: botanist's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/hydroponics.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/hydroponics.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanClown
+  name: clown's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/clown.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/clown.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanMime
+  name: mime's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/mime.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/mime.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanMusician
+  name: musician's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/musician.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/musician.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanQuartermaster
+  name: quartermaster's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/cargo.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/cargo.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanCargoTechnician
+  name: cargo technician's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/cargo.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/cargo.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanSalvageSpecialist
+  name: salvage specialist's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/salvage.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/salvage.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanChiefEngineer
+  name: chief engineer's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/ce.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/ce.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanTechnicalAssistant
+  name: technical assistant's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/engineering.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/engineering.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanStationEngineer
+  name: station engineer's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/engineering.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/engineering.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanAtmosphericTechnician
+  name: atmospherics plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/atmos.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/atmos.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanResearchDirector
+  name: research director's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/rd.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/rd.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanRoboticist
+  name: roboticist's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/roboticist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/roboticist.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanScientist
+  name: scientist's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/scientist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/scientist.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanResearchAssistant
+  name: research assistant's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/scientist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/scientist.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanHeadOfSecurity
+  name: head of security's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/hos.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/hos.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanWarden
+  name: warden's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/warden.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/warden.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanSecurityOfficer
+  name: security officer's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/tacticool.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/tacticool.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmamanCustomBase
+  id: ClothingHeadHelmetPlasmamanDetective
+  name: detective's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#ffffff"
+    - state: accent-icon
+      color: "#c2680f"
+    - state: visor-icon
+    - state: icon-flash
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffffff"
+      - state: accent-inhand-left
+        color: "#c2680f"
+      - state: visor-inhand-left
+      right:
+      - state: inhand-right
+        color: "#ffffff"
+      - state: accent-inhand-right
+        color: "#c2680f"
+      - state: visor-inhand-right
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        color: "#ffffff"
+      - state: accent-equipped-HELMET
+        color: "#c2680f"
+      - state: visor-equipped-HELMET
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanSecurityCadet
+  name: security cadet's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/white.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/white.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanChiefMedicalOfficer
+  name: chief medical officer's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/cmo.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/cmo.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanMedicalDoctor
+  name: medical doctor's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/medical.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/medical.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanMedicalIntern
+  name: medical intern's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/medical.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/medical.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanChemist
+  name: chemist's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/chemist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/chemist.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanParamedic
+  name: paramedic's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/paramedic.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/paramedic.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmamanCustomBase
+  id: ClothingHeadHelmetPlasmamanReporter
+  name: reporter's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#112334"
+    - state: accent-icon
+      color: "#79121b"
+    - state: visor-icon
+    - state: icon-flash
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#112334"
+      - state: accent-inhand-left
+        color: "#79121b"
+      - state: visor-inhand-left
+      right:
+      - state: inhand-right
+        color: "#112334"
+      - state: accent-inhand-right
+        color: "#79121b"
+      - state: visor-inhand-right
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        color: "#112334"
+      - state: accent-equipped-HELMET
+        color: "#79121b"
+      - state: visor-equipped-HELMET
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanPsychologist
+  name: psychologist's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/medical.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/medical.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanBoxing
+  name: boxer's plasmaman envirosuit helmet
+  description: A white envirosuit helmet with red stripes.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/boxer.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/boxer.rsi
+
+
+
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanMailTech
+  name: mail technician's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/cargo.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/cargo.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanMiningSpecialist
+  name: mining specialist's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/salvage.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/salvage.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetPlasmaman
+  id: ClothingHeadHelmetPlasmamanSalvageLead
+  name: salvage lead's plasmaman envirosuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/salvage.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Envirohelms/salvage.rsi

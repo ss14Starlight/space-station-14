@@ -248,6 +248,9 @@
     minimumPlayers: 30
   - type: SpaceSpawnRule
   - type: AntagLoadProfileRule
+    speciesOverride: Human # Starlight-edit: old -> no override
+    speciesOverrideBlacklist:
+    - Plasmaman # Starlight-edit: plasmaman ninja has no envirosuit gear
   - type: AntagObjectives
     objectives:
     - StealResearchObjective

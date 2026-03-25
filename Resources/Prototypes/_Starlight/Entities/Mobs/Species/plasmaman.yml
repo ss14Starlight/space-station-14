@@ -1,0 +1,93 @@
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobPlasmaman
+  abstract: true
+  components:
+  - type: HumanoidAppearance
+    species: Plasmaman
+    hideLayersOnEquip:
+    - LFoot
+    - RFoot
+  - type: Icon
+    sprite: _Starlight/Mobs/Species/Plasmaman/parts.rsi
+    state: full
+  - type: Body
+    prototype: Plasmaman
+    requiredLegs: 2
+  - type: Speech
+    speechVerb: Skeleton
+  - type: TypingIndicator
+    proto: default
+  - type: Vocal
+    sounds:
+      Male: UnisexPlasmaman
+      Female: UnisexPlasmaman
+      Unsexed: UnisexPlasmaman
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Plasmaman
+  - type: Bloodstream
+    bloodlossThreshold: 0
+    bleedReductionAmount: 0
+    maxBleedAmount: 0
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Plasma
+        Quantity: 300
+  - type: Inventory
+    templateId: plasmaman
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: Temperature
+    specificHeat: 46
+    currentTemperature: 270.15
+  - type: TemperatureDamage
+    heatDamageThreshold: 308
+    coldDamage:
+      types:
+        Cold: 0
+    heatDamage:
+      types:
+        Heat: 3
+  - type: ThermalRegulator
+    normalBodyTemperature: 270.15
+  - type: TemperatureSpeed
+    thresholds:
+      243: 0.8
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.85
+        Heat: 0.1
+    protectionSlots:
+    - head
+    - jumpsuit
+  - type: ZombieImmune
+  - type: PlasmamanIgnition
+
+- type: entity
+  parent: BaseMobPlasmaman
+  id: MobPlasmaman
+  name: Urist McPlasma
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobPlasmamanDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Plasmaman
+  - type: Body
+    prototype: Plasmaman
+  - type: Inventory
+    templateId: plasmaman
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

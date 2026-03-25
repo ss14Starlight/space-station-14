@@ -1,0 +1,89 @@
+- type: entity
+  id: OrganPlasmamanBrain
+  parent: OrganHumanBrain
+  name: plasmaman brain
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Plasmaman/organs.rsi
+    layers:
+    - state: brain
+
+- type: entity
+  id: OrganPlasmamanEyes
+  parent: OrganHumanEyes
+  name: plasmaman eyes
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    layers:
+    - state: eyeball-l
+    - state: eyeball-r
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobPlasmamanEyes
+
+- type: entity
+  id: OrganPlasmamanTongue
+  parent: OrganHumanTongue
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Plasmaman/organs.rsi
+
+- type: entity
+  id: OrganPlasmamanLungs
+  parent: OrganHumanLungs
+  description: "Anaerobic lungs that process plasma instead of oxygen."
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    layers:
+    - state: lung-l
+    - state: lung-r
+  - type: Metabolizer
+    metabolizerTypes: [ Plasmaman ]
+  - type: Lung
+    alert: LowNitrogen
+
+- type: entity
+  id: OrganPlasmamanHeart
+  parent: OrganHumanHeart
+  description: "A heart sustained by plasma metabolism."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Plasmaman/organs.rsi
+  - type: Metabolizer
+    metabolizerTypes: [ Plasmaman ]
+
+- type: entity
+  id: OrganPlasmamanStomach
+  parent: OrganHumanStomach
+  description: "A stomach that reeks faintly of plasma."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Plasmaman/organs.rsi
+  - type: Metabolizer
+    metabolizerTypes: [ Plasmaman ]
+
+- type: entity
+  id: OrganPlasmamanLiver
+  parent: OrganHumanLiver
+  description: "A liver adapted for plasma-based biochemistry."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Plasmaman/organs.rsi
+  - type: Metabolizer
+    metabolizerTypes: [ Plasmaman ]
+
+- type: entity
+  id: OrganPlasmamanKidneys
+  parent: OrganHumanKidneys
+  description: "Kidneys adapted for plasma-based biochemistry."
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    layers:
+    - state: kidney-l
+    - state: kidney-r
+  - type: Metabolizer
+    metabolizerTypes: [ Plasmaman ]

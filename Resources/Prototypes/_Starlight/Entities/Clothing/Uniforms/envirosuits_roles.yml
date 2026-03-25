@@ -1,0 +1,937 @@
+# Starlight-start
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitSyndicate
+  name: syndicate plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/syndicate.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/syndicate.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/syndicate.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitIAA
+  name: IAA's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/iaa.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/iaa.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/iaa.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitMagistrate
+  name: magistrate's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    layers:
+    - state: icon
+      color: "#ebebeb"
+    - state: plaintop-icon
+      color: "#ebebeb"
+    - state: tie-icon
+      color: "#333333"
+    - state: tieclip-icon
+      color: "#e6b952"
+    - state: accent-icon
+      color: "#ffce5b"
+    - state: pants-icon
+      color: "#292929"
+    - state: belt-icon
+      color: "#634737"
+    - state: beltbuckle-icon
+      color: "#ffce5b"
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ebebeb"
+      - state: plaintop-inhand-left
+        color: "#ebebeb"
+      - state: tie-inhand-left
+        color: "#333333"
+      - state: tieclip-inhand-left
+        color: "#e6b952"
+      - state: accent-inhand-left
+        color: "#ffce5b"
+      - state: pants-inhand-left
+        color: "#292929"
+      - state: belt-inhand-left
+        color: "#634737"
+      - state: beltbuckle-inhand-left
+        color: "#ffce5b"
+      right:
+      - state: inhand-right
+        color: "#ebebeb"
+      - state: plaintop-inhand-right
+        color: "#ebebeb"
+      - state: tie-inhand-right
+        color: "#333333"
+      - state: tieclip-inhand-right
+        color: "#e6b952"
+      - state: accent-inhand-right
+        color: "#ffce5b"
+      - state: pants-inhand-right
+        color: "#292929"
+      - state: belt-inhand-right
+        color: "#634737"
+      - state: beltbuckle-inhand-right
+        color: "#ffce5b"
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#ebebeb"
+      - state: plaintop-equipped-INNERCLOTHING
+        color: "#ebebeb"
+      - state: tie-equipped-INNERCLOTHING
+        color: "#333333"
+      - state: tieclip-equipped-INNERCLOTHING
+        color: "#e6b952"
+      - state: accentalt-equipped-INNERCLOTHING
+        color: "#ffce5b"
+      - state: cuffs-equipped-INNERCLOTHING
+        color: "#634737"
+      - state: pants-equipped-INNERCLOTHING
+        color: "#292929"
+      - state: belt-equipped-INNERCLOTHING
+        color: "#634737"
+      - state: beltbuckle-equipped-INNERCLOTHING
+        color: "#ffce5b"
+      - state: loweraccent-equipped-INNERCLOTHING
+        color: "#ffce5b"
+      - state: soles-equipped-INNERCLOTHING
+        color: "#634737"
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitNTR
+  name: nanotrasen representative's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    layers:
+    - state: icon
+      color: "#292929"
+    - state: accent3_chestonly-icon
+      color: "#266199"
+    - state: accent2-icon
+      color: "#ffce5b"
+    - state: buttons-icon
+      color: "#f3f5f4"
+    - state: belt-icon
+      color: "#87511b"
+    - state: beltbuckle-icon
+      color: "#969696"
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#292929"
+      - state: accent3_chestonly-inhand-left
+        color: "#266199"
+      - state: accent2-inhand-left
+        color: "#ffce5b"
+      - state: buttons-inhand-left
+        color: "#f3f5f4"
+      - state: belt-inhand-left
+        color: "#87511b"
+      - state: beltbuckle-inhand-left
+        color: "#969696"
+      right:
+      - state: inhand-right
+        color: "#292929"
+      - state: accent3_chestonly-inhand-right
+        color: "#266199"
+      - state: accent2-inhand-right
+        color: "#ffce5b"
+      - state: buttons-inhand-right
+        color: "#f3f5f4"
+      - state: belt-inhand-right
+        color: "#87511b"
+      - state: beltbuckle-inhand-right
+        color: "#969696"
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#292929"
+      - state: accent3_chestonly-equipped-INNERCLOTHING
+        color: "#266199"
+      - state: accent2-equipped-INNERCLOTHING
+        color: "#ffce5b"
+      - state: buttons-equipped-INNERCLOTHING
+        color: "#f3f5f4"
+      - state: belt-equipped-INNERCLOTHING
+        color: "#87511b"
+      - state: beltbuckle-equipped-INNERCLOTHING
+        color: "#969696"
+      - state: cuffs-equipped-INNERCLOTHING
+        color: "#ffce5b"
+      - state: cuffs_upper-equipped-INNERCLOTHING
+        color: "#0057a8"
+      - state: loweraccent-equipped-INNERCLOTHING
+        color: "#266199"
+      - state: soles-equipped-INNERCLOTHING
+        color: "#ffce5b"
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuitNTR
+  id: ClothingUniformPlasmamanEnvirosuitNanotrasenCareerTrainer
+  name: nanotrasen career trainer's plasmaman envirosuit
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitBlueShield
+  name: blueshield's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/blueshield.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/blueshield.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/blueshield.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitZookeeper
+  name: zookeeper's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    layers:
+    - state: icon
+      color: "#d3b986"
+    - state: accent-icon
+      color: "#a349a4"
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#d3b986"
+      - state: accent-inhand-left
+        color: "#a349a4"
+      right:
+      - state: inhand-right
+        color: "#d3b986"
+      - state: accent-inhand-right
+        color: "#a349a4"
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#d3b986"
+      - state: accent-equipped-INNERCLOTHING
+        color: "#a349a4"
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitCentralCommandOperator
+  name: centcom operator's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/centcom_agent.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/centcom_agent.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/centcom_agent.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitCentralCommandOfficial
+  name: centcom official's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/centcom_official.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/centcom_official.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/centcom_official.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitNanoTrasenSpecialForces
+  name: NTSF plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/centcom_officer.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/centcom_officer.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/centcom_officer.rsi
+# Starlight-end
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitCaptain
+  name: captain's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/captain.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/captain.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/captain.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitHoP
+  name: head of personnel's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/hop.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/hop.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/hop.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitAssistant
+  name: plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/plain.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/plain.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/plain.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitBartender
+  name: bartender's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/enviroslacks.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/enviroslacks.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/enviroslacks.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuitBartender
+  id: ClothingUniformPlasmamanEnvirosuitServiceWorker
+  name: service worker's plasmaman envirosuit
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitChef
+  name: chef's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/chef.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/chef.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/chef.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitLibrarian
+  name: librarian's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/plain.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/plain.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/plain.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitLawyer
+  name: lawyer's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/iaa.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/iaa.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/plain.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitChaplain
+  name: chaplain's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/chaplain.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/chaplain.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/chaplain.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitJanitor
+  name: janitor's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/janitor.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/janitor.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/janitor.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitBotanist
+  name: botanist's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/hydroponics.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/hydroponics.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/hydroponics.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitClown
+  name: clown's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/clown.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/clown.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/clown.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitMime
+  name: mime's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/mime.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/mime.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/mime.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitMusician
+  name: musician's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/musician.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/musician.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/musician.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitQuartermaster
+  name: quartermaster's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/cargo.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/cargo.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/cargo.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitCargoTechnician
+  name: cargo technician's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/cargo.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/cargo.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/cargo.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitSalvageSpecialist
+  name: salvage specialist's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/salvage.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/salvage.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/salvage.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitChiefEngineer
+  name: chief engineer's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/ce.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/ce.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/ce.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitTechnicalAssistant
+  name: technical assistant's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/engineering.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/engineering.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/engineering.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitStationEngineer
+  name: station engineer's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/engineering.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/engineering.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/engineering.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitAtmosphericTechnician
+  name: atmospherics plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/atmos.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/atmos.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/atmos.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitResearchDirector
+  name: research director's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/rd.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/rd.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/rd.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitRoboticist
+  name: roboticist's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/roboticist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/roboticist.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/roboticist.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitScientist
+  name: scientist's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/scientist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/scientist.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/scientist.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitResearchAssistant
+  name: research assistant's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/scientist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/scientist.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/scientist.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitHeadOfSecurity
+  name: head of security's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/hos.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/hos.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/hos.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitWarden
+  name: warden's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/warden.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/warden.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/warden.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitSecurityOfficer
+  name: security officer's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/tacticool.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/tacticool.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/tacticool.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitDetective
+  name: detective's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    layers:
+    - state: icon
+      color: "#ffffff"
+    - state: plaintop-icon
+      color: "#ffffff"
+    - state: tie-icon
+      color: "#c2680f"
+    - state: accent-icon
+      color: "#c2680f"
+    - state: pants-icon
+      color: "#292929"
+    - state: belt-icon
+      color: "#737373"
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffffff"
+      - state: plaintop-inhand-left
+        color: "#ffffff"
+      - state: tie-inhand-left
+        color: "#c2680f"
+      - state: accent-inhand-left
+        color: "#c2680f"
+      - state: pants-inhand-left
+        color: "#292929"
+      - state: belt-inhand-left
+        color: "#737373"
+      right:
+      - state: inhand-right
+        color: "#ffffff"
+      - state: plaintop-inhand-right
+        color: "#ffffff"
+      - state: tie-inhand-right
+        color: "#c2680f"
+      - state: accent-inhand-right
+        color: "#c2680f"
+      - state: pants-inhand-right
+        color: "#292929"
+      - state: belt-inhand-right
+        color: "#737373"
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#ffffff"
+      - state: plaintop-equipped-INNERCLOTHING
+        color: "#ffffff"
+      - state: tie-equipped-INNERCLOTHING
+        color: "#c2680f"
+      - state: accentalt-equipped-INNERCLOTHING
+        color: "#c2680f"
+      - state: pants-equipped-INNERCLOTHING
+        color: "#292929"
+      - state: belt-equipped-INNERCLOTHING
+        color: "#737373"
+      - state: loweraccent-equipped-INNERCLOTHING
+        color: "#c2680f"
+      - state: soles-equipped-INNERCLOTHING
+        color: "#bababa"
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitSecurityCadet
+  name: security cadet's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/tacticool.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/tacticool.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/tacticool.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitChiefMedicalOfficer
+  name: chief medical officer's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/cmo.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/cmo.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/cmo.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitMedicalDoctor
+  name: medical doctor's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/medical.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/medical.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/medical.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitMedicalIntern
+  name: medical intern's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/medical.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/medical.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/medical.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitChemist
+  name: chemist's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/chemist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/chemist.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/chemist.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitParamedic
+  name: paramedic's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/paramedic.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/paramedic.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/paramedic.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitReporter
+  name: reporter's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    layers:
+    - state: icon
+      color: "#112334"
+    - state: accent2-icon
+      color: "#79121b"
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#112334"
+      - state: accent2-inhand-left
+        color: "#79121b"
+      right:
+      - state: inhand-right
+        color: "#112334"
+      - state: accent2-inhand-right
+        color: "#79121b"
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#112334"
+      - state: accent2-equipped-INNERCLOTHING
+        color: "#79121b"
+      - state: loweraccent2-equipped-INNERCLOTHING
+        color: "#79121b"
+      - state: soles-equipped-INNERCLOTHING
+        color: "#bababa"
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitPsychologist
+  name: psychologist's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    layers:
+    - state: icon
+      color: "#ffffff"
+    - state: plaintop-icon
+      color: "#ffffff"
+    - state: tie-icon
+      color: "#5ba0cf"
+    - state: accent-icon
+      color: "#5ba0cf"
+    - state: pants-icon
+      color: "#292929"
+    - state: belt-icon
+      color: "#737373"
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#ffffff"
+      - state: plaintop-inhand-left
+        color: "#ffffff"
+      - state: tie-inhand-left
+        color: "#5ba0cf"
+      - state: accent-inhand-left
+        color: "#5ba0cf"
+      - state: pants-inhand-left
+        color: "#292929"
+      - state: belt-inhand-left
+        color: "#737373"
+      right:
+      - state: inhand-right
+        color: "#ffffff"
+      - state: plaintop-inhand-right
+        color: "#ffffff"
+      - state: tie-inhand-right
+        color: "#5ba0cf"
+      - state: accent-inhand-right
+        color: "#5ba0cf"
+      - state: pants-inhand-right
+        color: "#292929"
+      - state: belt-inhand-right
+        color: "#737373"
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#ffffff"
+      - state: plaintop-equipped-INNERCLOTHING
+        color: "#ffffff"
+      - state: tie-equipped-INNERCLOTHING
+        color: "#5ba0cf"
+      - state: accentalt-equipped-INNERCLOTHING
+        color: "#5ba0cf"
+      - state: pants-equipped-INNERCLOTHING
+        color: "#292929"
+      - state: belt-equipped-INNERCLOTHING
+        color: "#737373"
+      - state: loweraccent-equipped-INNERCLOTHING
+        color: "#5ba0cf"
+      - state: soles-equipped-INNERCLOTHING
+        color: "#bababa"
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitBoxing
+  name: boxer's plasmaman envirosuit
+  description: Used by Plasmamen boxers.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    layers:
+    - state: icon
+      color: "#eeeeee"
+    - state: accent3-icon
+      color: "#a81818"
+    - state: pants-icon
+      color: "#a81818"
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#eeeeee"
+      - state: accent3-inhand-left
+        color: "#a81818"
+      - state: pants-inhand-left
+        color: "#a81818"
+      right:
+      - state: inhand-right
+        color: "#eeeeee"
+      - state: accent3-inhand-right
+        color: "#a81818"
+      - state: pants-inhand-right
+        color: "#a81818"
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/custom.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#eeeeee"
+      - state: accent3-equipped-INNERCLOTHING
+        color: "#a81818"
+      - state: pants-equipped-INNERCLOTHING
+        color: "#a81818"
+      - state: loweraccent2-equipped-INNERCLOTHING
+        color: "#eeeeee"
+      - state: soles-equipped-INNERCLOTHING
+        color: "#eeeeee"
+
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitMailTech
+  name: mail technician's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/cargo.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/cargo.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/cargo.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitMiningSpecialist
+  name: mining specialist's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/salvage.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/salvage.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/salvage.rsi
+
+- type: entity
+  parent: ClothingUniformPlasmamanEnvirosuit
+  id: ClothingUniformPlasmamanEnvirosuitSalvageLead
+  name: salvage lead's plasmaman envirosuit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/salvage.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/salvage.rsi
+  - type: Item
+    sprite: _Starlight/Clothing/Uniforms/Envirosuits/salvage.rsi

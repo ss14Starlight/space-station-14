@@ -4,6 +4,7 @@ metabolizer-type-dragon = Dragon
 metabolizer-type-human = Human
 metabolizer-type-slime = Slime
 metabolizer-type-cyclorite = Cyclorite
+metabolizer-type-plasmaman = Plasmaman
 metabolizer-type-vox = Vox
 metabolizer-type-rat = Rat
 metabolizer-type-plant = Plant

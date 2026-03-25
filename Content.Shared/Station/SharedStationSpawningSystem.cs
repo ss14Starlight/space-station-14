@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Shared.Containers.ItemSlots; // Starlight
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Preferences.Loadouts;
@@ -19,6 +20,8 @@ namespace Content.Shared.Station;
 
 public abstract class SharedStationSpawningSystem : EntitySystem
 {
+    private const string PlasmamanSpeciesId = "Plasmaman";
+
     [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] protected readonly InventorySystem InventorySystem = default!;
@@ -267,6 +270,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     public bool StarlightEquipRoleLoadout(EntityUid entity, RoleLoadout loadout, IEnumerable<IEquipmentLoadout> otherStartingGear, RoleLoadoutPrototype roleProto)
     {
         List<IEquipmentLoadout> allStartingGear = new();
+        allStartingGear.AddRange(otherStartingGear);
 
         // Order loadout selections by the order they appear on the prototype.
         // We're going to process the loadout entries in this order in each of the three passes.
@@ -289,12 +293,11 @@ public abstract class SharedStationSpawningSystem : EntitySystem
                 allStartingGear.Add(loadoutProto);
             }
         }
-
-        allStartingGear.AddRange(otherStartingGear);
-        var gearRemainingToBeIssued = allStartingGear.ToList();
-
         var xform = _xformQuery.GetComponent(entity);
         var coords = xform.Coordinates;
+        var isPlasmaman = TryComp<HumanoidAppearanceComponent>(entity, out var humanoidAppearance) &&
+            humanoidAppearance.Species == PlasmamanSpeciesId;
+        var displacedSuitStorageEquipment = new List<string>();
 
         // Do three passes:
         // 1. Add any equipment
@@ -305,24 +308,43 @@ public abstract class SharedStationSpawningSystem : EntitySystem
 
         if (InventorySystem.TryGetSlots(entity, out var slotDefinitions))
         {
-            foreach (var startingGear in allStartingGear) {
-                var equipmentRemaining = startingGear.Equipment.ToList();
-                foreach (var slot in slotDefinitions)
+            // Later loadouts should override earlier slot choices instead of dropping both items at spawn.
+            var finalEquipment = new Dictionary<string, string>();
+            foreach (var startingGear in allStartingGear)
+            {
+                foreach (var (slotName, proto) in startingGear.Equipment)
                 {
-                    var equipmentStr = startingGear.GetGear(slot.Name);
-                    if (!string.IsNullOrEmpty(equipmentStr))
+                    if (isPlasmaman &&
+                        slotName == "suitstorage" &&
+                        finalEquipment.TryGetValue(slotName, out var existingProto) &&
+                        !string.IsNullOrEmpty(existingProto) &&
+                        existingProto != proto)
                     {
-                        if (slot.Name == "back" && slot.Whitelist?.Tags?.Contains("CorgiWearable") == true)
-                            equipmentStr = "ClothingBagPet";
-                        var equipmentEntity = Spawn(equipmentStr, xform.Coordinates);
-                        InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, silent: true, force: true);
+                        displacedSuitStorageEquipment.Add(existingProto);
                     }
-                    equipmentRemaining.Remove(equipmentRemaining.FirstOrDefault(a => a.Key == slot.Name));
+
+                    finalEquipment[slotName] = proto;
                 }
-                foreach (var equipment in equipmentRemaining)
-                {
-                    var equipmentEntity = Spawn(equipment.Value, xform.Coordinates);
-                }
+            }
+
+            foreach (var slot in slotDefinitions)
+            {
+                if (!finalEquipment.TryGetValue(slot.Name, out var equipmentStr) || string.IsNullOrEmpty(equipmentStr))
+                    continue;
+
+                if (slot.Name == "back" && slot.Whitelist?.Tags?.Contains("CorgiWearable") == true)
+                    equipmentStr = "ClothingBagPet";
+
+                var equipmentEntity = Spawn(equipmentStr, xform.Coordinates);
+                if (!InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, silent: true, force: true))
+                    QueueDel(equipmentEntity);
+
+                finalEquipment.Remove(slot.Name);
+            }
+
+            foreach (var equipment in finalEquipment.Values)
+            {
+                Spawn(equipment, xform.Coordinates);
             }
         }
 
@@ -343,6 +365,13 @@ public abstract class SharedStationSpawningSystem : EntitySystem
         }
 
         _inventoryQuery.TryComp(entity, out var inventoryComp);
+
+        foreach (var prototype in displacedSuitStorageEquipment)
+        {
+            var displacedEntity = Spawn(prototype, coords);
+            if (TryPlaceDisplacedEquipment(entity, displacedEntity, handsComponent, inventoryComp))
+                continue;
+        }
 
         foreach (var startingGear in allStartingGear)
         {
@@ -378,6 +407,26 @@ public abstract class SharedStationSpawningSystem : EntitySystem
             }
         }
         return true;
+    }
+
+    private bool TryPlaceDisplacedEquipment(EntityUid entity, EntityUid displacedEntity, HandsComponent? handsComp, InventoryComponent? inventoryComp)
+    {
+        if (handsComp != null &&
+            _handsSystem.TryGetEmptyHand((entity, handsComp), out var emptyHand) &&
+            _handsSystem.TryPickup(entity, displacedEntity, emptyHand, checkActionBlocker: false, handsComp: handsComp))
+        {
+            return true;
+        }
+
+        if (inventoryComp != null &&
+            InventorySystem.TryGetSlotEntity(entity, "back", out var backEntity, inventoryComponent: inventoryComp) &&
+            _storageQuery.TryComp(backEntity, out var storage) &&
+            _storage.Insert(backEntity.Value, displacedEntity, out _, storageComp: storage, playSound: false))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void InsertIntoItemSlots(Entity<ItemSlotsComponent?> typed, EntityUid entity) {

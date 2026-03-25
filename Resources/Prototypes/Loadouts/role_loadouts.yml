@@ -17,6 +17,7 @@
   - CapPens # Starlight
   - CaptainJobTrinkets
   - GroupSpeciesBreathTool
+  - CaptainPlasmamanGear
 
 - type: roleLoadout
   id: JobHeadOfPersonnel
@@ -36,6 +37,7 @@
   - HoPPens # Starlight
   - HoPJobTrinkets
   - GroupSpeciesBreathTool
+  - HoPPlasmamanGear
 
 # Silicons
 - type: roleLoadout
@@ -73,6 +75,7 @@
   - Pens # Starlight
   - AssistantJobTrinkets
   - GroupSpeciesBreathTool
+  - AssistantPlasmamanGear
 
 - type: roleLoadout
   id: JobBartender
@@ -91,6 +94,7 @@
   - Pens # Starlight
   - BartenderJobTrinkets
   - GroupSpeciesBreathTool
+  - BartenderPlasmamanGear
 
 - type: roleLoadout
   id: JobServiceWorker
@@ -108,6 +112,7 @@
   - Pens # Starlight
   - ServiceWorkerJobTrinkets
   - GroupSpeciesBreathTool
+  - ServiceWorkerPlasmamanGear
 
 - type: roleLoadout
   id: JobChef
@@ -127,6 +132,7 @@
   - Pens # Starlight
   - ChefJobTrinkets
   - GroupSpeciesBreathTool
+  - ChefPlasmamanGear
 
 - type: roleLoadout
   id: JobLibrarian
@@ -143,6 +149,7 @@
   - LuxuryPens # Starlight
   - LibrarianJobTrinkets
   - GroupSpeciesBreathTool
+  - LibrarianPlasmamanGear
 
 - type: roleLoadout
   id: JobLawyer
@@ -159,6 +166,7 @@
   - LuxuryPens # Starlight
   - LawyerJobTrinkets
   - GroupSpeciesBreathTool
+  - LawyerPlasmamanGear
 
 - type: roleLoadout
   id: JobChaplain
@@ -180,6 +188,7 @@
   - Pens # Starlight
   - ChaplainJobTrinkets
   - GroupSpeciesBreathTool
+  - ChaplainPlasmamanGear
 
 - type: roleLoadout
   id: JobJanitor
@@ -199,6 +208,7 @@
   - Pens # Starlight
   - JanitorJobTrinkets
   - GroupSpeciesBreathTool
+  - JanitorPlasmamanGear
 
 - type: roleLoadout
   id: JobBotanist
@@ -217,6 +227,7 @@
   - Pens # Starlight
   - BotanistJobTrinkets
   - GroupSpeciesBreathTool
+  - BotanistPlasmamanGear
 
 - type: roleLoadout
   id: JobClown
@@ -235,6 +246,7 @@
   - Pins # Starlight
   - ClownPens # Starlight
   - ClownJobTrinkets
+  - ClownPlasmamanGear
 
 - type: roleLoadout
   id: JobMime
@@ -255,6 +267,7 @@
   - Pins # Starlight
   - MimePens # Starlight
   - MimeJobTrinkets
+  - MimePlasmamanGear
 
 - type: roleLoadout
   id: JobMusician
@@ -274,6 +287,7 @@
   - MusicianJobTrinkets
   - Instruments
   - GroupSpeciesBreathTool
+  - MusicianPlasmamanGear
 
 # Cargo
 - type: roleLoadout
@@ -294,6 +308,7 @@
   - Pens # Starlight
   - QuartermasterJobTrinkets
   - GroupSpeciesBreathTool
+  - QuartermasterPlasmamanGear
 
 - type: roleLoadout
   id: JobCargoTechnician
@@ -314,6 +329,7 @@
   - Pens # Starlight
   - CargoTechnicianJobTrinkets
   - GroupSpeciesBreathTool
+  - CargoTechnicianPlasmamanGear
 
 - type: roleLoadout
   id: JobSalvageSpecialist
@@ -332,6 +348,7 @@
   - Pens # Starlight
   - SalvageSpecialistJobTrinkets
   - GroupSpeciesBreathTool
+  - SalvageSpecialistPlasmamanGear
 
 # Engineering
 - type: roleLoadout
@@ -352,6 +369,7 @@
   - Pens # Starlight
   - ChiefEngineerJobTrinkets
   - GroupSpeciesBreathTool
+  - ChiefEngineerPlasmamanGear
 
 - type: roleLoadout
   id: JobTechnicalAssistant
@@ -368,6 +386,7 @@
   - Pens # Starlight
   - TechnicalAssistantJobTrinkets
   - GroupSpeciesBreathTool
+  - TechnicalAssistantPlasmamanGear
 
 - type: roleLoadout
   id: JobStationEngineer
@@ -386,6 +405,7 @@
   - Pens # Starlight
   - StationEngineerJobTrinkets
   - GroupSpeciesBreathTool
+  - StationEngineerPlasmamanGear
 
 - type: roleLoadout
   id: JobAtmosphericTechnician
@@ -402,6 +422,7 @@
   - Pens # Starlight
   - AtmosphericTechnicianJobTrinkets
   - GroupSpeciesBreathTool
+  - AtmosphericTechnicianPlasmamanGear
 
 # Science
 - type: roleLoadout
@@ -423,6 +444,7 @@
   - Pens # Starlight
   - ResearchDirectorJobTrinkets
   - GroupSpeciesBreathTool
+  - ResearchDirectorPlasmamanGear
 
 - type: roleLoadout
   id: JobScientist
@@ -444,6 +466,7 @@
   - Pens # Starlight
   - ScientistJobTrinkets
   - GroupSpeciesBreathTool
+  - ScientistPlasmamanGear
 
 - type: roleLoadout
   id: JobResearchAssistant
@@ -464,6 +487,7 @@
   - Pens # Starlight
   - ResearchAssistantJobTrinkets
   - GroupSpeciesBreathTool
+  - ResearchAssistantPlasmamanGear
 
 # Security
 - type: roleLoadout
@@ -487,6 +511,7 @@
   - Pens # Starlight
   - HeadofSecurityJobTrinkets
   - GroupSpeciesBreathToolSecurity
+  - HeadOfSecurityPlasmamanGear
 
 - type: roleLoadout
   id: JobWarden
@@ -508,6 +533,7 @@
   - Pens # Starlight
   - WardenJobTrinkets
   - GroupSpeciesBreathToolSecurity
+  - WardenPlasmamanGear
 
 - type: roleLoadout
   id: JobSecurityOfficer
@@ -531,6 +557,7 @@
   - Pens # Starlight
   - SecurityJobTrinkets
   - GroupSpeciesBreathToolSecurity
+  - SecurityOfficerPlasmamanGear
 
 - type: roleLoadout
   id: JobDetective
@@ -550,6 +577,7 @@
   - Pens # Starlight
   - DetectiveJobTrinkets
   - GroupSpeciesBreathToolSecurity
+  - DetectivePlasmamanGear
 
 - type: roleLoadout
   id: JobSecurityCadet
@@ -566,6 +594,7 @@
   - Pens # Starlight
   - SecurityCadetJobTrinkets
   - GroupSpeciesBreathToolSecurity
+  - SecurityCadetPlasmamanGear
 
 # Medical
 - type: roleLoadout
@@ -588,6 +617,7 @@
   - Pens # Starlight
   - ChiefMedicalOfficerJobTrinkets
   - GroupSpeciesBreathToolMedical
+  - ChiefMedicalOfficerPlasmamanGear
 
 - type: roleLoadout
   id: JobMedicalDoctor
@@ -609,6 +639,7 @@
   - Pens # Starlight
   - MedicalDoctorJobTrinkets
   - GroupSpeciesBreathToolMedical
+  - MedicalDoctorPlasmamanGear
 
 - type: roleLoadout
   id: JobMedicalIntern
@@ -630,6 +661,7 @@
   - Pens # Starlight
   - MedicalInternJobTrinkets
   - GroupSpeciesBreathToolMedical
+  - MedicalInternPlasmamanGear
 
 - type: roleLoadout
   id: JobChemist
@@ -654,6 +686,7 @@
   - Pens # Starlight
   - ChemistJobTrinkets
   - GroupSpeciesBreathToolMedical
+  - ChemistPlasmamanGear
 
 - type: roleLoadout
   id: JobParamedic
@@ -675,6 +708,7 @@
   - Pens # Starlight
   - ParamedicJobTrinkets
   - GroupSpeciesBreathToolMedical
+  - ParamedicPlasmamanGear
 
 # Wildcards
 - type: roleLoadout
@@ -692,6 +726,7 @@
   - LuxuryPens # Starlight
   - ReporterJobTrinkets
   - GroupSpeciesBreathTool
+  - ReporterPlasmamanGear
 
 - type: roleLoadout
   id: JobPsychologist
@@ -711,6 +746,7 @@
   - Pens # Starlight
   - PsychologistJobTrinkets
   - GroupSpeciesBreathTool
+  - MedicalDoctorPlasmamanGear
 
 # These loadouts are used for non-crew spawns, like off-station antags and event mobs
 # They will be used without player configuration, thus they will only ever apply what is forced by MinLimit

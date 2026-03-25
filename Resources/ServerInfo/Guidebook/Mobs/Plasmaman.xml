@@ -1,0 +1,68 @@
+<Document>
+  # Plasmaman
+
+  <Box>
+    <GuideEntityEmbed Entity="MobPlasmaman" Caption=""/>
+  </Box>
+
+  [color=#ffa500]Warning! This species is not recommended for new players due to their fatal allergy to oxygen![/color]
+
+  Plasmamen are silicon-based lifeforms that breathe [color=#ff6e26]plasma[/color] instead of oxygen.
+  Oxygen is immediately lethal to them — contact with station air will cause them to ignite.
+
+  ## Advantages
+
+  <Box>
+  [color=#00cc66]✦ Immune to cold damage[/color]
+  [color=#00cc66]✦ Immune to radiation damage[/color]
+  [color=#00cc66]✦ Immune to bloodloss (no biological blood)[/color]
+  [color=#00cc66]✦ Cannot be zombified[/color]
+  [color=#00cc66]✦ High resistance to piercing damage (0.5×)[/color]
+  [color=#00cc66]✦ Moderate resistance to slashing damage (0.8×)[/color]
+  [color=#00cc66]✦ Moderate resistance to poison (0.8×)[/color]
+  </Box>
+
+  ## Disadvantages
+
+  <Box>
+  [color=#ff4444]✦ Ignites on contact with oxygen without a sealed envirosuit[/color]
+  [color=#ff4444]✦ Takes 1.5× damage from blunt force[/color]
+  [color=#ff4444]✦ Takes 1.5× damage from heat[/color]
+  [color=#ff4444]✦ Requires plasma internals at all times in oxygenated areas[/color]
+  [color=#ff4444]✦ Normal body temperature is 270 K — far colder than most environments[/color]
+  </Box>
+
+  ## Envirosuit
+
+  Plasmamen always spawn wearing a full envirosuit tailored to their job.
+  The suit protects them from oxygen exposure and provides a sealed environment.
+  Each suit has [color=#ff6e26]4 self-extinguisher charges[/color] that can be activated with the suit action to put out fires.
+
+  A [color=#a0c4ff]plasmaman suit recharge crystal[/color] is included in the survival box.
+  Use it on the jumpsuit to restore all extinguisher charges.
+
+  ## Survival Box
+
+  The plasmaman survival box contains:
+  - A breathing mask
+  - An emergency plasma tank (spare internals)
+  - An emergency medipen
+  - A flare
+  - A nutribar
+  - A suit recharge crystal
+
+  ## Breathing
+
+  Plasmamen must keep their [color=#ff6e26]plasma internals[/color] active at all times when in oxygenated areas.
+  The suit storage slot holds a filled plasma tank.
+  If the tank runs out, replacement plasma tanks can be found in the Atmospherics department or ordered from Cargo.
+
+  ## Ignition
+
+  If a plasmaman is exposed to oxygen while missing any part of their envirosuit, they will begin to catch fire.
+  The fire is more severe the more suit pieces are missing.
+  Use the self-extinguisher action or the recharge crystal to manage charges.
+
+  Plasmamen are immune to plasma fire damage but are still vulnerable to regular fire.
+
+</Document>

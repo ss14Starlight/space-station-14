@@ -1,0 +1,65 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetPlasmaman
+  name: plasmaman envirosuit helmet
+  description: A containment helmet built to keep a plasmaman alive in an oxygen atmosphere.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Envirohelms/plain.rsi
+    layers:
+    - state: icon
+    - state: icon-flash
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Clothing/Head/Envirohelms/plain.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
+  - type: Clothing
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 2
+    unequipDelay: 2
+    sprite: _Starlight/Clothing/Head/Envirohelms/plain.rsi
+  - type: IdentityBlocker
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+        shader: unshaded
+  - type: UnpoweredFlashlight
+    toggleAction: ActionTogglePlasmamanHelmetLight
+  - type: PointLight
+    enabled: false
+    radius: 5
+    softness: 4
+    color: "#b05cff"
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+  - type: Appearance
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+    - FacialHair
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HelmetEVA
+    - Flashlight
+    - PlasmamanSafe

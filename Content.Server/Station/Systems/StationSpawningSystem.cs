@@ -15,6 +15,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
+using Content.Shared.Preferences.Loadouts.Effects;
 using Content.Shared.Roles;
 using Content.Shared.Station;
 using JetBrains.Annotations;
@@ -43,6 +44,19 @@ namespace Content.Server.Station.Systems;
 [PublicAPI]
 public sealed class StationSpawningSystem : SharedStationSpawningSystem
 {
+    #region Starlight
+    /// <summary>
+    /// Inventory slots considered exclusive to Plasmaman gear.
+    /// Loadouts occupying these slots are pruned for non-Plasmaman species to avoid conflicts.
+    /// </summary>
+    private static readonly HashSet<string> PlasmamanExclusiveLoadoutSlots = new()
+    {
+        "head",
+        "jumpsuit",
+        "gloves",
+    };
+    #endregion
+
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
     [Dependency] private readonly ActorSystem _actors = default!;
     [Dependency] private readonly IdCardSystem _cardSystem = default!;
@@ -131,13 +145,27 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
         if (_prototypeManager.TryIndex(jobLoadout, out RoleLoadoutPrototype? roleProto))
         {
+            var loadoutSession = _actors.GetSession(entity);
             profile?.Loadouts.TryGetValue(jobLoadout, out loadout);
 
             // Set to default if not present
             if (loadout == null)
             {
                 loadout = new RoleLoadout(jobLoadout);
-                loadout.SetDefault(profile, _actors.GetSession(entity), _prototypeManager);
+                loadout.SetDefault(profile, loadoutSession, _prototypeManager);
+            }
+            else
+            {
+                // Existing saved loadouts need to pick up newly-added hidden groups like plasmaman role overrides.
+                loadout.SetDefault(profile, loadoutSession, _prototypeManager);
+            }
+
+            if (profile != null)
+            {
+                if (loadoutSession != null)
+                    loadout.EnsureValid(profile, loadoutSession, IoCManager.Instance!);
+
+                PruneSpeciesConflictingLoadouts(loadout, profile);
             }
         }
 
@@ -271,6 +299,45 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         #endregion
 
         return entity.Value;
+    }
+
+    private void PruneSpeciesConflictingLoadouts(RoleLoadout loadout, HumanoidCharacterProfile profile)
+    {
+        if (profile.Species != "Plasmaman")
+            return;
+
+        foreach (var (_, selections) in loadout.SelectedLoadouts)
+        {
+            for (var i = selections.Count - 1; i >= 0; i--)
+            {
+                var selection = selections[i];
+                if (!_prototypeManager.TryIndex(selection.Prototype, out LoadoutPrototype? loadoutProto))
+                    continue;
+
+                if (!loadoutProto.Equipment.Keys.Any(PlasmamanExclusiveLoadoutSlots.Contains))
+                    continue;
+
+                if (IsPlasmamanLoadout(loadoutProto))
+                    continue;
+
+                selections.RemoveAt(i);
+            }
+        }
+    }
+
+    private static bool IsPlasmamanLoadout(LoadoutPrototype loadoutProto)
+    {
+        foreach (var effect in loadoutProto.Effects)
+        {
+            if (effect is GroupLoadoutEffect groupEffect && groupEffect.Proto == "PlasmaBreather")
+                return true;
+
+            if (effect is SpeciesLoadoutEffect speciesEffect &&
+                speciesEffect.Species.Contains("Plasmaman"))
+                return true;
+        }
+
+        return false;
     }
 
     private void DoJobSpecials(ProtoId<JobPrototype>? job, EntityUid entity)

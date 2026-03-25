@@ -43,6 +43,40 @@ namespace Content.Client.Lobby.UI
         private readonly SpriteSystem _sprites;
         private readonly CrewManifestSystem _crewManifest;
         private readonly ISawmill _sawmill;
+        #region Starlight
+        /// <summary>
+        /// Species ID constant for Plasmaman used to gate job availability in the late-join UI.
+        /// </summary>
+        private const string PlasmamanSpeciesId = "Plasmaman";
+
+        /// <summary>
+        /// Jobs that are disabled in the UI for Plasmaman players due to missing envirosuit gear.
+        /// Mirrors the server-side blocked/fallback lists in GameTicker.Spawning.cs.
+        /// </summary>
+        private static readonly HashSet<string> PlasmamanUnsupportedJobs =
+        [
+            "Performer",
+            "Passenger",
+            "Visitor",
+            "Borg",
+            "StationAi",
+            "ERTLeader",
+            "ERTChaplain",
+            "ERTEngineer",
+            "ERTMedical",
+            "ERTSecurity",
+            "ERTJanitor",
+            "DeathSquad",
+            "CBURN",
+            "Decimus",
+            "SolGovOfficer",
+            "SolGovOfficerSheriff",
+            "TSFMCCrew",
+            "TSFMarine",
+            "TSFMarineElite",
+            "NTNCBlueShield",
+        ];
+        #endregion
 
         private readonly Dictionary<NetEntity, Dictionary<string, List<JobButton>>> _jobButtons = new();
         private readonly Dictionary<NetEntity, Dictionary<string, BoxContainer>> _jobCategories = new();
@@ -124,6 +158,8 @@ namespace Content.Client.Lobby.UI
             if (!_selectedSlot.HasValue ||
                 !_preferencesManager.Preferences!.TryGetHumanoidInSlot(_selectedSlot.Value, out var humanoid))
                 return;
+
+            var selectedPlasmaman = humanoid.Species == PlasmamanSpeciesId;
 
             foreach (var (id, name) in _gameTicker.StationNames)
             {
@@ -300,12 +336,27 @@ namespace Content.Client.Lobby.UI
                         jobButton.OnPressed += _ => SelectedId.Invoke((id, _selectedSlot ?? -1, jobButton.JobId));
 
                         // Starlight BEGIN
-                        var allowed = _jobRequirements.IsAllowed(prototype, humanoid, out var reason);
-                        jobButton.Disabled = !allowed;
-                        
-                        var tooltip = new Tooltip();
-                        tooltip.SetMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("job-no-requirements")));
-                        jobButton.TooltipSupplier = _ => tooltip;
+                        bool allowed;
+                        if (selectedPlasmaman && PlasmamanUnsupportedJobs.Contains(prototype.ID))
+                        {
+                            allowed = false;
+                            jobButton.Disabled = true;
+
+                            var plasmaTooltip = new Tooltip();
+                            plasmaTooltip.SetMessage(FormattedMessage.FromUnformatted(Loc.GetString(
+                                "late-join-gui-plasmaman-job-unsupported-tooltip",
+                                ("jobName", prototype.LocalizedName))));
+                            jobButton.TooltipSupplier = _ => plasmaTooltip;
+                        }
+                        else
+                        {
+                            allowed = _jobRequirements.IsAllowed(prototype, humanoid, out var reason);
+                            jobButton.Disabled = !allowed;
+
+                            var tooltip = new Tooltip();
+                            tooltip.SetMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("job-no-requirements")));
+                            jobButton.TooltipSupplier = _ => tooltip;
+                        }
 
                         if (allowed && value == 0) // Starlight END
                         {
