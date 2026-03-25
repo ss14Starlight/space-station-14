@@ -12,12 +12,12 @@
     size: Normal
   - type: Storage
     grid:
-    - 0,0,4,1
+    - 0,0,4,3
   - type: EntityTableContainerFill
     containers:
       storagebase:
         id: CigPackGreen
-        amount: 5
+        amount: 10
   - type: Tag
     tags:
     - Trash
@@ -25,6 +25,8 @@
     materialComposition:
       Plastic: 50
   - type: SpaceGarbage
+  - type: ItemPrice
+    priceCategory: cigarete_carton
 
 - type: entity
   id: CigCartonRed
@@ -41,7 +43,9 @@
     containers:
       storagebase:
         id: CigPackRed
-        amount: 5
+        amount: 10
+  - type: ItemPrice
+    priceCategory: cigarete_carton
 
 - type: entity
   id: CigCartonBlue
@@ -59,6 +63,8 @@
       storagebase:
         id: CigPackBlue
         amount: 5
+  - type: ItemPrice
+    priceCategory: cigarete_carton
 
 - type: entity
   id: CigCartonBlack
@@ -76,6 +82,8 @@
       storagebase:
         id: CigPackBlack
         amount: 5
+  - type: ItemPrice
+    priceCategory: cigarete_carton
 
 - type: entity
   id: CigCartonMixed

@@ -49,7 +49,7 @@
     - 0,0,0,1
   - type: Storage
     grid:
-    - 0,0,4,1
+    - 0,0,4,3
     # 🌟Starlight - Start🌟
     whitelist:
       components:
@@ -62,7 +62,7 @@
     containers:
       storagebase:
         id: Cigarette
-        amount: 10
+        amount: 20
   - type: ItemCounter
     count:
       tags: [Cigarette]

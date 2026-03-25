@@ -10,8 +10,13 @@
 
 - type: priceCategory
   id: cigaretes
-  min: 3
-  max: 15
+  min: 6
+  max: 30
+
+- type: priceCategory
+  id: cigarete_carton
+  min: 60
+  max: 300
 
 - type: priceCategory
   id: drink
