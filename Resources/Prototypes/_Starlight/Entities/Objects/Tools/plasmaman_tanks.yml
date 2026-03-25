@@ -1,5 +1,6 @@
 # Starlight-start
 - type: entity
+  parent: BaseItem
   id: PlasmamanSuitRecharger
   name: plasmaman suit recharge crystal
   description: A small plasma crystal that restores the self-extinguisher charges on a plasmaman envirosuit. Click on the suit to use it.
