@@ -13,6 +13,8 @@ using Content.Shared._ST.CosmicCult.Components;
 using Content.Shared._ST.CosmicCult;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Content.Server._Starlight.Language;
+using Content.Shared._Starlight.Language;
 
 namespace Content.Server._ST.CosmicCult.Abilities;
 
@@ -26,8 +28,9 @@ public sealed class CosmicFragmentationSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly LanguageSystem _languageSystem = default!;
 
-    private ProtoId<RadioChannelPrototype> _cultRadio = "CosmicRadio";
+    private ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
 
     public override void Initialize()
     {
@@ -128,19 +131,13 @@ public sealed class CosmicFragmentationSystem : EntitySystem
 
     private void OnLawInserted(ref AILawUpdatedEvent args)
     {
-        if (!TryComp<IntrinsicRadioTransmitterComponent>(args.Target, out var radio) || !TryComp<ActiveRadioComponent>(args.Target, out var transmitter))
-            return;
         if (args.Lawset.Id == "CosmicCultLaws")
         {
-            radio.Channels.Add(_cultRadio);
-            transmitter.Channels.Add(_cultRadio);
+            _languageSystem.AddLanguage(args.Target, _cultLanguage);
             _antag.SendBriefing(args.Target, Loc.GetString("cosmiccult-silicon-subverted-briefing"), Color.FromHex("#4cabb3"), null);
         }
         else
-        {
-            radio.Channels.Remove(_cultRadio);
-            transmitter.Channels.Remove(_cultRadio);
-        }
+            _languageSystem.RemoveLanguage(args.Target, _cultLanguage);
     }
 }
 

@@ -10,11 +10,8 @@ using Content.Server.EUI;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
-using Content.Server.Light.Components;
 using Content.Server.Objectives.Components;
 using Content.Server.Popups;
-using Content.Shared.Radio.Components;
-using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Voting.Managers;
@@ -27,9 +24,7 @@ using Content.Shared._ST.CosmicCult;
 using Content.Shared._ST.CosmicCult.Roles;
 using Content.Shared.Alert;
 using Content.Shared.Audio;
-using Content.Shared.Body.Systems;
 using Content.Shared.Coordinates;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
@@ -63,6 +58,8 @@ using System.Linq;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Gibbing;
 using Content.Shared.Light.Components;
+using Content.Server._Starlight.Language;
+using Content.Shared._Starlight.Language;
 
 namespace Content.Server._ST.CosmicCult;
 
@@ -103,6 +100,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly VisibilitySystem _visibility = default!;
+    [Dependency] private readonly LanguageSystem _languageSystem = default!;
 
     private ISawmill _sawmill = default!;
     private TimeSpan _t3RevealDelay = default!;
@@ -116,6 +114,8 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
     private readonly SoundSpecifier _tier3Sound = new SoundPathSpecifier("/Audio/_ST/CosmicCult/tier3.ogg");
     private readonly SoundSpecifier _tier2Sound = new SoundPathSpecifier("/Audio/_ST/CosmicCult/tier2.ogg");
     private readonly SoundSpecifier _monumentAlert = new SoundPathSpecifier("/Audio/_ST/CosmicCult/tier_up.ogg");
+
+    private ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
 
     /// <summary>
     /// Mind role to add to cultists.
@@ -616,7 +616,6 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             return;
 
         EnsureComp<CosmicCultComponent>(uid, out var cultComp);
-        EnsureComp<IntrinsicRadioReceiverComponent>(uid);
         EnsureComp<CosmicCultAssociatedRuleComponent>(uid, out var associatedComp);
 
         associatedComp.CultGamerule = rule;
@@ -626,10 +625,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-roundstart-fluff"), Color.FromHex("#4cabb3"), _briefingSound);
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-short-briefing"), Color.FromHex("#cae8e8"), null);
 
-        var transmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(uid);
-        var radio = EnsureComp<ActiveRadioComponent>(uid);
-        radio.Channels.Add("CosmicRadio");
-        transmitter.Channels.Add("CosmicRadio");
+        _languageSystem.AddLanguage(uid, _cultLanguage);
 
         if (_playerMan.TryGetSessionById(mind.UserId, out var session))
         {
@@ -697,7 +693,6 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         var cultComp = EnsureComp<CosmicCultComponent>(uid);
         cultComp.EntropyBudget = 10; // pity balance
         cultComp.StoredDamageContainer = Comp<DamageableComponent>(uid).DamageContainerID!.Value;
-        EnsureComp<IntrinsicRadioReceiverComponent>(uid);
         TransferCultAssociation(converter, uid);
 
         if (cult.Comp.CurrentTier == 3)
@@ -727,10 +722,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
 
         Dirty(uid, cultComp);
 
-        var transmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(uid);
-        var radio = EnsureComp<ActiveRadioComponent>(uid);
-        radio.Channels = ["CosmicRadio"];
-        transmitter.Channels = ["CosmicRadio"];
+        _languageSystem.AddLanguage(uid, _cultLanguage);
 
         _mind.TryAddObjective(mindId, mind, "CosmicFinalityObjective");
         _mind.TryAddObjective(mindId, mind, "CosmicMonumentObjective");
@@ -759,10 +751,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         _stun.TryAddStunDuration(uid.Owner, TimeSpan.FromSeconds(2));
         foreach (var actionEnt in uid.Comp.ActionEntities) _actions.RemoveAction(actionEnt);
 
-        if (TryComp<IntrinsicRadioTransmitterComponent>(uid, out var transmitter))
-            transmitter.Channels.Remove("CosmicRadio");
-        if (TryComp<ActiveRadioComponent>(uid, out var radio))
-            radio.Channels.Remove("CosmicRadio");
+        _languageSystem.RemoveLanguage(uid.Owner, _cultLanguage);
         RemComp<CosmicCultLeadComponent>(uid);
         RemComp<InfluenceVitalityComponent>(uid);
         RemComp<InfluenceStrideComponent>(uid);

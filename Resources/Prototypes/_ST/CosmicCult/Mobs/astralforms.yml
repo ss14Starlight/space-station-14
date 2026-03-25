@@ -56,15 +56,14 @@
        enabled: true
        isLooped: true
        reverseWhenFinished: true
-  - type: IntrinsicRadioReceiver
-  - type: ActiveRadio
-    channels:
-    - CosmicRadio
   - type: Visibility
     layer: 32 #ghost vis layer
-  #region Starlight languages
+  - type: LanguageKnowledge
+    speaks:
+    - Cosmic
+    understands:
+    - Cosmic
   - type: UniversalLanguageSpeaker
-  #endregion
 
 - type: entity
   parent: [ BaseSimpleMob ]
