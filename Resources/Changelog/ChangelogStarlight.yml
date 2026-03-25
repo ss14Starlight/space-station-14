@@ -35831,5 +35831,12 @@ Entries:
   id: 382201
   time: '2026-03-24T23:50:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3822
+- author: STARLIGHT TEAM
+  changes:
+  - message: Porting part of the Wizden changes.
+    type: Tweak
+  id: 392201
+  time: '2026-03-25T00:10:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3922
 Order: -1
 
