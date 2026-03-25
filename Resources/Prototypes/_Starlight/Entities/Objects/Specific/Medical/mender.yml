@@ -32,6 +32,10 @@
   - type: Tag
     tags:
       - AutoMender
+  - type: InteractRestriction #FH - Edit
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
     
 - type: entity
   id: AutoMenderBrute

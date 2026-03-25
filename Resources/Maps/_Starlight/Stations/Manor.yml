@@ -4,7 +4,7 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/22/2026 11:46:28
+  time: 03/24/2026 23:32:51
   entityCount: 32537
 maps:
 - 1
@@ -12030,7 +12030,7 @@ entities:
       pos: 1.5,-2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -76162.97
+      secondsUntilStateChange: -76298.586
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12137,7 +12137,7 @@ entities:
       pos: -52.5,58.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -102934.945
+      secondsUntilStateChange: -103070.56
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14034,7 +14034,7 @@ entities:
       pos: 18.5,53.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -276823.88
+      secondsUntilStateChange: -276959.5
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14645,7 +14645,7 @@ entities:
       pos: -61.5,49.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -132694.8
+      secondsUntilStateChange: -132830.4
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -100953,7 +100953,7 @@ entities:
       pos: 66.5,41.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -29586.348
+      secondsUntilStateChange: -29721.963
       state: Closing
     - type: Firelock
       emergencyCloseCooldown: 11124.3888776
@@ -102404,7 +102404,7 @@ entities:
       pos: -27.5,81.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -17696.309
+      secondsUntilStateChange: -17831.924
       state: Closing
   - uid: 15903
     components:
@@ -181443,18 +181443,27 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -30.5,53.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - GenpopEnter
+      - - Security
   - uid: 29245
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -30.5,51.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - GenpopEnter
+      - - Security
 - proto: TurnstileGenpopLeave
   entities:
   - uid: 14612
     components:
     - type: Transform
-      pos: -30.5,49.5
+      rot: 1.5707963267948966 rad
+      pos: -30.5,54.5
       parent: 2
     - type: AccessReader
       accessListsOriginal:
@@ -181473,9 +181482,13 @@ entities:
   - uid: 28010
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -30.5,54.5
+      rot: 1.5707963267948966 rad
+      pos: -30.5,49.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - GenpopLeave
+      - - Security
 - proto: TwoWayLever
   entities:
   - uid: 26966

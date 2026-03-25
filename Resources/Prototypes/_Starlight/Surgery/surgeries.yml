@@ -17,6 +17,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
 
 - type: entity
   parent: SurgeryOpenIncision
@@ -49,6 +50,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -69,6 +71,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Head
@@ -89,6 +92,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Arm
@@ -173,6 +177,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: Sprite
     sprite: Mobs/Species/Skeleton/parts.rsi
     state: torso_m
@@ -193,6 +198,9 @@
   - type: SurgeryPartCondition
     parts:
     - Torso
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: torso_m
@@ -215,6 +223,9 @@
   - type: SurgeryPartCondition
     parts:
     - Head
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   - type: Sprite
     sprite: Objects/Fun/Instruments/microphone.rsi
     state: icon
@@ -237,6 +248,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -264,6 +276,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -289,6 +302,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -314,6 +328,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -343,6 +358,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -370,6 +386,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -397,6 +414,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -422,6 +440,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -449,6 +468,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -477,6 +497,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -505,6 +526,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -532,6 +554,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -557,6 +580,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -582,6 +606,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -607,6 +632,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -636,6 +662,9 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganEyes
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     layers:
@@ -661,6 +690,9 @@
   - type: SurgeryOrganDontExistCondition
     organ:
     - type: OrganEyes
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     layers:
@@ -686,6 +718,9 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: EyeImplant
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
@@ -710,6 +745,9 @@
   - type: SurgeryOrganDontExistCondition
     organ:
     - type: EyeImplant
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
@@ -735,6 +773,9 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: HandImplant
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
@@ -759,6 +800,9 @@
   - type: SurgeryOrganDontExistCondition
     organ:
     - type: HandImplant
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
@@ -796,6 +840,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Head
@@ -836,6 +881,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Head
@@ -924,6 +970,9 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganTongue
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: tongue
@@ -944,6 +993,9 @@
   - type: SurgeryOrganDontExistCondition
     organ:
     - type: OrganTongue
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: tongue
@@ -973,6 +1025,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Head
@@ -1013,6 +1066,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Head
@@ -1117,6 +1171,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -1142,6 +1197,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso

@@ -4040,7 +4040,6 @@ entities:
       parent: 1
     - type: SpecialRespawn
       stationMap:
-      - invalid
       - 1
 - proto: OperatingTable
   entities:

@@ -137,8 +137,8 @@
     useSound:
       path: /Audio/Items/wirecutter.ogg
   - type: ToolTileCompatible
-  - type: Scalpel
   - type: SurgeryTool
+  - type: Scalpel
     successRate: 0.35
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg

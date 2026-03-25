@@ -1,7 +1,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrep
-  name: nt representive skirt
+  name: nt representative skirt
   description: That skirt that is better not to see.
   components:
   - type: Sprite
@@ -12,7 +12,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrepTurtleneck
-  name: nt representive's turtleneck jumpskirt
+  name: nt representative's turtleneck jumpskirt
   description: For a more casual look while on the job.
   components:
   - type: Sprite
@@ -23,7 +23,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpskirtBlueShield
-  name: blue shield skirt
+  name: blueshield skirt
   description: The skirt of a glorified bodyguard.
   components:
   - type: Sprite
@@ -34,7 +34,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpskirtEliteBlueShield
-  name: elite blue shield skirt
+  name: elite blueshield skirt
   description: The skirt of an elite BSO. To reach such a level, you must have protected Command from [REDACTED].
   components:
   - type: Sprite
@@ -424,7 +424,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtCentcomOfficial
-  name: CentComm officer's suitskirt
+  name: centcomm officer's suitskirt
   description: It's a suitskirt worn by CentComm's highest-tier Commanders.
   components:
     - type: Sprite
@@ -435,7 +435,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtCentcomOfficer
-  name: CentComm turtleneck skirt
+  name: centcomm turtleneck skirt
   description: A skirt version of the CentComm turtleneck, rarer and more sought after than the original.
   components:
   - type: Sprite
@@ -657,7 +657,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: MagistrateUniformSkirt
-  name: Magistrate's Jumpskirt
+  name: magistrate's Jumpskirt
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/magistrate.rsi
@@ -678,7 +678,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNCT
-  name: NT career trainer's skirt
+  name: nt career trainer's skirt
   description: A neatly pressed olive green shirt paired with a sleek black skirt, worn by those committed to mentoring the next generation.
   components:
   - type: Sprite
