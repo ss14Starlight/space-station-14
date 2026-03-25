@@ -58,8 +58,6 @@ namespace Content.Client.Lobby.UI
             "Performer",
             "Passenger",
             "Visitor",
-            "Borg",
-            "StationAi",
             "ERTLeader",
             "ERTChaplain",
             "ERTEngineer",
