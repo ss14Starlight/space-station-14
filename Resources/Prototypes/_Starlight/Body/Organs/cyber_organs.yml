@@ -12,6 +12,11 @@
       reagents:
       - ReagentId: Iron
         Quantity: 30
+  - type: HumanoidEMPCompositeElement
+    effect:
+      damageAmount:
+        types:
+          Shock: 5
 
 - type: entity
   id: CyberEyeNightVision
@@ -30,6 +35,14 @@
     prototypes:
       Default: CyberEyesNightVision
       Resomi: ResomiCyberEyesNightVision
+  - type: HumanoidEMPCompositeElement
+    effect:
+      glitchDuration: 10.0
+      additionalEffects:
+        StatusEffectTemporaryBlindness: 2.0
+      damageAmount:
+        types:
+          Shock: 5
 
 - type: entity
   id: CyberEyeThermal
@@ -48,6 +61,14 @@
     prototypes:
       Default: CyberEyesThermalVision
       Resomi: ResomiCyberEyesThermalVision
+  - type: HumanoidEMPCompositeElement
+    effect:
+      glitchDuration: 10.0
+      additionalEffects:
+        StatusEffectTemporaryBlindness: 2.0
+      damageAmount:
+        types:
+          Shock: 5
 
 - type: entity
   id: BudgetCyberEyes
@@ -78,6 +99,14 @@
       Vox: MobVoxEyes
       Cyclorite: MobCycloriteEyes
       Abductor: MobAbductorEyes
+  - type: HumanoidEMPCompositeElement
+    effect:
+      glitchDuration: 10.0
+      additionalEffects:
+        StatusEffectTemporaryBlindness: 2.0
+      damageAmount:
+        types:
+          Shock: 5
 
 - type: entity
   id: BudgetCyberTongue

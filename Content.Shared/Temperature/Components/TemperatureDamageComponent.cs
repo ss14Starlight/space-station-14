@@ -91,4 +91,7 @@ public sealed partial class TemperatureDamageComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan UpdateInterval = TimeSpan.FromSeconds(1.0);
+
+    // Far Horizons, silent temperature alerts
+    [DataField] public bool DisableAlerts;
 }
