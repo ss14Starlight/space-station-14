@@ -17,7 +17,7 @@
   - type: Hunger
   - type: Icon
     sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
-    state: full
+    state: rodentia
   - type: Body
     prototype: Rodentia
     requiredLegs: 2
