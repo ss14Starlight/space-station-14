@@ -242931,7 +242931,7 @@ entities:
     - type: Transform
       pos: 48.5,178.5
       parent: 2
-- proto: SurgeryKitFilled
+- proto: ClothingBackpackDuffelSurgeryFilled
   entities:
   - uid: 1273
     components:
