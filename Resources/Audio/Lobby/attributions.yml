@@ -81,7 +81,17 @@
   copyright: "every light is blinking at once by Sunbeamstress/Lauren Loveless."
   source: "https://soundcloud.com/sunbeamstress/every-light-is-blinking-at-once"
 
-- files: [Player.ogg"]
+- files: ["Player.ogg"]
   license: "CC-BY-NC-SA-3.0"
   copyright: "Player by Alice."
   source: "https://soundcloud.com/al1ceeeee/player"
+
+- files: ["Sentient.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Sentient by Alice."
+  source: "https://soundcloud.com/al1ceeeee/sentient"
+
+- files: ["I-bled-out.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Sentient by Alice."
+  source: "https://soundcloud.com/al1ceeeee/i-bled-out"
