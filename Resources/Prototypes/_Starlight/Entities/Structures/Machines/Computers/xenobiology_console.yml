@@ -1,0 +1,98 @@
+- type: entity
+  parent: BaseComputer
+  id: XenobiologyConsole
+  name: xenobiology console
+  description: A computer for manipulating slimes. Can move slimes around, apply mutating potions, and even feed them!
+  components:
+    - type: XenobiologyConsole
+      monkeyTag: Monkey
+      monkeyCubeTag: MonkeyCube
+      monkeyProtoId: MobMonkey
+    - type: Computer
+      board: XenobiologyConsoleCircuitboard
+    - type: Sprite
+      layers:
+        - map: [ "computerLayerBody" ]
+          state: computer
+        - map: [ "computerLayerKeyboard" ]
+          state: generic_keyboard
+        - map: [ "computerLayerScreen" ]
+          sprite: _Starlight/Structures/Machines/slime_computer.rsi
+          state: slime
+        - map: [ "computerLayerKeys" ]
+          sprite: _Starlight/Structures/Machines/slime_computer.rsi
+          state: slime_key
+        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+          state: generic_panel_open
+    - type: PointLight
+      enabled: true
+      radius: 1.5
+      energy: 1.6
+      color: "#FC0097"
+    - type: Animateable
+    - type: ContainerContainer
+    - type: RemoteEyeConsole
+      remoteEntityProto: XenobiologyConsoleEye
+      color: "#00FF00"
+      actions:
+        - SyntrunnerActionExitConsole
+        - XenobiologyConsoleActionAnalyzeSlime
+        - XenobiologyConsoleActionGrabSlime
+        - XenobiologyConsoleActionPlaceSlime
+        - XenobiologyConsoleActionPlaceMonkey
+        - XenobiologyConsoleActionRecycleMonkey
+        - XenobiologyConsoleActionApplyMutationPotion
+        - XenobiologyConsoleActionApplyStabilizerPotion
+      viewOnConsolePosition: true
+
+- type: entity
+  parent:
+    - Incorporeal
+    - BaseMob
+  id: XenobiologyConsoleEye
+  name: Xenobiology Console Eye
+  description: The eye, or perhaps the claw, extending from the xenobiology console. Is it spying on you?
+  categories: [ HideSpawnMenu ]
+  suffix: DO NOT MAP
+  components:
+    - type: NoFTL
+    - type: WarpPoint
+      follow: true
+    - type: Eye
+      pvsScale: 1.5
+    - type: StationAiOverlay
+      allowCrossGrid: true
+      requiredTags:
+        - "xenobiology"
+    - type: Visibility
+      layer: 32768
+    - type: Sprite
+      sprite: _Starlight/Mobs/Net/net_eye.rsi
+      layers:
+        - map: ["base"]
+          state: enemy
+          shader: unshaded
+    - type: SpriteWhitelisted
+      localEntityWhitelist:
+        tags:
+          - Syndicate
+          - Abductor
+      passedLayers:
+        base:
+          state: enemy
+      failedLayers:
+        base:
+          state: centcomm
+    - type: Tag
+      tags:
+        - CantInteract
+
+- type: entity
+  parent: SurveillanceCameraScience
+  id: SurveillanceCameraXenobiology
+  name: camera
+  suffix: Science (Xenobiology Console)
+  components:
+    - type: StationAiVision
+      tags:
+        - "xenobiology"

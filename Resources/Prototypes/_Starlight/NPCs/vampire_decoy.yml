@@ -1,0 +1,55 @@
+- type: htnCompound
+  id: VampireDecoyCompound
+  branches:
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+- type: entity
+  id: VampireDecoyEntity
+  name: vampire decoy
+  components:
+  - type: Transform
+  - type: Sprite
+    sprite: _Starlight/Vampire/Dantalion.rsi
+    state: decoy
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 3.5
+  - type: InputMover
+  - type: MobMover
+  - type: NpcFactionMember
+    factions:
+      - SimpleNeutral
+  - type: HTN
+    rootTask:
+      task: VampireDecoyCompound
+    blackboard:
+      IdleRange: !type:Single
+        4.0
+      MinimumIdleTime: !type:Single
+        0.15
+      MaximumIdleTime: !type:Single
+        0.35
+      NavInteract: !type:Bool
+        true
+  - type: TimedDespawn
+    lifetime: 5.0
+  - type: Appearance
+  - type: VampireDecoyAppearance
+  - type: Damageable
+    damageContainer: Biological
+  - type: VampireDecoy

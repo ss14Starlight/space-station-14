@@ -1,29 +1,35 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.InteropServices;
+using System.Net;
 using System.Threading.Tasks;
-using Content.Server._NullLink.Core;
-using Content.Server._NullLink.PlayerData;
+using System.Runtime.InteropServices;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection.IPIntel;
 using Content.Server.Database;
-using Content.Server.Discord.DiscordLink;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
-using Content.Shared._NullLink;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
-using Content.Shared.NullLink.CCVar;
 using Content.Shared.Players.PlayTimeTracking;
-using Content.Shared.Starlight;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
+
+#region Starlight
+using Content.Server._NullLink.Core;
+using Content.Server._NullLink.PlayerData;
+using Content.Server._Starlight.Connection;
+using Content.Server.Discord.DiscordLink;
+using Content.Shared._NullLink;
+using Content.Shared.NullLink.CCVar;
+using Content.Shared.Starlight;
+using Content.Shared.Starlight.CCVar;
+#endregion Starlight
 
 /*
  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
@@ -49,6 +55,13 @@ namespace Content.Server.Connection
         void AddTemporaryConnectBypass(NetUserId user, TimeSpan duration);
 
         void Update();
+
+        /// <summary>
+        /// Gets the resolved real client IP for a connected user.
+        /// When conntrack resolution is active, this returns the real IP behind SNAT.
+        /// Returns <c>null</c> if the user has no cached address.
+        /// </summary>
+        IPAddress? GetResolvedAddress(NetUserId user); // Starlight
     }
 
     /// <summary>
@@ -59,7 +72,6 @@ namespace Content.Server.Connection
         [Dependency] private readonly IActorRouter _actors = default!; // NullLink
         [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayerManager = default!; // NullLink
         [Dependency] private readonly IPlayerManager _plyMgr = default!;
-        [Dependency] private readonly IPlayerRolesManager _plyRoles = default!;
         [Dependency] private readonly IServerNetManager _netMgr = default!;
         [Dependency] private readonly IServerDbManager _db = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -77,14 +89,17 @@ namespace Content.Server.Connection
 
         private ISawmill _sawmill = default!;
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
+        private readonly Dictionary<NetUserId, IPAddress> _resolvedAddresses = []; // Starlight
         private IPIntel.IPIntel _ipintel = default!;
+        private ConntrackResolver _conntrack = default!; // Starlight
 
-        private RoleRequirementPrototype? _roleReqPeacefulBypass;
+        private RoleRequirementPrototype? _bunkerBypass; // NullLink
         public void PostInit()
         {
             InitializeWhitelist();
-            _cfg.OnValueChanged(NullLinkCCVars.RoleReqPeacefulBypass, reqProtoId 
-                => _roleReqPeacefulBypass = _prototypeManager.Index<RoleRequirementPrototype>(reqProtoId), true); // NullLink
+            _cfg.OnValueChanged(NullLinkCCVars.BunkerBypass, reqProtoId
+                => _bunkerBypass = _prototypeManager.TryIndex<RoleRequirementPrototype>(reqProtoId, out var proto) ? proto : null, true); // NullLink
+            _conntrack = new ConntrackResolver(_http, _cfg, _logManager); // Starlight
         }
 
         public void Initialize()
@@ -107,6 +122,12 @@ namespace Content.Server.Connection
             // Make sure we only update the time if we wouldn't shrink it.
             if (newTime > time)
                 time = newTime;
+        }
+
+        // Starlight: resolved IP cache
+        public IPAddress? GetResolvedAddress(NetUserId user)
+        {
+            return _resolvedAddresses.GetValueOrDefault(user);
         }
 
         public async void Update()
@@ -144,9 +165,10 @@ namespace Content.Server.Connection
 
         private async Task NetMgrOnConnecting(NetConnectingArgs e)
         {
-            var deny = await ShouldDeny(e);
+            // Starlight: resolve real client IP via conntrack-agent (SNAT bypass)
+            var addr = await _conntrack.ResolveRealIp(e.IP) ?? e.IP.Address;
 
-            var addr = e.IP.Address;
+            var deny = await ShouldDeny(e, addr); // Starlight
             var userId = e.UserId;
 
             var serverId = (await _serverDbEntry.ServerEntity).Id;
@@ -173,6 +195,7 @@ namespace Content.Server.Connection
             }
             else
             {
+                _resolvedAddresses[userId] = addr; // Starlight: cache resolved IP for later lookups
                 await _db.AddConnectionLogAsync(userId, e.UserName, addr, hwid, trust, null, serverId);
 
                 if (!ServerPreferencesManager.ShouldStorePrefs(e.AuthType))
@@ -188,6 +211,8 @@ namespace Content.Server.Connection
             {
                 AdminAlertIfSharedConnection(args.Session);
             }
+            else if (args.NewStatus == SessionStatus.Disconnected) // Starlight
+                _resolvedAddresses.Remove(args.Session.UserId); // Starlight
         }
 
         private void AdminAlertIfSharedConnection(ICommonSession newSession)
@@ -196,11 +221,13 @@ namespace Content.Server.Connection
             if (playerThreshold < 0)
                 return;
 
-            var addr = newSession.Channel.RemoteEndPoint.Address;
+            var addr = _resolvedAddresses.GetValueOrDefault(newSession.UserId)
+                       ?? newSession.Channel.RemoteEndPoint.Address; // Starlight: use resolved IP
 
             var otherConnectionsFromAddress = _plyMgr.Sessions.Where(session =>
                     session.Status is SessionStatus.Connected or SessionStatus.InGame
-                    && session.Channel.RemoteEndPoint.Address.Equals(addr)
+                    && (_resolvedAddresses.GetValueOrDefault(session.UserId)
+                        ?? session.Channel.RemoteEndPoint.Address).Equals(addr) // Starlight: use resolved IP
                     && session.UserId != newSession.UserId)
                 .ToList();
 
@@ -223,10 +250,9 @@ namespace Content.Server.Connection
          * TODO: Break this apart into is constituent steps.
          */
         private async Task<(ConnectionDenyReason, string, List<ServerBanDef>? bansHit)?> ShouldDeny(
-            NetConnectingArgs e)
+            NetConnectingArgs e, IPAddress addr) // Starlight: accept resolved IP
         {
             // Check if banned.
-            var addr = e.IP.Address;
             var userId = e.UserId;
             ImmutableArray<byte>? hwId = e.UserData.HWId;
             if (hwId.Value.Length == 0 || !_cfg.GetCVar(CCVars.BanHardwareIds))
@@ -259,7 +285,7 @@ namespace Content.Server.Connection
 
             var adminData = await _db.GetAdminDataForAsync(e.UserId);
 
-            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null) 
+            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null)
             {
                 var showReason = _cfg.GetCVar(CCVars.PanicBunkerShowReason);
                 var customReason = _cfg.GetCVar(CCVars.PanicBunkerCustomReason);
@@ -273,10 +299,10 @@ namespace Content.Server.Connection
                 // NullLink Bypass start
                 try
                 {
-                    if (!validAccountAge
-                        && _roleReqPeacefulBypass is not null
+                    if (!bypassAllowed
+                        && _bunkerBypass is not null
                         && _actors.TryGetServerGrain(out var serverGrain))
-                        validAccountAge = await serverGrain.HasPlayerAnyRole(userId, _roleReqPeacefulBypass.Roles);
+                        bypassAllowed = await serverGrain.HasPlayerAnyRole(userId, _bunkerBypass.Roles);
                 }
                 catch (Exception)
                 {
@@ -313,7 +339,7 @@ namespace Content.Server.Connection
                             ("reason", Loc.GetString("panic-bunker-account-reason-overall", ("minutes", minOverallMinutes)))), null);
                 }
 
-                if (!validAccountAge || !haveMinOverallTime && !bypassAllowed)
+                if ((!validAccountAge || !haveMinOverallTime) && !bypassAllowed) // starlight
                 {
                     return (ConnectionDenyReason.Panic, Loc.GetString("panic-bunker-account-denied"), null);
                 }
@@ -369,7 +395,7 @@ namespace Content.Server.Connection
             // ALWAYS keep this at the end, to preserve the API limit.
             if (_cfg.GetCVar(CCVars.GameIPIntelEnabled) && adminData == null)
             {
-                var result = await _ipintel.IsVpnOrProxy(e);
+                var result = await _ipintel.IsVpnOrProxy(e, addr); // Starlight: pass resolved IP
 
                 if (result.IsBad)
                     return (ConnectionDenyReason.IPChecks, result.Reason, null);

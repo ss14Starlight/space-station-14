@@ -11,6 +11,7 @@
         - id: ClothingNeckCloakPirateCap
         - id: EnergyCutlass
         - id: MicroBombImplanter
+        - id: Spyglass #Starlight
 
 - type: entity
   parent: CratePirate
@@ -33,3 +34,5 @@
           amount: 4
         - id: WeaponShotgunBlunderbuss
           amount: 2
+        - id: Spyglass #Starlight
+          amount: 2 #Starlight

@@ -1,0 +1,20 @@
+[head=1][color=#009100]────────────────────[/color][/head]
+[color=#cc0000]█▀▀ █▀▀ █▀▀▄[/color] [head=3]   [color=#cc0000]CENTRAL SECURITY DIVISION [/color][/head]
+[color=#cc0000]█░░ ▀▀█ █░░█[/color][bolditalic]     [color=#cc0000]Eradicating the enemies of Nanotrasen[/color][/bolditalic]
+[color=#cc0000]▀▀▀ ▀▀▀ ▀▀▀░[/color]   [color=#aaaaaa][italic]OFFICIAL CSD OFFICE DOCUMENT[/italic][/color]
+[head=1][color=#009100]────────────────────[/color][/head]
+[head=1][color=#cc0000]Classified Secure Document[/color][/head]
+[head=1][color=#009100]────────────────────[/color][/head]
+[mono]
+[bold]Subject:[/bold] Xenoborg Fleet
+[bold]Association:[/bold] Xenos Hivefleet
+[bold]Objectives:[/bold] Conversion of organics into Xenoborgs, reunion with the Xeno Hivefleet
+
+Xenoborgs are a class of Silicon developed by the Xenos. Evidence suggests the first Xenoborgs were created more than a thousand years ago, however when the Xenos vanished their Silicons went inactive.
+
+Xenoborg sightings began in the fringes of Trans-Solar Federation space in 2523, with two sightings that year. In 2524 there were six more sightings. In 2525 there were over fifty. In 2526 their sightings became regular and consistent. This pattern indicates the potential existence of a larger Xenoborg Fleet, all migrating Corewards, with the Starlight Sector and the Trans-Solar Federation in their path.
+
+This coincides with the recent emergence of the Xeno Hivefleet in ████, headed towards Sol from ███ █████████ ███████ ███████ ██ ███ ████ ██ ███ ██████. NanoTrasen was deployed en mass to █████████ to ██████ and has been engaging the threat since then.
+[/mono]
+
+[head=1][color=#009100]────────────────────[/color][/head]

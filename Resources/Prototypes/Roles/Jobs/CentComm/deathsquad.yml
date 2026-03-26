@@ -5,13 +5,13 @@
   playTimeTracker: JobDeathSquad
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 72000 # 20h
+    time: 20h
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 36000 # 10h
+    time: 10h
   setPreference: false
   startingGear: DeathSquadGear
-  icon: "JobIconCentComm"
+  icon: "JobIconDeathSquad"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:

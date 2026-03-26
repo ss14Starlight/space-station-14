@@ -11,7 +11,7 @@ namespace Content.Shared.Communications
     public sealed class CommunicationsConsoleInterfaceState : BoundUserInterfaceState
     {
         public readonly bool CanAnnounce;
-        public readonly bool CanBroadcast = true;
+        public readonly bool CanBroadcast; // Starlight
         public readonly bool CanCall;
         public readonly TimeSpan? ExpectedCountdownEnd;
         public readonly bool CountdownStarted;
@@ -32,6 +32,7 @@ namespace Content.Shared.Communications
             List<string>? alertLevels,
             string currentAlert,
             float currentAlertDelay,
+            bool canBroadcast,
             TimeSpan? expectedCountdownEnd = null,
             TimeSpan? announcementCooldownEnd = null,
             TimeSpan? callRecallCooldownEnd = null,
@@ -49,6 +50,7 @@ namespace Content.Shared.Communications
             CurrentAlert = currentAlert;
             CurrentAlertDelay = currentAlertDelay;
             // Starlight Start
+            CanBroadcast = canBroadcast;
             AnnouncementCooldownEnd = announcementCooldownEnd;
             CallRecallCooldownEnd = callRecallCooldownEnd;
             ShuttleCountdownEnd = shuttleCountdownEnd;

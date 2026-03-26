@@ -6,6 +6,9 @@
     - !type:GroupSelector
       weight: 75
       children:
+      - !type:NestedSelector
+        weight: 5 # Roughly 7% chance
+        tableId: AllToysTable
       # Smoker's specialty
       - !type:AllSelector
         children:
@@ -68,6 +71,7 @@
         children:
         - id: ClothingOuterCoatPirate
         - id: ClothingHeadHatPirateTricord
+        - id: Spyglass #Starlight
       - id: ClothingHeadHatTophat
       - id: ClothingOuterHoodieBlack
         weight: 0.5
@@ -93,6 +97,8 @@
       - id: CamoUniformSuit #SL
       - id: ClothingOuterBurnedRobes #SL
       - id: ClothingNeckTatteredHood #SL
+      - id: SpyglassImprovised #SL
+        weight: 0.65 #SL
     # Uncommon Group
     - !type:GroupSelector
       weight: 23
@@ -117,13 +123,7 @@
         - id: ClothingNeckCloakEnby
         - id: ClothingNeckCloakPan
       - id: ToyFigurineSkeleton
-      - id: Basketball
-      - id: Football
-      - id: TennisBall
-      - id: BalloonNT
-      - id: BalloonCorgi
       - id: MysteryFigureBox
-      - id: RubberChicken
       - id: PlushieMimeLizard #starlight
       - id: SnailPlushie #starlight
       - id: AxolotlPlushie #starlight
@@ -172,16 +172,11 @@
     - !type:GroupSelector
       weight: 2
       children:
-      - id: Skub
-      - id: PonderingOrb
-      - id: CluwneHorn
-      - id: ClothingShoesSkates
       - id: DrinkMugDog
       - id: CigarGold
       - id: ClothingUniformJumpsuitFamilyGuy
       - id: WristwatchGold
       - id: MysteryLighterBox
-      - id: GoldenPersonalAI
       - id: ClothingHeadBowlHelmet #Starlight
 
 - type: entity
@@ -236,7 +231,8 @@
       - id: Plunger
       - id: PowerCellMedium
       - id: PowerCellSmall
-      - id: Soap
+      - !type:NestedSelector
+        tableId: AllSoapsTable
       - id: Wirecutter
       - id: Screwdriver
       - id: Wrench
@@ -276,19 +272,25 @@
         weight: 0.25
       - id: ToolboxElectricalFilled
       - id: ToolboxMechanicalFilled
+      - id: ToolboxRoboticistFilled # Starlight
+        weight: 0.6 # Starlight. You'll never see it coming.
+      - id: ClothingShoesGaloshnt # Starlight
+        weight: 0.4 # Starlight. Fake galoshes to crush your spirit.
       - id: ClothingBeltUtility
       - id: ToolboxArtisticFilled
       - id: GeigerCounter
       - id: trayScanner
       - id: HandheldGPSBasic
       - id: HandLabeler
-      - id: GlowstickBase
+      - id: GlowstickGreen
       - id: Bucket
       - id: RadioHandheld
       - id: AppraisalTool
       - id: ModularReceiver
       - id: WeaponFlareGun
       - id: BarberScissors
+      - id: TwinPointerKit # Starlight: Added twinpointer to maints loot
+      - id: JetpackImprovisedFilled #Starlight
       - !type:GroupSelector
         children:
         - id: DrinkSpaceGlue
@@ -312,6 +314,7 @@
       - id: WehpetInstrument
       - id: LidSalami
         weight: 0.05
+      - id: MakeshiftID # Starlight
 
 - type: entity
   name: Maint Loot Spawner
@@ -345,6 +348,19 @@
       - id: RifleStock
       - id: ModularReceiver
       - id: HydroponicsToolScythe
+      - id: SwordMakeshift  #starlight Start: Adds some Makeshift Items
+      - id: MakeshiftShield
+      - id: SwordImprovised
+      - id: ImprovisedShield
+      - id: WeaponSniperMakeshift
+        weight: .8
+      - id: WeaponShotgunMakeshift
+        weight: .8
+      - id: WeaponLaserSvalinn # Starlight- The svalinn's 14 dps... I think it's maints loot worthy.
+        weight: .8
+      - id: ClothingOuterArmorMakeshift
+      - id: WeaponMeleeSwitchblade 
+      - id: SpearSteel #Starlight End:
     # Rare Group
     - !type:GroupSelector
       weight: 5
@@ -372,6 +388,8 @@
       - id: HydroponicsToolMiniHoe
       - id: EmeraldLizitar #starlight
       - id: ClothingHandsKnuckleDusters
+      - !type:NestedSelector
+        tableId: AllToyWeaponsTable
 
 - type: entity
   name: Maint Loot Spawner

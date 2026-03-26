@@ -12,6 +12,13 @@
       state: icon
     - map: ["computerLayerScreen"]
       state: unshaded
+  # Starlight Start
+  - type: GenericVisualizer  # Override to prevent edge connection sprites
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: icon, sprite: Structures/Machines/tech_disk_printer.rsi }
+  # Starlight End
   - type: DiskConsole
   - type: ResearchClient
   - type: ActivatableUI

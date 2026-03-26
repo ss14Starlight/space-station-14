@@ -1,0 +1,7 @@
+- type: entity
+  id: MaintenanceMonstersVariationPass
+  parent: BaseVariationPass
+  components:
+  - type: MaintenanceMonstersVariationPass
+    spawnTable: !type:NestedSelector
+      tableId: MaintsMonstersBasic

@@ -1,0 +1,299 @@
+# Combination of cat + moth with unique colored alts of some markings
+- type: entity
+  id: MobKoni
+  parent: MobMoth # more moth-like than cat-like, makes sense to inherit this and not felionoid
+  categories: [HideSpawnMenu] # not supposed to be spawnable, designed for characterforceprototype.
+  name: Koni Clothsbane
+  save: false # player entity, don't save this to maps
+  components:
+    - type: Speech
+      allowedEmotes: [ 'Mew', 'Hisses', 'Meow', 'Growl', 'Purr', 'Trill', 'Chitter', 'Squeak', 'FlapWings' ] # combine felionoid and moth emotes
+    - type: Vocal
+      sounds:
+        Male: UnisexCatMoth
+        Female: UnisexCatMoth
+        Unsexed: UnisexCatMoth
+    - type: Body
+      prototype: CatMoth
+    - type: HumanoidAppearance
+      species: CatMoth
+      # Set all of this shit up manually because CatMoth is not roundstart so it can't just be saved to a character yml.
+      allowProfileOverride: false
+      gender: Female
+      eyeColor: '#000000FF'
+      skinColor: '#5D4AC7FF'
+      markingSet:
+        markings:
+          Tail:
+            - markingId: KoniFluff
+              visible: True
+              isGlowing: False
+              markingColor:
+                - '#7569C6FF'
+            - markingId: KoniWings
+              visible: True
+              isGlowing: False
+              markingColor:
+                - '#4E886DFF'
+            - markingId: ExtraFluffyTail
+              visible: True
+              isGlowing: False
+              markingColor:
+                - '#1C2F7FFF'
+          Hair:
+            - markingId: HumanHairCoolSpikes
+              visible: True
+              isGlowing: False
+              markingColor:
+                - '#5D4AC7FF'
+          HeadTop:
+            - markingId: KoniEars
+              visible: True
+              isGlowing: False
+              markingColor:
+                - '#FFFFFFFF'
+            - markingId: MothAntennaeEnlarged
+              visible: True
+              isGlowing: False
+              markingColor:
+                - '#7569C6FF'
+          Snout:
+            - markingId: KoniCheeks
+              visible: True
+              isGlowing: False
+              markingColor:
+                - '#5D4AC7FF'
+    - type: Inventory
+      femaleDisplacements:
+        jumpsuit:
+          sizeMaps:
+            32:
+              sprite: Mobs/Species/Moth/displacement.rsi
+              state: jumpsuit-female
+        back:
+          sizeMaps:
+            32:
+              sprite: Mobs/Species/Moth/displacement.rsi
+              state: back
+        outerClothing:
+          sizeMaps:
+            32:
+              sprite: Mobs/Species/Moth/displacement.rsi
+              state: outerclothing
+        gloves:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+              state: hand
+        shoes:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Admeme/neomoth/bodyparts_displacements.rsi
+              state: catmoth_shoes
+        head:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+              state: head
+      displacements:
+        jumpsuit:
+          sizeMaps:
+            32:
+              sprite: Mobs/Species/Moth/displacement.rsi
+              state: jumpsuit-male
+        back:
+          sizeMaps:
+            32:
+              sprite: Mobs/Species/Moth/displacement.rsi
+              state: back
+        outerClothing:
+          sizeMaps:
+            32:
+              sprite: Mobs/Species/Moth/displacement.rsi
+              state: outerclothing
+        gloves:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+              state: hand
+        shoes:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Admeme/neomoth/bodyparts_displacements.rsi
+              state: catmoth_shoes
+        head:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+              state: head
+
+# modified body so that it uses feline hands and feet. paws!!!
+- type: body
+  id: CatMoth
+  name: "catmoth"
+  root: torso
+  slots:
+    head:
+      part: HeadMoth
+      connections:
+        - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganMothEyes
+        tongue: OrganHumanTongue
+        eye_implant: null
+        brain_implant: null
+    torso:
+      part: TorsoMoth
+      connections:
+        - right arm
+        - left arm
+        - right leg
+        - left leg
+      organs:
+        heart: OrganAnimalHeart
+        lungs: OrganHumanLungs
+        stomach: OrganCatMothStomach
+        liver: OrganAnimalLiver
+        kidneys: OrganHumanKidneys
+        cavity: null
+    right arm:
+      part: RightArmFelionoid
+      connections:
+        - right hand
+    left arm:
+      part: LeftArmFelionoid
+      connections:
+        - left hand
+    right hand:
+      part: RightHandFelionoid
+      organs:
+        hand_implant: null
+    left hand:
+      part: LeftHandFelionoid
+      organs:
+        hand_implant: null
+    right leg:
+      part: RightLegMoth
+      connections:
+        - right foot
+    left leg:
+      part: LeftLegMoth
+      connections:
+        - left foot
+    right foot:
+      part: RightFootFelionoid
+    left foot:
+      part: LeftFootFelionoid
+
+# Maybe this is a bit much but this would be more accurate to koni's diet. Fatass moth.
+- type: entity
+  id: OrganCatMothStomach
+  parent: OrganMothStomach
+  categories: [HideSpawnMenu]
+  components:
+    - type: Stomach
+      isSpecialDigestibleExclusive: false
+
+# Species info in order to ensure the sprites render correctly (mainly just the paws)
+- type: species
+  id: CatMoth
+  name: species-name-catmoth
+  roundStart: false # Don't allow selection in character customization menu
+  prototype: MobKoni
+  sprites: MobCatMothSprites
+  defaultSkinTone: "#5D4AC7"
+  markingLimits: MobMothMarkingLimits
+  dollPrototype: MobMothDummy
+  skinColoration: Hues
+  maleFirstNames: NamesMothFirstMale
+  femaleFirstNames: NamesMothFirstFemale
+  lastNames: NamesMothLast
+  customName: true
+
+- type: speciesBaseSprites
+  id: MobCatMothSprites
+  sprites:
+    Head: MobMothHead
+    Hair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: MobKoniTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    Eyes: MobMothEyes
+    LArm: MobFelionoidLArm
+    RArm: MobFelionoidRArm
+    LHand: MobFelionoidLHand
+    RHand: MobFelionoidRHand
+    LLeg: MobMothLLeg
+    RLeg: MobMothRLeg
+    LFoot: MobCatmothLFoot
+    RFoot: MobCatmothRFoot
+
+# Needs a slightly altered torso to make so the arms don't look like shit
+- type: humanoidBaseSprite
+  id: MobKoniTorso
+  baseSprite:
+    sprite: _Starlight/Admeme/neomoth/bodyparts.rsi
+    state: catmoth_torso
+- type: humanoidBaseSprite
+  id: MobKoniTorsoMale
+  baseSprite:
+    sprite: _Starlight/Admeme/neomoth/bodyparts.rsi
+    state: catmoth_torso
+- type: humanoidBaseSprite
+  id: MobKoniTorsoFemale
+  baseSprite:
+    sprite: _Starlight/Admeme/neomoth/bodyparts.rsi
+    state: catmoth_torso
+- type: humanoidBaseSprite
+  id: MobCatmothLFoot
+  baseSprite:
+    sprite: _Starlight/Admeme/neomoth/bodyparts.rsi
+    state: catmoth_l_foot
+- type: humanoidBaseSprite
+  id: MobCatmothRFoot
+  baseSprite:
+    sprite: _Starlight/Admeme/neomoth/bodyparts.rsi
+    state: catmoth_r_foot
+
+# Unique markings
+- type: marking
+  id: KoniWings
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: _Starlight/Admeme/neomoth/markings.rsi
+      state: koni_wings
+
+- type: marking
+  id: KoniFluff
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+    - sprite: _Starlight/Admeme/neomoth/markings.rsi
+      state: koni_fluff
+
+- type: marking
+  id: KoniCheeks
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: []
+  sprites:
+    - sprite: _Starlight/Admeme/neomoth/markings.rsi
+      state: koni_cheeks
+
+# Should refrain from changing color on these
+- type: marking
+  id: KoniEars
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: []
+  sprites:
+    - sprite: _Starlight/Admeme/neomoth/markings.rsi
+      state: koni_ears

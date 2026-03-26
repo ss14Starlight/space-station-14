@@ -4,6 +4,13 @@
   weights:
     Dragon: 1
     Revenant: 1
+    # Starlight Start
+    Clown: 1
+    LoneOp: 0.25
+    NinjaBackup: 0.75
+    Rod: 0.75
+    Wizard: 0.1
+    # Starlight End
 
 - type: ninjaHackingThreat
   id: Dragon

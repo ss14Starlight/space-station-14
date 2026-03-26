@@ -21,6 +21,8 @@
       - VendingMachineRestockHotDrinks
       - VendingMachineRestockHappyHonk
       - VendingMachineRestockCondimentStation
+      - VendingMachineRestockDonk #SL
+      - VendingMachineRestockIceCream #SL
 
 - type: entity
   id: SpawnVendingMachineRestockFood
@@ -43,6 +45,8 @@
       - VendingMachineRestockGetmoreChocolateCorp
       - VendingMachineRestockHappyHonk
       - VendingMachineRestockCondimentStation
+      - VendingMachineRestockDonk #SL
+      - VendingMachineRestockIceCream #SL
 
 - type: entity
   id: SpawnVendingMachineRestockDrink

@@ -64,11 +64,13 @@
       enum.CommunicationsConsoleUiKey.Key:
         toggleAction: ActionAGhostShowCommunications
   - type: CrewMonitoringConsole
+    pagingSoundLocal: true # Starlight: Only AI player hears paging sounds
   - type: GeneralStationRecordConsole
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
     transmitFrequencyId: ShuttleTimer
+  - type: StationLimitedNetwork # Starlight
   - type: RadarConsole
     followEntity: false
   - type: CommunicationsConsole
@@ -257,12 +259,17 @@
     powerLoad: 500
   - type: ExtensionCableReceiver
   - type: Battery
+    # Very important:
+    # Disable networking to prevent the battery getting continuously dirtied every tick as it interacts with the power network.
+    # This can not be done by changing the charge rate as the power supply ramps up over time.
+    # This disables prediction for this battery.
+    netsync: false
     maxCharge: 300000
     startingCharge: 300000
   - type: ApcPowerReceiverBattery
     idleLoad: 500
     batteryRechargeRate: 1000
-    batteryRechargeEfficiency: 0 # Setting to zero until the light flickering issue associated with dynamic power loads is fixed 
+    batteryRechargeEfficiency: 0 # Setting to zero until the light flickering issue associated with dynamic power loads is fixed
   - type: StationAiCore
   - type: StationAiVision
   - type: InteractionOutline
@@ -331,7 +338,16 @@
       - StationAiCoreElectronics
   - type: StaticPrice
     price: 5000
-      
+# Starlight-start: Changed to core linking
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSource
+    range: 20
+    ports:
+      - AiLawConsoleSender
+# Starlight-end
+
 # The job-ready version of an AI spawn.
 - type: entity
   id: PlayerStationAi
@@ -350,7 +366,7 @@
   description: An unfinished computer core for housing an artifical intelligence.
   components:
   - type: Anchorable
-    flags: 
+    flags:
     - Anchorable
   - type: Rotatable
   - type: Sprite
@@ -472,11 +488,18 @@
       state: ai_female
   - type: NameIdentifier
     group: StationAi
-    #region Starlight
+  - type: ToggleableGhostRole
+    roleName: station-ai-ghost-role-name
+    roleDescription: station-ai-ghost-role-description
+    roleRules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleGhostRoleSilicon
+    job: StationAi
+  #region Starlight
   - type: ContentEye
   - type: IonStormTarget
     chance: 0.6 # lets just try it at 3/4th the chance of a borg and see how bad it gets
-    #endregion
+  #endregion
 
 #SL start
 - type: entity
@@ -558,6 +581,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMedium
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
@@ -577,11 +605,26 @@
         - BorgModuleOperative
         - BorgModuleL6C
         - BorgModuleDoubleEsword
+        - BorgModuleSyndicateNukeDisk # Starlight
+  # Starlight begin
+  - type: DefaultBorgModules
+    modules:
+      - BorgModuleTool
+      - BorgModuleOperative
+      - BorgModuleL6C
+      - BorgModuleDoubleEsword
+      - BorgModuleSyndicateNukeDisk
+  # Starlight end
   - type: ItemSlots
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHyper
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   id: PlayerBorgSyndicateAssaultGhostRole
@@ -592,6 +635,7 @@
       name: ghost-role-information-syndicate-cyborg-assault-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       raffle:
         settings: default
       job: Borg
@@ -613,11 +657,27 @@
         - BorgModuleRCD
         - BorgModuleOperative
         - BorgModuleSyndicateWeapon
+        - BorgModuleSyndicateNukeDisk # Starlight
+    # Starlight begin
+  - type: DefaultBorgModules
+    modules:
+      - BorgModuleSyndicateAdvancedTool
+      - BorgModuleConstruction
+      - BorgModuleRCD
+      - BorgModuleOperative
+      - BorgModuleSyndicateWeapon
+      - BorgModuleSyndicateNukeDisk
+    # Starlight end
   - type: ItemSlots
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHyper
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   id: PlayerBorgSyndicateSaboteurGhostRole
@@ -628,6 +688,7 @@
       name: ghost-role-information-syndicate-cyborg-saboteur-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       raffle:
         settings: default
       job: Borg
@@ -649,11 +710,27 @@
         - BorgModuleTopicals
         - BorgModuleSyndicateRescue # starlight
         - BorgModuleSyndicateWeapon
+        - BorgModuleSyndicateNukeDisk # Starlight
+    # Starlight begin
+  - type: DefaultBorgModules
+    modules:
+      - BorgModuleTool
+      - BorgModuleSyndicateAdvancedChemical
+      - BorgModuleTopicals
+      - BorgModuleSyndicateRescue
+      - BorgModuleSyndicateWeapon
+      - BorgModuleSyndicateNukeDisk
+    # Starlight end
   - type: ItemSlots
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHyper
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   id: PlayerBorgSyndicateMedicalGhostRole
@@ -664,25 +741,27 @@
       name: ghost-role-information-syndicate-cyborg-medical-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
 
 - type: entity
-  name: syndicate invasion borg spawner
-  id: PlayerBorgSyndicateInvasionGhostRoleSpawner
   parent: MarkerBase
+  id: PlayerBorgSyndicateInvasionGhostRoleSpawner
+  name: syndicate invasion borg spawner
   components:
   - type: Sprite
     layers:
       - state: red
       - sprite: Structures/Decoration/banner.rsi
         state: banner_syndicate
-  - type: RandomSpawner
-    prototypes:
-    - PlayerBorgSyndicateAssaultGhostRole
-    - PlayerBorgSyndicateAssaultGhostRole # Saboteurs are kinda like cyborg medics, we want less.
-    - PlayerBorgSyndicateSaboteurGhostRole
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: PlayerBorgSyndicateAssaultGhostRole
+      - id: PlayerBorgSyndicateSaboteurGhostRole
+        weight: 0.5 # Saboteurs are kinda like cyborg medics, we want less.
 
 - type: entity
   parent: EngineeringBorgChassisDerelict
@@ -704,6 +783,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: RandomMetadata
     nameSegments: [NamesBorg]
 
@@ -739,6 +823,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: RandomMetadata
     nameSegments: [NamesBorg]
 
@@ -776,6 +865,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: RandomMetadata
     nameSegments: [NamesBorg]
 
@@ -814,6 +908,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: RandomMetadata
     nameSegments: [NamesBorg]
 
@@ -851,6 +950,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: RandomMetadata
     nameSegments: [NamesBorg]
 
@@ -888,6 +992,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHyper
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: RandomMetadata
     nameSegments: [NamesDeathCommando]
 

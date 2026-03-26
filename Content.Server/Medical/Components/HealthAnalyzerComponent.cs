@@ -2,6 +2,8 @@ using Robust.Shared.Audio;
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+using Robust.Shared.Prototypes; //FarHorizons
+using Content.Shared.Actions;//FarHorizons
 
 namespace Content.Server.Medical.Components;
 
@@ -76,7 +78,7 @@ public sealed partial class HealthAnalyzerComponent : Component
     public bool Talk;
     
     [DataField]
-    public string TalkMessage = "health-analyzer-chat-message";
+    public LocId TalkMessage = "health-analyzer-chat-message";
     
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
@@ -89,4 +91,11 @@ public sealed partial class HealthAnalyzerComponent : Component
     public TimeSpan TalkInterval = TimeSpan.FromSeconds(5);
     
     # endregion Starlight
+    //FarHorizons Start
+    [DataField]
+    public EntProtoId Action = "ActionMedTek";
+
+    [DataField]
+    public EntityUid? ActionEntity;
+    //FarHorizons End
 }

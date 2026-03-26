@@ -12,7 +12,7 @@
       organs:
         brain: OrganHumanBrain # feels strange but it is what it is
         eyes: OrganHumanEyes # Starlight - gotta have these to not get blinded by oculine
-        lungs: OrganAnimalLungs
+        lungs: OrganCorgiLungs # Starlight
         stomach: OrganAnimalStomach
         liver: OrganAnimalLiver
         heart: OrganAnimalHeart

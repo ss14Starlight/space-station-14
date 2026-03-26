@@ -12,7 +12,7 @@ delivery-spam-reasons-to-join-syndicate = {-delivery-header-syndicate}
                     THEIR MURDER METHODS ARE UNINSPIRED! IT'S JUST GUN! THERE'S NO THROWING PEOPLE INTO DEEP SPACE, NO FEEDING PEOPLE INTO RECYCLERS WITH SAFETY MODE DISENGAGED, NO SLIPPING BOMBS INTO POCKETS! SO BORING!
 
                     {"[bold]SIGN HERE IF YOU AGREE[/bold]"}
-                    glory to the syndicate, death to nanotransen
+                    glory to the Syndicate, death to NanoTrasen
 
 deliver-spam-dont-you-want-more = {"[color=gold][bold]Don't You Want More?[/bold][/color]"}
                                   

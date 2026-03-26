@@ -1,0 +1,15 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+            xmlns:gfx="clr-namespace:Content.Client._Starlight.Silicons.UI;assembly=Robust.Client"
+            Title="{Loc 'accept-borging-window-title'}">
+    <BoxContainer Orientation="Vertical"
+                  HorizontalExpand="True"
+                  VerticalExpand="True">
+        <RichTextLabel Name="WindowDescription" Text="{Loc 'accept-borging-window-prompt-text-part'}" HorizontalAlignment="Center"/>
+        <BoxContainer Orientation="Horizontal"
+                        HorizontalExpand="True"
+                        Margin="5 0" HorizontalAlignment="Center">
+            <Button Name="AcceptButton" Text="{Loc 'accept-borging-window-accept-button'}" MaxSize="256 64" StyleClasses="OpenRight"/>
+            <Button Name="DenyButton" Text="{Loc 'accept-borging-window-deny-button'}" MaxSize="256 64" StyleClasses="OpenLeft"/>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

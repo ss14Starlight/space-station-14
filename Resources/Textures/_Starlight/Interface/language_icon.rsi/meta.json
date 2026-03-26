@@ -137,9 +137,20 @@
 			"copyright": "By Rhetorica for Starlight",
             "name": "darktongue"
         },
+		{
+			"license": "CC-BY-SA-3.0",
+			"copyright": "By Rhetorica for Starlight",
+            "name": "felyaic"
+        },
         {
-            "name": "rodentia",
-            "copyright": "by Zeyria"
+			"license": "CC-BY-SA-3.0",
+			"copyright": "By Motherain",
+            "name": "lagomorph"
+        },
+        {
+            "license": "CC-BY-SA-3.0",
+            "copyright": "by Zeyria",
+            "name": "rodentia"
         }
     ]
 }

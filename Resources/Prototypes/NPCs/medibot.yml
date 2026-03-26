@@ -18,15 +18,16 @@
             targetKey: InjectTarget
             targetMoveKey: TargetCoordinates
 
+        #Starlight: Path before saying your line
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            pathfindInPlanning: false
+        
         - !type:HTNPrimitiveTask
           operator: !type:SpeakOperator
             speech: !type:SingleSpeakOperatorSpeech
               line: medibot-start-inject
             hidden: true
-
-        - !type:HTNPrimitiveTask
-          operator: !type:MoveToOperator
-            pathfindInPlanning: false
 
         - !type:HTNPrimitiveTask
           operator: !type:SetFloatOperator

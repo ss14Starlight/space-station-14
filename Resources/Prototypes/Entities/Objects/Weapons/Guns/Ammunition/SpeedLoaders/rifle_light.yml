@@ -1,11 +1,8 @@
 - type: entity
+  parent: [ BaseItem, BaseMinorContraband ] # Starlight - Security->Minor
   id: SpeedLoaderLightRifle
   name: "speed loader (.45 magnum)" # Starlight
-  parent: [ BaseItem, BaseMinorContraband ]
   components:
-  - type: Tag
-    tags:
-      - SpeedLoaderRifle
   - type: SpeedLoader
   - type: BallisticAmmoProvider
     mayTransfer: true

@@ -211,7 +211,7 @@ namespace Content.Shared.Chemistry.Reaction
             _adminLogger.Add(LogType.ChemicalReaction, reaction.Impact,
                 $"Chemical reaction {reaction.ID:reaction} occurred with strength {unitReactions:strength} on entity {ToPrettyString(soln):metabolizer} at Pos:{(posFound ? $"{gridPos:coordinates}" : "[Grid or Map not Found]")}");
 
-            _entityEffects.ApplyEffects(soln, reaction.Effects, unitReactions.Float());
+            _entityEffects.ApplyEffects(soln, reaction.Effects, unitReactions);
 
             // Someday, some brave soul will thread through an optional actor
             // argument in from every call of OnReaction up, all just to pass
@@ -259,10 +259,11 @@ namespace Content.Shared.Chemistry.Reaction
             return true;
         }
 
+        // Starlight Start: FullyReactSolution returns bool reactionOccured.
         /// <summary>
         ///     Continually react a solution until no more reactions occur, with a volume constraint.
         /// </summary>
-        public void FullyReactSolution(Entity<SolutionComponent> soln, ReactionMixerComponent? mixerComponent = null)
+        public bool FullyReactSolution(Entity<SolutionComponent> soln, ReactionMixerComponent? mixerComponent = null)
         {
             // construct the initial set of reactions to check.
             SortedSet<ReactionPrototype> reactions = new();
@@ -272,18 +273,24 @@ namespace Content.Shared.Chemistry.Reaction
                     reactions.UnionWith(reactantReactions);
             }
 
+            var reactionOccurred = false;
+
             // Repeatedly attempt to perform reactions, ending when there are no more applicable reactions, or when we
             // exceed the iteration limit.
             for (var i = 0; i < MaxReactionIterations; i++)
             {
                 if (!ProcessReactions(soln, reactions, mixerComponent))
-                    return;
+                    return reactionOccurred;
+
+                reactionOccurred = true;
             }
 
             Log.Error($"{nameof(Solution)} {soln.Owner} could not finish reacting in under {MaxReactionIterations} loops.");
+            return reactionOccurred;
         }
     }
-
+    // Starlight End
+    
     /// <summary>
     ///     Raised directed at the owner of a solution to determine whether the reaction should be allowed to occur.
     /// </summary>

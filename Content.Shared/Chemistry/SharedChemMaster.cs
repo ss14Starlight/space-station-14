@@ -101,6 +101,19 @@ namespace Content.Shared.Chemistry
         }
     }
 
+    [Serializable, NetSerializable]
+    public sealed class ChemMasterOutputDrawSourceMessage(ChemMasterDrawSource drawSource) : BoundUserInterfaceMessage
+    {
+        public readonly ChemMasterDrawSource DrawSource = drawSource;
+    }
+
+    // Starlight-start: Plumbing valve toggle
+    [Serializable, NetSerializable]
+    public sealed class ChemMasterToggleValveMessage : BoundUserInterfaceMessage
+    {
+    }
+    // Starlight-end
+
     public enum ChemMasterMode
     {
         Transfer,
@@ -131,6 +144,12 @@ namespace Content.Shared.Chemistry
         U50 = 50,
         U100 = 100,
         All,
+    }
+
+    public enum ChemMasterDrawSource
+    {
+        Internal,
+        External,
     }
 
     public static class ChemMasterReagentAmountToFixedPoint
@@ -166,9 +185,16 @@ namespace Content.Shared.Chemistry
         public readonly FixedPoint2 MaxVolume;
 
         /// <summary>
-        /// A list of the entities and their sizes within the container
+        /// A list of the pill entities and their sizes within the container
+        /// STARLIGHT: Edited to only be pills and not both pills and patches.
         /// </summary>
-        public List<(string Id, FixedPoint2 Quantity)>? Entities { get; init; }
+        public List<(string Id, FixedPoint2 Quantity)>? PillEntities { get; init; }
+        
+        /// <summary>
+        /// A list of the patch entities and their sizes within the container
+        /// STARLIGHT: Added specifically for patches
+        /// </summary>
+        public List<(string Id, FixedPoint2 Quantity)>? PatchEntities { get; init; }
 
         public List<ReagentQuantity>? Reagents { get; init; }
 
@@ -204,10 +230,16 @@ namespace Content.Shared.Chemistry
 
         public readonly bool UpdateLabel;
 
+        public readonly ChemMasterDrawSource DrawSource;
+
+        // Starlight-start: Plumbing valve
+        public readonly bool ValveOpen;
+        // Starlight-end
+
         public ChemMasterBoundUserInterfaceState(
             ChemMasterMode mode, ChemMasterSortingType sortingType, ContainerInfo? inputContainerInfo, ContainerInfo? outputContainerInfo,
             IReadOnlyList<ReagentQuantity> bufferReagents, FixedPoint2 bufferCurrentVolume,
-            uint selectedPillType, uint pillDosageLimit, uint patchDosageLimit, bool updateLabel) // Starlight-edit
+            uint selectedPillType, uint pillDosageLimit, uint patchDosageLimit, bool updateLabel, ChemMasterDrawSource drawSource, bool valveOpen) // Starlight-edit - add patchDosageLimit, valveOpen
         {
             InputContainerInfo = inputContainerInfo;
             OutputContainerInfo = outputContainerInfo;
@@ -219,6 +251,8 @@ namespace Content.Shared.Chemistry
             PillDosageLimit = pillDosageLimit;
             PatchDosageLimit = patchDosageLimit; //Starlight-edit
             UpdateLabel = updateLabel;
+            DrawSource = drawSource;
+            ValveOpen = valveOpen; // Starlight-edit
         }
     }
 

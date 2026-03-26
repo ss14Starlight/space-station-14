@@ -3,7 +3,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Rejuvenate;
-using Content.Shared.Starlight.Cybernetics.Components;
+using Content.Shared._Starlight.Cybernetics.Components; // Starlight
 using Content.Shared.StatusIcon;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
@@ -11,6 +11,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
@@ -218,7 +219,16 @@ public sealed class ThirstSystem : EntitySystem
 
             thirst.NextUpdateTime += thirst.UpdateRate;
 
-            ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
+            //Starlight begin
+            if (thirst.ThirstDrains.Count > 0)
+            {
+                var totalDrain =
+                    thirst.ThirstDrains.Aggregate<(EntityUid, float, TimeSpan?), float>(1,
+                        (current, modifier) => current * modifier.Item2);
+                ModifyThirst(uid, thirst, -totalDrain * thirst.ActualDecayRate);
+            }
+            else ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
+            //Starlight end
             var calculatedThirstThreshold = GetThirstThreshold(thirst, thirst.CurrentThirst);
 
             if (calculatedThirstThreshold == thirst.CurrentThirstThreshold)
@@ -228,4 +238,18 @@ public sealed class ThirstSystem : EntitySystem
             UpdateEffects(uid, thirst);
         }
     }
+    
+    //Starlight begin
+    public void AddThirstDrain(EntityUid uid, float mod, TimeSpan? endTime, ThirstComponent? comp = null)
+    {
+        if (!Resolve(uid, ref comp)) return;
+        comp.ThirstDrains.Add((uid, mod, endTime));
+    }
+
+    public void RemoveThirstDrain(EntityUid uid, TimeSpan? endTime, ThirstComponent? comp = null)
+    {
+        if (!Resolve(uid, ref comp)) return;
+        comp.ThirstDrains.RemoveAll(x => x.Item1 == uid && x.Item3 == endTime);
+    }
+    //Starlight end
 }

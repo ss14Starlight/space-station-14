@@ -3,6 +3,7 @@ using Content.Shared.Radio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Content.Shared._Starlight.Radio; //Starlight
 
 namespace Content.Shared.Silicons.Laws.Components;
 
@@ -53,10 +54,12 @@ public sealed class SiliconLawBuiState : BoundUserInterfaceState
 {
     public List<SiliconLaw> Laws;
     public HashSet<ProtoId<RadioChannelPrototype>>? RadioChannels;
+    public HashSet<CustomRadioChannelData>? CustomRadioChannels; //Starlight
 
-    public SiliconLawBuiState(List<SiliconLaw> laws, HashSet<ProtoId<RadioChannelPrototype>>? radioChannels)
+    public SiliconLawBuiState(List<SiliconLaw> laws, HashSet<ProtoId<RadioChannelPrototype>>? radioChannels, HashSet<CustomRadioChannelData>? customRadioChannels) //Starlight edit
     {
         Laws = laws;
         RadioChannels = radioChannels;
+        CustomRadioChannels = customRadioChannels; //Starlight
     }
 }

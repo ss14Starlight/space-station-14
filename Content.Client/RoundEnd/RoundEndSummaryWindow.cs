@@ -6,6 +6,11 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
+// Starlight Start
+using Content.Client.UserInterface.RichText;
+using Robust.Client.UserInterface.RichText;
+using Content.Client.RichText;
+// Starlight End
 
 namespace Content.Client.RoundEnd
 {
@@ -143,8 +148,11 @@ namespace Content.Client.RoundEnd
         {
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                // If no search term, show all text
-                label.SetMarkup(fullText);
+                // If no search term, show all text with sanitized tags
+                label.SetMessage(
+                    FormattedMessage.FromMarkupPermissive(fullText),
+                    UserFormattableTags.BaseAllowedTags
+                );
                 return false;
             }
 
@@ -163,12 +171,16 @@ namespace Content.Client.RoundEnd
             if (string.IsNullOrEmpty(filteredText))
             {
                 // If no matches found, don't show anything
-                label.SetMarkup("");
+                label.SetMessage(FormattedMessage.FromMarkupPermissive(""), []);
                 return true;
             }
             else
             {
-                label.SetMarkup(filteredText);
+                // Sanitize filtered text
+                label.SetMessage(
+                    FormattedMessage.FromMarkupPermissive(filteredText),
+                    UserFormattableTags.BaseAllowedTags
+                );
                 return true;
             }
         }

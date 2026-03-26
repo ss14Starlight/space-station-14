@@ -84,6 +84,14 @@
     - id: LightReplacer
     - id: BoxLightMixed
     - id: Holoprojector
+    # Starlight start
+    - !type:GroupSelector
+      children:
+      - id: ClothingShoesGaloshes
+        weight: 0.1
+      - id: ClothingShoesGaloshnt
+        weight: 0.9
+    # Starlight end
     - !type:AllSelector
       rolls: 2
       children:
@@ -170,7 +178,7 @@
   id: ClosetJanitorBombFilled
   parent: ClosetJanitorBomb
   suffix: DO NOT MAP, Filled
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL removal
   components:
   - type: EntityTableContainerFill
     containers:

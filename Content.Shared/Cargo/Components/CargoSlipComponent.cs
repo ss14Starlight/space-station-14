@@ -34,7 +34,7 @@ public sealed partial class CargoSlipComponent : Component
     public int OrderQuantity;
 
     /// <summary>
-    /// How many of the product to order
+    /// Account the cost of the product will be charged to
     /// </summary>
     [DataField]
     public ProtoId<CargoAccountPrototype> Account;

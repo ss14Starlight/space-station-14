@@ -36,12 +36,18 @@ public record struct HitscanTraceEvent
     /// </summary>
     public EntityUid? Target;
 
-    // Starlight start
+    #region Starlight
+    /// <summary>
+    /// Location the hitscan was fired to.
+    /// </summary>
+    public EntityCoordinates ToCoordinates;
+
+
     /// <summary>
     /// The effect list being used 
     /// </summary>
     public List<HitscanTrace>? OutputTrace;
-    // Starlight end
+    #endregion
 }
 
 /// <summary>

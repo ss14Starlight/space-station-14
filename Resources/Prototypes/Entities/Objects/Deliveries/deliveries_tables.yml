@@ -63,23 +63,24 @@
   table: !type:GroupSelector
     children:
     - !type:NestedSelector # Don't you love getting mailed trash?
-      tableId: GenericTrashItems
+      weight: .20 # Starlight-edit: changed Trash weight from 1 to .20
+      tableId: GenericTrashItems 
     - !type:NestedSelector
-      weight: .4
+      weight: .20 # Starlight-edit: changed weight from .4 to .20
       tableId: SpamMailTable
     - !type:NestedSelector
-      weight: .2
+      weight: .10 # Starlight-edit: changed from .2 to .10
       tableId: RandomBookTable
     - !type:NestedSelector
-      weight: .2
+      weight: .25 # Starlight-edit: changed from .2 to .25
       tableId: RandomSnackTable
     - !type:NestedSelector
-      weight: .2
+      weight: .25 # Starlight-edit: changed from .2 to .25
       tableId: RandomAllSodaTable
 
 - type: entityTable # TODO: Add more variety!
   id: LetterUncommonEntityTable # Some more varied things, should never be more expensive than 100 spesos
-  table: !type:GroupSelector
+  table: !type:GroupSelector #Starlight Note: Unlike Upstream, we can go over 100 spesos, but for entries that help to build value to the mechanic.
     children:
     - !type:NestedSelector
       tableId: RandomSafePillTable
@@ -89,25 +90,42 @@
       tableId: UncommonLetterBundleTable
     - id: SpaceCash100
     - id: Joint
-
+    - id: Brutepack # Starlight-edit-Start: Moved From Rare Letter loot table, to Uncommon Letter loot table
+    - id: Ointment
+    - id: Gauze
+    - id: Bloodpack # Starlight-edit-End: 
+    - id: BikeHornImplanter # Starlight Start: Added Some More Variety Of items
+    - id: SnapPopBox
+    - id: CrazyLube
+    - id: CrazyGlue #Starlight End
+    - id: StrangePill # Starlight-edit: Moved From Rare Letter loot table, to Uncommon Letter loot table
+      amount: !type:RangeNumberSelector
+        range: 1, 3
 - type: entityTable # TODO: Add more variety!
-  id: LetterRareEntityTable # Interesting things that can actually be of use, should never be more expensive than 500 spesos
-  table: !type:GroupSelector
+  id: LetterRareEntityTable # Interesting things that can actually be of use, should never be more expensive than 500 spesos 
+  table: !type:GroupSelector #Starlight Note: Unlike Upstream, we can go over 500 spesos, but for entries that help to build value to the mechanic.
     children:
     - id: ResearchDisk5000
     - id: JointRainbow
-    - id: StrangePill
-      amount: !type:RangeNumberSelector
-        range: 1, 3
-    - !type:GroupSelector
-      children:
-      - id: Brutepack
-      - id: Ointment
-      - id: Gauze
-      - id: Bloodpack
+    - id: WeaponStickyHand # Starlight  Start: Added Some More Variety Of items
+    - id: SadTromboneImplanter
+    - id: LightImplanter
+    - id: ClothingHandsGlovesConducting
+    - id: AbominationCube
+      weight: 0.5
     - id: SyndicateBusinessCard
       weight: 0.5
-
+    - id: NukeDiskFake
+      weight: 0.5 #Starlight A End
+    #- id: StrangePill # Starlight-Remove-start: Moved From Rare Letter loot table, to Uncommon loot table. To provide more useful loot on lower rarity Letters.
+      #amount: !type:RangeNumberSelector
+        #range: 1, 3
+  #- !type:GroupSelector
+  #children:
+    #- id: Brutepack
+    #- id: Ointment
+    #- id: Gauze
+    #- id: Bloodpack # Starlight-Remove-end:
 # Packages
 # TODO: Currently mostly maints loot, should be updated in the future.
 - type: entityTable # TODO: Add more variety!
@@ -116,12 +134,12 @@
     children:
     - !type:NestedSelector
       tableId: MaintToolsTable
-      weight: .25
+      weight: .5 # Starlight-edit: changed from .25 weight to .5
       rolls: !type:RangeNumberSelector
         range: 1, 2
     - !type:NestedSelector
       tableId: FoodRandomCakeTable
-      weight: .5
+      weight: .25 # Starlight-edit: changed from .5 weight to .25
     - id: FoodBoxPizzaFilled
       weight: .25
 
@@ -152,6 +170,15 @@
     children:
     - id: MedkitAdvancedFilled # TODO: Replace with PackageRareGeneralBundlesTable for when something doesn't fit with a department. (Like a bundle of bed sheets, dunno)
     - id: PipeBomb # TODO: PackageRarePunishmentTable, including things like pipebombs and other potentially harmful things (the pipebomb should also get primed when unpacked)
+    - id: FakeGrenade # Starlight Start: Added Some More Variety Of items
+    - id: CleanerGrenade
+    - id: RitualDagger
+    - id: LubeGrenade
+      weight: 0.8
+    - id: GlueGrenade
+      weight: 0.8
+    - id: ClothingMaskGoldenCursed
+      weight: 0.5 # Starlight End:
     - !type:NestedSelector
       tableId: SmallCritterEntityTable
     #- !type:NestedSelector # TODO: Uncomment after all the rare department bundles are done (medical, security, etc...)

@@ -1,4 +1,4 @@
-namespace Content.Shared.Starlight.Cybernetics.Components;
+namespace Content.Shared._Starlight.Cybernetics.Components;
 
 /// <summary>
 /// This component increases thirst rate of an entity with thirst component

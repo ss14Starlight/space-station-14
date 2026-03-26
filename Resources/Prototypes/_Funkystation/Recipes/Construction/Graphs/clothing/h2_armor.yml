@@ -1,0 +1,54 @@
+# Funky atmos - Metal Hydrogen
+- type: constructionGraph
+  id: MetalHydrogenArmor
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: armor
+      steps:
+      - material: MetalHydrogen
+        amount: 6
+        doAfter: 10
+  - node: armor
+    entity: ClothingOuterArmorMetalHydrogen
+
+- type: constructionGraph
+  id: MetalHydrogenHelmet
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: helmet
+      steps:
+      - material: MetalHydrogen
+        amount: 2
+        doAfter: 5
+  - node: helmet
+    entity: ClothingHeadHelmetMetalHydrogen
+
+- type: constructionGraph
+  id: AtmosianArmor
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: armor
+      steps:
+      - tag: MetalHydrogenArmor
+        name: clothing-metal-hydrogen-armor
+        icon:
+          sprite: _Funkystation/Clothing/OuterClothing/Armor/metal_hydrogen_armor.rsi
+          state: icon
+        doAfter: 1
+      - tag: AtmosFireSuit
+        name: clothing-atmos-fire-suit
+        icon:
+          sprite: Clothing/OuterClothing/Suits/atmos_firesuit.rsi
+          state: icon
+        doAfter: 10
+      - material: Cable
+        amount: 2
+        doAfter: 1
+  - node: armor
+    entity: ClothingOuterArmorAtmosian

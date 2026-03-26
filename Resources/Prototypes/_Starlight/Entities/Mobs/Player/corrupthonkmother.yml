@@ -1,0 +1,152 @@
+﻿# Made by KarmaKitsuna for SS14 Starlight Servers
+- type: entity
+  abstract: true
+  id: MobCorruptHonkmotherBase
+  description: Insert funny pun here
+  components:
+    - type: Sprite
+      drawdepth: Ghosts
+      layers:
+        - state: corrupthonkmother
+          shader: unshaded
+          sprite: _Starlight/Mobs/Demons/corrupthonkmother.rsi
+          map: [ "normalLayer" ]
+          visible: true
+        - state: transform
+          shader: unshaded
+          sprite: _Starlight/Mobs/Demons/purehonkmother.rsi
+          map: [ "enum.AnimateOnSpawnVisualLayers.Animation" ]
+          visible: false
+    - type: GenericVisualizer
+      visuals:
+        enum.AnimateOnSpawnVisualState.Animating:
+          normalLayer:
+            True: { visible: false }
+            False: { visible: true }
+    - type: AnimationPlayer
+
+- type: entity
+  parent: [MobCorruptHonkmotherBase, BaseMob, MobPolymorphable, MobCombat, BaseAnomaly]
+  id: CorruptHonkmother
+  name: Honkmother
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: StaticPrice
+      price: -500000.1 # Pay someone to take her
+    - type: ContentEye
+      maxZoom: 2.0,2.0
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.40
+          density: 100
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    # Starlight-start: Languages
+    - type: UniversalLanguageSpeaker
+    - type: Input
+      context: "human"
+    - type: VentCrawler
+    - type: ComplexInteraction
+    - type: MovementIgnoreGravity
+    - type: IntrinsicRadioReceiver
+    - type: ActiveRadio
+      channels:
+      - Binary
+      - Common
+      - Command
+      - CentCom
+      - Engineering
+      - Medical
+      - Science
+      - Security
+      - Service
+      - Supply
+      - Syndicate
+      globalReceive: true
+    - type: Physics
+      bodyType: KinematicController
+      bodyStatus: InAir
+    - type: CanMoveInAir
+    - type: HTN
+      rootTask:
+        task: SimpleRangedHostileCompound
+    - type: BatteryAmmoProvider
+      proto: RedLaser
+      fireCost: 62.5
+    - type: Battery
+      maxCharge: 1000
+      startingCharge: 1000
+    - type: BatterySelfRecharger
+      autoRechargeRate: 40
+    - type: Gun
+      fireRate: 2
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_clown.ogg
+    - type: NpcFactionMember
+      factions:
+        - HonkHostile
+    - type: Speech
+      speechVerb: Cluwne
+    - type: CombatMode
+    - type: InnateTool
+      tools:
+        - id: WeaponBehonkerLaser
+        - id: BikeHorn
+    - type: UserInterface
+      interfaces:
+        enum.StrippingUiKey.Key:
+          type: StrippableBoundUserInterface
+    - type: MeleeWeapon
+      range: 2 
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      angle: 0
+      animation: WeaponArcThrust
+      damage:
+        types:
+          Piercing: 10
+          Slash: 10
+          Structural: 250
+    - type: SolutionContainerManager
+      solutions:
+        melee:
+          reagents:
+            - ReagentId: Laughter
+              Quantity: 10
+    - type: MeleeChemicalInjector
+      solution: melee
+
+- type: entity
+  parent: CorruptHonkmother
+  suffix: transform
+  id: CorruptHonkmotherTransform
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Ghosts
+    layers:
+      - state: corrupthonkmother
+        shader: unshaded
+        sprite: _Starlight/Mobs/Demons/corrupthonkmother.rsi
+        map: [ "normalLayer" ]
+        visible: false
+      - state: transform
+        shader: unshaded
+        sprite: _Starlight/Mobs/Demons/purehonkmother.rsi
+        map: [ "enum.AnimateOnSpawnVisualLayers.Animation" ]
+        visible: true
+  - type: GenericVisualizer
+    visuals:
+      enum.AnimateOnSpawnVisualState.Animating:
+        normalLayer:
+          True: { visible: false }
+          False: { visible: true }
+  - type: AnimateOnSpawn

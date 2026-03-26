@@ -43,6 +43,8 @@ public sealed partial class WieldableComponent : Component
     public string? WieldedInhandPrefix = "wielded";
 
     public string? OldInhandPrefix = null;
+
+    [DataField] public float DisarmMalus = 0.16f; //Starlight
 }
 
 [Serializable, NetSerializable]

@@ -26,6 +26,7 @@
   - type: ObserverRole
   - type: MindRole
     sortWeight: -10
+    fallbackPlayTimeTracker: Observer
 
 #Ghost Roles
 - type: entity
@@ -351,15 +352,5 @@
   components:
   - type: MindRole
     antagPrototype: Changeling
+    subtype: role-subtype-changeling # Starlight
   - type: SLChangelingRole
-  
-# Vampire
-
-- type: entity
-  parent: BaseMindRoleAntag
-  id: MindRoleVampire
-  name: Vampire Role
-  components:
-  - type: MindRole
-    antagPrototype: Vampire
-  - type: VampireRole

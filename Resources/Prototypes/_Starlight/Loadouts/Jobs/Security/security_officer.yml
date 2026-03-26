@@ -1,0 +1,71 @@
+﻿# Accessory Time
+- type: loadoutEffectGroup
+  id: NoviceOfficer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 18000 # 5 hrs
+
+# Non-Lethal Weapons
+- type: loadout
+  id: SecurityDominator
+  equipment:
+    pocket1: WeaponDominator
+
+- type: loadout
+  id: SecurityTaser
+  equipment:
+    pocket1: WeaponAdvancedTaser
+
+# Sidearm Options
+- type: loadout
+  id: SecurityMk58
+  dummyEntity: WeaponPistolMk58
+  storage:
+    back:
+      - WeaponPistolMk58
+      - MagazinePistolSP
+
+- type: loadout
+  id: SecurityPistolDP
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: SeniorOfficer
+  dummyEntity: WeaponPistolDP
+  storage:
+    back:
+      - WeaponPistolDP
+      - MagazinePistol40SP
+
+- type: loadout
+  id: SecurityPistolEnforcer
+  dummyEntity: WeaponPistolEnforcer
+  storage:
+    back:
+    - WeaponPistolEnforcer
+    - MagazinePistolSP
+
+# Jumpsuit
+- type: loadout
+  id: SecurityTshirt
+  equipment:
+    jumpsuit: ClothingUniformSecurityTshirt
+
+- type: loadout
+  id: SecurityJumpskirtBlue
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSecBlue
+
+#Outerclothes
+- type: loadout
+  id: SecurityBomber
+  equipment:
+    outerClothing: ClothingOuterSecurityBomber
+
+#Eyewear
+- type: loadout
+  id: SecurityGlassesPrescription
+  equipment:
+    eyes: ClothingEyeGlassesSecurityPrescription

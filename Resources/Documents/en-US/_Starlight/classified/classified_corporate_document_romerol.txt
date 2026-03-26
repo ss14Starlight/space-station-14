@@ -1,0 +1,23 @@
+[head=1][color=#135285]────────────────────[/color][/head]
+[color=#1b67a5]█▄░░█ ▀▀█▀▀[/color] [head=3] [color=#135285]NanoTrasen[/color][/head]
+[color=#1b67a5]█▀█▄█ ░░█░░[/color] [head=3] [color=#135285]Representative[/color][/head]
+[color=#1b67a5]█░░▀█ ░░█░░[/color]  [color=#aaaaaa][italic]OFFICIAL CORPORATE DOCUMENT[/italic][/color]
+[head=1][color=#135285]────────────────────[/color][/head]
+[head=2][color=#135285][bold]Classified Corporate Document[/bold][/color][/head]
+[head=1][color=#135285]────────────────────[/color][/head]
+[mono]
+[bold]Subject:[/bold] Romerol Outbreaks
+[bold]Association:[/bold] Unknown
+[bold]Objectives:[/bold] Unknown
+
+We have recently confirmed that despite the original strain of Romerol being eradicated with nuclear fires ██ ███ █████ ██ █████████, a new strain has begun to appear onboard Space Stations and in isolated population centers.
+
+Analysis of this strain, and examinations of the infected and turned, shows that Ambuzol and Ambuzol Plus are still viable methods of curing the affliction, however the source of these outbreaks is unknown.
+
+A larger than average number of these outbreaks have been occurring in or near important NanoTrasen, Central Command, and Trans-Solar Federation sites, including Space Stations. We do not believe in coincidences, and suspect this to be a coordinated attack of some kind. By who, and for what ends, we have yet to identify.
+
+Alert Central Command immediately if you have evidence of an outbreak on your station.
+[/mono]
+
+
+[head=1][color=#135285]────────────────────[/color][/head]

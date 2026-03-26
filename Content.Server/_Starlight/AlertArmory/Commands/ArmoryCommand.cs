@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
+using Content.Shared.Station.Components;
 using Robust.Shared.Console;
 
 namespace Content.Server.Starlight.AlertArmory.Commands;
@@ -62,34 +63,34 @@ public sealed class ArmoryCommand : IConsoleCommand
         }
 
         // Try to find the station
-        var stationUid = GetStationUid(shell, entMan, stationSystem);
-
-        if (stationUid == null)
-        {
-            shell.WriteError(NoStationError);
-            return;
-        }
-
-        if (!entMan.TryGetComponent<AlertArmoryStationComponent>(stationUid.Value, out var stationComp))
-        {
-            shell.WriteError(NoArmoryConfigError);
-            return;
-        }
+        // var stationUid = GetStationUid(shell, entMan, stationSystem);
+        //
+        // if (stationUid == null)
+        // {
+        //     shell.WriteError(NoStationError);
+        //     return;
+        // }
+        //
+        // if (!entMan.TryGetComponent<AlertArmoryStationComponent>(stationUid.Value, out var stationComp))
+        // {
+        //     shell.WriteError(NoArmoryConfigError);
+        //     return;
+        // }
 
         var action = args[0].ToLowerInvariant();
 
         switch (action)
         {
             case "list":
-                ListArmories(shell, entMan, stationUid.Value, stationComp);
+                ListArmories(shell, entMan, stationSystem, args);
                 break;
 
             case "send":
-                HandleSend(shell, entMan, armorySystem, stationUid.Value, stationComp, args);
+                HandleSend(shell, entMan, stationSystem, armorySystem, args);
                 break;
 
             case "recall":
-                HandleRecall(shell, entMan, armorySystem, stationUid.Value, stationComp, args);
+                HandleRecall(shell, entMan, stationSystem, armorySystem, args);
                 break;
 
             default:
@@ -116,57 +117,81 @@ public sealed class ArmoryCommand : IConsoleCommand
         return null;
     }
 
-    private static void ListArmories(IConsoleShell shell, IEntityManager entMan, EntityUid stationUid, AlertArmoryStationComponent stationComp)
+    private static void ListArmories(IConsoleShell shell, IEntityManager entMan, StationSystem stationSys, string[] args)
     {
-        var stationName = entMan.GetComponent<MetaDataComponent>(stationUid).EntityName;
-        shell.WriteLine($"Available armories for station {stationName}:");
-
-        foreach (var (armoryKey, shuttle) in stationComp.Grids)
+        foreach (var station in stationSys.GetStations())
         {
-            var shuttleComp = entMan.GetComponent<AlertArmoryShuttleComponent>(shuttle);
-            var xform = entMan.GetComponent<TransformComponent>(shuttle);
-            string location;
-            if (shuttleComp.InTransit)
-                location = "In Transit";
+            var comp = entMan.GetComponent<AlertArmoryStationComponent>(station);
+            var stationName = entMan.GetComponent<MetaDataComponent>(station).EntityName;
+            shell.WriteLine($"Available armories for station {stationName}:");
+
+            foreach (var (armoryKey, shuttle) in comp.Grids)
+            {
+                var shuttleComp = entMan.GetComponent<AlertArmoryShuttleComponent>(shuttle);
+                var xform = entMan.GetComponent<TransformComponent>(shuttle);
+                string location;
+                if (shuttleComp.InTransit)
+                    location = "In Transit";
+                else
+                    location = xform.MapUid == shuttleComp.ArmorySpaceUid ? "In Armory Space" : "At Station";
+
+                shell.WriteLine($"  {armoryKey} - {location}");
+            }
+        }
+    }
+
+    private static void HandleSend(IConsoleShell shell, IEntityManager entMan, StationSystem stationSys, AlertArmorySystem armorySystem, string[] args)
+    {
+        if (args.Length < 3)
+        {
+            shell.WriteError("Usage: armory send <stationid/all> <armoryid>");
+            return;
+        }
+
+        List<EntityUid> targetStations = [];
+        if(args[1]=="all") targetStations.AddRange(stationSys.GetStations());
+        else if (entMan.TryParseNetEntity(args[1], out var uid))
+            targetStations.Add(uid.Value);
+
+        foreach (var station in targetStations)
+        {
+            var comp = entMan.GetComponent<AlertArmoryStationComponent>(station);
+            
+            if (!ValidateAndCheckTransit(shell, entMan, comp, args[2].ToLowerInvariant(), out var armoryKey))
+                return;
+
+            if (armorySystem.SendArmory(station, armoryKey))
+                shell.WriteLine(string.Format(SendingMessage, armoryKey));
             else
-                location = xform.MapUid == shuttleComp.ArmorySpaceUid ? "In Armory Space" : "At Station";
-
-            shell.WriteLine($"  {armoryKey} - {location}");
+                shell.WriteError(string.Format(SendFailError, armoryKey));
         }
     }
 
-    private static void HandleSend(IConsoleShell shell, IEntityManager entMan, AlertArmorySystem armorySystem, EntityUid stationUid, AlertArmoryStationComponent stationComp, string[] args)
+    private static void HandleRecall(IConsoleShell shell, IEntityManager entMan, StationSystem stationSys, AlertArmorySystem armorySystem, string[] args)
     {
-        if (args.Length < 2)
+        if (args.Length < 3)
         {
-            shell.WriteError("Usage: armory send <armory>");
+            shell.WriteError("Usage: armory recall <stationid/all> <armoryid>");
             return;
         }
+        
+        List<EntityUid> targetStations = [];
+        if(args[1]=="all") targetStations.AddRange(stationSys.GetStations());
+        else if (entMan.TryParseNetEntity(args[1], out var uid))
+            targetStations.Add(uid.Value);
 
-        if (!ValidateAndCheckTransit(shell, entMan, stationComp, args[1].ToLowerInvariant(), out var armoryKey))
-            return;
-
-        if (armorySystem.SendArmory(stationUid, armoryKey))
-            shell.WriteLine(string.Format(SendingMessage, armoryKey));
-        else
-            shell.WriteError(string.Format(SendFailError, armoryKey));
-    }
-
-    private static void HandleRecall(IConsoleShell shell, IEntityManager entMan, AlertArmorySystem armorySystem, EntityUid stationUid, AlertArmoryStationComponent stationComp, string[] args)
-    {
-        if (args.Length < 2)
+        foreach (var station in targetStations)
         {
-            shell.WriteError("Usage: armory recall <armory>");
-            return;
+            var comp = entMan.GetComponent<AlertArmoryStationComponent>(station);
+            
+            if (!ValidateAndCheckTransit(shell, entMan, comp, args[2].ToLowerInvariant(), out var armoryKey))
+                return;
+
+            if (armorySystem.RecallArmory(station, armoryKey))
+                shell.WriteLine(string.Format(RecallingMessage, armoryKey));
+            else
+                shell.WriteError(string.Format(RecallFailError, armoryKey));
         }
-
-        if (!ValidateAndCheckTransit(shell, entMan, stationComp, args[1].ToLowerInvariant(), out var armoryKey))
-            return;
-
-        if (armorySystem.RecallArmory(stationUid, armoryKey))
-            shell.WriteLine(string.Format(RecallingMessage, armoryKey));
-        else
-            shell.WriteError(string.Format(RecallFailError, armoryKey));
     }
 
     /// Makes sure that the armory exists and is not in transit.
@@ -204,6 +229,12 @@ public sealed class ArmoryCommand : IConsoleCommand
         }
 
         if (args.Length == 2)
+            return CompletionResult.FromHintOptions(
+                CompletionHelper.Components<StationDataComponent>(args[1], entMan)
+                    .Append(new CompletionOption("all")),
+                "Station ID or all");
+        
+        if (args.Length == 3)
         {
             var subcommand = args[0].ToLowerInvariant();
             if (subcommand is "send" or "recall")

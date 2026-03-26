@@ -104,7 +104,9 @@
     - Science
   - type: ZombieImmune
   - type: Repairable
-    doAfterDelay: 10
+    damageValue: -10 # 10 seconds to repair from crit
+    doAfterDelay: 1
+    fuelCost: 0.5
     allowSelfRepair: false
   - type: BorgChassis
   - type: LockingWhitelist
@@ -134,6 +136,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: Body
   - type: StatusEffects
     allowed:
@@ -143,6 +150,7 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
+    allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
@@ -235,6 +243,7 @@
     - CanPilot
     - SiliconEmotes
     - Unimplantable
+    - SiliconEmotesFH #FH, yes it's intentional that there's two of them.
   - type: Emoting
   - type: GuideHelp
     guides:
@@ -245,11 +254,17 @@
     damageProtection:
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
+  - type: BypassLock
+  - type: BypassLockRequiresMobState
+    requiredMobState:
+    - Critical
+    - Dead
   #region Starlight
   - type: CyborgSparkEffect
   - type: StationAIShunt #Starlight allow shunting into all borgs
   - type: BorgSwitchableSubtype # Afterlight change
   - type: Crawler
+  - type: BatteryAlert
   - type: Blindable
   - type: EyeProtection
   - type: Stripping
@@ -259,6 +274,7 @@
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   #endregion
+  - type: GlitchOnEMP #Far Horizons
 
 - type: entity
   abstract: true
@@ -310,6 +326,7 @@
     networkSet: true
     nameSet: True
     id: Xenoborg
+    useEntityNameAsCameraId: true
   - type: Explosive
     explosionType: Minibomb
     deleteAfterExplosion: false # let damage threshold gib the borg
@@ -379,6 +396,8 @@
       Unsexed: UnisexSiliconSyndicate
   - type: PointLight
     color: "#dd200b"
+  - type: BypassLock
+    bypassDelay: 15 # We don't want people to easily be able to remove syndieborg brains.
 
 - type: entity
   id: BaseBorgChassisDerelict
@@ -437,6 +456,8 @@
 #      Unsexed: UnisexSiliconSyndicate
 #  - type: PointLight
 #    color: "#dd200b"
+#  - type: BypassLock
+#    bypassDelay: 15 # We don't want people to easily be able to remove syndieborg brains.
 # end region starlight
 
 - type: entity
@@ -472,8 +493,6 @@
     - Mothership
     - Xenoborg
     - Binary
-  - type: Repairable
-    doAfterDelay: 13 # 25% more HP, so 30% more time to heal
   - type: BorgChassis
     maxModules: 0
     hasMindState: robot_e
@@ -529,7 +548,7 @@
           collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
-          PinpointerMothership: # drop a pinpointer to the mothership upon being destructed
+          PinpointerMothershipPiece: # drop a piece of core pinpointer upon being destructed (4 pieces to make a core pinpointer)
             min: 1
             max: 1
       - !type:EmptyContainersBehaviour
@@ -540,7 +559,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: PointLight
-    color: "#0033ff"
+    color: "#3010ff"
+    energy: 7
   - type: GuideHelp
     guides:
     - Cyborgs
@@ -556,3 +576,5 @@
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: Xenoborg
+  - type: BypassLock
+    bypassDelay: 15 # We don't want people to easily be able to remove xenoborg brains.

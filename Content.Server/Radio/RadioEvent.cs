@@ -1,6 +1,7 @@
 using Content.Shared.Chat;
 using Content.Shared.Radio;
 using Content.Shared._Starlight.Language; // Starlight
+using Content.Shared._Starlight.Radio; // Starlight
 
 namespace Content.Server.Radio;
 
@@ -11,7 +12,7 @@ namespace Content.Server.Radio;
 [ByRefEvent]
 public readonly record struct RadioReceiveEvent(
     EntityUid MessageSource,
-    RadioChannelPrototype Channel,
+    RadioChannelPrototype? Channel, // Starlight edit | nothing uses this + means i dont need to redefine this
     ChatMessage OriginalChatMsg,
     ChatMessage LanguageObfuscatedChatMsg,
     LanguagePrototype Language,
@@ -47,3 +48,28 @@ public record struct RadioSendAttemptEvent(RadioChannelPrototype Channel, Entity
     public readonly EntityUid RadioSource = RadioSource;
     public bool Cancelled = false;
 }
+
+//Starlight begin
+/// <summary>
+/// Use this event to cancel sending message per receiver
+/// </summary>
+[ByRefEvent]
+public record struct CustomRadioReceiveAttemptEvent(CustomRadioChannelData Channel, EntityUid RadioSource, EntityUid RadioReceiver)
+{
+    public readonly CustomRadioChannelData Channel = Channel;
+    public readonly EntityUid RadioSource = RadioSource;
+    public readonly EntityUid RadioReceiver = RadioReceiver;
+    public bool Cancelled = false;
+}
+
+/// <summary>
+/// Use this event to cancel sending message to every receiver
+/// </summary>
+[ByRefEvent]
+public record struct CustomRadioSendAttemptEvent(CustomRadioChannelData Channel, EntityUid RadioSource)
+{
+    public readonly CustomRadioChannelData Channel = Channel;
+    public readonly EntityUid RadioSource = RadioSource;
+    public bool Cancelled = false;
+}
+//Starlight end

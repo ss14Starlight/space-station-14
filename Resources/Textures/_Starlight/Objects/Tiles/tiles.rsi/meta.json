@@ -33,6 +33,41 @@
         },
         {
             "name": "tile_white_bitile"
+        },
+        {
+            "name": "darkwood"
+        },
+        {
+            "name": "darkwood-large"
+        },
+        {
+            "name": "darkwoodpatternfloor"
+        },
+        {
+            "name": "darkwood-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "darkwood-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "tile_metal_dark"
+        },
+        {
+            "name": "tile_metal_engie"
+        },
+        {
+            "name": "tile_metal_med"
+        },
+        {
+            "name": "tile_metal_sci"
+        },
+        {
+            "name": "tile_metal_sec"
+        },
+        {
+            "name": "tile_metal_service"
         }
     ]
 }

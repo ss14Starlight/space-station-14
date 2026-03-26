@@ -96,6 +96,16 @@ namespace Content.Shared.Chemistry
 
     }
 
+    // Starlight-start: Plumbing valve toggle
+    /// <summary>
+    ///     Message sent by the user interface to toggle the plumbing valve.
+    /// </summary>
+    [Serializable, NetSerializable]
+    public sealed class ReagentDispenserToggleValveMessage : BoundUserInterfaceMessage
+    {
+    }
+    // Starlight-end
+
     // Starlight Start
     // Required for UI to not flash while cell is charging/discharging
     [Serializable, NetSerializable]
@@ -149,13 +159,16 @@ namespace Content.Shared.Chemistry
 
         public readonly float EnergyAmount; // Starlight-edit: Energy bar
 
-        public ReagentDispenserBoundUserInterfaceState(ContainerInfo? outputContainer, NetEntity? outputContainerEntity, List<ReagentInventoryItem> inventory, ReagentDispenserDispenseAmount selectedDispenseAmount, float energyAmount) // Starlight-edit: Energy bar
+        public readonly bool ValveOpen; // Starlight-edit: Plumbing valve
+
+        public ReagentDispenserBoundUserInterfaceState(ContainerInfo? outputContainer, NetEntity? outputContainerEntity, List<ReagentInventoryItem> inventory, ReagentDispenserDispenseAmount selectedDispenseAmount, float energyAmount, bool valveOpen) // Starlight-edit: Energy bar, Plumbing valve
         {
             OutputContainer = outputContainer;
             OutputContainerEntity = outputContainerEntity;
             Inventory = inventory;
             SelectedDispenseAmount = selectedDispenseAmount;
             EnergyAmount = energyAmount; // Starlight-edit: Energy bar
+            ValveOpen = valveOpen; // Starlight-edit: Plumbing valve
         }
     }
     

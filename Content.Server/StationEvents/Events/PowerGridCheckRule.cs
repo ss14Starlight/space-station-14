@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -21,8 +22,14 @@ namespace Content.Server.StationEvents.Events
         {
             base.Started(uid, component, gameRule, args);
 
-            if (!TryGetRandomStation(out var chosenStation))
-                return;
+            //Starlight begin | Prefer target station if there is one, if SOMEHOW that odesn't exist, fallback to existing trygetrandomstation call
+            EntityUid? chosenStation = null;
+            if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
+            chosenStation = stationEvent.TargetStation;
+            if (chosenStation is null)
+                if (!TryGetRandomStation(out chosenStation))
+                    return;
+            //Starlight end
 
             component.AffectedStation = chosenStation.Value;
 
@@ -54,13 +61,7 @@ namespace Content.Server.StationEvents.Events
                 }
             }
 
-            // Can't use the default EndAudio
-            component.AnnounceCancelToken?.Cancel();
-            component.AnnounceCancelToken = new CancellationTokenSource();
-            Timer.Spawn(3000, () =>
-            {
-                Audio.PlayGlobal(component.PowerOnSound, Filter.Broadcast(), true);
-            }, component.AnnounceCancelToken.Token);
+            
             component.Unpowered.Clear();
         }
 

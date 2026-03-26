@@ -1,0 +1,23 @@
+[head=1][color=#135285]────────────────────[/color][/head]
+[color=#1b67a5]█▄░░█ ▀▀█▀▀[/color] [head=3] [color=#135285]NanoTrasen[/color][/head]
+[color=#1b67a5]█▀█▄█ ░░█░░[/color] [head=3] [color=#135285]Representative[/color][/head]
+[color=#1b67a5]█░░▀█ ░░█░░[/color]  [color=#aaaaaa][italic]OFFICIAL CORPORATE DOCUMENT[/italic][/color]
+[head=1][color=#135285]────────────────────[/color][/head]
+[head=2][color=#135285][bold]Classified Corporate Document[/bold][/color][/head]
+[head=1][color=#135285]────────────────────[/color][/head]
+[mono]
+[bold]Subject:[/bold] Nuclear Operatives
+[bold]Association:[/bold] Spinward Syndicate, Syndicate High Command, the Gorlex Marauders
+[bold]Objectives:[/bold] Nuclear annihilation
+
+Nuclear Operatives, colloquially known as 'Nukies', are a suicide strike force maintained by Syndicate High Command. They operate at the highest level of the Gorlex Marauders, under the direct command of Euukho Zek'huil.
+
+Nuclear Operatives have irregular deployment pattern and makeup, ranging from single Lone Operatives we theorize are intended to probe defenses, to coordinated teams of up to seven Operatives with a Commander and Corpsman.
+
+Sources estimate there to be fewer than 20 such teams at any given time, with the majority of their tasks being as heavy enforcers for Euukho.
+
+The exact source of the Nuclear Warheads these Operatives utilize is currently unknown.
+[/mono]
+
+
+[head=1][color=#135285]────────────────────[/color][/head]

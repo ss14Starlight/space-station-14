@@ -4,13 +4,15 @@ using Content.Shared.Speech;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed class ScottishAccentSystem : EntitySystem
+public sealed partial class ScottishAccentSystem : EntitySystem
 {
-    private static readonly Regex RegexLowerIng = new(@"ing\b");
-    private static readonly Regex RegexUpperIng = new(@"ING\b");
-    private static readonly Regex RegexLowerAnd = new(@"\band\b");
-    private static readonly Regex RegexUpperAnd = new(@"\bAND\b");
     [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+
+    [GeneratedRegex(@"ing\b", RegexOptions.IgnoreCase)]
+    private static partial Regex RegexIng();
+
+    [GeneratedRegex(@"\band\b", RegexOptions.IgnoreCase)]
+    private static partial Regex RegexAnd();
 
     public override void Initialize()
     {
@@ -20,14 +22,24 @@ public sealed class ScottishAccentSystem : EntitySystem
 
     private void OnAccent(EntityUid uid, ScottishAccentComponent component, AccentGetEvent args)
     {
-        var message = args.Message;
+        args.Message = _replacement.ApplyReplacements(args.Message, "scottish");
 
-        message = _replacement.ApplyReplacements(message, "scottish");
-
-        message = RegexLowerIng.Replace(message, "in'");
-        message = RegexUpperIng.Replace(message, "IN'");
-        message = RegexLowerAnd.Replace(message, "an'");
-        message = RegexUpperAnd.Replace(message, "AN'");
-        args.Message = message;
+        args.Message.Text = RegexIng().Replace(args.Message.Text, m => PreserveCase(m.Value, "in'"));
+        args.Message.Text = RegexAnd().Replace(args.Message.Text, m => PreserveCase(m.Value, "an'"));
     }
-};
+
+    private static string PreserveCase(string original, string replacement)
+    {
+        if (string.IsNullOrEmpty(original))
+            return replacement;
+
+        if (char.IsUpper(original[0]))
+        {
+            if (original.Length > 1 && char.IsUpper(original[1]))
+                return replacement.ToUpperInvariant(); 
+            return char.ToUpperInvariant(replacement[0]) + replacement[1..];
+        }
+
+        return replacement; 
+    }
+}

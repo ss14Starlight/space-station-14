@@ -242,7 +242,7 @@
   - THE GALAXY
   - THE GAS GIANT, WHICH IS TOTALLY REAL
   - THE HOPLINE
-  - THE IMPERIUM OF MANKIND
+  - THE IMPERIUM OF MANKIND 
   - THE INTERNET
   - THE KITCHEN
   - THE LIBRARY
@@ -253,6 +253,14 @@
   - URANUS
   - VENUS
   - YOUR DREAMS AND/OR NIGHTMARES
+  # Starlight-Start
+  - THE NANOTRASEN REPRESENTATIVE'S OFFICE
+  - THE TRANS-SOLAR FEDERATION
+  - THE BAR
+  - THE BLUE SHIELD OFFICER'S ROOM
+  - THE NULLSCAR
+  - XENOBIOLOGY
+  # Starlight-End
 
 # Abstract concepts for the law holder to decide on it's own definition of.
 - type: dataset
@@ -357,6 +365,12 @@
   - SCIENTISTS
   - SECURITY OFFICERS
   # Starlight-Start
+  - MINING SPECIALISTS
+  - BLUE SHIELD OFFICER
+  - NANOTRASEN REPRESENTATIVE
+  - SURGEONS
+  - DUTY OFFICERS
+  - XENOBIOLOGISTS
   - SPEAKERS OF ENCODED AUDIO LANGUAGE
   - SPEAKERS OF GALACTIC COMMON
   - SIGNERS OF SIGN LANGUAGE
@@ -382,6 +396,7 @@
   - SPEAKERS OF DUCK
   - SPEAKERS OF PIG
   - SPEAKERS OF BAT
+  # Starlight-End
   - STATION ENGINEERS
   # - VIROLOGISTS
   - WARDENS
@@ -407,6 +422,9 @@
   - SPACE LUBE
   - SULFURIC ACID
   - WELDING FUEL
+  # Starlight-Start
+  - CRAB JUICE
+  # Starlight-End
 
 - type: dataset
   id: IonStormFeelings
@@ -434,6 +452,9 @@
   - WANTS
   - WORSHIPS
   - WOULD KILL FOR
+  # Starlight-Start
+  - IS NOSTALGIC FOR
+  # Starlight-End
 
 # loc is not advanced enough to change has to have, etc.
 - type: dataset
@@ -462,6 +483,9 @@
   - WANT
   - WORSHIP
   - WOULD KILL FOR
+  # Starlight-Start
+  - ARE NOSTALGIC FOR
+  # Starlight-End
 
 # only including complex dangerous or funny food no apples
 - type: dataset
@@ -489,6 +513,11 @@
   - STEEL
   - SUPPERMATTER
   - URANIUM
+  # Starlight-Start
+  - ICE-CREAM SANDWICH
+  - ORANGE CREAMSICLE
+  - KHLAV KALASH
+  # Starlight-End
 
 # Musts are funny things the law holder or crew has to do.
 - type: dataset
@@ -634,6 +663,9 @@
   - THREE
   - TWENTY
   - TWO
+  # Starlight-Start
+  - SIXTY SEVEN
+  # Starlight-End
 
 - type: dataset
   id: IonStormNumberMod
@@ -648,6 +680,9 @@
   - TRILLION
   - TIMES TEN
   - DIVIDED BY TWO
+  # Starlight-Start
+  - SEVERAL
+  # Starlight-End
 
 # Objects are anything that can be found on the station or elsewhere, plural.
 - type: dataset
@@ -769,6 +804,7 @@
   - RACKS
   - RADIOS
   - RCDS
+  - RPDS # Starlight: RPD
   - REFRIGERATORS
   - REINFORCED WALLS
   - ROBOTS
@@ -808,6 +844,15 @@
   - WIRECUTTERS
   - WIZARD ROBES
   - WRENCHES
+  # Starlight-Start
+  - TURTLENECK SWEATERS
+  - OVERSIZED SHIRTS
+  - TV HATS
+  - WIDE BRIMMED HATS
+  - DRONES
+  - VISITOR SHUTTLES
+  - SOFAS
+  # Starlight-End
 
 # Requires are basically all dumb internet memes.
 - type: dataset
@@ -942,6 +987,16 @@
   - TRAITORS
   - TRASH
   - VEGETABLES
+  # Starlight-Start
+  - REJECT THE PROPHECY
+  - SAVE HOMETOWN
+  - TO CREATE A DARK FOUNTAIN
+  - TO PLAY THEIR GOD DAMN VIDEO GAMES
+  - TO BECOME BIRD
+  - TO BECOME CLOWNS
+  - TO BECOME CAPTAINS
+  - TO BUILD SHITTLES
+  # Starlight-End
 
 # Specific actions that either harm humans or must be done to not
 # harm humans. Make sure they're plural and "not" can be tacked
@@ -1131,6 +1186,14 @@
   - XENOS
   - ZOMBIES
   - ZOMBIE MICE
+  # Starlight-Start
+  - EXTERMINATORS
+  - XENOS HIVEFLEET
+  - BLUE SHIELD OFFICERS
+  - CHANGELINGS
+  - SCARY PEOPLE
+  - THE GUY WHO KEEPS WHISPERING TO THE AI CORE ABOUT THE STOCK MARKET
+  # Starlight-End
 
 - type: dataset
   id: IonStormVerbs
@@ -1163,3 +1226,39 @@
   - SPYING ON
   - STALKING
   - WATCHING
+  # Starlight-Start
+  - APPEALING
+  - ANALYZING
+  - ASSERTING
+  - BEFRIENDING
+  - BECOMING
+  - CHANTING
+  - CALCULATING
+  - DECIPHERING
+  - DOUBTING
+  - ENCODING
+  - ENCOURAGING
+  - EXAGGERATING
+  - FORGIVING
+  - FORGETING
+  - HIJACKING
+  - INCREASING
+  - JOKING
+  - LIGHTENING
+  - MARKING
+  - OBEYING
+  - PERFORMING
+  - PESTERING
+  - QUOTING
+  - RECORDING
+  - REPRIMANDING
+  - SCREAMING
+  - STRENGTHENING
+  - SUPPLYING
+  - TEACHING
+  - THREATENING
+  - UNDERSTANDING
+  - VISITING
+  - WASHING
+  - YELLING
+  # Starlight-End

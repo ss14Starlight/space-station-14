@@ -8,9 +8,12 @@
     ClothingHeadsetService: 2
     ClothingOuterApronBar: 2
     ClothingOuterWinterBar: 2
+    ClothingUniformJumpsuitJacketMonkey: 2
     ClothingUniformJumpsuitBartender: 2
     ClothingUniformJumpskirtBartender: 2
     ClothingUniformJumpsuitBartenderPurple: 2
+    ClothingUniformJumpsuitServiceWorkerBartender: 1 # Starlight
+    ClothingUniformJumpskirtServiceWorkerBartender: 1 # Starlight
     ClothingShoesColorBlack: 2
     ClothingOuterArmorBasicSlim: 2
     ClothingOuterVest: 2

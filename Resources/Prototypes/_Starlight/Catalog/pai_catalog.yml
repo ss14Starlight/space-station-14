@@ -1,0 +1,271 @@
+- type: listing
+  id: SolCommon
+  name: language-SolCommon-name
+  description: language-SolCommon-description
+  productLanguage: SolCommon
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: solcom
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Canilunzt
+  name: language-Canilunzt-name
+  description: language-Canilunzt-description
+  productLanguage: Canilunzt
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: vulp
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Bubblish
+  name: language-Bubblish-name
+  description: language-Bubblish-description
+  productLanguage: Bubblish
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: slime
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Draconic
+  name: language-Draconic-name
+  description: language-Draconic-description
+  productLanguage: Draconic
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: lizard
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Marish
+  name: language-Marish-name
+  description: language-Marish-description
+  productLanguage: Marish
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: shadekin
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Moffic
+  name: language-Moffic-name
+  description: language-Moffic-description
+  productLanguage: Moffic
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: moth
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Nekomimetic
+  name: language-Nekomimetic-name
+  description: language-Nekomimetic-description
+  productLanguage: Nekomimetic
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: neko
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Sylvan
+  name: language-Sylvan-name
+  description: language-Sylvan-description
+  productLanguage: Sylvan
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: plant
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Terrum
+  name: language-Terrum-name
+  description: language-Terrum-description
+  productLanguage: Terrum
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: golem
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: VoxPidgin
+  name: language-VoxPidgin-name
+  description: language-VoxPidgin-description
+  productLanguage: VoxPidgin
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: vox
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Scratch
+  name: language-Scratch-name
+  description: language-Scratch-description
+  productLanguage: Scratch
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: avali
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Thaveyan
+  name: language-Thaveyan-name
+  description: language-Thaveyan-description
+  productLanguage: Thaveyan
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: thaveyan
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Darktongue
+  name: language-Darktongue-name
+  description: language-Darktongue-description
+  productLanguage: Darktongue
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: darktongue
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Classical
+  name: language-Classical-name
+  description: language-Classical-description
+  productLanguage: Classical
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: classical
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Grumbakul
+  name: language-Grumbakul-name
+  description: language-Grumbakul-description
+  productLanguage: Grumbakul
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: dwarvish
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Aielic
+  name: language-Aielic-name
+  description: language-Aielic-description
+  productLanguage: Aielic
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: high-elven
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: Lagomorphian
+  name: language-Lagomorphian-name
+  description: language-Lagomorphian-description
+  productLanguage: Lagomorphian
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: lagomorph
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1

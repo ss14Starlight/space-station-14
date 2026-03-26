@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by github @AegisShieldDev",
+  "size": {
+    "x": 15,
+    "y": 15
+  },
+  "states": [
+    {
+      "name": "piercing",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "blunt",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "slash",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "brute",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "airloss",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "asphyxiation",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "bloodloss",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "genetic",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "cellular",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "radiation",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "poison",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "toxin",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "burn",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "heat",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "cold",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "caustic",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    },
+    {
+      "name": "shock",
+      "directions": 1,
+      "copyright": "Made by github @AegisShieldDev"
+    }
+  ]
+}

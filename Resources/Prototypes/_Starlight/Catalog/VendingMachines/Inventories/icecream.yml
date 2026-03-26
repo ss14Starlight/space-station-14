@@ -1,0 +1,15 @@
+- type: vendingMachineInventory
+  id: IceCreamInventory
+  startingInventory:
+    FoodFrozenPopsicleOrangePackaged: 3
+    FoodFrozenPopsicleBerryPackaged: 3
+    FoodFrozenCornutoPackaged: 3
+    FoodFrozenPopsicleJumboPackaged: 3
+    FoodFrozenPopsicleNicotinePackaged: 2
+    FoodFrozenPopsicleNicotineSpicyPackaged: 2
+    FoodFrozenSundae: 2
+    FoodFrozenSandwich: 2
+    FoodFrozenSandwichStrawberry: 1
+  contrabandInventory:
+    FoodFrozenPopsicleNicotineLegendPackaged: 3
+    DrinkIceBucket: 1

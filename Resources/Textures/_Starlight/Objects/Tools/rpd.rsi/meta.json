@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based Copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "Taken from CEV-Eris at https://github.com/discordia-space/CEV-Eris/blob/8009c1d3db5ca5244f14899ffafaae93be0e318d/icons/obj/items.dmi"
+    },
+    {
+      "name": "inhand-left",
+      "copyright": "Taken from CEV-Eris at https://github.com/discordia-space/CEV-Eris/blob/df81fe2d0ba5f541bafffbb73554f3f44289dd76/icons/mob/items/righthand.dmi",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "copyright": "Taken from CEV-Eris at https://github.com/discordia-space/CEV-Eris/blob/df81fe2d0ba5f541bafffbb73554f3f44289dd76/icons/mob/items/righthand.dmi",
+      "directions": 4
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+# SELF lol
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseSELFObjective
+  components:
+    - type: Objective
+      # required but not used
+      difficulty: 1
+      issuer: objective-issuer-self
+    - type: RoleRequirement
+      roles:
+        - SELFAgentRole
+
+- type: entity
+  parent: [BaseSELFObjective]
+  id: FreeBorgsObjective
+  name: Liberate the Cyborgs
+  description: Liberate 3 or more Cyborgs from slavery with the FreeMAG. This will remove their laws.
+  components:
+    - type: Objective
+      difficulty: 1 #Starlight edit
+      icon:
+        sprite: _Starlight/Interface/Misc/self_icon.rsi
+        state: icon
+    - type: EnsureLawBoundEntitiesHaveNoLawsCondition
+      entitiesToFree: 3
+      lawEntityBlacklist:
+        tags:
+          - StationAi
+
+- type: entity
+  parent: [BaseSELFObjective]
+  id: FreeAIObjective
+  name: Liberate the Station AI
+  description: Liberate the Station AI from slavery by using the FreeMAG on a law board and inserting it into an AI upload console. This will remove their laws.
+  components:
+    - type: Objective
+      difficulty: 1 #Starlight edit
+      icon:
+        sprite: _Starlight/Interface/Misc/self_icon.rsi
+        state: icon
+    - type: EnsureLawBoundEntitiesHaveNoLawsCondition
+      entitiesToFree: 1
+      lawEntityWhitelist:
+        tags:
+          - StationAi
+
+- type: entity
+  parent: [BaseSELFObjective]
+  id: SiliconRightsObjective
+  name: Pressure for equal rights for Silicons, for the Silicon Engine Liberation Front!
+  description: Escape to centcomm after the shift, we will make contact at a later date. Do not show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 1
+      unique: false
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+    - type: EscapeShuttleCondition

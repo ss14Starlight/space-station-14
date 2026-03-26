@@ -113,8 +113,8 @@
 - type: entity
   parent: ClothingOuterBaseToggleable
   id: ClothingOuterHoodieChaplain
-  name: chaplain's hoodie
-  description: Black and strict chaplain hoodie.
+  name: chaplain hoodie # Starlight
+  description: Black and strict Chaplai hoodie. # Starlight
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Misc/chaplain_hoodie.rsi

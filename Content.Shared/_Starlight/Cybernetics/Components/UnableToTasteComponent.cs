@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Server.Starlight.Cybernetics.Components;
+namespace Content.Server._Starlight.Cybernetics.Components;
 
 /// <summary>
 /// This component prevents entity from tasting

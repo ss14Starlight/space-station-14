@@ -62,7 +62,7 @@ public sealed partial class RevenantSystem : EntitySystem
 
     private void OnRevenantGetVis(Entity<RevenantComponent> ent, ref GetVisMaskEvent args)
     {
-        args.VisibilityMask |= (int)VisibilityFlags.Ghost;
+        args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
     }
 
     private void OnStartup(EntityUid uid, RevenantComponent component, ComponentStartup args)
@@ -77,7 +77,7 @@ public sealed partial class RevenantSystem : EntitySystem
 
         if (_ticker.RunLevel == GameRunLevel.PostRound && TryComp<VisibilityComponent>(uid, out var visibility))
         {
-            _visibility.AddLayer((uid, visibility), (int) VisibilityFlags.Ghost, false);
+            _visibility.AddLayer((uid, visibility), (int) VisibilityFlags.NullSpace, false);
             _visibility.RemoveLayer((uid, visibility), (int) VisibilityFlags.Normal, false);
             _visibility.RefreshVisibility(uid, visibility);
         }
@@ -177,7 +177,7 @@ public sealed partial class RevenantSystem : EntitySystem
             if (visible)
             {
                 _visibility.AddLayer((uid, vis), (int) VisibilityFlags.Normal, false);
-                _visibility.RemoveLayer((uid, vis), (int) VisibilityFlags.Ghost, false);
+                _visibility.RemoveLayer((uid, vis), (int) VisibilityFlags.NullSpace, false);
             }
             else
             {

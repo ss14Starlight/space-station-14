@@ -1,0 +1,203 @@
+- type: job
+  id: CentralCommandOperator
+  name: job-name-centcommoperator
+  description: job-description-centcomoperator
+  playTimeTracker: JobCentralCommandOperator
+  setPreference: false
+  startingGear: CentcomOperatorGear
+  icon: JobIconCentralCommandOperator
+  rules: job-rules-corporate-aligned
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+
+- type: startingGear
+  id: CentcomOperatorGear
+  equipment:
+    jumpsuit: ClothingAltUniformJumpsuitCentcomOfficial
+    back: ClothingBackpackSatchelCentcomm
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesColorBlack
+    id: CentCommOperatorPDA
+    ears: ClothingHeadsetAltCentCom
+    pocket1: WeaponPistolN1984
+    pocket2: BoxFolderCentComClipboardEmpty
+  storage:
+    back:
+    - RubberStampCentcom
+    - MindShieldImplanter
+
+# Central Domestic Division CDD
+- type: startingGear
+  id: CentralDomesticDivisionGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCentcommResearchFormalWear
+    back: ClothingBackpackSatchelCentcomm
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesColorBlack
+    id: CentcomPDA
+    ears: ClothingHeadsetAltCentCom
+    pocket1: WeaponPistolN1984
+    pocket2: BoxFolderCentComClipboardEmpty
+  storage:
+    back:
+    - RubberStampCRD
+    - MindShieldImplanter
+
+# Central Administration Division CAD
+- type: startingGear
+  id: CentralAdministrationDivisionGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCentcommAdminFormalWear
+    back: ClothingBackpackSatchelCentcomm
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesHop
+    id: CentcomPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: BoxFolderHoPClipboard
+    pocket1: WeaponPistolN1984
+    pocket2: BoxFolderCentComClipboardEmpty
+  storage:
+    back:
+    - RubberStampCAD
+    - MindShieldImplanter
+
+# Central Cargo Division CCD
+- type: startingGear
+  id: CentralCargoDivisionGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCentcommCargoFormalWear
+    back: ClothingBackpackSatchelCentcomm
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesColorBlack
+    id: CentcomPDA
+    ears: ClothingHeadsetAltCentCom
+    pocket1: WeaponPistolN1984
+    pocket2: BoxFolderCentComClipboardEmpty
+  storage:
+    back:
+    - RubberStampCCD
+    - MindShieldImplanter
+
+# Central Engineering Division CED
+- type: startingGear
+  id: CentralEngineeringDivisionGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtEngiCentcommFormalWear
+    back: ClothingBackpackSatchelCentcomm
+    shoes: ClothingShoesBootsMagAdv
+    head: ClothingHeadHatBeretEngineering
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesColorYellow
+    id: CentcomPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: ClothingBeltChiefEngineerFilled
+    pocket1: WeaponPistolN1984
+    pocket2: BoxFolderCentComClipboardEmpty
+  storage:
+    back:
+    - RubberStampCED
+    - MindShieldImplanter
+
+# Central Intelligence Division CID
+- type: startingGear
+  id: CentralIntelligenceDivisionGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCentcommIntelFormalWear
+    back: ClothingBackpackSatchelCentcomm
+    shoes: ClothingShoesBootsLaceup
+    gloves: ClothingHandsGlovesColorBlack
+    eyes: ClothingEyesGlassesCentComm
+    id: CentcomPDA
+    ears: ClothingHeadsetAltCentCom
+    pocket1: WeaponPistolN1984
+    pocket2: BoxFolderCentComClipboardEmpty
+  storage:
+    back:
+    - RubberStampCID
+    - MindShieldImplanter
+
+# Central Medical Division CMD
+- type: startingGear
+  id: CentralMedicalDivisionGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCentcommMedFormalWear
+    back: ClothingBackpackSatchelCentcomm
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesNitrile
+    id: CentcomPDA
+    ears: ClothingHeadsetAltCentCom
+    pocket1: WeaponPistolN1984
+    pocket2: BoxFolderCentComClipboardEmpty
+  storage:
+    back:
+    - RubberStampCMD
+    - MindShieldImplanter
+
+# Central Research Division CRD
+- type: startingGear
+  id: CentralResearchDivisionGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCentcommResearchFormalWear
+    back: ClothingBackpackSatchelCentcomm
+    shoes: ClothingShoesBootsLaceup
+    head: ClothingHeadHatCentcomcap
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesColorPurple
+    id: CentcomPDA
+    ears: ClothingHeadsetAltCentCom
+    pocket1: WeaponPistolN1984
+    pocket2: BoxFolderCentComClipboardEmpty
+  storage:
+    back:
+    - RubberStampCRD
+    - MindShieldImplanter
+
+# Central Security Division CSD
+- type: startingGear
+  id: CentralSecurityDivisionGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCentcommSecurityFormalWear
+    back: ClothingBackpackSatchelCentcomm
+    shoes: ClothingShoesBootsCombatFilled
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorCentcommCarapace
+    id: CentcomPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: CentcommVibrobladeSheathFilled
+    pocket1: WeaponPistolN1984
+    pocket2: BoxFolderCentComClipboardEmpty
+  storage:
+    back:
+    - RubberStampCSD
+    - MindShieldImplanter
+
+# Central Special Operations Division CSOD
+- type: startingGear
+  id: CentralSpecialOperationsDivisionGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCentcommSpecialOpsFormalWear
+    back: ClothingBackpackSatchelCentcomm
+    shoes: ClothingShoesBootsCombatFilled
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorCentcommCarapace
+    id: CentcomPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: CentcommVibrobladeSheathFilled
+    pocket1: WeaponPistolN1984
+    pocket2: BoxFolderCentComClipboardEmpty
+  storage:
+    back:
+    - RubberStampCSOD
+    - MindShieldImplanter
+

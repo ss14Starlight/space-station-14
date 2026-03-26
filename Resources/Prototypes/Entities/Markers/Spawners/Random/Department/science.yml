@@ -103,9 +103,10 @@
       state: generic
   - type: RandomSpawner
     rarePrototypes:
-    - BorgModuleAdvancedChemical
+    - BorgModuleAdvancedTopical
     - BorgModuleAdvancedCleaning
     - BorgModuleAdvancedTool
+    - BorgModuleAdvancedPlumbing
 
     rareChance: 0.1
     prototypes:

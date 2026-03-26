@@ -37,9 +37,9 @@
 
   <Box>
     <GuideEntityEmbed Entity="MobRatServant" Caption=""/>
-    <GuideEntityEmbed Entity="MobRatServant" Caption=""/>
+    <GuideEntityEmbed Entity="MobLargeRatServant" Caption=""/>
     <GuideEntityEmbed Entity="MobRatKing" Scale="2.4"/>
-    <GuideEntityEmbed Entity="MobRatServant" Caption=""/>
+    <GuideEntityEmbed Entity="MobLargeRatServant" Caption=""/>
     <GuideEntityEmbed Entity="MobRatServant" Caption=""/>
   </Box>
 

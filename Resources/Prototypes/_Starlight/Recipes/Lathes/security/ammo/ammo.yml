@@ -1,0 +1,31 @@
+- type: latheRecipe
+  id: ShellShotgunBeanbag
+  result: MagazineBoxLightRifleRubber
+  categories:
+  - Ammo
+  completetime: 5
+  materials:
+    Steel: 350
+    Plastic: 600
+
+- type: latheRecipe
+  id: GrenadeBaton
+  result: GrenadeBaton
+  categories:
+  - Ammo
+  completetime: 3
+  materials:
+    Steel: 450
+    Plastic: 300
+    Gold: 150
+
+- type: latheRecipe
+  id: GrenadeFrag
+  result: GrenadeFrag
+  categories:
+  - Ammo
+  completetime: 3
+  materials:
+    Steel: 450
+    Plastic: 300
+    Gold: 150

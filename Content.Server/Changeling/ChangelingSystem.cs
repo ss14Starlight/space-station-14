@@ -7,6 +7,7 @@ using Content.Server.Zombies;
 using Content.Shared.Alert;
 using Content.Shared.Changeling;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
@@ -58,7 +59,10 @@ using Content.Shared.Mobs.Components;
 using Content.Server.Stunnable;
 using Content.Shared.Jittering;
 using System.Linq;
-using Content.Shared.Radio;
+// Starlight edit start
+using Content.Shared.Body.Components;
+using Content.Shared.Chemistry.Reagent;
+// Starlight edit end
 using Content.Shared.Zombies;
 
 namespace Content.Server.Changeling;
@@ -100,22 +104,24 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private readonly PullingSystem _pull = default!;
     [Dependency] private readonly SharedCuffableSystem _cuffs = default!;
     [Dependency] private readonly SharedPuddleSystem _puddle = default!;
-    [Dependency] private readonly StunSystem _stun = default!;
     [Dependency] private readonly SharedJitteringSystem _jitter = default!;
     [Dependency] private readonly NpcFactionSystem _factionSystem = default!;
     [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
 
-    public EntProtoId FakeArmbladePrototype = "FakeArmBladeChangeling";
+    public static readonly EntProtoId FakeArmbladePrototype = "FakeArmBladeChangeling";
 
-    public EntProtoId BoneShardPrototype = "ThrowingStarChangeling";
+    public static readonly EntProtoId BoneShardPrototype = "ThrowingStarChangeling";
 
-    public EntProtoId ArmorPrototype = "ChangelingClothingOuterArmor";
-    public EntProtoId ArmorHelmetPrototype = "ChangelingClothingHeadHelmet";
+    public static readonly EntProtoId ArmorPrototype = "ChangelingClothingOuterArmor";
+    public static readonly EntProtoId ArmorHelmetPrototype = "ChangelingClothingHeadHelmet";
 
-    public EntProtoId SpacesuitPrototype = "ChangelingClothingOuterHardsuit";
-    public EntProtoId SpacesuitHelmetPrototype = "ChangelingClothingHeadHelmetHardsuit";
+    public static readonly EntProtoId SpacesuitPrototype = "ChangelingClothingOuterHardsuit";
+    public static readonly EntProtoId SpacesuitHelmetPrototype = "ChangelingClothingHeadHelmetHardsuit";
 
-    public EntProtoId SlowdownPrototype = "StatusEffectStaminaLow";
+    public static readonly EntProtoId SlowdownPrototype = "StatusEffectStaminaLow";
+
+    private static readonly ProtoId<ReagentPrototype> BloodPrototype = "Blood";
+    private static readonly ProtoId<ReagentPrototype> BloodChangelingPrototype = "BloodChangeling";
     public override void Initialize()
     {
         base.Initialize();
@@ -135,10 +141,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        foreach (var comp in EntityManager.EntityQuery<ChangelingComponent>())
-        {
-            var uid = comp.Owner;
+        var query = EntityManager.EntityQueryEnumerator<ChangelingComponent>();
 
+        while (query.MoveNext(out var uid, out var comp))
+        {
             if (_timing.CurTime >= comp.ChemicalNextUpdateTime)
             {
                 comp.ChemicalNextUpdateTime = _timing.CurTime + comp.ChemicalUpdateCooldown;
@@ -196,7 +202,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
                 var vomitAmount = 15f;
                 _blood.TryModifyBloodLevel(uid, -vomitAmount);
-                solution.AddReagent("Blood", vomitAmount);
+                solution.AddReagent(BloodPrototype, vomitAmount); // pw note - blood without forensics data probably shouldn't get generated except by esoteric effects
 
                 _puddle.TrySplashSpillAt(uid, Transform(uid).Coordinates, solution, out _);
 
@@ -228,7 +234,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             if (stamina.StaminaDamage >= stamina.CritThreshold || _gravity.IsWeightless(uid))
                 ToggleStrainedMuscles(uid, comp);
         }
-        
+
         if (comp.StealthEnabled)
         {
             if (comp.Chemicals > comp.StealthDrain)
@@ -265,7 +271,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         _audio.PlayPvs(comp.ShriekSound, uid);
 
-        var center = Transform(uid).MapPosition;
+        var center = _transform.GetMapCoordinates(Transform(uid));
         var gamers = Filter.Empty();
         gamers.AddInRange(center, comp.ShriekPower, _player, EntityManager);
 
@@ -274,7 +280,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             if (gamer.AttachedEntity == null)
                 continue;
 
-            var pos = Transform(gamer.AttachedEntity!.Value).WorldPosition;
+            var pos = _transform.GetWorldPosition(Transform(gamer.AttachedEntity!.Value));
             var delta = center.Position - pos;
 
             if (delta.EqualsApprox(Vector2.Zero))
@@ -376,11 +382,12 @@ public sealed partial class ChangelingSystem : EntitySystem
     public bool TryStealDNA(EntityUid uid, EntityUid target, ChangelingComponent comp, bool countObjective = false)
     {
         if (!TryComp<HumanoidAppearanceComponent>(target, out var appearance)
-        || !TryComp<MetaDataComponent>(target, out var metadata)
-        || !TryComp<DnaComponent>(target, out var dna) 
+        || !TryComp<DnaComponent>(target, out var dna)
         || dna.DNA == null
         || !TryComp<FingerprintComponent>(target, out var fingerprint))
             return false;
+
+        var metadata = MetaData(target);
 
         foreach (var storedDNA in comp.AbsorbedDNA)
         {
@@ -498,7 +505,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             EnsureComp<HeadRevolutionaryComponent>(newEnt);
         if (HasComp<RevolutionaryComponent>(uid))
             EnsureComp<RevolutionaryComponent>(newEnt);
-        
+
         _factionSystem.Up(uid, newEnt);
 
         QueueDel(uid);
@@ -578,7 +585,13 @@ public sealed partial class ChangelingSystem : EntitySystem
         UpdateBiomass(uid, comp, 0);
 
         // make their blood unreal
-        _blood.ChangeBloodReagent(uid, "BloodChangeling");
+        // Starlight edit start - remove deprecated method
+        if (TryComp<BloodstreamComponent>(uid, out var bloodstream) &&
+            bloodstream.BloodReferenceSolution is { } originalBlood)
+        {
+            _blood.ChangeBloodReagents(uid, new Solution([new ReagentQuantity(BloodChangelingPrototype, originalBlood.Volume)]));
+        }
+        // Starlight edit end
     }
 
     private void OnMobStateChange(EntityUid uid, ChangelingComponent comp, ref MobStateChangedEvent args)
@@ -604,7 +617,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
 
     private void OnComponentRemove(Entity<ChangelingComponent> ent, ref ComponentRemove args) => RemoveAllChangelingEquipment(ent, ent.Comp);
-    
+
 
     #endregion
 }

@@ -31,11 +31,13 @@
   components:
     - type: Weldable
       time: 3
-    - type: VentCrawTube
-    - type: VentCrawEntry
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlEntry
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
+        VentCrawlTube: !type:Container
+    # Starlight end
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
     - type: DeviceNetwork
@@ -51,18 +53,20 @@
       drawdepth: FloorObjects
       sprite: Structures/Piping/Atmospherics/vent.rsi
       layers:
-        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
           state: pipeUnaryConnectors
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: vent_off
           map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
-    # region starlight
+    # Carpmosia-start - Atmos Alt Prototypes
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasVentPump
         Secondary: GasVentPumpAlt1
         Tertiary: GasVentPumpAlt2
-    # end region
+        Quaternary: GasVentPumpAlt3
+        Quinary: GasVentPumpAlt4
+    # Carpmosia-end - Atmos Alt Prototypes
     - type: Appearance
     - type: PipeColorVisuals
     - type: GenericVisualizer
@@ -107,18 +111,20 @@
       drawdepth: FloorObjects
       sprite: Structures/Piping/Atmospherics/vent.rsi
       layers:
-        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
           state: pipeUnaryConnectors
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: vent_passive
           map: [ "enum.SubfloorLayers.FirstLayer" ]
-    # region starlight
+    # Carpmosia-start - Atmos Alt Prototypes
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasPassiveVent
         Secondary: GasPassiveVentAlt1
         Tertiary: GasPassiveVentAlt2
-    # end region
+        Quaternary: GasPassiveVentAlt3
+        Quinary: GasPassiveVentAlt4
+    # Carpmosia-end - Atmos Alt Prototypes
     - type: Appearance
     - type: PipeColorVisuals
     - type: GasPassiveVent
@@ -141,11 +147,13 @@
   components:
     - type: Weldable
       time: 3
-    - type: VentCrawTube
-    - type: VentCrawEntry
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlEntry
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
+        VentCrawlTube: !type:Container
+    # Starlight end
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
     - type: DeviceNetwork
@@ -161,18 +169,20 @@
       drawdepth: FloorObjects
       sprite: Structures/Piping/Atmospherics/scrubber.rsi
       layers:
-        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
           state: pipeUnaryConnectors
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: scrub_off
           map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
-    # region starlight
+    # Carpmosia-start - Atmos Alt Prototypes
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasVentScrubber
         Secondary: GasVentScrubberAlt1
         Tertiary: GasVentScrubberAlt2
-    # end region
+        Quaternary: GasVentScrubberAlt3
+        Quinary: GasVentScrubberAlt4
+    # Carpmosia-end - Atmos Alt Prototypes
     - type: Appearance
     - type: PipeColorVisuals
     - type: GenericVisualizer
@@ -212,10 +222,10 @@
   components:
     - type: Sprite
       drawdepth: FloorObjects
-      sprite: Structures/Piping/Atmospherics/outletinjector.rsi
+      sprite: _Carpmosia/Structures/Piping/Atmospherics/outletinjector.rsi # Carpmosia-edit - 5 pipe layers
       layers:
         - state: pipeUnaryConnectors
-          sprite: Structures/Piping/Atmospherics/pipe.rsi
+          sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: injector
           map: [ "enum.SubfloorLayers.FirstLayer" ]
@@ -223,13 +233,15 @@
           shader: unshaded
           map: [ "enum.LightLayers.Unshaded" ]
           color: "#990000"
-    # region starlight
+    # Carpmosia-start - Atmos Alt Prototypes
     - type: AtmosPipeLayers
       alternativePrototypes:
         Primary: GasOutletInjector
         Secondary: GasOutletInjectorAlt1
         Tertiary: GasOutletInjectorAlt2
-    # end region
+        Quaternary: GasOutletInjectorAlt3
+        Quinary: GasOutletInjectorAlt4
+    # Carpmosia-end - Atmos Alt Prototypes
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -249,13 +261,15 @@
       - enum.LightLayers.Unshaded
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
-    - type: VentCrawTube
-    - type: VentCrawJunction
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
       degrees:
         - 0
     - type: ContainerContainer
       containers:
-        VentCrawTube: !type:Container
+        VentCrawlTube: !type:Container
+    # Starlight end
     - type: GuideHelp
       guides:
       - AirInjector
@@ -279,9 +293,13 @@
     - type: AtmosPipeLayers
       spriteLayersRsiPaths:
         enum.PipeVisualLayers.Pipe:
-          Primary: Structures/Piping/Atmospherics/thermomachine.rsi
-          Secondary: Structures/Piping/Atmospherics/thermomachine_alt1.rsi
-          Tertiary: Structures/Piping/Atmospherics/thermomachine_alt2.rsi
+          # Carpmosia-start - 5 pipe layers
+          Primary: _Carpmosia/Structures/Piping/Atmospherics/thermomachine.rsi
+          Secondary: _Carpmosia/Structures/Piping/Atmospherics/thermomachine_alt1.rsi
+          Tertiary: _Carpmosia/Structures/Piping/Atmospherics/thermomachine_alt2.rsi
+          Quaternary: _Carpmosia/Structures/Piping/Atmospherics/thermomachine_alt3.rsi
+          Quinary: _Carpmosia/Structures/Piping/Atmospherics/thermomachine_alt4.rsi
+          # Carpmosia-end - 5 pipe layers
     - type: AtmosDevice
     - type: UserInterface
       interfaces:
@@ -414,9 +432,9 @@
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/hellfirethermomachine.rsi
   - type: GasThermoMachine
-    minTemperature: 23.15
+    minTemperature: 13.15 # Funkystation Edit: 23.15 -> 13.15
     heatCapacity: 40000
-    energyLeakPercentage: 0.15
+    energyLeakPercentage: 0.08 # Funkystation Edit: 0.15 -> 0.08
   - type: Machine
     board: HellfireFreezerMachineCircuitBoard
 
@@ -429,9 +447,9 @@
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/hellfirethermomachine.rsi
   - type: GasThermoMachine
-    maxTemperature: 1193.15
+    maxTemperature: 1593.15 # Funkystation Edit: 1193.15 -> 1593.15
     heatCapacity: 40000
-    energyLeakPercentage: 0.15
+    energyLeakPercentage: 0.08 # Funkystation Edit: 0.15 -> 0.08
   - type: Machine
     board: HellfireHeaterMachineCircuitBoard
 
@@ -476,9 +494,13 @@
   - type: AtmosPipeLayers
     spriteLayersRsiPaths:
       enum.PipeVisualLayers.Pipe:
-        Primary: Structures/Piping/Atmospherics/condenser.rsi
-        Secondary: Structures/Piping/Atmospherics/condenser_alt1.rsi
-        Tertiary: Structures/Piping/Atmospherics/condenser_alt2.rsi
+        # Carpmosia-start - 5 pipe layers
+        Primary: _Carpmosia/Structures/Piping/Atmospherics/condenser.rsi
+        Secondary: _Carpmosia/Structures/Piping/Atmospherics/condenser_alt1.rsi
+        Tertiary: _Carpmosia/Structures/Piping/Atmospherics/condenser_alt2.rsi
+        Quaternary: _Carpmosia/Structures/Piping/Atmospherics/condenser_alt3.rsi
+        Quinary: _Carpmosia/Structures/Piping/Atmospherics/condenser_alt4.rsi
+        # Carpmosia-end - 5 pipe layers
   - type: AtmosDevice
   - type: PipeRestrictOverlap
   - type: ApcPowerReceiver

@@ -1,0 +1,38 @@
+- type: entity
+  id: GasTurbineSparkEffect # Basically a copy of ArmorSparkEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 1
+  - type: Sprite
+    drawdepth: Effects
+    sprite: _Starlight/Effects/armor_sparks.rsi
+    layers:
+    - state: armor_sparks
+      map: ["armor_sparks"]
+  - type: AnimationPlayer
+  - type: PointLight
+    enabled: true
+    radius: 1.5
+    energy: 2.0
+    color: "#FFD700"
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  id: GasTurbineSmokeEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 2
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Effects/chemsmoke.rsi
+    layers:
+    - state: chemsmoke
+      map: ["chemsmoke"]
+  - type: AnimationPlayer
+  - type: Tag
+    tags:
+      - HideContextMenu

@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Notes;
+using Content.Server.Connection;
 using Content.Server.Database;
 using Content.Server.EUI;
 using Content.Shared.Administration;
@@ -17,6 +18,7 @@ namespace Content.Server.Administration;
 public sealed class PlayerPanelEui : BaseEui
 {
     [Dependency] private readonly IAdminManager _admins = default!;
+    [Dependency] private readonly IConnectionManager _connectionManager = default!; // Starlight
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly IAdminNotesManager _notesMan = default!;
     [Dependency] private readonly IEntityManager _entity = default!;
@@ -179,7 +181,10 @@ public sealed class PlayerPanelEui : BaseEui
             _notes = null;
         }
 
-        _sharedConnections = _player.Sessions.Count(s => s.Channel.RemoteEndPoint.Address.Equals(_targetPlayer.LastAddress) && s.UserId != _targetPlayer.UserId);
+        _sharedConnections = _player.Sessions.Count(s =>
+            (_connectionManager.GetResolvedAddress(s.UserId) ?? s.Channel.RemoteEndPoint.Address) // Starlight: prefer resolved IP
+                .Equals(_targetPlayer.LastAddress)
+            && s.UserId != _targetPlayer.UserId);
 
     // Apparently the Bans flag is also used for whitelists
     if (_admins.HasAdminFlag(Player, AdminFlags.Ban))

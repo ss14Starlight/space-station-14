@@ -1,0 +1,37 @@
+<Document>
+  # Vampire: Umbrae
+
+  <Box>
+    [color=#5e154e][italic]"Darkness is not the absence of light. It is the absence of witnesses."[/italic][/color]
+  </Box>
+
+  Umbrae is the stealth and mobility class. Your wins come from picking the right place, light level, and timing.
+  You are strongest where others are uncomfortable: in darkness, in chaos, and at short range.
+
+  ## Abilities (Total Blood Threshold | Cost)
+
+  [bold](150 | (toggle))[/bold] Cloak of Darkness
+   Toggles whether you are currently cloaking yourself in darkness. 
+   When in darkness and toggled on, you move at increased speeds.
+
+  [bold](200 | 20)[/bold] Shadow Snare
+   You summon a trap on the ground. When crossed it will blind the target and ensnare them
+   Flash effects can destroy it — place it in darkness and offangle.
+
+  [bold](200 | 20)[/bold] Shadow Anchor
+   You summon a dimensional anchor after a delay. 
+   Casting again will teleport you back to the anchor. You will fake a recall after 2 minutes
+
+  [bold](300 | 20)[/bold] Dark Passage
+    Teleports you to a targeted turf.
+
+  [bold](400 | 0)[/bold] Extinguish
+   Absorbs light sources around you.
+
+  [bold](800 | 50)[/bold] Shadow Boxing
+   Your shadows beat up a target while you stay close.
+
+  [bold](1000 | (toggle))[/bold] Eternal Darkness 
+   When toggled, you shroud the area around you in darkness and slowly lower the body temperature of people nearby. 
+
+</Document>

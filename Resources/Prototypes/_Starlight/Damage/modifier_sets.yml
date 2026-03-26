@@ -1,0 +1,113 @@
+- type: damageModifierSet
+  id: Avali # Not as good as thick fur like the vulps, but still rather insulating.
+  coefficients:
+    Cold: 0.6
+    Heat: 1.4
+
+- type: damageModifierSet
+  id: TerrorSpider
+  coefficients:
+    Blunt: 0.4
+    Slash: 1.1
+    Piercing: 0.9
+    Heat: 1.6
+
+- type: damageModifierSet
+  id: Cyclorite
+  coefficients:
+    Blunt: 0.85 # Have you ever tried to punch a rock?
+    Slash: 0.7
+
+- type: damageModifierSet
+  id: Shadekin
+  coefficients:
+    Asphyxiation: 0
+    Cold: 0.75
+    Heat: 1.2
+    Cellular: 0.25
+    Bloodloss: 1.35
+    Shock: 1.25
+    Radiation: 1.3
+
+- type: damageModifierSet
+  id: Gorilla
+  coefficients:
+    Asphyxiation: 1.5
+    Heat: 1.5
+    Cellular: 0
+    Poison: 1.5
+
+- type: damageModifierSet
+  id: GorillaRampaging
+  coefficients:
+    Blunt: 1.25
+    Cellular: 0
+    Poison: 1.5
+
+- type: damageModifierSet
+  id: DragonResistances
+  coefficients:
+    Piercing: 0.3
+    Slash: 2
+    Heat: 0.5
+    Bloodloss: 0
+
+- type: damageModifierSet
+  id: DragonCarpResistances
+  coefficients:
+    Piercing: 0.5
+    Slash: 2
+    Heat: 0.75
+    Bloodloss: 0
+
+- type: damageModifierSet
+  id: Elf
+  coefficients:
+    Poison: 0.75
+    Cellular: 0.9 # magic makes the flesh is less corruptible
+    Blunt: 1.2 # brittle bones, etc.
+
+- type: damageModifierSet
+  id: SlimeFireproofPotionEffect
+  coefficients:
+    Heat: -10.0
+
+# terminator's flesh damage set
+# we want it to be tanky, but it should be pretty easy to gib it into endoskeleton form
+- type: damageModifierSet
+  id: CyberneticFlesh
+  coefficients:
+    Blunt: 0.5
+    Slash: 0.5
+    Piercing: 0.5
+    # fire and lasers
+    Heat: 0.7
+    Cold: 0.25
+    Caustic: 0.25
+    # doesnt have organs to poison
+    Poison: 0.0
+    Cellular: 0.0
+
+# terminator's endoskeleton damage set
+- type: damageModifierSet
+  id: Cybernetic
+  coefficients:
+    # bonk
+    Blunt: 0.7
+    # alloy too hard to cut
+    Slash: 0.0
+    # pew
+    Piercing: 0.1
+    # no burning anymore
+    Heat: 0.1
+    # its a robot
+    Cold: 0.0
+    Caustic: 0.0
+    Poison: 0.0
+    Cellular: 0.0
+    Radiation: 0.0
+  flatReductions:
+    # can't punch the endoskeleton to death
+    Blunt: 5
+    Slash: 5
+    Piercing: 5

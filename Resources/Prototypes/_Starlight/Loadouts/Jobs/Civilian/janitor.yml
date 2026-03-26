@@ -1,0 +1,11 @@
+# Neck
+- type: loadout
+  id: SupremeJanitorCloak
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobJanitor
+      time: 270000 # 75 hours
+  equipment:
+    neck: ClothingNeckCloakSupremeJanitor

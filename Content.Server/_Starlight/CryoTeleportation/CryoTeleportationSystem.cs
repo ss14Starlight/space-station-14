@@ -65,7 +65,7 @@ public sealed class CryoTeleportationSystem : EntitySystem
                 || HasComp<BorgChassisComponent>(uid)
                 || mobStateComponent.CurrentState != MobState.Alive
                 || comp.ExitTime == null
-                || _timing.CurTime - comp.ExitTime < stationComp.TransferDelay 
+                || _timing.CurTime - comp.ExitTime - comp.TimeDelay < stationComp.TransferDelay 
                 || HasComp<CryostorageContainedComponent>(uid)
                 || HasComp<UncryoableComponent>(uid))
                 continue;

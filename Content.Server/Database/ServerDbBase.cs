@@ -28,6 +28,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Traits;
 
 namespace Content.Server.Database
 {
@@ -329,6 +330,13 @@ namespace Content.Server.Database
                 }
             }
             //end starlight
+            //start Far Horizons
+            RoleLoadout? speciesLoadout = null;
+            if (loadouts.Remove(HumanoidCharacterProfile.SpeciesLoadoutDatabaseKey, out var value))
+            {
+                speciesLoadout = value;
+            }
+            //end Far Horizons
             // Cosmatic Drift Record System-start: Build a humanoid profile so CD record data can be attached before returning
             var humanoid = new HumanoidCharacterProfile(
                 profile.CharacterName,
@@ -342,6 +350,7 @@ namespace Content.Server.Database
                 exploitableInfo,// Starlight
                 profile.Species,
                 profile.StarLightProfile?.CustomSpecieName ?? "", // Starlight
+                profile.StarLightProfile?.ForcedPrototype ?? "", //  Starlight
                 profile.Age,
                 sex,
                 gender,
@@ -366,7 +375,8 @@ namespace Content.Server.Database
                 traits.ToHashSet(),
                 loadouts,
                 profile.StarLightProfile?.CyberneticIds ?? [], // Starlight
-                profile.Enabled
+                profile.Enabled,
+                speciesLoadout // Far Horizons
             );
             // Cosmatic Drift Record System: Rehydrate saved CD records into the mutable profile copy
             if (profile.CDProfile?.CharacterRecords != null)
@@ -408,6 +418,7 @@ namespace Content.Server.Database
             profile.Species = humanoid.Species;
             profile.StarLightProfile ??= new StarLightModel.StarLightProfile(); // Starlight
             profile.StarLightProfile.CustomSpecieName = humanoid.CustomSpecieName; // Starlight
+            profile.StarLightProfile.ForcedPrototype = humanoid.ForcedPrototype; // Starlight
             profile.StarLightProfile.CyberneticIds = humanoid.Cybernetics; // Starlight
             profile.Age = humanoid.Age;
             profile.StarLightProfile.Width = appearance.Width; //starlight
@@ -455,7 +466,13 @@ namespace Content.Server.Database
 
             profile.Loadouts.Clear();
 
-            foreach (var (role, loadouts) in humanoid.Loadouts)
+            // Far Horizons start
+            Dictionary<string, RoleLoadout> extraLoadouts = new(humanoid.Loadouts);
+            if (humanoid.SpeciesLoadout != null)
+                extraLoadouts[HumanoidCharacterProfile.SpeciesLoadoutDatabaseKey] = humanoid.SpeciesLoadout;
+            // Far Horizons end
+
+            foreach (var (role, loadouts) in extraLoadouts) // Far Horizons species loadout
             {
                 var dz = new ProfileRoleLoadout()
                 {

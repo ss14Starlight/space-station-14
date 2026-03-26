@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Server.Starlight.Cybernetics.Components;
+using Content.Server._Starlight.Cybernetics.Components; // Starlight
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Nutrition.Components;

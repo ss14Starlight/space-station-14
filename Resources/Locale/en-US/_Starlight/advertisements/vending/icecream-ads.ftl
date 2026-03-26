@@ -1,0 +1,12 @@
+﻿advertisement-icecream-1 = It's cooler than smoking!
+advertisement-icecream-2 = Wouldn't you like to escape the heat?
+advertisement-icecream-3 = Those industrial lathes must be making this place pretty warm, huh?
+advertisement-icecream-4 = Is it just me or did the room get hotter?
+advertisement-icecream-5 = Cold as the deep, deep space that surrounds us.
+advertisement-icecream-6 = Indulge yourself with a magnificent jumbo ice-cream.
+advertisement-icecream-7 = Try the tasty creamsicles!
+advertisement-icecream-8 = Look, the smokesicles were a very good idea on paper.
+advertisement-icecream-9 = Number One among the Vox crew.
+advertisement-icecream-10 = Number One among the Foxfolk crew.
+advertisement-icecream-11 = Number One among the Vulpkanin crew.
+advertisement-icecream-12 = If you can't stand the heat, I'm here for you.

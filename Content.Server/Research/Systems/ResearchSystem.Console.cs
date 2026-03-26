@@ -65,7 +65,7 @@ public sealed partial class ResearchSystem
                 {
                     if (PrototypeManager.TryIndex<RadioChannelPrototype>(radioChannelId, out var radioChannel))
                     {
-                        _radio.SendRadioMessage(uid, message, radioChannel, uid, escapeMarkup: false);
+                        _radio.SendRadioMessage(uid, message, radioChannel, uid, suppressTTS: true, escapeMarkup: false); // Starlight
                     }
                 }
         }

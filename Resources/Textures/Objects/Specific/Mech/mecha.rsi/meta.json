@@ -1,147 +1,147 @@
 {
-  "copyright" : "Taken from https://github.com/Skyrat-SS13/Skyrat-tg at https://github.com/Skyrat-SS13/Skyrat-tg/blob/HEAD/icons/mob/rideables/mecha.dmi",
-  "license" : "CC-BY-SA-3.0",
-  "version": 1,
-  "size": {
-    "x": 32,
-    "y": 32
-  },
-  "states": [
-    {
-      "name": "reticence",
-      "directions": 4
+    "copyright" : "Taken from https://github.com/tgstation/tgstation at at https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, hamtr made by brainfood1183 (github), Ripley edits by TiniestShark (Github)",
+    "license" : "CC-BY-SA-3.0",
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
     },
-    {
-      "name": "reticence-open"
-    },
-    {
-      "name": "reticence-broken"
-    },
-    {
-      "name": "marauder",
-      "directions": 4
-    },
-    {
+    "states": [
+        {
+            "name": "reticence",
+            "directions": 4
+        },
+        {
+            "name": "reticence-open"
+        },
+        {
+            "name": "reticence-broken"
+        },
+        {
+            "name": "marauder",
+            "directions": 4
+        },
+        {
       "name": "marauder-open"
-    },
-    {
-      "name": "marauder-broken"
-    },
-    {
-      "name": "seraph",
-      "directions": 4
-    },
-    {
+        },
+        {
+            "name": "marauder-broken"
+        },
+        {
+            "name": "seraph",
+            "directions": 4
+        },
+        {
       "name": "seraph-open"
-    },
-    {
-      "name": "seraph-broken"
-    },
-    {
-      "name": "phazon",
+        },
+        {
+            "name": "seraph-broken"
+        },
+        {
+            "name": "phazon",
+            "directions": 4
+        },
+        {
+            "name": "phazon-open"
+        },
+        {
+            "name": "phazon-phase",
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "phazon-broken"
+        },
+        {
+            "name": "mauler",
       "directions": 4
-    },
-    {
-      "name": "phazon-open"
-    },
-    {
-      "name": "phazon-phase",
-      "directions": 4,
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ],
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ]
-      ]
-    },
-    {
-      "name": "phazon-broken"
-    },
-    {
-      "name": "mauler",
-      "directions": 4
-    },
-    {
+        },
+        {
       "name": "mauler-open"
-    },
-    {
-      "name": "mauler-broken"
-    },
-    {
-      "name": "odysseus",
-      "directions": 4
-    },
-    {
-      "name": "odysseus-open"
-    },
-    {
-      "name": "odysseus-broken"
-    },
-    {
+        },
+        {
+            "name": "mauler-broken"
+        },
+        {
+            "name": "odysseus",
+            "directions": 4
+        },
+        {
+            "name": "odysseus-open"
+        },
+        {
+            "name": "odysseus-broken"
+        },
+        {
       "name": "firefighter"
-    },
-    {
-      "name": "firefighter-open"
-    },
-    {
-      "name": "firefighter-broken"
-    },
-    {
-      "name": "darkgygax",
-      "directions": 4
-    },
-    {
-      "name": "darkgygax-open",
-      "delays": [
-        [
+        },
+        {
+            "name": "firefighter-open"
+        },
+        {
+            "name": "firefighter-broken"
+        },
+        {
+            "name": "darkgygax",
+            "directions": 4
+        },
+        {
+            "name": "darkgygax-open",
+            "delays": [
+                [
           0.2,
           0.2,
           0.2,
           0.2,
           0.2
-        ]
-      ]
-    },
-    {
+                ]
+            ]
+        },
+        {
       "name": "darkgygax-broken"
-    },
-    {
-      "name": "hauler",
-      "directions": 4
-    },
-    {
-      "name": "hauler-empty",
-      "directions": 4
-    },
-    {
-      "name": "hauler-open"
-    },
-    {
-      "name": "hauler-broken"
-    }
-  ]
+        },
+        {
+            "name": "hauler",
+            "directions": 4
+        },
+        {
+            "name": "hauler-empty",
+            "directions": 4
+        },
+        {
+            "name": "hauler-open"
+        },
+        {
+            "name": "hauler-broken"
+        }
+    ]
 }

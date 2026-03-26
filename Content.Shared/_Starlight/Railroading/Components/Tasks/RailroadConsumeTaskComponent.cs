@@ -13,7 +13,7 @@ namespace Content.Shared._Starlight.Railroading;
 public sealed partial class RailroadConsumeTaskComponent : Component
 {
     [DataField]
-    public string Message = "rail-consume-task";
+    public LocId Message = "rail-consume-task";
 
     [DataField]
     public HashSet<EntProtoId> Objects = [];

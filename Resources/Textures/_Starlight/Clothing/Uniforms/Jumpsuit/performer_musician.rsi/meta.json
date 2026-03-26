@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Bartender top half taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039, musician bottom half taken from paradisestation at commit https://github.com/ParadiseSS13/Paradise/commit/4daf5d1a1b45fc3fcc4fd9703222159e6c1f38c8, inhands and icon by peptide, edited further by Ian M. Burton, monkey made by brainfood1183 (github) for ss14, combined into Performer by wonderfulnewworld (GitHub) for Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "Paradise Station, TG Station, OnlineGirlfriend, Ian M. Burton, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "equipped-INNERCLOTHING",
+      "directions": 4,
+	  "copyright": "Paradise Station, TG Station, OnlineGirlfriend, Ian M. Burton, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "equipped-INNERCLOTHING-monkey",
+      "directions": 4,
+	  "copyright": "Paradise Station, TG Station, OnlineGirlfriend, Ian M. Burton, brainfood1183, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "Paradise Station, TG Station, OnlineGirlfriend, Ian M. Burton, peptide, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "Paradise Station, TG Station, OnlineGirlfriend, Ian M. Burton, peptide, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    }
+  ]
+}

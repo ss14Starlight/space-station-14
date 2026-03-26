@@ -156,7 +156,13 @@
     - id: GasAnalyzer
     - id: MedkitOxygenFilled
     - id: HolofanProjector
+    - id: MatBag #FH
+    - id: WeaponGrapplingGun #FH
+    - id: BoxFlare #FH
+    - id: SheetSteel #FH
+    - id: SheetSteel #FH
     - id: RCD
+    - id: RPD # Starlight: RPD
     - id: RCDAmmo
     - id: AirGrenade
     - id: trayScanner # Starlight: Add t-ray scanner to atmos lockers
@@ -202,6 +208,11 @@
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingMaskGas
     - id: trayScanner
+    - id: MatBag #FH
+    - id: WeaponGrapplingGun #FH
+    - id: BoxFlare #FH
+    - id: SheetSteel #FH
+    - id: SheetGlass #FH
     - id: RCD
     - id: RCDAmmo
     - id: MetalFoamGrenade
@@ -231,11 +242,12 @@
   table: !type:AllSelector
     children:
     - id: ClothingOuterSuitRad
-      amount: !type:ConstantNumberSelector
-        value: 2
+      amount: 2
     - id: GeigerCounter
-      amount: !type:ConstantNumberSelector
-        value: 2
+      amount: 2
+    - id: RadiationBlockingProjector # Far Horizons
+    - id: PillCanisterPotassiumIodide # Far Horizons
+      prob: 0.75
 
 - type: entity
   parent: LockerEvacRepair

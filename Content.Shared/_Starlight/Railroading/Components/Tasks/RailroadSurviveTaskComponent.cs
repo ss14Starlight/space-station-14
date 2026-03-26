@@ -6,7 +6,7 @@ namespace Content.Shared._Starlight.Railroading;
 public sealed partial class RailroadSurviveTaskComponent : Component
 {
     [DataField]
-    public string Message = "rail-survive-task";
+    public LocId Message = "rail-survive-task";
 
     [DataField]
     public SpriteSpecifier Icon = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_dead.rsi"), "dead");

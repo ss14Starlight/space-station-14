@@ -1,0 +1,15 @@
+- type: roundvotingchances
+  id: Basic
+  chances:
+    Survival: 10
+    KesslerSyndrome: 10
+    Greenshift: 40
+    Traitor: 30
+    Nukeops: 20
+    Zombie: 10
+    Zombieteors: 5
+    Changeling: 30
+    Vampire: 30
+    Extended: 20
+    Revolutionary: 20
+    Xenoborgs: 20 

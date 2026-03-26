@@ -5,6 +5,7 @@ using Content.Shared.Explosion;
 using Content.Shared.Nuke;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Nuke
@@ -87,6 +88,9 @@ namespace Content.Server.Nuke
         [DataField("armMusic")]
         public SoundSpecifier ArmMusic = new SoundCollectionSpecifier("NukeMusic");
 
+        [DataField("armMusicLone")]
+        public SoundSpecifier ArmMusicLone = new SoundCollectionSpecifier("NukeLoneOpMusic"); // Starlight
+
         // These datafields here are duplicates of those in explosive component. But I'm hesitant to use explosive
         // component, just in case at some point, somehow, when grenade crafting added in someone manages to wire up a
         // proximity trigger or something to the nuke and set it off prematurely. I want to make sure they MEAN to set of
@@ -163,6 +167,14 @@ namespace Content.Server.Nuke
         /// </summary>
         [DataField]
         public string EnteredCode = "";
+
+        /// <summary>
+        ///     Time at which the last nuke code was entered.
+        ///     Used to apply a cooldown to prevent clients from attempting to brute force the nuke code by sending keypad messages every tick.
+        ///     <seealso cref="SharedNukeComponent.EnterCodeCooldown"/>
+        /// </summary>
+        [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+        public TimeSpan LastCodeEnteredAt = TimeSpan.Zero;
 
         /// <summary>
         ///     Current status of a nuclear bomb.

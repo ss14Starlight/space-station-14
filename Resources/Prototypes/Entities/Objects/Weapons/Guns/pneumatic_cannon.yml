@@ -63,9 +63,10 @@
       gas_tank: !type:ContainerSlot
 
 - type: entity
-  name: pie cannon
   parent: BaseStorageItem
   id: LauncherCreamPie
+  name: pie cannon
+  suffix: Empty
   description: Load cream pie for optimal results.
   components:
   - type: Sprite
@@ -103,6 +104,7 @@
     containers:
       storagebase: !type:Container
         ents: []
+  - type: PacifismAllowedGun # Starlight
 
 - type: entity
   name: experimental pie cannon
@@ -128,10 +130,10 @@
   - type: BatteryAmmoProvider
     proto: FoodPieBananaCream
     fireCost: 30
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 90
     startingCharge: 90
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRechargeRate: 1
   - type: AmmoCounter
   - type: Item

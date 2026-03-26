@@ -43,17 +43,15 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
 
     protected override void Added(EntityUid uid, RailroadRuleComponent comp, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
-        if (TryGetActiveRule(out var rule))
+        if (TryGetActiveRule(out var rule) && rule is Entity<RailroadRuleComponent> ent)
         {
-            foreach (var card in rule.Cards)
-                comp.DynamicCards.Enqueue(card);
-            _gameTicker.EndGameRule(uid);
-            return;
+            foreach (var card in ent.Comp.Cards)
+                comp.Cards.Add(card);
+            _gameTicker.EndGameRule(ent.Owner);
         }
         base.Added(uid, comp, gameRule, args);
         comp.Timer = comp.PreSpawnDelay;
     }
-
 
     protected override void ActiveTick(EntityUid uid, RailroadRuleComponent comp, GameRuleComponent gameRule, float frameTime)
     => _ = comp.Stage switch
@@ -251,7 +249,7 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
         return null;
     }
 
-    private bool TryGetActiveRule([NotNullWhen(true)] out RailroadRuleComponent? rule)
+    private bool TryGetActiveRule([NotNullWhen(true)] out Entity<RailroadRuleComponent>? rule)
     {
         rule = null;
         var query = EntityQueryEnumerator<RailroadRuleComponent, GameRuleComponent>();
@@ -260,7 +258,7 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
             if (!GameTicker.IsGameRuleActive(uid, comp2))
                 continue;
 
-            rule = comp1;
+            rule = (uid, comp1);
             return true;
         }
         return false;

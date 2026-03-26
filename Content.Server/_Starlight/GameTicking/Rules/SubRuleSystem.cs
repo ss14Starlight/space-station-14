@@ -47,8 +47,11 @@ public sealed class SubRuleSystem : GameRuleSystem<SubRuleComponent>
 
         foreach (var ruleUid in component.Rules)
         {
-            var res = GameTicker.StartGameRule(ruleUid);
-            Debug.Assert(res);
+            // If our use of subrule was to add a delayed rule, we need to avoid double-triggering it, as that'd cause it to immediately fire.
+            if (HasComp<DelayedStartRuleComponent>(ruleUid))
+                continue;
+
+            GameTicker.StartGameRule(ruleUid);
         }
     }
 

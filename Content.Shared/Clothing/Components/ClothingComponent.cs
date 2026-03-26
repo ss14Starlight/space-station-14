@@ -35,7 +35,7 @@ public sealed partial class ClothingComponent : Component
     /// <remarks>
     /// Note that this may be a combination of different slot flags, not a singular bit.
     /// </remarks>
-    [DataField(required: true)]
+    [DataField(required: true), AutoNetworkedField]
     [Access(typeof(ClothingSystem), typeof(InventorySystem), Other = AccessPermissions.ReadExecute)]
     public SlotFlags Slots = SlotFlags.NONE;
 
@@ -88,6 +88,15 @@ public sealed partial class ClothingComponent : Component
     public TimeSpan UnequipDelay = TimeSpan.Zero;
 
     /// <summary>
+    /// Only works when EquipDelay or UnequipDelay > 0.
+    /// Prevents clothing from being put on or taken off while moving.
+    /// Some clothing can logically be put on while running (hats),
+    /// while other types of clothing may require stopping (shoes, hard suits).
+    /// </summary>
+    [DataField]
+    public bool EquipWhileMoving = false;
+
+    /// <summary>
     /// Offset for the strip time for an entity with this component.
     /// Only applied when it is being equipped or removed by another player.
     /// </summary>
@@ -97,7 +106,6 @@ public sealed partial class ClothingComponent : Component
     /// <summary>
     ///     A scale applied to all layers.
     /// </summary>
-    /// 
     [DataField]
     public Vector2 Scale = Vector2.One;
 }

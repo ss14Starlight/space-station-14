@@ -1,0 +1,20 @@
+[head=1][color=#009100]────────────────────[/color][/head]
+[color=#cc0000]█▀▀ █▀▀ █▀▀▄[/color] [head=3]   [color=#cc0000]CENTRAL SECURITY DIVISION [/color][/head]
+[color=#cc0000]█░░ ▀▀█ █░░█[/color][bolditalic]     [color=#cc0000]Eradicating the enemies of Nanotrasen[/color][/bolditalic]
+[color=#cc0000]▀▀▀ ▀▀▀ ▀▀▀░[/color]   [color=#aaaaaa][italic]OFFICIAL CSD OFFICE DOCUMENT[/italic][/color]
+[head=1][color=#009100]────────────────────[/color][/head]
+[head=1][color=#cc0000]Classified Secure Document[/color][/head]
+[head=1][color=#009100]────────────────────[/color][/head]
+[mono]
+[bold]Subject:[/bold] The Wizard Federation
+[bold]Association:[/bold] Unknown
+[bold]Objectives:[/bold] Unknown
+
+The Wizard Federation is an unusual group with potential for great harm. They claim to wield 'magic', utilizing some unknown technology to conjure effects that we don't fully understand. Their farce has spread far, with a large number of believers, but it is a farce. A trick.
+
+Investigators have concluded that the Wizard Federation itself does not even exist as a formal entity, but rather as a loose collection of these believers and charlatans.
+
+Regardless of how these effects are produced, they have the potential to be very dangerous. Caution is advised when dealing with someone who thinks they are a 'Wizard'.
+[/mono]
+
+[head=1][color=#009100]────────────────────[/color][/head]

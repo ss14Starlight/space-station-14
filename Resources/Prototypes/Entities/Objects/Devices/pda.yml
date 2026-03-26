@@ -84,6 +84,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - NanoChatCartridge # CD
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -98,6 +99,7 @@
   - type: UserInterface
     interfaces:
       enum.PdaUiKey.Key:
+        requireInputValidation: false #Starlight pAI can open PDAs, see PR #3272
         type: PdaBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
@@ -155,6 +157,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -169,6 +172,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -431,7 +435,7 @@
   name: chaplain PDA
   parent: BasePDA
   id: ChaplainPDA
-  description: God's chosen PDA.
+  description: Is the black austere, or luxurious? It's a matter of faith. # Starlight
   components:
   - type: Pda
     id: ChaplainIDCard
@@ -481,6 +485,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -526,6 +531,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -700,6 +706,15 @@
     accentHColor: "#447987"
   - type: Icon
     state: pda-ce
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge #FH
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -719,6 +734,15 @@
     accentVColor: "#A32D26"
   - type: Icon
     state: pda-engineer
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge #FH
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BaseMedicalPDA
@@ -794,6 +818,18 @@
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi #Starlight
     state: pda-paramedic
+    # Starlight BEGIN
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - AstroNavCartridge
+      - NanoChatCartridge
+    # Starlight END
 
 - type: entity
   parent: BaseMedicalPDA
@@ -879,6 +915,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BaseSecurityPDA
@@ -951,6 +988,7 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: CentcomPDA
@@ -977,6 +1015,7 @@
       - WantedListCartridge
       - MedTekCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # CD
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1049,6 +1088,15 @@
     accentVColor: "#447987"
   - type: Icon
     state: pda-atmos
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge #FH
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -1101,6 +1149,7 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: [ SyndiPDA, BaseSyndicateContraband ]
@@ -1139,6 +1188,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - MedTekCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
@@ -1159,7 +1209,7 @@
 - type: entity
   parent: BaseSecurityPDA
   id: ERTLeaderPDA
-  name: ERT Leader PDA
+  name: ERT leader PDA # Starlight: capitalization
   suffix: Leader
   description: Red for firepower.
   components:
@@ -1187,13 +1237,14 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: ERTLeaderPDA
   id: ERTChaplainPDA
-  name: ERT Chaplain PDA
+  name: ERT chaplain PDA # Starlight: capitalization
   suffix: Chaplain
-  description: Red for firepower, it's blessed.
+  description: Red for the blood of sinners. # Starlight
   components:
   - type: Pda
     id: ERTChaplainIDCard
@@ -1201,9 +1252,9 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTEngineerPDA
-  name: ERT Engineer PDA
+  name: ERT engineer PDA # Starlight: capitalization
   suffix: Engineer
-  description: Red for firepower, it's well-worn.
+  description: Red for firepower. It's well-worn. # Starlight
   components:
   - type: Pda
     id: ERTEngineerIDCard
@@ -1211,9 +1262,9 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTJanitorPDA
-  name: ERT Janitor PDA
+  name: ERT janitor PDA # Starlight: capitalization
   suffix: Janitor
-  description: Red for firepower, it's squeaky clean.
+  description: Red for firepower. It's squeaky clean. # Starlight
   components:
   - type: Pda
     id: ERTJanitorIDCard
@@ -1221,9 +1272,9 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTMedicPDA
-  name: ERT Medic PDA
+  name: ERT medic PDA # Starlight: capitalization
   suffix: Medic
-  description: Red for firepower, it's shiny and sterile.
+  description: Red for firepower. It's shiny and sterile. # Starlight
   components:
   - type: Pda
     id: ERTMedicIDCard
@@ -1231,9 +1282,9 @@
 - type: entity
   parent: ERTLeaderPDA
   id: ERTSecurityPDA
-  name: ERT Security PDA
+  name: ERT security PDA # Starlight: capitalization
   suffix: Security
-  description: Red for firepower, it has tally marks etched on the side.
+  description: Red for firepower. It has tally marks etched on the side. # Starlight
   components:
   - type: Pda
     id: ERTSecurityIDCard
@@ -1356,6 +1407,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1384,6 +1436,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: ClownPDA
@@ -1465,6 +1518,15 @@
     accentVColor: "#CD6900"
   - type: Icon
     state: pda-seniorengineer
+  - type: CartridgeLoader #SL
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge #FH
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -1543,6 +1605,22 @@
     accentVColor: "#DFDFDF"
   - type: Icon
     state: pda-seniorcourier
+
+- type: entity
+  parent: [ BaseHighlyIllegalContraband, BasePDA ]
+  id: NinjaPDA
+  name: ninja PDA
+  description: You stealthy bastard, you!
+  components:
+  - type: Pda
+    id: NinjaIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-ninja
+  - type: Icon
+    state: pda-ninja
 
 - type: entity
   parent: [ BaseMajorContraband, SyndiPDA ]

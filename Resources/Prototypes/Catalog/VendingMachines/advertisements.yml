@@ -143,12 +143,6 @@
     count: 6
 
 - type: localizedDataset
-  id: FirebotAd
-  values:
-    prefix: advertisement-firebot-
-    count: 4
-
-- type: localizedDataset
   id: GoodCleanFunAds
   values:
     prefix: advertisement-goodcleanfun-
@@ -279,19 +273,6 @@
   values:
     prefix: advertisement-virodrobe-
     count: 3
-
-- type: localizedDataset
-  id: MedibotAds
-  values:
-    prefix: advertisement-medibot-
-    count: 17
-
-# starlight. And if anyone complains about the Megatron reference. It's not changing.
-- type: localizedDataset
-  id: CleanbotAds
-  values:
-    prefix: advertisement-cleanbot-
-    count: 12
 
 - type: localizedDataset
   id: PrideDrobeAds

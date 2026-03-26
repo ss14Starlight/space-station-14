@@ -56,6 +56,11 @@
   flavor: bitter
   color: "#9e9886"
   physicalDesc: reagent-physical-desc-bubbling
+  # Starlight Edits
+  contrabandSeverity: Major
+  allowedJobs:
+  - Botanist
+  # Starlight End
   plantMetabolism:
     - !type:PlantAdjustToxins
       amount: 4
@@ -80,6 +85,11 @@
   flavor: bitter
   color: "#49002E"
   physicalDesc: reagent-physical-desc-bubbling
+  # Starlight Edits
+  contrabandSeverity: Major
+  allowedJobs:
+  - Botanist
+  # Starlight End
   plantMetabolism:
     - !type:PlantAdjustToxins
       amount: 6
@@ -181,6 +191,11 @@
   flavor: bitter
   color: "#968395"
   physicalDesc: reagent-physical-desc-bubbling
+  # Starlight Edits
+  contrabandSeverity: Major
+  allowedJobs:
+  - Botanist
+  # Starlight End
   plantMetabolism:
     - !type:PlantAdjustToxins
       amount: 4
@@ -237,7 +252,7 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Rat ]
+          type: [ Rat, Avali, Resomi ] #Starlight
           inverted: true
         - !type:ReagentCondition
           reagent: Ammonia
@@ -250,7 +265,7 @@
         probability: 0.12
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Rat, Vox ]
+          type: [ Rat, Vox, Avali, Resomi ] #Starlight
           inverted: true
         - !type:ReagentCondition
           reagent: Ammonia
@@ -278,6 +293,14 @@
             Burn: -2.5
           types:
             Bloodloss: -5
+      - !type:ModifyBloodLevel
+        amount: 1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Rat ]
+        - !type:ReagentCondition
+          reagent: Ammonia
+          min: 1
       - !type:Oxygenate # ammonia displaces nitrogen in vox blood
         conditions:
         - !type:MetabolizerTypeCondition

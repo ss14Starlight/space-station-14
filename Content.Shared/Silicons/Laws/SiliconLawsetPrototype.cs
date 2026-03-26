@@ -84,11 +84,11 @@ public sealed partial class SiliconLawsetPrototype : IPrototype
     [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
     public string ObeysTo = string.Empty;
 
-// Starlight start Edit: Dynamic lawboard descriptions can start at 0.
+    // Starlight Start: Dynamic lawboard descriptions.
     /// <summary>
     /// Dynamic lawboard descriptions need this to start at 0 instead of 1.
     /// </summary>
     [DataField("startAtZero")]
     public bool StartAtZero = false;
-// Starlight end Edit: Dynamic lawboard descriptions can start at 0.
+    // Starlight End: Dynamic lawboard descriptions.
 }

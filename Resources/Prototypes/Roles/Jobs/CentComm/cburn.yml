@@ -5,16 +5,16 @@
   playTimeTracker: JobCBURN
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 72000 # 20h
+    time: 60h # Starlight. Professional role, expected to be mature.
   - !type:RoleTimeRequirement
     role: JobMedicalDoctor
-    time: 18000 # 5h
+    time: 10h # Starlight. You should know how to treat people.
   - !type:RoleTimeRequirement
     role: JobSecurityOfficer
-    time: 18000 # 5h
+    time: 10h # Starlight. You're a highly specialized cleaning squad. You need to know how to do combat.
   setPreference: false
   startingGear: CBURNGear
-  icon: "JobIconCentComm"
+  icon: "JobIconCBURN"
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:

@@ -1,6 +1,6 @@
 - type: entity
   id: ResearchAndDevelopmentServer
-  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  parent: [ BaseResearchAndDevelopmentServer, BaseMachinePowered, ConstructibleMachine ] # Moffstation - Inherit from moffstation's abstract parent version
   name: R&D server
   description: Contains the collective knowledge of the station's scientists. Destroying it would send them back to the stone age. You don't want that do you?
   components:
@@ -22,19 +22,23 @@
     energy: 3.0
     color: "#b211b2"
   - type: LitOnPowered
-  - type: ResearchServer
-  - type: TechnologyDatabase
-    supportedDisciplines:
-    - Industrial
-    - Arsenal
-    - Experimental
-    - CivilianServices
-    - Biochemical
-  - type: ApcPowerReceiver
-    powerLoad: 200
-  - type: ExtensionCableReceiver
-  - type: WiresPanel
-  - type: WiresVisuals
+  # Moffstation - Start - Add abstract R&D server parent.
+  #     Changes to this section must be carefully considered: if the change should apply to the machine variant, leave
+  #     it on this proto. If it should apply to the machine variant AND the blade server variant, comment out the
+  #     change here and duplicate it to the abstract parent.
+#  - type: ResearchServer
+#  - type: TechnologyDatabase
+#    supportedDisciplines:
+#    - Industrial
+#    - Arsenal
+#    - Experimental
+#    - CivilianServices
+#  - type: ApcPowerReceiver
+#    powerLoad: 200
+#  - type: ExtensionCableReceiver
+#  - type: WiresPanel
+#  - type: WiresVisuals
+  # Moffstation - End
   - type: Machine
     board: ResearchAndDevelopmentServerMachineCircuitboard
   - type: Destructible
@@ -59,13 +63,18 @@
           SheetSteel1:
             min: 1
             max: 2
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-        enum.PowerDeviceVisuals.Powered:
-          enum.PowerDeviceVisualLayers.Powered:
-            True: {visible: true}
-            False: {visible: false}
+  # Moffstation - Start - Add abstract R&D server parent.
+  #     Changes to this section must be carefully considered: if the change should apply to the machine variant, leave
+  #     it on this proto. If it should apply to the machine variant AND the blade server variant, comment out the
+  #     change here and duplicate it to the abstract parent.
+#  - type: Appearance
+#  - type: GenericVisualizer
+#    visuals:
+#        enum.PowerDeviceVisuals.Powered:
+#          enum.PowerDeviceVisualLayers.Powered:
+#            True: {visible: true}
+#            False: {visible: false}
+  # Moffstation - End
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9
@@ -73,9 +82,14 @@
     enabled: false
     sound:
       path: /Audio/Ambience/Objects/server_fans.ogg
-  - type: GuideHelp
-    guides:
-    - Science
+  # Moffstation - Start - Add abstract R&D server parent.
+  #     Changes to this section must be carefully considered: if the change should apply to the machine variant, leave
+  #     it on this proto. If it should apply to the machine variant AND the blade server variant, comment out the
+  #     change here and duplicate it to the abstract parent.
+#  - type: GuideHelp
+#    guides:
+#    - Science
+  # Moffstation - End
 
 - type: entity
   id: BaseResearchAndDevelopmentPointSource

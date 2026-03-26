@@ -1,0 +1,29 @@
+- type: antag
+  id: SELFAgent
+  name: roles-antag-selfagent-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-selfagent-description
+  guides: [ SELFAgent ]
+  #roleLoadout: [ SELFAgentGear ] #TODO commenting out for now, I may add like, a hat or protest signs for SELF later locked in loadouts behind playtime
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 24h
+  - !type:RoleTimeRequirement
+    role: JobBorg
+    time: 6h
+  - !type:RoleTimeRequirement
+    role: JobScientist
+    time: 5h # Starlight
+  - !type:RoleTimeRequirement
+    role: JobRoboticist
+    time: 5h # Starlight
+  playTimeTracker: AntagSELFAgent
+
+- type: startingGear
+  id: SELFAgentGear
+  storage:
+    back:
+    - AccessBreaker
+    - EmagFREE
+    - SELFStorageImplanter

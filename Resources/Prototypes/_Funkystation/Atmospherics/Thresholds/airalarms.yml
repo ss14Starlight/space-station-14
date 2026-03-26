@@ -1,0 +1,51 @@
+# Funky atmos - /tg/ gases
+- type: alarmThreshold
+  id: stationBZ
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.1
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.08
+
+- type: alarmThreshold
+  id: stationHealium
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.08
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5
+
+- type: alarmThreshold
+  id: stationPluoxium
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 1.50
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5
+
+- type: alarmThreshold
+  id: stationHyperNoblium
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.1
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5
+
+- type: alarmThreshold
+  id: stationHelium
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 1.50
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5
+
+
+
+- type: alarmThreshold
+  id: voxNitrium
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.08
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5
+
+- type: alarmThreshold
+  id: voxHalon
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 1.50
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.5

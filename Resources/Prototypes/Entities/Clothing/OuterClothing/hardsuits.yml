@@ -82,6 +82,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Spationaut Hardsuit
 - type: entity
@@ -119,6 +120,7 @@
     - WhitelistChameleon
     - HardsuitSpatio
     - CorgiWearable
+    - IPCExternalCooling # Far Horizons
 
 #Salvage Hardsuit
 - type: entity
@@ -160,6 +162,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Goliath Hardsuit
 - type: entity
@@ -200,6 +203,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 # Hardsuit
 - type: entity
@@ -306,6 +310,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Brigmedic Hardsuit
 - type: entity
@@ -342,6 +347,16 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
+  - type: StealTarget # Starlight
+    stealGroup: BrigmedicHardsuit # Starlight
+#Starlight start
+  - type: Tag
+    tags:
+    - Hardsuit
+    - CorgiWearable
+    - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
+#Starlight end
 
 #Warden's Hardsuit
 - type: entity
@@ -376,10 +391,12 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWarden
+  - type: StealTarget # Starlight
+    stealGroup: WardenHardsuit # Starlight
 
 #Captain's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband] # Starlight, grand theft
   id: ClothingOuterHardsuitCap
   name: captain's armored spacesuit
   description: A formal armored spacesuit, made for the station's captain.
@@ -416,10 +433,13 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
+  - type: StealTarget # Starlight
+    stealGroup: CaptainHardsuit # Starlight
 
 #Chief Engineer's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband] # Starlight, Grand theft
   id: ClothingOuterHardsuitEngineeringWhite
   name: chief engineer's hardsuit
   description: A special hardsuit that protects against hazardous, low pressure environments, made for the chief engineer of the station.
@@ -457,10 +477,13 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
+  - type: StealTarget # Starlight
+    stealGroup: CEHardsuit # Starlight
 
 #Chief Medical Officer's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband] # Starlight, grand theft
   id: ClothingOuterHardsuitMedical
   name: chief medical officer's hardsuit
   description: A special suit that protects against hazardous, low pressure environments. Built with lightweight materials for easier movement.
@@ -491,6 +514,9 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
+  - type: StealTarget # Starlight
+    stealGroup: CMOHardsuit # Starlight
 
 #Research Director's Hardsuit
 - type: entity
@@ -533,16 +559,18 @@
     - HighRiskItem
     - CorgiWearable
     - Hardsuit
+    - IPCExternalCooling # Far Horizons
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRd
   - type: StaticPrice
     price: 750
   - type: StealTarget
     stealGroup: ClothingOuterHardsuitRd
+  - type: TheDarkImmune # Starlight
 
 #Head of Security's Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband] # Starlight, grand theft
   id: ClothingOuterHardsuitSecurityRed
   name: head of security's hardsuit
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
@@ -598,6 +626,8 @@
     useCharge: 0
   - type: UseDelay
     delay: 10.0
+  - type: StealTarget # Starlight
+    stealGroup: HOSHardsuit # Starlight
 
 #Luxury Mining Hardsuit
 - type: entity
@@ -605,7 +635,7 @@
   id: ClothingOuterHardsuitLuxury #DO NOT MAP - https://github.com/space-wizards/space-station-14/pull/19738#issuecomment-1703486738
   name: luxury mining hardsuit
   description: A refurbished mining hardsuit, fashioned after the Quartermaster's colors. Graphene lining provides less protection, but is much easier to move.
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL change
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/luxury.rsi
@@ -633,6 +663,13 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitLuxury
+# Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
@@ -668,7 +705,6 @@
         Caustic: 0.5
     # Starlight-start
     staminaModifier: 0.3
-    ignoreKnockdown: true
     # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.9
@@ -683,6 +719,7 @@
     - WhitelistChameleon
     - CorgiWearable
     - ScurretWearable
+    - IPCExternalCooling # Far Horizons
   - type: StaticPrice
     price: 5000
 
@@ -704,7 +741,9 @@
   - type: Tag
     tags:
     - Hardsuit
+    - CorgiWearable # Starlight
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -742,7 +781,6 @@
         Caustic: 0.5
     # Starlight-start
     staminaModifier: 0.2
-    ignoreKnockdown: true
     # Starlight-end
   - type: Item
     size: Huge
@@ -757,6 +795,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -789,7 +828,6 @@
         Caustic: 0.4
     # Starlight-start
     staminaModifier: 0.1
-    ignoreKnockdown: true
     # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.95
@@ -802,6 +840,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 
 #Cybersun Juggernaut Hardsuit
@@ -838,7 +877,6 @@
         Caustic: 0.2
     # Starlight-start
     staminaModifier: 0.1
-    ignoreKnockdown: true
     # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.65
@@ -860,6 +898,7 @@
     - Hardsuit
     - WhitelistChameleon
     - RequiredForLmgTag #Starlight
+    - IPCExternalCooling # Far Horizons
 
 #Wizard Hardsuit
 - type: entity
@@ -899,6 +938,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Ling Space Suit
 - type: entity
@@ -985,17 +1025,20 @@
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.6
+    damageCoefficient: 0.5 # Starlight-edit
   - type: Pierceable
     level: Metal
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.8
-        Piercing: 0.85
-        Heat: 0.4
-        Caustic: 0.75
+      # Starlight-start
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.55
+        Heat: 0.55
+        Caustic: 0.6
+    staminaModifier: 0.5
+    # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -1032,13 +1075,20 @@
     # Starlight-end
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
+#Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
+    - IPCExternalCooling # Far Horizons
 
 #ERT Chaplain Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterHardsuitJuggernaut ]
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndie ]
   id: ClothingOuterHardsuitERTChaplain
-  name: ERT chaplain's hardsuit
-  description: A protective hardsuit worn by the chaplains of an Emergency Response Team.
+  name: ERT chaplain hardsuit # Starlight: remove possessive
+  description: A protective hardsuit worn by the Chaplains of an Emergency Response Team. # Starlight: Capitalization
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi #if you change this, please update the humanoid.yml with a better markers sprite.
@@ -1046,10 +1096,17 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTChaplain
+#Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
+    - IPCExternalCooling # Far Horizons
 
 #ERT Engineer Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitCBURN
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieElite ]
   id: ClothingOuterHardsuitERTEngineer
   name: ERT engineer's hardsuit
   description: A protective hardsuit worn by the engineers of an emergency response team.
@@ -1062,6 +1119,13 @@
     clothingPrototype: ClothingHeadHelmetHardsuitERTEngineer
   - type: FireProtection
     reduction: 0.8
+#Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
+    - IPCExternalCooling # Far Horizons
 
 #ERT Medic Hardsuit
 - type: entity
@@ -1076,6 +1140,13 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedical
+#Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
+    - IPCExternalCooling # Far Horizons
 
 #ERT Security Hardsuit
 - type: entity
@@ -1111,10 +1182,12 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+    - CorgiWearable
+    - IPCExternalCooling # Far Horizons
 
 #ERT Janitor Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitCBURN
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieElite ]
   id: ClothingOuterHardsuitERTJanitor
   name: ERT janitor's hardsuit
   description: A protective hardsuit worn by the janitors of an emergency response team.
@@ -1125,6 +1198,13 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertjanitor.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTJanitor
+#Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
+    - IPCExternalCooling # Far Horizons
 
 #Deathsquad
 - type: entity
@@ -1162,7 +1242,6 @@
         Caustic: 0.1
     # Starlight-start
     staminaModifier: 0.0
-    ignoreKnockdown: true
     # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 1.0
@@ -1170,6 +1249,13 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
+#Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
+    - IPCExternalCooling # Far Horizons
 
 #CBURN Hardsuit
 - type: entity
@@ -1206,7 +1292,6 @@
         Caustic: 0.1
     # Starlight-start
     staminaModifier: 0.2
-    ignoreKnockdown: true
     # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 1.0

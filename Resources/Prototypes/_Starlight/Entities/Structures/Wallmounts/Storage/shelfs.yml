@@ -1,0 +1,28 @@
+- type: entity
+  parent: ShelfWood
+  id: ShelfWoodFilled
+  suffix: random filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: SmallBookshelfEntityTable
+
+- type: entityTable
+  id: SmallBookshelfEntityTable
+  table: !type:AllSelector
+    children:
+    # Randomly generated books
+    - id: BookRandomStory
+      amount: !type:RangeNumberSelector
+        range: 0, 2
+    # Guidebooks
+    - !type:NestedSelector
+      rolls: !type:RangeNumberSelector
+        range: 0, 2
+      tableId: RandomGuidebookTable
+    # Handwritten books
+    - !type:NestedSelector
+      rolls: !type:RangeNumberSelector
+        range: 0, 2
+      tableId: RandomHandwrittenBookTable

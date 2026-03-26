@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urisst' Mzhand
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge] # Starlight
   id: BaseMobReptilian
   abstract: true
   components:
@@ -21,6 +21,7 @@
     - Snout
     - HeadTop
     - HeadSide
+    - Hair # Starlight
     - Tail
     undergarmentBottom: UndergarmentBottomBoxersReptilian
   - type: Hunger
@@ -64,10 +65,11 @@
       types:
         Slash: 5
   - type: Temperature
-    heatDamageThreshold: 400
-    coldDamageThreshold: 285
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 400
+    coldDamageThreshold: 285
     coldDamage:
       types:
         Cold : 0.1 #per second, scales with temperature & other constants

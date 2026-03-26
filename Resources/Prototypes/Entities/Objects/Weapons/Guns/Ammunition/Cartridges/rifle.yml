@@ -1,8 +1,8 @@
 - type: entity
+  abstract: true
+  parent: [ BaseCartridge, BaseSecurityContraband ]
   id: BaseCartridgeRifle
   name: cartridge (.20 rifle)
-  parent: [ BaseCartridge, BaseSecurityContraband ]
-  abstract: true
   components:
   - type: Tag
     tags:
@@ -18,9 +18,9 @@
   - type: SpentAmmoVisuals
 
 - type: entity
+  parent: BaseCartridgeRifle
   id: CartridgeRifleSP
   name: cartridge (.20 rifle SP)
-  parent: BaseCartridgeRifle
   description: A modern intermediate cartridge for combat rifles. Standard kinetic ammunition is common and useful in most situations.
   components:
   - type: CartridgeAmmo
@@ -80,10 +80,10 @@
         color: "#1A8C1A"
 
 - type: entity
+  parent: BaseCartridgeRifle
   id: CartridgeRiflePractice
   name: cartridge (.20 rifle practice)
-  parent: BaseCartridgeRifle
-  description: A modern intermediate cartridge for combat rifles. Chalk ammunition is generally non-harmful, used for practice.
+  description: A modern intermediate cartridge for combat rifles. Practice ammunition fires a chalk projectile that stings a little, but otherwise causes no lasting damage.
   components:
   - type: CartridgeAmmo
     proto: BulletRifleTracePractice
@@ -96,10 +96,10 @@
         color: "#D86E2C"
 
 - type: entity
+  parent: BaseCartridgeRifle
   id: CartridgeRifleIncendiary
   name: cartridge (.20 rifle incendiary)
-  parent: BaseCartridgeRifle
-  description: A modern intermediate cartridge for combat rifles. Incendiary ammunition contains a self-igniting compound that sets the target ablaze.
+  description: A modern intermediate cartridge for combat rifles. Incendiary ammunition contains a self-igniting compound that sets targets ablaze.
   components:
   - type: CartridgeAmmo
     proto: BulletRifleTraceIncendiary
@@ -112,10 +112,10 @@
         color: "#BFC8CA"
 
 - type: entity
+  parent: BaseCartridgeRifle
   id: CartridgeRifleUranium
   name: cartridge (.20 rifle uranium)
-  parent: BaseCartridgeRifle
-  description: A modern intermediate cartridge for combat rifles. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating the target from the inside.
+  description: A modern intermediate cartridge for combat rifles. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating targets from the inside.
   components:
   - type: CartridgeAmmo
     proto: BulletRifleTraceUranium

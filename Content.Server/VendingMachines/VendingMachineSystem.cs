@@ -7,16 +7,15 @@ using Content.Server.Vocalization.Systems;
 using Content.Shared.Cargo;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Destructible;
 using Content.Shared.Emp;
 using Content.Shared.Power;
 using Content.Shared.Throwing;
-using Content.Shared.UserInterface;
 using Content.Shared.VendingMachines;
 using Content.Shared.Wall;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+
 // 🌟Starlight🌟 
 using Content.Server.Economy;
 using Content.Shared.Economy;
@@ -24,9 +23,10 @@ using Content.Shared.Emag.Components;
 using Content.Shared.Tag; 
 using Content.Shared.Cargo.Components; 
 using Content.Server.Administration.Managers; 
-using Content.Shared.Administration.Logs; // Starlight-edit
+using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
-using Robust.Shared.Player; // Starlight-edit
+using Content.Shared._NullLink;
+using Robust.Shared.Player;
 
 namespace Content.Server.VendingMachines
 {
@@ -39,12 +39,12 @@ namespace Content.Server.VendingMachines
         // 🌟Starlight🌟 start 
         [Dependency] private readonly ItemPriceManager _itemPriceManager = default!; 
         [Dependency] private readonly IComponentFactory _componentFactory = default!; 
-        [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!; 
+        [Dependency] private readonly ISharedNullLinkPlayerResourcesManager _playerResources = default!;
         [Dependency] private readonly TagSystem _tag = default!; 
         [Dependency] private readonly CargoSystem _cargoSystem = default!;
         [Dependency] private readonly Content.Server.Station.Systems.StationSystem _stationSystem = default!;
         [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-        // 🌟Starlight🌟 end 
+        // 🌟Starlight🌟 end
 
         private const float WallVendEjectDistanceFromWall = 1f;
 
@@ -53,12 +53,10 @@ namespace Content.Server.VendingMachines
             base.Initialize();
 
             SubscribeLocalEvent<VendingMachineComponent, PowerChangedEvent>(OnPowerChanged);
-            SubscribeLocalEvent<VendingMachineComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamageChanged);
             SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
             SubscribeLocalEvent<VendingMachineComponent, TryVocalizeEvent>(OnTryVocalize);
 
-            SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
             SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseEvent>(OnSelfDispense);
 
             SubscribeLocalEvent<VendingMachineRestockComponent, PriceCalculationEvent>(OnPriceCalculation);
@@ -98,22 +96,9 @@ namespace Content.Server.VendingMachines
             PersistInventoryPrices(uid, component);
         }
 
-        private void OnActivatableUIOpenAttempt(EntityUid uid, VendingMachineComponent component, ActivatableUIOpenAttemptEvent args)
-        {
-            if (component.Broken)
-                args.Cancel();
-        }
-
         private void OnPowerChanged(EntityUid uid, VendingMachineComponent component, ref PowerChangedEvent args)
         {
             TryUpdateVisualState((uid, component));
-        }
-
-        private void OnBreak(EntityUid uid, VendingMachineComponent vendComponent, BreakageEventArgs eventArgs)
-        {
-            vendComponent.Broken = true;
-            Dirty(uid, vendComponent);
-            TryUpdateVisualState((uid, vendComponent));
         }
 
         private void OnDamageChanged(EntityUid uid, VendingMachineComponent component, DamageChangedEvent args)
@@ -249,47 +234,39 @@ namespace Content.Server.VendingMachines
             // Only charge if prices are shown, not emagged, we have a buyer, and not charged yet this operation
             var buyer = vendComponent.LastBuyer;
             var isEmagged = HasComp<EmaggedComponent>(uid);
-            
+
             if (!isEmagged && vendComponent.ShowPrices && buyer is { } buyerUid && !vendComponent.DebitApplied && itemProto != null)
             {
                 var entry = GetEntry(uid, itemProto, vendComponent.CurrentItemType, vendComponent);
                 var price = entry?.Price ?? 0;
                 if (price > 0)
                 {
-                    var playerData = _playerRolesManager.GetPlayerData(buyerUid);
-                    if (playerData != null)
+                    if (_playerResources.TryGetResource(buyerUid, "credits", out var balance) && balance >= price) // Double-check sufficient funds
                     {
-                        // Double-check sufficient funds
-                        if (playerData.Balance >= price)
+                        _playerResources.TryUpdateResource(buyerUid, "credits", -price);
+                        vendComponent.DebitApplied = true;
+                        Popup.PopupEntity($"Debited {price}\u20a1. Balance: {balance -= price}\u20a1", uid, buyerUid);
+                        SendBalanceUpdate(uid, buyerUid, (int)(balance -= price));
+
+                        // Alogs
+                        _adminLogger.Add(
+                            LogType.Action,
+                            LogImpact.Medium,
+                            $"{ToPrettyString(buyerUid):player} bought {ToPrettyString(ent):entity} for {price}₡ from {ToPrettyString(uid):entity} Balance left: {balance}₡");
+
+                        // Credit cargo 10x price
+                        var stationUid = _stationSystem.GetOwningStation(uid);
+
+                        if (stationUid != null && TryComp<StationBankAccountComponent>(stationUid, out var bank))
                         {
-                            playerData.Balance -= price;
-                            vendComponent.DebitApplied = true;
-                            Popup.PopupEntity($"Debited {price}\u20a1. Balance: {playerData.Balance}\u20a1", uid, buyerUid);
-                            SendBalanceUpdate(uid, buyerUid, playerData.Balance);
-
-                            // Alogs
-                            _adminLogger.Add(
-                                LogType.Action,
-                                LogImpact.Medium,
-                                $"{ToPrettyString(buyerUid):player} bought {ToPrettyString(ent):entity} for {price}₡ from {ToPrettyString(uid):entity} Balance left: {playerData.Balance}₡");
-
-                            // Credit cargo 10x price
-                            var stationUid = _stationSystem.GetOwningStation(uid);
-
-                            if (stationUid != null && TryComp<StationBankAccountComponent>(stationUid, out var bank))
-                            {
-                                var creditLong = (long)price * 10L;
-                                var toCredit = (int)Math.Clamp(creditLong, int.MinValue, int.MaxValue);
-                                if (toCredit > 0)
-                                    _cargoSystem.UpdateBankAccount((stationUid.Value, bank), toCredit, bank.PrimaryAccount);
-                            }
-
-                        }
-                        else
-                        {
-                            Popup.PopupEntity($"Insufficient funds. Required: {price}\u20a1", uid, buyerUid);
+                            var creditLong = (long)price * 10L;
+                            var toCredit = (int)Math.Clamp(creditLong, int.MinValue, int.MaxValue);
+                            if (toCredit > 0)
+                                _cargoSystem.UpdateBankAccount((stationUid.Value, bank), toCredit, bank.PrimaryAccount);
                         }
                     }
+                    else
+                        Popup.PopupEntity($"Insufficient funds. Required: {price}\u20a1", uid, buyerUid);
                 }
             }
             // Starlight-end
@@ -342,18 +319,12 @@ namespace Content.Server.VendingMachines
         // 🌟Starlight🌟 Send balance to the opening player right away so it shows before any purchase
         private void OnUiOpened(EntityUid uid, VendingMachineComponent component, BoundUIOpenedEvent args)
         {
-            if (!Equals(args.UiKey, VendingMachineUiKey.Key))
+            if (!Equals(args.UiKey, VendingMachineUiKey.Key) 
+                || !component.ShowPrices 
+                || !_playerResources.TryGetResource(args.Actor, "credits", out var balance))
                 return;
 
-            if (!component.ShowPrices)
-                return;
-
-            var actor = args.Actor;
-            var playerData = _playerRolesManager.GetPlayerData(actor);
-            if (playerData != null)
-            {
-                SendBalanceUpdate(uid, actor, playerData.Balance);
-            }
+            SendBalanceUpdate(uid, args.Actor, (int)balance);
         }
 
         private void OnTryVocalize(Entity<VendingMachineComponent> ent, ref TryVocalizeEvent args)
@@ -361,7 +332,7 @@ namespace Content.Server.VendingMachines
             args.Cancelled |= ent.Comp.Broken;
         }
 
-        #region 🌟Starlight🌟 
+        #region 🌟Starlight🌟
         /// <summary>
         /// Persist prices into the live component so clients have prices on first open
         /// </summary>
@@ -468,16 +439,11 @@ namespace Content.Server.VendingMachines
         /// </summary>
         protected override void OnRequestBalanceMessage(Entity<VendingMachineComponent> entity, ref VendingMachineRequestBalanceMessage args)
         {
-            if (args.Actor is not { Valid: true } actor)
-            {
+            if (args.Actor is not { Valid: true } actor 
+                || !_playerResources.TryGetResource(actor, "credits", out var balance))
                 return;
-            }
 
-            var playerData = _playerRolesManager.GetPlayerData(actor);
-            if (playerData != null)
-            {
-                SendBalanceUpdate(entity.Owner, actor, playerData.Balance);
-            }
+            SendBalanceUpdate(entity.Owner, actor, (int)balance);
         }
 
         /// <summary>
@@ -508,12 +474,9 @@ namespace Content.Server.VendingMachines
             if (!TryComp<ActorComponent>(sender, out var actor))
                 return;
 
-            // Get player data for payment
-            var playerData = _playerRolesManager.GetPlayerData(sender);
-            if (playerData == null)
-            {
+            // Get balance for payment
+            if (!_playerResources.TryGetResource(sender, "credits", out var balance))
                 return;
-            }
 
             // Get inventory entry for the correct inventory bucket
             var entry = GetEntry(uid, itemId, type, component);
@@ -570,7 +533,7 @@ namespace Content.Server.VendingMachines
             // If payment is required, pre-check funds but DO NOT! deduct yet
             if (!isEmagged && component.ShowPrices && entry.Price > 0)
             {
-                if (playerData.Balance < entry.Price)
+                if (balance < entry.Price)
                 {
                     Popup.PopupEntity($"Insufficient funds. Required: {entry.Price}\u20a1", uid, sender);
                     return;

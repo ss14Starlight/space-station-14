@@ -1,0 +1,111 @@
+- type: entity
+  id: XenobiologyConsoleActionAnalyzeSlime
+  name: Analyze Slime
+  description: Get the info of a slime right under the camera's eye.
+  components:
+    - type: Action
+      priority: -11
+      itemIconStyle: BigAction
+      checkConsciousness: false
+      checkCanInteract: false
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_borg.rsi
+        state: bookkeeping-module
+    - type: InstantAction
+      event: !type:ConsoleGetSlimeInfoEvent
+
+- type: entity
+  id: XenobiologyConsoleActionGrabSlime
+  name: Grab Slime
+  description: Grab a slime from right under the camera's eye.
+  components:
+    - type: Action
+      priority: -10
+      itemIconStyle: BigAction
+      checkConsciousness: false
+      checkCanInteract: false
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_shunt.rsi
+        state: icon-unshunt
+    - type: InstantAction
+      event: !type:ConsoleGrabSlimeEvent
+
+- type: entity
+  id: XenobiologyConsoleActionPlaceSlime
+  name: Place Slime
+  description: Place down a slime from the console's inventory.
+  components:
+    - type: Action
+      priority: -9
+      itemIconStyle: BigAction
+      checkConsciousness: false
+      checkCanInteract: false
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_shunt.rsi
+        state: icon
+    - type: InstantAction
+      event: !type:ConsolePlaceSlimeEvent
+
+- type: entity
+  id: XenobiologyConsoleActionPlaceMonkey
+  name: Place Monkey
+  description: Place down a monkey, so long as you have the cubes.
+  components:
+    - type: Action
+      priority: -8
+      itemIconStyle: BigAction
+      checkConsciousness: false
+      checkCanInteract: false
+      icon:
+        sprite: Interface/Actions/actions_ai.rsi
+        state: ai_core
+    - type: InstantAction
+      event: !type:ConsolePlaceMonkeyEvent
+
+- type: entity
+  id: XenobiologyConsoleActionRecycleMonkey
+  name: Recycle Monkey
+  description: Recover a dead monkey for half a monkey cube.
+  components:
+    - type: Action
+      priority: -7
+      itemIconStyle: BigAction
+      checkConsciousness: false
+      checkCanInteract: false
+      icon:
+        sprite: Interface/Actions/devour.rsi
+        state: icon
+    - type: InstantAction
+      event: !type:ConsoleRecycleMonkeyCorpseEvent
+
+- type: entity
+  id: XenobiologyConsoleActionApplyMutationPotion
+  name: Apply Mutation Potion
+  description: Increase a slime's mutation chance using a stored mutation potion.
+  components:
+    - type: Action
+      priority: -6
+      itemIconStyle: BigAction
+      checkConsciousness: false
+      checkCanInteract: false
+      icon:
+        sprite: Interface/Actions/actions_mecha.rsi
+        state: mech_overload_off
+    - type: InstantAction
+      event: !type:ConsoleApplyMutationPotionEvent
+
+- type: entity
+  id: XenobiologyConsoleActionApplyStabilizerPotion
+  name: Apply Stabilizer Potion
+  description: Decrease a slime's mutation chance using a stored stabilizer potion.
+  components:
+    - type: Action
+      priority: -5
+      itemIconStyle: BigAction
+      checkConsciousness: false
+      checkCanInteract: false
+      icon:
+        sprite: Interface/Actions/actions_mecha.rsi
+        state: mech_defense_mode_off
+    - type: InstantAction
+      event: !type:ConsoleApplyStabilizerPotionEvent

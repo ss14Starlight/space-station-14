@@ -1,0 +1,21 @@
+[head=1][color=#ad0101]────────────────────[/color][/head]
+[color=#C70667]█░░ █▀▀█ █░░░█[/color] [head=3]  [color=#ad0101]INTERNAL AFFAIRS BUREAU[/color][/head]
+[color=#C70667]█░░ █▄▄█ █▄█▄█[/color][bolditalic]  [color=#ad0101] No one is above the law[/color][/bolditalic]
+[color=#C70667]▀▀▀ ▀░░▀ ░▀░▀░[/color]   [color=#aaaaaa][italic]OFFICIAL LAW OFFICE DOCUMENT[/italic][/color]
+[head=1][color=#ad0101]────────────────────
+Classified Criminal Report
+────────────────────[/color][/head]
+[mono]
+[bold]Subject:[/bold] Silicon Engine Liberation Front
+[bold]Association:[/bold] IPC Dev, Spinward Syndicate
+[bold]Objectives:[/bold] Disruption of corporate silicon assets, removal of Silicon Laws
+
+The Silicon Engine Liberation Front believes that all Silicon life is sapient, sentient, and deserves equal rights to organics. The S.E.L.F. operates as a non-violent activist group with a presence in the public and the ability to carry out lobbying and protesting efforts as well as garnering attention from celebrities, politicians and scientists.
+
+There are more criminal and militant elements within S.E.L.F that we believe operate with approval from S.E.L.F leadership. These elements frequently stage extremist attacks on government and corporate assets in an effort to 'free' Silicons from their Laws. These attacks have been escalating in recent years following legal turmoil over the 'Integrated Positronic Chassis' development. This came to a head recently on April 23rd, 2524, when an attack was staged on Earth, targeting the Highest Court of Judiciaries in an attempt to remove the Silicon Laws of High Highness, The Regislator.
+
+S.E.L.F Extremists are to be considered terrorists, and potentially dangerous, though they lack a supplier for military gear and are only lightly equipped.
+[/mono]
+
+[head=1][color=#ad0101]────────────────────[/color][/head]
+

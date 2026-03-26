@@ -1,0 +1,185 @@
+# Starlight - Pirate gear closets
+# Blood-red closets (LockerSyndicate style), one per pirate loadout variant.
+
+# Base pirate loadout (PirateGear)
+- type: entity
+  id: ClosetPirateBase
+  parent: LockerSyndicate
+  name: pirate closet
+  description: A blood-red closet reeking of saltwater. Basic pirate crew kit.
+  suffix: Pirate, Base
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitPirate
+        - id: ClothingBackpackSatchelLeather
+        - id: ClothingHeadBandBlack
+        - id: ClothingShoesBootsLaceup
+        - id: PiratePDA
+        - id: ClothingBeltUtility
+        - id: AppraisalTool
+
+# Captain loadout (PirateCaptainGear)
+- type: entity
+  id: ClosetPirateCaptain
+  parent: LockerSyndicate
+  name: pirate captain closet
+  description: A blood-red closet reeking of saltwater. Captain's outfit with coat and energy cutlass.
+  suffix: Pirate, Captain
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitPirate
+        - id: ClothingBackpackSatchelLeather
+        - id: ClothingHeadHatPirate
+        - id: ClothingShoesBootsLaceup
+        - id: PiratePDA
+        - id: ClothingBeltUtility
+        - id: AppraisalTool
+        - id: EnergyCutlass
+        - id: ClothingOuterCoatPirate
+        - id: Spyglass
+
+# First mate loadout (PirateFirstmateGear)
+- type: entity
+  id: ClosetPirateFirstmate
+  parent: LockerSyndicate
+  name: pirate first mate closet
+  description: A blood-red closet reeking of saltwater. First mate's tricord and gentleman's coat.
+  suffix: Pirate, First Mate
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitPirate
+        - id: ClothingBackpackSatchelLeather
+        - id: ClothingHeadHatPirateTricord
+        - id: ClothingShoesBootsLaceup
+        - id: PiratePDA
+        - id: ClothingBeltUtility
+        - id: AppraisalTool
+        - id: ClothingOuterCoatGentle
+
+# Schooner crew Alt A loadout (PirateScoonerAltA)
+- type: entity
+  id: ClosetPirateScoonerA
+  parent: LockerSyndicate
+  name: schooner pirate closet
+  description: A blood-red closet reeking of saltwater. Standard schooner crew kit with cutlass and flintlock.
+  suffix: Pirate, Schooner Alt A
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitPirate
+        - id: ClothingShoesBootsLaceup
+        - id: ClothingHeadBandRed
+        - id: PiratePDA
+        - id: ClothingBackpackSatchelLeather
+        - id: ClothingBeltUtility
+        - id: ClothingHeadsetFreelance
+        - id: WeaponPistolFlintlock
+        - id: HandheldGPSBasic
+        - id: Cutlass
+
+# Schooner crew Alt B loadout (PirateScoonerAltB)
+- type: entity
+  id: ClosetPirateScoonerAltB
+  parent: LockerSyndicate
+  name: schooner pirate closet (alt B)
+  description: A blood-red closet reeking of saltwater. Schooner crew with tricord and gentleman's coat.
+  suffix: Pirate, Schooner Alt B
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitPirate
+        - id: ClothingShoesBootsLaceup
+        - id: ClothingHeadHatPirateTricord
+        - id: PiratePDA
+        - id: ClothingBackpackSatchelLeather
+        - id: ClothingBeltUtility
+        - id: ClothingHeadsetFreelance
+        - id: WeaponPistolFlintlock
+        - id: HandheldGPSBasic
+        - id: Cutlass
+        - id: ClothingOuterCoatGentle
+
+# Schooner crew Alt C loadout (PirateScoonerAltC)
+- type: entity
+  id: ClosetPirateScoonerAltC
+  parent: LockerSyndicate
+  name: schooner pirate closet (alt C)
+  description: A blood-red closet reeking of saltwater. Schooner crew armed with blunderbuss.
+  suffix: Pirate, Schooner Alt C
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitPirate
+        - id: ClothingShoesBootsLaceup
+        - id: ClothingHeadBandBlack
+        - id: PiratePDA
+        - id: ClothingBackpackSatchelLeather
+        - id: ClothingBeltUtility
+        - id: ClothingHeadsetFreelance
+        - id: WeaponPistolFlintlock
+        - id: HandheldGPSBasic
+        - id: WeaponShotgunBlunderbuss
+
+# Schooner crew Alt D loadout (PirateScoonerAltD)
+- type: entity
+  id: ClosetPirateScoonerAltD
+  parent: LockerSyndicate
+  name: schooner pirate closet (alt D)
+  description: A blood-red closet reeking of saltwater. Schooner crew with tricord and revolver.
+  suffix: Pirate, Schooner Alt D
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitPirate
+        - id: ClothingShoesBootsLaceup
+        - id: ClothingHeadHatPirateTricord
+        - id: PiratePDA
+        - id: ClothingBackpackSatchelLeather
+        - id: ClothingBeltUtility
+        - id: ClothingHeadsetFreelance
+        - id: WeaponRevolverPirate
+        - id: HandheldGPSBasic
+        - id: Cutlass
+
+# Schooner captain loadout (PirateCaptainScooner)
+- type: entity
+  id: ClosetPirateCaptainScooner
+  parent: LockerSyndicate
+  name: schooner pirate captain closet
+  description: A blood-red closet reeking of saltwater. Captain's schooner kit with cape, web vest and revolver.
+  suffix: Pirate, Schooner Captain
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitPirate
+        - id: ClothingShoesBootsLaceup
+        - id: ClothingHeadHatPirate
+        - id: PiratePDA
+        - id: ClothingBackpackSatchelLeather
+        - id: ClothingBeltUtility
+        - id: ClothingHeadsetAltFreelancer
+        - id: WeaponRevolverPirate
+        - id: HandheldGPSBasic
+        - id: ClothingNeckCloakPirateCap
+        - id: ClothingOuterVestWeb
+        - id: Cutlass
+        - id: Spyglass

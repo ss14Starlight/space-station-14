@@ -21,7 +21,7 @@ namespace Content.Server.Database.Migrations.Postgres
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.1")
+                .HasAnnotation("ProductVersion", "10.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -1557,6 +1557,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .IsRequired()
                         .HasColumnType("text[]")
                         .HasColumnName("cybernetic_ids");
+
+                    b.Property<string>("ForcedPrototype")
+                        .HasColumnType("text")
+                        .HasColumnName("forced_prototype");
 
                     b.Property<float>("Height")
                         .HasColumnType("real")

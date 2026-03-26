@@ -1,0 +1,45 @@
+<Document>
+  # Reagent Flow
+  Understanding how reagents move through plumbing networks is key to building efficient factories.
+
+  ## Networks
+  A [color=#a4885c]plumbing network[/color] is a group of machines and ducts connected together through their connectors. Reagents can only flow between machines on the [bold]same[/bold] network.
+
+  Plumbing ducts support [color=#a4885c]three layers[/color] (Primary, Secondary, Tertiary). Ducts only connect to other ducts/nodes on the same layer unless a bridging component (such as a manifold) links paths.
+
+  Each [color=#ff5959]inlet[/color] connector on a machine forms its own [bold]independent network[/bold]. This means if a machine has multiple inlet connectors, each one connects to a separate network. Pipes attached to different inlets on the same machine [bold]do not bridge[/bold].
+
+  [color=#5999ff]Outlet[/color] connectors on the other hand can be connected and bridge networks. Most machines bridge outlets into one network, but some (currently only the plumbing buffer) intentionally keep outlets isolated. Check machine behavior when designing branches.
+
+  ## Pull-Based Flow
+  Plumbing uses a [color=#a4885c]pull-based[/color] model, reagents don't flow on their own. A machine with an inlet [bold]actively pulls[/bold] reagents from the outlets of other machines on the same network. If nothing is pulling, nothing moves.
+
+  This means:
+  - An [color=#a4885c]Input[/color] won't push reagents anywhere by itself. Another machine must pull from it.
+  - A [color=#a4885c]Synthesizer[/color] generates reagents into its buffer, but they sit there until something pulls.
+  - A [color=#a4885c]Tank[/color] pulls from its inlet network and stores reagents. Other machines then pull from the tank's outlet network.
+
+  ## Round-Robin Distribution
+  When a machine pulls reagents and there are [bold]multiple outlets[/bold] on the same network (e.g., two synthesizers feeding a tank), it uses round-robin distribution. Each update tick, it starts pulling from a different outlet, cycling through them fairly.
+
+  ## Transfer Rate
+  Machines pull according to their configured transfer amount and update interval (generally 20u every 2 seconds). That pull budget is shared across all of a machine's inlets; adding more inlets splits access paths, not total pull budget.
+
+  ## Reactor: Targeted Pulling
+  The [color=#a4885c]Reactor[/color] is special, it pulls [bold]specific reagents[/bold] rather than everything. It fills each target reagent fully before moving to the next. If you set targets of 30u Iron and 20u Carbon, it will pull all 30u of Iron first, then pull Carbon.
+
+  ## Filter: Selective Routing
+  The [color=#a4885c]Filter[/color] has one inlet and two outlets. It classifies intake into separate filtered and passthrough lanes, then controls which reagents are available on which outlet:
+  - [bold]Filtered outlet[/bold]: Only provides the reagents you've selected.
+  - [bold]Passthrough outlet[/bold]: Only provides reagents you [italic]haven't[/italic] selected.
+
+  Because the lanes are separate, passthrough buildup will not prevent filtered reagents from being pulled into the machine.
+
+  ## Pill Press: Mixing Mode
+  In [color=#a4885c]mixing mode[/color], the pill press ignores its main inlet and instead pulls from its [color=#59e659]mixing inlets[/color]. Each mixing inlet pulls from its own separate network into a staging area. Once both staging areas have enough reagent, they combine and press a pill at the configured ratio.
+
+  ## Tips
+  - Use the [color=#a4885c]plunger[/color] to clear stuck reagents from any machine's buffer.
+  - Machines only pull when they have space in their buffer. A full buffer stops pulling until reagents are pulled from it.
+  - Use a buffer tank when you want reactor product fed back into a supply network for other reactors to use while also keeping a separate product output network for collection (dispenser/ChemMaster/etc.). 
+</Document>

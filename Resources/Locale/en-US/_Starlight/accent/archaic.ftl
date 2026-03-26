@@ -435,7 +435,7 @@ accent-archaic-replaced-154 = below
 accent-archaic-replacement-154 = beneath
 
 accent-archaic-replaced-155 = the
-accent-archaic-replacement-155 = thy
+accent-archaic-replacement-155 = yon
 
 accent-archaic-replaced-156 = need
 accent-archaic-replacement-156 = require
@@ -543,10 +543,10 @@ accent-archaic-replaced-192 = captain
 accent-archaic-replacement-192 = lord
 
 accent-archaic-replaced-193 = chaplain
-accent-archaic-replacement-193 = priest
+accent-archaic-replacement-193 = vicar
 
 accent-archaic-replaced-194 = chapel
-accent-archaic-replacement-194 = church
+accent-archaic-replacement-194 = basilica
 
 accent-archaic-replaced-195 = ask
 accent-archaic-replacement-195 = request

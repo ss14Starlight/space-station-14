@@ -21,6 +21,7 @@
     FoodCheese: 3 #Starlight 1 -> 3
     FoodMeat: 8 #Starlight 6 -> 8
     # Starlight-start
+    JugCornoil: 2
     KitchenOvenFlatpack: 1
     KitchenStoveFlatpack: 1
     SlopDispenserFlatpack: 1

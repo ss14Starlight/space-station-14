@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "above files",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "cocoon",
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from tg station at https://github.com/tgstation/tgstation/commit/196960f6ed0db3fa2fc254c407a20a854b3f55da and edited by Rinary and Conflee"
+    },
+    {
+      "name": "cocoon_open",
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Taken from tg station at https://github.com/tgstation/tgstation/commit/196960f6ed0db3fa2fc254c407a20a854b3f55da and edited by Rinary and Conflee"
+    }
+  ]
+}

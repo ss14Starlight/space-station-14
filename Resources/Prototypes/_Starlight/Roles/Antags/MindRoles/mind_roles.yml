@@ -1,0 +1,31 @@
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleLoneAbductor
+  name: Lone Abductor Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: LoneAbductorAntag
+  - type: Abductor
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleBrighteye
+  name: Brighteye Role
+  components:
+  - type: MindRole
+    antagPrototype: Brighteye
+    subtype: roles-antag-brighteye-name
+    exclusiveAntag: true
+  - type: BrighteyeRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleSELFAgent
+  name: S.E.L.F Agent
+  components:
+  - type: MindRole
+    antagPrototype: SELFAgent
+    subtype: roles-antag-selfagent-name
+    exclusiveAntag: true
+  - type: SELFAgentRole

@@ -11,8 +11,13 @@
     PillCanisterTricordrazine: 2
   contrabandInventory:
     PillCanisterRandom: 1
+    StrangePill: 1 # Starlight
     PowerCellSmall: 2
+  emaggedInventory: # Starlight
+    OminousPill: 1 # Starlight
+    PillDesoxyephedrine5: 1 # Starlight
 
+  
 - type: vendingMachineInventory
   id: NanoMedCivilianWallInventory
   startingInventory:
@@ -27,7 +32,11 @@
     PillCanisterTricordrazine: 2
   contrabandInventory:
     PillCanisterRandom: 1
+    StrangePill: 1 # Starlight
     PowerCellSmall: 2
+  emaggedInventory: # Starlight
+    OminousPill: 1 # Starlight
+    PillDesoxyephedrine5: 1 # Starlight
 
 - type: vendingMachineInventory
   id: NanoMedPlusInventory
@@ -41,6 +50,7 @@
     ChemistryBottleEpinephrine: 3
     ChemistryBottleBicaridine: 1
     Syringe: 5
+    JetInjector: 2
     BoxBottle: 3
     PillCanisterTricordrazine: 3
     PillCanisterIron: 1
@@ -49,13 +59,18 @@
     SyringeIpecac: 1
     ClothingEyesHudMedical: 2
     ClothingEyesEyepatchHudMedical: 2
+    ClothingEyeGlassesMedicalPrescription: 2 #Starlight
     AutoMenderBruteFilled: 1
     AutoMenderBurnFilled: 1
     SpaceMedipen: 1 #Starlight
   contrabandInventory:
     PillCanisterRandom: 3
     PillSpaceDrugs: 3
+    StrangePill: 2 # Starlight
     FoodApple: 1
+  emaggedInventory: # Starlight
+    OminousPill: 2 # Starlight
+    PillDesoxyephedrine5: 2 # Starlight
 
 - type: vendingMachineInventory
   id: NanoMedCivilianInventory
@@ -77,4 +92,8 @@
   contrabandInventory:
     PillCanisterRandom: 1
     PillSpaceDrugs: 3
+    StrangePill: 2 # Starlight
     FoodApple: 1
+  emaggedInventory: # Starlight
+    OminousPill: 2 # Starlight
+    PillDesoxyephedrine5: 1 # Starlight

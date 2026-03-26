@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "'alienvault' resprited by Ko4erga at {https://github.com/space-syndicate/space-station-14/pull/3195}, edits to Rock and Sandstone by Conflee for Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "alienvault"
+    },
+    {
+      "name": "alienvault0",
+      "directions": 4
+    },
+    {
+      "name": "alienvault1",
+      "directions": 4
+    },
+    {
+      "name": "alienvault2",
+      "directions": 4
+    },
+    {
+      "name": "alienvault3",
+      "directions": 4
+    },
+    {
+      "name": "alienvault4",
+      "directions": 4
+    },
+    {
+      "name": "alienvault5",
+      "directions": 4
+    },
+    {
+      "name": "alienvault6",
+      "directions": 4
+    },
+    {
+      "name": "alienvault7",
+      "directions": 4
+    },
+    {
+      "name": "rockvault"
+    },
+	{
+      "name": "rockvault0",
+      "directions": 4
+    },
+    {
+      "name": "rockvault1",
+      "directions": 4
+    },
+    {
+      "name": "rockvault2",
+      "directions": 4
+    },
+    {
+      "name": "rockvault3",
+      "directions": 4
+    },
+    {
+      "name": "rockvault4",
+      "directions": 4
+    },
+    {
+      "name": "rockvault5",
+      "directions": 4
+    },
+    {
+      "name": "rockvault6",
+      "directions": 4
+    },
+    {
+      "name": "rockvault7",
+      "directions": 4
+    },
+    {
+      "name": "sandstonevault"
+    },
+	{
+      "name": "sandstonevault0",
+      "directions": 4
+    },
+    {
+      "name": "sandstonevault1",
+      "directions": 4
+    },
+    {
+      "name": "sandstonevault2",
+      "directions": 4
+    },
+    {
+      "name": "sandstonevault3",
+      "directions": 4
+    },
+    {
+      "name": "sandstonevault4",
+      "directions": 4
+    },
+    {
+      "name": "sandstonevault5",
+      "directions": 4
+    },
+    {
+      "name": "sandstonevault6",
+      "directions": 4
+    },
+    {
+      "name": "sandstonevault7",
+      "directions": 4
+    }
+  ]
+}

@@ -42,9 +42,14 @@
       head-dog:
       - state: equipped-head-light-dog
         shader: unshaded
-      head-avali: #Starlight
+      # Starlight - Start
+      head-avali: 
       - state: equipped-head-light-avali
         shader: unshaded
+      head-resomi:
+      - state: equipped-head-light-resomi
+        shader: unshaded
+      # Starlight - End
   - type: Clothing
     clothingVisuals:
       head:
@@ -67,10 +72,16 @@
       - state: equipped-head-dog
       - state: equipped-head-unshaded-dog
         shader: unshaded
-      head-avali: #Starlight
+      # Starlight - Start
+      head-avali:
       - state: equipped-head-avali
       - state: equipped-head-unshaded-avali
         shader: unshaded
+      head-resomi:
+      - state: equipped-head-resomi
+      - state: equipped-head-unshaded-resomi
+        shader: unshaded
+      # Starlight - End
   - type: PointLight
     color: "#adffe6"
   - type: PressureProtection
@@ -123,9 +134,14 @@
       head-dog:
       - state: equipped-head-light-dog
         shader: unshaded
-      head-avali: #Starlight
+      # Starlight - Start
+      head-avali: 
       - state: equipped-head-light-avali
         shader: unshaded
+      head-resomi:
+      - state: equipped-head-light-resomi
+        shader: unshaded
+      # Starlight - End
   - type: Clothing
     clothingVisuals:
       head:
@@ -148,10 +164,16 @@
       - state: equipped-head-dog
       - state: equipped-head-unshaded-dog
         shader: unshaded
-      head-avali: #Starlight
+      # Starlight - Start
+      head-avali:
       - state: equipped-head-avali
       - state: equipped-head-unshaded-avali
         shader: unshaded
+      head-resomi:
+      - state: equipped-head-resomi
+      - state: equipped-head-unshaded-resomi
+        shader: unshaded
+      # Starlight - End
   - type: PointLight
     color: "#ffdbad"
   - type: PressureProtection
@@ -198,12 +220,14 @@
       head-dog:
       - state: equipped-head-light-dog
         shader: unshaded
-      head-resomi: # Starlight
-      - state: equipped-head-light-resomi
-        shader: unshaded
-      head-avali: # Starlight
+      # Starlight - Start
+      head-avali: 
       - state: equipped-head-light-avali
         shader: unshaded
+      head-resomi:
+      - state: equipped-head-light-resomi
+        shader: unshaded
+      # Starlight - End
   - type: Clothing
     clothingVisuals:
       head:
@@ -226,14 +250,16 @@
       - state: equipped-head-dog
       - state: equipped-head-unshaded-dog
         shader: unshaded
-      head-resomi: # Starlight
-      - state: equipped-head-resomi
-      - state: equipped-head-unshaded-resomi
-        shader: unshaded
-      head-avali: # Starlight
+      # Starlight - Start
+      head-avali:
       - state: equipped-head-avali
       - state: equipped-head-unshaded-avali
         shader: unshaded
+      head-resomi:
+      - state: equipped-head-resomi
+      - state: equipped-head-unshaded-resomi
+        shader: unshaded
+      # Starlight - End
   - type: PointLight
     radius: 6
   - type: PressureProtection
@@ -355,7 +381,7 @@
       - state: equipped-head-light-vox
         shader: unshaded
       head-reptilian:
-      - state: equipped-head-reptilian
+      - state: equipped-head-light-reptilian
         shader: unshaded
       head-dog:
       - state: equipped-head-light-dog
@@ -466,6 +492,12 @@
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+#Starlight End
 
 #Warden's Hardsuit
 - type: entity
@@ -547,9 +579,14 @@
       head-dog:
       - state: equipped-head-light-dog
         shader: unshaded
-      head-avali:
-      - state: equipped-head-light-avali #Starlight
+      # Starlight - Start
+      head-avali: 
+      - state: equipped-head-light-avali
         shader: unshaded
+      head-resomi:
+      - state: equipped-head-light-resomi
+        shader: unshaded
+      # Starlight - End
   - type: Clothing
     clothingVisuals:
       head:
@@ -572,10 +609,16 @@
       - state: equipped-head-dog
       - state: equipped-head-unshaded-dog
         shader: unshaded
-      head-avali: #avali
+      # Starlight - Start
+      head-avali:
       - state: equipped-head-avali
       - state: equipped-head-unshaded-avali
         shader: unshaded
+      head-resomi:
+      - state: equipped-head-resomi
+      - state: equipped-head-unshaded-resomi
+        shader: unshaded
+      # Starlight - End
   - type: PointLight
     color: "#daffad"
   - type: PressureProtection
@@ -672,6 +715,11 @@
   - type: PointLight
     radius: 7
     energy: 3
+# Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
@@ -725,6 +773,11 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -944,6 +997,11 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+#Starlight
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -958,6 +1016,11 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertchaplain.rsi
   - type: PointLight
     color: "#ffffff"
+#Starlight
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -981,6 +1044,11 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+#Starlight
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
 
 #ERT Medical Hardsuit
 - type: entity
@@ -995,6 +1063,11 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertmedical.rsi
   - type: PointLight
     color: "#adffec"
+#Starlight
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
 
 #ERT Security Hardsuit
 - type: entity
@@ -1018,6 +1091,11 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+#Starlight
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -1032,6 +1110,11 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertjanitor.rsi
   - type: PointLight
     color: "#cbadff"
+#Starlight
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
 
 #CBURN Hardsuit
 - type: entity
@@ -1078,6 +1161,7 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
+        Radiation: 0.9
         Heat: 0.9
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.75
@@ -1110,6 +1194,11 @@
         Heat: 0.80
         Radiation: 0.80
         Caustic: 0.95
+#Starlight
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
 
 #MISC. HARDSUITS
 #Clown Hardsuit

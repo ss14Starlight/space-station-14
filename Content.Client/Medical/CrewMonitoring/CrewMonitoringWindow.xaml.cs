@@ -69,18 +69,38 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             TryToScrollToFocus();
     }
 
-    public void ShowSensors(List<SuitSensorStatus> sensors, EntityUid monitor, EntityCoordinates? monitorCoords)
+    public void ShowSensors(bool awaitingData, bool serverOnline, List<SuitSensorStatus> sensors, EntityUid monitor, EntityCoordinates? monitorCoords) // Starlight: Add first two params
     {
         ClearOutDatedData();
+        
+        // Starlight BEGIN
+        NoServerLabel.Visible = false;
+        NoEligibleSensorsLabel.Visible = false;
+        
+        // Show monitor on nav map, always.
+        if (monitorCoords != null && _blipTexture != null)
+        {
+            NavMap.TrackedEntities[_entManager.GetNetEntity(monitor)] = new NavMapBlip(monitorCoords.Value, _blipTexture, Color.Cyan, true, false);
+        }
+        
+        // Don't show outdated data.
+        if (awaitingData)
+            return;
 
         // No server label
-        if (sensors.Count == 0)
+        if (!serverOnline)
         {
             NoServerLabel.Visible = true;
             return;
         }
-
-        NoServerLabel.Visible = false;
+        
+        // No eligible sensors label
+        if (sensors.Count == 0)
+        {
+            NoEligibleSensorsLabel.Visible = true;
+            return;
+        }
+        // Starlight END
 
         // Collect one status per user, using the sensor with the most data available.
         Dictionary<NetEntity, SuitSensorStatus> uniqueSensorsMap = new();
@@ -164,12 +184,16 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
 
             PopulateDepartmentList(remainingSensors);
         }
-
+        
+        // Starlight BEGIN: Moved to top of function
+        /*
         // Show monitor on nav map
         if (monitorCoords != null && _blipTexture != null)
         {
             NavMap.TrackedEntities[_entManager.GetNetEntity(monitor)] = new NavMapBlip(monitorCoords.Value, _blipTexture, Color.Cyan, true, false);
         }
+        */
+        // Starlight END
     }
 
     private void PopulateDepartmentList(IEnumerable<SuitSensorStatus> departmentSensors)

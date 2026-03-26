@@ -14,7 +14,7 @@ namespace Content.Shared._Starlight.Railroading;
 public sealed partial class RailroadMetabolizeTaskComponent : Component
 {
     [DataField]
-    public string Message = "rail-metabolize-task";
+    public LocId Message = "rail-metabolize-task";
 
     [DataField]
     public HashSet<ReagentQuantity> Reagents = [];

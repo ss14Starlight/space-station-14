@@ -1,0 +1,373 @@
+- type: entity
+  id: AsteroidRockBluespace
+  parent: AsteroidRock
+  description: An ore vein rich with bluespace.
+  suffix: Bluespace
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreBluespace
+  - type: Sprite
+    layers:
+    - state: rock_asteroid
+    - map: [ "enum.EdgeLayer.South" ]
+      state: rock_asteroid_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_asteroid_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_asteroid_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_asteroid_west
+    - state: rock_bluespace
+      sprite: _Starlight/Structures/Walls/rock.rsi
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: IronRockBluespace
+  parent: IronRock
+  description: An ore vein rich with bluespace.
+  suffix: Bluespace
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreBluespace
+  - type: Sprite
+    layers:
+    - state: ironrock
+    - map: [ "enum.EdgeLayer.South" ]
+      state: ironrock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: ironrock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: ironrock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: ironrock_west
+    - state: rock_bluespace
+      sprite: _Starlight/Structures/Walls/rock.rsi
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockDark
+  name: darkstone
+  parent: WallRock
+  components:
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/rock.rsi
+    state: rock_dark
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/rock.rsi
+    layers:
+    - state: rock_dark
+    - map: [ "enum.EdgeLayer.South" ]
+      state: rock_dark_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_dark_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_dark_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_dark_west
+
+- type: entity
+  id: WallRockDarkBluespace
+  parent: WallRockDark
+  description: An ore vein rich with bluespace.
+  suffix: Bluespace
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreBluespace
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/rock.rsi
+    layers:
+    - state: rock_dark
+    - map: [ "enum.EdgeLayer.South" ]
+      state: rock_dark_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_dark_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_dark_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_dark_west
+    - state: rock_bluespace
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockDarkPasma
+  parent: WallRockDark
+  description: An ore vein rich with plasma.
+  suffix: Plasma
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OrePlasma
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/rock.rsi
+    layers:
+    - state: rock_dark
+    - map: [ "enum.EdgeLayer.South" ]
+      state: rock_dark_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_dark_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_dark_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_dark_west
+    - state: rock_phoron
+      sprite: Structures/Walls/rock.rsi
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallTrash
+  name: trash
+  parent: WallRock
+  components:
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/trash.rsi
+    state: trash
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/trash.rsi
+    layers:
+    - state: trash
+    - map: [ "enum.EdgeLayer.South" ]
+      state: trash_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: trash_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: trash_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: trash_west
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: TrashWallLoot
+    gibTable: !type:NestedSelector
+      tableId: TrashWallLoot
+      rolls: !type:RangeNumberSelector
+        range: 1, 2
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: WallMeatroid
+  name: meatroid
+  parent: WallMeat
+  components:
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: MeatWallLoot
+    gibTable: !type:NestedSelector
+      tableId: MeatWallLoot
+      rolls: !type:RangeNumberSelector
+        range: 1, 2
+  - type: Transform
+    noRot: true
+  - type: SoundOnGather
+  - type: Gatherable
+    toolWhitelist:
+      tags:
+      - Pickaxe
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25 # weak
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FoodMeatAnomaly:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: walls
+    base: meat
+  - type: Tag
+    tags:
+      - Wall
+      - Structure
+
+- type: weightedRandomOre
+  id: IronRockCoalCrabProb
+  weights:
+    OreCoal: 49
+    OreCoalCrab: 1
+
+- type: entity
+  id: IronRockCoalCrab100
+  parent: IronRockCoal
+  suffix: Crab
+  components:
+    - type: OreVein
+      currentOre: OreCoalCrab
+
+- type: entity
+  id: IronRockCoalCrab2
+  parent: IronRockCoal
+  suffix: Coal 98%, Crab 2%
+  components:
+    - type: OreVein
+      currentOre: null
+      oreRarityPrototypeId: IronRockCoalCrabProb
+
+- type: weightedRandomOre
+  id: IronRockGoldCrabProb
+  weights:
+    OreGold: 49
+    OreGoldCrab: 1
+
+- type: entity
+  id: IronRockGoldCrab100
+  parent: IronRockGold
+  suffix: Crab
+  components:
+    - type: OreVein
+      currentOre: OreGoldCrab
+
+- type: entity
+  id: IronRockGoldCrab2
+  parent: IronRockGold
+  suffix: Gold 98%, Crab 2%
+  components:
+    - type: OreVein
+      currentOre: null
+      oreRarityPrototypeId: IronRockGoldCrabProb
+
+- type: weightedRandomOre
+  id: IronRockBananiumCrabProb
+  weights:
+    OreBananium: 49
+    OreBananiumCrab: 1
+
+- type: entity
+  id: IronRockBananiumCrab100
+  parent: IronRockBananium
+  suffix: Crab
+  components:
+    - type: OreVein
+      currentOre: OreBananiumCrab
+
+- type: entity
+  id: IronRockBananiumCrab2
+  parent: IronRockBananium
+  suffix: Bananium 98%, Crab 2%
+  components:
+    - type: OreVein
+      currentOre: null
+      oreRarityPrototypeId: IronRockBananiumCrabProb
+
+- type: weightedRandomOre
+  id: IronRockIronCrabProb
+  weights:
+    OreSteel: 49
+    OreIronCrab: 1
+
+- type: entity
+  id: IronRockIronCrab100
+  parent: IronRockIron
+  suffix: Crab
+  components:
+    - type: OreVein
+      currentOre: OreIronCrab
+
+- type: entity
+  id: IronRockIronCrab2
+  parent: IronRockIron
+  suffix: Iron 98%, Crab 2%
+  components:
+    - type: OreVein
+      currentOre: null
+      oreRarityPrototypeId: IronRockIronCrabProb
+
+- type: weightedRandomOre
+  id: IronRockQuartzCrabProb
+  weights:
+    OreSpaceQuartz: 49
+    OreQuartzCrab: 1
+
+- type: entity
+  id: IronRockQuartzCrab100
+  parent: IronRockQuartz
+  suffix: Crab
+  components:
+    - type: OreVein
+      currentOre: OreQuartzCrab
+
+- type: entity
+  id: IronRockQuartzCrab2
+  parent: IronRockQuartz
+  suffix: Quartz 98%, Crab 2%
+  components:
+    - type: OreVein
+      currentOre: null
+      oreRarityPrototypeId: IronRockQuartzCrabProb
+
+- type: weightedRandomOre
+  id: IronRockSilverCrabProb
+  weights:
+    OreSilver: 49
+    OreSilverCrab: 1
+
+- type: entity
+  id: IronRockSilverCrab100
+  parent: IronRockSilver
+  suffix: Crab
+  components:
+    - type: OreVein
+      currentOre: OreSilverCrab
+
+- type: entity
+  id: IronRockSilverCrab2
+  parent: IronRockSilver
+  suffix: Silver 98%, Crab 2%
+  components:
+    - type: OreVein
+      currentOre: null
+      oreRarityPrototypeId: IronRockSilverCrabProb
+
+- type: weightedRandomOre
+  id: IronRockUraniumCrabProb
+  weights:
+    OreUranium: 49
+    OreUraniumCrab: 1
+
+- type: entity
+  id: IronRockUraniumCrab100
+  parent: IronRockUranium
+  suffix: Crab
+  components:
+    - type: OreVein
+      currentOre: OreUraniumCrab
+
+- type: entity
+  id: IronRockUraniumCrab2
+  parent: IronRockUranium
+  suffix: Uranium 98%, Crab 2%
+  components:
+    - type: OreVein
+      currentOre: null
+      oreRarityPrototypeId: IronRockUraniumCrabProb
+#TODO: ADD BLUESPACE CRAB
+#TODO: ADD SALT CRAB
+#TODO: ADD PLASMA CRAB
+#TODO: ADD DIAMOND CRAB

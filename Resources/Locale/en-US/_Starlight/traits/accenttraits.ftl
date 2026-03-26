@@ -1,3 +1,6 @@
+trait-damaged-throat-name = Damaged Throat
+trait-damaged-throat-desc = Your throat is damaged, causing pain and coughing when you speak normally. Whispering avoids this problem.
+
 trait-archaic-accent-name = Archaic Accent
 trait-archaic-accent-desc = You speak in a way that many others find outdated
 

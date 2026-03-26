@@ -95,6 +95,16 @@ internal sealed class BuckleSystem : SharedBuckleSystem
         if (!TryComp<SpriteComponent>(ent.Owner, out var buckledSprite))
             return;
 
+        // Starlight-start
+
+        if (strapComp.SetVisible)
+        {
+            ent.Comp.OriginalVisible = buckledSprite.Visible;
+            buckledSprite.Visible = false;
+        }
+
+        // Starlight-end
+
         var angle = _xformSystem.GetWorldRotation(args.Strap) + _eye.CurrentEye.Rotation; // Get true screen position, or close enough
         var isLowered = (angle.GetCardinalDir().AsFlag() & strapComp.LoweredDrawdepthDirections) != 0; //Starlight
 
@@ -112,6 +122,16 @@ internal sealed class BuckleSystem : SharedBuckleSystem
     {
         if (!TryComp<SpriteComponent>(ent.Owner, out var buckledSprite))
             return;
+
+        if (!TryComp<StrapComponent>(args.Strap, out var strapComp)) //Starlight
+            return; 
+
+        // Starlight-start
+
+        if (strapComp.SetVisible && ent.Comp.OriginalVisible is { } originalVis)
+            buckledSprite.Visible = originalVis;
+
+        // Starlight-end
 
         if (!ent.Comp.OriginalDrawDepth.HasValue)
             return;

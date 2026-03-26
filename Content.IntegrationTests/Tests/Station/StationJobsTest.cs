@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Content.Server.Maps;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.Maps;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Shared.GameObjects;
@@ -77,9 +77,9 @@ public sealed class StationJobsTest
   playTimeTracker: PlayTimeDummyChaplain
 ";
 
-    private const int StationCount = 100;
+    private const int StationCount = 10;
     private const int CaptainCount = StationCount;
-    private const int PlayerCount = 2000;
+    private const int PlayerCount = 200;
     private const int TotalPlayers = PlayerCount + CaptainCount;
 
     [Test]

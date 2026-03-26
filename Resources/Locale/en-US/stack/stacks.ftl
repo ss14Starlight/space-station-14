@@ -122,6 +122,7 @@ stack-inflatable-door = inflatable door
 stack-ointment = ointment
 stack-aloe-cream = aloe cream
 stack-gauze = gauze
+#stack-brutepack = brutepack # Starlight - we split this out to ours
 stack-bloodpack = bloodpack
 stack-medicated-suture = medicated-suture
 stack-regenerative-mesh = regenerative-mesh
@@ -217,6 +218,9 @@ stack-gray-concrete-smooth = gray concrete smooth
 stack-old-concrete-tile = old concrete tile
 stack-old-concrete-mono-tile = old concrete mono tile
 stack-old-concrete-smooth = old concrete smooth
+stack-ironsand-concrete-tile = ironsand concrete tile
+stack-ironsand-concrete-mono-tile = ironsand concrete mono tile
+stack-ironsand-concrete-smooth = ironsand concrete smooth
 stack-silver-floor-tile = silver floor tile
 stack-bcircuit-floor-tile = bcircuit floor tile
 stack-grass-floor-tile = grass floor tile
@@ -248,57 +252,5 @@ stack-white-marble-floor = white marble floor
 stack-dark-marble-floor = dark marble floor
 stack-plasma-marble-floor = plasmarble floor
 stack-uranium-marble-floor = uranium marble floor
-
-
-stack-brutepack = {$amount ->
-    [1] brutepack
-    *[other] brutepacks
-}
-stack-blueointment = {$amount ->
-    [1] blueointment
-    *[other] blueointments
-}
-stack-redointment = {$amount ->
-    [1] redointment
-    *[other] redointments
-}
-stack-redbrutepack = {$amount ->
-    [1] redbrutepack
-    *[other] redbrutepacks
-}
-stack-redpunctpack = {$amount ->
-    [1] redpunctpack
-    *[other] redpunctpacks
-}
-stack-redlacepack = {$amount ->
-    [1] redlacepack
-    *[other] redlacepacks
-}
-stack-redbruizpack = {$amount ->
-    [1] redbruizpack
-    *[other] redbruizpacks
-}
-
-stack-credit = {$amount ->
-    [1] credit
-    *[other] credits
-}
-stack-ticket = {$amount ->
-    [1] ticket
-    *[other] tickets
-}
-
-
-stack-wizcoin = {$amount ->
-    [1] wizcoin
-    *[other] wizcoins
-}
-
-stack-abyssium-ore = {$amount ->
-    [1] abyssium ore
-    *[other] abyssium ores
-}
-stack-abyssium-bar = {$amount ->
-    [1] abyssium bar
-    *[other] abyssium bars
-}
+stack-astro-ironsand-floor = astro-ironsand floor
+stack-astro-ironsand-floor-borderless = borderless astro-ironsand floor

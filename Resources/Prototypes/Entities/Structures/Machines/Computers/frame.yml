@@ -76,6 +76,20 @@
     sprite: Structures/Machines/computers.rsi
     drawdepth: Objects
     state: broken
+  # Starlight Start
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: broken, sprite: Structures/Machines/computers.rsi }
+          West: { state: computer_r-broken, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East: { state: computer_l-broken, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East, West: { state: computer_l_r-broken, sprite: _Starlight/Structures/Machines/computers.rsi }
+  # Starlight End
   - type: Destructible
     thresholds:
     - trigger:

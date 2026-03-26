@@ -386,9 +386,9 @@
   components:
   - type: Sprite
     layers:
-    - state: pink
-    - sprite: Structures/Storage/canister.rsi
-      state: blue
+    #- state: pink #SL Edit
+    - sprite: _Starlight/Structures/Storage/canister.rsi #SL Edit
+      state: rainbow #SL Edit
   - type: EntityTableSpawner
     table: !type:GroupSelector
       prob: 0.9
@@ -401,6 +401,16 @@
         weight: 0.25
       - id: NitrousOxideCanister
         weight: 0.25
+      #Starlight Start
+      - id: BZCanister 
+        weight: 0.3
+      - id: PluoxiumCanister 
+        weight: 0.35
+      - id: HalonCanister 
+        weight: 0.4
+      - id: HydrogenCanister 
+        weight: 0.3
+      #Starlight End
 
 - type: entityTable
   id: SalvageMagnetMobTable

@@ -55,15 +55,22 @@ public sealed class ThermalRegulatorSystem : EntitySystem
     {
         if (!Resolve(ent, ref ent.Comp2, logMissing: false))
             return;
-
-        // TODO: Why do we have two datafields for this if they are only ever used once here?
-        var totalMetabolismTempChange = ent.Comp1.MetabolismHeat - ent.Comp1.RadiatedHeat;
-
+       
         // Starlight edit start - Don't do implicit heat regulation if the entity is dead
         // Fixes Avali not rotting
+        var totalMetabolismTempChange = 0.0f;
+        // Verify whether the entity can radiate heat
+        if (_actionBlockerSys.CanRadiateHeat(ent))
+        {
+            totalMetabolismTempChange = -ent.Comp1.RadiatedHeat;
+        }
+
         var heatCapacity = _tempSys.GetHeatCapacity(ent, ent);
         if (!_mobState.IsDead(ent))
         {
+            // TODO: Why do we have two datafields for this if they are only ever used once here?
+            totalMetabolismTempChange += ent.Comp1.MetabolismHeat;
+
             // implicit heat regulation
             var implicitTempDiff = Math.Abs(ent.Comp2.CurrentTemperature - ent.Comp1.NormalBodyTemperature);
             var implicitTargetHeat = implicitTempDiff * heatCapacity;
@@ -75,10 +82,16 @@ public sealed class ThermalRegulatorSystem : EntitySystem
             {
                 totalMetabolismTempChange += Math.Min(implicitTargetHeat, ent.Comp1.ImplicitHeatRegulation);
             }
+            
         }
         // Starlight edit end
 
         _tempSys.ChangeHeat(ent, totalMetabolismTempChange, ignoreHeatResistance: true, ent);
+
+        // Starlight edit start - Stop here, the logic further should be only calculated then the entity is alive
+        if (_mobState.IsDead(ent))
+            return;
+        // Starlight edit end
 
         // recalc difference and target heat
         // Starlight edit start

@@ -1,0 +1,342 @@
+#region Base turbines
+- type: entity
+  id: BaseGasTurbine
+  parent: BaseStructure
+  abstract: true
+  name: Gas Turbine
+  description: A large turbine used for generating power using hot gas.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/gas_turbine.rsi
+    layers:
+    - state: turbine
+      visible: true
+      map: [ "enum.GasTurbineVisualLayers.TurbineSpeed" ]
+    - state: turbinebroken
+      visible: false
+      map: [ "enum.GasTurbineVisualLayers.TurbineRuined" ]
+    - state: turbine_sparks
+      visible: false
+      map: [ "enum.GasTurbineVisualLayers.DamageSpark" ]
+    - state: turbine_smoke
+      visible: false
+      map: [ "enum.GasTurbineVisualLayers.DamageSmoke" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.GasTurbineVisuals.TurbineRuined:
+        enum.GasTurbineVisualLayers.TurbineRuined:
+          True: { visible: true }
+          False: { visible: false }
+      enum.GasTurbineVisuals.DamageSpark:
+        enum.GasTurbineVisualLayers.DamageSpark:
+          True: { visible: true }
+          False: { visible: false }
+      enum.GasTurbineVisuals.DamageSmoke:
+        enum.GasTurbineVisualLayers.DamageSmoke:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.5,-2.5,1.5,2.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Anchorable
+    delay: 10
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: output
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/gas_turbine.rsi
+    state: static
+  - type: PowerSupplier
+    supplyRampRate: 75000
+    supplyRampTolerance: 5000
+  - type: AtmosDevice
+  - type: AtmosMonitoringConsoleDevice
+    navMapBlip: Thermoregulator
+  - type: Electrified
+    enabled: false
+    requirePower: false
+  - type: ContainerContainer
+    containers:
+      blade_slot: !type:ContainerSlot {}
+      stator_slot: !type:ContainerSlot {}
+  - type: ItemSlots
+    slots:
+      blade_slot:
+        startingItem: SteelGasTurbineBlade
+        whitelist:
+          components:
+            - GasTurbineBlade
+      stator_slot:
+        startingItem: SteelGasTurbineStator
+        whitelist:
+          components:
+            - GasTurbineStator
+  - type: GasTurbine
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSource
+    range: 50
+    ports:
+      - GasTurbineSpeedHigh
+      - GasTurbineSpeedLow
+      - GasTurbineDataSender
+  - type: DeviceLinkSink
+    ports:
+      - IncreaseStatorLoad
+      - DecreaseStatorLoad
+  - type: ActivatableUI
+    key: enum.GasTurbineUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+  - type: UserInterface
+    interfaces:
+      enum.GasTurbineUiKey.Key:
+        type: GasTurbineBoundUserInterface
+  - type: GuideHelp
+    guides:
+    - GasTurbine
+    - Power
+
+- type: entity
+  id: BaseGasTurbineSmall
+  parent: BaseGasTurbine
+  abstract: true
+  name: Small Gas Turbine
+  description: A small turbine used for generating power using hot gas.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/small_gas_turbine.rsi
+    offset: 0, -0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.5,-1.5,1.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: PowerMonitoringDevice
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/small_gas_turbine.rsi
+  - type: GasTurbine
+    inletPos: 1, -1
+    inletRot: 0 
+    outletPos: -1, -1
+    outletRot: 0 
+    arrowPrototype: GasTurbineSmallFlowArrow
+
+- type: entity
+  id: GasTurbineCrew
+  abstract: true
+  components:
+  - type: AccessReader # Keeps some random tider from blowing up the turbine
+    access: [["Engineering"]]
+  - type: Lock
+    unlockOnClick: false
+
+- type: entity
+  id: GasTurbineSalvage
+  abstract: true
+#endregion
+
+#region Crew turbines
+- type: entity
+  id: GasTurbineNormal
+  parent: [BaseGasTurbine, GasTurbineCrew]
+
+- type: entity
+  id: GasTurbineSmall
+  parent: [BaseGasTurbineSmall, GasTurbineCrew]
+#endregion
+
+#region Salvage turbines
+- type: entity
+  id: GasTurbineNormalSalvage
+  parent: [BaseGasTurbine, GasTurbineSalvage]
+  suffix: "Salvage"
+
+- type: entity
+  id: GasTurbineSmallSalvage
+  parent: [BaseGasTurbineSmall, GasTurbineSalvage]
+  suffix: "Salvage"
+#endregion
+  
+#region Support Entities
+# Arrow to indicate flow
+- type: entity
+  id: GasTurbineFlowArrow
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: Markers/teg_arrow.rsi
+      color: "#FFFFFFBB"
+      layers:
+        - state: arrow
+          rotation: 90
+          offset: 2, -1
+        - state: arrow
+          rotation: 90
+          offset: -2, -1
+    - type: TimedDespawn
+      lifetime: 2
+    - type: Tag
+      tags:
+        - HideContextMenu
+
+- type: entity
+  id: GasTurbineSmallFlowArrow
+  parent: GasTurbineFlowArrow
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      layers:
+        - state: arrow
+          rotation: 180
+          offset: 1, -2
+        - state: arrow
+          rotation: 0
+          offset: -1, -2
+
+# Pipes the turbine uses to connect to the pipe network
+- type: entity
+  id: GasTurbineGasPipe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+  - type: NodeContainer
+    nodes:
+      pipe:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 1000
+        pipeLayer: 0
+      pipe1:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 1000
+        pipeLayer: 1
+      pipe2:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 1000
+        pipeLayer: 2
+      # Starlight Start: 5 Pipe layers
+      pipe3:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 1000
+        pipeLayer: 3
+      pipe4:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 1000
+        pipeLayer: 4
+      # Starlight End
+  - type: GasPipeManifold
+    inlets:
+    - pipe1
+    - pipe2
+    # Starlight Start: 5 Pipe layers
+    - pipe3
+    - pipe4
+    # Starlight End
+    outlets:
+    - pipe
+  - type: PipeRestrictOverlap
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  id: GasTurbineAlarmEntity
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AmbientSound
+    volume: -2
+    range: 15
+    enabled: false
+    sound:
+      path: /Audio/_FarHorizons/Machines/alarm_buzzer.ogg
+
+- type: entity
+  id: GasTurbineBladeShrapnel
+  name: Gas Turbine Blade
+  description: Uh oh.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FlyBySound
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Materials/Scrap/generic.rsi
+    state: metal-1
+  - type: Physics
+    bodyType: Dynamic
+    linearDamping: 0
+    angularDamping: 0
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+      fly-by: &flybyfixture
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
+  - type: Projectile
+    impactEffect: BulletImpactEffect
+    deleteOnCollide: false
+    damage:
+      types: # hit hard ye
+        Piercing: 25
+        Slash: 75
+        Structural: 400
+    soundHit:
+      path: /Audio/Effects/metal_crunch.ogg
+    penetrationThreshold: 400
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: TimedDespawn
+    lifetime: 0.3
+#endregion

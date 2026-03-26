@@ -20,14 +20,16 @@ public sealed class LawboardSystem : EntitySystem
     {
         if (!args.IsInDetailsRange)
             return;
-        //Starlight: DONT DISPLAY LAWS OF BORGS OR AI CORES LIKE THE MORON I AM
+        // DONT DISPLAY LAWS OF BORGS OR AI CORES LIKE THE MORON I AM
         if (!component.IsLawboard)
             return;
 
         if (!_prototype.TryIndex<SiliconLawsetPrototype>(component.Laws, out var lawsetProto))
             return;
 
-        var lawsetName = _loc.GetString($"board-{lawsetProto.ID.ToLowerInvariant()}-name");
+        var lawsetName = lawsetProto.Name != null 
+            ? _loc.GetString(lawsetProto.Name) 
+            : "Unknown";
         var description = $"[color=cyan]An electronics board containing the [color=yellow]{lawsetName}[/color] lawset.[/color]\n[color=orange]Uploaded Laws:[/color]";
 
         int lawNum = lawsetProto.StartAtZero ? 0 : 1;

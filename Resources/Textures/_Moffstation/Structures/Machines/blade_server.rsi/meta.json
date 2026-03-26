@@ -1,0 +1,63 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "GitHub @Centronias",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "board",
+            "copyright": "GitHub @Centronias"
+        },
+        {
+            "name": "cover",
+            "copyright": "GitHub @Centronias"
+        },
+        {
+            "name": "frame",
+            "copyright": "GitHub @Centronias"
+        },
+        {
+            "name": "inhand",
+            "copyright": "GitHub @Centronias",
+            "directions": 4
+        },
+        {
+            "name": "inhand-open",
+            "copyright": "GitHub @Centronias",
+            "directions": 4
+        },
+        {
+            "name": "inhand-stripe",
+            "copyright": "GitHub @Centronias",
+            "directions": 4
+        },
+        {
+            "name": "maintenance-panel",
+            "copyright": "GitHub @Centronias"
+        },
+        {
+            "name": "powered",
+            "copyright": "GitHub @Centronias",
+            "delays": [
+                [
+                    0.35,
+                    0.35,
+                    0.35,
+                    0.35,
+                    0.35
+                ]
+            ]
+        },
+        {
+            "name": "stripe",
+            "copyright": "GitHub @Centronias"
+        },
+        {
+            "name": "wires",
+            "copyright": "GitHub @Centronias"
+        }
+    ]
+}

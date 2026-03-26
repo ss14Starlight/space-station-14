@@ -1,0 +1,36 @@
+﻿
+# Upstream has a highest stack size of 100 as BaseVeryLargeStack. This continues on it.
+- type: stack
+  abstract: true
+  id: BaseGiganticStack
+  splitAmounts:
+    - 1
+    - 2
+    - 5
+    - 10
+    - 25
+    - 50
+    - 100
+    - 250
+    - 500
+    - 1000 # 1k
+    - 2500
+    - 5000
+    - 10000 # 10k
+    - 25000
+    - 50000
+    - 100000 # 100k
+    - 250000
+    - 500000
+    - 1000000 # 1m
+    - 2500000
+    - 5000000
+    - 10000000 # 10m
+    - 25000000
+    - 50000000
+
+# Parent of spesos/credits.
+- type: stack
+  abstract: true
+  parent: BaseGiganticStack
+  id: BaseCurrencyStack

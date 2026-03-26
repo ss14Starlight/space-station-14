@@ -16,5 +16,5 @@ public sealed partial class PrivateStorageComponent : Component
     /// <summary>
     /// A popup that will be shown when storage is accesses by an outsider
     /// </summary>
-    [DataField("accessPopup")] public string AccessPopup = "action-storage-accessing-outsider";
+    [DataField("accessPopup")] public LocId AccessPopup = "action-storage-accessing-outsider";
 }

@@ -11,7 +11,7 @@ namespace Content.Server.Radio.EntitySystems;
 public sealed class JammerSystem : SharedJammerSystem
 {
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly PredictedBatterySystem _battery = default!;
+    [Dependency] private readonly SharedBatterySystem _battery = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedDeviceNetworkJammerSystem _jammer = default!;
 
@@ -22,10 +22,11 @@ public sealed class JammerSystem : SharedJammerSystem
         SubscribeLocalEvent<RadioJammerComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<ActiveRadioJammerComponent, PowerCellChangedEvent>(OnPowerCellChanged);
         SubscribeLocalEvent<RadioSendAttemptEvent>(OnRadioSendAttempt);
+        SubscribeLocalEvent<CustomRadioSendAttemptEvent>(OnCustomRadioSendAttempt); //Starlight
     }
 
     // TODO: Very important: Make this charge rate based instead of updating every single tick
-    // See PredictedBatteryComponent
+    // See BatteryComponent
     public override void Update(float frameTime)
     {
         var query = EntityQueryEnumerator<ActiveRadioJammerComponent, RadioJammerComponent>();
@@ -111,6 +112,14 @@ public sealed class JammerSystem : SharedJammerSystem
             args.Cancelled = true;
         }
     }
+    
+    //Starlight begin
+    private void OnCustomRadioSendAttempt(ref CustomRadioSendAttemptEvent args)
+    {
+        if (ShouldCancelSend(args.RadioSource, args.Channel.Frequency))
+            args.Cancelled = true;
+    }
+    //Starlight end
 
     private bool ShouldCancelSend(EntityUid sourceUid, int frequency)
     {

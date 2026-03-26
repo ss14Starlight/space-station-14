@@ -1,0 +1,20 @@
+- type: entity
+  id: BluespaceHarvesterPortal
+  name: bluespace rift
+  description: A tear in reality leading to somewhere... else. Hostile entities pour through.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    sprite: _Starlight/Effects/hellport.rsi
+    layers:
+    - state: nether
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#8a0c17"
+  - type: TimedDespawn
+    lifetime: 30
+  - type: BluespaceHarvesterPortal

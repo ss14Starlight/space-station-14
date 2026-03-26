@@ -1,0 +1,32 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Paradise Station 13",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "blood_rush"
+        },
+        {
+            "name": "blood_swell"
+        },
+        {
+            "name": "charge"
+        },
+        {
+            "name": "duel"
+        },
+        {
+            "name": "demonic_grasp"
+        },
+        {
+            "name": "seismic_stomp"
+        },
+        {
+            "name": "overwhelming_force"
+        }
+    ]
+}

@@ -19,7 +19,7 @@ namespace Content.Server.Clothing.Systems;
 
 public sealed class OutfitSystem : EntitySystem
 {
-    [Dependency] private readonly IServerPreferencesManager _preferenceManager = default!;
+    //[Dependency] private readonly IServerPreferencesManager _preferenceManager = default!; // Starlight-removed - we removed the only upstream reference to this
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly HandsSystem _handSystem = default!;
     [Dependency] private readonly InventorySystem _invSystem = default!;

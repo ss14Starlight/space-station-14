@@ -1,0 +1,115 @@
+- type: entityTable
+  id: MaintsMonstersBasic
+  table: !type:GroupSelector
+    children:
+    # harmless critters (except for the radioactive mouse)
+    - !type:NestedSelector
+      tableId: SmallCritterEntityTable
+    # one or more larger harmless critters
+    - !type:GroupSelector
+      children:
+      - !type:AllSelector
+        children:
+        - id: MobChicken
+        - id: MobChicken
+        - id: MobChicken
+      - !type:AllSelector
+        children:
+        - id: MobDuckMallard
+        - id: MobDuckMallard
+        - id: MobDuckMallard
+      - !type:AllSelector
+        children:
+        - id: MobMoproachHat
+        - id: MobMoproach
+        - id: MobMoproach
+      - !type:AllSelector
+        children:
+        - id: MobHamster
+        - id: MobHamster
+        - id: MobHamster
+      - id: MobCow
+      - id: MobPig
+      - id: MobReindeerBuck
+      - id: MobReindeerDoe
+      - id: MobCatSpace
+      - id: MobEmotionalSupportScurret
+      - id: MobKangaroo
+      - id: MobBoxingKangaroo
+      - id: MobParrot
+      - id: MobCorgiSmart
+      - id: MobFox
+      - id: MobFerret
+      - id: MobMonkey
+      - id: MobKobold
+    # minor aggressive mobs
+    - !type:GroupSelector
+      children:
+      - !type:AllSelector
+        children:
+        - id: MobDinosaurCompy
+        - id: MobDinosaurCompy
+        - id: MobDinosaurCompy
+        - id: MobDinosaurCompy
+      - id: MobGorilla
+      # Hostile vent critters
+      - id: MobAdultSlimesBlueAngry
+      - id: MobAdultSlimesGreenAngry
+      - id: MobAdultSlimesYellowAngry
+      - id: MobPurpleSnake
+      - id: MobSmallPurpleSnake
+      - id: MobCobraSpace
+      - id: MobGiantSpiderAngry
+      - id: MobClownSpider
+    # space aggressive mobs
+    - !type:GroupSelector
+      children:
+      - id: MobKangarooSpace
+      - id: MobSpiderSpace
+      - id: MobCobraSpace
+      - id: MobBearSpace
+      - id: MobGoliath
+      - id: MobCarp
+      conditions:
+      - !type:PlayerCountCondition
+        min: 35
+    # reagent slimes
+    - !type:GroupSelector
+      children:
+      - id: ReagentSlime
+      - id: ReagentSlimeBeer
+      #- id: ReagentSlimeNocturne # Disabled this one because it's a lot of a syndie chem
+      - id: ReagentSlimeTHC
+      - id: ReagentSlimeBicaridine
+      - id: ReagentSlimeOmnizine
+      - id: ReagentSlimeNorepinephricAcid
+      - id: ReagentSlimeEphedrine
+      - id: ReagentSlimeRobustHarvest
+      conditions:
+      - !type:PlayerCountCondition
+        min: 35
+    # xenos
+    - !type:GroupSelector
+      children:
+      - id: MobXeno
+      - id: MobXenoPraetorian
+      - id: MobXenoDrone
+      - id: MobXenoQueen
+      - id: MobXenoRavager
+      - id: MobXenoRunner
+      - id: MobXenoRouny
+      - id: MobXenoSpitter
+      conditions:
+      - !type:PlayerCountCondition
+        min: 35
+    # high threat
+    - !type:GroupSelector
+      weight: 0.3 # On stations with enough players for these to show up, we still don't want too many of them
+      children:
+      - id: MobBearSoviet # Too high-tier to have roundstart in maints on lower pop
+      - id: ReagentSlimeToxin # This will likely three-shot you
+      - id: ReagentSlimeNapalm # Has wiped a security department
+      - id: ReagentSlimeMuteToxin # Silence effects are strong
+      conditions:
+      - !type:PlayerCountCondition
+        min: 70

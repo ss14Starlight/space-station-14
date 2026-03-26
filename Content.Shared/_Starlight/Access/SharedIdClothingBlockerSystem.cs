@@ -19,7 +19,7 @@ public abstract class SharedIdClothingBlockerSystem : EntitySystem
     protected virtual void OnUnequipAttempt(EntityUid uid, IdClothingBlockerComponent component,
         BeingUnequippedAttemptEvent args)
     {
-        var wearerHasAccess = HasJobAccess(args.Unequipee, component);
+        var wearerHasAccess = HasAccess(args.Unequipee, component);
         if (wearerHasAccess)
             return;
 
@@ -35,7 +35,7 @@ public abstract class SharedIdClothingBlockerSystem : EntitySystem
         if (args.DoAfter.Args.Target == null)
             return;
 
-        var wearerHasAccess = HasJobAccess(args.DoAfter.Args.Target.Value, component);
+        var wearerHasAccess = HasAccess(args.DoAfter.Args.Target.Value, component);
 
         if (wearerHasAccess)
             return;
@@ -44,11 +44,11 @@ public abstract class SharedIdClothingBlockerSystem : EntitySystem
         PopupClient(Loc.GetString("access-clothing-blocker-notify-unauthorized-access"), uid);
     }
     
-    protected virtual bool HasJobAccess(EntityUid wearer, IdClothingBlockerComponent component) => !component.IsBlocked;
+    protected virtual bool HasAccess(EntityUid wearer, IdClothingBlockerComponent component) => !component.IsBlocked;
 
     private void OnGotEquipped(EntityUid uid, IdClothingBlockerComponent component, GotEquippedEvent args)
     {
-        var wearerHasAccess = HasJobAccess(args.Equipee, component);
+        var wearerHasAccess = HasAccess(args.Equipee, component);
 
         if (wearerHasAccess)
             return;

@@ -46,6 +46,10 @@ using Content.Shared.Temperature.Components;
 #region Starlight
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
+using Content.Server._Starlight.Antags.Vampires;
+using Content.Shared._Starlight.Antags.Vampires.Components;
+using Content.Server.Animals.Components;
+using Content.Shared.Animals;
 #endregion Starlight
 
 namespace Content.Server.Zombies;
@@ -162,6 +166,11 @@ public sealed partial class ZombieSystem
         speaker.UnderstoodLanguages.Clear();
 
         _language.AddLanguage(target, "Zombie");
+
+        RemComp<VampireComponent>(target); //De-vamps Vampire zombies
+        RemComp<EggLayerComponent>(target); //Prevent infinite egg production
+        RemComp<UdderComponent>(target); //Prevent infinite milk production
+        RemComp<WoolyComponent>(target); //Prevent infinite wool production
         // Starlight-end
 
         //This is needed for stupid entities that fuck up combat mode component
@@ -208,7 +217,7 @@ public sealed partial class ZombieSystem
             zombiecomp.BeforeZombifiedSkinColor = huApComp.SkinColor;
             zombiecomp.BeforeZombifiedEyeColor = huApComp.EyeColor;
             zombiecomp.BeforeZombifiedCustomBaseLayers = new(huApComp.CustomBaseLayers);
-            if (TryComp<BloodstreamComponent>(target, out var stream) && stream.BloodReagents is { } reagents)
+            if (TryComp<BloodstreamComponent>(target, out var stream) && stream.BloodReferenceSolution is { } reagents)
                 zombiecomp.BeforeZombifiedBloodReagents = reagents.Clone();
 
             _humanoidAppearance.SetSkinColor(target, zombiecomp.SkinColor, verify: false, humanoid: huApComp);
@@ -262,7 +271,7 @@ public sealed partial class ZombieSystem
         _mind.MakeSentient(target);
 
         //Make the zombie not die in the cold. Good for space zombies
-        if (TryComp<TemperatureComponent>(target, out var tempComp))
+        if (TryComp<TemperatureDamageComponent>(target, out var tempComp))
             tempComp.ColdDamage.ClampMax(0);
 
         //Heals the zombie from all the damage it took while human

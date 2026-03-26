@@ -84,5 +84,12 @@ namespace Content.Shared.Shuttles.Components
         [DataField, AutoNetworkedField]
         public string? PriorityTag = null;
         //end starlight
+
+        /// <summary>
+        /// Optional override for the FTL cooldown for this shuttle.
+        /// If not null, then the value will be used instead of the shuttle.cooldown CCVar.
+        /// </summary>
+        [DataField]
+        public TimeSpan? FTLCooldownOverride = null;
     }
 }

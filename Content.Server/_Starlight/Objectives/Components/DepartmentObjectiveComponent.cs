@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Objectives.Components;
 
@@ -11,11 +12,14 @@ public sealed partial class DepartmentObjectiveComponent : Component
     /// It is passed a "department" argument.
     /// </summary>
     [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
-    public string Title = string.Empty;
+    public LocId Title = string.Empty;
 
     /// <summary>
     /// ProtoID of Target Department
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public ProtoId<DepartmentPrototype>? TargetDepartment;
+
+    [DataField]
+    public SpriteSpecifier Icon = new SpriteSpecifier.Rsi(new ResPath("Objects/Devices/goldwatch.rsi"), "goldwatch");
 }

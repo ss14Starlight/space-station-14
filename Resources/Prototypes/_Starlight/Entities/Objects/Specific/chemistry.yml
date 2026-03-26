@@ -1,0 +1,286 @@
+- type: entity
+  name: golden beaker
+  parent: BaseBeaker
+  description: Used to contain a gigantic amount of chemicals and solutions.
+  id: GoldenBeaker
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/beaker.rsi
+    layers:
+      - state: beaker
+      - state: beaker1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chemistry/beaker.rsi
+  - type: Spillable
+    solution: beaker
+  - type: StaticPrice
+    price: 10
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 50
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: beaker
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 200
+
+- type: entity
+  name: golden jug
+  parent: Jug
+  description: Used to contain a titanic amount of chemicals or solutions.
+  id: GoldenJug
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/goldenjug.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chemistry/goldenjug.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 50
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 400
+
+- type: entity
+  name: silver jug
+  parent: Jug
+  description: Used to contain a ginormous amount of chemicals or solutions.
+  id: SilverJug
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/silverjug.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chemistry/silverjug.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Silver: 50
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 300
+
+- type: entity
+  id: VialCase
+  parent: [ BaseStorageItem, BaseBagOpenClose ]
+  name: vial case
+  description: A convenient, compact box with 6 empty vials.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/vial_case.rsi
+    layers:
+    - state: closed
+      map: ["closeLayer"]
+    - state: open
+      map: ["openLayer"]
+    - state: vial1
+      map: ["vial1"]
+      visible: false
+    - state: vial2
+      map: ["vial2"]
+      visible: false
+    - state: vial3
+      map: ["vial3"]
+      visible: false
+    - state: vial4
+      map: ["vial4"]
+      visible: false
+    - state: vial5
+      map: ["vial5"]
+      visible: false
+    - state: vial6
+      map: ["vial6"]
+      visible: false
+  - type: Storage
+    grid:
+    - 0,0,2,1
+  - type: Item
+    sprite: Objects/Consumable/Smokeables/vials/case.rsi
+    size: Small
+    shape:
+    - 0,0,1,1
+    storedRotation: 90
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ChemistryEmptyVial
+          amount: 6
+  - type: ItemCounter
+    count:
+      tags: [Vial]
+    composite: true
+    layerStates:
+    - vial1
+    - vial2
+    - vial3
+    - vial4
+    - vial5
+    - vial6
+  - type: Appearance
+
+- type: entity
+  name: silver beaker
+  parent: BaseBeaker
+  description: Used to contain a huge amount of chemicals and solutions.
+  id: SilverBeaker
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/silverbeaker.rsi
+    layers:
+      - state: beaker
+      - state: beaker1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chemistry/silverbeaker.rsi
+  - type: Spillable
+    solution: beaker
+  - type: StaticPrice
+    price: 10
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 50
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: beaker
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 150
+
+- type: entity
+  name: light beaker
+  parent: [BaseBeakerMetallic, DrinkBaseOpenable, DrinkVisualsOpenable]
+  description: The light side of an unbreakable beaker. Its true power can be sealed.
+  id: LightBeaker
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/lightbeaker.rsi
+    layers:
+      - state: beakerlarge
+      - state: beakerlarge1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chemistry/lightbeaker.rsi
+  - type: Spillable
+    solution: beaker
+  - type: StaticPrice
+    price: 10
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: beakerlarge
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
+  - type: Openable
+    sound:
+      collection: bottleOpenSounds
+    closeable: true
+    closeSound:
+      collection: bottleCloseSounds
+  - type: Sealable
+    sealed: false
+  - type: ExaminableSolution
+    examinableWhileClosed: true
+    heldOnly: false
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 3
+    soundHit:
+      collection: MetalThud
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+
+- type: entity
+  name: dark beaker
+  parent: [BaseBeakerMetallic, DrinkBaseOpenable, DrinkVisualsOpenable, BaseSecurityContraband]
+  description: The dark side of an unbreakable beaker. Its true power can be sealed.
+  id: DarkBeaker
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/darkbeaker.rsi
+    layers:
+      - state: beakerlarge
+      - state: beakerlarge1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Chemistry/darkbeaker.rsi
+  - type: Spillable
+    solution: beaker
+  - type: StaticPrice
+    price: 10
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: beakerlarge
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
+  - type: Openable
+    sound:
+      collection: bottleOpenSounds
+    closeable: true
+    closeSound:
+      collection: bottleCloseSounds
+  - type: Sealable
+    sealed: false
+  - type: ExaminableSolution
+    examinableWhileClosed: true
+    heldOnly: false
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 7
+    soundHit:
+      collection: MetalThud
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 9
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+
+- type: entity
+  parent: ChemBag
+  id: SeniorChemBag
+  name: senior chemistry bag
+  description: A limited edition chemistry bag, only obtained by those seriously devoted to their craft.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/senior_chem_bag.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Starlight/Objects/Specific/Chemistry/senior_chem_bag.rsi
+    quickEquip: false
+    slots:
+    - belt
+
+- type: entity
+  parent: HandLabeler
+  id: GoldenHandLabeler
+  name: golden hand labeler
+  description: A golden hand labeler, awarded only to the most elite of chemists. Don't test its composition.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Chemistry/golden_hand_labeler.rsi
+      state: golden_hand_labeler
+    - type: Item
+      sprite: _Starlight/Objects/Specific/Chemistry/golden_hand_labeler.rsi
+      storedRotation: -90

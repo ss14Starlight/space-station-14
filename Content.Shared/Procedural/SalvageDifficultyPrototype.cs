@@ -1,6 +1,8 @@
-using Content.Shared.Destructible.Thresholds;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+
+#region Starlight
+using Content.Shared.Procedural.Loot;
+#endregion Starlight
 
 namespace Content.Shared.Procedural;
 
@@ -18,17 +20,14 @@ public sealed partial class SalvageDifficultyPrototype : IPrototype
     /// <summary>
     /// How much loot this difficulty is allowed to spawn.
     /// </summary>
-    [DataField("lootBudget", required: true)]
+    [DataField("lootBudget", required : true)]
     public float LootBudget;
 
     /// <summary>
     /// How many mobs this difficulty is allowed to spawn.
     /// </summary>
-    [DataField("mobBudget", required: true)]
+    [DataField("mobBudget", required : true)]
     public float MobBudget;
-
-    [DataField("lootPrototype")]
-    public string LootPrototypeId = "SalvageLoot";
 
     /// <summary>
     /// Budget allowed for mission modifiers like no light, etc.
@@ -46,4 +45,8 @@ public sealed partial class SalvageDifficultyPrototype : IPrototype
 
     [DataField]
     public float Probability = 1;
+
+    [DataField("lootPrototype")]
+    public ProtoId<SalvageLootPrototype> LootPrototypeId = "SalvageLoot";
+    // Starlight end
 }

@@ -1,0 +1,8 @@
+﻿- type: construction
+  id: DrinkWaterBottleEmpty
+  graph: DrinkWaterBottleEmpty
+  startNode: start
+  targetNode: waterbottle
+  category: construction-category-misc
+  objectType: Item
+

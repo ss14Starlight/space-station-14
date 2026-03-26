@@ -1,4 +1,5 @@
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.Evolving.Conditions;
 
 namespace Content.Shared._Starlight.Evolving;
 
@@ -16,7 +17,7 @@ public sealed partial class EvolvingComponent : Component
     /// The id of action to trigger the evolution.
     /// </summary>
     [DataField]
-    public string EvolveActionId = "ActionEvolve";
+    public EntProtoId EvolveActionId = "ActionEvolve";
 
     /// <summary>
     /// The entity to use for the action to trigger the evolution.
@@ -26,4 +27,17 @@ public sealed partial class EvolvingComponent : Component
 
     [DataField(serverOnly: true)]
     public List<EvolvingCondition> Conditions = [];
+
+    [DataField]
+    public string ObjectiveId = "EvolveObjective";
+
+    [DataField]
+    public List<EntityUid> Objectives = [];
+}
+
+public enum EvolveType
+{
+    EggsInjected,
+    SpiderWebsSpawned,
+    DamageDeal
 }

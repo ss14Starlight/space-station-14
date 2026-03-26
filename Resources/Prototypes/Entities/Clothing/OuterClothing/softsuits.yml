@@ -16,10 +16,11 @@
     - CorgiWearable
     - WhitelistChameleon
     - CorgiWearable
+    - IPCExternalCooling # Far Horizons
 
 #Syndicate EVA
 - type: entity
-  parent: [ ClothingOuterEVASuitBase, BaseSyndicateContraband ]
+  parent: [ ClothingOuterEVASuitBase, BaseMinorContraband ] #SL edit Syndie > Minor Contra
   id: ClothingOuterEVASuitSyndicate
   name: syndicate EVA suit
   description: "Has a tag on the back that reads: 'Totally not property of an enemy corporation, honest!'"
@@ -33,6 +34,7 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
   - type: StaticPrice
     price: 1000 # Helmet is 500
 
@@ -91,6 +93,7 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #NTSRA Voidsuit / Ancient Voidsuit
 - type: entity
@@ -128,6 +131,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.0 # Starlight Edit
     sprintModifier: 1.0 # Starlight Edit
+    requireActivated: false
   - type: HeldSpeedModifier
   - type: TemperatureProtection
     heatingCoefficient: 0.1
@@ -178,3 +182,4 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons

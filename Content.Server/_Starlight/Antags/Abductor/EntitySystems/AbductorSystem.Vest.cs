@@ -2,21 +2,16 @@
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Inventory.Events;
 using Content.Shared.Stealth.Components;
-using Content.Shared.Mobs.Components;
-using System;
-using Content.Shared.ActionBlocker;
-using System.Linq;
-using Content.Shared.Popups;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Inventory.Events;
 
 namespace Content.Server.Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
     [Dependency] private readonly ClothingSystem _clothing = default!;
-    
     public void InitializeVest()
     {
         SubscribeLocalEvent<AbductorVestComponent, AfterInteractEvent>(OnVestInteract);
@@ -24,7 +19,6 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         SubscribeLocalEvent<AbductorVestComponent, GotUnequippedEvent>(OnUnequipped);
         SubscribeLocalEvent<AbductorVestComponent, GotEquippedEvent>(OnEquipped);
     }
-   
     private void OnEquipped(Entity<AbductorVestComponent> ent, ref GotEquippedEvent args)
     {
         if (!HasComp<StealthComponent>(args.Equipee) && ent.Comp.CurrentState != AbductorArmorModeType.Combat)
@@ -33,7 +27,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             AddComp<StealthOnMoveComponent>(args.Equipee);
         }
     }
-   
+
     private void OnUnequipped(Entity<AbductorVestComponent> ent, ref GotUnequippedEvent args)
     {
         if (HasComp<StealthComponent>(args.Equipee))
@@ -42,20 +36,20 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             RemComp<StealthOnMoveComponent>(args.Equipee);
         }
     }
-    
+
     private void OnItemSwitch(EntityUid uid, AbductorVestComponent component, ref ItemSwitchedEvent args)
     {
-        
-        if (Enum.TryParse<AbductorArmorModeType>(args.State, ignoreCase: true, out var State))
-            component.CurrentState = State;
-        
+
+        if (Enum.TryParse<AbductorArmorModeType>(args.State, ignoreCase: true, out var state))
+            component.CurrentState = state;
+
         var user = Transform(uid).ParentUid;
-        
-        if (State == AbductorArmorModeType.Combat)
+
+        if (state == AbductorArmorModeType.Combat)
         {
             if (TryComp<ClothingComponent>(uid, out var clothingComponent))
                 _clothing.SetEquippedPrefix(uid, "combat", clothingComponent);
-            
+
             if (HasComp<MobStateComponent>(user) && HasComp<StealthComponent>(user))
             {
                 RemComp<StealthComponent>(user);
@@ -66,7 +60,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         {
             if (TryComp<ClothingComponent>(uid, out var clothingComponent))
                 _clothing.SetEquippedPrefix(uid, null, clothingComponent);
-            
+
             if (HasComp<MobStateComponent>(user) && !HasComp<StealthComponent>(user))
             {
                 AddComp<StealthComponent>(user);
@@ -74,17 +68,18 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             }
         }
     }
-    
+
     private void OnVestInteract(Entity<AbductorVestComponent> ent, ref AfterInteractEvent args)
     {
-        if (!_actionBlockerSystem.CanInstrumentInteract(args.User, args.Used, args.Target)) return;
-        if (!args.Target.HasValue) return;
-
-        if (TryComp<AbductorConsoleComponent>(args.Target, out var console))
-        {
-            console.Armor = GetNetEntity(ent);
-            _popup.PopupEntity(Loc.GetString("abductors-ui-vest-linked"), args.User);
+        if (!_actionBlockerSystem.CanInstrumentInteract(args.User, args.Used, args.Target) 
+            || !args.Target.HasValue 
+            || !TryComp<AbductorConsoleComponent>(args.Target, out var console))
             return;
-        }
+
+        var netEntity = GetNetEntity(ent);
+        console.Armor = netEntity;
+
+        _popup.PopupEntity(Loc.GetString("abductors-ui-vest-linked"), args.User);
+        UpdateGui(netEntity, (args.Target.Value, console));
     }
 }

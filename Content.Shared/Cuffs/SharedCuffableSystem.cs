@@ -390,6 +390,22 @@ namespace Content.Shared.Cuffs
                         ("otherName", Identity.Name(user, EntityManager, target)),
                         ("otherEnt", user)), target, target);
                 }
+
+                //Starlight Start
+                if (_net.IsServer)
+                {
+                    // Handles spawning broken cuffs on server to avoid client misprediction
+                    if (component.BreakOnCuffingFailed)
+                    {
+                        QueueDel(uid);
+                        if (component.BrokenPrototype.HasValue)
+                        {
+                            var trash = Spawn(component.BrokenPrototype, Transform(uid).Coordinates);
+                            _hands.PickupOrDrop(user, trash);
+                        }
+                    }
+                }
+                //Starlight End
             }
         }
 
@@ -519,7 +535,7 @@ namespace Content.Shared.Cuffs
                 return true;
             }
 
-            if (!_hands.CanDrop(user, handcuff))
+            if (handcuffComponent.MustBeUsedFromHand /*Starlight*/ && !_hands.CanDrop(user, handcuff))
             {
                 _popup.PopupClient(Loc.GetString("handcuff-component-cannot-drop-cuffs", ("target", Identity.Name(target, EntityManager, user))), user, user);
                 return false;

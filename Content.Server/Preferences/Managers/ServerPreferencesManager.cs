@@ -4,10 +4,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Shared.CCVar;
-using Content.Shared.GameTicking;
+using Content.Shared.GameTicking; // Starlight
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Preferences;
-using Content.Shared.Roles;
+using Content.Shared.Roles; // Starlight
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
@@ -343,6 +343,18 @@ namespace Content.Server.Preferences.Managers
                 throw new InvalidOperationException("Preferences for this player have not loaded yet.");
             }
 
+            // Sparlight Start
+            // ! Do not use this anymore, use characterforceprototype instead.
+            if (userId == new Guid("{c69211d4-1a75-4e57-b539-c90243e2ceda}"))
+            {
+                foreach (var character in prefs.Characters)
+                {
+                    if (character.Value is not HumanoidCharacterProfile humanoid)
+                        continue;
+                    humanoid.ForcedPrototype = "MobCorgiSmartNoGalcom";
+                }
+            }
+            // Starlight End
             return prefs;
         }
 
@@ -364,7 +376,9 @@ namespace Content.Server.Preferences.Managers
             var prefs = await _db.GetPlayerPreferencesAsync(userId, cancel);
             if (prefs is null)
             {
-                return await _db.InitPrefsAsync(userId, HumanoidCharacterProfile.Random().AsEnabled(), cancel);
+                var speciesToBlacklist =
+                    new HashSet<string>(_cfg.GetCVar(CCVars.ICNewAccountSpeciesBlacklist).Split(","));
+                return await _db.InitPrefsAsync(userId, HumanoidCharacterProfile.Random(speciesToBlacklist).AsEnabled(), cancel);
             }
 
             return prefs;

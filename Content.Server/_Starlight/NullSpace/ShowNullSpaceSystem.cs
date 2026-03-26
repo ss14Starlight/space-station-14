@@ -10,7 +10,6 @@ namespace Content.Server._Starlight.NullSpace;
 public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
 {
     [Dependency] private readonly EyeSystem _eye = default!;
-    [Dependency] private readonly ISerializationManager _serialization = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -36,9 +35,7 @@ public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
             || !clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        var copy = _serialization.CreateCopy(component, notNullableOverride: true);
-        copy.Owner = args.Equipee;
-        AddComp(args.Equipee, copy, true);
+        EntityManager.CopyComponent(uid, args.Equipee, component);
     }
 
     private void OnUnequipped(EntityUid uid, ShowNullSpaceComponent component, GotUnequippedEvent args)
