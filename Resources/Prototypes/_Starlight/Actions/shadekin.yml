@@ -58,7 +58,6 @@
       itemIconStyle: NoItem
     - type: InstantAction
       event: !type:BrighteyeDarkTrapActionEvent
-    - type: AntagonisticAction
 
 - type: entity
   id: BrighteyeShadeSkipAction

@@ -165,7 +165,6 @@
       bloodToUnlock: 250
       bloodCost: 25
       requiredClass: Hemomancer
-    - type: AntagonisticAction
 
 - type: entity
   parent: BaseAction
