@@ -1,4 +1,5 @@
 ﻿using Robust.Shared.Network;
+using Starlight.NullLink;
 
 namespace Content.Server.Database
 {
@@ -17,4 +18,14 @@ namespace Content.Server.Database
             UnbanTime = unbanTime;
         }
     }
+
+    #region Starlight
+
+    public static class UnbanDefExtensions
+    {
+        public static AdminUnban ToNullLink(this ServerUnbanDef serverUnban) 
+            => new(serverUnban.BanId, serverUnban.UnbanningAdmin, serverUnban.UnbanTime);
+    }
+
+    #endregion
 }

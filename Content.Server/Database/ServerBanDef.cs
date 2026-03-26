@@ -3,6 +3,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
+using Starlight.NullLink;
 
 
 namespace Content.Server.Database
@@ -98,4 +99,14 @@ namespace Content.Server.Database
             // Starlight edit End
         }
     }
+
+    #region Starlight
+
+    public static class BanDefExtensions
+    {
+        public static AdminBan ToNullLink(this ServerBanDef banDef)
+            => new(banDef.Id, banDef.UserId, banDef.Address, banDef.HWId == null ? null : (banDef.HWId.Hwid, (int)banDef.HWId.Type), banDef.BanTime, banDef.ExpirationTime, banDef.RoundId, banDef.PlaytimeAtNote, banDef.Reason, banDef.Severity.ToString(), banDef.BanningAdmin, banDef.Unban?.ToNullLink(), null, (int)banDef.ExemptFlags);
+    }
+
+    #endregion
 }

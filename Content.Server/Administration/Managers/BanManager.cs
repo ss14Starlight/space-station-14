@@ -21,6 +21,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using NullLinkAdminBan = Starlight.NullLink.AdminBan;
 
 #region Starlight
 using System.Net.Http.Json;
@@ -173,6 +174,9 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             banningAdmin,
             null);
 
+        if (_actor.TryGetServerGrain(out var serverGrain))
+            await serverGrain.AddOrUpdateBan(banDef.ToNullLink());
+
         await _db.AddServerBanAsync(banDef);
         if (_cfg.GetCVar(CCVars.ServerBanResetLastReadRules) && target != null)
             await _db.SetLastReadRules(target.Value, null); // Reset their last read rules. They probably need a refresher!
@@ -201,9 +205,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         _sawmill.Info(logMessage);
         _chat.SendAdminAlert(logMessage);
 
-        var ban = await _db.GetServerBanAsync(null, target, null, null);
-        if (ban != null)
-            SendWebhook(await GenerateBanPayload(ban, minutes));
+        SendWebhook(await GenerateBanPayload(banDef, minutes)); // Starlight-edit
 
         KickMatchingConnectedPlayers(banDef, "newly placed ban");
     }
@@ -253,17 +255,29 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
     public async Task<List<ServerBanDef>> GetServerBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned=true)
     {
-        return await _db.GetServerBansAsync(address, userId, hwId, modernHWIds, includeUnbanned);
+        List<ServerBanDef> bans = await _db.GetServerBansAsync(address, userId, hwId, modernHWIds, includeUnbanned);
+        if (_actor.TryGetServerGrain(out var serverGrain))
+        {
+            var network = await serverGrain.RequestBans(userId, address, hwId, modernHWIds, includeUnbanned);
+            bans.Concat(network.ToDef());
+        }
+        return bans;
     }
 
     public async Task<ServerBanDef?> GetServerBanAsync(int id)
     {
-        return await _db.GetServerBanAsync(id);
+        var ban = await _db.GetServerBanAsync(id);
+        if (_actor.TryGetServerGrain(out var serverGrain))
+            ban ??= (await serverGrain.RequestBanById(id))?.ToDef();
+        return ban;
     }
 
     public async Task<ServerBanDef?> GetServerBanAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds)
     {
-        return await _db.GetServerBanAsync(address, userId, hwId, modernHWIds);
+        var ban = await _db.GetServerBanAsync(address, userId, hwId, modernHWIds);
+        if (_actor.TryGetServerGrain(out var serverGrain))
+            ban ??= (await serverGrain.RequestBan(address, userId, hwId, modernHWIds))?.ToDef();
+        return ban;
     }
 
     public async Task<List<ServerRoleBanDef>> GetServerRoleBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true)
