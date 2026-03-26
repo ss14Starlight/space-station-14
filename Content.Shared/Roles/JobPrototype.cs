@@ -11,7 +11,8 @@ namespace Content.Shared.Roles
     ///     Describes information for a single job on the station.
     /// </summary>
     [Prototype]
-    public sealed partial class JobPrototype : IPrototype
+    public sealed partial class 
+        JobPrototype : IPrototype
     {
         [ViewVariables]
         [IdDataField]
@@ -93,6 +94,12 @@ namespace Content.Shared.Roles
 
         [DataField]
         public bool CanBeAntag { get; private set; } = true;
+        
+        /// <summary>
+        ///     STARLIGHT: Whether to bypass EOR pacification.
+        /// </summary>
+        [DataField]
+        public bool BypassEorPacification { get; private set; } = true;
 
         /// <summary>
         ///     The "weight" or importance of this job. If this number is large, the job system will assign this job
