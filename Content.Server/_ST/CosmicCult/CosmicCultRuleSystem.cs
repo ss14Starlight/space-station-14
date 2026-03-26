@@ -60,6 +60,8 @@ using Content.Shared.Gibbing;
 using Content.Shared.Light.Components;
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language;
+using Content.Server.Weather;
+using Content.Shared.Shuttles.Components;
 
 namespace Content.Server._ST.CosmicCult;
 
@@ -101,6 +103,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly VisibilitySystem _visibility = default!;
     [Dependency] private readonly LanguageSystem _languageSystem = default!;
+    [Dependency] private readonly WeatherSystem _weather = default!;
 
     private ISawmill _sawmill = default!;
     private TimeSpan _t3RevealDelay = default!;
@@ -206,13 +209,17 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             _chatSystem.DispatchStationAnnouncement(component.MonumentInGame, Loc.GetString("cosmiccult-announce-tier3-warning"), null, false, null, Color.FromHex("#cae8e8"));
             _audio.PlayGlobal(_tier3Sound, Filter.Broadcast(), false, AudioParams.Default);
 
-            EnsureComp<ParallaxComponent>(mapData, out var parallax);
-            parallax.Parallax = "CosmicFinaleParallax";
-            Dirty(mapData, parallax);
+            _weather.TryAddWeather(mapData, "WeatherCosmic", out _);
+
+            // EnsureComp<ParallaxComponent>(mapData, out var parallax);
+            // parallax.Parallax = "CosmicFinaleParallax";
+            // Dirty(mapData, parallax);
 
             EnsureComp<MapLightComponent>(mapData, out var mapLight);
             mapLight.AmbientLightColor = Color.FromHex("#210746");
             Dirty(mapData, mapLight);
+
+            EnsureComp<PreventFTLComponent>(mapData); // This will prevent all Shuttles to exist the station map... OH BOY...
 
             var lights = EntityQueryEnumerator<PoweredLightComponent>();
             while (lights.MoveNext(out var light, out _))
@@ -332,6 +339,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         while (query.MoveNext(out var ruleUid, out _, out var cultRule, out _))
         {
             SetWinType((ruleUid, cultRule), WinType.CultComplete); //here's no coming back from this. Cult wins this round
+            var monumentMap = Transform(cultRule.MonumentInGame).MapUid;
             QueueDel(cultRule.MonumentInGame); // The monument doesn't need to stick around postround! Into the bin with you.
             QueueDel(cultRule.MonumentSlowZone); // cease exist
 
@@ -339,24 +347,30 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
 
             var spawnPoints = EntityManager.GetAllComponents(typeof(CosmicVoidSpawnComponent)).ToImmutableList();
             if (spawnPoints.IsEmpty)
-            {
                 return;
-            }
 
             var endQuery = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent>();
             while (endQuery.MoveNext(out var player, out _, out _))
             {
                 var newSpawn = _rand.Pick(spawnPoints);
                 var spawnTgt = Transform(newSpawn.Uid).Coordinates;
-                Timer.Spawn(_rand.Next(TimeSpan.FromSeconds(4), TimeSpan.FromSeconds(25)), () => { EndRoundVoid(player, spawnTgt, cultRule); });
+
+                if (cultRule.Cultists.Contains(player))
+                    Timer.Spawn(TimeSpan.FromSeconds(30), () => { EndRoundVoid(player, spawnTgt, cultRule, null); });
+                else
+                    Timer.Spawn(_rand.Next(TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(30)), () => { EndRoundVoid(player, spawnTgt, cultRule, monumentMap); });
             }
         }
     }
 
-    private void EndRoundVoid(EntityUid player, EntityCoordinates spawnTgt, CosmicCultRuleComponent cultRule)
+    private void EndRoundVoid(EntityUid player, EntityCoordinates spawnTgt, CosmicCultRuleComponent cultRule, EntityUid? monumentMap)
     {
-        if (!_mind.TryGetMind(player, out var mind, out _) || _mobStateSystem.IsDead(player))
+        if (_mobStateSystem.IsDead(player) || !_mind.TryGetMind(player, out var mind, out _))
             return;
+
+        if (monumentMap is not null && Transform(player).MapUid != monumentMap)
+            return;
+
         if (cultRule.Cultists.Contains(player))
         {
             var mob = Spawn(cultRule.CosmicAscended, spawnTgt);

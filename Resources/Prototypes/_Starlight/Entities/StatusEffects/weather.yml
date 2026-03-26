@@ -77,3 +77,11 @@
   components:
     - type: ParallaxStatusEffect
       parallax: SpaceDog
+
+
+- type: entity
+  parent: WeatherBase
+  id: WeatherCosmic
+  components:
+    - type: ParallaxStatusEffect
+      parallax: CosmicFinaleParallax
