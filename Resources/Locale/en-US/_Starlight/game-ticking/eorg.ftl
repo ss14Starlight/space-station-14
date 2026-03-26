@@ -1,1 +1,1 @@
-﻿peaceful-round-end = I could get in trouble for that!
+﻿peaceful-round-end = That would be end-of-ground griefing!
