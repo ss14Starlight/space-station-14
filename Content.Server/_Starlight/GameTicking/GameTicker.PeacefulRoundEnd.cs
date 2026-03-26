@@ -1,4 +1,5 @@
 using Content.Server.GameTicking;
+using Content.Server.Shuttles.Components;
 using Content.Shared._NullLink;
 using Content.Shared._Starlight.GameTicking.Components;
 using Content.Shared.Actions.Components;
@@ -42,8 +43,26 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
     {
         if (!_isEnabled || !_roundedEnded) return;
         if (_rolesReq.IsPeacefulBypass(target)) return;
+        if (!IsOnPacifiedGrid(target)) return;
+        
         EnsureComp<PacifiedComponent>(target);
         EnsureComp<DisableAntagonismComponent>(target);
+    }
+    
+    private bool IsOnPacifiedGrid(EntityUid uid)
+    {
+        var xform = Transform(uid);
+        var grid = xform.GridUid;
+
+        if (HasComp<StationEmergencyShuttleComponent>(grid))
+            return true; // Evac shuttle/pod = pacified
+        if (HasComp<StationCentcommComponent>(grid))
+            return true; // CC = pacified
+
+        // In all other cases we do not *mechanically* enfore it.
+        // This way station-ending antags can still do their thing,
+        // and sec can still fight back if they're left behind on station.
+        return false;
     }
 
     private void OnSpawnComplete(PlayerSpawnCompleteEvent ev)
