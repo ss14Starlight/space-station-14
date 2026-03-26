@@ -10,6 +10,7 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
+    - IPCExternalCooling # Far Horizons
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/blueshield.rsi
   - type: Clothing
@@ -79,6 +80,7 @@
       - Hardsuit
       - WhitelistChameleon
       - CorgiWearable
+      - IPCExternalCooling # Far Horizons
 
 #Clown Battlesuit
 - type: entity
@@ -186,6 +188,7 @@
         - CorgiWearable
         - WhitelistChameleon
         - HardsuitSpatio #can now be used to make goliath hardsuit
+        - IPCExternalCooling # Far Horizons
 
 #Syndicate Infiltration Suit
 - type: entity
@@ -262,6 +265,7 @@
       - Hardsuit
       - WhitelistChameleon
       - CorgiWearable
+      - IPCExternalCooling # Far Horizons
 
 #USSP
 - type: entity
@@ -310,6 +314,7 @@
         - MonkeyWearable
         - WhitelistChameleon
         - FootstepSound
+        - IPCExternalCooling # Far Horizons
     - type: Item
       size: Huge
 
@@ -352,6 +357,7 @@
     - Hardsuit
     - CorgiWearable
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 # Experimental Security Hardsuit
 - type: entity
@@ -407,6 +413,7 @@
     - type: Tag
       tags:
         - RequiredForLmgTag
+        - IPCExternalCooling # Far Horizons
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitSecurityExperimental
 
@@ -445,6 +452,7 @@
         - Hardsuit
         - HardsuitSpatio
         - CorgiWearable
+        - IPCExternalCooling # Far Horizons
     - type: StealTarget
       stealGroup: SalvLeadHardsuit
 
@@ -514,6 +522,7 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
+    - IPCExternalCooling # Far Horizons
 
 #Mining Hardsuit
 - type: entity
@@ -553,6 +562,7 @@
       tags:
         - CorgiWearable
         - Hardsuit
+        - IPCExternalCooling # Far Horizons
 
 # Golden
 
@@ -785,3 +795,4 @@
       tags:
         - CorgiWearable
         - Hardsuit
+        - IPCExternalCooling # Far Horizons

@@ -11,6 +11,7 @@
       - AbductorScientist
       - CanPilot
       - CantBecomeRevolutionary
+      - NotLabelable
       
 - type: entity
   name: abductor scientist

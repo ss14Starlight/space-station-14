@@ -22,14 +22,14 @@
 - type: entity
   parent: ClothingUniformJumpsuitAtmos
   id: ClothingUniformJumpsuitAtmosSyndie
-  name: Contortionist's Jumpsuit
+  name: contortionist's Jumpsuit
   components:
   - type: VentCrawlClothing
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: MagistrateUniformSuit
-  name: Magistrate's Jumpsuit
+  name: magistrate's Jumpsuit
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate.rsi
@@ -39,7 +39,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: MagistrateUniformSuitLongcoat
-  name: Magistrate's Longcoat
+  name: magistrate's Longcoat
   description: It's a nice long jacket attached to your uniform, but it has no real insulation so a real jacket beats it. Atleast it looks cool, though.
   components:
   - type: Sprite
@@ -50,7 +50,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNtrep
-  name: nt representive suit
+  name: nt representative suit
   description: That suit that is better not to see.
   components:
   - type: Sprite
@@ -61,7 +61,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNtrepFormal
-  name: nt representive formal suit
+  name: nt representative formal suit
   description: That suit that is better not to see.
   components:
   - type: Sprite
@@ -72,7 +72,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNtrepTurtleNeck
-  name: nt representive's turtleneck jumpsuit
+  name: nt representative's turtleneck jumpsuit
   description: For a more casual look while on the job.
   components:
   - type: Sprite
@@ -83,7 +83,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNtrepNoble
-  name: nt representive's noble jumpsuit
+  name: nt representative's noble jumpsuit
   description: A more classical and elegant style of clothing, designed to emulate the fashion of old earth nobility.
   components:
   - type: Sprite
@@ -603,7 +603,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
   id: ClothingAltUniformJumpsuitCentcomOfficial
-  name: CentComm officer's jumpsuit
+  name: centcomm officer's jumpsuit
   description: It's a jumpsuit worn by CentComm officers.
   components: 
   - type: Sprite
@@ -713,7 +713,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNCT
-  name: NT career trainer's uniform
+  name: nt career trainer's uniform
   description: A neatly pressed olive green shirt paired with black jeans, worn by those dedicated to shaping the future of the workforce.
   components:
   - type: Sprite

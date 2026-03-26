@@ -15,6 +15,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC
   - type: SurgeryPartCondition
     parts: 
     - Arm

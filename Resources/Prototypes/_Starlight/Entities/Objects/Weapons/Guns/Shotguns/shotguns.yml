@@ -287,6 +287,7 @@
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/forged_shotgun.rsi
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/forged_shotgun.rsi
+  - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 2
     proto: null
