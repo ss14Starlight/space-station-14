@@ -17,7 +17,6 @@
           - NukeOperative
           - Traitor
           - Revolutionary
-          - SELFAgent
       #SL end
 
 - type: entity
@@ -39,7 +38,6 @@
           - NukeOperative
           - Traitor
           - Revolutionary
-          - SELFAgent
       #SL end
 
 - type: entity
@@ -63,7 +61,6 @@
           - NukeOperative
           - Traitor
           - Revolutionary
-          - SELFAgent
       #SL end
     - type: ObjectiveOnSign
       #SL begin
@@ -72,7 +69,6 @@
           - NukeOperative
           - Traitor
           - Revolutionary
-          - SELFAgent
       #SL end
       objectives:
         # thief collection objectives
@@ -203,7 +199,6 @@
           - Traitor
           - Revolutionary
           - MindShield
-          - SELFAgent
       #SL end
 
 - type: entity
@@ -228,7 +223,6 @@
           - Traitor
           - Revolutionary
           - MindShield
-          - SELFAgent
       #SL end
 
 - type: entity
@@ -253,7 +247,6 @@
           - Traitor
           - Revolutionary
           - MindShield
-          - SELFAgent
       #SL end
 
 #SL begin
