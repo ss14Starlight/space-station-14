@@ -54,9 +54,11 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
         var xform = Transform(uid);
         var grid = xform.GridUid;
 
-        if (HasComp<StationEmergencyShuttleComponent>(grid))
-            return true; // Evac shuttle/pod = pacified
-        if (HasComp<StationCentcommComponent>(grid))
+        if (HasComp<EmergencyShuttleComponent>(grid))
+            return true; // Evac shuttle (escape pods don't count for this) = pacified
+        
+        AllEntityQuery<StationCentcommComponent>().MoveNext(out var centcomm);
+        if (centcomm != null && centcomm.Entity == grid)
             return true; // CC = pacified
 
         // In all other cases we do not *mechanically* enfore it.
