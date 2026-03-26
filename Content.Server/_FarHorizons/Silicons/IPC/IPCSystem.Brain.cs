@@ -76,7 +76,7 @@ public sealed partial class IPCSystem
             _container.Insert(args.Used, ent.Comp.BrainContainerSlot);
             _adminLog.Add(LogType.Action, LogImpact.Medium,
                 $"{ToPrettyString(args.User):player} installed brain {ToPrettyString(args.Used)} into IPC {ToPrettyString(ent)}");
-            _popup.PopupEntity(Loc.GetString("ipc-brain-ejected"), ent, args.User);
+            _popup.PopupEntity(Loc.GetString("ipc-brain-inserted"), ent, args.User);
             _audio.PlayPvs(_audio.ResolveSound(ent.Comp.BrainInsertionSound), ent);
             args.Handled = true;
         }

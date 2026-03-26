@@ -35852,5 +35852,96 @@ Entries:
   id: 392801
   time: '2026-03-25T01:14:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3928
+- author: BigfootBravo
+  changes:
+  - message: Fixed a few IPC bugs.
+    type: Fix
+  id: 393301
+  time: '2026-03-25T13:05:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3933
+- author: CawsForConcern
+  changes:
+  - message: (Cog) Fixed the entire mail routing system (eardrums rejoice).
+    type: Fix
+  id: 393001
+  time: '2026-03-25T13:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3930
+- author: Vonte
+  changes:
+  - message: (Manor) Fixed turnstiles into genpop sowwy.
+    type: Fix
+  id: 392301
+  time: '2026-03-25T13:26:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3923
+- author: wonderfulnewworld
+  changes:
+  - message: You can no longer label everyone.
+    type: Fix
+  - message: You can now carry Exterminators.
+    type: Fix
+  id: 392401
+  time: '2026-03-25T13:29:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3924
+- author: wonderfulnewworld
+  changes:
+  - message: Renames ui-options-tts.ftl to examine.ftl.
+    type: Tweak
+  - message: Moves the examine.ftl and voices.ftl to a new tts folder.
+    type: Tweak
+  - message: Fixes duplicate TTS loc error.
+    type: Fix
+  id: 393101
+  time: '2026-03-25T13:33:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3931
+- author: Conflee, Nyxilath
+  changes:
+  - message: Added Syndicate Dead Drops, a new midround event. This event teleports
+      a Syndicate Briefcase with 3-4 uplink items onto the station, announcing that
+      this has happened to everyone but also telling those with Syndicate Comms the
+      rough location at the same time, creating a rush to secure the loot first. May
+      be anchored under floor tiles, requiring a t-ray to find.
+    type: Add
+  id: 392701
+  time: '2026-03-25T13:45:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3927
+- author: TaserTheFox
+  changes:
+  - message: Fixed misspelling of "Representives".
+    type: Fix
+  id: 392601
+  time: '2026-03-25T14:33:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3926
+- author: CawsForConcern
+  changes:
+  - message: Pie cannons can now be used when pacified (Thieves rejoice).
+    type: Tweak
+  id: 394401
+  time: '2026-03-25T19:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3944
+- author: CawsForConcern
+  changes:
+  - message: (Leth) Mailing unit in Cargo.
+    type: Add
+  - message: (Leth) Mail system actually works now - no more 'one way' mail routes.
+      Send as much mail as your heart desires.
+    type: Fix
+  id: 394201
+  time: '2026-03-25T19:14:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3942
+- author: CawsForConcern
+  changes:
+  - message: (Orwell) CentComm clipboard and bedsheet from NTR room, replaced with
+      NT variants instead.
+    type: Remove
+  id: 394001
+  time: '2026-03-25T19:28:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3940
+- author: CawsForConcern
+  changes:
+  - message: (Lobster) Replaced the custom Galoshnts with the real Galoshnts.
+    type: Tweak
+  id: 393901
+  time: '2026-03-25T20:05:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3939
 Order: -1
 
