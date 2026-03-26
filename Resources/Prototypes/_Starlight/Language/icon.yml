@@ -221,3 +221,11 @@
     sprite: /Textures/_Starlight/Interface/language_icon.rsi
     state: lagomorph
   allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: LanguageIconCosmic
+  icon:
+    sprite: /Textures/_ST/CosmicCult/Icons/antag_icons.rsi
+    state: CosmicCult
+  allowSelection: false

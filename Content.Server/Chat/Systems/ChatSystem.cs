@@ -81,7 +81,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!; // Starlight
     [Dependency] private readonly LanguageSystem _language = default!; // Starlight
     [Dependency] private readonly SharedPopupSystem _popups = default!; // Starlight
-    [Dependency] private readonly RadioSystem _radioSystem = default!; // Starlight
 
     public const float DefaultObfuscationFactor = 0.2f; // Percentage of symbols in a whispered message that can be seen even by "far" listeners - Starlight
     public readonly Color DefaultSpeakColor = Color.LightGray; // Starlight
@@ -252,22 +251,26 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (language.SpeechOverride.ChatTypeOverride is { } chatTypeOverride)
             desiredType = chatTypeOverride;
         
-
         // This message may have a radio prefix, and should then be whispered to the resolved radio channel
         if (checkRadioPrefix)
         {
             if (TryProcessRadioMessage(source, message.Text, out var modMessage, out var channel, out var customChannel))
             {
-                if (language.RadioChannel is not null)
-                    _radioSystem.SendRadioMessage(source, modMessage, language.RadioChannel.Value, source, language);
+                if (language.SpeechOverride.RadioChannel is not null)
+                    _language.SendEntityRadioLanguage(source, modMessage, language.SpeechOverride.RadioChannel.Value, language);
 
-                SendEntityWhisper(source, modMessage, range, channel, nameOverride, language, hideLog, ignoreActionBlocker, customChannel);
+                if (!language.SpeechOverride.BlockSpeech)
+                    SendEntityWhisper(source, modMessage, range, channel, nameOverride, language, hideLog, ignoreActionBlocker, customChannel);
+
                 return;
             }
         }
         
-        if (language.RadioChannel is not null)
-            _radioSystem.SendRadioMessage(source, message.Text, language.RadioChannel.Value, source, language);
+        if (language.SpeechOverride.RadioChannel is not null)
+            _language.SendEntityRadioLanguage(source, message.Text, language.SpeechOverride.RadioChannel.Value, language);
+
+        if (language.SpeechOverride.BlockSpeech)
+            return;
         // Starlight end
 
         if (desiredType == InGameICChatType.CollectiveMind)

@@ -73,13 +73,14 @@
 
 - type: language
   id: Cosmic
+  icon: LanguageIconCosmic
   chatPrefix: cos
-  iconUnderstood: false
   iconNotUnderstood: false
-  radioChannel: CosmicRadio
   speech:
     color: "#4cabb3"
     fontId: Cosmic
     obfuscationFont: true
+    radioChannel: CosmicRadio
+    chatTypeOverride: Whisper
   obfuscation:
     !type:RandomObfuscation
