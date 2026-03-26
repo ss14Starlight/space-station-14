@@ -42,6 +42,7 @@
       checkCanInteract: false
     - type: InstantAction
       event: !type:BrighteyePortalActionEvent
+    - type: AntagonisticAction
 
 - type: entity
   id: BrighteyeDarkTrapAction
