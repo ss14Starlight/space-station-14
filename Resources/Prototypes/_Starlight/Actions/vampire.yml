@@ -142,7 +142,6 @@
       bloodToUnlock: 400
       bloodCost: 30
       requiredClass: Hemomancer
-    - type: AntagonisticAction
 
 - type: entity
   parent: BaseAction
@@ -191,7 +190,6 @@
       bloodToUnlock: 250
       bloodCost: 40
       requiredClass: Hemomancer
-    - type: AntagonisticAction
 
 - type: entity
   parent: BaseAction
@@ -392,7 +390,6 @@
       bloodToUnlock: 400
       bloodCost: 0
       requiredClass: Umbrae
-    - type: AntagonisticAction
 
 - type: entity
   parent: BaseAction
@@ -472,7 +469,6 @@
       bloodToUnlock: 250
       bloodCost: 30
       requiredClass: Dantalion
-    - type: AntagonisticAction
 
 - type: entity
   parent: BaseAction
@@ -709,4 +705,3 @@
       bloodToUnlock: 1000
       bloodCost: 30
       requiredClass: Gargantua
-    - type: AntagonisticAction
