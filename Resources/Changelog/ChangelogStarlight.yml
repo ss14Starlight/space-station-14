@@ -35943,5 +35943,65 @@ Entries:
   id: 393901
   time: '2026-03-25T20:05:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3939
+- author: CawsForConcern
+  changes:
+  - message: (Cog) Missing MV cables added to Science, should no longer be unpowered
+      at roundstart.
+    type: Fix
+  id: 393701
+  time: '2026-03-26T07:39:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3937
+- author: CawsForConcern
+  changes:
+  - message: (Bagel) Doors for the Engineering Substation are now correctly marked
+      as Engineering Airlocks instead of Maints Airlocks (access remains the same,
+      but this is for visual clarity).
+    type: Fix
+  id: 393801
+  time: '2026-03-26T07:43:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3938
+- author: BigfootBravo
+  changes:
+  - message: Fixed IPC heads not rendering correctly
+    type: Fix
+  id: 394501
+  time: '2026-03-26T08:04:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3945
+- author: CawsForConcern
+  changes:
+  - message: (Silica) Missing LV wire between HOP and Vault that was causing the main
+      greenway to be unpowered.
+    type: Fix
+  id: 394601
+  time: '2026-03-26T08:12:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3946
+- author: Ohelig
+  changes:
+  - message: Fixes a bug where borgs lose Syndicate radio if emagged before they choose
+      a chassis type.
+    type: Fix
+  id: 392001
+  time: '2026-03-26T08:21:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3920
+- author: Conflee
+  changes:
+  - message: Changed rendering of Platforms, using ChildEntities, so objects like
+      tables or chairs placed in the same tile as a platform render properly with
+      the perspective.
+    type: Tweak
+  id: 394701
+  time: '2026-03-26T08:29:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3947
+- author: wonderfulnewworld
+  changes:
+  - message: Interdyne vendors now have their own ads. They do not imply Syndicate
+      collaboration.
+    type: Add
+  - message: Updates Interdyne life-aid sprites to be more similar to the NanoMed
+      band-aids.
+    type: Tweak
+  id: 392901
+  time: '2026-03-26T10:03:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3929
 Order: -1
 

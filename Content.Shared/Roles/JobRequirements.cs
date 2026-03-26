@@ -68,7 +68,7 @@ public static class JobRequirements
         ProtoId<JobPrototype> job,
         ICommonSession? player,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason,
+        out List<FormattedMessage> reason, // Starlight: List
         IEntityManager entManager,
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile)
@@ -76,7 +76,7 @@ public static class JobRequirements
         if (protoManager.TryIndex(job, out var jobProto))
             return TryRequirementsMet(jobProto, player, playTimes, out reason, entManager, protoManager, profile);
 
-        reason = FormattedMessage.FromUnformatted("Failed to get job prototype");
+        reason = [FormattedMessage.FromUnformatted("Failed to get job prototype")]; // Starlight: List
         return false;
     }
 }
