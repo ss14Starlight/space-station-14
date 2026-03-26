@@ -365,7 +365,7 @@
 - type: entity
   parent: Lighter
   id: DiscountDanLighter
-  name: discount dan's lighter #Starlight edit
+  name: Discount Dan's lighter
   description: "The worst lighter ever produced, lighterburn is inevitable, do not refuel while lit."
   components:
   - type: Sprite
@@ -420,7 +420,7 @@
 - type: entity
   parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: CybersunFlippo
-  name: cybersun flippo # Starlight-edit
+  name: CyberSun flippo
   description: "A Sleek black and magenta flippo lighter, bearing the logo and iconography of CyberSun Industries."
   components:
   - type: Sprite
@@ -440,7 +440,7 @@
 - type: entity
   parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: InterdyneFlippo
-  name: interdyne flippo # Starlight-edit
+  name: Interdyne flippo # Starlight-edit
   description: "A deep blue flippo lighter, decorated with the logo of Interdyne Pharmaceuticals' 'Gene Clean' clinics. Become the master of your own cigarette."
   components:
   - type: Sprite
@@ -464,7 +464,7 @@
 - type: entity
   parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: NanotrasenFlippo
-  name: nanotrasen flippo  # Starlight-edit
+  name: NanoTrasen flippo  # Starlight-edit
   description: "A navy blue luxury flippo, generally handed out to loyal heads of staff instead of a payraise. Fueled with liquid plasma and burns a little hotter than usual."
   components:
   - type: Sprite
@@ -501,7 +501,7 @@
 - type: entity
   parent: [BaseBrandedLighter, BaseCentcommContraband]
   id: CentCommFlippo
-  name: gilded centcomm flippo  # Starlight-edit
+  name: gilded CentComm flippo  # Starlight-edit
   description: "An Ornate, jade embossed and gilded flippo frame containing a bluespace powered jet. The latch is secured by a miniature access reader that only responds to CentComm officials. The nicest lighter known to man."
   suffix: DO NOT MAP
   components:
@@ -547,7 +547,7 @@
 - type: entity
   parent: [BaseBrandedLighter, BaseMajorContraband, FlippoLighter] #SL Edit: added flippolighter parent
   id: SpiderclanFlippo
-  name: spider-clan lighter #starlight edit
+  name: Spider-Clan lighter
   description: "A high tech jet lighter, engineered to function even in deep space. Runs on a tiny microfusion cell."
   components:
   - type: Sprite
@@ -567,7 +567,7 @@
 - type: entity
   parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: WaffleCoFlippo
-  name: waffle co. flippo #starlight edit
+  name: Waffle Co. flippo
   description: "A robust mass produced lighter. The Waffle Co. logo turns the spark wheel when pushed up, minimising risk of lighter burns for even the most inept user."
   components:
   - type: Sprite
@@ -587,7 +587,7 @@
 - type: entity
   parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: HonkCoFlippo
-  name: honk co. flippo #starlight edit
+  name:  Honk Co. flippo
   description: "A slippery gag lighter produced by Honk Co. hidden inside of a real banana peel."
   components:
   - type: Sprite
@@ -632,7 +632,7 @@
 - type: entity
   parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: DonkcoLighter
-  name: donk co. flippo #starlight edit
+  name: Donk Co. flippo
   description: "The flippo of choice for terrible cooks. A Breaded novelty lighter made by Donk Co. Somehow edible while lit." #SL Edit: decription edit to remove 'traitor' reference
   components:
   - type: Sprite

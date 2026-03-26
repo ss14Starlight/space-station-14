@@ -152,7 +152,7 @@
 - type: entity
   id: CigPackGreen
   parent: CigPackBase
-  name: spessman's smokes packet #starlight edit
+  name: Spessman's Smokes packet
   description: A label on the packaging reads, Wouldn't a slow death make a change?
   components:
   - type: Sprite
@@ -167,7 +167,7 @@
 - type: entity
   id: CigPackRed
   parent: CigPackBase
-  name: dromedaryco packet #starlight edit
+  name: DromedaryCo packet
   description: The most popular brand of Space Cigarettes, sponsors of the Space Olympics.
   components:
   - type: Sprite
@@ -182,7 +182,7 @@
 - type: entity
   id: CigPackBlue
   parent: CigPackBase
-  name: acmeco packet #starlight edit
+  name: AcmeCo packet
   description: For those who somehow want to obtain the record for the most amount of cancerous tumors.
   components:
   - type: Sprite
@@ -197,7 +197,7 @@
 - type: entity
   id: CigPackBlack
   parent: CigPackBase
-  name: nomads packet #starlight edit
+  name: Nomads packet
   description: Nomads's extra strong, for when your life is more extra hard.
   components:
   - type: Sprite
@@ -212,7 +212,7 @@
 - type: entity
   id: CigPackSyndicate  #SL EDIT, Syndie to non-contra
   parent: CigPackBase
-  name: interdyne herbals packet #starlight edit
+  name: Interdyne herbals packet
   description: Medicinal cigarettes infused with medicine for when you need to do more than calm your nerves.  #SL EDIT, desc change for lore
   components:
   - type: Sprite
@@ -228,7 +228,7 @@
 - type: entity
   id: CigPackMixed
   parent: CigPackMixedBase
-  name: dan's soaked smokes #starlight edit
+  name: Dan's soaked smokes
   suffix: Mixed
   description: Dan worked with NT chemistry to dispose of excess chemicals, ENJOY.
   components:
@@ -347,7 +347,7 @@
 - type: entity
   id: CigPackBub
   parent: PackPaperRolling
-  name: greyman's specials pack
+  name: Greyman's specials pack
   description: An old rolling paper packet full of Greyman's special cigarettes. You feel more surgically inclined while smoking them.
   components:
   - type: EntityTableContainerFill
