@@ -1,0 +1,80 @@
+- type: gameMap
+  id: StarlightSubmarine
+  mapName: 'Submarine'
+  mapPath: /Maps/_Starlight/Stations/Submarine.yml
+  minPlayers: 100
+  maxPlayers: 350
+  stations:
+    StarlightSubmarine:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Submarine {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: 'SEA'
+        - type: StationEmergencyShuttle
+          emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_ming.yml
+        - type: StationJobs
+          availableJobs:
+            # All WIP. will be changed at some point
+            #service
+            Captain: [ 1, 1 ]
+            HeadOfPersonnel: [ 1, 1 ]
+            Bartender: [ 3, 4 ]
+            Botanist: [ 3, 4 ]
+            Chef: [ 3, 4 ]
+            Janitor: [ 4, 6 ]
+            Chaplain: [ 1, 1 ]
+            Librarian: [ 2, 2 ]
+            ServiceWorker: [ 4, 5 ]
+            Reporter: [ 1, 1 ]
+            #engineering
+            ChiefEngineer: [ 1, 1 ]
+            AtmosphericTechnician: [ 3, 4 ]
+            StationEngineer: [ 6, 7 ]
+            TechnicalAssistant: [ 3, 4 ]
+            #medical
+            ChiefMedicalOfficer: [ 1, 1 ]
+            Chemist: [ 2, 3 ]
+            MedicalDoctor: [ 7, 8 ]
+            Paramedic: [ 2, 2 ]
+            MedicalIntern: [ 3, 4 ]
+            Surgeon: [ 2, 2 ]
+            #science
+            ResearchDirector: [ 1, 1 ]
+            Scientist: [ 5, 6 ]
+            ResearchAssistant: [ 3, 4 ]
+            Roboticist: [ 2, 2 ]
+            #security
+            HeadOfSecurity: [ 1, 1 ]
+            Warden: [ 1, 1 ]
+            SecurityOfficer: [ 10, 12 ]
+            Detective: [ 1, 2 ]
+            SecurityCadet: [ 6, 6 ]
+            Brigmedic: [ 1, 2 ]
+            DutyOfficer: [ 3, 4 ]
+            #supply
+            Quartermaster: [ 1, 1 ]
+            SalvageSpecialist: [ 4, 5 ]
+            MiningSpecialist: [ 4, 5 ]
+            CargoTechnician: [ 6, 7 ]
+            MailTech: [ 2, 3 ]
+            SalvageLead: [ 1, 1 ]
+            #civilian
+            Assistant: [ -1, -1 ]
+            Clown: [ 1, 2 ]
+            Mime: [ 1, 2 ]
+            Musician: [ 2, 3 ]
+            Performer: [ 5, 6 ]
+            Boxer: [ 2, 3 ]
+            #silicon
+            StationAi: [ 1, 1 ]
+            Borg: [ 5, 6 ]
+            #law
+            Magistrate: [ 1, 1 ]
+            IAA: [ 1, 2 ]
+            #Representives
+            BlueShield: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]
+            NanotrasenCareerTrainer: [ 1, 2 ]
