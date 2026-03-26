@@ -244,6 +244,35 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         player.Channel.Disconnect(message);
     }
 
+    #region Starlight
+
+    public async Task CreateServerUnban(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime)
+    {
+        await _db.AddServerUnbanAsync(new ServerUnbanDef(banId, unbanningAdmin, unbanTime));
+    }
+
+    public async Task<List<ServerBanDef>> GetServerBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned=true)
+    {
+        return await _db.GetServerBansAsync(address, userId, hwId, modernHWIds, includeUnbanned);
+    }
+
+    public async Task<ServerBanDef?> GetServerBanAsync(int id)
+    {
+        return await _db.GetServerBanAsync(id);
+    }
+
+    public async Task<ServerBanDef?> GetServerBanAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds)
+    {
+        return await _db.GetServerBanAsync(address, userId, hwId, modernHWIds);
+    }
+
+    public async Task<List<ServerRoleBanDef>> GetServerRoleBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true)
+    {
+        return await _db.GetServerRoleBansAsync(address, userId, hwId, modernHWIds, includeUnbanned);
+    }
+
+    #endregion Starlight
+
     #endregion
 
     #region Role Bans

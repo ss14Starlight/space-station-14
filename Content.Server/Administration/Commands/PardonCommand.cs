@@ -1,4 +1,5 @@
-﻿using Content.Server.Database;
+﻿using Content.Server.Administration.Managers;
+using Content.Server.Database;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 
@@ -7,7 +8,8 @@ namespace Content.Server.Administration.Commands
     [AdminCommand(AdminFlags.Ban)]
     public sealed class PardonCommand : LocalizedCommands
     {
-        [Dependency] private readonly IServerDbManager _dbManager = default!;
+        //[Dependency] private readonly IServerDbManager _dbManager = default!; NullLink-edit: move to general method at Manager
+        [Dependency] private readonly IBanManager _banManager = default!;
 
         public override string Command => "pardon";
 
@@ -27,7 +29,7 @@ namespace Content.Server.Administration.Commands
                 return;
             }
 
-            var ban = await _dbManager.GetServerBanAsync(banId);
+            var ban = await _banManager.GetServerBanAsync(banId); // NullLink-edit: move to general method at Manager
 
             if (ban == null)
             {
@@ -50,7 +52,7 @@ namespace Content.Server.Administration.Commands
                 return;
             }
 
-            await _dbManager.AddServerUnbanAsync(new ServerUnbanDef(banId, player?.UserId, DateTimeOffset.Now));
+            await _banManager.CreateServerUnban(banId, player?.UserId, DateTimeOffset.Now); // NullLink-edit: move to general method at Manager
 
             shell.WriteLine(Loc.GetString($"cmd-pardon-success", ("id", banId)));
         }
