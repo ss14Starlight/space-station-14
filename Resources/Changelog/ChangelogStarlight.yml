@@ -35983,5 +35983,14 @@ Entries:
   id: 392001
   time: '2026-03-26T08:21:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3920
+- author: Conflee
+  changes:
+  - message: Changed rendering of Platforms, using ChildEntities, so objects like
+      tables or chairs placed in the same tile as a platform render properly with
+      the perspective.
+    type: Tweak
+  id: 394701
+  time: '2026-03-26T08:29:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3947
 Order: -1
 
