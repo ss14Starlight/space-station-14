@@ -35992,5 +35992,16 @@ Entries:
   id: 394701
   time: '2026-03-26T08:29:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3947
+- author: wonderfulnewworld
+  changes:
+  - message: Interdyne vendors now have their own ads. They do not imply Syndicate
+      collaboration.
+    type: Add
+  - message: Updates Interdyne life-aid sprites to be more similar to the NanoMed
+      band-aids.
+    type: Tweak
+  id: 392901
+  time: '2026-03-26T10:03:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3929
 Order: -1
 
