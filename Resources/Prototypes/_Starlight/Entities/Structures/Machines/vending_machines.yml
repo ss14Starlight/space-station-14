@@ -334,7 +334,7 @@
     ejectDelay: 0.6
     showPrices: True
   - type: DatasetVocalizer
-    dataset: NanoMedAds # TODO: Change to Interdyne
+    dataset: InterdyneAds
   - type: Sprite
     sprite: _Starlight/Structures/Machines/VendingMachines/interdyne_medical.rsi
     layers:

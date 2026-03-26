@@ -414,6 +414,17 @@
     - sprite: _FarHorizons/Mobs/Customization/ipc/screens.rsi
       state: ipc_screen_l
 
+###STANDARD###
+
+- type: marking
+  id: MarkingStandardHead
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _FarHorizons/Mobs/Customization/ipc/standard/standard_main.rsi
+      state: head_m
+
 ###BISHOP###
 - type: marking
   id: MarkingBishopHeadMonitor
