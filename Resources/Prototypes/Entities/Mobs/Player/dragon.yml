@@ -274,6 +274,7 @@
     priority: 3
   - type: InstantAction
     event: !type:DragonSpawnRiftActionEvent
+  - type: AntagonisticAction # Starlight
 
 - type: entity
   parent: BaseAction
