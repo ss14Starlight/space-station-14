@@ -5,6 +5,7 @@
   suffix: Rodentia
   description: "The beady eyes of a Rodentia."
   components:
-    - type: OrganVisualization
-      layer: Eyes
-      prototype: MobRodentiaEyes
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes: 
+      Default: MobRodentiaEyes
