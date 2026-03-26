@@ -17,7 +17,7 @@
           - NukeOperative
           - Traitor
           - Revolutionary
-          - SiliconLiberation
+          - SELFAgent
       #SL end
 
 - type: entity
@@ -39,7 +39,7 @@
           - NukeOperative
           - Traitor
           - Revolutionary
-          - SiliconLiberation
+          - SELFAgent
       #SL end
 
 - type: entity
@@ -63,7 +63,7 @@
           - NukeOperative
           - Traitor
           - Revolutionary
-          - SiliconLiberation
+          - SELFAgent
       #SL end
     - type: ObjectiveOnSign
       #SL begin
@@ -72,7 +72,7 @@
           - NukeOperative
           - Traitor
           - Revolutionary
-          - SiliconLiberation
+          - SELFAgent
       #SL end
       objectives:
         # thief collection objectives
@@ -203,7 +203,7 @@
           - Traitor
           - Revolutionary
           - MindShield
-          - SiliconLiberation
+          - SELFAgent
       #SL end
 
 - type: entity
@@ -228,7 +228,7 @@
           - Traitor
           - Revolutionary
           - MindShield
-          - SiliconLiberation
+          - SELFAgent
       #SL end
 
 - type: entity
@@ -253,7 +253,7 @@
           - Traitor
           - Revolutionary
           - MindShield
-          - SiliconLiberation
+          - SELFAgent
       #SL end
 
 #SL begin
