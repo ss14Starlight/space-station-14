@@ -99,7 +99,7 @@ namespace Content.Shared.Roles
         ///     STARLIGHT: Whether to bypass EOR pacification.
         /// </summary>
         [DataField]
-        public bool BypassEorPacification { get; private set; } = true;
+        public bool BypassEorPacification { get; private set; }
 
         /// <summary>
         ///     The "weight" or importance of this job. If this number is large, the job system will assign this job
