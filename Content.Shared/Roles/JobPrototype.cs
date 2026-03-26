@@ -11,8 +11,7 @@ namespace Content.Shared.Roles
     ///     Describes information for a single job on the station.
     /// </summary>
     [Prototype]
-    public sealed partial class 
-        JobPrototype : IPrototype
+    public sealed partial class JobPrototype : IPrototype
     {
         [ViewVariables]
         [IdDataField]
