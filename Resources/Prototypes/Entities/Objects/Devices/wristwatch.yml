@@ -41,6 +41,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 300
+  - type: Engraveable # SL
 
 - type: entity
   id: WristwatchGold
