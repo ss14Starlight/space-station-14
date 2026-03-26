@@ -163,8 +163,7 @@
     chemicalCost: 30
     useInLesserForm: true
     requireAbsorbed: 1
-  - type: AntagonisticAction
-
+1
 - type: entity
   id: ActionShriekResonant
   name: Resonant Shriek
@@ -183,7 +182,6 @@
     chemicalCost: 30
     useInLesserForm: true
     requireAbsorbed: 1
-  - type: AntagonisticAction
 
 - type: entity
   id: ActionToggleStrainedMuscles
@@ -227,7 +225,6 @@
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
-  - type: AntagonisticAction
 
 - type: entity
   id: ActionStingCryo
@@ -253,7 +250,6 @@
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
-  - type: AntagonisticAction
 
 - type: entity
   id: ActionStingLethargic
@@ -277,7 +273,6 @@
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
-  - type: AntagonisticAction
 
 - type: entity
   id: ActionStingMute
@@ -301,7 +296,6 @@
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
-  - type: AntagonisticAction
 
 - type: entity
   id: ActionStingFakeArmblade
@@ -325,7 +319,6 @@
   - type: ChangelingAction
     chemicalCost: 50
     useInLesserForm: true
-  - type: AntagonisticAction
 
 - type: entity
   id: ActionStingTransform
