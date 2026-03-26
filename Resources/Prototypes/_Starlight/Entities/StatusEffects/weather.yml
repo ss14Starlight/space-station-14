@@ -70,10 +70,3 @@
   components:
     - type: ParallaxStatusEffect
       parallax: SpaceWhale
-
-- type: entity
-  parent: WeatherBase
-  id: WeatherSpaceDog
-  components:
-    - type: ParallaxStatusEffect
-      parallax: SpaceDog
