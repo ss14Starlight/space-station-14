@@ -1,1 +1,1 @@
-﻿peaceful-round-end = That would be end-of-ground griefing!
+﻿peaceful-round-end = That would be end-of-round griefing!
