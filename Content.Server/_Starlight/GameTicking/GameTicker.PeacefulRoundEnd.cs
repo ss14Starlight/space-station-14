@@ -50,17 +50,19 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
     {
         if (!_isEnabled || !_roundedEnded) return;
         if (_rolesReq.IsPeacefulBypass(target)) return; // OOC bypass (staff, extroles, ..)
-        if (!IsOnPacifiedGrid(target)) return; // Only pacify people on Evac and CC grids.
-        if (IsMindRolePacificationImmune(target)) return; // IC bypass (BSO, ERT, Decimus, CC, ..)
+        if (!IsGridPacificationTarget(target)) return; // Only pacify people on Evac and CC grids.
+        if (IsMindRolePacificationImmune(target)) return; // IC bypass (taken roles of ERT, Decimus, CC, ..)
         if (IsGhostRolePacificationImmune(target)) return; // IC bypass (same as previous, only when ghost role wasn't taken)
         
         EnsureComp<PacifiedComponent>(target);
         EnsureComp<DisableAntagonismComponent>(target);
     }
 
+    /// <summary>
+    /// Checks if the entity has any mind roles that are exempt from pacification.
+    /// </summary>
     private bool IsMindRolePacificationImmune(EntityUid uid)
     {
-        // Checks if the mind has roles that are exempt from pacification.
         if (!TryComp<MindContainerComponent>(uid, out var mindContainer))
             return false;
         if (!TryComp<MindComponent>(mindContainer.Mind, out var mind))
@@ -79,9 +81,11 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// Checks if the entity has any ghost roles that are exempt from pacification.
+    /// </summary>
     private bool IsGhostRolePacificationImmune(EntityUid uid)
     {
-        // If we don't find any in the mind, check for ghost role jobs.
         if (!TryComp<GhostRoleComponent>(uid, out var ghostRole))
             return false;
         if (!_proto.TryIndex(ghostRole.JobProto, out var job))
@@ -89,7 +93,10 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
         return job.BypassEorPacification;
     }
     
-    private bool IsOnPacifiedGrid(EntityUid uid)
+    /// <summary>
+    /// Check whether a grid is a target for pacification. Returns true for Evac and CentComm only.
+    /// </summary>
+    private bool IsGridPacificationTarget(EntityUid uid)
     {
         var xform = Transform(uid);
         var grid = xform.GridUid;
