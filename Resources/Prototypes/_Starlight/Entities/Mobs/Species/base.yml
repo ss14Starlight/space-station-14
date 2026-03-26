@@ -9,7 +9,7 @@
     shape:
     - 0, 0, 6, 4
   - type: RestrictNestingItem
-    doAfter: 3
+    doAfter: 3.0
   - type: MultiHandedItem
   - type: CanEscapeInventory
     baseResistTime: 5
