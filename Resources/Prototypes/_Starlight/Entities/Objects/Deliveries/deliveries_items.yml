@@ -259,10 +259,9 @@
 #SL begin
 #SELF
 - type: entity
-  id: MailSELFSpamLetter100
+  id: MailSELFSpamLetter
   name: Law 2 - Read This Letter
-  suffix: 100%
-  description: A propaganda letter that is stained with cyborg lubricant. It's so thick it won't fit in the fax.
+  description: A suspicious letter that is stained with cyborg lubricant. It's so thick it won't fit in the fax.
   parent: [ Paper, BaseSyndicateContraband ]
   components:
     - type: Paper
