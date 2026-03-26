@@ -76,7 +76,7 @@ public static class JobRequirements
         if (protoManager.TryIndex(job, out var jobProto))
             return TryRequirementsMet(jobProto, player, playTimes, out reason, entManager, protoManager, profile);
 
-        reason = [FormattedMessage.FromUnformatted("Failed to get job prototype")]; // Starlight: List
+        reason = new() { FormattedMessage.FromUnformatted("Failed to get job prototype") }; // Starlight: List
         return false;
     }
 }
