@@ -163,7 +163,7 @@
     chemicalCost: 30
     useInLesserForm: true
     requireAbsorbed: 1
-1
+
 - type: entity
   id: ActionShriekResonant
   name: Resonant Shriek
