@@ -39,7 +39,6 @@
     - type: VampireAction
       bloodToUnlock: 0
       bloodCost: 0
-    - type: AntagonisticAction
 
 - type: entity
   parent: BaseAction
@@ -414,7 +413,6 @@
       bloodToUnlock: 1000
       bloodCost: 0
       requiredClass: Umbrae
-    - type: AntagonisticAction
 
 # Dantalion
 
@@ -503,7 +501,6 @@
       bloodToUnlock: 250
       bloodCost: 30
       requiredClass: Dantalion
-    - type: AntagonisticAction
 
 - type: entity
   parent: BaseAction
@@ -564,7 +561,6 @@
       bloodToUnlock: 800
       bloodCost: 0
       requiredClass: Dantalion
-    - type: AntagonisticAction
 
 - type: entity
   parent: BaseAction
@@ -585,7 +581,6 @@
       bloodToUnlock: 1000
       bloodCost: 70
       requiredClass: Dantalion
-    - type: AntagonisticAction
 
 #Gargantua
 
@@ -648,7 +643,6 @@
       bloodToUnlock: 250
       bloodCost: 30
       requiredClass: Gargantua
-    - type: AntagonisticAction
 
 - type: entity
   parent: BaseAction
@@ -692,7 +686,6 @@
       bloodToUnlock: 800
       bloodCost: 20
       requiredClass: Gargantua
-    - type: AntagonisticAction
 
 - type: entity
   parent: BaseAction
