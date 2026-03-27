@@ -27,6 +27,7 @@
     state: icon
   - type: Clothing
     sprite: _FarHorizons/Objects/Specific/Engineering/mat_bag.rsi
+    quickEquip: false #SL
     slots: belt
   - type: Item
     size: Large

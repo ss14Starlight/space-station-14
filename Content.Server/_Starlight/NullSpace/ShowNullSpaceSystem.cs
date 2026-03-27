@@ -4,30 +4,32 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
 using Content.Shared._Starlight.NullSpace;
 using Robust.Shared.Serialization.Manager;
+using Content.Shared._ST.CosmicCult;
 
 namespace Content.Server._Starlight.NullSpace;
 
 public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
 {
     [Dependency] private readonly EyeSystem _eye = default!;
+    [Dependency] private readonly SharedCosmicCultSystem _cosmiccult = default!;
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<ShowNullSpaceComponent, MapInitEvent>(OnInit);
-        SubscribeLocalEvent<ShowNullSpaceComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<ShowNullSpaceComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<ShowNullSpaceComponent, GotEquippedEvent>(OnEquipped);
         SubscribeLocalEvent<ShowNullSpaceComponent, GotUnequippedEvent>(OnUnequipped);
+        SubscribeLocalEvent<ShowNullSpaceComponent, GetVisMaskEvent>(OnGetVisMask);
     }
 
-    private void OnInit(EntityUid uid, ShowNullSpaceComponent component, MapInitEvent args)
-    {
-        Toggle(uid, true);
-    }
+    private void OnGetVisMask(Entity<ShowNullSpaceComponent> uid, ref GetVisMaskEvent args) =>
+        args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
 
-    public void OnShutdown(EntityUid uid, ShowNullSpaceComponent component, ComponentShutdown args)
-    {
-        Toggle(uid, false);
-    }
+    private void OnInit(EntityUid uid, ShowNullSpaceComponent component, MapInitEvent args) =>
+        _eye.RefreshVisibilityMask(uid);
+
+    public void OnRemove(EntityUid uid, ShowNullSpaceComponent component, ComponentRemove args) =>
+        _eye.RefreshVisibilityMask(uid);
 
     private void OnEquipped(EntityUid uid, ShowNullSpaceComponent component, GotEquippedEvent args)
     {
@@ -38,24 +40,6 @@ public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
         EntityManager.CopyComponent(uid, args.Equipee, component);
     }
 
-    private void OnUnequipped(EntityUid uid, ShowNullSpaceComponent component, GotUnequippedEvent args)
-    {
+    private void OnUnequipped(EntityUid uid, ShowNullSpaceComponent component, GotUnequippedEvent args) =>
         RemComp<ShowNullSpaceComponent>(args.Equipee);
-    }
-
-    private void Toggle(EntityUid uid, bool toggle)
-    {
-        if (!TryComp<EyeComponent>(uid, out var eye))
-            return;
-
-        if (toggle)
-        {
-            _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int)(VisibilityFlags.NullSpace), eye);
-            return;
-        }
-        else if (HasComp<NullSpaceComponent>(uid))
-            return;
-
-        _eye.SetVisibilityMask(uid, (int)VisibilityFlags.Normal, eye);
-    }
 }

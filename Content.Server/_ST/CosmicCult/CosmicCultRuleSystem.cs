@@ -10,11 +10,8 @@ using Content.Server.EUI;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
-using Content.Server.Light.Components;
 using Content.Server.Objectives.Components;
 using Content.Server.Popups;
-using Content.Shared.Radio.Components;
-using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Voting.Managers;
@@ -27,9 +24,7 @@ using Content.Shared._ST.CosmicCult;
 using Content.Shared._ST.CosmicCult.Roles;
 using Content.Shared.Alert;
 using Content.Shared.Audio;
-using Content.Shared.Body.Systems;
 using Content.Shared.Coordinates;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
@@ -63,6 +58,12 @@ using System.Linq;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Gibbing;
 using Content.Shared.Light.Components;
+using Content.Server._Starlight.Language;
+using Content.Shared._Starlight.Language;
+using Content.Server.Weather;
+using Content.Shared.Shuttles.Components;
+using Content.Shared._Starlight.Shadekin;
+using Content.Shared.Body.Components;
 
 namespace Content.Server._ST.CosmicCult;
 
@@ -103,6 +104,8 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly VisibilitySystem _visibility = default!;
+    [Dependency] private readonly LanguageSystem _languageSystem = default!;
+    [Dependency] private readonly WeatherSystem _weather = default!;
 
     private ISawmill _sawmill = default!;
     private TimeSpan _t3RevealDelay = default!;
@@ -116,6 +119,8 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
     private readonly SoundSpecifier _tier3Sound = new SoundPathSpecifier("/Audio/_ST/CosmicCult/tier3.ogg");
     private readonly SoundSpecifier _tier2Sound = new SoundPathSpecifier("/Audio/_ST/CosmicCult/tier2.ogg");
     private readonly SoundSpecifier _monumentAlert = new SoundPathSpecifier("/Audio/_ST/CosmicCult/tier_up.ogg");
+
+    private ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
 
     /// <summary>
     /// Mind role to add to cultists.
@@ -200,19 +205,21 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
                 EnsureComp<CosmicStarMarkComponent>(cultist);
             }
 
-            var sender = Loc.GetString("cosmiccult-announcement-sender");
             var mapData = _map.GetMap(_transform.GetMapId(component.MonumentInGame.Owner.ToCoordinates()));
-            _chatSystem.DispatchStationAnnouncement(component.MonumentInGame, Loc.GetString("cosmiccult-announce-tier3-progress"), sender, false, null, Color.FromHex("#4cabb3"));
             _chatSystem.DispatchStationAnnouncement(component.MonumentInGame, Loc.GetString("cosmiccult-announce-tier3-warning"), null, false, null, Color.FromHex("#cae8e8"));
             _audio.PlayGlobal(_tier3Sound, Filter.Broadcast(), false, AudioParams.Default);
 
-            EnsureComp<ParallaxComponent>(mapData, out var parallax);
-            parallax.Parallax = "CosmicFinaleParallax";
-            Dirty(mapData, parallax);
+            _weather.TryAddWeather(mapData, "WeatherCosmic", out _);
+
+            // EnsureComp<ParallaxComponent>(mapData, out var parallax);
+            // parallax.Parallax = "CosmicFinaleParallax";
+            // Dirty(mapData, parallax);
 
             EnsureComp<MapLightComponent>(mapData, out var mapLight);
             mapLight.AmbientLightColor = Color.FromHex("#210746");
             Dirty(mapData, mapLight);
+
+            EnsureComp<PreventFTLComponent>(mapData); // This will prevent all Shuttles to exist the station map... OH BOY...
 
             var lights = EntityQueryEnumerator<PoweredLightComponent>();
             while (lights.MoveNext(out var light, out _))
@@ -242,24 +249,14 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             component.ExtraRiftTimer = _timing.CurTime + TimeSpan.FromSeconds(15);
 
             //do spooky effects
-            var sender = Loc.GetString("cosmiccult-announcement-sender");
-            var mapData = _map.GetMap(_transform.GetMapId(component.MonumentInGame.Owner.ToCoordinates()));
-            _chatSystem.DispatchStationAnnouncement(component.MonumentInGame, Loc.GetString("cosmiccult-announce-tier2-progress"), sender, false, null, Color.FromHex("#4cabb3"));
-            _chatSystem.DispatchStationAnnouncement(component.MonumentInGame, Loc.GetString("cosmiccult-announce-tier2-warning"), null, false, null, Color.FromHex("#cae8e8"));
+            var mobquery = EntityQueryEnumerator<MobStateComponent>();
+            while (mobquery.MoveNext(out var ent, out var _))
+                _popup.PopupEntity(Loc.GetString("cosmiccult-announce-tier2-progress"), ent, ent, PopupType.LargeCaution);
+
             _audio.PlayGlobal(_tier2Sound, Filter.Broadcast(), false, AudioParams.Default);
 
             for (var i = 0; i < Convert.ToInt16(component.TotalCrew / 6); i++) // spawn # malign rifts equal to 16.67% of the playercount
-            {
                 SpawnRift();
-            }
-
-            var lights = EntityQueryEnumerator<PoweredLightComponent>();
-            while (lights.MoveNext(out var light, out _))
-            {
-                if (!_rand.Prob(0.50f))
-                    continue;
-                _ghost.DoGhostBooEvent(light);
-            }
 
             _monument.SetCanTierUp(component.MonumentInGame, true);
             UpdateCultData(component.MonumentInGame); //instantly go up a tier if they manage it
@@ -332,6 +329,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         while (query.MoveNext(out var ruleUid, out _, out var cultRule, out _))
         {
             SetWinType((ruleUid, cultRule), WinType.CultComplete); //here's no coming back from this. Cult wins this round
+            var monumentMap = Transform(cultRule.MonumentInGame).MapUid;
             QueueDel(cultRule.MonumentInGame); // The monument doesn't need to stick around postround! Into the bin with you.
             QueueDel(cultRule.MonumentSlowZone); // cease exist
 
@@ -339,24 +337,30 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
 
             var spawnPoints = EntityManager.GetAllComponents(typeof(CosmicVoidSpawnComponent)).ToImmutableList();
             if (spawnPoints.IsEmpty)
-            {
                 return;
-            }
 
             var endQuery = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent>();
             while (endQuery.MoveNext(out var player, out _, out _))
             {
                 var newSpawn = _rand.Pick(spawnPoints);
                 var spawnTgt = Transform(newSpawn.Uid).Coordinates;
-                Timer.Spawn(_rand.Next(TimeSpan.FromSeconds(4), TimeSpan.FromSeconds(25)), () => { EndRoundVoid(player, spawnTgt, cultRule); });
+
+                if (cultRule.Cultists.Contains(player))
+                    Timer.Spawn(TimeSpan.FromSeconds(30), () => { EndRoundVoid(player, spawnTgt, cultRule, null); });
+                else
+                    Timer.Spawn(_rand.Next(TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(30)), () => { EndRoundVoid(player, spawnTgt, cultRule, monumentMap); });
             }
         }
     }
 
-    private void EndRoundVoid(EntityUid player, EntityCoordinates spawnTgt, CosmicCultRuleComponent cultRule)
+    private void EndRoundVoid(EntityUid player, EntityCoordinates spawnTgt, CosmicCultRuleComponent cultRule, EntityUid? monumentMap)
     {
-        if (!_mind.TryGetMind(player, out var mind, out _) || _mobStateSystem.IsDead(player))
+        if (_mobStateSystem.IsDead(player) || !_mind.TryGetMind(player, out var mind, out _))
             return;
+
+        if (monumentMap is not null && Transform(player).MapUid != monumentMap)
+            return;
+
         if (cultRule.Cultists.Contains(player))
         {
             var mob = Spawn(cultRule.CosmicAscended, spawnTgt);
@@ -457,6 +461,13 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         _roundEnd.DoRoundEndBehavior(ent.Comp.RoundEndBehavior, ent.Comp.EvacShuttleTime, ent.Comp.RoundEndTextSender, ent.Comp.RoundEndTextShuttleCall, ent.Comp.RoundEndTextAnnouncement);
         ent.Comp.RoundEndBehavior = RoundEndBehavior.Nothing; // prevent this being called multiple times.
         ent.Comp.RiftStop = true; // rifts can stop spawning now.
+
+        var monumentMap = Transform(ent.Comp.MonumentInGame).MapUid;
+        if (monumentMap is not null)
+        {
+            _weather.TryRemoveWeather(monumentMap.Value, "WeatherCosmic");
+            RemComp<PreventFTLComponent>(monumentMap.Value);
+        }
 
         var gameruleMonument = ent.Comp.MonumentInGame;
         if (TryComp<CosmicFinaleComponent>(gameruleMonument, out var finComp))
@@ -616,7 +627,6 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             return;
 
         EnsureComp<CosmicCultComponent>(uid, out var cultComp);
-        EnsureComp<IntrinsicRadioReceiverComponent>(uid);
         EnsureComp<CosmicCultAssociatedRuleComponent>(uid, out var associatedComp);
 
         associatedComp.CultGamerule = rule;
@@ -626,10 +636,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-roundstart-fluff"), Color.FromHex("#4cabb3"), _briefingSound);
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-short-briefing"), Color.FromHex("#cae8e8"), null);
 
-        var transmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(uid);
-        var radio = EnsureComp<ActiveRadioComponent>(uid);
-        radio.Channels.Add("CosmicRadio");
-        transmitter.Channels.Add("CosmicRadio");
+        _languageSystem.AddLanguage(uid, _cultLanguage);
 
         if (_playerMan.TryGetSessionById(mind.UserId, out var session))
         {
@@ -697,7 +704,6 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         var cultComp = EnsureComp<CosmicCultComponent>(uid);
         cultComp.EntropyBudget = 10; // pity balance
         cultComp.StoredDamageContainer = Comp<DamageableComponent>(uid).DamageContainerID!.Value;
-        EnsureComp<IntrinsicRadioReceiverComponent>(uid);
         TransferCultAssociation(converter, uid);
 
         if (cult.Comp.CurrentTier == 3)
@@ -727,10 +733,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
 
         Dirty(uid, cultComp);
 
-        var transmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(uid);
-        var radio = EnsureComp<ActiveRadioComponent>(uid);
-        radio.Channels = ["CosmicRadio"];
-        transmitter.Channels = ["CosmicRadio"];
+        _languageSystem.AddLanguage(uid, _cultLanguage);
 
         _mind.TryAddObjective(mindId, mind, "CosmicFinalityObjective");
         _mind.TryAddObjective(mindId, mind, "CosmicMonumentObjective");
@@ -740,6 +743,19 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         _euiMan.OpenEui(new CosmicConvertedEui(), session);
 
         RemComp<BibleUserComponent>(uid);
+
+        // Bright-eye Nerf - Yeah im not gona let them be immortal!
+        if (TryComp<BrighteyeComponent>(uid, out var brighteye))
+        {
+            if (brighteye.Portal is not null)
+            {
+                SpawnAtPosition(brighteye.ShadekinShadow, Transform(brighteye.Portal.Value).Coordinates);
+                QueueDel(brighteye.Portal.Value);
+            }
+
+            _actions.RemoveAction(uid, brighteye.PortalAction);
+            _actions.RemoveAction(uid, brighteye.ShadeSkipAction);
+        }
 
         cult.Comp.TotalCult++;
         cult.Comp.Cultists.Add(uid);
@@ -759,10 +775,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         _stun.TryAddStunDuration(uid.Owner, TimeSpan.FromSeconds(2));
         foreach (var actionEnt in uid.Comp.ActionEntities) _actions.RemoveAction(actionEnt);
 
-        if (TryComp<IntrinsicRadioTransmitterComponent>(uid, out var transmitter))
-            transmitter.Channels.Remove("CosmicRadio");
-        if (TryComp<ActiveRadioComponent>(uid, out var radio))
-            radio.Channels.Remove("CosmicRadio");
+        _languageSystem.RemoveLanguage(uid.Owner, _cultLanguage);
         RemComp<CosmicCultLeadComponent>(uid);
         RemComp<InfluenceVitalityComponent>(uid);
         RemComp<InfluenceStrideComponent>(uid);
@@ -802,6 +815,14 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         AdjustCultObjectiveConversion(-1);
         UpdateCultData(cosmicGamerule.MonumentInGame);
         _movementSpeed.RefreshMovementSpeedModifiers(uid);
+
+        // Brighteye - Yeah, Lets give their portal back!
+        if (TryComp<BrighteyeComponent>(uid, out var brighteye) && !brighteye.LesserKin)
+        {
+            _actions.AddAction(uid, ref brighteye.PortalAction, brighteye.BrighteyePortalAction, uid);
+            _actions.AddAction(uid, ref brighteye.ShadeSkipAction, brighteye.BrighteyeShadeSkipAction, uid);
+            _actions.SetCooldown(brighteye.PortalAction, TimeSpan.FromSeconds(300));
+        }
     }
     #endregion
 }

@@ -6,6 +6,7 @@ using Content.Shared.Roles;
 using Content.Shared._ST.CosmicCult.Roles;
 using Robust.Shared.GameStates;
 using Robust.Shared.Player;
+using Content.Shared._Starlight.NullSpace;
 
 namespace Content.Shared._ST.CosmicCult;
 
@@ -34,7 +35,7 @@ public abstract class SharedCosmicCultSystem : EntitySystem
 
     public bool EntitySeesCult(EntityUid user)
     {
-        return EntityIsCultist(user) || HasComp<GhostComponent>(user);
+        return EntityIsCultist(user) || HasComp<GhostComponent>(user) || HasComp<ShowNullSpaceComponent>(user);
     }
 
     /// <summary>

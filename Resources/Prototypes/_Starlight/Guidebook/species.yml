@@ -5,7 +5,7 @@
 
 - type: guideEntry
   id: Thaven
-  name: Thaven
+  name: species-name-thaven
   text: "/ServerInfo/_StarLight/Guidebook/Mobs/Thaven.xml"
 
 - type: guideEntry

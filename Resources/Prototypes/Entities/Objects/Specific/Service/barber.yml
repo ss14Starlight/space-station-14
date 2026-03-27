@@ -29,8 +29,8 @@
     soundHit:
       path: "/Audio/Weapons/bladeslice.ogg"
   # 🌟Starlight-start🌟
-  - type: Hemostat
   - type: SurgeryTool
+  - type: Hemostat
     successRate: 0.05 # Using something sharp as a hemostat is very dangerous
     speed: 1.5
     startSound:

@@ -1,0 +1,46 @@
+- type: entity
+  parent: WeaponGrapplingGun
+  id: WeaponNinjaChainSickle
+  name: chain sickle
+  description: A sickle attached to a websilk chain. The Spider Clan embodies the ancient ways, even as they steal the future. 
+  components:
+  - type: GrapplingGun
+#    reelMassCoefficient: 200 # You can pull everyone. # Starlight start
+#    reelForce: 20000 # STRONG reeling, you can now make them GET OVER HERE # Undo these comments when we get the next upstream merge, since we don't have physics based grappling hooks yet.
+    reelRate: 10 # Fast reeling - can move very quickly in combat with this # Starlight change this back to 7.5 next upstream merge
+#    ropeBreakPoint: 150000 # Strong rope for ninja tricks # Starlight end
+    cycleSound: /Audio/Weapons/Guns/Empty/empty.ogg # Starlight, we don't have the Moffstation sound    
+    ropeSprite:
+      sprite: _Moffstation/Objects/Weapons/Guns/Launchers/chainsickle.rsi
+      state: rope
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/bolathrow.ogg
+    offset: -0.15,0.0
+  - type: LandAtCursor
+  - type: Ensnaring
+    freeTime: 2.0
+    breakoutTime: 30 # punishing chains
+    walkSpeed: 0.8
+    sprintSpeed: 0.9
+    staminaDamage: 100
+    canThrowTrigger: true
+    canMoveBreakout: true
+    maxEnsnares: 1
+  - type: Gun 
+    soundGunshot: /Audio/Weapons/utilityknifeopen.ogg
+    fireRate: 1.0
+    soundEmpty: /Audio/Weapons/Guns/Empty/empty.ogg # Starlight, we don't have the Moffstation sound
+  - type: Item
+    size: Small
+    shape:
+      - 0,1,0,1
+      - 0,0,1,0
+    storedOffset: 0,-6
+  - type: BasicEntityAmmoProvider
+    proto: ChainSickle
+    capacity: 1
+  - type: Sprite
+    sprite: _Moffstation/Objects/Weapons/Guns/Launchers/chainsickle.rsi
+    state: base
+  - type: UseDelay
+    delay: 0.5

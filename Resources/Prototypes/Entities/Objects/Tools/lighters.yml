@@ -5,12 +5,12 @@
   description: "A simple plastic cigarette lighter."
   components:
   - type: SurgeryTool
+  - type: Cautery
     successRate: 0.1
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
-  - type: Cautery
   - type: IgnitionSource
     ignited: false
   - type: ItemToggle

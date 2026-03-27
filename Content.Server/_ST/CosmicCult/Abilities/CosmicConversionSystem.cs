@@ -10,6 +10,11 @@ using Content.Shared.Popups;
 using Content.Shared.Stunnable;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
+using Content.Shared._Starlight.Shadekin;
+using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
+using Content.Shared.Mind;
+using Content.Shared._Starlight.NullSpace;
 
 namespace Content.Server._ST.CosmicCult.Abilities;
 
@@ -22,6 +27,9 @@ public sealed class CosmicConversionSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedCosmicCultSystem _cosmicCult = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedRoleSystem _role = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     public override void Initialize()
     {
@@ -32,6 +40,14 @@ public sealed class CosmicConversionSystem : EntitySystem
 
     private void OnConversionGlyph(Entity<CosmicGlyphConversionComponent> uid, ref TryActivateGlyphEvent args)
     {
+        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
+            if (HasComp<NullSpaceBlockerComponent>(entity))
+            {
+                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, args.User);
+                args.Cancel();
+                return;
+            }
+
         var possibleTargets = _cosmicGlyph.GetTargetsNearGlyph(uid, uid.Comp.ConversionRange, entity => _cosmicCult.EntityIsCultist(entity));
         if (possibleTargets.Count == 0)
         {
@@ -61,6 +77,16 @@ public sealed class CosmicConversionSystem : EntitySystem
             else if (uid.Comp.NegateProtection == false && HasComp<MindShieldComponent>(target))
             {
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-mindshield"), uid, args.User);
+                args.Cancel();
+            }
+            else if (uid.Comp.NegateProtection == false && HasComp<BrighteyeComponent>(target))
+            {
+                _popup.PopupEntity(Loc.GetString("cult-glyph-target-brighteye"), uid, args.User);
+                args.Cancel();
+            }
+            else if (uid.Comp.NegateProtection == false && _mind.TryGetMind(args.User, out var mind, out _) && _role.MindHasRole<WizardRoleComponent>(mind))
+            {
+                _popup.PopupEntity(Loc.GetString("cult-glyph-target-wizard"), uid, args.User);
                 args.Cancel();
             }
             else

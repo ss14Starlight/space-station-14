@@ -45,7 +45,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         }
     }
 
-    private void UpdateSprite(Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
+    public void UpdateSprite(Entity<HumanoidAppearanceComponent, SpriteComponent> entity) // Starlight-edit: Make public so things like tippy can force this
     {
         UpdateLayers(entity);
         ApplyMarkingSet(entity);

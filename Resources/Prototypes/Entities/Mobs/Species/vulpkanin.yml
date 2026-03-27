@@ -1,7 +1,7 @@
 ﻿- type: entity
   abstract: true
   save: false
-  parent: [BaseMobSpeciesOrganic]
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge] # Starlight
   id: BaseMobVulpkanin
   name: Urist McBark
   components:
