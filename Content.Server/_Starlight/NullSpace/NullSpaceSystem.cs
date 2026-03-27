@@ -23,7 +23,7 @@ using Content.Server._Starlight.Bluespace;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Gravity;
-using Content.Server._ST.CosmicCult;
+using Content.Server._Starlight.CosmicCult;
 
 namespace Content.Server._Starlight.NullSpace;
 

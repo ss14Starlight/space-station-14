@@ -64532,7 +64532,7 @@ entities:
       parent: 1
     - type: AccessReader
       accessListsOriginal: []
-- proto: TurnstileCommand
+- proto: TurnstileCentComm
   entities:
   - uid: 9541
     components:

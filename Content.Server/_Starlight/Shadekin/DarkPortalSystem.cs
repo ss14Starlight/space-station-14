@@ -16,7 +16,7 @@ using Content.Shared._Starlight.Railroading;
 using Content.Server._Starlight.Railroading;
 using Content.Shared.Light.Components;
 using Content.Shared.Throwing;
-using Content.Shared._ST.CosmicCult.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
 
 namespace Content.Server._Starlight.Shadekin;
 

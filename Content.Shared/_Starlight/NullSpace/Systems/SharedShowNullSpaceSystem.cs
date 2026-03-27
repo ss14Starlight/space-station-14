@@ -1,4 +1,4 @@
-using Content.Shared._ST.CosmicCult.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared.Actions;
 using Content.Shared.Interaction.Events;
 

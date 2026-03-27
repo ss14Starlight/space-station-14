@@ -36116,5 +36116,13 @@ Entries:
   id: 390801
   time: '2026-03-27T04:54:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3908
+- author: mikeysaurus
+  changes:
+  - message: Adds new CentComm Turnstiles, immune to Syndicate tampering, in fashionable
+      green and gold, for use in Centcomm Outposts.
+    type: Add
+  id: 389801
+  time: '2026-03-27T10:15:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3898
 Order: -1
 
