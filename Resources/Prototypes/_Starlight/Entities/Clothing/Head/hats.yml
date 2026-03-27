@@ -1,7 +1,7 @@
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatCapNtrep
-  name: nt representive cap
+  name: nt representative cap
   description: The cap of justice over command!
   components:
     - type: Sprite
@@ -405,7 +405,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatNTRTophat
-  name: NT rep tophat
+  name: nt rep tophat
   description: A fancy black tophat, handmade for the NanoTrasen Rep. It looks expensive.
   components:
     - type: Sprite
@@ -425,7 +425,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatNTREliteTophat
-  name: NT rep elite tophat
+  name: nt rep elite tophat
   description: An expensive looking black tophat. the gold embossing on the front shows the Nanotrasen logo, fitting for an NT rep.
   components:
     - type: Sprite
@@ -554,7 +554,7 @@
 - type: entity
   parent: [BaseTSFContraband, ClothingHeadBase]
   id: ClothingHeadHatBeretTSF
-  name: TSF beret
+  name: tsf beret
   description: A beret worn by marines of the Trans-Solar Federation.
   components:
     - type: Sprite
@@ -587,7 +587,7 @@
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatBeretNCTBlack
-  name: NT career trainer's beret
+  name: nt career trainer's beret
   description: A beret worn by the mentors and trainers of the Career Training Team. This one is black!
   components:
     - type: Sprite
@@ -619,7 +619,7 @@
 - type: entity
   parent: [ClothingHeadBase, BaseTSFContraband]
   id: ClothingHeadHatRetroOfficer
-  name: TSF officer's cap
+  name: tsf officer's cap
   description: A peaked cap from the Trans Solar Federation's law enforcement division. This peacekeeping headgear symbolizes TSF authority across known space.
   components:
   - type: Sprite

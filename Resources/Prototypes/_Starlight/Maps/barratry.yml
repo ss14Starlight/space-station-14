@@ -23,7 +23,7 @@
             Bartender: [ 2, 2 ]
             Botanist: [ 3, 3 ]
             Chef: [ 2, 2 ]
-            Janitor: [ 1, 2 ]
+            Janitor: [ 3, 4 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
             ServiceWorker: [ 3, 3 ]
@@ -47,6 +47,7 @@
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
+            DutyOfficer: [ 1, 1 ]
             SecurityOfficer: [ 4, 5 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 4, 4 ]
@@ -63,7 +64,8 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
-            Boxer: [ 2, 2]
+            Boxer: [ 2, 2 ]
+            Performer: [ 2, 3 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 3, 3 ]
@@ -72,5 +74,6 @@
             IAA: [ 2, 2 ]
             #Representives
             BlueShield: [ 1, 1 ]
-            NanoTrasenRepresentative: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 2 ]
+            NanotrasenCareerTrainer: [ 1, 2 ]
 

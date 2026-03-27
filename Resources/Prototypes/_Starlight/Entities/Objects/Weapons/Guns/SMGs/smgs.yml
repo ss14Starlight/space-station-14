@@ -26,7 +26,7 @@
             
 - type: entity
   name: SP-91-RC
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
   id: WeaponSubMachineGunSP91RC
   description: Compact submachine gun designed for riot control.
   components:
@@ -37,6 +37,11 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -19
+    maxAngle: -16
   - type: Gun
     fireRate: 13
     selectedMode: Burst
@@ -55,7 +60,7 @@
     
 - type: entity
   name: Type U3 Uzi
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseMajorContraband]
+  parent: [BaseWeaponSubMachineGun, BaseMajorContraband]
   id: WeaponSubMachineGunUzi
   description: Lightweight submachine gun with a 32-round magazine that has single or 4 round firing modes.
   components:
