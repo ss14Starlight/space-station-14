@@ -63,9 +63,8 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
     /// </summary>
     private bool IsMindRolePacificationImmune(EntityUid uid)
     {
-        if (!TryComp<MindContainerComponent>(uid, out var mindContainer))
-            return false;
-        if (!TryComp<MindComponent>(mindContainer.Mind, out var mind))
+        if (!TryComp<MindContainerComponent>(uid, out var mindContainer) ||
+            !TryComp<MindComponent>(mindContainer.Mind, out var mind))
             return false;
 
         foreach (var role in _role.MindGetAllRoleInfo((mindContainer.Mind.Value, mind)))
@@ -86,9 +85,8 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
     /// </summary>
     private bool IsGhostRolePacificationImmune(EntityUid uid)
     {
-        if (!TryComp<GhostRoleComponent>(uid, out var ghostRole))
-            return false;
-        if (!_proto.TryIndex(ghostRole.JobProto, out var job))
+        if (!TryComp<GhostRoleComponent>(uid, out var ghostRole) ||
+            !_proto.TryIndex(ghostRole.JobProto, out var job))
             return false;
         return job.BypassEorPacification;
     }
@@ -138,10 +136,8 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
     
     private void OnValidatePossiblyEorgAction(EntityUid uid, EorgActionComponent component, ref ActionValidateEvent args)
     {
-        if (!_isEnabled)
-            return;
-        if (!TryComp<PreventEorgComponent>(args.User, out _))
-            return;
+        if (!_isEnabled || !_roundedEnded) return;
+        if (!TryComp<PreventEorgComponent>(args.User, out _))  return;
         
         _popup.PopupEntity(Loc.GetString("eorg-action"), args.User, args.User, PopupType.LargeCaution);
         args.Invalid = true;
