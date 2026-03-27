@@ -684,11 +684,17 @@ public sealed partial class VampireSystem : EntitySystem
         var ourXform = Transform(uid);
         var ourDirection = ourXform.LocalRotation.ToVec();
         var ourPosition = ourXform.LocalPosition;
+        var effectScale = 1.0f;
 
         foreach (var target in targets)
         {
             if (target == uid)
                 continue;
+
+            if (_flashImmunity.HasFlashImmunityVisionBlockers(target))
+                effectScale = 0.5f;
+            else
+                effectScale = 1.0f;
 
             var targetPosition = Transform(target).LocalPosition;
             var vectorToTarget = Vector2.Normalize(targetPosition - ourPosition);
@@ -703,13 +709,13 @@ public sealed partial class VampireSystem : EntitySystem
             // If target in front
             if (dot > 0.7f && !knockedDown)
             {
-                _stun.TryAddParalyzeDuration(target, TimeSpan.FromSeconds(2));
+                _stun.TryAddParalyzeDuration(target, TimeSpan.FromSeconds(2 * effectScale));
 
-                _stamina.TakeStaminaDamage(target, args.FrontStaminaDamage, stam, source: uid);
+                _stamina.TakeStaminaDamage(target, args.FrontStaminaDamage * effectScale, stam, source: uid);
 
                 // Mute for 8 second
                 EnsureComp<MutedComponent>(target);
-                Timer.Spawn(args.MuteDuration, () =>
+                Timer.Spawn(args.MuteDuration * effectScale, () =>
                 {
                     if (Exists(target))
                         RemComp<MutedComponent>(target);
@@ -721,16 +727,16 @@ public sealed partial class VampireSystem : EntitySystem
             }
             // If target behind
             else if (dot < -0.7f && !knockedDown)
-                _stamina.TakeStaminaDamage(target, args.BehindStaminaDamage, stam, source: uid);
+                _stamina.TakeStaminaDamage(target, args.BehindStaminaDamage * effectScale, stam, source: uid);
             else
             {
-                _stun.TryAddParalyzeDuration(target, TimeSpan.FromSeconds(4));
+                _stun.TryAddParalyzeDuration(target, TimeSpan.FromSeconds(4 * effectScale));
 
-                _stamina.TakeStaminaDamage(target, args.SideStaminaDamage, stam, source: uid);
+                _stamina.TakeStaminaDamage(target, args.SideStaminaDamage * effectScale, stam, source: uid);
             }
 
             // Start DOT effect with limited ticks
-            StartGlareDotEffect(target, uid, args.DotStaminaDamage, 0, false);
+            StartGlareDotEffect(target, uid, args.DotStaminaDamage * effectScale, 0, false);
         }
 
         args.Handled = true;
