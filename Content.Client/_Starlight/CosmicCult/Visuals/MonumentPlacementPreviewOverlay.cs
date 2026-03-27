@@ -11,7 +11,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Starlight.CosmicCult.Visuals;
 
-public sealed class MonumentPlacementPreviewOverlay : Overlay
+public sealed class MonumentPlacementPreviewOverlay : Robust.Client.Graphics.Overlay
 {
     private static readonly ProtoId<ShaderPrototype> SaturationShaderId = "SaturationShuffle";
     private static readonly ProtoId<ShaderPrototype> StarsShaderId = "MonumentPulse";
