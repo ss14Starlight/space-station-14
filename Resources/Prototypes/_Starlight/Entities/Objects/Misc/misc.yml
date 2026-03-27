@@ -29,7 +29,7 @@
 - type: entity
   name: Picture frame
   parent: [BaseItem]
-  id: pictureframedesktop
+  id: PictureFrame
   description: A flimsy amalgamation of wood scraps used to hold colourful paper.
   components:
     - type: Sprite

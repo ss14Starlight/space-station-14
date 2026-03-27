@@ -667,3 +667,9 @@
   storage:
     back:
       - TreasureCoinGold
+
+- type: loadout
+  id: PictureFrame
+  storage: 
+    back: 
+      - PictureFrame
