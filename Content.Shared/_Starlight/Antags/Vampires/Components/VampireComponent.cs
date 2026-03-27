@@ -25,7 +25,8 @@ public sealed partial class VampireComponent : Component
     {
         "ActionVampireToggleFangs",
         "ActionVampireGlare",
-        "ActionVampireRejuvenateI"
+        "ActionVampireRejuvenateI",
+        "ActionVampireSleep"
     };
 
     /// <summary>

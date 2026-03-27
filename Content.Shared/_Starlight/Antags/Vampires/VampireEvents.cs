@@ -51,6 +51,22 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     public TimeSpan MuteDuration = TimeSpan.FromSeconds(8);
 }
 
+public sealed partial class VampireSleepActionEvent : EntityTargetActionEvent
+{
+    /// <summary>
+    ///     Channel duration, in seconds, before the target is put to sleep
+    /// </summary>
+    [DataField]
+    public TimeSpan ChannelTime = TimeSpan.FromSeconds(5);
+}
+
+[Serializable, NetSerializable]
+public sealed partial class VampireSleepDoAfterEvent : SimpleDoAfterEvent
+{
+    [DataField]
+    public int BloodCost;
+}
+
 public sealed partial class VampireRejuvenateIActionEvent : InstantActionEvent;
 
 public sealed partial class VampireRejuvenateIIActionEvent : InstantActionEvent;

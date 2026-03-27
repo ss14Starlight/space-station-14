@@ -21,11 +21,14 @@ vampire-not-enough-blood = Not enough blood.
 vampire-mouth-covered = Your mouth is covered!
 vampire-drink-invalid-target = You cannot drink blood from vampires or their thralls.
 vampire-target-protected-by-faith = This person is protected by their faith!
-vampire-target-sickly = This person's blood is tainted and must be cleansed.
+vampire-drink-target-empty = This being is out of blood!
 vampire-drink-target-maxed = You have already drunk { $amount } units of blood from this target.
 vampire-drink-target-hard-max = You have drunk the maximum amount of blood from this target ({ $amount } units).
 vampire-full-power-achieved = Your vampiric essence surges full power achieved!
 vampire-umbrae-full-power-fov = The shadows bend to your will. You can now see through walls!
+vampire-drink-target-not-viable = This being does not have flowing blood, they need to be alive!
+vampire-sleep-shielded = This being cannot be put to sleep due to an implant!
+vampire-sleep-protected = Better eye contact is required...
 
 vampire-role-greeting = You are a vampire!
     Your blood thirst compels you to feed on crew members. Use your abilities to turn other crew.

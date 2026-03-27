@@ -24,11 +24,11 @@
 - type: entity
   parent: BaseAction
   id: ActionVampireGlare
-  name: Glare
-  description: Put nearby targets to sleep for 10 seconds
+  name: Glare(Free)
+  description: Paralyze and mute nearby targets, dealing stamina damage over time.
   components:
     - type: Action
-      useDelay: 120
+      useDelay: 60
       itemIconStyle: NoItem
       priority: 2
       icon:
@@ -36,6 +36,32 @@
         state: glare
     - type: InstantAction
       event: !type:VampireGlareActionEvent {}
+    - type: VampireAction
+      bloodToUnlock: 0
+      bloodCost: 0
+- type: entity
+  parent: BaseAction
+  id: ActionVampireSleep
+  name: Sleep (15)
+  description: Put target to sleep for 10 seconds
+  components:
+    - type: Action
+      useDelay: 120
+      itemIconStyle: NoItem
+      priority: 25
+      icon:
+        sprite: _Starlight/Vampire/actions_vampire.rsi
+        state: sleep_icon
+    - type: TargetAction
+      range: 2
+      checkCanAccess: false
+      interactOnMiss: false
+    - type: EntityTargetAction
+      canTargetSelf: false
+      whitelist:
+        components:
+          - HumanoidAppearance
+      event: !type:VampireSleepActionEvent
     - type: VampireAction
       bloodToUnlock: 0
       bloodCost: 15

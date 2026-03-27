@@ -116,13 +116,13 @@ public sealed class DantalionSystem : EntitySystem
             if (thrall.HolyWaterConsumed >= thrall.HolyWaterToBreakFree)
             {
                 _popup.PopupEntity(Loc.GetString("vampire-thrall-holy-water-freed"), uid, uid, PopupType.Medium);
-                //RemComp<VampireThrallComponent>(uid); shouldn't be needed anymore TODO validate
+                RemComp<VampireThrallComponent>(uid); //shouldn't be needed anymore TODO validate
                 //TODO add code to remove objectives as removing the component is not enough
                 // remove their antag role
-                //_role.MindRemoveRole<VampireThrallComponent>(uid);
+                _role.MindRemoveRole<VampireThrallComponent>(uid);
 
-                if(thrall.Master.HasValue)
-                    ReleaseThrall(thrall.Master.Value, uid);
+                //if(thrall.Master.HasValue)
+                //    ReleaseThrall(thrall.Master.Value, uid);
             }
         }
     }
@@ -243,9 +243,9 @@ public sealed class DantalionSystem : EntitySystem
         if (TryComp<CollectiveMindComponent>(target, out var cmComp))
             _collectiveMind.UpdateCollectiveMind(target, cmComp);
 
-        _adminLogManager.Add(LogType.Mind,
-            LogImpact.Medium,
-            $"{ToPrettyString(uid.Value)} converted {ToPrettyString(Target.Value)} into a Trall"); //TODO test
+        //_adminLogManager.Add(LogType.Mind,
+        //    LogImpact.Medium,
+        //    $"{ToPrettyString(uid.Value)} converted {ToPrettyString(Target.Value)} into a Trall"); //TODO test
 
         _popup.PopupEntity(Loc.GetString("vampire-enthrall-success", ("target", Identity.Entity(target, EntityManager))), uid, uid);
         _popup.PopupEntity(Loc.GetString("vampire-enthrall-target"), target, target, PopupType.Medium);
