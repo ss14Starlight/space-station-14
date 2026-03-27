@@ -192,11 +192,6 @@
         !type:DamageTrigger
         damage: 25 # weak
       behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          FoodMeatAnomaly:
-            min: 1
-            max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
