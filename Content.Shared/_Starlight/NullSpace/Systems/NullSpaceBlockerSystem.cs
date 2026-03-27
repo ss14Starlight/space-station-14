@@ -36,10 +36,6 @@ public sealed class NullSpaceBlockerSystem : EntitySystem
         // Nullspace Related.
         if (component.UnphaseOnCollide)
             UnphaseOnCollide(args.OtherEntity);
-
-        // Cosmic cult Related.
-        var evCosmicReturn = new EventCosmicReturn();
-        RaiseLocalEvent(args.OtherEntity, evCosmicReturn);
     }
 
     private void UnphaseOnCollide(EntityUid uid)

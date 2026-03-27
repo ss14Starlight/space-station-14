@@ -16,6 +16,7 @@ using Robust.Shared.Prototypes;
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.NullSpace;
+using Content.Shared._FarHorizons.Silicons.IPC.Components;
 
 namespace Content.Server._ST.CosmicCult.Abilities;
 
@@ -41,6 +42,7 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         SubscribeLocalEvent<AILawUpdatedEvent>(OnLawInserted);
 
         SubscribeLocalEvent<BorgChassisComponent, MalignFragmentationEvent>(OnFragmentBorg);
+        SubscribeLocalEvent<IPCBrainComponent, MalignFragmentationEvent>(OnFragmentBorg);
         SubscribeLocalEvent<SiliconLawUpdaterComponent, MalignFragmentationEvent>(OnFragmentAi);
 
         SubscribeLocalEvent<CosmicCultComponent, EventCosmicFragmentation>(OnCosmicFragmentation);
@@ -110,6 +112,24 @@ public sealed class CosmicFragmentationSystem : EntitySystem
     }
 
     private void OnFragmentBorg(Entity<BorgChassisComponent> ent, ref MalignFragmentationEvent args)
+    {
+        if (!_mind.TryGetMind(ent, out var mindId, out var mind))
+            return;
+        var wisp = Spawn("CosmicChantryWisp", Transform(ent).Coordinates);
+        var chantry = Spawn("CosmicBorgChantry", Transform(ent).Coordinates);
+        EnsureComp<CosmicChantryComponent>(chantry, out var chantryComponent);
+        chantryComponent.InternalVictim = wisp;
+        chantryComponent.VictimBody = ent;
+        _metaData.SetEntityName(wisp, $"{MetaData(ent).EntityName}"); //Starlight name fix
+        _mind.TransferTo(mindId, wisp, mind: mind);
+
+        var mins = chantryComponent.EventTime.Minutes;
+        var secs = chantryComponent.EventTime.Seconds;
+        _antag.SendBriefing(wisp, Loc.GetString("cosmiccult-silicon-chantry-briefing", ("minutesandseconds", $"{mins} minutes and {secs} seconds")), Color.FromHex("#4cabb3"), null);
+        args.Succeeded = true;
+    }
+
+    private void OnFragmentBorg(Entity<IPCBrainComponent> ent, ref MalignFragmentationEvent args)
     {
         if (!_mind.TryGetMind(ent, out var mindId, out var mind))
             return;
