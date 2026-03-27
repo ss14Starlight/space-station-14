@@ -1,6 +1,8 @@
 using Content.Server.Doors.Systems;
+using Content.Server.Popups;
 using Content.Shared._ST.CosmicCult;
 using Content.Shared._ST.CosmicCult.Components;
+using Content.Shared._Starlight.NullSpace;
 using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
 using Robust.Shared.Audio.Systems;
@@ -13,6 +15,8 @@ public sealed class CosmicIngressSystem : EntitySystem
     [Dependency] private readonly DoorSystem _door = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -26,6 +30,13 @@ public sealed class CosmicIngressSystem : EntitySystem
 
     private void OnCosmicIngress(Entity<CosmicCultComponent> uid, ref EventCosmicIngress args)
     {
+        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
+            if (HasComp<NullSpaceBlockerComponent>(entity))
+            {
+                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
+                return;
+            }
+
         var target = args.Target;
         if (args.Handled)
             return;

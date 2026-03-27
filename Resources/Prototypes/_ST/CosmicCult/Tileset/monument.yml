@@ -23,7 +23,7 @@
         density: 1000
         hard: false
   - type: Visibility
-    layer: 8192
+    layer: 32
   # - type: SpriteFade
   - type: Sprite
     sprite: _ST/CosmicCult/Tileset/monument.rsi
@@ -116,7 +116,7 @@
   suffix: Spawn, DO NOT MAP
   components:
   - type: Visibility
-    layer: 8192
+    layer: 32
   - type: Sprite
     sprite: _ST/CosmicCult/Tileset/monument.rsi
     layers:
@@ -174,7 +174,7 @@
   suffix: Spawn, DO NOT MAP
   components:
   - type: Visibility
-    layer: 8192
+    layer: 32
   - type: Sprite
     sprite: _ST/CosmicCult/Tileset/monument.rsi
     layers:
@@ -229,7 +229,7 @@
   suffix: Spawn, DO NOT MAP
   components:
   - type: Visibility
-    layer: 8192
+    layer: 32
   - type: Sprite
     sprite: _ST/CosmicCult/Tileset/monument.rsi
     layers:
