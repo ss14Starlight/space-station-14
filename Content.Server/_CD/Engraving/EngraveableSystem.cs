@@ -37,12 +37,12 @@ public sealed class EngraveableSystem : SharedEngraveableSystem
 
         var engraveVerb = new ActivationVerb
         {
-            Text = Loc.GetString(ent.Comp.EngraveVerb), // SL
+            Text = Loc.GetString(ent.Comp.EngraveVerb), // Starlight edit
             Act = () =>
             {
                 _dialog.OpenDialog(actor.PlayerSession,
-                    Loc.GetString(ent.Comp.EngraveVerb), // SL
-                    Loc.GetString(ent.Comp.PopupMessage), // SL
+                    Loc.GetString(ent.Comp.EngraveVerb), // Starlight edit
+                    Loc.GetString(ent.Comp.PopupMessage), // Starlight edit
                     (string message) =>
                     {
                         // If either the actor or comp have magically vanished
