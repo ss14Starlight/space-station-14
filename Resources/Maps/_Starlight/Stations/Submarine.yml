@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/27/2026 08:38:25
-  entityCount: 44455
+  time: 03/27/2026 21:53:27
+  entityCount: 44481
 maps:
 - 1
 grids:
@@ -519,7 +519,7 @@ entities:
           version: 7
         0,4:
           ind: 0,4
-          tiles: XgAAAAACAGsAAAAAAwBeAAAAAAMAfwAAAAAAAFQAAAAAAABUAAAAAAEAfwAAAAAAADwAAAAAAAA8AAAAAAAAPAAAAAAAADwAAAAAAAA8AAAAAAAATwAAAAABAG4AAAAAAABuAAAAAAAAbgAAAAAAAF4AAAAAAABrAAAAAAMAXgAAAAAAAE8AAAAAAwBUAAAAAAMAVAAAAAAAAE8AAAAAAQA8AAAAAAAAUAAAAAAAAFAAAAAAAABQAAAAAAAAPAAAAAAAAE8AAAAAAwBuAAAAAAAAbgAAAAAAAG4AAAAAAABeAAAAAAEAawAAAAABAF4AAAAAAgB/AAAAAAAAVAAAAAABAFQAAAAAAwB/AAAAAAAAPAAAAAAAAFAAAAAAAABQAAAAAAAAUAAAAAAAADwAAAAAAABPAAAAAAAAbgAAAAAAAG4AAAAAAABuAAAAAAAAXgAAAAABAGsAAAAAAQBeAAAAAAIAfwAAAAAAAH8AAAAAAAB/AAAAAAAAfwAAAAAAADwAAAAAAABQAAAAAAAAUAAAAAAAAFAAAAAAAAA8AAAAAAAAfwAAAAAAAE8AAAAAAgBuAAAAAAAAbgAAAAAAAF4AAAAAAABrAAAAAAIAXgAAAAABAE8AAAAAAQBPAAAAAAMATwAAAAAAAFAAAAAAAAA8AAAAAAAAPAAAAAAAADwAAAAAAAA8AAAAAAAAPAAAAAAAAFAAAAAAAABuAAAAAAAAbgAAAAAAAG4AAAAAAABeAAAAAAAAawAAAAABAF4AAAAAAgBPAAAAAAAATwAAAAACAE8AAAAAAQBPAAAAAAIAUAAAAAAAAFAAAAAAAABQAAAAAAAAUAAAAAAAAFAAAAAAAABPAAAAAAAAbgAAAAAAAG4AAAAAAABuAAAAAAAAXgAAAAADAGsAAAAAAgBeAAAAAAEAfwAAAAAAAE8AAAAAAgBPAAAAAAMATwAAAAADAE8AAAAAAABPAAAAAAIATwAAAAACAE8AAAAAAABPAAAAAAMATwAAAAAAAG4AAAAAAABuAAAAAAAAbgAAAAAAAF4AAAAAAwBeAAAAAAMAXgAAAAADAH8AAAAAAABPAAAAAAMATwAAAAABAE8AAAAAAQBPAAAAAAMATwAAAAABAE8AAAAAAQBPAAAAAAIATwAAAAADAE8AAAAAAABuAAAAAAAAbgAAAAAAAG4AAAAAAABPAAAAAAMATwAAAAAAAE8AAAAAAQB/AAAAAAAAfwAAAAAAAH8AAAAAAAB/AAAAAAAATwAAAAACAE8AAAAAAABPAAAAAAMATwAAAAADAE8AAAAAAwB/AAAAAAAAfwAAAAAAAG4AAAAAAABuAAAAAAAAXgAAAAAAAF4AAAAAAABeAAAAAAAAXgAAAAAAACEAAAAAAwAhAAAAAAEATwAAAAADAAwAAAAAAQAMAAAAAAAADAAAAAADAAwAAAAAAgAMAAAAAAEADAAAAAAAAG4AAAAAAABuAAAAAAAAbgAAAAAAAF4AAAAAAQBrAAAAAAMAXgAAAAAAAF4AAAAAAgAhAAAAAAAAIQAAAAADAE8AAAAAAQAMAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAwBuAAAAAAAAbwAAAAACAG4AAAAAAABeAAAAAAAAawAAAAACAF4AAAAAAgBeAAAAAAIAIQAAAAABACEAAAAAAABPAAAAAAMADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAEAbgAAAAAAAG4AAAAAAABuAAAAAAAAAQAAAAAAAGsAAAAAAwBeAAAAAAIAXgAAAAAAACEAAAAAAgAhAAAAAAEATwAAAAAAAAwAAAAAAAAMAAAAAAMADAAAAAAAAAwAAAAAAgAMAAAAAAAADAAAAAAAAE8AAAAAAABPAAAAAAEATwAAAAACAAEAAAAAAABrAAAAAAEAXgAAAAAAAF4AAAAAAQBeAAAAAAIATwAAAAACAF4AAAAAAABeAAAAAAEATwAAAAABAE8AAAAAAABPAAAAAAMATwAAAAAAAE8AAAAAAgBPAAAAAAIATwAAAAADAG4AAAAAAAABAAAAAAAAawAAAAACAF4AAAAAAQBPAAAAAAMADAAAAAADAAwAAAAAAgBeAAAAAAAAIQAAAAAAACEAAAAAAwAhAAAAAAMAIQAAAAADACEAAAAAAAAhAAAAAAAAIQAAAAADAF4AAAAAAwBuAAAAAAAAXgAAAAABAGsAAAAAAABeAAAAAAEATwAAAAAAAE8AAAAAAgBPAAAAAAMAXgAAAAABACEAAAAAAwBPAAAAAAMATwAAAAADAE8AAAAAAQBPAAAAAAIATwAAAAADACEAAAAAAABPAAAAAAIAbgAAAAAAAA==
+          tiles: XgAAAAACAGsAAAAAAwBeAAAAAAMAfwAAAAAAAFQAAAAAAABUAAAAAAEAfwAAAAAAADwAAAAAAAA8AAAAAAAAPAAAAAAAADwAAAAAAAA8AAAAAAAATwAAAAABAG4AAAAAAABuAAAAAAAAbgAAAAAAAF4AAAAAAABrAAAAAAMAXgAAAAAAAE8AAAAAAwBUAAAAAAMAVAAAAAAAAE8AAAAAAQA8AAAAAAAAUAAAAAAAAFAAAAAAAABQAAAAAAAAPAAAAAAAAE8AAAAAAwBuAAAAAAAAbgAAAAAAAG4AAAAAAABeAAAAAAEAawAAAAABAF4AAAAAAgB/AAAAAAAAVAAAAAABAFQAAAAAAwB/AAAAAAAAPAAAAAAAAFAAAAAAAABQAAAAAAAAUAAAAAAAADwAAAAAAABPAAAAAAAAbgAAAAAAAG4AAAAAAABuAAAAAAAAXgAAAAABAGsAAAAAAQBeAAAAAAIAfwAAAAAAAH8AAAAAAAB/AAAAAAAAfwAAAAAAADwAAAAAAABQAAAAAAAAUAAAAAAAAFAAAAAAAAA8AAAAAAAAfwAAAAAAAE8AAAAAAgBuAAAAAAAAbgAAAAAAAF4AAAAAAABrAAAAAAIAXgAAAAABAE8AAAAAAQBPAAAAAAMATwAAAAAAAFAAAAAAAAA8AAAAAAAAPAAAAAAAADwAAAAAAAA8AAAAAAAAPAAAAAAAAFAAAAAAAABuAAAAAAAAbgAAAAAAAG4AAAAAAABeAAAAAAAAawAAAAABAF4AAAAAAgBPAAAAAAAATwAAAAACAE8AAAAAAQBPAAAAAAIAUAAAAAAAAFAAAAAAAABQAAAAAAAAUAAAAAAAAFAAAAAAAABPAAAAAAAAbgAAAAAAAG4AAAAAAABuAAAAAAAAXgAAAAADAGsAAAAAAgBeAAAAAAEAfwAAAAAAAE8AAAAAAgBPAAAAAAMATwAAAAADAE8AAAAAAABPAAAAAAIATwAAAAACAE8AAAAAAABPAAAAAAMATwAAAAAAAG4AAAAAAABuAAAAAAAAbgAAAAAAAF4AAAAAAwBeAAAAAAMAXgAAAAADAH8AAAAAAABPAAAAAAMATwAAAAABAE8AAAAAAQBPAAAAAAMATwAAAAABAE8AAAAAAQBPAAAAAAIATwAAAAADAE8AAAAAAABuAAAAAAAAbgAAAAAAAG4AAAAAAABPAAAAAAMATwAAAAAAAE8AAAAAAQB/AAAAAAAAfwAAAAAAAH8AAAAAAAB/AAAAAAAATwAAAAACAE8AAAAAAABPAAAAAAMATwAAAAADAE8AAAAAAwB/AAAAAAAAfwAAAAAAAG4AAAAAAABuAAAAAAAAXgAAAAAAAF4AAAAAAABeAAAAAAAAXgAAAAAAAG4AAAAAAABuAAAAAAAATwAAAAADAAwAAAAAAQAMAAAAAAAADAAAAAADAAwAAAAAAgAMAAAAAAEADAAAAAAAAG4AAAAAAABuAAAAAAAAbgAAAAAAAF4AAAAAAQBrAAAAAAMAXgAAAAAAAH8AAAAAAABuAAAAAAAAbgAAAAAAAE8AAAAAAQAMAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAwBuAAAAAAAAbwAAAAACAG4AAAAAAABeAAAAAAAAawAAAAACAF4AAAAAAgBuAAAAAAAAbgAAAAAAAG4AAAAAAABPAAAAAAMADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAEAbgAAAAAAAG4AAAAAAABuAAAAAAAAAQAAAAAAAGsAAAAAAwBeAAAAAAIAXgAAAAAAAG4AAAAAAABuAAAAAAAATwAAAAAAAAwAAAAAAAAMAAAAAAMADAAAAAAAAAwAAAAAAgAMAAAAAAAADAAAAAAAAE8AAAAAAABPAAAAAAEATwAAAAACAAEAAAAAAABrAAAAAAEAXgAAAAAAAF4AAAAAAQBuAAAAAAAAbgAAAAAAAF4AAAAAAABeAAAAAAEATwAAAAABAE8AAAAAAABPAAAAAAMATwAAAAAAAE8AAAAAAgBPAAAAAAIATwAAAAADAG4AAAAAAAABAAAAAAAAawAAAAACAF4AAAAAAQBPAAAAAAMAbgAAAAAAAG4AAAAAAABeAAAAAAAAIQAAAAAAACEAAAAAAwAhAAAAAAMAIQAAAAADACEAAAAAAAAhAAAAAAAAIQAAAAADAF4AAAAAAwBuAAAAAAAAXgAAAAABAGsAAAAAAABeAAAAAAEATwAAAAAAAE8AAAAAAgBPAAAAAAMAXgAAAAABACEAAAAAAwBPAAAAAAMATwAAAAADAE8AAAAAAQBPAAAAAAIATwAAAAADACEAAAAAAABPAAAAAAIAbgAAAAAAAA==
           version: 7
         -1,4:
           ind: -1,4
@@ -2482,6 +2482,12 @@ entities:
             3596: -92,22
             3611: -68,3
         - node:
+            color: '#DE3A3AFF'
+            id: BrickTileWhiteCornerNe
+          decals:
+            7507: 7,-5
+            7534: 13,-5
+        - node:
             color: '#FF974DFF'
             id: BrickTileWhiteCornerNe
           decals:
@@ -2677,6 +2683,12 @@ entities:
             1896: -74,11
             3610: -70,3
         - node:
+            color: '#DE3A3AFF'
+            id: BrickTileWhiteCornerNw
+          decals:
+            7504: 5,-5
+            7527: 9,-5
+        - node:
             color: '#FF974DFF'
             id: BrickTileWhiteCornerNw
           decals:
@@ -2757,6 +2769,11 @@ entities:
             5661: 20,9
             5663: 12,12
             5664: 10,9
+        - node:
+            color: '#9C2020FF'
+            id: BrickTileWhiteCornerSe
+          decals:
+            7554: -29,24
         - node:
             color: '#9DDFBAFF'
             id: BrickTileWhiteCornerSe
@@ -2865,6 +2882,13 @@ entities:
             3595: -92,21
             3612: -68,-1
         - node:
+            color: '#DE3A3AFF'
+            id: BrickTileWhiteCornerSe
+          decals:
+            7505: 7,-13
+            7528: 13,-6
+            7529: 10,-13
+        - node:
             color: '#FF974DFF'
             id: BrickTileWhiteCornerSe
           decals:
@@ -2948,6 +2972,11 @@ entities:
             5662: 16,12
             5665: 18,9
             5734: 18,5
+        - node:
+            color: '#9C2020FF'
+            id: BrickTileWhiteCornerSw
+          decals:
+            7564: -39,24
         - node:
             color: '#9DDFBAFF'
             id: BrickTileWhiteCornerSw
@@ -3045,6 +3074,13 @@ entities:
             1861: -90,21
             1862: -98,18
             3613: -70,-1
+        - node:
+            color: '#DE3A3AFF'
+            id: BrickTileWhiteCornerSw
+          decals:
+            7506: 5,-11
+            7510: 6,-13
+            7530: 9,-13
         - node:
             color: '#FF974DFF'
             id: BrickTileWhiteCornerSw
@@ -3270,6 +3306,11 @@ entities:
             5672: 12,13
             5675: 10,12
         - node:
+            color: '#9C2020FF'
+            id: BrickTileWhiteInnerSe
+          decals:
+            7569: -29,28
+        - node:
             color: '#9DDFBAFF'
             id: BrickTileWhiteInnerSe
           decals:
@@ -3308,6 +3349,11 @@ entities:
             3585: -97,19
             3586: -96,21
             3598: -95,-6
+        - node:
+            color: '#DE3A3AFF'
+            id: BrickTileWhiteInnerSe
+          decals:
+            7543: 10,-6
         - node:
             color: '#FF974DFF'
             id: BrickTileWhiteInnerSe
@@ -3369,6 +3415,11 @@ entities:
             1957: -87,20
             1958: -89,21
             1984: -48,7
+        - node:
+            color: '#DE3A3AFF'
+            id: BrickTileWhiteInnerSw
+          decals:
+            7508: 6,-11
         - node:
             color: '#FF974DFF'
             id: BrickTileWhiteInnerSw
@@ -3564,6 +3615,13 @@ entities:
             5656: 10,11
             5730: 10,6
             5731: 10,5
+        - node:
+            color: '#9C2020FF'
+            id: BrickTileWhiteLineE
+          decals:
+            7551: -29,27
+            7552: -29,26
+            7553: -29,25
         - node:
             color: '#9DDFBAFF'
             id: BrickTileWhiteLineE
@@ -3821,6 +3879,23 @@ entities:
             3614: -68,0
             3615: -68,1
             3616: -68,2
+        - node:
+            color: '#DE3A3AFF'
+            id: BrickTileWhiteLineE
+          decals:
+            7511: 7,-12
+            7512: 7,-11
+            7513: 7,-10
+            7514: 7,-9
+            7515: 7,-8
+            7516: 7,-7
+            7517: 7,-6
+            7537: 10,-7
+            7538: 10,-8
+            7539: 10,-9
+            7540: 10,-10
+            7541: 10,-11
+            7542: 10,-12
         - node:
             color: '#FF974DFF'
             id: BrickTileWhiteLineE
@@ -4424,6 +4499,14 @@ entities:
             3608: -93,22
             3620: -69,3
         - node:
+            color: '#DE3A3AFF'
+            id: BrickTileWhiteLineN
+          decals:
+            7518: 6,-5
+            7531: 10,-5
+            7532: 11,-5
+            7533: 12,-5
+        - node:
             color: '#FF974DFF'
             id: BrickTileWhiteLineN
           decals:
@@ -4705,6 +4788,19 @@ entities:
             5735: 27,18
             5736: 28,18
             5737: 29,18
+        - node:
+            color: '#9C2020FF'
+            id: BrickTileWhiteLineS
+          decals:
+            7555: -30,24
+            7556: -31,24
+            7557: -32,24
+            7558: -33,24
+            7559: -34,24
+            7560: -35,24
+            7561: -36,24
+            7562: -37,24
+            7563: -38,24
         - node:
             color: '#9DDFBAFF'
             id: BrickTileWhiteLineS
@@ -5053,6 +5149,15 @@ entities:
             3606: -93,21
             3621: -69,-1
         - node:
+            color: '#DE3A3AFF'
+            id: BrickTileWhiteLineS
+          decals:
+            7524: 9,-3
+            7525: 8,-3
+            7526: 10,-3
+            7535: 12,-6
+            7536: 11,-6
+        - node:
             color: '#FF974DFF'
             id: BrickTileWhiteLineS
           decals:
@@ -5238,6 +5343,14 @@ entities:
             5666: 18,10
             5732: 18,6
             5782: 8,14
+        - node:
+            color: '#9C2020FF'
+            id: BrickTileWhiteLineW
+          decals:
+            7565: -39,25
+            7566: -39,26
+            7567: -39,27
+            7568: -39,28
         - node:
             color: '#9DDFBAFF'
             id: BrickTileWhiteLineW
@@ -5514,6 +5627,23 @@ entities:
             3617: -70,2
             3618: -70,1
             3619: -70,0
+        - node:
+            color: '#DE3A3AFF'
+            id: BrickTileWhiteLineW
+          decals:
+            7509: 6,-12
+            7519: 5,-6
+            7520: 5,-7
+            7521: 5,-8
+            7522: 5,-9
+            7523: 5,-10
+            7544: 9,-12
+            7545: 9,-11
+            7546: 9,-10
+            7547: 9,-9
+            7548: 9,-8
+            7549: 9,-7
+            7550: 9,-6
         - node:
             color: '#FF974DFF'
             id: BrickTileWhiteLineW
@@ -7365,7 +7495,6 @@ entities:
             4483: -16.198597,54.156445
             6752: -0.7997854,62.039997
             7287: 7.000082,75.54161
-            7288: 3.984457,77.83067
             7325: 8.816984,85.6264
             7502: -0.039970875,76.28693
         - node:
@@ -7780,7 +7909,6 @@ entities:
             3547: 35.873875,20.83988
             6143: -46.454243,-37.985996
             7270: 54.54633,-28.09381
-            7503: 4.23114,78.10724
         - node:
             angle: -0.15707963267948966 rad
             color: '#FFFFFFFF'
@@ -7853,7 +7981,6 @@ entities:
             6671: 92.003845,-6.0752287
             6753: -41.139698,72.81525
             7284: 7.031332,74.94786
-            7289: 4.890707,78.01817
             7307: 5.770109,85.5639
         - node:
             color: '#FFFFFFFF'
@@ -8358,7 +8485,6 @@ entities:
             7266: 52.772892,-27.96881
             7267: 56.491642,-27.953184
             7268: 60.335392,-27.101622
-            7290: 4.4610195,78.0963
             7297: 4.457609,86.3764
             7298: 9.410734,86.33734
             7299: 4.848234,84.15765
@@ -8490,6 +8616,64 @@ entities:
             4271: 81.011955,57.802673
             4272: 74.87133,57.990173
             4273: 76.48852,55.154236
+        - node:
+            color: '#FFFFFFFF'
+            id: GrayConcreteTrimInnerNe
+          decals:
+            7593: -38,24
+        - node:
+            color: '#FFFFFFFF'
+            id: GrayConcreteTrimInnerNw
+          decals:
+            7594: -30,24
+        - node:
+            color: '#FFFFFFFF'
+            id: GrayConcreteTrimInnerSe
+          decals:
+            7595: -38,29
+        - node:
+            color: '#FFFFFFFF'
+            id: GrayConcreteTrimInnerSw
+          decals:
+            7592: -30,29
+        - node:
+            color: '#FFFFFFFF'
+            id: GrayConcreteTrimLineE
+          decals:
+            7570: -38,28
+            7571: -38,27
+            7572: -38,26
+            7573: -38,25
+        - node:
+            color: '#FFFFFFFF'
+            id: GrayConcreteTrimLineN
+          decals:
+            7574: -37,24
+            7575: -36,24
+            7576: -35,24
+            7577: -34,24
+            7578: -33,24
+            7579: -32,24
+            7580: -31,24
+        - node:
+            color: '#FFFFFFFF'
+            id: GrayConcreteTrimLineS
+          decals:
+            7585: -37,29
+            7586: -36,29
+            7587: -35,29
+            7588: -34,29
+            7589: -33,29
+            7590: -32,29
+            7591: -31,29
+        - node:
+            color: '#FFFFFFFF'
+            id: GrayConcreteTrimLineW
+          decals:
+            7581: -30,25
+            7582: -30,26
+            7583: -30,27
+            7584: -30,28
         - node:
             color: '#720000FF'
             id: HalfTileOverlayGreyscale
@@ -10102,6 +10286,7 @@ entities:
             5218: -1,0
             5219: 6,0
             5220: 6,7
+            7596: -32,27
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinCornerNw
@@ -10109,6 +10294,7 @@ entities:
             5221: 4,7
             5222: 3,0
             5223: -4,0
+            7599: -36,27
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinCornerSe
@@ -10116,6 +10302,7 @@ entities:
             5212: 6,-3
             5213: -1,-3
             5214: 6,5
+            7598: -32,26
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinCornerSw
@@ -10123,6 +10310,7 @@ entities:
             5215: -4,-3
             5216: 4,5
             5217: 3,-3
+            7597: -36,26
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinInnerNe
@@ -10153,6 +10341,9 @@ entities:
             5226: 4,0
             5227: 5,0
             5228: 5,7
+            7600: -35,27
+            7601: -34,27
+            7602: -33,27
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinLineS
@@ -10162,6 +10353,9 @@ entities:
             5236: 4,-3
             5237: 5,-3
             5238: 5,5
+            7603: -35,26
+            7604: -34,26
+            7605: -33,26
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinLineW
@@ -17770,6 +17964,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,77.5
       parent: 2
+    - type: DeviceList
+      devices:
+      - 4865
     - type: Fixtures
       fixtures: {}
   - uid: 234
@@ -18031,6 +18228,19 @@ entities:
       - 28416
       - 21387
       - 21388
+    - type: Fixtures
+      fixtures: {}
+  - uid: 4610
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,77.5
+      parent: 2
+    - type: DeviceList
+      devices:
+      - 4515
+      - 4130
+      - 4865
     - type: Fixtures
       fixtures: {}
   - uid: 45312
@@ -18794,6 +19004,11 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 36.5,64.5
+      parent: 2
+  - uid: 4179
+    components:
+    - type: Transform
+      pos: 3.5,75.5
       parent: 2
   - uid: 46441
     components:
@@ -19965,7 +20180,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -7.5,98.5
       parent: 2
-- proto: AirlockExternalGlassShuttleLocked
+- proto: AirlockExternalGlassShuttleEscapeLifeboat
   entities:
   - uid: 458
     components:
@@ -19984,6 +20199,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 85.5,0.5
       parent: 2
+- proto: AirlockExternalGlassShuttleLocked
+  entities:
   - uid: 461
     components:
     - type: Transform
@@ -21322,12 +21539,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,-28.5
       parent: 2
-  - uid: 689
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,77.5
-      parent: 2
   - uid: 690
     components:
     - type: Transform
@@ -21400,12 +21611,6 @@ entities:
     components:
     - type: Transform
       pos: -14.5,-6.5
-      parent: 2
-  - uid: 47015
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 37.5,4.5
       parent: 2
 - proto: AirlockMaintQuartermasterLocked
   entities:
@@ -21534,6 +21739,23 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -80.5,19.5
+      parent: 2
+- proto: AirlockMaintSurgeryLocked
+  entities:
+  - uid: 1413
+    components:
+    - type: Transform
+      pos: 37.5,4.5
+      parent: 2
+  - uid: 4247
+    components:
+    - type: Transform
+      pos: -14.5,-3.5
+      parent: 2
+  - uid: 4248
+    components:
+    - type: Transform
+      pos: -21.5,-3.5
       parent: 2
 - proto: AirlockMedicalGlass
   entities:
@@ -34608,6 +34830,37 @@ entities:
       parent: 2
 - proto: ATM
   entities:
+  - uid: 4249
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -34.5,-32.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 4250
+    components:
+    - type: Transform
+      pos: -46.5,10.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 45316
     components:
     - type: Transform
@@ -34640,7 +34893,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 3070
     components:
@@ -34648,6 +34901,19 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 85.5,0.5
       parent: 2
+  - uid: 3077
+    components:
+    - type: Transform
+      pos: 46.5,-35.5
+      parent: 2
+  - uid: 3091
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -66.5,-16.5
+      parent: 2
+- proto: AtmosDeviceFanTiny
+  entities:
   - uid: 3071
     components:
     - type: Transform
@@ -34679,11 +34945,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -53.5,78.5
-      parent: 2
-  - uid: 3077
-    components:
-    - type: Transform
-      pos: 46.5,-35.5
       parent: 2
   - uid: 3078
     components:
@@ -34759,11 +35020,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 8.5,98.5
-      parent: 2
-  - uid: 3091
-    components:
-    - type: Transform
-      pos: -66.5,-16.5
       parent: 2
   - uid: 3092
     components:
@@ -35228,21 +35484,45 @@ entities:
     - type: Transform
       pos: -67.5,1.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
   - uid: 3181
     components:
     - type: Transform
       pos: 19.5,-18.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
   - uid: 3182
     components:
     - type: Transform
       pos: -51.5,19.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
   - uid: 3183
     components:
     - type: Transform
       pos: -16.5,-25.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
 - proto: AxolotlPlushie
   entities:
   - uid: 47175
@@ -35866,6 +36146,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,-33.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -35882,6 +36165,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 14.5,42.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -35898,6 +36184,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 22.5,53.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -35913,6 +36202,9 @@ entities:
     - type: Transform
       pos: 45.5,51.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -35929,6 +36221,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -67.5,13.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -35944,6 +36239,9 @@ entities:
     - type: Transform
       pos: 39.5,51.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -35960,6 +36258,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 88.5,-13.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -35975,6 +36276,9 @@ entities:
     - type: Transform
       pos: 88.5,-19.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -35990,6 +36294,9 @@ entities:
     - type: Transform
       pos: 86.5,-19.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -36006,6 +36313,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 105.5,17.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -36022,6 +36332,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 105.5,16.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -36037,6 +36350,9 @@ entities:
     - type: Transform
       pos: 17.5,59.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -106502,6 +106818,11 @@ entities:
       parent: 2
 - proto: Chair
   entities:
+  - uid: 4118
+    components:
+    - type: Transform
+      pos: 5.5,77.5
+      parent: 2
   - uid: 16942
     components:
     - type: Transform
@@ -108941,17 +109262,6 @@ entities:
     - type: Transform
       pos: -13.5,58.5
       parent: 2
-  - uid: 17381
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.515803,73.57831
-      parent: 2
-  - uid: 17382
-    components:
-    - type: Transform
-      pos: 5.515803,76.48456
-      parent: 2
   - uid: 17383
     components:
     - type: Transform
@@ -109142,6 +109452,13 @@ entities:
           showEnts: False
           occludes: True
           ent: null
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      enabled: True
+      castShadows: True
   - uid: 17396
     components:
     - type: Transform
@@ -109169,6 +109486,13 @@ entities:
           showEnts: False
           occludes: True
           ent: null
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      enabled: True
+      castShadows: True
   - uid: 17397
     components:
     - type: Transform
@@ -109196,6 +109520,13 @@ entities:
           showEnts: False
           occludes: True
           ent: null
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      enabled: True
+      castShadows: True
   - uid: 46795
     components:
     - type: Transform
@@ -109223,6 +109554,13 @@ entities:
           showEnts: False
           occludes: True
           ent: null
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      enabled: True
+      castShadows: True
 - proto: ChessBoard
   entities:
   - uid: 17398
@@ -109892,6 +110230,12 @@ entities:
     - type: Transform
       pos: 29.5,30.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
 - proto: CleanerDispenser
   entities:
   - uid: 17514
@@ -112347,6 +112691,10 @@ entities:
     - type: Transform
       pos: 19.5,59.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      color: '#FFFFFFFF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112364,6 +112712,10 @@ entities:
     - type: Transform
       pos: 40.5,51.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#B53CA1FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112379,6 +112731,10 @@ entities:
     - type: Transform
       pos: 44.5,51.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#B53CA1FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112397,6 +112753,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 22.5,0.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112413,6 +112773,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: 12.5,-10.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112428,6 +112792,10 @@ entities:
     - type: Transform
       pos: 35.5,7.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112444,6 +112812,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: 35.5,1.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112561,6 +112933,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -16.5,-23.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112579,6 +112954,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -12.5,-23.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112594,6 +112972,9 @@ entities:
     - type: Transform
       pos: -24.5,-23.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112611,6 +112992,10 @@ entities:
     - type: Transform
       pos: 26.5,2.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112635,6 +113020,10 @@ entities:
     - type: Transform
       pos: 18.5,59.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#3C5EB5FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112651,6 +113040,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 29.5,50.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#3C5EB5FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112668,6 +113061,9 @@ entities:
     - type: Transform
       pos: -29.5,-19.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112686,6 +113082,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -58.5,14.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112703,6 +113102,9 @@ entities:
     - type: Transform
       pos: -8.5,65.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112721,6 +113123,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -3.5,-6.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112739,6 +113144,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 47.5,24.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112757,6 +113165,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,26.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112775,6 +113186,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 22.5,3.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#006400FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112790,6 +113205,10 @@ entities:
     - type: Transform
       pos: 48.5,34.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#006400FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112806,6 +113225,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 8.5,27.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#006400FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112822,6 +113245,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,5.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#006400FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112837,6 +113264,10 @@ entities:
     - type: Transform
       pos: 14.5,58.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#006400FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112853,6 +113284,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -32.5,32.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#006400FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112868,6 +113303,10 @@ entities:
     - type: Transform
       pos: -39.5,36.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#006400FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112884,6 +113323,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: -19.5,49.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#006400FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112900,6 +113343,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: -6.5,32.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#006400FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112916,6 +113363,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: -25.5,24.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#006400FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112932,6 +113383,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,73.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#006400FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112948,6 +113403,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 9.5,-7.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#006400FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112966,6 +113425,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -11.5,74.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#006400FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112983,6 +113446,10 @@ entities:
     - type: Transform
       pos: -1.5,43.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -112998,6 +113465,10 @@ entities:
     - type: Transform
       pos: -19.5,51.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113013,6 +113484,10 @@ entities:
     - type: Transform
       pos: 22.5,58.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113029,6 +113504,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -19.5,28.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113044,6 +113523,10 @@ entities:
     - type: Transform
       pos: 4.5,-21.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113060,6 +113543,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -41.5,35.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113076,6 +113563,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: -26.5,24.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113102,6 +113593,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -10.5,-11.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113126,6 +113620,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 17.5,55.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113150,6 +113647,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,27.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113173,6 +113673,9 @@ entities:
     - type: Transform
       pos: 44.5,30.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113196,6 +113699,9 @@ entities:
     - type: Transform
       pos: -25.5,-23.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113220,6 +113726,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -62.5,18.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113244,6 +113753,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -7.5,32.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113270,6 +113782,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -29.5,-8.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      color: '#FFFFFFFF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113288,6 +113804,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: -4.5,-7.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113304,6 +113824,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -22.5,-2.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113320,6 +113844,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -16.5,-2.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113336,6 +113864,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 13.5,57.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113351,6 +113883,10 @@ entities:
     - type: Transform
       pos: 4.5,7.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#1F8C28FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113368,6 +113904,8 @@ entities:
     - type: Transform
       pos: -20.5,-10.5
       parent: 2
+    - type: PointLight
+      energy: 3
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113403,6 +113941,43 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -22.5,-9.5
+      parent: 2
+    - type: PointLight
+      energy: 3
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        PDA-id: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        PDA-pen: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        PDA-pai: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        Cartridge-Slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        program-container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 4174
+    components:
+    - type: Transform
+      pos: 5.5,78.5
       parent: 2
     - type: ContainerContainer
       containers:
@@ -113442,6 +114017,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -47.5,16.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#C9C042FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113458,6 +114037,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: 17.5,-21.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#C9C042FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113474,6 +114057,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: 87.5,-13.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#C9C042FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113490,6 +114077,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 14.5,53.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#C9C042FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113505,6 +114096,10 @@ entities:
     - type: Transform
       pos: 87.5,-19.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#C9C042FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113520,6 +114115,10 @@ entities:
     - type: Transform
       pos: -58.5,45.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#C9C042FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113537,6 +114136,10 @@ entities:
     - type: Transform
       pos: 31.5,68.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#E6E227FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113552,6 +114155,10 @@ entities:
     - type: Transform
       pos: 37.5,68.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#E6E227FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113567,6 +114174,10 @@ entities:
     - type: Transform
       pos: 35.5,68.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#E6E227FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113582,6 +114193,10 @@ entities:
     - type: Transform
       pos: 29.5,68.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#E6E227FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113597,6 +114212,10 @@ entities:
     - type: Transform
       pos: 41.5,68.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#E6E227FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113613,6 +114232,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: -25.5,-46.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#E6E227FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113629,6 +114252,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: -15.5,-46.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#E6E227FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113645,6 +114272,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: 15.5,52.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#E6E227FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113661,6 +114292,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -84.5,75.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#E6E227FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113677,6 +114312,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: -34.5,-56.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#E6E227FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113693,6 +114332,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -52.5,75.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#E6E227FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113709,6 +114352,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: -36.5,-56.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#E6E227FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113727,6 +114374,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 26.5,26.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#B53CA1FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113743,6 +114394,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: 21.5,52.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#B53CA1FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113761,6 +114416,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -16.5,-46.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113783,6 +114441,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -64.5,-34.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#E6E227FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113798,6 +114460,10 @@ entities:
     - type: Transform
       pos: 56.5,-37.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      color: '#E6E227FF'
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113816,6 +114482,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 19.5,55.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113832,6 +114501,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 58.5,30.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113848,6 +114520,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,49.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113863,6 +114538,9 @@ entities:
     - type: Transform
       pos: -40.5,36.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113879,6 +114557,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -24.5,24.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113895,6 +114576,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,64.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113911,6 +114595,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -7.5,64.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113929,6 +114616,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -8.5,74.5
       parent: 2
+    - type: PointLight
+      energy: 4
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113947,6 +114637,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,-25.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113963,6 +114656,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -21.5,28.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113979,6 +114675,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,41.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -113994,6 +114693,9 @@ entities:
     - type: Transform
       pos: 18.5,56.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114009,6 +114711,9 @@ entities:
     - type: Transform
       pos: 6.5,62.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114025,6 +114730,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 23.5,57.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114040,6 +114748,9 @@ entities:
     - type: Transform
       pos: 5.5,62.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114058,6 +114769,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.5,58.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114074,6 +114788,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -27.5,-9.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114090,6 +114807,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,58.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114125,6 +114845,9 @@ entities:
     - type: Transform
       pos: -6.5,-6.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114140,6 +114863,9 @@ entities:
     - type: Transform
       pos: -21.5,22.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114155,6 +114881,9 @@ entities:
     - type: Transform
       pos: -20.5,22.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114170,6 +114899,9 @@ entities:
     - type: Transform
       pos: -60.5,-4.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114185,6 +114917,9 @@ entities:
     - type: Transform
       pos: -67.5,11.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114200,6 +114935,9 @@ entities:
     - type: Transform
       pos: -86.5,-2.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114215,6 +114953,9 @@ entities:
     - type: Transform
       pos: -96.5,29.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114230,6 +114971,9 @@ entities:
     - type: Transform
       pos: -14.5,-30.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114245,6 +114989,9 @@ entities:
     - type: Transform
       pos: -44.5,-19.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114260,6 +115007,9 @@ entities:
     - type: Transform
       pos: -9.5,-18.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114275,6 +115025,9 @@ entities:
     - type: Transform
       pos: -0.5,-31.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114290,6 +115043,9 @@ entities:
     - type: Transform
       pos: -25.5,-9.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114305,6 +115061,9 @@ entities:
     - type: Transform
       pos: -8.5,26.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114320,6 +115079,9 @@ entities:
     - type: Transform
       pos: 39.5,-25.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114335,6 +115097,9 @@ entities:
     - type: Transform
       pos: 58.5,-38.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114350,6 +115115,9 @@ entities:
     - type: Transform
       pos: 32.5,24.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114365,6 +115133,9 @@ entities:
     - type: Transform
       pos: 10.5,50.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114380,6 +115151,9 @@ entities:
     - type: Transform
       pos: 14.5,40.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114395,6 +115169,9 @@ entities:
     - type: Transform
       pos: -97.5,13.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114410,6 +115187,9 @@ entities:
     - type: Transform
       pos: -79.5,22.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114425,6 +115205,9 @@ entities:
     - type: Transform
       pos: -1.5,23.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114440,6 +115223,9 @@ entities:
     - type: Transform
       pos: -96.5,-1.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114455,6 +115241,9 @@ entities:
     - type: Transform
       pos: -21.5,59.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -114470,6 +115259,9 @@ entities:
     - type: Transform
       pos: -19.5,22.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      radius: 1.5
     - type: ContainerContainer
       containers:
         board: !type:Container
@@ -115812,21 +116604,29 @@ entities:
     - type: Transform
       pos: 12.5,18.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18231
     components:
     - type: Transform
       pos: 14.5,18.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18232
     components:
     - type: Transform
       pos: 16.5,18.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18233
     components:
     - type: Transform
       pos: -107.5,52.5
       parent: 2
+    - type: PointLight
+      castShadows: True
 - proto: CryoxadoneBeakerSmall
   entities:
   - uid: 18234
@@ -116669,6 +117469,21 @@ entities:
     - type: Transform
       pos: 1.5,88.5
       parent: 2
+  - uid: 4128
+    components:
+    - type: Transform
+      pos: 4.5,77.5
+      parent: 2
+  - uid: 4147
+    components:
+    - type: Transform
+      pos: 4.5,75.5
+      parent: 2
+  - uid: 4244
+    components:
+    - type: Transform
+      pos: 5.5,74.5
+      parent: 2
 - proto: DecalSpawnerDirtWide
   entities:
   - uid: 3758
@@ -116747,16 +117562,6 @@ entities:
       parent: 2
 - proto: DefaultStationBeacon
   entities:
-  - uid: 1413
-    components:
-    - type: Transform
-      pos: -26.5,65.5
-      parent: 2
-    - type: NavMapBeacon
-      color: '#FF000096'
-      text: GenPop
-    - type: WarpPoint
-      location: GenPop
   - uid: 18374
     components:
     - type: Transform
@@ -116925,16 +117730,6 @@ entities:
     - type: Transform
       pos: 16.5,-1.5
       parent: 2
-  - uid: 46808
-    components:
-    - type: Transform
-      pos: 6.5,-8.5
-      parent: 2
-    - type: NavMapBeacon
-      color: '#DE3A3AFF'
-      text: Brig Medic B
-    - type: WarpPoint
-      location: Brig Medic B
 - proto: DefaultStationBeaconCMORoom
   entities:
   - uid: 18393
@@ -116984,22 +117779,24 @@ entities:
     - type: Transform
       pos: -49.5,13.5
       parent: 2
-- proto: DefaultStationBeaconEscapePod
+- proto: DefaultStationBeaconEscapePodSE
   entities:
-  - uid: 18399
-    components:
-    - type: Transform
-      pos: -65.5,-17.5
-      parent: 2
-  - uid: 18400
+  - uid: 4099
     components:
     - type: Transform
       pos: 46.5,-34.5
       parent: 2
-  - uid: 18401
+  - uid: 4102
     components:
     - type: Transform
       pos: 84.5,0.5
+      parent: 2
+- proto: DefaultStationBeaconEscapePodSW
+  entities:
+  - uid: 4078
+    components:
+    - type: Transform
+      pos: -65.5,-16.5
       parent: 2
 - proto: DefaultStationBeaconEvac
   entities:
@@ -117089,6 +117886,13 @@ entities:
     components:
     - type: Transform
       pos: 30.5,12.5
+      parent: 2
+- proto: DefaultStationBeaconNCT
+  entities:
+  - uid: 4236
+    components:
+    - type: Transform
+      pos: 5.5,75.5
       parent: 2
 - proto: DefaultStationBeaconPsychology
   entities:
@@ -117224,6 +118028,13 @@ entities:
     - type: Transform
       pos: 72.5,-9.5
       parent: 2
+- proto: DefaultStationBeaconToolRoom
+  entities:
+  - uid: 5106
+    components:
+    - type: Transform
+      pos: -68.5,2.5
+      parent: 2
 - proto: DefaultStationBeaconVault
   entities:
   - uid: 18433
@@ -117290,181 +118101,253 @@ entities:
     - type: Transform
       pos: -27.5,42.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 3590
     components:
     - type: Transform
       pos: -27.5,41.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 3591
     components:
     - type: Transform
       pos: -25.5,42.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 3592
     components:
     - type: Transform
       pos: -25.5,41.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 3611
     components:
     - type: Transform
       pos: -20.5,41.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18442
     components:
     - type: Transform
       pos: -5.5,37.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18443
     components:
     - type: Transform
       pos: -7.5,37.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18444
     components:
     - type: Transform
       pos: -6.5,37.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18446
     components:
     - type: Transform
       pos: -48.5,82.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18447
     components:
     - type: Transform
       pos: 22.5,46.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18448
     components:
     - type: Transform
       pos: -48.5,84.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18449
     components:
     - type: Transform
       pos: -16.5,46.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18450
     components:
     - type: Transform
       pos: -48.5,83.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18451
     components:
     - type: Transform
       pos: 13.5,55.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18452
     components:
     - type: Transform
       pos: 73.5,-24.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18453
     components:
     - type: Transform
       pos: 73.5,-25.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18454
     components:
     - type: Transform
       pos: 74.5,-25.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18455
     components:
     - type: Transform
       pos: 76.5,-25.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18456
     components:
     - type: Transform
       pos: 77.5,-25.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18457
     components:
     - type: Transform
       pos: 77.5,-24.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18458
     components:
     - type: Transform
       pos: 7.5,-24.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18459
     components:
     - type: Transform
       pos: 7.5,-21.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18460
     components:
     - type: Transform
       pos: -78.5,14.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18461
     components:
     - type: Transform
       pos: -78.5,13.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18462
     components:
     - type: Transform
       pos: -76.5,13.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18463
     components:
     - type: Transform
       pos: -76.5,14.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18464
     components:
     - type: Transform
       pos: 17.5,35.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18465
     components:
     - type: Transform
       pos: 18.5,35.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18466
     components:
     - type: Transform
       pos: 19.5,35.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18467
     components:
     - type: Transform
       pos: 21.5,46.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18468
     components:
     - type: Transform
       pos: 24.5,46.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18473
     components:
     - type: Transform
       pos: 25.5,67.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18474
     components:
     - type: Transform
       pos: 25.5,68.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18475
     components:
     - type: Transform
       pos: 26.5,54.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18476
     components:
     - type: Transform
       pos: 27.5,54.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 18477
     components:
     - type: Transform
       pos: 28.5,54.5
       parent: 2
+    - type: PointLight
+      castShadows: True
 - proto: DeskBell
   entities:
   - uid: 18478
@@ -127662,13 +128545,6 @@ entities:
     - type: Transform
       pos: -69.298546,-10.546428
       parent: 2
-- proto: DrinkPinaColadaGlass
-  entities:
-  - uid: 20235
-    components:
-    - type: Transform
-      pos: 5.801569,75.25018
-      parent: 2
 - proto: DrinkRootBeerCan
   entities:
   - uid: 20236
@@ -130309,6 +131185,12 @@ entities:
     - type: Transform
       pos: 46.5,41.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
 - proto: ExtendedEmergencyNitrogenTankFilled
   entities:
   - uid: 13
@@ -130768,6 +131650,11 @@ entities:
     components:
     - type: Transform
       pos: -20.5,-9.5
+      parent: 2
+  - uid: 4025
+    components:
+    - type: Transform
+      pos: 4.5,78.5
       parent: 2
   - uid: 20779
     components:
@@ -132339,6 +133226,19 @@ entities:
       - invalid
 - proto: FirelockGlass
   entities:
+  - uid: 4865
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,75.5
+      parent: 2
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 4610
+      - 233
+      - 46117
   - uid: 20948
     components:
     - type: Transform
@@ -135700,51 +136600,111 @@ entities:
     - type: Transform
       pos: 15.5,-34.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      mask: null
+      autoRot: False
+      radius: 3
+      offset: 0,0
   - uid: 21394
     components:
     - type: Transform
       pos: -9.5,-7.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      mask: null
+      autoRot: False
+      radius: 3
+      offset: 0,0
   - uid: 21395
     components:
     - type: Transform
       pos: 12.5,30.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      mask: null
+      autoRot: False
+      radius: 3
+      offset: 0,0
   - uid: 21396
     components:
     - type: Transform
       pos: 51.5,30.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      mask: null
+      autoRot: False
+      radius: 3
+      offset: 0,0
   - uid: 21397
     components:
     - type: Transform
       pos: -9.5,26.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      mask: null
+      autoRot: False
+      radius: 3
+      offset: 0,0
   - uid: 21398
     components:
     - type: Transform
       pos: 20.5,-34.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      mask: null
+      autoRot: False
+      radius: 3
+      offset: 0,0
   - uid: 21399
     components:
     - type: Transform
       pos: 22.5,50.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      mask: null
+      autoRot: False
+      radius: 3
+      offset: 0,0
   - uid: 21400
     components:
     - type: Transform
       pos: -18.5,79.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      mask: null
+      autoRot: False
+      radius: 3
+      offset: 0,0
   - uid: 21401
     components:
     - type: Transform
       pos: -16.5,-7.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      mask: null
+      autoRot: False
+      radius: 3
+      offset: 0,0
   - uid: 46598
     components:
     - type: Transform
       pos: -9.5,76.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      mask: null
+      autoRot: False
+      radius: 3
+      offset: 0,0
 - proto: Flare
   entities:
   - uid: 21402
@@ -135759,6 +136719,8 @@ entities:
     - type: Transform
       pos: 26.46736,30.484562
       parent: 2
+    - type: PointLight
+      mask: /Textures/Effects/LightMasks/cone.png
     - type: ContainerContainer
       containers:
         cell_slot: !type:ContainerSlot
@@ -135776,6 +136738,8 @@ entities:
     - type: Transform
       pos: -40.600586,12.1399555
       parent: 2
+    - type: PointLight
+      mask: /Textures/Effects/LightMasks/cone.png
     - type: HandheldLight
       toggleActionEntity: 33
     - type: ContainerContainer
@@ -135795,6 +136759,8 @@ entities:
     - type: Transform
       pos: -34.983147,4.4395385
       parent: 2
+    - type: PointLight
+      mask: /Textures/Effects/LightMasks/cone.png
     - type: HandheldLight
       toggleActionEntity: 35
     - type: ContainerContainer
@@ -135814,11 +136780,15 @@ entities:
     - type: Transform
       pos: 50.584522,40.648224
       parent: 2
+    - type: PointLight
+      mask: /Textures/Effects/LightMasks/cone.png
   - uid: 21404
     components:
     - type: Transform
       pos: 27.644642,55.55499
       parent: 2
+    - type: PointLight
+      mask: /Textures/Effects/LightMasks/cone.png
 - proto: FlashlightSeclite
   entities:
   - uid: 27
@@ -135826,6 +136796,8 @@ entities:
     - type: Transform
       pos: 13.510031,48.324593
       parent: 2
+    - type: PointLight
+      mask: /Textures/Effects/LightMasks/cone.png
     - type: HandheldLight
       toggleActionEntity: 28
     - type: ContainerContainer
@@ -135846,6 +136818,8 @@ entities:
     - type: Transform
       pos: -10.841263,37.423046
       parent: 2
+    - type: PointLight
+      mask: /Textures/Effects/LightMasks/cone.png
     - type: HandheldLight
       toggleActionEntity: 39
     - type: ContainerContainer
@@ -135865,6 +136839,8 @@ entities:
     - type: Transform
       pos: -10.961248,37.57136
       parent: 2
+    - type: PointLight
+      mask: /Textures/Effects/LightMasks/cone.png
     - type: HandheldLight
       toggleActionEntity: 41
     - type: ContainerContainer
@@ -140276,13 +141252,6 @@ entities:
     - type: Transform
       pos: 19.394556,85.53343
       parent: 2
-- proto: FoodBurgerMcguffin
-  entities:
-  - uid: 22210
-    components:
-    - type: Transform
-      pos: 5.551569,74.73456
-      parent: 2
 - proto: FoodBurgerRobot
   entities:
   - uid: 22211
@@ -140460,13 +141429,6 @@ entities:
     components:
     - type: Transform
       pos: 49.742733,33.688232
-      parent: 2
-- proto: FoodMealFries
-  entities:
-  - uid: 22239
-    components:
-    - type: Transform
-      pos: 5.395319,75.17206
       parent: 2
 - proto: FoodMealPotatoLoaded
   entities:
@@ -140675,11 +141637,6 @@ entities:
     components:
     - type: Transform
       pos: -15.5014305,62.857464
-      parent: 2
-  - uid: 22276
-    components:
-    - type: Transform
-      pos: 5.5281315,74.83612
       parent: 2
   - uid: 22277
     components:
@@ -144183,13 +145140,6 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 22789
-    components:
-    - type: Transform
-      pos: 3.5,74.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 22790
     components:
     - type: Transform
@@ -145283,6 +146233,30 @@ entities:
       color: '#990000FF'
 - proto: GasPipeStraight
   entities:
+  - uid: 4242
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,75.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
+  - uid: 4243
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,75.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
+  - uid: 4514
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.5,75.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 22923
     components:
     - type: Transform
@@ -171272,14 +172246,6 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 26425
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,75.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 26426
     components:
     - type: Transform
@@ -178415,6 +179381,21 @@ entities:
       color: '#990000FF'
 - proto: GasPipeTJunction
   entities:
+  - uid: 4136
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,75.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
+  - uid: 4502
+    components:
+    - type: Transform
+      pos: 3.5,74.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#990000FF'
   - uid: 27208
     components:
     - type: Transform
@@ -183220,6 +184201,17 @@ entities:
       parent: 2
 - proto: GasVentPump
   entities:
+  - uid: 4515
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,75.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 4610
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 27829
     components:
     - type: Transform
@@ -186081,6 +187073,17 @@ entities:
       color: '#0055CCFF'
 - proto: GasVentScrubber
   entities:
+  - uid: 4130
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,74.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 4610
+    - type: AtmosPipeColor
+      color: '#990000FF'
   - uid: 28126
     components:
     - type: Transform
@@ -189287,6 +190290,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -26.5,-22.5
+      parent: 2
+  - uid: 4563
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,74.5
       parent: 2
   - uid: 28468
     components:
@@ -201135,11 +202144,6 @@ entities:
     - type: Transform
       pos: -79.39417,3.798067
       parent: 2
-  - uid: 30669
-    components:
-    - type: Transform
-      pos: 5.4031315,75.64081
-      parent: 2
 - proto: HappyHonkMime
   entities:
   - uid: 30670
@@ -202532,74 +203536,100 @@ entities:
     - type: Transform
       pos: -12.5,22.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 30895
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,9.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 30896
     components:
     - type: Transform
       pos: 32.5,21.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 30897
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -47.5,-0.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 30898
     components:
     - type: Transform
       pos: 3.5,-4.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 30899
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,40.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 30900
     components:
     - type: Transform
       pos: -51.5,9.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 30901
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,80.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 30902
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -45.5,-12.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 30903
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -13.5,-16.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 30904
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 33.5,-16.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 30905
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 50.5,19.5
       parent: 2
+    - type: PointLight
+      castShadows: True
   - uid: 30906
     components:
     - type: Transform
       pos: -65.5,9.5
       parent: 2
+    - type: PointLight
+      castShadows: True
 - proto: JetpackBlueFilled
   entities:
   - uid: 53
@@ -205211,6 +206241,10 @@ entities:
     - type: Transform
       pos: 46.5,38.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
 - proto: MachineAnomalyVessel
   entities:
   - uid: 31160
@@ -206670,6 +207704,13 @@ entities:
     - type: Transform
       pos: 25.5,2.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      enabled: True
+      castShadows: True
 - proto: MedicalTechFab
   entities:
   - uid: 31394
@@ -206677,6 +207718,12 @@ entities:
     - type: Transform
       pos: 16.5,11.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
 - proto: MedkitAdvancedFilled
   entities:
   - uid: 31395
@@ -207369,6 +208416,116 @@ entities:
     - type: Transform
       pos: -71.528534,0.9246559
       parent: 2
+- proto: nctterminal
+  entities:
+  - uid: 4047
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,76.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 4254
+    components:
+    - type: Transform
+      pos: -11.5,23.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 4255
+    components:
+    - type: Transform
+      pos: 3.5,4.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 4279
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -10.5,-31.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 4280
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -57.5,-13.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 4281
+    components:
+    - type: Transform
+      pos: 34.5,22.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+  - uid: 4448
+    components:
+    - type: Transform
+      pos: 40.5,45.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        pai_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: NewtonCradle
   entities:
   - uid: 31494
@@ -207696,6 +208853,12 @@ entities:
     - type: Transform
       pos: -29.5,-40.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
 - proto: OrganHumanAppendix
   entities:
   - uid: 31548
@@ -208900,6 +210063,11 @@ entities:
       parent: 2
 - proto: PaperBin20
   entities:
+  - uid: 4252
+    components:
+    - type: Transform
+      pos: 5.5,73.5
+      parent: 2
   - uid: 31715
     components:
     - type: Transform
@@ -213800,16 +214968,6 @@ entities:
     - type: Transform
       pos: 41.5,66.5
       parent: 2
-  - uid: 32348
-    components:
-    - type: Transform
-      pos: 4.5,76.5
-      parent: 2
-  - uid: 32349
-    components:
-    - type: Transform
-      pos: 4.5,73.5
-      parent: 2
   - uid: 32350
     components:
     - type: Transform
@@ -216100,6 +217258,17 @@ entities:
       parent: 2
 - proto: Poweredlight
   entities:
+  - uid: 4867
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.5,76.5
+      parent: 2
+  - uid: 4868
+    components:
+    - type: Transform
+      pos: 84.5,3.5
+      parent: 2
   - uid: 32766
     components:
     - type: Transform
@@ -218296,11 +219465,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 13.5,89.5
       parent: 2
-  - uid: 33177
-    components:
-    - type: Transform
-      pos: 4.5,76.5
-      parent: 2
   - uid: 33178
     components:
     - type: Transform
@@ -219671,6 +220835,20 @@ entities:
       rot: 3.141592653589793 rad
       pos: -35.5,24.5
       parent: 2
+- proto: PrinterDoc
+  entities:
+  - uid: 4253
+    components:
+    - type: Transform
+      pos: 5.5,75.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
 - proto: protectionanchor
   entities:
   - uid: 518
@@ -219685,6 +220863,12 @@ entities:
     - type: Transform
       pos: 26.5,28.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
 - proto: Puddle
   entities:
   - uid: 33387
@@ -225554,6 +226738,16 @@ entities:
       parent: 2
 - proto: RandomSpawner100
   entities:
+  - uid: 4127
+    components:
+    - type: Transform
+      pos: 4.5,77.5
+      parent: 2
+  - uid: 4129
+    components:
+    - type: Transform
+      pos: 4.5,73.5
+      parent: 2
   - uid: 34436
     components:
     - type: Transform
@@ -228327,6 +229521,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -26.5,-22.5
+      parent: 2
+  - uid: 4570
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,74.5
       parent: 2
   - uid: 34947
     components:
@@ -233675,6 +234875,27 @@ entities:
       parent: 2
 - proto: Screen
   entities:
+  - uid: 5213
+    components:
+    - type: Transform
+      pos: -6.5,95.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 5214
+    components:
+    - type: Transform
+      pos: 1.5,95.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 5215
+    components:
+    - type: Transform
+      pos: 9.5,95.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
   - uid: 35928
     components:
     - type: Transform
@@ -233769,6 +234990,12 @@ entities:
       - Experimental
       - CivilianServices
       - Biochemical
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
 - proto: SecurityWhistle
   entities:
   - uid: 17701
@@ -243650,6 +244877,11 @@ entities:
       parent: 2
 - proto: SpawnPointMime
   entities:
+  - uid: 4018
+    components:
+    - type: Transform
+      pos: 14.5,47.5
+      parent: 2
   - uid: 37240
     components:
     - type: Transform
@@ -243691,20 +244923,15 @@ entities:
       parent: 2
 - proto: SpawnPointNCT
   entities:
-  - uid: 46348
+  - uid: 4206
     components:
     - type: Transform
-      pos: -8.5,69.5
+      pos: 2.5,77.5
       parent: 2
-  - uid: 46349
+  - uid: 4237
     components:
     - type: Transform
-      pos: -8.5,69.5
-      parent: 2
-  - uid: 46354
-    components:
-    - type: Transform
-      pos: -10.5,69.5
+      pos: 5.5,74.5
       parent: 2
 - proto: SpawnPointNtrep
   entities:
@@ -244779,18 +246006,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,80.5
       parent: 2
-  - uid: 37416
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,75.5
-      parent: 2
-  - uid: 37417
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,74.5
-      parent: 2
   - uid: 37418
     components:
     - type: Transform
@@ -245273,21 +246488,45 @@ entities:
     - type: Transform
       pos: 8.5,17.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
   - uid: 37504
     components:
     - type: Transform
       pos: 10.5,17.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
   - uid: 46936
     components:
     - type: Transform
       pos: 5.5,-9.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
   - uid: 46937
     components:
     - type: Transform
       pos: 5.5,-10.5
       parent: 2
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
 - proto: StationAiFixerComputer
   entities:
   - uid: 46052
@@ -245296,6 +246535,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 61.5,40.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      color: '#FFFFFFFF'
+      radius: 1.5
     - type: AccessReader
       accessListsOriginal:
       - - ResearchDirector
@@ -245307,6 +246550,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 65.5,44.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      color: '#FFFFFFFF'
+      radius: 1.5
     - type: AccessReader
       accessListsOriginal:
       - - ResearchDirector
@@ -245318,6 +246565,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 65.5,40.5
       parent: 2
+    - type: PointLight
+      energy: 3
+      color: '#FFFFFFFF'
+      radius: 1.5
     - type: AccessReader
       accessListsOriginal:
       - - ResearchDirector
@@ -249755,18 +251006,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -16.5,-8.5
       parent: 2
-  - uid: 38127
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 5.5,75.5
-      parent: 2
-  - uid: 38128
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 5.5,74.5
-      parent: 2
   - uid: 46946
     components:
     - type: Transform
@@ -250663,6 +251902,11 @@ entities:
       parent: 2
 - proto: TableWood
   entities:
+  - uid: 689
+    components:
+    - type: Transform
+      pos: 5.5,78.5
+      parent: 2
   - uid: 718
     components:
     - type: Transform
@@ -250698,6 +251942,26 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -20.5,-10.5
+      parent: 2
+  - uid: 4181
+    components:
+    - type: Transform
+      pos: 5.5,76.5
+      parent: 2
+  - uid: 4245
+    components:
+    - type: Transform
+      pos: 5.5,73.5
+      parent: 2
+  - uid: 4246
+    components:
+    - type: Transform
+      pos: 4.5,78.5
+      parent: 2
+  - uid: 4251
+    components:
+    - type: Transform
+      pos: 4.5,73.5
       parent: 2
   - uid: 38264
     components:
@@ -253507,6 +254771,12 @@ entities:
       - Experimental
       - CivilianServices
       - Biochemical
+    - type: PointLight
+      energy: 1
+      color: '#FFFFFFFF'
+      autoRot: False
+      radius: 5
+      castShadows: True
 - proto: UniformShortsRed
   entities:
   - uid: 38725
@@ -254572,6 +255842,23 @@ entities:
     - type: Transform
       pos: -117.5,45.5
       parent: 2
+- proto: WallmountMassScanner
+  entities:
+  - uid: 4048
+    components:
+    - type: Transform
+      pos: -10.5,-12.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 4074
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,-19.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: WallmountTelevision
   entities:
   - uid: 38907
@@ -254579,6 +255866,8 @@ entities:
     - type: Transform
       pos: 6.5,31.5
       parent: 2
+    - type: PointLight
+      castShadows: True
     - type: Fixtures
       fixtures: {}
   - uid: 38908
@@ -254587,6 +255876,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -49.5,-35.5
       parent: 2
+    - type: PointLight
+      castShadows: True
     - type: Fixtures
       fixtures: {}
   - uid: 38909
@@ -254594,6 +255885,8 @@ entities:
     - type: Transform
       pos: -35.5,-30.5
       parent: 2
+    - type: PointLight
+      castShadows: True
     - type: Fixtures
       fixtures: {}
 - proto: WallmountTelevisionFrame
@@ -266112,12 +267405,6 @@ entities:
     - type: Transform
       pos: -42.5,31.5
       parent: 2
-  - uid: 41118
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 4.5,77.5
-      parent: 2
   - uid: 41119
     components:
     - type: Transform
@@ -271137,11 +272424,6 @@ entities:
     components:
     - type: Transform
       pos: -13.5,-3.5
-      parent: 2
-  - uid: 41896
-    components:
-    - type: Transform
-      pos: -14.5,-3.5
       parent: 2
   - uid: 41897
     components:
@@ -278370,6 +279652,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 63.5,44.5
       parent: 2
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 46117
   - uid: 46116
     components:
     - type: Transform
@@ -278377,8 +279664,11 @@ entities:
       pos: 63.5,40.5
       parent: 2
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 18946
+      - 46117
 - proto: WeaponEnergyTurretAIControlPanel
   entities:
   - uid: 46117
@@ -278390,6 +279680,9 @@ entities:
       devices:
       - 42565
       - 42566
+      - 4865
+      - 46115
+      - 46116
 - proto: WeaponEnergyTurretCommand
   entities:
   - uid: 622
