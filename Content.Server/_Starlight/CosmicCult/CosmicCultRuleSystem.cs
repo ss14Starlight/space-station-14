@@ -16,7 +16,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Voting.Managers;
 using Content.Server.Voting;
-using Content.Shared._Starlight.CCVars;
+using Content.Shared.Starlight.CCVar;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Prototypes;

@@ -7,7 +7,7 @@ using Content.Server.Audio;
 using Content.Server.Chat.Systems;
 using Content.Server._Starlight.Shuttles;
 using Content.Server._Starlight.Silicons;
-using Content.Shared._Starlight.CCVars;
+using Content.Shared.Starlight.CCVar;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Prototypes;
