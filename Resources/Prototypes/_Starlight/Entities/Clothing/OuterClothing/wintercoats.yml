@@ -66,7 +66,9 @@
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband, AllowSuitStorageClothing]
   id: ClothingOuterWinterCapUnarmored
-  name: captain's winter coat, lacking the armored lining.
+  name: captain's winter coat
+  suffix: Unarmored
+  description: A sturdy coat, a warm coat, but not an armored coat.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
