@@ -1,7 +1,7 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCapeNTSF1
-  name: nanotrasen special forces cape
+  name: NanoTrasen special forces cape
   suffix: One. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
@@ -40,7 +40,7 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCapeNTSF2
-  name: nanotrasen special forces cape
+  name: NanoTrasen special forces cape
   suffix: Two. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
@@ -79,7 +79,7 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCapeNTSF3
-  name: nanotrasen special forces cape
+  name: NanoTrasen special forces cape
   suffix: Three. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
@@ -118,7 +118,7 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCapeNTSF4
-  name: nanotrasen special forces cape
+  name: NanoTrasen special forces cape
   suffix: Four. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
@@ -157,7 +157,7 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCapeNTSF5
-  name: nanotrasen special forces cape
+  name: NanoTrasen special forces cape
   suffix: Five. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
@@ -196,7 +196,7 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCapeNTSF6
-  name: nanotrasen special forces cape
+  name: NanoTrasen special forces cape
   suffix: Six. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
@@ -235,7 +235,7 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCapeNTSF7
-  name: nanotrasen special forces cape
+  name: NanoTrasen special forces cape
   suffix: Seven. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
@@ -274,7 +274,7 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCapeNTSF8
-  name: nanotrasen special forces cape
+  name: NanoTrasen special forces cape
   suffix: Eight. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
@@ -313,7 +313,7 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCapeNTSF9
-  name: nanotrasen special forces cape
+  name: NanoTrasen special forces cape
   suffix: Nine. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:
@@ -352,7 +352,7 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCapeNTSFLead
-  name: nanotrasen special forces cape
+  name: NanoTrasen special forces cape
   suffix: NT. Do Not Map
   description: An elite cape woven from reflective threads and integrated with state of the art technology to ensure NanoTrasens finest look their best.
   components:

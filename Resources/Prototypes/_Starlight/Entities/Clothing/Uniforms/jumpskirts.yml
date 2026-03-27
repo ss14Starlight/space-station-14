@@ -302,7 +302,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtPencilCentcomOfficial
-  name: centcomm "pencil" style skirt 
+  name: CentComm "pencil" style skirt 
   description: A strict green "pencil" skirt exudes authority and poise. The fitted blazer and straight skirt form an elegant silhouette, suitable for various occasions, from business meetings to a captain's dismissal.
   components:
   - type: Sprite
@@ -424,7 +424,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtCentcomOfficial
-  name: centcomm officer's suitskirt
+  name: CentComm officer's suitskirt
   description: It's a suitskirt worn by CentComm's highest-tier Commanders.
   components:
     - type: Sprite
@@ -435,7 +435,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtCentcomOfficer
-  name: centcomm turtleneck skirt
+  name: CentComm turtleneck skirt
   description: A skirt version of the CentComm turtleneck, rarer and more sought after than the original.
   components:
   - type: Sprite

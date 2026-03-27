@@ -1,7 +1,7 @@
 - type: entity
   id: BoxFolderNanoTrasenClipboard
   parent: BoxFolderClipboard
-  name: nanotrasen clipboard
+  name: NanoTrasen clipboard
   description: A stylish clipboard in NanoTrasen colors.
   components:
     - type: Sprite

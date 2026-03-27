@@ -247,7 +247,7 @@
 
 #"Syndicate" red ointment
 - type: entity
-  name: interdyne ointment
+  name: Interdyne ointment
   description: Interdyne's special blend of pyrazine and aloe, used to treat severe burns. Does nothing for caustic.
   parent: RedOintment
   id: SyndicateOintment
@@ -262,7 +262,7 @@
     count: 10
 
 - type: entity
-  name: interdyne ointment
+  name: Interdyne ointment
   description: Interdyne's special blend of pyrazine and aloe, used to treat severe burns. Does nothing for caustic. The red ones are supposedly rare.
   parent: SyndicateOintment
   id: SyndicateOintment1
@@ -348,7 +348,7 @@
 
 # "Syndicate" red bruise packs
 - type: entity
-  name: interdyne bruise pack
+  name: Interdyne bruise pack
   description: Interdyne-Graded Bruise Packs for all your needs.
   parent: RedBrutePack
   id: SyndicateBrutePack
@@ -363,7 +363,7 @@
     count: 10
 
 - type: entity
-  name: interdyne bruise pack
+  name: Interdyne bruise pack
   description: Interdyne-Graded Bruise Packs for all your needs. The red ones are supposedly rare.
   parent: SyndicateBrutePack
   id: SyndicateBrutePack1
