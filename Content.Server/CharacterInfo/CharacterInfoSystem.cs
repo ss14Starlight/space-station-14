@@ -3,7 +3,6 @@ using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
 using Content.Shared.CharacterInfo;
-using Content.Shared.CollectiveMind;
 using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
@@ -16,7 +15,6 @@ public sealed class CharacterInfoSystem : EntitySystem
     [Dependency] private readonly MindSystem _minds = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
-    [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!; // Starlight
 
     public override void Initialize()
     {
@@ -38,18 +36,6 @@ public sealed class CharacterInfoSystem : EntitySystem
         string? briefing = null;
 
         // 🌟Starlight🌟 start
-        var collectiveMinds = new Dictionary<CollectiveMindPrototype, CollectiveMindMemberData>();
-        if (TryComp<CollectiveMindComponent>(entity, out var mindsComp))
-        {
-            foreach (var collectiveMind in mindsComp.Minds)
-            {
-                if (!_collectiveMind.CheckCanSpeak(entity, collectiveMind.Key))
-                    continue;
-
-                collectiveMinds.Add(collectiveMind.Key, collectiveMind.Value);
-            }
-        }
-
         var @event = new CollectObjectivesEvent(objectives);
         RaiseLocalEvent(entity, ref @event);
         // 🌟Starlight🌟 end
@@ -77,6 +63,6 @@ public sealed class CharacterInfoSystem : EntitySystem
             briefing = _roles.MindGetBriefing(mindId);
         }
 
-        RaiseNetworkEvent(new CharacterInfoEvent(GetNetEntity(entity), jobTitle, objectives, briefing, collectiveMinds), args.SenderSession);
+        RaiseNetworkEvent(new CharacterInfoEvent(GetNetEntity(entity), jobTitle, objectives, briefing), args.SenderSession);
     }
 }

@@ -7,7 +7,6 @@ using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared._Starlight.Medical.Damage;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.CombatMode.Pacification;
-using Content.Shared.CollectiveMind;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -49,7 +48,6 @@ public sealed class DantalionSystem : EntitySystem
 
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!;
     [Dependency] private readonly ObjectivesSystem _objectives = default!;
     [Dependency] private readonly Content.Shared.Mind.SharedMindSystem _mind = default!;
     [Dependency] private readonly TargetObjectiveSystem _targetObjectives = default!;
@@ -238,9 +236,6 @@ public sealed class DantalionSystem : EntitySystem
 
         _language.AddLanguage(uid, "Dantalion");
 
-        if (TryComp<CollectiveMindComponent>(target, out var cmComp))
-            _collectiveMind.UpdateCollectiveMind(target, cmComp);
-
         _popup.PopupEntity(Loc.GetString("vampire-enthrall-success", ("target", Identity.Entity(target, EntityManager))), uid, uid);
         _popup.PopupEntity(Loc.GetString("vampire-enthrall-target"), target, target, PopupType.Medium);
         args.Handled = true;
@@ -270,8 +265,6 @@ public sealed class DantalionSystem : EntitySystem
             || !dantalion.Thralls.Remove(uid))
             return;
 
-        _language.RemoveLanguage(uid, "Dantalion");
-
         dantalion.ThrallSlotsUsed = Math.Max(0, dantalion.ThrallSlotsUsed - 1);
 
         if (!TerminatingOrDeleted(uid))
@@ -300,8 +293,7 @@ public sealed class DantalionSystem : EntitySystem
 
         RemComp<VampireThrallComponent>(thrall);
 
-        if (TryComp<CollectiveMindComponent>(thrall, out var cmComp))
-            _collectiveMind.UpdateCollectiveMind(thrall, cmComp);
+        _language.RemoveLanguage(thrall, "Dantalion");
     }
 
     private bool TryGetActionBloodCost(EntityUid actionEntity, out int bloodCost)

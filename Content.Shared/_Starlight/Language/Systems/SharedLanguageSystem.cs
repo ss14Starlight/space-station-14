@@ -23,7 +23,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
     /// <summary>
     /// The chat prefix used to begin parsing a language. e.g. <c>^gcThis will parse to Galactic Common</c>.
     /// </summary>
-    public static readonly char ChatPrefixChar = '^';
+    public static readonly char ChatPrefixChar = '+';
     
     /// <summary>
     ///     A cached instance of <see cref="UniversalPrototype"/>
