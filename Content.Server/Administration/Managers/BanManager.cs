@@ -255,11 +255,11 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
     public async Task<List<ServerBanDef>> GetServerBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned=true)
     {
-        List<ServerBanDef> bans = await _db.GetServerBansAsync(address, userId, hwId, modernHWIds, includeUnbanned);
+        var bans = await _db.GetServerBansAsync(address, userId, hwId, modernHWIds, includeUnbanned);
         if (_actor.TryGetServerGrain(out var serverGrain))
         {
             var network = await serverGrain.RequestBans(userId, address, hwId, modernHWIds, includeUnbanned);
-            bans.Concat(network.ToDef());
+            bans = bans.Concat(network.ToDef()).ToList();
         }
         return bans;
     }
@@ -282,7 +282,13 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
     public async Task<List<ServerRoleBanDef>> GetServerRoleBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true)
     {
-        return await _db.GetServerRoleBansAsync(address, userId, hwId, modernHWIds, includeUnbanned);
+        var bans = await _db.GetServerRoleBansAsync(address, userId, hwId, modernHWIds, includeUnbanned);
+        if (_actor.TryGetServerGrain(out var serverGrain))
+        {
+            var network = await serverGrain.RequestBans(userId, address, hwId, modernHWIds, includeUnbanned, true);
+            bans = bans.Concat(network.ToRoleDef()).ToList();
+        }
+        return bans;
     }
 
     #endregion Starlight
@@ -355,6 +361,9 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             banningAdmin,
             null,
             encodedRole);
+
+        if (_actor.TryGetServerGrain(out var serverGrain))
+            await serverGrain.AddOrUpdateBan(banDef.ToNullLink());
 
         if (!await AddRoleBan(banDef))
         {

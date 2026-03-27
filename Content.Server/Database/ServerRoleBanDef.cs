@@ -1,6 +1,7 @@
 using System.Net;
 using Content.Shared.Database;
 using Robust.Shared.Network;
+using Starlight.NullLink;
 
 namespace Content.Server.Database;
 
@@ -63,3 +64,13 @@ public sealed class ServerRoleBanDef
         Role = role;
     }
 }
+
+#region Starlight
+
+public static class RoleBanDefExtensions
+{
+    public static AdminBan ToNullLink(this ServerRoleBanDef serverRoleBan)
+        => new(serverRoleBan.Id, serverRoleBan.UserId, serverRoleBan.Address, serverRoleBan.HWId == null ? null : (serverRoleBan.HWId.Hwid, (int)serverRoleBan.HWId.Type), serverRoleBan.BanTime, serverRoleBan.ExpirationTime, serverRoleBan.RoundId, serverRoleBan.PlaytimeAtNote, serverRoleBan.Reason, serverRoleBan.Severity.ToString(), serverRoleBan.BanningAdmin, serverRoleBan.Unban?.ToNullLink(), serverRoleBan.Role, null);
+}
+
+#endregion
