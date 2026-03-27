@@ -12,6 +12,7 @@
       understands:
         - GalacticCommon
         - Marish
+        - Empathy
     - type: Inventory
       speciesId: shadekin
     - type: CollectiveMind

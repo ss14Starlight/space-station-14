@@ -7,9 +7,9 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - Chittin
-    - Darktongue
+    - Xeno
     understands:
+    - Xeno
     - Chittin
     - Darktongue
   - type: ThermalVision

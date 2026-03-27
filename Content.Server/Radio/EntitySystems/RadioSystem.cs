@@ -430,6 +430,9 @@ public sealed partial class RadioSystem : EntitySystem
     {
         // TODO: code duplication with ChatSystem.WrapMessage
         var speech = _chat.GetSpeechVerb(source, message);
+        var verbId = language.SpeechOverride.SpeechVerbOverrides is { } verbsOverride // Starlight
+            ? _random.Pick(verbsOverride).ToString()
+            : _random.Pick(speech.SpeechVerbStrings);
         var languageColor = channel.Color;
 
         if (language.SpeechOverride.Color is { } colorOverride)
@@ -454,7 +457,7 @@ public sealed partial class RadioSystem : EntitySystem
                 ("languageColor", languageColor),
                 ("fontType", fonttype),
                 ("fontSize", language.SpeechOverride.FontSize ?? speech.FontSize),
-                ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
+                ("verb", Loc.GetString(verbId)),
                 ("channel", $"\\[{channel.LocalizedName}\\]"),
                 ("name", namestring),
                 ("message", message));

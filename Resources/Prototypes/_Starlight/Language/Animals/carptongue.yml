@@ -2,6 +2,8 @@
   id: Carptongue
   icon: LanguageIconFish
   chatPrefix: crp
+  speech:
+    radioChannel: CarpRadio
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1

@@ -34,6 +34,7 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Prototypes;
 using Content.Server.EUI;
+using Content.Server._Starlight.Language;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -70,6 +71,7 @@ public sealed class DantalionSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly EuiManager _euiMan = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly LanguageSystem _language = default!;
 
     public override void Initialize()
     {
@@ -78,6 +80,8 @@ public sealed class DantalionSystem : EntitySystem
         SubscribeLocalEvent<DantalionComponent, VampireEnthrallActionEvent>(OnEnthrall);
         SubscribeLocalEvent<DantalionComponent, VampireEnthrallDoAfterEvent>(OnEnthrallDoAfter);
         SubscribeLocalEvent<VampireThrallComponent, ComponentShutdown>(OnThrallShutdown);
+
+        SubscribeLocalEvent<DantalionComponent, ComponentInit>((uid, _, _) => _language.AddLanguage(uid, "Dantalion"));
         SubscribeLocalEvent<DantalionComponent, ComponentShutdown>(OnDantalionShutdown);
 
         SubscribeLocalEvent<DantalionComponent, VampirePacifyActionEvent>(OnPacify);
@@ -232,6 +236,8 @@ public sealed class DantalionSystem : EntitySystem
 
         TryAssignThrallObeyObjective(uid, target);
 
+        _language.AddLanguage(uid, "Dantalion");
+
         if (TryComp<CollectiveMindComponent>(target, out var cmComp))
             _collectiveMind.UpdateCollectiveMind(target, cmComp);
 
@@ -263,6 +269,8 @@ public sealed class DantalionSystem : EntitySystem
         if (component.Master is not { } master || !TryComp(master, out DantalionComponent? dantalion)
             || !dantalion.Thralls.Remove(uid))
             return;
+
+        _language.RemoveLanguage(uid, "Dantalion");
 
         dantalion.ThrallSlotsUsed = Math.Max(0, dantalion.ThrallSlotsUsed - 1);
 

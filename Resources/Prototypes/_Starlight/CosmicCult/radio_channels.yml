@@ -9,8 +9,50 @@
 - type: radioChannel
   id: AbductorRadio
   name: language-Abductor-name
-  keycode: 'ab'
   frequency: 77778
   color: "#d600bd"
   longRange: true
-  anonymousAlias: "Abductor {0}"
+  anonymousAlias: "{0}"
+
+- type: radioChannel
+  id: NexusRadio
+  name: language-Nexus-name
+  frequency: 77779
+  color: "#FF7922"
+  longRange: true
+  anonymousAlias: "User {0}"
+
+- type: radioChannel
+  id: CarpRadio
+  name: language-Carptongue-name
+  frequency: 77780
+  color: "#787878"
+  longRange: true
+
+- type: radioChannel
+  id: ChangelingRadio
+  name: language-Changeling-name
+  frequency: 77781
+  color: "#ff75a8"
+  longRange: true
+
+- type: radioChannel
+  id: DantalionRadio
+  name: language-Dantalion-name
+  frequency: 77782
+  color: "#066338"
+  longRange: true
+
+- type: radioChannel
+  id: EmpathyRadio
+  name: language-Empathy-name
+  frequency: 77783
+  color: "#8a0060"
+  longRange: true
+
+- type: radioChannel
+  id: XenoRadio
+  name: language-Xeno-name
+  frequency: 77784
+  color: "#8f6741"
+  longRange: true

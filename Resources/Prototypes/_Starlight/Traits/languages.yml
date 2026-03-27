@@ -428,7 +428,6 @@
         - Thaveyan
       languagesUnderstood:
         - Thaveyan
-        - Carptongue
   requirements:
     - !type:SpeciesRequirement
       species:

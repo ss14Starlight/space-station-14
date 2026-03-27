@@ -34,6 +34,7 @@ using Content.Shared.StatusEffectNew;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Map.Components;
 using Content.Server.GameTicking;
+using Content.Server._Starlight.Language;
 
 namespace Content.Server._Starlight.Shadekin;
 
@@ -62,6 +63,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StatusEffectsSystem _status = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly LanguageSystem _language = default!;
 
     private static readonly ProtoId<TagPrototype> _theDarkTag = "TheDark";
     private static readonly ProtoId<TagPrototype> _coreTag = "ShadekinCore";

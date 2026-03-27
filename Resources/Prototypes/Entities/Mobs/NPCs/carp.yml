@@ -11,6 +11,7 @@
       speaks:
       - Carptongue
       understands:
+      - GalacticCommon
       - Carptongue
       - Thaveyan
   # Starlight-end
@@ -171,6 +172,13 @@
   suffix: DragonBrood
   parent: MobCarp
   components:
+    - type: LanguageKnowledge # Starlight
+      speaks:
+      - Carptongue
+      understands:
+      - 
+      - Carptongue
+      - Thaveyan
     - type: GhostRole
       allowMovement: true
       allowSpeech: true

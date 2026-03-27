@@ -69,6 +69,7 @@
   frequency: 1213
   color: "#b52424"
   longRange: true
+  anonymousAlias: "Agent {0}"
 
 - type: radioChannel
   id: Handheld

@@ -108,6 +108,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     private void CacheRadios()
     {
         _keyCodes = _prototypeManager.EnumeratePrototypes<RadioChannelPrototype>()
+            .Where(x => x.KeyCode != '\0') // Starlight - Check if KeyCode is not the default null character
             .ToFrozenDictionary(x => x.KeyCode);
     }
     

@@ -123,3 +123,15 @@ language-Cosmic-description = THE CURTAINS MUST FALL
 
 language-Abductor-name = Abductor
 language-Abductor-description = ...
+
+language-Nexus-name = Nexus
+language-Nexus-description = A neural connection that allows them to communicate with others of their species over a technological network.
+
+language-Changeling-name = Hivemind
+language-Changeling-description = ...
+
+language-Dantalion-name = Thrall
+language-Dantalion-description = ...
+
+language-Empathy-name = Empathy
+language-Empathy-description = ...
