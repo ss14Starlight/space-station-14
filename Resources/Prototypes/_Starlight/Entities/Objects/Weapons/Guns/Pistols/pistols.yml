@@ -168,6 +168,9 @@
               - CartridgePistolDP
     - type: StealTarget
       stealGroup: OfficerHandgun
+    - type: Engraveable
+      engraveVerb: "engraving-verb-engrave"
+      
 
 - type: entity
   name: sp-8t
