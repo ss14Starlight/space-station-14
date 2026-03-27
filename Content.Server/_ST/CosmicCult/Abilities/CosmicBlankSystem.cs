@@ -1,10 +1,12 @@
 using System.Collections.Immutable;
 using Content.Server._ST.CosmicCult.Components;
+using Content.Server._Starlight.Bluespace;
 using Content.Server.Bible.Components;
 using Content.Server.Popups;
 using Content.Shared._ST.CosmicCult;
 using Content.Shared._ST.CosmicCult.Components;
 using Content.Shared._ST.CosmicCult.Components.Examine;
+using Content.Shared._Starlight.NullSpace;
 using Content.Shared.DoAfter;
 using Content.Shared.Effects;
 using Content.Shared.IdentityManagement;
@@ -50,6 +52,13 @@ public sealed class CosmicBlankSystem : EntitySystem
         }
         if (args.Handled)
             return;
+
+        // Target is in Nullspace? Shunt it!
+        if (HasComp<NullSpaceComponent>(args.Target))
+        {
+            var ev = new NullSpaceShuntEvent();
+            RaiseLocalEvent(args.Target, ref ev);
+        }
 
         var doargs = new DoAfterArgs(EntityManager, uid, uid.Comp.CosmicBlankDelay, new EventCosmicBlankDoAfter(), uid, args.Target)
         {

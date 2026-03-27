@@ -62,6 +62,8 @@ using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language;
 using Content.Server.Weather;
 using Content.Shared.Shuttles.Components;
+using Content.Shared._Starlight.Shadekin;
+using Content.Shared.Body.Components;
 
 namespace Content.Server._ST.CosmicCult;
 
@@ -742,6 +744,19 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
 
         RemComp<BibleUserComponent>(uid);
 
+        // Bright-eye Nerf - Yeah im not gona let them be immortal!
+        if (TryComp<BrighteyeComponent>(uid, out var brighteye))
+        {
+            if (brighteye.Portal is not null)
+            {
+                SpawnAtPosition(brighteye.ShadekinShadow, Transform(brighteye.Portal.Value).Coordinates);
+                QueueDel(brighteye.Portal.Value);
+            }
+
+            _actions.RemoveAction(uid, brighteye.PortalAction);
+            _actions.RemoveAction(uid, brighteye.ShadeSkipAction);
+        }
+
         cult.Comp.TotalCult++;
         cult.Comp.Cultists.Add(uid);
 
@@ -800,6 +815,14 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         AdjustCultObjectiveConversion(-1);
         UpdateCultData(cosmicGamerule.MonumentInGame);
         _movementSpeed.RefreshMovementSpeedModifiers(uid);
+
+        // Brighteye - Yeah, Lets give their portal back!
+        if (TryComp<BrighteyeComponent>(uid, out var brighteye) && !brighteye.LesserKin)
+        {
+            _actions.AddAction(uid, ref brighteye.PortalAction, brighteye.BrighteyePortalAction, uid);
+            _actions.AddAction(uid, ref brighteye.ShadeSkipAction, brighteye.BrighteyeShadeSkipAction, uid);
+            _actions.SetCooldown(brighteye.PortalAction, TimeSpan.FromSeconds(300));
+        }
     }
     #endregion
 }
