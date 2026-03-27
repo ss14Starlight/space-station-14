@@ -939,6 +939,7 @@
     - Hardsuit
     - WhitelistChameleon
     - IPCExternalCooling # Far Horizons
+  - type: TheDarkImmune # SL
 
 #Ling Space Suit
 - type: entity

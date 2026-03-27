@@ -157,3 +157,13 @@
         nodeGroupID: Plumbing
         pipeDirection: South
   # Starlight-end
+# SL Start: Lighting Update
+  - type: LitOnPowered
+  - type: PointLight
+    autoRot: true
+    color: "#339bc4"
+    radius: 4
+    energy: 0.5
+    enabled: false
+    castShadows: false
+# SL End

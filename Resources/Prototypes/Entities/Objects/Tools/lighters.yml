@@ -587,7 +587,7 @@
 - type: entity
   parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: HonkCoFlippo
-  name:  Honk Co. flippo
+  name: Honk Co. flippo
   description: "A slippery gag lighter produced by Honk Co. hidden inside of a real banana peel."
   components:
   - type: Sprite

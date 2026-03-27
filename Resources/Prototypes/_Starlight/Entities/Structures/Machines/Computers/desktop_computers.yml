@@ -389,6 +389,7 @@
     falloff: 3
     softness: 5
     autoRot: true
+    castShadows: false #SL lighting optimization
   - type: Ringer
   - type: RingerUplink
   - type: DeviceNetwork
