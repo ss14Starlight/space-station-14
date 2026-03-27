@@ -21,7 +21,6 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared._Starlight.Access;
-using Content.Shared._Starlight.Emag; // Starlight
 
 namespace Content.Shared.Access.Systems;
 
@@ -159,11 +158,6 @@ public sealed class AccessReaderSystem : EntitySystem
 
         if (accessReader.Value.Comp.AccessLists.Count < 1)
             return;
-
-        // Starlight begin
-        if (HasComp<EmagImmuneComponent>(uid))
-            return;
-        // Starlight end
 
         args.Repeatable = true;
         args.Handled = true;

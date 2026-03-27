@@ -21,4 +21,3 @@
           map: [ "enum.TurnstileVisualLayers.Base" ]
     - type: AccessReader
       access: [["Command"]]
-    - type: EmagImmune
