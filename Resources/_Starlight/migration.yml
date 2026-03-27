@@ -54,6 +54,10 @@ CartridgeRifle: CartridgeRifleSP
 SpawnGrayXenobiologySlime: null
 CrateStarterXenobiology: null
 
+# 2026-02-04 - The great turbine rename
+Turbine: GasTurbineNormal
+TurbineSmall: GasTurbineSmall
+
 #2026-02-15
 ClothingOuterArmorSovietFlak: ClothingOuterArmorSovietPlate
 
