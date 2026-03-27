@@ -53,8 +53,8 @@ public sealed class MindShieldSystem : EntitySystem
         var mindshield = EnsureComp<MindShieldComponent>(ev.Implanted);
         mindshield.MindShieldStatusIcon = ent.Comp.MindShieldStatusIcon;
         // Starlight-edit start
-        if (HasComp<VampireThrallComponent>(ev.Implanted))
-            RemComp<VampireThrallComponent>(ev.Implanted);
+//        if (HasComp<VampireThrallComponent>(ev.Implanted))
+//            RemComp<VampireThrallComponent>(ev.Implanted);
         // Starlight-edit end
         MindShieldRemovalCheck(ev.Implanted, ev.Implant);
 
