@@ -36105,5 +36105,16 @@ Entries:
   id: 395101
   time: '2026-03-27T03:50:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3951
+- author: Kirb
+  changes:
+  - message: Felionoids, avali, dwarves, and resomi are significantly more yoinkable,
+      it takes 3 seconds to pick them up.
+    type: Tweak
+  - message: lagomorphs, vulps, cyclorite, diona and shadekin are actually heavy,
+      and take 7.5 seconds to pick up.
+    type: Tweak
+  id: 390801
+  time: '2026-03-27T04:54:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3908
 Order: -1
 
