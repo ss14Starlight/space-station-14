@@ -1,4 +1,4 @@
-using Content.Shared._ST.CosmicCult;
+using Content.Shared._Starlight.CosmicCult;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Events;

@@ -226,6 +226,6 @@
   parent: JobIcon
   id: LanguageIconCosmic
   icon:
-    sprite: /Textures/_ST/CosmicCult/Icons/antag_icons.rsi
+    sprite: /Textures/_Starlight/CosmicCult/Icons/antag_icons.rsi
     state: CosmicCult
   allowSelection: false

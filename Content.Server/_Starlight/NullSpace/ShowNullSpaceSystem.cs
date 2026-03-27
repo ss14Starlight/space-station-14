@@ -4,7 +4,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
 using Content.Shared._Starlight.NullSpace;
 using Robust.Shared.Serialization.Manager;
-using Content.Shared._ST.CosmicCult;
+using Content.Shared._Starlight.CosmicCult;
 
 namespace Content.Server._Starlight.NullSpace;
 
