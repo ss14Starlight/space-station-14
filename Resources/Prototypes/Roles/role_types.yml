@@ -47,3 +47,10 @@
   name: role-type-silicon-antagonist-name
   color: '#c832e6'
   symbol: "⛞"
+
+# Starlight 
+- type: roleType
+  id: HarmlessAntagonist
+  name: role-type-harmless-antagonist-name
+  color: "#ff8800"
+  symbol: "🦇"

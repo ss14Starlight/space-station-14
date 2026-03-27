@@ -103,6 +103,7 @@
     - SLPlushies
     - SLSpecies
     - SLCrew
+    - SLSecret
 
 - type: entity
   parent: SLVendingMachine
@@ -120,6 +121,7 @@
     - SLFashionSuit
     - SLFashionHead
     - SLFashionOther
+    - SLSecret
 
 - type: entity
   parent: SLVendingMachine
@@ -136,6 +138,7 @@
     - SLChemistry
     - SLMedical
     - SLSurgery
+    - SLSecret
 
 - type: entity
   parent: SLVendingMachine
@@ -150,6 +153,7 @@
     name: vendor-engineering-dispenser
     categories:
     - SLEnginery
+    - SLSecret
 
 - type: entity
   parent: SLVendingMachine
@@ -163,6 +167,7 @@
     name: vendor-clown-dispenser
     categories:
     - SLClown
+    - SLSecret
   - type: Sprite
     sprite: _Starlight/Structures/Machines/VendingMachines/hohohonkers.rsi
 
@@ -180,6 +185,7 @@
     categories:
     - SLSecurity
     - SLBrigmedic
+    - SLSecret
 
 - type: entity
   parent: SLVendingMachine
@@ -198,6 +204,7 @@
     - SalvageConsumeables
     - SalvageMercenaryEquipment
     - SalvageCybernetics
+    - SLSecret
     currencyWhitelist:
     - SalvageTicket
 
@@ -215,6 +222,7 @@
       categories:
         - MiningEquipment
         - MiningConsumeables
+        - SLSecret
       currencyWhitelist:
         - SalvageTicket # Same currency as salvage vendor to promote sharing
 
