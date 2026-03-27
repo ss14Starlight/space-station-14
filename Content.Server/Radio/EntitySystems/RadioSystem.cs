@@ -89,7 +89,8 @@ public sealed partial class RadioSystem : EntitySystem
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
         // Starlight - Start
-        if (args.Language.SpeechOverride.RadioChannel is not null && _language.CanUnderstand(uid, args.Language.ID))
+        if (args.Language.SpeechOverride.RadioChannel is not null && _language.CanUnderstand(uid, args.Language.ID, false)
+            || args.Language.SpeechOverride.RadioChannel is not null && HasComp<GhostComponent>(uid))
             return;
 
         if (TryComp(uid, out ActorComponent? actor))
@@ -209,7 +210,7 @@ public sealed partial class RadioSystem : EntitySystem
             var languageQuery = EntityQueryEnumerator<LanguageSpeakerComponent>();
             while (canSend && languageQuery.MoveNext(out var receiver, out var _))
             {
-                if (_language.CanUnderstand(receiver, language.ID))
+                if (_language.CanUnderstand(receiver, language.ID, false) || HasComp<GhostComponent>(receiver))
                 {
                     // check if message can be sent to specific receiver
                     var attemptEv = new RadioReceiveAttemptEvent(channel, radioSource, receiver);

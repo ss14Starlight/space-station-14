@@ -95,7 +95,7 @@ public sealed partial class TTSSystem : EntitySystem
             var filter = Filter.Entities(args.Receivers).RemovePlayers(_ignoredRecipients)
                 .RemoveWhere(x => x.AttachedEntity.HasValue
                     && x.AttachedEntity != args.Source
-                    && !_language.CanUnderstand(x.AttachedEntity.Value, args.Language.ID));
+                    && !_language.CanUnderstand(x.AttachedEntity.Value, args.Language.ID, false));
             var voice = GetOrAssignVoice(args.Source);
             var channel = new ProtoId<RadioChannelPrototype>(args.Channel.ID);
             var languageradio = args.Channel == args.Language.SpeechOverride.RadioChannel;

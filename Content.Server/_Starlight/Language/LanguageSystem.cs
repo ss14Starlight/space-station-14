@@ -26,7 +26,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
 
         SubscribeLocalEvent<LanguageSpeakerComponent, MapInitEvent>(OnInitLanguageSpeaker);
         SubscribeLocalEvent<LanguageSpeakerComponent, ComponentGetState>(OnGetLanguageState);
-        SubscribeLocalEvent<LanguageKnowledgeComponent, RadioReceiveEvent>(OnRadioReceiveEvent);
+        SubscribeLocalEvent<LanguageSpeakerComponent, RadioReceiveEvent>(OnRadioReceiveEvent);
         SubscribeLocalEvent<UniversalLanguageSpeakerComponent, DetermineEntityLanguagesEvent>(OnDetermineUniversalLanguages);
         SubscribeNetworkEvent<LanguagesSetMessage>(OnClientSetLanguage);
 
@@ -86,9 +86,12 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         _radioSystem.SendRadioMessage(source, message, channel, source, language);
     }
 
-    private void OnRadioReceiveEvent(EntityUid uid, LanguageKnowledgeComponent _, ref RadioReceiveEvent args)
+    private void OnRadioReceiveEvent(EntityUid uid, LanguageSpeakerComponent _, ref RadioReceiveEvent args)
     {
-        if ((args.Language.SpeechOverride.RadioChannel is null && args.Channel is not null && args.Channel == args.Language.SpeechOverride.RadioChannel)|| !TryComp<ActorComponent>(uid, out var actor))
+        if (args.Language.SpeechOverride.RadioChannel is null
+            || args.Channel is null
+            || args.Channel != args.Language.SpeechOverride.RadioChannel
+            || !TryComp<ActorComponent>(uid, out var actor))
             return;
 
         _netMan.ServerSendMessage(new MsgChatMessage{ Message = args.OriginalChatMsg }, actor.PlayerSession.Channel);
