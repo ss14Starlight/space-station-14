@@ -37,6 +37,7 @@ using Content.Server._NullLink.Helpers;
 using Content.Shared.Starlight.CCVar;
 using Robust.Shared;
 using CCVars = Content.Shared.CCVar.CCVars;
+using Starlight.NullLink;
 #endregion Starlight
 
 namespace Content.Server.Administration.Managers;
@@ -250,6 +251,16 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
     public async Task CreateServerUnban(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime)
     {
+        if (_actor.TryGetServerGrain(out var serverGrain))
+        {
+            if (await serverGrain.RequestBanById(banId) is { } networkBan)
+            {
+                var unban = new AdminUnban(banId, unbanningAdmin, unbanTime);
+                var newBan = new AdminBan(networkBan.Id, networkBan.UserId, networkBan.Address, networkBan.HWId, networkBan.BanTime, networkBan.ExpirationTime, networkBan.RoundId, networkBan.PlayTimeAtNote, networkBan.Reason, networkBan.Severity, networkBan.BanningAdmin, unban, networkBan.Role, networkBan.ExemptFlags);
+                await serverGrain.AddOrUpdateBan(networkBan);
+            }
+        }
+
         await _db.AddServerUnbanAsync(new ServerUnbanDef(banId, unbanningAdmin, unbanTime));
     }
 
@@ -443,6 +454,16 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
             response.Append($" in {ban.Unban.UnbanTime}.");
             return response.ToString();
+        }
+
+        if (_actor.TryGetServerGrain(out var serverGrain))
+        {
+            if (await serverGrain.RequestBanById(banId) is { } networkBan)
+            {
+                var unban = new AdminUnban(banId, unbanningAdmin, unbanTime);
+                var newBan = new AdminBan(networkBan.Id, networkBan.UserId, networkBan.Address, networkBan.HWId, networkBan.BanTime, networkBan.ExpirationTime, networkBan.RoundId, networkBan.PlayTimeAtNote, networkBan.Reason, networkBan.Severity, networkBan.BanningAdmin, unban, networkBan.Role, networkBan.ExemptFlags);
+                await serverGrain.AddOrUpdateBan(networkBan);
+            }
         }
 
         await _db.AddServerRoleUnbanAsync(new ServerRoleUnbanDef(banId, unbanningAdmin, DateTimeOffset.Now));
