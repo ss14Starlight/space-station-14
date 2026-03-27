@@ -43,7 +43,8 @@ namespace Content.Server.Radio.EntitySystems;
 /// <summary>
 ///     This system handles intrinsic radios and the general process of converting radio messages into chat messages.
 /// </summary>
-public sealed class RadioSystem : EntitySystem
+// Far Horizons - made partial
+public sealed partial class RadioSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly IReplayRecordingManager _replay = default!;
@@ -152,6 +153,11 @@ public sealed class RadioSystem : EntitySystem
         RaiseLocalEvent(messageSource, evt);
 
         var name = evt.VoiceName;
+
+        // Far Horizons - SL Edited
+        if (channel.AnonymousAlias is not null)
+            name = ObfuscateName(channel.AnonymousAlias, messageSource);
+
         if (string.IsNullOrEmpty(name))
             name = entityName;
         if (name == null)
@@ -434,6 +440,10 @@ public sealed class RadioSystem : EntitySystem
         var namestring = $"[icon src=\"{iconId}\" tooltip=\"{jobName}\"] {name}";
         if (_language.GetLanguageIcon(language, obfuscated))
             namestring = $"[icon src=\"{iconId}\" tooltip=\"{jobName}\"] [icon src=\"{language.Icon}\" tooltip=\"{language.Name}\"] {name}";
+
+        // Starlight
+        if (channel.AnonymousAlias is not null)
+            namestring = name;
 
         var fonttype = language.SpeechOverride.FontId ?? speech.FontId;
         if ((language.SpeechOverride.ObfuscationFont ?? false) && !obfuscated)

@@ -1,3 +1,5 @@
+using Content.Shared.Dataset;
+using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Radio;
@@ -35,4 +37,12 @@ public sealed partial class RadioChannelPrototype : IPrototype
     /// </summary>
     [DataField("longRange"), ViewVariables]
     public bool LongRange = false;
+
+    // Far Horizons start (SL Edited)
+    /// <summary>
+    /// Will make the channel Anonymous with an Alias.
+    /// </summary>
+    [DataField]
+    public string? AnonymousAlias;
+    // Far Horizons end
 }

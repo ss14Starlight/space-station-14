@@ -1,0 +1,25 @@
+- type: language
+  id: Cosmic
+  icon: LanguageIconCosmic
+  chatPrefix: cos
+  iconNotUnderstood: false
+  speech:
+    color: "#4cabb3"
+    fontId: Cosmic
+    obfuscationFont: true
+    radioChannel: CosmicRadio
+    chatTypeOverride: Whisper
+  obfuscation:
+    !type:RandomObfuscation
+
+- type: language
+  id: Abductor
+  iconUnderstood: false
+  iconNotUnderstood: false
+  speech:
+    color: "#d600bd"
+    blockSpeech: true
+    allowRadio: false
+    requireSpeech: false
+    requireSound: false
+    radioChannel: AbductorRadio

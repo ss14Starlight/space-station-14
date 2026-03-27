@@ -120,3 +120,6 @@ language-Lagomorphian-description = A very lynarxical tongue, developed as an in
 
 language-Cosmic-name = Astral Murmur
 language-Cosmic-description = THE CURTAINS MUST FALL
+
+language-Abductor-name = Abductor
+language-Abductor-description = ...

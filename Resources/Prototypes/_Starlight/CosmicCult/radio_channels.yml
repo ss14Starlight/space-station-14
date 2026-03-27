@@ -5,3 +5,12 @@
   frequency: 77777
   color: "#4cabb3"
   longRange: true
+
+- type: radioChannel
+  id: AbductorRadio
+  name: language-Abductor-name
+  keycode: 'ab'
+  frequency: 77778
+  color: "#d600bd"
+  longRange: true
+  anonymousAlias: "Abductor {0}"
