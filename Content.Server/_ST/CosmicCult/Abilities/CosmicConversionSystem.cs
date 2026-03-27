@@ -14,6 +14,7 @@ using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Mind;
+using Content.Shared._Starlight.NullSpace;
 
 namespace Content.Server._ST.CosmicCult.Abilities;
 
@@ -28,6 +29,7 @@ public sealed class CosmicConversionSystem : EntitySystem
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly SharedRoleSystem _role = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     public override void Initialize()
     {
@@ -38,6 +40,14 @@ public sealed class CosmicConversionSystem : EntitySystem
 
     private void OnConversionGlyph(Entity<CosmicGlyphConversionComponent> uid, ref TryActivateGlyphEvent args)
     {
+        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
+            if (HasComp<NullSpaceBlockerComponent>(entity))
+            {
+                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, args.User);
+                args.Cancel();
+                return;
+            }
+
         var possibleTargets = _cosmicGlyph.GetTargetsNearGlyph(uid, uid.Comp.ConversionRange, entity => _cosmicCult.EntityIsCultist(entity));
         if (possibleTargets.Count == 0)
         {

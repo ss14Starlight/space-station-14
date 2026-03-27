@@ -15,6 +15,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language;
+using Content.Shared._Starlight.NullSpace;
 
 namespace Content.Server._ST.CosmicCult.Abilities;
 
@@ -29,6 +30,7 @@ public sealed class CosmicFragmentationSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly LanguageSystem _languageSystem = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     private ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
 
@@ -65,6 +67,13 @@ public sealed class CosmicFragmentationSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), ent, ent);
             return;
         }
+
+        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(ent).Coordinates))
+            if (HasComp<NullSpaceBlockerComponent>(entity))
+            {
+                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), ent, ent);
+                return;
+            }
 
         var doargs = new DoAfterArgs(EntityManager, ent, ent.Comp.CosmicSiphonDelay, new EventCosmicFragmentationDoAfter(), ent, args.Target)
         {

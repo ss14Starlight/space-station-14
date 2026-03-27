@@ -4,14 +4,16 @@
     - cosmic
   name: cosmiccult-title
   description: cosmiccult-description
-  showInVote: false
+  minPlayers: 30
+  showInVote: true
   rules:
     - CosmicCult
-    - SubGamemodesRule
+    - SubGamemodesRuleLessThieves
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - BasicStationEventScheduler
+    - RailroadingMinor
 
 - type: gamePreset #Runs Cosmic Cult but shows "Secret" in lobby.
   id: SecretCosmicCult
@@ -19,11 +21,13 @@
     - secretcosmic
   name: secret-title
   description: secret-description
+  minPlayers: 30
   showInVote: false
   rules:
     - CosmicCult
-    - SubGamemodesRule
+    - SubGamemodesRuleLessThieves
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - BasicStationEventScheduler
+    - RailroadingMinor
