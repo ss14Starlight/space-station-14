@@ -62,9 +62,9 @@ public sealed class EmagSystem : EntitySystem
         if (_tag.HasTag(target, ent.Comp.EmagImmuneTag))
             return false;
 
-        if (HasComp<DisableAntagonismComponent>(user)) // Starlight BEGIN
+        if (HasComp<PreventEorgComponent>(user)) // Starlight BEGIN
         {
-            _popup.PopupClient(Loc.GetString("peaceful-round-end"), user, PopupType.LargeCaution);
+            _popup.PopupClient(Loc.GetString("eorg-action"), user, PopupType.LargeCaution);
             return false;
         } // Starlight END
 

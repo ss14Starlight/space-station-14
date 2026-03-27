@@ -43,7 +43,7 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
         SubscribeLocalEvent<GotRehydratedEvent>(OnRehydrateEvent);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
-        SubscribeLocalEvent<AntagonisticActionComponent, ActionValidateEvent>(OnValidateAntagonisticAction);
+        SubscribeLocalEvent<EorgActionComponent, ActionValidateEvent>(OnValidatePossiblyEorgAction);
     }
 
     private void SpreadPeace(EntityUid target)
@@ -55,7 +55,7 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
         if (IsGhostRolePacificationImmune(target)) return; // IC bypass (same as previous, only when ghost role wasn't taken)
         
         EnsureComp<PacifiedComponent>(target);
-        EnsureComp<DisableAntagonismComponent>(target);
+        EnsureComp<PreventEorgComponent>(target);
     }
 
     /// <summary>
@@ -136,14 +136,14 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
             SpreadPeace(uid);
     }
     
-    private void OnValidateAntagonisticAction(EntityUid uid, AntagonisticActionComponent component, ref ActionValidateEvent args)
+    private void OnValidatePossiblyEorgAction(EntityUid uid, EorgActionComponent component, ref ActionValidateEvent args)
     {
         if (!_isEnabled)
             return;
-        if (!TryComp<DisableAntagonismComponent>(args.User, out _))
+        if (!TryComp<PreventEorgComponent>(args.User, out _))
             return;
         
-        _popup.PopupEntity(Loc.GetString("peaceful-round-end"), args.User, args.User, PopupType.LargeCaution);
+        _popup.PopupEntity(Loc.GetString("eorg-action"), args.User, args.User, PopupType.LargeCaution);
         args.Invalid = true;
     }
 }
