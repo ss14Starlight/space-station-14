@@ -4,6 +4,7 @@ using Content.Client._Starlight.NewLife;
 using Content.Client._Starlight.UI;
 using Content.Client.Eui;
 using Content.Client.Lobby;
+using Content.Client.Stylesheets;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared.Eui;
 using Content.Shared.Starlight.NewLife;
@@ -70,7 +71,7 @@ public sealed class CardSelectionEui : BaseEui
                         if (card.Image?.TexturePath is not null)
                             layout.TextureRect(textureRect =>
                             {
-                                textureRect.Margin = new Thickness(5);
+                                textureRect.Margin = new Thickness(5,25,5,5);
                                 textureRect.MaxSize = _cardContentSize;
                                 textureRect.TexturePath = card.Image.TexturePath.ToString();
                                 textureRect.Stretch = TextureRect.StretchMode.KeepAspect;
@@ -114,23 +115,27 @@ public sealed class CardSelectionEui : BaseEui
                     box.Panel(panel => panel
                         .WithMargin(new Thickness(0, 5, 0, 0))
                         .AddClass("AngleRect")
+                        .AddClass(StyleClass.BackgroundPanel)
                         .Modulate(card.Color)
                         .Label(x => x.WithText(card.Icon).WithFont("/Fonts/_Starlight/GameIcons/game-icons.ttf", 32).Modulate(card.IconColor)));
             });
         cardBox.Panel(panel =>
         {
             panel.AddClass("AngleRect")
+                .AddClass(StyleClass.BackgroundPanel)
                 .Modulate(Color.FromHex("#080808"))
                 .WithHorizontalExp()
                 .WithVAlignment(Control.VAlignment.Bottom);
 
-            // To-do: rework the layout once it becomes clear why the alignment isn’t working.
+            // To-do: rework the layout once it becomes clear why the alignment isnâ€™t working.
             panel.Margin = new Thickness(0, 185, 0, 0);
             panel.MinSize = _cardDescSize;
             panel.MaxSize = _cardDescSize;
 
             panel.RichText(label => label
-                    .WithText(card.Description).WithVAlignment(Control.VAlignment.Top));
+                    .WithText(card.Description)
+                    .WithVAlignment(Control.VAlignment.Top)
+                    .WithMargin(new Thickness(3, 3, 3, 3)));
         });
     }
 }

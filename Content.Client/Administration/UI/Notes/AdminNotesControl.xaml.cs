@@ -18,9 +18,9 @@ public sealed partial class AdminNotesControl : Control
     [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
-    public event Action<int, NoteType, string, NoteSeverity?, bool, DateTime?>? NoteChanged;
+    public event Action<int, NoteType, string, NoteSeverity?, bool, DateTime?, string?>? NoteChanged; // Starlight-edit
     public event Action<NoteType, string, NoteSeverity?, bool, DateTime?>? NewNoteEntered;
-    public event Action<int, NoteType>? NoteDeleted;
+    public event Action<int, NoteType, string?>? NoteDeleted; // Starlight-edit: ID, Type, Project
 
     private AdminNotesLinePopup? _popup;
     private readonly SpriteSystem _sprites;
@@ -55,12 +55,12 @@ public sealed partial class AdminNotesControl : Control
 
     private void OnNewNoteButtonPressed(BaseButton.ButtonEventArgs obj)
     {
-        var noteEdit = new NoteEdit(null, PlayerName, CanCreate, CanEdit);
+        var noteEdit = new NoteEdit(null, PlayerName, CanCreate, CanEdit, null); // Starlight-edit
         noteEdit.SubmitPressed += OnNoteSubmitted;
         noteEdit.OpenCentered();
     }
 
-    private void OnNoteSubmitted(int id, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime)
+    private void OnNoteSubmitted(int id, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime, string? project) // Starlight-edit
     {
         if (id == 0)
         {
@@ -68,25 +68,25 @@ public sealed partial class AdminNotesControl : Control
             return;
         }
 
-        NoteChanged?.Invoke(id, type, message, severity, secret, expiryTime);
+        NoteChanged?.Invoke(id, type, message, severity, secret, expiryTime, project); // Starlight-edit
     }
 
     private bool NoteClicked(AdminNotesLine line)
     {
         _popup = new AdminNotesLinePopup(line.Note, PlayerName, CanDelete, CanEdit);
-        _popup.OnEditPressed += (noteId, noteType) =>
+        _popup.OnEditPressed += (noteId, noteType, project) => // Starlight-edit
         {
             if (!Inputs.TryGetValue((noteId, noteType), out var input))
             {
                 return;
             }
 
-            var noteEdit = new NoteEdit(input.Note, PlayerName, CanCreate, CanEdit);
+            var noteEdit = new NoteEdit(input.Note, PlayerName, CanCreate, CanEdit, project); // Starlight-edit
             noteEdit.SubmitPressed += OnNoteSubmitted;
             noteEdit.OpenCentered();
         };
 
-        _popup.OnDeletePressed += (noteId, noteType) => NoteDeleted?.Invoke(noteId, noteType);
+        _popup.OnDeletePressed += (noteId, noteType, project) => NoteDeleted?.Invoke(noteId, noteType, project); // Starlight-edit
         _popup.OnPopupHide += OnPopupHide;
 
         var box = UIBox2.FromDimensions(UserInterfaceManager.MousePositionScaled.Position, Vector2.One);

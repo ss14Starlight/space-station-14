@@ -10,6 +10,7 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
+    - IPCExternalCooling # Far Horizons
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/blueshield.rsi
   - type: Clothing
@@ -43,7 +44,7 @@
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband]
   id: ClothingOuterHardsuitNtrep
-  name: Nanotrasen Representative hardsuit
+  name: nanotrasen representative hardsuit
   description: It used to be blue, but too many premium cigars turned it tobacco brown.
   components:
     - type: Sprite
@@ -74,6 +75,12 @@
       clothingPrototype: ClothingHeadHelmetHardsuitNtrep
     - type: StealTarget
       stealGroup: NTRepHardsuit
+    - type: Tag
+      tags:
+      - Hardsuit
+      - WhitelistChameleon
+      - CorgiWearable
+      - IPCExternalCooling # Far Horizons
 
 #Clown Battlesuit
 - type: entity
@@ -181,24 +188,7 @@
         - CorgiWearable
         - WhitelistChameleon
         - HardsuitSpatio #can now be used to make goliath hardsuit
-
-#CCNT Consortium BSOs
-- type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitSyndieElite] #sl Change
-  id: ClothingOuterHardsuitNTNCConsortium
-  name: nt-nc marine hardsuit
-  description: A protective hardsuit worn by NT-NC Naval Officers.
-  components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
-    - type: ToggleableClothing
-      clothingPrototype: ClothingHeadHelmetHardsuitNTNCConsortium
-    - type: Tag
-      tags:
-        - Hardsuit
-        - WhitelistChameleon
+        - IPCExternalCooling # Far Horizons
 
 #Syndicate Infiltration Suit
 - type: entity
@@ -270,24 +260,12 @@
               - PowerCell
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitInfiltration
-
-#CCNT Consortium medics
-- type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitSyndieMedic] #sl Change
-  id: ClothingOuterHardsuitNTNCConsortiumMedic
-  name: nt-nc naval medic hardsuit
-  description: A protective hardsuit worn by NT-NC Naval medical personnel.
-  components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntnc_med_hardsuit.rsi
-    - type: Clothing
-      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntnc_med_hardsuit.rsi
-    - type: ToggleableClothing
-      clothingPrototype: ClothingHeadHelmetHardsuitNTNCConsortiumMedic
     - type: Tag
       tags:
-        - Hardsuit
-        - WhitelistChameleon
+      - Hardsuit
+      - WhitelistChameleon
+      - CorgiWearable
+      - IPCExternalCooling # Far Horizons
 
 #USSP
 - type: entity
@@ -336,6 +314,7 @@
         - MonkeyWearable
         - WhitelistChameleon
         - FootstepSound
+        - IPCExternalCooling # Far Horizons
     - type: Item
       size: Huge
 
@@ -378,6 +357,7 @@
     - Hardsuit
     - CorgiWearable
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 # Experimental Security Hardsuit
 - type: entity
@@ -433,6 +413,7 @@
     - type: Tag
       tags:
         - RequiredForLmgTag
+        - IPCExternalCooling # Far Horizons
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitSecurityExperimental
 
@@ -471,6 +452,7 @@
         - Hardsuit
         - HardsuitSpatio
         - CorgiWearable
+        - IPCExternalCooling # Far Horizons
     - type: StealTarget
       stealGroup: SalvLeadHardsuit
 
@@ -540,6 +522,7 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
+    - IPCExternalCooling # Far Horizons
 
 #Mining Hardsuit
 - type: entity
@@ -579,6 +562,7 @@
       tags:
         - CorgiWearable
         - Hardsuit
+        - IPCExternalCooling # Far Horizons
 
 # Golden
 
@@ -743,7 +727,7 @@
   parent: [BaseTSFContraband, ClothingOuterHardsuitNTSF]
   id: ClothingOuterHardsuitTSFPhantom
   name: Phantom hardsuit
-  description: A suit worn by marines of the Trans-Solar Federation's Marine pecial Operations Phantom. Armored, space ready, and stealthy.
+  description: A suit worn by marines of the Trans-Solar Federation's Marine special Operations Phantom. Armored, space ready and stealthy.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/tsf_phantom.rsi
@@ -811,3 +795,4 @@
       tags:
         - CorgiWearable
         - Hardsuit
+        - IPCExternalCooling # Far Horizons

@@ -102,7 +102,7 @@
         sound:
           collection: MetalBreak
   - type: Anchorable
-    delay: 10
+    delay: 9
   - type: AtmosDevice
   - type: AtmosMonitoringConsoleDevice # TODO: this doesn't work?
     navMapBlip: Thermoregulator

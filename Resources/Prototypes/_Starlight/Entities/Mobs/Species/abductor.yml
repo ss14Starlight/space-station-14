@@ -5,6 +5,7 @@
   - MobBloodstream
   - MobFlammable
   - BaseMobSpecies
+  - BaseSpeciesPickupableLarge
   id: BaseMobAbductor
   abstract: true
   components:
@@ -31,6 +32,7 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+    - NotLabelable
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:

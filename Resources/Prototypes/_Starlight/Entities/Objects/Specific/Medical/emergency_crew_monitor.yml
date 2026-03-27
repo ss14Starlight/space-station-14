@@ -1,6 +1,6 @@
 - type: entity
   name: emergency crew monitor
-  parent: [ BaseHandheldComputer, BaseMedicalContraband ]
+  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer, BaseMedicalContraband ]
   id: EmergencyHandheldCrewMonitor
   description: A hand-held crew monitor displaying the status of suit sensors of injured crew.
   components:
@@ -49,3 +49,5 @@
     price: 200
   - type: StealTarget
     stealGroup: CrewMonitorCollection
+  - type: PowerCellDraw
+    useCharge: 15

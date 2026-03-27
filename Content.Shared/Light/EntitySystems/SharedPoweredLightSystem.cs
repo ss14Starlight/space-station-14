@@ -1,4 +1,5 @@
-using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Light; // Starlight
+using Content.Shared._Starlight.Railroading; // Starlight
 using Content.Shared._Starlight.Shadekin; // Starlight
 using Content.Shared.Audio;
 using Content.Shared.Damage;
@@ -56,6 +57,17 @@ public abstract class SharedPoweredLightSystem : EntitySystem
         SubscribeLocalEvent<PoweredLightComponent, PoweredLightDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<PoweredLightComponent, DamageChangedEvent>(HandleLightDamaged);
         SubscribeLocalEvent<PoweredLightComponent, EmpPulseEvent>(OnEmpPulse);
+
+        SubscribeLocalEvent<AlertLevelDimmedLightComponent, GetDimmedLightLevelEvent>(OnGetDimmedLightLevel); // Starlight
+    }
+    
+    /// <summary>
+    /// STARLIGHT: Handle light dimming during higher alert levels.
+    /// </summary>
+    private void OnGetDimmedLightLevel(EntityUid uid, AlertLevelDimmedLightComponent component, GetDimmedLightLevelEvent args)
+    {
+        args.LightEnergy *= component.LightEnergyMultiplier;
+        args.PowerUse *= component.LightEnergyMultiplier;
     }
 
     private void OnInit(EntityUid uid, PoweredLightComponent light, ComponentInit args)
@@ -253,7 +265,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
         return true;
     }
 
-    protected void UpdateLight(EntityUid uid,
+    public void UpdateLight(EntityUid uid, // Starlight: public
         PoweredLightComponent? light = null,
         SharedApcPowerReceiverComponent? powerReceiver = null,
         AppearanceComponent? appearance = null,
@@ -286,22 +298,28 @@ public abstract class SharedPoweredLightSystem : EntitySystem
             return;
         }
 
-        // SL - NightShift Mode!
+        // Starlight BEGIN: Light dimming
         var lightEnergy = lightBulb.LightEnergy;
+        var lightRadius = lightBulb.LightRadius;
         var powerUse = lightBulb.PowerUse;
 
-        if (light.NightModeEnabled && lightBulb.NightShiftCompatible)
+        if (lightBulb.Dimmable)
         {
-            lightEnergy -= 0.5f;
-            powerUse  -= 10;
+            var lightLevelEv = new GetDimmedLightLevelEvent(lightEnergy, lightRadius, powerUse);
+            RaiseLocalEvent(uid, lightLevelEv);
+            
+            lightEnergy = lightLevelEv.LightEnergy;
+            lightRadius = lightBulb.LightRadius;
+            powerUse = (int) Math.Ceiling((double) lightBulb.PowerUse);
         }
+        // Starlight END
 
         switch (lightBulb.State)
         {
             case LightBulbState.Normal:
-                if (powerReceiver.Powered && light.On)
+                if (powerReceiver.Powered && light.On && lightEnergy > 0)
                 {
-                    SetLight(uid, true, lightBulb.Color, light, lightBulb.LightRadius, lightEnergy, lightBulb.LightSoftness, HasComp<DarkLightComponent>(bulbUid.Value));
+                    SetLight(uid, true, lightBulb.Color, light, lightRadius, lightEnergy, lightBulb.LightSoftness, HasComp<DarkLightComponent>(bulbUid.Value)); // Starlight
                     _appearance.SetData(uid, PoweredLightVisuals.BulbState, PoweredLightState.On, appearance);
                     var time = GameTiming.CurTime;
                     if (time > light.LastThunk + ThunkDelay)
@@ -327,7 +345,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
                 break;
         }
 
-        powerReceiver.Load = (light.On && lightBulb.State == LightBulbState.Normal) ? powerUse : 0;
+        powerReceiver.Load = (light.On && lightBulb.State == LightBulbState.Normal) ? powerUse : 0; // Starlight
     }
 
     /// <summary>
@@ -434,17 +452,6 @@ public abstract class SharedPoweredLightSystem : EntitySystem
             return;
 
         light.On = state;
-        Dirty(uid, light);
-        UpdateLight(uid, light);
-    }
-
-    // Starlight - NightShift
-    public void SetNightMode(EntityUid uid, bool state, PoweredLightComponent? light = null)
-    {
-        if (!Resolve(uid, ref light))
-            return;
-
-        light.NightModeEnabled = state;
         Dirty(uid, light);
         UpdateLight(uid, light);
     }

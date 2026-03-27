@@ -60,6 +60,13 @@
     guides:
     - AtmosphericAlertsComputer
     - DeviceMonitoringAndControl
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#42cccf"
+    castShadows: false
+  # Starlight End
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -97,6 +104,12 @@
     guides:
     - AtmosphericNetworkMonitor
     - DeviceMonitoringAndControl
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#42cccf"
+  # Starlight End
 
 - type: entity
   parent: BaseComputer
@@ -116,10 +129,12 @@
           type: EmergencyConsoleBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
+    radius: 2.5
+    energy: 1.5
     color: "#43ccb5"
+  # Starlight End
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -155,6 +170,14 @@
         whitelist:
           components:
           - ShuttleDestinationCoordinates
+      # Starlight-start: added PAI slot to shuttle console.
+      pai_slot:
+        name: Personal AI Device
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - PAI
+      # Starlight-end
   - type: ContainerContainer
     containers:
       board: !type:Container
@@ -184,6 +207,12 @@
       state: generic_panel_open
   - type: Computer
     board: ShuttleConsoleCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#469ddb"
+  # Starlight End
 
 - type: entity
   parent: BaseComputerShuttle
@@ -211,8 +240,8 @@
   - type: WorldLoader
     radius: 1536
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
+    radius: 2.5 #SL
+    energy: 1.5 #SL
     color: "#c94242"
   - type: Computer
     board: SyndicateShuttleConsoleCircuitboard
@@ -242,8 +271,8 @@
   - type: RadarConsole
     maxRange: 256
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
+    radius: 2.5 #SL
+    energy: 1.5 #SL
     color: "#a56d19" # Starlight - matches new computerLayerScreen
   - type: Computer
     board: CargoShuttleConsoleCircuitboard
@@ -280,6 +309,12 @@
           type: WiresBoundUserInterface
   - type: Computer
     board: ComputerIFFCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#4274c9"
+  # Starlight End
 
 - type: entity
   parent: ComputerIFF
@@ -322,10 +357,12 @@
       state: power_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#c9c042"
+    radius: 2.5
+    energy: 1.5
+    color: "#d1a534"
+  # Starlight End
   - type: Computer
     board: PowerComputerCircuitboard
   - type: PowerMonitoringConsole
@@ -364,10 +401,12 @@
       state: med_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#1f8c28"
+    radius: 2.5
+    energy: 1.5
+    color: "#359626"
+  # Starlight End
   - type: Computer
     board: MedicalRecordsComputerCircuitboard
   # Cosmatic Drift Record System-start
@@ -380,6 +419,7 @@
   - type: ActivatableUI
     key: enum.CharacterRecordConsoleKey.Key
   # Cosmatic Drift Record System-end
+
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerCriminalRecords
@@ -411,10 +451,12 @@
       state: security_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#1f8c28"
+  # Starlight Start - Immersive Lighting PR
+    - type: PointLight
+      radius: 2.5
+      energy: 1.3
+      color: "#d6cec3"
+  # Starlight End
   - type: Computer
     board: CriminalRecordsComputerCircuitboard
   - type: AccessReader
@@ -428,6 +470,7 @@
   - type: ActivatableUI
     key: enum.CharacterRecordConsoleKey.Key
   # Cosmatic Drift Record System-end
+
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerStationRecords
@@ -452,8 +495,8 @@
   - type: ActivatableUI
     key: enum.CharacterRecordConsoleKey.Key # Cosmatic Drift Record System
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
+    radius: 2.5 #SL
+    energy: 1.5 #SL
     color: "#1f8c28"
   - type: Computer
     board: StationRecordsComputerCircuitboard
@@ -508,10 +551,12 @@
           East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
           East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }
   # Starlight End
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#006400"
+    radius: 2.5
+    energy: 1.5
+    color: "#3fb32d"
+  # Starlight End
   - type: Computer
     board: CrewMonitoringComputerCircuitboard
   - type: ActivatableUI
@@ -573,10 +618,12 @@
     board: ResearchComputerCircuitboard
   - type: AccessReader
     access: [["Research"]]
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#b53ca1"
+    radius: 2.5
+    energy: 1.5
+    color: "#c244ad"
+  # Starlight End
   - type: GuideHelp
     guides:
     - Science
@@ -622,10 +669,12 @@
     powerLoad: 1000
   - type: Computer
     board: AnalysisComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#b53ca1"
+    radius: 2.5
+    energy: 1.5
+    color: "#d656c1"
+  # Starlight End
   - type: GuideHelp
     guides:
     - AnalysisConsole
@@ -694,10 +743,12 @@
       state: generic_panel_open
   - type: Computer
     board: IDComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
+    radius: 2.5
+    energy: 1.5
     color: "#3c5eb5"
+  # Starlight End
   - type: ItemSlots
   - type: ContainerContainer
     containers:
@@ -715,10 +766,12 @@
     powerLoad: 500
   - type: Computer
     board: BodyScannerComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#1f8c28"
+    radius: 2.5
+    energy: 1.5
+    color: "#3fb32d"
+  # Starlight End
   # Starlight-start: Surgery body scanner
   - type: Sprite
     layers:
@@ -788,10 +841,12 @@
         type: WiresBoundUserInterface
   - type: Computer
     board: CommsComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#3c5eb5"
+    radius: 2.5
+    energy: 1.5
+    color: "#387dc7"
+  # Starlight End
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
@@ -826,8 +881,8 @@
   - type: Computer
     board: SyndicateCommsComputerCircuitboard
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
+    radius: 2.5 #SL
+    energy: 1.5 #SL
     color: "#f71713"
 
 - type: entity
@@ -860,8 +915,8 @@
   - type: Computer
     board: WizardCommsComputerCircuitboard
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
+    radius: 2.5 #SL
+    energy: 1.5 #SL
     color: "#F317F3"
 
 - type: entity
@@ -892,8 +947,8 @@
   - type: Computer
     board: CentcommCommsComputerCircuitboard
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
+    radius: 2.5 #SL
+    energy: 1.5 #SL
     color: "#00FF00"
 
 - type: entity
@@ -925,10 +980,12 @@
         type: WiresBoundUserInterface
   - type: Computer
     board: SolarControlComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#e6e227"
+    radius: 2.5
+    energy: 1.5
+    color: "#d1a534"
+  # Starlight End
   - type: GuideHelp
     guides:
     - SolarPanels
@@ -963,10 +1020,12 @@
           type: WiresBoundUserInterface
   - type: Computer
     board: RadarConsoleCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#e6e227"
+    radius: 2.5
+    energy: 1.5
+    color: "#d1a534"
+  # Starlight End
 
 - type: entity
   id: ComputerCargoOrders
@@ -1001,10 +1060,12 @@
         type: WiresBoundUserInterface
   - type: Computer
     board: CargoRequestComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
+    radius: 2.5
+    energy: 1.5
     color: "#b89f25"
+  # Starlight End
   - type: AccessReader
     access: [["Cargo"]]
   - type: DeviceNetwork
@@ -1216,8 +1277,8 @@
   - type: Computer
     board: CargoBountyComputerCircuitboard
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
+    radius: 2.5 #SL
+    energy: 1.5 #SL
     color: "#b89f25"
   - type: AccessReader
     access: [["Quartermaster"]]
@@ -1258,10 +1319,12 @@
         type: WiresBoundUserInterface
   - type: Computer
     board: FundingAllocationComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#3c5eb5"
+    radius: 2.5
+    energy: 1.5
+    color: "#387dc7"
+  # Starlight End
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -1290,9 +1353,9 @@
   - type: Computer
     board: CloningConsoleComputerCircuitboard
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#1f8c28"
+    radius: 2.5 #SL
+    energy: 1.5 #SL
+    color: "#2dad38"
   - type: DeviceLinkSource
     range: 4
     ports:
@@ -1347,10 +1410,12 @@
     channels: [ Supply ]
   - type: Computer
     board: SalvageJobBoardComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#b89f25"
+    radius: 2.5
+    energy: 1.5
+    color: "#8151c9"
+  # Starlight End
 
 - type: entity
   id: ComputerSalvageExpedition
@@ -1404,10 +1469,12 @@
           type: WiresBoundUserInterface
     - type: Computer
       board: SalvageExpeditionsComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
-      color: "#b89f25"
+      radius: 2.5
+      energy: 2
+      color: "#8151c9"
+  # Starlight End
     - type: AccessReader
       access: [["Salvage"]]
     - type: StealTarget
@@ -1541,8 +1608,8 @@
   - type: Computer
     board: CargoSaleComputerCircuitboard
   - type: PointLight
-    radius: 1.5
-    energy: 4.0
+    radius: 2.5 #SL
+    energy: 1.5 #SL
     color: "#b89f25"
   - type: GuideHelp
     guides:
@@ -1583,6 +1650,12 @@
           type: NewsWriterBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#60b03e"
+  # Starlight End
 
 - type: entity
   parent: BaseComputer
@@ -1607,8 +1680,8 @@
         - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
           state: generic_panel_open
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5 #SL
+      energy: 1.5 #SL
       color: "#43ccb5"
     - type: Computer
       board: SensorConsoleCircuitboard
@@ -1675,6 +1748,12 @@
     access: [["Robotics"]] # Starlight
   - type: Lock
     unlockOnClick: false
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#d15abf"
+  # Starlight End
 
 - type: entity
   parent: BaseComputer
@@ -1716,6 +1795,12 @@
     transmitFrequencyId: Xenoborg
   - type: Computer
     board: ComputerXenoborgsControlCircuitboard
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#644eba"
+  # Starlight End
 
 - type: entity
   id: StationAiUploadComputer
@@ -1772,6 +1857,12 @@
     ports:
       - AiLawConsoleReceiver
 # Starlight-end
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#456dd9"
+  # Starlight End
 
 - type: entity
   id: StationAiFixerComputer
@@ -1863,6 +1954,12 @@
         type: StationAiFixerConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#b834c9"
+  # Starlight End
 
 - type: entity
   parent: BaseComputer
@@ -1888,8 +1985,8 @@
     flags:
     - Anchorable # No taking the console along!
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
+    radius: 2.5 #SL
+    energy: 1.5 #SL
     color: "#f71713"
   - type: UserInterface
     interfaces:

@@ -11,14 +11,32 @@
 
 - type: entity
   parent: ClothingShoesBaseButcherable
-  id: SlickShoes
-  name: Slick Shoes
-  description: Slick shoes like a Mafiaoso would wear.
+  id: ClothingShoesBootsMail
+  name: mail technician boots
+  description: Perfect for delivering mail in the vacuum of space!
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Shoes/Boots/slick_shoes.rsi
+    sprite: _Starlight/Clothing/Shoes/Boots/mail_boots.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Shoes/Boots/slick_shoes.rsi
+    sprite: _Starlight/Clothing/Shoes/Boots/mail_boots.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.025
+    coolingCoefficient: 0.5
+
+# Don't make these easier to get.
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsSeniorMail
+  name: senior mail technician boots
+  description: Stylish boots reserved for the most senior of mail technicians.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Shoes/Boots/senior_mail_boots.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Shoes/Boots/senior_mail_boots.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.025
+    coolingCoefficient: 0.5
 
 - type: entity
   parent: ClothingShoesBaseWinterBoots
@@ -64,6 +82,31 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Shoes/Boots/belpero.rsi
   - type: Matchbox # Cool as fuck =}
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: SlickShoes
+  name: Slick Shoes
+  description: Slick shoes like a Mafiaoso would wear.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Shoes/Boots/slick_shoes.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Shoes/Boots/slick_shoes.rsi
+
+- type: entity
+  parent: ClothingShoesBaseWinterBoots
+  id: ClothingShoesBootsSpaceCourier
+  name: space courier boots
+  description: Pristine courier boots themed after a legendary courier who completed all of their deliveries within 9 days, 9 hours, and 9 minutes.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Shoes/Boots/space_courier_boots.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Shoes/Boots/space_courier_boots.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.025
+    coolingCoefficient: 0.5
 # Fashion-O-Mat End
 
 - type: entity

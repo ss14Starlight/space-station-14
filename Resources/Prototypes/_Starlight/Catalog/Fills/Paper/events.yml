@@ -104,6 +104,7 @@
         tags:
         - GhostOnlyWarp
     - type: GhostRole
+      important: true # SL
       makeSentient: true
       name: ghost-role-information-chaospaper-name
       description: ghost-role-information-chaospaper-description

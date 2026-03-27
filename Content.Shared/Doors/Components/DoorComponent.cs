@@ -101,6 +101,11 @@ public sealed partial class DoorComponent : Component
     /// </summary>
     [DataField("sparkSound")]
     public SoundSpecifier SparkSound = new SoundCollectionSpecifier("sparks");
+
+    // Far Horizons
+    // Disable left click interactions 
+    [DataField]
+    public bool DisableHandInteraction = false;
     #endregion
 
     #region Crushing

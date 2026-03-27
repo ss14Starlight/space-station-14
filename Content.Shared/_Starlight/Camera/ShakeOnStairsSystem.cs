@@ -15,10 +15,10 @@ public sealed class ShakeOnStairsSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TagSystem _tag = default!;
-
-    private readonly Dictionary<EntityUid, TimeSpan> _shakeCooldowns = [];
+    
     private readonly Dictionary<EntityUid, MapCoordinates> _lastShakeCoords = [];
     private static readonly ProtoId<TagPrototype> StairTag = new("Stairs");
+    private static readonly string ShakeKey = "stairShake";
 
     public override void Initialize()
     {
@@ -41,12 +41,11 @@ public sealed class ShakeOnStairsSystem : EntitySystem
             var inRange = _lookup.GetEntitiesInRange(buckle.BuckledTo.Value, 0.5f);
             foreach (var _ in inRange.Where(x => _tag.HasTag(x, StairTag)))
             {
-                if (_shakeCooldowns.ContainsKey(uid)) continue;
+                if (_shake.IsOnCooldown(uid, ShakeKey)) continue;
                 var currentCoords = _xform.GetMapCoordinates(uid);
                 if(_lastShakeCoords.TryGetValue(uid, out var coords))
                     if (currentCoords.InRange(coords, 0.22f)) // to prevent slight movements from causing screenshake
                         continue;
-                _shakeCooldowns[uid] = _timing.CurTime + TimeSpan.FromSeconds(0.05f); // just to prevent this from happening every frame
                 _lastShakeCoords[uid] = currentCoords;
                 var translation = new ScreenshakeParameters
                 {
@@ -60,28 +59,12 @@ public sealed class ShakeOnStairsSystem : EntitySystem
                     DecayRate = 1.2f,
                     Frequency = 0.013f,
                 };
-                _shake.Screenshake(uid, translation, rotation);
+                _shake.Screenshake(uid, translation, rotation, ShakeKey, 0.05f);
             }
         }
     }
 
-    private void OnTerminating(ref EntityTerminatingEvent ev)
-    {
-        _shakeCooldowns.Remove(ev.Entity);
-        _lastShakeCoords.Remove(ev.Entity);
-    }
+    private void OnTerminating(ref EntityTerminatingEvent ev) => _lastShakeCoords.Remove(ev.Entity);
 
-    private void OnCleanup(RoundRestartCleanupEvent ev)
-    {
-        _shakeCooldowns.Clear();
-        _lastShakeCoords.Clear();
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        foreach (var shaker in _shakeCooldowns.Where(shaker => shaker.Value < _timing.CurTime))
-            _shakeCooldowns.Remove(shaker.Key);
-    }
+    private void OnCleanup(RoundRestartCleanupEvent ev) => _lastShakeCoords.Clear();
 }

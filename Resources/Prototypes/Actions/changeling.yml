@@ -35,6 +35,11 @@
     priority: 1
   - type: TargetAction
   - type: EntityTargetAction
+    blacklist: # FH
+      tags:
+      - IPC
+      components:
+      - Absorbed
     event: !type:ChangelingDevourActionEvent
 
 - type: entity

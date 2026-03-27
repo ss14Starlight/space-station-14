@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ActionSiliconPlayMidi
+  name: Play MIDI
+  description: Open your in-built MIDI program to jam to some electronic tunes.
+  components:
+  - type: Action
+    icon: _FarHorizons/Interface/Actions/silicon-midi.png
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:OpenUiActionEvent
+      key: enum.InstrumentUiKey.Key

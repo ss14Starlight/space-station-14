@@ -39,6 +39,7 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared.StatusEffect;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Eye.Blinding.Components;
+using Content.Shared._FarHorizons.Silicons.IPC.Components;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -239,7 +240,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     private bool IsInvalidDrinkTarget(EntityUid user, EntityUid target, bool showPopup = true)
     {
-        if (!HasComp<VampireComponent>(target) && !HasComp<VampireThrallComponent>(target))
+        if (!HasComp<VampireComponent>(target) && !HasComp<VampireThrallComponent>(target) && !HasComp<IPCBatteryComponent>(target))
             return false;
 
         if (showPopup)

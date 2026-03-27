@@ -21,6 +21,8 @@ guide-entry-sl-rule-10 = Rule 10
 guide-entry-sl-rule-11 = Rule 11
 guide-entry-sl-rule-12 = Rule 12
 guide-entry-sl-rule-13 = Rule 13
+guide-entry-sl-rule-14 = Rule 14
+guide-entry-sl-metashield = Metashield
 
 guide-entry-sl-silicon-1 = Sil.Rule 1
 guide-entry-sl-silicon-2 = Sil.Rule 2
@@ -137,7 +139,7 @@ guide-entry-sl-nano-trasen-employee-sop-nt-rep = NanoTrasen Representative
 guide-entry-sl-nano-trasen-employee-sop-bso = BlueShield Officer
 guide-entry-sl-nano-trasen-employee-sop-magistrate = Magistrate
 guide-entry-sl-nano-trasen-employee-sop-iaa = Internal Affairs Agent
-guide-entry-sl-nano-trasen-employee-sop-nct = Nanotrasen Career Trainer
+guide-entry-sl-nano-trasen-employee-sop-nct = NanoTrasen Career Trainer
 
 guide-entry-sl-service-sop-intro = Service
 guide-entry-sl-service-sop-genproc-intro = General Procedures
@@ -156,3 +158,6 @@ guide-entry-plumbingmachines = Plumbing Machines
 
 # Records
 guide-entry-records = Character Records
+
+# Tools
+guide-entry-tools-combination-locks = Combination Locks

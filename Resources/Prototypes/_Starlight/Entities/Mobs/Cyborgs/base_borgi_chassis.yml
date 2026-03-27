@@ -136,6 +136,9 @@
       slots:
         cell_slot:
           name: power-cell-slot-component-slot-name-default
+          blacklist:
+            tags:
+            - MechReactor
     - type: StatusEffects
       allowed:
       - Stun
@@ -242,6 +245,7 @@
       name: A Syndicate Borgi.
       description: The Syndicate needs reinforcements. You, a cold, BUT LOVINGLY ADORABLE, silicon killing machine, will help them... And bork.  An unusual choice, but it was made nonetheless.
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
@@ -279,5 +283,8 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellHyper
+          blacklist:
+            tags:
+            - MechReactor
     - type: AccessReader
       access: [["SyndicateAgent"], ["NuclearOperative"]]

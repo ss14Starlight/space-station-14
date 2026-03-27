@@ -1,0 +1,25 @@
+- type: entity
+  parent: [ClothingEyesBase, BaseCentcommContraband]
+  id: ClothingEyesGlassesNTNC
+  name: nanotrasen navy marine glasses
+  description: Standard-issue glasses for NanoTrasen Navy Marines.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Eyes/Glasses/ntnc.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Eyes/Glasses/ntnc.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5

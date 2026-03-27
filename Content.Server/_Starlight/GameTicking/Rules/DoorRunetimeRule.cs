@@ -1,5 +1,6 @@
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.StationEvents.Components;
+using Content.Shared.Access.Systems;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Electrocution;
@@ -14,6 +15,7 @@ public sealed class DoorRunetimeRule : StationEventSystem<DoorRunetimeRuleCompon
     [Dependency] private readonly SharedDoorSystem _door = default!;
     [Dependency] private readonly SharedElectrocutionSystem _electrocution = default!;
     [Dependency] private readonly SharedAirlockSystem _airlock = default!;
+    [Dependency] private readonly AccessReaderSystem _access = default!;
 
     protected override void Started(EntityUid uid, DoorRunetimeRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -83,10 +85,13 @@ public sealed class DoorRunetimeRule : StationEventSystem<DoorRunetimeRuleCompon
             if (TryComp<DoorBoltComponent>(ent, out var boltComp))
                 _door.SetBoltsDown((ent, boltComp), false);
 
-            _door.TryOpen(ent);
-
             if (TryComp<ElectrifiedComponent>(ent, out var electrified))
                 _electrocution.SetElectrified((ent, electrified), false);
+
+            if (_access.GetMainAccessReader(ent, out var accessEnt) && _access.AreAccessTagsAllowed(comp.Blacklist, accessEnt.Value.Comp))
+                continue;
+
+            _door.TryOpen(ent);
         }
 
         comp.AffectedEntities.Clear();

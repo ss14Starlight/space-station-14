@@ -26,15 +26,19 @@ public sealed class GunneryConsoleBoundUserInterfaceState : BoundUserInterfaceSt
     /// console, or <c>null</c> if no guidance is active.
     /// </summary>
     public readonly NetEntity? TrackedGuidedProjectile;
+    
+    public readonly bool HasServer = true;
 
     public GunneryConsoleBoundUserInterfaceState(
         NavInterfaceState navState,
         List<CannonBlipData> cannons,
-        NetEntity? trackedGuidedProjectile)
+        NetEntity? trackedGuidedProjectile,
+        bool hasServer = true)
     {
         NavState       = navState;
         Cannons        = cannons;
         TrackedGuidedProjectile = trackedGuidedProjectile;
+        HasServer      = hasServer;
     }
 }
 
