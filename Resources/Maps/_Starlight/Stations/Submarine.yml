@@ -22763,7 +22763,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 170
-      - invalid
       - 174
   - uid: 903
     components:
@@ -23172,7 +23171,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 174
-      - invalid
       - 155
       - 221
   - uid: 948
@@ -23309,7 +23307,6 @@ entities:
       deviceLists:
       - 82
       - 236
-      - invalid
       - 180
       - 230
       - 232
@@ -23347,7 +23344,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
       - 210
   - uid: 967
     components:
@@ -23356,7 +23352,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 968
     components:
     - type: Transform
@@ -23750,7 +23745,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 211
-      - invalid
       - 219
   - uid: 1014
     components:
@@ -24011,7 +24005,6 @@ entities:
       - 140
       - 211
       - 114
-      - invalid
       - 219
   - uid: 1044
     components:
@@ -24107,7 +24100,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 211
-      - invalid
   - uid: 1055
     components:
     - type: Transform
@@ -24173,7 +24165,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 217
-      - invalid
       - 216
       - 167
   - uid: 1062
@@ -24447,7 +24438,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 1095
     components:
     - type: Transform
@@ -24475,7 +24465,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 1104
     components:
     - type: Transform
@@ -24484,7 +24473,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 1105
     components:
     - type: Transform
@@ -24493,7 +24481,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
       - 252
   - uid: 1106
     components:
@@ -24502,7 +24489,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 1107
     components:
     - type: Transform
@@ -24597,7 +24583,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
       - 250
   - uid: 1119
     components:
@@ -24728,7 +24713,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
       - 111
       - 100
       - 258
@@ -24740,7 +24724,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 246
-      - invalid
   - uid: 46129
     components:
     - type: Transform
@@ -24749,7 +24732,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 253
-      - invalid
   - uid: 46412
     components:
     - type: Transform
@@ -24758,7 +24740,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 46424
     components:
     - type: Transform
@@ -24772,7 +24753,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 46447
     components:
     - type: Transform
@@ -24780,7 +24760,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 46730
     components:
     - type: Transform
@@ -24824,7 +24803,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 47170
     components:
     - type: Transform
@@ -24832,7 +24810,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
 - proto: AltarBananium
   entities:
   - uid: 1132
@@ -133214,7 +133191,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 20947
     components:
     - type: Transform
@@ -133223,7 +133199,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
 - proto: FirelockGlass
   entities:
   - uid: 4865
@@ -133232,9 +133207,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,75.5
       parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 4610
       - 233
@@ -133385,7 +133357,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
       - 210
   - uid: 20970
     components:
@@ -133433,7 +133404,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 20976
     components:
     - type: Transform
@@ -133524,7 +133494,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
       - 212
   - uid: 20991
     components:
@@ -133613,7 +133582,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 211
-      - invalid
   - uid: 21005
     components:
     - type: Transform
@@ -133623,7 +133591,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 211
-      - invalid
   - uid: 21006
     components:
     - type: Transform
@@ -133671,7 +133638,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 21015
     components:
     - type: Transform
@@ -134092,7 +134058,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 21074
     components:
     - type: Transform
@@ -134101,7 +134066,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 21075
     components:
     - type: Transform
@@ -135671,7 +135635,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 21281
     components:
     - type: Transform
@@ -135679,7 +135642,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 21283
     components:
     - type: Transform
@@ -136482,7 +136444,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 246
-      - invalid
   - uid: 46207
     components:
     - type: Transform
@@ -136490,7 +136451,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 46208
     components:
     - type: Transform
@@ -136499,7 +136459,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 253
-      - invalid
   - uid: 46372
     components:
     - type: Transform
@@ -136512,7 +136471,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 46597
     components:
     - type: Transform
@@ -136521,7 +136479,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 46817
     components:
     - type: Transform
@@ -184824,7 +184781,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 27895
@@ -186045,7 +186001,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 28029
@@ -186125,7 +186080,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 28037
     components:
     - type: Transform
@@ -186663,7 +186617,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 28106
@@ -186674,7 +186627,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 28107
@@ -186684,7 +186636,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 28108
@@ -186694,7 +186645,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 28109
@@ -186920,7 +186870,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 46235
@@ -186941,7 +186890,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 46356
@@ -186951,7 +186899,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 46614
@@ -186961,7 +186908,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 46615
@@ -186971,7 +186917,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 46870
@@ -187049,7 +186994,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 47328
@@ -187191,7 +187135,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 28139
@@ -188529,7 +188472,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 28281
@@ -188990,7 +188932,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 28335
@@ -189519,7 +189460,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 28405
@@ -189530,7 +189470,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 28406
@@ -189541,7 +189480,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 28407
@@ -189552,7 +189490,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 28408
@@ -189764,7 +189701,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
   - uid: 46237
     components:
     - type: Transform
@@ -189783,7 +189719,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 46346
@@ -189793,7 +189728,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 46616
@@ -189803,7 +189737,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 46617
@@ -189813,7 +189746,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 46874
@@ -189889,7 +189821,6 @@ entities:
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 47331
@@ -279652,9 +279583,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 63.5,44.5
       parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 46117
   - uid: 46116
@@ -279663,9 +279591,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 63.5,40.5
       parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 18946
       - 46117
