@@ -601,7 +601,7 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-        if (vampire.DrunkBlood < bloodCost)
+        if (comp.DrunkBlood < bloodCost)
         {
             _popup.PopupEntity(Loc.GetString("vampire-not-enough-blood"), uid, uid, PopupType.MediumCaution);
             return;
