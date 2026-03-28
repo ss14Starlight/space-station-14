@@ -7,11 +7,11 @@
   components:
   - type: LanguageKnowledge
     speaks:
-    - Xeno
-    understands:
-    - Xeno
     - Chittin
-    - Darktongue
+    - Xenomind
+    understands:
+    - Chittin
+    - Xenomind
   - type: ThermalVision
   - type: OptionsVisualizer
     visuals:

@@ -12,9 +12,11 @@
     speaks:
     - GalacticCommon
     - Carptongue
+    - Carpmind
     understands:
     - GalacticCommon
     - Carptongue
+    - Carpmind
     - Thaveyan
   # Starlight-end
   - type: ThermalVision

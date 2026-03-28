@@ -115,3 +115,43 @@
     - chat-speech-verb-hivemind-5
     - chat-speech-verb-hivemind-6
     - chat-speech-verb-hivemind-7
+
+- type: language
+  id: Carpmind
+  chatPrefix: c
+  iconUnderstood: false
+  iconNotUnderstood: false
+  speech:
+    blockSpeech: true
+    allowRadio: false
+    requireSpeech: false
+    requireSound: false
+    radioChannel: CarpRadio
+    speechVerbOverrides:
+    - chat-speech-verb-hivemind-1
+    - chat-speech-verb-hivemind-2
+    - chat-speech-verb-hivemind-3
+    - chat-speech-verb-hivemind-4
+    - chat-speech-verb-hivemind-5
+    - chat-speech-verb-hivemind-6
+    - chat-speech-verb-hivemind-7
+
+- type: language
+  id: Xenomind
+  chatPrefix: x
+  iconUnderstood: false
+  iconNotUnderstood: false
+  speech:
+    blockSpeech: true
+    allowRadio: false
+    requireSpeech: false
+    requireSound: false
+    radioChannel: XenoRadio
+    speechVerbOverrides:
+    - chat-speech-verb-hivemind-1
+    - chat-speech-verb-hivemind-2
+    - chat-speech-verb-hivemind-3
+    - chat-speech-verb-hivemind-4
+    - chat-speech-verb-hivemind-5
+    - chat-speech-verb-hivemind-6
+    - chat-speech-verb-hivemind-7

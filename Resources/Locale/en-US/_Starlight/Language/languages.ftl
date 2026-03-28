@@ -135,3 +135,9 @@ language-Dantalion-description = ...
 
 language-Empathy-name = Empathy
 language-Empathy-description = ...
+
+language-Carpmind-name = Hivemind
+language-Carpmind-description = Various fishy minds.
+
+language-Xenomind-name = Hivemind
+language-Xenomind-description = Various minds of xenos and terrors.

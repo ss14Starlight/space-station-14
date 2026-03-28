@@ -1,9 +1,7 @@
 - type: language
   id: Xeno
   icon: LanguageIconXeno
-  chatPrefix: x
-  speech:
-    radioChannel: XenoRadio
+  chatPrefix: xno
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
