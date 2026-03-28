@@ -1989,7 +1989,7 @@
   isSubfloor: false
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemMowedAstroGrass
-  weather: false
+  weather: false #Starlight-edit
 
 - type: tile
   id: FloorJungleAstroGrass
@@ -1999,7 +1999,7 @@
   isSubfloor: false
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemJungleAstroGrass
-  weather: false
+  weather: false #Starlight-edit
 
 - type: tile
   parent: FloorGrassDark
@@ -2009,7 +2009,7 @@
   isSubfloor: false
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemDarkAstroGrass
-  weather: false
+  weather: false #Starlight-edit
 
 - type: tile
   parent: FloorGrassLight
@@ -2019,7 +2019,7 @@
   isSubfloor: false
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemLightAstroGrass
-  weather: false
+  weather: false #Starlight-edit
 
 # Ice
 - type: tile
@@ -2043,7 +2043,7 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   itemDrop: FloorTileItemAstroSnow
-  weather: false
+  weather: false #Starlight-edit
 
 # Asteroid Sand
 - type: tile
