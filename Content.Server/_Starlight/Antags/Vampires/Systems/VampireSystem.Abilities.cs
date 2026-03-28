@@ -578,8 +578,6 @@ public sealed partial class VampireSystem : EntitySystem
         if (args.Handled || !Exists(args.Target))
             return;
 
-        if (!TryComp<VampireComponent>(uid, out var vampire))
-            return;
 
         var actionEntity = args.Action.Owner;
 
