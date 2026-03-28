@@ -641,8 +641,6 @@ public sealed partial class VampireSystem : EntitySystem
         if (args.Handled || args.Cancelled || args.Target == null)
             return;
 
-        if (!TryComp<VampireComponent>(uid, out var vampire))
-            return;
 
         var target = args.Target.Value;
 
