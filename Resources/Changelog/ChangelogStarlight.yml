@@ -36202,5 +36202,22 @@ Entries:
   id: 390201
   time: '2026-03-27T21:24:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3902
+- author: Conflee
+  changes:
+  - message: Swapped the armored Captain's Winter Coat in the Uniform Fab for an unarmored
+      version for consistency with HoS and Warden's winter coats, both of which are
+      unarmored versions when made in the Uniform Fab. No free infinite carapice level
+      armory, use the Anvil or Cargo if you want tons of armor.
+    type: Fix
+  id: 397001
+  time: '2026-03-28T05:19:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3970
+- author: Makeshift
+  changes:
+  - message: Some Astro-Tiles no longer let weather in.
+    type: Fix
+  id: 398201
+  time: '2026-03-28T07:32:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3982
 Order: -1
 
