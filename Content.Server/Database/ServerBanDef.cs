@@ -25,6 +25,10 @@ namespace Content.Server.Database
         public ServerUnbanDef? Unban { get; }
         public ServerBanExemptFlags ExemptFlags { get; }
 
+        public string? ProjectName { get; } // Starlight-edit
+
+        public string? ServerName { get; } // Starlight-edit
+
         public ServerBanDef(int? id,
             NetUserId? userId,
             (IPAddress, int)? address,
@@ -37,7 +41,9 @@ namespace Content.Server.Database
             NoteSeverity severity,
             NetUserId? banningAdmin,
             ServerUnbanDef? unban,
-            ServerBanExemptFlags exemptFlags = default)
+            ServerBanExemptFlags exemptFlags = default,
+            string? projectName = null,
+            string? serverName = null)
         {
             if (userId == null && address == null && hwId ==  null)
             {
@@ -64,6 +70,8 @@ namespace Content.Server.Database
             BanningAdmin = banningAdmin;
             Unban = unban;
             ExemptFlags = exemptFlags;
+            ProjectName = projectName;
+            ServerName = serverName;
         }
 
         public string FormatBanMessage(IConfigurationManager cfg, ILocalizationManager loc)
@@ -105,7 +113,7 @@ namespace Content.Server.Database
     public static class BanDefExtensions
     {
         public static AdminBan ToNullLink(this ServerBanDef banDef)
-            => new(banDef.Id, banDef.UserId, banDef.Address, banDef.HWId == null ? null : (banDef.HWId.Hwid, (int)banDef.HWId.Type), banDef.BanTime, banDef.ExpirationTime, banDef.RoundId, banDef.PlaytimeAtNote, banDef.Reason, banDef.Severity.ToString(), banDef.BanningAdmin, banDef.Unban?.ToNullLink(), null, (int)banDef.ExemptFlags);
+            => new(banDef.Id, banDef.UserId, banDef.Address, banDef.HWId == null ? null : (banDef.HWId.Hwid, (int)banDef.HWId.Type), banDef.BanTime, banDef.ExpirationTime, banDef.RoundId, banDef.PlaytimeAtNote, banDef.Reason, banDef.Severity.ToString(), banDef.BanningAdmin, banDef.Unban == null ?[] : new() { banDef.Unban.ToNullLink() }, null, (int)banDef.ExemptFlags, banDef.ProjectName, banDef.ServerName);
     }
 
     #endregion

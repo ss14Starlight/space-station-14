@@ -11,11 +11,17 @@ public sealed class ServerRoleUnbanDef
 
     public DateTimeOffset UnbanTime { get; }
 
-    public ServerRoleUnbanDef(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime)
+    public string? ProjectName { get; }
+
+    public string? ServerName { get; }
+
+    public ServerRoleUnbanDef(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime, string? projectName = null, string? serverName = null)
     {
         BanId = banId;
         UnbanningAdmin = unbanningAdmin;
         UnbanTime = unbanTime;
+        ProjectName = projectName;
+        ServerName = serverName;
     }
 }
 
@@ -24,7 +30,7 @@ public sealed class ServerRoleUnbanDef
 public static class RoleUnbanDefExtensions
 {
     public static AdminUnban ToNullLink(this ServerRoleUnbanDef serverRoleUnban)
-        => new(serverRoleUnban.BanId, serverRoleUnban.UnbanningAdmin, serverRoleUnban.UnbanTime);
+        => new(serverRoleUnban.BanId, serverRoleUnban.UnbanningAdmin, serverRoleUnban.UnbanTime, serverRoleUnban.ProjectName, serverRoleUnban.ServerName);
 }
 
 #endregion

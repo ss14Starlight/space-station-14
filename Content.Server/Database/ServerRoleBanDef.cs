@@ -22,6 +22,10 @@ public sealed class ServerRoleBanDef
     public ServerRoleUnbanDef? Unban { get; }
     public string Role { get; }
 
+    public string? ProjectName { get; }
+
+    public string? ServerName { get; }
+
     public ServerRoleBanDef(
         int? id,
         NetUserId? userId,
@@ -35,7 +39,9 @@ public sealed class ServerRoleBanDef
         NoteSeverity severity,
         NetUserId? banningAdmin,
         ServerRoleUnbanDef? unban,
-        string role)
+        string role,
+        string? projectName = null,
+        string? serverName = null)
     {
         if (userId == null && address == null && hwId ==  null)
         {
@@ -62,6 +68,8 @@ public sealed class ServerRoleBanDef
         BanningAdmin = banningAdmin;
         Unban = unban;
         Role = role;
+        ProjectName = projectName;
+        ServerName = serverName;
     }
 }
 
@@ -70,7 +78,7 @@ public sealed class ServerRoleBanDef
 public static class RoleBanDefExtensions
 {
     public static AdminBan ToNullLink(this ServerRoleBanDef serverRoleBan)
-        => new(serverRoleBan.Id, serverRoleBan.UserId, serverRoleBan.Address, serverRoleBan.HWId == null ? null : (serverRoleBan.HWId.Hwid, (int)serverRoleBan.HWId.Type), serverRoleBan.BanTime, serverRoleBan.ExpirationTime, serverRoleBan.RoundId, serverRoleBan.PlaytimeAtNote, serverRoleBan.Reason, serverRoleBan.Severity.ToString(), serverRoleBan.BanningAdmin, serverRoleBan.Unban?.ToNullLink(), serverRoleBan.Role, null);
+        => new(serverRoleBan.Id, serverRoleBan.UserId, serverRoleBan.Address, serverRoleBan.HWId == null ? null : (serverRoleBan.HWId.Hwid, (int)serverRoleBan.HWId.Type), serverRoleBan.BanTime, serverRoleBan.ExpirationTime, serverRoleBan.RoundId, serverRoleBan.PlaytimeAtNote, serverRoleBan.Reason, serverRoleBan.Severity.ToString(), serverRoleBan.BanningAdmin, serverRoleBan.Unban == null ?[] : new() { serverRoleBan.Unban.ToNullLink() }, serverRoleBan.Role, null, serverRoleBan.ProjectName, serverRoleBan.ServerName);
 }
 
 #endregion

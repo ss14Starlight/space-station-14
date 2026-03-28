@@ -255,8 +255,9 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         {
             if (await serverGrain.RequestBanById(banId) is { } networkBan)
             {
-                var unban = new AdminUnban(banId, unbanningAdmin, unbanTime);
-                var newBan = new AdminBan(networkBan.Id, networkBan.UserId, networkBan.Address, networkBan.HWId, networkBan.BanTime, networkBan.ExpirationTime, networkBan.RoundId, networkBan.PlayTimeAtNote, networkBan.Reason, networkBan.Severity, networkBan.BanningAdmin, unban, networkBan.Role, networkBan.ExemptFlags);
+                var unbans = networkBan.Unban;
+                unbans.Add(new AdminUnban(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
+                var newBan = new AdminBan(networkBan.Id, networkBan.UserId, networkBan.Address, networkBan.HWId, networkBan.BanTime, networkBan.ExpirationTime, networkBan.RoundId, networkBan.PlayTimeAtNote, networkBan.Reason, networkBan.Severity, networkBan.BanningAdmin, unbans, networkBan.Role, networkBan.ExemptFlags, networkBan.ProjectName, networkBan.ServerName);
                 await serverGrain.AddOrUpdateBan(networkBan);
             }
         }
@@ -460,8 +461,9 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         {
             if (await serverGrain.RequestBanById(banId) is { } networkBan)
             {
-                var unban = new AdminUnban(banId, unbanningAdmin, unbanTime);
-                var newBan = new AdminBan(networkBan.Id, networkBan.UserId, networkBan.Address, networkBan.HWId, networkBan.BanTime, networkBan.ExpirationTime, networkBan.RoundId, networkBan.PlayTimeAtNote, networkBan.Reason, networkBan.Severity, networkBan.BanningAdmin, unban, networkBan.Role, networkBan.ExemptFlags);
+                var unbans = networkBan.Unban;
+                unbans.Add(new AdminUnban(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
+                var newBan = new AdminBan(networkBan.Id, networkBan.UserId, networkBan.Address, networkBan.HWId, networkBan.BanTime, networkBan.ExpirationTime, networkBan.RoundId, networkBan.PlayTimeAtNote, networkBan.Reason, networkBan.Severity, networkBan.BanningAdmin, unbans, networkBan.Role, networkBan.ExemptFlags, networkBan.ProjectName, networkBan.ServerName);
                 await serverGrain.AddOrUpdateBan(networkBan);
             }
         }
