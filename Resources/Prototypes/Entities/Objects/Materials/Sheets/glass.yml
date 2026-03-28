@@ -185,8 +185,8 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    - type: QuickConstructable # DEN quick construction
-      category: ReinforcedGlass
+  - type: QuickConstructable # DEN quick construction
+    category: ReinforcedGlass
 
 - type: entity
   parent: SheetRGlass
@@ -267,8 +267,8 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    - type: QuickConstructable # DEN quick construction
-      category: PlasmaGlass
+  - type: QuickConstructable # DEN quick construction
+    category: PlasmaGlass
 
 - type: entity
   parent: SheetPGlass
