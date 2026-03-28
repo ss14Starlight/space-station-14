@@ -650,7 +650,7 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-        if (!CheckAndConsumeBloodCost(uid, vampire, null, args.BloodCost))
+        if (!CheckAndConsumeBloodCost(uid, comp, null, args.BloodCost))
             return;
 
         if (HasComp<MindShieldComponent>(target))
