@@ -5,6 +5,7 @@
   frequency: 77777
   color: "#4cabb3"
   longRange: true
+  autoTranslate: Cosmic
 
 - type: radioChannel
   id: AbductorRadio
@@ -13,6 +14,7 @@
   color: "#d600bd"
   longRange: true
   anonymousAlias: "{0}"
+  autoTranslate: Abductor
 
 - type: radioChannel
   id: NexusRadio
@@ -21,6 +23,7 @@
   color: "#FF7922"
   longRange: true
   anonymousAlias: "User {0}"
+  autoTranslate: Nexus
 
 - type: radioChannel
   id: CarpRadio
@@ -28,6 +31,7 @@
   frequency: 77780
   color: "#787878"
   longRange: true
+  autoTranslate: Carpmind
 
 - type: radioChannel
   id: ChangelingRadio
@@ -35,6 +39,7 @@
   frequency: 77781
   color: "#ff75a8"
   longRange: true
+  autoTranslate: Changeling
 
 - type: radioChannel
   id: DantalionRadio
@@ -42,6 +47,7 @@
   frequency: 77782
   color: "#066338"
   longRange: true
+  autoTranslate: Dantalion
 
 - type: radioChannel
   id: EmpathyRadio
@@ -49,6 +55,7 @@
   frequency: 77783
   color: "#8a0060"
   longRange: true
+  autoTranslate: Empathy
 
 - type: radioChannel
   id: XenoRadio
@@ -56,3 +63,4 @@
   frequency: 77784
   color: "#8f6741"
   longRange: true
+  autoTranslate: Xenomind

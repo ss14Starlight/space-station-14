@@ -97,7 +97,7 @@ public sealed partial class RadioSystem : EntitySystem
         {
             var msg = args.OriginalChatMsg;
 
-            if (!_language.CanUnderstand(uid, args.Language.ID))
+            if (!_language.CanUnderstand(uid, args.Language.ID) && args.Language.SpeechOverride.RadioChannel is null)
                 msg = args.LanguageObfuscatedChatMsg;
             else if (args.MessageSource != uid)
                 args.Receivers.Add(uid);
@@ -137,6 +137,9 @@ public sealed partial class RadioSystem : EntitySystem
         bool escapeMarkup = true)
     {
         // Starlight - start
+        if (channel.AutoTranslate is not null)
+            language = _language.GetLanguagePrototype(channel.AutoTranslate.Value);
+
         if (language == null)
             language = _language.GetLanguage(messageSource);
 

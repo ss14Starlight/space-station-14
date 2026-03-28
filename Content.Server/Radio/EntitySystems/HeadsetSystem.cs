@@ -126,7 +126,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         // Starlight - Start
         if (TryComp(parent, out ActorComponent? actor))
         {
-            var canUnderstand = _language.CanUnderstand(parent, args.Language.ID);
+            var canUnderstand = _language.CanUnderstand(parent, args.Language.ID) || args.Language.SpeechOverride.RadioChannel is not null;
             var msg = new MsgChatMessage
             {
                 Message = canUnderstand ? args.OriginalChatMsg : args.LanguageObfuscatedChatMsg

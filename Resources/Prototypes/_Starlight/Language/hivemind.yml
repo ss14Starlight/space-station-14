@@ -17,7 +17,6 @@
   iconUnderstood: false
   iconNotUnderstood: false
   speech:
-    color: "#d600bd"
     blockSpeech: true
     allowRadio: false
     requireSpeech: false
@@ -38,7 +37,6 @@
   iconUnderstood: false
   iconNotUnderstood: false
   speech:
-    color: "#FF7922"
     blockSpeech: true
     allowRadio: false
     requireSpeech: false
@@ -59,7 +57,6 @@
   iconUnderstood: false
   iconNotUnderstood: false
   speech:
-    color: "#ff75a8"
     blockSpeech: true
     allowRadio: false
     requireSpeech: false
@@ -80,7 +77,6 @@
   iconUnderstood: false
   iconNotUnderstood: false
   speech:
-    color: "#066338"
     blockSpeech: true
     allowRadio: false
     requireSpeech: false
@@ -101,7 +97,6 @@
   iconUnderstood: false
   iconNotUnderstood: false
   speech:
-    color: "#8a0060"
     blockSpeech: true
     allowRadio: false
     requireSpeech: false

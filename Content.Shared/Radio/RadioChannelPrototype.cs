@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Language;
 using Content.Shared.Dataset;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
@@ -45,4 +46,9 @@ public sealed partial class RadioChannelPrototype : IPrototype
     [DataField]
     public string? AnonymousAlias;
     // Far Horizons end
+
+    // Starlight - Start
+    [DataField]
+    public ProtoId<LanguagePrototype>? AutoTranslate;
+    // Starlight - End
 }
