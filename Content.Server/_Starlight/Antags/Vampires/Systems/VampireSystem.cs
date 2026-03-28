@@ -22,6 +22,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Server.Body.Components;
+using Content.Server.GameTicking;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
@@ -70,6 +71,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
     private ISawmill? _sawmill;
     private static readonly ProtoId<DamageGroupPrototype> _bruteGroupId = "Brute";
     private static readonly ProtoId<DamageGroupPrototype> _burnGroupId = "Burn";
@@ -330,7 +332,7 @@ public sealed partial class VampireSystem : EntitySystem
         var wasStarving = before <= 0f;
         var changed = false;
 
-        if (before > 0f)
+        if (before > 0f && _gameTicker.RunLevel < GameRunLevel.PostRound) // No hunger EOR
         {
             comp.BloodFullness = MathF.Max(0f, before - comp.FullnessDecayPerSecond);
             changed = !MathF.Abs(comp.BloodFullness - before).Equals(0f);

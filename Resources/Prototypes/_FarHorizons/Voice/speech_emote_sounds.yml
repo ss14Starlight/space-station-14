@@ -1,0 +1,87 @@
+- type: emoteSounds
+  id: MaleIPC
+  params:
+    variation: 0.05
+  sounds:
+    Scream:
+      collection: SiliconScreams
+    Beep:
+      path: /Audio/Machines/twobeep.ogg
+    Chime:
+      path: /Audio/Machines/chime.ogg
+    Buzz:
+      path: /Audio/Machines/buzz-sigh.ogg
+    Buzz-Two:
+      path: /Audio/Machines/buzz-two.ogg
+    Honk:
+      path: /Audio/Items/bikehorn.ogg
+    Ping:
+      path: /Audio/Effects/Cargo/ping.ogg
+    Laugh:
+      collection: MaleLaugh
+    Cough:
+      collection: MaleCoughs
+    Sneeze:
+      collection: MaleSneezes
+    Snore:
+      collection: Snores
+    Sigh:
+      collection: MaleSigh
+    Crying:
+      collection: MaleCry
+    Whistle:
+      collection: Whistles
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: MaleGasp
+    DeathgaspIPC:
+      collection: MaleDeathGasp
+    Yawn:
+      collection: MaleYawn
+
+- type: emoteSounds
+  id: FemaleIPC
+  params:
+    variation: 0.05
+  sounds:
+    Scream:
+      collection: SiliconScreams
+    Beep:
+      path: /Audio/Machines/twobeep.ogg
+    Chime:
+      path: /Audio/Machines/chime.ogg
+    Buzz:
+      path: /Audio/Machines/buzz-sigh.ogg
+    Buzz-Two:
+      path: /Audio/Machines/buzz-two.ogg
+    Honk:
+      path: /Audio/Items/bikehorn.ogg
+    Ping:
+      path: /Audio/Effects/Cargo/ping.ogg
+    Laugh:
+      collection: FemaleLaugh
+    Cough:
+      collection: FemaleCoughs
+    Sneeze:
+      collection: FemaleSneezes
+    Snore:
+      collection: Snores
+    Sigh:
+      collection: FemaleSigh
+    Crying:
+      collection: FemaleCry
+    Whistle:
+      collection: Whistles
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: FemaleGasp
+    DeathgaspIPC:
+      collection: FemaleDeathGasp
+    Yawn:
+      collection: FemaleYawn

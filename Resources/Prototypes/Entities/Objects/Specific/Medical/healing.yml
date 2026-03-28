@@ -244,6 +244,10 @@
       params:
         volume: 1.0
         variation: 0.125
+  - type: InteractRestriction #Far Horizons
+    restrictInteractionTarget:
+      blacklist:
+      - IPC
   - type: Stack
     stackType: Bloodpack
     count: 10
@@ -865,6 +869,10 @@
         - id: StrangePill
           weight: 0.75
           amount: *Range1to6
+        - id: OminousPill # Starlight start
+          weight: 0.375
+          amount: !type:RangeNumberSelector
+            range: 0, 3 # Starlight end
 
 # Syringes
 - type: entity

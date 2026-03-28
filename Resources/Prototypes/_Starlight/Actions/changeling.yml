@@ -40,6 +40,7 @@
   - type: ChangelingAction
     chemicalCost: 25
     useInLesserForm: true
+  - type: EorgAction
 
 
 - type: entity
@@ -246,7 +247,6 @@
     event: !type:StingChemEvent {
       chems: { Fresium: 20, ChloralHydrate: 20 }
     }
-
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
@@ -342,6 +342,7 @@
   - type: ChangelingAction
     chemicalCost: 75
     useInLesserForm: true
+  - type: EorgAction
 
 # utility
 - type: entity
@@ -398,6 +399,7 @@
     event: !type:ActionBiodegradeEvent {}
   - type: ChangelingAction
     chemicalCost: 30
+  - type: EorgAction
 
 - type: entity
   id: ActionChameleonSkin

@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge] # Starlight
   id: BaseMobVox
   abstract: true
   components:
