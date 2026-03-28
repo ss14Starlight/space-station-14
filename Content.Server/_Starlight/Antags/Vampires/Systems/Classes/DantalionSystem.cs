@@ -119,14 +119,14 @@ public sealed class DantalionSystem : EntitySystem
 
                 if (thrall.HolyWaterConsumed >= thrall.HolyWaterToBreakFree)
                 {
-                    if (!ReleaseThrall(uid))
+                    if (!TryReleaseThrall(uid))
                         continue;
                     _popup.PopupEntity(Loc.GetString("vampire-thrall-holy-water-freed"), uid, uid, PopupType.Medium);
                 }
             }
             else if (HasComp<MindShieldComponent>(uid))
             {
-                if (!ReleaseThrall(uid))
+                if (!TryReleaseThrall(uid))
                     continue;
                 _popup.PopupEntity(Loc.GetString("vampire-thrall-released"), uid, uid, PopupType.Medium);
             }
@@ -291,10 +291,10 @@ public sealed class DantalionSystem : EntitySystem
             return;
 
         foreach (var thrall in component.Thralls.ToArray())
-            ReleaseThrall(thrall);
+            TryReleaseThrall(thrall);
     }
 
-    private bool ReleaseThrall(EntityUid thrall)
+    private bool TryReleaseThrall(EntityUid thrall)
     {
         if (!_mind.TryGetMind(thrall, out var mindId, out var mind))
             return false;
@@ -311,10 +311,6 @@ public sealed class DantalionSystem : EntitySystem
 
         //Remove role
         _role.MindRemoveRole<VampireThrallComponent>(mindId);
-
-        //_adminLogManager.Add(LogType.Mind,
-        //        LogImpact.Medium,
-        //        $"{ToPrettyString(thrall.owner)} is no longer a thrall of {ToPrettyString(thrall.Master)}");
 
         if (TryComp<CollectiveMindComponent>(thrall, out var cmComp))
             _collectiveMind.UpdateCollectiveMind(thrall, cmComp);
