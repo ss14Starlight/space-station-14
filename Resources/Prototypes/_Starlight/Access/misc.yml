@@ -23,8 +23,12 @@
   name: id-card-access-level-freelance
 
 - type: accessLevel
-  id: Commie
-  name: id-card-access-level-commie
+  id: Communist
+  name: id-card-access-level-communist
+
+- type: accessLevel
+  id: Blackstar
+  name: id-card-access-level-blackstar
 
 - type: accessGroup
   id: Misc
@@ -35,9 +39,10 @@
   - Debug4
   - Debug5
   - Freelance
-  - Commie
+  - Communist
   - Wizard
   - Pirate
+  - Blackstar
 
 - type: accessGroup
   id: Syndicate
