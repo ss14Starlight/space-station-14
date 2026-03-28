@@ -1,0 +1,56 @@
+# todo: eventually allow this to be triggered remotely
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: SyndicateDisruptor
+  name: syndicate disruptor
+  components:
+    - type: Sprite
+      sprite: Objects/Devices/communication.rsi
+      layers:
+        - state: old-radio
+    - type: EventSelectorRadialMenu
+      radialMenuEntries:
+      - name: event-selector-gas-leak
+        protoIdIcon: Flash
+        gameRule: GasLeak
+        useDelay: 20m
+      - name: syndicate-disruptor-bureaucratic-error
+        protoIdIcon: Flash
+        gameRule: BureaucraticError
+        useDelay: 20m
+      - name: syndicate-disruptor-clerical-error
+        protoIdIcon: Flash
+        gameRule: ClericalError
+        useDelay: 20m
+      - name: syndicate-disruptor-breaker-flip
+        protoIdIcon: Flash
+        gameRule: BreakerFlip
+        useDelay: 15m
+      - name: syndicate-disruptor-ion-storm
+        protoIdIcon: Flash
+        gameRule: IonStorm
+        useDelay: 100m
+      - name: syndicate-disruptor-mass-hallucinations
+        protoIdIcon: Flash
+        gameRule: MassHallucinations
+        useDelay: 15m
+      - name: syndicate-disruptor-power-solar-flare
+        protoIdIcon: Flash
+        gameRule: SolarFlare
+        useDelay: 30m
+      - name: syndicate-disruptor-power-grid-check
+        protoIdIcon: Flash
+        gameRule: PowerGridCheck
+        useDelay: 25m
+      - name: syndicate-disruptor-door-lagging-virus
+        protoIdIcon: Flash
+        gameRule: DoorLaggingVirus
+        useDelay: 20m
+    - type: UserInterface
+      interfaces:
+        enum.EventSelectorRadialMenuKey.Key:
+          type: EventSelectorRadialMenuBoundUserInterface
+    - type: ActivatableUI
+      key: enum.EventSelectorRadialMenuKey.Key
+    - type: UseDelay
+      delay: 0

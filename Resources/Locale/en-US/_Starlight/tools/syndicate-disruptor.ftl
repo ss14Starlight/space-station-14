@@ -1,0 +1,9 @@
+syndicate-disruptor-gas-leak = Start a gas leak on the station! Ew!
+syndicate-disruptor-bureaucratic-error = Mess up the stations records!
+syndicate-disruptor-clerical-error = Mess up the job listings!
+syndicate-disruptor-breaker-flip = Flip some random breakers!
+syndicate-disruptor-ion-storm = Create an ion storm to mess up the borgs laws!
+syndicate-disruptor-mass-hallucinations = Beam some fake sounds to the crew!
+syndicate-disruptor-power-solar-flare = Create a localized synthetic solar flare!
+syndicate-disruptor-power-grid-check = Create a fake power spike to trigger a grid check!
+syndicate-disruptor-door-lagging-virus = Randomly unlock some doors!
