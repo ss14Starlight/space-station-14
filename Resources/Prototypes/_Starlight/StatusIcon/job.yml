@@ -222,6 +222,16 @@
     state: NanotrasenCareerTrainer
   jobName: job-name-nct
 
+# Blackstar
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconBlackstar
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Blackstar
+  jobName: job-name-blackstar
+
 # Admeme
 
 - type: jobIcon

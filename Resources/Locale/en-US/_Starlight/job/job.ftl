@@ -22,6 +22,8 @@ job-title-borgi = Borgi
 job-title-tsf-Phantom = Phantom Marine
 job-title-tsf-MARSOC = MARSOC Marine
 
+job-name-blackstar = Blackstar Mercenary
+
 job-greet-information-rules = {$jobRules}
 
 role-type-corporate-aligned-name = Corporate Aligned
