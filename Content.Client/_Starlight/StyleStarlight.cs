@@ -525,8 +525,9 @@ public sealed class StyleStarlight : StyleBase
         var cardBorder = new StyleBoxTexture
         {
             Texture = borderTex,
+            Mode = StyleBoxTexture.StretchMode.Stretch
         };
-        cardBorder.SetPatchMargin(StyleBox.Margin.All, 10);
+        cardBorder.SetPatchMargin(StyleBox.Margin.All, 20);
 
         Stylesheet = new Stylesheet(BaseRules.Concat(new[]
         {
@@ -1392,6 +1393,14 @@ public sealed class StyleStarlight : StyleBase
                 .Prop(PanelContainer.StylePropertyPanel, BaseHeaderRect)
                 .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#121208")),
 
+            Element<PanelContainer>().Class(ClassCardBanner)
+                .Prop(PanelContainer.StylePropertyPanel, BaseBannerRect)
+                .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#121208")),
+
+            Element<PanelContainer>().Class(ClassCardBody)
+                .Prop(PanelContainer.StylePropertyPanel, BaseBodyRect)
+                .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#121208")),
+
             Element<PanelContainer>().Class("BackgroundOpenRight")
                 .Prop(PanelContainer.StylePropertyPanel, BaseButtonOpenRight)
                 .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#141412")),
@@ -1400,6 +1409,9 @@ public sealed class StyleStarlight : StyleBase
                 .Prop(PanelContainer.StylePropertyPanel, BaseButtonOpenLeft)
                 .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#141412")),
 
+            Element<PanelContainer>().Class(ClassMenuBar)
+                .Prop(PanelContainer.StylePropertyPanel, MenuBarRect)
+                .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#121208")),
             // ---
 
             // Dividers

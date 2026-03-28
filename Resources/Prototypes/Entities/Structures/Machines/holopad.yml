@@ -58,6 +58,7 @@
     energy: 1.8
     color: "#afe1fe"
     enabled: false
+    castShadows: false #SL lighting optimization
   - type: AmbientSound
     enabled: false
     volume: -5

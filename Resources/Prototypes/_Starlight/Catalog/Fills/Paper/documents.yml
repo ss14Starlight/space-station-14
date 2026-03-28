@@ -470,7 +470,7 @@
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentCentCommCommunication
-  name: Centcomm Communication
+  name: CentComm Communication
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper

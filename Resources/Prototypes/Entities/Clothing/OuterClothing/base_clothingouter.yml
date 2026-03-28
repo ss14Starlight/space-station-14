@@ -144,6 +144,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: DamageOnInteractProtection

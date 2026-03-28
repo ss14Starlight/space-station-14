@@ -1264,22 +1264,6 @@
         state: heavylaser
 
 - type: entity
-  id: EnergyTraceNoBeam
-  parent: BasicHitscanNoBeam
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-  - type: HitscanBasicRaycast
-    collisionMask: BulletImpassable
-  - type: HitscanReflect
-    reflectiveType: Energy
-  - type: HitscanBasicVisuals
-    bullet:
-      sprite:
-        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
-        state: heavylaser
-
-- type: entity
   parent: BasicHitscan
   id: LaserTrace
   categories: [ HideSpawnMenu ]
@@ -1435,7 +1419,7 @@
 - type: entity
   id: AdvancedTaserBolt
   name: taser bolt
-  parent: EnergyTraceNoBeam
+  parent: EnergyTrace
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -1458,7 +1442,7 @@
 - type: entity
   id: EmpPulse
   name: EMP impulse
-  parent: EnergyTraceNoBeam
+  parent: EnergyTrace
   components:
   - type: HitscanEmpEffect
     emp:
@@ -1474,7 +1458,7 @@
 - type: entity
   id: DecloneBolt
   name: declone bolt
-  parent: EnergyTraceNoBeam
+  parent: EnergyTrace
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
@@ -1491,17 +1475,17 @@
 - type: entity
   id: SniperBolt
   name: sniper bolt
-  parent: EnergyTraceNoBeam
+  parent: EnergyTrace
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 80
+        Heat: 60
   - type: HitscanCrawlerTargetEffects
     knockdownDuration: 3
   - type: HitscanStaminaDamage
-    staminaDamage: 50
+    staminaDamage: 40
   - type: HitscanBasicVisuals
     bullet:
       sprite:

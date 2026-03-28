@@ -1,5 +1,5 @@
 - type: entity
-  name: nanotrasen representative's pen
+  name: NanoTrasen representative's pen
   parent: [PenEmbeddable, BaseCommandContraband]
   id: PenNTR
   description: The NT Representative's own unique pen, just not as sharp.

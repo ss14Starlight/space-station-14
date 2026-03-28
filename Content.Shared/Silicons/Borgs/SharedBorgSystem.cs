@@ -253,7 +253,6 @@ public abstract partial class SharedBorgSystem : EntitySystem
 
         TryActivate(chassis);
 
-        _access.SetAccessEnabled(chassis.Owner, true); // Needs a player so that scientists can't drag around an empty borg for free AA.
         _appearance.SetData(chassis.Owner, BorgVisuals.HasPlayer, true);
     }
 
@@ -267,7 +266,6 @@ public abstract partial class SharedBorgSystem : EntitySystem
         if (TryComp<HandheldLightComponent>(chassis.Owner, out var light))
             _handheldLight.TurnOff((chassis.Owner, light), makeNoise: false); // Already plays a sound when toggling the borg off.
 
-        _access.SetAccessEnabled(chassis.Owner, false); // Needs a player so that scientists can't drag around an empty borg for free AA.
         _appearance.SetData(chassis.Owner, BorgVisuals.HasPlayer, false);
     }
 

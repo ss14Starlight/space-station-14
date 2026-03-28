@@ -13,7 +13,7 @@
 
 - type: entity
   id: EyeImplantWelding
-  name: Welding Implant
+  name: welding implant
   description: Protects eyes from welding flashes.
   parent: BaseEntityEyeImplant
   components:
@@ -26,7 +26,7 @@
 
 - type: entity
   id: EyeImplantDiagnostic
-  name: Diagnostic Implant
+  name: diagnostic implant
   description: Enables you to see information about mechanisms without diagnostic glasses.
   parent: BaseEntityEyeImplant
   components:
@@ -41,7 +41,7 @@
 
 - type: entity
   id: EyeImplantMedical
-  name: Medical Implant
+  name: medical implant
   description: Enables you to see information about humanoids without medical glasses.
   parent: BaseEntityEyeImplant
   components:
@@ -54,7 +54,7 @@
 
 - type: entity
   id: EyeImplantChemistry
-  name: Chemistry Implant
+  name: chemistry implant
   description: Enables you to see information about solutions without chemical analysis goggles.
   parent: BaseEntityEyeImplant
   components:
@@ -66,7 +66,7 @@
 
 - type: entity
   id: EyeImplantSecurity
-  name: Security Implant
+  name: security implant
   description: Enables you to see information about station crew without security glasses.
   parent: BaseEntityEyeImplant
   components:
@@ -80,7 +80,7 @@
 
 - type: entity
   id: EyeImplantSyndie
-  name: Syndie Implant
+  name: syndie implant
   description: Enables you to see information about station crew, humanoids and syndie without any glasses.
   parent: [ BaseEntityEyeImplant, BaseSyndicateContraband ]
   components:
