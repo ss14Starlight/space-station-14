@@ -115,7 +115,6 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
     #endregion
 
-
     private async Task CachePlayerData(ICommonSession player, CancellationToken cancel)
     {
         var flags = await _db.GetBanExemption(player.UserId, cancel);
@@ -194,9 +193,6 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             banningAdmin,
             null);
 
-        if (_actor.TryGetServerGrain(out var serverGrain))
-            await serverGrain.AddOrUpdateBan(banDef.ToNullLink());
-
         await _db.AddServerBanAsync(banDef);
         if (_cfg.GetCVar(CCVars.ServerBanResetLastReadRules) && target != null)
             await _db.SetLastReadRules(target.Value, null); // Reset their last read rules. They probably need a refresher!
@@ -225,7 +221,16 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         _sawmill.Info(logMessage);
         _chat.SendAdminAlert(logMessage);
 
-        SendWebhook(await GenerateBanPayload(banDef, minutes)); // Starlight-edit
+        // Starlight-start
+        var ban = await _db.GetServerBanAsync(null, target, null, null);
+        if (ban != null)
+        {
+            SendWebhook(await GenerateBanPayload(ban, minutes));
+
+            if (_actor.TryGetServerGrain(out var serverGrain))
+                await serverGrain.AddOrUpdateBan(ban.ToNullLink());
+        }
+        // Starlight-end
 
         KickMatchingConnectedPlayers(banDef, "newly placed ban");
     }

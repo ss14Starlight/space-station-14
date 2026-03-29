@@ -30,6 +30,8 @@ namespace Content.Server.Database
 
         public string? ServerName { get; } // Starlight-edit
 
+        public bool Network { get; } // Starlight-edit
+
         public ServerBanDef(int? id,
             NetUserId? userId,
             (IPAddress, int)? address,
@@ -44,7 +46,8 @@ namespace Content.Server.Database
             ServerUnbanDef? unban,
             ServerBanExemptFlags exemptFlags = default,
             string? projectName = null,
-            string? serverName = null)
+            string? serverName = null,
+            bool network = false)
         {
             if (userId == null && address == null && hwId ==  null)
             {
@@ -73,6 +76,7 @@ namespace Content.Server.Database
             ExemptFlags = exemptFlags;
             ProjectName = projectName;
             ServerName = serverName;
+            Network = network;
         }
 
         public string FormatBanMessage(IConfigurationManager cfg, ILocalizationManager loc)

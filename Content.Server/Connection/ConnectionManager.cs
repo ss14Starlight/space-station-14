@@ -194,7 +194,7 @@ namespace Content.Server.Connection
                 var (reason, msg, banHits) = deny.Value;
 
                 var id = await _db.AddConnectionLogAsync(userId, e.UserName, addr, hwid, trust, reason, serverId);
-                if (banHits is { Count: > 0 } && banHits.Any(x => x.Id != null))
+                if (banHits is { Count: > 0 })
                     await _db.AddServerBanHitsAsync(id, banHits);
 
                 var properties = new Dictionary<string, object>();
