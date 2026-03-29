@@ -60,6 +60,7 @@ using Content.Server.Stunnable;
 using Content.Shared.Jittering;
 using System.Linq;
 // Starlight edit start
+using Content.Server.GameTicking;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Reagent;
 // Starlight edit end
@@ -107,6 +108,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private readonly SharedJitteringSystem _jitter = default!;
     [Dependency] private readonly NpcFactionSystem _factionSystem = default!;
     [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!; // Starlight
 
     public static readonly EntProtoId FakeArmbladePrototype = "FakeArmBladeChangeling";
 
@@ -156,7 +158,8 @@ public sealed partial class ChangelingSystem : EntitySystem
             {
                 comp.BiomassNextUpdateTime = _timing.CurTime + comp.BiomassUpdateCooldown;
                 //subtract biomass
-                comp.Biomass -= comp.BiomassDrain;
+                if (_gameTicker.RunLevel < GameRunLevel.PostRound) // Starlight: Only get hungrier when not EOR
+                    comp.Biomass -= comp.BiomassDrain;
                 UpdateBiomass(uid, comp);
                 UpdateAbilities(uid, comp);
             }

@@ -1,7 +1,7 @@
 - type: species
   id: IPC
   name: species-name-ipc
-  roundStart: true
+  roundStart: false
   prototype: MobIPC
   sprites: MobIPCSprites
   defaultSkinTone: "#ffda93"
@@ -38,7 +38,7 @@
   points:
     HeadTop:
       points: 1
-      required: true
+      required: false
     Hair:
       points: 0
       required: false
@@ -47,20 +47,19 @@
       required: false
     Head:
       points: 1
-      required: true
-      defaultMarkings: [ MarkingBishopHead ]
+      required: false
+      defaultMarkings: [ MarkingStandardHead ]
     HeadSide:
       points: 1
-      required: true
-      defaultMarkings: [ ScreenBsod ]
+      required: false
     Chest:
       points: 1
       required: false
     Legs:
-      points: 1
+      points: 4
       required: false
     Arms:
-      points: 1
+      points: 4
       required: false
 
 - type: humanoidBaseSprite
@@ -79,20 +78,20 @@
 - type: humanoidBaseSprite
   id: MobIPCHead
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
-    state: head_m
+    sprite: _FarHorizons/Mobs/Species/IPC/blank.rsi
+    state: blank
 
 - type: humanoidBaseSprite
   id: MobIPCHeadMale
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
-    state: head_m
+    sprite: _FarHorizons/Mobs/Species/IPC/blank.rsi
+    state: blank
 
 - type: humanoidBaseSprite
   id: MobIPCHeadFemale
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
-    state: head_f
+    sprite: _FarHorizons/Mobs/Species/IPC/blank.rsi
+    state: blank
 
 - type: humanoidBaseSprite
   id: MobIPCTorso

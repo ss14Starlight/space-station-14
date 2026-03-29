@@ -10,6 +10,7 @@
   abstract: true
   components:
   # Starlight-start
+  - type: StationTracker
   - type: Railroadable
   - type: SurgeryTarget
   - type: LanguageKnowledge
@@ -232,6 +233,7 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
+    - NotLabelable # Starlight, no more labeling people. 
   - type: ActiveInputMover # Starlight
   # Starlight Start: Social Interactions
   - type: PhysicalSocialInteractionGiver

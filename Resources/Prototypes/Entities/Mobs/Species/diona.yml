@@ -22,6 +22,7 @@
     - DoorBumpOpener
     - AnomalyHost
     - Diona
+    - NotLabelable # Starlight
   - type: HumanoidAppearance
     species: Diona
   - type: Hunger

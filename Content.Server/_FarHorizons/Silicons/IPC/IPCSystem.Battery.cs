@@ -162,6 +162,7 @@ public sealed partial class IPCSystem
 
     public void EjectBattery(Entity<IPCBatteryComponent?> ent, EntityUid user)
     {
+        
         if (!Resolve(ent, ref ent.Comp) ||
             ent.Comp.BatteryContainerSlot.ContainedEntity == null)
             return;
