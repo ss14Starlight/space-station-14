@@ -38,6 +38,8 @@ using Content.Shared.Starlight.CCVar;
 using Robust.Shared;
 using CCVars = Content.Shared.CCVar.CCVars;
 using Starlight.NullLink;
+using Content.Shared._NullLink;
+using Content.Shared.NullLink.CCVar;
 #endregion Starlight
 
 namespace Content.Server.Administration.Managers;
@@ -79,6 +81,8 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
     private static readonly Regex DiscordWebhookRegex = new(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$", RegexOptions.Compiled);
 
+    private ServerBanRecognitionPrototype? _banRecognition; // NullLink-edit: ban recognition system
+
     public void Initialize()
     {
         _netManager.RegisterNetMessage<MsgRoleBans>();
@@ -93,9 +97,24 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         _cfg.OnValueChanged(StarlightCCVars.DiscordBanWebhook, OnWebhookChanged, true);
         _cfg.OnValueChanged(CVars.GameHostName, OnServerNameChanged, true);
 
+        _cfg.OnValueChanged(NullLinkCCVars.Project, UpdateProject, true); // NullLink-edit: update project for recognition system
+
         _userDbData.AddOnLoadPlayer(CachePlayerData);
         _userDbData.AddOnPlayerDisconnect(ClearPlayerData);
     }
+
+    #region NullLink
+
+    private void UpdateProject(string obj)
+    {
+        if (!_prototypeManager.TryIndex<ServerBanRecognitionPrototype>(obj, out var banRecognition))
+            return;
+
+        _banRecognition = banRecognition;
+    }
+
+    #endregion
+
 
     private async Task CachePlayerData(ICommonSession player, CancellationToken cancel)
     {
@@ -271,6 +290,11 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         if (_actor.TryGetServerGrain(out var serverGrain))
         {
             var network = await serverGrain.RequestBans(userId, address, hwId, modernHWIds, includeUnbanned);
+            foreach (var ban in network)
+            {
+                if (_actor.Server != null && _banRecognition?.Recognition.TryGetValue(_actor.Server, out var targets) == true && targets.Contains($"{_actor.Project}.{_actor.Server}"))
+                    network.Remove(ban);
+            }
             bans = bans.Concat(network.ToDef()).ToList();
         }
         return bans;
