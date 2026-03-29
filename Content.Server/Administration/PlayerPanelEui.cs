@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._NullLink.Core;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Notes;
@@ -20,6 +21,7 @@ public sealed class PlayerPanelEui : BaseEui
     [Dependency] private readonly IAdminManager _admins = default!;
     [Dependency] private readonly IConnectionManager _connectionManager = default!; // Starlight
     [Dependency] private readonly IBanManager _banManager = default!; // NullLink-edit: move to general method at Manager
+    [Dependency] private readonly IActorRouter _actor = default!; // NullLink-edit: Notes sync
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly IAdminNotesManager _notesMan = default!;
     [Dependency] private readonly IEntityManager _entity = default!;
@@ -176,6 +178,10 @@ public sealed class PlayerPanelEui : BaseEui
         if (_notesMan.CanView(Player))
         {
             _notes = (await _notesMan.GetAllAdminRemarks(_targetPlayer.UserId)).Count;
+            // NullLink-start: Notes sync
+            if (_actor.TryGetServerGrain(out var serverGrain))
+                _notes += (await serverGrain.RequestNotes(_targetPlayer.UserId)).Count;
+            // NullLink-stop
         }
         else
         {
