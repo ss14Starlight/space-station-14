@@ -84,6 +84,17 @@
       Male: MaleRodentia
       Female: FemaleRodentia
       Unsexed: MaleRodentia
+  - type: Hands
+    leftHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+          state: inHand
+    rightHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+          state: inHand
   - type: Inventory
     speciesId: rodentia
     displacements: # MIKEY - verify all work
@@ -148,6 +159,17 @@
     species: Rodentia
   - type: Body
     prototype: Rodentia
+  - type: Hands
+    leftHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+          state: inHand
+    rightHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+          state: inHand
   - type: Inventory
     speciesId: rodentia
     displacements: # MIKEY - verify all work
