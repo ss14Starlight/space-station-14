@@ -1,0 +1,80 @@
+{
+    "version": 1,
+    "copyright": "Cards, Decks and Hands Sprites were originally from Paradise Station (https://github.com/ParadiseSS13/Paradise) then modified by VictorJob. Boxes are from VictorJob. Nuno version made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub).",
+    "license": "CC-BY-SA-3.0",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "background_red"
+        },
+        {
+            "name": "background_blue"
+        },
+        {
+            "name": "background_green"
+        },
+        {
+            "name": "background_yellow"
+        },
+        {
+            "name": "box"
+        },
+        {
+            "name": "box_open"
+        },
+        {
+            "name": "nuno0"
+        },
+        {
+            "name": "nuno1"
+        },
+        {
+            "name": "nuno2"
+        },
+        {
+            "name": "nuno3"
+        },
+        {
+            "name": "nuno4"
+        },
+        {
+            "name": "nuno5"
+        },
+        {
+            "name": "nuno6"
+        },
+        {
+            "name": "nuno7"
+        },
+        {
+            "name": "nuno8"
+        },
+        {
+            "name": "nuno9"
+        },
+        {
+            "name": "nunoplus2"
+        },
+        {
+            "name": "nunoreverse"
+        },
+        {
+            "name": "nunoskip"
+        },
+        {
+            "name": "plus4"
+        },
+        {
+            "name": "wildcard"
+        },
+        {
+            "name": "singlecard_down_nuno"
+        },
+        {
+            "name": "empty"
+        }
+    ]
+}

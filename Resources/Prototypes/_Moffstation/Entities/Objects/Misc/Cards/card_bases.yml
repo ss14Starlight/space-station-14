@@ -1,0 +1,77 @@
+# Abstract base entities for playing cards. Extend these to make custom cards, decks, and card boxes.
+
+- type: entity
+  parent: BaseItem
+  id: BasePlayingCard
+  name: playing card
+  abstract: true
+  components:
+  - type: Sprite
+  - type: Item
+    size: Small
+  - type: Appearance
+  - type: HideInStripMenu
+    strategy: !type:HideInStripMenuWithDynamicStrategy
+  - type: EmitSoundOnLand
+    sound:
+      collection: cardShove
+  - type: Rotatable
+  - type: UseDelay
+    delay: 0.5
+  - type: PlayingCard
+    flipped: true
+
+- type: entity
+  parent: BaseItem
+  id: BasePlayingCardDeck
+  name: deck of cards
+  description: Cards with vibrant designs and colors to enchant the eyes while waiting for your turn.
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: joker # Dummy layer because the actual visuals are composed dynamically.
+      sprite: _Moffstation/Objects/Misc/Cards/card_black.rsi
+      visible: False
+  - type: Item
+    size: Normal
+  - type: Appearance
+  - type: PlayingCardDeck
+    visualLimit: 10
+    prototype: null
+  - type: ContainerContainer
+    containers:
+      playing-card-stack-container: !type:Container
+
+- type: entity
+  parent: [ BoxCardboard, BaseBagOpenClose ]
+  id: BasePlayingCardDeckBox
+  abstract: true
+  name: box of playing cards
+  description: A small carton meant to contain a collection of little pieces of cardstock. Thrilling.
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Objects/Misc/Cards/card_black.rsi
+    state: empty
+  - type: Appearance
+  - type: Item
+    size: Small
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: box_open }
+          False: { state: box }
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,1,1
+    whitelist:
+      components:
+      - PlayingCardDeck
+  - type: ContainerFill
+    containers:
+      storagebase:
+      - BasePlayingCardDeck # Replace this with your concrete deck.
+  - type: StaticPrice
+    price: 25

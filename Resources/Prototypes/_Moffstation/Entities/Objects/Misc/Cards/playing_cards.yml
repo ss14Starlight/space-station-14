@@ -1,0 +1,156 @@
+﻿# Black cards
+- type: entity
+  parent: BasePlayingCardDeckBox
+  id: PlayingCardDeckBoxBlack
+  name: box of playing cards
+  suffix: black
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Objects/Misc/Cards/card_black.rsi
+  - type: ContainerFill
+    containers:
+      storagebase:
+      - PlayingCardDeckBlack
+
+- type: entity
+  parent: BasePlayingCardDeck
+  id: PlayingCardDeckBlack
+  name: deck of cards
+  suffix: black
+  components:
+  - type: PlayingCardDeck
+    prototype: BlackCards
+
+- type: playingCardDeck
+  parent: BasePlayingCardDeck
+  id: BlackCards
+  sprite: _Moffstation/Objects/Misc/Cards/card_black.rsi
+
+# Syndicate cards
+- type: entity
+  parent: BasePlayingCardDeckBox
+  id: PlayingCardDeckBoxSyndicate
+  name: box of playing cards
+  suffix: syndicate
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Objects/Misc/Cards/card_syndicate.rsi
+  - type: ContainerFill
+    containers:
+      storagebase:
+      - PlayingCardDeckSyndicate
+
+- type: entity
+  parent: BasePlayingCardDeck
+  id: PlayingCardDeckSyndicate
+  name: deck of cards
+  suffix: syndicate
+  components:
+  - type: PlayingCardDeck
+    prototype: SyndicateCards
+
+- type: playingCardDeck
+  parent: BasePlayingCardDeck
+  id: SyndicateCards
+  sprite: _Moffstation/Objects/Misc/Cards/card_syndicate.rsi
+
+# Nanotrasen cards
+- type: entity
+  parent: BasePlayingCardDeckBox
+  id: PlayingCardDeckBoxNanotrasen
+  name: box of playing cards
+  suffix: nanotrasen
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Objects/Misc/Cards/card_nanotrasen.rsi
+  - type: ContainerFill
+    containers:
+      storagebase:
+      - PlayingCardDeckNanotrasen
+
+- type: entity
+  parent: BasePlayingCardDeck
+  id: PlayingCardDeckNanotrasen
+  name: deck of cards
+  suffix: nanotrasen
+  components:
+  - type: PlayingCardDeck
+    prototype: NanotrasenCards
+
+- type: playingCardDeck
+  parent: BasePlayingCardDeck
+  id: NanotrasenCards
+  sprite: _Moffstation/Objects/Misc/Cards/card_nanotrasen.rsi
+
+
+# Base definitions
+- type: playingCardDeck
+  id: BasePlayingCardDeck
+  abstract: true
+  commonObverseLayers:
+  - state: background
+  commonReverseLayers:
+  - state: singlecard_down
+  cardNameLoc: playing-card-name
+  cardDescLoc: playing-card-desc
+  cardReverseNameLoc: playing-card-name-reverse
+  cardReverseDescLoc: playing-card-desc-reverse
+  suitLoc: playing-card-suit-name
+  cardValueLoc: playing-card-value-name
+  cards:
+  - id: joker
+    nameLoc: playing-card-joker
+    count: 2
+  - suit: Spades
+  - suit: Hearts
+  - suit: Diamonds
+  - suit: Clubs
+
+- type: playingCardSuit
+  id: BaseSuit
+  abstract: true
+  cards:
+  - id: "ace"
+    useSuitLayers: false # Just the big ace, no small suit indicators
+    obverseLayers:
+    - state: "ace_{suit}"
+  - id: "2"
+  - id: "3"
+  - id: "4"
+  - id: "5"
+  - id: "6"
+  - id: "7"
+  - id: "8"
+  - id: "9"
+  - id: "10"
+  - id: "J"
+  - id: "Q"
+  - id: "K"
+
+- type: playingCardSuit
+  parent: BaseSuit
+  id: Spades
+  commonObverseLayers:
+  - state: suit_spades
+  defaultObverseLayerState: "num{card}_black"
+
+- type: playingCardSuit
+  parent: BaseSuit
+  id: Hearts
+  commonObverseLayers:
+  - state: suit_hearts
+  defaultObverseLayerState: "num{card}_red"
+
+- type: playingCardSuit
+  parent: BaseSuit
+  id: Diamonds
+  commonObverseLayers:
+  - state: suit_diamonds
+  defaultObverseLayerState: "num{card}_red"
+
+- type: playingCardSuit
+  parent: BaseSuit
+  id: Clubs
+  commonObverseLayers:
+  - state: suit_clubs
+  defaultObverseLayerState: "num{card}_black"
