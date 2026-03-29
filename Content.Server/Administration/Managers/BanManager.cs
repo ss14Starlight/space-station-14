@@ -305,11 +305,11 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         return bans;
     }
 
-    public async Task<ServerBanDef?> GetServerBanAsync(int id)
+    public async Task<ServerBanDef?> GetServerBanAsync(int id, string? project = null, string? server = null)
     {
         var ban = await _db.GetServerBanAsync(id);
         if (_actor.TryGetServerGrain(out var serverGrain))
-            ban ??= (await serverGrain.RequestBanById(id))?.ToDef();
+            ban ??= (await serverGrain.RequestBanById(id, project, server))?.ToDef();
         return ban;
     }
 

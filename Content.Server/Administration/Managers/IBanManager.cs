@@ -130,7 +130,7 @@ public interface IBanManager
 
     public Task CreateServerUnban(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime);
 
-    public Task<ServerBanDef?> GetServerBanAsync(int id);
+    public Task<ServerBanDef?> GetServerBanAsync(int id, string project = null, string server = null);
 
     public Task<ServerBanDef?> GetServerBanAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds);
 
