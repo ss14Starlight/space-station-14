@@ -1,7 +1,7 @@
 using Content.Shared.Actions;
-using Content.Shared.Eye;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Content.Shared.Eye; // Starlight
 
 namespace Content.Shared.Ghost;
 
