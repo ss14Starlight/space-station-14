@@ -284,7 +284,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         await _db.AddServerUnbanAsync(new ServerUnbanDef(banId, unbanningAdmin, unbanTime));
     }
 
-    public async Task<List<ServerBanDef>> GetServerBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned=true)
+    public async Task<List<ServerBanDef>> GetServerBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true)
     {
         var bans = await _db.GetServerBansAsync(address, userId, hwId, modernHWIds, includeUnbanned);
         if (_actor.TryGetServerGrain(out var serverGrain))

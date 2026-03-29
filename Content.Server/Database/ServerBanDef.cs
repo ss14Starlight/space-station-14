@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Net;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -116,7 +117,7 @@ namespace Content.Server.Database
     public static class BanDefExtensions
     {
         public static AdminBan ToNullLink(this ServerBanDef banDef)
-            => new(banDef.Id, banDef.UserId, banDef.Address, banDef.HWId == null ? null : (banDef.HWId.Hwid, (int)banDef.HWId.Type), banDef.BanTime, banDef.ExpirationTime, banDef.RoundId, banDef.PlaytimeAtNote, banDef.Reason, banDef.Severity.ToString(), banDef.BanningAdmin, banDef.Unban == null ?[] : new() { banDef.Unban.ToNullLink() }, null, (int)banDef.ExemptFlags, banDef.ProjectName, banDef.ServerName);
+            => new(banDef.Id, banDef.UserId, banDef.Address == null ? null : new() { Address = banDef.Address.Value.address.ToString(), CidrMask = banDef.Address.Value.cidrMask }, banDef.HWId == null ? null : new() { Hwid = banDef.HWId.Hwid.ToArray(), Type = (int)banDef.HWId.Type }, banDef.BanTime, banDef.ExpirationTime, banDef.RoundId, banDef.PlaytimeAtNote, banDef.Reason, banDef.Severity.ToString(), banDef.BanningAdmin, banDef.Unban == null ?[] : new() { banDef.Unban.ToNullLink() }, null, (int)banDef.ExemptFlags, banDef.ProjectName, banDef.ServerName);
     }
 
     #endregion

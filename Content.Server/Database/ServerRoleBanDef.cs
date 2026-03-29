@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Net;
 using Content.Shared.Database;
 using Robust.Shared.Network;
@@ -78,7 +79,7 @@ public sealed class ServerRoleBanDef
 public static class RoleBanDefExtensions
 {
     public static AdminBan ToNullLink(this ServerRoleBanDef serverRoleBan)
-        => new(serverRoleBan.Id, serverRoleBan.UserId, serverRoleBan.Address, serverRoleBan.HWId == null ? null : (serverRoleBan.HWId.Hwid, (int)serverRoleBan.HWId.Type), serverRoleBan.BanTime, serverRoleBan.ExpirationTime, serverRoleBan.RoundId, serverRoleBan.PlaytimeAtNote, serverRoleBan.Reason, serverRoleBan.Severity.ToString(), serverRoleBan.BanningAdmin, serverRoleBan.Unban == null ?[] : new() { serverRoleBan.Unban.ToNullLink() }, serverRoleBan.Role, null, serverRoleBan.ProjectName, serverRoleBan.ServerName);
+        => new(serverRoleBan.Id, serverRoleBan.UserId, serverRoleBan.Address == null ? null : new() { Address = serverRoleBan.Address.Value.address.ToString(), CidrMask = serverRoleBan.Address.Value.cidrMask }, serverRoleBan.HWId == null ? null : new() { Hwid = serverRoleBan.HWId.Hwid.ToArray(), Type = (int)serverRoleBan.HWId.Type }, serverRoleBan.BanTime, serverRoleBan.ExpirationTime, serverRoleBan.RoundId, serverRoleBan.PlaytimeAtNote, serverRoleBan.Reason, serverRoleBan.Severity.ToString(), serverRoleBan.BanningAdmin, serverRoleBan.Unban == null ?[] : new() { serverRoleBan.Unban.ToNullLink() }, serverRoleBan.Role, null, serverRoleBan.ProjectName, serverRoleBan.ServerName);
 }
 
 #endregion
