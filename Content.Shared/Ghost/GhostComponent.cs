@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Eye;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -8,7 +9,7 @@ namespace Content.Shared.Ghost;
 /// Represents an observer ghost.
 /// Handles limiting interactions, using ghost abilities, ghost visibility, and ghost warping.
 /// </summary>
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedGhostSystem))]
+[RegisterComponent, NetworkedComponent] // Starlight-edit: Remove access parameter. Corporeal command needs to access.
 [AutoGenerateComponentState(true), AutoGenerateComponentPause]
 public sealed partial class GhostComponent : Component
 {
@@ -42,6 +43,46 @@ public sealed partial class GhostComponent : Component
 
     [DataField, AutoNetworkedField]
     public EntityUid? BooActionEntity;
+
+    //Starlight begin
+    /// <summary>
+    /// Permits this ghost to speak in local chat instead of forwarding local messages to dead ooc.
+    /// </summary>
+    [DataField] public bool BypassGhostChat;
+
+    /// <summary>
+    /// Ensures this ghost always remains visible, this means both to alive players, and preventing clientside toggling.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool AlwaysVisible
+    {
+        get;
+        set
+        {
+            var em = IoCManager.Resolve<IEntityManager>();
+            var vis = em.System<SharedVisibilitySystem>();
+            var query = em.EntityQueryEnumerator<GhostComponent, VisibilityComponent>();
+            while (query.MoveNext(out var uid, out var ghost, out var visComp))
+            {
+                if (ghost != this) continue;
+                if (value)
+                {
+                    vis.AddLayer((uid, visComp), (int)VisibilityFlags.Normal, false);
+                    vis.RemoveLayer((uid, visComp), (int)VisibilityFlags.Ghost, false);
+                }
+                else
+                {
+                    vis.AddLayer((uid, visComp), (int)VisibilityFlags.Ghost, false);
+                    vis.RemoveLayer((uid, visComp), (int)VisibilityFlags.Normal, false);
+                }
+
+                vis.RefreshVisibility((uid, visComp));
+                field = value;
+                break;
+            }
+        }
+    }
+    //Starlight end
 
     // End actions
 
