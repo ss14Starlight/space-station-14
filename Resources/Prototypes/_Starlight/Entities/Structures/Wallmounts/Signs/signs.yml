@@ -129,3 +129,30 @@
     - type: Sprite
       sprite: _Starlight/Structures/Wallmounts/xeno_signs.rsi
       state: space
+
+# Emergency
+- type: entity
+  parent: BaseWallmountMachine
+  id: SignEmergencyExit
+  name: exit
+  description: A sign indicating that an exit is this way.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/safety_signs.rsi
+    layers:
+    - state: exit
+    - state: exit_unlit
+      shader: unshaded
+
+- type: entity
+  parent: BaseWallmountMachine
+  id: SignEmergencyEvac
+  name: evac
+  description: A sign indicating that Evac is this way
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/safety_signs.rsi
+    layers:
+    - state: evac
+    - state: evac_unlit
+      shader: unshaded

@@ -4,6 +4,7 @@
   parent:
   - MobFlammable
   - BaseMobSpecies
+  - BaseSpeciesPickupableLarge # Starlight
   id: BaseMobSkeletonPerson
   abstract: true
   components:
@@ -29,6 +30,7 @@
   - type: Tag
     tags:
     - Unimplantable # _Starlight
+    - NotLabelable # Starlight
   - type: MobState
   - type: MobThresholds
     thresholds:

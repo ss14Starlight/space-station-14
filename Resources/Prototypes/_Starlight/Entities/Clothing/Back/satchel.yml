@@ -46,7 +46,7 @@
 - type: entity
   parent: [ClothingBackpackSatchel, BaseCentcommContraband]
   id: ClothingBackpackSatchelCentcomm
-  name: Central Command Operator Satchel
+  name: central command operator satchel
   description: A rather stylish satchel plated with real gold, issued to Central Command Operators.
   components:
   - type: Sprite

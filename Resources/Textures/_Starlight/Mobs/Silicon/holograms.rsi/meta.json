@@ -1,7 +1,7 @@
 ﻿{
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "ported from cosmatic drift, who in turn ported them from /TG/ station, ai_cloudkat from Paradise.",
+    "copyright": "ported from cosmatic drift, who in turn ported them from /TG/ station, ai_cloudkat from Paradise. Punk, Purrfus, and Rat by Conflee for Starlight",
     "size": {
         "x": 32,
         "y": 32
@@ -390,6 +390,27 @@
                     0.15
                 ]
             ]
+        },
+		{
+            "name": "boy_holo"
+        },
+		{
+            "name": "girl_holo"
+        },
+		{
+            "name": "mono_holo"
+        },
+		{
+            "name": "punk_female_holo"
+        },
+		{
+            "name": "punk_male_holo"
+        },
+		{
+            "name": "purrfus_holo"
+        },
+		{
+            "name": "rat_holo"
         }
     ]
 }

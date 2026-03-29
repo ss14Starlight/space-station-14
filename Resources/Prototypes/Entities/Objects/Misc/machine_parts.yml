@@ -32,8 +32,8 @@
     # 🌟Starlight-start🌟
     - type: ItemPrice
       priceCategory: tool_cheap
-    - type: Hemostat
     - type: SurgeryTool
+    - type: Hemostat
       successRate: 0.3 # These are crude but, can grab things
       speed: 1.5
       startSound:

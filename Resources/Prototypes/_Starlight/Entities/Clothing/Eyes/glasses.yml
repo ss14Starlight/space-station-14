@@ -140,7 +140,7 @@
 - type: entity
   parent: [ClothingEyesBase, BaseCentcommContraband]
   id: ClothingEyesGlassesCentComm
-  name: centcomm officer's glasses
+  name: CentComm officer's glasses
   description: The innovative green lenses hide your eyes from light flashes and have a built-in visor.
   components:
   - type: Sprite
