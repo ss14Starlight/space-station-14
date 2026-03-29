@@ -61,5 +61,5 @@
         - id: ClothingOuterStraightjacket
         - id: ClothingMaskBreath
         - id: ClothingMaskBreath
-        - id: NitrousOxideTank
-        - id: NitrousOxideTank
+        - id: NitrousOxideTankFilled
+        - id: NitrousOxideTankFilled
