@@ -20,6 +20,7 @@ using Content.Shared.Players.PlayTimeTracking;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using AdminNote = Starlight.NullLink.AdminNote;
+using Content.Server._NullLink.Helpers;
 #endregion
 
 namespace Content.Server.Administration.Notes;
@@ -233,7 +234,11 @@ public sealed class AdminNotesEui : BaseEui
                  select note.ToShared())
             .ToDictionary(sharedNote => (sharedNote.Id, sharedNote.NoteType));
         if (_actors.TryGetServerGrain(out var serverGrain))
+        {
             NetworkNotes = Convert(await serverGrain.RequestNotes(NotedPlayer) ?? []);
+            var bans = await serverGrain.RequestBans(NotedPlayer, null, null, null, true, false);
+            NetworkNotes = NetworkNotes.Concat(bans.ToNoteDef()).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        }
         StateDirty();
     }
 
