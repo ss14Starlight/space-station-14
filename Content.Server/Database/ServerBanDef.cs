@@ -91,10 +91,12 @@ namespace Content.Server.Database
                     : loc.GetString("ban-banned-permanent");
             }
 
-            // Starlight Start: Player facing Ban ID
+            // Starlight Start: Player facing Ban ID && Server/Project Names
             var banIdLine = Id is { } banId
                 ? $"{loc.GetString("ban-banned-id", ("id", banId))}\n"
                 : string.Empty;
+
+            var serverProjectLine = ProjectName == null ? string.Empty : ServerName == null ? $"{loc.GetString("ban-project", ("project", ProjectName))}\n" : $"{loc.GetString("ban-project-server", ("project", ProjectName), ("server", ServerName))}\n";
             // Starlight End
 
             // Starlight edit Start: Added banIdLine
@@ -102,6 +104,7 @@ namespace Content.Server.Database
                    {loc.GetString("ban-banned-1")}
                    {loc.GetString("ban-banned-2", ("reason", Reason))}
                    {banIdLine}{expires}
+                   {serverProjectLine}
                    {loc.GetString("ban-banned-3")}
                    """;
             // Starlight edit End
