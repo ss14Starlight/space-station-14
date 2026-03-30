@@ -58,6 +58,8 @@ public sealed partial class PlayingCardDeckComponent : PlayingCardStackComponent
 
         public static readonly VerbInfo FlipEntire =
             VerbInfo.Build("playing-card-deck-flip-entire", icon: "flip", sounds: "storageRustle");
+
+        public static readonly VerbInfo ConvertToHand = VerbInfo.Build("playing-card-hand-convert-to-hand", icon: "rotate_cw"); // Starlight
     }
 }
 
@@ -103,7 +105,7 @@ public sealed partial class PlayingCardInDeckUnspawnedRef : PlayingCardInDeck
     public EntProtoId<PlayingCardComponent> Prototype;
 
     [DataField]
-    public bool FaceDown;
+    public bool FaceDown = true; // Starlight-edit: Make all cards in decks default to face-down.
 
     public void Deconstruct(
         out EntProtoId<PlayingCardComponent> prototype,
@@ -126,7 +128,16 @@ public sealed partial class PlayingCardInDeckUnspawnedData : PlayingCardInDeck
         ProtoId<PlayingCardSuitPrototype>? suit
     )
     {
-        Card = card;
+        Card = new PlayingCardDeckPrototypeElementCard
+        {
+            Id = card.Id,
+            NameLoc = card.NameLoc,
+            ObverseLayers = card.ObverseLayers,
+            UseDeckLayers = card.UseDeckLayers,
+            UseSuitLayers = card.UseSuitLayers,
+            FaceDown = card.FaceDown,
+            Count = card.Count,
+        };
         Deck = deck;
         Suit = suit;
     }

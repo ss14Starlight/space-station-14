@@ -134,6 +134,7 @@ public abstract partial class SharedPlayingCardsSystem
 
         if (didAnyFlip)
         {
+            Dirty(entity);
             entity.Comp.DirtyVisuals = true;
         }
 

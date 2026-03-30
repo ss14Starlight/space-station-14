@@ -82,7 +82,7 @@ public abstract partial class SharedPlayingCardsSystem
             return;
 
         // Reverse the cards so that the first in the prototype's list is on the top.
-        entity.Comp.Cards = GetCards(proto).Reverse().ToList();
+        entity.Comp.Cards = GetCards(proto).ToList(); // Starlight-edit: Don't reverse order.
         Dirty(entity);
     }
 
@@ -166,9 +166,37 @@ public abstract partial class SharedPlayingCardsSystem
 
             // Flip the entire deck, rather than flipping each card's facing direction
             args.Verbs.Add(PlayingCardDeckComponent.Verbs.FlipEntire, () => FlipEntire(targetDeck, user));
+            args.Verbs.Add(PlayingCardDeckComponent.Verbs.ConvertToHand, () => ConvertToHand(targetDeck, user)); // Starlight
         }
     }
 
+    //Starlight begin
+    /// <summary>
+    /// Clone of <see cref="ConvertToDeck"/> for the purposes of doing the inverse, turning a deck into a hand.
+    /// </summary>
+    private void ConvertToHand(Entity<PlayingCardDeckComponent> hand, EntityUid user)
+    {
+        if (!_gameTiming.IsFirstTimePredicted)
+            return;
+
+        if (_hands.IsHolding(user, hand, out var handId))
+        {
+            // It's gonna get deleted anyway, so drop it so that we can pick up the spawned deck immediately.
+            _hands.TryDrop(user, hand, checkActionBlocker: false, doDropInteraction: false);
+        }
+
+        var deck = CreateHandPredicted([], Transform(hand).Coordinates, user);
+        if (!IsClientSide(deck))
+        {
+            Transfer(hand, deck, .., user);
+        }
+
+        if (handId is not null)
+        {
+            _hands.TryPickup(user, deck, handId, animate: false);
+        }
+    }
+    //Starlight end
 
     private void FlipEntire(Entity<PlayingCardDeckComponent> deck, EntityUid user)
     {
@@ -218,18 +246,22 @@ public abstract partial class SharedPlayingCardsSystem
         return deck.Cards.SelectMany(deckEl => deckEl switch
         {
             PlayingCardDeckPrototypeElementCard card =>
-                Enumerable.Repeat(new PlayingCardInDeckUnspawnedData(card, deck, suit: null), card.Count),
+                Repeat(card.Count, () => new PlayingCardInDeckUnspawnedData(card, deck, suit: null)),
             PlayingCardDeckPrototypeElementPrototypeReference protoRef =>
-                Enumerable.Repeat(
-                    new PlayingCardInDeckUnspawnedRef(protoRef.Prototype, protoRef.FaceDown),
-                    protoRef.Count
+                Repeat(
+                    protoRef.Count,
+                    () => new PlayingCardInDeckUnspawnedRef(protoRef.Prototype, protoRef.FaceDown)
                 ),
             PlayingCardDeckPrototypeElementSuit s => _proto.Resolve(s.Suit, out var suit)
                 ? suit.Cards.SelectMany(suitEl =>
-                    Enumerable.Repeat(new PlayingCardInDeckUnspawnedData(suitEl, deck, suit), suitEl.Count)
+                    Repeat(suitEl.Count, () => new PlayingCardInDeckUnspawnedData(suitEl, deck, suit))
                 )
                 : [],
             _ => deckEl.ThrowUnknownInheritor<PlayingCardDeckPrototype.Element, IEnumerable<PlayingCardInDeck>>(),
         });
     }
+
+    /// Like <see cref="Repeat"/>, but unlike that function, this invokes <paramref name="func"/> once per repetition
+    /// rather than just yielding the same value multiple times.
+    private static IEnumerable<T> Repeat<T>(int count, Func<T> func) => Enumerable.Repeat(0, count).Select(_ => func());
 }

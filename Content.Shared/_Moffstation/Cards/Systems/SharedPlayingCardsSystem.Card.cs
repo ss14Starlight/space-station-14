@@ -256,7 +256,7 @@ public abstract partial class SharedPlayingCardsSystem
     private bool FlipCardInDeck(PlayingCardInDeck card, bool? faceDown = null) => card switch
     {
         PlayingCardInDeckNetEnt(var cardNetEnt) =>
-            NetEntToCard(cardNetEnt) is { } cardEnt && SetFacingOrFlip(cardEnt, null),
+            NetEntToCard(cardNetEnt) is { } cardEnt && SetFacingOrFlip(cardEnt, faceDown),
         PlayingCardInDeckUnspawnedData(var data, _, _) => SetOrInvert(ref data.FaceDown, faceDown),
         PlayingCardInDeckUnspawnedRef(_, var fd) => SetOrInvert(ref fd, faceDown),
         _ => card.ThrowUnknownInheritor<PlayingCardInDeck, bool>(),

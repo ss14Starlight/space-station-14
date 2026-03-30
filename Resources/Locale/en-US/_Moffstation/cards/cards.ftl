@@ -21,6 +21,11 @@ playing-card-deck-stack-pickup-verb-text = Draw
 playing-card-deck-draw-verb-text = Draw
 playing-card-deck-cut-verb-text = Split
 playing-card-deck-flip-entire-verb-text = Flip entire deck
+playing-card-deck-flip-entire-popup = Flipped the deck
+
+# Starlight begin
+playing-card-hand-convert-to-hand-verb-text = Convert to hand
+# Starlight end
 
 # Hand
 playing-cards-hand-card-count-changed-added = Card was added (Total of cards: {$quantity})

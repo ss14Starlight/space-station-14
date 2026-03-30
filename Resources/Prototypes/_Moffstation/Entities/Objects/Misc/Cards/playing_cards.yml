@@ -102,9 +102,11 @@
     nameLoc: playing-card-joker
     count: 2
   - suit: Spades
-  - suit: Hearts
+  #SL begin: fix card order
   - suit: Diamonds
   - suit: Clubs
+  #SL end
+  - suit: Hearts
 
 - type: playingCardSuit
   id: BaseSuit

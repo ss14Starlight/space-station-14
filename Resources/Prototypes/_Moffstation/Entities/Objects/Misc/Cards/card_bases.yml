@@ -30,8 +30,8 @@
   components:
   - type: Sprite
     layers:
-    - state: joker # Dummy layer because the actual visuals are composed dynamically.
-      sprite: _Moffstation/Objects/Misc/Cards/card_black.rsi
+    - state: error # Dummy layer because the actual visuals are composed dynamically.
+      sprite: error.rsi
       visible: False
   - type: Item
     size: Normal
