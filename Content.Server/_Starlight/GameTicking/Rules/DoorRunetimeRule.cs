@@ -1,6 +1,6 @@
+using System.Linq;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.StationEvents.Components;
-using Content.Shared.Access.Systems;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Electrocution;
@@ -15,7 +15,6 @@ public sealed class DoorRunetimeRule : StationEventSystem<DoorRunetimeRuleCompon
     [Dependency] private readonly SharedDoorSystem _door = default!;
     [Dependency] private readonly SharedElectrocutionSystem _electrocution = default!;
     [Dependency] private readonly SharedAirlockSystem _airlock = default!;
-    [Dependency] private readonly AccessReaderSystem _access = default!;
 
     protected override void Started(EntityUid uid, DoorRunetimeRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -88,12 +87,29 @@ public sealed class DoorRunetimeRule : StationEventSystem<DoorRunetimeRuleCompon
             if (TryComp<ElectrifiedComponent>(ent, out var electrified))
                 _electrocution.SetElectrified((ent, electrified), false);
 
-            if (_access.GetMainAccessReader(ent, out var accessEnt) && _access.AreAccessTagsAllowed(comp.Blacklist, accessEnt.Value.Comp))
+            if (IsBlacklisted(ent, comp))
                 continue;
 
             _door.TryOpen(ent);
         }
 
         comp.AffectedEntities.Clear();
+    }
+
+    private bool IsBlacklisted(EntityUid ent, DoorRunetimeRuleComponent comp)
+    {
+        if (!TryComp(ent, out MetaDataComponent? meta)
+            || meta.EntityPrototype == null
+            || string.IsNullOrWhiteSpace(meta.EntityPrototype.EditorSuffix)
+            || comp.Blacklist == null)
+        {
+            return false;
+        }
+
+        var suffix = meta.EntityPrototype.EditorSuffix;
+
+        return comp.Blacklist.Any(blacklist =>
+            !string.IsNullOrWhiteSpace(blacklist)
+            && suffix.Contains(blacklist.Trim(), StringComparison.OrdinalIgnoreCase));
     }
 }
