@@ -12,6 +12,7 @@
   - FloorTileItemDarkPavement
   - FloorTileItemDarkPavementVertical
   - FloorTileItemDarkOffset
+  - FloorTileItemDarkBitile # SL
 
 - type: latheRecipePack
   id: FloorSteelTilesStatic
@@ -27,6 +28,18 @@
   - FloorTileItemSteelPavementVertical
   - FloorTileItemSteelCheckerDark
   - FloorTileItemSteelCheckerLight
+  # Starlight Start
+  - FloorTileItemSteelBitile
+  - FloorTileItemMetalDark
+  - FloorTileItemMetalBrown
+  - FloorTileItemMetalBlue
+  - FloorTileItemMetalPurple
+  - FloorTileItemMetalRed
+  - FloorTileItemMetalGreen
+  - FloorTileItemCarpetDeco
+  - FloorTileItemHierophant
+  - FloorTileItemSepia
+  # Starlight End
 
 - type: latheRecipePack
   id: FloorWhiteTilesStatic
@@ -40,6 +53,7 @@
   - FloorTileItemWhiteMono
   - FloorTileItemWhitePavement
   - FloorTileItemWhitePavementVertical
+  - FloorTileItemWhiteBitile #SL
 
 - type: latheRecipePack
   id: FloorMaintsTilesStatic
@@ -55,6 +69,22 @@
   - FloorTileItemWood
   - FloorTileItemWoodLarge
   - FloorTileItemWoodPattern
+  # Starlight Start
+  - FloorTileItemWoodParquet
+  - FloorTileItemWoodBlack
+  - FloorTileItemWoodLight
+  - FloorTileItemWoodRed
+  - FloorTileItemWoodLargeBlack
+  - FloorTileItemWoodLargeLight
+  - FloorTileItemWoodLargeRed
+  - FloorTileItemWoodParquetBlack
+  - FloorTileItemWoodParquetLight
+  - FloorTileItemWoodParquetRed
+  - FloorTileItemWoodChess
+  - FloorTileItemWoodChessBlack
+  - FloorTileItemWoodChessLight
+  - FloorTileItemWoodChessRed
+  # Starlight End
 
 - type: latheRecipePack
   id: FloorConcreteTilesStatic

@@ -390,8 +390,8 @@
     materialComposition:
       Glass: 50
   # 🌟Starlight-start🌟
-  - type: BoneGel
   - type: SurgeryTool
+  - type: BoneGel
     successRate: 0.01 # How.
     speed: 0.5
     startSound:

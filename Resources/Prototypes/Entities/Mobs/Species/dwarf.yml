@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McHands The Dwarf
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable] # Starlight. They are small.
   id: BaseMobDwarf
   abstract: true
   components:

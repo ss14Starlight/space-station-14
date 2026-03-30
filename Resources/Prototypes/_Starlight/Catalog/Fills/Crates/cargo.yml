@@ -1,7 +1,7 @@
 - type: entity
   id: CrateMailBags
   parent: CrateGenericSteel
-  name: Mailbag Crate
+  name: mailbag crate
   description: Contains two mail bags, in case you lost the ones we gave you already.
   components:
   - type: EntityTableContainerFill

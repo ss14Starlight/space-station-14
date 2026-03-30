@@ -1,7 +1,7 @@
 - type: entity
   parent: [ClothingEyesBase, BaseCentcommContraband]
   id: ClothingEyesHudNTNC
-  name: nanotrasen navy marine hud
+  name: NanoTrasen navy marine hud
   description: Standard issue heads up display for NanoTrasen Navy Marines
   components:
     - type: Sprite

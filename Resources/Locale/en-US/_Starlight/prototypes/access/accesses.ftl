@@ -1,5 +1,5 @@
 id-card-access-level-magistrate = Magistrate
-id-card-access-level-ntrep = NanoTrasen Representive
+id-card-access-level-ntrep = NanoTrasen Representative
 id-card-access-level-blueshield = BlueShield
 id-card-access-level-iaa = Internal Affairs
 

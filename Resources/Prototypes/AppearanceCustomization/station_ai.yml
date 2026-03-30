@@ -22,17 +22,26 @@
   - StationAiHologramFace
   - StationAiHologramCat
   - StationAiHologramDog
-  - StationAiHologramAlien #SL
-  - StationAiHologramBees #SL
-  - StationAiHologramBigMoth #SL
-  - StationAiHologramGhost #SL
-  - StationAiHologramHorror #SL
-  - StationAiHologramLeaves #SL
-  - StationAiHologramNarsie #SL
-  - StationAiHologramRatvar #SL
-  - StationAiHologramSemi #SL
-  - StationAiHologramCy #SL
-  - StationAiHologramcloudkat # SL
+  # Starlight Start
+  - StationAiHologramAlien 
+  - StationAiHologramBees 
+  - StationAiHologramBigMoth 
+  - StationAiHologramGhost 
+  - StationAiHologramHorror 
+  - StationAiHologramLeaves 
+  - StationAiHologramNarsie 
+  - StationAiHologramRatvar 
+  - StationAiHologramSemi 
+  - StationAiHologramCy 
+  - StationAiHologramcloudkat 
+  - StationAiHologramBoy
+  - StationAiHologramGirl
+  - StationAiHologramMono
+  - StationAiHologramPunkFemale
+  - StationAiHologramPunkMale
+  - StationAiHologramPurrfus
+  - StationAiHologramRat
+  # Starlight End
 
 # Iconography
 # - type: stationAiCustomization

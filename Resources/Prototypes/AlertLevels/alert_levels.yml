@@ -9,28 +9,28 @@
       shuttleTime: 600
     blue:
       announcement: alert-level-blue-announcement
-      sound: /Audio/Misc/bluealert.ogg
+      sound: /Audio/_Starlight/Announcements/bluealert.ogg
       color: DodgerBlue
       forceEnableEmergencyLights: true
       emergencyLightColor: DodgerBlue
       shuttleTime: 600
     violet:
       announcement: alert-level-violet-announcement
-      sound: /Audio/Misc/notice1.ogg
+      sound: /Audio/_Starlight/Misc/notice1.ogg
       color: Violet
       emergencyLightColor: Violet
       forceEnableEmergencyLights: true
       shuttleTime: 600
     yellow:
       announcement: alert-level-yellow-announcement
-      sound: /Audio/Misc/notice1.ogg
+      sound: /Audio/_Starlight/Misc/notice1.ogg
       color: Yellow
       emergencyLightColor: Goldenrod
       forceEnableEmergencyLights: true
       shuttleTime: 600
     red:
       announcement: alert-level-red-announcement
-      sound: /Audio/Misc/redalert.ogg
+      sound: /Audio/_Starlight/Announcements/redalert.ogg
       color: Red
       emergencyLightColor: Red
       forceEnableEmergencyLights: true
@@ -68,7 +68,7 @@
           volume: -2
       disableSelection: true
       color: DarkViolet
-      emergencyLightColor: '#938aff' #Starlight
+      emergencyLightColor: "#938aff" #Starlight
       forceEnableEmergencyLights: true
       shuttleTime: 1200
       dimmedLightMultiplier: 0 # Starlight
@@ -76,12 +76,12 @@
       announcement: alert-level-omega-announcement
       selectable: false
       sound:
-        path: /Audio/_Starlight/Misc/omega_alt.ogg
+        path: /Audio/_Starlight/Announcements/omega.ogg
         params:
           volume: -2
       disableSelection: true
-      color: '#FFE4E1'
-      emergencyLightColor: '#FFE4E1'
+      color: Gold
+      emergencyLightColor: Gold
       forceEnableEmergencyLights: true
       shuttleTime: 1200
       dimmedLightMultiplier: 0.2
@@ -93,8 +93,8 @@
         params:
           volume: -2
       disableSelection: true
-      color: '#741b47'
-      emergencyLightColor: '#741b47'
+      color: "#741b47"
+      emergencyLightColor: "#741b47"
       forceEnableEmergencyLights: true
       shuttleTime: 1200
       dimmedLightMultiplier: 0.2
@@ -102,7 +102,7 @@
       announcement: alert-level-psi-announcement
       selectable: false
       sound:
-        path: /Audio/_Starlight/Misc/psi.ogg
+        path: /Audio/_Starlight/Announcements/psi.ogg
         params:
           volume: -2
       disableSelection: true
@@ -114,7 +114,7 @@
       announcement: alert-level-orange-announcement
       selectable: true
       sound:
-        path: /Audio/_Starlight/Misc/orange.ogg
+        path: /Audio/_Starlight/Announcements/orange.ogg
         params:
           volume: -2
       color: "#ff8119"
@@ -122,12 +122,3 @@
       forceEnableEmergencyLights: true
       shuttleTime: 600
       # end starlight
-    octarine: # Stellar - Cosmic Cult
-      announcement: alert-level-octarine-announcement
-      selectable: false
-      sound: /Audio/_ST/Announcements/Alerts/code_octarine.ogg
-      disableSelection: true
-      color: CadetBlue
-      emergencyLightColor: CadetBlue
-      forceEnableEmergencyLights: true
-      shuttleTime: 600
