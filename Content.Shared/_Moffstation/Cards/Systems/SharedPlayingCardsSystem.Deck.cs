@@ -166,7 +166,7 @@ public abstract partial class SharedPlayingCardsSystem
 
             // Flip the entire deck, rather than flipping each card's facing direction
             args.Verbs.Add(PlayingCardDeckComponent.Verbs.FlipEntire, () => FlipEntire(targetDeck, user));
-            args.Verbs.Add(PlayingCardDeckComponent.Verbs.ConvertToHand, () => ConvertToHand(targetDeck, user)); // Starlight
+            args.Verbs.Add(PlayingCardDeckComponent.Verbs.ConvertToHand, -1, () => ConvertToHand(targetDeck, user)); // Starlight
         }
     }
 

@@ -186,7 +186,7 @@ public abstract partial class SharedPlayingCardsSystem
             return;
 
         var user = args.User;
-        args.Verbs.Add(PlayingCardHandComponent.Verbs.ConvertToDeck, () => ConvertToDeck(targetHand, user));
+        args.Verbs.Add(PlayingCardHandComponent.Verbs.ConvertToDeck, -1, () => ConvertToDeck(targetHand, user)); // Starlight-edit: priority shift.
     }
 
 
