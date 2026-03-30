@@ -1535,6 +1535,7 @@
     name: ghost-role-information-monkey-name
     description: ghost-role-information-monkey-description
     rules: ghost-role-information-syndicate-reinforcement-rules
+    important: true # SL
     mindRoles:
     # This is for syndicate monkeys that randomly gain sentience, thus have no summoner to team with
     - MindRoleGhostRoleSoloAntagonist
@@ -3383,6 +3384,7 @@
     allowMovement: true
     description: ghost-role-information-SyndiCat-description
     rules: ghost-role-information-SyndiCat-rules
+    important: true # SL
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist
     raffle:

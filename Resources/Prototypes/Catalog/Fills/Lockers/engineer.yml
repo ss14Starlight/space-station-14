@@ -156,6 +156,11 @@
     - id: GasAnalyzer
     - id: MedkitOxygenFilled
     - id: HolofanProjector
+    - id: MatBag #FH
+    - id: WeaponGrapplingGun #FH
+    - id: BoxFlare #FH
+    - id: SheetSteel #FH
+    - id: SheetSteel #FH
     - id: RCD
     - id: RPD # Starlight: RPD
     - id: RCDAmmo
@@ -203,6 +208,11 @@
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingMaskGas
     - id: trayScanner
+    - id: MatBag #FH
+    - id: WeaponGrapplingGun #FH
+    - id: BoxFlare #FH
+    - id: SheetSteel #FH
+    - id: SheetGlass #FH
     - id: RCD
     - id: RCDAmmo
     - id: MetalFoamGrenade

@@ -785,8 +785,8 @@
 # Command winter coats
 - type: latheRecipe
   parent: BaseCommandCoatRecipe
-  id: ClothingOuterWinterCap
-  result: ClothingOuterWinterCap
+  id: ClothingOuterWinterCapUnarmored #SL Edit
+  result: ClothingOuterWinterCapUnarmored #SL Edit
 
 - type: latheRecipe
   parent: BaseCommandCoatRecipe

@@ -52290,7 +52290,7 @@ entities:
     - type: Transform
       pos: 6.5,0.5
       parent: 1
-- proto: TurnstileCommand
+- proto: TurnstileCentComm
   entities:
   - uid: 5741
     components:

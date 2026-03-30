@@ -526,7 +526,7 @@
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitNTSF
-  name: nanotrasen special forces hardsuit helmet
+  name: NanoTrasen special forces hardsuit helmet
   description: A robust helmet for special operations.
   components:
   - type: BreathMask

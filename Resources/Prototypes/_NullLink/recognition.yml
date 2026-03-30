@@ -3,30 +3,49 @@
   recognition:
   # DB1
     alfa:
-  #    - STARLIGHT.delta
+      - STARLIGHT.beta
+      - STARLIGHT.gamma
+      - STARLIGHT.epsilon
       - TRIESTEPORT.main
       - AFTERLIGHT.main
       - CLOVER.main
     beta:
-  #    - STARLIGHT.delta
+      - STARLIGHT.alfa
+      - STARLIGHT.gamma
+      - STARLIGHT.epsilon
       - TRIESTEPORT.main
       - AFTERLIGHT.main
       - CLOVER.main
     gamma:
-  #    - STARLIGHT.delta
+      - STARLIGHT.alfa
+      - STARLIGHT.beta
+      - STARLIGHT.delta
+      - STARLIGHT.epsilon
       - TRIESTEPORT.main
       - AFTERLIGHT.main
       - CLOVER.main
-  # DB2
     delta: 
       - STARLIGHT.alfa
+      - STARLIGHT.beta
+      - STARLIGHT.gamma
+      - STARLIGHT.epsilon
+      - TRIESTEPORT.main
+      - AFTERLIGHT.main
+      - CLOVER.main
+    epsilon:
+      - STARLIGHT.alfa
+      - STARLIGHT.beta
+      - STARLIGHT.gamma
       - TRIESTEPORT.main
       - AFTERLIGHT.main
       - CLOVER.main
   # debug
     test:
       - STARLIGHT.alfa
+      - STARLIGHT.beta
+      - STARLIGHT.gamma
       - STARLIGHT.delta
+      - STARLIGHT.epsilon
       - TRIESTEPORT.main
       - AFTERLIGHT.main
       - CLOVER.main
@@ -37,6 +56,7 @@
     main: #TODO @pixeltheaertist
       #- STARLIGHT.alfa
       #- STARLIGHT.delta
+      #- STARLIGHT.epsilon
       #- AFTERLIGHT.main
       #- CLOVER.main
 
@@ -46,6 +66,7 @@
     main: #TODO @drsmugleaf
       #- STARLIGHT.alfa
       #- STARLIGHT.delta
+      #- STARLIGHT.epsilon
       #- TRIESTEPORT.main
       #- CLOVER.main
 
@@ -55,5 +76,6 @@
     main: #TODO @ai_ivo
       #- STARLIGHT.alfa
       #- STARLIGHT.delta
+      #- STARLIGHT.epsilon
       #- TRIESTEPORT.main
       #- AFTERLIGHT.main

@@ -109,20 +109,22 @@
     clothingPrototype: ClothingHeadHatHoodWinterBartender
 
 - type: entity
-  parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband, AllowSuitStorageClothing]
+  parent: ClothingOuterWinterCapUnarmored #SL Edit
   id: ClothingOuterWinterCap
   name: captain's winter coat
+  suffix: Armored #SL Edit
   components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    layers:
-    - state: CAP-icon
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: CAP-inhand-left
-      right:
-      - state: CAP-inhand-right
+  ### SL Comment Out
+  # - type: Sprite
+    # sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+    # layers:
+    # - state: CAP-icon
+  # - type: Item
+    # inhandVisuals:
+      # left:
+      # - state: CAP-inhand-left
+      # right:
+      # - state: CAP-inhand-right
   - type: Armor
     modifiers:
       coefficients:
@@ -132,13 +134,14 @@
         Heat: 0.45
   - type: ExplosionResistance
     damageCoefficient: 0.80
-  - type: Clothing
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    clothingVisuals:
-      outerClothing:
-      - state: CAP-equipped-OUTERCLOTHING
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodWinterCaptain
+  ### SL Comment Out
+  # - type: Clothing
+    # sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+    # clothingVisuals:
+      # outerClothing:
+      # - state: CAP-equipped-OUTERCLOTHING
+  # - type: ToggleableClothing
+    # clothingPrototype: ClothingHeadHatHoodWinterCaptain
 
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
@@ -389,6 +392,7 @@
   parent: [ClothingOuterArmorHoS, ClothingOuterWinterCoatToggleable, BaseSecurityCommandContraband]
   id: ClothingOuterWinterHoS
   name: head of security's armored winter coat
+  suffix: Armored #SL Edit
   description: A sturdy, utilitarian winter coat designed to protect a head of security from any brig-bound threats and hypothermic events.
   components:
   - type: Sprite
@@ -403,6 +407,7 @@
   parent: [ClothingOuterWinterCoatToggleable, BaseSecurityCommandContraband]
   id: ClothingOuterWinterHoSUnarmored
   name: head of security's winter coat
+  suffix: Unarmored #SL Edit
   description: A sturdy coat, a warm coat, but not an armored coat.
   components:
   - type: Sprite
@@ -769,6 +774,7 @@
   parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoatToggleable, BaseSecurityContraband]
   id: ClothingOuterWinterWarden
   name: warden's armored winter coat
+  suffix: Armored #SL Edit
   description: A sturdy, utilitarian winter coat designed to protect a warden from any brig-bound threats and hypothermic events.
   components:
   - type: Sprite
@@ -783,6 +789,7 @@
   parent: [ClothingOuterWinterCoatToggleable, BaseSecurityContraband]
   id: ClothingOuterWinterWardenUnarmored
   name: warden's winter coat
+  suffix: Unarmored #SL Edit
   description: A sturdy coat, a warm coat, but not an armored coat.
   components:
   - type: Sprite

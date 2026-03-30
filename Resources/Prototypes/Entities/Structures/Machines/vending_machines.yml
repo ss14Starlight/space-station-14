@@ -2389,8 +2389,17 @@
     normalState: normal
     denyState: deny
     ejectDelay: 2
+  - type: Sprite # Starlight start
+    sprite: _Starlight/Structures/Machines/VendingMachines/syndie_chemvend.rsi # New sprite
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"] 
   - type: Machine # Starlight-edit: Vending Machine boards
-    board: VendingMachineChemicalsSyndicateCircuitboard # Starlight-edit: Vending Machine boards
+    board: VendingMachineChemicalsSyndicateCircuitboard # Starlight-edit: Vending Machine boards, Starlight end
   - type: AccessReader
     access: [["SyndicateAgent"]]
 

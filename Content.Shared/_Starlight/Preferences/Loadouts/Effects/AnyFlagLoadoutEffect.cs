@@ -17,18 +17,17 @@ public sealed partial class RolesReqLoadoutEffect : LoadoutEffect
     public ProtoId<RoleRequirementPrototype> Proto = default!;
 
     public override bool Validate(HumanoidCharacterProfile profile, RoleLoadout loadout, ICommonSession? session,
-        IDependencyCollection collection, [NotNullWhen(false)] out FormattedMessage? reason)
+        IDependencyCollection collection, out FormattedMessage reason)
     {
         var requirement = IoCManager.Resolve<IPrototypeManager>().Index(Proto);
-
-        reason = new FormattedMessage();
-        if (session is not null && IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAnyRole(session, requirement.Roles))
-            return true;
+        var success = session is not null && IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>()
+            .IsAnyRole(session, requirement.Roles);
 
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
-            "roles-req-any-role-required",
+            success? "roles-req-any-role-required-pass" : "roles-req-any-role-required-fail",
             ("discord", Loc.GetString(requirement.Discord)),
             ("roles", Loc.GetString(requirement.RolesLoc))));
-        return false;
+
+        return success;
     }
 }

@@ -15,7 +15,7 @@ public abstract partial class LoadoutEffect
         RoleLoadout loadout,
         ICommonSession? session,
         IDependencyCollection collection,
-        [NotNullWhen(false)] out FormattedMessage? reason);
+        out FormattedMessage reason); // Starlight: Always show requirements
 
     public virtual void Apply(RoleLoadout loadout) {}
 }

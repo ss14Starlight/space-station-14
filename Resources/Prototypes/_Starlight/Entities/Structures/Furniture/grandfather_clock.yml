@@ -1,0 +1,65 @@
+- type: entity
+  name: grandfather clock
+  id: FurnitureGrandfatherClock
+  parent: BaseStructure
+  description: Tick, tock. Old but reliable.
+  components:
+  - type: AmbientSound 
+    volume: -5
+    range: 4
+    sound: 
+      path: /Audio/_Starlight/Ambience/Objects/clock.ogg
+  - type: Rotatable
+  - type: Anchorable
+    delay: 1
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/grandfather_clock.rsi
+    state: grandfather_clock
+    noRot: true
+  - type: Appearance
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - TableMask
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 2
+            max: 3
+  - type: Tag
+    tags:
+    - Wooden

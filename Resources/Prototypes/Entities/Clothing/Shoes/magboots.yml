@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingShoesBase, BaseToggleClothing]
+  parent: [ClothingShoesBaseUntieable, BaseToggleClothing] # Starlight-edit: untieable mag boots
   id: ClothingShoesBootsMagBase
   name: magboots
   description: Magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
@@ -88,7 +88,7 @@
     price: 3000
 
 - type: entity
-  parent: [ClothingShoesBootsMagBase, BaseJetpack, BaseSyndicateContraband, ClothingShoesMilitaryBase] # Starlight
+  parent: [ClothingShoesBootsMagBase, BaseJetpack, BaseSyndicateContraband, ClothingShoesMilitaryBaseUntieable] # Starlight
   id: ClothingShoesBootsMagSyndie
   name: blood-red magboots
   description: Reverse-engineered from ERT magboots, they have a heavy magnetic pull, integrated thrusters, and are designed for combat. It can hold 0.75 L of gas. # Starlight

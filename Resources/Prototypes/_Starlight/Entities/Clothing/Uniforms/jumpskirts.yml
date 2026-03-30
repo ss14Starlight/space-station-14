@@ -1,7 +1,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrep
-  name: nt representive skirt
+  name: nt representative skirt
   description: That skirt that is better not to see.
   components:
   - type: Sprite
@@ -12,7 +12,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrepTurtleneck
-  name: nt representive's turtleneck jumpskirt
+  name: nt representative's turtleneck jumpskirt
   description: For a more casual look while on the job.
   components:
   - type: Sprite
@@ -23,7 +23,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpskirtBlueShield
-  name: blue shield skirt
+  name: blueshield skirt
   description: The skirt of a glorified bodyguard.
   components:
   - type: Sprite
@@ -34,7 +34,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseBlueShieldContraband ]
   id: ClothingUniformJumpskirtEliteBlueShield
-  name: elite blue shield skirt
+  name: elite blueshield skirt
   description: The skirt of an elite BSO. To reach such a level, you must have protected Command from [REDACTED].
   components:
   - type: Sprite
@@ -302,7 +302,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtPencilCentcomOfficial
-  name: centcomm "pencil" style skirt 
+  name: CentComm "pencil" style skirt 
   description: A strict green "pencil" skirt exudes authority and poise. The fitted blazer and straight skirt form an elegant silhouette, suitable for various occasions, from business meetings to a captain's dismissal.
   components:
   - type: Sprite
@@ -376,6 +376,28 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/cargoformal.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/cargoformal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtMail
+  name: mail technician jumpskirt
+  description: A stylish cargo yellow and mail bag-blue uniform custom made for mail technicians.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/mailtech.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/mailtech.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtSeniorMail
+  name: senior mail technician jumpskirt
+  description: A more vibrant mail technician outfit made in the color of cargo's formal uniforms. Perfect for deliver the mail in style, and looking good while doing it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_mail.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/senior_mail.rsi
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -635,7 +657,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: MagistrateUniformSkirt
-  name: Magistrate's Jumpskirt
+  name: magistrate's Jumpskirt
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/magistrate.rsi
@@ -656,7 +678,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNCT
-  name: NT career trainer's skirt
+  name: nt career trainer's skirt
   description: A neatly pressed olive green shirt paired with a sleek black skirt, worn by those committed to mentoring the next generation.
   components:
   - type: Sprite

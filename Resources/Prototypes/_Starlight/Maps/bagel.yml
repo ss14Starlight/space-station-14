@@ -60,7 +60,7 @@
             CargoTechnician: [ 3, 3 ]
             MiningSpecialist: [ 3, 3 ]
             SalvageLead: [ 1, 1 ]
-            MailTech: [ 1, 2 ]
+            MailTech: [ 2, 2 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
@@ -74,7 +74,7 @@
             #law
             Magistrate: [ 1, 1 ]
             IAA: [ 2, 2 ]      
-            #Representives
+            #Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]

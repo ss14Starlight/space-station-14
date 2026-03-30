@@ -1,0 +1,100 @@
+#region Cargo
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltCargo
+  name: cargo utility belt # Starlight
+  description: Can hold various cargo related things. # Starlight
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/cargo_utility.rsi # Starlight
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/cargo_utility.rsi # Starlight
+  - type: Storage
+    whitelist:
+      tags:
+        - Wirecutter
+        - Crowbar
+        - Screwdriver
+        - Flashlight
+        - Wrench
+#        - GeigerCounter Starlight start
+#        - Flare
+#        - CableCoil
+#        - Powerdrill # They only get to carry simple tools, they shouldn't be using this as free toolbelt
+#        - JawsOfLife # Starlight end
+        - CigPack
+        - Radio
+#        - HolofanProjector # Starlight
+        - Multitool
+        - AppraisalTool
+        - GPS
+        - WeldingMask
+#        - RemoteSignaller # Starlight
+        - ImprovisedCrowbar
+        - ImprovisedScrewdriver
+        - ImprovisedWirecutter
+        - ImprovisedWrench
+        - ImprovisedMultitool
+        - Knife
+        - UtilityKnife # Starlight start
+        - Document # Relevant cargo gear
+        - Folder
+        - Write
+        - Stamp # Starlight end
+      components:
+        - StationMap
+#        - SprayPainter # Starlight start
+#        - SprayPainterAmmo
+#        - NetworkConfigurator # Starlight end
+        - Welder
+        - PowerCell
+#        - Geiger # Starlight start
+#        - TrayScanner 
+#        - GasAnalyzer # Starlight end
+        - HandLabeler
+#  - type: StorageFill Starlight start
+#    contents: # Moved to loadout
+#      - id: WeaponMeleeBoxcutter
+#      - id: AppraisalTool # Starlight end
+  - type: ItemMapper
+    sprite: &BeltOverlay Clothing/Belt/belt_overlay.rsi
+    mapLayers:
+#      drill: # Starlight start
+#        whitelist:
+#          tags:
+#          - Powerdrill # Starlight end
+      cutters_red:
+        whitelist:
+          tags:
+          - Wirecutter
+          - ImprovisedWirecutter
+      crowbar:
+        whitelist:
+          tags:
+          - Crowbar
+          - ImprovisedCrowbar
+      crowbar_red:
+        whitelist:
+          tags:
+          - CrowbarRed
+#      jaws: # Starlight Start
+#        whitelist:
+#          tags:
+#          - JawsOfLife # Starlight End
+      screwdriver_nuke:
+        whitelist:
+          tags:
+          - Screwdriver
+          - ImprovisedScrewdriver
+      multitool:
+        whitelist:
+          tags:
+            - Multitool
+            - ImprovisedMultitool
+      wrench:
+        whitelist:
+          tags:
+          - Wrench
+          - ImprovisedWrench
+

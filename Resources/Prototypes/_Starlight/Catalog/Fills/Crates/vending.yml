@@ -1,7 +1,7 @@
 - type: entity
   id: CrateVendingMachineRestockSustenanceFilled
   parent: CratePlastic
-  name: Sustenance Vendor restock crate
+  name: sustenance vendor restock crate
   description: Contains a restock box for the Sustenance Vendor.
   components:
   - type: EntityTableContainerFill
@@ -13,7 +13,7 @@
 - type: entity
   id: CrateLabellerRefillPaperFilled
   parent: CratePlastic
-  name: Labeller refill paper crate
+  name: labeller refill paper crate
   description: Contains a refill paper for the Labeller.
   components:
   - type: EntityTableContainerFill
@@ -26,7 +26,7 @@
 - type: entity
   id: CrateVendingMachineRestockDonkFilled
   parent: CratePlastic
-  name: Donk on the Go restock crate
+  name: donk on the go restock crate
   description: Contains a restock box for the Donk on the Go Vendor.
   components:
   - type: EntityTableContainerFill
@@ -38,7 +38,7 @@
 - type: entity
   parent: CratePlastic
   id: CrateVendingMachineRestockIceCreamFilled
-  name: Ice-Cream restock crate
+  name: ice-cream restock crate
   description: Contains a restock box for I Scream Ice-Cream.
   components:
   - type: EntityTableContainerFill
