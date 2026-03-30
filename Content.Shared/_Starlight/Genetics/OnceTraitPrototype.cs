@@ -10,13 +10,20 @@ namespace Content.Shared._Starlight.Genetics;
 public sealed partial class OnceTraitPrototype : AbstractTraitPrototype
 {
     /// <summary>
-    /// The entity effect that is called when the associated entity is created or has its genes updated.
+    /// The entity effect that is called when the associated entity is created or has its traits updated.
     /// </summary>
     [DataField(required: true)]
     public ScaledEntityEffect OnAddedEffect = default!;
+    
+    /// <summary>
+    /// The entity effect that is called when the value associated with this trait is updated.
+    /// If no effect is provided, then when the trait value is updated, onRemovedEffect will be applied then onAddedAffect.
+    /// </summary>
+    [DataField]
+    public ScaledEntityEffect? OnUpdatedEffect = default!;
 
     /// <summary>
-    /// The entity effect that is called when the associated entity has its genes updated. Used to make sure modifications done by a trait are consistently removed if new genes remove it.
+    /// The entity effect that is called when the associated entity has this trait removed.
     /// </summary>
     [DataField(required: true)]
     public ScaledEntityEffect OnRemovedEffect = default!;
