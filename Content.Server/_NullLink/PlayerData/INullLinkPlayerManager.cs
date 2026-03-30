@@ -17,4 +17,8 @@ public interface INullLinkPlayerManager
     bool TryGetPlayerData(Guid userId, [NotNullWhen(true)] out PlayerData? playerData);
     ValueTask UpdateRoles(RolesChangedEvent ev);
     ValueTask UpdateResource(ResourceChangedEvent ev);
+    ValueTask<HashSet<Achievement>> GetUnlockedAchievements(Guid userId);
+    ValueTask<bool> HasAchievementUnlocked(Guid userId, string achievementId);
+    ValueTask UnlockAchievement(Guid userId, string achievementId, string characterName);
+    ValueTask LockAchievement(Guid userId, string achievementId);
 }

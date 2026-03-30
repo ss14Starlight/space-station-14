@@ -13,6 +13,7 @@ public sealed class PlayerData
     public Dictionary<string, double> Resources = [];
     public Dictionary<string, Dictionary<string, TimeSpan>> RolePlayTimePerServer { get; set; } = [];
     public ulong DiscordId { get; set; }
+    public HashSet<Achievement> UnlockedAchievements { get; set; } = [];
 
     public void SyncRoles(PlayerRolesSyncEvent ev) => Roles = [.. ev.Roles];
 
