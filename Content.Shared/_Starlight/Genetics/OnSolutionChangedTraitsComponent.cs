@@ -1,3 +1,4 @@
+using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._Starlight.Genetics;
@@ -6,5 +7,5 @@ namespace Content.Shared._Starlight.Genetics;
 public sealed partial class OnSolutionChangedTraitsComponent : Component
 {
     [ViewVariables, AutoNetworkedField]
-    public Dictionary<OnSolutionChangedTraitPrototype, float> Traits = new();
+    public Dictionary<OnSolutionChangedTraitPrototype, FixedPoint2> Traits = new();
 }
