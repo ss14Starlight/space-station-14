@@ -56,6 +56,9 @@ public sealed class GoliathTentacleSystem : DelayableEntitySystem
                 _turf.IsTileBlocked(tileRef, CollisionGroup.Impassable))
                 return;
 
+            if (TerminatingOrDeleted(pos.EntityId))
+                return;
+
             if (_net.IsServer)
                 Spawn(args.EntityId, pos);
             if ((Action<EntityCoordinates>?)action is not null && spawnPos.TryDequeue(out var newPos))

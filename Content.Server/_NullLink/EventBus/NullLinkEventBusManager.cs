@@ -21,6 +21,12 @@ public sealed partial class NullLinkEventBusManager : IEventBusObserver, INullLi
     private ISawmill _sawmill = default!;
     private readonly ConcurrentQueue<BaseEvent> _eventQueue = [];
 
+    public event Action<AdminNote>? NoteAdded;
+
+    public event Action<AdminNote>? NoteChanged;
+
+    public event Action<AdminNote>? NoteRemoved;
+
     public void Initialize()
     {
         _sawmill = _logManager.GetSawmill("NullLink event bus");
@@ -40,7 +46,7 @@ public sealed partial class NullLinkEventBusManager : IEventBusObserver, INullLi
 
         if (!_actors.Enabled
             || !_actors.TryGetServerGrain(out var serverGrain)
-            || !_actors.TryCreateObjectReference<IEventBusObserver>(this, out var eventBusObserver) 
+            || !_actors.TryCreateObjectReference<IEventBusObserver>(this, out var eventBusObserver)
             || eventBusObserver is null)
             return;
 
@@ -50,7 +56,7 @@ public sealed partial class NullLinkEventBusManager : IEventBusObserver, INullLi
     public bool TryDequeue([MaybeNullWhen(false)] out BaseEvent result)
         => _eventQueue.TryDequeue(out result);
 
-    public ValueTask OnEventReceived<T>(T @event) where T : BaseEvent 
+    public ValueTask OnEventReceived<T>(T @event) where T : BaseEvent
         => @event switch
         {
             PlayerRolesSyncEvent playerRolesSyncEvent
@@ -65,12 +71,29 @@ public sealed partial class NullLinkEventBusManager : IEventBusObserver, INullLi
             PlayerResourcesSyncEvent playerResourcesSyncEvent
                 => _players.SyncResources(playerResourcesSyncEvent),
 
-            ResourceChangedEvent resourceChangedEvent 
+            ResourceChangedEvent resourceChangedEvent
                 => _players.UpdateResource(resourceChangedEvent),
+
+            NotesChangedEvent notesChangedevent
+                => ProcessNotes(notesChangedevent),
 
             BaseEvent baseEvent
                 => Enqueue(baseEvent),
         };
+
+    private ValueTask ProcessNotes(NotesChangedEvent notes)
+    {
+        if (notes.Add != null)
+            NoteAdded?.Invoke(notes.Add.Value);
+
+        if (notes.Update != null)
+            NoteChanged?.Invoke(notes.Update.Value);
+
+        if (notes.Remove != null)
+            NoteRemoved?.Invoke(notes.Remove.Value);
+
+        return ValueTask.CompletedTask;
+    }
 
     // ValueTask is kind of a hint that this might be a different, unknown thread.
     // And it also lets me use a clean and convenient switch.

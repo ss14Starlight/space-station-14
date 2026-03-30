@@ -10,6 +10,7 @@
   abstract: true
   components:
   # Starlight-start
+  - type: StationTracker
   - type: Railroadable
   - type: SurgeryTarget
   - type: LanguageKnowledge

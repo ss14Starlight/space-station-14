@@ -47,5 +47,9 @@
   path: /Fonts/_Starlight/Lagomorphian.ttf
 
 - type: font
+  id: Cosmic
+  path: /Fonts/_Starlight/Cosmic.otf
+
+- type: font
   id: Crittish
   path: /Fonts/_Starlight/Drachenklaue.otf

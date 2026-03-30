@@ -420,7 +420,7 @@
 - type: entity
   parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: CybersunFlippo
-  name: CyberSun flippo # Starlight-edit
+  name: CyberSun flippo
   description: "A Sleek black and magenta flippo lighter, bearing the logo and iconography of CyberSun Industries."
   components:
   - type: Sprite
@@ -464,7 +464,7 @@
 - type: entity
   parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: NanotrasenFlippo
-  name: Nanotrasen flippo  # Starlight-edit
+  name: NanoTrasen flippo  # Starlight-edit
   description: "A navy blue luxury flippo, generally handed out to loyal heads of staff instead of a payraise. Fueled with liquid plasma and burns a little hotter than usual."
   components:
   - type: Sprite

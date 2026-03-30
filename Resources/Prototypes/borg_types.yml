@@ -59,6 +59,7 @@
     damageContainers:
     - Inorganic
     - Silicon
+  - type: ShowAccessReaderSettings
   # Starlight end
 
   # Visual

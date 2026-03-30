@@ -224,6 +224,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: LanguageIconCosmic
+  icon:
+    sprite: /Textures/_Starlight/CosmicCult/Icons/antag_icons.rsi
+    state: CosmicCult
+  allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
   id: LanguageIconCrittish
   icon:
     sprite: /Textures/_Starlight/Interface/language_icon.rsi
