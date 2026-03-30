@@ -1,0 +1,39 @@
+- type: entity
+  id: PokerChip
+  parent: BaseItem
+  abstract: true
+  name: poker chip
+  description: Looking at this makes you want to gamble.
+  components:
+    - type: Sprite
+      scale: 0.3, 0.3
+      layers:
+        - sprite: _Starlight/Objects/Economy/poker_chip.rsi
+          state: base
+        - sprite: _Starlight/Objects/Economy/poker_chip.rsi
+          state: decal
+    - type: PokerChip
+
+- type: entity
+  id: PokerChipCredits1
+  parent: PokerChip
+  components:
+    - type: PokerChip
+      chipValueType: Credits
+      chipValue: 1
+
+- type: entity
+  id: PokerChipSpesos1
+  parent: PokerChip
+  components:
+    - type: PokerChip
+      chipValueType: Spesos
+      chipValue: 1
+
+- type: entity
+  id: PokerChipStack
+  categories: [ HideSpawnMenu ]
+  name: poker chip stack
+  description: Looking at this REALLY makes you want to gamble.
+  components:
+    - type: PokerChipStack
