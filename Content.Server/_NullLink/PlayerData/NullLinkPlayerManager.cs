@@ -69,7 +69,12 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
             return;
 
         foreach (var player in _playerById)
+        {
             _ = serverGrain.PlayerConnected(player.Key);
+            GetUnlockedAchievements(player.Key)
+                .Then(_ => { })
+                .FireAndForget(err => _sawmill.Error($"Achievement sync after reconnect failed for {player.Key}: {err}"));
+        }
     }
 
     public void Shutdown()
