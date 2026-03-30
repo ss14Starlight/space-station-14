@@ -10,6 +10,8 @@ public sealed class PoolManagerTestEventHandler
     [OneTimeSetUp]
     public void Setup()
     {
+        _Starlight.Patches.RsiLoadingPatch.Apply(); // Starlight
+
         PoolManager.Startup();
         // If the tests seem to be stuck, we try to end it semi-nicely
         _ = Task.Delay(MaximumTotalTestingTimeLimit).ContinueWith(_ =>
@@ -31,5 +33,7 @@ public sealed class PoolManagerTestEventHandler
     public void TearDown()
     {
         PoolManager.Shutdown();
+        
+        _Starlight.Patches.RsiLoadingPatch.Unpatch(); // Starlight
     }
 }
