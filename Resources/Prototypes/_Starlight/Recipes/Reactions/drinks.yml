@@ -11,3 +11,13 @@
       amount: 1
   products:
     DraganSpecial: 3
+
+- type: reaction
+  id: Peggnog
+  reactants:
+    Eggnog:
+      amount: 1
+    Cola:
+      amount: 1
+  products:
+    Peggnog: 2

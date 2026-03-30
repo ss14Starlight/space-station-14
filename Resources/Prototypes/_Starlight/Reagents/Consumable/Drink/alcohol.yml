@@ -102,3 +102,18 @@
         component: SeeingRainbows
         type: Add
         time: 120
+
+- type: reagent
+  id: Peggnog
+  name: reagent-name-peggnog
+  parent: BaseAlcohol
+  desc: reagent-desc-peggnog
+  physicalDesc: reagent-physical-desc-creamy
+  flavor: sweet  # TODO: replace with specific description of peggnog
+  color: "#d3af82"
+  metamorphicSprite:
+    sprite: _Starlight/Objects/Consumable/Drinks/peggnogglass.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
