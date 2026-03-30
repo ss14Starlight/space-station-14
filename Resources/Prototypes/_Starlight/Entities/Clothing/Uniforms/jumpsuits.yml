@@ -603,7 +603,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCentcommContraband ]
   id: ClothingAltUniformJumpsuitCentcomOfficial
-  name: centcomm officer's jumpsuit
+  name: CentComm officer's jumpsuit
   description: It's a jumpsuit worn by CentComm officers.
   components: 
   - type: Sprite

@@ -19,6 +19,8 @@
   - type: Tool
     qualities:
     - Slicing
+  - type: Engraveable # Starlight 
+    engraveVerb: "engraving-verb-engrave"
 
 #Shortswords
 - type: entity
