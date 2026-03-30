@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Starlight.NullLink;
+using Starlight.NullLink.Event;
 
 namespace Content.Server._NullLink.PlayerData;
 
@@ -59,6 +60,34 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
 
         if (_playerById.TryGetValue(userId, out var playerData))
             playerData.UnlockedAchievements.RemoveWhere(achievement => achievement.AchievementId == achievementId);
+    }
+
+    public ValueTask SyncAchievements(PlayerAchievementsSyncEvent ev)
+    {
+        if (!_playerById.TryGetValue(ev.Player, out var playerData))
+            return ValueTask.CompletedTask;
+
+        playerData.UnlockedAchievements = [.. ev.Achievements];
+        return ValueTask.CompletedTask;
+    }
+
+    public ValueTask UpdateAchievementUnlocked(AchievementUnlockedEvent ev)
+    {
+        if (!_playerById.TryGetValue(ev.Player, out var playerData))
+            return ValueTask.CompletedTask;
+
+        playerData.UnlockedAchievements.RemoveWhere(achievement => achievement.AchievementId == ev.Achievement.AchievementId);
+        playerData.UnlockedAchievements.Add(ev.Achievement);
+        return ValueTask.CompletedTask;
+    }
+
+    public ValueTask UpdateAchievementLocked(AchievementLockedEvent ev)
+    {
+        if (!_playerById.TryGetValue(ev.Player, out var playerData))
+            return ValueTask.CompletedTask;
+
+        playerData.UnlockedAchievements.RemoveWhere(achievement => achievement.AchievementId == ev.AchievementId);
+        return ValueTask.CompletedTask;
     }
 
     private bool TryGetCachedAchievements(Guid userId, out HashSet<Achievement> achievements)

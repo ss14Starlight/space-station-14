@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Robust.Shared.Player;
+using Starlight.NullLink;
 using Starlight.NullLink.Event;
 
 namespace Content.Server._NullLink.PlayerData;
@@ -21,4 +22,7 @@ public interface INullLinkPlayerManager
     ValueTask<bool> HasAchievementUnlocked(Guid userId, string achievementId);
     ValueTask UnlockAchievement(Guid userId, string achievementId, string characterName);
     ValueTask LockAchievement(Guid userId, string achievementId);
+    ValueTask SyncAchievements(PlayerAchievementsSyncEvent ev);
+    ValueTask UpdateAchievementUnlocked(AchievementUnlockedEvent ev);
+    ValueTask UpdateAchievementLocked(AchievementLockedEvent ev);
 }

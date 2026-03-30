@@ -74,6 +74,15 @@ public sealed partial class NullLinkEventBusManager : IEventBusObserver, INullLi
             ResourceChangedEvent resourceChangedEvent
                 => _players.UpdateResource(resourceChangedEvent),
 
+            PlayerAchievementsSyncEvent playerAchievementsSyncEvent
+                => _players.SyncAchievements(playerAchievementsSyncEvent),
+
+            AchievementUnlockedEvent achievementUnlockedEvent
+                => _players.UpdateAchievementUnlocked(achievementUnlockedEvent),
+
+            AchievementLockedEvent achievementLockedEvent
+                => _players.UpdateAchievementLocked(achievementLockedEvent),
+
             NotesChangedEvent notesChangedevent
                 => ProcessNotes(notesChangedevent),
 
