@@ -46,7 +46,7 @@
   parent: CrateInternalsO2N2 # Starlight - sprite change
   id: CrateEmergencyInternals
   name: internals crate
-  description: Master your life energy and control your breathing with three breath masks, three gas masks, three emergency EVA suits, three oxygen tanks, and three nitrogen tanks.
+  description: Master your life energy and control your breathing with three breath masks, three gas masks, three emergency EVA suits, three oxygen tanks, three nitrogen tanks, and 3 cooling units.
   components:
   - type: EntityTableContainerFill
     containers:
