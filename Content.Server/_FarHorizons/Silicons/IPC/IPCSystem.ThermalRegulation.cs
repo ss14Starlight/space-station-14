@@ -30,16 +30,11 @@ public sealed partial class IPCSystem
     {
         if (!Resolve(ent, ref ent.Comp2) ||
             ExternalCooling(ent, ent.Comp2) ||
-            _atmos.GetContainingMixture(ent.Owner) is not GasMixture gas)
+            _atmos.GetContainingMixture(ent.Owner) is not { } gas)
             return;
 
-        var passiveHeat = 0f;
-        if (ent.Comp2.CurrentTemperature > gas.Temperature)
-            passiveHeat -= ent.Comp1.RadiateHeat;
-        if (!_state.IsDead(ent))
-            passiveHeat += ent.Comp1.ProduceHeat;
+        RadiateHeat(ent, ent.Comp2, gas.Temperature, _state.IsDead(ent) ? 0 : ent.Comp1.ProduceHeat);
 
-        _tempSys.ChangeHeat(ent, passiveHeat, ignoreHeatResistance: true, ent);
         ent.Comp1.FansCurrentlyOff = FanShutOff(ent, gas);
 
         ent.Comp1.CurrentTemp = ent.Comp2.CurrentTemperature;
@@ -74,6 +69,16 @@ public sealed partial class IPCSystem
                 }
 
         return false;
+    }
+
+    private void RadiateHeat(Entity<IPCThermalRegulationComponent> ent, TemperatureComponent temp, float externalTemp, float produceHeat = 0)
+    {
+        var tempDelta = temp.CurrentTemperature - externalTemp;
+
+        if (tempDelta > 0)
+            _tempSys.ChangeHeat(ent, produceHeat - (tempDelta * ent.Comp.RadiateHeatEfficiency), ignoreHeatResistance: true, temp);
+        else if (produceHeat > 0)
+            _tempSys.ChangeHeat(ent, produceHeat, ignoreHeatResistance: true, temp);
     }
 
     private bool FanShutOff(Entity<IPCThermalRegulationComponent> ent, GasMixture gas) =>

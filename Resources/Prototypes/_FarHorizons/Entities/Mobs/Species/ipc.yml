@@ -354,7 +354,7 @@
         Heat: 2.5 #per second, scales with temperature & other constants
   - type: IPCThermalRegulation
     produceHeat: 2000 # How much heat generated inside the body per second (only when on)
-    radiateHeat: 300 # Passive heat loss, even when dead and/or spaced
+    radiateHeatEfficiency: 2 # Proportional to temperature outside
     minEffectivePressure: 80
     maxEffectivePressure: 200 # Outside of optimal window fans become less effective
     minPressure: 10
@@ -396,6 +396,8 @@
         examineText: ipc-thermals-examine-extreme
         diagnosticsText: ipc-thermals-diagnostics-extreme
         modeAlert: IPCFansSpeedExtreme
+  - type: Flammable
+    firestackFade: -0.8 # Not much to burn + they take way too much damage even from a bit
 
 - type: entity
   parent: BaseSpeciesDummy

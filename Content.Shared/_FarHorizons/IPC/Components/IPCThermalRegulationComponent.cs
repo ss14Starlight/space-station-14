@@ -39,8 +39,7 @@ public sealed partial class IPCThermalRegulationComponent : Component
     [DataField(required: true)]
     public float ProduceHeat;
 
-    [DataField(required: true)]
-    public float RadiateHeat;
+    [DataField(required: true)] public float RadiateHeatEfficiency;
 
     [DataField(required: true)]
     public float MinEffectivePressure;
