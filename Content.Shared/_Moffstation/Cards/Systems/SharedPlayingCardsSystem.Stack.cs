@@ -134,7 +134,7 @@ public abstract partial class SharedPlayingCardsSystem
         var didAnyFlip = entity.Comp switch
         {
             PlayingCardDeckComponent deck => deck.Cards.Aggregate(false,
-                (current, card) => current | FlipCardInDeck(card, faceDown)), // Starlight-edit: fix flipping cards in a deck.
+                (current, card) => current | FlipCardInDeck(card, faceDown)),
             PlayingCardHandComponent hand => hand.Cards.Aggregate(false,
                 (current, card) => current | (NetEntToCard(card) is { } cardEnt && SetFacingOrFlip(cardEnt, faceDown))),
             _ => entity.Comp.ThrowUnknownInheritor<PlayingCardStackComponent, bool>(),

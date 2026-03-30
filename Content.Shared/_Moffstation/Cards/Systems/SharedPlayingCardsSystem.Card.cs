@@ -253,7 +253,7 @@ public abstract partial class SharedPlayingCardsSystem
 
     /// Like <see cref="Flip"/>, but for a <see cref="PlayingCardInDeck"/>, which may be an unspawned card in a
     /// deck.
-    private bool FlipCardInDeck(PlayingCardInDeck card, bool? faceDown = null) => card switch
+    private bool FlipCardInDeck(PlayingCardInDeck card, bool? faceDown) => card switch
     {
         PlayingCardInDeckNetEnt(var cardNetEnt) =>
             NetEntToCard(cardNetEnt) is { } cardEnt && SetFacingOrFlip(cardEnt, faceDown),

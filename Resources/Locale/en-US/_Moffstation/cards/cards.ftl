@@ -26,11 +26,6 @@ playing-card-deck-flip-entire-verb-text = Flip entire deck
 playing-card-deck-flip-entire-popup = You flipped the {$target}.
 playing-card-deck-flip-entire-popup-other = {$user} flipped the {$target}.
 
-# Starlight begin
-playing-card-deck-cut-popup = Cut the deck
-playing-card-hand-convert-to-hand-verb-text = Convert to hand
-# Starlight end
-
 # Hand
 playing-cards-hand-card-count-changed-added = Card was added (Total of cards: {$quantity})
 playing-cards-hand-card-count-changed-removed = Card was removed (Total of cards: {$quantity})

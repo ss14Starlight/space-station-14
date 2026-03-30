@@ -206,7 +206,7 @@ public abstract partial class SharedPlayingCardsSystem
 
         foreach (var card in deck.Comp.Cards)
         {
-            FlipCardInDeck(card);
+            FlipCardInDeck(card, faceDown: null);
         }
 
         VerbAudioAndPopup(PlayingCardDeckComponent.Verbs.FlipEntire, deck, user);
