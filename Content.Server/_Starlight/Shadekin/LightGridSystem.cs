@@ -19,8 +19,9 @@ public sealed class LightGridSystem : EntitySystem
     private readonly HashSet<Entity<OccluderComponent>> _occluders = new();
     private EntityQuery<OccluderComponent> _occluderQuery;
     private EntityQuery<TransformComponent> _xformQuery;
+    private EntityQuery<MetaDataComponent> _metaQuery;
     private TimeSpan _nextUpdate = TimeSpan.Zero;
-    private readonly TimeSpan _updateInterval = TimeSpan.FromSeconds(1f);
+    private readonly TimeSpan _updateInterval = TimeSpan.FromSeconds(0.35f);
 
     private readonly HashSet<Vector2i> _opaque = new();
     private readonly HashSet<Vector2i> _scanTiles = new();
@@ -44,6 +45,7 @@ public sealed class LightGridSystem : EntitySystem
         base.Initialize();
         _occluderQuery = GetEntityQuery<OccluderComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
+        _metaQuery = GetEntityQuery<MetaDataComponent>();
 
         _job = new LightJob();
     }
@@ -103,6 +105,9 @@ public sealed class LightGridSystem : EntitySystem
                 continue;
 
             if (HasComp<DarkLightComponent>(lightUid) || HasComp<ShadegenAffectedComponent>(lightUid))
+                continue;
+
+            if ((_metaQuery.GetComponent(lightUid).Flags & MetaDataFlags.InContainer) != 0)
                 continue;
 
             // deal with disabled light with negative energy
