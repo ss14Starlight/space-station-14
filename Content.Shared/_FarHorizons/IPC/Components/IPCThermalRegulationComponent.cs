@@ -71,11 +71,6 @@ public sealed partial class IPCThermalRegulationComponent : Component
     public TimeSpan CanSwitchModeIn = TimeSpan.Zero;
 
     [DataField]
-    public ProtoId<TagPrototype> ExternalCoolingTag;
-    [DataField]
-    public HashSet<string> ExternalCoolingCheckSlots;
-
-    [DataField]
     public LocId FansOffExamineText = "ipc-thermals-examine-off";
     [DataField]
     public LocId FansOffDiagnosticsText = "ipc-thermals-diagnostics-off";

@@ -137,6 +137,8 @@
           amount: 2
         - id: DoubleEmergencyNitrogenTankFilled
           amount: 2
+        - id: EmergencyCoolingUnit # Starlight
+          amount: 2
 
 - type: entity
   parent: CrateGenericSteel

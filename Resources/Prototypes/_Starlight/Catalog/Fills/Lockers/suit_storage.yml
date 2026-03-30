@@ -9,6 +9,7 @@
         children:
         - id: OxygenTankFilled
         - id: NitrogenTankFilled
+        - id: CoolingUnit
         - id: ClothingOuterHardsuitBlueshield
         - id: ClothingMaskBreath
         - id: ClothingShoesBootsMagBSO

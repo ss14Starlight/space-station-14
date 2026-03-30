@@ -213,6 +213,10 @@
         children:
         - id: NitrogenTankFilled
         - id: DoubleEmergencyNitrogenTankFilled
+      - !type:GroupSelector #Starlight
+        children:
+        - id: CoolingUnit
+        - id: EmergencyCoolingUnit
       - id: EmergencyFunnyOxygenTankFilled
         weight: 0.5
       - !type:GroupSelector
