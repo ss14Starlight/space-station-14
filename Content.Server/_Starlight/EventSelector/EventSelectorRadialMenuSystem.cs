@@ -4,7 +4,7 @@ using Content.Shared.Timing;
 
 namespace Content.Server._Starlight.EventSelector;
 
-public sealed class EventSelectorRadialMenuSystem : EntitySystem
+public sealed class EventSelectorRadialMenuSystem : SharedEventSelectorSystem
 {
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
@@ -20,14 +20,14 @@ public sealed class EventSelectorRadialMenuSystem : EntitySystem
 
     private void OnRadialMenuSelect(Entity<EventSelectorRadialMenuComponent> entity, ref EventSelectorOnRadialMenuSelectMessage args)
     {
-        if (_useDelay.IsDelayed(entity.Owner, DelayId))
-            return;
-        
         if (args.Index < 0 || args.Index >= entity.Comp.RadialMenuEntries.Count)
         {
             Log.Error($"{ToPrettyString(args.Actor)} tried to select radial menu index that is out of range for {ToPrettyString(entity)}.");
             return;
         }
+
+        if (!CanActivate(entity, out _))
+            return;
 
         if (_ticker.RunLevel != GameRunLevel.InRound)
             return;

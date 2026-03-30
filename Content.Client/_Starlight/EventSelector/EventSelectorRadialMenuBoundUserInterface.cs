@@ -8,7 +8,7 @@ namespace Content.Client._Starlight.EventSelector;
 public sealed class EventSelectorRadialMenuBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-
+    
     private SimpleRadialMenu? _triggerRadialMenu;
 
     protected override void Open()
@@ -32,7 +32,7 @@ public sealed class EventSelectorRadialMenuBoundUserInterface(EntityUid owner, E
         {
             var entry = entries[i];
 
-            var option = new RadialMenuActionOption<int>(SendTriggerSelectMessage, i)
+            var option = new RadialMenuActionOption<int>(TrySendTriggerSelectMessage, i)
             {
                 ToolTip = entry.Name != null ? Loc.GetString(entry.Name) : null,
 
@@ -48,7 +48,7 @@ public sealed class EventSelectorRadialMenuBoundUserInterface(EntityUid owner, E
         return buttons;
     }
 
-    private void SendTriggerSelectMessage(int index)
+    private void TrySendTriggerSelectMessage(int index)
     {
         SendMessage(new EventSelectorOnRadialMenuSelectMessage(index));
     }
