@@ -1,5 +1,5 @@
 - type: marking
-  id: TattooFelionoidHeartLeftArm
+  id: FelionoidArmTattooHeartL
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Felionoid]
@@ -13,7 +13,7 @@
     state: heart_l_arm
 
 - type: marking
-  id: TattooFelionoidHeartRightArm
+  id: FelionoidArmTattooHeartR
   bodyPart: RArm
   markingCategory: Arms
   speciesRestriction: [Felionoid]
@@ -27,7 +27,7 @@
     state: heart_r_arm
 
 - type: marking
-  id: TattooFelionoidHiveChest
+  id: FelionoidChestHive
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Felionoid]
@@ -41,7 +41,7 @@
     state: hive_s
 
 - type: marking
-  id: TattooFelionoidNightlingChest
+  id: FelionoidChestNightling
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Felionoid]
