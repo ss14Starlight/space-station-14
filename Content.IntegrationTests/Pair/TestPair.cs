@@ -43,6 +43,9 @@ public sealed partial class TestPair : RobustIntegrationTest.TestPair
             var gameTicker = Server.System<GameTicker>();
             await Server.WaitPost(() => gameTicker.RestartRound());
         }
+
+        _Starlight.Patches.SystemTimingPatch.EnableMetrics(Server.EntMan.EntitySysManager); // Starlight
+        await _Starlight.Patches.SystemTimingPatch.TakeSnapshot(); // Starlight
     }
 
     public override async Task RevertModifiedCvars()

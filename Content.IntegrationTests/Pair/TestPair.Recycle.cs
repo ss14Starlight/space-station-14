@@ -18,6 +18,7 @@ public sealed partial class TestPair
 {
     protected override async Task Cleanup()
     {
+        await _Starlight.Patches.SystemTimingPatch.PrintTop10(TestOut); // Starlight
         await base.Cleanup();
         await ResetModifiedPreferences();
     }
@@ -73,6 +74,9 @@ public sealed partial class TestPair
         await Server.WaitPost(() => Server.EntMan.FlushEntities());
         await Server.WaitPost(() => gameTicker.RestartRound());
         await RunTicksSync(1);
+
+        _Starlight.Patches.SystemTimingPatch.EnableMetrics(Server.EntMan.EntitySysManager); // Starlight
+        await _Starlight.Patches.SystemTimingPatch.TakeSnapshot(); // Starlight
     }
 
     public override void ValidateSettings(PairSettings s)
