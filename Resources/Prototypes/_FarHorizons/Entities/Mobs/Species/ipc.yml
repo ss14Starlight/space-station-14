@@ -221,6 +221,7 @@
     noPowerDeathEmote: DeathgaspIPC
   - type: Deathgasp
     prototype: DeathgaspIPC
+    damageType: Shock
   - type: PowerCellSlot
     cellSlotId: cell_slot
     fitsInCharger: true
