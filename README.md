@@ -4,7 +4,7 @@
 
 <div class="header" align="center">
 
-[![Discord](https://img.shields.io/discord/1272545509562777621?label=Discord&logo=discord&logoColor=white)](https://discord.gg/XbEa2ZsAFv)
+[![Discord](https://img.shields.io/badge/Discord)](https://discord.gg/XbEa2ZsAFv)
 [![Steam](https://img.shields.io/badge/Steam-SS14%20-blue)](https://store.steampowered.com/app/1255460/Space_Station_14/)
 [![Client](https://img.shields.io/badge/Client-Download-blue)](https://spacestation14.io/about/nightlies/)
 [![GitHub](https://img.shields.io/github/stars/ss14Starlight/space-station-14?style=social)]([https://github.com/ss14Starlight/space-station-14])
