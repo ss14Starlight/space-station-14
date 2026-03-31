@@ -67,6 +67,8 @@ marking-FelionoidChestNightling = Nightling Chest Tattoo
 marking-FelionoidSnout = Snout
 
 # Tail
-marking-FelionoidTail = Tail
-marking-FelionoidTailAnimated = Tail, Wag
+marking-FelionoidTail = Felionoid Tail
+marking-FelionoidTail-tail_behind = Felionoid Tail
+marking-FelionoidTailAnimated = Felionoid Tail, Wag
+marking-FelionoidTailAnimated-tail_wagging = Tail, Wag
 marking-FelionoidTailTipAnimated = Tipped Tail, Wag
