@@ -15081,8 +15081,6 @@ entities:
       pos: -43.5,42.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 5418
   - uid: 670
@@ -15096,8 +15094,6 @@ entities:
       pos: -43.5,38.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 15574
       - 5418
@@ -15987,8 +15983,6 @@ entities:
       pos: 33.5,12.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 13179
   - uid: 798
@@ -16226,8 +16220,6 @@ entities:
       pos: -10.5,60.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 2137
   - uid: 7039
@@ -16245,8 +16237,6 @@ entities:
       pos: -36.5,40.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 5418
   - uid: 15275
@@ -16453,8 +16443,6 @@ entities:
       pos: -75.5,10.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 22798
   - uid: 31906
@@ -16469,8 +16457,6 @@ entities:
       pos: -67.5,35.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 31944
 - proto: AirSensorVox
@@ -98644,8 +98630,6 @@ entities:
       pos: -9.5,60.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 27917
     components:
     - type: Transform
@@ -139056,8 +139040,6 @@ entities:
     - type: AtmosPipeColor
       color: '#0335FCFF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 2137
   - uid: 6641
@@ -139352,8 +139334,6 @@ entities:
       pos: -43.5,39.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 5418
     - type: AtmosPipeColor
@@ -140519,8 +140499,6 @@ entities:
       pos: 33.5,10.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 13179
     - type: AtmosPipeColor
@@ -141503,8 +141481,6 @@ entities:
     - type: AtmosPipeColor
       color: '#0335FCFF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 31035
   - uid: 31942
@@ -141515,8 +141491,6 @@ entities:
     - type: AtmosPipeColor
       color: '#0335FCFF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 31944
   - uid: 32182
@@ -141668,8 +141642,6 @@ entities:
     - type: AtmosPipeColor
       color: '#FF1212FF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 2137
   - uid: 9195
@@ -141937,8 +141909,6 @@ entities:
       pos: -43.5,37.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 5418
     - type: AtmosPipeColor
@@ -142691,8 +142661,6 @@ entities:
       pos: 33.5,11.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 13179
     - type: AtmosPipeColor
@@ -143428,8 +143396,6 @@ entities:
     - type: AtmosPipeColor
       color: '#FF1212FF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 31944
   - uid: 32186
@@ -157131,41 +157097,41 @@ entities:
         [italic][color=green]Do you like the station? [/italic]
 
 
-        ⠀⠀⠀⠀⠀⣀⣤⣶⣿⣿⣿⣿⣿⣿⣟⣿⣿⣟⣿⣲⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        â €â €â €â €â €â£€â£¤â£¶â£¿â£¿â£¿â£¿â£¿â£¿â£Ÿâ£¿â£¿â£Ÿâ£¿â£²â£¦â£„â €â €â €â €â €â €â €â €â €â €â €â €â €
 
-        ⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        â €â €â €â£ â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£·â£„â €â €â €â €â €â €â €â €â €â €â €
 
-        ⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⢠⣶⣀⠀⠀⠀⠀
+        â €â €â£¼â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â¡„â €â €â €â¢ â£¶â£€â €â €â €â €
 
-        ⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⢻⣿⡥⣼⣿⣿⠀
+        â €â£¼â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â¡€â €â €â¢»â£¿â¡¥â£¼â£¿â£¿â €
 
-        ⢸⣿⣿⣿⣿⡿⠿⠿⠻⠿⠻⠿⣿⣿⣿⣿⣿⣟⣥⣶⣾⣶⣬⠻⣿⣧⠀⠀⠀⠙⣯⣿⠿⠃⠀
+        â¢¸â£¿â£¿â£¿â£¿â¡¿â ¿â ¿â »â ¿â »â ¿â£¿â£¿â£¿â£¿â£¿â£Ÿâ£¥â£¶â£¾â£¶â£¬â »â£¿â£§â €â €â €â ™â£¯â£¿â ¿â ƒâ €
 
-        ⣾⣿⣿⣿⠏⢡⢔⣮⣽⡿⠿⡶⣄⠙⣿⣿⡏⣼⣿⠟⠁⠉⠙⠳⣼⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        â£¾â£¿â£¿â£¿â â¢¡â¢”â£®â£½â¡¿â ¿â¡¶â£„â ™â£¿â£¿â¡â£¼â£¿â Ÿâ â ‰â ™â ³â£¼â£¿â €â €â €â €â €â €â €â €â €
 
-        ⣿⣿⣿⡏⢐⣵⠋⠁⠀⠀⠀⠀⠀⠑⡀⣿⡿⢾⠋⣥⣠⡄⠀⠀⠀⣼⣿⠀⠀⢰⣦⣄⣠⠆⡄
+        â£¿â£¿â£¿â¡â¢â£µâ ‹â â €â €â €â €â €â ‘â¡€â£¿â¡¿â¢¾â ‹â£¥â£ â¡„â €â €â €â£¼â£¿â €â €â¢°â£¦â£„â£ â †â¡„
 
-        ⢹⣿⣿⠀⢿⠀⠻⣿⠟⣀⡀⠀⠀⠀⠀⣿⣿⠀⠀⠈⠛⡥⠀⠀⠀⢰⣿⠀⠀⠀⠙⣿⣿⠟⠀
+        â¢¹â£¿â£¿â €â¢¿â €â »â£¿â Ÿâ£€â¡€â €â €â €â €â£¿â£¿â €â €â ˆâ ›â¡¥â €â €â €â¢°â£¿â €â €â €â ™â£¿â£¿â Ÿâ €
 
-        ⠈⣿⣿⡇⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⣸⣿⣧⠀⠀⠀⠀⠀⣤⠄⣰⠏⠀⠀⠀⠀⠀⠈⠀⠀
+        â ˆâ£¿â£¿â¡‡â €â €â €â €â €â €â ‰â €â €â €â €â£¸â£¿â£§â €â €â €â €â €â£¤â „â£°â â €â €â €â €â €â ˆâ €â €
 
-        ⠀⠈⢿⣿⣆⠀⠀⠀⠀⠀⠀⠀⡶⢀⣾⣿⣻⣿⣦⣀⣀⣀⣴⣾⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        â €â ˆâ¢¿â£¿â£†â €â €â €â €â €â €â €â¡¶â¢€â£¾â£¿â£»â£¿â£¦â£€â£€â£€â£´â£¾â ‹â €â €â €â €â €â €â €â €â €â €
 
-        ⠀⠀⠀⠉⠳⣯⣵⢦⡤⢤⡤⣶⣻⡿⣿⣿⣿⣭⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        â €â €â €â ‰â ³â£¯â£µâ¢¦â¡¤â¢¤â¡¤â£¶â£»â¡¿â£¿â£¿â£¿â£­â£¿â£¿â£¿â Ÿâ â €â €â €â €â €â €â €â €â €â €â €â €
 
-        ⠀⢠⣤⣀⠀⠀⠈⠙⠛⠻⠿⠿⠿⠿⠿⠿⠟⠛⠉⠁⠀⠀⠀⠀⢰⣾⣿⡆⠀⠀⠀⠀⠀⠀⠀
+        â €â¢ â£¤â£€â €â €â ˆâ ™â ›â »â ¿â ¿â ¿â ¿â ¿â ¿â Ÿâ ›â ‰â â €â €â €â €â¢°â£¾â£¿â¡†â €â €â €â €â €â €â €
 
-        ⠀⠸⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⡇⠀⠀⠀⠀⠀
+        â €â ¸â£¿â£¿â£†â €â €â €â €â €â €â €â €â €â €â €â €â €â €â €â €â €â €â €â €â €â¢°â£¿â£¿â¡‡â €â €â €â €â €
 
-        ⠀⠀⣹⣿⣿⣧⣠⣤⣤⣴⣶⣖⣶⣤⣀⣰⣶⣶⣷⣿⣿⣿⣿⢿⣯⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀
+        â €â €â£¹â£¿â£¿â£§â£ â£¤â£¤â£´â£¶â£–â£¶â£¤â£€â£°â£¶â£¶â£·â£¿â£¿â£¿â£¿â¢¿â£¯â£¿â£¿â£‡â €â €â €â €â €â €â €
 
-        ⠀⢰⣿⣿⣿⣿⣿⡿⣿⣿⣿⡷⣿⣿⡿⠹⠿⠿⠿⡿⣿⣿⣿⣿⣿⣿⣿⣷⡇⠀⠀⠀⠀⠀⠀
+        â €â¢°â£¿â£¿â£¿â£¿â£¿â¡¿â£¿â£¿â£¿â¡·â£¿â£¿â¡¿â ¹â ¿â ¿â ¿â¡¿â£¿â£¿â£¿â£¿â£¿â£¿â£¿â£·â¡‡â €â €â €â €â €â €
 
-        ⠀⢿⣿⣿⡿⣿⣿⣿⣷⣯⣔⠀⠀⠀⠀⠀⠀⠀⠀⣬⣿⣿⣿⣿⣿⣯⣿⣿⡇⠆⠀⠀⠀⠀⠀
+        â €â¢¿â£¿â£¿â¡¿â£¿â£¿â£¿â£·â£¯â£”â €â €â €â €â €â €â €â €â£¬â£¿â£¿â£¿â£¿â£¿â£¯â£¿â£¿â¡‡â †â €â €â €â €â €
 
-        ⠀⠀⠻⢿⡿⣿⣽⣿⣿⡟⡛⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⢿⣿⢿⣿⡯⠏⠅⠀⠀⠀⠀⠀
+        â €â €â »â¢¿â¡¿â£¿â£½â£¿â£¿â¡Ÿâ¡›â €â €â €â €â €â €â €â €â¢»â£¿â£¿â£¿â¢¿â£¿â¢¿â£¿â¡¯â â …â €â €â €â €â €
 
-        ⠀⠀⠀⠀⠉⠛⠿⠿⠏⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀
+        â €â €â €â €â ‰â ›â ¿â ¿â â ‹â €â €â €â €â €â €â €â €â €â €â €â €â €â ‰â ‰â ‰â â €â €â €â €â €â €â €â €
       editingDisabled: True
     - type: SolutionContainerManager
       solutions:
@@ -170310,24 +170276,18 @@ entities:
       pos: 72.5,16.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 25317
     components:
     - type: Transform
       pos: 73.5,16.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 26038
     components:
     - type: Transform
       pos: 71.5,16.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
 - proto: ShuttersWindowOpen
   entities:
   - uid: 25318
