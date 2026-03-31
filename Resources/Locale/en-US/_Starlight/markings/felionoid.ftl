@@ -1,5 +1,7 @@
 # Chest
 marking-FelionoidChestBelly = Belly
+marking-FelionoidChestBrightBelly = Bright Belly
+marking-FelionoidChestStripes = Striped Belly
 marking-FelionoidChestTabby = Tabby Belly
 marking-FelionoidChestCalico = Calico Belly
 
@@ -14,6 +16,8 @@ marking-FelionoidArmTabbyL = Left Arm Tabby
 marking-FelionoidArmTabbyR = Right Arm Tabby
 marking-FelionoidArmCalicoR = Right Arm Calico
 marking-FelionoidArmCalicoL = Left Arm Calico
+marking-FelionoidArmStripesR = Right Arm Striped
+marking-FelionoidArmStripesL = Left Arm Striped
 
 # Hands
 marking-FelionoidHandPawMittensR = Right Hand Paw Mittens
@@ -51,9 +55,18 @@ marking-FelionoidHairNights = Nights
 marking-FelionoidHeadTiger = Tiger Head
 marking-FelionoidHeadTabby = Tabby Head
 marking-FelionoidHeadCalico = Calico Head
+marking-FelionoidHeadStripes = Striped Head
 
 # Tattoos
 marking-FelionoidArmTattooHeartL = Left Arm Heart Tattoo
 marking-FelionoidArmTattooHeartR = Right Arm Heart Tattoo
 marking-FelionoidChestHive = Hive Back Tattoo
 marking-FelionoidChestNightling = Nightling Chest Tattoo
+
+# Snout
+marking-FelionoidSnout = Snout
+
+# Tail
+marking-FelionoidTail = Tail
+marking-FelionoidTailAnimated = Tail, Wag
+marking-FelionoidTailTipAnimated = Tipped Tail, Wag

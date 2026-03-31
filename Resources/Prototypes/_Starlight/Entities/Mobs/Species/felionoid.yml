@@ -93,6 +93,7 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Wagging
   - type: Inventory
     speciesId: felionoid
     displacements:

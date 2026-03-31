@@ -61,7 +61,7 @@
       defaultMarkings: [ FelionoidEars]
     Snout:
       points: 1
-      required: true
+      required: false
     Arms:
       points: 4
       required: true
@@ -74,7 +74,7 @@
     Tail:
       points: 1
       required: true
-      defaultMarkings: [ FelionoidTailAnimated ]
+      defaultMarkings: [ FelionoidTail ]
     UndergarmentTop:
       points: 1
       required: false

@@ -20,12 +20,6 @@
       "license": "CC-BY-SA-3.0"
     },
     {
-      "name": "tail_front",
-      "directions": 4,
-      "copyright": "Darkrell",
-      "license": "CC-BY-SA-3.0"
-    },
-    {
       "name": "tail_behind",
       "directions": 4,
       "copyright": "Darkrell",
@@ -33,12 +27,6 @@
     },
     {
       "name": "tail",
-      "directions": 4,
-      "copyright": "Darkrell",
-      "license": "CC-BY-SA-3.0"
-    },
-    {
-      "name": "tail_dodge",
       "directions": 4,
       "copyright": "Darkrell",
       "license": "CC-BY-SA-3.0"
@@ -265,6 +253,54 @@
       "name": "calico2_head",
       "directions": 4,
       "copyright": "depressedtimbit",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "bright_belly",
+      "directions": 4,
+      "copyright": "DocMoth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "body_stripes",
+      "directions": 4,
+      "copyright": "DocMoth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "head_snout",
+      "directions": 4,
+      "copyright": "DocMoth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "head_stripes",
+      "directions": 4,
+      "copyright": "DocMoth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "l_arm_stripes",
+      "directions": 4,
+      "copyright": "DocMoth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "r_arm_stripes",
+      "directions": 4,
+      "copyright": "DocMoth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "tail_base_wagging",
+      "directions": 4,
+      "copyright": "DocMoth",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "tail_tip_wagging",
+      "directions": 4,
+      "copyright": "DocMoth",
       "license": "CC-BY-SA-3.0"
     }
   ]

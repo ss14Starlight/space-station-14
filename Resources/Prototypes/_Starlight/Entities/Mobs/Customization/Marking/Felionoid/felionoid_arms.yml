@@ -51,3 +51,21 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: calico2_ArmL
+
+- type: marking
+  id: FelionoidArmStripesR
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: r_arm_stripes
+
+- type: marking
+  id: FelionoidArmStripesL
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: l_arm_stripes
