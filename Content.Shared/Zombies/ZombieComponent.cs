@@ -111,10 +111,11 @@ public sealed partial class ZombieComponent : Component
         DamageDict = new ()
         {
             { "Blunt", -0.7 }, // Starlight-edit
-            { "Slash", -0.5 }, // Starlight-edit
+            { "Slash", -0.7 }, // Starlight-edit
             { "Piercing", -0.6 }, // Starlight-edit
-            { "Heat", -0.02 },
-            { "Shock", -0.05 } // Starlight-edit
+            { "Heat", -0.2 }, // Starlight-edit
+            { "Shock", -0.1 }, // Starlight-edit
+            { "Bloodloss", -0.5 } // Starlight-edit
         }
     };
 

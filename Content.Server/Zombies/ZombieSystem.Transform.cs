@@ -22,6 +22,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems; // Starlight-start: zombie HP buff
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NameModifier.EntitySystems;
@@ -77,6 +78,7 @@ public sealed partial class ZombieSystem
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly LanguageSystem _language = default!; // Starlight-edit: Languages
+    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!; // Starlight-start: zombie HP buff
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
     private static readonly ProtoId<TagPrototype> CannotSuicideTag = "CannotSuicide";
@@ -249,6 +251,17 @@ public sealed partial class ZombieSystem
 
         //The zombie gets the assigned damage weaknesses and strengths
         _damageable.SetDamageModifierSetId(target, "Zombie");
+
+        // Starlight-start: zombie HP buff — add 25 HP to all non-alive thresholds
+        if (TryComp<MobThresholdsComponent>(target, out var threshComp))
+        {
+            foreach (var state in new[] { MobState.Critical, MobState.Dead })
+            {
+                if (_mobThreshold.TryGetThresholdForState(target, state, out var cur, threshComp))
+                    _mobThreshold.SetMobStateThreshold(target, cur.Value + 25, state, threshComp);
+            }
+        }
+        // Starlight-end
 
         //This makes it so the zombie doesn't take bloodloss damage.
         //NOTE: they are supposed to bleed, just not take damage
