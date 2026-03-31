@@ -291,6 +291,12 @@
       - id: BarberScissors
       - id: TwinPointerKit # Starlight: Added twinpointer to maints loot
       - id: JetpackImprovisedFilled #Starlight
+      - id: Flash0Use # Starlight
+        weight: 0.6 # Starlight
+      - id: Flash1Use # Starlight
+        weight: 0.7 # Starlight
+      - id: SciFlash # Starlight
+        weight: 0.5 # Starlight
       - !type:GroupSelector
         children:
         - id: DrinkSpaceGlue
@@ -315,6 +321,12 @@
       - id: LidSalami
         weight: 0.05
       - id: MakeshiftID # Starlight
+      - id: Flash3Use # Starlight
+        weight: 0.3 # Starlight
+      - id: Flash4Use # Starlight
+        weight: 0.15 # Starlight
+      - id: Flash # Starlight
+        weight: 0.05 # Starlight
 
 - type: entity
   name: Maint Loot Spawner

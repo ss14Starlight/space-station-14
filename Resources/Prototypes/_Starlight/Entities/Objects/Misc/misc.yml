@@ -25,3 +25,21 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+        
+- type: entity
+  name: Picture frame
+  parent: [BaseItem]
+  id: PictureFrame
+  description: A flimsy amalgamation of wood scraps used to hold colourful paper.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/desktop_picture_frame.rsi
+      state: icon
+    - type: Item
+      size: Small
+    - type: Engraveable
+      engraveVerb: "engraving-picture-verb"
+      popupMessage: "engraving-picture-Ui-Popup"
+      noEngravingText: "engraving-picture-no-message"
+      engraveSuccessMessage: "engraving-picture-succeed"
+      hasEngravingText: "engraving-picture-has-message" 

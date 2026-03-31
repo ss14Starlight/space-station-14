@@ -11,6 +11,8 @@
       blacklist:
       - Abductor
       - Skeleton
+      - IPC
+      - Terminator
     - !type:SubjectMindAntagCondition
       blacklist:
       - Brighteye
@@ -30,6 +32,8 @@
       blacklist:
       - Abductor
       - Skeleton
+      - IPC
+      - Terminator
     - !type:SubjectMindAntagCondition
       blacklist:
       - Brighteye

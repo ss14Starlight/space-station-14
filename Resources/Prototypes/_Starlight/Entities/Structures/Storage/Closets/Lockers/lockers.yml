@@ -54,7 +54,7 @@
   - type: AccessReader
     access: [["Brigmedic"]]
 
-# NanoTrasen Representives
+# NanoTrasen Representatives
 #BSO
 - type: entity
   id: LockerBlueshield

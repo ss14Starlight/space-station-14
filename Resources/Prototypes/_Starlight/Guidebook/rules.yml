@@ -177,7 +177,7 @@
 
 - type: guideEntry
   id: Metashield
-  name: guide-entry-Metashield
+  name: guide-entry-sl-metashield
   ruleEntry: true
   priority: 15
   text: "/ServerInfo/Guidebook/ServerRules/RulesSL/Clarifications/Metashield.xml"

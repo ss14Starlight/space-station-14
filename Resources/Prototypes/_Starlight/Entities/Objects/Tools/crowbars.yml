@@ -33,6 +33,13 @@
   - type: Tag
     tags:
       - Crowbar
+  #FarHorizons Start
+  - type: CrowbarSurgery
+    startSound:
+      path: /Audio/Items/crowbar.ogg
+    speed: 1.5
+  - type: SurgeryTool
+  #FarHorizons End
 
 - type: entity
   name: improvised crowbar

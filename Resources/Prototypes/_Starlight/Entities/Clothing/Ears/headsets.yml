@@ -116,7 +116,7 @@
 - type: entity
   parent: [ClothingHeadset, BaseCommandContraband]
   id: ClothingHeadsetNCT
-  name: nanotrasen career trainer radio headset
+  name: NanoTrasen career trainer radio headset
   description: This is used by your well-taught corporate training team.
   components:
   - type: ContainerFill

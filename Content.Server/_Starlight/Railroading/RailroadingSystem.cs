@@ -104,7 +104,10 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
             Color = entity.Comp1.Color,
             IconColor = entity.Comp1.IconColor,
             Description = Loc.GetString(entity.Comp1.Description),
-            Image = entity.Comp1.Image
+            Image = entity.Comp1.Image,
+
+            CreditReward = !TryComp<RailroadDonationRewardComponent>(entity, out var creditReward) ? null : creditReward.Amount,
+            HasSecretAccess = HasComp<RailroadSecretVendingAccessComponent>(entity)
         };
 
     private void ShowCardsUi(Entity<RailroadableComponent> ent, ref OpenCardsAlertEvent args)
@@ -189,7 +192,7 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
 
         foreach (var card in subject.Comp.IssuedCards)
             if (_entitySystem.TryEntity<RailroadRuleComponent>(card.Comp2.RuleOwner, out var rule))
-                rule.Comp.Pool.Add(card);
+                _railroadRule.AddCardToPool(rule, card);
 
         subject.Comp.IssuedCards = null;
         subject.Comp.Restricted = true;

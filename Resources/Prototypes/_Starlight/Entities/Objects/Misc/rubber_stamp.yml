@@ -14,7 +14,7 @@
     state: stamp-magistrate
 
 - type: entity
-  name: NT representative's rubber stamp
+  name: nt representative's rubber stamp
   parent: [ RubberStampBase, BaseCommandContraband ]
   id: RubberStampNtrep
   suffix: DO NOT MAP
@@ -42,7 +42,7 @@
       state: stamp-iaa
 
 - type: entity
-  name: blue shield rubber stamp
+  name: blueshield rubber stamp
   parent: [ RubberStampBase, BaseBlueShieldContraband ]
   id: RubberStampBSO
   suffix: DO NOT MAP
@@ -72,7 +72,7 @@
 
 # CC Division Stamps
 - type: entity
-  name: Central Administration Division rubber stamp
+  name: central administration division rubber stamp
   parent: RubberStampBase
   id: RubberStampCAD
   categories: [ DoNotMap ]
@@ -85,7 +85,7 @@
     state: stamp-cap
 
 - type: entity
-  name: Central Cargo Division rubber stamp
+  name: central cargo division rubber stamp
   parent: RubberStampBase
   id: RubberStampCCD
   categories: [ DoNotMap ]
@@ -98,7 +98,7 @@
     state: stamp-detective
 
 - type: entity
-  name: Central Engineering Division rubber stamp
+  name: central engineering division rubber stamp
   parent: RubberStampBase
   id: RubberStampCED
   categories: [ DoNotMap ]
@@ -111,7 +111,7 @@
     state: stamp-ce
 
 - type: entity
-  name: Central Intelligence Division rubber stamp
+  name: central intelligence division rubber stamp
   parent: RubberStampBase
   id: RubberStampCID
   categories: [ DoNotMap ]
@@ -124,7 +124,7 @@
     state: stamp-rd
 
 - type: entity
-  name: Central Medical Division rubber stamp
+  name: central medical division rubber stamp
   parent: RubberStampBase
   id: RubberStampCMD
   categories: [ DoNotMap ]
@@ -137,7 +137,7 @@
     state: stamp-cmo
 
 - type: entity
-  name: Central Research Division rubber stamp
+  name: central research division rubber stamp
   parent: RubberStampBase
   id: RubberStampCRD
   categories: [ DoNotMap ]
@@ -150,7 +150,7 @@
     state: stamp-wizard
 
 - type: entity
-  name: Central Domestic Division rubber stamp
+  name: central domestic division rubber stamp
   parent: RubberStampBase
   id: RubberStampCDD
   categories: [ DoNotMap ]
@@ -163,7 +163,7 @@
     state: stamp-centcom
 
 - type: entity
-  name: Central Special Operations Division rubber stamp
+  name: central special operations division rubber stamp
   parent: RubberStampBase
   id: RubberStampCSOD
   suffix: DO NOT MAP
@@ -177,7 +177,7 @@
     state: stamp-magistrate
 
 - type: entity
-  name: Central Security Division rubber stamp
+  name: central security division rubber stamp
   parent: RubberStampBase
   id: RubberStampCSD
   categories: [ DoNotMap ]
@@ -368,7 +368,7 @@
 
 # Salvage stamp
 - type: entity
-  name: Salvage Lead's rubber stamp
+  name: salvage lead's rubber stamp
   parent: RubberStampBase
   id: RubberStampSalvageLead
   suffix: DO NOT MAP
@@ -383,7 +383,7 @@
 
 # TSF/Solgov stamp
 - type: entity
-  name: Trans-Solar Federation rubber stamp
+  name: trans-solar federation rubber stamp
   parent: RubberStampBase
   id: RubberStampTSF
   categories: [ DoNotMap ]
@@ -396,7 +396,7 @@
     state: stamp-hop
 
 - type: entity
-  name: Trans-Solar Marine Corps rubber stamp
+  name: trans-solar marine corps rubber stamp
   parent: RubberStampBase
   id: RubberStampTSMC
   categories: [ DoNotMap ]
@@ -409,7 +409,7 @@
     state: stamp-hop
 
 - type: entity
-  name: Solgov Law Enforcement rubber stamp
+  name: solgov law enforcement rubber stamp
   parent: RubberStampBase
   id: RubberStampSolgovLaw
   categories: [ DoNotMap ]
@@ -422,7 +422,7 @@
     state: stamp-hop
 
 - type: entity
-  name: Solgov Representative rubber stamp
+  name: solgov representative rubber stamp
   parent: RubberStampBase
   id: RubberStampSolgovRep
   categories: [ DoNotMap ]
@@ -435,7 +435,7 @@
     state: stamp-hop
 
 - type: entity
-  name: Solgov Traders rubber stamp
+  name: solgov traders rubber stamp
   parent: RubberStampBase
   id: RubberStampSolgovTraders
   categories: [ DoNotMap ]

@@ -16,7 +16,7 @@
 - type: entity
   parent: [ IDCardStandard, BaseCentcommContraband ]
   id: CentcomIDCardOperator
-  name: centcomm operator ID card
+  name: CentComm operator ID card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -60,7 +60,7 @@
 - type: entity
   parent: [ IDCardStandard, BaseCommandContraband ]
   id: NanoTrasenRepresentativeIDCard
-  name: nanotrasen representative ID Card
+  name: NanoTrasen representative ID Card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -118,7 +118,7 @@
 - type: entity
   parent: [ IDCardStandard, BaseCommandContraband ]
   id: NTNCBlueShieldIDCard
-  name: nanotrasen navy corps marine's ID card
+  name: NanoTrasen navy corps marine's ID card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -507,7 +507,7 @@
 - type: entity
   parent: [ IDCardStandard, BaseCommandContraband ]
   id: NanotrasenCareerTrainerIDCard
-  name: nanotrasen career trainer ID Card
+  name: NanoTrasen career trainer ID Card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
