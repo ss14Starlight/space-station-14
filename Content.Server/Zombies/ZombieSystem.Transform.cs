@@ -258,7 +258,7 @@ public sealed partial class ZombieSystem
             foreach (var state in new[] { MobState.Critical, MobState.Dead })
             {
                 if (_mobThreshold.TryGetThresholdForState(target, state, out var cur, threshComp))
-                    _mobThreshold.SetMobStateThreshold(target, cur.Value + 25, state, threshComp);
+                    _mobThreshold.SetMobStateThreshold(target, cur.Value + 15, state, threshComp);
             }
         }
         // Starlight-end
