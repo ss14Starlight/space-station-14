@@ -14,7 +14,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
   - type: Physics
-    bodyType: Dynamic
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -172,7 +172,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
   - type: Physics
-    bodyType: Dynamic
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -257,7 +257,7 @@
     containers:
       ballistic_chamber: !type:ContainerSlot
   - type: Physics
-    bodyType: Dynamic
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -343,7 +343,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Physics
-    bodyType: Dynamic
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -428,7 +428,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
   - type: Physics
-    bodyType: Dynamic
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -516,7 +516,7 @@
       renderingStrategy: NoRotation
     - state: space_artillery
   - type: Physics
-    bodyType: Dynamic
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -588,7 +588,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
   - type: Physics
-    bodyType: Dynamic
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -672,7 +672,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
   - type: Physics
-    bodyType: Dynamic
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -756,7 +756,7 @@
     containers:
       ballistic_chamber: !type:ContainerSlot
   - type: Physics
-    bodyType: Dynamic
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -836,7 +836,7 @@
     containers:
       cell_slot: !type:ContainerSlot
   - type: Physics
-    bodyType: Dynamic
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -912,7 +912,7 @@
     containers:
       cell_slot: !type:ContainerSlot
   - type: Physics
-    bodyType: Dynamic
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
