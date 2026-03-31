@@ -1,4 +1,4 @@
-# Command
+# Regular turnstiles
 
 - type: entity
   id: TurnstileCommand
@@ -7,6 +7,16 @@
   components:
   - type: AccessReader
     access: [["Command"]]
+
+- type: entity
+  id: TurnstileDebrief
+  parent: Turnstile
+  suffix: Debrief
+  components:
+    - type: AccessReader
+      access: [["Debrief"]]
+
+# CentComm turnstiles
 
 - type: entity
   id: TurnstileCentComm
@@ -21,3 +31,17 @@
           map: [ "enum.TurnstileVisualLayers.Base" ]
     - type: AccessReader
       access: [["Command"]]
+
+- type: entity
+  id: TurnstileCentCommDebrief
+  parent: Turnstile
+  name: central command turnstile
+  suffix: Debrief
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Doors/cc-turnstile.rsi
+      layers:
+        - state: turnstile
+          map: [ "enum.TurnstileVisualLayers.Base" ]
+    - type: AccessReader
+      access: [["Debrief"]]
