@@ -20,5 +20,6 @@
     Screwdriver: 2
     Crowbar: 2
     OilPack: 5 #SL
+    CableHVStack: 3 #SL
   contrabandInventory:
     FoodBurgerRobot: 1  

@@ -412,6 +412,9 @@ public sealed partial class MarkingPicker : Control
         _selectedMarking = CMarkingsUsed[item.ItemIndex];
         var prototype = (MarkingPrototype)_selectedMarking.Metadata!;
 
+        if (prototype.ForcedGlowing)
+            Glowing.Visible = false;
+
         if (prototype.ForcedColoring)
         {
             CMarkingColors.Visible = false;
