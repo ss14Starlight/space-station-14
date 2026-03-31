@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared._Starlight.Shadekin;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Threading;
@@ -13,7 +14,9 @@ public sealed class LightGridSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IParallelManager _parallel = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedMapSystem _maps = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     private readonly Dictionary<EntityUid, Dictionary<Vector2i, float>> _lightGrids = new();
     // Reused every tick so we dont murder GC
     private readonly HashSet<Entity<OccluderComponent>> _occluders = new();
@@ -25,9 +28,12 @@ public sealed class LightGridSystem : EntitySystem
 
     private readonly HashSet<Vector2i> _opaque = new();
     private readonly HashSet<Vector2i> _scanTiles = new();
+    private readonly List<Entity<MapGridComponent>> _intersectingGrids = new();
 
     // cap for normalizing light from multiple overlapping sources
     private const float MaxExposure = 3f;
+    private const float NearbyGridSearchRange = 3f;
+        private const int NeighborSampleRadius = 2;
     private static readonly Angle _directionalLightHalfAngle = Angle.FromDegrees(60f);
 
     private LightJob _job; 
@@ -327,19 +333,63 @@ public sealed class LightGridSystem : EntitySystem
     public float GetFullExposure(EntityUid uid)
     {
         var xform = Transform(uid);
-        var gridUid = xform.GridUid;
-
-        if (gridUid is null)
+        if (xform.MapUid is not { } mapUid)
             return 0f;
 
-        if (!_lightGrids.TryGetValue(gridUid.Value, out var lightMap))
+        var worldPos = _transform.GetWorldPosition(xform);
+        var size = NearbyGridSearchRange * 2f;
+        var bounds = Box2.CenteredAround(worldPos, new Vector2(size, size));
+
+        _intersectingGrids.Clear();
+        var intersectingGrids = _intersectingGrids;
+        _mapManager.FindGridsIntersecting(mapUid, bounds, ref intersectingGrids, includeMap: false);
+
+        if (_intersectingGrids.Count == 0)
             return 0f;
 
-        if (!TryComp<MapGridComponent>(gridUid, out var gridComp))
-            return 0f;
+        var exposure = 0f;
 
-        var tile = _maps.LocalToTile(gridUid.Value, gridComp, xform.Coordinates);
-        return lightMap.GetValueOrDefault(tile, 0f);
+        foreach (var grid in _intersectingGrids)
+        {
+            if (!_lightGrids.TryGetValue(grid.Owner, out var lightMap))
+                continue;
+
+            var localPos = Vector2.Transform(worldPos, _transform.GetInvWorldMatrix(grid.Owner, _xformQuery));
+            var tile = _maps.LocalToTile(grid.Owner, grid.Comp, new EntityCoordinates(grid.Owner, localPos));
+
+            // entity directly on lit tile
+            if (lightMap.TryGetValue(tile, out var direct))
+            {
+                exposure += direct;
+                continue;
+            }
+
+            // entity is offgrid or on unlit tile
+            var best = 0f;
+            for (var dx = -NeighborSampleRadius; dx <= NeighborSampleRadius; dx++)
+            {
+                for (var dy = -NeighborSampleRadius; dy <= NeighborSampleRadius; dy++)
+                {
+                    if (dx == 0 && dy == 0)
+                        continue;
+
+                    var neighbor = tile + new Vector2i(dx, dy);
+                    if (!lightMap.TryGetValue(neighbor, out var nVal) || nVal <= 0f)
+                        continue;
+
+                    var dist = new Vector2(dx, dy).Length();
+                    var attenuation = 1f / (1f + dist * dist);
+                    var effective = nVal * attenuation;
+
+                    if (effective > best)
+                        best = effective;
+                }
+            }
+
+            exposure += best;
+        }
+
+        return exposure;
     }
 
     public float GetTileLight(EntityUid gridUid, Vector2i tile)
