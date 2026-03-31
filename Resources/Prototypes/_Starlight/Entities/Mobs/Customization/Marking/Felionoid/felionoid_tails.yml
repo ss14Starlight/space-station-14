@@ -5,5 +5,5 @@
   markingCategory: Tail
   speciesRestriction: []
   sprites:
-    - sprite: _Starlight/Mobs/Customization/felionoid_parts.rsi
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: tail_wagging

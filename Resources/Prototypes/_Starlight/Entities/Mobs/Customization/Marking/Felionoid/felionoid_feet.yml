@@ -4,7 +4,7 @@
   markingCategory: Legs
   speciesRestriction: [Felionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  pawmittens_footR
 
 - type: marking
@@ -13,5 +13,5 @@
   markingCategory: Legs
   speciesRestriction: [Felionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  pawmittens_footL

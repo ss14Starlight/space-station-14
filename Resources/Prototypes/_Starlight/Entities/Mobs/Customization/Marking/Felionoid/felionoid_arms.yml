@@ -4,7 +4,7 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  pawmittens_armsL
 
 - type: marking
@@ -13,7 +13,7 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  pawmittens_armsR
 
 - type: marking
@@ -22,7 +22,7 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  Tabby_armL
 
 - type: marking
@@ -31,7 +31,7 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  Tabby_armR
 
 - type: marking
@@ -40,7 +40,7 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: calico2_ArmR
 
 - type: marking
@@ -49,5 +49,5 @@
   markingCategory: Arms
   speciesRestriction: [Felionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/felionoid.rsi
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: calico2_ArmL
