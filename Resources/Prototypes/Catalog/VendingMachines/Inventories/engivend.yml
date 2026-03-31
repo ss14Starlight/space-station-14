@@ -4,6 +4,12 @@
     ClothingEyesGlassesMeson: 4
     ClothingEyesHudDiagnostic: 4
     ClothingHeadHatWelding: 6
+    MatBag: 4 #FH
+    WeaponGrapplingGun: 4 #FH
+    BoxFlare: 4 #FH
+    CableApcStack: 4 #FH
+    CableMVStack: 4 #FH
+    CableHVStack: 4 #FH
     CrowbarYellow: 8
     Multitool: 4
     NetworkConfigurator: 5

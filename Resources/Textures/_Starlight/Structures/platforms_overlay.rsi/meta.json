@@ -1,0 +1,47 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Conflee for Starlight, based on sprites taken from cmss13 at https://github.com/cmss13-devs/cmss13/blob/c67c5213507a19e10e252ef2898d94354c0709bf/icons/obj/structures/props/platforms.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "platform",
+      "directions": 4
+    },
+    {
+      "name": "platform_corner",
+      "directions": 4
+    },
+    {
+      "name": "platform_deco",
+      "directions": 4
+    },
+	{
+      "name": "platform_dark",
+      "directions": 4
+    },
+    {
+      "name": "platform_corner_dark",
+      "directions": 4
+    },
+    {
+      "name": "platform_deco_dark",
+      "directions": 4
+    },
+	{
+      "name": "platform_wood",
+      "directions": 4
+    },
+    {
+      "name": "platform_corner_wood",
+      "directions": 4
+    },
+    {
+      "name": "platform_deco_wood",
+      "directions": 4
+    }
+  ]
+}

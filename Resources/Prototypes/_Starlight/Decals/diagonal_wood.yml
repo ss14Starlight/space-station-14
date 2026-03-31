@@ -1,0 +1,64 @@
+- type: decal
+  id: diagonalwood1
+  tags: ["station", "markings"]
+  defaultCustomColor: false
+  sprite:
+    sprite: _Starlight/Decals/wood_trim.rsi
+    state: diagonal_wood_1
+
+- type: decal
+  id: diagonalwood2
+  tags: ["station", "markings"]
+  defaultCustomColor: false
+  sprite:
+    sprite: _Starlight/Decals/wood_trim.rsi
+    state: diagonal_wood_2
+
+- type: decal
+  id: diagonalwood3
+  tags: ["station", "markings"]
+  defaultCustomColor: false
+  sprite:
+    sprite: _Starlight/Decals/wood_trim.rsi
+    state: diagonal_wood_3
+
+- type: decal
+  id: diagonalwood4
+  tags: ["station", "markings"]
+  defaultCustomColor: false
+  sprite:
+    sprite: _Starlight/Decals/wood_trim.rsi
+    state: diagonal_wood_4
+
+- type: decal
+  id: diagonalcornerwood1
+  tags: ["station", "markings"]
+  defaultCustomColor: false
+  sprite:
+    sprite: _Starlight/Decals/wood_trim.rsi
+    state: diagonal_wood_corner_1
+
+- type: decal
+  id: diagonalcornerwood2
+  tags: ["station", "markings"]
+  defaultCustomColor: false
+  sprite:
+    sprite: _Starlight/Decals/wood_trim.rsi
+    state: diagonal_wood_corner_2
+
+- type: decal
+  id: diagonalcornerwood3
+  tags: ["station", "markings"]
+  defaultCustomColor: false
+  sprite:
+    sprite: _Starlight/Decals/wood_trim.rsi
+    state: diagonal_wood_corner_3
+
+- type: decal
+  id: diagonalcornerwood4
+  tags: ["station", "markings"]
+  defaultCustomColor: false
+  sprite:
+    sprite: _Starlight/Decals/wood_trim.rsi
+    state: diagonal_wood_corner_4
+    

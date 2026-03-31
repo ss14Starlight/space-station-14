@@ -153,3 +153,41 @@
   name: chess-red-wood-floor
   spawn: FloorTileItemWoodChessRed
   maxCount: 30
+
+# METAL
+
+- type: stack
+  id: FloorTileMetalDark
+  name: stack-metal-dark-floor
+  spawn: FloorTileItemMetalDark
+  maxCount: 30
+
+- type: stack
+  id: FloorTileMetalBrown
+  name: stack-metal-brown-floor
+  spawn: FloorTileItemMetalBrown
+  maxCount: 30
+
+- type: stack
+  id: FloorTileMetalBlue
+  name: stack-metal-blue-floor
+  spawn: FloorTileItemMetalBlue
+  maxCount: 30
+
+- type: stack
+  id: FloorTileMetalPurple
+  name: stack-metal-purple-floor
+  spawn: FloorTileItemMetalPurple
+  maxCount: 30
+
+- type: stack
+  id: FloorTileMetalRed
+  name: stack-metal-red-floor
+  spawn: FloorTileItemMetalRed
+  maxCount: 30
+
+- type: stack
+  id: FloorTileMetalGreen
+  name: stack-metal-green-floor
+  spawn: FloorTileItemMetalGreen
+  maxCount: 30

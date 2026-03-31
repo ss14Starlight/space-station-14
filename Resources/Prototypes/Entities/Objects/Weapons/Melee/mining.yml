@@ -40,8 +40,8 @@
       Steel: 100
       Wood: 100
   # 🌟Starlight-start🌟
-  - type: SurgicalDrill
   - type: SurgeryTool
+  - type: SurgicalDrill
     successRate: 0.01 # You can try
     speed: 0.5
     endSound:
@@ -75,8 +75,8 @@
       types:
         Structural: 15
   # 🌟Starlight-start🌟
-  - type: SurgicalDrill
   - type: SurgeryTool
+  - type: SurgicalDrill
     successRate: 0.2 # This drill is way too big, really
     speed: 0.8
     startSound:

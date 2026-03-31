@@ -303,7 +303,7 @@
   cost:
     NTCredit: 10
   categories:
-    - SLPlushies
+    - SLCrew
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1

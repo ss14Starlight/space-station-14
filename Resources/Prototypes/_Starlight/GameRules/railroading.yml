@@ -21,8 +21,9 @@
 #    - RRCardMetabolizeTest
 #    - RRCardCriminal
 #    - RRCardMailOpen
-     - RRCardTerminate
-
+#    - RRCardTerminate
+    - RRCardWar
+    
 - type: entity
   parent: BaseGameRule
   id: RailroadingBrighteye
@@ -81,6 +82,7 @@
     # antagonists
     
     - RRCardCriminal
+    - RRCardWar
 
     # open mail
 

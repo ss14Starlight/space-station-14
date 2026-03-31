@@ -24,14 +24,17 @@
     - id: SpiderClownSpawn
     - id: SpiderSpawn
     - id: VentClog
-    - id: PsychicScreach # SL
-    - id: SecurityDrill # SL
-    - id: DoorRuntime # SL
-    - id: RadStorm # SL
-    - id: AuroraCaelus # SL
-    - id: SpaceWhale # SL
-    - id: CommunicationBlackout # SL
-    - id: NightShift # SL
+    # Starlight Start
+    - id: PsychicScreach
+    - id: SecurityDrill 
+    - id: DoorRuntime 
+    - id: RadStorm 
+    - id: AuroraCaelus 
+    - id: SpaceWhale 
+    - id: CommunicationBlackout 
+    - id: NightShift 
+    - id: SyndicateDeadDrop
+    # Starlight End
 
 - type: entityTable
   id: BasicAntagEventsTable
@@ -353,7 +356,7 @@
     duration: 1
     earliestStart: 30
     reoccurrenceDelay: 60
-    minimumPlayers: 30
+    minimumPlayers: 45 # 🌟Starlight🌟 Casualization
   - type: AntagSelection
     agentName: wizard-round-end-name
     definitions:
@@ -606,7 +609,7 @@
   - type: StationEvent
     earliestStart: 55 # 🌟Starlight🌟 Casualization
     weight: 3 # 🌟Starlight🌟 Casualization
-    minimumPlayers: 20
+    minimumPlayers: 35 # 🌟Starlight🌟 Casualization
     duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end scrreen (not always "Neutral outcome!") and... ending the game if the station is nuked.
   - type: RuleGrids
   - type: LoadMapRule

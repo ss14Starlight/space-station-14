@@ -128,6 +128,7 @@
   - MobCombat
   - MobDamageable
   - MobSiliconBase
+  - BaseSpeciesPickupableLarge # Well, it is big
   id: MobTerminatorEndoskeleton
   # you are now valid
   name: nt-800 "exterminator" endoskeleton
@@ -211,6 +212,7 @@
     - DoorBumpOpener
     # let mind transfer on gib work
     - MindTransferTarget
+    - NotLabelable
   # muh self destruct once complete
   - type: AutoImplant
     implants:

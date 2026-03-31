@@ -169,8 +169,8 @@
     slots:
     - suitStorage
   - type: DisarmMalus
-  - type: Scalpel
   - type: SurgeryTool
+  - type: Scalpel
     successRate: 0.6
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg

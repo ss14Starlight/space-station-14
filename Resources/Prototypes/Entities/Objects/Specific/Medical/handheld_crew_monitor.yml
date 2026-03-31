@@ -1,7 +1,7 @@
 - type: entity
   name: handheld crew monitor
   categories: [ DoNotMap ]
-  parent: [ BaseHandheldComputer, BaseGrandTheftContraband ]
+  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer, BaseGrandTheftContraband ] # Starlight: Medium battery
   # CMO-only bud, don't add more.
   id: HandheldCrewMonitor
   description: A hand-held crew monitor displaying the status of suit sensors.
@@ -33,6 +33,8 @@
         enum.CrewMonitorLayers.Alert:
           True: { visible: true, shader: unshaded }
           False: { visible: false }
+  - type: PowerCellDraw
+    useCharge: 15
   # Starlight END
   - type: ActivatableUI
     key: enum.CrewMonitoringUIKey.Key

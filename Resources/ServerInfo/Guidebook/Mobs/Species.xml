@@ -26,6 +26,7 @@
   <GuideEntityEmbed Entity="MobAvali" Caption="Avali"/>
   <GuideEntityEmbed Entity="MobShadekin" Caption="Shadekin"/>
   <GuideEntityEmbed Entity="MobLagomorph" Caption="Lagomorph"/>
+  <GuideEntityEmbed Entity="MobIPC" Caption="IPC"/> <!--FH-->
   </Box>
 
 </Document>

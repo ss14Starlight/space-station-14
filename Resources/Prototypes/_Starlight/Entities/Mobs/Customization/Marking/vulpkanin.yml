@@ -1003,3 +1003,13 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/vulpkanin/facial_hair.rsi
       state: kita
+
+- type: marking
+  id: ExtraFluffyTail
+  bodyPart: Tail
+  markingCategory: Tail
+  staticId: WolfTail
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: fluffy_tail_ex

@@ -1984,7 +1984,367 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  
+- type: voice
+  id: walksanator
+  voice: 236
+  name: tts-voice-name-236
+  sex: Male
+  silicon: false
+  copyright: walksanator
+  license: Private license, permission granted for SLN use only.
+  
+- type: voice
+  id: powerhouse
+  voice: 237
+  name: tts-voice-name-237
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.  
 
+- type: voice
+  id: scottish
+  voice: 238
+  name: tts-voice-name-238
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: serious
+  voice: 239
+  name: tts-voice-name-239
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: boonies
+  voice: 240
+  name: tts-voice-name-240
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: bugs
+  voice: 241
+  name: tts-voice-name-241
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: australium
+  voice: 242
+  name: tts-voice-name-242
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: bored
+  voice: 243
+  name: tts-voice-name-243
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: bostonish
+  voice: 244
+  name: tts-voice-name-244
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: caveJ
+  voice: 245
+  name: tts-voice-name-245
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: clownish
+  voice: 246
+  name: tts-voice-name-246
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: cockney
+  voice: 247
+  name: tts-voice-name-247
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: concerned
+  voice: 248
+  name: tts-voice-name-248
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: concerning
+  voice: 249
+  name: tts-voice-name-249
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: daffy
+  voice: 250
+  name: tts-voice-name-250
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: doomed
+  voice: 251
+  name: tts-voice-name-251
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: downUnder
+  voice: 252
+  name: tts-voice-name-252
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: excitable
+  voice: 253
+  name: tts-voice-name-253
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: forceful
+  voice: 254
+  name: tts-voice-name-254
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: jittery
+  voice: 255
+  name: tts-voice-name-255
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: kind
+  voice: 256
+  name: tts-voice-name-256
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: macho
+  voice: 257
+  name: tts-voice-name-257
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: meek
+  voice: 258
+  name: tts-voice-name-258
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: monstrous2
+  voice: 259
+  name: tts-voice-name-259
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: powerful
+  voice: 260
+  name: tts-voice-name-260
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: powerful2
+  voice: 261
+  name: tts-voice-name-261
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: protagonistic
+  voice: 262
+  name: tts-voice-name-262
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: sad
+  voice: 263
+  name: tts-voice-name-263
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: scottishish
+  voice: 264
+  name: tts-voice-name-264
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: strahdVonZarovich
+  voice: 265
+  name: tts-voice-name-265
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: tazmanianDevil
+  voice: 266
+  name: tts-voice-name-266
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: theBrain
+  voice: 267
+  name: tts-voice-name-267
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: igon
+  voice: 268
+  name: tts-voice-name-268
+  sex: Male
+  silicon: false
+  copyright: "Bukkataro, YT: https://www.youtube.com/@Bukkataro"
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: softspokenNebie
+  voice: 269
+  name: tts-voice-name-269
+  sex: Female
+  silicon: false
+  copyright: Nebula
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: thornNebie
+  voice: 270
+  name: tts-voice-name-270
+  sex: Female
+  silicon: false
+  copyright: Nebula
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: valleyNebie
+  voice: 271
+  name: tts-voice-name-271
+  sex: Female
+  silicon: false
+  copyright: Nebula
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: readingNebie
+  voice: 272
+  name: tts-voice-name-272
+  sex: Female
+  silicon: false
+  copyright: Nebula
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: mole
+  voice: 273
+  name: tts-voice-name-273
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: solidFake
+  voice: 274
+  name: tts-voice-name-274
+  sex: Male
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: ogre
+  voice: 275
+  name: tts-voice-name-275
+  sex: Unsexed
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: snakeU
+  voice: 276
+  name: tts-voice-name-276
+  sex: Unsexed
+  silicon: false
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: starlingNebie
+  voice: 277
+  name: tts-voice-name-277
+  sex: Female
+  silicon: false
+  copyright: Nebula
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: rye
+  voice: 278
+  name: tts-voice-name-278
+  sex: Male
+  silicon: false
+  copyright: Ryan "Levienci" Wayne
+  license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: cybe
+  voice: 279
+  name: tts-voice-name-279
+  sex: Male
+  silicon: false
+  copyright: "https://x.com/ArtCybes"
+  license: MIT
 
 # -----------------------------------------------------------------------------
 

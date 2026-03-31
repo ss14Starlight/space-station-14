@@ -55,6 +55,16 @@
 
 - type: entity
   parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostRoleTrunkPAI
+  name: Ghost Role (Space Courier Trunk pAI familiar)
+  components:
+  - type: MindRole
+    roleType: Familiar
+    sortWeight: 0
+    fallbackPlayTimeTracker: GhostPAI
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
   id: MindRoleGhostRoleXeno
   name: Ghost Role (Xeno)
   components:
