@@ -4,7 +4,7 @@
 
 <div class="header" align="center">
 
-[![Discord](https://img.shields.io/badge/Discord)](https://discord.gg/XbEa2ZsAFv)
+[![Discord](https://img.shields.io/badge/Discord-2k)](https://discord.gg/XbEa2ZsAFv)
 [![Steam](https://img.shields.io/badge/Steam-SS14%20-blue)](https://store.steampowered.com/app/1255460/Space_Station_14/)
 [![Client](https://img.shields.io/badge/Client-Download-blue)](https://spacestation14.io/about/nightlies/)
 [![GitHub](https://img.shields.io/github/stars/ss14Starlight/space-station-14?style=social)]([https://github.com/ss14Starlight/space-station-14])
@@ -18,9 +18,10 @@
 
 </div>
 
-STARLIGHT is an open source project aimed at creating unique mechanics and a pleasant game atmosphere in the game Space Station 14, 
+Project Verdant is a server built around immersive storytelling, with a strong focus on creating meaningful narratives between players and the wider universe.
 
-a game about survival on a space station where there are constant confrontations between the crew and antagonists created to prevent the crew from achieving their goals.
+It is a place where players can create in-depth roleplay, develop their own stories, and take part in the terraforming of an evolving world. We aim to make the experience engaging, collaborative, and enjoyable for everyone 
+involved.
 
 ## Space-Station 14 Documentation/Wiki
 
