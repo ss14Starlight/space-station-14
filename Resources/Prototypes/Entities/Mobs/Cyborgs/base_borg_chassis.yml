@@ -351,7 +351,7 @@
     - NanoTrasenSilicon # starlight
   - type: Access
     groups:
-    - AllAccess
+    - CyborgAllAccess # Starlight
     tags:
     - Borg
   - type: AccessReader
@@ -411,7 +411,7 @@
     - NanoTrasenSilicon #The seemingly best fit. It was a regular NT cyborg once, after all. starlight
   - type: Access
     groups:
-    - AllAccess #Randomized access would be fun. AllAccess is the best i can think of right now that does make it too hard for it to enter the station or navigate it..
+    - CyborgAllAccess # Starlight
   - type: AccessReader
     access: [["Command"], ["Robotics"]] # Starlight
   - type: StartIonStormed

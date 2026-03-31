@@ -28,6 +28,7 @@
   - Maintenance
   - GenpopEnter
   - GenpopLeave
+  - Debrief
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
