@@ -49,7 +49,7 @@ public abstract class SharedEventSelectorSystem : EntitySystem
             return false;
         }
 
-        if (!_charges.TryUseCharge(ent.Owner))
+        if (_charges.IsEmpty(ent.Owner))
         {
             popupString = Loc.GetString("syndicate-disruptor-no-charge");
             return false;

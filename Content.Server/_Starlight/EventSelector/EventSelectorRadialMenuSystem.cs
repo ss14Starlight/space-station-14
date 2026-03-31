@@ -1,5 +1,6 @@
 using Content.Server.GameTicking;
 using Content.Shared._Starlight.EventSelector;
+using Content.Shared.Charges.Systems;
 using Content.Shared.Timing;
 
 namespace Content.Server._Starlight.EventSelector;
@@ -8,6 +9,7 @@ public sealed class EventSelectorRadialMenuSystem : SharedEventSelectorSystem
 {
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    [Dependency] private readonly SharedChargesSystem _charges = default!;
 
     private const string DelayId = "EventSelectorId"; 
 
@@ -36,6 +38,8 @@ public sealed class EventSelectorRadialMenuSystem : SharedEventSelectorSystem
         
         var rule = _ticker.AddGameRule(selected.GameRule);
         _ticker.StartGameRule(rule);
+
+        _charges.TryUseCharge(entity.Owner);
 
         if (!TryComp<UseDelayComponent>(entity.Owner, out var useDelayComp))
             return;

@@ -1,21 +1,37 @@
 # todo: eventually allow this to be triggered remotely
+
 - type: entity
   parent: [BaseItem, BaseSyndicateContraband]
-  id: SyndicateDisruptor
-  name: syndicate disruptor
-  description: Call in various disruptions to create opportunities, such as power or comms outages. Each feature applies a different cooldown.
-  suffix: agent
+  id: BaseEventSelector
+  abstract: true
   components:
     - type: Sprite
       sprite: Objects/Devices/communication.rsi
       layers:
         - state: old-radio
     - type: EventSelectorRadialMenu
+    - type: UserInterface
+      interfaces:
+        enum.EventSelectorRadialMenuKey.Key:
+          type: EventSelectorRadialMenuBoundUserInterface
+    - type: ActivatableUI
+      key: enum.EventSelectorRadialMenuKey.Key
+    - type: UseDelay
+      delay: 0
+
+- type: entity
+  parent: BaseEventSelector
+  id: SyndicateDisruptor
+  name: syndicate disruptor
+  description: Call in various disruptions to create opportunities, such as power or comms outages. Each feature applies a different cooldown.
+  suffix: agent
+  components:
+    - type: EventSelectorRadialMenu
       radialMenuEntries:
-        - name: event-selector-gas-leak
+        - name: syndicate-disruptor-gas-leak
           protoIdIcon: ClothingMaskGas
           gameRule: GasLeak
-          useDelay: 30m
+          useDelay: 0
         - name: syndicate-disruptor-bureaucratic-error
           protoIdIcon: BoxFolderRed
           gameRule: BureaucraticError
@@ -44,21 +60,17 @@
           protoIdIcon: AirlockAssembly
           gameRule: DoorLaggingVirus
           useDelay: 45m
-    - type: UserInterface
-      interfaces:
-        enum.EventSelectorRadialMenuKey.Key:
-          type: EventSelectorRadialMenuBoundUserInterface
-    - type: ActivatableUI
-      key: enum.EventSelectorRadialMenuKey.Key
-    - type: UseDelay
-      delay: 0
     - type: LimitedCharges
+      lastCharges: 3
+      maxCharges: 3
 
-# Syndicate Signaleer Version
+# Syndicate Signaller Version
 - type: entity
-  parent: SyndicateDisruptor
-  id: SyndicateDisruptorSignaleer
-  suffix: signaleer
+  parent: BaseEventSelector
+  id: SyndicateDisruptorSignaller
+  name: syndicate disruptor signaller
+  description: Call in various disruptions to create opportunities, such as power or comms outages. Each feature applies a different cooldown.
+  suffix: signaller
   components:
     - type: EventSelectorRadialMenu
       radialMenuEntries:
@@ -106,5 +118,3 @@
           protoIdIcon: PosterContrabandSyndicateRecruitment
           gameRule: UnknownShuttleSyndieEvacPod
           useDelay: 60m
-    - type: LimitedCharges
-    - type: AutoRecharge
