@@ -1,0 +1,49 @@
+# Tier 1
+
+- type: technology
+  id: ModularHudModulesCivilianT1
+  name: research-technology-modular-hud-modules-civilian-t1
+  icon:
+    entity: HudModuleVisionCorrection
+  discipline: CivilianServices
+  tier: 1
+  cost: 1200
+  technologyPrerequisites:
+  - ModularHudFrames
+  recipeUnlocks:
+  - HudModuleShowContrabandDetails
+  - HudModuleVisionCorrection
+
+# Tier 2
+
+- type: technology
+  id: ModularHudModulesCivilianT2Security
+  name: research-technology-modular-hud-modules-civilian-t2-security
+  icon:
+    entity: HudModuleShowCriminalRecordIcons
+  discipline: CivilianServices
+  tier: 2
+  cost: 3500
+  technologyPrerequisites:
+  - ModularHudFrames
+  - ModularHudModulesCivilianT1
+  recipeUnlocks:
+  - HudModuleShowJobIcons
+  - HudModuleShowMindShieldIcons
+  - HudModuleShowCriminalRecordIcons
+
+- type: technology
+  id: ModularHudModulesCivilianT2Medical
+  name: research-technology-modular-hud-modules-civilian-t2-medical
+  icon:
+    entity: HudModuleShowMedicalIcons
+  discipline: CivilianServices
+  tier: 2
+  cost: 3500
+  technologyPrerequisites:
+  - ModularHudFrames
+  - ModularHudModulesCivilianT1
+  recipeUnlocks:
+  - HudModuleShowMedicalIcons
+  - HudModuleShowHungerIcons
+  - HudModuleShowThirstIcons

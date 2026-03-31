@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using Robust.Shared.Utility;
 
@@ -21,6 +22,20 @@ public static class EntitySystemExt
         {
             entSys.AssertOrLogError(message);
             return ret;
+        }
+
+        /// Throws an exception. For typechecking, returns <typeparamref name="T"/> for use in expressions, though it definitely never returns.
+        [MethodImpl(MethodImplOptions.AggressiveInlining), DoesNotReturn]
+        public T Unreachable<T>(string msg)
+        {
+            throw new Exception(msg);
+        }
+
+        /// Throws an exception.
+        [MethodImpl(MethodImplOptions.AggressiveInlining), DoesNotReturn]
+        public void Unreachable(string msg)
+        {
+            throw new Exception(msg);
         }
     }
 }

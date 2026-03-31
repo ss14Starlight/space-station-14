@@ -1,0 +1,118 @@
+# Generic
+- type: loadoutGroup
+  id: SecurityEyewear
+  name: loadout-group-security-glasses
+  minLimit: 1
+  loadouts:
+  - SecurityGlasses
+  - SecurityHud
+  - SecurityEyePatchHud
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+  - EyePatch
+  - EyePatchFlipped
+
+- type: loadout
+  id: SecurityOfficerWintercoatArmored
+  equipment:
+    outerClothing: ClothingOuterWinterSecArmored
+#HoS
+- type: loadoutGroup
+  id:  HeadofSecurityPDA
+  name: loadout-group-hos-id
+  loadouts:
+  - HoSPDA # Keep default PDA on top of the list
+  - ChiefConstablePDA
+  - HighSheriffPDA
+
+- type: loadout
+  id: HeadofSecurityWintercoatSmall
+  equipment:
+    outerClothing: ClothingOuterWinterHoSUnarmored
+# Warden
+- type: loadoutGroup
+  id: WardenPDA
+  name: loadout-group-warden-id
+  loadouts:
+  - WardenPDA # Keep default PDA on top of the list
+  - CorrectionsOfficerPDA
+  - DetentionManagerPDA
+  - DispatchOfficerPDA
+
+- type: loadout
+  id: WardenWintercoatSmall
+  equipment:
+    outerClothing: ClothingOuterWinterWardenUnarmored
+# Detective
+- type: loadoutGroup
+  id: DetectiveEyewear
+  name: loadout-group-detective-glasses
+  minLimit: 1
+  loadouts:
+  - SecurityGlasses
+  - NoirGlasses
+  - SecurityHud
+  - SecurityEyePatchHud
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+  - EyePatch
+  - EyePatchFlipped
+
+- type: loadoutGroup
+  id: DetectivePDA
+  name: loadout-group-detective-id
+  loadouts:
+  - DetectivePDA # Keep default PDA on top of the list
+  - InvestigatorPDA
+  - ForensicsTechnicianPDA
+
+- type: loadoutGroup
+  id: DetectiveBelt
+  name: loadout-group-security-belt
+  loadouts:
+  - DetectiveHolster
+  - DetectiveSecBelt
+  - DetectiveSecWebbing
+  - DetectiveSecWebbingAlt
+
+- type: loadoutGroup
+  id: DetectiveSidearm
+  name: loadout-group-detective-sidearm
+  loadouts:
+  - DetectivePistolInspector
+  - DetectivePistolPM
+
+# Prisoner
+- type: loadoutGroup
+  id: PrisonerJumpsuit
+  name: loadout-group-prisoner-jumpsuit
+  loadouts:
+  - PrisonJumpsuit
+  - PrisonJumpsuitStriped
+  - PrisonJumpsuitShirt
+  - PrisonJumpskirt
+  - PrisonJumpskirtStriped
+
+- type: loadoutGroup
+  id: PrisonerHats
+  name: loadout-group-prisoner-hat
+  minLimit: 0
+  loadouts:
+  - SkullBandana
+  - PrisonHatStriped
+
+- type: loadoutGroup
+  id: PrisonerPDA
+  name: loadout-group-prisoner-id
+  loadouts:
+  - PrisonerPDA # Keep default PDA on top of the list
+  - FelonPrisonerPDA
+  - InmatePrisonerPDA
+  - ConvictPDA
+  - DeathRowInmatePDA
+  - MinimumSecurityPrisonerPDA
+  - MaximumSecurityPrisonerPDA
+  - ProtectiveCustodyPrisonerPDA
+  - TestSubjectPDA

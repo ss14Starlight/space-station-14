@@ -61,15 +61,17 @@
     Plastic: 250
     Cloth: 500
 
-- type: latheRecipe
-  id: ClothingEyesHudSecurity
-  result: ClothingEyesHudSecurity
-  categories:
-  - Clothing
-  completetime: 2
-  materials:
-    Steel: 300
-    Glass: 200
+# Moffstation - Begin - Replaced by modular HUDs
+#- type: latheRecipe
+#  id: ClothingEyesHudSecurity
+#  result: ClothingEyesHudSecurity
+#  categories:
+#  - Clothing
+#  completetime: 2
+#  materials:
+#    Steel: 300
+#    Glass: 200
+# Moffstation - End
 
 - type: latheRecipe
   id: PortableRecharger

@@ -1,3 +1,4 @@
+using Content.Shared._Moffstation.Clothing.ModularHud.Components; // Moffstation
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
@@ -35,6 +36,8 @@ public abstract partial class EquipmentHudSystem<T> : EntitySystem where T : ICo
         SubscribeLocalEvent<T, InventoryRelayedEvent<RefreshEquipmentHudEvent<T>>>(OnRefreshEquipmentHud);
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+
+        SubscribeLocalEvent<T, EquipmentHudNeedsRefreshEvent>(OnEquipmentHudNeedsRefresh); // Moffstation - Modular HUDs
     }
 
     private void Update(RefreshEquipmentHudEvent<T> ev)
@@ -116,4 +119,11 @@ public abstract partial class EquipmentHudSystem<T> : EntitySystem where T : ICo
         else
             Deactivate();
     }
+
+    // Moffstation - Begin - Modular HUDs
+    private void OnEquipmentHudNeedsRefresh(Entity<T> ent, ref EquipmentHudNeedsRefreshEvent args)
+    {
+        RefreshOverlay();
+    }
+    // Moffstation - End
 }

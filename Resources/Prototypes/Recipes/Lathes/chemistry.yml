@@ -106,11 +106,13 @@
     Glass: 50
     Wood: 20
 
-- type: latheRecipe
-  id: ClothingEyesGlassesChemical
-  result: ClothingEyesGlassesChemical
-  completetime: 2
-  materials:
-    Steel: 200
-    Plastic: 300
-    Glass: 500
+# Moffstation - Begin - Replaced by modular HUDs
+#- type: latheRecipe
+#  id: ClothingEyesGlassesChemical
+#  result: ClothingEyesGlassesChemical
+#  completetime: 2
+#  materials:
+#    Steel: 200
+#    Plastic: 300
+#    Glass: 500
+# Moffstation - End

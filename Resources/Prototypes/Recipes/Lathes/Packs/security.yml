@@ -3,7 +3,7 @@
 - type: latheRecipePack
   id: SecurityEquipmentStatic
   recipes:
-  - ClothingEyesHudSecurity
+#  - ClothingEyesHudSecurity # Moffstation - Replaced by modular HUDs
   - ForensicPad
   - Handcuffs
   - TargetClown

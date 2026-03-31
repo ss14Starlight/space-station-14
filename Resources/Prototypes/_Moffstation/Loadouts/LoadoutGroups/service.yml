@@ -1,0 +1,202 @@
+# Head of Personnel
+- type: loadoutGroup
+  id: HopEyewear
+  name: loadout-group-head-of-personnel-glasses
+  minLimit: 1
+  loadouts:
+  - AdminHud
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+  - EyePatch
+  - EyePatchFlipped
+
+- type: loadoutGroup
+  id: HopPDA
+  name: loadout-group-hop-id
+  loadouts:
+  - HoPPDA # Keep default PDA on top of the list
+  - HRAdministratorPDA
+
+# Bartender
+- type: loadoutGroup
+  id: BartenderEyewear
+  name: loadout-group-bartender-glasses
+  minLimit: 0
+  loadouts:
+  - BeerGlasses
+  - BeerEyePatchHud
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+  - EyePatch
+  - EyePatchFlipped
+
+- type: loadoutGroup
+  id: BartenderPDA
+  name: loadout-group-bartender-id
+  loadouts:
+  - BartenderPDA # Keep default PDA on top of the list
+  - BaristaPDA
+  - BarkeeperPDA
+  - MixologistPDA
+
+# Botanist
+- type: loadoutGroup
+  id: BotanistPDA
+  name: loadout-group-botanist-id
+  loadouts:
+  - BotanistPDA # Keep default PDA on top of the list
+  - GardenerPDA
+  - HerbalistPDA
+  - HydroponicsTechnicianPDA
+  - RancherPDA
+
+# Chaplain
+- type: loadoutGroup
+  id: ChaplainPDA
+  name: loadout-group-chaplain-id
+  loadouts:
+  - ChaplainPDA # Keep default PDA on top of the list
+  - BishopPDA
+  - ClericPDA
+  - DruidPDA
+  - MissionaryPDA
+  - MorticianPDA
+  - NunPDA
+  - OraclePDA
+  - PriestPDA
+
+# Chef
+- type: loadoutGroup
+  id: ChefPDA
+  name: loadout-group-chef-id
+  loadouts:
+  - ChefPDA # Keep default PDA on top of the list
+  - BakerPDA
+  - ButcherPDA
+  - PizzaioloPDA
+
+# Clown
+- type: loadoutGroup
+  id: ClownPDA
+  name: loadout-group-clown-id
+  loadouts:
+  - ClownPDA # Keep default PDA on top of the list
+  - FoolPDA
+  - JesterPDA
+
+- type: loadoutGroup
+  id: ClownMask
+  name: loadout-group-clown-mask
+  minLimit: 1
+  loadouts:
+  - ClownMaskDefault
+  - ClownMaskBlushing
+  - ClownMaskBanana
+  - ClownMaskCool
+  - HarlequinMask
+
+- type: loadoutGroup
+  id: TheatreNeck
+  name: loadout-group-theatre-neck
+  minLimit: 0
+  loadouts:
+  - RuffleNeck
+
+# Janitor
+- type: loadoutGroup
+  id: JanitorPDA
+  name: loadout-group-janitor-id
+  loadouts:
+  - JanitorPDA # Keep default PDA on top of the list
+  - CustodianPDA
+  - HygieneTechnicianPDA
+  - MaidPDA
+  - SanitationsWorkerPDA
+
+# Lawyer
+- type: loadoutGroup
+  id: LawyerPDA
+  name: loadout-group-lawyer-id
+  loadouts:
+  - LawyerPDA # Keep default PDA on top of the list
+  - AttorneyPDA
+  - LegalCounselPDA
+  - ProsecutorPDA
+  - SolicitorPDA
+
+# Librarian
+- type: loadoutGroup
+  id: LibrarianPDA
+  name: loadout-group-librarian-id
+  loadouts:
+  - LibrarianPDA # Keep default PDA on top of the list
+  - ArchivistPDA
+  - CuratorPDA
+  - GameMasterPDA
+  - WriterPDA
+
+# Mime
+- type: loadoutGroup
+  id: MimePDA
+  name: loadout-group-mime-id
+  loadouts:
+  - MimePDA # Keep default PDA on top of the list
+  - PierrotPDA
+
+- type: loadoutGroup
+  id: MimeShoes
+  name: loadout-group-mime-shoes
+  loadouts:
+  - WhiteShoes
+  - BlackShoes
+  - LaceupShoes
+  - CowboyShoes
+
+# Musician
+- type: loadoutGroup
+  id: MusicianPDA
+  name: loadout-group-musician-id
+  loadouts:
+  - MusicianPDA # Keep default PDA on top of the list
+  - PopIdolPDA
+  - RockStarPDA
+
+- type: loadoutGroup
+  id: MusicianHead
+  name: loadout-group-musician-head
+  minLimit: 0
+  loadouts:
+  - PerformerWig
+  - RockstarWig
+
+- type: loadoutGroup
+  id: MusicianShoes
+  name: loadout-group-musician-shoes
+  loadouts:
+  - LaceupShoes
+  - PerformerShoes
+  - CowboyShoes
+
+# Reporter
+- type: loadoutGroup
+  id: ReporterPDA
+  name: loadout-group-reporter-id
+  loadouts:
+  - ReporterPDA # Keep default PDA on top of the list
+  - JournalistPDA
+  - MeteorologistPDA
+  - NewsAnchorPDA
+
+# Service Worker
+- type: loadoutGroup
+  id: ServiceWorkerPDA
+  name: loadout-group-service-worker-id
+  loadouts:
+  - ServiceWorkerPDA # Keep default PDA on top of the list
+  - BarberPDA
+  - ButlerPDA
+  - StewardPDA
+  - LineCookPDA
+  - SousChefPDA

@@ -1,0 +1,66 @@
+# Generic
+- type: loadoutGroup
+  id: MedicalEyewear
+  name: loadout-group-medical-glasses
+  minLimit: 0
+  loadouts:
+  - MedicalHud
+  - MedicalGlasses
+  - MedicalEyePatchHud
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+  - EyePatch
+  - EyePatchFlipped
+
+# CMO
+- type: loadoutGroup
+  id: ChiefMedicalOfficerPDA
+  name: loadout-group-chief-medical-officer-id
+  loadouts:
+  - CMOPDA # Keep default PDA on top of the list
+  - MedicalDirectorPDA
+
+# Chemist
+- type: loadoutGroup
+  id: ChemistryPDA
+  name: loadout-group-chemist-id
+  loadouts:
+  - ChemistryPDA # Keep default PDA on top of the list
+  - PharmacistPDA
+  - PharmacologistPDA
+  - ToxicologistPDA
+
+- type: loadoutGroup
+  id: ChemistEyewear
+  name: loadout-group-medical-glasses
+  minLimit: 0
+  loadouts:
+  - ChemistryGoggles
+  - MedicalHud
+  - MedicalGlasses
+  - MedicalEyePatchHud
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+  - EyePatch
+  - EyePatchFlipped
+
+# Paramedic
+- type: loadoutGroup
+  id: ParamedicPDA
+  name: loadout-group-paramedic-id
+  loadouts:
+  - ParamedicPDA # Keep default PDA on top of the list
+  - FieldMedicPDA
+  - EmergencyResponseTechnicianPDA
+
+# Psychologist
+- type: loadoutGroup
+  id: PsychologistPDA
+  name: loadout-group-psychologist-id
+  loadouts:
+  - PsychologistPDA # Keep default PDA on top of the list
+  - PsychiatristPDA
+  - TherapistPDA
+  - SocialWorkerPDA

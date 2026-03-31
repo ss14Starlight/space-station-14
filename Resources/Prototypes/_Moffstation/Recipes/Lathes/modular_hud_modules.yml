@@ -1,0 +1,104 @@
+## Modular HUD Modules
+
+- type: latheRecipe
+  id: BaseModularHudModuleT1Recipe
+  abstract: true
+  categories:
+  - Clothing
+  completetime: 2
+  materials:
+    Steel: 200
+    Glass: 100
+    Plastic: 50
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT1Recipe
+  id: BaseModularHudModuleT2Recipe
+  abstract: true
+  materials:
+    Steel: 200
+    Glass: 100
+    Plastic: 50
+    Silver: 50
+
+# Tier 1
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT1Recipe
+  id: HudModuleShowAccessReaderSettings
+  result: HudModuleShowAccessReaderSettings
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT1Recipe
+  id: HudModuleShowContrabandDetails
+  result: HudModuleShowContrabandDetails
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT1Recipe
+  id: HudModuleVisionCorrection
+  result: HudModuleVisionCorrection
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT1Recipe
+  id: HudModuleNoirOverlay
+  result: HudModuleNoirOverlay
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT1Recipe
+  id: HudModuleBlackAndWhiteOverlay
+  result: HudModuleBlackAndWhiteOverlay
+
+# Tier 2
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT2Recipe
+  id: HudModuleEyeProtection
+  result: HudModuleEyeProtection
+  materials:
+    Steel: 200
+    Glass: 100
+    Silver: 100 # Eye protection uses silver as a lens filter... or something
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT2Recipe
+  id: HudModuleFlashImmunity
+  result: HudModuleFlashImmunity
+  materials:
+    Steel: 200
+    Glass: 75
+    Silver: 150 # These are HIGHLY reflective, so you need all that silver for the mirror finish B^)
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT2Recipe
+  id: HudModuleSolutionScanner
+  result: HudModuleSolutionScanner
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT2Recipe
+  id: HudModuleShowJobIcons
+  result: HudModuleShowJobIcons
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT2Recipe
+  id: HudModuleShowMindShieldIcons
+  result: HudModuleShowMindShieldIcons
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT2Recipe
+  id: HudModuleShowCriminalRecordIcons
+  result: HudModuleShowCriminalRecordIcons
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT2Recipe
+  id: HudModuleShowMedicalIcons
+  result: HudModuleShowMedicalIcons
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT2Recipe
+  id: HudModuleShowHungerIcons
+  result: HudModuleShowHungerIcons
+
+- type: latheRecipe
+  parent: BaseModularHudModuleT2Recipe
+  id: HudModuleShowThirstIcons
+  result: HudModuleShowThirstIcons

@@ -217,6 +217,10 @@
     - Janitor
     - Instruments
     - Equipment
+    # Moffstation - Start - Modular HUDs
+    - ModularHudFrames
+    - ModularHudModules
+    # Moffstation - End
   - type: EmagLatheRecipes
     emagDynamicPacks:
     # - SecurityAmmo // Starlight - This pack commented and can't be changed in partials
@@ -407,6 +411,11 @@
     # - SecurityAmmo // Starlight - This pack commented and can't be changed in partials
     - SecurityWeapons
     - SecurityDisablers
+    # Moffstation - Start - Modular HUDs
+    - ModularHudFrames
+    - SecurityModularHudFrames
+    - SecurityModularHudModules
+    # Moffstation - End
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SyndicateAmmoStatic
@@ -485,6 +494,10 @@
     - SurgeryStatic
     dynamicPacks:
     - Chemistry
+    # Moffstation - Start - Modular HUDs
+    - ModularHudFrames
+    - MedicalModularHudModules
+    # Moffstation - End
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
