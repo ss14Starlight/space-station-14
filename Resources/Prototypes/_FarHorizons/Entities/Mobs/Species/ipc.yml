@@ -78,6 +78,22 @@
       Alive: IPCHealth
       Critical: BorgCrit
       Dead: BorgDead
+    showOverlays: false
+  - type: HealthExaminable
+    examinableTypes:
+    - Blunt
+    - Slash
+    - Piercing
+    - Heat
+    - Shock
+    - Cold
+    - Caustic
+    - Radiation
+    locPrefix: silicon
+  - type: DamagedSiliconAccent
+    damageAtMaxCorruption: 100 # This should be the same value as MobThresholds - Critical.
+    enableChargeCorruption: false
+  - type: CyborgSparkEffect
   - type: WiresPanel
   - type: DamageVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
@@ -121,7 +137,7 @@
   - type: Stamina
     staminaAlert: "IPCStamina"
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: IPC
     damageModifierSet: IPC
   - type: SolutionContainerManager
     solutions:
@@ -159,7 +175,7 @@
       Male: MaleIPC
       Female: FemaleIPC
       Unsexed: MaleIPC
-  # - type: VisionOrganRequiredForVision
+    wilhelmProbability: 0
   # IPC slots
   - type: ContainerContainer
     containers:
