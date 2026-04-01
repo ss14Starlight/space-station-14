@@ -1,8 +1,7 @@
 - type: nuclearReactorPrefab
   id: ReactorPrefabEmpty
-  parts:
-   -1,-1: BaseReactorPart # Can't be empty, so I'll put this nothing part in an inaccessible spot
 
+#region 7x7 Reactor Prefabs
 - type: nuclearReactorPrefab
   id: ReactorPrefab7x7Normal
   parts:
@@ -225,7 +224,9 @@
     3,3: CerenkiteReactorFuelRod
     5,1: CerenkiteReactorFuelRod
     5,5: CerenkiteReactorFuelRod
+#endregion
 
+#region 5x5 Reactor Prefabs
 - type: nuclearReactorPrefab
   id: ReactorPrefab5x5Normal
   parts:
@@ -252,3 +253,4 @@
     2,2: BohrumReactorControlRod
     2,3: BohrumReactorControlRod
     3,2: BohrumReactorControlRod
+#endregion

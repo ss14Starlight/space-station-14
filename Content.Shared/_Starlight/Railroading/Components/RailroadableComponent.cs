@@ -23,4 +23,7 @@ public sealed partial class RailroadableComponent : Component
     [DataField]
     [NonSerialized]
     public bool Restricted = false;
+
+    [DataField, NonSerialized] // ? What exactly does NonSerialized means and... is it really needed here?
+    public bool Important = false;
 }

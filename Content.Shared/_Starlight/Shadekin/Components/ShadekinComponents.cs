@@ -60,7 +60,7 @@ public sealed partial class OrganShadekinCoreComponent : Component
     public double DmagedPrice = 200;
 
     [DataField]
-    public double UndmagedPrice = 30000;
+    public double UndmagedPrice = 50000;
 }
 #endregion
 
@@ -76,6 +76,12 @@ public sealed partial class BrighteyeComponent : Component
 
     [DataField]
     public ProtoId<AlertPrototype> RejuvenationAlert { get; set; } = "ShadekinRejuvenateAlert";
+
+    /// <summary>
+    /// Is the Bright-Eye a Lesser Version (non orignal core owner)?
+    /// </summary>
+    [DataField]
+    public bool LesserKin = false;
 
     /// <summary>
     /// How many Energy the brighteye has.
@@ -160,6 +166,9 @@ public sealed partial class BrighteyeComponent : Component
 
     [DataField]
     public EntProtoId ShadekinTrap = "ShadekinTrapSpawn";
+
+    [DataField]
+    public bool PortalNeedStation = true;
 }
 
 public sealed class OnAttemptEnergyUseEvent : CancellableEntityEventArgs

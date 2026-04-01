@@ -33,6 +33,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Prototypes;
+using Content.Server.EUI;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -67,6 +68,8 @@ public sealed class DantalionSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private readonly EuiManager _euiMan = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
 
     public override void Initialize()
     {
@@ -246,6 +249,10 @@ public sealed class DantalionSystem : EntitySystem
         var objective = _objectives.TryCreateObjective(thrallMindId, thrallMind, ThrallObeyMasterObjectiveId);
         if (objective == null)
             return;
+        
+        //adds pop-up for target informing them they have been enthralled
+        if (_player.TryGetSessionById(thrallMind.UserId, out var session))
+            _euiMan.OpenEui(new VampireThrallEui(), session);
 
         _targetObjectives.SetTarget(objective.Value, masterMindId);
         _mind.AddObjective(thrallMindId, thrallMind, objective.Value);

@@ -61,24 +61,7 @@ namespace Content.Server.StationEvents.Events
                 }
             }
 
-            // Can't use the default EndAudio
-            component.AnnounceCancelToken?.Cancel();
-            component.AnnounceCancelToken = new CancellationTokenSource();
-            Timer.Spawn(3000, () =>
-            {
-                //Starlight begin - dumb.
-                TryComp<StationEventComponent>(uid, out var stationEvent);
-                if (stationEvent is null) return;
-                if (stationEvent.GlobalAnnouncement)
-                    Audio.PlayGlobal(component.PowerOnSound, Filter.Broadcast(), true);
-                else
-                    Audio.PlayGlobal(component.PowerOnSound,
-                        Filter.Empty().AddWhere(session =>
-                            session.AttachedEntity is not null &&
-                            TryComp<StationMemberComponent>(Transform(session.AttachedEntity.Value).GridUid,
-                                out var station) && station.Station == stationEvent.TargetStation), true);
-                //Starlight end
-            }, component.AnnounceCancelToken.Token);
+            
             component.Unpowered.Clear();
         }
 

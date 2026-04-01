@@ -3,6 +3,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
+
 namespace Content.Shared._Starlight.Antags.Vampires.Components;
 
 [RegisterComponent, NetworkedComponent]
@@ -53,12 +54,18 @@ public sealed partial class VampireComponent : Component
     public int DrunkBlood = 0;
 
     /// <summary>
+    /// bites since last time blindness was applied.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int BlindInc = 0;
+
+    /// <summary>
     /// Determines whether the fangs are extended or not.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField, AutoNetworkedField]
     public bool FangsExtended = false;
+    public float sipAmount = 10f;
 
-    public float SipAmount = 10f;
 
     /// <summary>
     /// Current blood fullness used instead of normal food needs.

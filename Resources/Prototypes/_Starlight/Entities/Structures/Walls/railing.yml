@@ -1,0 +1,956 @@
+#STEEL
+- type: entity
+  parent: [ BaseStructure, BaseStructureDissolvable ]
+  id: RailingEnd
+  name: Railing
+  suffix: Steel, End
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: side_end
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: side_end
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Repairable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
+  - type: Climbable
+
+- type: entity
+  parent: [ BaseStructure, BaseStructureDissolvable ]
+  id: RailingEndAlt
+  name: Railing
+  suffix: Steel, End Alt
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: side_end_alt
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: side_end_alt
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Repairable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
+  - type: Climbable
+
+# WOOD
+- type: entity
+  parent: [ BaseStructure, BaseStructureDissolvable ] # Starlight-edit
+  id: BaseRailingWood
+  abstract: true
+  name: railing
+  description: Basic railing meant to protect idiots like you from falling.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
+
+- type: entity
+  parent: BaseRailingWood
+  id: RailingWood
+  name: Railing
+  suffix: Wood
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: wood_side
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: wood_side
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+
+- type: entity
+  parent: BaseRailingWood
+  id: RailingWoodEnd
+  name: Railing
+  suffix: Wood, End
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: wood_side_end
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: wood_side_end
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+
+- type: entity
+  parent: BaseRailingWood
+  id: RailingWoodEndAlt
+  name: Railing
+  suffix: Wood, End Alt
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: wood_side_end_alt
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: wood_side_end_alt
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+
+- type: entity
+  parent: BaseRailingWood
+  id: RailingCornerWood
+  name: Railing
+  suffix: Wood, Corner
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: wood_corner
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: wood_corner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.25,-0.49,0.49,0.49"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+
+- type: entity
+  parent: BaseRailingWood
+  id: RailingCornerSmallWood
+  name: Railing
+  suffix: Wood, Corner Small
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: wood_corner_small
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: wood_corner_small
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.25,-0.25,0.49"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+
+- type: entity
+  parent: BaseRailingWood
+  id: RailingRoundWood
+  name: Railing
+  suffix: Wood, Round
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: wood_round
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: wood_round
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,-0.25,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix3:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.25,-0.49,0.49,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+
+# YELLOW
+- type: entity
+  parent: [ BaseStructure, BaseStructureDissolvable ] # Starlight-edit
+  id: BaseRailingYellow
+  abstract: true
+  name: railing
+  description: Basic railing meant to protect idiots like you from falling.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
+
+- type: entity
+  parent: BaseRailingYellow
+  id: RailingYellow
+  name: Railing
+  suffix: Yellow
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: yellow_side
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: yellow_side
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+
+- type: entity
+  parent: BaseRailingYellow
+  id: RailingYellowEnd
+  name: Railing
+  suffix: Yellow, End
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: yellow_side_end
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: yellow_side_end
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+
+- type: entity
+  parent: BaseRailingYellow
+  id: RailingYellowEndAlt
+  name: Railing
+  suffix: Yellow, End Alt
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: yellow_side_end_alt
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: yellow_side_end_alt
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+
+- type: entity
+  parent: BaseRailingYellow
+  id: RailingCornerYellow
+  name: Railing
+  suffix: Yellow, Corner
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: yellow_corner
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: yellow_corner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.25,-0.49,0.49,0.49"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+
+- type: entity
+  parent: BaseRailingYellow
+  id: RailingCornerSmallYellow
+  name: Railing
+  suffix: Yellow, Corner Small
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: yellow_corner_small
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: yellow_corner_small
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.25,-0.25,0.49"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+
+- type: entity
+  parent: BaseRailingYellow
+  id: RailingRoundYellow
+  name: Railing
+  suffix: Yellow, Round
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: yellow_round
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: yellow_round
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,-0.25,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix3:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.25,-0.49,0.49,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Climbable
+
+# Boxing
+- type: entity
+  parent: [ BaseStructure, BaseStructureDissolvable ] # Starlight-edit
+  id: BaseRailingBoxing
+  abstract: true
+  name: ring rope
+  description: Basic railing meant to protect idiots like you from falling.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Climbable
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
+
+- type: entity
+  parent: BaseRailingBoxing
+  id: RailingBoxing
+  name: ring rope
+  suffix: Straight
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: boxing_side
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: boxing_side
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Climbable
+
+- type: entity
+  parent: BaseRailingBoxing
+  id: RailingCornerBoxing
+  name: ring rope
+  suffix: Corner
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: boxing_corner
+  - type: Icon
+    sprite: _Starlight/Structures/Walls/railing.rsi #Starlight
+    state: boxing_corner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.25,-0.49,0.49,0.49"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Climbable
+
+

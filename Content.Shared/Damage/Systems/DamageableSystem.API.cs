@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._FarHorizons.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -163,6 +164,16 @@ public sealed partial class DamageableSystem
             if (damage.Empty)
                 return damageDone;
         }
+
+        // Far Horizons start
+        // In a perfect world DamageModifyEvent would be used for that, but it's designed to not work when ignoreResistances is set to true, such as when healing system is doing it
+        if (damage.GetTotal() < 0)
+        {
+            var ev = new HealModifyEvent(damage, origin);
+            RaiseLocalEvent(ent, ev);
+            damage = ev.Damage;
+        }
+        // Far Horizons end
 
         // 🌟Starlight🌟 start
         var finalEv = new DamageBeforeApplyEvent
@@ -451,4 +462,15 @@ public sealed partial class DamageableSystem
 
         Dirty(ent);
     }
+
+    // Begin Stellar - We need to be able to change DamageContainer to make cultists vulnerable to Holy Damage
+    public void SetDamageContainerID(Entity<DamageableComponent?> ent, ProtoId<DamageContainerPrototype>? damageContainerId)
+    {
+        if (!_damageableQuery.Resolve(ent, ref ent.Comp, false))
+            return;
+
+        ent.Comp.DamageContainerID = damageContainerId;
+        Dirty(ent);
+    }
+    // End Stellar
 }

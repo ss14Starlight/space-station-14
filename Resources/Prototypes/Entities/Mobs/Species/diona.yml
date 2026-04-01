@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McPlants
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge] # Starlight
   id: BaseMobDiona
   abstract: true
   components:
@@ -22,7 +22,7 @@
     - DoorBumpOpener
     - AnomalyHost
     - Diona
-    - Labelable # Starlight
+    - NotLabelable # Starlight
   - type: HumanoidAppearance
     species: Diona
   - type: Hunger

@@ -18,6 +18,7 @@ vampire-not-enough-blood = Not enough blood.
 vampire-mouth-covered = Your mouth is covered!
 vampire-drink-invalid-target = You cannot drink blood from vampires or their thralls.
 vampire-target-protected-by-faith = This person is protected by their faith!
+vampire-target-sickly = This person's blood is tainted and must be cleansed.
 vampire-drink-target-maxed = You have already drunk { $amount } units of blood from this target.
 vampire-drink-target-hard-max = You have drunk the maximum amount of blood from this target ({ $amount } units).
 vampire-full-power-achieved = Your vampiric essence surges full power achieved!

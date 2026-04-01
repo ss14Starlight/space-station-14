@@ -17,6 +17,15 @@
                 </PanelContainer>
                 <Button Name="HighlightButton" Text="{Loc 'hud-chatbox-highlights-button'}" ToolTip="{Loc 'hud-chatbox-highlights-tooltip'}"/>
             </BoxContainer>
+            <!-- Starlight start -->
+            <BoxContainer Name="TTSMuteVBox" MinWidth="120" Margin="0 10" Orientation="Vertical" SeparationOverride="4">
+                <Label Text="{Loc 'hud-chatbox-tts-mute'}"/>
+                <ScrollContainer VerticalExpand="True" HScrollEnabled="False" MinHeight="150">
+                    <BoxContainer Name="TTSChannelsVBox" Orientation="Vertical" SeparationOverride="2"/>
+                </ScrollContainer>
+                <Button Name="TTSClearQueueButton" Text="{Loc 'hud-chatbox-tts-clear-queue'}"/>
+            </BoxContainer>
+            <!-- Starlight end -->
         </BoxContainer>
     </PanelContainer>
 </controls:ChannelFilterPopup>

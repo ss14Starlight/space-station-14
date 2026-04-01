@@ -20,7 +20,7 @@ public sealed partial class DiscordRolesRequirement : BaseRequirement
             return "";
 
         var requirement = Loc.GetString(
-                    "roles-req-any-role-required",
+                    "roles-req-any-role-required-fail",
                     ("discord", Loc.GetString(roleReq.Discord)),
                     ("roles", Loc.GetString(roleReq.RolesLoc)));
         return requirement;

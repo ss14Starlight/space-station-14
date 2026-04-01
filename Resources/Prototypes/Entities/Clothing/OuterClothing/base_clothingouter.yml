@@ -31,7 +31,7 @@
   components:
   - type: Storage
     grid:
-    - 0,0,2,1
+    - 0,0,1,1 # Starlight
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -144,6 +144,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: DamageOnInteractProtection

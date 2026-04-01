@@ -87,7 +87,7 @@ public sealed class IPIntel
     private float _rating;
     private float _alertAdminWarn;
 
-    public async Task<(bool IsBad, string Reason)> IsVpnOrProxy(NetConnectingArgs e)
+    public async Task<(bool IsBad, string Reason)> IsVpnOrProxy(NetConnectingArgs e, IPAddress? resolvedIp = null) // Starlight: accept resolved IP
     {
         // Check Exemption flags, let them skip if they have them.
         var flags = await _db.GetBanExemption(e.UserId);
@@ -107,7 +107,7 @@ public sealed class IPIntel
             }
         }
 
-        var ip = e.IP.Address;
+        var ip = resolvedIp ?? e.IP.Address; // Starlight: use resolved IP if available
         var username = e.UserName;
 
         // Is this a local ip address?

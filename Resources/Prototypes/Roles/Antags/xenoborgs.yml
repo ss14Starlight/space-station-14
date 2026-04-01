@@ -9,6 +9,9 @@
   - !type:RoleTimeRequirement
     role: JobStationAi # Starlight
     time: 18000  # 5 hrs
+  - !type:RoleTimeRequirement # Starlight
+    role: JobRoboticist # Starlight
+    time: 9000 # 2.5 hrs
   guides: [ Xenoborgs ]
   playTimeTracker: AntagMothershipCore # Starlight
 

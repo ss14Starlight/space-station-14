@@ -21,6 +21,9 @@
     size: Tiny
   - type: StealTarget
     stealGroup: Stamp
+  - type: Tag # Starlight start
+    tags:
+    - Stamp # Starlight end
 
 - type: entity
   name: alternate rubber stamp
@@ -208,7 +211,7 @@
 
 - type: entity
   name: syndicate rubber stamp
-  parent: [RubberStampBase, BaseSyndicateContraband]
+  parent: [RubberStampBase, BaseMinorContraband] #SL Edit Syndie > Minor Contra
   id: RubberStampSyndicate
   categories: [ DoNotMap ]
   components:

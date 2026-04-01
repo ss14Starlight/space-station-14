@@ -1,0 +1,173 @@
+- type: entity
+  parent: [ EncryptionKey, BaseLawContraband ]
+  id: EncryptionKeyLaw
+  name: law encryption key
+  description: An encryption key used by the most meticulous person.
+  components:
+    - type: EncryptionKey
+      channels:
+      - Law
+      defaultChannel: Law
+    - type: Sprite
+      layers:
+      - state: crypt_silver
+      - state: nano_label
+
+- type: entity
+  parent: [ EncryptionKey, BaseSovietContraband ]
+  id: EncryptionKeySoviet
+  name: soviet encryption key
+  description: Priyom. Priyom.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Soviet
+    defaultChannel: Soviet
+  - type: Sprite
+    layers:
+    - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+      state: crypt_soviet
+    - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+      state: soviet_label
+
+- type: entity
+  parent: [ EncryptionKey, BaseCargoContraband ]
+  id: EncryptionKeyExpedition
+  name: expedition encryption key
+  description: An encryption key used by daring explorers.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Expedition
+    defaultChannel: Expedition
+  - type: Sprite
+    layers:
+    - state: crypt_gray
+    - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+      state: expedition_label
+
+- type: entity
+  parent: [ EncryptionKey, BaseSalvageMiningContraband ]
+  id: EncryptionKeySalvage
+  name: salvage encryption key
+  description: A dual encryption key used by box-loving explorers.
+  components:
+    - type: EncryptionKey
+      channels:
+        - Expedition
+        - Supply
+      defaultChannel: Supply
+    - type: Sprite
+      layers:
+        - state: crypt_gray
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: salvage_label
+    - type: Tag
+      tags:
+        - EncryptionCargo
+    - type: StealTarget
+      stealGroup: EncryptionKeyHybrid
+
+- type: entity
+  parent: [ EncryptionKey, BaseSecurityContraband ]
+  id: EncryptionKeyMedicalSecurity
+  name: med-sec encryption key
+  description: An encryption key used by someone who both takes and saves lives.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Medical
+    - Security
+    defaultChannel: Security
+  - type: Sprite
+    layers:
+    - state: crypt_gray
+    - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+      state: medsec_label
+  - type: StealTarget
+    stealGroup: EncryptionKeyHybrid
+
+- type: entity
+  parent: [BaseTSFContraband, EncryptionKey]
+  id: EncryptionKeyTSF
+  name: TSF encryption key
+  components:
+  - type: EncryptionKey
+    channels:
+    - TSF
+    defaultChannel: TSF
+  - type: Sprite
+    layers:
+    - sprite: Objects/Devices/encryption_keys.rsi
+      state: crypt_blue
+    - sprite: Objects/Devices/encryption_keys.rsi
+      state: com_label
+      
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyMerchant
+  name: merchant encryption key
+  description: An encryption key used by only the most serious of merchants.
+  components:
+    - type: EncryptionKey
+      channels:
+        - Merchant
+      defaultChannel: Merchant
+    - type: Sprite
+      layers:
+        - state: crypt_orange
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: merchant_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyBlackstar
+  name: blackstar encryption key
+  description: An encryption key used by elite Blackstar mercenaries.
+  components:
+    - type: EncryptionKey
+      channels:
+        - Blackstar
+      defaultChannel: Blackstar
+    - type: Sprite
+      layers:
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: crypt_brown
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: blackstar_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyAspace
+  name: aspace encryption key
+  description: An encryption key for people being tortured by admins.
+  suffix: Admeme
+  components:
+    - type: EncryptionKey
+      channels:
+        - Aspace
+      defaultChannel: Aspace
+    - type: Sprite
+      layers:
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: crypt_purple
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: admeme_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyGlobal
+  name: global encryption key
+  description: Despite the name, this encryption key does not grant all available channels.
+  suffix: Admeme
+  components:
+    - type: EncryptionKey
+      channels:
+        - Global
+      defaultChannel: Global
+    - type: Sprite
+      layers:
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: crypt_purple
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: global_label

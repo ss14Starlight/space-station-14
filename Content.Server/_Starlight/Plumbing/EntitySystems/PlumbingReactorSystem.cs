@@ -134,7 +134,7 @@ public sealed class PlumbingReactorSystem : EntitySystem
                 return;
             }
 
-            _reactionSystem.FullyReactSolution(bufferEnt.Value);
+            var reactionOccurred = _reactionSystem.FullyReactSolution(bufferEnt.Value);
 
             var products = new List<(ReagentId Reagent, FixedPoint2 Quantity)>();
             foreach (var reagent in buffer.Contents)
@@ -154,10 +154,12 @@ public sealed class PlumbingReactorSystem : EntitySystem
                     if (removed > 0)
                         _solutionSystem.TryAddReagent(outputEnt.Value, reagent, removed, out _);
                 }
+            }
 
-                // Reset buffer to ambient temperature after products are transferred.
+            if (reactionOccurred)
+            {
+                // Reset buffer to ambient temperature after any completed reaction pass.
                 _solutionSystem.SetTemperature(bufferEnt.Value, Atmospherics.T20C);
-
                 _appearance.SetData(ent.Owner, PlumbingVisuals.Running, false);
             }
         }

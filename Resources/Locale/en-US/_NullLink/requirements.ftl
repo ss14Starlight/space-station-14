@@ -1,4 +1,6 @@
-roles-req-any-role-required = You require any of the following roles on {$discord}: {$roles}.
+roles-req-any-role-required-pass = You require any of the following roles on {$discord}: [color=limegreen]{$roles}[/color].
+roles-req-any-role-required-fail = You require any of the following roles on {$discord}: [color=yellow]{$roles}[/color].
+
 requirements-playtime = 
     { $tracker ->
         [overall] You still need {$time} of total gameplay time on the {$server} server.
@@ -17,6 +19,7 @@ roles-req-staff-roles = staff
 roles-req-manager-roles = --Server Leadership--
 roles-req-patron-roles = patron
 roles-req-carpgames-roles = Carp Games Winner
+roles-req-ticketsadministrator-roles = Tickets Administrator
 
 triesteport-main = TRIESTEPORT
 overall = overall

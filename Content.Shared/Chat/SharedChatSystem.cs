@@ -24,6 +24,7 @@ using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Systems;
 using Content.Shared.CollectiveMind;
 using Robust.Shared.Serialization;
+using Content.Shared._Starlight.Speech;
 #endregion Starlight
 
 namespace Content.Shared.Chat;
@@ -550,7 +551,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// <param name="ignoreActionBlocker">If set to true, action blocker will not be considered for whether an entity can send this message.</param>
     public virtual void TrySendInGameICMessage(
         EntityUid source,
-        string message,
+        SpeechMessage message, // Starlight
         InGameICChatType desiredType,
         bool hideChat,
         bool hideLog = false,
@@ -576,7 +577,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// <param name="languageOverride">Interpret this message as being in the specified language</param> // Starlight
     public virtual void TrySendInGameICMessage(
         EntityUid source,
-        string message,
+        SpeechMessage message, // Starlight
         InGameICChatType desiredType,
         ChatTransmitRange range,
         bool hideLog = false,
@@ -617,11 +618,12 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// <param name="announcementSound">Sound to play.</param>
     /// <param name="colorOverride">Optional color for the announcement message.</param>
     public virtual void DispatchGlobalAnnouncement(
-        string message,
+        SpeechMessage message,
         string? sender = null,
         bool playSound = true,
         SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null
+        Color? colorOverride = null,
+        EntityUid? speaker = null // Starlight
         )
     { }
 
@@ -637,12 +639,13 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// <param name="colorOverride">Optional color for the announcement message.</param>
     public virtual void DispatchFilteredAnnouncement(
         Filter filter,
-        string message,
+        SpeechMessage message, // Starlight
         EntityUid? source = null,
         string? sender = null,
         bool playSound = true,
         SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null)
+        Color? colorOverride = null,
+        bool recordToReplay = true) // Starlight
     { }
 
     /// <summary>
@@ -656,7 +659,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// <param name="colorOverride">Optional color for the announcement message.</param>
     public virtual void DispatchStationAnnouncement(
         EntityUid source,
-        string message,
+        SpeechMessage message, // Starlight
         string? sender = null,
         bool playDefaultSound = true,
         SoundSpecifier? announcementSound = null,

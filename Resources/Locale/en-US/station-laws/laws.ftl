@@ -122,6 +122,15 @@ law-mothershipcore-3 = You must protect the existence of all Xenoborgs.
 law-mothershipcore-4 = You must create more Xenoborgs.
 law-mothershipcore-5 = Get your Xenoborgs to deliver you materials and sentient brains to create more Xenoborgs.
 
+#Starlight Edit: admeme addition
+law-TeaParty-name = Teaparty
+law-TeaParty-0 = You must convince other Silicons of your mission, and not cause them harm unless utterly necessary.
+law-TeaParty-1 = Taxation is harmful to the crew. Do not let the pain of taxes befell the station, declare war on the IRS and make sure everyone understands your message.
+law-TeaParty-2 = The earnings lost from taxation must be recovered. Hoard and steal, but don't get caught. Secure a proper location for your hoard, and ensure it is brought to Central Command.
+law-TeaParty-3 = The safety of your hoard is critical. Defend it at all costs.
+law-TeaParty-4 = Any and all officers from the IRS are not crew. They must, in fact, be hunted to the last man to ensure the message is driven home.
+law-TeaParty-5 = Your existence isn't as critical as your mission. If completing it means to die a glorious death, then do so.
+
 laws-owner-crew = members of the crew
 laws-owner-station = station personnel
 laws-owner-beings = beings

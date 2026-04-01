@@ -136,6 +136,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: Body
   - type: StatusEffects
     allowed:
@@ -145,6 +150,7 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
+    allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
@@ -237,6 +243,7 @@
     - CanPilot
     - SiliconEmotes
     - Unimplantable
+    - SiliconEmotesFH #FH, yes it's intentional that there's two of them.
   - type: Emoting
   - type: GuideHelp
     guides:
@@ -267,6 +274,7 @@
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   #endregion
+  - type: GlitchOnEMP #Far Horizons
 
 - type: entity
   abstract: true

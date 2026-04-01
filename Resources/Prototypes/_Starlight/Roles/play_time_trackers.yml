@@ -1,0 +1,101 @@
+- type: playTimeTracker
+  id: JobBrigmedic
+
+- type: playTimeTracker
+  id: JobRoboticist
+
+- type: playTimeTracker
+  id: JobDutyOfficer
+
+- type: playTimeTracker
+  id: JobMagistrate
+
+- type: playTimeTracker
+  id: JobNanoTrasenRepresentative
+
+- type: playTimeTracker
+  id: JobIAA
+
+- type: playTimeTracker
+  id: JobCentralCommandOperator
+
+- type: playTimeTracker
+  id: JobBlueShield
+
+- type: playTimeTracker
+  id: JobConsortiumBlueShield
+
+- type: playTimeTracker
+  id: JobMiningSpecialist
+
+- type: playTimeTracker
+  id: JobSurgeon
+  
+- type: playTimeTracker
+  id: JobMailTech
+
+- type: playTimeTracker
+  id: JobSalvageLead
+
+- type: playTimeTracker
+  id: JobNTSF
+  
+- type: playTimeTracker
+  id: JobDecimus
+
+- type: playTimeTracker
+  id: JobSolGovOfficer
+
+- type: playTimeTracker
+  id: JobSolGovOfficerSheriff
+
+- type: playTimeTracker
+  id: JobTSFCrew
+  
+- type: playTimeTracker
+  id: JobTSFMarine
+
+- type: playTimeTracker
+  id: TSFMarineElite
+
+- type: playTimeTracker
+  id: JobPerformer
+
+- type: playTimeTracker
+  id: JobBoxer
+
+- type: playTimeTracker
+  id: JobZookeeper
+
+- type: playTimeTracker
+  id: JobNanotrasenCareerTrainer
+
+# Other ghosts
+
+- type: playTimeTracker
+  id: GhostPAI
+  name: pai-system-role-name
+
+- type: playTimeTracker
+  id: GhostCritterHarmless
+  name: ghost-role-critter-harmless
+
+- type: playTimeTracker
+  id: GhostBotHarmless
+  name: ghost-role-bot-harmless
+
+- type: playTimeTracker
+  id: GhostNecktie
+  name: ghost-role-information-horrific-tie-name
+
+- type: playTimeTracker
+  id: GhostSkeleton
+  name: species-name-skeleton
+
+- type: playTimeTracker
+  id: GhostXeno
+  name: ghost-role-information-xeno-name
+
+- type: playTimeTracker
+  id: Observer
+  name: lobby-state-player-status-observer

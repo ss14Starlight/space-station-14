@@ -15,22 +15,22 @@
 						<PanelContainer/>
 						<Button Name="YDecrement" Disabled="true">
 							<TextureRect SetSize="16 16" TextureScale="0.5 0.5" Margin="0 2 0 2"
-								TexturePath="/Textures/_FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_part_inserted/arrow_up.png"/>
+								TexturePath="/Textures/_FarHorizons/Interface/FissionGenerator/reactor_part_inserted/arrow_up.png"/>
 						</Button>
 						<PanelContainer/>
 						<Button Name="XDecrement" Disabled="true">
 							<TextureRect SetSize="16 16" TextureScale="0.5 0.5" Margin="0 2 0 2"
-									TexturePath="/Textures/_FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_part_inserted/arrow_left.png"/>
+									TexturePath="/Textures/_FarHorizons/Interface/FissionGenerator/reactor_part_inserted/arrow_left.png"/>
 						</Button>
 						<Label Name="TargetPos" Text="0,0" StyleClasses="LabelKeyText" HorizontalExpand="True" HorizontalAlignment="Center"/>
 						<Button Name="XIncrement">
 							<TextureRect SetSize="16 16" TextureScale="0.5 0.5" Margin="0 2 0 2"
-									TexturePath="/Textures/_FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_part_inserted/arrow_right.png"/>
+									TexturePath="/Textures/_FarHorizons/Interface/FissionGenerator/reactor_part_inserted/arrow_right.png"/>
 						</Button>
 						<PanelContainer/>
 						<Button Name="YIncrement">
 							<TextureRect SetSize="16 16" TextureScale="0.5 0.5" Margin="0 2 0 2"
-									TexturePath="/Textures/_FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_part_inserted/arrow_down.png"/>
+									TexturePath="/Textures/_FarHorizons/Interface/FissionGenerator/reactor_part_inserted/arrow_down.png"/>
 						</Button>
 					</GridContainer>
 					<controls:StripeBack>

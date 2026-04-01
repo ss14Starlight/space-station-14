@@ -529,6 +529,14 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
         _humanoid.LoadProfile(dummyEnt, humanoid);
 
+        // Far Horizons start
+        if (humanoid != null)
+        {
+            var loadout = humanoid.GetSpeciesLoadoutOrDefault(_playerManager.LocalSession, _prototypeManager);
+            GiveDummyLoadout(dummyEnt, loadout);
+        }
+        // Far Horizons end
+
         if (humanoid != null && jobClothes)
         {
             DebugTools.Assert(job != null);

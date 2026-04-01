@@ -142,7 +142,7 @@ public sealed partial class NuclearReactorMonitorSystem : EntitySystem
         if (!TryGetReactorComp(comp, out var reactor))
             return;
 
-        if(SharedNuclearReactorSystem.AdjustControlRods(reactor, args.Change))
+        if(NuclearReactorSystem.AdjustControlRods(reactor, args.Change))
         {
             // Data is sent to a log queue to avoid spamming the admin log when adjusting values rapidly
             var key = new KeyValuePair<EntityUid, EntityUid>(args.Actor, uid);
@@ -170,6 +170,9 @@ public sealed partial class NuclearReactorMonitorSystem : EntitySystem
 
     private void CheckRange(EntityUid uid, NuclearReactorMonitorComponent comp)
     {
+        if(comp.Unlimited)
+            return;
+        
         if (!_entityManager.TryGetComponent<DeviceLinkSinkComponent>(uid, out var sink) || sink.LinkedSources.Count < 1)
             return;
 

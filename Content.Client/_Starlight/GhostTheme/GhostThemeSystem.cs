@@ -1,13 +1,9 @@
-using Content.Shared.Starlight.GhostTheme;
-using Content.Shared.Starlight;
-using Content.Shared.Ghost;
-using Content.Shared.Weapons.Ranged.Systems;
+using Content.Server.Administration.Systems;
+using Content.Shared._Starlight.GhostTheme;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
-using Robust.Shared.GameObjects;
-using Content.Server.Administration.Systems;
 
-namespace Content.Client.Starlight.GhostTheme;
+namespace Content.Client._Starlight.GhostTheme;
 
 public sealed class GhostThemeSystem : EntitySystem
 {
@@ -38,10 +34,11 @@ public sealed class GhostThemeSystem : EntitySystem
         _sprite.SetDrawDepth(spriteType, DrawDepth.Default + 11);
         spriteType.Comp?.LayerSetShader(layer, "unshaded");
 
-        if(spriteType.Comp == null)
+        if (spriteType.Comp == null)
             return;
 
         spriteType.Comp.NoRotation = ghostThemePrototype.SpriteSpecifier.SpriteRotation;
         spriteType.Comp.OverrideContainerOcclusion = true;
     }
+    
 }

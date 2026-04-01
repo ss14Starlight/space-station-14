@@ -24,6 +24,7 @@
   - type: Tag
     tags:
     - Inflatable
+    - ConstructionMaterial #FH
 # TODO: Add stack sprites + visuals.
 
 - type: entity
@@ -52,6 +53,7 @@
   - type: Tag
     tags:
     - Inflatable
+    - ConstructionMaterial #FH
 # TODO: Add stack sprites + visuals.
 
 - type: entity

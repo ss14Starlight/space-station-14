@@ -19,6 +19,12 @@ public sealed partial class HandLabelerComponent : Component
 
     [DataField]
     public EntityWhitelist Whitelist = new();
+    
+    /// <summary>
+    /// STARLIGHT: Blacklist for entities that may not be labeled. Checked BEFORE the whitelist. 
+    /// </summary>
+    [DataField]
+    public EntityWhitelist Blacklist = new();
 }
 
 [Serializable, NetSerializable]

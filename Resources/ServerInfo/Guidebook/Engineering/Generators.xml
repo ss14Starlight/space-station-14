@@ -16,8 +16,8 @@
   </Box>
 
   <Box>
-	  <GuideEntityEmbed Entity="NuclearReactorNormal" Caption=""/>
-	  <GuideEntityEmbed Entity="Turbine" Caption=""/>
+	  <GuideEntityEmbed Entity="NuclearReactorNormal" Caption="" Scale="1.5"/>
+	  <GuideEntityEmbed Entity="GasTurbineNormal" Caption="" Scale="1.5"/>
   </Box>
   <Box>
     ## Nuclear Generator

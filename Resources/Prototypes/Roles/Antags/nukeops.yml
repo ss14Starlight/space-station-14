@@ -6,10 +6,19 @@
   objective: roles-antag-nuclear-operative-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 24h # Starlight
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 6h # Starlight
+    time: 48h # Starlight start
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer # Bare minimum 1 hour non cadet. Teaches you how to use normal guns.
+    time: 1h
+  - !type:RoleTimeRequirement
+    role: JobSalvageSpecialist # Teaches you close quarters combat and gives good combat practice. (+jetpack, self-treatment)
+    time: 3h
+  - !type:DepartmentTimeRequirement # At the very least please know basic med.
+    department: Medical
+    time: 4h
+  - !type:RoleTimeRequirement # Tradeoff for not having too high Sec time; You should know how to use your uplink. 
+    role: AntagTraitor
+    time: 1h # 1 shift, to teach you how to use an uplink. Starlight end
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateOperativeGearFull
   playTimeTracker: AntagNukeops # Starlight
@@ -22,16 +31,19 @@
   objective: roles-antag-nuclear-operative-agent-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 24h # Starlight
+    time: 48h # Starlight start
   - !type:RoleTimeRequirement
     role: JobChemist
-    time: 6h # Starlight
+    time: 6h
   - !type:RoleTimeRequirement
     role: JobSurgeon
-    time: 3h # Starlight
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 3h # Starlight
+    time: 3h
+  - !type:RoleTimeRequirement
+    role: JobBrigmedic # Brigmedic is commonly used as Nukie Corpsman practice. With Brigmed being changed away from a chemist soon, this ensures you know how to operate medical in a high stress enviroment. This also accounts for your Security time.
+    time: 3h
+  - !type:RoleTimeRequirement # You should know how to use your uplink, but less important than base Nukie.
+    role: AntagTraitor
+    time: 1h # 1 shift, to teach you how to use an uplink. Starlight end
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateOperativeMedicFull
   playTimeTracker: AntagNukeopsMedic # Starlight
@@ -44,14 +56,17 @@
   objective: roles-antag-nuclear-operative-commander-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 24h # Starlight
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 12h # Starlight
+    time: 72h # Starlight start. You need to have experience.
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer # It's better than nothing. Salvage time already met by base Sec.
+    time: 10h
   - !type:DepartmentTimeRequirement
     department: Command
-    time: 6h # Starlight
-  # should be changed to nukie playtime when thats tracked (wyci)
+    time: 10h # You need to actually have experience leading others.
+  - !type:RoleTimeRequirement # You're leading the whole show, and the main antagonist of the entire round. You better have some understanding of what you're doing. This *cannot* be your first go.
+    role: AntagNukeops
+    time: 1800 # 0.5h. Just to ensure you've been nukie *once or twice ever*, but also not a LoneOp who picked the role 5 mins before Evac.
+  # Starlight end
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateCommanderGearFull
   playTimeTracker: AntagNukeopsCommander # Starlight

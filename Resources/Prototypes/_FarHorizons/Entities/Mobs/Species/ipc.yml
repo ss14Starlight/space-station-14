@@ -1,0 +1,408 @@
+- type: entity
+  parent: [MobBloodstream, MobFlammable, BaseMobSpecies]
+  id: BaseMobIPC
+  name: Urist McRobot
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+    understands:
+    - GalacticCommon
+    - Machine
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+    layers:
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: ["jumpsuit"]
+    - map: ["enum.HumanoidVisualLayers.LFoot"]
+    - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["enum.HumanoidVisualLayers.LHand"]
+    - map: ["enum.HumanoidVisualLayers.RHand"]
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "eyes" ]
+    - map: [ "outerClothing" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: ["enum.BorgVisualLayers.Body"]
+      state: light
+      visible: false
+    - map: ["enum.BorgVisualLayers.Light"]
+      state: light
+      shader: unshaded
+      visible: false
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi # Would do a custom dog handcuff sprite but unfortunately handcuffs have their overlay baked-in to the cuff itself so this is mostly filler
+      state: body-overlay-2
+      visible: false
+    - map: ["enum.BorgVisualLayers.LightStatus"]
+      state: light
+      shader: unshaded
+      visible: false
+    - map: [ "clownedon" ] # Dynamically generated
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+    stateAlertDict:
+      Alive: IPCHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+  - type: WiresPanel
+  - type: DamageVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    targetLayers:
+    - "enum.HumanoidVisualLayers.Chest"
+    - "enum.HumanoidVisualLayers.Head"
+    - "enum.HumanoidVisualLayers.LArm"
+    - "enum.HumanoidVisualLayers.LLeg"
+    - "enum.HumanoidVisualLayers.RArm"
+    - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#b67823"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: MetalThud
+    damage:
+      groups:
+        Brute: 6
+  - type: PassiveDamage # Need it here to disable it.
+    allowedStates:
+    - Alive
+    damageCap: 0
+    damage:
+      types:
+        Heat: 0
+      groups:
+        Brute: 0
+  - type: Tag
+    tags:
+      - CanPilot
+      - FootstepSound
+      - DoorBumpOpener
+      - AnomalyHost
+      - IPC
+      - SiliconEmotesFH 
+  - type: Stamina
+    staminaAlert: "IPCStamina"
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: IPC
+  - type: SolutionContainerManager
+    solutions:
+      bloodstream:
+        canReact: false # My robots aren't beakers! (oil -> ash conversion is evil and needs to go)
+      bloodstreamTemporary:
+        canReact: false
+      metabolites:
+        canReact: false
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Oil
+        Quantity: 300
+    bleedReductionAmount: 0 # No natural wound closing whatsoever
+    bloodlossThreshold: 0.75 # Everyone else start taking bloodloss damage at 90%, but with no natural bleeding stop - IPC can last for a bit longer
+  - type: IPCWeldClosesWounds
+  - type: Icon
+    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+    state: full
+  - type: Body
+    prototype: IPC
+    requiredLegs: 2
+  - type: HumanoidAppearance
+    species: IPC
+  - type: ZombieImmune
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+    allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
+  - type: Vocal
+    sounds:
+      Male: MaleIPC
+      Female: FemaleIPC
+      Unsexed: MaleIPC
+  # - type: VisionOrganRequiredForVision
+  # IPC slots
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot { }
+      key_slots: !type:Container
+      borg_brain: !type:ContainerSlot { }
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  # Brain
+  - type: IPCBrainHolder
+  - type: ContainerFill
+    containers:
+      borg_brain: [ PositronicBrain ]
+  - type: GlitchOnIonStorm
+    duration: 40
+    ramp: 5
+  # Battery
+  - type: BatteryAlert
+    batteryAlert: IPCBattery
+    noBatteryAlert: IPCBatteryNone
+  - type: IPCBattery
+    dieWithoutPowerAfter: 15.0 # 10 was too short
+    numWarnings: 2 #warn player that they are about to die
+    warningText: ipc-warning-critical-charge
+    warningSound:
+      params:
+        loop: true
+        maxDistance: 5
+      path: /Audio/_FarHorizons/Effects/Alerts/healthpanel-alert.ogg
+    drainAllowedTargets:
+      - APCBasic
+      - APCHighCapacity
+      - APCSuperCapacity
+      - APCHyperCapacity
+      - SubstationBasic
+      - SubstationWallBasic
+    noPowerDeathEmote: DeathgaspIPC
+  - type: Deathgasp
+    prototype: DeathgaspIPC
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: true
+  - type: PowerCellDraw
+    drawRate: 0.6
+  - type: BatteryDrainer
+    drainEfficiency: 0.005
+    drainTime: 0.8
+    disableHandInteraction: true
+  # Radio
+  - type: IPCRadio
+    keysCapacity: 2
+    copyHeadsetKeys: false  # Copy contents on headset when starting gear is equipped
+    removeHeadset: false # Delete headset when starting gear is equipped (after copying keys)
+  - type: ActiveRadio
+  - type: IntrinsicRadioTransmitter
+  - type: IntrinsicRadioReceiver
+  # Music player
+  - type: ActionGrant
+    actions:
+    - ActionSiliconPlayMidi
+  - type: Instrument
+    allowPercussion: true
+    allowProgramChange: true
+    handheld: false
+  # Health
+  - type: Blindable
+  - type: IPCRevive
+    rebootButton: true
+    rebootTime: 6.0
+    defibBatteryDrain: true
+    defibDamage:
+      types:
+        Shock: 20 # It already does 5 shock to everyone, take that into account
+        Heat: 20 
+    damagedSound:
+      params:
+        loop: true
+        maxDistance: 5
+      path: /Audio/_FarHorizons/Effects/Alerts/healthpanel-alert.ogg
+    damagedThreshold:
+      min: 85
+  - type: Repairable # So welder is just a special little snowflake in the code. I tried making healing with welder work through ConditionalHealing component, but it would require too many changes in too many places. So we will keep on the trend and have brute healing defined here. /shrug
+    doAfterDelay: 2 # A bit slower than conventional topicals, but heals for more.
+    allowSelfRepair: true
+    fuelCost: 10
+    damage:
+      groups:
+        Brute: -30 # 10 for each type
+  - type: HumanoidEMPComposite # HumanoidEMPComposite is used to gather EMP effects from HumanoidEMPCompositeElement components on all limbs and organs. These effects added in addition to effects in HumanoidEMP and won't work without it
+  - type: HumanoidEMP # HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
+    effectCooldown: 2
+    effect:
+      slowdownAmount: 5.0
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      additionalEffects:
+        StatusEffectIPCFanDisabled: 20.0
+      damageAmount:
+        types:
+          Shock: 2
+          Heat: 2
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 400
+      behaviors:
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 2500 # Due to being extremely ash prone as a result of tempature mechanics. Also it's metal, that takes longer to melt.
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash: # Should totally make this like, metallic slag or something later on. Thematically fitting.
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+  # Lock
+  - type: IPCLock
+    instantSelfUnlock: true
+    unlockTime: 10.0
+    # Just in case:
+    #instantSelfLock: true
+    #lockTime: 0.0
+    lockSoundsEnabled: true # beeps and boops during unlock doafter
+    lockSoundsCooldown: 0.9
+  - type: LockedWiresPanel
+  - type: Lock
+    locked: true
+    breakOnAccessBreaker: true # Access breaker instantly unlocks. It lock can be instantly locked right away by IPC and no lasting changes to lock are made. Disable if undesireable
+    useAccess: false # IPCLock handles this
+    unlockOnClick: false # IPCLock handles this
+    showLockVerbs: false # IPCLock handles this
+  - type: IPCUserInterface
+  - type: UserInterface
+    interfaces:
+      enum.IPCUiKey.Key:
+        type: IPCBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
+        requireInputValidation: false
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+      enum.ThavenMoodsUiKey.Key: # impstation edit
+        type: ThavenMoodsBoundUserInterface
+        requireInputValidation: false
+      enum.VampireClassUiKey.Key: # SL
+        type: VampireClassBui
+      enum.VampireLocateUiKey.Key: # SL
+        type: VampireLocateBui
+  - type: ActivatableUI
+    key: enum.IPCUiKey.Key
+  - type: UIRequiresLock
+    userInterfaceKeys:
+    - enum.IPCUiKey.Key
+  # Thermals
+  - type: Temperature
+    currentTemperature: 313
+    specificHeat: 10 # IPC's metal body has very low heat capacity. Fast to heat and fast to cool
+  - type: TemperatureDamage
+    disableAlerts: true
+    heatDamageThreshold: 373 # ~100C
+    coldDamageThreshold: 285 # Temperature alert works funky, basically requred for "ideal temperature" to be in the middle between 2
+    coldDamage: {} # Since we had to set treshold for damage, but we don't actually want any damage
+    heatDamage:
+      types:
+        Heat: 2.5 #per second, scales with temperature & other constants
+  - type: IPCThermalRegulation
+    produceHeat: 2000 # How much heat generated inside the body per second (only when on)
+    radiateHeat: 300 # Passive heat loss, even when dead and/or spaced
+    minEffectivePressure: 80
+    maxEffectivePressure: 200 # Outside of optimal window fans become less effective
+    minPressure: 10
+    maxPressure: 500 # Outside of this window fans stop working entirely
+    maxTemperature: 414 # ~140C just above highest mode
+    # External cooling completely turns off natual heat generation and loss. 
+    # Active cooling will still work until the temperature is normal, then it will stay unchanging until external cooling is removed
+    externalCoolingTag: IPCExternalCooling # Items must have this tag on them
+    externalCoolingCheckSlots: # All slots must have item in them, and all these items must have tag
+      - outerClothing
+      #- head # uncomment and add tags to helmets if you want them to be closed in space
+    fansEfficiencyLowThreshold: 0.15 # Efficiency has to be lower than this before fansEfficiencyLowAlert is shown (percentage, from 0 to 1)
+    fansOffExamineText: ipc-thermals-examine-off
+    fansOffDiagnosticsText: ipc-thermals-diagnostics-off
+    fansOKAlert: IPCFansOk
+    fansOffAlert: IPCFansOff
+    fansEfficiencyLowAlert: IPCFansEfficiencyLow
+    alertsCategory: IPCCirculation
+    fanModes:
+      - minTemp: 323 # Fans turn on at ~50C
+        bodyHeatEffect: -2500 # And release just enough heat to keep temperature stable in normal conditions
+        atmosHeatEffect: 50 # In a perfect simulation heat would be transferred from IPC to atmos, but in current state of the game we can't do that
+        staysOnFor: 10 # Every time this fan mode activated, it can't be switched off for this long, to prevent fans constantly switching back and forth
+        examineText: ipc-thermals-examine-low # Text you see when examining IPC upclose (hearing or not hearing sound of fans)
+        diagnosticsText: ipc-thermals-diagnostics-low # Text to show in control panel
+      - minTemp: 343 # At ~70C fans speed up to medium
+        bodyHeatEffect: -3500
+        atmosHeatEffect: 80
+        staysOnFor: 10
+        examineText: ipc-thermals-examine-medium
+        diagnosticsText: ipc-thermals-diagnostics-medium
+        modeAlert: IPCFansSpeedMedium
+      - minTemp: 373 # At ~100C fans go into high
+        bodyHeatEffect: -4500
+        atmosHeatEffect: 100
+        staysOnFor: 10
+        examineText: ipc-thermals-examine-high
+        diagnosticsText: ipc-thermals-diagnostics-high
+        modeAlert: IPCFansSpeedHigh
+      - minTemp: 393 # At ~120C fans go into overdrive
+        bodyHeatEffect: -6000
+        atmosHeatEffect: 150
+        staysOnFor: 10
+        examineText: ipc-thermals-examine-extreme
+        diagnosticsText: ipc-thermals-diagnostics-extreme
+        modeAlert: IPCFansSpeedExtreme
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobIPCDummy
+  categories: [ HideSpawnMenu ]

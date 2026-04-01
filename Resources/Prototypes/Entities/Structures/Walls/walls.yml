@@ -1517,10 +1517,10 @@
   description: A mysterious ornate looking wall. There may be ancient dangers inside.
   components:
   - type: Sprite
-    sprite: Structures/Walls/vault.rsi
+    sprite: _Starlight/Structures/Walls/vault.rsi #Starlight
     state: alienvault
   - type: Icon
-    sprite: Structures/Walls/vault.rsi
+    sprite: _Starlight/Structures/Walls/vault.rsi #Starlight
     state: alienvault
   - type: Destructible
     thresholds:
@@ -1530,30 +1530,53 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  #Starlight Start
+  - type: IconSmooth
+    key: walls
+    base: alienvault
+  #Starlight End
 
 - type: entity
-  parent: WallVaultAlien
+  parent: BaseWall #Starlight
   id: WallVaultRock
   name: rock vault wall
   components:
   - type: Sprite
-    sprite: Structures/Walls/vault.rsi
+    sprite: _Starlight/Structures/Walls/vault.rsi #Starlight
     state: rockvault
   - type: Icon
-    sprite: Structures/Walls/vault.rsi
+    sprite: _Starlight/Structures/Walls/vault.rsi #Starlight
     state: rockvault
+  #Starlight Start
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: walls
+    base: rockvault
+  #Starlight End
 
 - type: entity
-  parent: WallVaultAlien
+  parent: WallVaultRock #Starlight
   id: WallVaultSandstone
   name: sandstone vault wall
   components:
   - type: Sprite
-    sprite: Structures/Walls/vault.rsi
+    sprite: _Starlight/Structures/Walls/vault.rsi #Starlight
     state: sandstonevault
   - type: Icon
-    sprite: Structures/Walls/vault.rsi
+    sprite: _Starlight/Structures/Walls/vault.rsi #Starlight
     state: sandstonevault
+  #Starlight Start
+  - type: IconSmooth
+    key: walls
+    base: sandstonevault
+  #Starlight End
 
 # Mime
 

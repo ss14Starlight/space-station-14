@@ -38,6 +38,7 @@ namespace Content.Client.Inventory
             UpdatesOutsidePrediction = true;
             base.Initialize();
 
+            SubscribeLocalEvent<InventorySlotsComponent, ComponentStartup>(OnStartup); // Starlight
             SubscribeLocalEvent<InventorySlotsComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
             SubscribeLocalEvent<InventorySlotsComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
 
@@ -48,6 +49,14 @@ namespace Content.Client.Inventory
             SubscribeLocalEvent<InventorySlotsComponent, DidUnequipEvent>((_, comp, args) =>
                 _equipEventsQueue.Enqueue((comp, args)));
         }
+        
+        //Starlight begin
+        private void OnStartup(Entity<InventorySlotsComponent> entity, ref ComponentStartup args)
+        {
+            if (!TryComp<InventoryComponent>(entity, out var inventory)) return;
+            UpdateInventoryTemplate((entity.Owner, inventory));
+        }
+        //Starlight end
 
         public override void Update(float frameTime)
         {
@@ -131,10 +140,8 @@ namespace Content.Client.Inventory
         {
             var player = _playerManager.LocalEntity;
             if (player == null || !Resolve(player.Value, ref component, false))
-            {
                 return;
-            }
-
+            
             OnUnlinkInventory?.Invoke();
             OnLinkInventorySlots?.Invoke(player.Value, component);
         }

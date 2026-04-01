@@ -1,0 +1,57 @@
+# Not galoshes, but still count towards the goal
+- type: entity
+  parent: [ ClothingShoesBase, BaseJanitorContraband ]
+  id: ClothingShoesGaloshnt
+  name: galoshes
+  description: Specialized slippery rubber boots, designed to increase janitorial workplace accidents; a tider's nightmare.
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Specific/galoshes.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Specific/galoshes.rsi
+  - type: StealTarget # Starlight
+    stealGroup: GaloshesCollection # Starlight
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesGreenLizardskin
+  name: green lizardskin shoes
+  description: They may have lost some of their lustre over the years, but these green lizardskin shoes fit you perfectly.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Shoes/Specific/disco.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Shoes/Specific/disco.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesAerostatic
+  name: aerostatic boots
+  description: A crisp, clean set of boots for working long hours on the beat.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Shoes/Specific/kim.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Shoes/Specific/kim.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesSchoolBlack
+  name: school black shoes
+  description: Stylish and comfortable school shoes in dark color with stockings.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Shoes/Specific/schoolblackshoes.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Shoes/Specific/schoolblackshoes.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesSchoolWhite
+  name: school white shoes
+  description: Stylish and comfortable school shoes in light color with stockings.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Shoes/Specific/schoolwhiteshoes.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Shoes/Specific/schoolwhiteshoes.rsi

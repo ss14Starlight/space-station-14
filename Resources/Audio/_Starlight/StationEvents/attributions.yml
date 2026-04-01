@@ -17,3 +17,13 @@
   license: "CC-BY-3.0"
   copyright: "Created by mrjajkes"
   source: "https://www.youtube.com/@mrjajkes"
+
+- files: ["nuclearoperations_infil.ogg"]
+  license: "CC0-1.0"
+  copyright: "Created by A-Guy173"
+  source: "https://github.com/A-Guy173/Music/tree/main"
+
+- files: ["War_Inevitable.ogg"]
+  license: "CC-BY-NC-3.0"
+  copyright: "Created by Bobik6003"
+  source: "https://github.com/A-Guy173/Music/tree/main"

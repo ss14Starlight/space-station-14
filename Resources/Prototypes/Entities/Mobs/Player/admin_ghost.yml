@@ -12,6 +12,7 @@
     - CanPilot
     - BypassInteractionRangeChecks
     - BypassDropChecks
+    - BypassUserTagChecks # Starlight-edit
     - NoConsoleSound
     - SilentStorageUser
     - PreventAccessLogging
@@ -47,6 +48,7 @@
     - NuclearOperative
     - SyndicateAgent
     - CentralCommand
+    - Solgov # SL
   - type: UserInterface
     interfaces:
       enum.SolarControlConsoleUiKey.Key:
@@ -95,6 +97,7 @@
     followEntity: true
   - type: CargoOrderConsole
   - type: CrewMonitoringConsole
+    pagingEnabled: false # Starlight
   - type: GeneralStationRecordConsole
     canDeleteEntries: true
     # Cosmatic Drift Record System-start
