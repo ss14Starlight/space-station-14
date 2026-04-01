@@ -7,7 +7,7 @@ using Content.Client._Starlight.UI;
 using Content.Shared.Damage.Components;
 using Robust.Shared.Timing;
 using Content.Shared.PowerCell.Components;
-using Content.Shared._FarHorizons.ReagantDraw.Components;
+using Content.Shared._FarHorizons.ReagentDraw.Components;
 using Content.Shared.Power.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Power.EntitySystems;
@@ -47,7 +47,7 @@ public sealed partial class VehicleEquipmentMenu : FancyWindow
         set;
     } = null;
 
-    public ReagantDrawComponent? ReagantDraw
+    public ReagentDrawComponent? ReagentDraw
     {
         get => field ?? TryGetAssignComp(_entityManager, Entity, ref field);
         set;
@@ -229,9 +229,9 @@ public sealed partial class VehicleEquipmentMenu : FancyWindow
         }
         else
         {
-            if(ReagantDraw == null)
+            if(ReagentDraw == null)
                 return 0;
-            if(!_solution.ResolveSolution(uid, ReagantDraw.SolutionContainer, ref ReagantDraw.Solution, out var solution)) 
+            if(!_solution.ResolveSolution(uid, ReagentDraw.SolutionContainer, ref ReagentDraw.Solution, out var solution)) 
                 return 0;
             
             return (int)Math.Round(SharedSolutionContainerSystem.PercentFull(solution));

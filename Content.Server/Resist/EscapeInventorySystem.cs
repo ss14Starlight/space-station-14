@@ -12,6 +12,7 @@ using Content.Shared.Tag; // Starlight Edit
 using Robust.Server.GameObjects; // Starlight Edit
 using Robust.Shared.Prototypes; // Starlight
 using Robust.Shared.Containers;
+using Content.Shared._FarHorizons.Vehicles.Components;
 
 namespace Content.Server.Resist;
 
@@ -43,6 +44,8 @@ public sealed partial class EscapeInventorySystem : EntitySystem
 
         if (!_containerSystem.TryGetContainingContainer((uid, null, null), out var container) || !_actionBlockerSystem.CanInteract(uid, container.Owner))
             return;
+
+        if (HasComp<RiderComponent>(uid)) return; //FarHorizon
 
         // Make sure there's nothing stopped the removal (like being glued)
         if (!_containerSystem.CanRemove(uid, container))

@@ -8,7 +8,7 @@ public sealed partial class RiderComponent : Component
     /// <summary>
     /// The vehicle the person is controlling
     /// </summary>
-    [DataField("riding"), AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public EntityUid? Riding;
     
 }

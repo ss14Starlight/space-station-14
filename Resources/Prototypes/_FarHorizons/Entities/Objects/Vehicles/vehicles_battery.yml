@@ -258,6 +258,10 @@
             tags:
             - VehicleKey
             - SyndicateSegwayKeys
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          disableEject: true
+          swap: true
 
 - type: entity
   id: VehicleSegwayNSTFilled
@@ -377,6 +381,10 @@
           tags:
           - VehicleKey
           - JanicartKeys
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        disableEject: true
+        swap: true
       trashbag_slot:
         name: janitorial-trolley-slot-component-slot-name-trashbag
         whitelist:
@@ -391,7 +399,7 @@
   - type: ExaminableSolution
     solution: watertank
     exactVolume: true
-  - type: ReagantDraw
+  - type: ReagentDraw
     enabled: false
     solutionContainer: watertank
     whitelistedReagants:

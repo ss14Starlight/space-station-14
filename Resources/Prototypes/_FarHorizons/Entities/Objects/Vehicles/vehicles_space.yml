@@ -60,7 +60,7 @@
   - type: ExaminableSolution
     solution: fueltank
     exactVolume: true
-  - type: ReagantDraw
+  - type: ReagentDraw
     enabled: false
     solutionContainer: fueltank
     whitelistedReagants: 

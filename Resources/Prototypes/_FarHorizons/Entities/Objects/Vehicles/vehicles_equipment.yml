@@ -158,7 +158,7 @@
     - type: MovementSpeedModifier
       baseSprintSpeed: 7.5
       baseWalkSpeed: 10
-    - type: ReagantDraw
+    - type: ReagentDraw
       drainRate: 0.25
 
 - type: entity
@@ -170,7 +170,7 @@
     - type: MovementSpeedModifier
       baseSprintSpeed: 10
       baseWalkSpeed: 15
-    - type: ReagantDraw
+    - type: ReagentDraw
       drainRate: 0.375
 
 - type: entity
@@ -182,7 +182,7 @@
     - type: MovementSpeedModifier
       baseSprintSpeed: 5
       baseWalkSpeed: 2.5
-    - type: ReagantDraw
+    - type: ReagentDraw
       drainRate: 0.25
 
 - type: entity

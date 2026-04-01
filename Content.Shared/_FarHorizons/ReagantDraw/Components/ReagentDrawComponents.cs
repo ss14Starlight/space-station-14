@@ -4,10 +4,10 @@ using Content.Shared.Chemistry.Components;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._FarHorizons.ReagantDraw.Components;
+namespace Content.Shared._FarHorizons.ReagentDraw.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
-public sealed partial class ReagantDrawComponent : Component
+public sealed partial class ReagentDrawComponent : Component
 {
     /// <summary>
     /// ReagentID for what solution to whitelist.

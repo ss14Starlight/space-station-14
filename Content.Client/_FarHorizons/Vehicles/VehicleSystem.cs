@@ -1,12 +1,11 @@
 using Content.Shared._FarHorizons.Vehicles;
 using Content.Shared._FarHorizons.Vehicles.Components;
 using Robust.Client.GameObjects;
-using Content.Shared.Buckle.Components;
 using Robust.Client.Graphics;
 
 namespace Content.Client._FarHorizons.Vehicles;
 
-public sealed class VehicleSystems : SharedVehicleSystems
+public sealed partial class VehicleSystems : SharedVehicleSystem
 {
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -16,7 +15,6 @@ public sealed class VehicleSystems : SharedVehicleSystems
         base.Initialize();
 
         SubscribeLocalEvent<VehicleComponent, AppearanceChangeEvent>(OnAppearanceChanged);
-        SubscribeLocalEvent<VehicleBuckleComponent, UnstrapAttemptEvent>(OnUnstrapAttempt);
         _transform.OnGlobalMoveEvent += OnMoveEvent;
     }
 
@@ -31,15 +29,6 @@ public sealed class VehicleSystems : SharedVehicleSystems
             visualState = VehicleVisualState.Normal;
         }
         UpdateAppearance(uid, visualState, component, args.Sprite);
-    }
-
-    private void OnUnstrapAttempt(Entity<VehicleBuckleComponent> ent, ref UnstrapAttemptEvent args)
-    {
-        if(!TryComp<VehicleComponent>(ent.Owner, out var vehicleComp)) return;
-        if(args.User == null || !args.Popup) return;
-        if(vehicleComp.Rider == null) return;
-        if (vehicleComp.Rider != args.User)
-            args.Cancelled = true;
     }
 
     private void UpdateAppearance(EntityUid uid, VehicleVisualState visualState, VehicleComponent component, SpriteComponent sprite)

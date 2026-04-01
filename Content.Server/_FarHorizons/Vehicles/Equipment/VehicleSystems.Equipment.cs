@@ -13,7 +13,7 @@ using Content.Shared.Movement.Components;
 using Robust.Shared.Timing;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.PowerCell;
-using Content.Shared._FarHorizons.ReagantDraw.Components;
+using Content.Shared._FarHorizons.ReagentDraw.Components;
 using Content.Shared.UserInterface;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -67,7 +67,7 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         SubscribeLocalEvent<VehicleEquipmentComponent, InstalledVehicleEquipment>(OnVehicleEquipmentInstalled);
         SubscribeLocalEvent<MovementSpeedModifierComponent, InstalledVehicleEquipment>(OnMovementInstalled);
         SubscribeLocalEvent<PowerCellDrawComponent, InstalledVehicleEquipment>(OnElectricEngineInstalled);
-        SubscribeLocalEvent<ReagantDrawComponent, InstalledVehicleEquipment>(OnGasEngineInstalled);
+        SubscribeLocalEvent<ReagentDrawComponent, InstalledVehicleEquipment>(OnGasEngineInstalled);
         SubscribeLocalEvent<DamageableComponent, InstalledVehicleEquipment>(OnArmorInstalled);
         SubscribeLocalEvent<PointLightComponent, InstalledVehicleEquipment>(OnLightInstalled);
 
@@ -76,7 +76,7 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         SubscribeLocalEvent<VehicleEquipmentComponent, UnInstalledVehicleEquipment>(OnVehicleEquipmentUnInstalled);
         SubscribeLocalEvent<MovementSpeedModifierComponent, UnInstalledVehicleEquipment>(OnMovementUnInstalled);
         SubscribeLocalEvent<PowerCellDrawComponent, UnInstalledVehicleEquipment>(OnElectricEngineUnInstalled);
-        SubscribeLocalEvent<ReagantDrawComponent, UnInstalledVehicleEquipment>(OnGasEngineUnInstalled);
+        SubscribeLocalEvent<ReagentDrawComponent, UnInstalledVehicleEquipment>(OnGasEngineUnInstalled);
         SubscribeLocalEvent<DamageableComponent, UnInstalledVehicleEquipment>(OnArmorUnInstalled);
         SubscribeLocalEvent<PointLightComponent, UnInstalledVehicleEquipment>(OnLightUnInstalled);
 
@@ -222,9 +222,9 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
     private void OnElectricEngineInstalled(Entity<PowerCellDrawComponent> ent, ref InstalledVehicleEquipment args) 
         => _powerCell.SetDrawRate(args.Vehicle, ent.Comp.DrawRate);
 
-    private void OnGasEngineInstalled(Entity<ReagantDrawComponent> ent, ref InstalledVehicleEquipment args)
+    private void OnGasEngineInstalled(Entity<ReagentDrawComponent> ent, ref InstalledVehicleEquipment args)
     {
-        if(!TryComp<ReagantDrawComponent>(args.Vehicle, out var rdComp)) return;
+        if(!TryComp<ReagentDrawComponent>(args.Vehicle, out var rdComp)) return;
         rdComp.DrainRate = ent.Comp.DrainRate;
         Dirty(args.Vehicle, rdComp);
     }
@@ -320,9 +320,9 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
     private void OnElectricEngineUnInstalled(Entity<PowerCellDrawComponent> ent, ref UnInstalledVehicleEquipment args) 
         => _powerCell.SetDrawRate(args.Vehicle, 999999);
 
-    private void OnGasEngineUnInstalled(Entity<ReagantDrawComponent> ent, ref UnInstalledVehicleEquipment args)
+    private void OnGasEngineUnInstalled(Entity<ReagentDrawComponent> ent, ref UnInstalledVehicleEquipment args)
     {
-        if(!TryComp<ReagantDrawComponent>(args.Vehicle, out var rdComp)) return;
+        if(!TryComp<ReagentDrawComponent>(args.Vehicle, out var rdComp)) return;
         rdComp.DrainRate = 999999;
         Dirty(args.Vehicle, rdComp);
     }
@@ -422,7 +422,9 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         if(!TryComp<DestructibleComponent>(ent.Owner, out var destructible))
             return;
 
-        if(ent.Comp.Equipment[EquipmentType.TIRES] == null || destructible.IsBroken)
+        ent.Comp.Equipment.TryGetValue(EquipmentType.TIRES, out var tires);
+
+        if(tires == null || destructible.IsBroken)
         {
             args.Acceleration = 0.5f;
             args.Friction = 16/_frictionModifier;
@@ -430,7 +432,7 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         }
         else
         {
-            if(!TryComp<MovementSpeedModifierComponent>(ent.Comp.Equipment[EquipmentType.TIRES], out var msmComp)) return;
+            if(!TryComp<MovementSpeedModifierComponent>(tires, out var msmComp)) return;
             args.Acceleration = msmComp.BaseAcceleration;
             args.Friction = msmComp.BaseFriction/_frictionModifier;
             args.FrictionNoInput = msmComp.BaseFriction/_frictionModifier;   
@@ -439,8 +441,10 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
 
     private void OnWeightlessRefresh(Entity<VehicleModsComponent> ent, ref RefreshWeightlessModifiersEvent args)
     {
-        if(ent.Comp.Equipment[EquipmentType.THURSTERS] == null 
-            || !TryComp<MovementSpeedModifierComponent>(ent.Comp.Equipment[EquipmentType.THURSTERS], out var msmComp)) return;
+        if(!ent.Comp.Equipment.TryGetValue(EquipmentType.THURSTERS, out var thrusters) || thrusters == null)
+            return;
+        if(!TryComp<MovementSpeedModifierComponent>(thrusters, out var msmComp)) return;
+        
         var xForm = Transform(ent.Owner);
         if(xForm.GridUid == null)
         {
@@ -453,7 +457,10 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
 
     private void OnVehicleShutoff(Entity<VehicleModsComponent> ent, ref TurnOffVehicleEvent args)
     {
-        if(TryComp<VehicleFanModComponent>(ent.Comp.Equipment[EquipmentType.VENTFAN], out var fanComp))
+        if(!ent.Comp.Equipment.TryGetValue(EquipmentType.VENTFAN, out var fan) || fan == null)
+            return;
+
+        if(TryComp<VehicleFanModComponent>(fan, out var fanComp))
             _vAtmos.SetFanState(ent, fanComp, FanState.Off);
     }
 

@@ -3,12 +3,12 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Timing;
 using Robust.Shared.Containers;
-using Content.Shared._FarHorizons.ReagantDraw.Components;
+using Content.Shared._FarHorizons.ReagentDraw.Components;
 using Content.Shared.Destructible;
 
-namespace Content.Server._FarHorizons.ReagantDraw.EntitySystems;
+namespace Content.Shared._FarHorizons.ReagentDraw.EntitySystems;
 
-public sealed class ReagantDrawSystem : EntitySystem
+public sealed class SharedReagentDrawSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
@@ -17,15 +17,15 @@ public sealed class ReagantDrawSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<ReagantDrawComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<ReagantDrawComponent, SolutionTransferAttemptEvent>(OnSolutionTransferAttempt);
-        SubscribeLocalEvent<ReagantDrawComponent, BreakageEventArgs>(OnBreakageEvent);
+        SubscribeLocalEvent<ReagentDrawComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<ReagentDrawComponent, SolutionTransferAttemptEvent>(OnSolutionTransferAttempt);
+        SubscribeLocalEvent<ReagentDrawComponent, BreakageEventArgs>(OnBreakageEvent);
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var query = EntityQueryEnumerator<ReagantDrawComponent>();
+        var query = EntityQueryEnumerator<ReagentDrawComponent>();
 
         while (query.MoveNext(out var uid, out var comp))
         {
@@ -44,10 +44,10 @@ public sealed class ReagantDrawSystem : EntitySystem
         }
     }
 
-    private void OnMapInit(Entity<ReagantDrawComponent> ent, ref MapInitEvent args) => 
+    private void OnMapInit(Entity<ReagentDrawComponent> ent, ref MapInitEvent args) => 
         ent.Comp.NextUpdateTime = _timing.CurTime + ent.Comp.Delay;
 
-    public bool TryUseReagant(EntityUid uid, float value, ReagantDrawComponent? reagantComp = null)
+    public bool TryUseReagant(EntityUid uid, float value, ReagentDrawComponent? reagantComp = null)
     {
         if (!Resolve(uid, ref reagantComp, false))
             return false;
@@ -60,7 +60,7 @@ public sealed class ReagantDrawSystem : EntitySystem
         return true;
     }
 
-    private float UseReagant(EntityUid uid, float value, Solution solution, ReagantDrawComponent? reagantComp = null)
+    private float UseReagant(EntityUid uid, float value, Solution solution, ReagentDrawComponent? reagantComp = null)
     {
         if (value <= 0 || !Resolve(uid, ref reagantComp) || solution.Volume == 0)
             return 0;
@@ -68,7 +68,7 @@ public sealed class ReagantDrawSystem : EntitySystem
         return ChangeReagant(uid, value, solution, reagantComp);
     }
 
-    public float ChangeReagant(EntityUid uid, float value, Solution solution, ReagantDrawComponent? reagantComp = null)
+    public float ChangeReagant(EntityUid uid, float value, Solution solution, ReagentDrawComponent? reagantComp = null)
     {
         if (!Resolve(uid, ref reagantComp))
             return 0;
@@ -92,7 +92,7 @@ public sealed class ReagantDrawSystem : EntitySystem
 
     public bool HasDrawReagant(
         EntityUid uid,
-        ReagantDrawComponent? reagantComp = null)
+        ReagentDrawComponent? reagantComp = null)
     {
         if (!Resolve(uid, ref reagantComp, false))
             return true;
@@ -100,7 +100,7 @@ public sealed class ReagantDrawSystem : EntitySystem
         return HasReagant(uid, reagantComp.DrainRate, reagantComp);
     }
     
-    public bool HasReagant(EntityUid uid, float charge, ReagantDrawComponent reagantComp)
+    public bool HasReagant(EntityUid uid, float charge, ReagentDrawComponent reagantComp)
     {
         if(!_solutionContainer.ResolveSolution(uid, reagantComp.SolutionContainer, ref reagantComp.Solution, out var solution)) 
             return false;
@@ -111,7 +111,7 @@ public sealed class ReagantDrawSystem : EntitySystem
         return true;
     }
 
-    private void OnSolutionTransferAttempt(Entity<ReagantDrawComponent> ent, ref SolutionTransferAttemptEvent args)
+    private void OnSolutionTransferAttempt(Entity<ReagentDrawComponent> ent, ref SolutionTransferAttemptEvent args)
     {
         if(ent.Comp.WhitelistedReagants.Count == 0) return;
 
@@ -123,7 +123,7 @@ public sealed class ReagantDrawSystem : EntitySystem
         }
     }
 
-    private void OnBreakageEvent(EntityUid ent, ReagantDrawComponent component, BreakageEventArgs args)
+    private void OnBreakageEvent(EntityUid ent, ReagentDrawComponent component, BreakageEventArgs args)
     {
         if(!_solutionContainer.ResolveSolution(ent, component.SolutionContainer, ref component.Solution, out var solution)) return;
 

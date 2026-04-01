@@ -1,5 +1,4 @@
 using Content.Shared._FarHorizons.Tools.FloorBuffer.Components;
-using Content.Server.Decals;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Decals;
 using Content.Shared.Fluids.Components;
@@ -14,22 +13,22 @@ using System.Numerics;
 using Content.Shared.Actions;
 using Content.Shared.Toggleable;
 using Content.Shared.Movement.Systems;
-using Content.Shared._FarHorizons.ReagantDraw.Components;
-using Content.Server._FarHorizons.ReagantDraw.EntitySystems;
 using Content.Shared.Hands;
 using Content.Shared.Audio;
+using Content.Shared._FarHorizons.ReagentDraw.EntitySystems;
+using Content.Shared._FarHorizons.ReagentDraw.Components;
 
 namespace Content.Shared._FarHorizons.Tools.FloorBuffer.Systems;
 
 public sealed partial class FloorBufferSystem : EntitySystem
 {
     [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly DecalSystem _decals = default!;
+    [Dependency] private readonly SharedDecalSystem _decals = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly ReagantDrawSystem _reagantDraw = default!;
+    [Dependency] private readonly SharedReagentDrawSystem _ReagentDraw = default!;
     [Dependency] private readonly SharedAmbientSoundSystem _ambient = default!;
     static readonly public ProtoId<ReagentPrototype> ReplacementReagent = "Water";
     public override void Initialize()
@@ -74,7 +73,7 @@ public sealed partial class FloorBufferSystem : EntitySystem
             if(!TryComp<MapGridComponent>(xForm.GridUid, out var grid))
                 continue;
                         
-            if(TryComp<ReagantDrawComponent>(uid, out var rdComp) && !_reagantDraw.HasDrawReagant(uid))
+            if(TryComp<ReagentDrawComponent>(uid, out var rdComp) && !_ReagentDraw.HasDrawReagant(uid))
             {
                 floorComp.Enabled = false;
                 rdComp.Enabled = false;
@@ -88,7 +87,7 @@ public sealed partial class FloorBufferSystem : EntitySystem
                 continue;
 
             var tile = _map.GetTileRef(xForm.GridUid.Value, grid, xForm.Coordinates);
-            CleanDecalssandPuddles(tile, grid);
+            CleanDecalssandPuddles(moveTarget,tile, grid);
         }
     }
 
@@ -97,7 +96,7 @@ public sealed partial class FloorBufferSystem : EntitySystem
         if (args.Handled)
             return;
         
-        if(TryComp<ReagantDrawComponent>(uid, out var rdComp))
+        if(TryComp<ReagentDrawComponent>(uid, out var rdComp))
         {
             rdComp.Enabled = !rdComp.Enabled;
             Dirty(uid, rdComp);
@@ -125,11 +124,11 @@ public sealed partial class FloorBufferSystem : EntitySystem
             args.ModifySpeed(ent.Comp.SpeedReduction);
     }
 
-    private void CleanDecalssandPuddles(TileRef tile, MapGridComponent grid)
+    private void CleanDecalssandPuddles(EntityUid uid, TileRef tile, MapGridComponent grid)
     {
         if(TryComp<DecalGridComponent>(tile.GridUid, out var decalGrid))
         {
-            var decals = _decals.GetDecalsIntersecting(tile.GridUid, _lookup.GetLocalBounds(tile, grid.TileSize).Enlarged(0.25f).Translated(new Vector2(-0.25f,-0.25f)));
+            var decals = _decals.GetDecalsInRange(tile.GridUid, Transform(uid).Coordinates.Position);
             foreach(var decal in decals)
             {
                 if(!decal.Decal.Cleanable)
