@@ -18,6 +18,25 @@
     containers:
       board: [ DoorElectronicsSalvageMining ]
 
+# Mail
+- type: entity
+  parent: WindoorCargoLocked
+  id: WindoorMailLocked
+  suffix: Mail, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMail ]
+
+- type: entity
+  parent: WindoorSecureCargoLocked
+  id: WindoorSecureMailLocked
+  suffix: Mail, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMail ]
+
 # Robotics
 - type: entity
   parent: WindoorSecure

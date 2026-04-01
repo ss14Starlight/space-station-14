@@ -104,6 +104,14 @@
       implant: MagillitisSerumImplant
 
 - type: entity
+  id: TSFMindShieldImplanter
+  name: TSF mindshield implanter
+  parent: MindShieldImplanter
+  components:
+  - type: Implanter
+    implant: TSFMindShieldImplant
+
+- type: entity
   id: DeathRattleImplanterTSF
   name: TSF death rattle implanter
   parent: BaseImplantOnlyImplanter

@@ -22,6 +22,12 @@ public abstract partial class EntityEffect
     public virtual float MinScale { get; private set; }
 
     /// <summary>
+    /// STARLIGHT: If our scale is greater than this value, the effect is clamped.
+    /// </summary>
+    [DataField]
+    public virtual float? MaxScale { get; private set; }
+
+    /// <summary>
     /// If true, then it allows the scale multiplier to go above 1.
     /// </summary>
     [DataField]

@@ -9,8 +9,8 @@ using Content.Shared.GameTicking.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Content.Shared.Station.Components;
-using Robust.Shared.Audio; //Starlight
+using Content.Shared.Station.Components; // Starlight
+using Robust.Shared.Audio; // Starlight
 
 namespace Content.Server.StationEvents.Events;
 
@@ -102,7 +102,16 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         base.Update(frameTime);
 
         var query = EntityQueryEnumerator<StationEventComponent, GameRuleComponent>();
+        // Starlight start - Some StationEvents can add more StationEvents, which causes the upstream
+        // enumeration here to break. Instead, we make a snapshot and iterate through that.
+        var snapshot = new List<(EntityUid uid, StationEventComponent stationEvent, GameRuleComponent ruleData)>();
+        // Starlight end
         while (query.MoveNext(out var uid, out var stationEvent, out var ruleData))
+        // Starlight start
+            snapshot.Add((uid, stationEvent, ruleData));
+
+        foreach (var (uid, stationEvent, ruleData) in snapshot)
+        // Starlight end
         {
             if (!GameTicker.IsGameRuleAdded(uid, ruleData))
                 continue;

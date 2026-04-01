@@ -22,3 +22,20 @@
     accessLevels:
     - BasicSilicon
     - Borg
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelBase
+  id: WeaponEnergyTurretSolgovControlPanel
+  suffix: Solgov
+  components:
+  - type: AccessReader
+    access: [["Solgov"]]
+  - type: ContainerFill
+    containers:
+      board:
+      - ScrapGlass
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - Solgov
+  - type: StationAiWhitelist
+    enabled: false

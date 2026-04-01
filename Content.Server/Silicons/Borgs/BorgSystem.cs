@@ -88,8 +88,6 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
     private void OnAskForBorging(EntityUid uid, BorgBrainComponent component, AskBorgingChoiceEvent args)
     {
-
-        Logger.Log(LogLevel.Debug, "Event Received");
         if (!_mind.TryGetMind(uid, out var mindId, out var mind))
             return;
 

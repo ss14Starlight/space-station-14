@@ -47,8 +47,8 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
     private enum TemperatureModes : byte
     {
-        Celcius = 1 << 0,
-        Kelvin = 1 << 1,
+        Kelvin = 1 << 0,
+        Celcius = 1 << 1,
         // Fahrenheit = 1 << 2
     }
 

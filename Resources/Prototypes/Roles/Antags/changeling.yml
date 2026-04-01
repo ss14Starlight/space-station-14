@@ -9,5 +9,9 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 24h
+  - !type:SpeciesRequirement
+    species:
+    - IPC
+    inverted: true
   playTimeTracker: AntagChangeling
   # Starlight end

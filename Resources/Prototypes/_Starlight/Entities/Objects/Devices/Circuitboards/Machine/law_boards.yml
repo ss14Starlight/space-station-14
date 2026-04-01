@@ -15,7 +15,7 @@
 
 - type: entity
   id: PanicmovCircuitBoard
-  parent: BaseElectronics
+  parent: [ BaseElectronics, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Panicmov)
   components:
   - type: Sprite
@@ -29,7 +29,7 @@
 
 - type: entity
   id: GenieCircuitBoard
-  parent: BaseElectronics
+  parent: [ BaseElectronics, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Genie in a Core)
   components:
   - type: Sprite
@@ -43,7 +43,7 @@
 
 - type: entity
   id: ReporterCircuitBoard
-  parent: BaseElectronics
+  parent: [ BaseElectronics, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Reporter)
   components:
   - type: Sprite
@@ -57,7 +57,7 @@
 
 - type: entity
   id: JermovCircuitBoard
-  parent: BaseElectronics
+  parent: [ BaseElectronics, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Jermov)
   components:
   - type: Sprite

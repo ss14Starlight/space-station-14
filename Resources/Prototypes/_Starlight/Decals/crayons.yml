@@ -167,3 +167,93 @@
   sprite:
     sprite: _Starlight/Decals/marks.rsi
     state: you_are_dead
+
+- type: decal
+  id: aidg
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi
+    state: aid
+
+- type: decal
+  id: dangerg
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi
+    state: danger
+
+- type: decal
+  id: deadinsideg
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi
+    state: dead_inside
+
+- type: decal
+  id: donotg
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi
+    state: do_not
+
+- type: decal
+  id: dontopeng
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi
+    state: dont_open
+
+- type: decal
+  id: followg
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi
+    state: follow
+
+- type: decal
+  id: freeg
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi
+    state: free
+
+- type: decal
+  id: gangshitg
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi
+    state: gang_shit
+
+- type: decal
+  id: tallyg
+  tags: ["crayon", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi
+    state: tally

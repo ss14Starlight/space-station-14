@@ -43,8 +43,8 @@
   - type: Item
     sprite: _Starlight/Objects/Weapons/Melee/cyberchainsaw.rsi
   # 🌟Starlight-start🌟
-  - type: BoneSaw
   - type: SurgeryTool
+  - type: BoneSaw
     successRate: 0.6
     speed: 0.2
     startSound:
@@ -138,6 +138,9 @@
           whitelist:
             components:
               - PowerCell
+          blacklist:
+            tags:
+            - MechReactor
             requireAll: true
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellMedium
@@ -229,6 +232,9 @@
           whitelist:
             components:
               - PowerCell
+          blacklist:
+            tags:
+            - MechReactor
             requireAll: true
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellMedium

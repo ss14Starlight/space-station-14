@@ -1,0 +1,82 @@
+- type: entity
+  parent: BaseStructureDynamic
+  id: FurnitureAquarium
+  name: aquarium
+  description: Do not tap the glass.
+  components:
+  - type: AmbientSound 
+    volume: -4
+    range: 3
+    sound: 
+      path: /Audio/Ambience/Objects/flowing_water_open.ogg
+  - type: Sprite
+    noRot: true
+    sprite: _Starlight/Structures/Furniture/aquarium.rsi
+    state: base
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Anchorable
+    delay: 4
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Glass
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmash
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:EmptyAllContainersBehaviour
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:SpillBehavior
+        solution: tank
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassReinforced:
+            min: 2
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 225
+        reagents:
+        - ReagentId: Water
+          Quantity: 100
+        - ReagentId: Mopwata
+          Quantity: 100
+  - type: DrainableSolution
+    solution: tank
+  - type: ReagentTank

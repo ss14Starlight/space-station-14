@@ -62,6 +62,7 @@
         - id: BoxFolderNanoTrasenClipboard
         - id: PrinterDocFlatpack
         - id: FaxMachineFlatpack
+        - id: BoxMagiCircuitBoards
         - !type:NestedSelector
           tableId: SecureDocumentTable
 
@@ -100,7 +101,7 @@
           tableId: CriminalDocumentTable
 
 - type: entity
-  id: LockerBSOFilled
+  id: LockerBlueshieldFilled
   categories: [ ShouldMapStation ]
   suffix: Filled
   parent: LockerBlueshield
@@ -111,13 +112,11 @@
         children:
         - id: FlashlightSeclite
         - id: ClothingHandsGlovesCombat
-        - id: ClothingShoesBootsCombat
+        - id: ClothingShoesBootsJack
         - id: TrackingImplanter
           amount: 3
         - id: MedkitAdvancedFilled
-        - id: WeaponPistolSP8T
-        - id: MagazinePistol40SP
-          amount: 2
+        - id: WeaponMultiphaseGun
         - id: ClothingEyesGlassesBlueShield
         - id: ClothingEyesHudBlueShield
         - id: ClothingHeadHatBeretBlueShield
@@ -135,9 +134,9 @@
         - id: RubberStampBSO
 
 - type: entity
-  id: LockerBSOFilledBluespaced
+  id: LockerBlueshieldFilledBluespaced
   suffix: Filled, Bluespaced
-  parent: LockerBSOFilled
+  parent: LockerBlueshieldFilled
   categories: [ Spawner ]
   components:
   - type: TriggerOnSpawn

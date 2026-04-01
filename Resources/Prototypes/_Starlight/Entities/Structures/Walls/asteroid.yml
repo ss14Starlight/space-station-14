@@ -192,11 +192,6 @@
         !type:DamageTrigger
         damage: 25 # weak
       behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          FoodMeatAnomaly:
-            min: 1
-            max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
@@ -206,3 +201,168 @@
     tags:
       - Wall
       - Structure
+
+- type: weightedRandomOre
+  id: IronRockCoalCrabProb
+  weights:
+    OreCoal: 49
+    OreCoalCrab: 1
+
+- type: entity
+  id: IronRockCoalCrab100
+  parent: IronRockCoal
+  suffix: Crab
+  components:
+    - type: OreVein
+      currentOre: OreCoalCrab
+
+- type: entity
+  id: IronRockCoalCrab2
+  parent: IronRockCoal
+  suffix: Coal 98%, Crab 2%
+  components:
+    - type: OreVein
+      currentOre: null
+      oreRarityPrototypeId: IronRockCoalCrabProb
+
+- type: weightedRandomOre
+  id: IronRockGoldCrabProb
+  weights:
+    OreGold: 49
+    OreGoldCrab: 1
+
+- type: entity
+  id: IronRockGoldCrab100
+  parent: IronRockGold
+  suffix: Crab
+  components:
+    - type: OreVein
+      currentOre: OreGoldCrab
+
+- type: entity
+  id: IronRockGoldCrab2
+  parent: IronRockGold
+  suffix: Gold 98%, Crab 2%
+  components:
+    - type: OreVein
+      currentOre: null
+      oreRarityPrototypeId: IronRockGoldCrabProb
+
+- type: weightedRandomOre
+  id: IronRockBananiumCrabProb
+  weights:
+    OreBananium: 49
+    OreBananiumCrab: 1
+
+- type: entity
+  id: IronRockBananiumCrab100
+  parent: IronRockBananium
+  suffix: Crab
+  components:
+    - type: OreVein
+      currentOre: OreBananiumCrab
+
+- type: entity
+  id: IronRockBananiumCrab2
+  parent: IronRockBananium
+  suffix: Bananium 98%, Crab 2%
+  components:
+    - type: OreVein
+      currentOre: null
+      oreRarityPrototypeId: IronRockBananiumCrabProb
+
+- type: weightedRandomOre
+  id: IronRockIronCrabProb
+  weights:
+    OreSteel: 49
+    OreIronCrab: 1
+
+- type: entity
+  id: IronRockIronCrab100
+  parent: IronRockIron
+  suffix: Crab
+  components:
+    - type: OreVein
+      currentOre: OreIronCrab
+
+- type: entity
+  id: IronRockIronCrab2
+  parent: IronRockIron
+  suffix: Iron 98%, Crab 2%
+  components:
+    - type: OreVein
+      currentOre: null
+      oreRarityPrototypeId: IronRockIronCrabProb
+
+- type: weightedRandomOre
+  id: IronRockQuartzCrabProb
+  weights:
+    OreSpaceQuartz: 49
+    OreQuartzCrab: 1
+
+- type: entity
+  id: IronRockQuartzCrab100
+  parent: IronRockQuartz
+  suffix: Crab
+  components:
+    - type: OreVein
+      currentOre: OreQuartzCrab
+
+- type: entity
+  id: IronRockQuartzCrab2
+  parent: IronRockQuartz
+  suffix: Quartz 98%, Crab 2%
+  components:
+    - type: OreVein
+      currentOre: null
+      oreRarityPrototypeId: IronRockQuartzCrabProb
+
+- type: weightedRandomOre
+  id: IronRockSilverCrabProb
+  weights:
+    OreSilver: 49
+    OreSilverCrab: 1
+
+- type: entity
+  id: IronRockSilverCrab100
+  parent: IronRockSilver
+  suffix: Crab
+  components:
+    - type: OreVein
+      currentOre: OreSilverCrab
+
+- type: entity
+  id: IronRockSilverCrab2
+  parent: IronRockSilver
+  suffix: Silver 98%, Crab 2%
+  components:
+    - type: OreVein
+      currentOre: null
+      oreRarityPrototypeId: IronRockSilverCrabProb
+
+- type: weightedRandomOre
+  id: IronRockUraniumCrabProb
+  weights:
+    OreUranium: 49
+    OreUraniumCrab: 1
+
+- type: entity
+  id: IronRockUraniumCrab100
+  parent: IronRockUranium
+  suffix: Crab
+  components:
+    - type: OreVein
+      currentOre: OreUraniumCrab
+
+- type: entity
+  id: IronRockUraniumCrab2
+  parent: IronRockUranium
+  suffix: Uranium 98%, Crab 2%
+  components:
+    - type: OreVein
+      currentOre: null
+      oreRarityPrototypeId: IronRockUraniumCrabProb
+#TODO: ADD BLUESPACE CRAB
+#TODO: ADD SALT CRAB
+#TODO: ADD PLASMA CRAB
+#TODO: ADD DIAMOND CRAB

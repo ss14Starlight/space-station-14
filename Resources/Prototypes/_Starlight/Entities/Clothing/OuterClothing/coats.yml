@@ -1,8 +1,8 @@
 - type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseBlueShieldContraband]
   id: ClothingOuterCoatBlueShield
-  name: blue shield overcoat
-  description: A coat worn by Blue Shield Officers who don't mind a little cold. Heavily reinforced, for when diplomacy won't cut it.
+  name: blueshield overcoat
+  description: A coat worn by Blueshield Officers who don't mind a little cold. Heavily reinforced, for when diplomacy won't cut it.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Coats/blueshield_coat.rsi
@@ -24,8 +24,8 @@
 - type: entity
   parent: [ ClothingOuterStorageFoldableBase, BaseCommandContraband ]
   id: ClothingOuterCoatNtrep
-  name: nt representive jacket
-  description: A fancy black jacket, standart issue to Nanotrasen Representives.
+  name: nt representative jacket
+  description: A fancy black jacket, standart issue to NanoTrasen Representatives.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Coats/ntrep.rsi
@@ -43,7 +43,7 @@
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatNtrep, BaseCommandContraband ]
   id: ClothingOuterCoatNtrepOpen
-  name: nt representive jacket
+  name: nt representative jacket
 
 - type: entity
   parent: ClothingOuterStorageFoldableBase
@@ -158,6 +158,33 @@
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabCorpsman]
   id: ClothingOuterCoatLabCorpsmanOpened
   name: corpsman's nostalgic overcoat
+
+# Fashion-O-Mat
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatSpaceCourier
+  name: space courier heavy coat
+  description: A luxurious coat, made to honor a legendary space courier. Fly, space courier!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/space_courier_coat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/space_courier_coat.rsi
+  - type: TemperatureProtection # Technically winter coat-type outfit
+    heatingCoefficient: 1.15
+    coolingCoefficient: 0.05
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.90
+        Heat: 0.85
+    priceMultiplier: 0
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.50
+# Fashion-O-Mat END
+
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -369,7 +396,7 @@
 - type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCentcommContraband]
   id: ClothingOuterCoatWardenCentcomm
-  name: Central Command Armored Winter Coat
+  name: central command armored winter coat
   description: A extremely durable, stylish winter coat made for central command Operators to survive even in the coldest of winter
   components:
   - type: Sprite
@@ -392,7 +419,7 @@
 - type: entity
   parent: [ ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCommandContraband ]
   id: ClothingOuterCoatNCT
-  name: NT career trainer's jacket
+  name: nt career trainer's jacket
   description: A sharp black coat with beige trim around the cuffs and collar, offering a mix of professionalism and approachability.
   components:
   - type: Sprite

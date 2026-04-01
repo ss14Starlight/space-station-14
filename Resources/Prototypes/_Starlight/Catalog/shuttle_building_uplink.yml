@@ -235,6 +235,14 @@
   - ShuttleUplinkShipbuilding
 
 - type: listing
+  id: ComputerGunneryConsoleSet
+  productEntity: ComputerGunneryConsole
+  cost:
+    BuildToken: 4
+  categories:
+  - ShuttleUplinkShipbuilding
+
+- type: listing
   id: ComputerShuttleSet
   productEntity: ComputerShuttle
   cost:

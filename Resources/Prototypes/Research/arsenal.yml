@@ -14,6 +14,7 @@
   - ShuttleGunKineticCircuitboard
   - MechEquipmentKineticAccelerator
   - FiringPinExpedition # Starlight
+  - BorgModuleMiningDefense # Starlight
   technologyPrerequisites:
   - SalvageEquipment # starlight
   radioChannels:

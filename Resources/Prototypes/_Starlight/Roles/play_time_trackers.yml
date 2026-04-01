@@ -42,6 +42,15 @@
   
 - type: playTimeTracker
   id: JobDecimus
+
+- type: playTimeTracker
+  id: JobSolGovOfficer
+
+- type: playTimeTracker
+  id: JobSolGovOfficerSheriff
+
+- type: playTimeTracker
+  id: JobTSFCrew
   
 - type: playTimeTracker
   id: JobTSFMarine

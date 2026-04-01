@@ -1,0 +1,28 @@
+[head=1][color=#135285]────────────────────[/color][/head]
+[color=#1b67a5]█▄░░█ ▀▀█▀▀[/color] [head=3] [color=#135285]NanoTrasen[/color][/head]
+[color=#1b67a5]█▀█▄█ ░░█░░[/color] [head=3] [color=#135285]Representative[/color][/head]
+[color=#1b67a5]█░░▀█ ░░█░░[/color]  [color=#aaaaaa][italic]OFFICIAL CORPORATE DOCUMENT[/italic][/color]
+[head=1][color=#135285]────────────────────[/color][/head]
+[head=2][color=#135285][bold]Classified Corporate Document[/bold][/color][/head]
+[head=1][color=#135285]────────────────────[/color][/head]
+[mono]
+[bold]Subject:[/bold] Supernatural readings detected in Starlight Sector
+[bold]Association:[/bold] "The Unknown"
+[bold]Objectives:[/bold] Beckoning the "Curtain Call"
+
+Reports of a newly developing group under the cultist designation have been detected in the Starlight sector. 
+
+Crew is advised to stay within their departments and minimize fraternizing with other crew members as this group has shown itself to be capable of converting crew members to their cause.
+This conversion involves taking a member of crew to their "monument" to interact with glowing sigils inscribed onto the floor.
+
+This monument is described as "undetectable until the process of 'lifting the curtain'" is about to occur. Security is recommended to be wary of groups gathering in hidden or abandoned sections of the station.
+
+De-conversion of cultist members has been successfully documented when using station assigned censers. Censers must be filled with holy water to effectively cleanse a suspected cult member of this unknown corruption.
+Additional censers can be requested from the Cargo department via the [bold]Religious Supplies Crate[/bold].
+
+Preliminary testing shows mindshield implantation prevents conversion up to a threshold detailed further in the report.
+
+Current understanding of cult hierarchy does not clearly define any direct leadership; as such there are no "head" members to be detained. Any crew members under this cult influence are to be treated as a hive mind and must be de-converted individually.[/mono]
+
+
+[head=1][color=#135285]────────────────────[/color][/head]

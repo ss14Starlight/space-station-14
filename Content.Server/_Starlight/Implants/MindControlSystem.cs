@@ -2,13 +2,15 @@
 using Content.Server.Popups;
 using Content.Shared.Implants;
 using Content.Server.Objectives;
-using Content.Shared._Starlight.Antags.Traitor;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Content.Shared._Starlight.Implants.Components;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Emp;
 using Content.Shared.Mindshield.Components;
 
 
@@ -17,7 +19,7 @@ namespace Content.Server._Starlight.Implants;
 public sealed class MindControlSystem : EntitySystem
 {
     private const string FollowOrdersObjectiveId = "MindControlledFollowOrders";
-    
+
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly ObjectivesSystem _objectives = default!;
     //[Dependency] private readonly TargetObjectiveSystem _targetObjectives = default!;
@@ -25,31 +27,40 @@ public sealed class MindControlSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StatusEffectsSystem _status = default!;
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    
-   
+    [Dependency] private readonly SharedStaminaSystem _staminaSystem = default!;
 
-    public override void Initialize()
+
+
+public override void Initialize()
     {
         base.Initialize();
         
         SubscribeLocalEvent<MindControlImplantComponent, AddImplantAttemptEvent>(OnAttemptImplant);
         SubscribeLocalEvent<MindControlImplantComponent, ImplantImplantedEvent>(OnImplantImplanted);
         SubscribeLocalEvent<MindControlImplantComponent, ImplantRemovedEvent>(OnImplantRemoved);
+        SubscribeLocalEvent<MindControlComponent, EmpPulseEvent>(OnEmpPulse);
     }
 
     private void OnAttemptImplant(EntityUid uid, MindControlImplantComponent component, AddImplantAttemptEvent args)
     {
-        component.Master = args.User;
-        
-        if (!_mind.TryGetMind(args.Target, out var mindId, out var mind) ||
-            _mind.IsCharacterDeadIc(mind) ||
-            args.User == args.Target ||
-            HasComp<MindShieldComponent>(args.Target) ||
-            HasComp<TraitorComponent>(args.Target))
+        if (args.User == args.Target)
         {
+            //Covered by another popup 
             args.Cancel();
-            //_popup.PopupEntity(Loc.GetString("mind-control-invalid"), args.User, args.User, PopupType.Small);
         }
+            
+        if (!_mind.TryGetMind(args.Target, out var mindId, out var mind) || _mind.IsCharacterDeadIc(mind))
+        {
+            _popup.PopupEntity(Loc.GetString("mind-control-invalid"), args.User, args.User, PopupType.Small);
+            args.Cancel();
+        }
+        
+        if (HasComp<MindShieldComponent>(args.Target))
+        {
+            _popup.PopupEntity(Loc.GetString("mind-control-prevented"), args.User, args.User, PopupType.Small);
+            args.Cancel();
+        }
+        component.Master = args.User;
     }
 
     private void OnImplantImplanted(EntityUid uid, MindControlImplantComponent component, ImplantImplantedEvent args)
@@ -84,6 +95,15 @@ public sealed class MindControlSystem : EntitySystem
         RemCompDeferred<MindControlComponent>(args.Implanted);
         _status.TryAddStatusEffectDuration(args.Implanted, "StatusEffectForcedSleeping", TimeSpan.FromSeconds(2));
     }
+
+    private void OnEmpPulse(Entity<MindControlComponent> ent, ref EmpPulseEvent args)
+    {
+        EnsureComp<StaminaComponent>(ent.Owner, out var stamina);
+        _staminaSystem.TakeStaminaDamage(ent.Owner, stamina.CritThreshold, stamina);
+        
+        args.Affected = true;
+        args.Disabled = true;
+    }
     
     private void RemoveTraitorObjectives(EntityUid uid)
     {
@@ -106,7 +126,6 @@ public sealed class MindControlSystem : EntitySystem
         
         if (objectiveOrders == null)
             return;
-        //_targetObjectives.SetTarget(objectiveOrders.Value, component.Master); //TODO Figure out why this won't set targets...
         
         _mind.AddObjective(mindId, mind, objectiveOrders.Value);
     }

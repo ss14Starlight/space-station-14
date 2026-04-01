@@ -1,109 +1,76 @@
 using System.Linq;
-using System.Threading.Tasks;
-using Content.Server._Starlight.Components;
 using Content.Server.Administration;
-using Content.Server.GameTicking;
-using Content.Server.Ghost;
 using Content.Shared._Starlight.Components;
 using Content.Shared.Administration;
-using Content.Shared.Mind;
-using Robust.Server.Player;
 using Robust.Shared.Toolshed;
 
 namespace Content.Server._Starlight.Administration.Systems.Commands;
 
-[ToolshedCommand, AdminCommand(AdminFlags.Fun)]
+[ToolshedCommand(Name="ccomp"), AdminCommand(AdminFlags.Fun)]
 public sealed class ClientCompCommand : ToolshedCommand
 {
-    [Dependency] private readonly ILogManager LogManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    private GameTicker? _ticker;
-    private SharedMindSystem? _mind;
-    private GhostSystem? _ghost;
-    private ClientComponentControlSystem? _cc;
-
-    private ISawmill? log;
+    private static readonly string AddedPrefix = "Attempted to add component with the name";
+    private static readonly string AddedSuffix = "to the entity all clients.";
+    private static readonly string WritePrefix = "Attempted to vvwrite";
+    private static readonly string WriteInfix = "into";
+    private static readonly string WriteSuffix = "on all clients.";
+    private static readonly string RemovePrefix = "Attempted to remove";
+    private static readonly string RemoveSuffix = "from the entity on all clients.";
 
     [CommandImplementation("ensure")]
-    public async Task<EntityUid> Ensure([PipedArgument] EntityUid targetEntity, string compName)
+    public EntityUid Ensure(IInvocationContext ctx, [PipedArgument] EntityUid uid, string compName)
     {
-        try
-        {
-            log ??= LogManager.GetSawmill("ccomp");
-            _cc ??= GetSys<ClientComponentControlSystem>();
-            if (!EntityManager.TryGetNetEntity(targetEntity, out var netEntity)) return targetEntity;
-            var ev = new CreateClientComponentEvent { NetEntityUid = netEntity.Value, ComponentName = compName, };
-            var results = await _cc.SendToAllClients(ev);
-            foreach (var result in results)
-            {
-                log.Log(LogLevel.Debug, $"result from {result.Key}: {result.Value!.ControlType}, {result.Value!.ControlSuccess}, {result.Value?.Message}");
-            }
-        }
-        catch (Exception e)
-        {
-            throw; // TODO handle exception
-        }
-        return targetEntity;
+        var name = compName.Trim().ToLower();
+        var comp = EnsureComp<ClientCompControlComponent>(uid);
+        comp.EnsuredComponents.Add(name);
+        comp.RemovedComponents.Remove(name);
+        EntityManager.Dirty(uid, comp);
+        ctx.WriteLine($"{AddedPrefix} {name} {AddedSuffix}");
+        return uid;
     }
 
     [CommandImplementation("write")]
-    public async Task<EntityUid> Write([PipedArgument] EntityUid targetEntity, string compName, string path, string data)
+    public EntityUid Write(IInvocationContext ctx, [PipedArgument] EntityUid uid, string path, string value)
     {
-        try
-        {
-            log ??= LogManager.GetSawmill("ccomp");
-            _cc ??= GetSys<ClientComponentControlSystem>();
-            if (!EntityManager.TryGetNetEntity(targetEntity, out var netEntity)) return targetEntity;
-            var ev = new WriteClientComponentEvent
-            {
-                NetEntityUid = netEntity.Value, ComponentName = compName, ValuePath = path, NewValue = data,
-            };
-            var results = await _cc.SendToAllClients(ev);
-            foreach (var result in results)
-            {
-                log.Log(LogLevel.Debug, $"result from {result.Key}: {result.Value!.ControlType}, {result.Value!.ControlSuccess}, {result.Value?.Message}");
-            }
-        }
-        catch (Exception e)
-        {
-            throw; // TODO handle exception
-        }
-        return targetEntity;
+        var comp = EnsureComp<ClientCompControlComponent>(uid);
+        if (!path.StartsWith('/')) path = $"/{path}";
+        comp.ViewVariablesWrites[path] = value;
+        EntityManager.Dirty(uid, comp);
+        ctx.WriteLine($"{WritePrefix} {value} {WriteInfix} {path} {WriteSuffix}");
+        return uid;
     }
-    
-    [CommandImplementation("rm")]
-    public async Task<EntityUid> Remove([PipedArgument] EntityUid targetEntity, string compName)
-    {
-        try
-        {
-            log ??= LogManager.GetSawmill("ccomp");
-            _cc = GetSys<ClientComponentControlSystem>();
-            if (!EntityManager.TryGetNetEntity(targetEntity, out var netEntity)) return targetEntity;
-            var ev = new RemoveClientComponentEvent { NetEntityUid = netEntity.Value, ComponentName = compName, };
-            var results = await _cc.SendToAllClients(ev);
-            
-            foreach (var result in results)
-            {
-                log.Log(LogLevel.Debug, $"result from {result.Key}: {result.Value!.ControlType}, {result.Value!.ControlSuccess}, {result.Value?.Message}");
-            }
-        }
-        catch (Exception e)
-        {
-            throw; // TODO handle exception
-        }
 
-        return targetEntity;
+    [CommandImplementation("rm")]
+    public EntityUid Rm(IInvocationContext ctx, [PipedArgument] EntityUid uid, string compName)
+    {
+        var name = compName.Trim().ToLower();
+        var comp = EnsureComp<ClientCompControlComponent>(uid);
+        comp.EnsuredComponents.Remove(name);
+        comp.RemovedComponents.Add(name);
+        foreach (var vvwrite in from vvwrite in comp.ViewVariablesWrites.ToList()
+                 let key = vvwrite.Key
+                 where key.StartsWith('/')
+                 let slashIndex = key.IndexOf('/', 1)
+                 let componentName = slashIndex == -1
+                     ? key[1..]
+                     : key[1..slashIndex]
+                 where componentName.Equals(name, StringComparison.OrdinalIgnoreCase)
+                 select vvwrite)
+            comp.ViewVariablesWrites.Remove(vvwrite.Key);
+        EntityManager.Dirty(uid, comp);
+        ctx.WriteLine($"{RemovePrefix} {name} {RemoveSuffix}");
+        return uid;
     }
 
     [CommandImplementation("ensure")]
-    public async Task<IEnumerable<Task<EntityUid>>> Ensure([PipedArgument] IEnumerable<EntityUid> targetEntity, string compName)
-        => targetEntity.Select(x => Ensure(x, compName));
+    public IEnumerable<EntityUid> Ensure(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string compName)
+        => uid.Select(x => Ensure(ctx, x, compName));
 
     [CommandImplementation("write")]
-    public async Task<IEnumerable<Task<EntityUid>>> Write([PipedArgument] IEnumerable<EntityUid> targetEntity, string compName, string path, string data)
-        => targetEntity.Select(x => Write(x, compName, path, data));
+    public IEnumerable<EntityUid> Write(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string path, string value)
+        => uid.Select(x => Write(ctx, x, path, value));
 
     [CommandImplementation("rm")]
-    public async Task<IEnumerable<Task<EntityUid>>> Remove([PipedArgument] IEnumerable<EntityUid> targetEntity, string compName)
-        => targetEntity.Select(x => Remove(x, compName));
+    public IEnumerable<EntityUid> Rm(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string compName)
+        => uid.Select(x => Rm(ctx, x, compName));
 }

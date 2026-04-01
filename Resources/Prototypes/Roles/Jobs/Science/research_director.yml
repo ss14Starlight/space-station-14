@@ -12,7 +12,7 @@
     time: 5h # Starlight
   - !type:DepartmentTimeRequirement
     department: Science
-    time: 30h # Starlight
+    time: 20h # Starlight
 
   weight: 10
   startingGear: ResearchDirectorGear

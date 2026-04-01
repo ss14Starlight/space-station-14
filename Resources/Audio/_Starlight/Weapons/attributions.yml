@@ -17,3 +17,8 @@
   license: "CC-BY-SA-3.0"
   copyright: "Taken from Aurora.3."
   source: "https://github.com/Aurorastation/Aurora.3/blob/master/sound/weapons/gunshot/ship_weapons/leviathan_fire.ogg"
+
+- files: ["120mm_mortar.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from Aurora.3"
+  source: "https://github.com/Aurorastation/Aurora.3/blob/master/sound/weapons/gunshot/ship_weapons/120mm_mortar.ogg"

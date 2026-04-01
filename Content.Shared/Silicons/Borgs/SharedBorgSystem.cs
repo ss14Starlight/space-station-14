@@ -40,6 +40,7 @@ using Content.Shared.Starlight.TextToSpeech;
 // Starlight begin
 using System.Linq;
 using Content.Shared.Tag;
+using Content.Server.Administration.Systems;
 // Starlight end
 
 namespace Content.Shared.Silicons.Borgs;
@@ -252,7 +253,6 @@ public abstract partial class SharedBorgSystem : EntitySystem
 
         TryActivate(chassis);
 
-        _access.SetAccessEnabled(chassis.Owner, true); // Needs a player so that scientists can't drag around an empty borg for free AA.
         _appearance.SetData(chassis.Owner, BorgVisuals.HasPlayer, true);
     }
 
@@ -266,7 +266,6 @@ public abstract partial class SharedBorgSystem : EntitySystem
         if (TryComp<HandheldLightComponent>(chassis.Owner, out var light))
             _handheldLight.TurnOff((chassis.Owner, light), makeNoise: false); // Already plays a sound when toggling the borg off.
 
-        _access.SetAccessEnabled(chassis.Owner, false); // Needs a player so that scientists can't drag around an empty borg for free AA.
         _appearance.SetData(chassis.Owner, BorgVisuals.HasPlayer, false);
     }
 
@@ -383,29 +382,10 @@ public abstract partial class SharedBorgSystem : EntitySystem
     {
         if (args.NewMobState == MobState.Alive)
             TryActivate(chassis, args.Origin);
-        // Starlight begin
         else
         {
             SetActive(chassis, false, user: args.Origin);
-
-            // This can be null apparently when borg dies before being "witnessed" by a client.
-            if (chassis.Comp.ModuleContainer == null)
-                return;
-
-            foreach (var ent in chassis.Comp.ModuleContainer.ContainedEntities.ToList())
-            {
-                if (!TryComp<ItemBorgModuleComponent>(ent, out var module)) continue;
-                if (!TryComp<ContainerManagerComponent>(ent, out var manager)) continue;
-                if (!_container.TryGetContainer(ent, module.HoldingContainer, out var container, manager)) continue;
-                foreach (var item in container.ContainedEntities.ToList())
-                {
-                    if (_tag.HasTag(item, chassis.Comp.ModuleItemTag)) continue;
-                    while (_container.TryGetContainingContainer(item, out var containing))
-                        if (!_container.Remove(item, containing)) break;
-                }
-            }
         }
-        // Starlight end
     }
 
     private void OnBeingGibbed(Entity<BorgChassisComponent> chassis, ref GibbedBeforeDeletionEvent args)

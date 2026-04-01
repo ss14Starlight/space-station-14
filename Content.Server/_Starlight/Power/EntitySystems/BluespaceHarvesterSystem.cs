@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Server.Station.Systems;
 using Content.Shared._Starlight.Power.BluespaceHarvester;
 using Content.Shared.Random.Helpers;
 using Content.Shared.UserInterface;
@@ -28,6 +29,7 @@ public sealed class BluespaceHarvesterSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly PowerNetSystem _powerNet = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     public override void Initialize()
     {
@@ -224,7 +226,9 @@ public sealed class BluespaceHarvesterSystem : EntitySystem
             Spawn(mobProto, mobCoords);
         }
         var msg = Loc.GetString("bluespace-harvester-portal-warning");
-        _chat.DispatchGlobalAnnouncement(msg, playSound: true, colorOverride: Color.Red);
+        var station = _station.GetOwningStation(portalUid);
+        if (station is null) return;
+        _chat.DispatchStationAnnouncement(station.Value, msg, playDefaultSound: true, colorOverride: Color.Red);
     }
 
     private static int ClampDesiredLevel(BluespaceHarvesterComponent component, int level)

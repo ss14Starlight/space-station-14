@@ -1,0 +1,73 @@
+<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:gunnery="clr-namespace:Content.Client._Starlight.Weapons.Gunnery"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    x:Class="Content.Client._Starlight.Weapons.Gunnery.GunneryConsoleWindow"
+    Title="Gunnery Console"
+    SetSize="870 680"
+    MinSize="640 500">
+
+    <BoxContainer Orientation="Horizontal">
+
+        <Label 
+            Name="NoServerLabel"
+            Text="{Loc crew-monitoring-ui-no-server-label}"
+            StyleClasses="LabelHeading"
+            FontColorOverride="Red"
+            HorizontalExpand="True"
+            VerticalExpand="True"
+            HorizontalAlignment="Center"
+            Visible="false" />
+
+        <!-- Main radar display -->
+        <gunnery:GunneryRadarControl
+            Name="RadarControl"
+            HorizontalExpand="True"
+            VerticalExpand="True"
+            Margin="4" />
+
+        <!-- Right sidebar: cannon list + status -->
+        <BoxContainer
+            Orientation="Vertical"
+            MinWidth="170"
+            Margin="4,4,6,4"
+            SeparationOverride="4">
+
+            <Label
+                Text="CANNONS"
+                HorizontalAlignment="Center"
+                FontColorOverride="#FFA040"
+                Margin="0,4,0,2" />
+
+            <PanelContainer VerticalExpand="True">
+                <ScrollContainer VerticalExpand="True">
+                    <ItemList
+                        Name="CannonList"
+                        VerticalExpand="True"
+                        SelectMode="Single" />
+                </ScrollContainer>
+            </PanelContainer>
+
+            <cc:HSeparator />
+
+            <Label
+                Name="StatusLabel"
+                Text="No cannon selected"
+                HorizontalAlignment="Center"
+                FontColorOverride="#AAAAAA"
+                Margin="0,4,0,2" />
+
+            <Label
+                Name="GuidanceLabel"
+                Text=""
+                HorizontalAlignment="Center"
+                FontColorOverride="#44FF44"
+                Margin="0,0,0,4" />
+
+        </BoxContainer>
+
+    </BoxContainer>
+
+</controls:FancyWindow>

@@ -78,15 +78,6 @@
     difficulty: 1
 
 - type: entity
-  parent: BaseThiefStealObjective
-  id: FiringPinSmartLMGStealObjective
-  components:
-  - type: StealCondition
-    stealGroup: FiringPinSmartLMG
-  - type: Objective
-    difficulty: 1
-
-- type: entity
   parent: [BaseThiefStealObjective, BaseThiefSecurityStealObjective]
   id: LogProbeCartridgeStealObjective
   components:

@@ -84,12 +84,21 @@ public sealed class StationsCommand : ToolshedCommand
         _station ??= GetSys<StationSystem>();
         _station.AddGridToStation(input, grid);
     }
+    
+    //Starlight begin
+    [CommandImplementation("addmaingrid")]
+    public void AddMainGrid([PipedArgument] EntityUid input, EntityUid grid)
+    {
+        _station ??= GetSys<StationSystem>();
+        _station.AddMainGridToStation(input, grid);
+    }
+    //Starlight end
 
     [CommandImplementation("rmgrid")]
     public void RmGrid([PipedArgument] EntityUid input, EntityUid grid)
     {
         _station ??= GetSys<StationSystem>();
-        _station.RemoveGridFromStation(input, grid);
+        _station.RemoveMainGridFromStation(input, grid); // Starlight-edit
     }
 
     [CommandImplementation("rename")]

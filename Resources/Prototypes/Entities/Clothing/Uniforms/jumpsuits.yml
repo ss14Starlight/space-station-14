@@ -788,7 +788,7 @@
       sprite: Clothing/Uniforms/Jumpsuit/lawyergood.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseMajorContraband] #SL EDIT, Syndie to Major
+  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] #SL EDIT, Syndie to minor
   id: ClothingUniformJumpsuitPyjamaSyndicateBlack
   name: black syndicate pyjamas
   description: For those long nights in perma.
@@ -799,7 +799,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicateblack.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseMajorContraband] #SL EDIT, Syndie to Major
+  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] #SL EDIT, Syndie to minor
   id: ClothingUniformJumpsuitPyjamaSyndicatePink
   name: pink syndicate pyjamas
   description: For those long nights in perma.
@@ -810,7 +810,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicatepink.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseMajorContraband] #SL EDIT, Syndie to Major
+  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] #SL EDIT, Syndie to minor
   id: ClothingUniformJumpsuitPyjamaSyndicateRed
   name: red syndicate pyjamas
   description: For those long nights in perma.
@@ -1176,7 +1176,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/hawaiyellow.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseSyndicateContraband]
+  parent: [ClothingUniformBase, BaseMinorContraband] #SL Edit Syndie > Minor Contra
   id: ClothingUniformJumpsuitSyndieFormal
   name: syndicate formal suit
   description: "The syndicate's uniform is made in an elegant style, it's even a pity to do dirty tricks in this."

@@ -90,3 +90,86 @@
       state: cpu_science
     - type: ComputerBoard
       prototype: XenobiologyConsole
+
+
+## Departmental Communications Consoles BEGIN
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: EngineeringCommsComputerCircuitboard
+  name: engineering communications console board
+  description: A computer printed circuit board for a engineering communications console.
+  components:
+    - type: Sprite
+      state: cpu_engineering
+    - type: ComputerBoard
+      prototype: ComputerCommsEngineering
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: MedicalCommsComputerCircuitboard
+  name: medical communications console board
+  description: A computer printed circuit board for a medical communications console.
+  components:
+    - type: Sprite
+      state: cpu_medical
+    - type: ComputerBoard
+      prototype: ComputerCommsMedical
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: ScienceCommsComputerCircuitboard
+  name: science communications console board
+  description: A computer printed circuit board for a science communications console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerCommsScience
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: SecurityCommsComputerCircuitboard
+  name: security communications console board
+  description: A computer printed circuit board for a security communications console.
+  components:
+    - type: Sprite
+      state: cpu_security
+    - type: ComputerBoard
+      prototype: ComputerCommsSecurity
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: ServiceCommsComputerCircuitboard
+  name: service communications console board
+  description: A computer printed circuit board for a service communications console.
+  components:
+    - type: Sprite
+      state: cpu_service
+    - type: ComputerBoard
+      prototype: ComputerCommsService
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: CargoCommsComputerCircuitboard
+  name: cargo communications console board
+  description: A computer printed circuit board for a cargo communications console.
+  components:
+    - type: Sprite
+      state: cpu_supply
+    - type: ComputerBoard
+      prototype: ComputerCommsCargo
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: LawCommsComputerCircuitboard
+  name: law communications console board
+  description: A computer printed circuit board for a law communications console.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/module.rsi
+      state: cpu_law
+    - type: ComputerBoard
+      prototype: ComputerCommsLaw
+
+## Departmental Communications Consoles END

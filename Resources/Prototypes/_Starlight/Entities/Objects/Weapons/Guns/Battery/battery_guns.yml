@@ -4,6 +4,8 @@
   id: WeaponAdvancedTaser
   description: A low-capacity, energy-based stun gun used by security teams to subdue targets at range.
   components:
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 25
   - type: Tag
     tags:
     - Taser
@@ -165,6 +167,8 @@
   id: WeaponDominator
   description: A high-tech weapon created by the law enforcement organization Sibyl System, designed specifically to fight crime.
   components:
+  - type: CanDualWield
+    dualWieldInaccuracyPenalty: 20
   - type: StationGridMemory
   - type: Appearance
   - type: Sprite
@@ -267,8 +271,8 @@
       fireCost: 75
       magState: kill
       visualState: kill-unshaded
-    - proto: DestroyBeam
-      fireCost: 750
+    - proto: DestructionBeam
+      fireCost: 100
       magState: destroy
       visualState: destroy-unshaded
   - type: Battery
@@ -866,6 +870,7 @@
   id: WeaponEnergySMG
   description: A one-of-a-kind prototype energy sub-machine gun. It offers high energy firepower and a powerful self recharge.
   components:
+  - type: CanDualWield
   - type: Appearance
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/energy_smg.rsi

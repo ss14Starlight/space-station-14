@@ -10,6 +10,8 @@ using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Pinpointer;
 using Content.Server.Silicons.StationAi;
 using Robust.Server.GameObjects;
+using Content.Server.Power.Components; // Starlight
+using Content.Shared.Power.EntitySystems; // Starlight
 using Content.Shared.Silicons.StationAi; // Starlight
 using Robust.Shared.Audio.Systems; // Starlight
 using Robust.Shared.Map; // Starlight
@@ -25,6 +27,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!; // Starlight
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!; // Starlight
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!; // Starlight
+    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!; // Starlight
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
 
@@ -105,6 +108,11 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         // Battery-powered devices need enough power to receive a page. (Returns true if not battery powered.)
         if (!_cell.TryUseActivatableCharge(uid))
             return;
+        
+        // APC-powered devices need to be powered to receive a page.
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var receiver))
+            if (!_powerReceiver.IsPowered((uid, receiver)))
+                return;
         
         var payload = args.Data;
         if (!payload.TryGetValue(SuitSensorConstants.NET_PAGING_SINCE, out TimeSpan? since) ||

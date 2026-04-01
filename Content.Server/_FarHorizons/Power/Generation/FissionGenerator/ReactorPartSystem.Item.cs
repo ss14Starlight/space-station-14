@@ -2,8 +2,6 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Shared.Atmos;
 using Content.Shared.Damage.Components;
-using Content.Shared.EntityEffects;
-using Content.Shared.EntityEffects.Effects.Atmos;
 using Content.Shared.Examine;
 using Content.Shared.Nutrition;
 using Content.Shared.Radiation.Components;
@@ -13,7 +11,6 @@ namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 public sealed partial class ReactorPartSystem
 {
     [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly SharedPointLightSystem _lightSystem = default!;
 
     private float _burnDiv => (ReactorPartBurnTemp - ReactorPartHotTemp) / 5; // The 5 is how much heat damage insulated gloves protect from
@@ -21,8 +18,6 @@ public sealed partial class ReactorPartSystem
     public override void Initialize()
     {
         base.Initialize();
-
-        InitializeCVars();
 
         SubscribeLocalEvent<ReactorPartComponent, MapInitEvent>(OnInit);
         SubscribeLocalEvent<ReactorPartComponent, ExaminedEvent>(OnExamine);

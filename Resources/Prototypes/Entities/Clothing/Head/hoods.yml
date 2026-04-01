@@ -18,6 +18,9 @@
     zombificationResistanceCoefficient: 0.8 # Starlight Edit, also removed the specific coefficients from the security and virology hoods
   - type: Tag
     tags:
+#Starlight
+    - CorgiWearable
+#Starlight
     - WhitelistChameleon
   - type: HideLayerClothing
     layers:
@@ -38,6 +41,11 @@
     sprite: Clothing/Head/Hoods/Bio/cmo.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/Bio/cmo.rsi
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
@@ -51,6 +59,11 @@
     sprite: Clothing/Head/Hoods/Bio/janitor.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/Bio/janitor.rsi
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
@@ -64,6 +77,11 @@
     sprite: Clothing/Head/Hoods/Bio/scientist.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/Bio/scientist.rsi
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
@@ -77,6 +95,11 @@
     sprite: Clothing/Head/Hoods/Bio/security.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/Bio/security.rsi
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
@@ -90,6 +113,11 @@
     sprite: Clothing/Head/Hoods/Bio/virology.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/Bio/virology.rsi
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadBase

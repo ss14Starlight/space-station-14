@@ -88,6 +88,17 @@
     Plasma: 100
     Silver: 100
 
+- type: latheRecipe
+  id: BorgModuleSyndicatePaperwork
+  result: BorgModuleSyndicatePaperwork
+  categories:
+    - Modules
+  materials: #same as BaseGoldBorgModuleRecipe, plus 1 plasma since all the other syndi mods take plasma
+    Steel: 500
+    Glass: 500
+    Plasma: 100
+    Plastic: 250
+    Gold: 50
 
 ## Normal
 
@@ -124,3 +135,9 @@
   parent: BaseGoldBorgModuleRecipe
   id: BorgModuleAdvancedLoading
   result: BorgModuleAdvancedLoading
+
+# Cargo
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleMiningDefense
+  result: BorgModuleMiningDefense

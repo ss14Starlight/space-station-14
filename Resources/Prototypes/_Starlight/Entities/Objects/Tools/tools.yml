@@ -284,6 +284,12 @@
   - type: Tag
     tags:
     - ImprovisedScrewdriver
+  - type: ScrewdriverSurgery
+    startSound:
+      /Audio/Items/screwdriver.ogg
+    speed: 1.5
+  - type: SurgeryTool
+  #FarHorizons End
 
 - type: entity
   name: improvised wirecutter
@@ -319,6 +325,13 @@
     useSound:
       path: /Audio/Items/wirecutter.ogg
     speedModifier: 0.50
+  #FarHorizons Start
+  - type: WirecutterSurgery
+    startSound:
+      path: /Audio/Items/wirecutter.ogg
+    speed: 1.5
+  - type: SurgeryTool
+  #FarHorizons End
 
 - type: entity
   name: improvised wrench
@@ -354,6 +367,13 @@
     useSound:
       path: /Audio/Items/ratchet.ogg
     speedModifier: 0.50
+  #FarHorizons Start
+  - type: WrenchSurgery
+    startSound:
+      path: /Audio/Items/ratchet.ogg
+    speed: 1.5
+  - type: SurgeryTool
+  #FarHorizons End
 
 - type: entity
   name: improvised multitool
@@ -396,6 +416,13 @@
     tags:
       - ImprovisedMultitool
       - DoorElectronicsConfigurator
+  #FarHorizons Start
+  - type: MultitoolSurgery
+    startSound:
+      path: /Audio/Items/multitool_drop.ogg
+    speed: 1.5
+  - type: SurgeryTool
+    #FarHorizons End
 
 - type: entity
   name: improvised omnitool
@@ -985,7 +1012,9 @@
     - PlumbingRpldDuctBend
     - PlumbingRpldDuctTJunction
     - PlumbingRpldDuctFourway
+    - PlumbingRpldDuctManifold
     - PlumbingRpldTank
+    - PlumbingRpldBuffer
     - PlumbingRpldInput
     - PlumbingRpldOutput
     - PlumbingRpldSink
@@ -995,6 +1024,7 @@
     - PlumbingRpldSynthesizer
     - PlumbingRpldSmartDispenser
     - PlumbingRpldDrain
+    - PlumbingRpldDisposal
     - Deconstruct
   - type: LimitedCharges
     maxCharges: 45

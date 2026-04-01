@@ -22,7 +22,33 @@
       price: 2500
     - type: Tag
       tags:
-        - FreeMag
+        - CanAffectLawBoards #TODO Test
+
+- type: entity
+  parent: [BaseItem, BaseHighlyIllegalContraband]
+  id: EmagTeaParty
+  suffix: ""
+  name: TeaPartyMAG
+  description: Taxes must be abolished. Also affects the laws of law boards, so that when uploaded they gain the same laws.
+  components:
+    - type: Emag
+      lawset: TeapartyLawset
+      owningFaction: null
+      channelAdd: [] 
+      emaggedSoundOverride:
+        path: /Audio/_Starlight/Ambience/Antag/SELF.ogg
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/SELF/freemag.rsi
+      state: icon
+    - type: Item
+      sprite: _Starlight/Objects/Specific/SELF/freemag.rsi
+    - type: LimitedCharges
+    - type: AutoRecharge
+    - type: StaticPrice
+      price: 2500
+    - type: Tag
+      tags:
+        - CanAffectLawBoards
 
 - type: entity
   parent: [BaseItem, BaseSovietContraband]

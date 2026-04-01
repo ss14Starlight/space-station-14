@@ -26,8 +26,8 @@
     HandTeleporterStealObjective: 1  #Starlight edit
     RDDiplomaStealObjective: 0.75 #Starlight Unique Targets
     CMOLicenseStealObjective: 0.75 #Starlight Unique Targets
-    EnergyShotgunStealObjective: 0.5 #Starlight re-targeted
-    EnergyMagnumStealObjective: 0.5 # Starlight, was missing for some reason
+#    EnergyShotgunStealObjective: 0.5 #Starlight removed in favor of combined objective
+    SecurityRareGunsStealObjective: 0.65 # Starlight, eshotgun + emagnum
     HOSWeaponStealObjective: 0.5 #Starlight Unique Targets
     HOPIDStealObjective: 1 # HoP's more exposed, but there's less copies of this ID usually
     PinpointerNuclearStealObjective: 1 # Fun if paired with the nuke disk objective
@@ -35,6 +35,7 @@
     EncryptionKeyHybridStealObjective: 0.6 # QM/Salv Lead/Brigmed. Not that interesting, so low.
     CMOHardsuitStealObjective: 1 # I'm so sorry CMO
     CEHardsuitStealObjective: 1 # Where are you going to hide it?
+    CEJetpackStealObjective: 1 # Probably wearing it right now
     HOSHardsuitStealObjective: 1 # Quite defensive.
     WardenHardsuitStealObjective: 1 # Not a member of command, yet has 3 steal targets.
     BrigmedicHardsuitStealObjective: 1 # You're not escaping.
@@ -45,7 +46,7 @@
     NTRepBriefcaseSecureStealObjective: 0.75 # Same as most NT Rep stuff.
     BSOHardsuitStealObjective: 0.75 # Same as the above...
     BSOMagbootsStealObjective: 0.75 # Easier to hide, at least.
-    BSOWeaponStealObjective: 0.75 # Blue shield weapons. It's easier to steal the SP8T since they don't always carry it around, and guaranteed to exist.
+    BSOWeaponStealObjective: 0.75 # Blue Shield weapons. Includes the X-01 and SP8T.
     CorporateSecretsStealObjective: 0.75 #Starlight Unique Target
     CriminalReportsStealObjective: 0.75 #Starlight Unique Target
     SecureKnowledgeStealObjective:  0.75 #Starlight Unique Target
@@ -122,7 +123,6 @@
     #HOSWeaponStealObjective: 1                # HoS Gun variants, Traitor target, not thief
     FiringPinStealObjective: 1
     FiringPinAdvancedLaserStealObjective: 1
-    FiringPinSmartLMGStealObjective: 1
     LogProbeCartridgeStealObjective: 1 # Detective
     MedTekCartridgeStealObjective: 1 # CMO, yet again
     SecurityTechFabCircuitboardStealObjective: 1 # sec

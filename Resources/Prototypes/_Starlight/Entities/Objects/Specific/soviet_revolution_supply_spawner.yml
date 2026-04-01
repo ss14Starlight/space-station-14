@@ -17,5 +17,6 @@
         - ClothingOuterArmorBasic
         - MedkitFilled
         - WeaponShotgunToz106Extended
+        - SpearSteel
       chance: 1.0
       offset: 0.0

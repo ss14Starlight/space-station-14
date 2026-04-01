@@ -50,6 +50,24 @@
         {
             "name": "darkwood-inhand-left",
             "directions": 4
+        },
+        {
+            "name": "tile_metal_dark"
+        },
+        {
+            "name": "tile_metal_engie"
+        },
+        {
+            "name": "tile_metal_med"
+        },
+        {
+            "name": "tile_metal_sci"
+        },
+        {
+            "name": "tile_metal_sec"
+        },
+        {
+            "name": "tile_metal_service"
         }
     ]
 }

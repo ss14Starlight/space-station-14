@@ -409,7 +409,7 @@
   name: paramedic windbreaker
 
 - type: entity
-  parent: [ClothingOuterStorageBase, BaseSyndicateContraband]
+  parent: [ClothingOuterStorageBase, BaseMinorContraband] #SL Edit Syndie > Minor
   id: ClothingOuterCoatSyndieCap
   name: syndicate's coat
   description: The syndicate's coat is made of durable fabric, with gilded patterns.

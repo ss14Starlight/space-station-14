@@ -1,9 +1,9 @@
 using Content.Server.Administration.Logs;
-using Content.Server.Body.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Jittering;
 using Content.Server.Mind;
 using Content.Server.Stunnable;
+using Content.Shared.Actions;
 using Content.Shared.Anomaly;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Anomaly.Effects;
@@ -21,7 +21,8 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Anomaly.Effects;
 
-public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
+// Far Horizons - made partial
+public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
 {
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly AnomalySystem _anomaly = default!;
@@ -35,6 +36,7 @@ public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly ActionGrantSystem _actionGrant = default!;
 
     private readonly Color _messageColor = Color.FromSrgb(new Color(201, 22, 94));
 
@@ -95,7 +97,7 @@ public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
 
         ent.Comp.Injected = true;
 
-        EntityManager.AddComponents(ent, injectedAnom.Components);
+        AddComponents(ent, injectedAnom.Components); // Far Horizons
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
         _jitter.DoJitter(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration), true);
@@ -212,7 +214,7 @@ public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
             return;
 
         if (_proto.Resolve(ent.Comp.InjectionProto, out var injectedAnom))
-            EntityManager.RemoveComponents(ent, injectedAnom.Components);
+            RemoveComponents(ent, injectedAnom.Components); // Far Horizons
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
 
@@ -239,4 +241,28 @@ public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
         ent.Comp.Injected = false;
         RemCompDeferred<AnomalyComponent>(ent);
     }
+
+    // FH - Start
+    private void AddComponents(EntityUid target, ComponentRegistry components)
+    {
+        foreach (var comp in components)
+        {
+            if (comp.Key == "ActionGrant" && comp.Value.Component is ActionGrantComponent actionGrantComp && TryComp<ActionGrantComponent>(target, out var oldComp))
+                _actionGrant.AddActions((target, oldComp), actionGrantComp.Actions);
+            else
+                EntityManager.AddComponent(target, comp.Value);
+        }
+    }
+
+    private void RemoveComponents(EntityUid target, ComponentRegistry components)
+    {
+        foreach (var comp in components)
+        {
+            if (comp.Key == "ActionGrant" && comp.Value.Component is ActionGrantComponent actionGrantComp && TryComp<ActionGrantComponent>(target, out var oldComp))
+                _actionGrant.RemoveActions((target, oldComp), actionGrantComp.Actions);
+            else
+                EntityManager.RemoveComponent(target, comp.Value.Component);
+        }
+    }
+    // FH - End
 }

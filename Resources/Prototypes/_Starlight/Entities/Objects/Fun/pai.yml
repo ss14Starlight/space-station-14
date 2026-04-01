@@ -13,6 +13,18 @@
       event: !type:PAIPDAActionEvent
 
 - type: entity
+  parent: BaseMentalAction
+  id: ActionPAIConsole
+  name: Access Console
+  description: Opens the console UI if you are slotted in one.
+  components:
+  - type: Action
+    icon: { sprite: Structures/Machines/computers.rsi, state: avionics-systems }
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:PAIConsoleActionEvent
+    
+- type: entity
   parent: EncryptionKeySyndie
   id: EncryptionKeySyndiePAI
   components:
