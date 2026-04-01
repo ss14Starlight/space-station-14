@@ -46,6 +46,8 @@ public sealed partial class TestPair : RobustIntegrationTest.TestPair
 
         _Starlight.Patches.SystemTimingPatch.EnableMetrics(Server.EntMan.EntitySysManager); // Starlight
         await _Starlight.Patches.SystemTimingPatch.TakeSnapshot(); // Starlight
+        _Starlight.Patches.EventTimingSummaryPatch.Apply(); // Starlight
+        await _Starlight.Patches.EventTimingSummaryPatch.TakeSnapshot(); // Starlight
     }
 
     public override async Task RevertModifiedCvars()
