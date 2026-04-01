@@ -20,6 +20,7 @@
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: tail_wagging
 
+# This don't work - I have no idea why. Get commented out nerd
 #- type: marking
 #  id: FelionoidTailTipAnimated
 #  bodyPart: Tail
