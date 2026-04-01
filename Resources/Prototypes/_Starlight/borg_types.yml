@@ -156,6 +156,13 @@
   - Command
   - Science
   - Law
+  
+  addComponents:
+  - type: Access
+    groups:
+    - CyborgAllAccess
+    tags:
+    - Debrief
 
   # Visual
   inventoryTemplateId: borgTall
