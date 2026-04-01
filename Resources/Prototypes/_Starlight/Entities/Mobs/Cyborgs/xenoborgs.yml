@@ -38,3 +38,185 @@
       borg_brain:
       - MMIFilled
 
+
+- type: entity
+  parent: BaseXenoborgChassisDerelict
+  id: XenoborgEngiDerelict
+  name: derelict engi xenoborg
+  components:
+    - type: Sprite
+      sprite: _Starlight/Mobs/Silicon/Chassis/xeno_derelict_engi.rsi #Starlight Borg RSI Atomization
+      layers:
+        - state: borg
+        - state: borg_e
+          map: ["enum.BorgVisualLayers.Light"]
+          shader: unshaded
+          visible: false
+        #- state: borg_crystal # See https://github.com/space-wizards/space-station-14/pull/37869, it looks better duplicated supposedly 
+        #  shader: unshaded
+        - state: borg_crystal
+          shader: shaded
+        - state: borg_l
+          shader: unshaded
+          map: ["light"]
+          visible: false
+    - type: BorgChassis
+      jobIconOverride: JobIconXenoborg # Starlight
+      jobTitleOverride: chat-radio-xenoborg # Starlight
+      maxModules: 7
+      hasMindState: borg_e
+      noMindState: borg_e_r
+      moduleWhitelist:
+        tags:
+          - XenoborgModuleGeneric
+          - XenoborgModuleEngi
+          - BorgModuleEngineering
+          - BorgModuleGeneric # let crew actually install moduels in the Derelicts
+    - type: ShowElectrocutionHUD
+    - type: ShowHealthBars
+      damageContainers:
+        - Inorganic
+        - Silicon
+
+- type: entity
+  parent: BaseXenoborgChassisDerelict
+  id: XenoborgHeavyDerelict
+  name: derelict heavy xenoborg
+  components:
+    - type: Sprite
+      sprite: _Starlight/Mobs/Silicon/Chassis/xeno_derelict_heavy.rsi #Starlight Borg RSI Atomization
+      layers:
+        - state: borg
+        - state: borg_e
+          map: ["enum.BorgVisualLayers.Light"]
+          shader: unshaded
+          visible: false
+        - state: borg_l
+          shader: unshaded
+          map: ["light"]
+          visible: false
+        - state: borg_crack
+    - type: BorgChassis
+      maxModules: 4
+      hasMindState: borg_e
+      noMindState: borg_e_r
+      moduleWhitelist:
+        tags:
+          - BorgModuleGeneric
+          - BorgModuleService # let the heavy borgie serve tea :>
+          - XenoborgModuleGeneric
+          - XenoborgModuleHeavy
+    - type: MovementSpeedModifier # slower
+      baseWalkSpeed : 1.2
+      baseSprintSpeed : 2.2
+    - type: MovementAlwaysTouching # it flies in space by pure will power
+    - type: FlashImmunity
+    - type: MobThresholds # tankier
+      thresholds:
+        0: Alive
+        250: Critical
+        750: Dead # Same as destruction threshold. Borgs act exactly like crit when dead, except for ghosting on move
+      stateAlertDict:
+        Alive: BorgHealth
+        Critical: BorgCrit
+        Dead: BorgDead
+      showOverlays: false
+      allowRevives: true
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 190
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Machines/warning_buzzer_xenoborg.ogg
+                params:
+                  volume: 5
+        - trigger:
+            !type:DamageTrigger
+            damage: 750
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:EmptyContainersBehaviour
+              containers:
+                - borg_brain
+                - borg_module
+                - cell_slot
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseXenoborgChassisDerelict
+  id: XenoborgScoutDerelict
+  name: scout xenoborg
+  components:
+    - type: Sprite
+      sprite: _Starlight/Mobs/Silicon/Chassis/xeno_derelict_scout.rsi #Starlight Borg RSI Atomization
+      layers:
+        - state: borg
+        - state: borg_e
+          map: ["enum.BorgVisualLayers.Light"]
+          shader: unshaded
+          visible: false
+        - state: borg_l
+          shader: unshaded
+          map: ["light"]
+          visible: false
+        - state: borg_crack
+    - type: FootstepModifier # it flies instead of walking
+      footstepSoundCollection:
+        collection: FootstepHoverXenoborg
+    - type: MovementAlwaysTouching # it flies in space with tiny thrusters
+    - type: FlashImmunity
+    - type: BorgChassis
+      maxModules: 4
+      hasMindState: borg_e
+      noMindState: borg_e_r
+      moduleWhitelist:
+        tags:
+          - XenoborgModuleGeneric
+          - XenoborgModuleScout
+          - BorgModuleGeneric
+          - BorgModuleMedical
+    - type: MovementSpeedModifier # faster
+      baseWalkSpeed : 3
+      baseSprintSpeed : 6
+    
+
+- type: entity
+  parent: BaseXenoborgChassisDerelict
+  id: XenoborgStealthDerelict
+  name: stealth xenoborg
+  components:
+    - type: Sprite
+      sprite: _Starlight/Mobs/Silicon/Chassis/xeno_derelict_stealth.rsi 
+      layers:
+        - state: borg
+        - state: borg_e
+          map: ["enum.BorgVisualLayers.Light"]
+          shader: unshaded
+          visible: false
+        - state: borg_l
+          shader: unshaded
+          map: ["light"]
+          visible: false
+    - type: FootstepModifier # it flies instead of walking
+      footstepSoundCollection:
+        collection: FootstepHoverXenoborg
+    - type: BorgChassis
+      maxModules: 5
+      hasMindState: borg_e
+      noMindState: borg_e_r
+      moduleWhitelist:
+        tags:
+          - BorgModuleGeneric 
+          - BorgModuleScience # science orb, idk what else to give this one
+          - XenoborgModuleGeneric
+          - XenoborgModuleStealth
+    - type: MovementAlwaysTouching # it flies in space with tiny thrusters
+    # - type: SpamEmitSound # longer interval to make the creppy sound
+    #   minInterval: 50
+    #   maxInterval: 150

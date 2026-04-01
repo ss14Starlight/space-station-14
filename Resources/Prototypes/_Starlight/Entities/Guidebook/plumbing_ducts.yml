@@ -8,9 +8,9 @@
 
 - type: entity
   id: GuidebookPlumbingDuctStraight
+  categories: [ HideSpawnMenu ]
   name: fluid duct
   suffix: Straight, Guidebook
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/fluid_ducts.rsi
@@ -20,9 +20,9 @@
 
 - type: entity
   id: GuidebookPlumbingDuctBend
+  categories: [ HideSpawnMenu ]
   name: fluid duct
   suffix: Bend, Guidebook
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/fluid_ducts.rsi
@@ -32,9 +32,9 @@
 
 - type: entity
   id: GuidebookPlumbingDuctTJunction
+  categories: [ HideSpawnMenu ]
   name: fluid duct
   suffix: T-Junction, Guidebook
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/fluid_ducts.rsi
@@ -44,12 +44,24 @@
 
 - type: entity
   id: GuidebookPlumbingDuctFourway
+  categories: [ HideSpawnMenu ]
   name: fluid duct
   suffix: Fourway, Guidebook
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Piping/Plumbing/fluid_ducts.rsi
     drawdepth: ThinPipe
     layers:
     - state: storageFourway
+
+- type: entity
+  id: GuidebookPlumbingDuctManifold
+  categories: [ HideSpawnMenu ]
+  name: fluid manifold
+  suffix: Guidebook
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Piping/Plumbing/plumbing_manifold.rsi
+    drawdepth: ThinPipe
+    layers:
+    - state: duct_manifold

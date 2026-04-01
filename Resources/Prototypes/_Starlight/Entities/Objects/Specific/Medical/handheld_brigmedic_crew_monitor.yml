@@ -1,6 +1,6 @@
 - type: entity
   name: BrigBuddy™ 5000
-  parent: [ BaseHandheldComputer, BaseSecurityContraband ]
+  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer, BaseSecurityContraband ]
   id: HandheldBrigmedicCrewMonitor
   description: So advanced it only tracks security personnel! Does not monitor emotional stability or competence levels of security members. Use at your own risk!
   components:
@@ -26,12 +26,12 @@
     visuals:
       enum.BatteryVisuals.State:
         enum.CrewMonitorLayers.Powered:
-          Full: { visible: true }
-          Neither: { visible: true }
+          Full: { visible: true, shader: unshaded }
+          Neither: { visible: true, shader: unshaded }
           Empty: { visible: false }
       enum.CrewMonitorVisuals.Alert:
         enum.CrewMonitorLayers.Alert:
-          True: { visible: true }
+          True: { visible: true, shader: unshaded }
           False: { visible: false }
   - type: ActivatableUI
     key: enum.CrewMonitoringUIKey.Key
@@ -64,3 +64,8 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        blacklist:
+          tags:
+          - MechReactor
+  - type: PowerCellDraw
+    useCharge: 15

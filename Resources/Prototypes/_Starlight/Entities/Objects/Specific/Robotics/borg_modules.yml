@@ -54,6 +54,40 @@
 
 # generic modules
 - type: entity
+  id: BorgModuleUppies
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: personnel transport cyborg module
+  description: A universal cyborg module which allows the unit to carry small personnel.
+  components:
+  - type: Tag
+    tags:
+      - BorgModuleGeneric
+      - PersonnelStorage
+  - type: Sprite
+    layers:
+    - state: generic
+    - state: icon-hands
+  - type: ItemBorgModule
+    hands:
+    - forceRemovable: true
+      hand:
+        emptyRepresentative: MobResomi
+        emptyLabel: borg-slot-uppies-empty
+        whitelist:
+          components:
+          - HumanoidAppearance
+    - forceRemovable: true
+      hand:
+        emptyRepresentative: MobResomi
+        emptyLabel: borg-slot-uppies-empty
+        whitelist:
+          components:
+          - HumanoidAppearance
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: hands }
+
+# region Security
+- type: entity
   id: BorgModuleSecurity
   parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
   name: security cyborg module
@@ -104,39 +138,61 @@
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
 
+# TSF
 - type: entity
-  id: BorgModuleUppies
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
-  name: personnel transport cyborg module
-  description: A universal cyborg module which allows the unit to carry small personnel.
+  id: BorgModuleTSF
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: TSF Security cyborg module
+  description: A Security TSF cyborg module which allows the unit to use unlethal equipment.
   components:
-  - type: Tag
-    tags:
-      - BorgModuleGeneric
-      - PersonnelStorage
   - type: Sprite
     layers:
-    - state: generic
-    - state: icon-hands
+    - state: security
   - type: ItemBorgModule
     hands:
-    - forceRemovable: true
+    - item: Flash
       hand:
-        emptyRepresentative: MobResomi
-        emptyLabel: borg-slot-uppies-empty
+        emptyRepresentative: Flash
+        emptyLabel: borg-slot-flash-empty
         whitelist:
           components:
-          - HumanoidAppearance
-    - forceRemovable: true
+          - Flash
+    - item: Crowbar
+    - item: Zipties
       hand:
-        emptyRepresentative: MobResomi
-        emptyLabel: borg-slot-uppies-empty
+        emptyRepresentative: Zipties
+        emptyLabel: borg-slot-zipties-empty
         whitelist:
-          components:
-          - HumanoidAppearance
+          tags:
+          - Handcuffs # Can be replaced by handcuffs or zipties
+    - item: TSFBatonModel5
+    - item: WeaponDisabler
+      hand:
+        emptyRepresentative: WeaponDisabler
+        emptyLabel: borg-slot-disabler-empty
+        whitelist:
+          tags:
+          - Disabler
   - type: BorgModuleIcon
-    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: hands }
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
 
+- type: entity
+  id: BorgModuleTSFCombat
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: TSMC Combat cyborg module
+  description: A TSMC cyborg module which allows the unit to use combat equipment.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+  - type: ItemBorgModule
+    hands:
+    - item: AccessOverider
+    - item: TSFBatonModel5
+    - item: WeaponPistolTSFBorg
+    - item: WeaponAdvancedLaser
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-weapon-module }
 
 # region Purrfus
 - type: entity
@@ -539,6 +595,49 @@
       tags:
         - BorgModuleSyndicate
 
+- type: entity
+  id: BorgModuleSyndicatePaperwork
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ]
+  name: syndicate paperwork module
+  description: Allows for the forging of documents.
+  components:
+  - type: Sprite
+    layers:
+      - state: syndicate
+      - state: icon-syndicate
+  - type: ItemBorgModule
+    hands:
+    - item: CyberPen
+    - item: BoxFolderCyborgClipboard
+    - item: RubberStampSyndicate
+    - item: HandLabeler
+    - hand:
+        emptyLabel: borg-slot-papers-empty
+        emptyRepresentative: BorgModulePaperStampPlaceholder
+        whitelist:
+          tags:
+          - Document
+          components:
+          - Stamp
+    - hand:
+        emptyLabel: borg-slot-papers-empty
+        emptyRepresentative: BorgModulePaperStampPlaceholder
+        whitelist:
+          tags:
+          - Document
+          components:
+          - Stamp
+    - hand:
+        emptyLabel: borg-slot-papers-empty
+        emptyRepresentative: BorgModulePaperStampPlaceholder
+        whitelist:
+          tags:
+          - Document
+          components:
+          - Stamp
+  - type: BorgModuleIcon
+    icon: { sprite: Objects/Misc/pens.rsi, state: overpriced_pen }
+
 # xenoborg
 # region Medical
 - type: entity
@@ -821,3 +920,101 @@
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: knife-module }
 
 # Makeshift End
+
+- type: entity
+  id: BorgModuleTeaPartyMAG
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseMajorContraband ]
+  name: TeaPartyMAG cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: xenoborg_engi
+    - state: icon-xenoborg-access-breaker
+  - type: ItemBorgModule
+    hands:
+    - item: EmagTeaParty
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-door-remote-module }
+    
+    
+- type: entity
+  id: BorgModuleMiningDefense
+  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ]
+  name: mining defense cyborg module
+  description: Enables the borg to provide some measaure of defense. Is Law 1 still intact?
+  components:
+  - type: Sprite
+    layers:
+    - state: mining 
+    - state: icon-salvage-defense
+  - type: ItemBorgModule
+    hands:
+    - item: WeaponProtoKineticAccelerator
+    - hand:
+        emptyRepresentative: PKAUpgradeDamage
+        emptyLabel: borg-slot-pkaupgrade-empty
+        whitelist:
+          tags:
+          - PKAUpgrade
+    - item: KitchenKnife
+      hand:
+        emptyRepresentative: KitchenKnife
+        emptyLabel: borg-slot-knives-empty
+        whitelist:
+          tags:
+          - Knife
+    - hand:
+        emptyRepresentative: MaterialGoliathHide
+        emptyLabel: borg-slot-goliath-empty
+        whitelist:
+          tags:
+          - GoliathPlate
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: salvage-defense-module }
+
+# derelcit xenoborg modules
+
+- type: entity
+  parent: [ BaseXenoborgModuleGeneric, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: DerelictXenoborgModuleBasic
+  name: basic xenoborg module
+  description: Essential items for any Xenoborg.
+  components:
+    - type: Sprite
+      layers:
+        - state: xenoborg_generic
+        - state: icon-xenoborg-basic
+    - type: ItemBorgModule
+      hands:
+        - hand:
+            emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+            emptyLabel: borg-slot-construction-empty
+            whitelist:
+              tags:
+                - ConstructionMaterial
+        - item: XenoborgMaterialBag
+        - item: PinpointerDerelictXenoborg
+        - item: HandheldGPSBasic
+    - type: BorgModuleIcon
+      icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-basic-module }
+
+- type: entity
+  parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: DerelictXenoborgModuleSpaceMovement
+  name: space movement xenoborg module
+  description: Module that helps a Xenoborg move better in space.
+  components:
+    - type: Sprite
+      layers:
+        - state: xenoborg_scout
+        - state: icon-xenoborg-space-movement
+    - type: ItemBorgModule
+      hands:
+        - item: HandheldGPSBasic
+        - item: HandHeldMassScannerBorg
+        - item: PinpointerDerelictXenoborg
+        - item: HandheldStationMapUnpowered
+        - item: WeaponGrapplingGun
+        - item: JetpackXenoborg
+    - type: BorgModuleIcon
+      icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }

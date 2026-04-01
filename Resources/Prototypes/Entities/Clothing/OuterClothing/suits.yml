@@ -25,6 +25,9 @@
   - type: GroupExamine
   - type: Tag
     tags:
+#Starlight
+    - CorgiWearable
+#starlight end
     - Hardsuit
     - WhitelistChameleon
   - type: ProtectedFromStepTriggers
@@ -116,6 +119,7 @@
     slots: WITHOUT_POCKET
   - type: Tag
     tags:
+    - AtmosFireSuit
     - CorgiWearable
     - WhitelistChameleon
   - type: HideLayerClothing
@@ -242,6 +246,11 @@
     sprite: Clothing/OuterClothing/Suits/chicken.rsi
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterBase
@@ -280,6 +289,11 @@
       toggleable-clothing: !type:ContainerSlot {}
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterBase

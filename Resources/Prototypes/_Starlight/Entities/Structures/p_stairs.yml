@@ -1,0 +1,455 @@
+- type: entity
+  id: RMCStairs
+  name: stairs
+  description: The greatest invention since rocket-propelled grenades.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_full
+    drawdepth: FloorTiles
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+      - Stairs
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: RMCStairsCorner
+  parent: RMCStairs
+  suffix: Corner
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_full_corner
+
+- type: entity
+  id: RMCStairsLeft
+  parent: RMCStairs
+  suffix: Left
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_left_cap
+
+- type: entity
+  id: RMCStairsRight
+  parent: RMCStairs
+  suffix: Right
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_right_cap
+
+- type: entity
+  id: RMCStairsSolo
+  parent: RMCStairs
+  suffix: Solo
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_solo_cap
+
+- type: entity
+  id: RMCStairsKutjevo
+  parent: RMCStairs
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_kutjevo_full
+
+- type: entity
+  id: RMCStairsKutjevoCorner
+  parent: RMCStairs
+  suffix: Corner
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_kutjevo_full_corner
+
+- type: entity
+  id: RMCStairsKutjevoLeft
+  parent: RMCStairs
+  suffix: Left
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_kutjevo_left_cap
+
+- type: entity
+  id: RMCStairsKutjevoRight
+  parent: RMCStairs
+  suffix: Right
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_kutjevo_right_cap
+
+- type: entity
+  id: RMCStairsKutjevoSolo
+  parent: RMCStairs
+  suffix: Solo
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_kutjevo_solo_cap
+
+- type: entity
+  id: RMCStairsIce
+  parent: RMCStairs
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_ice_full
+
+- type: entity
+  id: RMCStairsIceCorner
+  parent: RMCStairs
+  suffix: Corner
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_ice_full_corner
+
+- type: entity
+  id: RMCStairsIceLeft
+  parent: RMCStairs
+  suffix: Left
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_ice_left_cap
+
+- type: entity
+  id: RMCStairsIceRight
+  parent: RMCStairs
+  suffix: Right
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_ice_right_cap
+
+- type: entity
+  id: RMCStairsIceSolo
+  parent: RMCStairs
+  suffix: Solo
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_ice_solo_cap
+
+## New
+
+- type: entity
+  id: RMCStairsDark
+  parent: RMCStairs
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_dark_full
+
+- type: entity
+  id: RMCStairsDarkCorner
+  parent: RMCStairs
+  suffix: Corner
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_dark_full_corner
+
+- type: entity
+  id: RMCStairsDarkLeft
+  parent: RMCStairs
+  suffix: Left
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_dark_left_cap
+
+- type: entity
+  id: RMCStairsDarkRight
+  parent: RMCStairs
+  suffix: Right
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_dark_right_cap
+
+- type: entity
+  id: RMCStairsDarkSolo
+  parent: RMCStairs
+  suffix: Solo
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_dark_solo_cap
+
+- type: entity
+  id: RMCStairsRed
+  parent: RMCStairs
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_red_full
+
+- type: entity
+  id: RMCStairsRedCorner
+  parent: RMCStairs
+  suffix: Corner
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_red_full_corner
+
+- type: entity
+  id: RMCStairsRedLeft
+  parent: RMCStairs
+  suffix: Left
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_red_left_cap
+
+- type: entity
+  id: RMCStairsRedRight
+  parent: RMCStairs
+  suffix: Right
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_red_right_cap
+
+- type: entity
+  id: RMCStairsRedSolo
+  parent: RMCStairs
+  suffix: Solo
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_red_solo_cap
+
+- type: entity
+  id: RMCStairsWhite
+  parent: RMCStairs
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_white_full
+
+- type: entity
+  id: RMCStairsWhiteCorner
+  parent: RMCStairs
+  suffix: Corner
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_white_full_corner
+
+- type: entity
+  id: RMCStairsWhiteLeft
+  parent: RMCStairs
+  suffix: Left
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_white_left_cap
+
+- type: entity
+  id: RMCStairsWhiteRight
+  parent: RMCStairs
+  suffix: Right
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_white_right_cap
+
+- type: entity
+  id: RMCStairsWhiteSolo
+  parent: RMCStairs
+  suffix: Solo
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_white_solo_cap
+
+- type: entity
+  id: RMCStairsWood
+  parent: RMCStairs
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_wood_full
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: RMCStairsWoodCorner
+  parent: RMCStairs
+  suffix: Corner
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_wood_full_corner
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: RMCStairsWoodLeft
+  parent: RMCStairs
+  suffix: Left
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_wood_left_cap
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: RMCStairsWoodRight
+  parent: RMCStairs
+  suffix: Right
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_wood_right_cap
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: RMCStairsWoodSolo
+  parent: RMCStairs
+  suffix: Solo
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/p_stairs.rsi
+    state: p_stair_wood_solo_cap
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

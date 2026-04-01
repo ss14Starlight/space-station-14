@@ -21,8 +21,8 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: AmmoCounter
-  - type: BatteryAmmoProvider
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: MousetrapArmed
     fireCost: 100
   - type: Appearance
@@ -50,8 +50,8 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: AmmoCounter
-  - type: BatteryAmmoProvider
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: TrashBananaPeel
     fireCost: 100
   - type: Appearance

@@ -35,7 +35,7 @@ public sealed class PhysicalSocialInteractionSystem : EntitySystem
             return;
 
         //create a verb subcategory
-        var category = new VerbCategory("Physical Social Interaction", null);
+        var category = new VerbCategory("physical-social-interaction-component-verb", null);
 
         //enumerate all the physical social interaction prototypes
         foreach (var protoid in component.InteractionPrototypes)

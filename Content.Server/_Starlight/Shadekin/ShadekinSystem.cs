@@ -378,7 +378,7 @@ public sealed partial class ShadekinSystem : EntitySystem
             _speed.RefreshMovementSpeedModifiers(uid);
 
             if (component.CurrentState == ShadekinState.Extreme)
-                ApplyLightDamage(uid, 5);
+                ApplyLightDamage(uid, 1);
 
             if (TryComp<BrighteyeComponent>(uid, out var brighteye))
                 UpdateEnergy(uid, component, brighteye);

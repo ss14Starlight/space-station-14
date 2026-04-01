@@ -15,3 +15,20 @@
   - type: DeviceNetwork
     receiveFrequencyId: TurretControlSilicon
     transmitFrequencyId: TurretSilicon
+  
+
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponEnergyTurretSolgov
+  suffix: Solgov
+  components:
+  - type: AccessReader
+    access: [["Solgov"]]
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - Solgov
+  - type: DeviceNetwork
+    receiveFrequencyId: TurretControl
+    transmitFrequencyId: Turret
+  - type: StationAiWhitelist
+    enabled: false

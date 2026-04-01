@@ -1,0 +1,97 @@
+# SGS-GUNNERY — Starlight Gunnery Console
+# A targeting-radar station that lets crew aim and remotely fire shuttle-mounted
+# cannons, and guide rockets via LMB-drag. Not researchable.
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerGunneryConsole
+  name: gunnery console
+  description: A dedicated fire-control station. Displays a tactical radar overlay showing shuttle cannons, draws aim lines, and allows guided control of rockets.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Machines/computers.rsi
+      layers:
+        - map: ["computerLayerBody"]
+          sprite: Structures/Machines/computers.rsi
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: gunnery_keyboard
+        - map: ["computerLayerScreen"]
+          state: gunnery_screen
+        - map: ["computerLayerKeys"]
+          state: gunnery_keyboard
+    - type: GunneryConsole
+    - type: RadarConsole
+      maxRange: 512
+    - type: ActivatableUI
+      key: enum.GunneryConsoleUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.GunneryConsoleUiKey.Key:
+          type: GunneryConsoleBoundUserInterface
+
+- type: entity
+  id: GunneryServer
+  parent: BaseMachinePowered
+  name: fire assist mainframe
+  description: A specialized computer designed to synchronize a variety of weapon systems and a vessel's astronav data.
+  components:
+    - type: GunneryServer
+    - type: Sprite
+      sprite: _Starlight/Structures/Machines/gunneryserver.rsi
+      snapCardinals: true
+      layers:
+        - state: off
+        - state: on
+          visible: false
+          map: ["enum.PowerDeviceVisualLayers.Powered"]
+        - state: lights
+          shader: unshaded
+          visible: false
+          map: ["lights"]
+    - type: ApcPowerReceiver
+      powerLoad: 200
+    - type: ExtensionCableReceiver
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.PowerDeviceVisuals.Powered:
+          enum.PowerDeviceVisualLayers.Powered:
+            True: { visible: true }
+            False: { visible: false }
+          lights:
+            True: { visible: true }
+            False: { visible: false }
+    - type: Destructible
+      thresholds:
+        - trigger: !type:DamageTrigger
+            damage: 600
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+        - trigger: !type:DamageTrigger
+            damage: 300
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 1
+                  max: 2
+    - type: AmbientOnPowered
+    - type: AmbientSound
+      volume: -9
+      range: 5
+      enabled: false
+      sound:
+        path: /Audio/Ambience/Objects/server_fans.ogg
+    - type: Anchorable
+      flags:
+      - Anchorable
+      

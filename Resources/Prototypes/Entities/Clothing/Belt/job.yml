@@ -24,6 +24,7 @@
       - Radio
       - HolofanProjector
       - Multitool
+      - GrappleGun #FH
       - AppraisalTool
       - JawsOfLife
       - GPS
@@ -54,6 +55,11 @@
       - TrayScanner
       - GasAnalyzer
       - HandLabeler
+    #Starlight Start
+    blacklist:
+      tags:
+      - MechReactor
+    #Starlight End
   - type: ItemMapper
     sprite: &BeltOverlay Clothing/Belt/belt_overlay.rsi
     mapLayers:

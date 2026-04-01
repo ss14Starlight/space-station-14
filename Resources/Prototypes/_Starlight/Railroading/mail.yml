@@ -1,12 +1,8 @@
 - type: entity
   id: RRCardMailOpen
+  parent: CrewCondition
   categories: [HideSpawnMenu]
   components:
-  - type: Conditions
-    conditions:
-    - !type:SubjectMindAntagCondition
-      blacklist:
-      - Brighteye
   - type: RailroadSpawnFlow
     count:
       min: 1

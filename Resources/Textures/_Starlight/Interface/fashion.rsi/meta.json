@@ -26,6 +26,11 @@
       "license": "CC-BY-SA-3.0",
       "copyright": "Mew",
       "name": "pastry"
+    },
+	{
+      "license": "CC-BY-SA-3.0",
+      "copyright": "retrobit23, sprites taken from Euphoria/Floof at https://github.com/Floof-Station/Panta-Rhei/pull/69",
+      "name": "courier"
     }
   ]
 }

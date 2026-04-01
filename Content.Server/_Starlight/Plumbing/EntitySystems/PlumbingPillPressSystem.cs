@@ -9,6 +9,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
+using Content.Shared.Labels.EntitySystems;
 using Content.Shared.NodeContainer;
 using Content.Shared.UserInterface;
 using JetBrains.Annotations;
@@ -35,6 +36,7 @@ public sealed class PlumbingPillPressSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly PlumbingPullSystem _pullSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly LabelSystem _labelSystem = default!;
 
     private static readonly EntProtoId PillPrototypeId = "Pill";
     private static readonly EntProtoId PatchPrototypeId = "Patch";
@@ -52,6 +54,7 @@ public sealed class PlumbingPillPressSystem : EntitySystem
         SubscribeLocalEvent<PlumbingPillPressComponent, PlumbingDeviceUpdateEvent>(OnDeviceUpdate);
         SubscribeLocalEvent<PlumbingPillPressComponent, PlumbingPillPressToggleMessage>(OnToggle);
         SubscribeLocalEvent<PlumbingPillPressComponent, PlumbingPillPressSetDosageMessage>(OnSetDosage);
+        SubscribeLocalEvent<PlumbingPillPressComponent, PlumbingPillPressSetLabelMessage>(OnSetLabel);
         SubscribeLocalEvent<PlumbingPillPressComponent, PlumbingPillPressSetOutputModeMessage>(OnSetOutputMode);
         SubscribeLocalEvent<PlumbingPillPressComponent, PlumbingPillPressSetPillTypeMessage>(OnSetPillType);
         SubscribeLocalEvent<PlumbingPillPressComponent, PlumbingPillPressSetMixingMessage>(OnSetMixing);
@@ -103,6 +106,7 @@ public sealed class PlumbingPillPressSystem : EntitySystem
             if (ent.Comp.OutputMode == PillPressOutputMode.Pill)
             {
                 var item = Spawn(PillPrototypeId, spawnCoords);
+                _labelSystem.Label(item, ent.Comp.Label);
                 _solutionSystem.EnsureSolutionEntity(item,
                     SharedChemMaster.PillSolutionName,
                     out var itemSolution,
@@ -118,6 +122,7 @@ public sealed class PlumbingPillPressSystem : EntitySystem
             else
             {
                 var item = Spawn(PatchPrototypeId, spawnCoords);
+                _labelSystem.Label(item, ent.Comp.Label);
 
                 _solutionSystem.EnsureSolutionEntity(item,
                     SharedChemMaster.PatchSolutionName,
@@ -223,6 +228,17 @@ public sealed class PlumbingPillPressSystem : EntitySystem
         UpdateUiState(ent);
     }
 
+    private void OnSetLabel(Entity<PlumbingPillPressComponent> ent, ref PlumbingPillPressSetLabelMessage args)
+    {
+        if (args.Label.Length > SharedChemMaster.LabelMaxLength)
+            return;
+
+        ent.Comp.Label = args.Label;
+        DirtyField(ent, ent.Comp, nameof(PlumbingPillPressComponent.Label));
+        ClickSound(ent);
+        UpdateUiState(ent);
+    }
+
     private void OnSetOutputMode(Entity<PlumbingPillPressComponent> ent, ref PlumbingPillPressSetOutputModeMessage args)
     {
         ent.Comp.OutputMode = args.OutputMode;
@@ -304,6 +320,7 @@ public sealed class PlumbingPillPressSystem : EntitySystem
             ent.Comp.Dosage,
             ent.Comp.OutputMode,
             ent.Comp.PillType,
+            ent.Comp.Label,
             ent.Comp.Enabled,
             ent.Comp.MixingEnabled,
             ent.Comp.InletRatioEast,

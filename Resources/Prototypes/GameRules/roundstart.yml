@@ -286,7 +286,7 @@
     definitions:
     - prefRoles: [ Traitor ]
       max: 24 # Starlight. More of future proofing. If we ever actually average 240 pop then we'll need to actually do something else.
-      playerRatio: 12 # Starlight. Beta has lost 1 traitor.
+      playerRatio: 10 # Starlight. It's this number so Beta doesn't lose out on their 6th traitor.
       blacklist:
         components:
         - AntagImmune
@@ -442,8 +442,7 @@
       briefing:
         text: wizard-role-greeting
         color: Turquoise
-        # TODO: Need Wizard Start sound
-        #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
       startingGear: WizardBlueGear
       # TODO: WizardComp as needed
       components:

@@ -10,7 +10,7 @@
     time: 72h # Starlight start
   - !type:RoleTimeRequirement
     role: JobSecurityOfficer # Less important than some of the other antags to know
-    time: 5h
+    time: 1h
   - !type:DepartmentTimeRequirement
     department: Command
     time: 12h # Have to be a leader. You're essentially making your own chain of command in this role.

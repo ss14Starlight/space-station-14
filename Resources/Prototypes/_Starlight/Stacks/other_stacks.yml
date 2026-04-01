@@ -13,6 +13,13 @@
   maxCount: 30
 
 - type: stack
+  id: LabellerRefillPaper
+  name: stack-labeller-refill-paper
+  icon: { sprite: _Starlight/Objects/Materials/paper_roll.rsi, state: icon_100 }
+  spawn: LabellerRefillPaper
+  maxCount: 100
+  
+- type: stack
   id: RawBluespaceCrystal
   name: stack-bluespacecrystal
   icon: { sprite: _Starlight/Objects/Materials/materials.rsi, state: bluespace_crystal }

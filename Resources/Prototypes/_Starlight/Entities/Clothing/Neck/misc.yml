@@ -70,3 +70,17 @@
   - type: DeviceLinkSink
     ports:
       - Trigger
+
+- type: entity
+  parent: [ClothingNeckBase, BaseTSFContraband]
+  id: ClothingNeckTSFBadge
+  name: TSF badge
+  description: An official badge from the Trans Solar Federation. This polished piece of law enforcement equipment bears the distinctive TSF eagle emblem, a symbol of authority recognized across known space.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Misc/tsf_badge.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Misc/tsf_badge.rsi
+  - type: Item
+    size: Tiny

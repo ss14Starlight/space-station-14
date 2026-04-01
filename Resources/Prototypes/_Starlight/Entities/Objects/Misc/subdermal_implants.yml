@@ -37,6 +37,16 @@
       targetUser: true
 
 - type: entity
+  parent: MindShieldImplant
+  id: TSFMindShieldImplant
+  name: TSF mindshield implant
+  description: This implant will ensure loyalty to SolGov and prevent mind control devices.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MindShieldImplant
+    mindShieldStatusIcon: TSFMindShieldIcon
+
+- type: entity
   parent: DeathRattleImplant
   id: DeathRattleImplantTSF
   name: TSF death rattle implant

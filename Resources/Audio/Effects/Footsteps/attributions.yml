@@ -81,7 +81,6 @@
   source: "https://freesound.org/people/el1n/sounds/442746/"
 
 - files:
-  - gib_step.ogg
   - meatslap.ogg
   license: "CC-BY-SA-3.0"
   copyright: "Taken from https://github.com/tgstation/tgstation"

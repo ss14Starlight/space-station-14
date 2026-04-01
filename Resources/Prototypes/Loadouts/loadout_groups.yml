@@ -74,13 +74,13 @@
   - MaidHeadbandTactical
   - TacticalMaidGloves
   - CoderSocks
+  - PawBootTrinket
   - CatEars
   - BunnyEars
   - DogEars
   - ClothWrapGloveTrinket
   - ClothWrapShoeTrinket
   - RollerSkates
-  - LilyFlower
   - RolliePack
   - GoldRing
   - SilverRing
@@ -93,10 +93,14 @@
   - RubberQuack
   - GatchaBox
   - WristWatch
+  - TreasureCoinIron
+  - TreasureCoinSilver
+  - TreasureCoinGold
   - ZippoLighter
   - MedChecker
   - ChanceSack
   - StationMap
+  - PictureFrame
   - YaharJar
   - PaperFolder1
   - PaperFolder2
@@ -120,7 +124,6 @@
   - CigPackBub
   - PillCanisterPsicodine
   - ClothingDogTags
-  - Boxblacklight
   - PersonalAI
   - GoldenPersonalAI # Starlight end
   - AACTablet # DeltaV

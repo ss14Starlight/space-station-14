@@ -65,13 +65,14 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
+            Performer: [ 2, 2 ]
             #silicon (3)
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
             #law (3)
             Magistrate: [ 1, 1 ]
             IAA: [ 2, 2 ]
-            #Representives (2)
+            #Representatives (2)
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]

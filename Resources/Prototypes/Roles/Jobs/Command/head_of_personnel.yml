@@ -7,7 +7,7 @@
     # Starlight - we've changed basically this whole block to be service instead of captain-lite
     - !type:DepartmentTimeRequirement
       department: Civilian
-      time: 30h # Starlight
+      time: 20h # Starlight
     - !type:RoleTimeRequirement
       role: JobBotanist
       time: 3h

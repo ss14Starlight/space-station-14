@@ -6,9 +6,9 @@
   # Starlight start
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 24h
+    time: 12h
   - !type:RoleTimeRequirement
     role: JobSalvageSpecialist
-    time: 8h
+    time: 3h
   playTimeTracker: AntagDragon
   # Starlight end

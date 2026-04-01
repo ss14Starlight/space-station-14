@@ -223,16 +223,26 @@ public static class SLControlExtensions
         subscription?.Invoke(new Subscription(() => parent.OnPressed -= OnPressed));
         return parent;
     }
-    public static BaseButton WhenMouseEntered(this BaseButton parent, Action<GUIMouseHoverEventArgs> OnPressed, Action<IDisposable>? subscription = null)
+    public static Control WhenMouseEntered(this Control parent, Action<GUIMouseHoverEventArgs> OnPressed, Action<IDisposable>? subscription = null)
     {
         parent.OnMouseEntered += OnPressed;
         subscription?.Invoke(new Subscription(() => parent.OnMouseEntered -= OnPressed));
         return parent;
     }
-    public static BaseButton WhenMouseExited(this BaseButton parent, Action<GUIMouseHoverEventArgs> OnPressed, Action<IDisposable>? subscription = null)
+    public static Control WhenMouseExited(this Control parent, Action<GUIMouseHoverEventArgs> OnPressed, Action<IDisposable>? subscription = null)
     {
         parent.OnMouseExited += OnPressed;
         subscription?.Invoke(new Subscription(() => parent.OnMouseEntered -= OnPressed));
+        return parent;
+    }
+    public static Control WithMouseFilter(this Control parent, MouseFilterMode mode)
+    {
+        parent.MouseFilter = mode;
+        return parent;
+    }
+    public static Control WithTooltip(this Control parent, string text)
+    {
+        parent.ToolTip = text;
         return parent;
     }
     public static Control Add(this Control parent, Control control)

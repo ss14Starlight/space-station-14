@@ -1,6 +1,6 @@
 - type: entity
   name: emergency crew monitor
-  parent: [ BaseHandheldComputer, BaseMedicalContraband ]
+  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer, BaseMedicalContraband ]
   id: EmergencyHandheldCrewMonitor
   description: A hand-held crew monitor displaying the status of suit sensors of injured crew.
   components:
@@ -23,12 +23,12 @@
     visuals:
       enum.BatteryVisuals.State:
         enum.CrewMonitorLayers.Powered:
-          Full: { visible: true }
-          Neither: { visible: true }
+          Full: { visible: true, shader: unshaded }
+          Neither: { visible: true, shader: unshaded }
           Empty: { visible: false }
       enum.CrewMonitorVisuals.Alert:
         enum.CrewMonitorLayers.Alert:
-          True: { visible: true }
+          True: { visible: true, shader: unshaded }
           False: { visible: false }
   - type: ActivatableUI
     key: enum.CrewMonitoringUIKey.Key
@@ -49,3 +49,5 @@
     price: 200
   - type: StealTarget
     stealGroup: CrewMonitorCollection
+  - type: PowerCellDraw
+    useCharge: 15

@@ -85,8 +85,8 @@
     containers:
       item-container: !type:Container
   # 🌟Starlight-start🌟
-  - type: Retractor
   - type: SurgeryTool
+  - type: Retractor
     successRate: 0.05 # they are very much too large
     speed: 1.5
     startSound:
@@ -122,8 +122,8 @@
     - IndustrialMech
     - SmallMech
   # 🌟Starlight-start🌟
-  - type: Retractor
   - type: SurgeryTool
+  - type: Retractor
     successRate: 0.1 # they are very much too large
     speed: 1.5
     startSound:

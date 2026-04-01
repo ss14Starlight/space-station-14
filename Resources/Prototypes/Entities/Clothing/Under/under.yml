@@ -2,7 +2,7 @@
 # I would cry if we didn't have them. -swept
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesBaseUntieable # Starlight-edit: Untieable shoes
   id: ClothingUnderSocksBee
   name: bee socks
   description: Make them loins buzz!
@@ -13,7 +13,7 @@
     sprite: Clothing/Under/Socks/bee.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesBaseUntieable # Starlight-edit: Untieable shoes
   id: ClothingUnderSocksCoder
   name: coder socks
   description: It's time to code sisters!!11!

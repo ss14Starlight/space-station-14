@@ -25,6 +25,9 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMedium
+        blacklist:
+          tags:
+          - MechReactor
   - type: Appearance
   - type: StaticPrice
     price: 2000

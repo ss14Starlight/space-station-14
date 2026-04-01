@@ -43,8 +43,6 @@
   name: Federation marine combat armor
   description: A full-body suit of semi-powered assault armor used by the Trans-Solar Marine Corps. Offers excellent protection in all areas without impairing movement.
   components:
-  - type: Pierceable
-    level: Metal
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Armor/tsf.rsi
   - type: Clothing
@@ -53,6 +51,11 @@
     unequipSound: /Audio/Mecha/mechmove03.ogg
     equipDelay: 3
     unequipDelay: 3
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
       coefficients:
@@ -61,15 +64,16 @@
         Piercing: 0.6
         Heat: 0.5
         Caustic: 0
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
+    staminaModifier: 0.3
   - type: StaminaResistance 
     damageCoefficient: 0.75
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.8
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: FootstepModifier
     footstepSoundCollection:
@@ -91,6 +95,16 @@
     sprite: _Starlight/Clothing/OuterClothing/Armor/tsfleader.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Armor/tsfleader.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.2
+        Caustic: 0
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
 
 #Wizard "Robes"
 - type: entity
