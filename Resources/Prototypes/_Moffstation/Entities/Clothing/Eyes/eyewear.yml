@@ -240,6 +240,7 @@
       modular-hud-modules: !type:AllSelector
         children:
         - id: HudModuleShowThirstIcons
+        - id: HudModuleSolutionScanner
   - type: Label
     currentLabel: modularhud-premade-thirst
 
