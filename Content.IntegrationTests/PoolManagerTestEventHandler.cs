@@ -1,4 +1,6 @@
-﻿namespace Content.IntegrationTests;
+﻿using Content.IntegrationTests._Starlight.Patches;
+
+namespace Content.IntegrationTests;
 
 [SetUpFixture]
 public sealed class PoolManagerTestEventHandler
@@ -10,7 +12,7 @@ public sealed class PoolManagerTestEventHandler
     [OneTimeSetUp]
     public void Setup()
     {
-        _Starlight.Patches.RsiLoadingPatch.Apply(); // Starlight
+        RsiLoadingPatch.Apply(); // Starlight
 
         PoolManager.Startup();
         // If the tests seem to be stuck, we try to end it semi-nicely
@@ -33,7 +35,7 @@ public sealed class PoolManagerTestEventHandler
     public void TearDown()
     {
         PoolManager.Shutdown();
-        
-        _Starlight.Patches.RsiLoadingPatch.Unpatch(); // Starlight
+
+        RsiLoadingPatch.Unpatch(); // Starlight
     }
 }
