@@ -18205,24 +18205,13 @@ entities:
     - type: Transform
       pos: 26.5,13.5
       parent: 2
-- proto: LockerBSOFilled
+- proto: LockerBlueshieldFilled
   entities:
   - uid: 256
     components:
     - type: Transform
       pos: 14.5,10.5
       parent: 2
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 257
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: LockerCaptainFilledHardsuit
   entities:
   - uid: 262

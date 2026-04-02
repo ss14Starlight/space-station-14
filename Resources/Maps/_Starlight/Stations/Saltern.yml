@@ -56383,7 +56383,7 @@ entities:
     - type: Transform
       pos: -1.5,14.5
       parent: 2
-- proto: LockerBSOFilled
+- proto: LockerBlueshieldFilled
   entities:
   - uid: 8519
     components:

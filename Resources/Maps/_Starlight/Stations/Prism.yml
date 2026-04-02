@@ -122008,7 +122008,7 @@ entities:
     - type: Transform
       pos: 50.5,42.5
       parent: 2
-- proto: LockerBSOFilled
+- proto: LockerBlueshieldFilled
   entities:
   - uid: 17515
     components:

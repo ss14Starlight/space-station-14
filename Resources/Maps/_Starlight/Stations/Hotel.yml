@@ -101886,7 +101886,7 @@ entities:
     - type: Transform
       pos: 6.5,-4.5
       parent: 2
-- proto: LockerBSOFilled
+- proto: LockerBlueshieldFilled
   entities:
   - uid: 15812
     components:
