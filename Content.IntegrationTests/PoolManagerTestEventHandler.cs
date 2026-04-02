@@ -1,6 +1,7 @@
-﻿using Content.IntegrationTests._Starlight.Patches;
-
-namespace Content.IntegrationTests;
+﻿using Robust.UnitTesting;
+using Robust.Shared.Serialization.Manager;
+using Content.IntegrationTests;
+using Content.IntegrationTests._Starlight.Patches;
 
 [SetUpFixture]
 public sealed class PoolManagerTestEventHandler
@@ -10,11 +11,18 @@ public sealed class PoolManagerTestEventHandler
     private static TimeSpan HardStopTimeLimit => MaximumTotalTestingTimeLimit.Add(TimeSpan.FromMinutes(1));
 
     [OneTimeSetUp]
-    public void Setup()
+    public async Task Setup()
     {
         RsiLoadingPatch.Apply(); // Starlight
 
         PoolManager.Startup();
+
+        var pair = await PoolManager.GetServerClient(new PoolSettings { Destructive = true });
+        RobustIntegrationTest.ServerIntegrationInstance.Serialization = (SerializationManager) pair.Server.Resolve<ISerializationManager>();
+        RobustIntegrationTest.ClientIntegrationInstance.Serialization = (SerializationManager) pair.Client.Resolve<ISerializationManager>();
+
+        await pair.DisposeAsync();
+
         // If the tests seem to be stuck, we try to end it semi-nicely
         _ = Task.Delay(MaximumTotalTestingTimeLimit).ContinueWith(_ =>
         {
