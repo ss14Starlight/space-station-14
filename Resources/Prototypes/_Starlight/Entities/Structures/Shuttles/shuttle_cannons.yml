@@ -256,6 +256,7 @@
   - type: ContainerContainer
     containers:
       ballistic_chamber: !type:ContainerSlot
+      ballistic-ammo: !type:Container
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -755,6 +756,7 @@
   - type: ContainerContainer
     containers:
       ballistic_chamber: !type:ContainerSlot
+      ballistic-ammo: !type:Container
   - type: Physics
     bodyType: Static
   - type: Fixtures
