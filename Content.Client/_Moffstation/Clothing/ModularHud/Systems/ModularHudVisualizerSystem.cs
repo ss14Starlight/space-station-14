@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Shared._Moffstation.Clothing.ModularHud.Components;
 using Content.Shared.Clothing;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Foldable;
 using Content.Shared.Hands;
 using Content.Shared.Inventory;
@@ -113,6 +114,13 @@ public sealed partial class ModularHudVisualizerSystem : VisualizerSystem<Modula
     /// Updates clothing sprites.
     private void OnGetClothingVisuals(Entity<ModularHudVisualsComponent> entity, ref GetEquipmentVisualsEvent args)
     {
+        // No layers if the clothing isn't in an "equipped" slot.
+        if (!TryComp<ClothingComponent>(entity, out var clothing) ||
+            clothing.InSlotFlag is not { } slotFlag ||
+            !clothing.Slots.HasFlag(slotFlag))
+        {
+            return;
+        }
         // Some species use different states, so make sure we consider those here.
         var speciesId = CompOrNull<InventoryComponent>(args.Equipee)?.SpeciesId;
         var excludedLayers = entity.Comp.EquippedExcludedLayers.GetExcludedLayersOrDefaultForSpecies(speciesId);
