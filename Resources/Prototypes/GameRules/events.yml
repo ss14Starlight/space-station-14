@@ -59,6 +59,7 @@
     - id: LoneOpsSpawn
     - id: WizardSpawn
     - id: AbductorsSpawn # Starlight
+    - id: TerrorSpidersSpawn # Starlight
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 

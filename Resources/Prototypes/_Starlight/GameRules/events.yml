@@ -322,3 +322,21 @@
     prototype: SyndieDeadDropSpawner
     radioMessage: {channel: Syndicate, message: "syndicate-dead-drop-announcement"}
 
+# Terror Spiders
+
+- type: entity
+  id: TerrorSpidersSpawn
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    globalAnnouncement: false
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 15
+    weight: 6
+    duration: 50
+    minimumPlayers: 50
+  - type: VentCrittersRule
+    entries:
+    - id: MobTerrorPrincess
