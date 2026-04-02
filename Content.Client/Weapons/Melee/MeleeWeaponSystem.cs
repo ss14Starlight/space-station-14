@@ -6,6 +6,7 @@ using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared._Starlight.Weapons.Melee.Events; // Starlight
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -232,9 +233,19 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         var direction = targetMap.Position - userPos;
         var distance = MathF.Min(component.Range, direction.Length());
 
+
+        // Starlight Begin - Mech wideswing handling
+        var originEv = new GetMeleeOriginEvent();
+        RaiseLocalEvent(user, originEv);
+
+        var ignoreUid = user;
+        if (originEv.Handled && originEv.OriginEntity.HasValue)
+            ignoreUid = originEv.OriginEntity.Value;
+        // Starlight End
+
         // This should really be improved. GetEntitiesInArc uses pos instead of bounding boxes.
         // Server will validate it with InRangeUnobstructed.
-        var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), component.Angle, distance, userXform.MapID, user).ToList());
+        var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), component.Angle, distance, userXform.MapID, ignoreUid).ToList()); // Starlight
         RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities.GetRange(0, Math.Min(MaxTargets, entities.Count)), GetNetCoordinates(coordinates)));
     }
 

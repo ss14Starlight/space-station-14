@@ -994,8 +994,16 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
     private void DoLungeAnimation(EntityUid user, EntityUid weapon, Angle angle, MapCoordinates coordinates, float length, string? animation)
     {
+        // Starlight Begin - mech wideswing handling
+        var originEntity = user;
+        var originEv = new GetMeleeOriginEvent();
+        RaiseLocalEvent(user, originEv);
+        if (originEv.Handled && originEv.OriginEntity.HasValue)
+            originEntity = originEv.OriginEntity.Value;
+        // Starlight End
+
         // TODO: Assert that offset eyes are still okay.
-        if (!TryComp(user, out TransformComponent? userXform))
+        if (!TryComp(originEntity, out TransformComponent? userXform)) // Starlight
             return;
 
         var invMatrix = TransformSystem.GetInvWorldMatrix(userXform);
