@@ -16,7 +16,6 @@
     interfaces:
       enum.StackCustomSplitUiKey.Key:
         type: StackCustomSplitBoundUserInterface
-  - type: Stack
   # Starlight end
   - type: Tag
     tags:

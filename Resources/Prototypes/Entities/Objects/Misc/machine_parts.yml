@@ -14,9 +14,7 @@
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
-    - type: Stack
     # Starlight end
-      count: 1
     - type: Tag
       tags:
       - ConstructionMaterial

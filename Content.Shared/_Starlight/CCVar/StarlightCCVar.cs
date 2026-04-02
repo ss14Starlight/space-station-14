@@ -43,4 +43,10 @@ public sealed partial class StarlightCCVars
 
     public static readonly CVarDef<string> ConfigFile =
         CVarDef.Create("config.file", "config.yml", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    /// <summary>
+    /// Disables pathfinding system updates and path generation. Intended for integration tests.
+    /// </summary>
+    public static readonly CVarDef<bool> DisablePathfinding =
+        CVarDef.Create("starlight.pathfinding.disable", false, CVar.SERVERONLY);
 }

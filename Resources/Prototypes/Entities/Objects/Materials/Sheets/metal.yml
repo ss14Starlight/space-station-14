@@ -9,7 +9,6 @@
     interfaces:
       enum.StackCustomSplitUiKey.Key:
         type: StackCustomSplitBoundUserInterface
-  - type: Stack
   # Starlight end
   - type: Sprite
     sprite: Objects/Materials/Sheets/metal.rsi
