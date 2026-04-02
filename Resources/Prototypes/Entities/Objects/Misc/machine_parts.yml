@@ -9,7 +9,13 @@
       sprite: Objects/Misc/stock_parts.rsi
     - type: Item
       size: Tiny
+    # Starlight start
+    - type: UserInterface
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
     - type: Stack
+    # Starlight end
       count: 1
     - type: Tag
       tags:

@@ -91,6 +91,9 @@
     containers:
       board: !type:Container
         ents: []
+      # Starlight Start
+      pai_slot: !type:ContainerSlot {}
+      # Starlight End
   - type: LightningTarget
     priority: 1
   - type: RequireProjectileTarget
