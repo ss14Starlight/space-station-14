@@ -16,5 +16,5 @@ thief-backpack-category-communicator-description-starlight =
 thief-backpack-category-sleeper-description-starlight =
     Until we close our eyes for good, use your illegal prescriptions
     to keep others asleep.
-    Includes: Sleepy nitrous oxide tank, two nocturine bottles,
-    a tazinide bottle, and a hypopen.
+    Includes: Sleepy nitrous oxide tank, a healium tank,
+    two nocturine bottles, a tazinide bottle, and a hypopen.

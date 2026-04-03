@@ -75,6 +75,7 @@
   - ChemistryBottleTazinide # Starlight
   - HypopenBox
   - NitrousOxideTankFilled
+  - HealiumTankFilled # Starlight, for those nitrogen breathers
 
 - type: thiefBackpackSet
   id: CommunicatorSet
