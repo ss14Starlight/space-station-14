@@ -192,14 +192,20 @@ public sealed class AchievementSystem : EntitySystem
         AddProgress(ev.Player, AchievementProgressKeys.SpawnCount);
         AddProgress(ev.Player, ev.LateJoin ? AchievementProgressKeys.SpawnLateJoinCount : AchievementProgressKeys.SpawnRoundStartCount);
 
-        CheckProgressAchievements(ev.Player, AchievementProgressKeys.SpawnCount);
-        CheckProgressAchievements(ev.Player, ev.LateJoin ? AchievementProgressKeys.SpawnLateJoinCount : AchievementProgressKeys.SpawnRoundStartCount) ;
+        CheckProgressAchievements(ev.Player, AchievementProgressKeys.SpawnCount)
+            .AsTask()
+            .FireAndForget();
+        CheckProgressAchievements(ev.Player, ev.LateJoin ? AchievementProgressKeys.SpawnLateJoinCount : AchievementProgressKeys.SpawnRoundStartCount)
+            .AsTask()
+            .FireAndForget();
 
         if (!string.IsNullOrEmpty(ev.JobId))
         {
             var progressType = AchievementProgressKeys.SpawnJob(ev.JobId);
             AddProgress(ev.Player, progressType);
-            CheckProgressAchievements(ev.Player, progressType);
+            CheckProgressAchievements(ev.Player, progressType)
+                .AsTask()
+                .FireAndForget();
         }
     }
 
@@ -209,7 +215,9 @@ public sealed class AchievementSystem : EntitySystem
             return;
 
         AddProgress(ev.Target, AchievementProgressKeys.MobDeathCount);
-        CheckProgressAchievements(ev.Target, AchievementProgressKeys.MobDeathCount);
+        CheckProgressAchievements(ev.Target, AchievementProgressKeys.MobDeathCount)
+            .AsTask()
+            .FireAndForget();
     }
 
     private Dictionary<string, double> EnsureProgress(Guid userId)
