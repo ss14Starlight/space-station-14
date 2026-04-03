@@ -647,12 +647,7 @@
   cost:
     Telecrystal: 10
   categories:
-    - UplinkJob
-  conditions:
-    - !type:BuyerJobCondition
-      whitelist:
-        - Assistant
-        - Captain
+    - UplinkWearables
 
 # Disruption
 - type: listing

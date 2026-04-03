@@ -23,7 +23,7 @@
   - WelderIndustrialAdvanced
   - ClothingEyesGlassesMeson
   - ClothingHandsGlovesColorYellow
-  - SyndicateJawsOfLife # Starlight. Break in, thief.
+  - SyndicateJawsOfLifeStealth # Starlight. Break in, thief.
   - RemoteSignaller
   - Multitool
   - C4
@@ -65,13 +65,14 @@
 - type: thiefBackpackSet
   id: SleeperSet
   name: thief-backpack-category-sleeper-name
-  description: thief-backpack-category-sleeper-description
+  description: thief-backpack-category-sleeper-description-starlight
   sprite:
     sprite: Objects/Tanks/anesthetic.rsi
     state: icon
   content:
   - ChemistryBottleNocturine
   - ChemistryBottleNocturine
+  - ChemistryBottleTazinide # Starlight
   - HypopenBox
   - NitrousOxideTankFilled
 
