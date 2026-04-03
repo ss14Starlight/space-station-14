@@ -41,10 +41,7 @@
     prototypes:
     - MobSpiderlingTerrorGray
     intervalSeconds: 90
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-  - type: TimedDespawn 
-    lifetime: 91
+    despawnWhenDone: true
 
 - type: entity
   parent: EggSpider
@@ -58,10 +55,7 @@
     prototypes:
     - MobSpiderlingTerrorGreen
     intervalSeconds: 90
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-  - type: TimedDespawn 
-    lifetime: 91
+    despawnWhenDone: true
     
 - type: entity
   parent: EggSpider
@@ -75,10 +69,7 @@
     prototypes:
     - MobSpiderlingTerrorRed
     intervalSeconds: 90
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-  - type: TimedDespawn 
-    lifetime: 91
+    despawnWhenDone: true
 
 - type: entity
   parent: EggSpider
@@ -89,7 +80,4 @@
     prototypes:
     - MobGiantSpider
     intervalSeconds: 60
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-  - type: TimedDespawn 
-    lifetime: 61
+    despawnWhenDone: true
