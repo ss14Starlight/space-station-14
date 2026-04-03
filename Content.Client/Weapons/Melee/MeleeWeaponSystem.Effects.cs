@@ -2,7 +2,7 @@ using System.Numerics;
 using Content.Client.Animations;
 using Content.Client.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee;
-using Content.Shared._Starlight.Weapons.Melee.Events;
+using Content.Shared._Starlight.Weapons.Melee.Events; // Starlight
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
