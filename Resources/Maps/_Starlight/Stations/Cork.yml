@@ -60795,13 +60795,15 @@ entities:
       parent: 2
     - type: AccessReader
       accessListsOriginal: []
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
   - uid: 7329
     components:
     - type: Transform
       pos: 27.5,2.5
       parent: 2
+- proto: SMESAdvanced
+  entities:
   - uid: 7330
     components:
     - type: Transform
@@ -60817,8 +60819,6 @@ entities:
     - type: Transform
       pos: 27.5,1.5
       parent: 2
-- proto: SMESBasic
-  entities:
   - uid: 10467
     components:
     - type: Transform
