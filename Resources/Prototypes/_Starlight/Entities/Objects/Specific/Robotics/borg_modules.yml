@@ -167,7 +167,7 @@
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
 
-# TSF
+# region TSF
 - type: entity
   id: BorgModuleTSF
   parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
@@ -216,7 +216,7 @@
     - state: security
   - type: ItemBorgModule
     hands:
-    - item: AccessOverider
+    - item: AccessOveriderRecharging
     - item: TSFBatonModel5
     - item: WeaponPistolTSFBorg
     - item: WeaponAdvancedLaser
