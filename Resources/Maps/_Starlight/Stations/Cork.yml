@@ -60802,17 +60802,17 @@ entities:
     - type: Transform
       pos: 27.5,2.5
       parent: 2
+  - uid: 7331
+    components:
+    - type: Transform
+      pos: 27.5,0.5
+      parent: 2
 - proto: SMESAdvanced
   entities:
   - uid: 7330
     components:
     - type: Transform
       pos: 50.5,-13.5
-      parent: 2
-  - uid: 7331
-    components:
-    - type: Transform
-      pos: 27.5,0.5
       parent: 2
   - uid: 7332
     components:

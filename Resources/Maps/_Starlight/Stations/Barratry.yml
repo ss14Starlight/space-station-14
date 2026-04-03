@@ -89050,17 +89050,17 @@ entities:
     - type: Transform
       pos: -71.5,28.5
       parent: 2
+  - uid: 12370
+    components:
+    - type: Transform
+      pos: -71.5,29.5
+      parent: 2
 - proto: SMESAdvanced
   entities:
   - uid: 12368
     components:
     - type: Transform
       pos: -76.5,19.5
-      parent: 2
-  - uid: 12370
-    components:
-    - type: Transform
-      pos: -71.5,29.5
       parent: 2
   - uid: 12371
     components:

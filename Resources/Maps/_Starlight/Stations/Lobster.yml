@@ -128314,13 +128314,13 @@ entities:
     - type: Transform
       pos: 46.5,22.5
       parent: 2
-- proto: SMESAdvanced
-  entities:
   - uid: 20235
     components:
     - type: Transform
       pos: 46.5,20.5
       parent: 2
+- proto: SMESAdvanced
+  entities:
   - uid: 20236
     components:
     - type: Transform

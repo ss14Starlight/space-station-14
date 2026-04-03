@@ -101247,7 +101247,7 @@ entities:
     - type: Transform
       pos: 10.5,34.5
       parent: 3
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
   - uid: 11849
     components:
@@ -101259,6 +101259,8 @@ entities:
     - type: Transform
       pos: 3.5,-81.5
       parent: 3
+- proto: SMESAdvanced
+  entities:
   - uid: 11851
     components:
     - type: Transform
