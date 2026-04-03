@@ -1,4 +1,6 @@
 # Borgs
+
+# region syndicate
 - type: entity
   id: PlayerBorgSyndicateStealthBattery
   parent: BorgChassisSyndicateStealth
@@ -56,7 +58,7 @@
     mindRole: "MindRoleSiliconBrain"
     silent: true
 
-# Derelict
+# region derelict
 
 - type: entity
   parent: PurrfusBorgChassisDerelict
@@ -256,6 +258,8 @@
       job: Borg
     - type: GhostTakeoverAvailable
 
+# region TSF
+
 - type: entity
   id: PlayerBorgChassisTSFBattery
   parent: BorgChassisTSF
@@ -296,6 +300,8 @@
     job: Borg
   - type: GhostTakeoverAvailable
 
+# AI
+
 - type: entity
   id: TSFAiHeld
   parent: AiHeld
@@ -332,3 +338,25 @@
   - type: ContainerComp
     proto: TSFAiHeld
     container: station_ai_mind_slot
+
+# region NTNC
+- type: entity
+  id: PlayerBorgHAWBattery
+  parent: NTNCBorgChassisHAW
+  suffix: Battery, module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModuleAdvancedTool
+        - CentcommAccessBreakerModule
+        - CentcommLaserModule
+        - CentcommBulwarkModule
+        - CentcommModuleSpaceMovement
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
