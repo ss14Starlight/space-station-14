@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Chat;
 using Content.Shared.CCVar;
 using Robust.Shared.Utility;
@@ -65,7 +66,18 @@ public sealed partial class ChannelFilterPopup : Popup
         // Starlight start
         InitializeTTSMuteChannels();
         TTSClearQueueButton.OnPressed += _ => ClearQueue();
+        TTSToggleMuteAllButton.OnPressed += _ => ToggleMuteAllTTSCheckboxes();
         // Starlight end
+                    void ToggleMuteAllTTSCheckboxes()
+                    {
+                        // If all are checked, uncheck all. Otherwise, check all.
+                        bool allChecked = _ttsMuteStates.Values.All(checkbox => checkbox.Pressed);
+                        bool newState = !allChecked;
+                        foreach (var cb in _ttsMuteStates.Values)
+                        {
+                            cb.Pressed = newState;
+                        }
+                    }
     }
     // Starlight start
 
