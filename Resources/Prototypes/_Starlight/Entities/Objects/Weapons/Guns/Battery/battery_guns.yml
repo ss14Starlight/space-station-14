@@ -1026,7 +1026,7 @@
       magState: kill
       visualState: kill
     - proto: DestroyBeam
-      fireCost: 100
+      fireCost: 300
       magState: destroy
       visualState: destroy
   - type: GunFireModeSounds
@@ -1034,8 +1034,8 @@
       2:
         path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: Battery
-    maxCharge: 3300
-    startingCharge: 3300
+    maxCharge: 3000
+    startingCharge: 3000
   - type: BatterySelfRecharger
     autoRechargeRate: 100
     autoRechargePauseTime: 5
