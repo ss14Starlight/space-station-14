@@ -204,8 +204,8 @@
         - BorgModuleGeneric
         - BorgModuleCentcomm
         - BorgModuleEngineering
-    hasMindState: ntnc_haw_e
-    noMindState: ntnc_haw_e_r
+    hasMindState: borg_e
+    noMindState: borg_e_r
   - type: MobThresholds # tankier
     thresholds:
       0: Alive
