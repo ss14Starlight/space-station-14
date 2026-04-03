@@ -50,7 +50,7 @@
     definitions:
     - prefRoles: [ Changeling ]
       max: 6 # Starlight, same reasoning as the roundstart changeling change, for alpha.
-      playerRatio: 26 # Starlight. Same justification as Thieves.
+      playerRatio: 30 # Starlight. You should stop seeing 6 lings all the time now.
       lateJoinAdditional: true
       allowNonHumans: false
       multiAntagSetting: None

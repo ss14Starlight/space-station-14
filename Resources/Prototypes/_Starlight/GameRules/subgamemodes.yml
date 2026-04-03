@@ -98,7 +98,7 @@
     definitions:
     - prefRoles: [ Changeling ]
       max: 4 # Starlight, same reasoning as the roundstart changeling change, for alpha.
-      playerRatio: 31 # Starlight, to make sure Beta doesn't get more than 2 changelings as a submode on VTL. Same justification as Thieves. Should be harder to get 4 lings on VTL now.
+      playerRatio: 32 # Starlight, to make sure Beta doesn't get more than 2 changelings as a submode on VTL. Same justification as Thieves. Should be harder to get 4 lings on VTL now.
       lateJoinAdditional: true
       allowNonHumans: false
       multiAntagSetting: None
@@ -130,7 +130,7 @@
     definitions:
     - prefRoles: [ Traitor ]
       max: 6 # Starlight. Less intrusive traitors.
-      playerRatio: 21 # Starlight. Less intrusive traitors.
+      playerRatio: 26 # Starlight. Less intrusive traitors.
       blacklist:
         components:
         - AntagImmune
