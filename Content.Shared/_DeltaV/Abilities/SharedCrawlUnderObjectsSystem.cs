@@ -5,6 +5,7 @@ using Content.Shared.Maps;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+//using Content.Shared.Standing;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 
@@ -78,6 +79,9 @@ public sealed class SharedCrawlUnderObjectsSystem : EntitySystem
         Dirty(uid, component);
 
         _popup.PopupClient(Loc.GetString("crawl-under-objects-toggle-on"), uid, uid);
+
+        //var ev = new DropHandItemsEvent();
+        //RaiseLocalEvent(uid, ref ev);
 
         if (!TryComp<FixturesComponent>(uid, out var fixtureComponent))
             return;
