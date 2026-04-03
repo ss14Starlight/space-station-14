@@ -38,6 +38,7 @@ public static partial class PoolManager
         (CCVars.MovementMobPushing.Name, "false"),
         // Starlight start
         (StarlightCCVars.DisablePathfinding.Name, "true"),
+        (StarlightCCVars.DisableLoadMapRule.Name, "true"),
         // Starlight end
     };
 }

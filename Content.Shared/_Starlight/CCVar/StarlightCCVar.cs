@@ -49,4 +49,7 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<bool> DisablePathfinding =
         CVarDef.Create("starlight.pathfinding.disable", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> DisableLoadMapRule =
+        CVarDef.Create("starlight.loadmaprule.disable", false, CVar.SERVERONLY);
 }
