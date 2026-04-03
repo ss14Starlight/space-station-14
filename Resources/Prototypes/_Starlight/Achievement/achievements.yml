@@ -1,0 +1,34 @@
+- type: achievement
+  id: first_spawn
+  name: achievement-first-spawn-name
+  description: achievement-first-spawn-description
+  category: onboarding
+  hidden: false
+  showProgress: false
+  requirements:
+  - progressType: spawn.count
+    requiredProgress: 1
+
+- type: achievement
+  id: first_death
+  name: achievement-first-death-name
+  description: achievement-first-death-description
+  category: milestones
+  hidden: false
+  showProgress: false
+  requirements:
+  - progressType: mob.death.count
+    requiredProgress: 1
+
+
+# vampire my beloved....
+- type: achievement
+  id: festival_of_blood
+  name: achievement-festival-of-blood-name
+  description: achievement-festival-of-blood-description
+  category: vampire
+  hidden: true
+  showProgress: true
+  requirements:
+  - progressType: vampire.blood-drank
+    requiredProgress: 3000
