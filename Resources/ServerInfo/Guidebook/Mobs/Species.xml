@@ -27,6 +27,7 @@
   <GuideEntityEmbed Entity="MobShadekin" Caption="Shadekin"/>
   <GuideEntityEmbed Entity="MobLagomorph" Caption="Lagomorph"/>
   <GuideEntityEmbed Entity="MobIPC" Caption="IPC"/> <!--FH-->
+  <GuideEntityEmbed Entity="MobRodentia" Caption="Rodentia"/>
   </Box>
 
 </Document>

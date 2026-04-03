@@ -634,3 +634,19 @@
       collection: FelionoidTrills
     DefaultDeathgasp:
       collection: MothDeathGasp
+
+- type: emoteSounds
+  id: UnisexRodentia
+  sounds:
+    Scream:
+      path: /Audio/Animals/mouse_squeak.ogg
+    Squeak:
+      path: /Audio/Animals/mouse_squeak.ogg
+
+- type: emoteSounds
+  parent: UnisexRodentia
+  id: MaleRodentia
+
+- type: emoteSounds
+  parent: UnisexRodentia
+  id: FemaleRodentia
