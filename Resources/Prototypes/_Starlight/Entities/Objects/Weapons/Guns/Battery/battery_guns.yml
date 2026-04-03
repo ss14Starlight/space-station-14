@@ -994,16 +994,48 @@
 
 # NTNC
 - type: entity
-  name: CentComm cyborg laser.
+  name: cyborg pulse carbine
   parent: [ WeaponAdvancedLaser, BaseCentcommContraband ]
   id: CentcommCyborgLaser
-  description: Standard issue NTNC Cyborg laser with internal self-charging battery. You probably don't want this aiming at you...
+  description: A pulse carbine modified for use by cyborgs.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 3
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: BatteryAmmoProvider
-    proto: Pulse
-    fireCost: 150
+    proto: TaserBolt
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: TaserBolt
+      fireCost: 100
+      magState: stun
+      visualState: stun
+    - proto: RedLaserBeam
+      fireCost: 50
+      magState: kill
+      visualState: kill
+    - proto: DestroyBeam
+      fireCost: 100
+      magState: destroy
+      visualState: destroy
+  - type: GunFireModeSounds
+    sounds:
+      2:
+        path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: Battery
-    maxCharge: 1200
-    startingCharge: 1200
+    maxCharge: 3300
+    startingCharge: 3300
   - type: BatterySelfRecharger
-    autoRechargeRate: 150
+    autoRechargeRate: 100
+    autoRechargePauseTime: 5
