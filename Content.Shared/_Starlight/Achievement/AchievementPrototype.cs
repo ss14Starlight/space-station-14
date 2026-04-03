@@ -1,0 +1,55 @@
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
+
+namespace Content.Shared._Starlight.Achievement;
+
+[Prototype("achievement")]
+public sealed partial class AchievementPrototype : IPrototype
+{
+    [IdDataField]
+    public string ID { get; private set; } = default!;
+
+    [DataField(required: true)]
+    public LocId Name { get; private set; } = default!;
+
+    [DataField(required: true)]
+    public LocId Description { get; private set; } = default!;
+
+    [DataField]
+    public string Category { get; private set; } = "general";
+
+    [DataField]
+    public bool Hidden { get; private set; }
+
+    [DataField]
+    public bool ShowProgress { get; private set; } = true;
+
+    [DataField]
+    public SpriteSpecifier? Icon { get; private set; }
+
+    [DataField]
+    public List<AchievementRequirement> Requirements { get; private set; } = [];
+
+
+    // for achievements that game systems cant track progress, like for event participation/winner
+    // maybe ill not do it, im very lazy yk
+    //public bool IsManualOnly => Requirements.Count == 0;
+
+    public bool IsRelevantForProgress(string progressType)
+        => Requirements.Any(requirement => requirement.ProgressType == progressType);
+
+    public bool AreRequirementsMet(Func<string, double> progressResolver)
+        => Requirements.Count > 0
+           && Requirements.All(requirement => progressResolver(requirement.ProgressType) >= requirement.RequiredProgress);
+}
+
+[DataDefinition]
+public sealed partial class AchievementRequirement
+{
+    [DataField(required: true)]
+    public string ProgressType { get; private set; } = string.Empty;
+
+    [DataField(required: true)]
+    public double RequiredProgress { get; private set; }
+}
