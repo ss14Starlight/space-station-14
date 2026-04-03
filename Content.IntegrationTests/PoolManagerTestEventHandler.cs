@@ -1,5 +1,4 @@
-﻿using Robust.UnitTesting;
-using Robust.Shared.Serialization.Manager;
+﻿using Robust.Shared.Serialization.Manager;
 using Content.IntegrationTests;
 using Content.IntegrationTests._Starlight.Patches;
 
@@ -10,18 +9,26 @@ public sealed class PoolManagerTestEventHandler
     private static TimeSpan MaximumTotalTestingTimeLimit => TimeSpan.FromMinutes(50); //starlight, 50 minutes for local testing purposes
     private static TimeSpan HardStopTimeLimit => MaximumTotalTestingTimeLimit.Add(TimeSpan.FromMinutes(1));
 
+    // Starlight start
+    internal static SerializationManager SharedServerSerialization;
+    internal static SerializationManager SharedClientSerialization;
+    // Starlight end
+
     [OneTimeSetUp]
     public async Task Setup()
     {
         RsiLoadingPatch.Apply(); // Starlight
+        SerializationManagerPatch.Apply(); // Starlight
 
         PoolManager.Startup();
 
+        // Starlight start
         var pair = await PoolManager.GetServerClient(new PoolSettings { Destructive = true });
-        RobustIntegrationTest.ServerIntegrationInstance.Serialization = (SerializationManager) pair.Server.Resolve<ISerializationManager>();
-        RobustIntegrationTest.ClientIntegrationInstance.Serialization = (SerializationManager) pair.Client.Resolve<ISerializationManager>();
+        SharedServerSerialization = (SerializationManager) pair.Server.Resolve<ISerializationManager>();
+        SharedClientSerialization = (SerializationManager) pair.Client.Resolve<ISerializationManager>();
 
         await pair.DisposeAsync();
+        // Starlight end
 
         // If the tests seem to be stuck, we try to end it semi-nicely
         _ = Task.Delay(MaximumTotalTestingTimeLimit).ContinueWith(_ =>
@@ -45,5 +52,6 @@ public sealed class PoolManagerTestEventHandler
         PoolManager.Shutdown();
 
         RsiLoadingPatch.Unpatch(); // Starlight
+        SerializationManagerPatch.Unpatch(); // Starlight
     }
 }

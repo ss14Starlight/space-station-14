@@ -12,6 +12,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Log;
 using Robust.Shared.Network;
+using Robust.Shared.Serialization.Manager;
 using Robust.UnitTesting;
 
 namespace Content.IntegrationTests.Pair;
@@ -105,6 +106,11 @@ public sealed partial class TestPair : RobustIntegrationTest.TestPair
                     ClientBeforeIoC = () => IoCManager.Register<IParallaxManager, DummyParallaxManager>(true)
                 });
         };
+        opts.InitIoC += () => // Starlight
+        {
+            if (PoolManagerTestEventHandler.SharedClientSerialization != null)
+                IoCManager.RegisterInstance<ISerializationManager>(PoolManagerTestEventHandler.SharedClientSerialization, true);
+        };
         return opts;
     }
 
@@ -126,6 +132,11 @@ public sealed partial class TestPair : RobustIntegrationTest.TestPair
             var entSysMan = IoCManager.Resolve<IEntitySystemManager>();
             entSysMan.LoadExtraSystemType<DeviceNetworkTestSystem>();
             entSysMan.LoadExtraSystemType<TestDestructibleListenerSystem>();
+        };
+        opts.InitIoC += () => // Starlight
+        {
+            if (PoolManagerTestEventHandler.SharedServerSerialization != null)
+                IoCManager.RegisterInstance<ISerializationManager>(PoolManagerTestEventHandler.SharedServerSerialization, true);
         };
         return opts;
     }
