@@ -181212,7 +181212,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 40.541153,-11.30109
       parent: 2
-- proto: WeaponPistolSP8T
+- proto: WeaponPistolBlueguard
   entities:
   - uid: 12485
     components:

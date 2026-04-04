@@ -5991,7 +5991,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponPistolSP8T
+- proto: WeaponPistolBlueguard
   entities:
   - uid: 409
     components:

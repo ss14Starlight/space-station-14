@@ -21761,7 +21761,7 @@ entities:
     - type: Transform
       pos: 10.494925,-15.442573
       parent: 1
-- proto: WeaponPistolSP8T
+- proto: WeaponPistolBlueguard
   entities:
   - uid: 1882
     components:
