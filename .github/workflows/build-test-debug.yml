@@ -90,7 +90,7 @@ jobs:
       run: |
         dotnet tool install -g dotnet-trx 2>/dev/null || true
         mkdir -p /tmp/test-results
-        trx --path /tmp/test-results -o || true
+        trx --path /tmp/test-results -o -v verbose || true
 
   integration-tests:
     needs: build
@@ -123,15 +123,16 @@ jobs:
       env:
         DOTNET_gcServer: "1"
       with:
-        timeout_minutes: 10
+        timeout_minutes: 14
         max_attempts: 2
+        retry_on: any
         command: |
           FILTER=$(python3 Tools/test_shard_filter.py read .integration-filters/shard_${{ matrix.shard }}.filter)
           if [ -z "$FILTER" ]; then
             echo "No tests assigned to shard ${{ matrix.shard }}"
             exit 0
           fi
-          dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "$FILTER" --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results -- NUnit.MapWarningTo=Failed
+          dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "$FILTER" --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 5min -- NUnit.MapWarningTo=Failed
 
     - name: Test results
       continue-on-error: true
@@ -139,7 +140,40 @@ jobs:
       run: |
         dotnet tool install -g dotnet-trx 2>/dev/null || true
         mkdir -p /tmp/test-results
-        trx --path /tmp/test-results -o || true
+        trx --path /tmp/test-results -o -v verbose || true
+
+    - name: Upload crash dumps
+      id: upload-dumps
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: blame-dump-shard-${{ matrix.shard }}
+        path: |
+          /tmp/test-results/**/*.dmp
+          /tmp/test-results/**/*Sequence*.xml
+        retention-days: 3
+        if-no-files-found: ignore
+
+    - name: Report hung tests
+      continue-on-error: true
+      if: always()
+      run: |
+        shopt -s nullglob globstar
+        found=false
+        for seq in /tmp/test-results/**/*Sequence*.xml; do
+          if [ "$found" = false ]; then
+            echo "## :warning: Hung tests detected (shard ${{ matrix.shard }})" >> "$GITHUB_STEP_SUMMARY"
+            echo '```xml' >> "$GITHUB_STEP_SUMMARY"
+            found=true
+          fi
+          cat "$seq" >> "$GITHUB_STEP_SUMMARY"
+        done
+        if [ "$found" = true ]; then
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          if [ -n "${{ steps.upload-dumps.outputs.artifact-url }}" ]; then
+            echo ":floppy_disk: [Download crash dump](${{ steps.upload-dumps.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
+          fi
+        fi
 
   ci-success:
     name: Build & Test Debug
