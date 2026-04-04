@@ -20,8 +20,8 @@ public interface INullLinkPlayerManager
     ValueTask UpdateResource(ResourceChangedEvent ev);
     ValueTask<HashSet<Achievement>> GetUnlockedAchievements(Guid userId);
     ValueTask<bool> HasAchievementUnlocked(Guid userId, string achievementId);
-    ValueTask UnlockAchievement(Guid userId, string achievementId, string characterName);
-    ValueTask LockAchievement(Guid userId, string achievementId);
+    ValueTask<bool> UnlockAchievement(Guid userId, string achievementId, string characterName);
+    ValueTask<bool> LockAchievement(Guid userId, string achievementId);
     ValueTask SyncAchievements(PlayerAchievementsSyncEvent ev);
     ValueTask UpdateAchievementUnlocked(AchievementUnlockedEvent ev);
     ValueTask UpdateAchievementLocked(AchievementLockedEvent ev);

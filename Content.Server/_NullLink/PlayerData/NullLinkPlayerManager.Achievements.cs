@@ -31,12 +31,20 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
             && achievements.Any(achievement => achievement.AchievementId == achievementId);
     }
 
-    public async ValueTask UnlockAchievement(Guid userId, string achievementId, string characterName)
+    public async ValueTask<bool> UnlockAchievement(Guid userId, string achievementId, string characterName)
     {
         if (!_actors.TryGetServerGrain(out var serverGrain))
-            return;
+            return false;
 
-        await serverGrain.UnlockAchievement(userId, achievementId, characterName);
+        try
+        {
+            await serverGrain.UnlockAchievement(userId, achievementId, characterName);
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Error($"UnlockAchievement failed for {userId}/{achievementId}: {ex}");
+            return false;
+        }
 
         if (_playerById.TryGetValue(userId, out var playerData))
         {
@@ -49,17 +57,29 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
                 UnlockTime = DateTime.UtcNow,
             });
         }
+
+        return true;
     }
 
-    public async ValueTask LockAchievement(Guid userId, string achievementId)
+    public async ValueTask<bool> LockAchievement(Guid userId, string achievementId)
     {
         if (!_actors.TryGetServerGrain(out var serverGrain))
-            return;
+            return false;
 
-        await serverGrain.LockAchievement(userId, achievementId);
+        try
+        {
+            await serverGrain.LockAchievement(userId, achievementId);
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Error($"LockAchievement failed for {userId}/{achievementId}: {ex}");
+            return false;
+        }
 
         if (_playerById.TryGetValue(userId, out var playerData))
             playerData.UnlockedAchievements.RemoveWhere(achievement => achievement.AchievementId == achievementId);
+
+        return true;
     }
 
     public ValueTask SyncAchievements(PlayerAchievementsSyncEvent ev)

@@ -9,6 +9,20 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Achievement.Commands;
 
+internal static class AchievementCommandHelpers
+{
+    public static IEnumerable<string> GetAllProgressKeys(IPrototypeManager prototypeManager)
+    {
+        var keys = new HashSet<string>();
+        foreach (var proto in prototypeManager.EnumeratePrototypes<AchievementPrototype>())
+        {
+            foreach (var req in proto.Requirements)
+                keys.Add(req.ProgressType);
+        }
+        return keys;
+    }
+}
+
 [AdminCommand(AdminFlags.Admin)]
 public sealed class AchievementUnlockCommand : LocalizedCommands
 {
@@ -46,9 +60,9 @@ public sealed class AchievementUnlockCommand : LocalizedCommands
         var system = _systems.GetEntitySystem<AchievementSystem>();
         system.UnlockAchievement(session, args[1])
             .AsTask()
-            .FireAndForget();
+            .FireAndForget(err => shell.WriteError($"Unlock failed: {err.Message}"));
 
-        shell.WriteLine($"Achievement '{args[1]}' unlocked for {args[0]}.");
+        shell.WriteLine($"Achievement '{args[1]}' unlock initiated for {args[0]}.");
     }
 }
 
@@ -89,9 +103,9 @@ public sealed class AchievementLockCommand : LocalizedCommands
         var system = _systems.GetEntitySystem<AchievementSystem>();
         system.LockAchievement(session, args[1])
             .AsTask()
-            .FireAndForget();
+            .FireAndForget(err => shell.WriteError($"Lock failed: {err.Message}"));
 
-        shell.WriteLine($"Achievement '{args[1]}' locked for {args[0]}.");
+        shell.WriteLine($"Achievement '{args[1]}' lock initiated for {args[0]}.");
     }
 }
 
@@ -101,6 +115,7 @@ public sealed class AchievementProgressCommand : LocalizedCommands
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly IEntitySystemManager _systems = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly INullLinkPlayerManager _nullLink = default!;
 
     public override string Command => "achievement_progress";
     public override string Description => "Shows achievement progress for a player. If no key is specified, shows all progress.";
@@ -111,20 +126,9 @@ public sealed class AchievementProgressCommand : LocalizedCommands
         return args.Length switch
         {
             1 => CompletionResult.FromHintOptions(CompletionHelper.SessionNames(), "player"),
-            2 => CompletionResult.FromHintOptions(GetAllProgressKeys(), "progressKey"),
+            2 => CompletionResult.FromHintOptions(AchievementCommandHelpers.GetAllProgressKeys(_prototypeManager), "progressKey"),
             _ => CompletionResult.Empty,
         };
-    }
-
-    private IEnumerable<string> GetAllProgressKeys()
-    {
-        var keys = new HashSet<string>();
-        foreach (var proto in _prototypeManager.EnumeratePrototypes<AchievementPrototype>())
-        {
-            foreach (var req in proto.Requirements)
-                keys.Add(req.ProgressType);
-        }
-        return keys;
     }
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -151,8 +155,7 @@ public sealed class AchievementProgressCommand : LocalizedCommands
         }
         else
         {
-            var nullLink = IoCManager.Resolve<INullLinkPlayerManager>();
-            if (!nullLink.TryGetPlayerData(session.UserId, out var playerData))
+            if (!_nullLink.TryGetPlayerData(session.UserId, out var playerData))
             {
                 shell.WriteError("Player data not loaded yet.");
                 return;
@@ -189,20 +192,9 @@ public sealed class AchievementResetCommand : LocalizedCommands
         return args.Length switch
         {
             1 => CompletionResult.FromHintOptions(CompletionHelper.SessionNames(), "player"),
-            2 => CompletionResult.FromHintOptions(GetAllProgressKeys(), "progressKey"),
+            2 => CompletionResult.FromHintOptions(AchievementCommandHelpers.GetAllProgressKeys(_prototypeManager), "progressKey"),
             _ => CompletionResult.Empty,
         };
-    }
-
-    private IEnumerable<string> GetAllProgressKeys()
-    {
-        var keys = new HashSet<string>();
-        foreach (var proto in _prototypeManager.EnumeratePrototypes<AchievementPrototype>())
-        {
-            foreach (var req in proto.Requirements)
-                keys.Add(req.ProgressType);
-        }
-        return keys;
     }
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)

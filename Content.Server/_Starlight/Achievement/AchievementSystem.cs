@@ -19,6 +19,7 @@ public sealed class AchievementSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private readonly Dictionary<Guid, Dictionary<string, double>> _roundProgress = [];
+    private readonly HashSet<Guid> _progressFetched = [];
 
     public override void Initialize()
     {
@@ -32,9 +33,12 @@ public sealed class AchievementSystem : EntitySystem
         foreach (var session in _playerManager.Sessions)
         {
             if (session.Status != SessionStatus.Disconnected)
+            {
+                _progressFetched.Add(session.UserId);
                 _nullLinkPlayers.GetAchievementProgress(session.UserId)
                     .AsTask()
                     .FireAndForget();
+            }
         }
     }
 
@@ -51,32 +55,26 @@ public sealed class AchievementSystem : EntitySystem
     public ValueTask<bool> HasAchievementUnlocked(ICommonSession session, string achievementId)
         => _nullLinkPlayers.HasAchievementUnlocked(session.UserId, achievementId);
 
-    public ValueTask UnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
+    public ValueTask<bool> UnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
         => _nullLinkPlayers.UnlockAchievement(session.UserId, achievementId, characterName ?? GetCharacterName(session));
 
-    public ValueTask LockAchievement(ICommonSession session, string achievementId)
+    public ValueTask<bool> LockAchievement(ICommonSession session, string achievementId)
         => _nullLinkPlayers.LockAchievement(session.UserId, achievementId);
 
     public async ValueTask<bool> TryUnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
     {
-        if (!await HasAchievementUnlocked(session, achievementId))
-        {
-            await UnlockAchievement(session, achievementId, characterName);
-            return true;
-        }
+        if (await HasAchievementUnlocked(session, achievementId))
+            return false;
 
-        return false;
+        return await UnlockAchievement(session, achievementId, characterName);
     }
 
     public async ValueTask<bool> TryLockAchievement(ICommonSession session, string achievementId)
     {
-        if (await HasAchievementUnlocked(session, achievementId))
-        {
-            await LockAchievement(session, achievementId);
-            return true;
-        }
+        if (!await HasAchievementUnlocked(session, achievementId))
+            return false;
 
-        return false;
+        return await LockAchievement(session, achievementId);
     }
     #endregion
 
@@ -185,9 +183,15 @@ public sealed class AchievementSystem : EntitySystem
         {
             case SessionStatus.Connected:
             case SessionStatus.InGame:
-                _nullLinkPlayers.GetAchievementProgress(e.Session.UserId)
-                    .AsTask()
-                    .FireAndForget();
+                if (_progressFetched.Add(e.Session.UserId))
+                {
+                    _nullLinkPlayers.GetAchievementProgress(e.Session.UserId)
+                        .AsTask()
+                        .FireAndForget();
+                }
+                break;
+            case SessionStatus.Disconnected:
+                _progressFetched.Remove(e.Session.UserId);
                 break;
         }
     }

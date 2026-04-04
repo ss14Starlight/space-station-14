@@ -50,6 +50,21 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         if (!_playerById.TryGetValue(userId, out var playerData))
             return;
 
+        if (_actors.TryGetServerGrain(out var serverGrain))
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                foreach (var k in playerData.AchievementProgress.Keys)
+                    serverGrain.SetAchievementProgress(userId, k, 0)
+                        .FireAndForget(err => _sawmill.Error($"ResetAchievementProgress failed for {userId}/{k}: {err}"));
+            }
+            else
+            {
+                serverGrain.SetAchievementProgress(userId, key, 0)
+                    .FireAndForget(err => _sawmill.Error($"ResetAchievementProgress failed for {userId}/{key}: {err}"));
+            }
+        }
+
         if (string.IsNullOrEmpty(key))
         {
             playerData.AchievementProgress.Clear();
