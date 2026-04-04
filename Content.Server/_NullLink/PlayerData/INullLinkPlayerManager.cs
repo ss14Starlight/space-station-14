@@ -25,4 +25,10 @@ public interface INullLinkPlayerManager
     ValueTask SyncAchievements(PlayerAchievementsSyncEvent ev);
     ValueTask UpdateAchievementUnlocked(AchievementUnlockedEvent ev);
     ValueTask UpdateAchievementLocked(AchievementLockedEvent ev);
+    ValueTask<Dictionary<string, double>> GetAchievementProgress(Guid userId);
+    double GetCachedAchievementProgress(Guid userId, string key);
+    double AddAchievementProgress(Guid userId, string key, double amount);
+    void ResetAchievementProgress(Guid userId, string? key = null);
+    ValueTask SyncAchievementProgress(PlayerAchievementProgressSyncEvent ev);
+    ValueTask UpdateAchievementProgressChanged(AchievementProgressChangedEvent ev);
 }

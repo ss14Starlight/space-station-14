@@ -6,6 +6,7 @@ public static class AchievementProgressKeys
     public const string SpawnLateJoinCount = "spawn.latejoin.count";
     public const string SpawnRoundStartCount = "spawn.roundstart.count";
     public const string MobDeathCount = "mob.death.count";
+    public const string VampireBloodDrank = "vampire.blood-drank";
 
     public static string SpawnJob(string jobId) => $"spawn.job.{jobId}";
 }

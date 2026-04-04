@@ -1,5 +1,6 @@
 using Content.Server._NullLink.Helpers;
 using Content.Server._NullLink.PlayerData;
+using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Achievement;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs;
@@ -17,19 +18,23 @@ public sealed class AchievementSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    private readonly Dictionary<Guid, Dictionary<string, double>> _progressByPlayer = [];
+    private readonly Dictionary<Guid, Dictionary<string, double>> _roundProgress = [];
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<VampireComponent, VampireBloodDrankEvent>(OnVampireBloodDrank);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
 
         foreach (var session in _playerManager.Sessions)
         {
             if (session.Status != SessionStatus.Disconnected)
-                EnsureProgress(session.UserId);
+                _nullLinkPlayers.GetAchievementProgress(session.UserId)
+                    .AsTask()
+                    .FireAndForget();
         }
     }
 
@@ -37,9 +42,9 @@ public sealed class AchievementSystem : EntitySystem
     {
         base.Shutdown();
         _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
-        _progressByPlayer.Clear();
     }
 
+    #region Achievement Management
     public ValueTask<HashSet<Achievement>> GetUnlockedAchievements(ICommonSession session)
         => _nullLinkPlayers.GetUnlockedAchievements(session.UserId);
 
@@ -73,16 +78,16 @@ public sealed class AchievementSystem : EntitySystem
 
         return false;
     }
+    #endregion
 
+    #region Progress Management
     public double AddProgress(ICommonSession session, string progressType, double amount = 1)
         => AddProgress(session.UserId, progressType, amount);
 
     public double AddProgress(Guid userId, string progressType, double amount = 1)
     {
-        var progress = EnsureProgress(userId);
-        var value = progress.GetValueOrDefault(progressType) + amount;
-        progress[progressType] = value;
-        return value;
+        AddRoundProgress(userId, progressType, amount);
+        return _nullLinkPlayers.AddAchievementProgress(userId, progressType, amount);
     }
 
     public async ValueTask<double> AddProgressAndCheck(ICommonSession session, string progressType, double amount = 1)
@@ -99,6 +104,14 @@ public sealed class AchievementSystem : EntitySystem
         return value;
     }
 
+    public async ValueTask<double> AddProgressAndCheck(EntityUid uid, string progressType, double amount = 1)
+    {
+        if (!_playerManager.TryGetSessionByEntity(uid, out var session))
+            return 0;
+
+        return await AddProgressAndCheck(session, progressType, amount);
+    }
+
     public double AddProgress(EntityUid uid, string progressType, double amount = 1)
     {
         if (!_playerManager.TryGetSessionByEntity(uid, out var session))
@@ -112,11 +125,7 @@ public sealed class AchievementSystem : EntitySystem
 
     public double GetProgress(Guid userId, string progressType)
     {
-        if (_progressByPlayer.TryGetValue(userId, out var progress)
-            && progress.TryGetValue(progressType, out var value))
-            return value;
-
-        return 0;
+        return _nullLinkPlayers.GetCachedAchievementProgress(userId, progressType);
     }
 
     public void ResetProgress(ICommonSession session, string? progressType = null)
@@ -124,14 +133,7 @@ public sealed class AchievementSystem : EntitySystem
 
     public void ResetProgress(Guid userId, string? progressType = null)
     {
-        var progress = EnsureProgress(userId);
-        if (string.IsNullOrEmpty(progressType))
-        {
-            progress.Clear();
-            return;
-        }
-
-        progress.Remove(progressType);
+        _nullLinkPlayers.ResetAchievementProgress(userId, progressType);
     }
 
     public async ValueTask<bool> TryUnlockAtProgress(ICommonSession session, string achievementId, string progressType, double requiredProgress, string? characterName = null)
@@ -147,7 +149,9 @@ public sealed class AchievementSystem : EntitySystem
         foreach (var achievement in _prototypeManager.EnumeratePrototypes<AchievementPrototype>())
         {
             if (!achievement.IsRelevantForProgress(progressType)
-                || !achievement.AreRequirementsMet(type => GetProgress(session, type)))
+                || !achievement.AreRequirementsMet((type, perRound) => perRound
+                    ? GetRoundProgress(session.UserId, type)
+                    : GetProgress(session, type)))
                 continue;
 
             await TryUnlockAchievement(session, achievement.ID, characterName);
@@ -172,17 +176,18 @@ public sealed class AchievementSystem : EntitySystem
 
         return await TryUnlockAchievement(session, achievementId, characterName);
     }
+    #endregion
 
+    #region Event Handlers
     private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
     {
         switch (e.NewStatus)
         {
             case SessionStatus.Connected:
             case SessionStatus.InGame:
-                EnsureProgress(e.Session.UserId);
-                break;
-            case SessionStatus.Disconnected:
-                _progressByPlayer.Remove(e.Session.UserId);
+                _nullLinkPlayers.GetAchievementProgress(e.Session.UserId)
+                    .AsTask()
+                    .FireAndForget();
                 break;
         }
     }
@@ -220,15 +225,42 @@ public sealed class AchievementSystem : EntitySystem
             .FireAndForget();
     }
 
-    private Dictionary<string, double> EnsureProgress(Guid userId)
+    private void OnVampireBloodDrank(EntityUid uid, VampireComponent component, VampireBloodDrankEvent ev)
     {
-        if (_progressByPlayer.TryGetValue(userId, out var progress))
-            return progress;
+        _ = component;
 
-        progress = [];
-        _progressByPlayer[userId] = progress;
-        return progress;
+        AddProgressAndCheck(uid, AchievementProgressKeys.VampireBloodDrank, ev.Amount)
+            .AsTask()
+            .FireAndForget();
     }
+
+    private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
+    {
+        _roundProgress.Clear();
+    }
+    #endregion
+
+    #region Round Progress
+    private double AddRoundProgress(Guid userId, string progressType, double amount)
+    {
+        if (!_roundProgress.TryGetValue(userId, out var progress))
+            _roundProgress[userId] = progress = [];
+
+        progress.TryGetValue(progressType, out var current);
+        return progress[progressType] = current + amount;
+    }
+
+    public double GetRoundProgress(Guid userId, string progressType)
+    {
+        if (_roundProgress.TryGetValue(userId, out var progress)
+            && progress.TryGetValue(progressType, out var value))
+            return value;
+
+        return 0;
+    }
+    #endregion
+
+    #region Helpers
 
     private string GetCharacterName(ICommonSession session)
     {
@@ -237,4 +269,5 @@ public sealed class AchievementSystem : EntitySystem
 
         return session.Name;
     }
+    #endregion
 }
