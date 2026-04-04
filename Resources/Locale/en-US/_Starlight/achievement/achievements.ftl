@@ -6,3 +6,6 @@ achievement-first-death-description = Die once.
 
 achievement-festival-of-blood-name = Festival of Blood
 achievement-festival-of-blood-description = Drink 3000 units of blood as a vampire.
+
+achievement-contributor-name = Contributor
+achievement-contributor-description = Awarded for contributing to the project.

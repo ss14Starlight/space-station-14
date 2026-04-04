@@ -29,6 +29,24 @@
   category: vampire
   hidden: true
   showProgress: true
+  icon:
+    sprite: _Starlight/Interface/Achievements/Icons.rsi
+    state: DraculaJrMedal
   requirements:
   - progressType: vampire.blood-drank
     requiredProgress: 3000
+
+# manual-only, granted by admins via achievement_unlock command
+# Even though this achievement can be granted automatically checking nullink roles
+# i just want it to be test command for now
+- type: achievement
+  id: contributor
+  name: achievement-contributor-name
+  description: achievement-contributor-description
+  category: special
+  hidden: false
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/Icons.rsi
+    state: ContributorMedal
+  requirements: []
