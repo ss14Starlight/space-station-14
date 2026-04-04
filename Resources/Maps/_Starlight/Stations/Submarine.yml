@@ -25328,9 +25328,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -99.5,-7.5
       parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 101
   - uid: 907
@@ -137699,9 +137696,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -55.5,-19.5
       parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 199
   - uid: 9366
@@ -137710,9 +137704,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -54.5,-19.5
       parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 199
   - uid: 20948
@@ -213652,9 +213643,6 @@ entities:
     - type: Transform
       pos: -29.5,-12.5
       parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
 - proto: OperatingTable
   entities:
   - uid: 31539
@@ -241489,9 +241477,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -24.5,-10.5
       parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
     - type: DeviceLinkSource
       linkedPorts:
         9328:
