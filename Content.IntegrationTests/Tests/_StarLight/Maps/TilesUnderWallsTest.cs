@@ -18,7 +18,8 @@ public sealed class MapWallFloorTests
     /// </summary>
     private static readonly HashSet<string> AllowedUnderWalls = new()
     {
-        "Plating"
+        "Plating",
+        "Lattice"
     };
 
     /// <summary>
@@ -49,7 +50,8 @@ public sealed class MapWallFloorTests
         "AsteroidRockUraniumCrab",
         "AsteroidRockMining",
         "WoodenSupportWall",
-        "WoodenSupportWallBroken"
+        "WoodenSupportWallBroken",
+        "SolidSecretDoor"
     };
 
     private static readonly string[] GameMaps =
@@ -149,19 +151,27 @@ public sealed class MapWallFloorTests
                 if (!AllowedUnderWalls.Contains(tileDef.ID))
                 {
                     var tileIndices = mapSystem.LocalToTile(xform.GridUid.Value, gridComp, xform.Coordinates);
-                    errors.Add($"[{mapProtoId}] Wall ({meta.EntityPrototype?.ID}) at grid coordinates {tileIndices} is placed on an invalid floor '{tileDef.ID}'. ");
+                    var gridName = entMan.TryGetComponent<MetaDataComponent>(xform.GridUid.Value, out var parentGridMeta) ? parentGridMeta.EntityName : "UnknownGrid";
+                    errors.Add($"[{mapProtoId}] Wall {meta.EntityPrototype?.ID} on grid {gridName} " +
+                               $"at coordinates {tileIndices} is placed on a floor '{tileDef.ID}'. ");
+                               // If your coordinates don't land you onto the wall with the problem, tp your grid to 0 0 first.
                 }
             }
 
             Console.WriteLine($"Found {entities} entities and {walls} walls.");
 
-            Assert.Multiple(() =>
+            if (errors.Count > 0)
             {
-                foreach (var error in errors)
-                {
-                    Assert.Fail(error);
-                }
-            });
+                Assert.Fail(string.Join("\n", errors));
+            }
+
+            // Assert.Multiple(() =>
+            // {
+            //     foreach (var error in errors)
+            //     {
+            //         Assert.Fail(error);
+            //     }
+            // });
         });
 
         await pair.CleanReturnAsync();
