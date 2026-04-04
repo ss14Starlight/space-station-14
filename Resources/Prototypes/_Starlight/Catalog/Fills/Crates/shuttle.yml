@@ -1,7 +1,7 @@
 - type: entity
   parent: CrateSyndicate
   id: CrateNameSyndicateShuttleBundle
-  name: Shuttle Bundle Crate
+  name: shuttle bundle crate
   description: Everything but the shuttle board. It's a shuttle in a crate* (Some assembly required)
   components:
   - type: EntityTableContainerFill
@@ -30,7 +30,7 @@
 - type: entity
   parent: CrateSyndicate
   id: CrateNameSyndicateFriendshipBundle
-  name: Friendship Bundle Crate
+  name: friendship bundle crate
   description: Friendship in a crate*. (Some assembly required)
   components:
   - type: EntityTableContainerFill

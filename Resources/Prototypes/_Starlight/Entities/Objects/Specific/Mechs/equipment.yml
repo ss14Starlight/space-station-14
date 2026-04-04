@@ -48,8 +48,7 @@
 
 
   - type: Retractor
-  - type: SurgeryTool
-    successRate: 0.5 # they are very much too large
     speed: 1.5
     startSound:
       path: /Audio/Mecha/sound_mecha_hydraulic.ogg
+  - type: SurgeryTool

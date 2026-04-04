@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge]
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge]
   id: BaseMobLagomorph
   name: Urist McBnuuy
   abstract: true

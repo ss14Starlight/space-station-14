@@ -4,7 +4,7 @@
   abstract: true
   components:
     - type: RailroadCard
-      iconColor: "#000000"
+      iconColor: "#d3d3d3"
       color: "#6c15ae"
       image: /Textures/_Starlight/Railroading/shadekin.png
       showObjective: true

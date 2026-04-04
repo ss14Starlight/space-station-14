@@ -42,6 +42,7 @@
       checkCanInteract: false
     - type: InstantAction
       event: !type:BrighteyePortalActionEvent
+    - type: EorgAction
 
 - type: entity
   id: BrighteyeDarkTrapAction
@@ -93,3 +94,4 @@
       itemIconStyle: NoItem
     - type: InstantAction
       event: !type:BrighteyeCreateShadeActionEvent
+    - type: EorgAction
