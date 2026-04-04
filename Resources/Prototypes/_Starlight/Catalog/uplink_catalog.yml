@@ -506,6 +506,9 @@
   name: uplink-satchel-syndicate-name
   description: uplink-satchel-syndicate-desc
   productEntity: ClothingBackpackSatchelSyndicate
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
   cost:
     Telecrystal: 3
   categories:
@@ -516,6 +519,9 @@
   name: uplink-duffel-syndicate-name
   description: uplink-duffel-syndicate-desc
   productEntity: ClothingBackpackDuffelSyndicate
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
   cost:
     Telecrystal: 2
   categories:
@@ -526,6 +532,7 @@
   name: uplink-trunk-syndicate-name
   description: uplink-trunk-syndicate-desc
   productEntity: ClothingBackpackTrunkSyndicate
+  discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 3
   cost:
@@ -545,12 +552,13 @@
   name: uplink-syndiedrobe-name
   description: uplink-syndiedrobe-desc
   productEntity: SyndieDrobeFlatpack
+  discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 15
   cost:
     Telecrystal: 20
   categories:
-  - UplinkPointless
+    - UplinkPointless
 
 - type: listing
   id: UplinkClothingOuterArmorElegantRaid

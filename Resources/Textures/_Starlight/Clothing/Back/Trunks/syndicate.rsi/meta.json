@@ -9,26 +9,26 @@
   "states": [
     {
       "name": "icon",
-	  "copyright": "retrobit23, wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0"
+      "copyright": "retrobit23, wonderfulnewworld",
+      "license": "CC-BY-SA-3.0"
     },
     {
       "name": "equipped-BACKPACK",
       "directions": 4,
-	  "copyright": "retrobit23, wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0"
+      "copyright": "retrobit23, wonderfulnewworld",
+      "license": "CC-BY-SA-3.0"
     },
     {
       "name": "inhand-left",
       "directions": 4,
-	  "copyright": "retrobit23, wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0"
+      "copyright": "retrobit23, wonderfulnewworld",
+      "license": "CC-BY-SA-3.0"
     },
     {
       "name": "inhand-right",
       "directions": 4,
-	  "copyright": "retrobit23, wonderfulnewworld",
-	  "license": "CC-BY-SA-3.0"
+      "copyright": "retrobit23, wonderfulnewworld",
+      "license": "CC-BY-SA-3.0"
     }
   ]
 }
