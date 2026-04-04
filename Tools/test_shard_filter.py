@@ -18,7 +18,6 @@ Exit codes:
 
 import sys
 import os
-import hashlib
 
 
 def parse_tests(lines):
@@ -36,16 +35,14 @@ def parse_tests(lines):
 
 
 def extract_classes(tests):
-    """Extract unique test fixture (class) names from FQN test names."""
-    classes = set()
+    """Extract unique test fixture (class) names with test counts from FQN test names."""
+    counts = {}
     for test in tests:
         name = test.split("(")[0].strip()
         dot = name.rfind(".")
-        if dot > 0:
-            classes.add(name[:dot])
-        else:
-            classes.add(name)
-    return classes
+        cls = name[:dot] if dot > 0 else name
+        counts[cls] = counts.get(cls, 0) + 1
+    return counts
 
 
 def build_filter(classes):
@@ -70,23 +67,28 @@ def cmd_generate():
         print("Error: no tests discovered from input", file=sys.stderr)
         sys.exit(1)
 
-    classes = extract_classes(tests)
-    print(f"Discovered {len(tests)} tests in {len(classes)} classes, distributing across {total} shards", file=sys.stderr)
+    class_counts = extract_classes(tests)
+    print(f"Discovered {len(tests)} tests in {len(class_counts)} classes, distributing across {total} shards", file=sys.stderr)
 
     os.makedirs(output_dir, exist_ok=True)
 
+    # Greedy load-balancing: assign heaviest classes first to least-loaded shard
+    shards = [[] for _ in range(total)]
+    shard_loads = [0] * total
+    for cls in sorted(class_counts, key=lambda c: class_counts[c], reverse=True):
+        lightest = min(range(total), key=lambda s: shard_loads[s])
+        shards[lightest].append(cls)
+        shard_loads[lightest] += class_counts[cls]
+
     for shard in range(total):
-        my_classes = sorted(
-            cls for cls in classes
-            if int(hashlib.sha256(cls.encode()).hexdigest(), 16) % total == shard
-        )
+        my_classes = sorted(shards[shard])
         filter_expr = build_filter(my_classes)
         path = os.path.join(output_dir, f"shard_{shard}.filter")
         with open(path, "w") as f:
             f.write(filter_expr)
-        print(f"  Shard {shard}: {len(my_classes)} classes", file=sys.stderr)
+        print(f"  Shard {shard}: {len(my_classes)} classes, {shard_loads[shard]} tests", file=sys.stderr)
         for cls in my_classes:
-            print(f"    - {cls}", file=sys.stderr)
+            print(f"    - {cls} ({class_counts[cls]} tests)", file=sys.stderr)
 
 
 def cmd_read():
