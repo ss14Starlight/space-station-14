@@ -36,7 +36,7 @@ public sealed class LightGridSystem : EntitySystem
         private const int NeighborSampleRadius = 2;
     private static readonly Angle _directionalLightHalfAngle = Angle.FromDegrees(60f);
 
-    private LightJob _job; 
+    private LightJob _job;
 
     private record struct LightSourceData(
         Vector2i Tile,
@@ -218,10 +218,10 @@ public sealed class LightGridSystem : EntitySystem
         // Pre allocate slots for new light sources
         for (var i = _job.Vis1.Count; i < lightSources.Count; i++)
         {
-            _job.Vis1.Add(new Dictionary<Vector2i, int>());
-            _job.Vis2.Add(new Dictionary<Vector2i, int>());
-            _job.SeedTiles.Add(new HashSet<Vector2i>());
-            _job.BoundaryTiles.Add(new HashSet<Vector2i>());
+            _job.Vis1.Add(null!);
+            _job.Vis2.Add(null!);
+            _job.OpaqueLocal.Add(null!);
+            _job.BoundaryArr.Add(null!);
             _job.LocalResults.Add(new Dictionary<Vector2i, float>());
         }
 
@@ -400,101 +400,31 @@ public sealed class LightGridSystem : EntitySystem
         return lightMap.GetValueOrDefault(tile, 0f);
     }
 
-    #region Shadowcasting helpers
-    private static bool CheckNeighborsVis(Dictionary<Vector2i, int> vis, HashSet<Vector2i> opaque, Vector2i index, int d)
-    {
-        for (var x = -1; x <= 1; x++)
-        {
-            for (var y = -1; y <= 1; y++)
-            {
-                if (x == 0 && y == 0)
-                    continue;
-
-                var neighbor = index + new Vector2i(x, y);
-                if (!vis.TryGetValue(neighbor, out var depth) || depth != d)
-                    continue;
-
-                if (x != 0 && y != 0)
-                {
-                    var cardinalA = index + new Vector2i(x, 0);
-                    var cardinalB = index + new Vector2i(0, y);
-                    if (opaque.Contains(cardinalA) && opaque.Contains(cardinalB))
-                        continue;
-                }
-
-                return true;
-            }
-        }
-        return false;
-    }
-    private static bool HasVisibleFace(
-        HashSet<Vector2i> tiles,
-        HashSet<Vector2i> blocked,
-        Dictionary<Vector2i, int> vis1,
-        Vector2i index,
-        Vector2i center)
-    {
-        var delta = index - center;
-        var stepX = Math.Sign(delta.X);
-        var stepY = Math.Sign(delta.Y);
-
-        if (stepX != 0)
-        {
-            var neighbor = index - new Vector2i(stepX, 0);
-            if (tiles.Contains(neighbor) &&
-                !blocked.Contains(neighbor) &&
-                vis1.ContainsKey(neighbor))
-            {
-                return true;
-            }
-        }
-
-        if (stepY != 0)
-        {
-            var neighbor = index - new Vector2i(0, stepY);
-            if (tiles.Contains(neighbor) &&
-                !blocked.Contains(neighbor) &&
-                vis1.ContainsKey(neighbor))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    #endregion
-
     // The shadowcasting beast
     private record struct LightJob() : IParallelRobustJob
     {
         public int BatchSize => 16; // basically 16 lights per thread
 
+        private const int VisEmpty = int.MinValue;
+
         public HashSet<Vector2i> Opaque = new();
         public List<LightSourceData> LightSources = new();
-        public readonly List<Dictionary<Vector2i, int>> Vis1 = new();
-        public readonly List<Dictionary<Vector2i, int>> Vis2 = new();
-        public readonly List<HashSet<Vector2i>> SeedTiles = new();
-        public readonly List<HashSet<Vector2i>> BoundaryTiles = new();
+        public readonly List<int[]> Vis1 = new();
+        public readonly List<int[]> Vis2 = new();
+        public readonly List<bool[]> OpaqueLocal = new();
+        public readonly List<bool[]> BoundaryArr = new();
         public readonly List<Dictionary<Vector2i, float>> LocalResults = new();
 
         public void Execute(int index)
         {
             var source = LightSources[index];
-            var vis1 = Vis1[index];
-            var vis2 = Vis2[index];
-            var seedTiles = SeedTiles[index];
-            var boundary = BoundaryTiles[index];
             var results = LocalResults[index];
-
-            vis1.Clear();
-            vis2.Clear();
-            seedTiles.Clear();
-            boundary.Clear();
             results.Clear();
 
             var eyePos = source.Tile;
             var range = (int)Math.Ceiling(source.Radius);
+            var side = 2 * range + 1;
+            var gridSize = side * side;
 
             if (!source.CastShadows)
             {
@@ -502,63 +432,55 @@ public sealed class LightGridSystem : EntitySystem
                 {
                     for (var y = -range; y <= range; y++)
                     {
-                        var tile = eyePos + new Vector2i(x, y);
-                        var dist = new Vector2(x, y).Length();
-
                         if (!IsWithinDirectionalCone(source, new Vector2i(x, y)))
                             continue;
 
+                        var dist = new Vector2(x, y).Length();
                         var intensity = GetLightIntensity(source, dist);
 
-                        if (intensity > 0.01f) // Anything less is basically dark anyway
-                            results[tile] = intensity;
+                        if (intensity > 0.01f)
+                            results[eyePos + new Vector2i(x, y)] = intensity;
                     }
                 }
                 return;
             }
 
+            var vis1 = EnsureArray(Vis1, index, gridSize);
+            var vis2 = EnsureArray(Vis2, index, gridSize);
+            var opaqueLocal = EnsureBoolArray(OpaqueLocal, index, gridSize);
+            var boundaryArr = EnsureBoolArray(BoundaryArr, index, gridSize);
+
+            Array.Fill(vis1, VisEmpty, 0, gridSize);
+            Array.Fill(vis2, VisEmpty, 0, gridSize);
+            Array.Clear(opaqueLocal, 0, gridSize);
+            Array.Clear(boundaryArr, 0, gridSize);
+
+            // Build local opaque grid from shared set
             for (var x = -range; x <= range; x++)
             {
                 for (var y = -range; y <= range; y++)
                 {
-                    var tile = eyePos + new Vector2i(x, y);
-                    seedTiles.Add(tile);
+                    if (Opaque.Contains(eyePos + new Vector2i(x, y)))
+                        opaqueLocal[(x + range) * side + (y + range)] = true;
                 }
             }
 
-            vis1[eyePos] = 0;
-            vis2[eyePos] = 0;
+            var ci = range * side + range;
+            vis1[ci] = 0;
+            vis2[ci] = 0;
 
             for (var depth = 1; depth <= range; depth++)
             {
                 for (var x = -depth; x <= depth; x++)
                 {
-                    var bottomTile = eyePos + new Vector2i(x, -depth);
-                    if (CheckNeighborsVis(vis2, Opaque, bottomTile, depth - 1))
-                    {
-                        vis2[bottomTile] = Opaque.Contains(bottomTile) ? -1 : depth;
-                    }
-
-                    var topTile = eyePos + new Vector2i(x, depth);
-                    if (CheckNeighborsVis(vis2, Opaque, topTile, depth - 1))
-                    {
-                        vis2[topTile] = Opaque.Contains(topTile) ? -1 : depth;
-                    }
+                    SetVisIfVisible(vis2, opaqueLocal, side, range, x, -depth, depth);
+                    SetVisIfVisible(vis2, opaqueLocal, side, range, x, depth, depth);
                 }
 
                 for (var y = -depth + 1; y < depth; y++)
                 {
-                    var leftTile = eyePos + new Vector2i(-depth, y);
-                    if (CheckNeighborsVis(vis2, Opaque, leftTile, depth - 1))
-                    {
-                        vis2[leftTile] = Opaque.Contains(leftTile) ? -1 : depth;
-                    }
-
-                    var rightTile = eyePos + new Vector2i(depth, y);
-                    if (CheckNeighborsVis(vis2, Opaque, rightTile, depth - 1))
-                    {
-                        vis2[rightTile] = Opaque.Contains(rightTile) ? -1 : depth;
-                    }
+                    SetVisIfVisible(vis2, opaqueLocal, side, range, -depth, y, depth);
+                    SetVisIfVisible(vis2, opaqueLocal, side, range, depth, y, depth);
                 }
             }
 
@@ -573,69 +495,169 @@ public sealed class LightGridSystem : EntitySystem
                     if (yAbs < 0 || yAbs > range)
                         continue;
 
-                    var topTile = eyePos + new Vector2i(x, yAbs);
-                    if (CheckNeighborsVis(vis1, Opaque, topTile, depth - 1))
-                    {
-                        if (Opaque.Contains(topTile))
-                            vis1[topTile] = -1;
-                        else if (vis2.GetValueOrDefault(topTile) != 0)
-                            vis1[topTile] = depth;
-                    }
+                    SetVis1IfVisible(vis1, vis2, opaqueLocal, side, range, x, yAbs, depth);
 
-                    if (yAbs == 0)
+                    if (yAbs != 0)
+                        SetVis1IfVisible(vis1, vis2, opaqueLocal, side, range, x, -yAbs, depth);
+                }
+            }
+
+            for (var x = -range; x <= range; x++)
+            {
+                for (var y = -range; y <= range; y++)
+                {
+                    var idx = (x + range) * side + (y + range);
+                    if (!opaqueLocal[idx] || vis1[idx] != VisEmpty)
                         continue;
 
-                    var bottomTile = eyePos + new Vector2i(x, -yAbs);
-                    if (CheckNeighborsVis(vis1, Opaque, bottomTile, depth - 1))
-                    {
-                        if (Opaque.Contains(bottomTile))
-                            vis1[bottomTile] = -1;
-                        else if (vis2.GetValueOrDefault(bottomTile) != 0)
-                            vis1[bottomTile] = depth;
-                    }
+                    if (HasVisibleFace(opaqueLocal, vis1, side, range, x, y))
+                        boundaryArr[idx] = true;
                 }
             }
 
-            foreach (var tile in seedTiles)
+            for (var i = 0; i < gridSize; i++)
             {
-                if (!Opaque.Contains(tile))
-                    continue;
+                if (boundaryArr[i])
+                    vis1[i] = -1;
+            }
 
-                if (vis1.ContainsKey(tile))
-                    continue;
-
-                if (HasVisibleFace(seedTiles, Opaque, vis1, tile, eyePos))
+            // Collect results
+            for (var x = -range; x <= range; x++)
+            {
+                for (var y = -range; y <= range; y++)
                 {
-                    boundary.Add(tile);
+                    if (vis1[(x + range) * side + (y + range)] == VisEmpty)
+                        continue;
+
+                    var delta = new Vector2i(x, y);
+                    var dist = new Vector2(x, y).Length();
+
+                    if (!IsWithinDirectionalCone(source, delta))
+                        continue;
+
+                    var intensity = GetLightIntensity(source, dist);
+
+                    if (intensity > 0.01f)
+                        results[eyePos + delta] = intensity;
                 }
-            }
-
-            foreach (var tile in boundary)
-            {
-                vis1[tile] = -1;
-            }
-
-            
-            foreach (var tile in seedTiles)
-            {
-                if (!vis1.TryGetValue(tile, out _))
-                    continue; 
-
-                var delta = tile - eyePos;
-                var dist = new Vector2(delta.X, delta.Y).Length();
-
-                if (!IsWithinDirectionalCone(source, delta))
-                    continue;
-
-                var intensity = GetLightIntensity(source, dist);
-
-                if (intensity > 0.01f)
-                    results[tile] = intensity;
             }
 
             // The light source tile itself
             if (!results.ContainsKey(eyePos))
                 results[eyePos] = source.Brightness;
+        }
+
+        private static void SetVisIfVisible(int[] vis, bool[] opaque, int side, int range, int rx, int ry, int depth)
+        {
+            if (!CheckNeighborsVis(vis, opaque, side, range, rx, ry, depth - 1))
+                return;
+
+            var idx = (rx + range) * side + (ry + range);
+            vis[idx] = opaque[idx] ? -1 : depth;
+        }
+
+        private static void SetVis1IfVisible(int[] vis1, int[] vis2, bool[] opaque, int side, int range, int rx, int ry, int depth)
+        {
+            if (!CheckNeighborsVis(vis1, opaque, side, range, rx, ry, depth - 1))
+                return;
+
+            var idx = (rx + range) * side + (ry + range);
+            if (opaque[idx])
+            {
+                vis1[idx] = -1;
+            }
+            else
+            {
+                var v2 = vis2[idx];
+                if (v2 != VisEmpty && v2 != 0)
+                    vis1[idx] = depth;
+            }
+        }
+
+        private static bool CheckNeighborsVis(int[] vis, bool[] opaque, int side, int range, int rx, int ry, int d)
+        {
+            for (var dx = -1; dx <= 1; dx++)
+            {
+                for (var dy = -1; dy <= 1; dy++)
+                {
+                    if (dx == 0 && dy == 0)
+                        continue;
+
+                    var nx = rx + dx + range;
+                    var ny = ry + dy + range;
+                    if ((uint)nx >= (uint)side || (uint)ny >= (uint)side)
+                        continue;
+
+                    var val = vis[nx * side + ny];
+                    if (val == VisEmpty || val != d)
+                        continue;
+
+                    if (dx != 0 && dy != 0)
+                    {
+                        var ai = (rx + dx + range) * side + (ry + range);
+                        var bi = (rx + range) * side + (ry + dy + range);
+                        if (opaque[ai] && opaque[bi])
+                            continue;
+                    }
+
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private static bool HasVisibleFace(bool[] opaque, int[] vis1, int side, int range, int rx, int ry)
+        {
+            var stepX = Math.Sign(rx);
+            var stepY = Math.Sign(ry);
+
+            if (stepX != 0)
+            {
+                var nx = rx - stepX + range;
+                var ny = ry + range;
+                if ((uint)nx < (uint)side && (uint)ny < (uint)side)
+                {
+                    var idx = nx * side + ny;
+                    if (!opaque[idx] && vis1[idx] != VisEmpty)
+                        return true;
+                }
+            }
+
+            if (stepY != 0)
+            {
+                var nx = rx + range;
+                var ny = ry - stepY + range;
+                if ((uint)nx < (uint)side && (uint)ny < (uint)side)
+                {
+                    var idx = nx * side + ny;
+                    if (!opaque[idx] && vis1[idx] != VisEmpty)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static int[] EnsureArray(List<int[]> list, int index, int minSize)
+        {
+            var arr = list[index];
+            if (arr == null || arr.Length < minSize)
+            {
+                arr = new int[minSize];
+                list[index] = arr;
+            }
+            return arr;
+        }
+
+        private static bool[] EnsureBoolArray(List<bool[]> list, int index, int minSize)
+        {
+            var arr = list[index];
+            if (arr == null || arr.Length < minSize)
+            {
+                arr = new bool[minSize];
+                list[index] = arr;
+            }
+            return arr;
         }
     }
 }
