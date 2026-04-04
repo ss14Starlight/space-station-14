@@ -12,7 +12,6 @@ public sealed class PoolManagerTestEventHandler
     public async Task Setup()
     {
         RsiLoadingPatch.Apply(); // Starlight
-        SerializationManagerPatch.Apply(); // Starlight
 
         PoolManager.Startup();
 
@@ -43,6 +42,5 @@ public sealed class PoolManagerTestEventHandler
         PoolManager.Shutdown();
 
         RsiLoadingPatch.Unpatch(); // Starlight
-        SerializationManagerPatch.Unpatch(); // Starlight
     }
 }
