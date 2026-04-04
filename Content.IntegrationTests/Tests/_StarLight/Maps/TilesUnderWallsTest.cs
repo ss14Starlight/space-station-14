@@ -124,12 +124,12 @@ public sealed class MapWallFloorTests
             while (query.MoveNext(out var uid, out var xform, out var meta))
             {
                 entities += 1;
-                
+
                 // We only care about anchored entities on the map we just loaded
                 if (xform.MapID != mapId || !xform.Anchored || xform.GridUid == null)
                     continue;
 
-                // Identify if the entity is a Wall. 
+                // Identify if the entity is a Wall.
                 // Checks the standard "Wall" tag, excludes Diagonal walls because they should have tiles under them.
                 var isWall = tagSystem.HasTag(uid, "Wall") && !tagSystem.HasTag(uid, "Diagonal") && !AllowedWalls.Contains(meta.EntityPrototype?.ID);
 
@@ -154,7 +154,7 @@ public sealed class MapWallFloorTests
             }
 
             Console.WriteLine($"Found {entities} entities and {walls} walls.");
-            
+
             Assert.Multiple(() =>
             {
                 foreach (var error in errors)
