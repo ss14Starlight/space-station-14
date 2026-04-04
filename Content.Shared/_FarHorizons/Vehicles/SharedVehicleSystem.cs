@@ -331,6 +331,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
     private void HandleCollide(Entity<VehicleComponent> ent, ref StartCollideEvent args)
     {
+        if(!_gameTiming.IsFirstTimePredicted) return;
         if(ent.Comp.Rider == null) return;
         var rider = ent.Comp.Rider.Value;
 
@@ -353,7 +354,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (args.OurFixture.Hard && args.OtherFixture.Hard)
         {
             if (_gameTiming.IsFirstTimePredicted)
-                _audio.PlayPvs(ent.Comp.SoundHit, ent.Owner, AudioParams.Default.WithVariation(0.125f).WithVolume(-0.125f));
+                _audio.PlayPredicted(ent.Comp.SoundHit, ent.Owner, null, AudioParams.Default.WithVariation(0.125f).WithVolume(-0.125f));
 
             if(TryComp<VehicleBuckleComponent>(ent.Owner, out var vbComp) && TryComp<BuckleComponent>(rider, out var buckleComp))
             {
@@ -380,7 +381,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
             if(!HasComp<DamageableComponent>(args.OtherEntity) || HasComp<PacifiedComponent>(ent.Owner)) return;
 
             if (_gameTiming.IsFirstTimePredicted)
-                _audio.PlayPvs(ent.Comp.SoundHit, ent.Owner, AudioParams.Default.WithVariation(0.125f).WithVolume(-0.125f));
+                _audio.PlayPredicted(ent.Comp.SoundHit, ent.Owner, null, AudioParams.Default.WithVariation(0.125f).WithVolume(-0.125f));
 
             DamageTypePrototype? _blunt = _prototypes.Index<DamageTypePrototype>(_bluntname);
             DamageSpecifier? _damage = new(_blunt, Math.Clamp(10 * (1 + (0.5 * speed / crashingSpeed)), 10, 20));
@@ -433,6 +434,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
     private void OnToggleTrunk(Entity<VehicleComponent> ent, ref ToggleTrunkActionEvent args)
     {
+        if (!_gameTiming.IsFirstTimePredicted) return;
         if(args.Handled) return;
         if(!TryComp<LockComponent>(ent.Owner, out var lockComp)) return;
         _adminLogger.Add(Database.LogType.Action, Database.LogImpact.Low, $"{ToPrettyString(args.Performer)} toggled the trunk from {ToPrettyString(ent.Owner)}");
@@ -441,12 +443,12 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if(!_lock.IsLocked(ent.Owner))
         {
             _popup.PopupPredicted(Loc.GetString("vehicle-toggle-trunk-open"), ent.Owner, null, PopupType.Small);
-            _audio.PlayPvs(lockComp.UnlockSound, ent.Owner);
+            _audio.PlayPredicted(lockComp.UnlockSound, ent.Owner, null);
         }
         else
         {
             _popup.PopupPredicted(Loc.GetString("vehicle-toggle-trunk-close"), ent.Owner, null, PopupType.Small);
-            _audio.PlayPvs(lockComp.LockSound, ent.Owner);
+            _audio.PlayPredicted(lockComp.LockSound, ent.Owner, null);
         }
         args.Handled = true;
     }
@@ -454,6 +456,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     private void OnDamageChanged(EntityUid ent, VehicleComponent component, DamageChangedEvent args)
     {
         if(!args.DamageIncreased || args.DamageDelta == null) return;
+        if(args.Origin == ent) return;
         if (TryComp<VehicleContainerComponent>(ent, out var vcComp)
             && vcComp.PassengerSlot.ContainedEntities.Count != 0)
         {
@@ -517,6 +520,9 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if (!Resolve(entity.Owner, ref entity.Comp))
             return;
 
+        if (_gameTiming.ApplyingState)
+            return;
+
         var finalState = VehicleVisualState.Normal;
 
         if (entity.Comp.isBroken)
@@ -566,10 +572,11 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
     private void OnHornActionEvent(Entity<VehicleComponent> ent, ref HornActionEvent args)
     {
+        if (!_gameTiming.IsFirstTimePredicted) return;
         if (args.Handled || ent.Comp.HornSound == null)
             return;
         if(ent.Comp.Rider == null) return;
-        _audio.PlayPvs(ent.Comp.HornSound, ent.Owner);
+        _audio.PlayPredicted(ent.Comp.HornSound, ent.Owner, null);
         args.Handled = true;
     }
 
