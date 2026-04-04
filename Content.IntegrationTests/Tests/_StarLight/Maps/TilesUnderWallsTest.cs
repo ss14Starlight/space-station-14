@@ -55,7 +55,7 @@ public sealed class MapWallFloorTests
     private static readonly string[] GameMaps =
     [
         "StarlightBarratry",
-        //"StarlightCork",
+        "StarlightCork",
         "StarlightKiloton",
         "StarlightLagan",
         "StarlightLobster",
@@ -74,6 +74,7 @@ public sealed class MapWallFloorTests
         "StarlightElkridge",
         "StarlightFland",
         "StarlightHotel",
+        "StarlightOasis",
         "StarlightPacked",
         "StarlightReach",
         "StarlightSaltern",
@@ -82,7 +83,8 @@ public sealed class MapWallFloorTests
         "StarlightCluster",
         "StarlightStationBuilding",
         "StarlightPlasma",
-        "StarlightSepultum"
+        "StarlightSepultum",
+        "StarlightBoxcars"
     ];
 
     [Test, TestCaseSource(nameof(GameMaps))]
