@@ -23,7 +23,8 @@ namespace Content.IntegrationTests._Starlight.Patches;
 /// </summary>
 internal static class SerializationManagerPatch
 {
-    private static Hook s_hook;
+    private static Hook s_initHook;
+    private static Hook s_shutdownHook;
     private static int s_applied;
 
     private static readonly FieldInfo _initializedField =
@@ -55,14 +56,11 @@ internal static class SerializationManagerPatch
             nameof(SerializationManager.ReflectionManager),
             BindingFlags.Instance | BindingFlags.Public)!;
 
-    // Backing fields for DI properties that the compiled delegates reach through.
     private static readonly FieldInfo _reflectionManagerBackingField =
         typeof(SerializationManager).GetField("_reflectionManager", BindingFlags.Instance | BindingFlags.NonPublic)!;
 
     private static readonly FieldInfo _dependencyCollectionBackingField =
         typeof(SerializationManager).GetField("<DependencyCollection>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic)!;
-
-    // Cached donor instance keyed by assembly fingerprint
 
     private sealed class SerializationCache
     {
@@ -78,32 +76,42 @@ internal static class SerializationManagerPatch
 
     private static readonly ConcurrentDictionary<string, SerializationCache> _cache = new();
 
-    private delegate void InitializeDelegate(SerializationManager self);
+    private static readonly ConcurrentDictionary<SerializationManager, byte> _managedInstances = new();
+
+    private delegate void OrigDelegate(SerializationManager self);
 
     internal static void Apply()
     {
         if (Interlocked.Exchange(ref s_applied, 1) != 0)
             return;
 
-        var method = typeof(SerializationManager).GetMethod(
+        var initMethod = typeof(SerializationManager).GetMethod(
             nameof(SerializationManager.Initialize),
             BindingFlags.Instance | BindingFlags.Public);
 
-        if (method == null)
+        var shutdownMethod = typeof(SerializationManager).GetMethod(
+            nameof(SerializationManager.Shutdown),
+            BindingFlags.Instance | BindingFlags.Public);
+
+        if (initMethod == null || shutdownMethod == null)
         {
-            TestContext.Error.WriteLine("[SerializationManagerPatch] Could not find Initialize method — patch skipped.");
+            TestContext.Error.WriteLine("[SerializationManagerPatch] Could not find Initialize/Shutdown — patch skipped.");
             return;
         }
 
-        s_hook = new Hook(method, InitializeHook);
+        s_initHook = new Hook(initMethod, InitializeHook);
+        s_shutdownHook = new Hook(shutdownMethod, ShutdownHook);
     }
 
     internal static void Unpatch()
     {
-        s_hook?.Dispose();
-        s_hook = null;
+        s_initHook?.Dispose();
+        s_initHook = null;
+        s_shutdownHook?.Dispose();
+        s_shutdownHook = null;
         Interlocked.Exchange(ref s_applied, 0);
         _cache.Clear();
+        _managedInstances.Clear();
     }
 
     private static string GetFingerprint(SerializationManager self)
@@ -114,7 +122,7 @@ internal static class SerializationManagerPatch
             .OrderBy(n => n, StringComparer.Ordinal));
     }
 
-    private static void InitializeHook(InitializeDelegate orig, SerializationManager self)
+    private static void InitializeHook(OrigDelegate orig, SerializationManager self)
     {
         if ((bool)_initializedField.GetValue(self)!)
             return;
@@ -123,7 +131,7 @@ internal static class SerializationManagerPatch
 
         if (_cache.TryGetValue(key, out var cached))
         {
-            // Copy all data structures into the new instance.
+            // Point this instance's fields at the shared (cached) dictionaries.
             _dataDefinitionsField.SetValue(self, cached.DataDefinitions);
             _copyByRefField.SetValue(self, cached.CopyByRefRegistrations);
             _serializerProviderField.SetValue(self, cached.RegularSerializerProvider);
@@ -131,18 +139,13 @@ internal static class SerializationManagerPatch
             _highestFlagBitField.SetValue(self, cached.HighestFlagBit);
             _constantsMappingField.SetValue(self, cached.ConstantsMapping);
 
-            // The compiled delegates inside DataDefinitions call methods on the donor
-            // (captured via Expression.Constant). Those methods use this.DependencyCollection
-            // and this._reflectionManager. Repoint the donor's backing fields to the
-            // current IoC container so the delegates resolve services correctly.
-            var currentDepCollection = self.DependencyCollection;
-            var currentReflectionManager = _reflectionManagerProp.GetValue(self);
-
-            _dependencyCollectionBackingField.SetValue(cached.Donor, currentDepCollection);
-            _reflectionManagerBackingField.SetValue(cached.Donor, currentReflectionManager);
+            _dependencyCollectionBackingField.SetValue(cached.Donor, self.DependencyCollection);
+            _reflectionManagerBackingField.SetValue(cached.Donor, _reflectionManagerProp.GetValue(self));
 
             _initializingField.SetValue(self, false);
             _initializedField.SetValue(self, true);
+
+            _managedInstances[self] = 0;
             return;
         }
 
@@ -158,5 +161,18 @@ internal static class SerializationManagerPatch
             HighestFlagBit = _highestFlagBitField.GetValue(self)!,
             ConstantsMapping = _constantsMappingField.GetValue(self)!,
         });
+
+        _managedInstances[self] = 0;
+    }
+
+    private static void ShutdownHook(OrigDelegate orig, SerializationManager self)
+    {
+        if (_managedInstances.TryRemove(self, out _))
+        {
+            _initializedField.SetValue(self, false);
+            _initializingField.SetValue(self, false);
+            return;
+        }
+        orig(self);
     }
 }
