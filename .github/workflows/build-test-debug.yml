@@ -132,7 +132,7 @@ jobs:
             exit 0
           fi
           timeout --signal=TERM --kill-after=2m 15m \
-            dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "$FILTER" --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min -- NUnit.MapWarningTo=Failed
+            dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "$FILTER" --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min -- NUnit.MapWarningTo=Failed
 
     - name: Test results
       continue-on-error: true
