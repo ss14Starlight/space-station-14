@@ -86,7 +86,7 @@ jobs:
       if: always()
       run: |
         dotnet tool install -g dotnet-trx 2>/dev/null || true
-        trx report /tmp/test-results/*.trx >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
+        trx --path /tmp/test-results -o || true
 
   integration-tests:
     needs: build
@@ -124,9 +124,6 @@ jobs:
             echo "No tests assigned to shard ${{ matrix.shard }}"
             exit 0
           fi
-          echo "::group::Test filter"
-          echo "$FILTER"
-          echo "::endgroup::"
           dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "$FILTER" --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results -- NUnit.MapWarningTo=Failed
 
     - name: Test results
@@ -134,7 +131,7 @@ jobs:
       if: always()
       run: |
         dotnet tool install -g dotnet-trx 2>/dev/null || true
-        trx report /tmp/test-results/*.trx >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
+        trx --path /tmp/test-results -o || true
 
   ci-success:
     name: Build & Test Debug
