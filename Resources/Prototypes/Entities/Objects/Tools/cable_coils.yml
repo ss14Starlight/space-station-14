@@ -62,7 +62,7 @@
   parent: CableStack
   name: HV cable coil
   suffix: Full
-  description: HV cables for connecting engines to heavy duty machinery, SMESes, and substations.
+  description: HV cables for connecting engines to heavy duty machinery, SMESes, and substations. Used to repair burns for IPCs.
   components:
   - type: Stack
     stackType: CableHV
