@@ -86,6 +86,7 @@ jobs:
       if: always()
       run: |
         dotnet tool install -g dotnet-trx 2>/dev/null || true
+        mkdir -p /tmp/test-results
         trx --path /tmp/test-results -o || true
 
   integration-tests:
@@ -131,6 +132,7 @@ jobs:
       if: always()
       run: |
         dotnet tool install -g dotnet-trx 2>/dev/null || true
+        mkdir -p /tmp/test-results
         trx --path /tmp/test-results -o || true
 
   ci-success:
