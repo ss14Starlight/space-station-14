@@ -151,10 +151,10 @@ public sealed class MapWallFloorTests
                 if (!AllowedUnderWalls.Contains(tileDef.ID))
                 {
                     var tileIndices = mapSystem.LocalToTile(xform.GridUid.Value, gridComp, xform.Coordinates);
-                    var gridName = entMan.TryGetComponent<MetaDataComponent>(xform.GridUid.Value, out var parentGridMeta) ? parentGridMeta.EntityName : "UnknownGrid";
+                    var gridName = entMan.TryGetComponent<MetaDataComponent>(xform.GridUid.Value, out var parentGridMeta) ? parentGridMeta.EntityName : $"Unknown Grid ({xform.GridUid.Value})";
                     errors.Add($"[{mapProtoId}] Wall {meta.EntityPrototype?.ID} on grid {gridName} " +
                                $"at coordinates {tileIndices} is placed on a floor '{tileDef.ID}'. ");
-                               // If your coordinates don't land you onto the wall with the problem, tp your grid to 0 0 first.
+                               // If the coordinates don't land you onto the wall with the problem, tp your grid to -0.5 -0.5 first.
                 }
             }
 
