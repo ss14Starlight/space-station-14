@@ -1,5 +1,4 @@
-﻿using Robust.Shared.Serialization.Manager;
-using Content.IntegrationTests;
+﻿using Content.IntegrationTests;
 using Content.IntegrationTests._Starlight.Patches;
 
 [SetUpFixture]
@@ -8,11 +7,6 @@ public sealed class PoolManagerTestEventHandler
     // This value is completely arbitrary.
     private static TimeSpan MaximumTotalTestingTimeLimit => TimeSpan.FromMinutes(50); //starlight, 50 minutes for local testing purposes
     private static TimeSpan HardStopTimeLimit => MaximumTotalTestingTimeLimit.Add(TimeSpan.FromMinutes(1));
-
-    // Starlight start
-    internal static SerializationManager SharedServerSerialization;
-    internal static SerializationManager SharedClientSerialization;
-    // Starlight end
 
     [OneTimeSetUp]
     public async Task Setup()
@@ -24,9 +18,6 @@ public sealed class PoolManagerTestEventHandler
 
         // Starlight start
         var pair = await PoolManager.GetServerClient(new PoolSettings { Destructive = true });
-        SharedServerSerialization = (SerializationManager) pair.Server.Resolve<ISerializationManager>();
-        SharedClientSerialization = (SerializationManager) pair.Client.Resolve<ISerializationManager>();
-
         await pair.DisposeAsync();
         // Starlight end
 
