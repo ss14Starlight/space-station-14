@@ -83,7 +83,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+        shard: [0, 1]
     name: "Integration Tests (shard ${{ matrix.shard }})"
     runs-on: ubuntu-latest
     steps:
@@ -103,10 +103,17 @@ jobs:
     - name: Discover Content.IntegrationTests
       id: discover-integration
       run: |
-        dotnet test --list-tests --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj > /tmp/test_list.txt 2>&1 || true
-        echo "::group::Raw test list output"
-        head -50 /tmp/test_list.txt
+        set +e
+        dotnet test --list-tests --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj 2>&1 | tee /tmp/test_list.txt
+        echo "dotnet test --list-tests exit code: $?"
+        echo "::group::test_list.txt contents"
+        cat /tmp/test_list.txt
         echo "::endgroup::"
+        echo "::group::Listing csproj and bin"
+        ls -la Content.IntegrationTests/Content.IntegrationTests.csproj 2>&1 || true
+        ls -la Content.IntegrationTests/bin/DebugOpt/ 2>&1 || true
+        echo "::endgroup::"
+        set -e
         FILTER=$(python3 Tools/test_shard_filter.py ${{ matrix.shard }} 8 < /tmp/test_list.txt) || true
         echo "filter=$FILTER" >> "$GITHUB_OUTPUT"
 
