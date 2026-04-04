@@ -34,6 +34,7 @@
     MaintsBarObjective: 1
     PanicObjective: 1
     RumorObjective: 1
+    SyndielandObjective: 1
 
 # Vampire
 - type: weightedRandom

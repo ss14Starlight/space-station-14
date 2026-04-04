@@ -104,6 +104,18 @@ uplink-breaching-hammer-desc = A heavy-duty powered breaching tool disguised as 
 uplink-explosive-collar-name = Explosive Collar
 uplink-explosive-collar-desc = The legally distinct reverse beartrap from a certin movie franchise.
 
+uplink-satchel-syndicate-name = Syndicate Satchel
+uplink-satchel-syndicate-desc = Ask not what the syndicate satchel can do for you, but rather, what can't it do.
+
+uplink-duffel-syndicate-name = Syndicate Duffel Bag
+uplink-duffel-syndicate-desc = A large duffel bag for holding various traitor goods.
+
+uplink-trunk-syndicate-name = Syndicate Trunk
+uplink-trunk-syndicate-desc = Huge, metal, reflective, and stylish. All the other syndicates will want to get their hands on this trunk.
+
+uplink-syndiedrobe-name = SyndieDrobe flatpack
+uplink-syndiedrobe-desc = Looks like Syndieland's back in business.
+
 uplink-syndie-elegant-raid-name = Syndicate Elegant Raid Suit
 uplink-syndie-elegant-raid-desc = Even contract, nuclear killers have the right to remain fabulous.
 
