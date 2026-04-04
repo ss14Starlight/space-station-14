@@ -17,7 +17,6 @@
           emergencyShuttlePath: /Maps/_Starlight/Shuttles/emergency_ming.yml
         - type: StationJobs
           availableJobs:
-            # All WIP. will be changed at some point
             #service
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
@@ -74,7 +73,7 @@
             #law
             Magistrate: [ 1, 1 ]
             IAA: [ 1, 2 ]
-            #Representives
+            #"Representatives"
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]
