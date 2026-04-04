@@ -460,6 +460,7 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+        - Wizard
       # Starlight-end
   - type: DynamicRuleCost
     cost: 150
