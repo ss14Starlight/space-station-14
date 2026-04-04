@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/29/2026 19:41:45
-  entityCount: 29403
+  time: 04/04/2026 21:25:13
+  entityCount: 29395
 maps:
 - 1
 grids:
@@ -76274,41 +76274,6 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-  - uid: 11889
-    components:
-    - type: Transform
-      pos: 59.5,10.5
-      parent: 2
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        PDA-id: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        PDA-pen: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        PDA-pai: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        Cartridge-Slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        program-container: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        pai_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
   - uid: 11890
     components:
     - type: Transform
@@ -87360,11 +87325,6 @@ entities:
     components:
     - type: Transform
       pos: -20.5,3.5
-      parent: 2
-  - uid: 13509
-    components:
-    - type: Transform
-      pos: 61.5,-25.5
       parent: 2
   - uid: 13510
     components:
@@ -138039,38 +137999,32 @@ entities:
   - uid: 20420
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -14.047192,-10.331805
+      pos: -13.841207,-10.558425
       parent: 2
   - uid: 20421
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -14.015942,-10.425555
+      pos: -13.794332,-10.51155
       parent: 2
   - uid: 20422
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -14.000317,-10.59743
+      pos: -13.669332,-10.620925
       parent: 2
   - uid: 20423
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -14.062817,-10.425555
+      pos: -13.778707,-10.63655
       parent: 2
   - uid: 20424
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -13.953442,-10.394305
+      pos: -13.778707,-10.464675
       parent: 2
   - uid: 20425
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -13.953442,-10.50368
+      pos: -13.809957,-10.558425
       parent: 2
   - uid: 20426
     components:
@@ -143639,6 +143593,42 @@ entities:
       parent: 2
 - proto: PrinterDoc
   entities:
+  - uid: 11889
+    components:
+    - type: Transform
+      pos: 61.5,-25.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
+  - uid: 13509
+    components:
+    - type: Transform
+      pos: -16.5,-47.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
+  - uid: 20706
+    components:
+    - type: Transform
+      pos: 48.5,3.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
   - uid: 21315
     components:
     - type: Transform
@@ -166119,11 +166109,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 30.5,47.5
       parent: 2
-  - uid: 24656
-    components:
-    - type: Transform
-      pos: 26.5,50.5
-      parent: 2
   - uid: 24657
     components:
     - type: Transform
@@ -166144,12 +166129,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -6.5,5.5
-      parent: 2
-  - uid: 24661
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -10.5,5.5
       parent: 2
   - uid: 24662
     components:
@@ -166484,11 +166463,6 @@ entities:
     - type: Transform
       pos: 5.5,49.5
       parent: 2
-  - uid: 24723
-    components:
-    - type: Transform
-      pos: 5.5,51.5
-      parent: 2
   - uid: 24724
     components:
     - type: Transform
@@ -166779,11 +166753,6 @@ entities:
       parent: 2
 - proto: TableReinforced
   entities:
-  - uid: 20706
-    components:
-    - type: Transform
-      pos: 5.5,7.5
-      parent: 2
   - uid: 24777
     components:
     - type: Transform
@@ -166906,12 +166875,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -21.5,46.5
-      parent: 2
-  - uid: 24800
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -21.5,47.5
       parent: 2
   - uid: 24801
     components:
@@ -167096,11 +167059,6 @@ entities:
     components:
     - type: Transform
       pos: -19.5,-10.5
-      parent: 2
-  - uid: 24834
-    components:
-    - type: Transform
-      pos: -14.5,-10.5
       parent: 2
   - uid: 24835
     components:
@@ -167701,16 +167659,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,-26.5
       parent: 2
-  - uid: 24947
-    components:
-    - type: Transform
-      pos: -7.5,-2.5
-      parent: 2
-  - uid: 24948
-    components:
-    - type: Transform
-      pos: -7.5,49.5
-      parent: 2
   - uid: 24949
     components:
     - type: Transform
@@ -167845,12 +167793,6 @@ entities:
     components:
     - type: Transform
       pos: -12.5,-13.5
-      parent: 2
-  - uid: 24972
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-25.5
       parent: 2
   - uid: 24973
     components:
@@ -188674,6 +188616,11 @@ entities:
       fixtures: {}
 - proto: WaterCooler
   entities:
+  - uid: 24656
+    components:
+    - type: Transform
+      pos: 1.5,-24.5
+      parent: 2
   - uid: 28607
     components:
     - type: Transform
@@ -188698,11 +188645,6 @@ entities:
     components:
     - type: Transform
       pos: 53.5,-30.5
-      parent: 2
-  - uid: 28612
-    components:
-    - type: Transform
-      pos: 4.5,-24.5
       parent: 2
 - proto: WaterTankFull
   entities:
