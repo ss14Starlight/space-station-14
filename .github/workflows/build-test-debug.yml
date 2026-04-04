@@ -52,11 +52,7 @@ jobs:
 
   content-tests:
     needs: build
-    strategy:
-      fail-fast: false
-      matrix:
-        shard: [0, 1, 2, 3, 4]
-    name: "Content Tests (shard ${{ matrix.shard }})"
+    name: Content Tests
     runs-on: ubuntu-latest
     steps:
     - name: Setup .NET Core
@@ -73,17 +69,7 @@ jobs:
       run: tar xzf build.tar.gz && rm build.tar.gz
 
     - name: Run Content.Tests
-      run: |
-        dotnet test --list-tests --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0 > /tmp/test_list.txt 2>&1 || true
-        FILTER=$(python3 Tools/test_shard_filter.py ${{ matrix.shard }} 5 < /tmp/test_list.txt)
-        if [ -z "$FILTER" ]; then
-          echo "No tests assigned to shard ${{ matrix.shard }}"
-          exit 0
-        fi
-        echo "::group::Test filter"
-        echo "$FILTER"
-        echo "::endgroup::"
-        dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj --filter "$FILTER" --logger trx -- NUnit.ConsoleOut=0
+      run: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj --logger trx -- NUnit.ConsoleOut=0
 
     - name: Test results
       continue-on-error: true
@@ -97,7 +83,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [0, 1, 2, 3, 4]
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
     name: "Integration Tests (shard ${{ matrix.shard }})"
     runs-on: ubuntu-latest
     steps:
@@ -114,20 +100,25 @@ jobs:
     - name: Extract build
       run: tar xzf build.tar.gz && rm build.tar.gz
 
+    - name: Discover Content.IntegrationTests
+      id: discover-integration
+      run: |
+        dotnet test --list-tests --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj > /tmp/test_list.txt 2>&1 || true
+        echo "::group::Raw test list output"
+        head -50 /tmp/test_list.txt
+        echo "::endgroup::"
+        FILTER=$(python3 Tools/test_shard_filter.py ${{ matrix.shard }} 8 < /tmp/test_list.txt) || true
+        echo "filter=$FILTER" >> "$GITHUB_OUTPUT"
+
     - name: Run Content.IntegrationTests
+      if: steps.discover-integration.outputs.filter != ''
       env:
         DOTNET_gcServer: "1"
       run: |
-        dotnet test --list-tests --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 > /tmp/test_list.txt 2>&1 || true
-        FILTER=$(python3 Tools/test_shard_filter.py ${{ matrix.shard }} 5 < /tmp/test_list.txt)
-        if [ -z "$FILTER" ]; then
-          echo "No tests assigned to shard ${{ matrix.shard }}"
-          exit 0
-        fi
         echo "::group::Test filter"
-        echo "$FILTER"
+        echo "${{ steps.discover-integration.outputs.filter }}"
         echo "::endgroup::"
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "$FILTER" --logger trx -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
+        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "${{ steps.discover-integration.outputs.filter }}" --logger trx -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
 
     - name: Test results
       continue-on-error: true
