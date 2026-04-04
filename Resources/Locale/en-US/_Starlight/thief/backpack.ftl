@@ -1,10 +1,9 @@
 thief-backpack-category-syndie-description-starlight =
     Trinkets from a disavowed past, or stolen from a careless agent?
     You've made some connections. Whiskey, echo...
-    Includes: A Syndicate encryption key, Access Breaker,
-    Interdyne cigs, a Syndicate codeword, a Radio Jammer,
-    a lighter, a stimulant injector, and some strange red
-    crystals.
+    Includes: A Camera bug, Access Breaker, Interdyne cigs,
+    a Syndicate codeword, a Radio Jammer, a lighter,
+    a stimulant injector, and some strange red crystals.
 
 thief-backpack-category-communicator-description-starlight =
     Money is power, and secrets are money. Use your silver tongue

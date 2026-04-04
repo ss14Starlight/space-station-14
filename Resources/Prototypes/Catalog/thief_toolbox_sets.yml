@@ -54,7 +54,7 @@
   content:
   - RadioJammer
   - TraitorCodePaper
-  - EncryptionKeySyndie # Starlight. Until thieves get an emag that can't arm borgs, stop giving them the ability to make guns. Helps them find traitors.
+  - CameraBug # Starlight. Until thieves get an emag that can't arm borgs, stop giving them the ability to make guns. Was originally a syndie encryption key but Thieves aren't told not to reveal nukies like pAIs.
   - Stimpack # Starlight. Needed something to make up for losing the emag. When the Emag is replaced with a ThiefMag, this can be removed.
   - AccessBreaker
   - InterdyneFlippo # Starlight. Might as well keep the theme, no?
