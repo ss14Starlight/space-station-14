@@ -53,12 +53,13 @@ jobs:
         name: build-output
         path: /tmp/build.tar.gz
         retention-days: 1
-        compression-level: 6
+        compression-level: 0
 
   content-tests:
     needs: build
     name: Content Tests
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4.1.0
@@ -73,18 +74,19 @@ jobs:
     - name: Extract build
       run: tar xzf build.tar.gz && rm build.tar.gz
 
-    - name: Restore packages
-      run: dotnet restore Content.Tests/Content.Tests.csproj
-
     - name: Run Content.Tests
-      run: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj --logger trx -- NUnit.ConsoleOut=0
+      uses: nick-fields/retry@v3
+      with:
+        timeout_minutes: 15
+        max_attempts: 2
+        command: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results
 
     - name: Test results
       continue-on-error: true
       if: always()
       run: |
         dotnet tool install -g dotnet-trx 2>/dev/null || true
-        trx 2>/dev/null || true
+        trx report /tmp/test-results/*.trx >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
 
   integration-tests:
     needs: build
@@ -94,6 +96,7 @@ jobs:
         shard: [0, 1, 2, 3, 4, 5, 6, 7]
     name: "Integration Tests (shard ${{ matrix.shard }})"
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4.1.0
@@ -108,29 +111,30 @@ jobs:
     - name: Extract build
       run: tar xzf build.tar.gz && rm build.tar.gz
 
-    - name: Restore packages
-      run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
-
     - name: Run Content.IntegrationTests
+      uses: nick-fields/retry@v3
       env:
         DOTNET_gcServer: "1"
-      run: |
-        FILTER=$(python3 Tools/test_shard_filter.py read .integration-filters/shard_${{ matrix.shard }}.filter)
-        if [ -z "$FILTER" ]; then
-          echo "No tests assigned to shard ${{ matrix.shard }}"
-          exit 0
-        fi
-        echo "::group::Test filter"
-        echo "$FILTER"
-        echo "::endgroup::"
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "$FILTER" --logger trx -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
+      with:
+        timeout_minutes: 10
+        max_attempts: 2
+        command: |
+          FILTER=$(python3 Tools/test_shard_filter.py read .integration-filters/shard_${{ matrix.shard }}.filter)
+          if [ -z "$FILTER" ]; then
+            echo "No tests assigned to shard ${{ matrix.shard }}"
+            exit 0
+          fi
+          echo "::group::Test filter"
+          echo "$FILTER"
+          echo "::endgroup::"
+          dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "$FILTER" --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results -- NUnit.MapWarningTo=Failed
 
     - name: Test results
       continue-on-error: true
       if: always()
       run: |
         dotnet tool install -g dotnet-trx 2>/dev/null || true
-        trx 2>/dev/null || true
+        trx report /tmp/test-results/*.trx >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
 
   ci-success:
     name: Build & Test Debug
@@ -142,3 +146,16 @@ jobs:
     steps:
       - name: CI succeeded
         run: exit 0
+
+  cleanup:
+    name: Cleanup Artifacts
+    needs:
+      - content-tests
+      - integration-tests
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete build artifact
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: build-output

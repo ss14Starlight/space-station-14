@@ -85,6 +85,8 @@ def cmd_generate():
         with open(path, "w") as f:
             f.write(filter_expr)
         print(f"  Shard {shard}: {len(my_classes)} classes", file=sys.stderr)
+        for cls in my_classes:
+            print(f"    - {cls}", file=sys.stderr)
 
 
 def cmd_read():
@@ -98,6 +100,11 @@ def cmd_read():
     with open(path) as f:
         content = f.read().strip()
     if content:
+        # Print human-readable class list to stderr
+        classes = [part.replace("FullyQualifiedName~", "").strip() for part in content.split("|")]
+        print(f"Running {len(classes)} test classes:", file=sys.stderr)
+        for cls in classes:
+            print(f"  - {cls}", file=sys.stderr)
         print(content)
 
 
