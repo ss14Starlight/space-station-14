@@ -60802,11 +60802,17 @@ entities:
     - type: Transform
       pos: 27.5,2.5
       parent: 2
+    - type: Battery
+      maxCharge: 59000000
+      startingCharge: 59000000
   - uid: 7331
     components:
     - type: Transform
       pos: 27.5,0.5
       parent: 2
+    - type: Battery
+      maxCharge: 59000000
+      startingCharge: 59000000
 - proto: SMESAdvanced
   entities:
   - uid: 7330

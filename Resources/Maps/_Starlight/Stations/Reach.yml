@@ -17456,7 +17456,7 @@ entities:
     - type: Transform
       pos: -6.5,5.5
       parent: 2
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
   - uid: 2489
     components:

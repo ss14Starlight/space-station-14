@@ -101254,11 +101254,17 @@ entities:
     - type: Transform
       pos: 3.5,-80.5
       parent: 3
+    - type: Battery
+      maxCharge: 55000000
+      startingCharge: 55000000
   - uid: 11850
     components:
     - type: Transform
       pos: 3.5,-81.5
       parent: 3
+    - type: Battery
+      maxCharge: 55000000
+      startingCharge: 55000000
 - proto: SMESAdvanced
   entities:
   - uid: 11851
