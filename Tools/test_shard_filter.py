@@ -20,6 +20,114 @@ import sys
 import os
 
 
+# Weight multipliers for tests that are lighter than their test count suggests.
+WEIGHT_OVERRIDES = {
+    "AbsorbentOnRefillableTest": 0.5,
+    "AbsorbentOnSmallRefillableTest": 0.5,
+    "AddListRemoveObjectiveTest": 0.5,
+    "AddPlayerSessionLog": 0.5,
+    "AirlockBlockTest": 0.5,
+    "AllCommandsHaveDescriptions": 0.5,
+    "AllComponentsOneToOneDeleteTest": 0.5,
+    "AllDeviceLinkSinksWorkTest": 0.5,
+    "AllMapsTested": 0.5,
+    "ApcChargingTest": 0.5,
+    "ArmBladeActivateDeactivateTest": 0.5,
+    "AssignJobsTest": 0.5,
+    "BuckleInteractBuckleUnbuckleSelf": 0.5,
+    "CancelTilePry": 0.5,
+    "ChasmFallTest": 0.5,
+    "ConstructComputer": 0.5,
+    "ConstructReinforcedWindow": 0.5,
+    "ConstructionGraphSpawnPrototypeValid": 0.5,
+    "CraftRods": 0.5,
+    "Date": 0.5,
+    "DeconstructTable": 0.5,
+    "Delete_CacheUpdatesOnAtmosTick": 0.5,
+    "DeserializeNullTest": 0.5,
+    "DisciplineValidTierPrerequesitesTest": 0.5,
+    "DragDropOntoDrainTest": 0.5,
+    "DuplicatePlayerIdDoesNotThrowTest": 0.5,
+    "EmergencyEvacTest": 0.5,
+    "FloorConstructDeconstruct": 0.5,
+    "FollowerMapDeleteTest": 0.5,
+    "ForceUnbuckleBuckleTest": 0.5,
+    "GasSpecificHeats_Agree": 0.5,
+    "GasSpreading": 0.5,
+    "HumanMoveOverTest": 0.5,
+    "HungerThirstIncreaseDecreaseTest": 0.5,
+    "InsertAndDispenseItemTest": 0.5,
+    "InteractionOutOfRangeTest": 0.5,
+    "JobPreferenceTest": 0.5,
+    "KillAndReviveTest": 0.5,
+    "LoadTickLoad": 0.5,
+    "MagazineVisualsSpritesExist": 0.5,
+    "MapLoadingTest": 0.5,
+    "MicrowaveRecipesFreezeTest": 0.5,
+    "MultiTile_Component_InitDataCorrect": 0.5,
+    "MultiTile_Spawn_CacheUpdatesOnAtmosTick": 0.5,
+    "NoCargoOrderArbitrage": 0.5,
+    "NoSuffocationTest": 0.5,
+    "NullOutTileAtmosphereGasMixture": 0.5,
+    "PoweredClosedAirlock_Pry_DoesNotOpen": 0.5,
+    "ProcessingAbsoluteStandbyTest": 0.5,
+    "ProcessingListAutoJoinTest": 0.5,
+    "PullerSanityTest": 0.5,
+    "QuerySingleLog": 0.5,
+    "ReagentDataIsSerializable": 0.5,
+    "Relogin": 0.5,
+    "RepairReinforcedWindow": 0.5,
+    "RestartTest": 0.5,
+    "RestockTest": 0.5,
+    "SelectionTest": 0.5,
+    "ServerPrototypeSaveLoadSaveTest": 0.5,
+    "SetWorkingState_AlreadyInState_NoChange": 0.5,
+    "SpawnAndDeleteEntityCountTest": 0.5,
+    "Spawn_ReconstructedUpdatesImmediately": 0.5,
+    "SpillCorner": 0.5,
+    "StackPrice": 0.5,
+    "StartRoundTest": 0.5,
+    "StorageSizeArbitrageTest": 0.5,
+    "TakeRoleAndReturn": 0.5,
+    "TestAb": 0.5,
+    "TestComputerBoardHasValidComputer": 0.5,
+    "TestConnect": 0.5,
+    "TestDamageSpecifierOperations": 0.5,
+    "TestDeleteCharacter": 0.5,
+    "TestDeleteThrownItem": 0.5,
+    "TestDeleteVisiting": 0.5,
+    "TestDisconnectWhileEmbedded": 0.5,
+    "TestDockingConfig": 0.5,
+    "TestDungeonRoomPackBounds": 0.5,
+    "TestFinished": 0.5,
+    "TestFullBattery": 0.5,
+    "TestGhostDoesNotInfiniteLoop": 0.5,
+    "TestGib": 0.5,
+    "TestGridGhostOnQueueDelete": 0.5,
+    "TestGridJoinAtmosphere": 0.5,
+    "TestLatheRecipeIngredientsFitLathe": 0.5,
+    "TestLobbyPlayersValid": 0.5,
+    "TestMindTransfersToOtherEntity": 0.5,
+    "TestNoDemandRampdown": 0.5,
+    "TestPickupDrop": 0.5,
+    "TestPlayerCanGhost": 0.5,
+    "TestRestockBreaksOpen": 0.5,
+    "TestStartReachesValidTarget": 0.5,
+    "TestSufficientSpaceForFill": 0.5,
+    "TestSuicide": 0.5,
+    "TestSuicideWhileDamaged": 0.5,
+    "TestSupplyRamp": 0.5,
+    "TestTags": 0.5,
+    "ThrowItemIntoDisposalUnitTest": 0.5,
+    "TryAddTwoNonReactiveReagent": 0.5,
+    "TryAllTest": 0.5,
+    "ValidateJobPrototypes": 0.5,
+    "WeightlessStatusTest": 0.5,
+    "WindowOnGrille": 0.5,
+    "XenoArtifactGenerateSegmentsTest": 0.5,
+}
+
+
 def parse_tests(lines):
     """Parse test names from `dotnet test --list-tests` output."""
     tests = []
@@ -72,13 +180,19 @@ def cmd_generate():
 
     os.makedirs(output_dir, exist_ok=True)
 
+    # Compute effective weight per class using overrides
+    def class_weight(cls):
+        short_name = cls.rsplit(".", 1)[-1]
+        multiplier = WEIGHT_OVERRIDES.get(short_name, 1.0)
+        return class_counts[cls] * multiplier
+
     # Greedy load-balancing: assign heaviest classes first to least-loaded shard
     shards = [[] for _ in range(total)]
-    shard_loads = [0] * total
-    for cls in sorted(class_counts, key=lambda c: class_counts[c], reverse=True):
+    shard_loads = [0.0] * total
+    for cls in sorted(class_counts, key=class_weight, reverse=True):
         lightest = min(range(total), key=lambda s: shard_loads[s])
         shards[lightest].append(cls)
-        shard_loads[lightest] += class_counts[cls]
+        shard_loads[lightest] += class_weight(cls)
 
     for shard in range(total):
         my_classes = sorted(shards[shard])
@@ -86,9 +200,10 @@ def cmd_generate():
         path = os.path.join(output_dir, f"shard_{shard}.filter")
         with open(path, "w") as f:
             f.write(filter_expr)
-        print(f"  Shard {shard}: {len(my_classes)} classes, {shard_loads[shard]} tests", file=sys.stderr)
+        print(f"  Shard {shard}: {len(my_classes)} classes, weight {shard_loads[shard]:.1f} ({sum(class_counts[c] for c in my_classes)} tests)", file=sys.stderr)
         for cls in my_classes:
-            print(f"    - {cls} ({class_counts[cls]} tests)", file=sys.stderr)
+            w = class_weight(cls)
+            print(f"    - {cls} ({class_counts[cls]} tests, weight {w:.1f})", file=sys.stderr)
 
 
 def cmd_read():
