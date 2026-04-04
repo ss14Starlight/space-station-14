@@ -74,6 +74,9 @@ jobs:
     - name: Extract build
       run: tar xzf build.tar.gz && rm build.tar.gz
 
+    - name: Restore packages
+      run: dotnet restore Content.Tests/Content.Tests.csproj
+
     - name: Run Content.Tests
       uses: nick-fields/retry@v3
       with:
@@ -111,6 +114,9 @@ jobs:
 
     - name: Extract build
       run: tar xzf build.tar.gz && rm build.tar.gz
+
+    - name: Restore packages
+      run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
 
     - name: Run Content.IntegrationTests
       uses: nick-fields/retry@v3
