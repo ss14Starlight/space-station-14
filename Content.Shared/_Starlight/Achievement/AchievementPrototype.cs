@@ -36,12 +36,15 @@ public sealed partial class AchievementPrototype : IPrototype
     // maybe ill not do it, im very lazy yk
     //public bool IsManualOnly => Requirements.Count == 0;
 
+
+    // few helpers that idk where else to put, maybe they should be in a system,
+    // but they rely on the prototype data so here we are
     public bool IsRelevantForProgress(string progressType)
         => Requirements.Any(requirement => requirement.ProgressType == progressType);
 
-    public bool AreRequirementsMet(Func<string, double> progressResolver)
+    public bool AreRequirementsMet(Func<string, bool, double> progressResolver)
         => Requirements.Count > 0
-           && Requirements.All(requirement => progressResolver(requirement.ProgressType) >= requirement.RequiredProgress);
+           && Requirements.All(r => progressResolver(r.ProgressType, r.PerRound) >= r.RequiredProgress);
 }
 
 [DataDefinition]
@@ -52,4 +55,7 @@ public sealed partial class AchievementRequirement
 
     [DataField(required: true)]
     public double RequiredProgress { get; private set; }
+
+    [DataField]
+    public bool PerRound { get; private set; }
 }
