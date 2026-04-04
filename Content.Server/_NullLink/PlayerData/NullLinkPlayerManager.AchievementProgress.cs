@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using Content.Server._NullLink.Helpers;
 using Starlight.NullLink;
@@ -12,13 +13,21 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         if (!_actors.TryGetServerGrain(out var serverGrain))
             return TryGetCachedProgress(userId, out var cached) ? cached : [];
 
-        var progress = await serverGrain.GetAchievementProgress(userId);
-        var copy = new Dictionary<string, double>(progress);
+        try
+        {
+            var progress = await serverGrain.GetAchievementProgress(userId);
+            var copy = new ConcurrentDictionary<string, double>(progress);
 
-        if (_playerById.TryGetValue(userId, out var playerData))
-            playerData.AchievementProgress = copy;
+            if (_playerById.TryGetValue(userId, out var playerData))
+                playerData.AchievementProgress = copy;
 
-        return copy;
+            return new Dictionary<string, double>(progress);
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Error($"GetAchievementProgress failed for {userId}: {ex}");
+            return TryGetCachedProgress(userId, out var cached) ? cached : [];
+        }
     }
 
     public double GetCachedAchievementProgress(Guid userId, string key)
@@ -35,8 +44,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         if (!_playerById.TryGetValue(userId, out var playerData))
             return 0;
 
-        var value = playerData.AchievementProgress.GetValueOrDefault(key) + amount;
-        playerData.AchievementProgress[key] = value;
+        var value = playerData.AchievementProgress.AddOrUpdate(key, amount, (_, existing) => existing + amount);
 
         if (_actors.TryGetServerGrain(out var serverGrain))
             serverGrain.SetAchievementProgress(userId, key, value)
@@ -71,7 +79,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
             return;
         }
 
-        playerData.AchievementProgress.Remove(key);
+        playerData.AchievementProgress.TryRemove(key, out _);
     }
 
     public ValueTask SyncAchievementProgress(PlayerAchievementProgressSyncEvent ev)
@@ -79,7 +87,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         if (!_playerById.TryGetValue(ev.Player, out var playerData))
             return ValueTask.CompletedTask;
 
-        playerData.AchievementProgress = new Dictionary<string, double>(ev.Progress);
+        playerData.AchievementProgress = new ConcurrentDictionary<string, double>(ev.Progress);
         return ValueTask.CompletedTask;
     }
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using Starlight.NullLink;
@@ -14,12 +15,11 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
             return TryGetCachedAchievements(userId, out var cachedAchievements) ? cachedAchievements : [];
 
         var achievements = await serverGrain.GetUnlockedAchievements(userId);
-        var achievementsCopy = new HashSet<Achievement>(achievements);
 
         if (_playerById.TryGetValue(userId, out var playerData))
-            playerData.UnlockedAchievements = achievementsCopy;
+            playerData.UnlockedAchievements = [.. achievements];
 
-        return achievementsCopy;
+        return new HashSet<Achievement>(achievements);
     }
 
     public async ValueTask<bool> HasAchievementUnlocked(Guid userId, string achievementId)
@@ -48,14 +48,16 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
 
         if (_playerById.TryGetValue(userId, out var playerData))
         {
-            playerData.UnlockedAchievements.RemoveWhere(achievement => achievement.AchievementId == achievementId);
-            playerData.UnlockedAchievements.Add(new Achievement
+            var achievements = playerData.UnlockedAchievements.ToHashSet();
+            achievements.RemoveWhere(achievement => achievement.AchievementId == achievementId);
+            achievements.Add(new Achievement
             {
                 AchievementId = achievementId,
                 GrantingServer = _actors.Server ?? string.Empty,
                 UnlockingCharacter = characterName,
                 UnlockTime = DateTime.UtcNow,
             });
+            playerData.UnlockedAchievements = [.. achievements];
         }
 
         return true;
@@ -77,7 +79,11 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         }
 
         if (_playerById.TryGetValue(userId, out var playerData))
-            playerData.UnlockedAchievements.RemoveWhere(achievement => achievement.AchievementId == achievementId);
+        {
+            var achievements = playerData.UnlockedAchievements.ToHashSet();
+            achievements.RemoveWhere(achievement => achievement.AchievementId == achievementId);
+            playerData.UnlockedAchievements = [.. achievements];
+        }
 
         return true;
     }
@@ -96,8 +102,10 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         if (!_playerById.TryGetValue(ev.Player, out var playerData))
             return ValueTask.CompletedTask;
 
-        playerData.UnlockedAchievements.RemoveWhere(achievement => achievement.AchievementId == ev.Achievement.AchievementId);
-        playerData.UnlockedAchievements.Add(ev.Achievement);
+        var achievements = playerData.UnlockedAchievements.ToHashSet();
+        achievements.RemoveWhere(achievement => achievement.AchievementId == ev.Achievement.AchievementId);
+        achievements.Add(ev.Achievement);
+        playerData.UnlockedAchievements = [.. achievements];
         return ValueTask.CompletedTask;
     }
 
@@ -106,7 +114,9 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         if (!_playerById.TryGetValue(ev.Player, out var playerData))
             return ValueTask.CompletedTask;
 
-        playerData.UnlockedAchievements.RemoveWhere(achievement => achievement.AchievementId == ev.AchievementId);
+        var achievements = playerData.UnlockedAchievements.ToHashSet();
+        achievements.RemoveWhere(achievement => achievement.AchievementId == ev.AchievementId);
+        playerData.UnlockedAchievements = [.. achievements];
         return ValueTask.CompletedTask;
     }
 
