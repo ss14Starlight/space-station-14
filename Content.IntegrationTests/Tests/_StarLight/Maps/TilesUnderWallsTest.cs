@@ -15,6 +15,7 @@ public sealed class MapWallFloorTests
     /// <summary>
     /// The acceptable floor tiles that are allowed to exist underneath a wall.
     /// Add any custom hull plating IDs here.
+    /// Do not put Sand tiles here, as they block placing of cable.
     /// </summary>
     private static readonly HashSet<string> AllowedUnderWalls = new()
     {
