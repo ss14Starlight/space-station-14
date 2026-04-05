@@ -1508,6 +1508,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineSalvage
+  categories: [ ShouldMapStation ] # Starlight
   name: Salvage Vendor
   description: A dwarf's best friend!
   components:

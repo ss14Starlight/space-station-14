@@ -58,6 +58,7 @@
 
 - type: entity
   id: LockerQuarterMasterFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerQuarterMaster
   components:

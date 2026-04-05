@@ -190,6 +190,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineSalvage
+  categories: [ ShouldMapStation ]
   name: salvage ticket machine
   components:
   - type: AccessReader
@@ -211,6 +212,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineMining
+  categories: [ ShouldMapStation ]
   name: mining ticket machine
   components:
     - type: AccessReader

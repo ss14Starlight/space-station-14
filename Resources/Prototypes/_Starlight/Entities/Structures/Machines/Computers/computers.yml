@@ -209,6 +209,7 @@
 - type: entity
   parent: BaseComputerShuttle
   id: CompuerShuttleSalvage
+  categories: [ ShouldMapStation ]
   name: salvage shuttle console
   components:
   - type: Sprite
@@ -383,6 +384,7 @@
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttleMining
+  categories: [ ShouldMapStation ]
   name: mining shuttle console
   components:
     - type: Sprite
