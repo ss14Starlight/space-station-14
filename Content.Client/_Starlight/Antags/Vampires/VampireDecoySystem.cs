@@ -23,8 +23,8 @@ public sealed class VampireDecoySystem : EntitySystem
 
     private void TryCopySprite(Entity<VampireDecoyAppearanceComponent> ent)
     {
-        if (!ent.Comp.Source.HasValue 
-            || !TryComp<SpriteComponent>(ent.Owner, out var decoySprite) 
+        if (!ent.Comp.Source.HasValue
+            || !TryComp<SpriteComponent>(ent.Owner, out var decoySprite)
             || !TryComp<SpriteComponent>(ent.Comp.Source.Value, out var sourceSprite))
             return;
 

@@ -288,7 +288,7 @@ public sealed partial class DockingSystem
             //skip ourself
             if (uid == shuttleUid)
                 continue;
-            
+
             foreach (var config in validDockConfigs)
             {
                 if (ftlComp.TargetCoordinates == config.Coordinates)

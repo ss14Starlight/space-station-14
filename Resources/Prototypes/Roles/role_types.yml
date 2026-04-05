@@ -48,7 +48,7 @@
   color: '#c832e6'
   symbol: "⛞"
 
-# Starlight 
+# Starlight
 - type: roleType
   id: HarmlessAntagonist
   name: role-type-harmless-antagonist-name

@@ -13,7 +13,7 @@ public sealed class ContainerTypeParser : TypeParser<ContainerRef>
 {
     [Dependency] private readonly IEntityManager _entMan = default!;
     private SharedContainerSystem? _container;
-    
+
     public override bool TryParse(ParserContext ctx, out ContainerRef result)
     {
         _container ??= _entMan.System<SharedContainerSystem>();
@@ -53,7 +53,7 @@ public sealed class ContainerTypeParser : TypeParser<ContainerRef>
                 }
             }
         }
-        
+
         result = new ContainerRef(null);
         return false;
     }

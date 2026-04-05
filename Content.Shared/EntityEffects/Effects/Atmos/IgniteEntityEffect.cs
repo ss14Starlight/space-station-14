@@ -9,7 +9,7 @@ namespace Content.Shared.EntityEffects.Effects.Atmos;
 /// <inheritdoc cref="EntityEffect"/>
 public sealed partial class Ignite : EntityEffectBase<Ignite>
 {
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => // Starlight 
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => // Starlight
         loc.GetString("entity-effect-guidebook-ignite", ("chance", Probability));
 
     public override LogImpact? Impact => LogImpact.Medium;

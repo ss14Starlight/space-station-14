@@ -230,7 +230,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
         supermatter.Comp.AccBreak -= breakDelta;
 
         gas.AdjustMoles((int)Gas.Tritium, breakDelta.Float()/2);
-        
+
         gas.AdjustMoles((int)Gas.Oxygen, breakDelta.Float()*4);
     }
 

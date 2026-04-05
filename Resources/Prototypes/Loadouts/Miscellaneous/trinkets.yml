@@ -13,13 +13,13 @@
   id: FlowerWreath
   equipment:
     neck: ClothingHeadHatFlowerWreath # Starlight: Roundstart equipped
-  groupBy: "flowers" # Starlight 
+  groupBy: "flowers" # Starlight
 
 - type: loadout
   id: Hairflower
   equipment:
     head: ClothingHeadHatHairFlowerWhite  # Moffstation - Color changing hairflower + Starlight: Roundstart equipped
-  groupBy: "flowers" # Starlight 
+  groupBy: "flowers" # Starlight
 
 # Headphones
 - type: loadout

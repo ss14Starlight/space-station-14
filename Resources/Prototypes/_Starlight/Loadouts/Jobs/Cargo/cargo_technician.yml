@@ -32,7 +32,7 @@
   - !type:GroupLoadoutEffect
     proto: SeniorCargo
 
-# Hat 
+# Hat
 - type: loadout
   id: CargoTechnicianBeret
   equipment:
@@ -62,7 +62,7 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorCargo
-  
+
 
 - type: loadout
   id: SeniorCourierSatchel

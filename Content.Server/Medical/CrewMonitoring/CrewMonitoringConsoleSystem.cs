@@ -46,7 +46,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        
+
         // Periodically update the UI, per console.
         var consoles = EntityQueryEnumerator<CrewMonitoringConsoleComponent>();
         while (consoles.MoveNext(out var id, out var console))
@@ -59,7 +59,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
             if (console.LastInterfaceUpdate + console.InterfaceUpdateRate > _gameTiming.CurTime)
                 return;
-            
+
             UpdateUserInterface(id, console);
         }
     }
@@ -79,7 +79,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
         if (command != DeviceNetworkConstants.CmdUpdatedState)
             return;
-        
+
         // Starlight START
         if (payload.ContainsKey(SuitSensorConstants.NET_PAGING_SINCE)) // Branch off for custom packet.
         {
@@ -95,50 +95,50 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         component.LastSensorDataReceivedAt = _gameTiming.CurTime; // Starlight
         UpdateUserInterface(uid, component);
     }
-    
+
     /// <summary>
-    ///     STARLIGHT: Handle a paging alert packet sent by a crew monitoring server.    
+    ///     STARLIGHT: Handle a paging alert packet sent by a crew monitoring server.
     /// </summary>
     private void OnPagingPacketReceived(EntityUid uid, CrewMonitoringConsoleComponent console,
         DeviceNetworkPacketEvent args)
     {
         if (!console.PagingEnabled)
             return;
-        
+
         // Battery-powered devices need enough power to receive a page. (Returns true if not battery powered.)
         if (!_cell.TryUseActivatableCharge(uid))
             return;
-        
+
         // APC-powered devices need to be powered to receive a page.
         if (TryComp<ApcPowerReceiverComponent>(uid, out var receiver))
             if (!_powerReceiver.IsPowered((uid, receiver)))
                 return;
-        
+
         var payload = args.Data;
         if (!payload.TryGetValue(SuitSensorConstants.NET_PAGING_SINCE, out TimeSpan? since) ||
             !payload.TryGetValue(SuitSensorConstants.NET_JOB_DEPARTMENTS, out List<string>? jobDepartments))
             return;
-        
+
         // Check if this event applies to this console based on the filters.
         if (TryComp<CrewMonitoringFilterComponent>(uid, out var filter))
         {
             // Wounded-or-dead check unnecessary since paging only pertains to those in the first place.
-            
+
             // If department filter is specified and doesn't match, we will not alert.
             if (filter.ShownDepartments.Count > 0 && !filter.ShownDepartments.Any(dept => jobDepartments.Contains(dept)))
                 return;
         }
-        
+
         // If the console was opened since this person became crit/dead, we have no need to notify the user again.
         if (console.LastInterfaceUpdate > since)
             return;
-        
+
         // Play sound either locally (e.g. for Station AI) or in area.
         if (console.PagingSoundLocal)
             _audioSystem.PlayLocal(console.PagingSound, uid, uid, console.PagingSoundParams);
         else
             _audioSystem.PlayPvs(console.PagingSound, uid, console.PagingSoundParams);
-        
+
         _appearanceSystem.SetData(uid, CrewMonitorVisuals.Alert, true);
         console.PagingVisualsTimeoutAt = _gameTiming.CurTime + console.PagingVisualsTimeoutDelay;
     }
@@ -158,10 +158,10 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
         if (!_uiSystem.IsUiOpen(uid, CrewMonitoringUIKey.Key))
             return;
-        
+
         // Starlight START
         component.LastInterfaceUpdate = _gameTiming.CurTime;
-        
+
         // Reset alert visuals if the UI is viewed by anyone.
         _appearanceSystem.SetData(uid, CrewMonitorVisuals.Alert, false);
         // Starlight END

@@ -8,23 +8,23 @@ namespace Content.Client._Starlight.Stack;
 [GenerateTypedNameReferences]
 public sealed partial class StackCustomSplitAmountWindow : DefaultWindow
 {
-    
+
     private int _max = int.MaxValue;
     private int _min = 1;
-    
+
     public StackCustomSplitAmountWindow()
     {
         RobustXamlLoader.Load(this);
         AmountLineEdit.OnTextChanged += OnValueChanged;
     }
-    
+
     public void SetBounds(int min, int max)
     {
         _min = min;
         _max = max;
         MinimumAmount.Text = Loc.GetString("ui-stack-split-set-amount-min", ("amount", _min.ToString("N0")));
         MaximumAmount.Text = Loc.GetString("ui-stack-split-set-amount-max", ("amount", _max.ToString("N0")));
-        
+
         // Default is half because we replaced the right-click Halve option.
         AmountLineEdit.SetText((_min + ((_max - _min) / 2)).ToString());
     }
@@ -36,5 +36,5 @@ public sealed partial class StackCustomSplitAmountWindow : DefaultWindow
         else
             ApplyButton.Disabled = false;
     }
-    
+
 }

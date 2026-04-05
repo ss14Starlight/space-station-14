@@ -8,7 +8,7 @@
 
 			<!--Left Panel-->
 			<BoxContainer Name="LeftPanel" Orientation="Vertical">
-				
+
 				<!--Insert/remove controls-->
 			    <BoxContainer Name="Controls" Orientation="Vertical">
 					<GridContainer Name="ControlGrid" Columns="3" Margin="2 2 2 2">
@@ -40,7 +40,7 @@
 			    </BoxContainer>
 
 				<PanelContainer SetHeight="2" VerticalAlignment="Top" SetWidth="150" Margin="2 5" />
-				
+
 				<!--Target info-->
 				<BoxContainer Name="TargetData" Orientation="Vertical" VerticalExpand="True">
 					<BoxContainer Name="TargetInfo" Orientation="Vertical">
@@ -63,14 +63,14 @@
 						</GridContainer>
 					</BoxContainer>
 				</BoxContainer>
-				
+
 				<!--"Shelf"-->
 				<BoxContainer Name="Shelf" Orientation="Vertical">
 					<Button Name="EjectItem" Text="{Loc comp-nuclear-reactor-ui-eject-button}" />
 					<Label Name="ItemName" Text="empty" ClipText="True"/>
 				</BoxContainer>
 			</BoxContainer>
-			
+
             <!--Reactor display-->
             <PanelContainer Name="GridVisuals" StyleClasses="Inset" HorizontalExpand="True" Margin="5 5 5 5">
                 <BoxContainer Orientation="Vertical">
@@ -80,7 +80,7 @@
                     </GridContainer>
                 </BoxContainer>
             </PanelContainer>
-			
+
 			<!--Right Panel-->
 			<BoxContainer Name="RightPanel" Orientation="Vertical">
 				<Label Name="StatusPanelLabel" Text="{Loc comp-nuclear-reactor-ui-status-panel}" StyleClasses="LabelKeyText" />
@@ -110,7 +110,7 @@
 
 					<PanelContainer SetHeight="2" VerticalAlignment="Top" SetWidth="200" Margin="2 5" />
 
-					
+
 					<BoxContainer Name="ControlRodsText" Orientation="Horizontal">
 						<Label Name="ControlRodsLabel" Text="{Loc comp-nuclear-reactor-ui-reactor-control}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
 						<Label Name="ControlRodsValue" Text="100%" HorizontalAlignment="Right"/>
@@ -130,9 +130,9 @@
 					</BoxContainer>
 
 				</BoxContainer>
-				
+
 			</BoxContainer>
-			
+
         </BoxContainer>
 
         <!--Footer-->

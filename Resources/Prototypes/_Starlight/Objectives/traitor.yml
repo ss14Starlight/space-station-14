@@ -134,7 +134,7 @@
   components:
   - type: StealCondition
     stealGroup: RDDiplomaSteal
-    
+
 - type: entity
   parent: BaseCMOStealObjective
   id: CMOLicenseStealObjective
@@ -339,7 +339,7 @@
     difficulty: 2.5 # Mildly easier to obtain.
 
   # RP OBJECTIVES START
-  
+
 - type: entity
   parent: BaseStoryObjective
   id: RetrieveContrabandObjective
@@ -378,7 +378,7 @@
       unique: true
       icon:
         sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon   
+        state: icon
 
 
 - type: entity
@@ -436,7 +436,7 @@
       icon:
         sprite: _Starlight/Interface/Misc/rp_icon.rsi
         state: icon
-        
+
 - type: entity
   parent: BaseStoryObjective
   id: ManifestoObjective

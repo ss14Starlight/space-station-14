@@ -71,7 +71,7 @@
   - type: Sprite
     sprite: Mobs/Species/Vox/organs.rsi
   # Starlight start
-  - type: OrganDamage 
+  - type: OrganDamage
     damage:
       types:
         Poison: 280
