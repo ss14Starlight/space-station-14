@@ -313,7 +313,7 @@
   - KesslerSyndromeScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
-  
+
 - type: gamePreset
   id: Vampire
   alias:
@@ -364,7 +364,7 @@
     - BasicStationEventScheduler
     - BasicRoundstartVariation
 
-#Starlight EventLight Gamemode for Event Usage 
+#Starlight EventLight Gamemode for Event Usage
 - type: gamePreset
   id: EventLight
   alias:

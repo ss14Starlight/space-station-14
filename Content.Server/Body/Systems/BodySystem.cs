@@ -75,7 +75,7 @@ public sealed class BodySystem : SharedBodySystem
             var layers = HumanoidVisualLayersExtension.Sublayers(layer.Value);
             _humanoidSystem.SetLayersVisibility(bodyEnt.Owner, layers, visible: true);
         }
-        
+
         if (TryComp<HumanoidAppearanceComponent>(bodyEnt, out var humanoid))
             _limbSystem.AddLimbVisual((bodyEnt, humanoid), partEnt); //🌟Starlight🌟
     }

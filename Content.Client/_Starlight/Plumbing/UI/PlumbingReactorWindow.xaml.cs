@@ -135,7 +135,7 @@ public sealed partial class PlumbingReactorWindow : DefaultWindow
         foreach (var (reagentId, currentAmount) in state.BufferContents)
         {
             if (state.ReagentTargets.ContainsKey(reagentId))
-                continue; 
+                continue;
 
             TargetsList.Add(new ItemList.Item(TargetsList)
             {

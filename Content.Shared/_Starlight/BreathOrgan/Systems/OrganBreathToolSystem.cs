@@ -38,7 +38,7 @@ public sealed class OrganBreathToolSystem : EntitySystem
     {
         if (args.Handled || args.Accessible || args.Target != ent.Owner)
             return;
-        
+
         if (TryComp<OrganComponent>(ent.Owner, out var organ) && organ.Body == args.User)
         {
             args.Accessible = true;
@@ -72,36 +72,36 @@ public sealed class OrganBreathToolSystem : EntitySystem
     private void OnOrganBreathToolAddedToBody(Entity<OrganBreathToolComponent> ent, ref OrganAddedToBodyEvent args)
     {
         // Add breath tool to the body, allows us to breathe without a mask
-        if (TryComp<BreathToolComponent>(ent.Owner, out var breathTool) && 
+        if (TryComp<BreathToolComponent>(ent.Owner, out var breathTool) &&
             TryComp(args.Body, out InternalsComponent? internals))
         {
             breathTool.ConnectedInternalsEntity = args.Body;
             _internals.ConnectBreathTool((args.Body, internals), ent.Owner);
         }
-        
-        
+
+
         if (TryComp<GasTankComponent>(ent.Owner, out var gasTank))
         {
             var actionsComp = EnsureComp<ActionsComponent>(args.Body);
-            
+
             // Add action to toggle internals
             _actionContainer.EnsureAction(ent.Owner, ref gasTank.ToggleActionEntity, ent.Comp.ToggleAction);
-            
+
             if (gasTank.ToggleActionEntity != null && TryComp<ActionsContainerComponent>(ent.Owner, out var actionContainer))
             {
                 _actions.AddAction((args.Body, actionsComp), gasTank.ToggleActionEntity.Value, (ent.Owner, actionContainer));
             }
-            
+
             // Add action to view the gas tank UI
             _actionContainer.EnsureAction(ent.Owner, ref ent.Comp.ViewGasTankActionEntity, ent.Comp.ViewGasTankAction);
-            
+
             if (ent.Comp.ViewGasTankActionEntity != null && TryComp<ActionsContainerComponent>(ent.Owner, out var actionContainer2))
             {
                 _actions.AddAction((args.Body, actionsComp), ent.Comp.ViewGasTankActionEntity.Value, (ent.Owner, actionContainer2));
             }
-            
+
             Dirty(ent);
-            
+
             // If organ is intended to start activated, immediately turn on internals, e.g. Vox lungs so they don't die.
             if (ent.Comp.StartActivated && TryComp(args.Body, out InternalsComponent? bodyInternals) && bodyInternals.BreathTools.Count > 0)
             {
@@ -120,8 +120,8 @@ public sealed class OrganBreathToolSystem : EntitySystem
         {
             _atmos.DisconnectInternals((ent.Owner, breathTool), forced: true);
         }
-        
-        if (TryComp<GasTankComponent>(ent.Owner, out var gasTank) && 
+
+        if (TryComp<GasTankComponent>(ent.Owner, out var gasTank) &&
             TryComp<ActionsComponent>(args.OldBody, out var actionsComp))
         {
             // Remove the toggle internals button
@@ -129,14 +129,14 @@ public sealed class OrganBreathToolSystem : EntitySystem
             {
                 _actions.RemoveAction((args.OldBody, actionsComp), gasTank.ToggleActionEntity.Value);
             }
-            
+
             // Remove the gas tank UI preview button
             if (ent.Comp.ViewGasTankActionEntity != null)
             {
                 _actions.RemoveAction((args.OldBody, actionsComp), ent.Comp.ViewGasTankActionEntity.Value);
             }
         }
-        
+
         Dirty(ent);
     }
 }

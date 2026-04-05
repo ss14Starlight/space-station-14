@@ -35,7 +35,7 @@ public sealed partial class IPCSystem
             passiveHeat -= ent.Comp1.RadiateHeat;
         if (!_state.IsDead(ent))
             passiveHeat += ent.Comp1.ProduceHeat;
-        
+
         _tempSys.ChangeHeat(ent, passiveHeat, ignoreHeatResistance: true, ent);
         ent.Comp1.FansCurrentlyOff = FanShutOff(ent, gas);
 
@@ -79,7 +79,7 @@ public sealed partial class IPCSystem
         gas.Pressure < ent.Comp.MinPressure ||
         gas.Pressure > ent.Comp.MaxPressure ||
         gas.Temperature > ent.Comp.MaxTemperature;
-    
+
     private static bool CanSwitchFan(Entity<IPCThermalRegulationComponent> ent)
     {
         if(ent.Comp.CanSwitchModeIn <= TimeSpan.Zero)

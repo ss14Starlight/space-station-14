@@ -863,7 +863,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         {
             chance += malus.Malus;
         }
-        
+
         //Starlight begin
         if (TryComp<WieldableComponent>(inTargetHand, out var wieldable))
             if (wieldable.Wielded)
@@ -894,7 +894,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         {
             return false;
         }
-        
+
         if (HasComp<NoDisarmComponent>(target)) return false; // Starlight
 
         // Need hands or to be able to be shoved over.
@@ -994,9 +994,13 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
     private void DoLungeAnimation(EntityUid user, EntityUid weapon, Angle angle, MapCoordinates coordinates, float length, string? animation)
     {
+        // Starlight Begin - mech wideswing handling
+        var originEntity = GetOriginEntity(user);
+
         // TODO: Assert that offset eyes are still okay.
-        if (!TryComp(user, out TransformComponent? userXform))
+        if (!TryComp(originEntity, out TransformComponent? userXform))
             return;
+        // Starlight End
 
         var invMatrix = TransformSystem.GetInvWorldMatrix(userXform);
         var localPos = Vector2.Transform(coordinates.Position, invMatrix);
@@ -1092,7 +1096,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             }
         }
     }
-    
+
     //Starlight begin | ES Screenshake
     private void DoScreenshake(EntityUid weapon, DamageSpecifier damage, EntityUid attacker, List<EntityUid> targets)
     {
@@ -1107,7 +1111,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             foreach(var target in targets)
                 _shake.Screenshake(target, otherTranslation, null);
         }
-        
+
         // only show to attacker if they put real oompf into it, or the weapon is just THAT strong
         var bluntRequirement = damage.DamageDict.TryGetValue(BluntDamageName, out var blunt) && blunt >= 20;
         var wieldRequirement = TryComp<WieldableComponent>(weapon, out var wieldable) && wieldable.Wielded;
@@ -1123,4 +1127,20 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         _shake.Screenshake(attacker, null, userRotation);
     }
     //Starlight end
+
+    // Starlight begin - mech wideswing
+    /// <summary>
+    /// Get the apparent origin entity for transforms (e.g. when the entity is piloting a mech)
+    /// returns the user if none are found
+    /// </summary>
+    protected EntityUid GetOriginEntity(EntityUid user)
+    {
+        var originEntity = user;
+        var originEv = new GetMeleeOriginEvent();
+        RaiseLocalEvent(user, originEv);
+        if (originEv.Handled && originEv.OriginEntity.HasValue)
+            originEntity = originEv.OriginEntity.Value;
+        return originEntity;
+    }
+    // Starlight end
 }

@@ -42,7 +42,7 @@ public sealed class VampiricClawsSystem : EntitySystem
 
         if (TryComp<VampireComponent>(args.User, out var vamp))
             ClearClawsReference(ent.Owner, vamp);
-        
+
         _popup.PopupEntity(Loc.GetString("vampiric-claws-remove-popup"), ent.Owner, args.User);
 
         QueueDel(ent);

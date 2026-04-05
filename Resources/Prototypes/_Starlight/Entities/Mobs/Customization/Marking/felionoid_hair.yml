@@ -60,7 +60,7 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/felionoid_hair.rsi
       state: mange_s
-      
+
 - type: marking
   id: FelionoidHairNights
   bodyPart: Hair

@@ -81,7 +81,7 @@
     reagents:
       - ReagentId: Laughter
         Quantity: 5
-  
+
 - type: entity
   parent: [ BaseMobClown, MobFleshJared ]
   id: MobClownJared

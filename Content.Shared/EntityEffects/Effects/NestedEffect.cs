@@ -17,16 +17,16 @@ public sealed partial class NestedEffect : EntityEffectBase<NestedEffect>
     private List<string> _conditions = new();
     private List<string> _effects = new();
 
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
     {
         var proto = prototype.Index(Proto);
         if (proto.GuidebookText is {} key)
-            return Loc.GetString(key, ("chance", Probability));
+            return loc.GetString(key, ("chance", Probability));
 
         _effects.Clear();
         foreach (var effect in proto.Effects)
         {
-            if (effect.EntityEffectGuidebookText(prototype, entSys) is not {} text)
+            if (effect.EntityEffectGuidebookText(prototype, entSys, loc) is not {} text) // Starlight
                 continue;
 
             // basically GuidebookReagentEffectDescription but independent of reagents and no linq
@@ -39,7 +39,7 @@ public sealed partial class NestedEffect : EntityEffectBase<NestedEffect>
                 }
             }
 
-            var desc = Loc.GetString("guidebook-nested-effect-description",
+            var desc = loc.GetString("guidebook-nested-effect-description",
                 ("effect", text),
                 ("chance", effect.Probability),
                 ("conditionCount", _conditions.Count),

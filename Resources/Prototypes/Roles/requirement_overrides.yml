@@ -228,14 +228,14 @@
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 25h #SL edit 15 -> 25
-      inverted: true 
+      inverted: true
     ResearchAssistant:
     - !type:OverallPlaytimeRequirement
       time: 5m
     - !type:DepartmentTimeRequirement
       department: Science
       time: 25h #SL edit 15 -> 25
-      inverted: true 
+      inverted: true
     Chaplain:
     - !type:OverallPlaytimeRequirement
       time: 0
