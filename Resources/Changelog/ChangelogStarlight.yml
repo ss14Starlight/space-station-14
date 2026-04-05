@@ -34782,15 +34782,6 @@ Entries:
   id: 377801
   time: '2026-03-18T18:51:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3778
-- author: Rinary, Neenner
-  changes:
-  - message: Added shoelaces for shoes.
-    type: Add
-  - message: Added ability to tie shoelaces together on shoes.
-    type: Add
-  id: 344501
-  time: '2026-03-18T19:39:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3445
 - author: Makeshift
   changes:
   - message: (Plasma) Departmental communication consoles.
