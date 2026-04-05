@@ -6,7 +6,7 @@
 
 - files: ["barratry.yml"]
   authors: Emogarbage, Scribbles0
- 
+
 - files: ["box.yml"]
   authors: ACJM, Emisse
 

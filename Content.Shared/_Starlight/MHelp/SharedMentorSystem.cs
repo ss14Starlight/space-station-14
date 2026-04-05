@@ -42,7 +42,7 @@ public abstract class SharedMentorSystem : EntitySystem
     {
         public Guid? Ticket { get; init; }
     }
-    
+
     [Serializable, NetSerializable]
     public sealed class MhelpTptoTicket() : EntityEventArgs
     {

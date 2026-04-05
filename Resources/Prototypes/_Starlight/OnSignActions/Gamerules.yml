@@ -2,7 +2,7 @@
   id: IonStormInfinite
   actions:
     - !type:ActionAddGamerules
-      rules: 
+      rules:
         - IonStorm
     - !type:ActionSetCharges
       charges: 1
@@ -12,5 +12,5 @@
   id: AddSecretRule
   actions:
     - !type:ActionAddGamerules
-      rules: 
+      rules:
         - Secret

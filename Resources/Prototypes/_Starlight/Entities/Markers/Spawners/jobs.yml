@@ -106,7 +106,7 @@
       - state: mailtech
       - state: jobicon
 
-- type: entity 
+- type: entity
   id: SpawnPointDutyOfficer
   parent: SpawnPointJobBase
   name: dutyofficer

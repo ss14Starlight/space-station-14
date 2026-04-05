@@ -116,7 +116,7 @@
     sprite: _Starlight/Clothing/Head/Hoods/wizard.rsi
     equipSound:
       collection: storageRustle
-    unequipSound: 
+    unequipSound:
       collection: storageRustle
   # - type: PointLight
   #   color: "#ffadfb"

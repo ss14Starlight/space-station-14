@@ -45,7 +45,7 @@ public sealed partial class ChangelingComponent : Component
     public bool StrainedMusclesActive = false;
 
     public bool IsInLesserForm = false;
-    
+
     public bool StealthEnabled = false;
 
     [DataField]

@@ -1,4 +1,5 @@
-﻿namespace Content.IntegrationTests;
+﻿using Content.IntegrationTests;
+using Content.IntegrationTests._Starlight.Patches;
 
 [SetUpFixture]
 public sealed class PoolManagerTestEventHandler
@@ -8,9 +9,17 @@ public sealed class PoolManagerTestEventHandler
     private static TimeSpan HardStopTimeLimit => MaximumTotalTestingTimeLimit.Add(TimeSpan.FromMinutes(1));
 
     [OneTimeSetUp]
-    public void Setup()
+    public async Task Setup()
     {
+        RsiLoadingPatch.Apply(); // Starlight
+
         PoolManager.Startup();
+
+        // Starlight start
+        var pair = await PoolManager.GetServerClient(new PoolSettings { Destructive = true });
+        await pair.DisposeAsync();
+        // Starlight end
+
         // If the tests seem to be stuck, we try to end it semi-nicely
         _ = Task.Delay(MaximumTotalTestingTimeLimit).ContinueWith(_ =>
         {
@@ -31,5 +40,7 @@ public sealed class PoolManagerTestEventHandler
     public void TearDown()
     {
         PoolManager.Shutdown();
+
+        RsiLoadingPatch.Unpatch(); // Starlight
     }
 }

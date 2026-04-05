@@ -100,7 +100,7 @@ public sealed class PryingSystem : EntitySystem
 
         // hand-prying is much slower
         var modifier = CompOrNull<PryingComponent>(user)?.SpeedModifier ?? unpoweredComp.PryModifier;
-        // Starlight change start: Adds capability for user to pry with "themselves" if they have the pry component, used for mech prying        
+        // Starlight change start: Adds capability for user to pry with "themselves" if they have the pry component, used for mech prying
 
         // user is tool if they have a prying component
         EntityUid? userAsTool = HasComp<PryingComponent>(user) ? user : null;

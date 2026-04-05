@@ -98368,13 +98368,8 @@ entities:
     - type: Transform
       pos: -0.5,-26.5
       parent: 2
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
-  - uid: 14206
-    components:
-    - type: Transform
-      pos: 27.5,-70.5
-      parent: 2
   - uid: 14207
     components:
     - type: Transform
@@ -98394,6 +98389,13 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-57.5
+      parent: 2
+- proto: SMESAdvanced
+  entities:
+  - uid: 14206
+    components:
+    - type: Transform
+      pos: 27.5,-70.5
       parent: 2
   - uid: 14211
     components:

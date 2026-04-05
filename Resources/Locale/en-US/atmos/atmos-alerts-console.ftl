@@ -16,9 +16,9 @@ atmos-alerts-window-total-mol-value = {$value} mol
 atmos-alerts-window-pressure-label = Pressure
 atmos-alerts-window-pressure-value = {$value} kPa
 atmos-alerts-window-oxygenation-label = Oxygenation
-atmos-alerts-window-oxygenation-value = {$value}% 
+atmos-alerts-window-oxygenation-value = {$value}%
 atmos-alerts-window-other-gases-label = Other present gases
-atmos-alerts-window-other-gases-value = {$shorthand} ({$value}%) 
+atmos-alerts-window-other-gases-value = {$shorthand} ({$value}%)
 atmos-alerts-window-other-gases-value-nil = None
 atmos-alerts-window-silence-alerts = Silence alerts from this alarm
 
