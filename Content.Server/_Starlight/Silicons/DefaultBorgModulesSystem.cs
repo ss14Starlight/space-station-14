@@ -13,18 +13,18 @@ public sealed class DefaultBorgModulesSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly BorgSystem _borg = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<DefaultBorgModulesComponent, MapInitEvent>(OnMapInit, after: [typeof(ContainerFillSystem)]);
     }
 
     private void OnMapInit(EntityUid uid, DefaultBorgModulesComponent comp, MapInitEvent ev)
     {
-        if (!TryComp<BorgChassisComponent>(uid, out var chassis) 
-            || !TryComp<ContainerManagerComponent>(uid, out var manager)) 
+        if (!TryComp<BorgChassisComponent>(uid, out var chassis)
+            || !TryComp<ContainerManagerComponent>(uid, out var manager))
             return;
         var xform = Transform(uid);
         // get existing protos

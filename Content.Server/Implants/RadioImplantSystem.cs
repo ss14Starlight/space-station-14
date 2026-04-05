@@ -33,7 +33,7 @@ public sealed class RadioImplantSystem : EntitySystem
         EnsureComp<IntrinsicRadioReceiverComponent>(args.Implanted);
 
         var intrinsicRadioTransmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(args.Implanted);
-        
+
         //Starlight begin
         foreach (var channel in
                  ent.Comp.RadioChannels.Where(channel => intrinsicRadioTransmitter.Channels.Add(channel)))
@@ -68,7 +68,7 @@ public sealed class RadioImplantSystem : EntitySystem
             {
                 RemCompDeferred<ActiveRadioComponent>(args.Implanted);
             }
-            
+
             Dirty(args.Implanted, activeRadioComponent); // Starlight
         }
 
@@ -81,7 +81,7 @@ public sealed class RadioImplantSystem : EntitySystem
         }
         Dirty(args.Implanted, radioTransmitterComponent); //Starlight
         ent.Comp.TransmitterAddedChannels.Clear();
-        
+
         //Starlight begin
         foreach (var channel in ent.Comp.TransmitterAddedCustomRadioChannels)
             radioTransmitterComponent.CustomChannels.Remove(channel);

@@ -60,7 +60,7 @@ public sealed partial class RatvarianLanguageSystem : SharedRatvarianLanguageSys
         _statusEffects.TryAddStatusEffect<RatvarianLanguageComponent>(uid, RatvarianKey, time, refresh, status);
     }
 
-    private void OnAccent(EntityUid uid, RatvarianLanguageComponent component, AccentGetEvent args) 
+    private void OnAccent(EntityUid uid, RatvarianLanguageComponent component, AccentGetEvent args)
         => args.Message.Text = Translate(args.Message.Text);
 
     private static string Translate(string message)

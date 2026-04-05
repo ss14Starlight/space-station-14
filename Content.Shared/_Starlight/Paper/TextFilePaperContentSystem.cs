@@ -14,7 +14,7 @@ public sealed class TextFilePaperContentSystem : EntitySystem
 
         SubscribeLocalEvent<TextFilePaperContentComponent, MapInitEvent>(OnTextFilePaperContentComponentInit, after: [typeof(PaperSystem)]);
     }
-    
+
     private void OnTextFilePaperContentComponentInit(Entity<TextFilePaperContentComponent> ent, ref MapInitEvent args)
     {
         if (!TryComp<PaperComponent>(ent, out var paperComp))

@@ -67,7 +67,7 @@
 
 - type: Tag
   id: BulletUnarmedCollide
-  
+
 - type: Tag
   id: BurnedTraitBackground
 
@@ -295,7 +295,7 @@
 
 - type: Tag
   id: Inedible # Prevents something from being eaten using DevourSystem, but only if on the direct target (e.g. doesn't apply if in inventory of target)
-  
+
 - type: Tag
   id: InsulatedFabric
 
@@ -320,10 +320,10 @@
 
 - type: Tag
   id: Locker
-  
+
 - type: Tag
   id: LabellerRefillPaper
-  
+
 - type: Tag
   id: LoneOpsUplink
 
@@ -423,7 +423,7 @@
 
 - type: Tag
   id: Nexus
-  
+
 - type: Tag
   id: NotLabelable
 
@@ -477,7 +477,7 @@
 
 - type: Tag
   id: RomerolDisasterSurvivorTraitBackground
-  
+
 - type: Tag
   id: ReflectiveArmorHelmet
     # Tag for reflective helmet, used for set bonus detection by ReflectiveSetBonusSystem

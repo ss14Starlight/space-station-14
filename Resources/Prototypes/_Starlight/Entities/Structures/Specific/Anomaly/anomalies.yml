@@ -33,13 +33,13 @@
           spawns:
             - TrashBananaPeel
             - FloorBananiumEntity
-        - settings: 
+        - settings:
             spawnOnPulse: true
             minAmount: 1
             maxAmount: 3
             maxRange: 4
           spawns:
-            - MobMonkey 
+            - MobMonkey
         - settings:
             spawnOnSuperCritical: true
             minAmount: 5

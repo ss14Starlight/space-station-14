@@ -91,7 +91,7 @@ public sealed class ThermalVisionSystem : SharedThermalVisionSystem
         if (!TryComp<ThermalVisionComponent>(uid, out var thermalVision) || !thermalVision.Active) return;
 
         if (_effect != null) return;
-        
+
         _overlayMan.AddOverlay(_throughWallsOverlay);
         _overlayMan.AddOverlay(_overlay);
         _effect = SpawnAttachedTo(thermalVision.EffectPrototype, Transform(uid).Coordinates);

@@ -22,7 +22,7 @@
                 <CheckBox Name="BwoinkSoundCheckBox" Text="{Loc 'ui-options-bwoink-sound'}" />
                 <CheckBox Name="RadioChimeMuteCheckBox" Text="{Loc 'ui-options-radio-chime-mute'}" /> <!--🌟Starlight🌟-->
 
-                
+
                 <Label Text="{Loc 'ui-options-tts-label'}"
                     StyleClasses="LabelKeyText"/>
                 <!--🌟Starlight🌟 start-->
