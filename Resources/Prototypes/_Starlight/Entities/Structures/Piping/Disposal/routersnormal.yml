@@ -1,9 +1,9 @@
 - type: entity
   id: DisposalRouterCommand
-  parent: DisposalRouter   
+  parent: DisposalRouter
   suffix: Command
   components:
-  - type: DisposalRouter   
+  - type: DisposalRouter
     degrees:
     - 0
     - -90

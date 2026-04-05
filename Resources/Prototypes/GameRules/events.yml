@@ -26,13 +26,13 @@
     - id: VentClog
     # Starlight Start
     - id: PsychicScreach
-    - id: SecurityDrill 
-    - id: DoorRuntime 
-    - id: RadStorm 
-    - id: AuroraCaelus 
-    - id: SpaceWhale 
-    - id: CommunicationBlackout 
-    - id: NightShift 
+    - id: SecurityDrill
+    - id: DoorRuntime
+    - id: RadStorm
+    - id: AuroraCaelus
+    - id: SpaceWhale
+    - id: CommunicationBlackout
+    - id: NightShift
     - id: SyndicateDeadDrop
     # Starlight End
 
@@ -80,7 +80,7 @@
       weight: 15
       children:
         - id: DerelictSyndicateAssaultCyborgSpawn
-    
+
 - type: entity
   id: BaseStationEvent
   parent: BaseGameRule
@@ -744,7 +744,7 @@
     weight: 2
     minimumPlayers: 25
     reoccurrenceDelay: 20
-    maxOccurrences: 2 
+    maxOccurrences: 2
   - type: GreytideVirusRule
     accessGroups:
     - Cargo

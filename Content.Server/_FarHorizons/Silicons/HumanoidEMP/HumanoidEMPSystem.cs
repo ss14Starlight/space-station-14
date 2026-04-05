@@ -32,7 +32,7 @@ public sealed partial class HumanoidEMPSystem : EntitySystem
     {
         if (args.Disabled || _timing.CurTime < ent.Comp.NextEffect)
             return;
-        
+
         ent.Comp.NextEffect = _timing.CurTime + ent.Comp.EffectCooldown;
 
         var effect = ent.Comp.Effect;
@@ -52,7 +52,7 @@ public sealed partial class HumanoidEMPSystem : EntitySystem
         foreach (var part in _body.GetBodyChildren(ent))
             if(TryComp<HumanoidEMPCompositeElementComponent>(part.Id, out var compositeElement))
                 composite += compositeElement.Effect;
-        
+
         foreach (var organ in _body.GetBodyOrgans(ent))
             if(TryComp<HumanoidEMPCompositeElementComponent>(organ.Id, out var compositeElement))
                 composite += compositeElement.Effect;
@@ -67,7 +67,7 @@ public sealed partial class HumanoidEMPSystem : EntitySystem
         _damageable.TryChangeDamage(ent, effect.DamageAmount);
         foreach (var statusEffect in effect.AdditionalEffects)
             _status.TryAddStatusEffectDuration(ent, statusEffect.Key, out _, statusEffect.Value);
-        
+
         _movementMod.TryAddMovementSpeedModDuration(ent, MovementModStatusSystem.FlashSlowdown, effect.SlowdownAmount, effect.WalkSpeedModifier, effect.SprintSpeedModifier);
         foreach (var hand in effect.DropItemsFrom)
             _hands.DoDrop(ent, hand);

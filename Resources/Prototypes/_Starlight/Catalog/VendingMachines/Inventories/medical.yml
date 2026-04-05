@@ -141,7 +141,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-  
+
 - type: listing
   id: VendorMobOrganHumanEyes
   productEntity: OrganHumanEyes
@@ -151,7 +151,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorLeftLegHuman
   productEntity: LeftLegWithFootHuman
@@ -161,7 +161,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorRightLegHuman
   productEntity: RightLegWithFootHuman
@@ -171,7 +171,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-      
+
 - type: listing
   id: VendorLeftFootHuman
   productEntity: LeftFootHuman
@@ -181,7 +181,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorRightFootHuman
   productEntity: RightFootHuman
@@ -201,7 +201,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorRightArmHuman
   productEntity: RightArmWithHandHuman
@@ -211,7 +211,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-      
+
 - type: listing
   id: VendorLeftHandHuman
   productEntity: LeftHandHuman
@@ -221,7 +221,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorRightHandHuman
   productEntity: RightHandHuman
@@ -307,7 +307,6 @@
     StrangePill: 2
     PillLead5: 1
 
-
 - type: vendingMachineInventory
   id: InterdyneCommercialInventory
   startingInventory:
@@ -334,3 +333,37 @@
     StrangePill: 1
     PillDesoxyephedrine5: 1
 
+#NanoMed Security
+
+- type: vendingMachineInventory
+  id: NanoMedSecurityInventory
+  startingInventory:
+    HandheldHealthAnalyzer: 3
+    BodyBagFolded: 5
+    Gauze: 5
+    Brutepack: 5
+    Ointment: 5
+    Bloodpack: 5
+    Tourniquet: 5
+    ChemistryBottleEpinephrine: 3
+    ChemistryBottleBicaridine: 1
+    ChemistryBottleBruizine: 1
+    ChemistryBottleDermaline: 1
+    ChemistryBottleDexalin: 1
+    ChemistryBottleDylovene: 1
+    Syringe: 3
+    PillCanisterTricordrazine: 2
+    PillCanisterIron: 1
+    PillCanisterCopper: 1
+    PillCanisterPotassiumIodide: 1
+    PillCanisterHyronalin: 1
+    PillCanisterCharcoal: 1
+    AutoMenderBruteFilled: 1
+    AutoMenderBurnFilled: 1
+  contrabandInventory:
+    PillCanisterRandom: 1
+    PowerCellSmall: 1
+    FoodSnackSwirlLollipop: 1
+  emaggedInventory:
+    OminousPill: 1
+    StrangePill: 1

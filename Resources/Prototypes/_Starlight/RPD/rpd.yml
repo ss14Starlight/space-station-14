@@ -5,7 +5,7 @@
   mode: ConstructObject
   prototype: GasPipeFourway
   cost: 1
-  delay: 0 
+  delay: 0
   rotation: User
   hasLayers: true
   fx: EffectRCDConstruct0
@@ -17,7 +17,7 @@
   mode: ConstructObject
   prototype: GasPipeStraight
   cost: 1
-  delay: 0 
+  delay: 0
   rotation: User
   hasLayers: true
   fx: EffectRCDConstruct0
@@ -41,7 +41,7 @@
   mode: ConstructObject
   prototype: GasPipeBend
   cost: 1
-  delay: 0 
+  delay: 0
   rotation: User
   hasLayers: true
   fx: EffectRCDConstruct0
@@ -53,7 +53,7 @@
   mode: ConstructObject
   prototype: GasPipeTJunction
   cost: 1
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   hasLayers: true
@@ -77,7 +77,7 @@
   mode: ConstructObject
   prototype: GasPressurePump
   cost: 4
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   hasLayers: true
@@ -90,7 +90,7 @@
   mode: ConstructObject
   prototype: GasVolumePump
   cost: 4
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   hasLayers: true
@@ -103,7 +103,7 @@
   mode: ConstructObject
   prototype: GasValve
   cost: 4
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   hasLayers: true
@@ -116,7 +116,7 @@
   mode: ConstructObject
   prototype: SignalControlledValve
   cost: 4
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   hasLayers: true
@@ -129,7 +129,7 @@
   mode: ConstructObject
   prototype: PressureControlledValve
   cost: 4
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   hasLayers: true
@@ -142,7 +142,7 @@
   mode: ConstructObject
   prototype: GasOutletInjector
   cost: 4
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   hasLayers: true
@@ -155,7 +155,7 @@
   mode: ConstructObject
   prototype: GasVentScrubber
   cost: 4
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   hasLayers: true
@@ -168,7 +168,7 @@
   mode: ConstructObject
   prototype: GasVentPump
   cost: 4
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   hasLayers: true
@@ -181,7 +181,7 @@
   mode: ConstructObject
   prototype: GasDualPortVentPump
   cost: 4
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   hasLayers: true
@@ -194,7 +194,7 @@
   mode: ConstructObject
   prototype: GasPassiveVent
   cost: 4
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   hasLayers: true
@@ -207,7 +207,7 @@
   mode: ConstructObject
   prototype: HeatExchanger
   cost: 3
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
@@ -220,7 +220,7 @@
   prototype: GasMixer
   mirrorPrototype: GasMixerFlipped
   cost: 4
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   hasLayers: true
@@ -234,7 +234,7 @@
   prototype: GasFilter
   mirrorPrototype: GasFilterFlipped
   cost: 3
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   hasLayers: true
@@ -247,7 +247,7 @@
   mode: ConstructObject
   prototype: GasPort
   cost: 3
-  delay: 0 
+  delay: 0
   collisionMask: Impassable
   rotation: User
   hasLayers: true

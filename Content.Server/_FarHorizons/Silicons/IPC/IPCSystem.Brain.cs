@@ -16,7 +16,7 @@ public sealed partial class IPCSystem
     protected override void SetupBrain()
     {
         base.SetupBrain();
-        
+
         SubscribeLocalEvent<IPCBrainHolderComponent, AfterInteractUsingEvent>(OnBrainInteractUsing);
         SubscribeLocalEvent<IPCBrainHolderComponent, EntInsertedIntoContainerMessage>(OnInserted);
         SubscribeLocalEvent<IPCBrainHolderComponent, EntRemovedFromContainerMessage>(OnRemoved);
@@ -24,13 +24,13 @@ public sealed partial class IPCSystem
         SubscribeLocalEvent<IPCBrainComponent, MindAddedMessage>(OnBrainMindAdded);
     }
 
-    private void OnBrainGibbed(Entity<IPCBrainHolderComponent> ent, ref BeingGibbedEvent args) => 
+    private void OnBrainGibbed(Entity<IPCBrainHolderComponent> ent, ref BeingGibbedEvent args) =>
         _container.EmptyContainer(ent.Comp.BrainContainerSlot);
 
     private void OnInserted(Entity<IPCBrainHolderComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
-        if (!HasComp<IPCBrainComponent>(args.Entity) || 
-            !_mind.TryGetMind(args.Entity, out var mindId, out var mind) || 
+        if (!HasComp<IPCBrainComponent>(args.Entity) ||
+            !_mind.TryGetMind(args.Entity, out var mindId, out var mind) ||
             args.Container != ent.Comp.BrainContainerSlot)
             return;
 
@@ -39,8 +39,8 @@ public sealed partial class IPCSystem
 
     private void OnRemoved(Entity<IPCBrainHolderComponent> ent, ref EntRemovedFromContainerMessage args)
     {
-        if (!HasComp<IPCBrainComponent>(args.Entity) || 
-            !_mind.TryGetMind(ent, out var mindId, out var mind) || 
+        if (!HasComp<IPCBrainComponent>(args.Entity) ||
+            !_mind.TryGetMind(ent, out var mindId, out var mind) ||
             args.Container != ent.Comp.BrainContainerSlot)
             return;
 

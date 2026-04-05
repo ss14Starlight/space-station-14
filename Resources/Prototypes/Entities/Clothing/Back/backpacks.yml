@@ -346,7 +346,7 @@
       - WhitelistChameleon
       - BibleThwackRemovable
   #endregion Starlight
-  
+
 
 - type: entity
   parent: ClothingBackpack

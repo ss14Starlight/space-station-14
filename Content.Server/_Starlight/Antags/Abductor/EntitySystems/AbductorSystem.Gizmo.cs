@@ -46,7 +46,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void OnGizmoInteract(Entity<AbductorGizmoComponent> ent, ref AfterInteractEvent args)
     {
-        if (!_actionBlockerSystem.CanInstrumentInteract(args.User, args.Used, args.Target) 
+        if (!_actionBlockerSystem.CanInstrumentInteract(args.User, args.Used, args.Target)
             || !args.Target.HasValue)
             return;
 

@@ -22,7 +22,7 @@ public sealed partial class CyberneticsPicker : Control
     private ItemList.Item? _selectedAvailableCybernetics;
     private ItemList.Item? _selectedInstalledCybernetics;
 
-    private readonly List<CyberneticImplant> CollectionAllCybernetics = []; 
+    private readonly List<CyberneticImplant> CollectionAllCybernetics = [];
     private List<CyberneticImplant> CollectionInstalledCybernetics = [];
     private readonly Dictionary<string, SpriteSpecifier.Rsi> CollectionAllIcons = [];
 
@@ -45,9 +45,9 @@ public sealed partial class CyberneticsPicker : Control
 
         _sprite = _entityManager.System<SpriteSystem>();
 
-        AvailableCybernetics.OnItemSelected += item => 
+        AvailableCybernetics.OnItemSelected += item =>
             _selectedAvailableCybernetics = AvailableCybernetics[item.ItemIndex];
-        InstalledCybernetics.OnItemSelected += item => 
+        InstalledCybernetics.OnItemSelected += item =>
             _selectedInstalledCybernetics = InstalledCybernetics[item.ItemIndex];
 
         Install.OnPressed += _ =>

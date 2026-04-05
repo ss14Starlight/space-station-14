@@ -14,7 +14,7 @@ public sealed class SlimeNameChangePotionBoundUserInterface : BoundUserInterface
     {
         IoCManager.InjectDependencies(this);
     }
-    
+
     protected override void Open()
     {
         base.Open();
