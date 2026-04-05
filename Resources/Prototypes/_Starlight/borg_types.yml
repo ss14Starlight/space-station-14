@@ -156,7 +156,7 @@
   - Command
   - Science
   - Law
-  
+
   addComponents:
   - type: Access
     groups:
