@@ -25,9 +25,6 @@
     - Recyclable
     - WhitelistChameleon
   - type: ProtectedFromStepTriggers
-  # Starlight-start
-  - type: ShoelaceTieable
-  # Starlight-end
 
 - type: entity
   abstract: true
