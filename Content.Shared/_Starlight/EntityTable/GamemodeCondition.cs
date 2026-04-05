@@ -19,7 +19,7 @@ public sealed partial class GamemodeCondition : EntityTableCondition
     /// </summary>
     [DataField(required: true)]
     public HashSet<string> Presets = [];
-    
+
     private GamemodeConditionSystem? _conditionSystem;
 
     protected override bool EvaluateImplementation(EntityTableSelector root, IEntityManager entMan, IPrototypeManager proto, EntityTableContext ctx)

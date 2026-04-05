@@ -125,7 +125,7 @@ public sealed partial class MindComponent : Component
     // 🌟Starlight🌟
     [DataField]
     public string? Voice;
-    
+
     // 🌟Starlight🌟
     [DataField]
     public string? SiliconVoice;

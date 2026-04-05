@@ -80,7 +80,7 @@ public sealed class RemoteEyeConsoleBui(EntityUid owner, Enum uiKey) : BoundUser
     private void RefreshUI()
     {
         if (_window == null || State is not RemoteEyeConsoleBuiState state)
-            return; 
+            return;
 
         _window.Separator.Color = state.Color;
         _window.Stations.DisposeAllChildren();

@@ -133,7 +133,7 @@
       - DoorBumpOpener
       - AnomalyHost
       - IPC
-      - SiliconEmotesFH 
+      - SiliconEmotesFH
   - type: Stamina
     staminaAlert: "IPCStamina"
   - type: Damageable
@@ -256,7 +256,7 @@
     defibDamage:
       types:
         Shock: 20 # It already does 5 shock to everyone, take that into account
-        Heat: 20 
+        Heat: 20
     damagedSound:
       params:
         loop: true

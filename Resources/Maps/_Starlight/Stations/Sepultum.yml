@@ -165705,6 +165705,23 @@ entities:
     - type: Transform
       pos: -35.5,-1.5
       parent: 2
+- proto: SMESBlue
+  entities:
+  - uid: 25746
+    components:
+    - type: Transform
+      pos: -19.5,100.5
+      parent: 2
+  - uid: 25747
+    components:
+    - type: Transform
+      pos: -17.5,100.5
+      parent: 2
+  - uid: 25748
+    components:
+    - type: Transform
+      pos: -19.5,99.5
+      parent: 2
 - proto: SMESAdvanced
   entities:
   - uid: 25743
@@ -165721,21 +165738,6 @@ entities:
     components:
     - type: Transform
       pos: -7.5,83.5
-      parent: 2
-  - uid: 25746
-    components:
-    - type: Transform
-      pos: -19.5,100.5
-      parent: 2
-  - uid: 25747
-    components:
-    - type: Transform
-      pos: -17.5,100.5
-      parent: 2
-  - uid: 25748
-    components:
-    - type: Transform
-      pos: -19.5,99.5
       parent: 2
   - uid: 25749
     components:
