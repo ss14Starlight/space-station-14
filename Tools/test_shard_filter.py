@@ -159,7 +159,6 @@ WEIGHT_OVERRIDES = {
     "StopHardCodingWidgetsJesusChristTest": 2.0,
     "StorageSizeArbitrageTest": 0.25,
     "TakeRoleAndReturn": 0.125,
-    "Test": 2.0,
     "TestAb": 0.5,
     "TestAddRemoveHasRoles": 2.0,
     "TestAlarmThreshold": 0.5,
@@ -267,31 +266,35 @@ def parse_tests(lines):
 
 
 def extract_classes(tests):
-    """Extract unique test fixture (class) names with test counts from FQN test names."""
+    """Extract unique test method groups with test counts from display names.
+
+    --list-tests outputs display names:
+      - Windows:  MethodName  or  MethodName(params)
+      - Linux:    FixtureName.MethodName  or  FixtureName.MethodName(params)
+
+    We always extract the METHOD name as the group key so behaviour is
+    consistent across platforms and the Name~ filter works everywhere.
+    """
     counts = {}
     for test in tests:
         name = test.split("(")[0].strip()
+        # If format is "Fixture.Method", take just the method part
         dot = name.rfind(".")
-        cls = name[:dot] if dot > 0 else name
-        counts[cls] = counts.get(cls, 0) + 1
+        method = name[dot + 1:] if dot > 0 else name
+        counts[method] = counts.get(method, 0) + 1
     return counts
 
 
-def build_filter(classes):
-    """Build a --filter expression from class names."""
-    if not classes:
+def build_filter(methods):
+    """Build a NUnit.Where expression from method names.
+
+    Uses NUnit Test Selection Language with exact method name matching.
+    This avoids substring issues (e.g. 'Test' matching 'TestConnect')
+    that plague VSTest Name~ filters.
+    """
+    if not methods:
         return ""
-    parts = []
-    for cls in sorted(classes):
-        if "." in cls:
-            # Namespaced class: trailing dot prevents prefix matches
-            # e.g. "Ns.Test." won't match "Ns.TestConnect.Method"
-            parts.append(f"FullyQualifiedName~{cls}.")
-        else:
-            # Short class name: surround with dots to match as exact class segment
-            # e.g. ".Test." won't match ".TestConnect." or ".FooTest."
-            parts.append(f"FullyQualifiedName~.{cls}.")
-    return " | ".join(parts)
+    return "||".join(f"method=='{m}'" for m in sorted(methods))
 
 
 def cmd_generate():
@@ -316,8 +319,7 @@ def cmd_generate():
 
     # Compute effective weight per class using overrides
     def class_weight(cls):
-        short_name = cls.rsplit(".", 1)[-1]
-        multiplier = WEIGHT_OVERRIDES.get(short_name, 1.0)
+        multiplier = WEIGHT_OVERRIDES.get(cls, 1.0)
         return class_counts[cls] * multiplier
 
     # Greedy load-balancing: assign heaviest classes first to least-loaded shard
@@ -352,10 +354,10 @@ def cmd_read():
         content = f.read().strip()
     if content:
         # Print human-readable class list to stderr
-        classes = [part.replace("FullyQualifiedName~", "").strip() for part in content.split("|")]
-        print(f"Running {len(classes)} test classes:", file=sys.stderr)
-        for cls in classes:
-            print(f"  - {cls}", file=sys.stderr)
+        methods = [part.replace("method==", "").strip("' ") for part in content.split("||")]
+        print(f"Running {len(methods)} test groups:", file=sys.stderr)
+        for m in methods:
+            print(f"  - {m}", file=sys.stderr)
         print(content)
 
 
