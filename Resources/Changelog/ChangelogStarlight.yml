@@ -36249,5 +36249,15 @@ Entries:
   id: 398601
   time: '2026-04-05T19:45:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3986
+- author: Conflee
+  changes:
+  - message: Added the NanoMed Security vending machine, to be mapped in Brig Medical
+      and has Medical and Security access. Contains the normal medical supplies, plus
+      body bags and small bottles of basic chems to give Brigmed a decent starting
+      supply for basic treatments until Chem is up and stocked.
+    type: Add
+  id: 399001
+  time: '2026-04-05T19:57:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3990
 Order: -1
 
