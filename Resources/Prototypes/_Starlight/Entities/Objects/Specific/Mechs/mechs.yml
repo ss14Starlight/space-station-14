@@ -150,7 +150,7 @@
   id: MechClarke
   parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
   name: Clarke
-  description: A fast-moving mech for space travel. It has built-in trusts.
+  description: A special-purpose mech for heavy-duty mining operations. Outfitted with treads for stable locomotion in hazardous terrain.
   components:
     - type: Sprite
       drawdepth: Mobs
