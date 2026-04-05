@@ -20,7 +20,7 @@ id-card-access-level-debug3 = Debug3
 id-card-access-level-debug4 = Debug4
 id-card-access-level-debug5 = Debug5
 
-id-card-access-level-commie = Commie
+id-card-access-level-communist = Communist
 
 id-card-access-level-salvagelead = Salvage Lead
 id-card-access-level-mining = Mining
@@ -29,3 +29,4 @@ id-card-access-level-mail = Mail
 id-card-access-level-solgov = SolGov
 
 id-card-access-level-pirate = Pirate
+id-card-access-level-blackstar = Blackstar
