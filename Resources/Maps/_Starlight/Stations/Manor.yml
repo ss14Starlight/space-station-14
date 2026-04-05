@@ -4,7 +4,7 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/22/2026 11:46:28
+  time: 03/24/2026 23:32:51
   entityCount: 32537
 maps:
 - 1
@@ -12030,7 +12030,7 @@ entities:
       pos: 1.5,-2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -76162.97
+      secondsUntilStateChange: -76298.586
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12137,7 +12137,7 @@ entities:
       pos: -52.5,58.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -102934.945
+      secondsUntilStateChange: -103070.56
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14034,7 +14034,7 @@ entities:
       pos: 18.5,53.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -276823.88
+      secondsUntilStateChange: -276959.5
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14645,7 +14645,7 @@ entities:
       pos: -61.5,49.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -132694.8
+      secondsUntilStateChange: -132830.4
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15081,8 +15081,6 @@ entities:
       pos: -43.5,42.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 5418
   - uid: 670
@@ -15096,8 +15094,6 @@ entities:
       pos: -43.5,38.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 15574
       - 5418
@@ -15987,8 +15983,6 @@ entities:
       pos: 33.5,12.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 13179
   - uid: 798
@@ -16226,8 +16220,6 @@ entities:
       pos: -10.5,60.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 2137
   - uid: 7039
@@ -16245,8 +16237,6 @@ entities:
       pos: -36.5,40.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 5418
   - uid: 15275
@@ -16453,8 +16443,6 @@ entities:
       pos: -75.5,10.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 22798
   - uid: 31906
@@ -16469,8 +16457,6 @@ entities:
       pos: -67.5,35.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 31944
 - proto: AirSensorVox
@@ -98644,8 +98630,6 @@ entities:
       pos: -9.5,60.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 27917
     components:
     - type: Transform
@@ -100953,7 +100937,7 @@ entities:
       pos: 66.5,41.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -29586.348
+      secondsUntilStateChange: -29721.963
       state: Closing
     - type: Firelock
       emergencyCloseCooldown: 11124.3888776
@@ -102404,7 +102388,7 @@ entities:
       pos: -27.5,81.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -17696.309
+      secondsUntilStateChange: -17831.924
       state: Closing
   - uid: 15903
     components:
@@ -139056,8 +139040,6 @@ entities:
     - type: AtmosPipeColor
       color: '#0335FCFF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 2137
   - uid: 6641
@@ -139352,8 +139334,6 @@ entities:
       pos: -43.5,39.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 5418
     - type: AtmosPipeColor
@@ -140519,8 +140499,6 @@ entities:
       pos: 33.5,10.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 13179
     - type: AtmosPipeColor
@@ -141503,8 +141481,6 @@ entities:
     - type: AtmosPipeColor
       color: '#0335FCFF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 31035
   - uid: 31942
@@ -141515,8 +141491,6 @@ entities:
     - type: AtmosPipeColor
       color: '#0335FCFF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 31944
   - uid: 32182
@@ -141668,8 +141642,6 @@ entities:
     - type: AtmosPipeColor
       color: '#FF1212FF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 2137
   - uid: 9195
@@ -141937,8 +141909,6 @@ entities:
       pos: -43.5,37.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 5418
     - type: AtmosPipeColor
@@ -142691,8 +142661,6 @@ entities:
       pos: 33.5,11.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 13179
     - type: AtmosPipeColor
@@ -143428,8 +143396,6 @@ entities:
     - type: AtmosPipeColor
       color: '#FF1212FF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 31944
   - uid: 32186
@@ -157129,43 +157095,6 @@ entities:
       content: >2-
 
         [italic][color=green]Do you like the station? [/italic]
-
-
-        ⠀⠀⠀⠀⠀⣀⣤⣶⣿⣿⣿⣿⣿⣿⣟⣿⣿⣟⣿⣲⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-
-        ⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-
-        ⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⢠⣶⣀⠀⠀⠀⠀
-
-        ⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⢻⣿⡥⣼⣿⣿⠀
-
-        ⢸⣿⣿⣿⣿⡿⠿⠿⠻⠿⠻⠿⣿⣿⣿⣿⣿⣟⣥⣶⣾⣶⣬⠻⣿⣧⠀⠀⠀⠙⣯⣿⠿⠃⠀
-
-        ⣾⣿⣿⣿⠏⢡⢔⣮⣽⡿⠿⡶⣄⠙⣿⣿⡏⣼⣿⠟⠁⠉⠙⠳⣼⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀
-
-        ⣿⣿⣿⡏⢐⣵⠋⠁⠀⠀⠀⠀⠀⠑⡀⣿⡿⢾⠋⣥⣠⡄⠀⠀⠀⣼⣿⠀⠀⢰⣦⣄⣠⠆⡄
-
-        ⢹⣿⣿⠀⢿⠀⠻⣿⠟⣀⡀⠀⠀⠀⠀⣿⣿⠀⠀⠈⠛⡥⠀⠀⠀⢰⣿⠀⠀⠀⠙⣿⣿⠟⠀
-
-        ⠈⣿⣿⡇⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⣸⣿⣧⠀⠀⠀⠀⠀⣤⠄⣰⠏⠀⠀⠀⠀⠀⠈⠀⠀
-
-        ⠀⠈⢿⣿⣆⠀⠀⠀⠀⠀⠀⠀⡶⢀⣾⣿⣻⣿⣦⣀⣀⣀⣴⣾⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-
-        ⠀⠀⠀⠉⠳⣯⣵⢦⡤⢤⡤⣶⣻⡿⣿⣿⣿⣭⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-
-        ⠀⢠⣤⣀⠀⠀⠈⠙⠛⠻⠿⠿⠿⠿⠿⠿⠟⠛⠉⠁⠀⠀⠀⠀⢰⣾⣿⡆⠀⠀⠀⠀⠀⠀⠀
-
-        ⠀⠸⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⡇⠀⠀⠀⠀⠀
-
-        ⠀⠀⣹⣿⣿⣧⣠⣤⣤⣴⣶⣖⣶⣤⣀⣰⣶⣶⣷⣿⣿⣿⣿⢿⣯⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀
-
-        ⠀⢰⣿⣿⣿⣿⣿⡿⣿⣿⣿⡷⣿⣿⡿⠹⠿⠿⠿⡿⣿⣿⣿⣿⣿⣿⣿⣷⡇⠀⠀⠀⠀⠀⠀
-
-        ⠀⢿⣿⣿⡿⣿⣿⣿⣷⣯⣔⠀⠀⠀⠀⠀⠀⠀⠀⣬⣿⣿⣿⣿⣿⣯⣿⣿⡇⠆⠀⠀⠀⠀⠀
-
-        ⠀⠀⠻⢿⡿⣿⣽⣿⣿⡟⡛⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⢿⣿⢿⣿⡯⠏⠅⠀⠀⠀⠀⠀
-
-        ⠀⠀⠀⠀⠉⠛⠿⠿⠏⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀
       editingDisabled: True
     - type: SolutionContainerManager
       solutions:
@@ -170310,24 +170239,18 @@ entities:
       pos: 72.5,16.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 25317
     components:
     - type: Transform
       pos: 73.5,16.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 26038
     components:
     - type: Transform
       pos: 71.5,16.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
 - proto: ShuttersWindowOpen
   entities:
   - uid: 25318
@@ -172599,6 +172522,13 @@ entities:
     - type: Transform
       pos: 41.5,40.5
       parent: 2
+- proto: SMESBlue
+  entities:
+  - uid: 31798
+    components:
+    - type: Transform
+      pos: -51.5,33.5
+      parent: 2
 - proto: SMESAdvanced
   entities:
   - uid: 13909
@@ -172652,11 +172582,6 @@ entities:
     components:
     - type: Transform
       pos: -51.5,34.5
-      parent: 2
-  - uid: 31798
-    components:
-    - type: Transform
-      pos: -51.5,33.5
       parent: 2
   - uid: 31807
     components:
@@ -181443,18 +181368,27 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -30.5,53.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - GenpopEnter
+      - - Security
   - uid: 29245
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -30.5,51.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - GenpopEnter
+      - - Security
 - proto: TurnstileGenpopLeave
   entities:
   - uid: 14612
     components:
     - type: Transform
-      pos: -30.5,49.5
+      rot: 1.5707963267948966 rad
+      pos: -30.5,54.5
       parent: 2
     - type: AccessReader
       accessListsOriginal:
@@ -181473,9 +181407,13 @@ entities:
   - uid: 28010
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -30.5,54.5
+      rot: 1.5707963267948966 rad
+      pos: -30.5,49.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - GenpopLeave
+      - - Security
 - proto: TwoWayLever
   entities:
   - uid: 26966

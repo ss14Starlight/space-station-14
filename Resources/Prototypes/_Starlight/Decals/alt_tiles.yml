@@ -104,18 +104,60 @@
     state: corner_4_white
 
 - type: decal
+  id: diagonalsteel1
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_1
+
+- type: decal
   id: diagonalsteel
   tags: ["station", "markings"]
   sprite:
     sprite: _Starlight/Decals/tiling.rsi
-    state: diagonal_steel
+    state: diagonal_steel_2
+
+- type: decal
+  id: diagonalsteel3
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_3
+
+- type: decal
+  id: diagonalsteel4
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_4
+
+- type: decal
+  id: diagonalsteelcorner1
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_corner_1
 
 - type: decal
   id: diagonalsteelcorner
   tags: ["station", "markings"]
   sprite:
     sprite: _Starlight/Decals/tiling.rsi
-    state: diagonal_steel_corner
+    state: diagonal_steel_corner_2
+
+- type: decal
+  id: diagonalsteelcorner3
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_corner_3
+
+- type: decal
+  id: diagonalsteelcorner4
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/tiling.rsi
+    state: diagonal_steel_corner_4
 
 - type: decal
   id: halfedark

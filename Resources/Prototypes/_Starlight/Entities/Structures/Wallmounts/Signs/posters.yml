@@ -468,3 +468,41 @@
     sprite: _Starlight/Structures/Wallmounts/posters/waffle.rsi
     state: waffle
 
+- type: entity
+  id: PosterLegit247
+  name: "24/7"
+  description: "Open 24 hours a spaceday, seven days a spaceweek!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/247.rsi
+    state: twentyfourseven
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitNanoTrasenFancy
+  name: "NanoTrasen"
+  description: "Made of the same cheap aluminium as all the other signs, but with a glossy finish!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/nt_fancy.rsi
+    state: nanotrasen_monke
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandThunderdome
+  name: "Thunderdome"
+  description: "Guaranteed bloodbath in the Thunderdooooooome!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/thunderdome.rsi
+    state: thunderdome_monke
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitPlasma
+  name: "Plasma and You"
+  description: "Espousing the life changing benefits of plasma. Fails to mention how flammable it is."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/plasma.rsi
+    state: plasma_monke

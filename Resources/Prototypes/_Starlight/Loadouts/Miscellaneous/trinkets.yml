@@ -649,3 +649,27 @@
   equipment:
     head: ClothingHeadHatTacticalMaidHeadband
   groupBy: "maid outfit"
+  
+- type: loadout
+  id: TreasureCoinIron
+  storage:
+    back:
+      - TreasureCoinIron
+
+- type: loadout
+  id: TreasureCoinSilver
+  storage:
+    back:
+      - TreasureCoinSilver
+
+- type: loadout
+  id: TreasureCoinGold
+  storage:
+    back:
+      - TreasureCoinGold
+
+- type: loadout
+  id: PictureFrame
+  storage: 
+    back: 
+      - PictureFrame

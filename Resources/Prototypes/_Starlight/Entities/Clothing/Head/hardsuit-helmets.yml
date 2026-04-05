@@ -71,7 +71,7 @@
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitNtrep
   categories: [ HideSpawnMenu ]
-  name: nanotrasen representative's hardsuit helmet
+  name: NanoTrasen representative's hardsuit helmet
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hardsuits/ntrep.rsi
@@ -553,7 +553,7 @@
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadWithLightAdvanced, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitNTSF
-  name: nanotrasen special forces hardsuit helmet
+  name: NanoTrasen special forces hardsuit helmet
   description: A robust helmet for special operations.
   components:
   - type: BreathMask

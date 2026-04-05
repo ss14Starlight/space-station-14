@@ -4,10 +4,8 @@
   placement:
     mode: SnapgridCenter
   components:
-  # Starlight-start
   - type: Pierceable
     level: Metal
-  # Starlight-end
   - type: Transform
     anchored: true
   - type: Clickable

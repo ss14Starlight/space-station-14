@@ -23,6 +23,7 @@
   icon: "JobIconERTLeader"
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  bypassEorPacification: true # Starlight
   accessGroups:
   - AllAccess
   access:
@@ -130,6 +131,7 @@
   icon: "JobIconERTChaplain"
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  bypassEorPacification: true # Starlight
   accessGroups:
   - AllAccess
   access:
@@ -214,6 +216,7 @@
   icon: "JobIconERTEngineer"
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  bypassEorPacification: true # Starlight
   accessGroups:
   - AllAccess
   access:
@@ -315,6 +318,7 @@
   icon: "JobIconERTSecurity"
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  bypassEorPacification: true # Starlight
   accessGroups:
   - AllAccess
   access:
@@ -516,6 +520,7 @@
   icon: "JobIconERTMedical" #Starlight
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  bypassEorPacification: true # Starlight
   accessGroups:
   - AllAccess
   access:
@@ -622,6 +627,7 @@
   icon: "JobIconERTJanitor"
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  bypassEorPacification: true # Starlight
   accessGroups:
   - AllAccess
   access:

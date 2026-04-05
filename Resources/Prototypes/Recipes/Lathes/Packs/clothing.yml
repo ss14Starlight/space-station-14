@@ -179,7 +179,7 @@
 - type: latheRecipePack
   id: WinterCoats
   recipes:
-  - ClothingOuterWinterCap
+  - ClothingOuterWinterCapUnarmored #SL Edit
   - ClothingOuterWinterCE
   - ClothingOuterWinterCMO
   - ClothingOuterWinterHoP

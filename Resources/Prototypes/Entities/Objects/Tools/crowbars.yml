@@ -45,12 +45,15 @@
     shape:
     - 0,0,0,1
   # 🌟Starlight-start🌟
-  - type: BoneSetter
   - type: SurgeryTool
+  - type: BoneSetter
     successRate: 0.4
     speed: 1.5
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
+  - type: CrowbarSurgery
+    startSound:
+      path: /Audio/Items/crowbar.ogg
   # 🌟Starlight-end🌟
 
 # Standard (grey) Crowbar
