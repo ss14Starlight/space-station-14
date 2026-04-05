@@ -41,7 +41,7 @@ public sealed partial class TraitCategory : BoxContainer
         UpdateStats();
     }
 
-    private void SetAccentColor(Color color) 
+    private void SetAccentColor(Color color)
         => AccentBar.PanelOverride = new StyleBoxFlat { BackgroundColor = color }; // dumb stylesheet modulation workaround
 
     private void PopulateTraits()
@@ -58,7 +58,7 @@ public sealed partial class TraitCategory : BoxContainer
         }
     }
 
-    private void OnTraitEntryToggled(ProtoId<TraitPrototype> traitId, bool selected) 
+    private void OnTraitEntryToggled(ProtoId<TraitPrototype> traitId, bool selected)
         => OnTraitToggled?.Invoke(traitId, selected);
 
     private void ToggleExpanded()
@@ -124,7 +124,7 @@ public sealed partial class TraitCategory : BoxContainer
     /// <summary>
     /// Gets the IDs of all currently selected traits in this category.
     /// </summary>
-    public IEnumerable<ProtoId<TraitPrototype>> GetSelectedTraitIds() 
+    public IEnumerable<ProtoId<TraitPrototype>> GetSelectedTraitIds()
         => _traitEntries
               .Where(kvp => kvp.Value.IsSelected)
               .Select(kvp => kvp.Key);
@@ -172,6 +172,6 @@ public sealed partial class TraitCategory : BoxContainer
     /// <summary>
     /// Checks if a trait in this category meets its conditions.
     /// </summary>
-    public bool TraitMeetsConditions(ProtoId<TraitPrototype> traitId) 
+    public bool TraitMeetsConditions(ProtoId<TraitPrototype> traitId)
         => _traitEntries.TryGetValue(traitId, out var entry) && entry.MeetsConditions;
 }

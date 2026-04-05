@@ -32,7 +32,7 @@ public sealed partial class BypassLockSystem : EntitySystem
     {
         if (target.Owner == args.User)
             return;
-        
+
         if (!_tool.HasQuality(args.Used, target.Comp.BypassingTool)
             || !_lock.IsLocked(target.Owner))
             return;

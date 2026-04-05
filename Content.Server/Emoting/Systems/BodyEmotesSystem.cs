@@ -46,7 +46,7 @@ public sealed class BodyEmotesSystem : EntitySystem
 
         return _chat.TryPlayEmoteSound(uid, sounds, emote);
     }
-    
+
     /// <summary>
     /// Starlight.
     ///
@@ -54,7 +54,7 @@ public sealed class BodyEmotesSystem : EntitySystem
     /// both "Vocal" and "Hands". By pure coincidence, this works out for the deathgasp sound (the only sound currently
     /// in the General category), which will play if you have either of those components.
     ///
-    /// But, if you don't have either of those, General emotes will never play. This method fixes that. 
+    /// But, if you don't have either of those, General emotes will never play. This method fixes that.
     /// </summary>
     /// <param name="uid"></param>
     /// <param name="emote"></param>

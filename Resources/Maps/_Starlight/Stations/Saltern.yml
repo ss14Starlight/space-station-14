@@ -56383,7 +56383,7 @@ entities:
     - type: Transform
       pos: -1.5,14.5
       parent: 2
-- proto: LockerBSOFilled
+- proto: LockerBlueshieldFilled
   entities:
   - uid: 8519
     components:
@@ -66399,22 +66399,30 @@ entities:
     - type: Transform
       pos: -15.5,1.5
       parent: 2
+- proto: SMESBlue
+  entities:
+  - uid: 9943
+    components:
+    - type: Transform
+      pos: 41.5,5.5
+      parent: 2
+    - type: Battery
+      maxCharge: 58000000
+      startingCharge: 58000000
+  - uid: 9944
+    components:
+    - type: Transform
+      pos: 42.5,5.5
+      parent: 2
+    - type: Battery
+      maxCharge: 58000000
+      startingCharge: 58000000
 - proto: SMESAdvanced
   entities:
   - uid: 9942
     components:
     - type: Transform
       pos: 55.5,4.5
-      parent: 2
-  - uid: 9943
-    components:
-    - type: Transform
-      pos: 41.5,5.5
-      parent: 2
-  - uid: 9944
-    components:
-    - type: Transform
-      pos: 42.5,5.5
       parent: 2
   - uid: 9945
     components:
@@ -66431,8 +66439,6 @@ entities:
     - type: Transform
       pos: -3.5,55.5
       parent: 2
-- proto: SMESBasic
-  entities:
   - uid: 9948
     components:
     - type: MetaData
@@ -66447,6 +66453,8 @@ entities:
     - type: Transform
       pos: 14.5,-28.5
       parent: 2
+- proto: SMESBasic
+  entities:
   - uid: 9950
     components:
     - type: MetaData

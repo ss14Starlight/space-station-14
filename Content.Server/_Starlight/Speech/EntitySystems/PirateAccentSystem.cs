@@ -52,6 +52,6 @@ public sealed partial class PirateAccentSystem : EntitySystem
         return message;
     }
 
-    private void OnAccentGet(EntityUid uid, PirateAccentComponent component, AccentGetEvent args) 
+    private void OnAccentGet(EntityUid uid, PirateAccentComponent component, AccentGetEvent args)
         => args.Message = Accentuate(args.Message, component);
 }

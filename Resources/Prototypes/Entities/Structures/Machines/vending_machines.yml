@@ -2397,7 +2397,7 @@
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
     - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"] 
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine # Starlight-edit: Vending Machine boards
     board: VendingMachineChemicalsSyndicateCircuitboard # Starlight-edit: Vending Machine boards, Starlight end
   - type: AccessReader

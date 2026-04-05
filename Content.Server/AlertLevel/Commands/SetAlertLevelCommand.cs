@@ -77,7 +77,7 @@ namespace Content.Server.AlertLevel.Commands
             _alertLevelSystem.SetLevel(stationUid.Value, level, true, true, true, locked);
             if (IsAdmemeAlert(stationUid.Value, level)) //Starlight
                 _autoLog.LogToDiscord(Loc.GetString("autolog-setalertlevel", ("level", level), ("locked", locked), ("admin", player.Name)), player.Name); //Starlight
-            
+
         }
 
         private string[] GetStationLevelNames(EntityUid station)
@@ -90,7 +90,7 @@ namespace Content.Server.AlertLevel.Commands
 
             return alertLevelComp.AlertLevels.Levels.Keys.ToArray();
         }
-        
+
         #region Starlight
         private bool IsAdmemeAlert(EntityUid station, string level)
         {
