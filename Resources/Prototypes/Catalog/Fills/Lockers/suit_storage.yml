@@ -237,6 +237,7 @@
 #HOS's hardsuit
 - type: entity
   id: SuitStorageHOS
+  categories: [ ShouldMapStation ] # Starlight
   parent: SuitStorageBase
   suffix: Head of Security
   components:
@@ -250,6 +251,7 @@
 #Warden's hardsuit
 - type: entity
   id: SuitStorageWarden
+  categories: [ ShouldMapStation ] # Starlight
   parent: SuitStorageBase
   suffix: Warden
   components:

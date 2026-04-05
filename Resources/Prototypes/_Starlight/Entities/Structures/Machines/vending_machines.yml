@@ -175,6 +175,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineSecurity
+  categories: [ ShouldMapStation ]
   name: security dispenser
   components:
   - type: AccessReader

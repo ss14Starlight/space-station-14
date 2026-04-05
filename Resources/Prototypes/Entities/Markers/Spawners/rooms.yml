@@ -2,6 +2,7 @@
 - type: entity
   parent: MarkerBase
   id: SpawnPointHeadOfSecurityWeapon
+  categories: [ ShouldMapStation ] # Starlight
   name: head of security weapon spawner
   components:
   - type: EntityTableSpawner

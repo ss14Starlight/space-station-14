@@ -1012,6 +1012,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineSec
+  categories: [ ShouldMapStation ] # Starlight
   name: SecTech
   description: A vending machine containing Security equipment. A label reads SECURITY PERSONNEL ONLY.
   components:
@@ -1053,6 +1054,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineSeedsUnlocked
+  categories: [ ShouldMapStation ] # Starlight
   name: MegaSeed Servitor
   description: For when you need seeds fast. Hands down the best seed selection on the station!
   suffix: Unlocked
@@ -1667,6 +1669,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineSecDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: SecDrobe
   description: A vending machine for security and security-related clothing!
   components:

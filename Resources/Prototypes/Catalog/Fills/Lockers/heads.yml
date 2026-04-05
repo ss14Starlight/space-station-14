@@ -480,6 +480,7 @@
 # No hardsuit locker
 - type: entity
   id: LockerHeadOfSecurityFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerHeadOfSecurity
   components:
