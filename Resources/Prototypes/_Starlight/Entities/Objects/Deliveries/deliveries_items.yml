@@ -16,6 +16,7 @@
           - NukeOperative
           - Traitor
           - Revolutionary
+          - SELFAgent
 
 - type: entity
   id: RRMailSyndicateSpamLetter
@@ -35,6 +36,7 @@
           - NukeOperative
           - Traitor
           - Revolutionary
+          - SELFAgent
 
 - type: entity
   id: MailSpamDontYouWantMore
@@ -56,12 +58,14 @@
           - NukeOperative
           - Traitor
           - Revolutionary
+          - SELFAgent
     - type: ObjectiveOnSign
       blacklist:
         components:
           - NukeOperative
           - Traitor
           - Revolutionary
+          - SELFAgent
       objectives:
         # thief collection objectives
         - HeadCloakStealCollectionObjective
@@ -190,6 +194,7 @@
           - Traitor
           - Revolutionary
           - MindShield
+          - SELFAgent
 
 - type: entity
   id: MailSovietSpamLetter50
@@ -212,6 +217,7 @@
           - Traitor
           - Revolutionary
           - MindShield
+          - SELFAgent
 
 - type: entity
   id: MailSovietSpamLetter25
@@ -234,6 +240,7 @@
           - Traitor
           - Revolutionary
           - MindShield
+          - SELFAgent
 
 #SELF
 - type: entity
@@ -255,3 +262,4 @@
           - NukeOperative
           - Traitor
           - Revolutionary
+          - SELFAgent
