@@ -129,13 +129,13 @@
     # Starlight start
     - BlueShield
     - Brigmedic
-    - Cadet 
+    - Cadet
     - Magistrate
     - Mining
     - Ntrep
     - Paramedic
     - Robotics
-    - SalvageLead 
+    - SalvageLead
     - Surgery
     # Starlight end
   - type: DeviceList

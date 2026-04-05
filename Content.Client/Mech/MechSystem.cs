@@ -24,7 +24,7 @@ public sealed class MechSystem : SharedMechSystem
     {
         if (args.Sprite == null)
             return;
-   
+
         if (!_sprite.TryGetLayer((uid, args.Sprite), MechVisualLayers.Base, out var _, false)) // Starlight change: Fixes mech visual sprites
             return;
 
@@ -40,10 +40,10 @@ public sealed class MechSystem : SharedMechSystem
             state = component.OpenState;
             drawDepth = DrawDepth.SmallMobs;
         }
-        
+
         if (args.Sprite.LayerMapTryGet(MechVisualLayers.Light, out var lightId) && args.Sprite.TryGetLayer(lightId, out var lightLayer) && _appearance.TryGetData<bool>(uid, MechVisuals.Light, out var light, args.Component))
             lightLayer.Visible = light;
-        
+
         if (args.Sprite.LayerMapTryGet(MechVisualLayers.Siren, out var sirenId) && args.Sprite.TryGetLayer(sirenId, out var sirenLayer) && _appearance.TryGetData<bool>(uid, MechVisuals.Siren, out var siren, args.Component))
             sirenLayer.Visible = siren;
 

@@ -24,7 +24,7 @@ public sealed class StationInitCommand : ToolshedCommand
     private static readonly string NoId = "You must set the ID of this station with stationinit:setid before you can initialize it.";
     private static readonly string NotGrid = "This entity is not a grid.";
     private static readonly string InvalidEntity = "This entity is either deleted or invalid.";
-    
+
     /// <summary>
     /// Mark the beginning of the chain, attaching BecomesStationMidRoundComponent to the piped grid.
     /// </summary>
@@ -208,75 +208,75 @@ public sealed class StationInitCommand : ToolshedCommand
     [CommandImplementation("begin")]
     public IEnumerable<EntityUid> Begin(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(x=>Begin(ctx ,x));
-    
+
     [CommandImplementation("setid")]
     public IEnumerable<EntityUid> SetId(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string id)
         => uid.Select(x=>SetId(ctx ,x, id));
-    
+
     [CommandImplementation("clearbaseprotos")]
     public IEnumerable<EntityUid> ClearBaseProtos(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(x=>ClearBaseProtos(ctx ,x));
-    
+
     [CommandImplementation("addbaseproto")]
     public IEnumerable<EntityUid> AddBaseProto(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, EntProtoId proto)
         => uid.Select(x=>AddBaseProto(ctx ,x, proto));
-    
+
     [CommandImplementation("rmbaseproto")]
     public IEnumerable<EntityUid> RmBaseProto(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, EntProtoId proto)
         => uid.Select(x=>RmBaseProto(ctx ,x, proto));
-    
+
     [CommandImplementation("setallowftl")]
     public IEnumerable<EntityUid> SetAllowFTL(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, bool allow)
         => uid.Select(x=>SetAllowFTL(ctx ,x, allow));
-    
+
     [CommandImplementation("setuseemergencyshuttle")]
     public IEnumerable<EntityUid> SetUseEmergencyShuttle(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, bool use)
         => uid.Select(x=>SetUseEmergencyShuttle(ctx ,x, use));
-    
+
     [CommandImplementation("setusearmories")]
     public IEnumerable<EntityUid> SetUseArmories(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, bool use)
         => uid.Select(x=>SetUseArmories(ctx ,x, use));
-    
+
     [CommandImplementation("setusearrivals")]
     public IEnumerable<EntityUid> SetUseArrivals(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, bool use)
         => uid.Select(x=>SetUseArrivals(ctx ,x, use));
-    
+
     [CommandImplementation("setallowdungeonspawns")]
     public IEnumerable<EntityUid> SetAllowDungeonSpawns(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, bool allow)
         => uid.Select(x=>SetAllowDungeonSpawns(ctx ,x, allow));
-    
+
     [CommandImplementation("setallowcargo")]
     public IEnumerable<EntityUid> SetAllowCargo(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, bool allow)
         => uid.Select(x=>SetAllowCargo(ctx ,x, allow));
-    
+
     [CommandImplementation("clearallowedgridspawns")]
     public IEnumerable<EntityUid> ClearAllowedGridSpawns(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(x=>ClearAllowedGridSpawns(ctx ,x));
-    
+
     [CommandImplementation("addallowedgridspawn")]
     public IEnumerable<EntityUid> AddAllowedGridSpawn(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string gridSpawnName)
         => uid.Select(x=>AddAllowedGridSpawn(ctx ,x, gridSpawnName));
-    
+
     [CommandImplementation("rmallowedgridspawn")]
     public IEnumerable<EntityUid> RmAllowedGridSpawn(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string gridSpawnName)
         => uid.Select(x=>RmAllowedGridSpawn(ctx ,x, gridSpawnName));
-    
+
     [CommandImplementation("setemergencyshuttlepath")]
     public IEnumerable<EntityUid> SetEmergencyShuttlePath(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string shuttlePath)
         => uid.Select(x=>SetEmergencyShuttlePath(ctx ,x, shuttlePath));
-    
+
     [CommandImplementation("clearjobs")]
     public IEnumerable<EntityUid> ClearJobs(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(x=>ClearJobs(ctx ,x));
-    
+
     [CommandImplementation("addjob")]
     public IEnumerable<EntityUid> AddJob(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, ProtoId<JobPrototype> job, int count)
         => uid.Select(x=>AddJob(ctx ,x, job, count));
-    
+
     [CommandImplementation("rmjob")]
     public IEnumerable<EntityUid> RmJob(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, ProtoId<JobPrototype> job)
         => uid.Select(x=>RmJob(ctx ,x, job));
-    
+
     [CommandImplementation("setallowevents")]
     public IEnumerable<EntityUid> SetAllowEvents(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, bool allow)
         => uid.Select(x=>SetAllowEvents(ctx ,x, allow));
@@ -284,11 +284,11 @@ public sealed class StationInitCommand : ToolshedCommand
     [CommandImplementation("namegrid")]
     public IEnumerable<EntityUid> NameGrid(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string name)
         => uid.Select(x => NameGrid(ctx, x, name));
-    
+
     [CommandImplementation("initialize")]
     public IEnumerable<EntityUid> Initialize(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(x=>Initialize(ctx ,x));
-    
+
     [CommandImplementation("initializeget")]
     public IEnumerable<EntityUid> InitializeGet(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(x=>InitializeGet(ctx ,x));
@@ -301,7 +301,7 @@ public sealed class StationInitCommand : ToolshedCommand
             ctx.WriteLine(InvalidEntity);
             return false;
         }
-        
+
         if (HasComp<StationMemberComponent>(uid))
         {
             ctx.WriteLine(AlreadyStation);
@@ -316,7 +316,7 @@ public sealed class StationInitCommand : ToolshedCommand
         _station ??= EntitySystemManager.GetEntitySystem<StationSystem>();
         return TryComp(uid, out comp);
     }
-    
+
     private bool EnsureId(IInvocationContext ctx, EntityUid uid, [NotNullWhen(true)] out BecomesStationMidRoundComponent? comp)
     {
         if (!EnsureWorkable(ctx, uid, out comp)) return false;

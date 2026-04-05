@@ -59,6 +59,11 @@ public sealed class LogLevelsWindow : DefaultWindow
         root.AddChild(scroll);
 
         Contents.AddChild(root);
+    }
+
+    protected override void Opened()
+    {
+        base.Opened();
         Rebuild();
     }
 

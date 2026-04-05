@@ -31,7 +31,7 @@
       params:
         volume: 1.0
         variation: 0.125
-  - type: InteractRestriction 
+  - type: InteractRestriction
     restrictInteractionTarget:
        whitelist:
         - IPC

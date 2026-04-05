@@ -27,11 +27,11 @@ public sealed partial class BodyComponent : Component
 
     [ViewVariables]
     public string RootPartSlot => RootContainer.ID;
-    
+
     [ViewVariables]
     [DataField, AutoNetworkedField]
     public string BloodType = "O+";
-    
+
     [ViewVariables]
     public static List<string> BloodTypeList = new List<string>()
     {

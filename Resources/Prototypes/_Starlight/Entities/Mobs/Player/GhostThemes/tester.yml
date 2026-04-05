@@ -10,8 +10,8 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TesterReq
-  
-    
+
+
 - type: ghostTheme
   id: Metroid
   name: Metroid

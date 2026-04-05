@@ -24,7 +24,7 @@
       - TRIESTEPORT.main
       - AFTERLIGHT.main
       - CLOVER.main
-    delta: 
+    delta:
       - STARLIGHT.alfa
       - STARLIGHT.beta
       - STARLIGHT.gamma

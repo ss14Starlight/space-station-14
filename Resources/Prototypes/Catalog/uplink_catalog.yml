@@ -1046,7 +1046,7 @@
     Telecrystal: 5
   categories:
   - UplinkDisruption
-    
+
 - type: listing
   id: UplinkRadioJammer
   name: uplink-radio-jammer-name

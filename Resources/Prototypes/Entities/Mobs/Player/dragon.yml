@@ -209,7 +209,7 @@
     - MinorAntagonists
   #region Starlight
   - type: Damageable
-    damageModifierSet: DragonResistances 
+    damageModifierSet: DragonResistances
   #endregion Starlight
 
 - type: entity

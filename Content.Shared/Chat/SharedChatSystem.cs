@@ -77,7 +77,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// Cache of the keycodes for faster lookup.
     /// </summary>
     private FrozenDictionary<char, RadioChannelPrototype> _keyCodes = default!;
-    
+
     private FrozenDictionary<char, CollectiveMindPrototype> _mindKeyCodes = default!;
 
     public override void Initialize()
@@ -100,7 +100,7 @@ public abstract partial class SharedChatSystem : EntitySystem
 
         if (obj.WasModified<EmotePrototype>())
             CacheEmotes();
-        
+
         if (obj.WasModified<CollectiveMindPrototype>()) // Starlight
             CacheCollectiveMinds(); // Starlight
     }
@@ -110,7 +110,7 @@ public abstract partial class SharedChatSystem : EntitySystem
         _keyCodes = _prototypeManager.EnumeratePrototypes<RadioChannelPrototype>()
             .ToFrozenDictionary(x => x.KeyCode);
     }
-    
+
     private void CacheCollectiveMinds()
     {
         _prototypeManager.PrototypesReloaded -= OnPrototypeReload;
@@ -232,7 +232,7 @@ public abstract partial class SharedChatSystem : EntitySystem
             //Starlight end
             return true;
         }
-        
+
         // Starlight begin
         var protoResult = TryGetChannelsFromKeyCode(source, channelKey, out var channelMatches);
         var customResult = TryGetCustomChannelsFromKeyCode(source, channelKey, out var customChannelMatches);
@@ -316,7 +316,7 @@ public abstract partial class SharedChatSystem : EntitySystem
                 return true;
             }
         }
-        
+
         if (!TryComp<IntrinsicRadioTransmitterComponent>(source, out var radio)) return false;
         foreach (var channel in radio.CustomChannels.Where(channel => channel.Id == channelId))
         {
@@ -339,7 +339,7 @@ public abstract partial class SharedChatSystem : EntitySystem
             customChannels.AddRange(radio.CustomChannels.Where(channel => channel.Keycode == keycode));
         return customChannels.Count > 0;
     }
-    
+
     private bool TryGetChannelsFromKeyCode(EntityUid source, char keycode,
         out List<RadioChannelPrototype> presentChannels)
     {
@@ -359,7 +359,7 @@ public abstract partial class SharedChatSystem : EntitySystem
         return presentChannels.Count > 0;
     }
     //Starlight end
-    
+
     public bool TryProccessCollectiveMindMessage(
         EntityUid source,
         string input,
@@ -409,7 +409,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     // Starlight start
     public string SanitizeMessageOfEvilCharacters(string message)
     {
-        
+
         foreach (char c in ICDisallowedCharacters)
         {
             message = message.Replace($"{c}", "");

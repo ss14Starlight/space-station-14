@@ -1,7 +1,7 @@
 # Reports
 
 doc-text-printer-report-morgue =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -25,7 +25,7 @@ doc-text-printer-report-morgue =
 
 
 doc-text-printer-report-station =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -53,7 +53,7 @@ doc-text-printer-report-station =
 
 
 doc-text-printer-report-on-elimination-of-violations =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -76,7 +76,7 @@ doc-text-printer-report-on-elimination-of-violations =
 
 
 doc-text-printer-report-department =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -105,7 +105,7 @@ doc-text-printer-report-department =
 
 
 doc-text-printer-report-employee-performance =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -115,7 +115,7 @@ doc-text-printer-report-employee-performance =
     ─────────────────────────────────────────
     Date and Time: [form]
     Document Compiler: [signature]
-   
+
     I, [signature], have completed the following work: [form]
 
     I hereby request that the result be accepted by the Head of the [form] Department.
@@ -125,7 +125,7 @@ doc-text-printer-report-employee-performance =
 
 
 doc-text-printer-report-on-the-chapters-meeting =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -191,7 +191,7 @@ doc-text-printer-internal-affairs-agents-report =
 
 
 doc-text-printer-condition-report =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -215,7 +215,7 @@ doc-text-printer-condition-report =
 
 
 doc-text-printer-object-investigation-report =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -241,7 +241,7 @@ doc-text-printer-object-investigation-report =
 
 
 doc-text-printer-experiment-report =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -270,7 +270,7 @@ doc-text-printer-experiment-report =
 
 
 doc-text-printer-disposal-report =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -295,7 +295,7 @@ doc-text-printer-disposal-report =
 
 
 doc-text-printer-arrest-report =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -329,7 +329,7 @@ doc-text-printer-arrest-report =
 # Statements
 
 doc-text-printer-statement-appointment-interim-chapter =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -349,7 +349,7 @@ doc-text-printer-statement-appointment-interim-chapter =
 
 
 doc-text-printer-employment-statement =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -376,7 +376,7 @@ doc-text-printer-employment-statement =
 
 
 doc-text-printer-resignation-statement =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -398,7 +398,7 @@ doc-text-printer-resignation-statement =
 
 
 doc-text-printer-access-request-statement =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -424,7 +424,7 @@ doc-text-printer-access-request-statement =
 
 
 doc-text-printer-equipment-request-statement =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -447,11 +447,11 @@ doc-text-printer-equipment-request-statement =
 
 
 
-   
+
 # InquiriesAndAppeals
-   
+
 doc-text-printer-invocation =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -474,7 +474,7 @@ doc-text-printer-invocation =
 
 
 doc-text-printer-evacuation-shuttle-request =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -497,7 +497,7 @@ doc-text-printer-evacuation-shuttle-request =
 
 
 doc-text-printer-shuttle-registration-request =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -524,7 +524,7 @@ doc-text-printer-shuttle-registration-request =
 
 
 doc-text-printer-request-call-centcomm-members =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -545,7 +545,7 @@ doc-text-printer-request-call-centcomm-members =
 
 
 doc-text-printer-request-establish-threat-level =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -566,7 +566,7 @@ doc-text-printer-request-establish-threat-level =
 
 
 doc-text-printer-request-change-salary =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -591,7 +591,7 @@ doc-text-printer-request-change-salary =
 
 
 doc-text-printer-request-for-non-listed-employment =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -620,7 +620,7 @@ doc-text-printer-request-for-non-listed-employment =
 
 
 doc-text-printer-request-for-promotion =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -647,7 +647,7 @@ doc-text-printer-request-for-promotion =
 
 
 doc-text-printer-request-documents =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -657,7 +657,7 @@ doc-text-printer-request-documents =
     ──────────────────────────────────────────
     Date and Time: [form]
     Document Compiler: [signature]
- 
+
     I, [signature], request a copy of the following document(s), in order to verify compliance with Standard Operating Procedures and/or Corporate Law.
 
     Documents sought:
@@ -672,7 +672,7 @@ doc-text-printer-request-documents =
 
 
 doc-text-printer-request-euthanasia =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -685,7 +685,7 @@ doc-text-printer-request-euthanasia =
 
     I, [signature], hereby request to be euthanized.
 
-    My desire for this is as follows: [form]. 
+    My desire for this is as follows: [form].
 
    ⠀[check] I am aware that this decision is irreversible and will affect compensation given to my next of kin.
 
@@ -704,7 +704,7 @@ doc-text-printer-request-euthanasia =
 
 
 doc-text-printer-request-construction-work =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -727,7 +727,7 @@ doc-text-printer-request-construction-work =
 
 
 doc-text-printer-request-modernization =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -751,7 +751,7 @@ doc-text-printer-request-modernization =
 
 
 doc-text-printer-request-ert =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -781,7 +781,7 @@ doc-text-printer-request-ert =
 
 
 doc-text-printer-product-order =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -805,11 +805,11 @@ doc-text-printer-product-order =
 
 
 
-   
+
 # Complaints
 
 doc-text-printer-complaint-violation-labor-rules =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -838,7 +838,7 @@ doc-text-printer-complaint-violation-labor-rules =
 
 
 doc-text-printer-offense-complaint =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -867,11 +867,11 @@ doc-text-printer-offense-complaint =
 
 
 
-   
+
 # Permissions
 
 doc-text-printer-permission-equipment =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -900,7 +900,7 @@ doc-text-printer-permission-equipment =
 
 
 doc-text-printer-search-permission =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -936,7 +936,7 @@ doc-text-printer-search-permission =
 
 
 doc-text-printer-permission-to-carry-weapons =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -965,7 +965,7 @@ doc-text-printer-permission-to-carry-weapons =
 
 
 doc-text-printer-permission-dispose-body =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -990,7 +990,7 @@ doc-text-printer-permission-dispose-body =
 
 
 doc-text-printer-construction-permit =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -1014,7 +1014,7 @@ doc-text-printer-construction-permit =
 
 
 doc-text-printer-surgery-consent-permit =
-    [logo]            [cclogo] 
+    [logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -1050,7 +1050,7 @@ doc-text-printer-surgery-consent-permit =
 
 
 doc-text-printer-art-permit =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -1060,24 +1060,24 @@ doc-text-printer-art-permit =
     ────────────────────────────────────────
     Date And Time:[color=#0000ff] [form] [/color]
     Document Compiler:[color=#0000ff] [form] [/color]
-    
+
     I, [bolditalic][color=#0000ff] [signature] [/color][/bolditalic], hereby approve the creation of the following work of art in the location given below.
-    
+
     Subject of the artpiece:[color=#0000ff] [form] [/color]
     Location of the artpiece:[color=#0000ff] [form] [/color] [italic][color=#a9a9a9]
-    
+
     Art permits require a stamp from the Head of Personnel, the NanoTrasen Representative, or the Captain. If an artwork is located inside of a department or at its lobby the stamp of the relevant head of staff is required as well.
-    
+
     Any artwork that requires significant modification to the station's structure may also require the stamp of the Chief Engineer.[/color][/italic]
-    
+
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
-   
+
 # OrdersAndInstructions
 
 doc-text-printer-dismissal-order =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -1102,7 +1102,7 @@ doc-text-printer-dismissal-order =
 
 
 doc-text-printer-access-revocation-order =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -1129,7 +1129,7 @@ doc-text-printer-access-revocation-order =
 
 
 doc-text-printer-incentive-order =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -1160,7 +1160,7 @@ doc-text-printer-incentive-order =
 
 
 doc-text-printer-prisoner-parole-order =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -1189,7 +1189,7 @@ doc-text-printer-prisoner-parole-order =
 
 
 doc-text-printer-order-recognizing-reasonableness-creature =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -1216,7 +1216,7 @@ doc-text-printer-order-recognizing-reasonableness-creature =
 
 
 doc-text-printer-medical-intervention-order =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -1245,7 +1245,7 @@ doc-text-printer-medical-intervention-order =
 
 
 doc-text-printer-execution-dnr-order =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -1279,7 +1279,7 @@ doc-text-printer-execution-dnr-order =
 # Communications
 
 doc-text-printer-centcomm-communication =
-   ⠀[logo]            [cclogo] 
+   ⠀[logo]            [cclogo]
 
                              [head=3]NT-CC Consortium Services[/head]
 
@@ -1301,7 +1301,7 @@ doc-text-printer-centcomm-communication =
 
 
 doc-text-printer-salvagelead-report =
-    ⠀[logo]            [cclogo] 
+    ⠀[logo]            [cclogo]
 
                               [head=3]NT-CC Consortium Services[/head]
 
