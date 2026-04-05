@@ -381,6 +381,31 @@
   - type: AccessReader
     access: [["Medical"], ["SyndicateAgent"]]
 
+- type: entity
+  parent: VendingMachineMedicalBase
+  id: VendingMachineMedicalSecurity
+  name: NanoMed Security
+  description: It's a medical drug dispenser. Natural chemicals only!
+  components:
+  - type: VendingMachine
+    pack: NanoMedSecurityInventory
+    offState: off
+    showPrices: false  # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineMedicalCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/medical_sec.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"], ["Security"]]
+
 # Wallmounts
 - type: entity
   parent: VendingMachineWallmount
@@ -988,3 +1013,11 @@
   suffix: Empty
   components:
     - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMedicalSecurity
+  id: VendingMachineMedicalSecurityEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
