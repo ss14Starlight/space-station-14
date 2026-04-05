@@ -7,13 +7,13 @@ public sealed class SlimeExtractEnhancerPotionSystem : EntitySystem
 {
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<SlimeExtractEnhancerPotionComponent, AfterInteractEvent>(OnAfterInteract);
     }
-    
+
     private void OnAfterInteract(Entity<SlimeExtractEnhancerPotionComponent> ent, ref AfterInteractEvent args)
     {
         if (!args.Target.HasValue || !args.CanReach) return;

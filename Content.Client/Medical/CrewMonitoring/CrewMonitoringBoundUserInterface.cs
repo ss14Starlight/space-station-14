@@ -16,7 +16,7 @@ public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
 
     [ViewVariables]
     private CrewMonitoringWindow? _menu;
-    
+
     private TimeSpan _lastOpened = TimeSpan.Zero; // Starlight
 
     public CrewMonitoringBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)

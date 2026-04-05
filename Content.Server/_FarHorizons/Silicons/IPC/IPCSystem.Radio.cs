@@ -9,7 +9,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._FarHorizons.Silicons.IPC;
 
-public sealed partial class IPCSystem 
+public sealed partial class IPCSystem
 {
     protected override void SetupRadio()
     {
@@ -42,7 +42,7 @@ public sealed partial class IPCSystem
     {
         if (ent.Comp.CopyHeadsetKeys)
             CopyHeadsetKeys(ent);
-        
+
         if (ent.Comp.RemoveHeadsetOnRoundstart)
             RemoveHeadset(ent);
     }
@@ -71,7 +71,7 @@ public sealed partial class IPCSystem
         foreach (var item in headset.ContainedEntities){
             if (!TryComp<EncryptionKeyComponent>(item, out var key))
                 continue;
-            
+
             SpawnInContainerOrDrop(Prototype(item)?.ID, ent, ent.Comp.EncryptionKeysContainerID);
         }
     }

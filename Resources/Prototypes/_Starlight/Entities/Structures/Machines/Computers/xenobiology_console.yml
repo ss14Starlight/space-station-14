@@ -24,11 +24,12 @@
           state: slime_key
         - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
           state: generic_panel_open
+  # Starlight Start - Immersive Lighting PR
     - type: PointLight
-      enabled: true
-      radius: 1.5
-      energy: 1.6
-      color: "#FC0097"
+      radius: 2.5
+      energy: 1.5
+      color: "#c24fa1"
+  # Starlight End
     - type: Animateable
     - type: ContainerContainer
     - type: RemoteEyeConsole

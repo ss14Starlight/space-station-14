@@ -7,7 +7,7 @@
   roles:
   - Magistrate
   - IAA
-  
+
 - type: department
   id: Representatives
   name: department-Representatives

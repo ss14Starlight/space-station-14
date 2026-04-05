@@ -445,7 +445,7 @@
 - type: entity
   parent: [ClothingHeadBase, BaseCentcommContraband]
   id: ClothingHeadHatCCberet
-  name: centcomm beret
+  name: CentComm beret
   description: a green beret, like any other beret but green and you can't have it.
   components:
     - type: Sprite

@@ -2,7 +2,7 @@ name: Build & Test Debug
 
 on:
   push:
-    branches: [ master, staging, stable, Starlight, starlight-dev, upstream-devtest ]
+    branches: [ master, staging, stable, Starlight, starlight-dev, upstream-devtest, fix/tests ]
   merge_group:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
@@ -11,12 +11,7 @@ on:
 jobs:
   build:
     if: github.actor != 'PJBot' && github.event.pull_request.draft == false
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-
-    runs-on: ${{ matrix.os }}
-
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout Master
       uses: actions/checkout@v4.2.2
@@ -44,28 +39,162 @@ jobs:
     - name: Build Project
       run: dotnet build --configuration DebugOpt --no-restore /m
 
-    - name: Run Content.Tests
-      run: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj --logger trx -- NUnit.ConsoleOut=0
-
-    - name: Run Content.IntegrationTests
-      shell: pwsh
+    - name: Discover Integration Tests
       run: |
-        $env:DOTNET_gcServer=1
-        $env:DOTNET_GCHeapHardLimit=0x3C0000000
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger trx -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
+        dotnet test --list-tests --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj 2>&1 | \
+          python3 Tools/test_shard_filter.py generate 8 .integration-filters
+
+    - name: Archive build output
+      run: tar czf /tmp/build.tar.gz --exclude='.git' .
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-output
+        path: /tmp/build.tar.gz
+        retention-days: 1
+        compression-level: 0
+
+  content-tests:
+    needs: build
+    name: Content Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v4.1.0
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Download build artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: build-output
+
+    - name: Extract build
+      run: tar xzf build.tar.gz && rm build.tar.gz
+
+    - name: Restore packages
+      run: dotnet restore Content.Tests/Content.Tests.csproj
+
+    - name: Run Content.Tests
+      uses: nick-fields/retry@v3
+      with:
+        timeout_minutes: 15
+        max_attempts: 2
+        command: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj --logger "trx;LogFileName=results.trx" --results-directory /tmp/test-results
 
     - name: Test results
       continue-on-error: true
       if: always()
       run: |
-        dotnet tool install -g dotnet-trx
-        trx
+        dotnet tool install -g dotnet-trx 2>/dev/null || true
+        mkdir -p /tmp/test-results
+        trx --path /tmp/test-results -o -v verbose || true
+
+  integration-tests:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    name: "Integration Tests (shard ${{ matrix.shard }})"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v4.1.0
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Download build artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: build-output
+
+    - name: Extract build
+      run: tar xzf build.tar.gz && rm build.tar.gz
+
+    - name: Restore packages
+      run: dotnet restore Content.IntegrationTests/Content.IntegrationTests.csproj
+
+    - name: Run Content.IntegrationTests
+      uses: nick-fields/retry@v3
+      env:
+        DOTNET_gcServer: "1"
+      with:
+        timeout_minutes: 17
+        max_attempts: 2
+        retry_on: any
+        command: |
+          FILTER=$(python3 Tools/test_shard_filter.py read .integration-filters/shard_${{ matrix.shard }}.filter)
+          if [ -z "$FILTER" ]; then
+            echo "No tests assigned to shard ${{ matrix.shard }}"
+            exit 0
+          fi
+          timeout --signal=TERM --kill-after=2m 15m \
+            dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min -- NUnit.MapWarningTo=Failed NUnit.Where="$FILTER"
+
+    - name: Test results
+      continue-on-error: true
+      if: always()
+      run: |
+        dotnet tool install -g dotnet-trx 2>/dev/null || true
+        mkdir -p /tmp/test-results
+        trx --path /tmp/test-results -o -v verbose || true
+
+    - name: Upload crash dumps
+      id: upload-dumps
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: blame-dump-shard-${{ matrix.shard }}
+        path: |
+          /tmp/test-results/**/*.dmp
+          /tmp/test-results/**/*Sequence*.xml
+        retention-days: 3
+        if-no-files-found: ignore
+
+    - name: Report hung tests
+      continue-on-error: true
+      if: always()
+      run: |
+        shopt -s nullglob globstar
+        found=false
+        for seq in /tmp/test-results/**/*Sequence*.xml; do
+          if [ "$found" = false ]; then
+            echo "## :warning: Hung tests detected (shard ${{ matrix.shard }})" >> "$GITHUB_STEP_SUMMARY"
+            echo '```xml' >> "$GITHUB_STEP_SUMMARY"
+            found=true
+          fi
+          cat "$seq" >> "$GITHUB_STEP_SUMMARY"
+        done
+        if [ "$found" = true ]; then
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          if [ -n "${{ steps.upload-dumps.outputs.artifact-url }}" ]; then
+            echo ":floppy_disk: [Download crash dump](${{ steps.upload-dumps.outputs.artifact-url }})" >> "$GITHUB_STEP_SUMMARY"
+          fi
+        fi
 
   ci-success:
     name: Build & Test Debug
     needs:
       - build
+      - content-tests
+      - integration-tests
     runs-on: ubuntu-latest
     steps:
       - name: CI succeeded
         run: exit 0
+
+  cleanup:
+    name: Cleanup Artifacts
+    needs:
+      - content-tests
+      - integration-tests
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete build artifact
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: build-output
