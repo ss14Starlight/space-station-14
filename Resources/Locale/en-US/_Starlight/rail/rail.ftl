@@ -34,7 +34,7 @@ rail-open-delivery-task = Open {$Amount} pieces of mail.
 
 rr-apple-pie = Apple pie
 rr-apple-pie-desc = Rumor has it this station has the best apple pies in the galaxy. That’s definitely worth checking out.
-                    
+
 rr-dumplings = Dumplings
 rr-dumplings-desc = Can you imagine? Pierogi. With meat. I didn’t know I needed that until now.
 
@@ -441,3 +441,6 @@ rr-brighteye-backup-desc = We will need help for our next move...
 
 rr-brighteye-darkstation = Dark Station
 rr-brighteye-darkstation-desc = Let the dark consume the station and all the lightwalkers with it.
+
+rr-brighteye-steal-secureknowledge = Hear no evil
+rr-brighteye-steal-secureknowledge-desc = This is a threat... We must remove that information from the lightwalkers hands.

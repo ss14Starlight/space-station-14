@@ -13,16 +13,6 @@
   copyright: "By lukeman for Afterlight"
   source: "https://www.bfxr.net/"
 
-- files: ["squeek.ogg"]
-  license: "CC0-1.0"
-  copyright: "Rabbit sounds by u_51wf53qyw2 on Pixabay"
-  source: "https://pixabay.com/sound-effects/rabbit-sounds-358172/"
-
-- files: ["sniff.ogg"]
-  license: "CC0-1.0"
-  copyright: "Rabbit sounds by u_51wf53qyw2 on Pixabay"
-  source: "https://pixabay.com/sound-effects/rabbit-sounds-358172/"
-
 - files: ["scream1.ogg"]
   license: "CC0-1.0"
   copyright: "Rabbit snarls and growls by kessir"
@@ -77,7 +67,7 @@
   license: "CC0-1.0"
   copyright: "bunny sneeze by lucyve"
   source: "https://quicksounds.com/sound/4076/new-zealand-white-rabbit-squealing"
-  
+
 - files: ["squeak2.ogg"]
   license: "CC0-1.0"
   copyright: "bunny sneeze by lucyve"

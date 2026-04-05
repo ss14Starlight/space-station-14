@@ -7,6 +7,7 @@ spellbook-event-summon-cheese-description = Reach into the void and pluck out...
 spellbook-event-tower-babel-name = Language Shift
 spellbook-event-tower-babel-description = Can you Repeat that? Randomizes everything's languages! Has to be cast on station. Disables refunds.
 action-speech-spell-babel = Ya' Ni Lau' Re el
+action-speech-spell-babel-tts = Yare Ni, Laure Real
 
 tower-of-babel-shifted = Your tongue becomes twisted
 tower-of-babel-returned = Your tongue settles back into place

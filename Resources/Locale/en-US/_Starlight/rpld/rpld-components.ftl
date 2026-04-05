@@ -1,2 +1,3 @@
 rpld-component-ducts = Plumbing Ducts
-rpld-component-machines = Plumbing Machines
+rpld-component-supply = Plumbing Supply
+rpld-component-production = Plumbing Production

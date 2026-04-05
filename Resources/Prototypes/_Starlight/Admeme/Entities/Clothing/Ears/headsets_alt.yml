@@ -1,0 +1,18 @@
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseCentcommContraband]
+  id: ClothingHeadsetAltNTNC
+  name: ntnc headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommand
+      - EncryptionKeyCommon
+      - EncryptionKeySecurity
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Ears/Headsets/ntnc.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Ears/Headsets/ntnc.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/cc.ogg

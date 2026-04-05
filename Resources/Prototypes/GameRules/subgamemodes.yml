@@ -23,7 +23,7 @@
     definitions:
     - prefRoles: [ Thief ]
       max: 6 # Starlight
-      playerRatio: 26 # Starlight. Beta has low sec, so we're going to allow the scaling to take a thief from them anyways, to scale Alpha better.
+      playerRatio: 21 # Starlight. Tweaks thief scaling a little, so that Beta can still have 3 but Alpha requires 126 instead of 120 for 6 thieves. (To account for the 6 thieves.) Also needed since it's a Ninja requirement now.
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
@@ -105,8 +105,7 @@
       briefing:
         text: wizard-role-greeting
         color: Turquoise
-        # TODO: Need Wizard Start sound
-        #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
       startingGear: WizardBlueGear
       # TODO: WizardComp as needed
       components:

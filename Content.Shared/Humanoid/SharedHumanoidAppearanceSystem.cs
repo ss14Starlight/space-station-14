@@ -460,6 +460,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             return;
         }
 
+        if (!humanoid.AllowProfileOverride) return; //Starlight
+
         SaveBaseProfile((uid, humanoid), profile);
 
         SetSpecies(uid, profile.Species, false, humanoid);

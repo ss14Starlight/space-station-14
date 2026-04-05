@@ -1,0 +1,29 @@
+- type: entity
+  name: changeling target
+  id: TargetChangeling
+  parent: BaseTarget
+  description: A shooting target. This one is a changeling.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/targets.rsi
+    state: changeling
+
+- type: entity
+  name: tider target
+  id: TargetTider
+  parent: BaseTarget
+  description: A shooting target. This one is a tider- better lethal it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/targets.rsi
+    state: tider
+
+- type: entity
+  name: wizard target
+  id: TargetWizard
+  parent: BaseTarget
+  description: A shooting target. This one is a wizard.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/targets.rsi
+    state: wizard

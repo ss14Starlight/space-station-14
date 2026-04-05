@@ -1,0 +1,653 @@
+# Base Markings
+
+- type: marking
+  id: AvaliEarsBase
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  followSkinColor: true
+  forcedColoring: true
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: ears_avalibase_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: ears_avalibase_secondary
+
+- type: marking
+  id: AvaliTailBase
+  bodyPart: Tail
+  markingCategory: Tail
+  followSkinColor: true
+  forcedColoring: true
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: tail_avalibase
+
+# Stripe one
+
+- type: marking
+  id: AvaliEarsStripeOne
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: ears_avalibase_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: ears_top_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: ears_top_secondary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: ears_avalibase_secondary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: ears_bottom_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: ears_bottom_secondary
+
+- type: marking
+  id: AvaliHeadStripeOne
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: head_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: head_secondary
+
+- type: marking
+  id: AvaliTorsoStripeOne
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: torso_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: torso_secondary
+
+- type: marking
+  id: AvaliLArmStripeOne
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: larm_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: larm_secondary
+
+- type: marking
+  id: AvaliRArmStripeOne
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: rarm_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: rarm_secondary
+
+- type: marking
+  id: AvaliLHandStripeOne
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: lhand_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: lhand_secondary
+
+- type: marking
+  id: AvaliRHandStripeOne
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: rhand_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: rhand_secondary
+
+- type: marking
+  id: AvaliLLegStripeOne
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: lleg
+
+- type: marking
+  id: AvaliRLegStripeOne
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: rleg
+
+- type: marking
+  id: AvaliTailStripeOne
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: tail_avalibase
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: tail_avali_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_stripes_one.rsi
+    state: tail_avali_secondary
+
+# Trim one
+
+- type: marking
+  id: AvaliEarsTrimOne
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: ears_avalibase_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: ears_top_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: ears_top_secondary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: ears_avalibase_secondary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: ears_bottom_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: ears_bottom_secondary
+
+- type: marking
+  id: AvaliHeadTrimOne
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: head_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: head_secondary
+
+- type: marking
+  id: AvaliTorsoTrimOne
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: torso_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: torso_secondary
+
+- type: marking
+  id: AvaliLArmTrimOne
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: larm_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: larm_secondary
+
+- type: marking
+  id: AvaliRArmTrimOne
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: rarm_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: rarm_secondary
+
+- type: marking
+  id: AvaliRHandTrimOne
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: rhand_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: rhand_secondary
+
+- type: marking
+  id: AvaliLHandTrimOne
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: lhand_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: lhand_secondary
+
+- type: marking
+  id: AvaliLLegTrimOne
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: lleg_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: lleg_secondary
+
+- type: marking
+  id: AvaliRLegTrimOne
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: rleg_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: rleg_secondary
+
+- type: marking
+  id: AvaliTailTrimOne
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: tail_avalibase
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: tail_avali_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_one.rsi
+    state: tail_avali_secondary
+
+# Trim two
+
+- type: marking
+  id: AvaliEarsTrimTwo
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: ears_avalibase_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: ears_top_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: ears_top_secondary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: ears_avalibase_secondary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: ears_bottom_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: ears_bottom_secondary
+
+- type: marking
+  id: AvaliHeadTrimTwo
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: head_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: head_secondary
+
+- type: marking
+  id: AvaliTorsoTrimTwo
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: torso_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: torso_secondary
+
+- type: marking
+  id: AvaliLArmTrimTwo
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: larm_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: larm_secondary
+
+- type: marking
+  id: AvaliRArmTrimTwo
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: rarm_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: rarm_secondary
+
+- type: marking
+  id: AvaliLHandTrimTwo
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: lhand_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: lhand_secondary
+
+- type: marking
+  id: AvaliRHandTrimTwo
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: rhand_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: rhand_secondary
+
+- type: marking
+  id: AvaliTailTrimTwo
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: tail_avalibase
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: tail_avali_primary
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_trim_two.rsi
+    state: tail_avali_secondary
+
+#Avali Earrings - HeadTop is used to hide the earrings when helmet is up. Can be changed to HeadSide when avali hardsuit sprites are finished. Alternitives are having the earrings clip, adding a value to say if the ears are visible, or removing ears when hardsuit is up
+
+- type: marking
+  id: AvaliEarringOne
+  bodyPart: HeadTop
+  markingCategory: Overlay
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring1_1
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring1_2
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring1_3
+
+- type: marking
+  id: AvaliEarringTwo
+  bodyPart: HeadTop
+  markingCategory: Overlay
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring2_1
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring2_2
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring2_3
+
+- type: marking
+  id: AvaliEarringThree
+  bodyPart: HeadTop
+  markingCategory: Overlay
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring3_1
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring3_2
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring3_3
+
+- type: marking
+  id: AvaliEarringFour
+  bodyPart: HeadTop
+  markingCategory: Overlay
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring4_1
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring4_2
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring4_3
+
+- type: marking
+  id: AvaliEarringCombined
+  bodyPart: HeadTop
+  markingCategory: Overlay
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring_combined_1
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring_combined_2
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring_combined_3
+
+- type: marking
+  id: AvaliEarring
+  bodyPart: HeadSide
+  markingCategory: Overlay
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_earring_combined_1
+
+#Avali Tailbands
+
+- type: marking
+  id: AvaliTailbandCombined
+  bodyPart: Tail
+  markingCategory: Overlay
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_tailband_combined_1
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_tailband_combined_2
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_tailband_combined_3
+
+- type: marking
+  id: AvaliTailbandOne
+  bodyPart: Tail
+  markingCategory: Overlay
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_tailband1_1
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_tailband1_2
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_tailband1_3
+
+- type: marking
+  id: AvaliTailbandTwo
+  bodyPart: Tail
+  markingCategory: Overlay
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_tailband2_1
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_tailband2_2
+
+- type: marking
+  id: AvaliTailbandThree
+  bodyPart: Tail
+  markingCategory: Overlay
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_tailband3_1
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_tailband3_2
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_jewelry.rsi
+    state: avali_tailband3_3
+
+#Multicolored Wings with Tips
+
+- type: marking
+  id: AvaliMultiwingLeftHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_multiwing1
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_multiwing2
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_multiwing3
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_multiwing4
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_isolated
+
+- type: marking
+  id: AvaliMultiwingTipsLeftHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_multiwing1
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_multiwing2
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_multiwing3
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_multiwing4
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_wingtips
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_isolated
+
+#Multicolored Wings
+
+- type: marking
+  id: AvaliMultiwingRightHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_multiwing1
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_multiwing2
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_multiwing3
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_multiwing4
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_isolated
+
+- type: marking
+  id: AvaliMultiwingTipsRightHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_multiwing1
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_multiwing2
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_multiwing3
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_multiwing4
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_wingtips
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_isolated
+
+#Bicolored Wings
+
+- type: marking
+  id: AvaliBicoloredRightHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_back
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_front
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_isolated
+
+- type: marking
+  id: AvaliBicoloredLeftHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_back
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_front
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_isolated
+
+#Bicolored Wings with Tips
+
+- type: marking
+  id: AvaliBicoloredTipsRightHand
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_back
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_front
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_isolated
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: r_hand_wingtips
+
+- type: marking
+  id: AvaliBicoloredTipsLeftHand
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_back
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_front
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_isolated
+  - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    state: l_hand_wingtips
+
+#Additional Tail Tips
+
+- type: marking
+  id: AvaliPointedTailtip
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: tail_avalibase
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: tail_pointedtailtip
+
+- type: marking
+  id: AvaliChevronTailtip
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [ Avali ]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: tail_avalibase
+  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+    state: tail_chevrontailtip

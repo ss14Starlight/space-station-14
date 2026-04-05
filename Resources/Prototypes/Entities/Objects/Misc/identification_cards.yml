@@ -25,6 +25,7 @@
     - WhitelistChameleonIdCard
   - type: StealTarget
     stealGroup: IDCard
+  - type: NanoChatCard # CD
 
 #IDs with layers
 
@@ -910,6 +911,8 @@
     jobTitle: job-title-cluwne
     jobIcon: JobIconCluwne
   - type: Unremoveable
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -927,6 +930,8 @@
     jobIcon: JobIconVisitor
   - type: PresetIdCard
     job: Visitor
+  - type: NanoChatCard # CD
+    listNumber: false
 
 #Antags
 
@@ -966,6 +971,8 @@
         type: AgentIDCardBoundUserInterface
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   name: assistant ID card
@@ -978,6 +985,8 @@
     - Maintenance
     - SyndicateAgent
     - NuclearOperative
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: [ IDCardStandard, BaseSyndicateContraband ]
@@ -1000,6 +1009,8 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: [ SyndicateIDCard, BaseSyndicateContraband ]
@@ -1019,6 +1030,8 @@
   - type: AgentIDCard
   - type: IdCard
     jobIcon: JobIconSyndicate # Starlight-edit - SyndicateOperative -> Syndicate
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: [ SyndiOperativeIDCard, BaseSyndicateContraband ]
@@ -1037,6 +1050,8 @@
       state: SyndicateCorpsman
   - type: IdCard
     jobIcon: JobIconSyndicate # Starlight-edit - SyndicateCorpsman -> Syndicate
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: [ SyndiOperativeIDCard, BaseSyndicateContraband ]
@@ -1055,6 +1070,8 @@
       state: SyndicateCommander
   - type: IdCard
     jobIcon: JobIconSyndicate # Starlight-edit - SyndicateCommander -> Syndicate
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: [ IDCardStandard, BaseHighlyIllegalContraband ]
@@ -1080,6 +1097,8 @@
   - type: Access
     tags:
     - Maintenance
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: [ IDCardStandard, BaseMajorContraband ]
@@ -1096,6 +1115,11 @@
     heldPrefix: orange #this is close enough to the weird puce color pirate IDs have going on
   - type: IdCard
     jobIcon: JobIconPirate
+  - type: Access # Starlight
+    tags:
+    - Pirate
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1129,6 +1153,8 @@
     - Maintenance
   - type: IdCard
     jobIcon: JobIconWizard
+  - type: NanoChatCard # CD
+    listNumber: false
 
 #ERT/Centcomm
 
@@ -1151,6 +1177,8 @@
     heldPrefix: blue
   - type: PresetIdCard
     job: CentralCommandOfficial
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1171,6 +1199,8 @@
     heldPrefix: gold
   - type: PresetIdCard
     job: ERTLeader
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1191,6 +1221,8 @@
     heldPrefix: blue
   - type: PresetIdCard
     job: ERTChaplain
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1211,6 +1243,8 @@
     heldPrefix: blue
   - type: PresetIdCard
     job: ERTEngineer
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1231,6 +1265,8 @@
     heldPrefix: blue
   - type: PresetIdCard
     job: ERTJanitor
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1251,6 +1287,8 @@
     heldPrefix: blue
   - type: PresetIdCard
     job: ERTMedical
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1271,6 +1309,8 @@
     heldPrefix: blue
   - type: PresetIdCard
     job: ERTSecurity
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1289,6 +1329,8 @@
       state: DeathSquad
   - type: PresetIdCard
     job: DeathSquad
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1310,6 +1352,8 @@
     heldPrefix: blue
   - type: PresetIdCard
     job: CBURN
+  - type: NanoChatCard # CD
+    listNumber: false
 
 - type: entity
   parent: IDCardStandard
@@ -1334,6 +1378,8 @@
     jobIcon: JobIconAdmin
   - type: Access
     # Starlight-edit: Start
+    tags:
+    - Solgov
     groups:
     - AllAccess
     - Silicon
@@ -1353,3 +1399,6 @@
     interfaces:
       enum.AgentIDCardUiKey.Key:
         type: AgentIDCardBoundUserInterface
+  - type: NanoChatCard # CD
+    notificationsMuted: true
+    listNumber: false

@@ -20,3 +20,5 @@
       offset: 0, 1
   - type: SpeakOnAction
     sentence: action-speech-spell-summon-magicarp
+    tts: action-speech-spell-summon-magicarp-tts
+    modifier: Spell

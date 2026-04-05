@@ -18,6 +18,7 @@ vampire-not-enough-blood = Not enough blood.
 vampire-mouth-covered = Your mouth is covered!
 vampire-drink-invalid-target = You cannot drink blood from vampires or their thralls.
 vampire-target-protected-by-faith = This person is protected by their faith!
+vampire-target-sickly = This person's blood is tainted and must be cleansed.
 vampire-drink-target-maxed = You have already drunk { $amount } units of blood from this target.
 vampire-drink-target-hard-max = You have drunk the maximum amount of blood from this target ({ $amount } units).
 vampire-full-power-achieved = Your vampiric essence surges full power achieved!
@@ -52,7 +53,7 @@ roundend-prepend-vampire-drained-named = {$name} was the most bloodthirsty vampi
 # Vampire class selection tooltips
 vampire-class-hemomancer-tooltip = Hemomancer
     Focuses on blood magic and the manipulation of blood around you
-    
+
 vampire-class-umbrae-tooltip = Umbrae
     Focuses on darkness, stealth ambushing and mobility
 
@@ -149,7 +150,7 @@ vampire-blood-bond-stop-blood = The bond shreds itself; you lack the blood to su
 
 action-vampire-not-enough-power = Your power is insufficient (need >1000 total blood & 8 unique victims).
 
-# Gargantua 
+# Gargantua
 vampire-blood-swell-start = Your muscles swell with unholy power
 vampire-blood-swell-end = The blood rage subsides.
 

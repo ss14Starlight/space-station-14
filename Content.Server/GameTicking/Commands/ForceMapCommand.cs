@@ -1,4 +1,6 @@
+using System.Data;
 using System.Linq;
+using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Administration;
 using Content.Server.Maps;
 using Content.Shared.Administration;
@@ -16,11 +18,14 @@ namespace Content.Server.GameTicking.Commands
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
         [Dependency] private readonly IGameMapManager _gameMapManager = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!; //Starlight
+        private AutoDiscordLogSystem? _autolog; //Starlight
 
         public override string Command => "setgamemap"; // Starlight-edit
 
         public override void Execute(IConsoleShell shell, string argStr, string[] args)
         {
+            _autolog ??= _entitySystemManager.GetEntitySystem<AutoDiscordLogSystem>(); //Starlight
             if (args.Length != 1)
             {
                 shell.WriteLine(Loc.GetString(Loc.GetString($"shell-need-exactly-one-argument")));
@@ -37,6 +42,8 @@ namespace Content.Server.GameTicking.Commands
             }
 
             _configurationManager.SetCVar(CCVars.GameMap, name);
+            var adminName = shell.Player?.Name ?? "Unknown"; //Starlight
+            _autolog.LogToDiscord(Loc.GetString("autolog-setgamemap", ("map", name), ("admin", adminName)), adminName); // Starlight
 
             if (string.IsNullOrEmpty(name))
                 shell.WriteLine(Loc.GetString("cmd-forcemap-cleared"));

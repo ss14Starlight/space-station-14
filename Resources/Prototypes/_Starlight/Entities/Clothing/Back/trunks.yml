@@ -1,0 +1,73 @@
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackTrunk
+  name: trunk
+  description: A large and heavy trunk for holding even more things.
+  abstract: true
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,11,3
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.85
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 9
+    soundHit:
+      collection: MetalThud
+  - type: HeldSpeedModifier
+
+- type: entity
+  parent: ClothingBackpackTrunk
+  id: ClothingBackpackTrunkMail
+  name: mail technician trunk
+  description: A huge trunk made of every aspiring mail technician's dreams.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Trunks/mailtrunk.rsi
+
+- type: entity
+  parent: ClothingBackpackTrunk
+  id: ClothingBackpackTrunkMailSenior
+  name: senior mail technician trunk
+  description: A huge trunk for the station's strongest mail technicians.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Trunks/mailseniortrunk.rsi
+
+# Fashion-O-Mat
+- type: entity
+  parent: ClothingBackpackTrunk
+  id: ClothingBackpackTrunkSpaceCourier
+  name: space courier trunk
+  description: A huge trunk themed after a legendary space courier.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Trunks/space_courier_trunk.rsi
+
+- type: entity
+  parent: ClothingBackpackTrunkSpaceCourier
+  id: ClothingBackpackTrunkSpaceCourierPAI
+  name: space courier trunk
+  suffix: Ghost Role
+  description: A huge trunk themed after a legendary space courier.
+  components:
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-space-courier-trunk-name
+    description: ghost-role-information-space-courier-trunk-description
+    rules: ghost-role-information-space-courier-trunk-rules
+    mindRoles:
+    - MindRoleGhostRoleTrunkPAI
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0
+    baseSprintSpeed: 0
+  - type: TextToSpeech
+    voice: karma
+# Fashion-O-Mat END

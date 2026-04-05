@@ -107,8 +107,8 @@
     materialComposition:
       Steel: 100
   # 🌟Starlight-start🌟
-  - type: BoneSaw
   - type: SurgeryTool
+  - type: BoneSaw
     successRate: 0.4
     speed: 0.8
     startSound:

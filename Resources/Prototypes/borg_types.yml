@@ -59,6 +59,7 @@
     damageContainers:
     - Inorganic
     - Silicon
+  - type: ShowAccessReaderSettings
   # Starlight end
 
   # Visual
@@ -101,6 +102,7 @@
   radioChannels:
   - Supply
   - Science
+  - Expedition #Starlight
 
   # Visual
   inventoryTemplateId: borgTall
@@ -223,14 +225,14 @@
   defaultModules:
   - BorgModuleTool # Starlight
   - BorgModuleMusique
-  # Starlight start 
+  # Starlight start
   - BorgModuleBartending
   - BorgModuleCooking
   - BorgModuleBotany
   - BorgModuleBooks
   # Starlight end
   - BorgModuleClowning
-  
+
   radioChannels:
   - Science
   - Service

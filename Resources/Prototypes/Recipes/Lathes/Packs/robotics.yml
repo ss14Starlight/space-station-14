@@ -8,9 +8,10 @@
   - SciFlash
   - CyborgEndoskeleton
   # Starlight-start
-  - MechAirTank 
+  - MechAirTank
   - MechThruster
   - AiInterfaceCube
+  - MechReactorStandard
   # Starlight-end
 
 - type: latheRecipePack
@@ -50,6 +51,8 @@
   - BorgModuleAdvancedMining
   - BorgModuleAdvancedLoading # Starlight
   - BorgModuleSurgical # Starlight
+  - BorgModuleAdvancedPlumbing # Starlight
+  - BorgModuleMiningDefense # Starlight
 
 - type: latheRecipePack
   id: MechParts

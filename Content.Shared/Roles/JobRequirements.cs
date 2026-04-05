@@ -21,7 +21,7 @@ public static class JobRequirements
         JobPrototype job,
         ICommonSession? player,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason,
+        out List<FormattedMessage> reason, // Starlight: List
         IEntityManager entManager,
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile)
@@ -42,29 +42,33 @@ public static class JobRequirements
         HashSet<JobRequirement>? requirements,
         ICommonSession? player,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason,
+        out List<FormattedMessage> reasons, // Starlight
         IEntityManager entManager,
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile)
     {
-        reason = null;
+        reasons = new List<FormattedMessage>(); // Starlight
         if (requirements == null)
             return true;
 
+        var success = true; // Starlight
         foreach (var requirement in requirements)
         {
-            if (!requirement.Check(entManager, player, protoManager, profile, playTimes, out reason))
-                return false;
+            // Starlight BEGIN: Accumulate reason texts
+            if (!requirement.Check(entManager, player, protoManager, profile, playTimes, out var reason))
+                success = false;
+            reasons.Add(reason);
+            // Starlight END
         }
 
-        return true;
+        return success; // Starlight
     }
 
     public static bool TryRequirementsMet(
         ProtoId<JobPrototype> job,
         ICommonSession? player,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason,
+        out List<FormattedMessage> reason, // Starlight: List
         IEntityManager entManager,
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile)
@@ -72,7 +76,7 @@ public static class JobRequirements
         if (protoManager.TryIndex(job, out var jobProto))
             return TryRequirementsMet(jobProto, player, playTimes, out reason, entManager, protoManager, profile);
 
-        reason = FormattedMessage.FromUnformatted("Failed to get job prototype");
+        reason = new() { FormattedMessage.FromUnformatted("Failed to get job prototype") }; // Starlight: List
         return false;
     }
 }
@@ -93,5 +97,5 @@ public abstract partial class JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason);
+        out FormattedMessage reason); // Starlight: Always return reason
 }

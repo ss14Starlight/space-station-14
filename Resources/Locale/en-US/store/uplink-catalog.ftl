@@ -119,6 +119,12 @@ uplink-mosin-ammo-desc = A box of 60 cartridges for the surplus rifle.
 uplink-sniper-ammo-name = Ammunition box (.60 antimateriel)
 uplink-sniper-ammo-desc = A box of 10 cartridges for the Hristov sniper rifle.
 
+uplink-grenade-launcher-frag-ammo-name = Frag grenade cartidge (China-Lake)
+uplink-grenade-launcher-frag-ammo-desc = A pack of 6 frag grenade cartridges. Compatible with the China Lake grenade launcher.
+
+uplink-grenade-launcher-blast-ammo-name = Blast grenade cartidge (China-Lake)
+uplink-grenade-launcher-blast-ammo-desc = A pack of 6 blast grenade cartridges. Compatible with the China Lake grenade launcher.
+
 # Utility
 uplink-holopara-kit-name = Holoparasite Kit
 uplink-holopara-kit-desc = The pride and joy of Cybersun. Contains an injector that hosts a sentient metaphysical guardian made of hard light which resides in the user's body when not active.

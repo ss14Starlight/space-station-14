@@ -13,10 +13,11 @@ public sealed class PlayerData
     ///     The player's title.
     /// </summary>
     public string? Title;
-    
+
     public string? GhostTheme;
-    
+
     public Color GhostThemeColor = Color.White;
-    
-    public int Balance;
+
+    [Obsolete("Use ISharedNullLinkPlayerResourcesManager to access this field")]
+    public Dictionary<string, double> Resources = [];
 }

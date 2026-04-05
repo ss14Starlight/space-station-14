@@ -23,6 +23,7 @@
     name: ghost-role-information-rat-king-name
     description: ghost-role-information-rat-king-description
     rules: ghost-role-information-antagonist-rules
+    important: true # SL
     mindRoles:
     - MindRoleRatKing # Starlight-edit - GhostRoleSoloAntagonist -> RatKing
     raffle:
@@ -91,6 +92,7 @@
   components:
   - type: GhostRole
     rules: ghost-role-information-rules-default-team-antagonist
+    important: true # SL
     mindRoles:
     - MindRoleNukeops
     raffle:
@@ -132,6 +134,7 @@
     name: ghost-role-information-loneop-name
     description: ghost-role-information-loneop-description
     rules: ghost-role-information-loneop-rules
+    important: true # SL
     mindRoles:
     - MindRoleLoneops
   - type: Sprite
@@ -187,6 +190,7 @@
     name: ghost-role-information-space-dragon-name
     description: ghost-role-information-space-dragon-description
     rules: ghost-role-information-space-dragon-rules
+    important: true # SL
     mindRoles:
     - MindRoleDragon
   - type: Sprite
@@ -204,6 +208,7 @@
     name: ghost-role-information-space-ninja-name
     description: ghost-role-information-space-ninja-description
     rules: ghost-role-information-antagonist-rules
+    important: true # SL
     mindRoles:
     - MindRoleNinja
     raffle:
@@ -224,6 +229,7 @@
     name: ghost-role-information-paradox-clone-name
     description: ghost-role-information-paradox-clone-description
     rules: ghost-role-information-antagonist-rules
+    important: true # SL
     mindRoles:
     - MindRoleParadoxClone
     raffle:
@@ -280,6 +286,7 @@
     name: ghost-role-information-mothership-core-name
     description: ghost-role-information-mothership-core-desc
     rules: ghost-role-information-silicon-rules
+    important: true # SL
     mindRoles:
     - MindRoleMothershipCore
   - type: Sprite
@@ -302,6 +309,7 @@
     name: ghost-role-information-xenoborg-name
     description: ghost-role-information-xenoborg-desc
     rules: ghost-role-information-silicon-rules
+    important: true # SL
     mindRoles:
     - MindRoleXenoborg
   - type: Sprite
@@ -369,6 +377,7 @@
   - type: GhostRole
     name: ghost-role-information-wizard-name
     description: ghost-role-information-wizard-desc
+    important: true # SL
     mindRoles:
     - MindRoleWizard
     raffle:

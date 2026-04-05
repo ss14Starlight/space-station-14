@@ -3,6 +3,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Popups;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Weapons.Ranged.Components; // Moffstation - Allow Ninjas to use Grappling Hooks
 
 namespace Content.Shared.Ninja.Systems;
 
@@ -106,6 +107,11 @@ public abstract class SharedSpaceNinjaSystem : EntitySystem
     /// </summary>
     private void OnShotAttempted(Entity<SpaceNinjaComponent> ent, ref ShotAttemptedEvent args)
     {
+        // Moffstation - Start - Allow Ninjas to use Grappling Hooks
+        if (HasComp<GrapplingGunComponent>(args.Used))
+            return;
+        // Moffstation - End
+
         Popup.PopupClient(Loc.GetString("gun-disabled"), ent, ent);
         args.Cancel();
     }

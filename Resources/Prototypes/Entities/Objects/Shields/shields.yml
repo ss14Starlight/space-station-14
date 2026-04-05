@@ -59,6 +59,11 @@
                 SheetGlass:
                   min: 2
                   max: 2
+    # Starlight-start
+    - type: Tag
+      tags:
+        - Shield
+    # Starlight-end
     - type: StaticPrice
       price: 100
 
@@ -498,6 +503,7 @@
       radius: 1.5
       energy: 2
       color: blue
+      castShadows: false #SL lighting optimization
     - type: ItemTogglePointLight
     - type: Reflect
       reflectProb: 0.95

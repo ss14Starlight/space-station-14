@@ -1,0 +1,31 @@
+
+# Jumpsuits
+- type: loadout
+  id: ServiceWorkerBartenderJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitServiceWorkerBartender
+
+- type: loadout
+  id: ServiceWorkerBartenderJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtServiceWorkerBartender
+
+- type: loadout
+  id: ServiceWorkerBotanyJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitServiceWorkerBotany
+
+- type: loadout
+  id: ServiceWorkerBotanyJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtServiceWorkerBotany
+
+- type: loadout
+  id: ServiceWorkerChefJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitServiceWorkerChef
+
+- type: loadout
+  id: ServiceWorkerChefJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtServiceWorkerChef

@@ -1,29 +1,32 @@
-﻿using System.Text.RegularExpressions;
-using Content.Server.Speech.Components;
-using Content.Shared.Speech;
+﻿// Starlight: Starlightified. Moved to Content.Server._Starlight.Speech.EntitySystems.MothAccentSystem
+// From this point on, all accents must be ported and mostly reimplemented from scratch with TTS in mind.
+// This file is no longer synced with upstream.
+//using System.Text.RegularExpressions;
+//using Content.Server.Speech.Components;
+//using Content.Shared.Speech;
 
-namespace Content.Server.Speech.EntitySystems;
+//namespace Content.Server.Speech.EntitySystems;
 
-public sealed class MothAccentSystem : EntitySystem
-{
-    private static readonly Regex RegexLowerBuzz = new Regex("z{1,3}");
-    private static readonly Regex RegexUpperBuzz = new Regex("Z{1,3}");
+//public sealed class MothAccentSystem : EntitySystem
+//{
+//    private static readonly Regex RegexLowerBuzz = new Regex("z{1,3}");
+//    private static readonly Regex RegexUpperBuzz = new Regex("Z{1,3}");
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<MothAccentComponent, AccentGetEvent>(OnAccent);
-    }
+//    public override void Initialize()
+//    {
+//        base.Initialize();
+//        SubscribeLocalEvent<MothAccentComponent, AccentGetEvent>(OnAccent);
+//    }
 
-    private void OnAccent(EntityUid uid, MothAccentComponent component, AccentGetEvent args)
-    {
-        var message = args.Message;
+//    private void OnAccent(EntityUid uid, MothAccentComponent component, AccentGetEvent args)
+//    {
+//        var message = args.Message;
 
-        // buzzz
-        message = RegexLowerBuzz.Replace(message, "zzz");
-        // buZZZ
-        message = RegexUpperBuzz.Replace(message, "ZZZ");
+//        // buzzz
+//        message = RegexLowerBuzz.Replace(message, "zzz");
+//        // buZZZ
+//        message = RegexUpperBuzz.Replace(message, "ZZZ");
 
-        args.Message = message;
-    }
-}
+//        args.Message = message;
+//    }
+//}
