@@ -36298,5 +36298,12 @@ Entries:
   id: 399301
   time: '2026-04-05T20:51:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3993
+- author: neurovermi
+  changes:
+  - message: Mechs now throw when punching with no equipment.
+    type: Add
+  id: 402001
+  time: '2026-04-05T21:01:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4020
 Order: -1
 
