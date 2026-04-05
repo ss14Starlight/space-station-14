@@ -172448,7 +172448,7 @@ entities:
     - type: Transform
       pos: -38.5,-52.5
       parent: 2
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
   - uid: 25700
     components:
@@ -172477,6 +172477,8 @@ entities:
       parent: 2
     - type: NameModifier
       baseName: advanced SMES
+- proto: SMESAdvanced
+  entities:
   - uid: 25703
     components:
     - type: MetaData

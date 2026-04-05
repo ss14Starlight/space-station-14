@@ -15,10 +15,13 @@
         Unsexed: UnisexCatMoth
     - type: Body
       prototype: CatMoth
+    - type: Icon
+      sprite: Mobs/Species/Moth/parts.rsi
+      state: full
     - type: HumanoidAppearance
       species: CatMoth
       # Set all of this shit up manually because CatMoth is not roundstart so it can't just be saved to a character yml.
-      allowProfileOverride: false
+      allowProfileOverride: true # Test fix 
       gender: Female
       eyeColor: '#000000FF'
       skinColor: '#5D4AC7FF'

@@ -90,6 +90,7 @@
       outputSlot: !type:ContainerSlot
       machine_board: !type:Container
       machine_parts: !type:Container
+      pai_slot: !type:ContainerSlot # Starlight
   - type: ItemSlots
     slots:
       beakerSlot:

@@ -353,6 +353,7 @@
       PDA-pai: !type:ContainerSlot {}
       Cartridge-Slot: !type:ContainerSlot {}
       program-container: !type:Container
+      pai_slot: !type:ContainerSlot
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
