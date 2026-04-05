@@ -1,6 +1,8 @@
+using System.Threading.Tasks;
 using Content.Server._NullLink.Helpers;
 using Content.Server._NullLink.PlayerData;
 using Content.Shared._Starlight.Antags.Vampires;
+using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Achievement;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs;
@@ -8,7 +10,6 @@ using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Starlight.NullLink;
 
 namespace Content.Server._Starlight.Achievement;
 
@@ -49,7 +50,7 @@ public sealed class AchievementSystem : EntitySystem
     }
 
     #region Achievement Management
-    public ValueTask<HashSet<Achievement>> GetUnlockedAchievements(ICommonSession session)
+    public ValueTask<HashSet<Starlight.NullLink.Achievement>> GetUnlockedAchievements(ICommonSession session)
         => _nullLinkPlayers.GetUnlockedAchievements(session.UserId);
 
     public ValueTask<bool> HasAchievementUnlocked(ICommonSession session, string achievementId)
