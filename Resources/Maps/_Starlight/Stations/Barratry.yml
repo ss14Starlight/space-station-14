@@ -89043,13 +89043,8 @@ entities:
     - type: Transform
       pos: -4.5,27.5
       parent: 2
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
-  - uid: 12368
-    components:
-    - type: Transform
-      pos: -76.5,19.5
-      parent: 2
   - uid: 12369
     components:
     - type: Transform
@@ -89060,6 +89055,13 @@ entities:
     - type: Transform
       pos: -71.5,29.5
       parent: 2
+- proto: SMESAdvanced
+  entities:
+  - uid: 12368
+    components:
+    - type: Transform
+      pos: -76.5,19.5
+      parent: 2
   - uid: 12371
     components:
     - type: Transform
@@ -89069,6 +89071,11 @@ entities:
     components:
     - type: Transform
       pos: -71.5,31.5
+      parent: 2
+  - uid: 12376
+    components:
+    - type: Transform
+      pos: -70.5,25.5
       parent: 2
 - proto: SMESBasic
   entities:
@@ -89092,11 +89099,6 @@ entities:
       name: Telecomms SMES
     - type: Transform
       pos: 25.5,23.5
-      parent: 2
-  - uid: 12376
-    components:
-    - type: Transform
-      pos: -70.5,25.5
       parent: 2
   - uid: 12377
     components:
