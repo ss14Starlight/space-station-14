@@ -14,15 +14,14 @@
     angleDecay: 16
     fireRate: 0.5
     selectedMode: SemiAuto
-    clumsyProof: true # Starlight
+    clumsyProof: true
     availableModes:
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
-  - type: MechAmmoProvider #Starlight - MechAmmoProvider
+  - type: MechAmmoProvider
     proto: MousetrapArmed
     fireCost: 100
   - type: Appearance
@@ -50,8 +49,35 @@
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: TrashBananaPeel
     fireCost: 100
   - type: Appearance
+
+- type: entity
+  id: WeaponMechSpecialPieCannon
+  parent: [ BaseMechWeaponRange, SpecialMechEquipment ]
+  suffix: Mech Weapon, Gun, Special, Mortar
+  name: Mechanized Pie Cannon
+  description: An instrument of clowning for the 26th century. Honk 'em all...
+  components:
+    - type: Sprite
+      state: mecha_bananamrtr
+    - type: Gun
+      minAngle: 8 # should be smaller for good initial precision. This ain't for amateur clowns...
+      maxAngle: 25
+      angleIncrease: 4
+      angleDecay: 16
+      fireRate: 0.3
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      clumsyProof: true
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+      soundEmpty:
+        path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+    - type: MechAmmoProvider
+      proto: FoodPieBananaCream
+      fireCost: 100
+    - type: Appearance
