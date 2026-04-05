@@ -69,7 +69,7 @@ command-description-vector2dataconstructor-add =
     Add a new Vector2 to the existing definition. Call vector2dataconstructor:new before using this.
 command-description-vector2dataconstructor-clean =
     Clean up an unused Vector2 list definition on the entity.
-command-description-job-set = 
+command-description-job-set =
     Changes the job of the piped entity.
 command-description-job-delset =
     Changes the job of the piped entity by deleting then setting the job, so that the briefing plays.
@@ -293,3 +293,5 @@ command-description-stationinit-initializeget =
     Finish setup and initialize the station, and return the newly created station entity.
 command-description-aitakeover =
     Make the piped entity take over the target AI core.
+command-description-mobthreshold-initialize =
+    Properly initializes a new mob threshold onto an entity.

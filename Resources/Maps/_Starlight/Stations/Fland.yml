@@ -176534,7 +176534,7 @@ entities:
         Then, you should begin setting up your [color=blue]cooling loop[/color]. Your cooling loop is very important, as fresh cold gas must be supplied to keep the crystal from delaminating.
 
 
-        Any gas can be used for these loops, but a basic setup utilizes nitrogen, while more advanced setups will utilize plasma. 
+        Any gas can be used for these loops, but a basic setup utilizes nitrogen, while more advanced setups will utilize plasma.
 
 
         Be prepared, as the crystal will begin to heat up the gas inside the chamber. If gas is not exchanged, a runaway reaction will occur which is very difficult to recover from.
@@ -176543,7 +176543,7 @@ entities:
         Start [color=red]slow[/color]! Begin by using just one emitter. Once you have that under control, feel free to turn on more! More emitters=more power!
 
 
-        [color=red]WEAR A RADIATION SUIT![/color] The supermatter has been recorded as producing upwards of 6 rads at its lowest levels. Through radiation shielding. 
+        [color=red]WEAR A RADIATION SUIT![/color] The supermatter has been recorded as producing upwards of 6 rads at its lowest levels. Through radiation shielding.
 
 
         Hopefully this guide is enough to get you started. Please ask your nearest NanoTrasen representative if you require further assistance.
@@ -176610,7 +176610,7 @@ entities:
         Then, you should begin setting up your [color=blue]cooling loop[/color]. Your cooling loop is very important, as fresh cold gas must be supplied to keep the crystal from delaminating.
 
 
-        Any gas can be used for these loops, but a basic setup utilizes nitrogen, while more advanced setups will utilize plasma. 
+        Any gas can be used for these loops, but a basic setup utilizes nitrogen, while more advanced setups will utilize plasma.
 
 
         Be prepared, as the crystal will begin to heat up the gas inside the chamber. If gas is not exchanged, a runaway reaction will occur which is very difficult to recover from.
@@ -176619,7 +176619,7 @@ entities:
         Start [color=red]slow[/color]! Begin by using just one emitter. Once you have that under control, feel free to turn on more! More emitters=more power!
 
 
-        [color=red]WEAR A RADIATION SUIT![/color] The supermatter has been recorded as producing upwards of 6 rads at its lowest levels. Through radiation shielding. 
+        [color=red]WEAR A RADIATION SUIT![/color] The supermatter has been recorded as producing upwards of 6 rads at its lowest levels. Through radiation shielding.
 
 
         Hopefully this guide is enough to get you started. Please ask your nearest NanoTrasen representative if you require further assistance.
@@ -176686,7 +176686,7 @@ entities:
         Then, you should begin setting up your [color=blue]cooling loop[/color]. Your cooling loop is very important, as fresh cold gas must be supplied to keep the crystal from delaminating.
 
 
-        Any gas can be used for these loops, but a basic setup utilizes nitrogen, while more advanced setups will utilize plasma. 
+        Any gas can be used for these loops, but a basic setup utilizes nitrogen, while more advanced setups will utilize plasma.
 
 
         Be prepared, as the crystal will begin to heat up the gas inside the chamber. If gas is not exchanged, a runaway reaction will occur which is very difficult to recover from.
@@ -176695,7 +176695,7 @@ entities:
         Start [color=red]slow[/color]! Begin by using just one emitter. Once you have that under control, feel free to turn on more! More emitters=more power!
 
 
-        [color=red]WEAR A RADIATION SUIT![/color] The supermatter has been recorded as producing upwards of 6 rads at its lowest levels. Through radiation shielding. 
+        [color=red]WEAR A RADIATION SUIT![/color] The supermatter has been recorded as producing upwards of 6 rads at its lowest levels. Through radiation shielding.
 
 
         Hopefully this guide is enough to get you started. Please ask your nearest NanoTrasen representative if you require further assistance.
@@ -176762,7 +176762,7 @@ entities:
         Then, you should begin setting up your [color=blue]cooling loop[/color]. Your cooling loop is very important, as fresh cold gas must be supplied to keep the crystal from delaminating.
 
 
-        Any gas can be used for these loops, but a basic setup utilizes nitrogen, while more advanced setups will utilize plasma. 
+        Any gas can be used for these loops, but a basic setup utilizes nitrogen, while more advanced setups will utilize plasma.
 
 
         Be prepared, as the crystal will begin to heat up the gas inside the chamber. If gas is not exchanged, a runaway reaction will occur which is very difficult to recover from.
@@ -176771,7 +176771,7 @@ entities:
         Start [color=red]slow[/color]! Begin by using just one emitter. Once you have that under control, feel free to turn on more! More emitters=more power!
 
 
-        [color=red]WEAR A RADIATION SUIT![/color] The supermatter has been recorded as producing upwards of 6 rads at its lowest levels. Through radiation shielding. 
+        [color=red]WEAR A RADIATION SUIT![/color] The supermatter has been recorded as producing upwards of 6 rads at its lowest levels. Through radiation shielding.
 
 
         Hopefully this guide is enough to get you started. Please ask your nearest NanoTrasen representative if you require further assistance.
@@ -198879,7 +198879,7 @@ entities:
     - type: Transform
       pos: 37.5,-45.5
       parent: 2
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
   - uid: 29700
     components:
@@ -198901,6 +198901,8 @@ entities:
     - type: Transform
       pos: 93.5,2.5
       parent: 2
+- proto: SMESAdvanced
+  entities:
   - uid: 29704
     components:
     - type: Transform

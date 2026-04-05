@@ -7,7 +7,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/calendar.rsi
     state: calendar
-    
+
 - type: entity
   parent: PosterBase
   id: PosterLegitCleanHands
@@ -17,7 +17,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/cleanhands.rsi
     state: cleanhands
-    
+
 - type: entity
   parent: PosterBase
   id: PosterLegitEyeChart
@@ -27,7 +27,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/eyechart.rsi
     state: eyechart
-    
+
 - type: entity
   parent: PosterBase
   id: PosterContrabandYoutoolpia

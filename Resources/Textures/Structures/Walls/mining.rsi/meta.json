@@ -9,7 +9,7 @@
   "states": [
     {
       "name": "full"
-    }, 
+    },
     {
       "name": "mining0",
         "directions": 4
@@ -41,7 +41,7 @@
     {
       "name": "mining7",
         "directions": 4
-    }, 
+    },
     {
       "name": "miningB0",
         "directions": 4
