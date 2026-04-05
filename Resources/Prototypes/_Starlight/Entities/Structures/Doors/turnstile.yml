@@ -34,14 +34,9 @@
 
 - type: entity
   id: TurnstileCentCommDebrief
-  parent: Turnstile
+  parent: TurnstileCentComm
   name: central command turnstile
   suffix: Debrief
   components:
-    - type: Sprite
-      sprite: _Starlight/Structures/Doors/cc-turnstile.rsi
-      layers:
-        - state: turnstile
-          map: [ "enum.TurnstileVisualLayers.Base" ]
     - type: AccessReader
       access: [["Debrief"]]
