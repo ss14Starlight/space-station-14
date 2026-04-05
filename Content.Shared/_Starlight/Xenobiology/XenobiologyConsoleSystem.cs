@@ -30,7 +30,7 @@ public sealed class XenobiologyConsoleSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<XenobiologyConsoleComponent, AfterInteractUsingEvent>(OnAfterInteractUsing);
         SubscribeLocalEvent<XenobiologyConsoleComponent, MachineDeconstructedEvent>(OnMachineDeconstruction);
-        
+
         SubscribeLocalEvent<ConsoleGrabSlimeEvent>(OnConsoleGrabSlime);
         SubscribeLocalEvent<ConsolePlaceSlimeEvent>(OnConsolePlaceSlime);
         SubscribeLocalEvent<ConsolePlaceMonkeyEvent>(OnConsolePlaceMonkey);
@@ -79,7 +79,7 @@ public sealed class XenobiologyConsoleSystem : EntitySystem
         for (var i = 0; i < entity.Comp.StabilizerPotions; i++)
             SpawnNextToOrDrop(_stabilizerPotionName, entity.Owner);
     }
-    
+
     private bool VerifyComponents(InstantActionEvent args, [NotNullWhen(true)] out RemoteEyeActorComponent? remoteEyeActorComponent,
         [NotNullWhen(true)] out Entity<XenobiologyConsoleComponent>? xenobiologyConsole, [NotNullWhen(true)] out EntityUid? remoteEntity)
     {
@@ -196,7 +196,7 @@ public sealed class XenobiologyConsoleSystem : EntitySystem
         }
         args.Handled = true;
     }
-    
+
     private void OnConsoleApplyStabilizerPotion(ConsoleApplyStabilizerPotionEvent args)
     {
         if (!VerifyComponents(args, out var remoteEyeActorComponent, out var xenobiologyConsole, out var remoteEntity)) return;

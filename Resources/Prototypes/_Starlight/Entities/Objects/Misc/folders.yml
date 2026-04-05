@@ -161,7 +161,7 @@
             - DoorBumpOpener
         hop_clipboard_target_id:
           minCount: 2
-          whitelist: 
+          whitelist:
             tags:
             - DoorBumpOpener
     - type: MeleeWeapon

@@ -17,7 +17,7 @@ public sealed partial class RailroadingSurviveTaskSystem : EntitySystem
         SubscribeLocalEvent<RailroadSurviveTaskComponent, RailroadingCardCompletionQueryEvent>(OnTaskCompletionQuery);
         SubscribeLocalEvent<RailroadSurviveTaskComponent, CollectObjectiveInfoEvent>(OnCollectObjectiveInfo);
         SubscribeLocalEvent<RailroadSurviveTaskComponent, RailroadingCardCompletedEvent>(OnCompleted);
-        
+
         SubscribeLocalEvent<RailroadSurviveWatcherComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<RailroadSurviveWatcherComponent, RailroadingCardFailedEvent>(OnFailed);
     }
@@ -42,7 +42,7 @@ public sealed partial class RailroadingSurviveTaskSystem : EntitySystem
         }
     }
 
-    private void OnCollectObjectiveInfo(Entity<RailroadSurviveTaskComponent> ent, ref CollectObjectiveInfoEvent args) 
+    private void OnCollectObjectiveInfo(Entity<RailroadSurviveTaskComponent> ent, ref CollectObjectiveInfoEvent args)
         => args.Objectives.Add(new ObjectiveInfo
     {
         Title = Loc.GetString(ent.Comp.Message),
@@ -57,6 +57,6 @@ public sealed partial class RailroadingSurviveTaskSystem : EntitySystem
         args.IsCompleted = ent.Comp.IsCompleted;
     }
 
-    private void OnTaskPicked(Entity<RailroadSurviveTaskComponent> ent, ref RailroadingCardChosenEvent args) 
+    private void OnTaskPicked(Entity<RailroadSurviveTaskComponent> ent, ref RailroadingCardChosenEvent args)
         => EnsureComp<RailroadSurviveWatcherComponent>(args.Subject.Owner);
 }

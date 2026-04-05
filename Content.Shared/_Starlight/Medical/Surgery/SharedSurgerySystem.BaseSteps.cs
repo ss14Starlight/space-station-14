@@ -118,7 +118,7 @@ public abstract partial class SharedSurgerySystem
 
             SoundSpecifier? endSound = null;
             foreach(var usedTool in specificToolComp)
-            {  
+            {
                 var requestedTool = stepComp.Tools?.FirstOrDefault().Key;
                 if(requestedTool != null)
                     if(usedTool.ToolType.Contains(requestedTool))

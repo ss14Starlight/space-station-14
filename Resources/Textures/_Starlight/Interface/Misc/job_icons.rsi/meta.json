@@ -178,6 +178,10 @@
             "name": "TSF_Mindshield",
             "copyright": "Taken from commit: https://github.com/Monolith-Station/Monolith/commit/87c200ff42a1987117105d49d885df82c5912bd9",
             "delays": [ [ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ] ]
+        },
+        {
+            "name": "Blackstar",
+            "copyright": "Captain icon from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolored to Blackstar colors by @redmushie (github)"
         }
     ]
 }

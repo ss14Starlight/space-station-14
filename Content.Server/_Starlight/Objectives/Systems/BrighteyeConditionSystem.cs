@@ -25,7 +25,7 @@ public sealed class BrighteyeConditionSystem : EntitySystem
             return;
         }
 
-        args.Progress = HasComp<BrighteyeComponent>(args.Mind.OwnedEntity) ? 1f : 0f; 
+        args.Progress = HasComp<BrighteyeComponent>(args.Mind.OwnedEntity) ? 1f : 0f;
     }
 
     private void OnPortalGetProgress(EntityUid uid, BrighteyePortalConditionComponent comp, ref ObjectiveGetProgressEvent args)
@@ -36,6 +36,6 @@ public sealed class BrighteyeConditionSystem : EntitySystem
             return;
         }
 
-        args.Progress = brighteye.Portal is null ? 0f : 1f; 
+        args.Progress = brighteye.Portal is null ? 0f : 1f;
     }
 }

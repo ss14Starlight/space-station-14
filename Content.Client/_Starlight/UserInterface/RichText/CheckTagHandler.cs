@@ -15,7 +15,7 @@ public sealed class CheckTagHandler : IMarkupTagHandler
 {
     public string Name => "check";
     private static int _checkCounter = 0;
-    
+
     /// <summary>
     /// Font line height set by PaperWindow to ensure buttons match text height
     /// </summary>

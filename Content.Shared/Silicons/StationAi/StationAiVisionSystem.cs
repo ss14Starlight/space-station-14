@@ -160,7 +160,7 @@ public sealed class StationAiVisionSystem : EntitySystem
     public bool IsOutsideCameraView(EntityUid entity)
     {
         var xform = Transform(entity);
-        
+
         if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
             return true;
 
@@ -168,7 +168,7 @@ public sealed class StationAiVisionSystem : EntitySystem
             return true;
 
         var tile = _maps.LocalToTile(xform.GridUid.Value, grid, xform.Coordinates);
-        
+
         // Returns true if outside of view
         return !IsAccessible((xform.GridUid.Value, broadphase, grid), tile);
     }
@@ -399,7 +399,7 @@ public sealed class StationAiVisionSystem : EntitySystem
                     foreach (var tile in squircles)
                     {
                         VisibleTiles.Add(tile.GridIndices);
-                        
+
                         if (!VisibleTileTags.ContainsKey(tile.GridIndices))
                             VisibleTileTags[tile.GridIndices] = new();
                         foreach (var tag in seed.Comp.Tags)

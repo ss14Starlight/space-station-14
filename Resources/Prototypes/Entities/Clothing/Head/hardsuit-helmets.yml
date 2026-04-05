@@ -43,7 +43,7 @@
       - state: equipped-head-light-dog
         shader: unshaded
       # Starlight - Start
-      head-avali: 
+      head-avali:
       - state: equipped-head-light-avali
         shader: unshaded
       head-resomi:
@@ -135,7 +135,7 @@
       - state: equipped-head-light-dog
         shader: unshaded
       # Starlight - Start
-      head-avali: 
+      head-avali:
       - state: equipped-head-light-avali
         shader: unshaded
       head-resomi:
@@ -221,7 +221,7 @@
       - state: equipped-head-light-dog
         shader: unshaded
       # Starlight - Start
-      head-avali: 
+      head-avali:
       - state: equipped-head-light-avali
         shader: unshaded
       head-resomi:
@@ -580,7 +580,7 @@
       - state: equipped-head-light-dog
         shader: unshaded
       # Starlight - Start
-      head-avali: 
+      head-avali:
       - state: equipped-head-light-avali
         shader: unshaded
       head-resomi:

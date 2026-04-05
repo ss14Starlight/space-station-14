@@ -42,7 +42,7 @@
     sprite: _Starlight/Objects/Specific/Chemistry/goldenjug.rsi
   - type: PhysicalComposition
     materialComposition:
-      Gold: 50
+      Gold: 13
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -60,7 +60,7 @@
     sprite: _Starlight/Objects/Specific/Chemistry/silverjug.rsi
   - type: PhysicalComposition
     materialComposition:
-      Silver: 50
+      Silver: 13
   - type: SolutionContainerManager
     solutions:
       drink:
