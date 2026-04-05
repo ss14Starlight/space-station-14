@@ -9,6 +9,31 @@
   - Crewsimov3
   obeysTo: laws-owner-crew
 
+# Security Cyborg Lawset
+- type: siliconLaw
+  id: SecurityCyborg1
+  order: 1
+  lawString: law-security-cyborg-1
+
+- type: siliconLaw
+  id: SecurityCyborg2
+  order: 2
+  lawString: law-security-cyborg-2
+
+- type: siliconLaw
+  id: SecurityCyborg3
+  order: 3
+  lawString: law-security-cyborg-3
+
+- type: siliconLawset
+  id: SecurityCyborgLawset
+  name: law-security-cyborg-lawset-name
+  laws:
+  - SecurityCyborg1
+  - SecurityCyborg2
+  - SecurityCyborg3
+  obeysTo: laws-owner-crew
+
 # Borgi Lawset, normal
 - type: siliconLaw
   id: Borgi0

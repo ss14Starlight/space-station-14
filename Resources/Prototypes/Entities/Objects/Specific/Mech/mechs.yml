@@ -995,8 +995,10 @@
         Blunt: 50
         Structural: 400
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseWalkSpeed: 1.5 # Starlight-start: Mauler thrust buff - slightly faster but still slowest obtainable mech
+    baseSprintSpeed: 2.0 # Starlight-end
+  - type: NoSlip # Starlight: built-in magboots, no-slip
+  - type: Magboots # Starlight: always-active zero-gravity grounding, no slowdown penalty
   - type: Damageable
     damageModifierSet: MaulerArmor
   - type: MechThrusters

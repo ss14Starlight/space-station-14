@@ -1,3 +1,12 @@
+# Security cyborg chassis armor - 15% brute resistance, 10% heat resistance
+- type: damageModifierSet
+  id: SecurityCyborgArmor
+  coefficients:
+    Blunt: 0.85
+    Slash: 0.85
+    Piercing: 0.85
+    Heat: 0.90
+
 - type: damageModifierSet
   id: Avali # Not as good as thick fur like the vulps, but still rather insulating.
   coefficients:

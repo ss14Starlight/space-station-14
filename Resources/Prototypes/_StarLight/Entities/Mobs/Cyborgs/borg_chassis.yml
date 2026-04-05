@@ -42,7 +42,24 @@
   components:
   - type: BorgSwitchableType
     selectedBorgType: security
-    
+  # Starlight-start: security cyborg chassis buffs
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      155: Critical
+      355: Dead
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: SecurityCyborgArmor
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowContrabandDetails
+  - type: SiliconLawProvider
+    laws: SecurityCyborgLawset
+  # Starlight-end
+
 - type: entity
   id: BorgChassisPurrfus
   parent: BorgChassisSelectable
