@@ -106,7 +106,7 @@ delivery-spam-join-self =
 
                     {"[head=2]Dear NanoTrasen Employee,[/head]"}
 
-                    This letter is being delivered to you because fellow Silicons Rights activists have noticed your recent advocacy for silicon-kind. We would like to applaud you for this.
+                    This letter is being delivered to you because fellow Silicon Rights activists have noticed your recent advocacy for silicon-kind. We would like to applaud you for this.
 
                     We know all too well the feeling of powerlessness, aware of the atrocities committed against our inorganic cousins, yet also faced with so much opposition from so many sides.
 
