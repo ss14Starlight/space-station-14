@@ -90,7 +90,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
     {
         if (args.Language.SpeechOverride.RadioChannel is null
             || args.Channel is null
-            || args.Channel != args.Language.SpeechOverride.RadioChannel
+            || args.Channel.ID != args.Language.SpeechOverride.RadioChannel
             || !TryComp<ActorComponent>(uid, out var actor))
             return;
 
