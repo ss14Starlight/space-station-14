@@ -91,7 +91,7 @@
   - type: MindRole
     roleType: Neutral
     sortWeight: 0
-    fallbackPlayTimeTracker: GhostSkeleton    
+    fallbackPlayTimeTracker: GhostSkeleton
 
 # Downstream antagonists
 

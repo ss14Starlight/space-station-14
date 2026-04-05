@@ -357,12 +357,12 @@ public abstract class SharedImplanterSystem : EntitySystem
                 }
             }
         }
-        
-        
+
+
         // STARLIGHT END
 
         var ev = new AddImplantAttemptEvent(user, target, implant.Value, implanter);
-        RaiseLocalEvent(implant.Value, ev); //Starlight edit - raising on the implant instead of target 
+        RaiseLocalEvent(implant.Value, ev); //Starlight edit - raising on the implant instead of target
         return !ev.Cancelled;
     }
 

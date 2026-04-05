@@ -8,6 +8,6 @@ public record struct RadiateHeatAttemptEvent(EntityUid Uid) : IInventoryRelayEve
 {
     public readonly EntityUid Uid = Uid;
     public bool Cancelled = false;
-    
+
     public SlotFlags TargetSlots { get; } = ~SlotFlags.POCKET;
 }

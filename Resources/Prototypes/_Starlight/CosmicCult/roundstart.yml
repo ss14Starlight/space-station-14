@@ -28,3 +28,5 @@
       - type: CosmicCult
       mindRoles:
       - MindRoleCosmicCult
+  - type: DynamicRuleCost
+    cost: 200

@@ -65,31 +65,31 @@ public sealed partial class HealthAnalyzerComponent : Component
     /// </summary>
     [DataField]
     public bool Silent;
-    
+
     [DataField("damageContainers", customTypeSerializer: typeof(PrototypeIdListSerializer<DamageContainerPrototype>))]
     public List<string>? DamageContainers;
-    
+
     # region Starlight
-    
+
     /// <summary>
     /// Whether to show up the messages in chat
     /// </summary>
     [DataField]
     public bool Talk;
-    
+
     [DataField]
     public LocId TalkMessage = "health-analyzer-chat-message";
-    
+
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
     public TimeSpan NextTalk = TimeSpan.Zero;
-    
+
     /// <summary>
     /// The delay between talk updates
     /// </summary>
     [DataField]
     public TimeSpan TalkInterval = TimeSpan.FromSeconds(5);
-    
+
     # endregion Starlight
     //FarHorizons Start
     [DataField]

@@ -1,9 +1,9 @@
 - type: entity
   id: DisposalTaggerCommand
-  parent: DisposalTagger   
+  parent: DisposalTagger
   suffix: Command
   components:
-  - type: DisposalTagger   
+  - type: DisposalTagger
     tag: Command
 
 
