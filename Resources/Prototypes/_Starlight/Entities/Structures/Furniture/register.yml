@@ -1,7 +1,7 @@
 - type: entity
   name: cash register
   id: CashRegister
-  parent: [ BaseStructureDynamic, BaseBagOpenClose ]
+  parent: [ BaseStructure, BaseBagOpenClose ]
   description: A vaguely secure way to store currency. Wheres the lock...?
   components:
   - type: Anchorable
@@ -16,7 +16,6 @@
     drawdepth: SmallObjects
     sprite: _Starlight/Structures/Furniture/register.rsi
     state: register
-    snapCardinals: true
     noRot: true
     offset: 0, 0.2
   - type: Appearance

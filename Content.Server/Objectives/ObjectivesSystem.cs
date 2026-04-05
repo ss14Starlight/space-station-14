@@ -21,6 +21,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.CustomObjectiveSummary; // Starlight
+using Content.Shared._Starlight.Station; // Starlight
 
 namespace Content.Server.Objectives;
 
@@ -169,8 +170,25 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                 foreach (var objective in collect.Objectives)
                     WriteObjective(ref completedObjectives, builder, objective.Title, objective.Progress);
             }
+            ev.AddLine(builder.AppendLine().ToString());
         }
         ev.AddLine(builder.AppendLine().ToString());
+
+        var stationStatsQuery = EntityQueryEnumerator<StationCrewStatisticsComponent>();
+        while (stationStatsQuery.MoveNext(out var stationUid, out var stats))
+        {
+            var stationName = MetaData(stationUid).EntityName;
+            var stationBuilder = new StringBuilder();
+            stationBuilder.AppendLine(Loc.GetString("station-crew-stats-header", ("station", stationName)));
+            stationBuilder.AppendLine(Loc.GetString("station-crew-stats-crew", ("count", stats.Crew)));
+            stationBuilder.AppendLine(Loc.GetString("station-crew-stats-borgs", ("count", stats.Borgs)));
+            stationBuilder.AppendLine(Loc.GetString("station-crew-stats-lost-crew", ("count", stats.LostCrew)));
+            stationBuilder.AppendLine(Loc.GetString("station-crew-stats-lost-borgs", ("count", stats.LostBorgs)));
+            stationBuilder.AppendLine(Loc.GetString("station-crew-stats-evacuated", ("count", stats.EvacuatedCrew)));
+            stationBuilder.AppendLine(Loc.GetString("station-crew-stats-stolen-borgs", ("count", stats.StolenBorgs)));
+            ev.AddLine(stationBuilder.ToString());
+        }
+
         // 🌟Starlight🌟 end
     }
 
@@ -248,7 +266,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
             }
 
             var successRate = totalObjectives > 0 ? (float)completedObjectives / totalObjectives : 0f;
-            
+
             // Starlight Start: Custom objective response (pink text)
             if (TryComp<CustomObjectiveSummaryComponent>(mindId, out var customComp))
             {
@@ -271,7 +289,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                 agentSummary.AppendLine(Loc.GetString("custom-objective-format", ("line", currentLine)));
             }
             // Starlight End
-            
+
             agentSummaries.Add((agentSummary.ToString(), successRate, completedObjectives));
         }
 

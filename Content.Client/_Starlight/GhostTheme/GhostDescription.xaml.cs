@@ -25,10 +25,10 @@ public sealed partial class GhostDescription : BoxContainer
         RobustXamlLoader.Load(this);
 
         PreviewImage.Texture = spriteSystem.Frame0(icon);
- 
+
         ThemeNameLabel.Text = name;
         ThemeDescriptionLabel.Text = description;
-        
+
         SelectButton.OnPressed += _ => OnThemeSelected?.Invoke();
 
         RgbSkinColorLabel.Visible = colorizeable;

@@ -1,11 +1,11 @@
-names-cyclorite-dataset-1 = Dark        
-names-cyclorite-dataset-2 = Nocturne    
-names-cyclorite-dataset-3 = Duskshade   
-names-cyclorite-dataset-4 = Umbrax      
+names-cyclorite-dataset-1 = Dark
+names-cyclorite-dataset-2 = Nocturne
+names-cyclorite-dataset-3 = Duskshade
+names-cyclorite-dataset-4 = Umbrax
 names-cyclorite-dataset-5 = Singularityx
 names-cyclorite-dataset-6 = Nightwhisper
-names-cyclorite-dataset-7 = Galaxor     
-names-cyclorite-dataset-8 = Voidwalker  
+names-cyclorite-dataset-7 = Galaxor
+names-cyclorite-dataset-8 = Voidwalker
 names-cyclorite-dataset-9 = Abyss
 names-cyclorite-dataset-10 = Starlorn
 names-cyclorite-dataset-11 = Eclipsear

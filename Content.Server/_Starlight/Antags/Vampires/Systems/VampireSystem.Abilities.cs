@@ -39,6 +39,7 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared.StatusEffect;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Eye.Blinding.Components;
+using Content.Shared._FarHorizons.Silicons.IPC.Components;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -180,7 +181,7 @@ public sealed partial class VampireSystem : EntitySystem
     }
 
     /// <summary>
-    /// Common validation for vampire abilities 
+    /// Common validation for vampire abilities
     /// component check + class validation + action cost
     /// </summary>
     internal bool ValidateVampireAbility(EntityUid uid, [NotNullWhen(true)] out VampireComponent? comp, ProtoId<VampireClassPrototype>? requiredClass = null, EntityUid? actionEntity = null)
@@ -239,7 +240,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     private bool IsInvalidDrinkTarget(EntityUid user, EntityUid target, bool showPopup = true)
     {
-        if (!HasComp<VampireComponent>(target) && !HasComp<VampireThrallComponent>(target))
+        if (!HasComp<VampireComponent>(target) && !HasComp<VampireThrallComponent>(target) && !HasComp<IPCBatteryComponent>(target))
             return false;
 
         if (showPopup)
@@ -285,7 +286,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     #endregion
 
-    #region Base Abilities 
+    #region Base Abilities
     private void OnToggleFangs(EntityUid uid, VampireComponent comp, ref VampireToggleFangsActionEvent args)
     {
         if (args.Handled)
@@ -430,9 +431,9 @@ public sealed partial class VampireSystem : EntitySystem
             if (HasComp<HumanoidAppearanceComponent>(args.Args.Target.Value))
             {
                 comp.TotalBlood += (int)actualSipAmount;
-            } 
+            }
 
-            //Biting Damage              
+            //Biting Damage
             //Little bit of additional damage to disincentivize blood donations
             var BiteDamage = new DamageSpecifier();
             //BiteDamage += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_poisonTypeId), FixedPoint2.New(0.1) * actualSipAmount); //1 cellular per 10u

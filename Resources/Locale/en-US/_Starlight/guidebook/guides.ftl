@@ -21,6 +21,8 @@ guide-entry-sl-rule-10 = Rule 10
 guide-entry-sl-rule-11 = Rule 11
 guide-entry-sl-rule-12 = Rule 12
 guide-entry-sl-rule-13 = Rule 13
+guide-entry-sl-rule-14 = Rule 14
+guide-entry-sl-metashield = Metashield
 
 guide-entry-sl-silicon-1 = Sil.Rule 1
 guide-entry-sl-silicon-2 = Sil.Rule 2
@@ -156,3 +158,6 @@ guide-entry-plumbingmachines = Plumbing Machines
 
 # Records
 guide-entry-records = Character Records
+
+# Tools
+guide-entry-tools-combination-locks = Combination Locks

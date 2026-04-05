@@ -42,7 +42,7 @@ public sealed partial class AntagOnSignComponent : Component
     /// </summary>
     [DataField]
     public bool KeepFaxable = false;
-    
+
     //Starlight begin
     /// <summary>
     /// blacklist to prevent the signee from becoming antag

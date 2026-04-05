@@ -128,7 +128,7 @@
         amount: 6
 
 - type: entity #Starlight start
-  id: MedkitFilledParamed 
+  id: MedkitFilledParamed
   suffix: Filled
   parent: Medkit
   components:

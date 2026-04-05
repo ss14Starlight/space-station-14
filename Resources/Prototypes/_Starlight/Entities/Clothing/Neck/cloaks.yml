@@ -157,7 +157,7 @@
   parent: [ ClothingNeckBase, BaseCommandContraband ]
   id: ClothingNeckCloakQmElite
   name: elite quartermaster's cloak
-  description: Quartermaster's cloak made from the latest composite glowing fabric, of course, you doesn't want to sell it.
+  description: Quartermaster's cloak made from the latest composite glowing fabric, of course, you don't want to sell it.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Neck/Cloaks/qm_elite.rsi
@@ -225,7 +225,7 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCentcommContraband]
   id: ClothingNeckCloakCEDMantle
-  name: Centeral Engineering Division mantle
+  name: centeral engineering division mantle
   description: Supermatters, Teslas and TEGs all tremble in fear from anyone wearing this mantle.
   components:
   - type: Sprite
@@ -236,7 +236,7 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCentcommContraband]
   id: ClothingNeckCloakCCponcho
-  name: Central Command poncho
+  name: central command poncho
   description: a stylish poncho for a CC offical that prefers field-work to pushing papers.
   components:
   - type: Sprite
@@ -248,7 +248,7 @@
 # All CC/Synd stuff in Fashion-O-Mat is replica
 
 - type: entity
-  parent: [ ClothingNeckBase ] 
+  parent: [ ClothingNeckBase ]
   id: ClothingNeckCloakCentcomBlack
   name: special operations officer cloak
   description: The NanoTrasen logo embroidered in gold speaks for itself.
@@ -305,7 +305,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingUniformDama0965
-  name: black fur cloak 
+  name: black fur cloak
   description: Neat cloak with fur around the neck and hem.
   components:
     - type: Sprite
@@ -342,7 +342,7 @@
 - type: entity
   parent: [BaseItem, ClothingNeckBase, ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSovietContraband]
   id: ClothingNeckCloakCommissar
-  name: Commissar overcoat
+  name: commissar overcoat
   description: Rumor has it entire regiments of aides exist solely to press seams, polish buttons, and remind the Commissar which coat goes over which.
   components:
   - type: Sprite
@@ -372,7 +372,7 @@
     size: Huge
   - type: StaticPrice
     price: 5000
-    
+
 # Salvage Lead
 - type: entity
   parent: [ ClothingNeckBase, BaseSalvageContraband ]
@@ -391,7 +391,7 @@
 - type: entity
   parent: [ ClothingNeckBase, BaseSalvageContraband ]
   id: ClothingNeckMantleDecoratedVeteranSalvager
-  name: veteran salvager's mantle 
+  name: veteran salvager's mantle
   description: A ceremonial mantle with waist-capes, worn by veteran salvagers that have distinguished themselves even further.
   components:
     - type: Sprite
@@ -445,7 +445,7 @@
     # tags:
     # - ClothMade
     # - WhitelistChameleon
-    
+
 # - type: entity
   # parent: ClothingNeckBase
   # id: ClothingNeckTornCapeBlue
@@ -580,7 +580,7 @@
 - type: entity
   parent: [ClothingNeckMantleRD, BaseCentcommContraband]
   id: ClothingNeckCloakCRDMantle
-  name: Central Researching Division mantle
+  name: central researching division mantle
   description: Rumors say that anomalies stabilize on their own and artifacts start behaving the moment this mantle shows up in the lab.
   components:
   - type: Sprite
@@ -590,7 +590,7 @@
 - type: entity
   parent: [ClothingNeckMantleCMO, BaseCentcommContraband]
   id: ClothingNeckCloakCMDMantle
-  name: Central Medical Division mantle
+  name: central medical division mantle
   description: No ailment or wound can hide from the gaze of the one draped in this mantle.
   components:
   - type: Sprite
@@ -606,7 +606,7 @@
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Neck/supreme-janitor-cloak.rsi
-    
+
 - type: entity
   parent: ClothingNeckBase
   id: RedRegaliaCloak
@@ -621,7 +621,7 @@
 - type: entity
   parent: [ ClothingNeckBase ]
   id: ClothingNeckCloakwarden
-  name: Warden's Cloak
+  name: warden's Cloak
   description: A rough cloak that has seen better days.
   components:
   - type: Sprite

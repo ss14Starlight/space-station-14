@@ -12,7 +12,7 @@ steal-target-groups-jetpack-ce = chief engineer's void jetpack
 steal-target-groups-clothing-outer-hardsuit-hos = head of security's hardsuit
 steal-target-groups-clothing-outer-hardsuit-warden = warden's hardsuit
 steal-target-groups-clothing-outer-hardsuit-brigmedic = brigmedic's hardsuit
-steal-target-groups-clothing-outer-hardsuit-qm = QM's luxury maxim hardsuit
+steal-target-groups-clothing-outer-hardsuit-qm = quartermaster's luxury maxim hardsuit
 steal-target-groups-clothing-outer-hardsuit-salvlead = spationaut lead hardsuit
 steal-target-groups-clothing-outer-hardsuit-captain = captain's armored spacesuit
 steal-target-groups-clothing-outer-hardsuit-ntr = nanotrasen representative's hardsuit
@@ -45,7 +45,7 @@ steal-target-groups-id-card-computer-circuitboard = ID card computer board
 steal-target-groups-clothing-headset-alt-command = command over-ear headset
 steal-target-groups-ptech-circuitboard = PTech circuitboard
 
-steal-target-groups-spyglass = Captain's Spyglass
+steal-target-groups-spyglass = captain's Spyglass
 
 # Thief Collection
 steal-target-groups-handheld-monitors = handheld monitor

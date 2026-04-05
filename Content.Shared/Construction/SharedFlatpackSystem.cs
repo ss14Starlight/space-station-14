@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Construction.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
@@ -103,7 +104,7 @@ public abstract class SharedFlatpackSystem : EntitySystem
                 _popup.PopupEntity(Loc.GetString("flatpack-unpack-no-room"), uid, args.User);
             return;
         }
-        
+
         if (comp.RandomEntities != null)
             comp.Entity = _random.Pick(comp.RandomEntities);
 
@@ -142,14 +143,34 @@ public abstract class SharedFlatpackSystem : EntitySystem
         Appearance.SetData(ent, FlatpackVisuals.Machine, MetaData(board).EntityPrototype?.ID ?? string.Empty);
     }
 
-    /// <param name="machineBoard">The machine board to pack. If null, this implies we are packing a computer board</param>
-    public Dictionary<string, int> GetFlatpackCreationCost(Entity<FlatpackCreatorComponent> entity, Entity<MachineBoardComponent>? machineBoard)
+    /// <summary>
+    /// Returns the prototype from a board that the flatpacker will create.
+    /// </summary>
+    public bool TryGetFlatpackResultPrototype(EntityUid board, [NotNullWhen(true)] out EntProtoId? prototype)
     {
-        Dictionary<string, int> cost = new();
+        prototype = null;
+
+        if (TryComp<MachineBoardComponent>(board, out var machine))
+            prototype = machine.Prototype;
+        else if (TryComp<ComputerBoardComponent>(board, out var computer))
+            prototype = computer.Prototype;
+        return prototype is not null;
+    }
+
+    /// <summary>
+    /// Tries to get the cost to produce an item, fails if unable to produce it.
+    /// </summary>
+    /// <param name="entity">The flatpacking machine</param>
+    /// <param name="machineBoard">The machine board to pack. If null, this implies we are packing a computer board</param>
+    /// <param name="cost">Cost to produce</param>
+    public bool TryGetFlatpackCreationCost(Entity<FlatpackCreatorComponent> entity, EntityUid machineBoard, out Dictionary<string, int> cost)
+    {
+        cost = new();
         Dictionary<ProtoId<MaterialPrototype>, int> baseCost;
-        if (machineBoard is not null)
+        if (TryComp<MachineBoardComponent>(machineBoard, out var machineBoardComp))
         {
-            cost = MachinePart.GetMachineBoardMaterialCost(machineBoard.Value, -1);
+            if (!MachinePart.TryGetMachineBoardMaterialCost((machineBoard, machineBoardComp), out cost, -1))
+                return false;
             baseCost = entity.Comp.BaseMachineCost;
         }
         else
@@ -161,6 +182,6 @@ public abstract class SharedFlatpackSystem : EntitySystem
             cost[mat] -= amount;
         }
 
-        return cost;
+        return true;
     }
 }

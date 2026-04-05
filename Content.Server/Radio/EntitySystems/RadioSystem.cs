@@ -35,7 +35,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.Radio; //Starlight
+using Content.Shared._Starlight.Radio;
+using Content.Shared._Starlight.Language.Components; //Starlight
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -85,14 +86,17 @@ public sealed class RadioSystem : EntitySystem
 
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
+        // Starlight - Start
+        if (args.Language.SpeechOverride.RadioChannel is not null && _language.CanUnderstand(uid, args.Language.ID))
+            return;
+
         if (TryComp(uid, out ActorComponent? actor))
         {
-            // Starlight - Start
             var msg = args.OriginalChatMsg;
 
             if (!_language.CanUnderstand(uid, args.Language.ID))
                 msg = args.LanguageObfuscatedChatMsg;
-            else if(args.MessageSource != uid)
+            else if (args.MessageSource != uid)
                 args.Receivers.Add(uid);
 
             _netMan.ServerSendMessage(new MsgChatMessage { Message = msg }, actor.PlayerSession.Channel);
@@ -133,7 +137,8 @@ public sealed class RadioSystem : EntitySystem
         if (language == null)
             language = _language.GetLanguage(messageSource);
 
-        if (!language.SpeechOverride.AllowRadio)
+        if ((!language.SpeechOverride.AllowRadio && language.SpeechOverride.RadioChannel is not null && language.SpeechOverride.RadioChannel != channel)
+            || (!language.SpeechOverride.AllowRadio && language.SpeechOverride.RadioChannel is null))
             return;
         // Starlight - End
 
@@ -186,6 +191,28 @@ public sealed class RadioSystem : EntitySystem
         var hasActiveServer = HasActiveServer(sourceMapId, channel.ID);
         var sourceServerExempt = _exemptQuery.HasComp(radioSource);
 
+        // Starlight - Start - Languages - Radio
+        if (language.SpeechOverride.RadioChannel is not null && channel == language.SpeechOverride.RadioChannel)
+        {
+            var languageQuery = EntityQueryEnumerator<LanguageKnowledgeComponent>();
+            while (canSend && languageQuery.MoveNext(out var receiver, out var _))
+            {
+                if (_language.CanUnderstand(receiver, language.ID))
+                {
+                    // check if message can be sent to specific receiver
+                    var attemptEv = new RadioReceiveAttemptEvent(channel, radioSource, receiver);
+                    RaiseLocalEvent(ref attemptEv);
+                    RaiseLocalEvent(receiver, ref attemptEv);
+                    if (attemptEv.Cancelled)
+                        continue;
+
+                    // send the message
+                    RaiseLocalEvent(receiver, ref ev);
+                }
+            }
+        }
+        // Starlight - End
+
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
@@ -213,7 +240,6 @@ public sealed class RadioSystem : EntitySystem
 
             // send the message
             RaiseLocalEvent(receiver, ref ev);
-
         }
 
         // Starlight start
@@ -223,7 +249,7 @@ public sealed class RadioSystem : EntitySystem
             Source = messageSource,
             Message = message,
             Language = language,
-            SuppressTTS = suppressTTS, 
+            SuppressTTS = suppressTTS,
             Receivers = [.. ev.Receivers]
         });
         // Starlight end
@@ -309,7 +335,7 @@ public sealed class RadioSystem : EntitySystem
             {
                 if (radio.CustomChannels.All(c => c.Id != channel.Id) ||
                     (TryComp<IntercomComponent>(receiver, out var intercom) &&
-                     intercom.CustomChannels.All(c=>c.Id != channel.Id)))
+                     intercom.CustomChannels.All(c => c.Id != channel.Id)))
                     continue;
             }
 
@@ -341,7 +367,7 @@ public sealed class RadioSystem : EntitySystem
         _replay.RecordServerMessage(msg);
         _messages.Remove(message);
     }
-    
+
     private (string, string) GetJobIcon(EntityUid messageSource)
     {
         var iconId = "JobIconNoId";
@@ -423,7 +449,7 @@ public sealed class RadioSystem : EntitySystem
                 ("name", namestring),
                 ("message", message));
     }
-    
+
     private string WrapCustomRadioMessage(
         EntityUid source,
         CustomRadioChannelData channel,
@@ -470,7 +496,7 @@ public sealed class RadioSystem : EntitySystem
         {
             if (transform.MapID == mapId &&
                 power.Powered &&
-                (keys.Channels.Contains(channelId) || keys.CustomChannels.Any(channel=>channel.Id==channelId))) //Starlight edit
+                (keys.Channels.Contains(channelId) || keys.CustomChannels.Any(channel => channel.Id == channelId))) //Starlight edit
             {
                 return true;
             }
@@ -493,7 +519,7 @@ public sealed class RadioSystem : EntitySystem
         {
             radio.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))];
             Dirty(ent, radio);
-        } 
+        }
         //Starlight end
     }
     #endregion Starlight

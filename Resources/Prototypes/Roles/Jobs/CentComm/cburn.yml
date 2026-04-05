@@ -17,6 +17,7 @@
   icon: "JobIconCBURN"
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  bypassEorPacification: true # Starlight
   accessGroups:
   - AllAccess
   access:
@@ -46,7 +47,7 @@
 #    - WeaponShotgunDoubleBarreled Starlight: Replaced with starlight weaponry
 #    - BoxShotgunIncendiary
     # Starlight-start: Starlight incendiary weaponry
-    - WeaponRifleIK60
+    - WeaponIK60
     - MagazineBatteryLr30
     - MagazineBatteryLr30
     - MagazineBatteryLr30

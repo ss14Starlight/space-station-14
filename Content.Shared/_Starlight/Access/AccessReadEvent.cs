@@ -8,7 +8,7 @@ using Content.Shared.Starlight.Medical.Surgery;
 
 namespace Content.Shared._Starlight.Access;
 [ByRefEvent]
-public record struct AccessReadEvent() 
+public record struct AccessReadEvent()
 {
     public bool Denied = false;
 }

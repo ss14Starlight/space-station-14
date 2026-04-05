@@ -23,10 +23,10 @@
           whitelist:
             tags:
               - CartridgePistol
-            
+
 - type: entity
   name: SP-91-RC
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband]
+  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
   id: WeaponSubMachineGunSP91RC
   description: Compact submachine gun designed for riot control.
   components:
@@ -37,6 +37,11 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -19
+    maxAngle: -16
   - type: Gun
     fireRate: 13
     selectedMode: Burst
@@ -52,10 +57,10 @@
   - type: Appearance
   - type: ChamberMagazineAmmoProvider
     autoEject: true
-    
+
 - type: entity
   name: Type U3 Uzi
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseMajorContraband]
+  parent: [BaseWeaponSubMachineGun, BaseMajorContraband]
   id: WeaponSubMachineGunUzi
   description: Lightweight submachine gun with a 32-round magazine that has single or 4 round firing modes.
   components:
@@ -189,7 +194,7 @@
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/SMGs/makeshift_smg.rsi
   - type: Item
-    size: Normal  
+    size: Normal
   - type: Gun
     fireRate: 9
     minAngle: 32
@@ -267,7 +272,7 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/SMGs/makeshift_smg.rsi  
+    sprite: _Starlight/Objects/Weapons/Guns/SMGs/makeshift_smg.rsi
   - type: Item
     size: Large
   - type: Wieldable
@@ -320,7 +325,7 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/SMGs/forged_smg.rsi  
+    sprite: _Starlight/Objects/Weapons/Guns/SMGs/forged_smg.rsi
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus

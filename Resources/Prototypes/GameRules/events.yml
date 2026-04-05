@@ -24,14 +24,17 @@
     - id: SpiderClownSpawn
     - id: SpiderSpawn
     - id: VentClog
-    - id: PsychicScreach # SL
-    - id: SecurityDrill # SL
-    - id: DoorRuntime # SL
-    - id: RadStorm # SL
-    - id: AuroraCaelus # SL
-    - id: SpaceWhale # SL
-    - id: CommunicationBlackout # SL
-    - id: NightShift # SL
+    # Starlight Start
+    - id: PsychicScreach
+    - id: SecurityDrill
+    - id: DoorRuntime
+    - id: RadStorm
+    - id: AuroraCaelus
+    - id: SpaceWhale
+    - id: CommunicationBlackout
+    - id: NightShift
+    - id: SyndicateDeadDrop
+    # Starlight End
 
 - type: entityTable
   id: BasicAntagEventsTable
@@ -77,7 +80,7 @@
       weight: 15
       children:
         - id: DerelictSyndicateAssaultCyborgSpawn
-    
+
 - type: entity
   id: BaseStationEvent
   parent: BaseGameRule
@@ -741,7 +744,7 @@
     weight: 2
     minimumPlayers: 25
     reoccurrenceDelay: 20
-    maxOccurrences: 2 
+    maxOccurrences: 2
   - type: GreytideVirusRule
     accessGroups:
     - Cargo

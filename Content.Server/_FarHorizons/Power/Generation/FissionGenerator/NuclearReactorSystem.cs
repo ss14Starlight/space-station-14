@@ -85,6 +85,8 @@ public sealed class NuclearReactorSystem : EntitySystem
 
     private readonly Dictionary<KeyValuePair<EntityUid, EntityUid>, LogData> _logQueue = [];
 
+    private static readonly ReactorPartComponent?[] _neighborBuffer = new ReactorPartComponent?[4];
+
     public override void Initialize()
     {
         base.Initialize();
@@ -122,7 +124,7 @@ public sealed class NuclearReactorSystem : EntitySystem
     private void OnInit(EntityUid uid, NuclearReactorComponent comp, ref MapInitEvent args)
     {
         _signal.EnsureSinkPorts(uid, comp.ControlRodInsertPort, comp.ControlRodRetractPort);
-        
+
         _slotsSystem.AddItemSlot(uid, NuclearReactorComponent.PartSlotId, comp.PartSlot);
         comp.PartStorage = _containerSystem.EnsureContainer<Container>(uid, NuclearReactorComponent.PartStorageId);
 
@@ -131,6 +133,7 @@ public sealed class NuclearReactorSystem : EntitySystem
 
         comp.ComponentGrid = new ReactorPartComponent[gridWidth, gridHeight];
         comp.FluxGrid = new List<ReactorNeutron>[gridWidth, gridHeight];
+        comp.FluxGridScratch = new List<ReactorNeutron>[gridWidth, gridHeight];
         comp.NeutronGrid = new int[gridWidth, gridHeight];
 
         ApplyPrefab(uid, comp);
@@ -155,6 +158,7 @@ public sealed class NuclearReactorSystem : EntitySystem
             {
                 comp.ComponentGrid[x, y] = prefab.TryGetValue(new Vector2i(x, y), out var part) ? new ReactorPartComponent(part) : null;
                 comp.FluxGrid[x, y] = [];
+                comp.FluxGridScratch[x, y] = [];
             }
 
         UpdateGasVolume(comp);
@@ -178,7 +182,7 @@ public sealed class NuclearReactorSystem : EntitySystem
         {
             var source = "NuclearReactorRandomParts";
             var protoID = _protoMan.Index<WeightedRandomPrototype>(source).Pick(_random);
-            
+
             var partEnt = Spawn(protoID, coords);
             if(!_containerSystem.Insert(partEnt, comp.PartStorage, transform))
             {
@@ -256,7 +260,7 @@ public sealed class NuclearReactorSystem : EntitySystem
 
     private void OnPartChanged(EntityUid uid, NuclearReactorComponent component, ContainerModifiedMessage args) => UpdateUI(uid, component);
 
-    private void OnCompRemove(EntityUid uid, NuclearReactorComponent comp, ref ComponentRemove args) 
+    private void OnCompRemove(EntityUid uid, NuclearReactorComponent comp, ref ComponentRemove args)
     {
         _slotsSystem.RemoveItemSlot(uid, comp.PartSlot);
         CleanUp(comp);
@@ -308,8 +312,7 @@ public sealed class NuclearReactorSystem : EntitySystem
         if (comp.RetractPortState == SignalState.Momentary)
             comp.RetractPortState = SignalState.Low;
 
-        // Record of neutron movement for this tick
-        var flux = new List<(ReactorNeutron neutron, Vector2i source, Vector2i? destination)>();
+        comp.SimTime.Restart();
         for (var x = 0; x < gridWidth; x++)
         {
             for (var y = 0; y < gridHeight; y++)
@@ -324,7 +327,7 @@ public sealed class NuclearReactorSystem : EntitySystem
                     if (gas != null)
                         _atmosphereSystem.Merge(outlet.Air, gas);
 
-                    _partSystem.ProcessHeat(ReactorComp, (uid, comp), GetGridNeighbors(comp, x, y), this);
+                    _partSystem.ProcessHeat(ReactorComp, (uid, comp), GetGridNeighbors(comp, x, y, _neighborBuffer), this);
 
                     if (ReactorComp.HasRodType(ReactorPartComponent.RodTypes.ControlRod) && ReactorComp.IsControlRod)
                     {
@@ -340,6 +343,9 @@ public sealed class NuclearReactorSystem : EntitySystem
                         AvgControlRodInsertion += ReactorComp.NeutronCrossSection;
                 }
 
+                // Move neutrons using double-buffer: build into scratch, then swap. Eliminates O(n) List.Remove
+                // and the full flux snapshot copy. Scratch lists are cleared from previous tick.
+                var scratch = comp.FluxGridScratch;
                 foreach (var neutron in comp.FluxGrid[x, y])
                 {
                     var dir = neutron.dir.AsFlag();
@@ -350,27 +356,30 @@ public sealed class NuclearReactorSystem : EntitySystem
                     if (x + xmod >= 0 && y + ymod >= 0 && x + xmod <= gridWidth - 1
                         && y + ymod <= gridHeight - 1)
                     {
-                        flux.Add((neutron, new Vector2i(x, y), new Vector2i(x + xmod, y + ymod)));
+                        scratch[x + xmod, y + ymod].Add(neutron);
                     }
                     else
                     {
-                        flux.Add((neutron, new Vector2i(x, y), null));
-                        TempRads++; // neutrons hitting the casing get blasted in to the room - have fun with that engineers!
+                        TempRads++; // neutrons hitting the casing get blasted in to the room
                     }
                 }
 
                 comp.NeutronGrid[x, y] = comp.FluxGrid[x, y].Count;
+
+                if(comp.SimTime.Elapsed.TotalMilliseconds > 500)
+                {
+                    QueueDel(uid);
+                    _adminLog.Add(LogType.EntityDelete, LogImpact.Extreme, $"{ToPrettyString(uid):reactor} simulation took too long ({comp.SimTime.Elapsed.TotalMilliseconds} ms).");
+                    return;
+                }
             }
         }
 
-        // Move neutrons
-        foreach (var (neutron, source, destination) in flux)
-        {
-            comp.FluxGrid[source.X, source.Y].Remove(neutron);
-
-            if (destination.HasValue)
-                comp.FluxGrid[destination.Value.X, destination.Value.Y].Add(neutron);
-        }
+        // Swap grids and clear scratch for next tick
+        (comp.FluxGrid, comp.FluxGridScratch) = (comp.FluxGridScratch, comp.FluxGrid);
+        for (var x = 0; x < gridWidth; x++)
+            for (var y = 0; y < gridHeight; y++)
+                comp.FluxGridScratch[x, y].Clear();
 
         AvgControlRodInsertion /= ControlRods;
 
@@ -415,26 +424,13 @@ public sealed class NuclearReactorSystem : EntitySystem
         reactor.RadiationLevel /= Math.Max(reactor.RadiationStability, 1);
     }
 
-    private static List<ReactorPartComponent?> GetGridNeighbors(NuclearReactorComponent reactor, int x, int y)
+    private static ReactorPartComponent?[] GetGridNeighbors(NuclearReactorComponent reactor, int x, int y, ReactorPartComponent?[] buffer)
     {
-        var neighbors = new List<ReactorPartComponent?>();
-        if (x - 1 < 0)
-            neighbors.Add(null);
-        else
-            neighbors.Add(reactor.ComponentGrid[x - 1, y]);
-        if (x + 1 >= reactor.ReactorGridWidth)
-            neighbors.Add(null);
-        else
-            neighbors.Add(reactor.ComponentGrid[x + 1, y]);
-        if (y - 1 < 0)
-            neighbors.Add(null);
-        else
-            neighbors.Add(reactor.ComponentGrid[x, y - 1]);
-        if (y + 1 >= reactor.ReactorGridHeight)
-            neighbors.Add(null);
-        else
-            neighbors.Add(reactor.ComponentGrid[x, y + 1]);
-        return neighbors;
+        buffer[0] = x - 1 < 0 ? null : reactor.ComponentGrid[x - 1, y];
+        buffer[1] = x + 1 >= reactor.ReactorGridWidth ? null : reactor.ComponentGrid[x + 1, y];
+        buffer[2] = y - 1 < 0 ? null : reactor.ComponentGrid[x, y - 1];
+        buffer[3] = y + 1 >= reactor.ReactorGridHeight ? null : reactor.ComponentGrid[x, y + 1];
+        return buffer;
     }
 
     private void UpdateGasVolume(NuclearReactorComponent reactor)
@@ -545,7 +541,7 @@ public sealed class NuclearReactorSystem : EntitySystem
                         return;
 
                     MeltdownBadness += ((RC.Properties.Radioactivity * 2) + (RC.Properties.NeutronRadioactivity * 5) + (RC.Properties.FissileIsotopes * 10)) * (RC.Melted ? 2 : 1);
-                    
+
                     if (RC.AirContents != null)
                     {
                         _atmosphereSystem.Merge(comp.AirContents, RC.AirContents ?? new());
@@ -567,7 +563,7 @@ public sealed class NuclearReactorSystem : EntitySystem
         if (T != null)
             _atmosphereSystem.Merge(T, comp.AirContents);
 
-        _adminLog.Add(LogType.Explosion, LogImpact.High, $"{ToPrettyString(uid):reactor} catastrophically overloads, meltdown badness: {MeltdownBadness}");
+        _adminLog.Add(LogType.Explosion, LogImpact.Extreme, $"{ToPrettyString(uid):reactor} catastrophically overloads, meltdown badness: {MeltdownBadness}");
 
         // You did not see graphite on the roof. You're in shock. Report to medical.
         for (var i = 0; i < _random.Next(10, 30); i++)
@@ -752,7 +748,7 @@ public sealed class NuclearReactorSystem : EntitySystem
 
         comp.LastSendTemperature = comp.Temperature;
     }
-    
+
     private void UpdateTempIndicators(EntityUid uid, NuclearReactorComponent comp)
     {
         var change = false;
@@ -834,16 +830,26 @@ public sealed class NuclearReactorSystem : EntitySystem
                     continue;
                 }
 
-                dict.Add(new(x, y), new ReactorSlotBUIData
+                // There's quite a few edge cases where this could go wrong, so this try-catch is to stop it from taking the server down with it
+                // Known cases: deletion of reactor, changing of prefab, deletion of a rod
+                try
                 {
-                    Temperature = reactorPart.Temperature,
-                    NeutronCount = reactor.NeutronGrid[x, y],
-                    IconName = reactorPart.IconStateInserted,
-                    PartName = Identity.Name(reactor.GridEntities[new(x, y)], _entityManager),
-                    NeutronRadioactivity = reactorPart.Properties.NeutronRadioactivity,
-                    Radioactivity = reactorPart.Properties.Radioactivity,
-                    SpentFuel = reactorPart.Properties.FissileIsotopes
-                });
+                    dict.Add(new(x, y), new ReactorSlotBUIData
+                    {
+                        Temperature = reactorPart.Temperature,
+                        NeutronCount = reactor.NeutronGrid[x, y],
+                        IconName = reactorPart.IconStateInserted,
+                        PartName = Identity.Name(reactor.GridEntities[new(x, y)], _entityManager),
+                        NeutronRadioactivity = reactorPart.Properties.NeutronRadioactivity,
+                        Radioactivity = reactorPart.Properties.Radioactivity,
+                        SpentFuel = reactorPart.Properties.FissileIsotopes
+                    });
+                }
+                catch
+                {
+                    _uiSystem.CloseUi(uid, NuclearReactorUiKey.Key);
+                    return;
+                }
             }
         }
 
@@ -903,7 +909,7 @@ public sealed class NuclearReactorSystem : EntitySystem
                 return;
 
             _containerSystem.Insert(item.Value, comp.PartStorage);
-            
+
             _adminLog.Add(LogType.Action, $"{ToPrettyString(args.Actor):actor} added {ToPrettyString(item):item} to position {pos.Y},{pos.X} in {ToPrettyString(uid):target}");
 
             comp.ComponentGrid[pos.X, pos.Y] = reactorPart;
@@ -921,7 +927,7 @@ public sealed class NuclearReactorSystem : EntitySystem
             // Data is sent to a log queue to avoid spamming the admin log when adjusting values rapidly
             if(!_logQueue.TryGetValue(new(args.Actor, ent.Owner), out var value))
                 _logQueue.Add(new(args.Actor, ent.Owner), new LogData {
-                    CreationTime = _gameTiming.RealTime, 
+                    CreationTime = _gameTiming.RealTime,
                     SetControlRodInsertion = ent.Comp.ControlRodInsertion
                 });
             else
@@ -929,17 +935,17 @@ public sealed class NuclearReactorSystem : EntitySystem
 
         UpdateUI(ent.Owner, ent.Comp);
     }
-    
-    public static bool AdjustControlRods(NuclearReactorComponent comp, float change) { 
+
+    public static bool AdjustControlRods(NuclearReactorComponent comp, float change) {
         var newSet = Math.Clamp(comp.ControlRodInsertion + change, 0, 2);
         if (comp.ControlRodInsertion != newSet)
         {
             comp.ControlRodInsertion = newSet;
             return true;
         }
-        return false; 
+        return false;
     }
-    
+
     private void OnEjectItemMessage(EntityUid uid, NuclearReactorComponent component, ReactorEjectItemMessage args)
     {
         if (component.PartSlot.Item == null)

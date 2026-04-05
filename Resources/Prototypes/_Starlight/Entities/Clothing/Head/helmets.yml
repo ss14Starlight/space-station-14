@@ -27,7 +27,7 @@
     tags:
     - WhitelistChameleon
     - SecurityHelmet
-    
+
 #Basic Helmet (Security Helmet Reskin)
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
@@ -58,7 +58,7 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Helmets/bulletproof.rsi
   - type: Item
-    storedRotation: 0  
+    storedRotation: 0
   - type: ItemToggle # Welding mask starts in an activated state
     activated: true
   - type: Appearance
@@ -72,7 +72,7 @@
         Piercing: 0.80
   - type: ToggleClothing
     action: ActionToggleWeldingMask
-  - type: WeldingMask  
+  - type: WeldingMask
   - type: HideLayerClothing
     slots:
     - Snout
@@ -109,7 +109,7 @@
   - type: Reflect
     reflectProb: 0.35 # STARLIGHT: Helmet base reflect probability, adds with vest to 100%
     reflects:
-      - Energy  
+      - Energy
   # STARLIGHT: Component for set bonus system. Stores original reflection and tag for helmet piece.
   - type: ReflectiveSetBonus
     helmetTag: ReflectiveArmorHelmet
@@ -255,7 +255,7 @@
     sprite: _Starlight/Clothing/Head/Helmets/paladin.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Helmets/paladin.rsi
-    
+
 - type: entity
   parent: ClothingHeadHelmetERTLeader
   id: ClothingHeadHelmetNTNCConsortium
