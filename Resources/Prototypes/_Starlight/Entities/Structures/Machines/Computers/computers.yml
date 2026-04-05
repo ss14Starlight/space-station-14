@@ -567,6 +567,7 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsScience
+  categories: [ ShouldMapStation ]
   name: science communications console
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
@@ -678,7 +679,6 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsCargo
-  categories: [ ShouldMapStation ]
   name: cargo communications console
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:

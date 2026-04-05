@@ -402,6 +402,7 @@
 # No hardsuit locker
 - type: entity
   id: LockerResearchDirectorFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerResearchDirector
   components:

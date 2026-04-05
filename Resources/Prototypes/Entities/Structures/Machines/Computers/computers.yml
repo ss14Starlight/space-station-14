@@ -1711,6 +1711,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerRoboticsControl
+  categories: [ ShouldMapStation ] # Starlight
   name: robotics control console
   description: Used to remotely monitor, disable, and destroy the station's cyborgs. # Starlight-edit - add ", disable, and destroy"
   components:
@@ -1807,6 +1808,7 @@
 
 - type: entity
   id: StationAiUploadComputer
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseComputer
   name: AI upload console
   description: Used to update the laws of the station AI.
@@ -1869,6 +1871,7 @@
 
 - type: entity
   id: StationAiFixerComputer
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseComputer
   name: AI restoration console
   description: Used to repair damaged artifical intelligences.

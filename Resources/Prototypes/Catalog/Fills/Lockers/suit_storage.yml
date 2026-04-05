@@ -222,6 +222,7 @@
 #RD's hardsuit
 - type: entity
   id: SuitStorageRD
+  categories: [ ShouldMapStation ] # Starlight
   parent: SuitStorageBase
   suffix: Research Director
   components:
