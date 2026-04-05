@@ -17,7 +17,7 @@
     OminousPill: 1 # Starlight
     PillDesoxyephedrine5: 1 # Starlight
 
-  
+
 - type: vendingMachineInventory
   id: NanoMedCivilianWallInventory
   startingInventory:

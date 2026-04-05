@@ -138,7 +138,7 @@ public sealed partial class MaterialReclaimerComponent : Component
     /// </remarks>
     [DataField, AutoNetworkedField]
     public int ItemsProcessed;
-    
+
     //Starlight
     [DataField, AutoNetworkedField]
     public DamageSpecifier EmagDamage = new() { DamageDict = { ["Blunt"] = 350 } };

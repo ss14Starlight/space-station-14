@@ -11,7 +11,7 @@ public sealed partial class NightVisionComponent : Component
 
     [DataField]
     public EntProtoId EffectPrototype = "EffectNightVision";
-    
+
     public bool Clothes;
 }
 

@@ -7,11 +7,11 @@ namespace Content.Client._Starlight.Input;
 public sealed class FixInputSystem : EntitySystem
 {
     [Dependency] private readonly InputSystem _input = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeNetworkEvent<FixInputEvent>(OnFixInput);
     }
 

@@ -303,7 +303,7 @@
     fireCost: 20
   - type: Appearance
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
-  
+
 - type: entity
   id: WeaponMechCombatIon
   name: Mk.IV Ion Heavy Cannon
@@ -332,7 +332,7 @@
   - type: Battery
     maxCharge: 400
     startingCharge: 400
-    
+
 - type: entity
   id: WeaponMechCombatAMLG90
 # 🌟Starlight-start🌟
@@ -361,7 +361,7 @@
     fireCost: 20
   - type: Appearance
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
-  
+
 - type: entity
   id: WeaponMechCombatXray
   name: S-1 X-Ray Projector

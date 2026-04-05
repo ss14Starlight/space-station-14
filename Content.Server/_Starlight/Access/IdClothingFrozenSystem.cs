@@ -7,4 +7,4 @@ namespace Content.Server._Starlight.Access;
 /// </summary>
 public sealed class IdClothingFrozenSystem : SharedIdClothingFrozenSystem
 {
-} 
+}

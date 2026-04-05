@@ -224,7 +224,7 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
     // What this does instead:
     // - Whenever the locally selected free-mode layer changes (or held RPD/RPLD changes),
     //   sends that exact layer as RPDSelectedLayerEvent.
-    // - Server stores it on the held RCDComponent (LastSelectedLayer) 
+    // - Server stores it on the held RCDComponent (LastSelectedLayer)
     //   and uses it directly during placement in Free mode.
     private void UpdateSelectedLayer(EntityUid heldEntity, AtmosPipeLayer layer)
     {

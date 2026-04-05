@@ -289,12 +289,12 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         {
             if (!requirement.Check(_entManager, player, _prototypes, profile, _mergedRoles, out var checkDetails))
                 success = false; // Starlight
-            
+
             if (!reason.IsEmpty) // Starlight BEGIN
                 reason.PushNewline();
             reason.AddMessage(checkDetails); // Starlight END
         }
-        
+
         return success; // Starlight
     }
 
@@ -389,7 +389,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         {
             if (antag.PlayTimeTracker == null)
                 continue;
-            
+
             if (_mergedRoles.TryGetValue(antag.PlayTimeTracker, out var time))
                 yield return new KeyValuePair<AntagPrototype, TimeSpan>(antag, time);
         }
@@ -410,7 +410,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         foreach (var antagPlaytime in antagPlaytimes)
             if (antagPlaytime.Key.PlayTimeTracker != null)
                 exclude.Add(antagPlaytime.Key.PlayTimeTracker);
-        
+
         foreach (var tracker in trackers)
         {
             if (exclude.Contains(tracker.ID))
@@ -418,7 +418,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
             if (!_mergedRoles.TryGetValue(tracker.ID, out var rolePlaytime))
                 continue;
-            
+
             yield return new KeyValuePair<PlayTimeTrackerPrototype, TimeSpan>(tracker, rolePlaytime);
         }
     }
