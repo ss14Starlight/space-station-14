@@ -57,6 +57,7 @@
   - Paramedic # Starlight
   - Mining # Starlight
   - SalvageLead # Starlight
+  - Mail # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
