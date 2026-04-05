@@ -36259,5 +36259,16 @@ Entries:
   id: 399001
   time: '2026-04-05T19:57:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3990
+- author: CawsForConcern
+  changes:
+  - message: (Lobster) Security doors leading towards GenPop corrected to Brig access
+      (for IAAs, Magistrates).
+    type: Fix
+  - message: (Serpentcrest) Security doors leading towards GenPop corrected to Brig
+      access (for IAAs, Magistrates).
+    type: Fix
+  id: 398701
+  time: '2026-04-05T20:13:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3987
 Order: -1
 
