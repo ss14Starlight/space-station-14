@@ -5,7 +5,6 @@ using Content.Shared.Atmos.Rotting;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Kitchen.Components;
-using Content.Shared.Light.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Stunnable;
 
@@ -17,6 +16,8 @@ public sealed class SharedWrapSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedTransformSystem _xformSys = default!;
 
     public override void Initialize()
     {
@@ -54,8 +55,6 @@ public sealed class SharedWrapSystem : EntitySystem
     /// <summary>
     /// Prevent entity from moving while wrapped.
     /// </summary>
-    /// <param name="ent"></param>
-    /// <param name="args"></param>
     private void OnUpdateCanMove(Entity<WrappedComponent> ent, ref UpdateCanMoveEvent args)
         => args.Cancel();
 
@@ -82,7 +81,14 @@ public sealed class SharedWrapSystem : EntitySystem
     {
         if (args.Handled || !HasComp<WrappedComponent>(uid))
             return;
+
         args.Handled = true;
+
+        _appearance.SetData(uid, WrappedVisuals.IsWrapped, false);
+
+        if (component.EffectEntity != null)
+            QueueDel(component.EffectEntity.Value);
+
         RemComp<WrappedComponent>(uid);
         _blocker.UpdateCanMove(uid);
     }
@@ -92,8 +98,13 @@ public sealed class SharedWrapSystem : EntitySystem
         if (args.Handled || args.Args.EventTarget == null || HasComp<WrappedComponent>(args.Args.EventTarget) || !_stun.TryKnockdown(args.Args.EventTarget.Value, null, true, false, true, true))
             return;
         args.Handled = true;
-        EnsureComp<WrappedComponent>(args.Args.EventTarget.Value);
+        var wrapped = EnsureComp<WrappedComponent>(args.Args.EventTarget.Value);
         _blocker.UpdateCanMove(args.Args.EventTarget.Value);
+        _appearance.SetData(args.Args.EventTarget.Value, WrappedVisuals.IsWrapped, true);
+        EnsureComp<TransformComponent>(args.Args.EventTarget.Value, out var xform);
+        var effect = PredictedSpawnAttachedTo(wrapped.WrappedEffectId, xform.Coordinates);
+        _xformSys.SetParent(effect, args.Args.EventTarget.Value);
+        wrapped.EffectEntity = effect;
     }
 
     private void OnWrapAttempt(WrapActionEvent args)
