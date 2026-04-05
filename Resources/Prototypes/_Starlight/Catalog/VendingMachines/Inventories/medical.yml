@@ -141,7 +141,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-  
+
 - type: listing
   id: VendorMobOrganHumanEyes
   productEntity: OrganHumanEyes
@@ -151,7 +151,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorLeftLegHuman
   productEntity: LeftLegWithFootHuman
@@ -161,7 +161,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorRightLegHuman
   productEntity: RightLegWithFootHuman
@@ -171,7 +171,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-      
+
 - type: listing
   id: VendorLeftFootHuman
   productEntity: LeftFootHuman
@@ -181,7 +181,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorRightFootHuman
   productEntity: RightFootHuman
@@ -201,7 +201,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorRightArmHuman
   productEntity: RightArmWithHandHuman
@@ -211,7 +211,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-      
+
 - type: listing
   id: VendorLeftHandHuman
   productEntity: LeftHandHuman
@@ -221,7 +221,7 @@
   - SLSurgery
   conditions:
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorRightHandHuman
   productEntity: RightHandHuman

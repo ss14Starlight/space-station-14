@@ -29,4 +29,4 @@
   components:
     - type: Rehydratable
       possibleSpawns:
-        - MobCCMoproach 
+        - MobCCMoproach

@@ -203,8 +203,8 @@ public sealed class HealingSystem : EntitySystem
         }
 
         // Far Horizons start
-        if (healing.Comp.AdjustEyeDamage != 0 && 
-            TryComp<BlindableComponent>(target, out var blindable) && 
+        if (healing.Comp.AdjustEyeDamage != 0 &&
+            TryComp<BlindableComponent>(target, out var blindable) &&
             blindable.EyeDamage != 0)
             return true;
         // Far Horizons end

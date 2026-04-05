@@ -154,7 +154,7 @@
   materials:
     Steel: 2000
     Gold: 1000
-    Silver: 1000    
+    Silver: 1000
 
 - type: latheRecipe
   id: WeaponMechCombatAMLG90
@@ -166,7 +166,7 @@
     Steel: 2900
     Plastic: 1000
     Plasma: 1000
-    Glass: 700    
+    Glass: 700
 
 - type: latheRecipe
   id: MechEquipmentSecGrabber

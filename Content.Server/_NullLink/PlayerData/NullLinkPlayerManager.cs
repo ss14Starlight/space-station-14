@@ -118,7 +118,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
     private void UpdateMentors(string obj)
     {
         if(_mentorReq?.ID == obj)
-            return; 
+            return;
 
         _mentors.Clear();
         if (!_proto.TryIndex<RoleRequirementPrototype>(obj, out var mentorReq))

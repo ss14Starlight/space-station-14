@@ -27,7 +27,7 @@ using Content.Shared.Power.EntitySystems;
 namespace Content.Server._FarHorizons.Silicons.IPC;
 
 /// <inheritdoc/>
-public sealed partial class IPCSystem : SharedIPCSystem 
+public sealed partial class IPCSystem : SharedIPCSystem
 {
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly BatteryDrainerSystem _drainer = default!;
@@ -54,7 +54,7 @@ public sealed partial class IPCSystem : SharedIPCSystem
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
-    
+
 
     public override void Initialize()
     {

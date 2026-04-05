@@ -43,7 +43,7 @@
     intervalSeconds: 90
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
-  - type: TimedDespawn 
+  - type: TimedDespawn
     lifetime: 91
 
 - type: entity
@@ -60,9 +60,9 @@
     intervalSeconds: 90
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
-  - type: TimedDespawn 
+  - type: TimedDespawn
     lifetime: 91
-    
+
 - type: entity
   parent: EggSpider
   id: TerrorRedEggSpiderFertilized
@@ -77,7 +77,7 @@
     intervalSeconds: 90
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
-  - type: TimedDespawn 
+  - type: TimedDespawn
     lifetime: 91
 
 - type: entity
@@ -91,5 +91,5 @@
     intervalSeconds: 60
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
-  - type: TimedDespawn 
+  - type: TimedDespawn
     lifetime: 61

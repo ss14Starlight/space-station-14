@@ -103,7 +103,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
         var senderIsMentor = _playerRoles.IsMentor(senderSession);
         if (!senderIsAdmin && !senderIsMentor && _rateLimit.CountAction(senderSession, RateLimitKey) != RateLimitStatus.Allowed)
             return;
-        
+
         if (message.Ticket is not Guid ticketId)
         {
             ticketId = Guid.NewGuid();
@@ -130,7 +130,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
         if (ticket is null && !_tickets.TryGetValue(ticketId, out ticket))
             return;
         if (ticket.Creator != senderSession.UserId
-        && ((ticket.Mentor is null && !senderIsMentor) || (ticket.Mentor != senderSession.UserId)) 
+        && ((ticket.Mentor is null && !senderIsMentor) || (ticket.Mentor != senderSession.UserId))
         && !(senderIsAdmin || senderIsMentor))
             return;
         var escapedText = FormattedMessage.EscapeText(message.Text);
@@ -244,7 +244,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
         var mentorEnt = senderSession.AttachedEntity;
         if (!HasComp<GhostComponent>(mentorEnt))
             return;
-        
+
         var playerSession = _playerManager.GetSessionById(ticket.Creator);
 
         if (playerSession.AttachedEntity.HasValue)

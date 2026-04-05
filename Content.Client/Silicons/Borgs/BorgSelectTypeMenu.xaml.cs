@@ -51,7 +51,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
         ChassisSpriteSelection.SubtypeSelected += () => ConfirmTypeButton.Disabled = false;
         // Afterlight end
     }
-    
+
     // Starlight-start: Move from BorgSelectTypeMenu to method
     public void SetupMenu(EntityUid owner)
     {

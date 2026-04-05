@@ -14,7 +14,7 @@
         - id: ClothingShoesBootsMagBSO
   - type: AccessReader
     access: [["BlueShield"]]
-  
+
 - type: entity
   id: SuitStorageBlueShieldBluespaced
   suffix: BlueShield, Bluespaced
