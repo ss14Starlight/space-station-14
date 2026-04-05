@@ -15,7 +15,7 @@
     - !type:SubjectMindAntagCondition
       blacklist:
       - Brighteye
-      
+
 # Example(Smokeable) Prototype
 
 - type: entity
@@ -31,7 +31,7 @@
     image: /Textures/_Starlight/Railroading/criminal.png
     description: rr-criminal-desc
   - type: RailroadFaxOnChosen
-    addresses: 
+    addresses:
     - Captain's Office
     - Captain
     - Security
@@ -51,7 +51,7 @@
         - stampedColor: "#006666"
           stampedName: rr-nt-isd
   - type: RailroadFaxOnFailed
-    addresses: 
+    addresses:
     - Captain's Office
     - Captain
     - Security

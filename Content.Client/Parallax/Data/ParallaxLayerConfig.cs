@@ -27,7 +27,7 @@ public sealed partial class ParallaxLayerConfig
     /// The sprite used for this layer, Sprite must be true to render.
     /// </summary>
     [DataField("rsi")]
-    public SpriteSpecifier RSI { get; set; } = default!;
+    public SpriteSpecifier? RSI { get; set; }
 
     /// <summary>
     /// A scaling factor for the texture.

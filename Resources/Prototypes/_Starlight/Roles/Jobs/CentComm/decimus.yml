@@ -15,6 +15,7 @@
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-none
   canBeAntag: false
+  bypassEorPacification: true
   accessGroups:
   - AllAccess
   access:

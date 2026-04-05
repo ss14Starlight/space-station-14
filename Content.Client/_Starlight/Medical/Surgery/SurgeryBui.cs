@@ -227,9 +227,9 @@ public sealed class SurgeryBui : BoundUserInterface
             foreach (var requirementId in requirementIds)
             {
                 if (_entitySystem.TryGetSingleton(requirementId, out var requirement)
-                    && _entities.TryGetComponent(_part, out BodyPartComponent? partComp) 
-                    && partComp.Body is { } Body 
-                    && _part is { } Part 
+                    && _entities.TryGetComponent(_part, out BodyPartComponent? partComp)
+                    && partComp.Body is { } Body
+                    && _part is { } Part
                     && _system.IsSurgeryValid(Body, Part, requirementId, surgeryId, out _, out _, out _))
                 {
                     var label = new ChoiceControl();

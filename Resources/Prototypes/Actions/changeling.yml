@@ -41,6 +41,7 @@
       components:
       - Absorbed
     event: !type:ChangelingDevourActionEvent
+  - type: EorgAction
 
 - type: entity
   id: ActionChangelingTransform

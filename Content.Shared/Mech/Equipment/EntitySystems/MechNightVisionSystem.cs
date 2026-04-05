@@ -7,29 +7,29 @@ using Content.Shared.Eye.Blinding.Components;
 namespace Content.Shared.Mech.Equipment.EntitySystems;
 
 /// <summary>
-/// 
+///
 /// </summary>
 public sealed class MechNightVisionSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<MechEquipmentActionComponent, MechToggleNightVisionEvent>(OnNightVisionToggle);
-        
+
         SubscribeLocalEvent<MechComponent, BeforePilotEjectEvent>(OnPilotEject);
     }
 
     private void OnNightVisionToggle(EntityUid uid, MechEquipmentActionComponent comp, ref MechToggleNightVisionEvent args)
     {
-        if (!TryComp<MechEquipmentComponent>(uid, out var equipmentComp) 
-            || equipmentComp.EquipmentOwner == null 
-            || !TryComp<MechComponent>(equipmentComp.EquipmentOwner, out var mechComp) 
+        if (!TryComp<MechEquipmentComponent>(uid, out var equipmentComp)
+            || equipmentComp.EquipmentOwner == null
+            || !TryComp<MechComponent>(equipmentComp.EquipmentOwner, out var mechComp)
             || mechComp.PilotSlot.ContainedEntity == null)
             return;
-        
+
         if (!comp.EquipmentToggled && !HasComp<NightVisionComponent>(mechComp.PilotSlot.ContainedEntity.Value))
         {
             AddComp<NightVisionComponent>(mechComp.PilotSlot.ContainedEntity.Value);
@@ -40,12 +40,12 @@ public sealed class MechNightVisionSystem : EntitySystem
             RemComp<NightVisionComponent>(mechComp.PilotSlot.ContainedEntity.Value);
             comp.EquipmentComponentAdded = false;
         }
-        
+
         comp.EquipmentToggled = !comp.EquipmentToggled;
-        
+
         _actions.SetToggled(comp.EquipmentActionEntity, comp.EquipmentToggled);
     }
-    
+
     private void OnPilotEject(EntityUid uid, MechComponent component, ref BeforePilotEjectEvent args)
     {
         if (!HasComp<NightVisionComponent>(args.Pilot))
@@ -57,7 +57,7 @@ public sealed class MechNightVisionSystem : EntitySystem
                 RemComp<NightVisionComponent>(args.Pilot);
                 actionComp.EquipmentComponentAdded = false;
                 actionComp.EquipmentToggled = false;
-                
+
                 _actions.SetToggled(actionComp.EquipmentActionEntity, actionComp.EquipmentToggled);
             }
     }

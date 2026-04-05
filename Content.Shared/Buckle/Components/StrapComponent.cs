@@ -55,11 +55,11 @@ public sealed partial class StrapComponent : Component
     [DataField]
     public Angle XformRotation = Angle.Zero;
 
-    // Starlight - Directions with lowered drawdepth. 
+    // Starlight - Directions with lowered drawdepth.
     [DataField]
     public DirectionFlag LoweredDrawdepthDirections = DirectionFlag.North;
 
-    // Starlight - lowered drawdepth. 
+    // Starlight - lowered drawdepth.
     [DataField(customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>))]
     public int? LoweredDrawdepth;
 

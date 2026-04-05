@@ -471,7 +471,7 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         //Starlight Start - play sounds dependent on *battery*
         if (component.BatterySlot.ContainedEntity != null && TryComp(component.BatterySlot.ContainedEntity, out BatteryComponent? battery))
-        {        
+        {
             if ((int)(_battery.GetCharge((component.BatterySlot.ContainedEntity.Value, battery)) / battery.MaxCharge * 100) <= 33 //Starlight Edit: Earlier low power warning, and we run it off of the % power readout
                 && component.PlayPowerSound
                 && component.PilotSlot.ContainedEntity != null)

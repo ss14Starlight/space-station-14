@@ -23,7 +23,7 @@ public sealed class StasisSystem : SharedStasisSystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeNetworkEvent<StasisAnimationEvent>(OnStasisAnimation);
     }
 
@@ -33,10 +33,10 @@ public sealed class StasisSystem : SharedStasisSystem
 
         // Periodic cleanup of orphaned effects
         CleanupOrphanedEffects();
-        
+
         // Periodic visibility state check to ensure consistency
         CheckVisibilityStates();
-        
+
         // Periodic continuous effect check to ensure PVS synchronization
         CheckContinuousEffects();
     }
@@ -66,7 +66,7 @@ public sealed class StasisSystem : SharedStasisSystem
                 comp.ClientContinuousEffectEntity = null;
                 Dirty(uid, comp);
             }
-            
+
             // Clean up orphaned enter effects
             if (comp.ClientEnterEffectEntity != null && !Exists(comp.ClientEnterEffectEntity.Value))
             {
@@ -142,7 +142,7 @@ public sealed class StasisSystem : SharedStasisSystem
         // Safety check to ensure the entity still exists
         if (!Exists(uid))
             return;
-            
+
         // Start the continuous animation.
         StartStasisContinuousAnimation(uid, comp);
         // Delete the prepare animation.
@@ -152,7 +152,7 @@ public sealed class StasisSystem : SharedStasisSystem
             comp.ClientEnterEffectEntity = null;
             Dirty(uid, comp);
         }
-        
+
         // Update visibility based on server state
         UpdateEntityVisibility(uid, comp);
     }
@@ -184,7 +184,7 @@ public sealed class StasisSystem : SharedStasisSystem
 
         // End the continuous animation.
         EndStasisContinuousAnimation(uid, comp);
-        
+
         // Update visibility based on server state
         UpdateEntityVisibility(uid, comp);
     }
@@ -240,7 +240,7 @@ public sealed class StasisSystem : SharedStasisSystem
     public override void Shutdown()
     {
         base.Shutdown();
-        
+
         // Clean up all continuous effects on shutdown
         var query = AllEntityQuery<StasisComponent>();
         while (query.MoveNext(out var uid, out var comp))

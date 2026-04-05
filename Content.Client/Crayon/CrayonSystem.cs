@@ -40,7 +40,7 @@ public sealed class CrayonSystem : SharedCrayonSystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     // Starlight-end
-    
+
     public override void Initialize()
     {
         base.Initialize();

@@ -117,7 +117,7 @@
       - DoorBumpOpener
       - AnomalyHost
       - IPC
-      - SiliconEmotesFH 
+      - SiliconEmotesFH
   - type: Stamina
     staminaAlert: "IPCStamina"
   - type: Damageable
@@ -236,7 +236,7 @@
     defibDamage:
       types:
         Shock: 20 # It already does 5 shock to everyone, take that into account
-        Heat: 20 
+        Heat: 20
     damagedSound:
       params:
         loop: true
@@ -360,7 +360,7 @@
     minPressure: 10
     maxPressure: 500 # Outside of this window fans stop working entirely
     maxTemperature: 414 # ~140C just above highest mode
-    # External cooling completely turns off natual heat generation and loss. 
+    # External cooling completely turns off natual heat generation and loss.
     # Active cooling will still work until the temperature is normal, then it will stay unchanging until external cooling is removed
     externalCoolingTag: IPCExternalCooling # Items must have this tag on them
     externalCoolingCheckSlots: # All slots must have item in them, and all these items must have tag

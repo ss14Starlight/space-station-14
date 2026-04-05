@@ -10,6 +10,9 @@
     <PackageVersion Include="CSCore" Version="1.2.1.2" />
     <PackageVersion Include="CsvHelper" Version="33.1.0" />
     <PackageVersion Include="ImGui.NET" Version="1.87.3" />
+    <!-- Starlight -->
+    <PackageVersion Include="MonoMod.RuntimeDetour" Version="25.3.4" />
+    <!-- Starlight -->
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -15,7 +15,7 @@
 
 	The higher the Flow Rate, the higher the RPM of the Turbine.
 
-	Flow Rate is usually set to allow maximum flow through the Reactor core, which can be found by the following equation: 
+	Flow Rate is usually set to allow maximum flow through the Reactor core, which can be found by the following equation:
     <Box>
         [italic][protodata="SteelReactorGasChannel" comp="ReactorPart" member="GasVolume"/] * number of gas channels + [protodata="NuclearReactorNormal" comp="NuclearReactor" member="ReactorVesselGasVolume"/] L/s[/italic]
     </Box>
@@ -84,7 +84,7 @@
 	Higher integrity means it can take more damage before failing, making it generally safer.
 
 	Higher inertia means it will take more energy to change the RPM, which leads to smoother operation.
-	
+
 	### Stators
 	Stators affect the power efficiency and output of the Turbine.
 </Document>

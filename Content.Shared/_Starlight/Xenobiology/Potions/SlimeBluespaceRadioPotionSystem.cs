@@ -10,7 +10,7 @@ public sealed class SlimeBluespaceRadioPotionSystem : EntitySystem
 {
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();

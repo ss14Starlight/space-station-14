@@ -77,8 +77,8 @@ namespace Content.Server.Database
                 return null;
 
             // 🌟Starlight🌟 start : hotfix
-            var maxSlot = prefs.Profiles.Count > 0 
-                ? prefs.Profiles.Max(p => p.Slot) + 1 
+            var maxSlot = prefs.Profiles.Count > 0
+                ? prefs.Profiles.Max(p => p.Slot) + 1
                 : 0;
             // 🌟Starlight🌟 end
 
