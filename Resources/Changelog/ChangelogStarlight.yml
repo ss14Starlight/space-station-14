@@ -36215,5 +36215,51 @@ Entries:
   id: 399001
   time: '2026-04-05T19:57:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3990
+- author: CawsForConcern
+  changes:
+  - message: (Lobster) Security doors leading towards GenPop corrected to Brig access
+      (for IAAs, Magistrates).
+    type: Fix
+  - message: (Serpentcrest) Security doors leading towards GenPop corrected to Brig
+      access (for IAAs, Magistrates).
+    type: Fix
+  id: 398701
+  time: '2026-04-05T20:13:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3987
+- author: neurovermi
+  changes:
+  - message: Mech wideswing and melee sprite issues.
+    type: Fix
+  id: 401901
+  time: '2026-04-05T20:25:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4019
+- author: CawsForConcern
+  changes:
+  - message: (Sepultum) NCT Office front is not locked.
+    type: Tweak
+  id: 402101
+  time: '2026-04-05T20:36:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4021
+- author: CawsForConcern
+  changes:
+  - message: Overloaded APCs on the "NT Incorporation" visitor shuttle have been fixed.
+    type: Fix
+  id: 402201
+  time: '2026-04-05T20:44:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4022
+- author: Tess the Evil
+  changes:
+  - message: Filled n2o tanks.
+    type: Tweak
+  id: 399301
+  time: '2026-04-05T20:51:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3993
+- author: neurovermi
+  changes:
+  - message: Mechs now throw when punching with no equipment.
+    type: Add
+  id: 402001
+  time: '2026-04-05T21:01:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4020
 Order: -1
 
