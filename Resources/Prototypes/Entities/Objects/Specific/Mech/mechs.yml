@@ -897,9 +897,6 @@
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
-    angle: 0
-    animation: WeaponArcFist
-    wideAnimation: WeaponArcFist
     damage:
       types:
         Blunt: 30

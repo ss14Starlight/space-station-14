@@ -2,7 +2,6 @@ using System.Numerics;
 using Content.Client.Animations;
 using Content.Client.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee;
-using Content.Shared._Starlight.Weapons.Melee.Events; // Starlight
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
@@ -33,16 +32,12 @@ public sealed partial class MeleeWeaponSystem
         if (localPos == Vector2.Zero || animation == null)
             return;
 
-        // Starlight Begin
-        var originEntity = user;
-        var originEv = new GetMeleeOriginEvent();
-        RaiseLocalEvent(user, originEv);
-        if (originEv.Handled && originEv.OriginEntity.HasValue)
-            originEntity = originEv.OriginEntity.Value;
-        // Starlight End
+        // Starlight Begin - Mech wideswing
+        var originEntity = GetOriginEntity(user);
 
         if (!_xformQuery.TryGetComponent(originEntity, out var userXform) || userXform.MapID == MapId.Nullspace)
             return;
+        // Starlight End
 
         var animationUid = Spawn(animation, userXform.Coordinates);
 

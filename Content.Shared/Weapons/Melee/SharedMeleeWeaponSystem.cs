@@ -995,16 +995,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     private void DoLungeAnimation(EntityUid user, EntityUid weapon, Angle angle, MapCoordinates coordinates, float length, string? animation)
     {
         // Starlight Begin - mech wideswing handling
-        var originEntity = user;
-        var originEv = new GetMeleeOriginEvent();
-        RaiseLocalEvent(user, originEv);
-        if (originEv.Handled && originEv.OriginEntity.HasValue)
-            originEntity = originEv.OriginEntity.Value;
-        // Starlight End
+        var originEntity = GetOriginEntity(user);
 
         // TODO: Assert that offset eyes are still okay.
-        if (!TryComp(originEntity, out TransformComponent? userXform)) // Starlight
+        if (!TryComp(originEntity, out TransformComponent? userXform))
             return;
+        // Starlight End
 
         var invMatrix = TransformSystem.GetInvWorldMatrix(userXform);
         var localPos = Vector2.Transform(coordinates.Position, invMatrix);
@@ -1131,4 +1127,20 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         _shake.Screenshake(attacker, null, userRotation);
     }
     //Starlight end
+
+    // Starlight begin - mech wideswing
+    /// <summary>
+    /// Get the apparent origin entity for transforms (e.g. when the entity is piloting a mech)
+    /// returns the user if none are found
+    /// </summary>
+    protected EntityUid GetOriginEntity(EntityUid user)
+    {
+        var originEntity = user;
+        var originEv = new GetMeleeOriginEvent();
+        RaiseLocalEvent(user, originEv);
+        if (originEv.Handled && originEv.OriginEntity.HasValue)
+            originEntity = originEv.OriginEntity.Value;
+        return originEntity;
+    }
+    // Starlight end
 }
