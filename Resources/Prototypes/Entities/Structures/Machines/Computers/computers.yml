@@ -250,6 +250,7 @@
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttleCargo
+  categories: [ ShouldMapStation ] # Starlight
   name: cargo shuttle console
   description: Used to pilot the cargo shuttle.
   components:
