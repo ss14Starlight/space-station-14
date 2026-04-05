@@ -282,7 +282,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                 var unbans = networkBan.Unban;
                 unbans.Add(new AdminUnban(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
                 var newBan = new AdminBan(networkBan.Id, networkBan.UserId, networkBan.Address, networkBan.HWId, networkBan.BanTime, networkBan.ExpirationTime, networkBan.RoundId, networkBan.PlayTimeAtNote, networkBan.Reason, networkBan.Severity, networkBan.BanningAdmin, unbans, networkBan.Role, networkBan.ExemptFlags, networkBan.ProjectName, networkBan.ServerName);
-                await serverGrain.AddOrUpdateBan(networkBan);
+                await serverGrain.AddOrUpdateBan(newBan);
             }
         }
 
