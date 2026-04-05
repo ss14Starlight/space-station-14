@@ -12,6 +12,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
 using Robust.Shared.Log;
 using Robust.Shared.Network;
+using Robust.Shared.Serialization.Manager;
 using Robust.UnitTesting;
 
 namespace Content.IntegrationTests.Pair;
@@ -43,6 +44,11 @@ public sealed partial class TestPair : RobustIntegrationTest.TestPair
             var gameTicker = Server.System<GameTicker>();
             await Server.WaitPost(() => gameTicker.RestartRound());
         }
+
+        _Starlight.Patches.SystemTimingPatch.EnableMetrics(Server.EntMan.EntitySysManager); // Starlight
+        await _Starlight.Patches.SystemTimingPatch.TakeSnapshot(); // Starlight
+        _Starlight.Patches.EventTimingSummaryPatch.Apply(); // Starlight
+        await _Starlight.Patches.EventTimingSummaryPatch.TakeSnapshot(); // Starlight
     }
 
     public override async Task RevertModifiedCvars()

@@ -122008,7 +122008,7 @@ entities:
     - type: Transform
       pos: 50.5,42.5
       parent: 2
-- proto: LockerBSOFilled
+- proto: LockerBlueshieldFilled
   entities:
   - uid: 17515
     components:
@@ -141980,7 +141980,7 @@ entities:
     - type: Transform
       pos: 66.5,35.5
       parent: 2
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
   - uid: 20597
     components:
@@ -141997,6 +141997,8 @@ entities:
     - type: Transform
       pos: -15.5,-3.5
       parent: 2
+- proto: SMESAdvanced
+  entities:
   - uid: 20600
     components:
     - type: Transform

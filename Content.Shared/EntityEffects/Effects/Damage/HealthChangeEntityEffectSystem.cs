@@ -43,51 +43,51 @@ public sealed partial class HealthChange : EntityEffectBase<HealthChange>
     [DataField]
     public bool IgnoreResistances = true;
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight 
+    {
+        var damages = new List<string>();
+        var heals = false;
+        var deals = false;
+
+        var damageSpec = new DamageSpecifier(Damage);
+
+        var universalReagentDamageModifier = entSys.GetEntitySystem<DamageableSystem>().UniversalReagentDamageModifier;
+        var universalReagentHealModifier = entSys.GetEntitySystem<DamageableSystem>().UniversalReagentHealModifier;
+
+        damageSpec = entSys.GetEntitySystem<DamageableSystem>().ApplyUniversalAllModifiers(damageSpec);
+
+        foreach (var (kind, amount) in damageSpec.DamageDict)
         {
-            var damages = new List<string>();
-            var heals = false;
-            var deals = false;
+            var sign = FixedPoint2.Sign(amount);
+            float mod;
 
-            var damageSpec = new DamageSpecifier(Damage);
-
-            var universalReagentDamageModifier = entSys.GetEntitySystem<DamageableSystem>().UniversalReagentDamageModifier;
-            var universalReagentHealModifier = entSys.GetEntitySystem<DamageableSystem>().UniversalReagentHealModifier;
-
-            damageSpec = entSys.GetEntitySystem<DamageableSystem>().ApplyUniversalAllModifiers(damageSpec);
-
-            foreach (var (kind, amount) in damageSpec.DamageDict)
+            switch (sign)
             {
-                var sign = FixedPoint2.Sign(amount);
-                float mod;
-
-                switch (sign)
-                {
-                    case < 0:
-                        heals = true;
-                        mod = universalReagentHealModifier;
-                        break;
-                    case > 0:
-                        deals = true;
-                        mod = universalReagentDamageModifier;
-                        break;
-                    default:
-                        continue; // Don't need to show damage types of 0...
-                }
-
-                damages.Add(
-                    Loc.GetString("health-change-display",
-                        ("kind", prototype.Index<DamageTypePrototype>(kind).LocalizedName),
-                        ("amount", MathF.Abs(amount.Float() * mod)),
-                        ("deltasign", sign)
-                    ));
+                case < 0:
+                    heals = true;
+                    mod = universalReagentHealModifier;
+                    break;
+                case > 0:
+                    deals = true;
+                    mod = universalReagentDamageModifier;
+                    break;
+                default:
+                    continue; // Don't need to show damage types of 0...
             }
 
-            var healsordeals = heals ? (deals ? "both" : "heals") : (deals ? "deals" : "none");
-
-            return Loc.GetString("entity-effect-guidebook-health-change",
-                ("chance", Probability),
-                ("changes", ContentLocalizationManager.FormatList(damages)),
-                ("healsordeals", healsordeals));
+            damages.Add(
+                loc.GetString("health-change-display",
+                    ("kind", prototype.Index<DamageTypePrototype>(kind).LocalizedName),
+                    ("amount", MathF.Abs(amount.Float() * mod)),
+                    ("deltasign", sign)
+                ));
         }
+
+        var healsordeals = heals ? (deals ? "both" : "heals") : (deals ? "deals" : "none");
+
+        return loc.GetString("entity-effect-guidebook-health-change",
+            ("chance", Probability),
+            ("changes", ContentLocalizationManager.FormatList(damages)),
+            ("healsordeals", healsordeals));
+    }
 }
