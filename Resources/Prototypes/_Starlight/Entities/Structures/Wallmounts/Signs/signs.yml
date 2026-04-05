@@ -7,7 +7,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: brigmed
-    
+
 - type: entity
   parent: BaseSign
   id: SignDisposalProper
@@ -17,7 +17,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: disposals_proper
-    
+
 - type: entity
   parent: BaseSign
   id: SignSecureAreaSmall
@@ -27,7 +27,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: secureareasmall
-    
+
 - type: entity
   parent: BaseSign
   id: SignWallBiohazard
@@ -37,7 +37,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: wall_biohazard
-    
+
 - type: entity
   parent: BaseSign
   id: SignWallExtremeHeat
@@ -47,7 +47,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: wall_extremeheat
-    
+
 - type: entity
   parent: BaseSign
   id: SignNoSmoking
@@ -57,7 +57,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: nosmoking
-    
+
 - type: entity
   parent: BaseSign
   id: SignYesSmoking
@@ -67,7 +67,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: yessmoking
-    
+
 - type: entity
   parent: BaseSignDirectional
   id: SignDirectionalMining

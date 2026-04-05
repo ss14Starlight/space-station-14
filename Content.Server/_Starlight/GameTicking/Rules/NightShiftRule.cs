@@ -16,7 +16,7 @@ public sealed class NightShiftRule : StationEventSystem<NightShiftRuleComponent>
 {
     [Dependency] private readonly SharedPoweredLightSystem _poweredLightSystem = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
@@ -24,7 +24,7 @@ public sealed class NightShiftRule : StationEventSystem<NightShiftRuleComponent>
         SubscribeLocalEvent<NightShiftDimmedLightComponent, GetDimmedLightLevelEvent>(OnGetDimmedLightLevel);
         SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
     }
-    
+
     /// <summary>
     /// Enables night shift dimming on a station. The return value indicates if something happened or not.
     /// </summary>
@@ -38,7 +38,7 @@ public sealed class NightShiftRule : StationEventSystem<NightShiftRuleComponent>
             // Ignore lights not on our station.
             if (CompOrNull<StationMemberComponent>(xform.GridUid)?.Station != station)
                 continue;
-            
+
             // Add our dimmer component.
             var dimmer = EnsureComp<NightShiftDimmedLightComponent>(ent);
             dimmer.LightEnergyMultiplier = nightShift.LightEnergyMultiplier;
@@ -62,7 +62,7 @@ public sealed class NightShiftRule : StationEventSystem<NightShiftRuleComponent>
             // Ignore lights not on our station.
             if (CompOrNull<StationMemberComponent>(xform.GridUid)?.Station != station)
                 continue;
-                
+
             // Remove our dimming component from currently dimmed lights.
             RemComp<NightShiftDimmedLightComponent>(uid);
             _poweredLightSystem.UpdateLight(uid, poweredLight);
@@ -71,7 +71,7 @@ public sealed class NightShiftRule : StationEventSystem<NightShiftRuleComponent>
 
         return success;
     }
-    
+
     /// <summary>
     /// React to alert level changes. Only used for disabling night shift dimming prematurely.
     /// </summary>
@@ -83,7 +83,7 @@ public sealed class NightShiftRule : StationEventSystem<NightShiftRuleComponent>
             if (!_gameTicker.IsGameRuleActive(shift, gameRule)) continue;
             if (!TryComp<StationEventComponent>(shift, out var stationEvent)) continue;
             if (stationEvent.TargetStation != ev.Station) continue;
-            
+
             if (nightShift.PermittedAlertLevels.Contains(ev.AlertLevel))
             {
                 // If the alert level is permitted, enable night shift dimming, and announce if that changed anything.
@@ -98,7 +98,7 @@ public sealed class NightShiftRule : StationEventSystem<NightShiftRuleComponent>
             }
         }
     }
-    
+
     private void OnGetDimmedLightLevel(EntityUid uid, NightShiftDimmedLightComponent component, GetDimmedLightLevelEvent args)
     {
         args.LightEnergy *= component.LightEnergyMultiplier;
@@ -116,7 +116,7 @@ public sealed class NightShiftRule : StationEventSystem<NightShiftRuleComponent>
         if (chosenStation is null)
             if (!TryGetRandomStation(out chosenStation))
                 return;
-        
+
         EnableNightShiftDimming(chosenStation.Value, comp);
     }
 

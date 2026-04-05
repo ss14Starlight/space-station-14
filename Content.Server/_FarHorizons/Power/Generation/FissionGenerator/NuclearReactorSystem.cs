@@ -124,7 +124,7 @@ public sealed class NuclearReactorSystem : EntitySystem
     private void OnInit(EntityUid uid, NuclearReactorComponent comp, ref MapInitEvent args)
     {
         _signal.EnsureSinkPorts(uid, comp.ControlRodInsertPort, comp.ControlRodRetractPort);
-        
+
         _slotsSystem.AddItemSlot(uid, NuclearReactorComponent.PartSlotId, comp.PartSlot);
         comp.PartStorage = _containerSystem.EnsureContainer<Container>(uid, NuclearReactorComponent.PartStorageId);
 
@@ -182,7 +182,7 @@ public sealed class NuclearReactorSystem : EntitySystem
         {
             var source = "NuclearReactorRandomParts";
             var protoID = _protoMan.Index<WeightedRandomPrototype>(source).Pick(_random);
-            
+
             var partEnt = Spawn(protoID, coords);
             if(!_containerSystem.Insert(partEnt, comp.PartStorage, transform))
             {
@@ -260,7 +260,7 @@ public sealed class NuclearReactorSystem : EntitySystem
 
     private void OnPartChanged(EntityUid uid, NuclearReactorComponent component, ContainerModifiedMessage args) => UpdateUI(uid, component);
 
-    private void OnCompRemove(EntityUid uid, NuclearReactorComponent comp, ref ComponentRemove args) 
+    private void OnCompRemove(EntityUid uid, NuclearReactorComponent comp, ref ComponentRemove args)
     {
         _slotsSystem.RemoveItemSlot(uid, comp.PartSlot);
         CleanUp(comp);
@@ -541,7 +541,7 @@ public sealed class NuclearReactorSystem : EntitySystem
                         return;
 
                     MeltdownBadness += ((RC.Properties.Radioactivity * 2) + (RC.Properties.NeutronRadioactivity * 5) + (RC.Properties.FissileIsotopes * 10)) * (RC.Melted ? 2 : 1);
-                    
+
                     if (RC.AirContents != null)
                     {
                         _atmosphereSystem.Merge(comp.AirContents, RC.AirContents ?? new());
@@ -748,7 +748,7 @@ public sealed class NuclearReactorSystem : EntitySystem
 
         comp.LastSendTemperature = comp.Temperature;
     }
-    
+
     private void UpdateTempIndicators(EntityUid uid, NuclearReactorComponent comp)
     {
         var change = false;
@@ -909,7 +909,7 @@ public sealed class NuclearReactorSystem : EntitySystem
                 return;
 
             _containerSystem.Insert(item.Value, comp.PartStorage);
-            
+
             _adminLog.Add(LogType.Action, $"{ToPrettyString(args.Actor):actor} added {ToPrettyString(item):item} to position {pos.Y},{pos.X} in {ToPrettyString(uid):target}");
 
             comp.ComponentGrid[pos.X, pos.Y] = reactorPart;
@@ -927,7 +927,7 @@ public sealed class NuclearReactorSystem : EntitySystem
             // Data is sent to a log queue to avoid spamming the admin log when adjusting values rapidly
             if(!_logQueue.TryGetValue(new(args.Actor, ent.Owner), out var value))
                 _logQueue.Add(new(args.Actor, ent.Owner), new LogData {
-                    CreationTime = _gameTiming.RealTime, 
+                    CreationTime = _gameTiming.RealTime,
                     SetControlRodInsertion = ent.Comp.ControlRodInsertion
                 });
             else
@@ -935,17 +935,17 @@ public sealed class NuclearReactorSystem : EntitySystem
 
         UpdateUI(ent.Owner, ent.Comp);
     }
-    
-    public static bool AdjustControlRods(NuclearReactorComponent comp, float change) { 
+
+    public static bool AdjustControlRods(NuclearReactorComponent comp, float change) {
         var newSet = Math.Clamp(comp.ControlRodInsertion + change, 0, 2);
         if (comp.ControlRodInsertion != newSet)
         {
             comp.ControlRodInsertion = newSet;
             return true;
         }
-        return false; 
+        return false;
     }
-    
+
     private void OnEjectItemMessage(EntityUid uid, NuclearReactorComponent component, ReactorEjectItemMessage args)
     {
         if (component.PartSlot.Item == null)

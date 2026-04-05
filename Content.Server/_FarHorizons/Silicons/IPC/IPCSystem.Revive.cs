@@ -28,7 +28,7 @@ public sealed partial class IPCSystem
         if (args.Cancelled)
             return;
 
-        FinishReboot(ent);   
+        FinishReboot(ent);
     }
 
     private void OnBeforeZap(Entity<IPCReviveComponent> ent, ref TargetBeforeDefibrillatorZapsEvent args)
@@ -39,7 +39,7 @@ public sealed partial class IPCSystem
 
         if (ent.Comp.DefibDamage != null)
             _damageable.TryChangeDamage(ent.Owner, ent.Comp.DefibDamage);
-        
+
         if (ent.Comp.DefibBatteryDrain)
             DrainBattery((ent, null));
 
@@ -66,7 +66,7 @@ public sealed partial class IPCSystem
         };
 
         ev.Verbs.Add(verb);
-        
+
     }
 
     public void StartReboot(Entity<IPCReviveComponent> ent)
@@ -76,14 +76,14 @@ public sealed partial class IPCSystem
 
         if (!TryComp<DamageableComponent>(ent, out var damageableComponent) ||
             !_mobThreshold.TryGetThresholdForState(ent, MobState.Dead, out var thresholdDead) ||
-            damageableComponent.TotalDamage > thresholdDead || 
+            damageableComponent.TotalDamage > thresholdDead ||
             !BatteryHasCharge(ent))
         {
             _popup.PopupEntity(Loc.GetString(ent.Comp.CantReviveMessage), ent);
             _audio.PlayPvs(ent.Comp.RebootFailSound, ent);
             return;
         }
-        
+
         _popup.PopupEntity(Loc.GetString(ent.Comp.RebootingMessage), ent);
         _audio.PlayPvs(ent.Comp.RebootSound, ent);
 

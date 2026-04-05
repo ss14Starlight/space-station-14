@@ -3,22 +3,22 @@ namespace Content.Shared._Starlight.Station;
 [RegisterComponent]
 public sealed partial class StationCrewStatisticsComponent : Component
 {
-    [ViewVariables] 
+    [ViewVariables]
     public int Crew = 0;
-    
-    [ViewVariables] 
+
+    [ViewVariables]
     public int Borgs = 0;
-    
-    [ViewVariables] 
+
+    [ViewVariables]
     public int LostCrew = 0;
-    
-    [ViewVariables] 
+
+    [ViewVariables]
     public int LostBorgs = 0;
-    
-    [ViewVariables] 
+
+    [ViewVariables]
     public int EvacuatedCrew = 0;
-    
-    [ViewVariables] 
+
+    [ViewVariables]
     public int StolenBorgs = 0;
 
     public void Clear()

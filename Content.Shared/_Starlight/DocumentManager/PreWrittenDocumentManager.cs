@@ -21,7 +21,7 @@ public sealed class PreWrittenDocumentManager: IEntityEventSubscriber
 
     private const string DocumentsPath = "/Documents/";
     private const string FallbackLocalization = "en-US";
-    
+
     private const string ValidExtension = "txt";
 
     public async void Initialize()

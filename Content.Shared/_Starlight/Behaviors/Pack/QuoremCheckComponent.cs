@@ -12,7 +12,7 @@ namespace Content.Shared._Starlight.Behaviors.Pack;
 /// and can become hostile upon reaching a specific member count.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
-public sealed partial class QuoremCheckComponent : Component 
+public sealed partial class QuoremCheckComponent : Component
 {
     /// <summary>
     /// The next time recruiting into the pack will be attempted.
@@ -35,7 +35,7 @@ public sealed partial class QuoremCheckComponent : Component
     /// The recruit radius, which defines how close other entities have to be to attempt to recruit them.
     /// </summary>
     [DataField] public float RecruitRadius = 5.0f;
-    
+
     /// <summary>
     /// The quorem threshold, at which point the pack will be considered sufficiently large.
     /// </summary>
@@ -46,12 +46,12 @@ public sealed partial class QuoremCheckComponent : Component
     [DataField(readOnly: true)] public bool IsHostile;
 
     [DataField] public int PackId;
-    
+
     [DataField] public ProtoId<NpcFactionPrototype> QuoremFaction = "Xeno";
-    
+
     [DataField] public ProtoId<NpcFactionPrototype> DefaultFaction = "Passive";
 
     [DataField] public ProtoId<EntityPrototype>? QuoremEffect;
-    
+
     [DataField] public SoundSpecifier? QuoremSound;
 }

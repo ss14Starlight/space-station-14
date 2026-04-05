@@ -50,6 +50,6 @@ public sealed partial class RailroadingDeliveryOpenTaskSystem : EntitySystem
         args.IsCompleted = ent.Comp.AmountOpened >= ent.Comp.Amount;
     }
 
-    private void OnTaskPicked(Entity<RailroadDeliveryOpenTaskComponent> ent, ref RailroadingCardChosenEvent args) 
+    private void OnTaskPicked(Entity<RailroadDeliveryOpenTaskComponent> ent, ref RailroadingCardChosenEvent args)
         => EnsureComp<RailroadDeliveryOpenWatcherComponent>(args.Subject.Owner);
 }

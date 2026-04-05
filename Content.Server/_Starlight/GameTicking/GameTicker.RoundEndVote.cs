@@ -33,7 +33,7 @@ public sealed class RoundEndVoteSystem : EntitySystem
             Log.Warning($"Not enought players, player count: {_playerManager.PlayerCount}");
             return;
         }
-        
+
         _voteStartTime = _gameTiming.CurTime + _gameTicker.LobbyDuration - TimeSpan.FromSeconds(_cfg.GetCVar(StarlightCCVars.VotingsDelay));
         Log.Warning($"Vote will start at {_voteStartTime}");
 

@@ -53,7 +53,7 @@ roundend-prepend-vampire-drained-named = {$name} was the most bloodthirsty vampi
 # Vampire class selection tooltips
 vampire-class-hemomancer-tooltip = Hemomancer
     Focuses on blood magic and the manipulation of blood around you
-    
+
 vampire-class-umbrae-tooltip = Umbrae
     Focuses on darkness, stealth ambushing and mobility
 
@@ -150,7 +150,7 @@ vampire-blood-bond-stop-blood = The bond shreds itself; you lack the blood to su
 
 action-vampire-not-enough-power = Your power is insufficient (need >1000 total blood & 8 unique victims).
 
-# Gargantua 
+# Gargantua
 vampire-blood-swell-start = Your muscles swell with unholy power
 vampire-blood-swell-end = The blood rage subsides.
 
