@@ -1,28 +1,3 @@
-# Contraband bag — borg-integrated storage for seized contraband.
-# Cannot be voluntarily dropped by borg (forceRemovable: false),
-# but can be stripped when borg is in critical state.
-- type: entity
-  name: contraband bag
-  parent: BaseStorageItem
-  id: BorgContrabandBag
-  description: A reinforced evidence bag integrated into a security cyborg's chassis for collecting and holding seized contraband. It cannot be voluntarily discarded, but will be recoverable if the cyborg is incapacitated.
-  components:
-  - type: Sprite
-    sprite: Objects/Bags/satchel.rsi # reuse satchel sprite, tinted red
-    state: icon
-    color: "#cc2222"
-  - type: Item
-    size: Ginormous
-    color: "#cc2222"
-  - type: Storage
-    maxItemSize: Large
-    grid:
-    - 0,0,9,4
-    quickInsert: true
-    areaInsert: false
-  - type: Dumpable
-  - type: Unremoveable
-
 - type: entity
   id: BaseBorgModuleSecurity
   parent: BaseBorgModule
@@ -116,7 +91,7 @@
   id: BorgModuleSecurity
   parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
   name: security cyborg module
-  description: A security cyborg module which equips the unit with integrated law-enforcement tools.
+  description: A security cyborg module which allows the unit to use unlethal equipment.
   components:
   - type: Sprite
     layers:
@@ -124,48 +99,35 @@
     - state: icon-nt
   - type: ItemBorgModule
     hands:
-    - item: BorgHolocuffs
+    - item: Flash
       hand:
-        emptyRepresentative: BorgHolocuffs
-        emptyLabel: borg-slot-cuffs-empty
+        emptyRepresentative: Flash
+        emptyLabel: borg-slot-flash-empty
+        whitelist:
+          components:
+          - Flash
+    - item: Crowbar
+    - item: Zipties
+      hand:
+        emptyRepresentative: Zipties
+        emptyLabel: borg-slot-zipties-empty
         whitelist:
           tags:
-          - Handcuffs
-    - item: BorgStunbatonRechargeable
+          - Handcuffs # Can be replaced by handcuffs or zipties
+    - item: Stunbaton
       hand:
         emptyRepresentative: Stunbaton
         emptyLabel: borg-slot-stunbaton-empty
         whitelist:
           components:
           - Stunbaton
-    - item: WeaponPDW9TaserBorg
+    - item: WeaponDisabler
       hand:
-        emptyRepresentative: WeaponTaser
+        emptyRepresentative: WeaponDisabler
         emptyLabel: borg-slot-disabler-empty
         whitelist:
           tags:
-          - Taser
-    - item: CrisisButton
-      hand:
-        emptyRepresentative: CrisisButton
-        emptyLabel: borg-slot-crisis-button-empty
-        whitelist:
-          components:
-          - TriggerOnUse
-    - item: BookSpaceLaw
-      hand:
-        emptyRepresentative: BookSpaceLaw
-        emptyLabel: borg-slot-spacelaw-empty
-        whitelist:
-          components:
-          - Book
-    - item: BorgContrabandBag
-      hand:
-        emptyRepresentative: BorgContrabandBag
-        emptyLabel: borg-slot-contrabandbag-empty
-        whitelist:
-          components:
-          - Storage
+          - Disabler
     - item: HoloprojectorSecurity
       hand:
         emptyRepresentative: HoloprojectorSecurity

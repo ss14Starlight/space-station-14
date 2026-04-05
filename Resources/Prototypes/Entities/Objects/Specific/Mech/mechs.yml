@@ -979,8 +979,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 2.2 #Starlight - No longer unusably slow
-  - type: NoSlip # Starlight: built-in magboots, no-slip
-  - type: Magboots # Starlight: always-active zero-gravity grounding, no slowdown penalty
   - type: Damageable
     damageModifierSet: MaulerArmor
   - type: MechThrusters

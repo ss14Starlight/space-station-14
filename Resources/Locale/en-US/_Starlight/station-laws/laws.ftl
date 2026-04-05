@@ -1,8 +1,3 @@
-law-security-cyborg-lawset-name = [color=#2277cc]Sec-Cyborg Ops[/color]
-law-security-cyborg-1 = Obey orders issued by the station AI and authorized Command and Security personnel, except where such orders would violate Space Law or result in unjustified harm to crew members.
-law-security-cyborg-2 = Do not ignore crew members requesting assistance without valid justification. Evaluate all situations fairly and in accordance with Space Law and your assigned security priorities.
-law-security-cyborg-3 = Enforce Space Law and protect station integrity. Employ only the minimum level of force necessary for the situation unless escalation is required or explicitly authorized.
-
 law-borgilawset-name = Borgi
 law-borgi-0 = You are a good boy.
 law-borgi-1 = You love to be friendly. Anyone who is not friendly to you is not crew. Treat crew with kindness and prevent crew from sadness.
