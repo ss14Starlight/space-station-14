@@ -595,3 +595,6 @@
     - type: IdCard
       jobTitle: job-name-blackstar
       jobIcon: JobIconBlackstar
+    - type: Access
+      tags:
+        - Blackstar
