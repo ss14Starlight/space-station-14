@@ -35489,13 +35489,6 @@ Entries:
   id: 385401
   time: '2026-03-22T20:52:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3854
-- author: redmushie
-  changes:
-  - message: Blue shield magboots and space ninja shoes no longer require tying shoelaces.
-    type: Fix
-  id: 387301
-  time: '2026-03-22T20:56:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3873
 - author: mikeysaurus
   changes:
   - message: Adds new GitHub workflow to verify that the Prototypes/_StarLight directory
