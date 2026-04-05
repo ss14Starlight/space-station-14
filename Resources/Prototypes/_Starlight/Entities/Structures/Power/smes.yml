@@ -1,0 +1,37 @@
+- type: entity
+  parent: BaseSMES
+  id: SMESBlue
+  suffix: 64MJ
+  name: blue SMES
+  description: An even-higher-capacity superconducting magnetic energy storage (SMES) unit.
+  components:
+  - type: Sprite
+    sprite: Structures/Power/smes.rsi
+    snapCardinals: true
+    layers:
+    - state: smes-blue
+    - state: smes-blue-fan
+    - map: [ "enum.SmesVisualLayers.Charge" ]
+      state: "smes-og1" # -og0 does not exist
+      shader: unshaded
+      visible: false
+    - map: [ "enum.SmesVisualLayers.Input" ]
+      state: "smes-oc0"
+      shader: unshaded
+    - map: [ "enum.SmesVisualLayers.Output" ]
+      state: "smes-op1"
+      shader: unshaded
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: smes-blue-open
+  - type: Machine
+    board: SMESAdvancedMachineCircuitboard # I am just fixing tests, someone please do the circuit board and science.
+  - type: Battery
+    maxCharge: 64000000
+    startingCharge: 64000000
+  - type: PowerMonitoringDevice
+    group: SMES
+    sourceNode: input
+    loadNode: output
+    collectionName: smes
+    sprite: Structures/Power/smes.rsi
+    state: smes-blue-static

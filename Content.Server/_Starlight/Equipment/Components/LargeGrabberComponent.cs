@@ -59,7 +59,7 @@ public sealed partial class LargeGrabberComponent : Component
             "MobState",
         ],
     };
-    
+
     /// <summary>
     /// Does the grabber drop everything when put away?
     /// </summary>

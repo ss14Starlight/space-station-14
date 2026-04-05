@@ -52,11 +52,11 @@ public sealed class PsychicWhisperSystem : EntitySystem
                 // if a person is gibbed/deleted, no psychic whisper for you!
                 if (Deleted(uid))
                     return;
-                
+
                 // Intentionally does not check for muteness, must be alive
                 if (actor.PlayerSession.AttachedEntity != uid || !_mobState.IsAlive(uid))
                     return;
-                
+
                 // _chat.TrySendInGameICMessage(uid, lastWords, InGameICChatType.Whisper, ChatTransmitRange.Normal, checkRadioPrefix: false, ignoreActionBlocker: true);
                 _prayerSystem.SendSubtleMessage(targetPlayerSession, performerPlayerSession, message, Loc.GetString("prayer-popup-subtle-psychic-whisper"));
             });

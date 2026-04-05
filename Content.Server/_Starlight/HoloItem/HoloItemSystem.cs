@@ -44,7 +44,7 @@ public sealed class HoloItemSystem : EntitySystem
             return;
 
         if (component.UseOnTarget)
-        { 
+        {
             if(args.Target is not { } target )
                 return;
             var components = StringsToRegs(component.RequiredComponents);
@@ -53,7 +53,7 @@ public sealed class HoloItemSystem : EntitySystem
                     return;
             if(!_powerCell.TryUseCharge(uid, component.ChargeUse, user: args.User))
                 return;
-                                
+
             var holoUid = SpawnAtPosition(component.ItemPrototype, Transform(uid).Coordinates);
 
             EnsureComp<TimedDespawnComponent>(holoUid); //If we're trying to use the item on something it needs to have timed despawn or we risk spawning possibly infinite items.

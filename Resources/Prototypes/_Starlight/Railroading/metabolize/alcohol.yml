@@ -22,7 +22,7 @@
     - /Textures/_Starlight/Railroading/glass.png
     - /Textures/_Starlight/Railroading/shot.png
     description: rr-alcohol-desc
-    
+
 - type: entity
   id: RRCardMetabolizeAbsinthe
   parent: [ MetabolizeDrinkCondition, RRCardMetabolizeBaseAlcohol ]
@@ -2133,7 +2133,7 @@
     amount:
       min: 50
       max: 100
-      
+
 - type: entity
   id: RRCardMetabolizeSnowWhite
   parent: [ MetabolizeDrinkCondition, RRCardMetabolizeBaseAlcohol ]
@@ -2977,7 +2977,7 @@
     amount:
       min: 10
       max: 15
-      
+
 - type: entity
   id: RRCardMetabolizeBacchusBlessing
   parent: [ MetabolizeDrinkCondition, RRCardMetabolizeBaseAlcohol ]

@@ -702,7 +702,7 @@ public sealed partial class ChatUIController : UIController
            && _chatSys != null
            && _chatSys.TryProcessRadioMessage(uid, text, out _, out radioChannel, out _, quiet: true); // Starlight edit
     }
-    
+
     //Starlight begin
     private bool TryGetLanguage(ref string text, [NotNullWhen(true)] out LanguagePrototype? language)
     {
@@ -711,7 +711,7 @@ public sealed partial class ChatUIController : UIController
         language = _lang.GetLanguageFromPrefix(uid, ref text, out var parsed);
         return parsed;
     }
-    
+
     private bool TryGetCustomRadioChannel(string text, out CustomRadioChannelData? radioChannel)
     {
         radioChannel = null;
@@ -719,7 +719,6 @@ public sealed partial class ChatUIController : UIController
                && _chatSys != null
                && _chatSys.TryProcessRadioMessage(uid, text, out _, out _, out radioChannel, quiet: true);
     }
-
     public void UpdateLanguageNotifier(ChatBox box)
     {
         var (_, _, _, _, language) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
@@ -731,7 +730,7 @@ public sealed partial class ChatUIController : UIController
         }
     }
     //Starlight end
-    
+
     public void UpdateSelectedChannel(ChatBox box)
     {
         var (prefixChannel, _, radioChannel, customChannel, _) = SplitInputContents(box.ChatInput.Input.Text.ToLower()); // Starlight edit
@@ -755,7 +754,7 @@ public sealed partial class ChatUIController : UIController
         text = text.Trim();
         if (text.Length == 0)
             return (ChatSelectChannel.None, text, null, null, null); //Starlight edit
-        
+
         //Starlight begin - detect language prefix. don't modify text directly here and use modText for radio channel checks.
         var modText = text;
         LanguagePrototype? language = null;
@@ -766,7 +765,7 @@ public sealed partial class ChatUIController : UIController
             modText = text[4..];
         }
         //Starlight end
-        
+
         // We only cut off prefix only if it is not a radio or local channel, which both map to the same /say command
         // because ????????
 

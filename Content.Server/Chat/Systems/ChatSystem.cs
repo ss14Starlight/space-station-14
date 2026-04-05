@@ -217,7 +217,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         // Starlight begin
         LanguagePrototype language;
-        
+
         if (message.Text.StartsWith(SharedLanguageSystem.ChatPrefixChar))
             language = _language.GetLanguageFromPrefix(source, ref message.Text, out _, true);
         else language = languageOverride ?? _language.GetLanguage(source);
@@ -244,7 +244,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Starlight being
         if (language.SpeechOverride.ChatTypeOverride is { } chatTypeOverride)
             desiredType = chatTypeOverride;
-        
+
         // This message may have a radio prefix, and should then be whispered to the resolved radio channel
         if (checkRadioPrefix)
         {
@@ -259,7 +259,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 return;
             }
         }
-        
+
         if (language.SpeechOverride.RadioChannel is not null)
             _language.SendEntityRadioLanguage(source, message.Text, language.SpeechOverride.RadioChannel.Value, language);
 
@@ -637,7 +637,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             // How the entity perceives the message depends on whether it can understand its language
             var perceivedMessage = canUnderstandLanguage ? message.Text : languageObfuscatedMessage; // Starlight
             var obfuscated = canUnderstandLanguage != true;
-            
+
             var whisperClearRange = WhisperClearRange;
             var whisperMuffledRange = WhisperMuffledRange;
             if (TryComp<ChatListenerRangeComponent>(listener, out var rangeComp))
@@ -1077,7 +1077,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 continue;
 
             var observer = ghostHearing.HasComponent(playerEntity);
-            
+
             //Starlight begin | Check what's larger, the passed voice range or, if it exists, the voice range on ChatListenerRangeComponent
             var distanceToCheck = voiceGetRange;
             if(TryComp<ChatListenerRangeComponent>(playerEntity, out var rangeComp))

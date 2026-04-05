@@ -233,7 +233,7 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
-    - NotLabelable # Starlight, no more labeling people. 
+    - NotLabelable # Starlight, no more labeling people.
   - type: ActiveInputMover # Starlight
   # Starlight Start: Social Interactions
   - type: PhysicalSocialInteractionGiver
@@ -258,9 +258,9 @@
   - type: UserInterface
     interfaces:
     # Starlight-edit: start
-      enum.HumanoidMarkingModifierKey.Key: 
+      enum.HumanoidMarkingModifierKey.Key:
         type: HumanoidMarkingModifierBoundUserInterface
-      enum.StrippingUiKey.Key: 
+      enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface

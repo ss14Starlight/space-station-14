@@ -28,7 +28,7 @@ public sealed class NotesControlTest : InteractionTest
         var staffhelp = GetWindow<StaffHelpWindow>();
         await ClickControl(staffhelp.AdminHelpButton);
         // Starlight - End
-        
+
         var bwoink = GetWindow<BwoinkWindow>();
 
         // Damn, if only I had an excuse to use bwoink.Bwoink.BwoinkArea

@@ -51,8 +51,8 @@ public sealed class NanoChatEmoteMarkup : IMarkupTagHandler
 
         // Parse optional size attribute
         var emoteSize = DefaultEmoteSize;
-        if (node.Attributes.TryGetValue("size", out var sizeParam) && 
-            sizeParam.TryGetLong(out var customSizeLong) && 
+        if (node.Attributes.TryGetValue("size", out var sizeParam) &&
+            sizeParam.TryGetLong(out var customSizeLong) &&
             customSizeLong > 0 && customSizeLong <= 64)
         {
             emoteSize = (int)customSizeLong.Value;
@@ -75,7 +75,7 @@ public sealed class NanoChatEmoteMarkup : IMarkupTagHandler
         }
 
         // Fall back to "name" attribute
-        if (node.Attributes.TryGetValue("name", out var nameParam) && 
+        if (node.Attributes.TryGetValue("name", out var nameParam) &&
             nameParam.TryGetString(out var nameValue))
         {
             emoteId = nameValue!;
@@ -118,7 +118,7 @@ public sealed class NanoChatEmoteMarkup : IMarkupTagHandler
     private Control CreateEmoteControl(Texture texture, float size, string tooltipText)
     {
         var sizeVector = new Vector2(size, size);
-        
+
         return new TextureRect
         {
             Texture = texture,

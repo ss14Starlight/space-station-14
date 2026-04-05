@@ -21,7 +21,7 @@
   - type: AltUseToggle
     # Starlight Edit End
   - type: ComponentToggler
-    components: 
+    components:
     - type: MagnetPickup
       requiresEquipping: false  # Starlight Edit - make it work even without being equipped
   - type: Sprite
