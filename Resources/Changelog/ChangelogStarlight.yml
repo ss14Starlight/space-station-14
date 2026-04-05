@@ -36277,5 +36277,12 @@ Entries:
   id: 401901
   time: '2026-04-05T20:25:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4019
+- author: CawsForConcern
+  changes:
+  - message: (Sepultum) NCT Office front is not locked.
+    type: Tweak
+  id: 402101
+  time: '2026-04-05T20:36:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4021
 Order: -1
 
