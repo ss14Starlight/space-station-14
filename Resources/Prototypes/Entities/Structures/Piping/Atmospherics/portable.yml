@@ -1,5 +1,6 @@
 - type: entity
   id: PortableScrubber
+  categories: [ ShouldMapStation ] # Starlight
   parent: [BaseMachinePowered, SmallConstructibleMachine, StructureWheeled]
   name: portable scrubber
   description: It scrubs, portably!
