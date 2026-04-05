@@ -34951,20 +34951,6 @@ Entries:
   url: https://github.com/ss14Starlight/space-station-14/pull/3734
 - author: Rinary
   changes:
-  - message: Fixed shoelaces tooltips.
-    type: Fix
-  - message: Fixed untie shoelaces verb.
-    type: Fix
-  - message: Fixed prediction crash when trying to unequip shoes with shoelaces.
-    type: Fix
-  - message: Fixed bug when magboots, moon boots, speed boots, socks and other specific
-      types of shoes have shoelaces.
-    type: Fix
-  id: 381501
-  time: '2026-03-20T12:54:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3815
-- author: Rinary
-  changes:
   - message: Added bullet holes visual effect when shooting in objects like walls.
     type: Add
   - message: Added sparks visual effect when shooting in metal piercable objects.
