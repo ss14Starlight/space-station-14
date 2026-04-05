@@ -75,14 +75,14 @@ namespace Content.Server.Communications
         /// </summary>
         [DataField]
         public bool AnnounceSentBy = true;
-        
+
         //Starlight begin
         /// <summary>
         /// Additional grids to broadcast messages to that aren't necessarily part of the station.
         /// Upon map init, this will attempt to find this station's Central Command and automatically append it.
         /// </summary>
         [ViewVariables] public List<EntityUid> AdditionalGrids = [];
-        
+
         /// <summary>
         /// Whether this console can broadcast to screens around the station.
         /// </summary>

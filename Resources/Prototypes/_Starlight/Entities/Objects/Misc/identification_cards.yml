@@ -102,7 +102,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
-    - state: silver 
+    - state: silver
     - sprite: *id-rsi
       state: stripe_top
       color: "#1b67a5"
@@ -247,7 +247,7 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers: 
+    layers:
     - state: sovietid
   - type: IdCard
     jobIcon: JobIconSoviet

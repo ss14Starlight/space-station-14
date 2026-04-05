@@ -545,9 +545,9 @@ public sealed partial class VampireSystem : EntitySystem
         }
     }
 
-    private void OnComponentRemove(EntityUid uid, VampireComponent comp, ComponentRemove _) 
+    private void OnComponentRemove(EntityUid uid, VampireComponent comp, ComponentRemove _)
         => TryRemoveAbilities(uid, comp);
-     
+
     private void TryRemoveAbilities(EntityUid uid, VampireComponent comp)
     {
         foreach (var (_, action) in comp.ActionEntities)
@@ -555,7 +555,7 @@ public sealed partial class VampireSystem : EntitySystem
         comp.ActionEntities.Clear();
         Dirty(uid, comp);
     }
-    
+
 
     private int GetActionBloodThreshold(EntProtoId actionId)
     {

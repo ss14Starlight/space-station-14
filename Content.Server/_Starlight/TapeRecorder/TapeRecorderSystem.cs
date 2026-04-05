@@ -52,14 +52,14 @@ public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
             // TODO: mimic the exact string chosen when the message was recorded
             var verb = message.Verb ?? SharedChatSystem.DefaultSpeechVerb;
             speech.SpeechVerb = _proto.Index<SpeechVerbPrototype>(verb);
-            
+
             // Set the TTS voice if one was recorded for this message
             if (!string.IsNullOrEmpty(message.VoiceId))
             {
                 tts.VoicePrototypeId = message.VoiceId;
                 Dirty(ent, tts);
             }
-            
+
             //Play the message
             _chat.TrySendInGameICMessage(ent, message.Message, InGameICChatType.Speak, false);
         }

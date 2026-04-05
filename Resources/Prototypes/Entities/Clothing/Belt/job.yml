@@ -73,7 +73,7 @@
           - Wirecutter
 
           #Starlight
-          - ImprovisedWirecutter          
+          - ImprovisedWirecutter
       crowbar:
         whitelist:
           tags:

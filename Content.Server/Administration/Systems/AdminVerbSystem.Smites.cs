@@ -804,7 +804,7 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", vulpName, Loc.GetString("admin-smite-vulpkanin-species-swap-description"))
         };
         args.Verbs.Add(vulp);
-        
+
         // Starlight-start
         var felioName = Loc.GetString("admin-smite-Felionoid-species-swap-name").ToLowerInvariant();
         Verb felio = new()
@@ -1034,7 +1034,7 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", superslipName, Loc.GetString("admin-smite-super-slip-description"))
         };
         args.Verbs.Add(superslip);
-        
+
         var pacifyName = Loc.GetString("admin-smite-pacify-name").ToLowerInvariant();
         Verb pacify = new()
         {
@@ -1179,7 +1179,7 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", homingRodSlowName, Loc.GetString("admin-smite-homing-rod-slow-description"))
         };
         args.Verbs.Add(homingRodSlow);
-        
+
         // Starlight begin
         var scrambleName = Loc.GetString("admin-smite-scramble-name").ToLowerInvariant();
         Verb scramble = new()

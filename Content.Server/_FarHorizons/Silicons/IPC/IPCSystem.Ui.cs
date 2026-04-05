@@ -37,7 +37,7 @@ public sealed partial class IPCSystem
 
     private void OnUIOpened(Entity<IPCUserInterfaceComponent> ent, ref BoundUIOpenedEvent args) =>
         UpdateUIHealth(ent.Owner);
-        
+
     private void UpdateUIHealth(EntityUid ent)
     {
         var healthMessage = new IPCHealthMessage(_bloodstream.GetBloodLevel(ent));
@@ -90,4 +90,4 @@ public sealed partial class IPCSystem
         _adminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(args.Actor):player} set IPC \"{ToPrettyString(ent)}\"'s name to: {name}");
         _metaData.SetEntityName(ent, name, metaData, false);
     }
-} 
+}

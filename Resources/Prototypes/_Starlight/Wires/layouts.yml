@@ -9,7 +9,7 @@
   - !type:AiInteractWireAction
   - !type:LogWireAction
   dummyWires: 1
-  
+
 - type: wireLayout
   id: MedibotControls
   dummyWires: 9

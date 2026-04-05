@@ -275,7 +275,7 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-verb-make-vampire"),
         };
         args.Verbs.Add(vampire);
-		
+
 		var selfagentName = Loc.GetString("admin-verb-text-make-selfagent");
         Verb selfagent = new()
         {

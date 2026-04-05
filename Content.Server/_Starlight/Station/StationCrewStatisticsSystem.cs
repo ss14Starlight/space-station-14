@@ -13,7 +13,7 @@ public sealed class StationCrewStatisticsSystem : EntitySystem
     [Dependency] private readonly SharedStationRecordsSystem _records = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
-    public override void Initialize() 
+    public override void Initialize()
         => SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRoundEnd);
 
     private void OnRoundEnd(GameRunLevelChangedEvent ev)

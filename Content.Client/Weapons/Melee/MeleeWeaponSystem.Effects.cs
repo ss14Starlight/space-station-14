@@ -234,7 +234,7 @@ public sealed partial class MeleeWeaponSystem
             },
         };
     }
-    
+
     //Starlight begin
     private Animation GetOldSlashAnimation(SpriteComponent sprite, Angle arc, Angle spriteRotation)
     {

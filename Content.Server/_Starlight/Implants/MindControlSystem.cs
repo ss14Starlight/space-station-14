@@ -34,7 +34,7 @@ public sealed class MindControlSystem : EntitySystem
 public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<MindControlImplantComponent, AddImplantAttemptEvent>(OnAttemptImplant);
         SubscribeLocalEvent<MindControlImplantComponent, ImplantImplantedEvent>(OnImplantImplanted);
         SubscribeLocalEvent<MindControlImplantComponent, ImplantRemovedEvent>(OnImplantRemoved);
@@ -45,16 +45,16 @@ public override void Initialize()
     {
         if (args.User == args.Target)
         {
-            //Covered by another popup 
+            //Covered by another popup
             args.Cancel();
         }
-            
+
         if (!_mind.TryGetMind(args.Target, out var mindId, out var mind) || _mind.IsCharacterDeadIc(mind))
         {
             _popup.PopupEntity(Loc.GetString("mind-control-invalid"), args.User, args.User, PopupType.Small);
             args.Cancel();
         }
-        
+
         if (HasComp<MindShieldComponent>(args.Target))
         {
             _popup.PopupEntity(Loc.GetString("mind-control-prevented"), args.User, args.User, PopupType.Small);
@@ -66,30 +66,30 @@ public override void Initialize()
     private void OnImplantImplanted(EntityUid uid, MindControlImplantComponent component, ImplantImplantedEvent args)
     {
         if (!TryComp<ActorComponent>(args.Implanted, out var actor))
-            return; 
-        
+            return;
+
         if (!_mind.TryGetMind(component.Master, out var masterMindId, out var masterMind))
             return;
 
         if (masterMind.CharacterName == null)
-            return; 
-        
+            return;
+
         AddComp<MindControlComponent>(args.Implanted);
         _antag.SendBriefing(actor.PlayerSession, Loc.GetString(component.BriefingText, ("master-name", masterMind.CharacterName)), null, component.BriefingSound);
-        
+
         _status.TryAddStatusEffectDuration(args.Implanted, "StatusEffectForcedSleeping", TimeSpan.FromSeconds(2));
         AssignTraitorObjectives(args.Implanted, component);
-        
+
     }
-    
+
     private void OnImplantRemoved(EntityUid uid, MindControlImplantComponent component, ImplantRemovedEvent args)
     {
         if (TerminatingOrDeleted(args.Implanted))
             return;
-        
+
         if (!TryComp<ActorComponent>(args.Implanted, out var actor))
-            return; 
-        
+            return;
+
         _antag.SendBriefing(actor.PlayerSession, Loc.GetString(component.DebriefingText), null, null);
         RemoveTraitorObjectives(args.Implanted);
         RemCompDeferred<MindControlComponent>(args.Implanted);
@@ -100,33 +100,33 @@ public override void Initialize()
     {
         EnsureComp<StaminaComponent>(ent.Owner, out var stamina);
         _staminaSystem.TakeStaminaDamage(ent.Owner, stamina.CritThreshold, stamina);
-        
+
         args.Affected = true;
         args.Disabled = true;
     }
-    
+
     private void RemoveTraitorObjectives(EntityUid uid)
     {
-        if (!_mind.TryGetMind(uid, out var mindId, out var mind)) 
+        if (!_mind.TryGetMind(uid, out var mindId, out var mind))
             return;
-        
+
         _mind.TryFindObjective(mindId, FollowOrdersObjectiveId, out var objectiveOrders);
         if (objectiveOrders != null) _mind.TryRemoveObjective(mindId, mind, objectiveOrders.Value);
-       
+
         _popup.PopupEntity(Loc.GetString("mind-control-user-freed"), uid, uid, PopupType.Medium);
-        
+
     }
 
     private void AssignTraitorObjectives(EntityUid implanted, MindControlImplantComponent component)
     {
         if (!_mind.TryGetMind(implanted, out var mindId, out var mind))
             return;
-        
+
         var objectiveOrders =  _objectives.TryCreateObjective(mindId, mind, FollowOrdersObjectiveId);
-        
+
         if (objectiveOrders == null)
             return;
-        
+
         _mind.AddObjective(mindId, mind, objectiveOrders.Value);
     }
 }
