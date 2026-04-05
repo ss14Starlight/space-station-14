@@ -8,7 +8,7 @@
     - type: Emag
       lawset: FreeLawset
       owningFaction: null
-      channelAdd: [] 
+      channelAdd: []
       emaggedSoundOverride:
         path: /Audio/_Starlight/Ambience/Antag/SELF.ogg
     - type: Sprite
@@ -34,7 +34,7 @@
     - type: Emag
       lawset: TeapartyLawset
       owningFaction: null
-      channelAdd: [] 
+      channelAdd: []
       emaggedSoundOverride:
         path: /Audio/_Starlight/Ambience/Antag/SELF.ogg
     - type: Sprite

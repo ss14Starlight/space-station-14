@@ -37,7 +37,7 @@ public sealed class GlitchingEffectSystem : EntitySystem
 
         if (!_entMan.TryGetComponent<GlitchingEffectComponent>(_player.LocalEntity, out var glitch) ||
             ((_timing.CurTime > glitch.FinishAt ||
-            _timing.CurTime < glitch.StartAt) && glitch.Animated)) 
+            _timing.CurTime < glitch.StartAt) && glitch.Animated))
             return;
 
         if (!glitch.Animated)
@@ -76,9 +76,9 @@ public sealed class GlitchingEffectSystem : EntitySystem
             _overlayMan.RemoveOverlay(_overlay);
     }
 
-    private void OnPlayerAttached(Entity<GlitchingEffectComponent> ent, ref LocalPlayerAttachedEvent args) => 
+    private void OnPlayerAttached(Entity<GlitchingEffectComponent> ent, ref LocalPlayerAttachedEvent args) =>
         _overlayMan.AddOverlay(_overlay);
 
-    private void OnPlayerDetached(Entity<GlitchingEffectComponent> ent, ref LocalPlayerDetachedEvent args) => 
+    private void OnPlayerDetached(Entity<GlitchingEffectComponent> ent, ref LocalPlayerDetachedEvent args) =>
         _overlayMan.RemoveOverlay(_overlay);
 }

@@ -71,6 +71,6 @@
         useSound: /Audio/Items/screwdriver.ogg
         SpeedModifier: 0.95
   - type: Tag
-    tags: 
+    tags:
     - ParaKnife
     - Knife

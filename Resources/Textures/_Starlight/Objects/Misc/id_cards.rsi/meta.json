@@ -40,8 +40,12 @@
       "name": "green-inhand-right",
 	  "directions": 4
     },
-	  {
+    {
       "name": "makeshift"
+    },
+    {
+      "name": "mercenary",
+      "copyright": "Edited from TG Station's default.png by @redmushie (github)"
     }
   ]
 }

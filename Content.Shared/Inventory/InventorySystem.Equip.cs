@@ -100,7 +100,7 @@ public abstract partial class InventorySystem
             // raise our event so that we can do equip mode behaviour elsewhere
             var useEvt = new InventoryUseSlotEvent(actor, (EntityUid)itemUid);
             RaiseLocalEvent(itemUid.Value, ref useEvt);
-            
+
             if(useEvt.Handled) return;
             // starlight end
 

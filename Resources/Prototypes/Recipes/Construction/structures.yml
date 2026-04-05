@@ -585,7 +585,7 @@
     - !type:NoWindowsInTile
   objectType: Structure
   placementMode: SnapgridCenter
-  
+
 - type: construction
   id: Firelock
   graph: Firelock

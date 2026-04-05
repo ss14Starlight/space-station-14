@@ -1,6 +1,6 @@
 - type: entity
   name: patch
-  description: On-touch administration of chemicals.	
+  description: On-touch administration of chemicals.
   parent: BaseStarlightHealingItem
   id: BasePatch
   abstract: true
@@ -20,11 +20,11 @@
       - Patch
   - type: Extractable
     grindableSolutionName: patch
-      
+
 - type: entity
   id: Patch
   parent: BasePatch
-  
+
 - type: entity
   id: PatchBrute
   name: brute patch
@@ -39,7 +39,7 @@
         reagents:
         - ReagentId: Bicaridine
           Quantity: 15
-          
+
 - type: entity
   id: PatchBurnSmall
   name: burn patch small
@@ -54,7 +54,7 @@
         reagents:
         - ReagentId: Dermaline
           Quantity: 10
-          
+
 - type: entity
   id: PatchBurn
   name: burn patch
@@ -69,7 +69,7 @@
         reagents:
         - ReagentId: Omnizine
           Quantity: 20
-          
+
 - type: entity
   id: PatchMedical
   name: medical patch
@@ -86,7 +86,7 @@
           Quantity: 10
         - ReagentId: Bicaridine
           Quantity: 10
-          
+
 - type: entity
   id: PatchClown
   name: clown patch
@@ -105,7 +105,7 @@
           Quantity: 5
         - ReagentId: MuteToxin
           Quantity: 10
-          
+
 - type: entity
   name: patch pack
   id: PatchPack
@@ -128,6 +128,6 @@
     quickInsert: true
     areaInsert: true
     areaInsertRadius: 1
-    whitelist: 
+    whitelist:
       tags:
       - Patch
