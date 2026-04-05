@@ -56,6 +56,7 @@
     - SiliconLiberation #Starlight
     - Brighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
+    - CosmicCult #Starlight
 
 - type: gamePreset
   id: AllerAtOnce
@@ -102,6 +103,7 @@
     - LoneOpsSpawn # Starlight
     - RailroadingTerminator # Starlight
     - RailroadingMinor # Starlight
+    - CosmicCult # Starlight
 
 - type: gamePreset
   id: Extended
@@ -311,7 +313,7 @@
   - KesslerSyndromeScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
-  
+
 - type: gamePreset
   id: Vampire
   alias:
@@ -362,7 +364,7 @@
     - BasicStationEventScheduler
     - BasicRoundstartVariation
 
-#Starlight EventLight Gamemode for Event Usage 
+#Starlight EventLight Gamemode for Event Usage
 - type: gamePreset
   id: EventLight
   alias:

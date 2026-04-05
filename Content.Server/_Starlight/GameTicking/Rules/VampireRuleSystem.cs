@@ -44,7 +44,7 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
             _role.MindRemoveRole((mindId, mind), "MindRoleVampire");
             return false;
         }
-        
+
         var meta = MetaData(target);
         var name = meta?.EntityName ?? "Unknown";
         var briefing = Loc.GetString("vampire-role-greeting", ("name", name));

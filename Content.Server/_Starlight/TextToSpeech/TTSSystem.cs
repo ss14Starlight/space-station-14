@@ -99,8 +99,11 @@ public sealed partial class TTSSystem : EntitySystem
                     && !_language.CanUnderstand(x.AttachedEntity.Value, args.Language.ID));
             var voice = GetOrAssignVoice(args.Source);
             var channel = new ProtoId<RadioChannelPrototype>(args.Channel.ID);
+            var languageradio = args.Channel == args.Language.SpeechOverride.RadioChannel;
+            var type = languageradio ? TTSType.Mind : TTSType.Radio;
+            var effect = languageradio ? TTSEffect.Underwater : TTSEffect.Walkie;
 
-            await GenerateAndStream(TTSType.Radio, voice, text, filter, TTSEffect.Walkie, chime, null, channel);
+            await GenerateAndStream(type, voice, text, filter, effect, chime, null, channel);
         }
         catch (TaskCanceledException ex)
         {

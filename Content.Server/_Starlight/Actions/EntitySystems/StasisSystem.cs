@@ -38,7 +38,7 @@ public sealed class StasisSystem : SharedStasisSystem
         base.Update(frameTime);
 
         var curTime = _timing.CurTime;
-        
+
         var query = EntityQueryEnumerator<StasisComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
@@ -78,7 +78,7 @@ public sealed class StasisSystem : SharedStasisSystem
         // TODO: this might mean like hitting yourself with a bomb or something while in stasis wont resist damage.
         if (!ent.Comp.IsInStasis || args.Origin == ent)
             return;
-        
+
         // Reduce all positive damage.
         var updatedDamage = new DamageSpecifier();
         foreach (var damage in args.Damage.DamageDict)

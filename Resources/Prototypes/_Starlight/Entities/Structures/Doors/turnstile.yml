@@ -7,3 +7,17 @@
   components:
   - type: AccessReader
     access: [["Command"]]
+
+- type: entity
+  id: TurnstileCentComm
+  parent: Turnstile
+  name: central command turnstile
+  suffix: Command
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Doors/cc-turnstile.rsi
+      layers:
+        - state: turnstile
+          map: [ "enum.TurnstileVisualLayers.Base" ]
+    - type: AccessReader
+      access: [["Command"]]

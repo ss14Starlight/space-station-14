@@ -22,7 +22,7 @@ public sealed partial class MechEquipmentComponent : Component
     /// The mech that the equipment is inside of.
     /// </summary>
     [ViewVariables] public EntityUid? EquipmentOwner;
-    
+
     [DataField("equipmentType")] public EquipmentType EquipmentType = EquipmentType.Active;
 }
 
@@ -32,14 +32,14 @@ public sealed partial class MechEquipmentActionComponent : Component
     [DataField]
     [AutoNetworkedField]
     public bool EquipmentToggled = false;
-    
+
     [DataField]
     [AutoNetworkedField]
     public bool EquipmentComponentAdded = false;
-    
+
     [DataField("actionId")]
     public EntProtoId EquipmentAction = "";
-    
+
     [DataField] public EntityUid? EquipmentActionEntity;
 }
 

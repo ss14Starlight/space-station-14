@@ -29,10 +29,12 @@
       state: generic_panel_open
   - type: Computer
     board: RecruitmentComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#3c5eb5"
+    radius: 2.5
+    energy: 1.5
+    color: "#cfaf4e"
+  # Starlight End
   - type: Tag
     tags:
     - EmagImmune
@@ -40,7 +42,7 @@
   - type: ContainerContainer
     containers:
       board: !type:Container
-
+      pai_slot: !type:ContainerSlot
 #abductor
 
 - type: entity
@@ -75,7 +77,7 @@
 - type: entity
   parent: ComputerComms
   id: CentCommSectoralConsole
-  name: centcomm sectoral console
+  name: CentComm sectoral console
   description: Use this to annoy captains of all stations at once.
   components:
     - type: AccessReader
@@ -267,10 +269,13 @@
       state: generic_panel_open
   - type: Computer
     board: MassDriverComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#3c5eb5"
+    radius: 2.5
+    energy: 1.5
+    color: "#2e9ec9"
+    castShadows: false
+  # Starlight End
   - type: DeviceList
   - type: DeviceNetwork
     deviceNetId: Wired
@@ -282,7 +287,8 @@
   - type: ContainerContainer
     containers:
       board: !type:Container
-    
+      pai_slot: !type:ContainerSlot
+
 # Universal ID Console
 - type: entity
   parent: BaseComputerAiAccess
@@ -356,10 +362,13 @@
       state: generic_panel_open
   - type: Computer
     board: UniversalIdConsoleCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#3c5eb5"
+    radius: 2.5
+    energy: 1.5
+    color: "#38c759"
+    castShadows: false
+  # Starlight End
   - type: Tag
     tags:
     - AccessBreakerImmune
@@ -369,7 +378,7 @@
       board: !type:Container
       IdCardConsole-privilegedId: !type:ContainerSlot
       IdCardConsole-targetId: !type:ContainerSlot
-
+      pai_slot: !type:ContainerSlot
 # Mining Shuttle Console
 - type: entity
   parent: BaseComputerShuttle
@@ -394,10 +403,13 @@
         - type: MiningShuttle
     - type: RadarConsole
       maxRange: 256
+      # Starlight Start - Immersive Lighting PR
     - type: PointLight
-      radius: 1.5
-      energy: 1.6
-      color: "#2a53b3"
+      radius: 2.5
+      energy: 1.5
+      color: "#7a449c"
+      castShadows: false
+    # Starlight End
     - type: Computer
       board: MiningShuttleConsoleCircuitboard
     - type: StealTarget
@@ -427,10 +439,13 @@
         - type: SecurityShuttle
     - type: RadarConsole
       maxRange: 256
+    # Starlight Start - Immersive Lighting PR
     - type: PointLight
-      radius: 1.5
-      energy: 1.6
-      color: "#d14343"
+      radius: 2.5
+      energy: 1.5
+      color: "#b53e33"
+      castShadows: false
+    # Starlight End
     - type: Computer
       board: SecurityShuttleConsoleCircuitboard
 
@@ -459,6 +474,13 @@
     canShuttle: false
     global: true
     sound: /Audio/_Starlight/Announcements/tsf_announce.ogg
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.8
+    color: "#e0da69"
+    castShadows: false
+  # Starlight End
 
 ## Departmental Communications Consoles BEGIN
 
@@ -497,8 +519,8 @@
     - type: Computer
       board: EngineeringCommsComputerCircuitboard
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5
+      energy: 1.5
       color: "#ff733c"
 
 # Medical
@@ -535,8 +557,8 @@
     - type: Computer
       board: MedicalCommsComputerCircuitboard
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5
+      energy: 1.5
       color: "#57b8f0"
 
 # Science
@@ -571,8 +593,8 @@
     - type: Computer
       board: ScienceCommsComputerCircuitboard
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5
+      energy: 1.5
       color: "#cd7ccd"
 
 # Security
@@ -610,8 +632,8 @@
     - type: Computer
       board: SecurityCommsComputerCircuitboard
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5
+      energy: 1.5
       color: "#ff4242"
 
 # Service
@@ -646,8 +668,8 @@
     - type: Computer
       board: ServiceCommsComputerCircuitboard
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5
+      energy: 1.5
       color: "#539c00"
 
 # Cargo
@@ -682,8 +704,8 @@
     - type: Computer
       board: CargoCommsComputerCircuitboard
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5
+      energy: 1.5
       color: "#b48b57"
 
 # Law
@@ -718,8 +740,8 @@
     - type: Computer
       board: LawCommsComputerCircuitboard
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5
+      energy: 1.5
       color: "#ff178b"
 
 ## Departmental Communications Consoles END

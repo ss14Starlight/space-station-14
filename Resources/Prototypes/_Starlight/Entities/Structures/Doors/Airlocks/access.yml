@@ -271,7 +271,7 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSalvage ]
-  
+
 # Retro Mining
 - type: entity
   parent: AirlockRetroMining

@@ -33,7 +33,7 @@
                                   Text="{Loc 'link-discord'}"
                                   HorizontalAlignment="Center"
                                   VerticalAlignment="Bottom"
-                                  Visible="False" 
+                                  Visible="False"
                                   StyleClasses="OpenBoth"/>
                           <!-- NullLink end-->
                             <Button Name="CopyButton"
