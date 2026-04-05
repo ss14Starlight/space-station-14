@@ -772,7 +772,7 @@ public sealed partial class AdminVerbSystem
             args.Verbs.Add(setCapacity);
         }
 
-        #region Starlight 
+        #region Starlight
         // Add toggle overlays verb
         Verb toggleOverlays = new()
         {
@@ -822,7 +822,7 @@ public sealed partial class AdminVerbSystem
             Priority = (int)TricksVerbPriorities.ToggleOverlays,
         };
         args.Verbs.Add(toggleOverlays);
-        
+
         if (TryComp<BodyComponent>(args.Target, out var bodyComp))
         {
             // Reaper arm verb
@@ -852,7 +852,7 @@ public sealed partial class AdminVerbSystem
                 Priority = (int)TricksVerbPriorities.SetBulletAmount,
             };
             args.Verbs.Add(reaperArm);
-            
+
             // Left Speg
             Verb leftSpeg = new()
             {
@@ -880,7 +880,7 @@ public sealed partial class AdminVerbSystem
                 Priority = (int)TricksVerbPriorities.SetBulletAmount,
             };
             args.Verbs.Add(leftSpeg);
-            
+
             // Right Speg
             Verb rightSpeg = new()
             {

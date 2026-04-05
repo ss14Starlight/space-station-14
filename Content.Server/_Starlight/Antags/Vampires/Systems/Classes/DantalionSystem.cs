@@ -148,7 +148,7 @@ public sealed class DantalionSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), uid, uid, PopupType.MediumCaution);
             return;
         }
-        
+
         if (!IsValidEnthrallTarget(uid, target))
         {
             _popup.PopupEntity(Loc.GetString("vampire-enthrall-invalid"), uid, uid, PopupType.MediumCaution);
@@ -249,7 +249,7 @@ public sealed class DantalionSystem : EntitySystem
         var objective = _objectives.TryCreateObjective(thrallMindId, thrallMind, ThrallObeyMasterObjectiveId);
         if (objective == null)
             return;
-        
+
         //adds pop-up for target informing them they have been enthralled
         if (_player.TryGetSessionById(thrallMind.UserId, out var session))
             _euiMan.OpenEui(new VampireThrallEui(), session);
@@ -580,7 +580,7 @@ public sealed class DantalionSystem : EntitySystem
         {
             if (!Exists(thrall))
                 continue;
-            
+
             // Remove stuns
             if (HasComp<StunnedComponent>(thrall))
                 RemComp<StunnedComponent>(thrall);

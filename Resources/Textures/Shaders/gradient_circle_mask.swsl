@@ -18,10 +18,10 @@ void fragment() {
 	highp vec2 pixelSize = vec2(1.0/SCREEN_PIXEL_SIZE.x, 1.0/SCREEN_PIXEL_SIZE.y);
 	highp vec2 pixelCenter = pixelSize*0.5;
 	highp float distance = length(FRAGCOORD.xy - pixelCenter);
-    
+
 	highp float innerRadius = innerCircleRadius + time * (innerCircleMaxRadius - innerCircleRadius);
 	highp float outerRadius = outerCircleRadius + time * (outerCircleMaxRadius - outerCircleRadius);
-    
+
 	if(distance > outerRadius) {
 		COLOR = vec4(color.x, color.y, color.z, darknessAlphaOuter);
 	}

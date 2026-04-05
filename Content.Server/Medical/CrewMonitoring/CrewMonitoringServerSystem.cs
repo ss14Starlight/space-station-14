@@ -86,17 +86,17 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
                 component.SensorStatus.Remove(address);
         }
     }
-    
+
     /// <summary>
     /// STARLIGHT: Perform all pager-related update logic.
     /// </summary>
     private void UpdatePager(EntityUid uid, CrewMonitoringServerComponent component, DeviceNetworkComponent? device = null)
     {
         var seen = new HashSet<string>();
-        
+
         if (!Resolve(uid, ref device))
             return;
-        
+
         // Update paging status for all currently seen sensors.
         foreach (var (address, sensor) in component.SensorStatus)
         {
@@ -109,19 +109,19 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
                 component.PagingStatus.Remove(address);
                 continue;
             }
-            
+
             // We know the sensor is eligible. Begin tracking if not already.
             component.PagingStatus.TryGetValue(address, out var pagingStatus);
             if (pagingStatus == null)
                 component.PagingStatus[address] = pagingStatus = new SuitSensorPagingStatus(_gameTiming.CurTime);
-            
+
             // Since we are in the loop of *seen* sensors, update last seen.
             pagingStatus.LastSeen = _gameTiming.CurTime;
-            
+
             // Emit packet only when we haven't already and when enough time has passed.
             if (pagingStatus.Paged || pagingStatus.FirstSeen + component.PagingPageAfterDuration > _gameTiming.CurTime) continue;
             pagingStatus.Paged = true;
-            
+
             // Broadcast a paging trigger to all listeners. Consoles themselves determine if they activate or not.
             _deviceNetworkSystem.QueuePacket(uid, null, new NetworkPayload()
             {
@@ -130,13 +130,13 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
                 [SuitSensorConstants.NET_JOB_DEPARTMENTS] = sensor.JobDepartments,
             }, device: device);
         }
-        
+
         // Check for pagers we've tracked but not seen.
         foreach (var (address, pagingTracker) in component.PagingStatus)
         {
             if (seen.Contains(address))
                 continue;
-            
+
             // Forget the sensor if it was missing for too long.
             if (pagingTracker.LastSeen + component.PagingForgetAfterDuration <= _gameTiming.CurTime)
                 component.PagingStatus.Remove(address);

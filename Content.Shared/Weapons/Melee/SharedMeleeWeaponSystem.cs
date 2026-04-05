@@ -863,7 +863,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         {
             chance += malus.Malus;
         }
-        
+
         //Starlight begin
         if (TryComp<WieldableComponent>(inTargetHand, out var wieldable))
             if (wieldable.Wielded)
@@ -894,7 +894,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         {
             return false;
         }
-        
+
         if (HasComp<NoDisarmComponent>(target)) return false; // Starlight
 
         // Need hands or to be able to be shoved over.
@@ -1092,7 +1092,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             }
         }
     }
-    
+
     //Starlight begin | ES Screenshake
     private void DoScreenshake(EntityUid weapon, DamageSpecifier damage, EntityUid attacker, List<EntityUid> targets)
     {
@@ -1107,7 +1107,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             foreach(var target in targets)
                 _shake.Screenshake(target, otherTranslation, null);
         }
-        
+
         // only show to attacker if they put real oompf into it, or the weapon is just THAT strong
         var bluntRequirement = damage.DamageDict.TryGetValue(BluntDamageName, out var blunt) && blunt >= 20;
         var wieldRequirement = TryComp<WieldableComponent>(weapon, out var wieldable) && wieldable.Wielded;

@@ -74,7 +74,7 @@ thaven-mood-happy-bad-name = Never Trust A Smile
 thaven-mood-happy-bad-desc = Cheerfulness indicates untrustworthiness.
 
 # trypanophilia is the enjoyment of needles
-thaven-mood-only-pills-name = { $medRestriction -> 
+thaven-mood-only-pills-name = { $medRestriction ->
   *[Pills] Needles Are Scary
   [Patches] Choking Hazard
   [Syringes] Trypanophilia

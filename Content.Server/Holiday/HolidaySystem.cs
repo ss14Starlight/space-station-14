@@ -17,7 +17,7 @@ namespace Content.Server.Holiday
 
         [ViewVariables]
         private bool _enabled = true;
-        
+
         public bool enabled => _enabled;
 
         public override void Initialize()
@@ -73,7 +73,7 @@ namespace Content.Server.Holiday
         {
             if (!_prototypeManager.TryIndex(holiday, out HolidayPrototype? prototype))
                 return false;
-            
+
             if (_currentHolidays.Count == 0)
                 RefreshCurrentHolidays();
 

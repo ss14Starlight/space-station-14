@@ -42,7 +42,7 @@ public sealed partial class AlertLevelCondition : FireModeCondition
         else if (entityManager.TryGetComponent<StationMemberComponent>(transformComp.ParentUid, out var stationMember) &&
             entityManager.TryGetComponent<AlertLevelComponent>(stationMember.Station, out alertLevel))
             allowed = CheckAlertLevel(stationMember.Station, alertLevel, alertSystem);
-        
+
         if(allowed) return true;
         _popupSystem.PopupEntity(Loc.GetString(PopupMessage), args.Shooter, actor.PlayerSession);
         return false;

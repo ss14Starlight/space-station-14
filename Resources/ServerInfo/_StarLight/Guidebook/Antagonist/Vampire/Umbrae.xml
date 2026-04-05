@@ -11,7 +11,7 @@
   ## Abilities (Total Blood Threshold | Cost)
 
   [bold](150 | (toggle))[/bold] Cloak of Darkness
-   Toggles whether you are currently cloaking yourself in darkness. 
+   Toggles whether you are currently cloaking yourself in darkness.
    When in darkness and toggled on, you move at increased speeds.
 
   [bold](200 | 20)[/bold] Shadow Snare
@@ -19,7 +19,7 @@
    Flash effects can destroy it — place it in darkness and offangle.
 
   [bold](200 | 20)[/bold] Shadow Anchor
-   You summon a dimensional anchor after a delay. 
+   You summon a dimensional anchor after a delay.
    Casting again will teleport you back to the anchor. You will fake a recall after 2 minutes
 
   [bold](300 | 20)[/bold] Dark Passage
@@ -31,7 +31,7 @@
   [bold](800 | 50)[/bold] Shadow Boxing
    Your shadows beat up a target while you stay close.
 
-  [bold](1000 | (toggle))[/bold] Eternal Darkness 
-   When toggled, you shroud the area around you in darkness and slowly lower the body temperature of people nearby. 
+  [bold](1000 | (toggle))[/bold] Eternal Darkness
+   When toggled, you shroud the area around you in darkness and slowly lower the body temperature of people nearby.
 
 </Document>
