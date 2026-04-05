@@ -14659,8 +14659,6 @@ entities:
       pos: -13.5,52.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 100
   - uid: 625
@@ -137391,17 +137389,24 @@ entities:
     - type: Transform
       pos: 42.5,-30.5
       parent: 2
+- proto: SMESBlue
+  entities:
+  - uid: 20529
+    components:
+    - type: Transform
+      pos: -0.5,25.5
+      parent: 2
+  - uid: 20532
+    components:
+    - type: Transform
+      pos: -0.5,23.5
+      parent: 2
 - proto: SMESAdvanced
   entities:
   - uid: 20528
     components:
     - type: Transform
       pos: -4.5,38.5
-      parent: 2
-  - uid: 20529
-    components:
-    - type: Transform
-      pos: -0.5,25.5
       parent: 2
   - uid: 20530
     components:
@@ -137413,11 +137418,6 @@ entities:
     - type: Transform
       pos: 0.5,25.5
       parent: 2
-  - uid: 20532
-    components:
-    - type: Transform
-      pos: -0.5,23.5
-      parent: 2
   - uid: 20533
     components:
     - type: Transform
@@ -137428,19 +137428,19 @@ entities:
     - type: Transform
       pos: 0.5,23.5
       parent: 2
-- proto: SMESBasic
-  entities:
-  - uid: 20535
-    components:
-    - type: Transform
-      pos: -110.5,31.5
-      parent: 2
   - uid: 20536
     components:
     - type: MetaData
       name: South Solar SMES
     - type: Transform
       pos: 30.5,-54.5
+      parent: 2
+- proto: SMESBasic
+  entities:
+  - uid: 20535
+    components:
+    - type: Transform
+      pos: -110.5,31.5
       parent: 2
   - uid: 20537
     components:

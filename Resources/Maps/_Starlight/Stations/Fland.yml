@@ -198879,7 +198879,7 @@ entities:
     - type: Transform
       pos: 37.5,-45.5
       parent: 2
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
   - uid: 29700
     components:
@@ -198901,6 +198901,8 @@ entities:
     - type: Transform
       pos: 93.5,2.5
       parent: 2
+- proto: SMESAdvanced
+  entities:
   - uid: 29704
     components:
     - type: Transform

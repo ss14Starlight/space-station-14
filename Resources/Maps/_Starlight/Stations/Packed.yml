@@ -91852,7 +91852,7 @@ entities:
     - type: Transform
       pos: 67.5,-8.5
       parent: 2
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
   - uid: 14526
     components:
@@ -91861,6 +91861,8 @@ entities:
     - type: Transform
       pos: 25.5,-32.5
       parent: 2
+- proto: SMESAdvanced
+  entities:
   - uid: 14565
     components:
     - type: MetaData

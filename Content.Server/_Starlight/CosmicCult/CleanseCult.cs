@@ -8,10 +8,8 @@ namespace Content.Server._Starlight.CosmicCult;
 
 public sealed partial class CleanseCult : EntityEffectBase<CleanseCult>
 {
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-    {
-        return Loc.GetString("reagent-effect-guidebook-cleanse-cultist", ("chance", Probability));
-    }
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => // Starlight 
+        loc.GetString("reagent-effect-guidebook-cleanse-cultist", ("chance", Probability));
 
     public override void RaiseEvent(EntityUid target, IEntityEffectRaiser raiser, float scale, EntityUid? user)
     {

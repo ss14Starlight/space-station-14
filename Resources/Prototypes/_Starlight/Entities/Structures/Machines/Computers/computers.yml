@@ -42,7 +42,7 @@
   - type: ContainerContainer
     containers:
       board: !type:Container
-
+      pai_slot: !type:ContainerSlot
 #abductor
 
 - type: entity
@@ -287,6 +287,7 @@
   - type: ContainerContainer
     containers:
       board: !type:Container
+      pai_slot: !type:ContainerSlot
     
 # Universal ID Console
 - type: entity
@@ -377,7 +378,7 @@
       board: !type:Container
       IdCardConsole-privilegedId: !type:ContainerSlot
       IdCardConsole-targetId: !type:ContainerSlot
-
+      pai_slot: !type:ContainerSlot
 # Mining Shuttle Console
 - type: entity
   parent: BaseComputerShuttle
