@@ -41,3 +41,5 @@ research-technology-bluespace-manipulation = Bluespace Manipulation
 research-technology-darkbreacher = Dark Breacher
 
 research-technology-basic-xenobiology = Basic Xenobiology
+
+research-technology-super-reactor = Exosuit Super Reactors
