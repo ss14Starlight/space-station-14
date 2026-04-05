@@ -982,6 +982,9 @@
   - type: Damageable
     damageModifierSet: MaulerArmor
   - type: MechThrusters
+# Starlight-start: magboots effect — stays grounded on station floors in zero-G
+  - type: Magboots
+# Starlight-end
   - type: Repairable
     fuelCost: 50
     doAfterDelay: 25

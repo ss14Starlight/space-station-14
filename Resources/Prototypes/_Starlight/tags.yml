@@ -57,6 +57,9 @@
   id: BorgModuleSecurity
 
 - type: Tag
+  id: BorgModuleSecurityStation
+
+- type: Tag
   id: BorgModuleSupply
 
 - type: Tag

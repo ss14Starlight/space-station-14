@@ -86,6 +86,29 @@
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: hands }
 
+# Starlight-start: Contraband bag for security borg — drops on crit, cannot be voluntarily dropped
+- type: entity
+  id: BorgContrabandBag
+  parent: BaseStorageItem
+  name: contraband bag
+  description: An integrated evidence bag mounted directly into a security cyborg's chassis. It can collect contraband on contact, and will drop to the floor if the cyborg is incapacitated.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/security.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Large
+    grid:
+    - 0,0,8,3
+    quickInsert: true
+    areaInsert: true
+  - type: Dumpable
+  - type: Unremoveable
+    deleteOnDrop: false # Starlight: drops to floor on crit, does not delete
+# Starlight-end
+
 # region Security
 - type: entity
   id: BorgModuleSecurity
@@ -99,44 +122,45 @@
     - state: icon-nt
   - type: ItemBorgModule
     hands:
-    - item: Flash
+    - item: WeaponPDW9TaserBorg # Starlight: self-recharging integrated taser
       hand:
-        emptyRepresentative: Flash
-        emptyLabel: borg-slot-flash-empty
-        whitelist:
-          components:
-          - Flash
-    - item: Crowbar
-    - item: Zipties
-      hand:
-        emptyRepresentative: Zipties
-        emptyLabel: borg-slot-zipties-empty
-        whitelist:
-          tags:
-          - Handcuffs # Can be replaced by handcuffs or zipties
-    - item: Stunbaton
-      hand:
-        emptyRepresentative: Stunbaton
-        emptyLabel: borg-slot-stunbaton-empty
-        whitelist:
-          components:
-          - Stunbaton
-    - item: WeaponDisabler
-      hand:
-        emptyRepresentative: WeaponDisabler
+        emptyRepresentative: WeaponPDW9TaserBorg
         emptyLabel: borg-slot-disabler-empty
         whitelist:
           tags:
           - Disabler
-    - item: HoloprojectorSecurity
+          - Taser
+    - item: BorgStunbatonRechargeable # Starlight: self-recharging integrated stunbaton
       hand:
-        emptyRepresentative: HoloprojectorSecurity
+        emptyRepresentative: BorgStunbatonRechargeable
+        emptyLabel: borg-slot-stunbaton-empty
+        whitelist:
+          components:
+          - Stunbaton
+    - item: BorgHolocuffs # Starlight: regenerating integrated holocuffs
+      hand:
+        emptyRepresentative: BorgHolocuffs
+        emptyLabel: borg-slot-zipties-empty
+    - item: BorgFlashRechargeable # Starlight: integrated flash, undroppable
+      hand:
+        emptyRepresentative: BorgFlashRechargeable
+        emptyLabel: borg-slot-flash-empty
+        whitelist:
+          components:
+          - Flash
+    - item: BorgHoloprojectorSecurity # Starlight: integrated holobarrier, undroppable
+      hand:
+        emptyRepresentative: BorgHoloprojectorSecurity
         emptyLabel: borg-slot-holoprojector-empty
         whitelist:
           components:
           - HolosignProjector
+    - item: BorgContrabandBag # Starlight: integrated contraband bag, drops on crit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
+  - type: Tag
+    tags:
+    - BorgModuleSecurityStation # Starlight: only fits station security borg
 
 # TSF
 - type: entity

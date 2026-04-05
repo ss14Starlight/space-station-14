@@ -42,6 +42,45 @@
   components:
   - type: BorgSwitchableType
     selectedBorgType: security
+  - type: BorgChassis
+    moduleWhitelist:
+      tags:
+      - BorgModuleSecurityStation # Starlight: restricted to station security module only
+  # Starlight-start: sec comms and lawset
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Security
+    - Command
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Security
+    - Command
+  - type: SiliconLawProvider
+    laws: SecurityCyborgLawset
+  - type: FlashImmunity # Starlight: security borg is immune to flashbangs
+  # Starlight-end
+
+# Starlight-start: pre-powered variant for spawning/cargo
+- type: entity
+  id: BorgChassisSecurityPowered
+  parent: BorgChassisSecurity
+  name: security cyborg
+  suffix: Powered
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+        blacklist:
+          tags:
+          - MechReactor
+# Starlight-end
     
 - type: entity
   id: BorgChassisPurrfus
@@ -51,6 +90,122 @@
   - type: TextToSpeech
   - type: BorgSwitchableType
     selectedBorgType: purrfus
+
+- type: entity
+  id: PurrfusBorgChassisDerelict
+  parent: BaseBorgChassisDerelict
+  name: derelict purrfus cyborg
+  description: A man-machine hybrid of the purrfus variety. This one is in a state of great disrepair.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Silicon/Chassis/purrfus.rsi
+    layers:
+    - state: borg
+    - state: borg_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light" ]
+      visible: false
+  - type: BorgChassis
+    maxModules: 5
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+    hasMindState: borg_e
+    noMindState: borg_e_r
+  - type: Construction
+    node: derelictcyborg
+  - type: InteractionPopup
+    interactSuccessString: petting-success-derelict-cyborg
+    interactFailureString: petting-failure-derelict-cyborg
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+
+
+# TSF
+# ? Make this Generic in the future if we have... More TSF Borgs?
+- type: entity
+  id: BorgChassisTSF
+  parent: BaseBorgChassisNotIonStormable
+  name: TSMC assault cyborg
+  description: A purpose built assault silicon used by the TSMC.
+  abstract: true
+  components:
+  - type: TextToSpeech
+  - type: Sprite
+    sprite: _Starlight/Mobs/Silicon/Chassis/tsmc.rsi
+    layers:
+    - state: assault
+      map: ["enum.BorgVisualLayers.Body", "movement"]
+    - state: assault_l
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: assault_l
+      shader: unshaded
+      map: ["light","enum.BorgVisualLayers.LightStatus"]
+  - type: BorgChassis
+    jobIconOverride: JobIconTSF
+    jobTitleOverride: chat-radio-tsf-borg
+    maxModules: 8
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleSecurity
+    hasMindState: assault_l
+    noMindState: assault_l
+  - type: BypassLock
+    bypassDelay: 15
+  - type: Access
+    tags:
+    - Solgov
+  - type: AccessReader
+    access: [["Solgov"]]
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - TSF
+    - Common
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - TSF
+    - Common
+  - type: MovementAlwaysTouching
+  - type: Speech
+    speechSounds: SyndieBorg
+    allowedEmotes:
+    - Laugh
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: SiliconLawProvider
+    laws: SolgovLawset
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - SiliconEmotes
+    - Unimplantable
+    - EmagImmune
 
 - type: entity
   id: BorgChassisCargo
