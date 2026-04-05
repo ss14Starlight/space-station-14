@@ -237,8 +237,8 @@
 # Tier 4
 
 - type: technology
-  id: ExosuitSuperReactor
-  name: research-technology-super-reactor
+  id: ExosuitExoticReactor
+  name: research-technology-expotic-reactor
   icon:
     sprite: _Starlight/Objects/Power/mech_reactors.rsi
     state: paladin
@@ -248,7 +248,7 @@
   recipeUnlocks:
     - MechReactorShielded
     - MechReactorBurnout
-    - MechReactoMechReactorCavalierrMicro
+    - MechReactorCavalier
   technologyPrerequisites:
     - OptimizedMicrogalvanism
     - Gygax

@@ -42,4 +42,4 @@ research-technology-darkbreacher = Dark Breacher
 
 research-technology-basic-xenobiology = Basic Xenobiology
 
-research-technology-super-reactor = Exosuit Super Reactors
+research-technology-exotic-reactor = Exosuit Exotic Reactors
