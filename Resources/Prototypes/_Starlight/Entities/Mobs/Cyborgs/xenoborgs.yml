@@ -52,7 +52,7 @@
           map: ["enum.BorgVisualLayers.Light"]
           shader: unshaded
           visible: false
-        #- state: borg_crystal # See https://github.com/space-wizards/space-station-14/pull/37869, it looks better duplicated supposedly 
+        #- state: borg_crystal # See https://github.com/space-wizards/space-station-14/pull/37869, it looks better duplicated supposedly
         #  shader: unshaded
         - state: borg_crystal
           shader: shaded
@@ -184,7 +184,7 @@
     - type: MovementSpeedModifier # faster
       baseWalkSpeed : 3
       baseSprintSpeed : 6
-    
+
 
 - type: entity
   parent: BaseXenoborgChassisDerelict
@@ -192,7 +192,7 @@
   name: stealth xenoborg
   components:
     - type: Sprite
-      sprite: _Starlight/Mobs/Silicon/Chassis/xeno_derelict_stealth.rsi 
+      sprite: _Starlight/Mobs/Silicon/Chassis/xeno_derelict_stealth.rsi
       layers:
         - state: borg
         - state: borg_e
@@ -212,7 +212,7 @@
       noMindState: borg_e_r
       moduleWhitelist:
         tags:
-          - BorgModuleGeneric 
+          - BorgModuleGeneric
           - BorgModuleScience # science orb, idk what else to give this one
           - XenoborgModuleGeneric
           - XenoborgModuleStealth

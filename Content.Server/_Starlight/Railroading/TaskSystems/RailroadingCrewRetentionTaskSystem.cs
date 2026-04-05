@@ -45,7 +45,7 @@ public sealed partial class RailroadingCrewRetentionTaskSystem : EntitySystem
         }
     }
 
-    private void OnCollectObjectiveInfo(Entity<RailroadCrewRetentionTaskComponent> ent, ref CollectObjectiveInfoEvent args) 
+    private void OnCollectObjectiveInfo(Entity<RailroadCrewRetentionTaskComponent> ent, ref CollectObjectiveInfoEvent args)
         => args.Objectives.Add(new ObjectiveInfo
     {
         Title = Loc.GetString(ent.Comp.Message, ("threshold", (int)(ent.Comp.Threshold * 100))),

@@ -79,7 +79,7 @@ public sealed partial class MeleeOperator : HTNOperator, IHtnConditionalShutdown
     public override void PlanShutdown(NPCBlackboard blackboard)
     {
         base.PlanShutdown(blackboard);
-        
+
         ConditionalShutdown(blackboard);
     }
 

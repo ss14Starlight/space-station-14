@@ -10,7 +10,7 @@ using Robust.Shared.Prototypes;
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
 // Starlight-edit: Start
 using Robust.Client.UserInterface;
-using Content.Shared._Starlight.Access; 
+using Content.Shared._Starlight.Access;
 // Starlight-edit: End
 
 namespace Content.Client.Access.UI

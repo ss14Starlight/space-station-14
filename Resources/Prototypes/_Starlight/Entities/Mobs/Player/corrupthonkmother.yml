@@ -105,7 +105,7 @@
         enum.StrippingUiKey.Key:
           type: StrippableBoundUserInterface
     - type: MeleeWeapon
-      range: 2 
+      range: 2
       soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
       angle: 0

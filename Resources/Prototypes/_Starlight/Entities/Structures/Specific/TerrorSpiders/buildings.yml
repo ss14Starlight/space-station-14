@@ -101,7 +101,7 @@
     position: Stand
     needsHands: false
     setVisible: true
-    whitelist: 
+    whitelist:
       components:
       - Spider
   - type: Transform
@@ -150,7 +150,7 @@
             max: 5
   - type: HealOnBuckle
     damage:
-      types: 
+      types:
         Bloodloss: -0.1
       groups:
         Brute: -0.1

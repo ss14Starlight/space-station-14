@@ -14,9 +14,9 @@ public sealed partial class EngraveableComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public string EngravedMessage = string.Empty;
-    
+
     // SL start
-    
+
     ///<summary>
     ///     Verb used for this object
     /// </summary>
@@ -26,9 +26,9 @@ public sealed partial class EngraveableComponent : Component
     ///     The text used in the Ui Popup
     /// </summary>
     [DataField] public LocId PopupMessage = "engraving-popup-ui-message";
-    
+
     // SL end
-    
+
     /// <summary>
     ///     The inspect text to use when there is no engraving
     /// </summary>

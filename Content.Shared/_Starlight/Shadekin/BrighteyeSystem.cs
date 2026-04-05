@@ -22,7 +22,7 @@ public sealed class BrighteyeSystem : EntitySystem
     {
         if (_tag.HasTag(args.Used.Owner, _bowTag))
             return;
-            
+
         _popup.PopupClient(Loc.GetString("gun-disabled"), ent, ent);
         args.Cancel();
     }

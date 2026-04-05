@@ -164,8 +164,8 @@
         # Limited Hardsuit objectives
         - RDHardsuitStealObjective
         - CMOHardsuitStealObjective
-        - CEHardsuitStealObjective 
-        - HOSHardsuitStealObjective 
+        - CEHardsuitStealObjective
+        - HOSHardsuitStealObjective
         - WardenHardsuitStealObjective
         - BrigmedicHardsuitStealObjective
         - QMHardsuitStealObjective

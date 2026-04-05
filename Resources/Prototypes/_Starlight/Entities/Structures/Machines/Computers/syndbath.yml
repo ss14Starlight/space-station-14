@@ -67,7 +67,7 @@
   - type: ChildEntities
     childPrototypes:
       - prototype: SyndBathOverlay
-        
+
 - type: entity
   id: SyndBathOverlay
   name: netrunner bathroom
