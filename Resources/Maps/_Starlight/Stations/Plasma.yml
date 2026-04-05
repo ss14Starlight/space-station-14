@@ -153257,7 +153257,7 @@ entities:
     - type: Transform
       pos: -39.5,-26.5
       parent: 2
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
   - uid: 21970
     components:
@@ -153269,6 +153269,8 @@ entities:
     - type: Transform
       pos: -128.5,-5.5
       parent: 2
+- proto: SMESAdvanced
+  entities:
   - uid: 21972
     components:
     - type: Transform

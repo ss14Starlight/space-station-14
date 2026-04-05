@@ -18,12 +18,12 @@ public sealed partial class RailroadingAvoidHandcuffsTaskSystem : EntitySystem
         SubscribeLocalEvent<RailroadAvoidHandcuffsTaskComponent, RailroadingCardCompletionQueryEvent>(OnTaskCompletionQuery);
         SubscribeLocalEvent<RailroadAvoidHandcuffsTaskComponent, CollectObjectiveInfoEvent>(OnCollectObjectiveInfo);
         SubscribeLocalEvent<RailroadAvoidHandcuffsTaskComponent, RailroadingCardCompletedEvent>(OnCompleted);
-        
+
         SubscribeLocalEvent<RailroadAvoidHandcuffsWatcherComponent, TargetHandcuffedEvent>(OnCuffedChanged);
         SubscribeLocalEvent<RailroadAvoidHandcuffsWatcherComponent, RailroadingCardFailedEvent>(OnFailed);
     }
 
-    private void OnFailed(Entity<RailroadAvoidHandcuffsWatcherComponent> ent, ref RailroadingCardFailedEvent args) 
+    private void OnFailed(Entity<RailroadAvoidHandcuffsWatcherComponent> ent, ref RailroadingCardFailedEvent args)
         => RemComp<RailroadAvoidHandcuffsWatcherComponent>(args.Subject.Owner);
 
     private void OnCompleted(Entity<RailroadAvoidHandcuffsTaskComponent> ent, ref RailroadingCardCompletedEvent args)
@@ -40,7 +40,7 @@ public sealed partial class RailroadingAvoidHandcuffsTaskSystem : EntitySystem
         _railroading.CardFailed((ent, railroadable));
     }
 
-    private void OnCollectObjectiveInfo(Entity<RailroadAvoidHandcuffsTaskComponent> ent, ref CollectObjectiveInfoEvent args) 
+    private void OnCollectObjectiveInfo(Entity<RailroadAvoidHandcuffsTaskComponent> ent, ref CollectObjectiveInfoEvent args)
         => args.Objectives.Add(new ObjectiveInfo
     {
         Title = Loc.GetString(ent.Comp.Message),
@@ -55,6 +55,6 @@ public sealed partial class RailroadingAvoidHandcuffsTaskSystem : EntitySystem
         args.IsCompleted = ent.Comp.IsCompleted;
     }
 
-    private void OnTaskPicked(Entity<RailroadAvoidHandcuffsTaskComponent> ent, ref RailroadingCardChosenEvent args) 
+    private void OnTaskPicked(Entity<RailroadAvoidHandcuffsTaskComponent> ent, ref RailroadingCardChosenEvent args)
         => EnsureComp<RailroadAvoidHandcuffsWatcherComponent>(args.Subject.Owner);
 }

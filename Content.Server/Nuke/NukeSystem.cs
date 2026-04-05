@@ -52,10 +52,10 @@ public sealed class NukeSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
 
     #region Starlight
-    [Dependency] private readonly DigitalLockSystem _digitalLock = default!; 
-    [Dependency] private readonly GameTicker _gameTicker = default!; 
+    [Dependency] private readonly DigitalLockSystem _digitalLock = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
     #endregion
-    
+
     /// <summary>
     ///     Used to calculate when the nuke song should start playing for maximum kino with the nuke sfx
     /// </summary>
@@ -513,7 +513,7 @@ public sealed class NukeSystem : EntitySystem
         var x = (int) pos.X;
         var y = (int) pos.Y;
         var posText = $"({x}, {y})";
-        
+
         // Starlight-start
         if (_gameTicker.IsGameRuleActive("Nukeops"))
         {

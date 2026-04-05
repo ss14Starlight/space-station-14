@@ -428,7 +428,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
                 // Starlight Start
                 // Always update UI to show new messages
                 UpdateUIForCard(args.CardUid);
-                
+
                 // Only send notification if chat is not currently open or PDA is closed
                 // Starlight End
 
@@ -457,7 +457,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (_timing.CurTime > recipient.Comp.LastNotificationTime + TimeSpan.FromSeconds(recipient.Comp.NotificationCooldownTime) && !recipient.Comp.NotificationsMuted)
         {
             _nanoChat.SetLastNotificationTime(recipient.Owner, _timing.CurTime);
-            
+
             // Starlight Start: Better Notification
             // Format notification title as "Message from {Sender} (Job)" if job title exists
             var notificationTitle = "";

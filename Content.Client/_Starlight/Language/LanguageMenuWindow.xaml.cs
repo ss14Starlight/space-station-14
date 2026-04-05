@@ -133,7 +133,7 @@ public sealed partial class LanguageMenuWindow : DefaultWindow
 
         container.AddChild(collapser);
         #endregion
-        
+
         if (proto?.ChatPrefix is not null)
         {
             var prefix = new RichTextLabel { HorizontalExpand = true };

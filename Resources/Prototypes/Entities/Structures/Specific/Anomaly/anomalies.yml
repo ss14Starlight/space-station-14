@@ -100,7 +100,7 @@
   - type: ProjectileAnomaly
     projectilePrototype: ProjectileAnomalyFireball
     projectileSpeed: 0.5
-    minProjectiles: 4 # Starlight start: Changed the danger of the fire anomaly so then it demands more collaboration of crew 
+    minProjectiles: 4 # Starlight start: Changed the danger of the fire anomaly so then it demands more collaboration of crew
     maxProjectiles: 8
   - type: IgnitionSource
     temperature: 1200 # Starlight end:
@@ -259,7 +259,7 @@
     - settings:
         spawnOnSuperCritical: true
         minAmount: 8 #starlight Start: Makes more Kudzu when Supercritical
-        maxAmount: 10 #starlight end: 
+        maxAmount: 10 #starlight end:
         maxRange: 10
       spawns:
       - FleshKudzu
@@ -801,7 +801,7 @@
     - settings:
         spawnOnPulse: true
         minAmount: 5 #starlight start: Spawns more grass on pulses
-        maxAmount: 10 #starlight end: 
+        maxAmount: 10 #starlight end:
         maxRange: 5
       floor: FloorAstroGrass
     - settings:
@@ -822,7 +822,7 @@
     - settings:
         spawnOnSuperCritical: true
         minAmount: 10 #starlight Start: Adds more Kudzu on critical
-        maxAmount: 15  
+        maxAmount: 15
         maxRange: 8 #starlight end:
       spawns:
       - KudzuFlowerAngry

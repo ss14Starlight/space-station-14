@@ -29,7 +29,7 @@ public sealed class PhysicalSocialInteractionSystem : EntitySystem
         //check if the user also has a interaction giver
         if (!HasComp<PhysicalSocialInteractionGiverComponent>(args.User))
             return;
-        
+
         //check if interactable
         if (!CheckInteractable(args.User, args.Target))
             return;
@@ -58,7 +58,7 @@ public sealed class PhysicalSocialInteractionSystem : EntitySystem
             args.Verbs.Add(verb);
         }
     }
-    
+
     private bool CheckInteractable(EntityUid user, EntityUid target)
     {
         if (!_actionBlockerSystem.CanInteract(user, target))

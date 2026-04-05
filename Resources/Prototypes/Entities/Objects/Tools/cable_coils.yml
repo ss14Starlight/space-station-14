@@ -12,7 +12,13 @@
   - type: Tag
     tags:
     - CableCoil
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
   - type: Stack
+  # Starlight end
     stackType: Cable
   - type: Sprite
     sprite: Objects/Tools/cable-coils.rsi

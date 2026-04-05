@@ -32,6 +32,6 @@ public sealed partial class StunbatonComponent : Component
 
     [AutoNetworkedField, AutoPausedField]
     public TimeSpan LastBashTime = TimeSpan.FromSeconds(0);
-    
+
     #endregion
 }

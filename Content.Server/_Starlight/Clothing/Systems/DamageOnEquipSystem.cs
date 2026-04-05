@@ -74,7 +74,7 @@ public sealed class DamageOnEquipSystem : EntitySystem
                 comp.PendingEquipDamagePopups.Remove(pending);
                 _popup.PopupEntity(Loc.GetString(pending.Popup), pending.Target, pending.Target, PopupType.MediumCaution);
             }
-            
+
             foreach (var pending in comp.PendingEquipDamages.ToList())
             {
                 if (Deleted(uid) || Deleted(pending.Target))

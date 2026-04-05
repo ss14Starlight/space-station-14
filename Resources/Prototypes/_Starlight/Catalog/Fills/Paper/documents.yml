@@ -7,7 +7,7 @@
   description: Bureaucratic unit. A document printed on a printer.
   components:
     - type: Paper
-    
+
 # Reports
 
 - type: entity
@@ -18,8 +18,8 @@
   components:
     - type: Paper
       content: doc-text-printer-report-morgue
-      
-    
+
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentReportStation
@@ -28,7 +28,7 @@
   components:
     - type: Paper
       content: doc-text-printer-report-station
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentReportOnEliminationOfViolations
@@ -37,7 +37,7 @@
   components:
     - type: Paper
       content: doc-text-printer-report-on-elimination-of-violations
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentReportDepartment
@@ -46,7 +46,7 @@
   components:
     - type: Paper
       content: doc-text-printer-report-department
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentReportEmployeePerformance
@@ -55,7 +55,7 @@
   components:
     - type: Paper
       content: doc-text-printer-report-employee-performance
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentReportOnTheChaptersMeeting
@@ -73,7 +73,7 @@
   components:
     - type: Paper
       content: doc-text-printer-internal-affairs-agents-report
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentConditionReport
@@ -82,7 +82,7 @@
   components:
     - type: Paper
       content: doc-text-printer-condition-report
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentObjectInvestigationReport
@@ -91,7 +91,7 @@
   components:
     - type: Paper
       content: doc-text-printer-object-investigation-report
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentExperimentReport
@@ -100,7 +100,7 @@
   components:
     - type: Paper
       content: doc-text-printer-experiment-report
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentDisposalReport
@@ -109,7 +109,7 @@
   components:
     - type: Paper
       content: doc-text-printer-disposal-report
-      
+
 
 - type: entity
   parent: PrintedDocument
@@ -139,7 +139,7 @@
   components:
     - type: Paper
       content: doc-text-printer-statement-appointment-interim-chapter
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentEmploymentStatement
@@ -148,7 +148,7 @@
   components:
     - type: Paper
       content: doc-text-printer-employment-statement
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentResignationStatement
@@ -157,7 +157,7 @@
   components:
     - type: Paper
       content: doc-text-printer-resignation-statement
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentAccessRequestStatement
@@ -166,7 +166,7 @@
   components:
     - type: Paper
       content: doc-text-printer-access-request-statement
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentEquipmentRequestStatement
@@ -175,9 +175,9 @@
   components:
     - type: Paper
       content: doc-text-printer-equipment-request-statement
-      
+
 # InquiriesAndAppeals
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentInvocation
@@ -186,7 +186,7 @@
   components:
     - type: Paper
       content: doc-text-printer-invocation
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentEvacuationShuttleRequest
@@ -195,7 +195,7 @@
   components:
     - type: Paper
       content: doc-text-printer-evacuation-shuttle-request
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentShuttleRegistrationRequest
@@ -204,7 +204,7 @@
   components:
     - type: Paper
       content: doc-text-printer-shuttle-registration-request
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestCallCentCommMembers
@@ -213,7 +213,7 @@
   components:
     - type: Paper
       content: doc-text-printer-request-call-centcomm-members
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestRequestEstablishThreatLevel
@@ -222,7 +222,7 @@
   components:
     - type: Paper
       content: doc-text-printer-request-establish-threat-level
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestChangeSalary
@@ -231,7 +231,7 @@
   components:
     - type: Paper
       content: doc-text-printer-request-change-salary
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestForNonlistedEmployment
@@ -240,7 +240,7 @@
   components:
     - type: Paper
       content: doc-text-printer-request-for-non-listed-employment
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestForPromotion
@@ -249,7 +249,7 @@
   components:
     - type: Paper
       content: doc-text-printer-request-for-promotion
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestDocuments
@@ -258,7 +258,7 @@
   components:
     - type: Paper
       content: doc-text-printer-request-documents
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestEuthanasia
@@ -267,7 +267,7 @@
   components:
     - type: Paper
       content: doc-text-printer-request-euthanasia
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestConstructionWork
@@ -276,7 +276,7 @@
   components:
     - type: Paper
       content: doc-text-printer-request-construction-work
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestModernization
@@ -285,7 +285,7 @@
   components:
     - type: Paper
       content: doc-text-printer-request-modernization
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentRequestERT
@@ -294,7 +294,7 @@
   components:
     - type: Paper
       content: doc-text-printer-request-ert
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentProductOrder
@@ -313,7 +313,7 @@
   components:
     - type: Paper
       content: doc-text-printer-complaint-violation-labor-rules
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentComplaintOffense
@@ -322,7 +322,7 @@
   components:
     - type: Paper
       content: doc-text-printer-offense-complaint
-      
+
 # Permissions
 
 - type: entity
@@ -332,8 +332,8 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Paper
-      content: doc-text-printer-permission-equipment    
-      
+      content: doc-text-printer-permission-equipment
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentSearchPermission
@@ -342,7 +342,7 @@
   components:
     - type: Paper
       content: doc-text-printer-search-permission
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentPermissionToCarryWeapons
@@ -351,7 +351,7 @@
   components:
     - type: Paper
       content: doc-text-printer-permission-to-carry-weapons
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentPermissionDisposeBody
@@ -360,7 +360,7 @@
   components:
     - type: Paper
       content: doc-text-printer-permission-dispose-body
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentConstructionPermit
@@ -369,7 +369,7 @@
   components:
     - type: Paper
       content: doc-text-printer-construction-permit
-     
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentSurgeryConsentPermit
@@ -378,7 +378,7 @@
   components:
     - type: Paper
       content: doc-text-printer-surgery-consent-permit
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentArtPermit
@@ -398,7 +398,7 @@
   components:
     - type: Paper
       content: doc-text-printer-dismissal-order
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentAccessRevocationOrder
@@ -407,7 +407,7 @@
   components:
     - type: Paper
       content: doc-text-printer-access-revocation-order
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentIncentiveOrder
@@ -416,7 +416,7 @@
   components:
     - type: Paper
       content: doc-text-printer-incentive-order
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentPrisonerParoleOrder
@@ -425,7 +425,7 @@
   components:
     - type: Paper
       content: doc-text-printer-prisoner-parole-order
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentOrderRecognizingReasonablenessCreature
@@ -434,7 +434,7 @@
   components:
     - type: Paper
       content: doc-text-printer-order-recognizing-reasonableness-creature
-      
+
 - type: entity
   parent: PrintedDocument
   id: PrintedDocumentMedicalInterventionOrder

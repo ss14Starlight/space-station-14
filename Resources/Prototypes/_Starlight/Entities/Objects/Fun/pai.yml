@@ -23,7 +23,7 @@
     itemIconStyle: NoItem
   - type: InstantAction
     event: !type:PAIConsoleActionEvent
-    
+
 - type: entity
   parent: EncryptionKeySyndie
   id: EncryptionKeySyndiePAI
