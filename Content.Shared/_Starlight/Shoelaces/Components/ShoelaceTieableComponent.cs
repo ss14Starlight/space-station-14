@@ -9,7 +9,7 @@ namespace Content.Shared._Starlight.Shoelaces.Components;
 public sealed partial class ShoelaceTieableComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public bool Tied = true;
+    public bool Tied = false;
 
     [DataField, AutoNetworkedField]
     public bool TiedTogether = false;
