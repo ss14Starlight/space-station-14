@@ -4038,9 +4038,6 @@ entities:
     - type: Transform
       pos: -0.7342167,-3.2392855
       parent: 1
-    - type: SpecialRespawn
-      stationMap:
-      - 1
 - proto: OperatingTable
   entities:
   - uid: 523
