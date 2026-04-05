@@ -25,10 +25,7 @@ public sealed partial class DevilDamnationsMenu : FancyWindow
 
         List<DamnationPrototype> damnations = new();
         foreach (var damnationId in state.Damnations)
-        {
-            var damnation = _prototypeManager.Index(damnationId);
-            damnations.Add(damnation);
-        }
+            if (_prototypeManager.TryIndex(damnationId, out var damnation)) damnations.Add(damnation);
 
         damnations.Sort((x, y) => x.Cost.CompareTo(y.Cost));
 

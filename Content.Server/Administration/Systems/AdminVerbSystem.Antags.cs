@@ -306,12 +306,13 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 _antag.ForceMakeAntag<DevilRuleComponent>(targetPlayer, DefaultDevilRule);
+                _autolog.LogToDiscord(string.Join(": ", Loc.GetString("admin-verb-text-make-devil"), Loc.GetString("admin-verb-make-devil")), player.Name);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-devil")
         };
         args.Verbs.Add(devil);
-        
+
         if (HasComp<ShadekinComponent>(args.Target))
         {
             Verb brighteye = new()

@@ -12,7 +12,6 @@ namespace Content.Server._Starlight.Devil;
 
 public sealed partial class DevilSystem : SharedDevilSystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly StunSystem _stun = default!;
@@ -33,8 +32,8 @@ public sealed partial class DevilSystem : SharedDevilSystem
         if (!CanDamn(entity, proto)) return false;
         if (!_proto.TryIndex(proto, out var damnationPrototype)) return false;
 
-        _entityManager.AddComponents(entity.Owner, damnationPrototype.Components);
-        _entityManager.RemoveComponents(entity.Owner, damnationPrototype.RemovedComponents);
+        EntityManager.AddComponents(entity.Owner, damnationPrototype.Components);
+        EntityManager.RemoveComponents(entity.Owner, damnationPrototype.RemovedComponents);
 
         foreach (var action in damnationPrototype.Actions)
         {
@@ -56,7 +55,6 @@ public sealed partial class DevilSystem : SharedDevilSystem
     private bool DamnEntity(EntityUid ent, InfernalContractData contract, EntityUid devil)
     {
         EnsureComp<DamnedComponent>(ent, out var damnedComp);
-        if (damnedComp == null) return false;
 
         damnedComp.DamnedBy = devil;
 
@@ -90,12 +88,17 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         if (damnationPrototype.ReverseOnRemove)
         {
-            _entityManager.RemoveComponents(entity.Owner, damnationPrototype.Components);
-            _entityManager.AddComponents(entity.Owner, damnationPrototype.RemovedComponents);
-        }  
-        
+            EntityManager.RemoveComponents(entity.Owner, damnationPrototype.Components);
+            EntityManager.AddComponents(entity.Owner, damnationPrototype.RemovedComponents);
+        }
+
         foreach (var action in damnationPrototype.Actions)
         {
+            if (!action.IocResolved) {
+                action.ResolveIoC();
+                action.IocResolved = true;
+            }
+
             action.ReverseAction(entity);
         }
 

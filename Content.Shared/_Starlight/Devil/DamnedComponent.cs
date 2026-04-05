@@ -1,6 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Content.Shared._Starlight.Devil;
+
+namespace Content.Shared._Starlight.Devil;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class DamnedComponent : Component
