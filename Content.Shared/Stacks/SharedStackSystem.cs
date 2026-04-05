@@ -114,10 +114,10 @@ public abstract partial class SharedStackSystem : EntitySystem
     private void OnStackStarted(Entity<StackComponent> ent, ref ComponentStartup args)
     {
         // Starlight BEGIN
-        var userInterfaceComp = EnsureComp<UserInterfaceComponent>(ent);
-        _ui.SetUi((ent, userInterfaceComp), StackCustomSplitUiKey.Key, new InterfaceData(StackCustomSplitBoundUserInterface));
+        if (TryComp(ent.Owner, out UserInterfaceComponent? uiComp))
+            _ui.SetUi((ent, uiComp), StackCustomSplitUiKey.Key, new InterfaceData(StackCustomSplitBoundUserInterface));
         // Starlight END
-        
+
         if (!TryComp(ent.Owner, out AppearanceComponent? appearance))
             return;
 

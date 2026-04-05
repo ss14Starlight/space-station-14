@@ -9,6 +9,9 @@
     state: icon
   - type: Item
     size: Small
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
   - type: Storage
     maxItemSize: Tiny
     grid:

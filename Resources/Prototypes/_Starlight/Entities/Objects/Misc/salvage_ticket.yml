@@ -21,6 +21,10 @@
       SalvageTicket: 1
   - type: StaticPrice
     price: 0
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
   - type: Stack
     stackType: SalvageTicket
     count: 1
