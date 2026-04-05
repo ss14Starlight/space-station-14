@@ -36284,5 +36284,12 @@ Entries:
   id: 402101
   time: '2026-04-05T20:36:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4021
+- author: CawsForConcern
+  changes:
+  - message: Overloaded APCs on the "NT Incorporation" visitor shuttle have been fixed.
+    type: Fix
+  id: 402201
+  time: '2026-04-05T20:44:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4022
 Order: -1
 
