@@ -789,7 +789,6 @@
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
-    # STARLIGHT END
     damage:
       types:
         Blunt: 40
