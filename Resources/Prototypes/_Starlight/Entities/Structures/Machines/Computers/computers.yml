@@ -490,6 +490,7 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsEngineering
+  categories: [ ShouldMapStation ]
   name: engineering communications console
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:

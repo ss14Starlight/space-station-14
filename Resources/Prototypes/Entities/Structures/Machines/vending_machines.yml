@@ -1886,6 +1886,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineAtmosDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: AtmosDrobe
   description: This relatively unknown vending machine delivers clothing for Atmospherics Technicians, an equally unknown job.
   components:
@@ -1920,6 +1921,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineEngiDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: EngiDrobe
   description: A vending machine renowned for vending industrial grade clothing.
   components:
@@ -2048,6 +2050,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineSciDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: SciDrobe
   description: A simple vending machine suitable to dispense well tailored science clothing. Endorsed by Space Cubans.
   components:
@@ -2113,6 +2116,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineRoboDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: RoboDrobe
   description: A vending machine designed to dispense clothing known only to roboticists.
   components:

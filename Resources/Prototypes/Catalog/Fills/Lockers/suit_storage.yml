@@ -196,6 +196,7 @@
 #CE's hardsuit
 - type: entity
   id: SuitStorageCE
+  categories: [ ShouldMapStation ] # Starlight
   parent: SuitStorageBase
   suffix: Chief Engineer
   components:

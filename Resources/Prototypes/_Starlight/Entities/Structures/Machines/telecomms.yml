@@ -1,6 +1,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledLaw
+  categories: [ ShouldMapStation ]
   suffix: Law
   components:
   - type: ContainerFill

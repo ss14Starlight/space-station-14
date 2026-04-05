@@ -269,6 +269,7 @@
 # No hardsuit locker
 - type: entity
   id: LockerChiefEngineerFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerChiefEngineer
   components:
