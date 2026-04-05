@@ -36,12 +36,6 @@ public sealed partial class IPCBatteryComponent : Component
     public ProtoId<EmotePrototype> NoPowerDeathEmote = default;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public BatteryDrainerComponent BatteryDrainer = default!;
-
-    [ViewVariables(VVAccess.ReadWrite)] // ! OK THIS SHIT SHOULD NOT BE HERE... WHY? TODO: KILL
-    public PowerCellSlotComponent PowerCellSlot = default!;
-
-    [ViewVariables(VVAccess.ReadWrite)]
     public bool TimerActive = false;
 
     [ViewVariables(VVAccess.ReadWrite)]

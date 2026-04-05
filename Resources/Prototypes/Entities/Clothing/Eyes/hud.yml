@@ -194,9 +194,6 @@
     - Biological
     - Inorganic
     - IPC # SL
-  - type: ShowHealthIcons # SL
-    damageContainers:
-    - IPC
   - type: ShowSyndicateIcons
 
 - type: entity
@@ -214,9 +211,6 @@
     - Biological
     - Inorganic
     - IPC # SL
-  - type: ShowHealthIcons # SL
-    damageContainers:
-    - IPC
   - type: ShowHungerIcons
   - type: ShowThirstIcons
   - type: ShowSyndicateIcons

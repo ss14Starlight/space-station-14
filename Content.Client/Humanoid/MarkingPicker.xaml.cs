@@ -414,6 +414,8 @@ public sealed partial class MarkingPicker : Control
 
         if (prototype.ForcedGlowing)
             Glowing.Visible = false;
+        else
+            Glowing.Visible = true;
 
         if (prototype.ForcedColoring)
         {

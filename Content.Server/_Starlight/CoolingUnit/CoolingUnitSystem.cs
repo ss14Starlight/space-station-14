@@ -23,25 +23,25 @@ public sealed partial class CoolingUnitSystem : SharedCoolingUnitSystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<TemperatureComponent, ThermalRegulatorComponent>();
-        while (query.MoveNext(out var uid, out var tempcomponent, out var regulatorcomp))
+        if (_timing.CurTime > _nextUpdate)
         {
-            if (_timing.CurTime < _nextUpdate)
-                continue;
-
             _nextUpdate = _timing.CurTime + _updateCooldown;
 
-            if (HasComp<InventoryComponent>(uid) && _inventory.TryGetSlots(uid, out var slots))
-                foreach (var slot in slots)
-                    if (_inventory.TryGetSlotEntity(uid, slot.Name, out var slotent) && TryComp<CoolingUnitComponent>(slotent, out var coolingcomp)
-                        && TryComp<ItemToggleComponent>(slotent, out var itemtoggle) && itemtoggle.Activated)
-                    {
-                        if (tempcomponent.CurrentTemperature > regulatorcomp.NormalBodyTemperature)
+            var query = EntityQueryEnumerator<TemperatureComponent, ThermalRegulatorComponent>();
+            while (query.MoveNext(out var uid, out var tempcomponent, out var regulatorcomp))
+            {
+                if (HasComp<InventoryComponent>(uid) && _inventory.TryGetSlots(uid, out var slots))
+                    foreach (var slot in slots)
+                        if (_inventory.TryGetSlotEntity(uid, slot.Name, out var slotent) && TryComp<CoolingUnitComponent>(slotent, out var coolingcomp)
+                            && TryComp<ItemToggleComponent>(slotent, out var itemtoggle) && itemtoggle.Activated)
                         {
-                            var coolingAmount = Math.Min(coolingcomp.MaxCooling, tempcomponent.CurrentTemperature - regulatorcomp.NormalBodyTemperature);
-                            _tempSys.ChangeHeat(uid, -coolingAmount, true, tempcomponent);
+                            if (tempcomponent.CurrentTemperature > regulatorcomp.NormalBodyTemperature)
+                            {
+                                var coolingAmount = Math.Min(coolingcomp.MaxCooling, tempcomponent.CurrentTemperature - regulatorcomp.NormalBodyTemperature);
+                                _tempSys.ChangeHeat(uid, -coolingAmount, true, tempcomponent);
+                            }
                         }
-                    }
+            }
         }
     }
 }
