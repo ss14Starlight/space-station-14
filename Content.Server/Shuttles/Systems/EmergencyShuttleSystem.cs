@@ -534,7 +534,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         _consoleAccumulator *= multiplier;
 
         var filter = Filter.Broadcast(); // Starlight
-        
+
         foreach (var shuttleDockResult in dockResults)
         {
             AnnounceShuttleDock(shuttleDockResult, multiplier > 1, filter);
@@ -543,7 +543,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         //Starlight begin - announce to all stragglers that round will end soon as shuttles have docked.
         SendShuttleAnnouncement(Loc.GetString(SpaceStragglerAnnouncement, ("time", $"{_consoleAccumulator:0}")), SpaceStragglerAudio, filter);
         //Starlight end
-        
+
         _commsConsole.UpdateCommsConsoleInterface();
     }
 
@@ -805,7 +805,7 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
         /// </summary>
         GoodLuck,
     }
-    
+
     //Starlight begin
     /// <summary>
     /// Sends shuttle dock announcement to all players on a station, removing all recipients from a filter.

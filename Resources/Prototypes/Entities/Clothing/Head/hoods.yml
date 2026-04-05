@@ -196,7 +196,7 @@
     - Snout
     - HeadTop
     - HeadSide
-# SL Start Dog Addition 
+# SL Start Dog Addition
   - type: Tag
     tags:
     - CorgiWearable
@@ -254,7 +254,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
-# SL Start Dog Addition 
+# SL Start Dog Addition
   - type: Tag
     tags:
     - CorgiWearable
@@ -277,7 +277,7 @@
   # wear carp suit and security helmet, they'll know you are fake
   - type: FactionClothing
     faction: Dragon
-# SL Start Dog Addition 
+# SL Start Dog Addition
   - type: Tag
     tags:
     - CorgiWearable

@@ -7,7 +7,7 @@ namespace Content.Shared._Starlight.Time
     public sealed class TimeSystem : EntitySystem
     {
         [Dependency] private readonly IGameTiming _timing = default!;
-        
+
         private DateTime _date = DateTime.UtcNow.AddYears(500);
 
         private TimeSpan _roundStart;

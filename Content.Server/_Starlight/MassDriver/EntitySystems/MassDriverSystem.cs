@@ -202,6 +202,6 @@ public sealed class MassDriverSystem : SharedMassDriverSystem
 
         _ui.ServerSendUiMessage(uid, MassDriverConsoleUiKey.Key, new MassDriverUpdateUIMessage(state)); // Update UI on Open
     }
-    
+
     #endregion
 }

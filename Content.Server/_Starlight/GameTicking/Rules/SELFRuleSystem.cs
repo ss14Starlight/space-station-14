@@ -29,7 +29,7 @@ public sealed class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
     private void AfterAntagSelected(Entity<SELFRuleComponent> mindId, ref AfterAntagEntitySelectedEvent args)
     {
         var ent = args.EntityUid;
-        
+
         _antag.SendBriefing(ent, MakeBriefing(ent), null, null);
     }
 
@@ -37,17 +37,17 @@ public sealed class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
     private void OnGetBriefing(Entity<SELFAgentRoleComponent> role, ref GetBriefingEvent args)
     {
         var ent = args.Mind.Comp.OwnedEntity;
-        
+
         if (ent == null)
             return;
-        
+
         args.Append(MakeBriefing(ent.Value));
     }
 
     private string MakeBriefing(EntityUid ent)
     {
         var briefing = Loc.GetString("self-role-greeting-human");
-        
+
             briefing += "\n \n" + Loc.GetString("self-role-greeting-equipment") + "\n";
 
         return briefing;

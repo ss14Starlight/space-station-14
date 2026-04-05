@@ -26,7 +26,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                 var button = new GhostRoleEntryButtons(role);
                 button.RequestButton.OnPressed += _ => OnRoleSelected?.Invoke(role);
                 button.FollowButton.OnPressed += _ => OnRoleFollow?.Invoke(role);
-                
+
                 // Starlight: Always show role requirements
                 var tooltip = new Tooltip();
                 tooltip.SetMessage(reason is { IsEmpty: false } ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("ghost-role-no-requirements")));

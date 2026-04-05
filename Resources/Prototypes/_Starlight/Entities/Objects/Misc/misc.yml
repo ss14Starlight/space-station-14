@@ -28,7 +28,7 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
-        
+
 - type: entity
   name: Picture frame
   parent: [BaseItem]
@@ -45,4 +45,4 @@
       popupMessage: "engraving-picture-Ui-Popup"
       noEngravingText: "engraving-picture-no-message"
       engraveSuccessMessage: "engraving-picture-succeed"
-      hasEngravingText: "engraving-picture-has-message" 
+      hasEngravingText: "engraving-picture-has-message"

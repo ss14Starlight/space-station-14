@@ -51,7 +51,7 @@ public sealed partial class AdminVerbSystem : EntitySystem
                     //we need to get the actual map ID, so first get the transform
                     if (!_entities.TryGetComponent(data.Map, out TransformComponent? transform))
                         return;
-                    
+
                     //then get the map ID from the transform
                     MapId mapId = transform.MapID;
 

@@ -55,7 +55,7 @@ public sealed partial class WeaponDismantleOnShootSystem : SharedWeaponDismantle
 
         if (!TryComp<GunComponent>(ent, out var gunComponent))
             return;
-        
+
         var toCoordinates = gunComponent.ShootCoordinates;
 
         if (toCoordinates == null)

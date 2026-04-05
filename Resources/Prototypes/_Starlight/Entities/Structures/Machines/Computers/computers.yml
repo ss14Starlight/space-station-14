@@ -288,7 +288,7 @@
     containers:
       board: !type:Container
       pai_slot: !type:ContainerSlot
-    
+
 # Universal ID Console
 - type: entity
   parent: BaseComputerAiAccess

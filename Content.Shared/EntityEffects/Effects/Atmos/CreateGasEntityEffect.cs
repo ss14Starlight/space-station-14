@@ -22,7 +22,7 @@ public sealed partial class CreateGas : EntityEffectBase<CreateGas>
     [DataField]
     public float Moles = 3f;
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight 
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
     {
         var atmos = entSys.GetEntitySystem<SharedAtmosphereSystem>();
         var gasProto = atmos.GetGas(Gas);

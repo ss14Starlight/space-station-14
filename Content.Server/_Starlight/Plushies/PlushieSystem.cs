@@ -30,9 +30,9 @@ public sealed class PlushieSystem : EntitySystem
             return;
 
         var message = Loc.GetString(entity.Comp.LocalizedMessageKey, ("user", args.User));
-        
+
         _popup.PopupEntity(message, entity, args.User);
-        
+
         args.Handled = true;
     }
 }

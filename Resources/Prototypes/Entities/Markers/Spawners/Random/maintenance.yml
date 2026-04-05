@@ -371,7 +371,7 @@
       - id: WeaponLaserSvalinn # Starlight- The svalinn's 14 dps... I think it's maints loot worthy.
         weight: .8
       - id: ClothingOuterArmorMakeshift
-      - id: WeaponMeleeSwitchblade 
+      - id: WeaponMeleeSwitchblade
       - id: SpearSteel #Starlight End:
     # Rare Group
     - !type:GroupSelector

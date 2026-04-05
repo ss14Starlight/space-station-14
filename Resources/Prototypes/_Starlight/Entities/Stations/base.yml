@@ -3,7 +3,7 @@
   abstract: true
   components:
   - type: StationCryoTeleportation
-  
+
 - type: entity
   id: BaseStationAlertArmories
   abstract: true

@@ -9,7 +9,7 @@
     "states":[
         {
             "name":"icon"
-        },   
+        },
         {
             "name": "burn",
             "delays": [

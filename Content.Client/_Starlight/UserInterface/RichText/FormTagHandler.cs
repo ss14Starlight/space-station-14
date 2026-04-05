@@ -21,7 +21,7 @@ public sealed class FormTagHandler : IMarkupTagHandler
     private static int _formCounter = 0;
     private static readonly Dictionary<string, int> _formPositions = new();
     private static string _lastText = "";
-    
+
     /// <summary>
     /// Font line height set by PaperWindow to ensure buttons match text height
     /// </summary>

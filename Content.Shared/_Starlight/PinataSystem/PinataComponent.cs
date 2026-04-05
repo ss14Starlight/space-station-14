@@ -17,7 +17,7 @@ public sealed partial class PinataComponent : Component
     /// </summary>
     [DataField]
     public EntityTableSelector? HitTable;
-    
+
     /// <summary>
     /// The entity table to select loot from when entity gibbed.
     /// </summary>
