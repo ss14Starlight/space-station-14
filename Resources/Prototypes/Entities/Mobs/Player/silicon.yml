@@ -453,7 +453,7 @@
   - type: Actions
   - type: Access
     groups:
-    - CyborgAllAccess # Starlight
+    - AllAccess
     - Silicon
   - type: Eye
     drawFov: false
