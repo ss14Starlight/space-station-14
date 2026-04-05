@@ -9,7 +9,7 @@ using Robust.Shared.Utility;
 namespace Content.Shared.Preferences.Loadouts.Effects;
 
 /// <summary>
-/// Takes a list of PlayerFlags and checks if the player has any of them. 
+/// Takes a list of PlayerFlags and checks if the player has any of them.
 /// </summary>
 public sealed partial class RolesReqLoadoutEffect : LoadoutEffect
 {

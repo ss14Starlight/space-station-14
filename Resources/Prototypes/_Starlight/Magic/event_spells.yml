@@ -28,7 +28,7 @@
   - type: Action
     useDelay: 3600 # full hour use delay. you get ONE mabey TWO on beta.
     itemIconStyle: BigAction
-    icon: 
+    icon:
       sprite: _Starlight/Actions/wizard.rsi
       state: babel_spell
   - type: SpeakOnAction
@@ -37,7 +37,7 @@
     modifier: Spell
   - type: InstantAction
     event: !type:TowerOfBabelEvent
-      
+
 - type: entity
   parent: BaseAction
   id: ActionRetractableItemManaBlade

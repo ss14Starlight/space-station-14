@@ -19,7 +19,7 @@
           path: /Maps/_Starlight/Shuttles/cargo_silica.yml
         - type: StationJobs
           availableJobs:
-            #service 
+            #service
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 2, 2 ]

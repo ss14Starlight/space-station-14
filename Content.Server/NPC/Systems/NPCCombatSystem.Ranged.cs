@@ -150,7 +150,7 @@ public sealed partial class NPCCombatSystem
                 if(TryComp<BatteryAmmoProviderComponent>(gun, out _))
                     collisionGroup = CollisionGroup.Opaque;
                 //🌟Starlight🌟 end
-                
+
                 comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f, collisionGroup);
             }
 

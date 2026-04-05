@@ -121,7 +121,7 @@ public sealed partial class ShuttleSystem
                 break; // can break, we already found the grid that created this station
             }
         //Starlight end
-        
+
         // Add all grid maps as ftl destinations that anyone can FTL to.
         foreach (var gridUid in ev.Station.Comp.Grids)
         {
@@ -501,7 +501,7 @@ public sealed partial class ShuttleSystem
 
         if (!Exists(entity.Comp1.TargetCoordinates.EntityId))
         {
-            // Starlight edit Start: Yeah... Lets not do the first map in the list. 
+            // Starlight edit Start: Yeah... Lets not do the first map in the list.
             // Fallback chain:
             // 1) map we started from, 2) any map with a station grid, 3) first map entity.
             EntityUid? fallbackMap = null;
@@ -692,7 +692,7 @@ public sealed partial class ShuttleSystem
                         break;
                     }
             }
-            
+
             if (curTime < comp.StateTime.End)
                 continue;
 
