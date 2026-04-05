@@ -599,6 +599,7 @@ namespace Content.Server.Ghost
                         damageType = _prototypeManager.Index(deathgasp.DamageType);
 
                     DamageSpecifier damage = new(damageType, dealtDamage);
+                    // Starlight - End
 
                     _damageable.ChangeDamage(playerEntity.Value, damage, true);
                 }
