@@ -41,7 +41,7 @@
   - type: SubGamemodes
     rules:
     - id: ThiefLess # So that only 3 thieves max spawn in rev games.
-      prob: 0.41 # Starlight 
+      prob: 0.41 # Starlight
     - id: SLChangeling #Starlight lings
       prob: 0.22
     - id: VampireLess # Starlight reworked

@@ -104,13 +104,13 @@ namespace Content.IntegrationTests.Tests
 
         // starlight start
         private static readonly ProtoId<EntityCategoryPrototype> ShouldMapCategory = "ShouldMapStation";
-        
+
         /// <summary>
         /// list of map filenames that shouldn't be checked against necessary entities
         /// </summary>
         private static readonly string[] ShouldMapWhitelist = { };
         // starlight end
-      
+
         /// <summary>
         /// Converts the above globs into regex so your eyes dont bleed trying to add filepaths.
         /// </summary>

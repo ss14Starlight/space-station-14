@@ -256,7 +256,7 @@
   id: ElectionDay
   moodName: thaven-mood-election-day-name
   moodDesc: thaven-mood-election-day-desc
-  conflicts: 
+  conflicts:
   - ChairmanComplex
 
 # All Thaven Are Planning an Uprising: The uprising WILL NOT happen today, but you and other Thaven will frequently meet in secluded spots to discuss strategy.

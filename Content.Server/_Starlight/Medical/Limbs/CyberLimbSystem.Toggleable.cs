@@ -13,9 +13,9 @@ public sealed partial class CyberLimbSystem : EntitySystem
         SubscribeAllWithAction<LimbDetachedEvent>(IWithActionRemoved);
     }
 
-    private void IWithActionRemoved(Entity<IWithAction> _, ref LimbDetachedEvent args) 
+    private void IWithActionRemoved(Entity<IWithAction> _, ref LimbDetachedEvent args)
         => _actions.RemoveProvidedActions(args.Body, args.Limb);
 
-    private void IWithActionAttached(Entity<IWithAction> _, ref LimbAttachedEvent args) 
+    private void IWithActionAttached(Entity<IWithAction> _, ref LimbAttachedEvent args)
         => _actions.GrantContainedActions(_slEnt.Entity<ActionsComponent>(args.Body), _slEnt.Entity<ActionsContainerComponent>(args.Limb));
 }

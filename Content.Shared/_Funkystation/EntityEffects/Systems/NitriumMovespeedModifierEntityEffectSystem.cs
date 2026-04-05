@@ -56,7 +56,7 @@ public sealed partial class NitriumMovementSpeedModifier : BaseStatusEntityEffec
     [DataField]
     public EntProtoId EffectProto = MovementModStatusSystem.ReagentSpeed;
 
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => // Starlight 
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => // Starlight
         loc.GetString("entity-effect-guidebook-movespeed-modifier",
             ("chance", Probability),
             ("sprintspeed", SprintSpeedModifier),

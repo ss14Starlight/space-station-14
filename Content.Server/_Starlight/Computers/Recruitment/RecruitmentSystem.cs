@@ -20,9 +20,9 @@ public sealed partial class RecruitmentSystem : EntitySystem
 {
     [Dependency] private readonly StationJobsSystem _jobsSystem = default!;
 
-    public override void Initialize() 
+    public override void Initialize()
         => Subs.BuiEvents<RecruitmentComputerComponent>(RecruitmentComputerUiKey.Key, subs => subs.Event<RecruitmentChangeBuiMsg>(OnChangeBuiMsg));
 
-    private void OnChangeBuiMsg(EntityUid uid, RecruitmentComputerComponent component, RecruitmentChangeBuiMsg args) 
+    private void OnChangeBuiMsg(EntityUid uid, RecruitmentComputerComponent component, RecruitmentChangeBuiMsg args)
         => _jobsSystem.TryAdjustJobSlot(GetEntity(args.Station), args.Job, args.Amount, true, true);
 }

@@ -55,7 +55,7 @@ public sealed class ThermalRegulatorSystem : EntitySystem
     {
         if (!Resolve(ent, ref ent.Comp2, logMissing: false))
             return;
-       
+
         // Starlight edit start - Don't do implicit heat regulation if the entity is dead
         // Fixes Avali not rotting
         var totalMetabolismTempChange = 0.0f;
@@ -82,7 +82,7 @@ public sealed class ThermalRegulatorSystem : EntitySystem
             {
                 totalMetabolismTempChange += Math.Min(implicitTargetHeat, ent.Comp1.ImplicitHeatRegulation);
             }
-            
+
         }
         // Starlight edit end
 

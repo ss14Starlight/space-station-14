@@ -50,7 +50,7 @@ public sealed partial class Explosion : EntityEffectBase<Explosion>
     [DataField]
     public float TileBreakScale = 1f;
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight 
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
         => loc.GetString("entity-effect-guidebook-explosion", ("chance", Probability));
 
     public override LogImpact? Impact => LogImpact.High;

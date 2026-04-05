@@ -588,7 +588,7 @@ public abstract class SharedStorageSystem : EntitySystem
     {
         if (args.Handled)
             return;
-        
+
         if(!TryComp(uid, out StorageOrganComponent? organ) || organ.ActionKey != args.Key)
             return;
 
