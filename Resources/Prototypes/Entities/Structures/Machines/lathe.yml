@@ -385,6 +385,7 @@
 
 - type: entity
   id: Biofabricator
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseLathe
   name: biocube fabricator
   description: Produces animal cubes using biomass.
@@ -522,6 +523,7 @@
 
 - type: entity
   id: MedicalTechFab
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseLatheLube
   name: medical techfab
   description: Prints equipment for use by the medbay.
@@ -569,6 +571,7 @@
 - type: entity
   parent: BaseLathe
   id: UniformPrinter
+  categories: [ ShouldMapStation ] # Starlight
   name: uniform printer
   description: Prints new or replacement uniforms.
   components:

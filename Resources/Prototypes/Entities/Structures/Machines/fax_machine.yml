@@ -111,6 +111,7 @@
 - type: entity
   parent: FaxMachineBase
   id: FaxMachineCaptain
+  categories: [ ShouldMapStation ] # Starlight
   name: captain long range fax machine
   suffix: NukeCodes
   components:

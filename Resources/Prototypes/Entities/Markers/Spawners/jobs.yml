@@ -29,6 +29,7 @@
 - type: entity
   name: latejoin spawn point
   id: SpawnPointLatejoin
+  categories: [ ShouldMapStation ] # Starlight
   parent: SpawnPointJobBase
   components:
   - type: Sprite

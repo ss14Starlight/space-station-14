@@ -1,5 +1,6 @@
 - type: entity
   id: KitchenOven
+  categories: [ ShouldMapStation ]
   parent: [ BaseMachinePowered, SmallConstructibleMachine ]
   name: oven
   description: It's a huge magic.

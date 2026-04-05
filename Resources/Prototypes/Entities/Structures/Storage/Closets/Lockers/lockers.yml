@@ -593,6 +593,7 @@
 # Clown
 - type: entity
   id: LockerClown
+  categories: [ ShouldMapStation ] # Starlight
   name: clown locker
   parent: LockerBaseSecure
   components:
@@ -607,6 +608,7 @@
 # Mime
 - type: entity
   id: LockerMime
+  categories: [ ShouldMapStation ] # Starlight
   name: mime locker
   parent: LockerBaseSecure
   components:

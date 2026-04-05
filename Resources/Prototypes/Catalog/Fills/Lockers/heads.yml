@@ -136,6 +136,7 @@
 # No laser locker, used when the antique laser is placed in the special display crate
 - type: entity
   id: LockerCaptainFilledNoLaser
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerCaptain
   components:
@@ -211,6 +212,7 @@
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerHeadOfPersonnel
   components:
@@ -338,6 +340,7 @@
 # No hardsuit locker
 - type: entity
   id: LockerChiefMedicalOfficerFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerChiefMedicalOfficer
   components:
@@ -516,6 +519,7 @@
 
 - type: entity
   id: LockerFreezerVaultFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Vault, Filled
   parent: LockerFreezerBase
   components:

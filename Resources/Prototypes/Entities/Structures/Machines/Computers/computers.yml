@@ -388,6 +388,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerMedicalRecords
+  categories: [ ShouldMapStation ] # Starlight
   name: medical records computer
   description: This can be used to check medical records.
   components:
@@ -684,6 +685,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerId
+  categories: [ ShouldMapStation ] # Starlight
   name: ID card computer
   description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
   components:
@@ -810,6 +812,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerComms
+  categories: [ ShouldMapStation ] # Starlight
   name: communications console # Starlight
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
@@ -1293,6 +1296,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerFundingAllocation
+  categories: [ ShouldMapStation ] # Starlight
   name: funding allocation computer
   description: Terminal for controlling the distribution of funds and pay to departments.
   components:

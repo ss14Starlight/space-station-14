@@ -530,6 +530,7 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsMedical
+  categories: [ ShouldMapStation ]
   name: medical communications console
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
@@ -605,6 +606,7 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsSecurity
+  categories: [ ShouldMapStation ]
   name: security communications console
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
@@ -644,6 +646,7 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsService
+  categories: [ ShouldMapStation ]
   name: service communications console
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
@@ -680,6 +683,7 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsCargo
+  categories: [ ShouldMapStation ]
   name: cargo communications console
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
@@ -716,6 +720,7 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsLaw
+  categories: [ ShouldMapStation ]
   name: law communications console
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
