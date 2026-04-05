@@ -36233,5 +36233,21 @@ Entries:
   id: 402801
   time: '2026-04-05T18:32:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4028
+- author: redmushie
+  changes:
+  - message: Added Blackstar PDA, ID card, job icon and access.
+    type: Add
+  - message: Added doors with Communist, Wizard and Blackstar access for mapping use
+      (such as for shuttles).
+    type: Add
+  - message: Blackstar radio now works without telecomms server.
+    type: Tweak
+  - message: Renamed Commie access level to Communist.
+    type: Tweak
+  - message: Soviet ID card now actually has Communist access.
+    type: Fix
+  id: 398601
+  time: '2026-04-05T19:45:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3986
 Order: -1
 
