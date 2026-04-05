@@ -261,7 +261,7 @@
     - map: [ "enum.HumanoidVisualLayers.Handcuffs" ] # Doesn't work atm, but who knows in the future.
       color: "#ffffff"
       sprite: _Starlight/Objects/Misc/handcuffs.rsi
-      state: body-overlay-resomi 
+      state: body-overlay-resomi
       visible: false
     - map: [ "id" ]
     - map: [ "gloves" ]

@@ -36,7 +36,7 @@ public sealed partial class FiringPinSystem : EntitySystem
 
     public EntityUid[] FiringPins(Entity<FiringPinHolderComponent> ent) => ent.Comp.PinContainer.ContainedEntities.ToArray();
 
-    private void OnStartup(Entity<FiringPinHolderComponent> ent, ref ComponentStartup args) 
+    private void OnStartup(Entity<FiringPinHolderComponent> ent, ref ComponentStartup args)
         => ent.Comp.PinContainer = _container.EnsureContainer<Container>(ent.Owner, FiringPinHolderComponent.PinContainerName);
 
     private void OnInteractUsing(Entity<FiringPinHolderComponent> ent, ref InteractUsingEvent args)

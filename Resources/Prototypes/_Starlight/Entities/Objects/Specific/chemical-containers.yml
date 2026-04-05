@@ -12,7 +12,7 @@
         reagents:
         - ReagentId: Uranium
           Quantity: 200
-          
+
 - type: entity
   parent: Jug
   suffix: Corn oil

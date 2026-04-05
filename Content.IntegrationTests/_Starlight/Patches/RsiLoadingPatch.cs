@@ -21,7 +21,7 @@ internal static class RsiLoadingPatch
     private static Hook _hook;
 
     private static readonly HashSet<string> _realImageRsiPaths = [
-        "Effects/clicktest.rsi", 
+        "Effects/clicktest.rsi",
     ];
 
     // Delegate matching the signature of RsiLoading.LoadImages

@@ -102,7 +102,7 @@
       state: crypt_blue
     - sprite: Objects/Devices/encryption_keys.rsi
       state: com_label
-      
+
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyMerchant

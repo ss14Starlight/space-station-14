@@ -91,7 +91,7 @@ namespace Content.Server._Starlight.Power.EntitySystems
         #endregion
 
         #region Cable Query
-        
+
         public IEnumerable<CableNode> GetDockCableNodes(EntityUid dock)
         {
             var xform = Transform(dock);

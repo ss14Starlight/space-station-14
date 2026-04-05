@@ -10,9 +10,9 @@ public static class EntityExtensions
             protoId = default;
             return false;
         }
-        
+
         protoId = new EntProtoId(entityPrototype.ID);
-        
+
         return true;
     }
 }

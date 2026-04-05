@@ -98,7 +98,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
     }
 
     public void OpenGhostRole(EntityUid uid, EntityUid mindId, MindComponent mind)
-    { 
+    {
         if (!_ghostSystem.OnGhostAttempt(mindId, false)) //Set player as ghost, if this fails we leave them in there
             return;
 

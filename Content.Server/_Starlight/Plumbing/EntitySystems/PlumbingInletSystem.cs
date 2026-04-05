@@ -37,7 +37,7 @@ public sealed class PlumbingInletSystem : EntitySystem
 
         if (!_solutionSystem.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out var solutionEnt, out var solution))
             return;
-            
+
         if (solution.AvailableVolume <= 0)
             return;
 
