@@ -1,3 +1,4 @@
+# STARLIGHT BEGIN - base protos
 - type: entity
   id: DebugMechEquipment
   abstract: true
@@ -47,6 +48,7 @@
     tags:
     - SmallMech
 # TODO: Make medical mech with equipment.
+# STARLIGHT END - base protos
 
 - type: entity
   parent: BaseItem

@@ -1,3 +1,4 @@
+# STARLIGHT BEGIN - base protos
 - type: entity
   id: CombatMech
   abstract: true
@@ -75,6 +76,7 @@
       path: /Audio/Mecha/longsyndiactivation.ogg
     criticalDamageSound:
       path: /Audio/Mecha/critdestrsyndi.ogg
+# STARLIGHT END - base protos
 
 - type: entity
   id: BaseMech
