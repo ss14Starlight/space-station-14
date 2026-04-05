@@ -193,9 +193,9 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         {
             if(ent.Comp.Rider == user || ent.Comp.Rider == null)
             {
+                ent.Comp.hasKeys = false;
                 if(ent.Comp.Rider != null)
                 {
-                    ent.Comp.hasKeys = false;
                     UpdateActions(ent.Comp.Rider.Value, false);
                     if(TryComp<InputMoverComponent>(ent.Comp.Rider.Value, out var imComp) && imComp.CanMove)
                         _actionBlocker.UpdateCanMove(ent.Comp.Rider.Value);
