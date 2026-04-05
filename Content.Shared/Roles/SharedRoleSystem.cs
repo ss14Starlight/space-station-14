@@ -170,7 +170,7 @@ public abstract class SharedRoleSystem : EntitySystem
             DebugTools.Assert(!mindRoleComp.Antag);
             DebugTools.Assert(!mindRoleComp.ExclusiveAntag);
         }
-        
+
         //starlight start
         if (TryComp(mind.CurrentEntity, out ActorComponent? actor))
             _pvsOverride.AddSessionOverride(mind.CurrentEntity.Value, actor.PlayerSession);
@@ -609,7 +609,7 @@ public abstract class SharedRoleSystem : EntitySystem
             {
                 Log.Error($" Mind Role Prototype '{role.Id}' contains both Job and Antagonist prototypes");
             }
-            
+
             // Starlight start
             if (!valid && comp.FallbackPlayTimeTracker is not null)
             {
@@ -618,7 +618,7 @@ public abstract class SharedRoleSystem : EntitySystem
                     Log.Error($" Fallback Playtime Tracker '{comp.FallbackPlayTimeTracker}' not found");
                     continue;
                 }
-                
+
                 playTimeTracker = fallback.ID;
                 prototype = fallback.ID;
                 name = fallback.Name;

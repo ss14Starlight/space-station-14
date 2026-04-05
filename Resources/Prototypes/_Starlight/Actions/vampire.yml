@@ -448,7 +448,7 @@
   description: Flood a victim's mind with bliss, pacifying them for 40 seconds.
   components:
     - type: Action
-      useDelay: 30 
+      useDelay: 30
       itemIconStyle: NoItem
       priority: 26
       icon:

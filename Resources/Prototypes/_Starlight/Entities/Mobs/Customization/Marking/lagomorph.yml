@@ -211,7 +211,7 @@
       state: short_inner
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: antlers-short-ears
-    
+
 - type: marking
   id: LagomorphEarsAntlersMedium
   bodyPart: HeadTop
@@ -445,7 +445,7 @@
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: l_arm_mitt
 
-- type: marking    
+- type: marking
   id: LagomorphHandMittsR
   bodyPart: RHand
   markingCategory: Arms
@@ -453,7 +453,7 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: r_hand_mitt
-  
+
 - type: marking
   id: LagomorphHandMittsL
   bodyPart: LHand

@@ -21,10 +21,10 @@ public sealed partial class ChamberMagazineAmmoProviderComponent : MagazineAmmoP
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool AutoCycle = true;
-    
+
     [ViewVariables(VVAccess.ReadWrite), DataField("availablePrefixes")]
     public List<string> AvailablePrefixes = new();
-    
+
     [ViewVariables(VVAccess.ReadOnly), DataField("selectedPrefix"), AutoNetworkedField]
     public string? SelectedPrefix = null;
 

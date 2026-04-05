@@ -25,7 +25,7 @@
     - type: ActiveRadio
       channels: [Common, CentCom, Command, Engineering, Medical, Science, Security, Service, Supply, Law, Binary, Expedition, Freelance, Xenoborg, Soviet, Mothership, Syndicate, Aspace, Global, Blackstar, Merchant]
     - type: MovementAlwaysTouching
-    
+
 - type: entity
   parent: ClothingBackpack
   id: SkubPack

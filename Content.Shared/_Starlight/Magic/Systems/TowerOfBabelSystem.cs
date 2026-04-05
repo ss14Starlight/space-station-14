@@ -88,7 +88,7 @@ public sealed partial class TowerOfBabelSystem : EntitySystem
         towerEnumerator.MoveNext(out var _, out var _); //the tower being destroyed
         if (towerEnumerator.MoveNext(out var _, out var _))
             return; //there is a 2nd tower that is NOT detroyed. so dont reset languages yet.
-       
+
         foreach (var languageKnower in EntityManager.AllEntities<LanguageKnowledgeComponent>())
         {
             if (TryComp<LanguageCacheComponent>(languageKnower, out var cache))

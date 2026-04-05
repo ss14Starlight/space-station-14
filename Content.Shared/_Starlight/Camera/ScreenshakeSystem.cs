@@ -21,19 +21,19 @@ public sealed class ScreenshakeSystem : EntitySystem
     /// Cooldowns take a string key so that multiple systems can apply their shake effects without one shake effect blocking the other.
     /// </summary>
     private readonly Dictionary<EntityUid, Dictionary<string, TimeSpan>> _shakeCooldowns = [];
-    
+
     #region Internal
 
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<ScreenshakeComponent, GetEyeRotationEvent>(OnGetEyeRotation);
         SubscribeLocalEvent<ScreenshakeComponent, GetEyeOffsetEvent>(OnGetEyeOffset);
         SubscribeLocalEvent<ScreenshakeComponent, EntityUnpausedEvent>(OnEntityUnpaused);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
     }
-    
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -71,7 +71,7 @@ public sealed class ScreenshakeSystem : EntitySystem
 
             var trauma = CalculateTraumaValueForCurrentTime(command.Translational, command.Start) * _cfg.GetCVar(CCVars.ScreenShakeIntensity);
             if (trauma <= 0) continue;
-            
+
             noise.SetFrequency(command.Translational.Frequency);
             var offX = (maxOffset.X * trauma) * noise.GetNoise((float)_timing.RealTime.TotalMilliseconds,
                 (float)command.Start.TotalMilliseconds);
@@ -84,7 +84,7 @@ public sealed class ScreenshakeSystem : EntitySystem
 
         args.Offset += accumulatedOffset;
     }
-    
+
     private void OnGetEyeRotation(EntityUid uid, ScreenshakeComponent shake, ref GetEyeRotationEvent args)
     {
         if (!TryComp<EyeComponent>(uid, out _))
@@ -116,7 +116,7 @@ public sealed class ScreenshakeSystem : EntitySystem
         // TODO: ^find whatever that is and fix it
         args.Rotation += accumulatedAngle;
     }
-    
+
     private void OnEntityUnpaused(EntityUid uid, ScreenshakeComponent shake, ref EntityUnpausedEvent args)
     {
         // rebuild screenshake commands but with offset times
@@ -138,7 +138,7 @@ public sealed class ScreenshakeSystem : EntitySystem
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
         => _shakeCooldowns.Clear();
-    
+
     /// <summary>
     /// Calculates when both traumas will be at least = 0 given the decay rate and start time.
     /// </summary>
@@ -153,7 +153,7 @@ public sealed class ScreenshakeSystem : EntitySystem
 
         return start + TimeSpan.FromSeconds(larger);
     }
-    
+
     /// <summary>
     /// Gets the trauma value for the current time, given the decay rate and start time.
     /// </summary>
@@ -171,7 +171,7 @@ public sealed class ScreenshakeSystem : EntitySystem
         return (-totalSecsSquared * parameters.DecayRate) + parameters.Trauma;
     }
     #endregion
-    
+
     #region Public API
 
     public bool IsOnCooldown(EntityUid uid, string key)
@@ -186,7 +186,7 @@ public sealed class ScreenshakeSystem : EntitySystem
         _shakeCooldowns[uid].Remove(key); // remove from cooldowns if it shouldn't be on cooldown anymore
         return false;
     }
-    
+
     public void Screenshake(EntityUid uid, ScreenshakeParameters? translation, ScreenshakeParameters? rotation,
         string key, float? cooldown = null)
         => Screenshake(uid, translation, rotation, key,
@@ -223,11 +223,11 @@ public sealed class ScreenshakeSystem : EntitySystem
         string key, float? cooldown = null)
         => Screenshake(filter, translation, rotation, key,
             cooldown is not null ? TimeSpan.FromSeconds(cooldown.Value) : null);
-    
+
     public void Screenshake(Filter filter, ScreenshakeParameters? translation, ScreenshakeParameters? rotation, string key, TimeSpan? cooldown = null)
     {
         foreach (var player in filter.Recipients)
-            if (player.AttachedEntity is { } uid) 
+            if (player.AttachedEntity is { } uid)
                 Screenshake(uid, translation, rotation, key, cooldown);
     }
 

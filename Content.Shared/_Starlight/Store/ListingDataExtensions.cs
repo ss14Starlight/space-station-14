@@ -16,7 +16,7 @@ public static class ListingDataExtensions
     {
         if (_metadata.TryGetValue(listing.ID, out var metadata))
             return metadata;
-        
+
         return null;
     }
 
@@ -38,7 +38,7 @@ public static class ListingDataExtensions
             metadata = new Dictionary<string, object>();
             _metadata[listing.ID] = metadata;
         }
-        
+
         return metadata;
     }
 }
@@ -55,7 +55,7 @@ public static class ListingDataMetadataExtensions
     {
         if (value == null)
             return ListingDataExtensions.GetMetadata(listing);
-        
+
         ListingDataExtensions.SetMetadata(listing, value);
         return value;
     }

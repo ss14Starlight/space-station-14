@@ -23,7 +23,7 @@
           whitelist:
             tags:
               - CartridgePistol
-            
+
 - type: entity
   name: SP-91-RC
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
@@ -57,7 +57,7 @@
   - type: Appearance
   - type: ChamberMagazineAmmoProvider
     autoEject: true
-    
+
 - type: entity
   name: Type U3 Uzi
   parent: [BaseWeaponSubMachineGun, BaseMajorContraband]
@@ -194,7 +194,7 @@
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/SMGs/makeshift_smg.rsi
   - type: Item
-    size: Normal  
+    size: Normal
   - type: Gun
     fireRate: 9
     minAngle: 32
@@ -272,7 +272,7 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/SMGs/makeshift_smg.rsi  
+    sprite: _Starlight/Objects/Weapons/Guns/SMGs/makeshift_smg.rsi
   - type: Item
     size: Large
   - type: Wieldable
@@ -325,7 +325,7 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/SMGs/forged_smg.rsi  
+    sprite: _Starlight/Objects/Weapons/Guns/SMGs/forged_smg.rsi
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus

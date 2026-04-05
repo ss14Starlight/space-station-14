@@ -8,10 +8,10 @@ public sealed partial class ScreenComponent : Component
 {
     [DataField]
     public string BaseState = "green";
-    
+
     [DataField]
     public ScreenType CurrentScreen = ScreenType.AlertLevel;
-    
+
     [DataField("nextUpdate", customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan NextUpdateTime;
 

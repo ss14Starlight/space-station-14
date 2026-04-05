@@ -612,7 +612,7 @@ public sealed class ArrivalsSystem : EntitySystem
     {
         if (!Enabled)
             return;
-        
+
         // Starlight start
         if (TryComp<StationDataComponent>(uid, out var station))
             foreach (var grid in station.Grids)
