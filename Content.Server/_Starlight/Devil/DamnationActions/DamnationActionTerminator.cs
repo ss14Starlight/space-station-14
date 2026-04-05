@@ -1,4 +1,5 @@
 using Content.Server._Starlight.Terminator;
+using Content.Shared._Starlight.Devil;
 using Content.Shared._Starlight.Devil.DamnationActions;
 
 namespace Content.Server._Starlight.Devil.DamnationActions;

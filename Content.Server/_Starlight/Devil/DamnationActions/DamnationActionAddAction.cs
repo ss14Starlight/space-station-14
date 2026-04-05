@@ -1,5 +1,6 @@
 using Content.Server.Actions;
 using Content.Shared._Starlight.Devil.DamnationActions;
+using Content.Shared._Starlight.Devil;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Devil.DamnationActions;
@@ -38,7 +39,7 @@ public sealed partial class DamnationActionAddAction : DamnationAction
     public override void ResolveIoC()
     {
         base.ResolveIoC();
-        
+
         _actions = _entityManager.System<ActionsSystem>();
     }
 }

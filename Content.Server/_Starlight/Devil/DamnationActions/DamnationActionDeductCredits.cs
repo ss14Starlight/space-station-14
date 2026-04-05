@@ -1,5 +1,6 @@
 using Content.Shared._Starlight.Devil.DamnationActions;
 using Content.Shared._NullLink;
+using Content.Shared._Starlight.Devil;
 
 namespace Content.Server._Starlight.Devil.DamnationActions;
 
@@ -14,7 +15,7 @@ public sealed partial class DamnationActionDeductCredits : DamnationAction
     {
         if (!_playerResources.TryGetResource(victim.Owner, "credits", out var balance) || balance < Amount || balance < 0)
             return false;
-        
+
         return _playerResources.TryUpdateResource(victim.Owner, "credits", -Amount);
     }
 

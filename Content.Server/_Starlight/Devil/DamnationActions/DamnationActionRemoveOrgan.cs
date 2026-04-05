@@ -10,6 +10,7 @@ using Content.Server.Popups;
 using Content.Shared.Popups;
 using Content.Server.Hands.Systems;
 using Content.Shared.Throwing;
+using Content.Shared._Starlight.Devil;
 
 namespace Content.Server._Starlight.Devil.DamnationActions;
 

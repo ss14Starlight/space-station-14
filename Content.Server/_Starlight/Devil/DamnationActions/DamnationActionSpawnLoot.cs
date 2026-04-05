@@ -3,6 +3,7 @@ using Content.Shared._Starlight.Devil.DamnationActions;
 using Content.Shared.EntityTable;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.Devil;
 
 namespace Content.Server._Starlight.Devil.DamnationActions;
 
@@ -23,7 +24,7 @@ public sealed partial class DamnationActionSpawnLoot : DamnationAction
     {
         if (_prototypeManager.Index(Table) is not EntityTablePrototype tableProto)
             return false;
-        
+
         var spawns = _entityTable.GetSpawns(tableProto);
         var coordinates = _transform.GetMoverCoordinates(victim);
         foreach (var spawn in spawns)
