@@ -12,7 +12,7 @@ public sealed partial class IdClothingFrozenComponent : Component
     /// The source of this component
     /// </summary>
     [DataField, AutoNetworkedField] public EntityUid ClothingItem;
-    
+
     /// <summary>
     /// Whether the clothing item is currently blocked from being unequipped
     /// </summary>

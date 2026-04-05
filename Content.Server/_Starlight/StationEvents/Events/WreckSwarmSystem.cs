@@ -46,7 +46,7 @@ public sealed class WreckSwarmSystem : StationEventSystem<WreckSwarmComponent>
             ForceEndSelf(uid, gameRule);
             return;
         }
-        
+
         // tf are you doing without one of these
         if (!TryComp<StationEventComponent>(uid, out var stationEvent))
         {

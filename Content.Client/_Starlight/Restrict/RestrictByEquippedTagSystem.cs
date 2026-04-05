@@ -17,4 +17,4 @@ public sealed class RestrictByEquippedTagSystem : SharedRestrictByEquippedTagSys
     {
         // Do nothing
     }
-} 
+}

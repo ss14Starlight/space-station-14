@@ -79,7 +79,7 @@
   - type: MobMover
   - type: Mech
 # 🌟Starlight-start🌟
-    batteryWhitelist: 
+    batteryWhitelist:
       tags:
       - MechReactor
 # 🌟Starlight-end🌟
@@ -339,7 +339,7 @@
     bluntStaminaDamageFactor: 1.5 # 🌟Starlight-Change
     damage:
       types:
-        Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech. # 
+        Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech. #
   - type: MovementSpeedModifier
     baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 4

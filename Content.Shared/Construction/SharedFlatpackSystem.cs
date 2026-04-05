@@ -104,7 +104,7 @@ public abstract class SharedFlatpackSystem : EntitySystem
                 _popup.PopupEntity(Loc.GetString("flatpack-unpack-no-room"), uid, args.User);
             return;
         }
-        
+
         if (comp.RandomEntities != null)
             comp.Entity = _random.Pick(comp.RandomEntities);
 

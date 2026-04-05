@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        
+
       - name: List Prototypes directory
         run: ls -l Resources/Prototypes
 

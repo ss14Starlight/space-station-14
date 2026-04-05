@@ -72,7 +72,7 @@ public sealed partial class IntercomMenu : FancyWindow
             totalIds++;
         }
         //Starlight end
-        
+
         if (entity.Comp.SupportedChannels.Count == 0 && entity.Comp.CustomChannels.Count == 0) // Starlight edit
         {
             ChannelOptions.AddItem(Loc.GetString("intercom-options-none"), 0);

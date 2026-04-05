@@ -47,7 +47,7 @@
 - type: entity
   parent: MobStatusEffectDebuff
   id: StatusEffectForcedSleeping
-  name: forced sleep # Starlight: Localize # Localize what you are in an entity prototype those are localized BY DEFAULT HELLO?
+  name: forced sleep
   components:
   # Starlight START
   - type: StatusEffect
@@ -64,7 +64,7 @@
 - type: entity
   parent: MobStatusEffectBase # Not even rejuvenate can cure SSD...
   id: StatusEffectSSDSleeping
-  name: ssd sleep
+  name: forced sleep
   components:
   - type: ForcedSleepingStatusEffect
   - type: StunnedStatusEffect

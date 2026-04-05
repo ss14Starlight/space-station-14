@@ -1,7 +1,7 @@
 - type: entity
   id: MailingUnitCommand
-  parent: MailingUnit   
-  suffix: Command       
+  parent: MailingUnit
+  suffix: Command
   components:
   - type: MailingUnit
     tag: Command

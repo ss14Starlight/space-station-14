@@ -29,7 +29,7 @@ public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
     {
         if (!TryComp<AppliedRoleLoadoutComponent>(ent, out var loadoutComp))
             return;
-        
+
         if (loadoutComp.Loadout == null)
             return;
 

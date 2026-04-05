@@ -14,7 +14,7 @@ public static class FormattedMessageSanitizer
     public static string[] ItemLabelTags = new[] { "color", "bold", "bolditalic", "italic", "mono" };
 
     /// <summary>
-    /// Sanitize the given message using a whitelist, allowing only explicitly permitted tags and/or raw text. 
+    /// Sanitize the given message using a whitelist, allowing only explicitly permitted tags and/or raw text.
     /// </summary>
     /// <param name="message">The message to sanitize</param>
     /// <param name="permittedTagTypes">The tag names that are permitted</param>

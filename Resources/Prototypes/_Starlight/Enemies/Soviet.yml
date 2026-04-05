@@ -26,7 +26,7 @@
       blackboard:
         NavInteract: !type:Bool
           true
-          
+
 #melee
 - type: entity
   suffix: Broken Bottle
@@ -85,7 +85,7 @@
     factions:
     - DungeonSoviet
   - type: Sprite
-    drawdepth: Mobs 
+    drawdepth: Mobs
     sprite: _Starlight/Mobs/Animals/bear.rsi
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
