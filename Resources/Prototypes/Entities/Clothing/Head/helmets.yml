@@ -530,7 +530,7 @@
         Piercing: 0.9
         Heat: 0.9
   - type: Unremoveable
-  
+
 #Justice Helmet
 - type: entity
   parent: ClothingHeadHelmetBasic
