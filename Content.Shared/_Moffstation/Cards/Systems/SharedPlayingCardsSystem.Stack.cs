@@ -171,7 +171,7 @@ public abstract partial class SharedPlayingCardsSystem
 
         Dirty(entity);
         entity.Comp.DirtyVisuals = true;
-        VerbAudioAndPopup(PlayingCardStackComponent.Verbs.Shuffle, user, entity);
+        VerbAudioAndPopup(PlayingCardStackComponent.Verbs.Shuffle, entity, user); // Starlight-edit: Fix predicted audio/popup call.
     }
 
     /// Creates and returns an entity from <paramref name="protoId"/> at <paramref name="spawnAt"/>,
