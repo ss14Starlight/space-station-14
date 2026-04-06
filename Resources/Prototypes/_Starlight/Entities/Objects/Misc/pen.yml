@@ -21,9 +21,9 @@
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Misc/pens.rsi
-      layers: 
+      layers:
       - state: pen_devil
     - type: Tag
-      tags: 
+      tags:
       - Write
       - Pen

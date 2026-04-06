@@ -166,7 +166,7 @@ namespace Content.Server.Bible
 
                 return;
             }
-            
+
             // starlight start
             //Damage unholy creatures
             if (HasComp<UnholyComponent>(args.Target))

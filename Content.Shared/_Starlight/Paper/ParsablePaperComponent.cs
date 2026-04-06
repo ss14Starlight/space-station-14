@@ -4,7 +4,7 @@ namespace Content.Shared._Starlight.Paper;
 
 /// <summary>
 /// This component indicates that the piece of paper is supposed to have regex-parsable content,
-/// and provides the fields to detect that content. 
+/// and provides the fields to detect that content.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 public sealed partial class ParsablePaperComponent : Component

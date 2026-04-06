@@ -12,7 +12,7 @@ public sealed partial class DevilDamnationDisplay : Control
 {
     private Color BenefitColor = Color.FromHex("#3d000a");
     private Color DisadvantageColour = Color.FromHex("#032b01");
-    
+
     public DevilDamnationDisplay(DamnationPrototype damnation)
     {
         RobustXamlLoader.Load(this);

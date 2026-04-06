@@ -34,7 +34,7 @@ public sealed partial class ItemSummonSystem : EntitySystem
 
             if(TryComp<EmbeddableProjectileComponent>(itemUid, out var projectileComp))
                 _projectile.EmbedDetach(itemUid, projectileComp, args.Performer);
-            
+
             _hands.TryForcePickupAnyHand(args.Performer, itemUid);
 
             _popup.PopupPredicted(Loc.GetString("item-summon-action-recall", ("item", Name(itemUid))), args.Performer, args.Performer, PopupType.Small);
@@ -64,7 +64,7 @@ public sealed partial class ItemSummonSystem : EntitySystem
             {
                 _pvs.RemoveSessionOverride(uid, session);
             }
-            
+
             _popup.PopupEntity(Loc.GetString("item-summon-action-recall", ("item", Name(uid))), uid);
             QueueDel(ent.Comp.SummonedItem);
         }
