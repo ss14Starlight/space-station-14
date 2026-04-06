@@ -30,7 +30,7 @@
 
 - type: loadout
   id: SalvageVeteranMantle
-  equipment: 
+  equipment:
     neck: ClothingNeckMantleDecoratedVeteranSalvager
   effects:
   - !type:GroupLoadoutEffect

@@ -9,7 +9,7 @@
   - !type:AiInteractWireAction
   - !type:LogWireAction
   dummyWires: 1
-  
+
 - type: wireLayout
   id: MedibotControls
   dummyWires: 9
@@ -42,3 +42,15 @@
 - type: wireLayout
   parent: Airlock
   id: AirlockCentralCommand
+
+- type: wireLayout
+  parent: Airlock
+  id: AirlockCommunist
+
+- type: wireLayout
+  parent: Airlock
+  id: AirlockWizard
+
+- type: wireLayout
+  parent: Airlock
+  id: AirlockBlackstar

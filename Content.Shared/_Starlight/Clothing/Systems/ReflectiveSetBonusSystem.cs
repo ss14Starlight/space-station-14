@@ -20,7 +20,7 @@ public sealed class ReflectiveSetBonusSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<ReflectiveSetBonusComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<DidEquipEvent>(OnDidEquip);
         SubscribeLocalEvent<DidUnequipEvent>(OnDidUnequip);
@@ -47,12 +47,12 @@ public sealed class ReflectiveSetBonusSystem : EntitySystem
     private void OnDidUnequip(DidUnequipEvent args)
     {
         // Restore original reflection probability for unequipped item (only if it has the component)
-        if (TryComp<ReflectiveSetBonusComponent>(args.Equipment, out var bonus) && 
+        if (TryComp<ReflectiveSetBonusComponent>(args.Equipment, out var bonus) &&
             TryComp<ReflectComponent>(args.Equipment, out var reflect))
         {
             reflect.ReflectProb = bonus.OriginalReflectProb;
             Dirty(args.Equipment, reflect);
-            
+
             // Update remaining equipped items
             CheckAllReflectiveSets(args.Equipee);
         }
@@ -117,15 +117,15 @@ public sealed class ReflectiveSetBonusSystem : EntitySystem
         else
         {
             // Restore original reflection values when set is incomplete
-            if (vestEntity.HasValue && 
+            if (vestEntity.HasValue &&
                 TryComp<ReflectiveSetBonusComponent>(vestEntity.Value, out var vestBonus) &&
                 TryComp<ReflectComponent>(vestEntity.Value, out var vestReflect))
             {
                 vestReflect.ReflectProb = vestBonus.OriginalReflectProb;
                 Dirty(vestEntity.Value, vestReflect);
             }
-            
-            if (helmetEntity.HasValue && 
+
+            if (helmetEntity.HasValue &&
                 TryComp<ReflectiveSetBonusComponent>(helmetEntity.Value, out var helmetBonus) &&
                 TryComp<ReflectComponent>(helmetEntity.Value, out var helmetReflect))
             {

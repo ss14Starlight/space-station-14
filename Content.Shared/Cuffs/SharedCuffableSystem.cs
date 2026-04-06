@@ -511,7 +511,7 @@ namespace Content.Shared.Cuffs
             RaiseLocalEvent(target, ref ev);
 
             UpdateHeldItems(target, handcuff, component);
-            
+
             return result;
         }
 

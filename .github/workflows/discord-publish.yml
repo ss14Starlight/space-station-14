@@ -17,7 +17,7 @@ jobs:
       run: sudo apt-get install -y python3-paramiko python3-lxml
 
     - uses: actions/checkout@v3
-    
+
     - name: Set up SSH
       env:
         ACTIONS_SSH_KEY: ${{ secrets.ACTIONS_SSH_KEY }}
@@ -28,7 +28,7 @@ jobs:
         echo "$TEST"
         chmod 600 ~/.ssh/id_ed25519
         ssh-keyscan github.com >> ~/.ssh/known_hosts
-        
+
     - name: Test SSH Connection
       run: ssh -T git@github.com || exit 0
 
@@ -38,7 +38,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        
+
     - name: Commit and push changes
       run: |
         git config user.name "github-actions[bot]"

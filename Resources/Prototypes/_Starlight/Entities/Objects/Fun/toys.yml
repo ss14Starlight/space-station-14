@@ -28,7 +28,7 @@
       path: /Audio/Effects/glass_smash.ogg
 
 # Fashion-O-Mat-Start
-- type: entity 
+- type: entity
   parent: BasePlushie
   id: PlushieBBC
   name: BBC entity # Even though it's a plushie, it belongs in Fashion-O-Mat, since it's 2 main sprites are the ones that are equipped to body

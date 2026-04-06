@@ -97,7 +97,7 @@
   - type: ConditionalSpawner
     prototypes:
       - MechDurandBattery
-      
+
 - type: entity
   name: Marauder Spawner
   id: SpawnMechMarauder
@@ -221,7 +221,7 @@
   - type: ConditionalSpawner
     prototypes:
       - MechMaulerSyndieFilled
-      
+
 - type: entity
   name: Paddy Spawner
   suffix: Filled

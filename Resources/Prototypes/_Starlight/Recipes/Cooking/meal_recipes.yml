@@ -23,7 +23,7 @@
     FoodMeat: 1
     FoodApple: 1
     HeadVulpkanin: 1
-    
+
 - type: microwaveMealRecipe
   id: RecipeFoodFriedfelionoid
   name: kentucky fried felionoid recipe
@@ -36,7 +36,7 @@
   solids:
     LeftLegFelionoid: 1
     RightLegFelionoid: 1
-    
+
 - type: microwaveMealRecipe
   id: RecipeFoodCookedlizard
   name: Volcanic explosion recipe
@@ -57,7 +57,7 @@
   result: FoodCottonCake
   time: 15
   group: Cake
-  solids: 
+  solids:
     FoodMothBatter: 1
 
 - type: microwaveMealRecipe
