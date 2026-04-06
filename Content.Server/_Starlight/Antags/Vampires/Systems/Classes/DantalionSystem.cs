@@ -110,19 +110,12 @@ public sealed class DantalionSystem : EntitySystem
             if (!Exists(uid))
                 continue;
 
-
-
-            var holywater = _solution.GetTotalPrototypeQuantity(uid, thrall.HolyWaterReagentId);
-            if (holywater > FixedPoint2.Zero)
+            thrall.HolyWaterConsumed = _solution.GetTotalPrototypeQuantity(uid, thrall.HolyWaterReagentId);
+            if (thrall.HolyWaterConsumed >= thrall.HolyWaterToBreakFree)
             {
-                thrall.HolyWaterConsumed += holywater;
-
-                if (thrall.HolyWaterConsumed >= thrall.HolyWaterToBreakFree)
-                {
-                    if (!TryReleaseThrall(uid))
-                        continue;
-                    _popup.PopupEntity(Loc.GetString("vampire-thrall-holy-water-freed"), uid, uid, PopupType.Medium);
-                }
+                if (!TryReleaseThrall(uid))
+                    continue;
+                _popup.PopupEntity(Loc.GetString("vampire-thrall-holy-water-freed"), uid, uid, PopupType.Medium);
             }
             else if (HasComp<MindShieldComponent>(uid))
             {
@@ -164,7 +157,7 @@ public sealed class DantalionSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), uid, uid, PopupType.MediumCaution);
             return;
         }
-        
+
         if (!IsValidEnthrallTarget(uid, target))
         {
             _popup.PopupEntity(Loc.GetString("vampire-enthrall-invalid"), uid, uid, PopupType.MediumCaution);
@@ -245,7 +238,7 @@ public sealed class DantalionSystem : EntitySystem
 
         dantalion.Thralls.Add(target);
         dantalion.ThrallSlotsUsed++;
-        
+
         TryAssignThrallObeyObjective(uid, target);
 
         if (TryComp<CollectiveMindComponent>(target, out var cmComp))
@@ -261,10 +254,10 @@ public sealed class DantalionSystem : EntitySystem
         if (!_mind.TryGetMind(thrall, out var thrallMindId, out var thrallMind)
             || !_mind.TryGetMind(master, out var masterMindId, out _))
             return;
-        
+
         _role.MindAddRole(thrallMindId, "MindRoleThrall", thrallMind, true);
         _mind.TryAddObjective(thrallMindId, thrallMind, "VampireThrallObeyMasterObjective");
-        
+
         //adds pop-up for target informing them they have been enthralled
         if (_player.TryGetSessionById(thrallMind.UserId, out var session))
             _euiMan.OpenEui(new VampireThrallEui(), session);
@@ -602,7 +595,7 @@ public sealed class DantalionSystem : EntitySystem
         {
             if (!Exists(thrall))
                 continue;
-            
+
             // Remove stuns
             if (HasComp<StunnedComponent>(thrall))
                 RemComp<StunnedComponent>(thrall);
