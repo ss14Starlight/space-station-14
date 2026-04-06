@@ -36226,5 +36226,84 @@ Entries:
   id: 398801
   time: '2026-03-29T09:43:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3988
+- author: wonderfulnewworld
+  changes:
+  - message: HoP can give Mail Access now.
+    type: Fix
+  id: 402801
+  time: '2026-04-05T18:32:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4028
+- author: redmushie
+  changes:
+  - message: Added Blackstar PDA, ID card, job icon and access.
+    type: Add
+  - message: Added doors with Communist, Wizard and Blackstar access for mapping use
+      (such as for shuttles).
+    type: Add
+  - message: Blackstar radio now works without telecomms server.
+    type: Tweak
+  - message: Renamed Commie access level to Communist.
+    type: Tweak
+  - message: Soviet ID card now actually has Communist access.
+    type: Fix
+  id: 398601
+  time: '2026-04-05T19:45:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3986
+- author: Conflee
+  changes:
+  - message: Added the NanoMed Security vending machine, to be mapped in Brig Medical
+      and has Medical and Security access. Contains the normal medical supplies, plus
+      body bags and small bottles of basic chems to give Brigmed a decent starting
+      supply for basic treatments until Chem is up and stocked.
+    type: Add
+  id: 399001
+  time: '2026-04-05T19:57:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3990
+- author: CawsForConcern
+  changes:
+  - message: (Lobster) Security doors leading towards GenPop corrected to Brig access
+      (for IAAs, Magistrates).
+    type: Fix
+  - message: (Serpentcrest) Security doors leading towards GenPop corrected to Brig
+      access (for IAAs, Magistrates).
+    type: Fix
+  id: 398701
+  time: '2026-04-05T20:13:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3987
+- author: neurovermi
+  changes:
+  - message: Mech wideswing and melee sprite issues.
+    type: Fix
+  id: 401901
+  time: '2026-04-05T20:25:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4019
+- author: CawsForConcern
+  changes:
+  - message: (Sepultum) NCT Office front is not locked.
+    type: Tweak
+  id: 402101
+  time: '2026-04-05T20:36:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4021
+- author: CawsForConcern
+  changes:
+  - message: Overloaded APCs on the "NT Incorporation" visitor shuttle have been fixed.
+    type: Fix
+  id: 402201
+  time: '2026-04-05T20:44:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4022
+- author: Tess the Evil
+  changes:
+  - message: Filled n2o tanks.
+    type: Tweak
+  id: 399301
+  time: '2026-04-05T20:51:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3993
+- author: neurovermi
+  changes:
+  - message: Mechs now throw when punching with no equipment.
+    type: Add
+  id: 402001
+  time: '2026-04-05T21:01:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4020
 Order: -1
 

@@ -42,3 +42,15 @@
 - type: wireLayout
   parent: Airlock
   id: AirlockCentralCommand
+
+- type: wireLayout
+  parent: Airlock
+  id: AirlockCommunist
+
+- type: wireLayout
+  parent: Airlock
+  id: AirlockWizard
+
+- type: wireLayout
+  parent: Airlock
+  id: AirlockBlackstar
