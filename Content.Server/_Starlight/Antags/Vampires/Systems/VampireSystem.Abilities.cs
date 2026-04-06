@@ -721,7 +721,7 @@ public sealed partial class VampireSystem : EntitySystem
                         RemComp<MutedComponent>(target);
                 });
 
-                StartGlareDotEffect(target, uid, args.DotStaminaDamage, 0, true);
+                StartGlareDotEffect(target, uid, args.DotStaminaDamage * effectScale, 0, true);
 
                 return;
             }
