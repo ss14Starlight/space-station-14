@@ -20,15 +20,12 @@ public sealed partial class IPCBoundUserInterface(EntityUid owner, Enum uiKey) :
             SendMessage(new IPCEjectBrainBuiMessage());
         };
 
-        _menu.EjectBatteryButtonPressed += () =>
-        {
-            SendMessage(new IPCEjectBatteryBuiMessage());
-        };
-
+        /* Unsure why this thing is commented but... Lets keep it commented.
         _menu.NameChanged += name =>
         {
             SendMessage(new IPCSetNameBuiMessage(name));
         };
+        */
     }
 
     // This is cringe

@@ -12,7 +12,7 @@
 # stuff common to all clown & jester shoes
 - type: entity
   abstract: true
-  parent: [ClothingShoesBaseButcherableUntieable, ClothingSlotBase] # Starlight-edit
+  parent: [ClothingShoesBaseButcherable, ClothingSlotBase]
   id: ClothingShoesClownBase
   components:
   - type: ItemSlots
@@ -105,7 +105,7 @@
     sprite: Clothing/Shoes/Specific/cult.rsi
 
 - type: entity
-  parent: [ ClothingShoesBaseUntieable, BaseJanitorContraband ] # Starlight-edit
+  parent: [ ClothingShoesBase, BaseJanitorContraband ]
   id: ClothingShoesGaloshes
   name: galoshes
   description: Specialised non-slip rubber boots, designed to reduce janitorial workplace accidents; a tider's treasure.
@@ -124,7 +124,7 @@
     stealGroup: GaloshesCollection # Starlight
 
 - type: entity
-  parent: [ClothingShoesBaseButcherableUntieable, BaseHighlyIllegalContraband] # Starlight: Untieable
+  parent: [ClothingShoesBaseButcherable, BaseHighlyIllegalContraband]
   id: ClothingShoesSpaceNinja
   name: space ninja shoes
   description: A pair of nano-enhanced boots with built-in magnetic suction cups.

@@ -453,15 +453,15 @@ namespace Content.Server.Voting.Managers
                     return false;
             }
 
-            // Begin Stellar - Cosmic Cult
+            // Begin Starlight - Cosmic Cult
             if (eligibility == VoterEligibility.CosmicCult)
             {
-                var evt = new Content.Server._ST.CosmicCult.CosmicCultVoterEligibilityEvent(player, false);
+                var evt = new Content.Server._Starlight.CosmicCult.CosmicCultVoterEligibilityEvent(player, false);
                 _entityManager.EventBus.RaiseEvent(EventSource.Local, ref evt);
                 if (!evt.Eligible)
                     return false;
             }
-            // End Stellar - Cosmic Cult
+            // End Starlight - Cosmic Cult
 
             return true;
         }
@@ -561,7 +561,7 @@ namespace Content.Server.Voting.Managers
             Ghost, // Player needs to be a ghost
             GhostMinimumPlaytime, // Player needs to be a ghost, with a minimum playtime and deathtime as defined by votekick CCvars.
             MinimumPlaytime, //Player needs to have a minimum playtime and deathtime as defined by votekick CCvars.
-            CosmicCult, // Stellar - Cosmic Cult
+            CosmicCult, // Starlight - Cosmic Cult
         }
 
         #endregion

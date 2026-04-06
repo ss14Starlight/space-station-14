@@ -1,0 +1,55 @@
+- type: entity
+  id: RRCardWar
+  parent: CrewCondition
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RailroadSpawnFlow
+    probability: 0.1
+    jobPrototype: Captain
+  - type: RailroadCard
+    title: rr-war
+    icon: 
+    iconColor: "#fd3f3f" # Antag
+    color: "#6c15ae" # Mythical
+    image: /Textures/_Starlight/Railroading/war.png
+    description: rr-war-desc
+  - type: RailroadCrewRetentionTask
+    threshold: 0.9
+  - type: RailroadAnnounceOnChosen
+    text:
+    - rr-war-announce
+    - rr-war-announce-2
+    color: "#fd3f3f"
+  - type: RailroadSpawnCardsOnChosen
+    cards:
+    - RRCardWarDeserter
+  - type: RailroadDonationReward
+    amount:
+      min: 500
+      max: 800
+
+- type: entity
+  id: RRCardWarDeserter
+  parent: CrewCondition
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RailroadSpawnFlow
+    count:
+      min: 5
+      max: 30
+  - type: RailroadCard
+    title: rr-war-deserter
+    icon: 
+    iconColor: "#fd3f3f"
+    color: '#398bce' # Rare
+    image: /Textures/_Starlight/Railroading/war.png
+    description: rr-war-deserter-desc
+  - type: RailroadSecretVendingAccess
+  - type: RailroadAssignRole
+    role: RRMindRoleDeserter
+  - type: RailroadDesertionTask
+  - type: RailroadSurviveTask
+  - type: RailroadDonationReward
+    amount:
+      min: 100
+      max: 200

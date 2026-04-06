@@ -1,4 +1,5 @@
 using Content.Shared.Chat;
+using Content.Shared.Radio;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 
@@ -39,7 +40,7 @@ public sealed partial class LanguagePrototype : IPrototype
     /// </summary>
     [DataField("speech")]
     public SpeechOverrideInfo SpeechOverride = new();
-    
+
     /// <summary>
     /// Prefix used in chat to send message with this language.
     /// Leave null if you don't want this feature for some reason.
@@ -81,8 +82,20 @@ public sealed partial class SpeechOverrideInfo
     [DataField]
     public int? FontSize;
 
+    /// <summary>
+    /// Used to block speech, Used only ususally with RadioChannel (to act like hivemind)
+    /// </summary>
+    [DataField]
+    public bool BlockSpeech = false;
+
     [DataField]
     public bool AllowRadio = true;
+
+    /// <summary>
+    /// Radio channel to relay the speech, This will bypass AllowRadio in the specefic channel.
+    /// </summary>
+    [DataField]
+    public ProtoId<RadioChannelPrototype>? RadioChannel;
 
     /// <summary>
     ///     If false, the entity can use this language even when it's unable to speak (i.e. muffled or muted),
@@ -90,7 +103,7 @@ public sealed partial class SpeechOverrideInfo
     /// </summary>
     [DataField]
     public bool RequireSpeech = true;
-    
+
     /// <summary>
     ///     If false, the entity can use this language even when it's unable to make sound.
     /// </summary>

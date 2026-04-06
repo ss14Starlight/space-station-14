@@ -98,7 +98,7 @@
 #  - MiningEquipment
 #  conditions:
 #  - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorMiningClothingOuterHardsuitSpaceHazard
   productEntity: ClothingOuterHardsuitSpaceHazard

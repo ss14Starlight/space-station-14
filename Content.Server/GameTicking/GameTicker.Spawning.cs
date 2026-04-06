@@ -374,9 +374,8 @@ namespace Content.Server.GameTicking
 
             character = fallbackCharacter;
             //starlight end
-            
-            if (selectedCharacterSlot != -1)
-                _newLifeSystem.SaveCharacterToUsed(player.UserId, selectedCharacterSlot);     //🌟Starlight🌟
+
+            _newLifeSystem.SaveCharacterToUsed(player.UserId, playerPreferences.IndexOfCharacter(character));     //🌟Starlight🌟
 
             DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName);
 

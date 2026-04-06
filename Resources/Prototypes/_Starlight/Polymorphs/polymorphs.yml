@@ -45,7 +45,7 @@
     forced: true
     inventory: None
     allowRepeatedMorphs: false
-    
+
 - type: polymorph
   id: AdminFelioSmite
   configuration:

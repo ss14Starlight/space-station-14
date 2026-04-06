@@ -139,6 +139,8 @@
     - id: TreasureCoinDiamond
       weight: 5
 
+
+# Starlight Start - porting CD antique coins
 - type: entity
   parent: BaseItem
   id: TreasureCoinIron
@@ -146,19 +148,24 @@
   description: A flat bit of metal. If it was still in circulation, inflation would've made it worthless. Since it isn't, it's worth enough to keep in a book.
   components:
   - type: Sprite
-    sprite: Objects/Misc/coins.rsi
-    state: coin_iron
+    sprite: _CD/Objects/Misc/antique_coins.rsi
+    state: antiquecoin
   - type: Item
     size: Tiny
   - type: StaticPrice
     price: 75
+  - type: Engraveable
+    engraveVerb: "engraving-verb-engrave"
+    noEngravingText: "engraving-coin-no-message"
+    engraveSuccessMessage: "engraving-coin-succeed"
+    hasEngravingText: "engraving-coin-has-message"
 
 - type: entity
   parent: TreasureCoinIron
   id: TreasureCoinSilver
   components:
   - type: Sprite
-    state: coin_silver
+    state: antiquecoin_silver
   - type: StaticPrice
     price: 125
 
@@ -167,15 +174,18 @@
   id: TreasureCoinGold
   components:
   - type: Sprite
-    state: coin_gold
+    state: antiquecoin_gold
   - type: StaticPrice
     price: 175
+
+# starlight end
 
 - type: entity
   parent: TreasureCoinIron
   id: TreasureCoinAdamantine
   components:
   - type: Sprite
+    sprite: Objects/Misc/coins.rsi # SL - keeping the old sprite
     state: coin_adamantine
   - type: StaticPrice
     price: 250
@@ -185,6 +195,7 @@
   id: TreasureCoinDiamond
   components:
   - type: Sprite
+    sprite: Objects/Misc/coins.rsi # SL - keeping the old sprite
     state: coin_diamond
   - type: StaticPrice
     price: 500

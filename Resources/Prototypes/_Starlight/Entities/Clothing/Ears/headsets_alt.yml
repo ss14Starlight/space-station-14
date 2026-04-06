@@ -1,7 +1,7 @@
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCentcommContraband]
   id: ClothingHeadsetAltCentCom
-  name: centcom over-ear headset
+  name: CentComm over-ear headset
   components:
   - type: ContainerFill
     containers:
@@ -30,7 +30,7 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Ears/Headsets/abductor.rsi
 
-    
+
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetHoP
@@ -177,8 +177,8 @@
 - type: entity
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltBlackstar
-  name: blackstar mercenary headset
-  description: A headset used by elite blackstar mercenaries.
+  name: Blackstar mercenary headset
+  description: A headset used by elite Blackstar mercenaries.
   components:
     - type: Headset
     - type: ContainerFill

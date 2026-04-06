@@ -129,15 +129,15 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     {
         if (args.Handled)
             return;
-        
+
         // Starlight-start: AI upload console linking
-        if (!component.Subverted 
-            && TryComp<StationAiCoreComponent>(Transform(uid).ParentUid, out var aiCore) 
+        if (!component.Subverted
+            && TryComp<StationAiCoreComponent>(Transform(uid).ParentUid, out var aiCore)
             && aiCore.LawConsole != null
-            && _container.TryGetContainer(aiCore.LawConsole.Value, "circuit_holder", out var container) 
-            && container.ContainedEntities.Count != 0 
-            && TryComp(container.ContainedEntities.First(), out SiliconLawProviderComponent? provider) 
-            && provider != null 
+            && _container.TryGetContainer(aiCore.LawConsole.Value, "circuit_holder", out var container)
+            && container.ContainedEntities.Count != 0
+            && TryComp(container.ContainedEntities.First(), out SiliconLawProviderComponent? provider)
+            && provider != null
             && component.Laws != provider.Laws)
         {
             component.Laws = provider.Laws;
@@ -364,10 +364,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             // Components on lawboards TODO remove components provided by the old board when it is removed.
             if (provider.Components != null)
                 _entMan.AddComponents(update, provider.Components);
-            // Start Stellar - AILawUpdatedEvent
-            var evt = new Content.Server._ST.Silicons.AILawUpdatedEvent(update, provider.Laws);
+            // AILawUpdatedEvent
+            var evt = new Content.Server._Starlight.Silicons.AILawUpdatedEvent(update, provider.Laws);
             RaiseLocalEvent(ref evt);
-            // End Stellar - AILawUpdatedEvent
         }
         // Starlight-end
 
@@ -405,7 +404,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             return;
         }
         _popup.PopupEntity(Loc.GetString("lawboard-emag-popup"), ent);
-        
+
         args.Repeatable = true;
         args.Handled = true;
     }

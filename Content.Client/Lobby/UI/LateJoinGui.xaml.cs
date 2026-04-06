@@ -81,7 +81,7 @@ namespace Content.Client.Lobby.UI
         private readonly List<ScrollContainer> _jobLists = new();
 
         private int? _selectedSlot;
-        
+
         public BoxContainer CharList => CharacterList;
 
         public LateJoinGui()

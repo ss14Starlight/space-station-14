@@ -1,13 +1,14 @@
 - type: species
   id: IPC
   name: species-name-ipc
-  roundStart: true
+  roundStart: false
   prototype: MobIPC
   sprites: MobIPCSprites
   defaultSkinTone: "#ffda93"
   markingLimits: MobIPCMarkingLimits
   dollPrototype: MobIPCDummy
   skinColoration: Hues
+  eyeColoration: FullWhite
   customName: true
   roundstartCyberwareCapacity: 6
   sexes:
@@ -22,8 +23,7 @@
     Snout: MobHumanoidAnyMarking
     Chest: MobIPCTorso
     HeadTop: MobHumanoidAnyMarking
-    HeadSide: MobHumanoidAnyMarking
-    Eyes: MobIPCEyes
+    Eyes: MobHumanoidAnyMarking
     LArm: MobIPCLArm
     RArm: MobIPCRArm
     LHand: MobIPCLHand
@@ -38,7 +38,7 @@
   points:
     HeadTop:
       points: 1
-      required: true
+      required: false
     Hair:
       points: 0
       required: false
@@ -48,19 +48,19 @@
     Head:
       points: 1
       required: true
-      defaultMarkings: [ MarkingBishopHead ]
-    HeadSide:
+      defaultMarkings: [ MarkingStandardHead ]
+    Eyes:
       points: 1
       required: true
-      defaultMarkings: [ ScreenBsod ]
+      defaultMarkings: [ ScreenStatic ]
     Chest:
       points: 1
       required: false
     Legs:
-      points: 1
+      points: 4
       required: false
     Arms:
-      points: 1
+      points: 4
       required: false
 
 - type: humanoidBaseSprite
@@ -79,20 +79,20 @@
 - type: humanoidBaseSprite
   id: MobIPCHead
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
-    state: head_m
+    sprite: _FarHorizons/Mobs/Species/IPC/blank.rsi
+    state: blank
 
 - type: humanoidBaseSprite
   id: MobIPCHeadMale
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
-    state: head_m
+    sprite: _FarHorizons/Mobs/Species/IPC/blank.rsi
+    state: blank
 
 - type: humanoidBaseSprite
   id: MobIPCHeadFemale
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
-    state: head_f
+    sprite: _FarHorizons/Mobs/Species/IPC/blank.rsi
+    state: blank
 
 - type: humanoidBaseSprite
   id: MobIPCTorso
