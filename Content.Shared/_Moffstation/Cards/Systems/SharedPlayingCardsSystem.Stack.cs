@@ -12,6 +12,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using static Content.Shared._Moffstation.Cards.Components.PlayingCardStackComponent.Verbs;
+using Content.Shared._Starlight.Abstract.Extensions; // Starlight
 
 namespace Content.Shared._Moffstation.Cards.Systems;
 
@@ -153,20 +154,20 @@ public abstract partial class SharedPlayingCardsSystem
     /// Shuffles all cards in the given stack entity, handling audio, dirtying visuals, etc.
     private void Shuffle<T>(Entity<T> entity, EntityUid user) where T : PlayingCardStackComponent
     {
-        var rand = new System.Random(
-            SharedRandomExtensions.HashCodeCombine((int)_gameTiming.CurTick.Value, entity.Owner.Id));
+        // Starlight begin: use new predicted random
         switch (entity.Comp)
         {
             case PlayingCardDeckComponent deck:
-                rand.Shuffle(deck.Cards);
+                _random.ShufflePredicted(_gameTiming, deck.Cards);
                 break;
             case PlayingCardHandComponent hand:
-                rand.Shuffle(hand.Cards);
+                _random.ShufflePredicted(_gameTiming, hand.Cards);
                 break;
             default:
                 entity.Comp.ThrowUnknownInheritor<PlayingCardStackComponent>();
                 break;
         }
+        // Starlight end
 
         Dirty(entity);
         entity.Comp.DirtyVisuals = true;
