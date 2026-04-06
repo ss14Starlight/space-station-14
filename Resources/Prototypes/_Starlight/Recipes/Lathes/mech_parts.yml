@@ -213,6 +213,16 @@
     Diamond: 150
 
 - type: latheRecipe
+  id: MechEquipmentHonkerPieCannon
+  result: WeaponMechSpecialPieCannon
+  categories:
+  - Mech
+  completetime: 10
+  materials:
+    Steel: 1200
+    Bananium: 1000
+
+- type: latheRecipe
   id: MechEquipmentHonkerBananaMortar
   result: WeaponMechSpecialBananaMortar
   categories:

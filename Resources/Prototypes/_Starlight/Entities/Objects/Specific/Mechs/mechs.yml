@@ -645,3 +645,71 @@
         - WeaponMechCombatShotgun
         - WeaponMechCombatMissileRack6
         - WeaponMechCombatTeslaCannon
+
+# Dark H.O.N.K.
+- type: entity
+  parent: [ BaseMech, SpecialMech, SyndieMech, BaseSyndicateContraband ]
+  id: MechHonkerDark
+  name: Dark H.O.N.K.
+  description: A Cybersun-modified H.O.N.K. that strikes fear into the hearts of all who hear its squeaking footsteps.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      noRot: true
+      sprite: Objects/Specific/Mech/Mechs/Basic/honker.rsi
+      layers:
+        - map: [ "enum.MechVisualLayers.Base" ]
+          state: base
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepClown
+        params:
+          variation: 0.17
+    # STARLIGHT BEGIN
+    - type: MeleeWeapon
+      hidden: true
+      attackRate: 1
+      damage:
+        types:
+          Structural: 400 # Heeeeeere's H.O.N.K.ie!!!
+      soundHit:
+        path: /Audio/Items/bikehorn.ogg
+    - type: MeleeThrowOnHit
+      speed: 1
+      distance: 4 # To be even more annoying
+    # STARLIGHT END
+    - type: Mech
+      baseState: dark
+      openState: dark-open
+      brokenState: dark-broken
+      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      maxIntegrity: 550
+      maxEquipmentAmount: 5
+      airtight: true # Space Honks is real.
+      pilotWhitelist:
+        components:
+          - HumanoidAppearance
+
+- type: entity
+  parent: MechHonkerDark
+  id: MechHonkerDarkBattery
+  suffix: Battery, Air
+  components:
+    - type: ContainerFill
+      containers:
+        mech-battery-slot:
+          - MechReactorMicro #Starlight - MechReactors
+        mech-gas-tank-slot:
+          - MechAirTankFilled
+
+- type: entity
+  parent: MechHonkerDarkBattery
+  id: MechHonkerDarkFilled
+  suffix: Battery, Filled
+  components:
+    - type: Mech
+      startingEquipment:
+        - WeaponMechSpecialBananaMortar
+        - WeaponMechSpecialMousetrapMortar
+        - MechEquipmentHorn
+        - WeaponMechSpecialPieCannon

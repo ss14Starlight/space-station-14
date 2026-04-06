@@ -64,11 +64,11 @@
     - type: Sprite
       state: mecha_bananamrtr
     - type: Gun
-      minAngle: 8 # should be smaller for good initial precision. This ain't for amateur clowns...
-      maxAngle: 25
+      minAngle: 6 # should be smaller for good initial precision. This ain't for amateur clowns...
+      maxAngle: 20
       angleIncrease: 4
       angleDecay: 16
-      fireRate: 0.3
+      fireRate: 1.2
       selectedMode: FullAuto
       availableModes:
         - FullAuto
@@ -78,6 +78,6 @@
       soundEmpty:
         path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
     - type: MechAmmoProvider
-      proto: FoodPieBananaCream
-      fireCost: 100
+      proto: CannonAmmoBananaCream
+      fireCost: 60
     - type: Appearance

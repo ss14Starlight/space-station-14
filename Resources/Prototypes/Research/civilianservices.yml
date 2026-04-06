@@ -201,6 +201,7 @@
   recipeUnlocks:
   - MechEquipmentHonkerBananaMortar
   - MechEquipmentHonkerMousetrapMortar
+  - MechEquipmentHonkerPieCannon
   technologyPrerequisites:
   - HONKMech # starlight
 
