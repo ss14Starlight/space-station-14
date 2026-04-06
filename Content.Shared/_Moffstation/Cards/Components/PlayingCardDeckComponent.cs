@@ -57,7 +57,7 @@ public sealed partial class PlayingCardDeckComponent : PlayingCardStackComponent
         public static readonly VerbInfo CutDeck = VerbInfo.Build("playing-card-deck-cut", icon: "eject");
 
         public static readonly VerbInfo FlipEntire =
-            VerbInfo.Build("playing-card-deck-flip-entire", icon: "flip", sounds: "storageRustle");
+            VerbInfo.Build("playing-card-deck-flip-entire", icon: "refresh", sounds: "storageRustle");
 
         public static readonly VerbInfo ConvertToHand = VerbInfo.Build("playing-card-hand-convert-to-hand", icon: "rotate_cw"); // Starlight
     }

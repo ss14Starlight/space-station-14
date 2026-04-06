@@ -24,6 +24,7 @@ playing-card-deck-flip-entire-verb-text = Flip entire deck
 playing-card-deck-flip-entire-popup = Flipped the deck
 
 # Starlight begin
+playing-card-deck-cut-popup = Cut the deck
 playing-card-hand-convert-to-hand-verb-text = Convert to hand
 # Starlight end
 
