@@ -27,18 +27,10 @@ public sealed partial class WeatherSystem
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<MapGridComponent> _gridQuery; // SL
 
-    private int _maxAffectedPerTick;
-    private int _maxTilesScannedPerTick;
-
     /// <summary>
     /// Per-weather processing state for time-budgeted gathering and application.
     /// </summary>
     private readonly Dictionary<EntityUid, WeatherEffectProcessingState> _processingStates = new();
-
-    /// <summary>
-    /// Reusable buffer for entity lookups — avoids per-tile allocations.
-    /// </summary>
-    private readonly HashSet<EntityUid> _entityBuffer = new();
 
     private void InitEffects()
     {
@@ -49,9 +41,6 @@ public sealed partial class WeatherSystem
 
         SubscribeLocalEvent<WeatherEffectsComponent, ComponentInit>(OnWeatherEffectsInit);
         SubscribeLocalEvent<WeatherEntityEffectComponent, ComponentShutdown>(OnWeatherEffectsShutdown);
-
-        Subs.CVar(_cfg, CCVars.WeatherMaxAffectedPerTick, val => _maxAffectedPerTick = val, true);
-        Subs.CVar(_cfg, CCVars.WeatherMaxTilesScannedPerTick, val => _maxTilesScannedPerTick = val, true);
     }
 
     private void OnWeatherEffectsInit(Entity<WeatherEffectsComponent> ent, ref ComponentInit args)
@@ -62,7 +51,6 @@ public sealed partial class WeatherSystem
 
     private void UpdateEffects(float frameTime)
     {
-        _ = frameTime;
         var query = EntityQueryEnumerator<WeatherStatusEffectComponent, WeatherEffectsComponent, StatusEffectComponent>();
         while (query.MoveNext(out var uid, out var weather, out var effects, out var status))
         {
@@ -160,8 +148,6 @@ public sealed partial class WeatherSystem
     /// </summary>
     private void ProcessApplying(EntityUid weatherUid, WeatherEffectProcessingState state)
     {
-        var processed = 0;
-
         while (state.PendingEntities.TryDequeue(out var targetUid))
         {
             if (!_xformQuery.TryGetComponent(targetUid, out var xform) || xform.MapUid != state.MapUid)
@@ -169,10 +155,6 @@ public sealed partial class WeatherSystem
 
             var ev = new WeatherEntityAffectedEvent(targetUid);
             RaiseLocalEvent(weatherUid, ref ev);
-
-            processed++;
-            if (processed >= _maxAffectedPerTick)
-                return;
         }
 
         state.Phase = EffectProcessingPhase.Idle;
