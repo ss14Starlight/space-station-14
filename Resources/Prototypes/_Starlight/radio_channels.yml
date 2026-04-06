@@ -38,13 +38,14 @@
   frequency: 1882
   color: "#ffce2e"
 
-  # For blackstar stuff once that gets added some day
+  # For Blackstar mercenaries
 - type: radioChannel
   id: Blackstar
   name: chat-radio-blackstar
   keycode: 'r'
   frequency: 1452
-  color: "#24123b"
+  color: "#896e14"
+  longRange: true
 
   # For aspace stuff specifically, to keep freelance clear
 - type: radioChannel

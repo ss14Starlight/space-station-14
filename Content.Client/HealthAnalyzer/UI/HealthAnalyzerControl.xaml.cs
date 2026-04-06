@@ -366,7 +366,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             {
                 reagentName = reagentProto.LocalizedName;
                 reagentColor = reagentProto.SubstanceColor;
-                
+
             }
 
             var rowContainer = new BoxContainer
@@ -446,15 +446,15 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         return rootContainer;
     }
     Starlight end */
-    // Starlight begin - damage group titles get a color gradient and exclamations to indicate severity 
+    // Starlight begin - damage group titles get a color gradient and exclamations to indicate severity
     private BoxContainer CreateDiagnosticGroupTitleRow(string text, float damageAmount, string damageGroupId)
     {
         // Color gradient: green (0) -> red (100+)
         var clampedDamage = Math.Min(damageAmount, 100f);
         var damagePercent = clampedDamage / 100f;
-        
+
         var titleColor = Color.InterpolateBetween(Green, Red, damagePercent);
-        
+
         var exclamations = damageAmount switch {
             > 200f => " !!!!",
             > 100f => " !!!",
@@ -467,9 +467,9 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             Orientation = BoxContainer.LayoutOrientation.Horizontal,
             Margin = new Thickness(0, 0, 0, 4),
         };
-        
+
         var groupId = damageGroupId.ToLowerInvariant();
-        
+
         // Add damage group icon
         titleRow.AddChild(new TextureRect
         {
@@ -478,7 +478,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             Margin = new Thickness(0, 0, 4, 0),
             VerticalAlignment = VAlignment.Center,
         });
-        
+
         var titleLabel = new Label
         {
             Text = text + exclamations,
@@ -486,9 +486,9 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             HorizontalAlignment = HAlignment.Center,
             FontColorOverride = titleColor,
         };
-        
+
         titleRow.AddChild(titleLabel);
-        
+
         return titleRow;
     }
     // Starlight end

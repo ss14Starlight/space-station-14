@@ -49,7 +49,7 @@ public sealed partial class FunctionalOrganComponent : Component
 {
     [DataField]
     public bool IsCybernetic = true;
-    
+
     [DataField("comps")]
     public ComponentRegistry? Components;
 }
@@ -59,14 +59,14 @@ public sealed partial class TaggedOrganComponent : Component
 {
     [DataField]
     public List<ProtoId<TagPrototype>> AddTags = new();
-    
+
     [DataField]
     public List<ProtoId<TagPrototype>> RemoveTags = new();
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class StorageOrganComponent : Component
-{    
+{
     [DataField]
     public EntProtoId? OrganAction { get; set; }
 
@@ -83,7 +83,7 @@ public sealed partial class StorageOrganComponent : Component
 /// <summary>
 /// Used for opening the storage organ via action.
 /// </summary>
-public sealed partial class OpenStorageOrganEvent : InstantActionEvent 
+public sealed partial class OpenStorageOrganEvent : InstantActionEvent
 {
     [DataField]
     public string Key = "InternalStorage";

@@ -56,7 +56,7 @@ public sealed partial class HumanoidAppearanceSystem
 
         foreach (var part in _body.GetBodyChildren(args.Target))
             RaiseLocalEvent(part.Id, args);
-        
+
         foreach (var organ in _body.GetBodyOrgans(args.Target))
             RaiseLocalEvent(organ.Id, args);
     }

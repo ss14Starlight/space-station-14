@@ -66,7 +66,7 @@ public sealed class ListeningSystem : EntitySystem
             if(TryComp<ChatListenerRangeComponent>(source, out var rangeComp))
                 whisperClearRange = rangeComp.WhisperClearRange;
             //Starlight end
-            
+
             if (obfuscatedEv != null && distance > whisperClearRange) // Starlight-edit
                 RaiseLocalEvent(listenerUid, obfuscatedEv);
             else

@@ -90,7 +90,7 @@ public partial class SharedBodySystem
     {
         // Setup the initial container.
         ent.Comp.RootContainer = Containers.EnsureContainer<ContainerSlot>(ent, BodyRootContainerId);
-        
+
         ent.Comp.BloodType = _random.Pick(BodyComponent.BloodTypeList);
     }
 

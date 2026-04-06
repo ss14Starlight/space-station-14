@@ -3,9 +3,9 @@
   name: collective-mind-dioneas
   keycode: 'd'
   color: "#15912a"
-  requiredTags: 
+  requiredTags:
   - Diona
-  
+
 - type: collectiveMind
   id: Carp
   name: collective-mind-carp
@@ -13,9 +13,9 @@
   color: "#787878"
   requiredComponents:
   - Dragon
-  requiredTags: 
+  requiredTags:
   - Carp
-  
+
 - type: collectiveMind
   id: Abductor
   name: collective-mind-abductor
@@ -23,7 +23,7 @@
   color: "#d600bd"
   requiredTags:
   - Abductor
-  
+
 - type: collectiveMind
   id: Spider
   name: collective-mind-spider
@@ -31,7 +31,7 @@
   color: "#8f6741"
   requiredComponents:
   - Spider
-  
+
 - type: collectiveMind
   id: Changeling
   name: collective-mind-changeling
@@ -39,7 +39,7 @@
   color: "#ff75a8"
   requiredComponents:
   - Hivemind
-  
+
 - type: collectiveMind
   id: Cluwne
   name: collective-mind-cluwne
@@ -53,10 +53,10 @@
   name: collective-mind-nexus
   keycode: 'n'
   color: "#FF7922"
-  requiredTags: 
+  requiredTags:
   - Nexus
 
-  
+
 - type: collectiveMind
   id: VampireThrall
   name: collective-mind-vampire-thrall
@@ -65,7 +65,7 @@
   requiredComponents:
   - Dantalion
   - VampireThrall
-  
+
 - type: collectiveMind
   id: Empathy
   name: collective-mind-empathy
@@ -73,7 +73,7 @@
   color: "#8a0060"
   showNames: true
   canSpeak: true
-  requiredComponents: 
+  requiredComponents:
   - Shadekin
   canSpeakComponents:
   - Brighteye

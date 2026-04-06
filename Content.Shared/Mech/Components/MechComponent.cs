@@ -185,7 +185,7 @@ public sealed partial class MechComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float BatteryRemovalDelay = 2;
-    
+
     //Starlight Start
     /// <summary>
     /// Whitelist for allowed batteries.

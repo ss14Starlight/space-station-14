@@ -18,7 +18,7 @@
   icon: { sprite: _Starlight/Objects/Materials/paper_roll.rsi, state: icon_100 }
   spawn: LabellerRefillPaper
   maxCount: 100
-  
+
 - type: stack
   id: RawBluespaceCrystal
   name: stack-bluespacecrystal

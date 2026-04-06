@@ -121,7 +121,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     private void RemoveSupermatter(Entity<SupermatterComponent> ent, ref ComponentShutdown args) => _supermatters.Remove(ent.Owner);
 
     protected override float Threshold { get; set; } = 1f;
-    protected override void AccUpdate()
+    protected override void AccUpdate(float _)
     {
         foreach (var supermatter in _supermatters)
             Handle(supermatter.Value);
@@ -230,7 +230,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
         supermatter.Comp.AccBreak -= breakDelta;
 
         gas.AdjustMoles((int)Gas.Tritium, breakDelta.Float()/2);
-        
+
         gas.AdjustMoles((int)Gas.Oxygen, breakDelta.Float()*4);
     }
 
