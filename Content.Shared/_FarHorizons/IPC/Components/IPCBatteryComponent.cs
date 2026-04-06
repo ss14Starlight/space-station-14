@@ -16,35 +16,36 @@ public sealed partial class IPCBatteryComponent : Component
 {
     [DataField]
     public float DieWithoutPowerAfter = 30f;
+
     [DataField]
     public int NumWarnings = 0;
+
     [DataField]
     public LocId? WarningText = null;
+
     [DataField]
     public SoundSpecifier? WarningSound = null;
+
     [DataField]
     public ProtoId<AlertPrototype> ChargeCritical = "IPCBatteryCrit";
 
     [DataField]
     public List<EntProtoId> DrainAllowedTargets = [];
+
     [DataField]
     public ProtoId<EmotePrototype> NoPowerDeathEmote = default;
-    [ViewVariables(VVAccess.ReadWrite)]
-    public ContainerSlot BatteryContainerSlot = default!;
-
-    [ViewVariables(VVAccess.ReadWrite)]
-    public BatteryDrainerComponent BatteryDrainer = default!;
-
-    [ViewVariables(VVAccess.ReadWrite)]
-    public PowerCellSlotComponent PowerCellSlot = default!;
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool TimerActive = false;
+
     [ViewVariables(VVAccess.ReadWrite)]
     public float Timer = 0f;
+
     public TimeSpan NextUpdate;
+
     [DataField]
     public TimeSpan RefreshRate = TimeSpan.FromSeconds(1);
+
     [ViewVariables(VVAccess.ReadWrite)]
     public int WarningsIssued = 0;
 
