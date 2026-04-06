@@ -316,7 +316,7 @@
     Plastic: 500
     Gold: 500
     Silver: 500
-    Diamond: 200
+    Diamond: 500
 
 - type: latheRecipe
   id: MechReactorBurnout
@@ -329,7 +329,7 @@
     Glass: 1000
     Plastic: 500
     Gold: 200
-    Uranium: 500
+    Uranium: 1000
     Plasma: 1000
 
 - type: latheRecipe
@@ -342,5 +342,6 @@
     Steel: 1000
     Glass: 1000
     Plastic: 500
-    Gold: 500
-    Plasma: 2000
+    Gold: 200
+    Silver: 1000
+    Uranium: 1000
