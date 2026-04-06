@@ -214,7 +214,7 @@
   categories:
   - SalvageWeapons
   conditions:
-  - !type:BuyerAccessCondition 
+  - !type:BuyerAccessCondition
 
 - type: listing
   id: VendorSalvageWeaponShotgunCycler
@@ -407,7 +407,7 @@
   - SalvageMercenaryEquipment
   conditions:
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorSalvageClothingUniformJumpsuitSalvageMercWhite
   productEntity: ClothingUniformJumpsuitSalvageMercWhite

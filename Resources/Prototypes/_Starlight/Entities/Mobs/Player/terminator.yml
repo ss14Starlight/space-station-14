@@ -97,7 +97,7 @@
     threshold: 12
   # much lower temp heat damage than normal, so that terminator can be decently on fire without immediately gibbing
   - type: TemperatureDamage
-    coldDamage: 
+    coldDamage:
       types:
         Cold: 0.1
     heatDamage:
@@ -115,7 +115,7 @@
   - type: Hunger
     baseDecayRate: 0
   - type: RandomFootstepSound # 1/1000 steps will be a heavy clank. not very subtle.
-    sound: 
+    sound:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
       params:
         volume: -6

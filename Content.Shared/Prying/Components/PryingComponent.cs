@@ -48,7 +48,7 @@ public sealed partial class PryingComponent : Component
     /// <summary>
     /// What sound to play when prying is started.
     /// </summary>
-    [DataField] 
+    [DataField]
     public SoundSpecifier useSoundOnDoafter = new SoundPathSpecifier("/Audio/_Starlight/Machines/airlock_pry.ogg");
     #endregion Starlight
 }

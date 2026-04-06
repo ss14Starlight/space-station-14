@@ -30,7 +30,7 @@ public sealed partial class RailroadingTimerTaskSystem : AccUpdateEntitySystem
         SubscribeLocalEvent<RailroadTimerTaskComponent, CollectObjectiveInfoEvent>(OnCollectObjectiveInfo);
     }
 
-    protected override void AccUpdate()
+    protected override void AccUpdate(float _)
     {
         var query = EntityQueryEnumerator<RailroadTimerTaskComponent>();
         while (query.MoveNext(out var ent, out var comp))

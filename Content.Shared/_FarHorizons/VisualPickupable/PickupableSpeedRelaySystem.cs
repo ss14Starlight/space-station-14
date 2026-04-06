@@ -27,13 +27,13 @@ public sealed class PickupableSpeedRelaySystem : EntitySystem
 
         if (ev.WalkSpeedModifier < 1)
             walkModifier = (ev.WalkSpeedModifier + 1) / 2;
-        
+
         args.Args.ModifySpeed(walkModifier, sprintModifier);
     }
 
     private void OnGotPickedUp(Entity<PickupableSpeedRelayComponent> ent, ref GotEquippedHandEvent args) =>
         _movementSpeedModifier.RefreshMovementSpeedModifiers(args.User);
-    
+
     private void OnGotDropped(Entity<PickupableSpeedRelayComponent> ent, ref GotUnequippedHandEvent args) =>
         _movementSpeedModifier.RefreshMovementSpeedModifiers(args.User);
 }

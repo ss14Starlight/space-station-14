@@ -56,7 +56,7 @@ public abstract class MechEquipmentUiMessage : BoundUserInterfaceMessage
 public sealed class MechMaintenanceUiMessage : BoundUserInterfaceMessage
 {
     public bool Toggle;
-    
+
     public MechMaintenanceUiMessage(bool toggle)
     {
         Toggle = toggle;
@@ -118,7 +118,7 @@ public sealed class MechSoundboardPlayMessage : MechEquipmentUiMessage
 public sealed class MechBoundUiState : BoundUserInterfaceState
 {
     public Dictionary<NetEntity, BoundUserInterfaceState> EquipmentStates = new();
-    
+
     public List<NetEntity> Equipment = new(); // Starlight-edit: Correct equipment update
 }
 

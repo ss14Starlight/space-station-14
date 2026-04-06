@@ -26,13 +26,13 @@ public sealed class SyndieLogoTag : IMarkupTag
     {
         _spriteSystem ??= _entitySystem.GetEntitySystem<SpriteSystem>();
         _resourceCache ??= IoCManager.Resolve<IResourceCache>();
-        
+
         var icon = new TextureRect
         {
             Texture = _resourceCache.GetTexture("/Textures/_Starlight/Logo/Syndie_Logo.png"),
             TextureScale = new Vector2(0.5f, 0.5f),
         };
-        
+
         control = icon;
         return true;
     }
