@@ -40694,7 +40694,7 @@ entities:
       parent: 1
     - type: StockLimitedProcessing
       processingListings: {}
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
   - uid: 5835
     components:

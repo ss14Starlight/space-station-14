@@ -45,7 +45,7 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
         SubscribeLocalEvent<RemoteEyeActorComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<RemoteEyeActorComponent, GetVisMaskEvent>(OnGetVisMask);
         SubscribeLocalEvent<ExitConsoleEvent>(OnExit);
-    
+
         Subs.BuiEvents<RemoteEyeConsoleComponent>(RemoteEyeUIKey.Key, subs => subs.Event<BeaconChosenBuiMsg>(OnBeaconChosenBuiMsg));
         SubscribeLocalEvent<RemoteEyeConsoleComponent, ActivateInWorldEvent>(OnActivateInWorld);
         SubscribeLocalEvent<RemoteEyeConsoleComponent, PowerChangedEvent>(OnCompPowerChange);
@@ -54,7 +54,7 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
 
     public void CameraExit(EntityUid actor)
     {
-        if (!TryComp<RelayInputMoverComponent>(actor, out var comp)) 
+        if (!TryComp<RelayInputMoverComponent>(actor, out var comp))
             return;
 
         var relay = comp.RelayEntity;
@@ -187,15 +187,15 @@ public sealed partial class RemoteEyeSystem : SharedRemoteEyeSystem
             args.Handled = true;
             var viewer = args.User;
             CameraExit(viewer);
-            
+
             var eye = SpawnAtPosition(ent.Comp.RemoteEntityProto, Transform(ent).Coordinates);
             ent.Comp.RemoteEntity = eye;
 
             SetupRemoteView(ent, viewer, eye);
         }
     }
-    
-    private void OnPlayerAttached(Entity<RemoteEyeActorComponent> ent, ref PlayerAttachedEvent args) 
+
+    private void OnPlayerAttached(Entity<RemoteEyeActorComponent> ent, ref PlayerAttachedEvent args)
         => _eye.RefreshVisibilityMask((ent.Owner, null));
 
     private void OnGetVisMask(Entity<RemoteEyeActorComponent> ent, ref GetVisMaskEvent args)

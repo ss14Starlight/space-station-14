@@ -68,6 +68,7 @@
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
       firing_pin: !type:Container # Starlight
+      ballistic-ammo: !type:Container
   - type: AmmoCounter
   - type: MagazineVisuals
     magState: mag

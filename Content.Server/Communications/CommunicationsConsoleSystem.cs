@@ -51,7 +51,7 @@ namespace Content.Server.Communications
         private const float UIUpdateInterval = 5.0f;
         // Starlight Start
         private const float DefaultGlobalRecallCooldownSeconds = 30f;
-        private float _globalRecallCooldownRemaining = 0f; 
+        private float _globalRecallCooldownRemaining = 0f;
         // Starlight End
 
         public override void Initialize()
@@ -107,7 +107,7 @@ namespace Content.Server.Communications
         {
             comp.AnnouncementCooldownRemaining = comp.InitialDelay;
             UpdateCommsConsoleInterface(uid, comp);
-            
+
             //Starlight begin
             if (!TryComp<StationMemberComponent>(Transform(uid).GridUid, out var stationMember)) return;
             if (!TryComp<StationCentcommComponent>(stationMember.Station, out var ccComp)) return;
@@ -263,7 +263,7 @@ namespace Content.Server.Communications
                 _popupSystem.PopupCursor(Loc.GetString("comms-console-permission-denied"), message.Actor, PopupType.Medium);
                 return;
             }
-            
+
             // Starlight BEGIN
             var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(uid, mob);
             RaiseLocalEvent(tryGetIdentityShortInfoEvent);
@@ -284,7 +284,7 @@ namespace Content.Server.Communications
             var maxLength = _cfg.GetCVar(CCVars.ChatMaxAnnouncementLength);
             //#region Starlight
             var msg = new SpeechMessage
-            { 
+            {
                 Text = message.Message,
                 Tts = message.Message,
                 Modifier = SpeechModifier.None
@@ -313,7 +313,7 @@ namespace Content.Server.Communications
 
                 // Starlight start
                 if (!HasComp<MutedComponent>(mob))
-                    speaker = mob; 
+                    speaker = mob;
                 // Starlight end
 
                 var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(uid, mob);
@@ -366,7 +366,7 @@ namespace Content.Server.Communications
         {
             if (!TryComp<DeviceNetworkComponent>(uid, out var net))
                 return;
-            
+
             if (!component.CanBroadcast) // Starlight
                 return; // Starlight
 

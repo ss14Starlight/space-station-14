@@ -85,7 +85,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             //Starlight begin | ES Screenshake
             var shakeParams = new ScreenshakeParameters
             {
-                Trauma = 0.45f, 
+                Trauma = 0.45f,
                 DecayRate = 1.1f,
                 Frequency = 0.04f,
             };

@@ -41,7 +41,7 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
         var overallTime = playTimes.GetValueOrDefault(PlayTimeTrackingShared.TrackerOverall);
         var overallDiffSpan = Time - overallTime;
         var overallDiff = overallDiffSpan.TotalMinutes;
-        
+
         // Starlight BEGIN
         var formattedCurrent = ContentLocalizationManager.FormatPlaytime(overallTime);
         var formattedRequired = ContentLocalizationManager.FormatPlaytime(Time);

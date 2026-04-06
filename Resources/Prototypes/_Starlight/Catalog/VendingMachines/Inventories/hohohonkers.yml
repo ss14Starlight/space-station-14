@@ -9,7 +9,7 @@
   - !type:ListingLimitedStockCondition
     stock: 4
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorHoloparasiteFakeInjector
   productEntity: HoloparasiteFakeInjector
@@ -21,7 +21,7 @@
   - !type:ListingLimitedStockCondition
     stock: 1
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorToySwordDoubled
   productEntity: ToySwordDoubled
@@ -33,7 +33,7 @@
   - !type:ListingLimitedStockCondition
     stock: 1
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorFakeAnomalyFlatpack
   productEntity: FakeAnomalyFlatpack
@@ -45,7 +45,7 @@
   - !type:ListingLimitedStockCondition
     stock: 6
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorFoodPieBananaCream
   productEntity: FoodPieBananaCream
@@ -57,7 +57,7 @@
   - !type:ListingLimitedStockCondition
     stock: 8
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorLauncherCreamPie
   productEntity: LauncherCreamPie
@@ -69,7 +69,7 @@
   - !type:ListingLimitedStockCondition
     stock: 1
   - !type:BuyerAccessCondition
-    
+
 - type: listing
   id: VendorWhoopieCushion
   productEntity: WhoopieCushion

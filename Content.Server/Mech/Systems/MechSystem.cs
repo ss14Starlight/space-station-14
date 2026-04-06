@@ -689,7 +689,7 @@ public sealed partial class MechSystem : SharedMechSystem
         _container.Insert(toInsert, component.BatterySlot);
         component.Energy = _battery.GetCharge(toInsert);
         component.MaxEnergy = battery.MaxCharge;
-        
+
         _movementSpeedModifier.RefreshMovementSpeedModifiers(uid); //Starlight - mech reactors with speed mods
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block

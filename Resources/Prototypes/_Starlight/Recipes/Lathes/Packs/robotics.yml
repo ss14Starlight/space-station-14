@@ -2,7 +2,7 @@
   id: StarlightMechParts
   recipes:
 # Ripley MKII
-  
+
     - RipleyMKIIHarness
     - RipleyUpgradeKit
 
@@ -17,9 +17,9 @@
     - ClarkeLArm
     - ClarkeRArm
     - ClarkeTreads
-  
+
 # Durand
-  
+
     - DurandHarness
     - DurandArmor
     - DurandHead
@@ -27,9 +27,9 @@
     - DurandLLeg
     - DurandRArm
     - DurandRLeg
-  
+
 # Gygax
-  
+
     - GygaxHarness
     - GygaxArmor
     - GygaxHead
@@ -37,13 +37,13 @@
     - GygaxLLeg
     - GygaxRArm
     - GygaxRLeg
-  
+
 - type: latheRecipePack
   id: StarlightMechBoards
   recipes:
     - ClarkeCentralElectronics
     - ClarkePeripheralsElectronics
-  
+
 - type: latheRecipePack
   id: StarlightMechEquipment
   recipes:
@@ -52,7 +52,7 @@
     - MechEquipmentKineticAccelerator
     - MechEquipmentHonkerBananaMortar
     - MechEquipmentHonkerMousetrapMortar
-  
+
 - type: latheRecipePack
   id: StarlightMechReactors
   recipes:
