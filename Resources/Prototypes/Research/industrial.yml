@@ -238,7 +238,7 @@
 
 - type: technology
   id: ExosuitExoticReactor
-  name: research-technology-expotic-reactor
+  name: research-technology-exotic-reactor
   icon:
     sprite: _Starlight/Objects/Power/mech_reactors.rsi
     state: paladin
