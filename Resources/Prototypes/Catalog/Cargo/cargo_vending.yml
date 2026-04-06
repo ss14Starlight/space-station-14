@@ -212,7 +212,7 @@
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base
   product: CrateVendingMachineRestockTankDispenserFilled
-  cost: 1500 #SL EDIT
+  cost: 1300
   category: cargoproduct-category-name-atmospherics
   group: market
 
