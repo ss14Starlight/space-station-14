@@ -793,3 +793,14 @@
   id: RoleSurvivalSpaceNinja
   groups:
   - GroupEVATank
+
+# Wizard duelist from Moff Station. Placed here instead of in Moff's files since they're not a free agent here.
+- type: roleLoadout
+  id: JobWizardDuelist
+  canCustomizeName: true
+  groups:
+  - CommonBackpack
+  - Glasses
+  - Trinkets
+  - SurvivalExtended
+  - GroupSpeciesBreathTool

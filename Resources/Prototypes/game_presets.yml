@@ -42,7 +42,7 @@
     - Traitor
     - Revolutionary
     - Zombie
-    - Wizard
+    - WizardDuel # Starlight
     - Xenoborgs
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
@@ -74,7 +74,8 @@
     - Traitor
     - Revolutionary
     - Zombie
-    - Wizard
+    - SubWizard # Starlight. Well, you did say *Aller* at once.
+    - WizardDuel # Starlight. Well, you did say *Aller* at once.
     - Xenoborgs
     - BasicStationEventScheduler
     - BasicStationEventScheduler # Starlight, ShitStation
