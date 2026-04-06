@@ -8,6 +8,7 @@
   markingLimits: MobIPCMarkingLimits
   dollPrototype: MobIPCDummy
   skinColoration: Hues
+  eyeColoration: FullWhite
   customName: true
   roundstartCyberwareCapacity: 6
   sexes:
@@ -22,8 +23,7 @@
     Snout: MobHumanoidAnyMarking
     Chest: MobIPCTorso
     HeadTop: MobHumanoidAnyMarking
-    HeadSide: MobHumanoidAnyMarking
-    Eyes: MobIPCEyes
+    Eyes: MobHumanoidAnyMarking
     LArm: MobIPCLArm
     RArm: MobIPCRArm
     LHand: MobIPCLHand
@@ -47,11 +47,12 @@
       required: false
     Head:
       points: 1
-      required: false
+      required: true
       defaultMarkings: [ MarkingStandardHead ]
-    HeadSide:
+    Eyes:
       points: 1
-      required: false
+      required: true
+      defaultMarkings: [ ScreenStatic ]
     Chest:
       points: 1
       required: false

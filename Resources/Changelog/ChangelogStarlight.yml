@@ -34782,15 +34782,6 @@ Entries:
   id: 377801
   time: '2026-03-18T18:51:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3778
-- author: Rinary, Neenner
-  changes:
-  - message: Added shoelaces for shoes.
-    type: Add
-  - message: Added ability to tie shoelaces together on shoes.
-    type: Add
-  id: 344501
-  time: '2026-03-18T19:39:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3445
 - author: Makeshift
   changes:
   - message: (Plasma) Departmental communication consoles.
@@ -34949,20 +34940,6 @@ Entries:
   id: 373401
   time: '2026-03-20T11:23:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3734
-- author: Rinary
-  changes:
-  - message: Fixed shoelaces tooltips.
-    type: Fix
-  - message: Fixed untie shoelaces verb.
-    type: Fix
-  - message: Fixed prediction crash when trying to unequip shoes with shoelaces.
-    type: Fix
-  - message: Fixed bug when magboots, moon boots, speed boots, socks and other specific
-      types of shoes have shoelaces.
-    type: Fix
-  id: 381501
-  time: '2026-03-20T12:54:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3815
 - author: Rinary
   changes:
   - message: Added bullet holes visual effect when shooting in objects like walls.
@@ -35426,13 +35403,6 @@ Entries:
   id: 378101
   time: '2026-03-22T19:38:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3781
-- author: redmushie
-  changes:
-  - message: Shoelaces are now tied by default.
-    type: Tweak
-  id: 387401
-  time: '2026-03-22T20:34:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3874
 - author: Conflee
   changes:
   - message: Added 9 new AI Screens and 7 new AI Holograms.
@@ -35496,13 +35466,6 @@ Entries:
   id: 385401
   time: '2026-03-22T20:52:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3854
-- author: redmushie
-  changes:
-  - message: Blue shield magboots and space ninja shoes no longer require tying shoelaces.
-    type: Fix
-  id: 387301
-  time: '2026-03-22T20:56:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3873
 - author: mikeysaurus
   changes:
   - message: Adds new GitHub workflow to verify that the Prototypes/_StarLight directory
@@ -36219,13 +36182,6 @@ Entries:
   id: 398201
   time: '2026-03-28T07:32:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3982
-- author: CawsForConcern
-  changes:
-  - message: Security magboots no longer have shoelaces.
-    type: Fix
-  id: 398801
-  time: '2026-03-29T09:43:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3988
 - author: wonderfulnewworld
   changes:
   - message: HoP can give Mail Access now.
@@ -36249,5 +36205,108 @@ Entries:
   id: 398601
   time: '2026-04-05T19:45:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3986
+- author: Conflee
+  changes:
+  - message: Added the NanoMed Security vending machine, to be mapped in Brig Medical
+      and has Medical and Security access. Contains the normal medical supplies, plus
+      body bags and small bottles of basic chems to give Brigmed a decent starting
+      supply for basic treatments until Chem is up and stocked.
+    type: Add
+  id: 399001
+  time: '2026-04-05T19:57:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3990
+- author: CawsForConcern
+  changes:
+  - message: (Lobster) Security doors leading towards GenPop corrected to Brig access
+      (for IAAs, Magistrates).
+    type: Fix
+  - message: (Serpentcrest) Security doors leading towards GenPop corrected to Brig
+      access (for IAAs, Magistrates).
+    type: Fix
+  id: 398701
+  time: '2026-04-05T20:13:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3987
+- author: neurovermi
+  changes:
+  - message: Mech wideswing and melee sprite issues.
+    type: Fix
+  id: 401901
+  time: '2026-04-05T20:25:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4019
+- author: CawsForConcern
+  changes:
+  - message: (Sepultum) NCT Office front is not locked.
+    type: Tweak
+  id: 402101
+  time: '2026-04-05T20:36:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4021
+- author: CawsForConcern
+  changes:
+  - message: Overloaded APCs on the "NT Incorporation" visitor shuttle have been fixed.
+    type: Fix
+  id: 402201
+  time: '2026-04-05T20:44:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4022
+- author: Tess the Evil
+  changes:
+  - message: Filled n2o tanks.
+    type: Tweak
+  id: 399301
+  time: '2026-04-05T20:51:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3993
+- author: neurovermi
+  changes:
+  - message: Mechs now throw when punching with no equipment.
+    type: Add
+  id: 402001
+  time: '2026-04-05T21:01:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4020
+- author: Walksanatora
+  changes:
+  - message: Central command has decided to stop providing shoelaces on all shoes
+      due to innumerable cases of untieable laces..
+    type: Remove
+  id: 404101
+  time: '2026-04-06T03:40:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4041
+- author: Shades, princess_gurchi
+  changes:
+  - message: Cooling Units, IPC will need those if they wish to regulate their temperature.
+    type: Add
+  - message: dead IPC body will now cool down much faster if it reached high temperatures.
+    type: Tweak
+  - message: IPCs will burn for less time than organics.
+    type: Tweak
+  - message: Preventing silicons from having glitched visuals for longer than they
+      are supposed to.
+    type: Fix
+  - message: Fix a bug where IPC could use MechReactor.
+    type: Fix
+  - message: IPC Survival Kit.
+    type: Add
+  - message: Fix a bug where you can use an AIInterface on the IPC.
+    type: Fix
+  - message: Fix where IPC get Airloss/Toxins/Genetic Damage.
+    type: Fix
+  - message: Enable IPC Again.
+    type: Tweak
+  id: 399801
+  time: '2026-04-06T03:48:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3998
+- author: Ohelig (Code) & Bewarehouse (Mail contents)
+  changes:
+  - message: Added spam mail that turns you into a SELF Agent when you sign it.
+    type: Add
+  id: 394901
+  time: '2026-04-06T04:27:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3949
+- author: wonderfulnewworld
+  changes:
+  - message: Traitors, Thieves, Changelings, and Vampires now scale roughly 10-20%
+      slower.
+    type: Tweak
+  id: 403201
+  time: '2026-04-06T04:57:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4032
 Order: -1
 

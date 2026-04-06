@@ -202,7 +202,7 @@
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base
   product: CrateVendingMachineRestockRoboticsFilled
-  cost: 1600
+  cost: 2100
   category: cargoproduct-category-name-science
   group: market
 
@@ -212,7 +212,7 @@
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base
   product: CrateVendingMachineRestockTankDispenserFilled
-  cost: 1100
+  cost: 1300
   category: cargoproduct-category-name-atmospherics
   group: market
 
