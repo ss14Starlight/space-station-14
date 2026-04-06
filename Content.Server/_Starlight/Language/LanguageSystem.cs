@@ -86,9 +86,20 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         _radioSystem.SendRadioMessage(source, message, channel, source, language);
     }
 
+    // Starlight-start: fix duplicate radio messages for language-override channels
+    // This handler is ONLY for languages that reroute radio to a specific channel via
+    // SpeechOverride.RadioChannel (e.g. a language that forces all speech onto a special freq).
+    // The original guard was tautologically false — it checked (RadioChannel is null && Channel == RadioChannel),
+    // which can never both be true, so the early-return never fired and every radio message was
+    // sent twice: once by RadioSystem.OnIntrinsicReceive (correct) and once here (wrong).
+    // Fix: return early unless all conditions are met — language has a RadioChannel override,
+    // the incoming channel matches it, and the entity has an active player session.
     private void OnRadioReceiveEvent(EntityUid uid, LanguageKnowledgeComponent _, ref RadioReceiveEvent args)
     {
-        if ((args.Language.SpeechOverride.RadioChannel is null && args.Channel is not null && args.Channel == args.Language.SpeechOverride.RadioChannel)|| !TryComp<ActorComponent>(uid, out var actor))
+        if (args.Language.SpeechOverride.RadioChannel is null   // language doesn't use a radio override — not our job
+            || args.Channel is null                              // no channel on the event (shouldn't happen, safety)
+            || args.Channel != args.Language.SpeechOverride.RadioChannel // wrong channel for this language
+            || !TryComp<ActorComponent>(uid, out var actor))    // entity has no player to send to
             return;
 
         _netMan.ServerSendMessage(new MsgChatMessage{ Message = args.OriginalChatMsg }, actor.PlayerSession.Channel);
@@ -96,6 +107,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         if (uid != args.MessageSource)
             args.Receivers.Add(uid);
     }
+    // Starlight-end
 
     #endregion
 }

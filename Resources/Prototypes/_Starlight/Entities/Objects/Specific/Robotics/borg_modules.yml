@@ -103,7 +103,10 @@
     grid:
     - 0,0,8,3
     quickInsert: true
-    areaInsert: true
+    areaInsert: false
+    whitelist:
+      components:
+      - Contraband
   - type: Dumpable
   - type: Unremoveable
     deleteOnDrop: false # Starlight: drops to floor on crit, does not delete

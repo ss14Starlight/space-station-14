@@ -42,27 +42,15 @@
   components:
   - type: BorgSwitchableType
     selectedBorgType: security
-  - type: BorgChassis
-    moduleWhitelist:
-      tags:
-      - BorgModuleSecurityStation # Starlight: restricted to station security module only
-  # Starlight-start: sec comms and lawset
-  - type: IntrinsicRadioReceiver
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Binary
-    - Common
-    - Security
-    - Command
-  - type: ActiveRadio
-    channels:
-    - Binary
-    - Common
-    - Security
-    - Command
+  # Starlight-start: sec lawset and actions
   - type: SiliconLawProvider
     laws: SecurityCyborgLawset
   - type: FlashImmunity # Starlight: security borg is immune to flashbangs
+  - type: SecurityBorg # Starlight: enables lawbook and call-for-help actions
+  - type: ActionGrant
+    actions:
+    - ActionBorgOpenLawbook
+    - ActionBorgCallForHelp
   # Starlight-end
 
 # Starlight-start: pre-powered variant for spawning/cargo

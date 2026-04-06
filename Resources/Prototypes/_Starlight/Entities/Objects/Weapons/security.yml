@@ -61,9 +61,11 @@
     sprite: _Starlight/Objects/Tools/cyberling.rsi
     state: holorestrainer_powered
   - type: Handcuff
-    cuffTime: 2.5
+    # Starlight-start: balance holocuffs — faster to apply than normal (3.5s), shorter breakout than before (was 60s)
+    cuffTime: 3.0
     uncuffTime: 5
-    breakoutTime: 60
+    breakoutTime: 30
+    # Starlight-end
     cuffedRSI: Objects/Misc/handcuffs.rsi
     bodyIconState: body-overlay
     mustBeUsedFromHand: false
