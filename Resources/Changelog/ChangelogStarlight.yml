@@ -36293,5 +36293,12 @@ Entries:
   id: 399801
   time: '2026-04-06T03:48:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3998
+- author: Ohelig (Code) & Bewarehouse (Mail contents)
+  changes:
+  - message: Added spam mail that turns you into a SELF Agent when you sign it.
+    type: Add
+  id: 394901
+  time: '2026-04-06T04:27:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3949
 Order: -1
 
