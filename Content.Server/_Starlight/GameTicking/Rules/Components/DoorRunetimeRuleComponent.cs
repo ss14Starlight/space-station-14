@@ -10,5 +10,5 @@ public sealed partial class DoorRunetimeRuleComponent : Component
     public readonly HashSet<EntityUid> AffectedEntities = new();
 
     [DataField]
-    public List<string> Blacklist = new();
+    public string? BlacklistTag;
 }

@@ -7,6 +7,7 @@ using Content.Shared.Electrocution;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Station.Components;
+using Content.Shared.Tag;
 using Robust.Shared.Timing;
 namespace Content.Server.StationEvents.Events;
 
@@ -15,6 +16,7 @@ public sealed class DoorRunetimeRule : StationEventSystem<DoorRunetimeRuleCompon
     [Dependency] private readonly SharedDoorSystem _door = default!;
     [Dependency] private readonly SharedElectrocutionSystem _electrocution = default!;
     [Dependency] private readonly SharedAirlockSystem _airlock = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     protected override void Started(EntityUid uid, DoorRunetimeRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -87,29 +89,12 @@ public sealed class DoorRunetimeRule : StationEventSystem<DoorRunetimeRuleCompon
             if (TryComp<ElectrifiedComponent>(ent, out var electrified))
                 _electrocution.SetElectrified((ent, electrified), false);
 
-            if (IsBlacklisted(ent, comp))
+            if (!string.IsNullOrWhiteSpace(comp.BlacklistTag) && _tag.HasTag(ent, comp.BlacklistTag))
                 continue;
 
             _door.TryOpen(ent);
         }
 
         comp.AffectedEntities.Clear();
-    }
-
-    private bool IsBlacklisted(EntityUid ent, DoorRunetimeRuleComponent comp)
-    {
-        if (!TryComp(ent, out MetaDataComponent? meta)
-            || meta.EntityPrototype == null
-            || string.IsNullOrWhiteSpace(meta.EntityPrototype.EditorSuffix)
-            || comp.Blacklist == null)
-        {
-            return false;
-        }
-
-        var suffix = meta.EntityPrototype.EditorSuffix;
-
-        return comp.Blacklist.Any(blacklist =>
-            !string.IsNullOrWhiteSpace(blacklist)
-            && suffix.Contains(blacklist.Trim(), StringComparison.OrdinalIgnoreCase));
     }
 }
