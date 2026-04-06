@@ -39,9 +39,12 @@ public sealed class ListeningSystem : EntitySystem
         var sourceXform = xformQuery.GetComponent(source);
         var sourcePos = _xforms.GetWorldPosition(sourceXform, xformQuery);
 
+        // starlight start
         var attemptEv = new ListenAttemptEvent(source);
-        var ev = new ListenEvent(message.Text, source, language, message.OriginalText); // starlight
-        var obfuscatedEv = !isWhisper ? null : new ListenEvent(_chat.ObfuscateMessageReadability(message.Text), source, language, message.OriginalText); // Starlight
+        var ev = new ListenEvent(message.Text, source, language, message.OriginalText);
+        var obfuscatedText = _chat.ObfuscateMessageReadability(message.Text);
+        var obfuscatedEv = !isWhisper ? null : new ListenEvent(obfuscatedText, source, language, obfuscatedText);
+        // starlight end
         var query = EntityQueryEnumerator<ActiveListenerComponent, TransformComponent>();
 
         while(query.MoveNext(out var listenerUid, out var listener, out var xform))

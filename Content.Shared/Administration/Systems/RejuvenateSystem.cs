@@ -34,7 +34,7 @@ public sealed class RejuvenateSystem : EntitySystem
         foreach (var damageType in args.PreserveDamageTypes)
         {
             if (damageable.Damage.DamageDict.TryGetValue(damageType, out var damage))
-                preservedDamage.Add(damageType, damage);
+                preservedDamage[damageType] = damage;
         }
         PerformRejuvenate(args.Performer);
         _damageable.TryChangeDamage(args.Performer, new() { DamageDict = preservedDamage }, ignoreResistances: true);

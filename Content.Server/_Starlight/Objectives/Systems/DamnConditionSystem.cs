@@ -12,7 +12,7 @@ public sealed class DamnConditionSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<DamnConditionComponent, ObjectiveAfterAssignEvent>(OnAfterAssign);
         SubscribeLocalEvent<DamnConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
     }
@@ -27,12 +27,10 @@ public sealed class DamnConditionSystem : EntitySystem
         {
             if (damnedComp.DamnedBy == args.Mind.OwnedEntity)
             {
-                // if we need specific damnations, make sure they are there, if not just increment the counter
-                if (condition.Comp.RequireSpecificDamnations &&
-                    !damnedComp.Damnations.Except(condition.Comp.RequiredDamnations).Any())
-                    countedDamnations++;
-                else
-                    countedDamnations++;
+                if (condition.Comp.RequireSpecificDamnations)
+                {
+                    if(damnedComp.Damnations.Except(condition.Comp.RequiredDamnations).Any()) countedDamnations++;
+                } else countedDamnations++;
             }
         }
 

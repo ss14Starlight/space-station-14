@@ -174,3 +174,13 @@
   cost: 5
   components:
   - type: NoSlip
+
+# TESTS (not intended for gameplay)
+
+- type: damnation
+  id: TestFail
+  name: fail to sign
+  description: The contract will never be able to complete
+  cost: -10
+  actions:
+  - !type:DamnationActionFail

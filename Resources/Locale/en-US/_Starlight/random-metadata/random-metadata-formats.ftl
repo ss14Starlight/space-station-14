@@ -1,1 +1,1 @@
-name-format-devil = {$part0}, {$part1}
+name-format-devil = {$part0} {$part1}

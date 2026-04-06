@@ -33,6 +33,12 @@ public abstract partial class SharedDevilSystem : EntitySystem
         if (contractComp.Completed)
             return InfernalContractValidity.Signed;
 
+        var cont = GetContractContent(contract);
+        if (cont is not InfernalContractData content)
+            return InfernalContractValidity.InvalidFormat;
+        if (content.Cost > 0)
+            return InfernalContractValidity.TooCostly;
+
         return InfernalContractValidity.Valid;
     }
 
@@ -50,8 +56,11 @@ public abstract partial class SharedDevilSystem : EntitySystem
         var rawContent = _parsablePaper.GetPaperValues(contract, true);
         if (rawContent == null) return null;
 
-        var rawSacrificesGroup = rawContent.GetValueOrDefault("sacrifices")![0];
-        var rawBenefitsGroup = rawContent.GetValueOrDefault("benefits")![0];
+        var sacrifices = rawContent.GetValueOrDefault("sacrifices");
+        var benefits = rawContent.GetValueOrDefault("benefits");
+        if (sacrifices == null || sacrifices.Count == 0 || benefits == null || benefits.Count == 0) return null;
+        var rawSacrificesGroup = sacrifices[0];
+        var rawBenefitsGroup = benefits[0];
 
         var listSplitterRegex = new Regex("[•\\-\\.\\+]\\s*(.+)"); // bruh
 
@@ -140,7 +149,7 @@ public enum InfernalContractValidity
 }
 
 /// <summary>
-/// 
+///
 /// </summary>
 public record struct InfernalContractData
 {

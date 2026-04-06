@@ -29,7 +29,7 @@
   id: ActionSummonBident
   parent: BaseAction
   name: Recall Bident
-  description: Summon a suitably evil looking weapon for diplomatic purposes
+  description: Summon a suitably evil looking weapon for diplomatic purposes.
   components:
   - type: Action
     itemIconStyle: BigAction

@@ -28,7 +28,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
             // adds true name to the required patterns, as this dynamically changes between devils
             // this is also shit, preferably this would somehow be able to exist entirely in yaml
             var regexSanitisedTruename = NameSanitizeRegex().Replace(devilComp.TrueName, "");
-            parsableComp.RequiredPatterns.Add($"(?<={regexSanitisedTruename}, an agent of hell.).*");
+            parsableComp.RequiredPatterns.Add($"(?<={Regex.Escape(regexSanitisedTruename)}, an agent of hell.).*");
         }
 
         var content = Loc.GetString("infernal-contract-base", ("truename", devilComp.TrueName));

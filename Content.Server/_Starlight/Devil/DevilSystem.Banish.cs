@@ -8,6 +8,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Popups;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Traits.Assorted;
+using Content.Server.Bible.Components;
 
 namespace Content.Server._Starlight.Devil;
 
@@ -65,7 +66,8 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
     private void OnBibleThwack(EntityUid uid, DevilComponent devilComp, ref BibleThwackEvent args)
     {
-        if (!_mobState.IsDead(uid)) return;
+        if (!_mobState.IsDead(uid)) return; // devil not dead
+        if (!HasComp<BibleUserComponent>(args.User)) return; // not a chaplain
 
         // hit while crit/dead, this should super kill them
         _damageable.TryChangeDamage(uid, devilComp.BibleBanishDamage, true);

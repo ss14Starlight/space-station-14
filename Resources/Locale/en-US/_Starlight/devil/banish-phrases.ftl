@@ -4,4 +4,3 @@ devil-banish-phrase-3 = begone
 devil-banish-phrase-4 = leave
 devil-banish-phrase-5 = cease
 devil-banish-phrase-6 = give up
-devil-banish-phrase-7 = no

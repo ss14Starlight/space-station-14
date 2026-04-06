@@ -73,7 +73,12 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         foreach (var damnation in contract.Damnations)
         {
-            AddDamnation((ent, damnedComp), damnation);
+            if(!AddDamnation((ent, damnedComp), damnation))
+            {
+                var ev = new DamnationInitFailEvent();
+                RaiseLocalEvent(ent, ref ev);
+                return false;
+            }
         }
 
         _popup.PopupEntity(Loc.GetString("devil-popup-damnation", ("name", Name(ent))), ent, Shared.Popups.PopupType.MediumCaution);
@@ -116,12 +121,17 @@ public sealed partial class DevilSystem : SharedDevilSystem
         foreach (var damnation in damnations)
             RemoveDamnation(ent, damnation);
         RemComp<DamnedComponent>(ent.Owner);
+
+        _popup.PopupEntity(Loc.GetString("devil-popup-damnation-fail"), ent.Owner, PopupType.Small);
     }
 
     private void OnDamnationShutdown(Entity<DamnedComponent> ent, ref ComponentShutdown args)
     {
-        if (TryComp<DevilComponent>(ent.Comp.DamnedBy, out var devilComp))
+        if (TryComp<DevilComponent>(ent.Comp.DamnedBy, out var devilComp)) {
             devilComp.DamnedSouls.Remove(ent.Owner);
+            var ev = new DevilSoulsDamnedCountChangedEvent();
+            RaiseLocalEvent(ent.Comp.DamnedBy, ref ev);
+        }
     }
 
     // misc section

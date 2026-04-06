@@ -42,7 +42,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
         SubscribeLocalEvent<DevilComponent, OpenDamnationsMenuEvent>(OnOpenDamnationsMenu);
 
         SubscribeLocalEvent<DevilComponent, DevilSoulsDamnedCountChangedEvent>(OnDevilSoulsDamnedCountChanged);
-        
+
         SubscribeDamned();
         SubscribeBanish();
     }
@@ -91,6 +91,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
             EntityManager.EnsureComponent<AppliedSpriteLayerComponent>(uid, out var appliedSpriteLayer);
             appliedSpriteLayer.Sprite = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Devil/evilhalo.rsi"), "halo");
             appliedSpriteLayer.Layer = "devil_halo";
+            devilComp.EvilHaloAppearance.Completed = true;
         }
 
         if (FitsChangeCriteria(devilComp, devilComp.OminousHum))
@@ -99,6 +100,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
             _ambientSound.SetSound(uid, new SoundPathSpecifier(new ResPath("/Audio/Weapons/ebladehum.ogg")));
             _ambientSound.SetVolume(uid, -8);
             _ambientSound.SetRange(uid, 3);
+            devilComp.OminousHum.Completed = true;
         }
 
         if (FitsChangeCriteria(devilComp, devilComp.RedAuraAppearance))
@@ -107,11 +109,13 @@ public sealed partial class DevilSystem : SharedDevilSystem
             _pointLight.SetColor(uid, Color.Red);
             _pointLight.SetRadius(uid, 2);
             _pointLight.SetEnergy(uid, 3);
+            devilComp.RedAuraAppearance.Completed = true;
         }
 
         if (FitsChangeCriteria(devilComp, devilComp.BidentAction))
         {
             _actions.AddAction(uid, SummonBidentActionProto);
+            devilComp.BidentAction.Completed = true;
         }
     }
     #endregion

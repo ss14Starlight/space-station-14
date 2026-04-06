@@ -34,4 +34,6 @@ public sealed partial class DoomedComponent : Component
     /// </summary>
     [DataField]
     public EntProtoId StatusEffect = "StatusEffectDoomedIcon";
+
+    public EntityUid StatusEffectUid;
 }

@@ -34,7 +34,6 @@ public sealed partial class DevilComponent : Component
         "AllSeeing",
         "Magic",
         "Purpose",
-        "Humanity",
         "Health",
         "Time",
         "Organ",
@@ -55,7 +54,6 @@ public sealed partial class DevilComponent : Component
     /// <summary>
     /// list of people who have been evil'd
     /// </summary>
-    [AutoNetworkedField, ViewVariables]
     public List<EntityUid> DamnedSouls = new();
 
     // todo make actual devil names
