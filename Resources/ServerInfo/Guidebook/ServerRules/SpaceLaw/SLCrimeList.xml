@@ -392,7 +392,6 @@
     </ColorBox>
     <ColorBox Color="#475c7d">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Enemy of Corporation (8)
       </Box>
     </ColorBox>
     <ColorBox>
@@ -419,7 +418,7 @@
 
   7. Disturbance, Vigilantism, Rioting
 
-  8. Sedition, Conspiracy, Treason, Enemy of Corporation
+  8. Sedition, Conspiracy, Treason
 
   ## Minor Crimes
   Those who commit a minor crime should be issued a warning for their first offense, however repeat offenses are cumulative and should result in jail time of up to 5 minutes per minor crime committed.
@@ -896,7 +895,6 @@
     </ColorBox>
     <ColorBox Color="#475c7d">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Enemy of Corporation
       </Box>
     </ColorBox>
     <ColorBox Color="#475c7d">
