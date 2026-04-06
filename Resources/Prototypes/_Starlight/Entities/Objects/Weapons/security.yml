@@ -11,7 +11,6 @@
     maxCharge: 750
     startingCharge: 750
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 20
   - type: BatteryWeaponFireModes
     fireModes:
@@ -44,8 +43,7 @@
     maxCharge: 1000
     startingCharge: 1000
   - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 25
+    autoRechargeRate: 8
   - type: Unremoveable
 
 # Holographic cuffs integrated into security borg — uses existing holo sprite
@@ -61,7 +59,7 @@
     sprite: _Starlight/Objects/Tools/cyberling.rsi
     state: holorestrainer_powered
   - type: Handcuff
-    # Starlight-start: balance holocuffs — faster to apply than normal (3.5s), shorter breakout than before (was 60s)
+    # Starlight-start: balance holocuffs — faster to apply than normal cuffs (3.0s vs default 3.5s), shorter breakout than before (was 60s)
     cuffTime: 3.0
     uncuffTime: 5
     breakoutTime: 30
@@ -82,7 +80,6 @@
   components:
   - type: LimitedCharges
     maxCharges: 5
-    charges: 5
   - type: AutoRecharge
     rechargeDuration: 30
   - type: Unremoveable

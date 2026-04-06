@@ -513,6 +513,10 @@ namespace Content.Shared.Cuffs
 
             var result = _container.Insert(handcuff, component.Container);
 
+            // Starlight: if insert failed, restore Unremoveable so the cuff can't be stolen
+            if (!result && borgCuff != null)
+                EnsureComp<UnremoveableComponent>(handcuff);
+
             // Starlight: spawn a fresh replacement cuff in the borg's hand slot immediately
             if (result && borgCuff?.OwnerChassis is { } borgChassis &&
                 borgCuff.HandId != null &&
@@ -763,9 +767,10 @@ namespace Content.Shared.Cuffs
                     Exists(borgChassis) &&
                     TryComp<HandsComponent>(borgChassis, out var chassisHands))
                 {
-                    if (_hands.TryGetHeldItem((borgChassis, chassisHands), borgCuff.HandId, out _))
+                    if (_hands.TryGetHeldItem((borgChassis, chassisHands), borgCuff.HandId, out _) ||
+                        !_hands.TryGetHand((borgChassis, chassisHands), borgCuff.HandId, out _))
                     {
-                        // Replacement already in slot — discard the returned cuffs
+                        // Replacement already in slot, or slot no longer exists — discard the returned cuffs
                         QueueDel(cuffsToRemove);
                     }
                     else

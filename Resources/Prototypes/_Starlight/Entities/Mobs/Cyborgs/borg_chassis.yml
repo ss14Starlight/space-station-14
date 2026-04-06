@@ -52,6 +52,47 @@
     - ActionBorgOpenLawbook
     - ActionBorgCallForHelp
   # Starlight-end
+  # Starlight-start: +55 HP and small armor for security cyborg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      155: Critical
+      355: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 130
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 5
+    - trigger:
+        !type:DamageTrigger
+        damage: 355
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:EmptyContainersBehaviour
+        containers:
+        - borg_brain
+        - borg_module
+        - cell_slot
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: SecurityBorgArmor
+  # Starlight-end
 
 # Starlight-start: pre-powered variant for spawning/cargo
 - type: entity
@@ -69,7 +110,7 @@
           tags:
           - MechReactor
 # Starlight-end
-    
+
 - type: entity
   id: BorgChassisPurrfus
   parent: BorgChassisSelectable
