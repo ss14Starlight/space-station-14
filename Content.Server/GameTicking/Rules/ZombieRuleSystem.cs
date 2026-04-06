@@ -51,10 +51,8 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
     /// <summary>
     /// Gives initial infected the ability to understand (but not speak) zombie language.
     /// </summary>
-    private void OnInitialInfectedSelected(EntityUid uid, ZombieRuleComponent comp, ref AfterAntagEntitySelectedEvent args)
-    {
+    private void OnInitialInfectedSelected(EntityUid uid, ZombieRuleComponent comp, ref AfterAntagEntitySelectedEvent args) =>
         _language.AddLanguage(args.EntityUid, "Zombie", addSpoken: false, addUnderstood: true);
-    }
     // Starlight-end
 
     private void OnGetBriefing(Entity<InitialInfectedRoleComponent> role, ref GetBriefingEvent args)
