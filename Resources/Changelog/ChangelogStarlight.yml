@@ -36269,5 +36269,29 @@ Entries:
   id: 404101
   time: '2026-04-06T03:40:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4041
+- author: Shades, princess_gurchi
+  changes:
+  - message: Cooling Units, IPC will need those if they wish to regulate their temperature.
+    type: Add
+  - message: dead IPC body will now cool down much faster if it reached high temperatures.
+    type: Tweak
+  - message: IPCs will burn for less time than organics.
+    type: Tweak
+  - message: Preventing silicons from having glitched visuals for longer than they
+      are supposed to.
+    type: Fix
+  - message: Fix a bug where IPC could use MechReactor.
+    type: Fix
+  - message: IPC Survival Kit.
+    type: Add
+  - message: Fix a bug where you can use an AIInterface on the IPC.
+    type: Fix
+  - message: Fix where IPC get Airloss/Toxins/Genetic Damage.
+    type: Fix
+  - message: Enable IPC Again.
+    type: Tweak
+  id: 399801
+  time: '2026-04-06T03:48:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3998
 Order: -1
 
