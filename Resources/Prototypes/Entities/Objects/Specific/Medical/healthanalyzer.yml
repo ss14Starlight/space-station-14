@@ -31,6 +31,6 @@
     guides:
     - MedicalDoctor
   # Starlight-edit: start
-  - type: ItemPrice 
+  - type: ItemPrice
     fallbackPrice: 50
   # Starlight-edit: end

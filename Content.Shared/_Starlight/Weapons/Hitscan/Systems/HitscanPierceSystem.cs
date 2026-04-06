@@ -40,7 +40,7 @@ public sealed partial class PierceSystem : EntitySystem
 
         if (hitscan.Comp.Chance <= 0 || data.HitEntity == null)
             return;
-        
+
         if (hitscan.Comp.Chance < 1 && !_rand.Prob(hitscan.Comp.Chance))
             return;
 

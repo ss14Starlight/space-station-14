@@ -17,7 +17,7 @@ public sealed class SignatureTagHandler : IMarkupTagHandler
 {
     public string Name => "signature";
     private static int _signatureCounter = 0;
-    
+
     /// <summary>
     /// Font line height set by PaperWindow to ensure buttons match text height
     /// </summary>

@@ -266,7 +266,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
             }
 
             var successRate = totalObjectives > 0 ? (float)completedObjectives / totalObjectives : 0f;
-            
+
             // Starlight Start: Custom objective response (pink text)
             if (TryComp<CustomObjectiveSummaryComponent>(mindId, out var customComp))
             {
@@ -289,7 +289,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                 agentSummary.AppendLine(Loc.GetString("custom-objective-format", ("line", currentLine)));
             }
             // Starlight End
-            
+
             agentSummaries.Add((agentSummary.ToString(), successRate, completedObjectives));
         }
 

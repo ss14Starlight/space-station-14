@@ -59,7 +59,7 @@
     availableModes:
     - SemiAuto
     - FullAuto #Just allows people to hold down left click
-  - type: Battery 
+  - type: Battery
     maxCharge: 1500 # ~1:30 minutes for recharge
     startingCharge: 1500
   - type: BatteryAmmoProvider

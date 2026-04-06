@@ -28,7 +28,7 @@ public sealed class GlobalSoundCommand : ToolshedCommand
             path, audio, saveToReplay);
         return uid;
     }
-    
+
     [CommandImplementation("play")]
     public ICommonSession Play([PipedArgument] ICommonSession session, string path, int volume, bool saveToReplay)
     {

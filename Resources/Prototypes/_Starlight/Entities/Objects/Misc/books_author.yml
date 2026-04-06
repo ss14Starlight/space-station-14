@@ -18,7 +18,7 @@
           color: "#362828"
     - type: Paper
       content: book-text-conspiracies
-      
+
 - type: entity
   parent: BookBase
   id: BookMoreConspiracies
@@ -59,7 +59,7 @@
           color: "#ff69b4"
     - type: Paper
       content: book-text-clown-mime-war
-      
+
 - type: entity
   parent: BookBase
   id: BookMarsIncident

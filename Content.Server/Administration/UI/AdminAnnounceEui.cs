@@ -20,7 +20,7 @@ namespace Content.Server.Administration.UI
         {
             IoCManager.InjectDependencies(this);
             var entSysMan = IoCManager.Resolve<IEntitySystemManager>(); //Starlight
-            _chatSystem = entSysMan.GetEntitySystem<ChatSystem>(); //Starlight 
+            _chatSystem = entSysMan.GetEntitySystem<ChatSystem>(); //Starlight
             _autoLog = entSysMan.GetEntitySystem<AutoDiscordLogSystem>(); //Starlight
         }
 

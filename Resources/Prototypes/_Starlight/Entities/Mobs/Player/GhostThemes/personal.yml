@@ -40,7 +40,7 @@
   - !type:UsernameRequirement
     username: Killerdash
 
-    
+
 - type: ghostTheme
   id: Robot
   name: Robot
@@ -54,7 +54,7 @@
   requirements:
   - !type:UsernameRequirement
     username: Rinary
-    
+
 - type: ghostTheme
   id: pai_fox
   name: pai fox

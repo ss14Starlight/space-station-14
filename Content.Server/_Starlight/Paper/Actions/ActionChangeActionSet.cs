@@ -9,7 +9,7 @@ public sealed partial class ActionChangeActionSet : OnSignAction
     /// </summary>
     [DataField(required: true)]
     public ProtoId<OnSignActionsPrototype> Actions = default;
-    
+
     public override bool Action(EntityUid paper, ActionsOnSignComponent component, EntityUid target)
     {
         component.OnSignActionProto = Actions;

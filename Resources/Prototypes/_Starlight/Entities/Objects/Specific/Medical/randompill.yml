@@ -1,4 +1,4 @@
-# It's skewed more towards god damn awful shit. The good shit, however, has a higher weight on syndicate chems. You also get *more* of each. 
+# It's skewed more towards god damn awful shit. The good shit, however, has a higher weight on syndicate chems. You also get *more* of each.
 - type: weightedRandomFillSolution
   id: RandomFillOminousPill
   fills:

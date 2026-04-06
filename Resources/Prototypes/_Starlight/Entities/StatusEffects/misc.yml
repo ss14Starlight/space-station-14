@@ -3,7 +3,7 @@
 - type: entity
   parent: MobStatusEffectDebuff
   id: StatusEffectTemporaryBlindness
-  name: status-effect-misc-temporary-blindness
+  name: temporary blindness
   components:
   - type: StatusEffect
     whitelist:
@@ -18,7 +18,7 @@
 - type: entity
   parent: MobStatusEffectDebuff
   id: StatusEffectMuted
-  name: status-effect-misc-muted
+  name: mute
   components:
     - type: StatusEffect
       whitelist:
@@ -34,7 +34,7 @@
 - type: entity
   parent: MobStatusEffectDebuff
   id: StatusEffectTheDark
-  name: status-effect-misc-the-dark
+  name: the dark
   components:
   - type: StatusEffect
     whitelist:
@@ -44,7 +44,7 @@
       components:
       - Shadekin
       - TheDarkImmune
-    maximumDuration: 2m 
+    maximumDuration: 2m
   - type: DrunkStatusEffect
   - type: DrowsinessStatusEffect
     sleepIncident: false
@@ -61,7 +61,7 @@
 - type: entity
   parent: MobStatusEffectDebuff
   id: StatusEffectHeldBreath
-  name: status-effect-misc-holding-breath
+  name: holding breath
   components:
   - type: StatusEffect
     whitelist:

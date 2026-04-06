@@ -18,14 +18,14 @@ public sealed class ClientEncryptionKeySystem : EntitySystem
     [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly StarlightEntitySystem _sl = default!;
     private EntityUid singleton;
-    
+
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<EncryptionKeyComponent, AfterAutoHandleStateEvent>(OnAutoHandleState);
     }
-    
+
     private void OnAutoHandleState(EntityUid uid, EncryptionKeyComponent component, AfterAutoHandleStateEvent args)
     {
         if (!TryComp<SpriteComponent>(uid, out var sprite)) return;
@@ -59,7 +59,7 @@ public sealed class ClientEncryptionKeySystem : EntitySystem
         if (!_sprite.TryGetLayer((singleton, sprite), index, out var layer, false)) return;
         _sprite.LayerSetRsi((entity.Owner, entity.Comp), index, layer.RSI, layer.State);
     }
-    
+
     // Saved here commented out so that if/when the PR I made to RT gets merged, I can swap back to this instead.
     // private bool TryGetPrototypeSprite(EntityUid uid, [NotNullWhen(true)] out SpriteComponent? sprite)
     // {
