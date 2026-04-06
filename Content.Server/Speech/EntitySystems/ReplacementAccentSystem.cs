@@ -40,20 +40,20 @@ namespace Content.Server.Speech.EntitySystems
         }
 
         // Starlight start
-        private void OnAccent(EntityUid uid, ReplacementAccentComponent component, AccentGetEvent args) 
+        private void OnAccent(EntityUid uid, ReplacementAccentComponent component, AccentGetEvent args)
             => args.Message = ApplyReplacements(args.Message, component.Accent);
 
         /// <summary>
         ///     Attempts to apply a given replacement accent prototype to a message.
         /// </summary>
         [PublicAPI]
-        public SpeechMessage ApplyReplacements(SpeechMessage msg, string accent) 
+        public SpeechMessage ApplyReplacements(SpeechMessage msg, string accent)
         {
             if (!_proto.TryIndex<ReplacementAccentPrototype>(accent, out var prototype))
-                return msg; 
+                return msg;
 
             if (!_random.Prob(prototype.ReplacementChance))
-                return msg; 
+                return msg;
 
             // Prioritize fully replacing if that exists--
             // ideally both aren't used at the same time (but we don't have a way to enforce that in serialization yet)
@@ -134,7 +134,7 @@ namespace Content.Server.Speech.EntitySystems
             return replacements;
         }
 
-        private (Regex regex, string replacement)[] GenerateCachedReplacements(Dictionary<string, string>? replacements) 
+        private (Regex regex, string replacement)[] GenerateCachedReplacements(Dictionary<string, string>? replacements)
             => replacements is null
                 ? []
                 : [.. replacements.Select(kv =>

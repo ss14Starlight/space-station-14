@@ -51,9 +51,9 @@ public sealed class EntityBeaconSystem : EntitySystem
                 if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
                     return;
 
-                var enumerator = new FreeSpaceEnumerator(_map, _turf, true, true, null, xform.GridUid.Value, grid, 
+                var enumerator = new FreeSpaceEnumerator(_map, _turf, true, true, null, xform.GridUid.Value, grid,
                     new Box2(centerCoords.Position + new Vector2(-component.Range, -component.Range), centerCoords.Position + new Vector2(component.Range, component.Range)), true);
-                
+
                 while (enumerator.MoveNext(out var coordinates))
                 {
                     var entities = _lookup.GetEntitiesIntersecting(coordinates);

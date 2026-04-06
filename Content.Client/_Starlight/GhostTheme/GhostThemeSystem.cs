@@ -18,11 +18,11 @@ public sealed class GhostThemeSystem : EntitySystem
         SubscribeLocalEvent<GhostThemeComponent, AppearanceChangeEvent>(OnAppearance);
     }
 
-    private void OnAppearance(Entity<GhostThemeComponent> ent, ref AppearanceChangeEvent args) 
+    private void OnAppearance(Entity<GhostThemeComponent> ent, ref AppearanceChangeEvent args)
     {
         var spriteType = _entities.Entity<SpriteComponent>(ent.Owner);
 
-        if (!_appearance.TryGetData<string>(ent.Owner, GhostThemeVisualLayers.Base, out var Theme) 
+        if (!_appearance.TryGetData<string>(ent.Owner, GhostThemeVisualLayers.Base, out var Theme)
             || !_appearance.TryGetData<Color>(ent.Owner, GhostThemeVisualLayers.Color, out var Color)
             || !_prototypeManager.TryIndex<GhostThemePrototype>(Theme, out var ghostThemePrototype))
             return;
@@ -40,5 +40,5 @@ public sealed class GhostThemeSystem : EntitySystem
         spriteType.Comp.NoRotation = ghostThemePrototype.SpriteSpecifier.SpriteRotation;
         spriteType.Comp.OverrideContainerOcclusion = true;
     }
-    
+
 }

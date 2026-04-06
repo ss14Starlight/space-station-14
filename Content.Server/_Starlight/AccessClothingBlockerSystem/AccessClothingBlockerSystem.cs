@@ -32,14 +32,14 @@ public sealed class AccessClothingBlockerSystem : EntitySystem
         var canUse = false;
         if (!TryComp<AccessReaderComponent>(uid, out var accessReader))
             canUse = true;
-        
+
         if (component.Access != null)
         {
             var accesses = _accessReader.FindAccessTags(args.Equipee);
             if (accesses.Any(a => a.ToString() == component.Access))
                 canUse = true;
         }
-            
+
         else if (_accessReader.IsAllowed(args.Equipee, uid, accessReader) )
                 canUse = true;
 
