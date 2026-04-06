@@ -34782,15 +34782,6 @@ Entries:
   id: 377801
   time: '2026-03-18T18:51:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3778
-- author: Rinary, Neenner
-  changes:
-  - message: Added shoelaces for shoes.
-    type: Add
-  - message: Added ability to tie shoelaces together on shoes.
-    type: Add
-  id: 344501
-  time: '2026-03-18T19:39:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3445
 - author: Makeshift
   changes:
   - message: (Plasma) Departmental communication consoles.
@@ -34949,20 +34940,6 @@ Entries:
   id: 373401
   time: '2026-03-20T11:23:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3734
-- author: Rinary
-  changes:
-  - message: Fixed shoelaces tooltips.
-    type: Fix
-  - message: Fixed untie shoelaces verb.
-    type: Fix
-  - message: Fixed prediction crash when trying to unequip shoes with shoelaces.
-    type: Fix
-  - message: Fixed bug when magboots, moon boots, speed boots, socks and other specific
-      types of shoes have shoelaces.
-    type: Fix
-  id: 381501
-  time: '2026-03-20T12:54:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3815
 - author: Rinary
   changes:
   - message: Added bullet holes visual effect when shooting in objects like walls.
@@ -35426,13 +35403,6 @@ Entries:
   id: 378101
   time: '2026-03-22T19:38:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3781
-- author: redmushie
-  changes:
-  - message: Shoelaces are now tied by default.
-    type: Tweak
-  id: 387401
-  time: '2026-03-22T20:34:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3874
 - author: Conflee
   changes:
   - message: Added 9 new AI Screens and 7 new AI Holograms.
@@ -35496,13 +35466,6 @@ Entries:
   id: 385401
   time: '2026-03-22T20:52:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3854
-- author: redmushie
-  changes:
-  - message: Blue shield magboots and space ninja shoes no longer require tying shoelaces.
-    type: Fix
-  id: 387301
-  time: '2026-03-22T20:56:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3873
 - author: mikeysaurus
   changes:
   - message: Adds new GitHub workflow to verify that the Prototypes/_StarLight directory
@@ -36219,13 +36182,6 @@ Entries:
   id: 398201
   time: '2026-03-28T07:32:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3982
-- author: CawsForConcern
-  changes:
-  - message: Security magboots no longer have shoelaces.
-    type: Fix
-  id: 398801
-  time: '2026-03-29T09:43:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3988
 - author: wonderfulnewworld
   changes:
   - message: HoP can give Mail Access now.
