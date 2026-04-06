@@ -19,7 +19,7 @@ public sealed partial class GermanAccentSystem : EntitySystem
     [GeneratedRegex(@"(?<=\s|^)the(?=\s|$)", RegexOptions.IgnoreCase)]
     private static partial Regex RegexThe();
 
-    public override void Initialize() 
+    public override void Initialize()
         => SubscribeLocalEvent<GermanAccentComponent, AccentGetEvent>(OnAccent);
 
     public SpeechMessage Accentuate(SpeechMessage message)
@@ -86,6 +86,6 @@ public sealed partial class GermanAccentSystem : EntitySystem
         return message;
     }
 
-    private void OnAccent(Entity<GermanAccentComponent> ent, ref AccentGetEvent args) 
+    private void OnAccent(Entity<GermanAccentComponent> ent, ref AccentGetEvent args)
         => args.Message = Accentuate(args.Message);
 }

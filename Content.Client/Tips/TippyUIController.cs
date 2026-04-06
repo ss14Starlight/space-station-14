@@ -133,15 +133,15 @@ public sealed class TippyUIController : UIController
                 _entity = next.Proto is null
                     ? EntityManager.SpawnEntity(_cfg.GetCVar(CCVars.TippyEntity), MapCoordinates.Nullspace)
                     : EntityManager.SpawnEntity(next.Proto, MapCoordinates.Nullspace);
-                
+
                 if (!EntityManager.TryGetComponent(_entity, out sprite))
                     return;
-                
+
                 //Starlight begin - Allow updating humanoid appearance component if it exists
                 if (EntityManager.TryGetComponent<HumanoidAppearanceComponent>(_entity, out var appearance))
                     _appearance.UpdateSprite((_entity, appearance, sprite));
                 //Starlight end
-                
+
                 // Only modify layers if they have all of the required ones.
                 tippy.ModifyLayers = _sprite.TryGetLayer(_entity, "revealing", out _, false) &&
                                      _sprite.TryGetLayer(_entity, "speaking", out _, false) &&

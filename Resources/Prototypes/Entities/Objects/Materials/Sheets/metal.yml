@@ -4,6 +4,12 @@
   id: SheetMetalBase
   description: A sheet of metal, used often on the station in various applications.
   components:
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+  # Starlight end
   - type: Sprite
     sprite: Objects/Materials/Sheets/metal.rsi
   - type: Item

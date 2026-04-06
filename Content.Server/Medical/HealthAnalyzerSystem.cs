@@ -273,7 +273,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
                 }
                 if (isBlood)
                     continue;
-                    
+
                 metabolizingReagents.Add((reagent.Prototype, quantity));
             }
         }
@@ -286,7 +286,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             null,
             bleeding,
             unrevivable,
-            metabolizingReagents // Starlight - add metabolizing chemicals to ui message 
+            metabolizingReagents // Starlight - add metabolizing chemicals to ui message
         );
     }
 }

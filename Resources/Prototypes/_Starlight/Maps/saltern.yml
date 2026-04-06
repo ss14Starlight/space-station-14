@@ -66,10 +66,10 @@
             Performer: [ 2, 2 ]
             #silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 3, 3 ]  
+            Borg: [ 3, 3 ]
             #law
             Magistrate: [ 1, 1 ]
-            IAA: [ 2, 2 ]      
+            IAA: [ 2, 2 ]
             #Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]

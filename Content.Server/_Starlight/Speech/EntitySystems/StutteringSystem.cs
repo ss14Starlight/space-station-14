@@ -57,7 +57,7 @@ namespace Content.Server.Speech.EntitySystems
                 {
                     newLetter = _random.Prob(component.FourRandomProb) ? $"{newLetter}-{newLetter}-{newLetter}-{newLetter}"
                             : _random.Prob(component.ThreeRandomProb) ? $"{newLetter}-{newLetter}-{newLetter}"
-                            : _random.Prob(component.CutRandomProb) ? "" 
+                            : _random.Prob(component.CutRandomProb) ? ""
                             : $"{newLetter}-{newLetter}";
                 }
 

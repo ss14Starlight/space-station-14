@@ -41,7 +41,7 @@
 //         RemComp<Vector2DataConstructorComponent>(uid);
 //         return uid;
 //     }
-//     
+//
 //     [CommandImplementation("clean")]
 //     public IEnumerable<EntityUid> Clean(IEnumerable<EntityUid> uid) => uid.Select(Clean);
 // }
