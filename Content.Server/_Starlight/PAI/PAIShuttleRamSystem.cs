@@ -53,6 +53,7 @@ public sealed class PAIShuttleRamSystem : EntitySystem
 
             // Remove pilot status first (if they were actively piloting).
             _shuttleConsole.RemovePilot(ent);
+            RemCompDeferred<PAIShuttlePilotingComponent>(ent);
 
             // Eject from container so it lands at the console's position instead of being deleted.
             _container.Remove(ent, slot, force: true);
@@ -64,7 +65,6 @@ public sealed class PAIShuttleRamSystem : EntitySystem
         base.Update(frameTime);
 
         var toEject = new List<(EntityUid Uid, Vector2 Dir)>();
-        var toClean = new List<EntityUid>();
 
         // Walk all PAIs that are actively piloting a console.
         var pilotQuery = EntityQueryEnumerator<PAIComponent, PilotComponent>();
@@ -103,25 +103,15 @@ public sealed class PAIShuttleRamSystem : EntitySystem
             }
         }
 
-        // Clean up tracking components from PAIs no longer piloting.
-        var cleanQuery = EntityQueryEnumerator<PAIShuttlePilotingComponent>();
-        while (cleanQuery.MoveNext(out var uid, out _))
-        {
-            if (!HasComp<PilotComponent>(uid))
-                toClean.Add(uid);
-        }
-
         foreach (var (uid, dir) in toEject)
             EjectPAI(uid, dir);
-
-        foreach (var uid in toClean)
-            RemCompDeferred<PAIShuttlePilotingComponent>(uid);
     }
 
     private void EjectPAI(EntityUid uid, Vector2 throwDir)
     {
         // Step 1: Remove pilot — this also fires the "shuttle-pilot-end" popup internally.
         _shuttleConsole.RemovePilot(uid);
+        RemCompDeferred<PAIShuttlePilotingComponent>(uid);
 
         // Step 2: Eject the PAI from the console container so it exists in the world.
         if (_container.TryGetContainingContainer(uid, out var slot) && slot.ID == PaiSlotId)
