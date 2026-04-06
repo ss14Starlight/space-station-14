@@ -162,6 +162,14 @@
     - Binary
     - Common
 
+- type: entity
+  id: BorgChassisCargo
+  parent: BorgChassisSelectable
+  name: cargo cyborg
+  components:
+  - type: TextToSpeech
+  - type: BorgSwitchableType
+    selectedBorgType: cargo
 
 # TSF
 # ? Make this Generic in the future if we have... More TSF Borgs?
@@ -236,11 +244,4 @@
     - Unimplantable
     - EmagImmune
 
-- type: entity
-  id: BorgChassisCargo
-  parent: BorgChassisSelectable
-  name: cargo cyborg
-  components:
-  - type: TextToSpeech
-  - type: BorgSwitchableType
-    selectedBorgType: cargo
+
