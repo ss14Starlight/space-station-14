@@ -23,7 +23,7 @@
     Snout: MobHumanoidAnyMarking
     Chest: MobIPCTorso
     HeadTop: MobHumanoidAnyMarking
-    Eyes: MobHumanoidAnyMarking
+    Eyes: MobIPCEyes
     LArm: MobIPCLArm
     RArm: MobIPCRArm
     LHand: MobIPCLHand
@@ -47,19 +47,19 @@
       required: false
     Head:
       points: 1
-      required: true
+      required: false
       defaultMarkings: [ MarkingStandardHead ]
     Eyes:
       points: 1
-      required: true
-      defaultMarkings: [ ScreenStatic ]
+      required: false
     Chest:
       points: 1
       required: false
-    Legs:
+      defaultMarkings: [ MarkingStandardChest ]
+    Legs: # Default arms continue to overlay. A fix would be easy if left and right legs were distinct marking categories, and if feet and legs were similarly so.
       points: 4
       required: false
-    Arms:
+    Arms: # Default arms continue to overlay. A fix would be easy if left and right arms were distinct marking categories, and if arms and hands were similarly so.
       points: 4
       required: false
 
@@ -97,20 +97,20 @@
 - type: humanoidBaseSprite
   id: MobIPCTorso
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
-    state: torso_m
+    sprite: _FarHorizons/Mobs/Species/IPC/blank.rsi
+    state: blank
 
 - type: humanoidBaseSprite
   id: MobIPCTorsoMale
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
-    state: torso_m
+    sprite: _FarHorizons/Mobs/Species/IPC/blank.rsi
+    state: blank
 
 - type: humanoidBaseSprite
   id: MobIPCTorsoFemale
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
-    state: torso_f
+    sprite: _FarHorizons/Mobs/Species/IPC/blank.rsi
+    state: blank
 
 - type: humanoidBaseSprite
   id: MobIPCLLeg
