@@ -102,6 +102,7 @@
         - id: ClothingHandsGlovesCombat
         - id: DoubleEmergencyOxygenTankFilled
         - id: DoubleEmergencyNitrogenTankFilled
+        - id: EmergencyCoolingUnit
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

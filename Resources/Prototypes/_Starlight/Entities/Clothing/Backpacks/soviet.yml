@@ -26,6 +26,7 @@
         - id: ClothingHeadHelmetSovietEVA
         - id: DoubleEmergencyOxygenTankFilled
         - id: DoubleEmergencyNitrogenTankFilled
+        - id: EmergencyCoolingUnit # Starlight
 
 - type: entity
   id: ClothingBackpackDuffelZaporozhianBundle
@@ -68,6 +69,7 @@
         - id: ClothingHandsGlovesCombat
         - id: DoubleEmergencyOxygenTankFilled
         - id: DoubleEmergencyNitrogenTankFilled
+        - id: EmergencyCoolingUnit # Starlight
 
 - type: entity
   id: ClothingBackpackDuffelMarineLoadout
@@ -81,6 +83,7 @@
         children:
         - id: DoubleEmergencyOxygenTankFilled
         - id: DoubleEmergencyNitrogenTankFilled
+        - id: EmergencyCoolingUnit # Starlight
         - id: BoxMRE
         - id: FoodTinMRE
         - id: FoodTinBeans

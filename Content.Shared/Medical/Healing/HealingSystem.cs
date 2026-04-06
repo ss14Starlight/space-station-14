@@ -64,6 +64,7 @@ public sealed class HealingSystem : EntitySystem
             if(args.Used is null || _conditionalHealing.SelectBestMatch(args.Used.Value, target) is not ConditionalHealingData healingData)
                 return;
             healing = healingData.MakeComponent();
+            healing.Owner = args.Used.Value;
         }
 
         if (healing.DamageContainers is not null &&
