@@ -45,6 +45,13 @@ public abstract partial class SharedPlayingCardsSystem
         ref GetVerbsEvent<UtilityVerb> args
     ) where TStack : PlayingCardStackComponent
     {
+        // Starlight begin: Prevent interaction with deck if it is out of range/you have no hands.
+        if (!args.CanAccess ||
+            !args.CanInteract ||
+            args.Hands == null)
+            return;
+        // Starlight end
+
         var verbs = args.Verbs;
         var user = args.User;
         HandlePlayingCardComponents(
