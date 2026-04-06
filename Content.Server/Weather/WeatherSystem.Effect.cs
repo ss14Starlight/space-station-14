@@ -125,8 +125,7 @@ public sealed partial class WeatherSystem
                     continue;
             }
 
-            if (state.ProcessedEntities.Add(uid))
-                state.PendingEntities.Enqueue(uid);
+            state.PendingEntities.Enqueue(uid);
         }
         // Starlight - End
 
