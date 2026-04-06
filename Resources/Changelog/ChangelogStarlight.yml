@@ -36300,5 +36300,13 @@ Entries:
   id: 394901
   time: '2026-04-06T04:27:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3949
+- author: wonderfulnewworld
+  changes:
+  - message: Traitors, Thieves, Changelings, and Vampires now scale roughly 10-20%
+      slower.
+    type: Tweak
+  id: 403201
+  time: '2026-04-06T04:57:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4032
 Order: -1
 
