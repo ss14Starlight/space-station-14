@@ -525,7 +525,10 @@ namespace Content.Shared.Cuffs
                 _net.IsServer)
             {
                 var proto = MetaData(handcuff).EntityPrototype?.ID;
-                if (proto != null)
+                // Only spawn if the slot still exists and is currently empty (module not removed/reassigned)
+                if (proto != null &&
+                    _hands.TryGetHand((borgChassis, chassisHands), borgCuff.HandId, out _) &&
+                    !_hands.TryGetHeldItem((borgChassis, chassisHands), borgCuff.HandId, out _))
                 {
                     var newCuff = Spawn(proto, Transform(borgChassis).Coordinates);
                     var newComp = EnsureComp<BorgHandcuffComponent>(newCuff);
@@ -778,6 +781,11 @@ namespace Content.Shared.Cuffs
                         EnsureComp<UnremoveableComponent>(cuffsToRemove);
                         _hands.DoPickup(borgChassis, borgCuff.HandId, cuffsToRemove, chassisHands);
                     }
+                }
+                // Starlight: borg cuff whose owner is gone/invalid — always delete to avoid leaking into gameplay
+                else if (HasComp<BorgHandcuffComponent>(cuffsToRemove))
+                {
+                    QueueDel(cuffsToRemove);
                 }
                 // Handles spawning broken cuffs on server to avoid client misprediction
                 else if (cuff.BreakOnRemove)
