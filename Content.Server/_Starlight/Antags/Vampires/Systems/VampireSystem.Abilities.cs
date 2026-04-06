@@ -64,9 +64,9 @@ public sealed partial class VampireSystem : EntitySystem
     private static readonly SoundSpecifier _biteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
     private static readonly SoundSpecifier _devourSound = new SoundPathSpecifier("/Audio/Effects/demon_consume.ogg");
     private readonly Dictionary<EntityUid, List<EntityUid>> _playerShadowSnares = new();
-    [Dependency] private readonly IAdminLogManager _adminLogManager = default!;   
+    [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
     [Dependency] private readonly FlashImmunitySystem _flashImmunity = default!;
-    
+
     private void InitializeAbilities()
     {
         SubscribeLocalEvent<VampireComponent, VampireToggleFangsActionEvent>(OnToggleFangs);
@@ -193,7 +193,7 @@ public sealed partial class VampireSystem : EntitySystem
     }
 
     /// <summary>
-    /// Common validation for vampire abilities 
+    /// Common validation for vampire abilities
     /// component check + class validation + action cost
     /// </summary>
     internal bool ValidateVampireAbility(EntityUid uid, [NotNullWhen(true)] out VampireComponent? comp, ProtoId<VampireClassPrototype>? requiredClass = null, EntityUid? actionEntity = null)
@@ -252,7 +252,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     private bool IsInvalidDrinkTarget(EntityUid user, EntityUid target, bool showPopup = true)
     {
-        if (    !HasComp<VampireComponent>(target) 
+        if (    !HasComp<VampireComponent>(target)
             &&  !HasComp<VampireThrallComponent>(target))
             return false;
 
@@ -299,7 +299,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     #endregion
 
-    #region Base Abilities 
+    #region Base Abilities
     private void OnToggleFangs(EntityUid uid, VampireComponent comp, ref VampireToggleFangsActionEvent args)
     {
         if (args.Handled)
@@ -444,8 +444,14 @@ public sealed partial class VampireSystem : EntitySystem
         var actualSipAmount = MathF.Min(sipAmount, maxCanDrink);
 
         //attempt to drain the target's blood level
-        if (_blood.TryModifyBloodLevel(target, -actualSipAmount * sipInefficiency)
-            && _blood.GetBloodLevel(target) > 0.0f) //Check the taget has blood to drink at all
+        if (_blood.GetBloodLevel(target) <= 0.0f) //Check the taget has blood to drink at all
+        {
+            comp.IsDrinking = false; //Blood level reduction failed
+            _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"), uid, uid, Shared.Popups.PopupType.MediumCaution);
+            return;
+        }
+
+        if (_blood.TryModifyBloodLevel(target, -actualSipAmount * sipInefficiency))
         {
             //Blood level reduction success
             comp.DrunkBlood += (int)actualSipAmount;
@@ -456,7 +462,7 @@ public sealed partial class VampireSystem : EntitySystem
                 comp.TotalBlood += (int)actualSipAmount;
             }
 
-            //Biting Damage              
+            //Biting Damage
             //Little bit of additional damage to disincentivize blood donations
             var BiteDamage = new DamageSpecifier();
             BiteDamage += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_pierceTypeId), FixedPoint2.New(0.05) * actualSipAmount); //5 pierce per 10u
@@ -517,7 +523,7 @@ public sealed partial class VampireSystem : EntitySystem
             {
                 comp.IsDrinking = false;
                 if (currentDrunkFromTarget >= comp.MaxBloodPerTarget)
-                    _popup.PopupEntity(Loc.GetString("vampire-drink-target-hard-max", ("amount", comp.MaxBloodPerTarget)), uid, uid);
+                _popup.PopupEntity(Loc.GetString("vampire-drink-target-hard-max", ("amount", comp.MaxBloodPerTarget)), uid, uid);
             }
         }
         else
@@ -526,8 +532,8 @@ public sealed partial class VampireSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"), uid, uid, Shared.Popups.PopupType.MediumCaution);
             return;
         }
-        
-            
+
+
     }
 
     partial void UpdateVampireAlert(EntityUid uid)
@@ -735,7 +741,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         args.Handled = true;
     }
-    
+
     private void StartGlareDotEffect(EntityUid target, EntityUid source, float damage, int tickCount, bool doStaminaDamage)
     {
         const int MaxTicks = 10;
