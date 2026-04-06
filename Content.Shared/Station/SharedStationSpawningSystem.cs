@@ -336,8 +336,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
                     equipmentStr = "ClothingBagPet";
 
                 var equipmentEntity = Spawn(equipmentStr, xform.Coordinates);
-                if (!InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, silent: true, force: true))
-                    QueueDel(equipmentEntity);
+                InventorySystem.TryEquip(entity, equipmentEntity, slot.Name, silent: true, force: true);
 
                 finalEquipment.Remove(slot.Name);
             }

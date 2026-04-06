@@ -124,6 +124,9 @@ public sealed partial class SelfExtinguisherSystem : SharedSelfExtinguisherSyste
         _popup.PopupEntity(Loc.GetString("self-extinguisher-extinguish-self", ("item", uid)),
             target, user, PopupType.Medium);
 
+        selfExtinguisher.NextExtinguish = curTime + selfExtinguisher.Cooldown;
+        Dirty(uid, selfExtinguisher);
+
         if (charges != null)
         {
             _charges.TryUseCharge((uid, charges));
@@ -136,10 +139,7 @@ public sealed partial class SelfExtinguisherSystem : SharedSelfExtinguisherSyste
             }
         }
 
-        selfExtinguisher.NextExtinguish = curTime + selfExtinguisher.Cooldown;
         if (selfExtinguisher.ActionEntity is { } action)
             _actions.StartUseDelay(action);
-
-        Dirty(uid, selfExtinguisher);
     }
 }
