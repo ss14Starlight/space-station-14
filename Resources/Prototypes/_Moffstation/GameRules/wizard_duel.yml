@@ -3,7 +3,7 @@
   id: WizardDuel
   components:
   - type: LoadMapRule
-    mapPath: /Maps/_Moffstation/Nonstations/wizards-court.yml
+    mapPath: /Maps/_Starlight/Nonstations/wizards-court.yml
   - type: RuleGrids
   - type: AntagLoadProfileRule
   - type: GameRule
@@ -22,7 +22,7 @@
       max: 1
       spawnerPrototype: SpawnPointGhostWizardDuelistRed
       roleLoadout:
-      - JobWizardDuelist
+      - RoleSurvivalWizardDuelist
       briefing:
         text: wizard-duelist-red-role-greeting
         color: Turquoise
@@ -47,7 +47,7 @@
       max: 1
       spawnerPrototype: SpawnPointGhostWizardDuelistBlue
       roleLoadout:
-      - JobWizardDuelist
+      - RoleSurvivalWizardDuelist
       briefing:
         text: wizard-duelist-blue-role-greeting
         color: Turquoise
@@ -72,7 +72,7 @@
       max: 1
       spawnerPrototype: SpawnPointGhostWizardDuelistViolet
       roleLoadout:
-      - JobWizardDuelist
+      - RoleSurvivalWizardDuelist
       briefing:
         text: wizard-duelist-violet-role-greeting
         color: Turquoise
@@ -96,7 +96,7 @@
       max: 1
       spawnerPrototype: SpawnPointGhostWizardDuelistYellow
       roleLoadout:
-      - JobWizardDuelist
+      - RoleSurvivalWizardDuelist
       briefing:
         text: wizard-duelist-yellow-role-greeting
         color: Turquoise
@@ -119,7 +119,7 @@
       max: 1
       spawnerPrototype: SpawnPointGhostWizardDuelistGreen
       roleLoadout:
-      - JobWizardDuelist
+      - RoleSurvivalWizardDuelist
       briefing:
         text: wizard-duelist-green-role-greeting
         color: Turquoise
@@ -142,7 +142,7 @@
       max: 1
       spawnerPrototype: SpawnPointGhostWizardDuelistOrange
       roleLoadout:
-      - JobWizardDuelist
+      - RoleSurvivalWizardDuelist
       briefing:
         text: wizard-duelist-orange-role-greeting
         color: Turquoise

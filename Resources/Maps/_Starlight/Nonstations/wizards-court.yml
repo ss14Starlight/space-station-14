@@ -4974,13 +4974,6 @@ entities:
     - type: Transform
       pos: 7.2877984,6.425212
       parent: 1
-- proto: MoffstationFigureSpawner
-  entities:
-  - uid: 1576
-    components:
-    - type: Transform
-      pos: 0.5,11.5
-      parent: 1
 - proto: OcarinaInstrument
   entities:
   - uid: 1423

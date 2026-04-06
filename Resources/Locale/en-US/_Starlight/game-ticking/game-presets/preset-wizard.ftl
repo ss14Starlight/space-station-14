@@ -1,7 +1,7 @@
 ## Wizard
 ## From Moff Station, but in Starlight files because we have to change the lore, so no point in keeping the original ones.
 
-roles-solo-antagonist-wizard-duelist-name = Wizard duelist
+roles-solo-antagonist-wizard-duelist-name = Wizard Duelist
 roles-solo-antagonist-wizard-duelist-objective = Defeat lesser warlocks and prove you're the greatest that the Space Wizards Federation has to offer.
 
 wizard-duelist-red-role-greeting =
