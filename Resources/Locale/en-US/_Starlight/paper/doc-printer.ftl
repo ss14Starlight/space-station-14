@@ -1336,9 +1336,9 @@ doc-text-printer-salvagelead-report =
 doc-text-printer-enemy-of-corporation-designation =
    ⠀[logo]            [cclogo]
 
-                             [head=3]NT-CC Consortium Services[/head]
+                             [head=3]NT-CC Consortium Services[/head]
 
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀             [bold]ENEMY OF CORPORATION DESIGNATION FORM[/bold]
     ────────────────────────────────────────
@@ -1352,7 +1352,7 @@ doc-text-printer-enemy-of-corporation-designation =
     ⠀• [form]
     ⠀• [form]
 
-    Additionally, the indiviual was found to be in possession of the following identifying item:
+    Additionally, the individual was found to be in possession of the following identifying item:
     ⠀• [form]
 
     Or, alternatively, individual has confessed, whether verbally or in writing,
