@@ -188,11 +188,12 @@ public sealed partial class PlaytimeStatsWindow : FancyWindow
 
     private void SortList(BoxContainer list, PlaytimeStatsHeader.Header header, PlaytimeStatsHeader.SortDirection direction)
     {
+        var headerControl = list.Children.OfType<PlaytimeStatsHeader>().FirstOrDefault();
         var entries = list.Children.OfType<PlaytimeStatsEntry>().ToList();
 
         list.RemoveAllChildren();
 
-        if (list.GetChild(0) is PlaytimeStatsHeader headerControl)
+        if (headerControl != null)
             list.AddChild(headerControl);
 
         var sortedEntries = header switch
