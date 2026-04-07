@@ -80,7 +80,7 @@
 - type: thiefBackpackSet
   id: CommunicatorSet
   name: thief-backpack-category-communicator-name
-  description: thief-backpack-category-communicator-description
+  description: thief-backpack-category-communicator-description-starlight
   sprite:
     sprite: Objects/Devices/communication.rsi
     state: old-radio
