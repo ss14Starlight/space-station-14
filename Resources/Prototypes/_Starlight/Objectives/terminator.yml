@@ -14,7 +14,7 @@
   parent: [BaseTerminatorObjective, BaseKillObjective]
   id: TerminatorExterminateObjective
   name: Secure our future.
-  description: Follow your programming and kill the target.
+  description: Follow your programming and kill the target. Ensure the future doesn't have them in it.
   components:
   - type: PickSpecificPerson
   - type: KillPersonCondition
