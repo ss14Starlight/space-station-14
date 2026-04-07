@@ -4,6 +4,7 @@
 # so using one of the below archetypes is required.
 
 - type: entity
+  abstract: true
   id: ClothingHeadLightParamsBasic # Basic, non-job specific, e.g. the firesuit helmet.
   components:
     - type: PointLight
@@ -11,6 +12,7 @@
       energy: 1
 
 - type: entity
+  abstract: true
   id: ClothingHeadLightParamsIntermediate # Intermediate, intended for non-combat jobs.
   components:
     - type: PointLight
