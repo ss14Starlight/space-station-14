@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.Administration.Logs;
 using Content.Server._Starlight.Antags.Vampires.Components;
 using Content.Server.Bible.Components;
 using Content.Shared._Starlight.Antags.Vampires;
@@ -36,7 +35,6 @@ using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Prototypes;
 using Content.Server.EUI;
 using Content.Server.Roles;
-using Robust.Shared.Log;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -52,9 +50,7 @@ public sealed class DantalionSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!;
-    [Dependency] private readonly ObjectivesSystem _objectives = default!;
     [Dependency] private readonly Content.Shared.Mind.SharedMindSystem _mind = default!;
-    [Dependency] private readonly TargetObjectiveSystem _targetObjectives = default!;
     [Dependency] private readonly VampireSystem _vampire = default!;
     [Dependency] private readonly Content.Server.Actions.ActionsSystem _actions = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -74,7 +70,6 @@ public sealed class DantalionSystem : EntitySystem
     [Dependency] private readonly EuiManager _euiMan = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly RoleSystem _role = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
 
     public override void Initialize()
     {
@@ -99,6 +94,9 @@ public sealed class DantalionSystem : EntitySystem
         SubscribeLocalEvent<VampireThrallComponent, DamageBeforeApplyEvent>(OnThrallDamage);
     }
 
+    /// <summary>
+    /// Check if a thrall has meet conditions for de-conversion every frame
+    /// </summary>
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -138,6 +136,9 @@ public sealed class DantalionSystem : EntitySystem
 
     #region Enthrall
 
+    /// <summary>
+    /// Checks if a target can be enthralled and starts a do after if they can be
+    /// </summary>
     private void OnEnthrall(EntityUid uid, DantalionComponent dantalion, ref VampireEnthrallActionEvent args)
     {
         if (args.Handled || !Exists(args.Target))
@@ -201,6 +202,9 @@ public sealed class DantalionSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("vampire-enthrall-start", ("target", Identity.Entity(target, EntityManager))), uid, uid);
     }
 
+    /// <summary>
+    /// double checks the target can be enthralled and subtract blood from vampire to then give the target the thrall comp, objective, mind comp, and hivemind along with triggering a pop-up to inform the player they have been enthralled
+    /// </summary>
     private void OnEnthrallDoAfter(EntityUid uid, DantalionComponent dantalion, ref VampireEnthrallDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled || args.Target == null)
@@ -249,6 +253,9 @@ public sealed class DantalionSystem : EntitySystem
         args.Handled = true;
     }
 
+    /// <summary>
+    /// Actempts to apply the thrall objective and gives them the pop-up if it has been applied
+    /// </summary>
     private void TryAssignThrallObeyObjective(EntityUid master, EntityUid thrall)
     {
         if (!_mind.TryGetMind(thrall, out var thrallMindId, out var thrallMind)
@@ -287,6 +294,9 @@ public sealed class DantalionSystem : EntitySystem
             TryReleaseThrall(thrall);
     }
 
+    /// <summary>
+	///     Called if a thrall is to be released from their master. Removes the antag component, objectives, role, and hivemind from the player
+	/// </summary>
     private bool TryReleaseThrall(EntityUid thrall)
     {
         if (!_mind.TryGetMind(thrall, out var mindId, out var mind))
@@ -315,6 +325,9 @@ public sealed class DantalionSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+	///     Checks if the vampire has enough blood to perform the action they are trying to perform
+	/// </summary>
     private bool TryGetActionBloodCost(EntityUid actionEntity, out int bloodCost)
     {
         bloodCost = 0;

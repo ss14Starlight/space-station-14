@@ -21,7 +21,6 @@ public sealed class SanguinePoolSystem : SharedSanguinePoolSystem
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly PuddleSystem _puddle = default!;
 
     public override void Update(float frameTime)

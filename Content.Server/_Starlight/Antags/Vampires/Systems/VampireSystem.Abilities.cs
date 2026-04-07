@@ -55,16 +55,11 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-    [Dependency] private readonly EuiManager _euiMan = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly Content.Shared.Mind.SharedMindSystem _mind = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
     [Dependency] private readonly BlindableSystem _blindable = default!;
     private static readonly SoundSpecifier _biteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
     private static readonly SoundSpecifier _devourSound = new SoundPathSpecifier("/Audio/Effects/demon_consume.ogg");
     private readonly Dictionary<EntityUid, List<EntityUid>> _playerShadowSnares = new();
-    [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
     [Dependency] private readonly FlashImmunitySystem _flashImmunity = default!;
 
     private void InitializeAbilities()
@@ -377,6 +372,9 @@ public sealed partial class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
+    /// <summary>
+    /// System for checking if a target can be drank from and handling the drinking
+    /// </summary>
     private void OnDrinkDoAfter(EntityUid uid, VampireComponent comp, ref VampireDrinkBloodDoAfterEvent args)
     {
         if (args.Handled)
@@ -579,6 +577,9 @@ public sealed partial class VampireSystem : EntitySystem
         }
     }
 
+    /// <summary>
+	///     On use of action to attempt to sleep a single target; check if target can be slept, if vamp has enough blood, and trigger a doafter
+	/// </summary>
     private void OnSleep(EntityUid uid, VampireComponent comp, ref VampireSleepActionEvent args)
     {
         if (args.Handled || !Exists(args.Target))
@@ -642,6 +643,9 @@ public sealed partial class VampireSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+	///     Triggered once sleep do after is completed, check one more time to see if the target has somehow gained immunity during the do after and if not consume the blood cost and apply the sleep.
+	/// </summary>
     private void OnSleepDoAfter(EntityUid uid, VampireComponent comp, ref VampireSleepDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled || args.Target == null)
@@ -670,6 +674,9 @@ public sealed partial class VampireSystem : EntitySystem
     }
 
 
+    /// <summary>
+    /// Action that stuns nearby mobs for a short duration
+    /// </summary>
     private void OnGlare(EntityUid uid, VampireComponent comp, ref VampireGlareActionEvent args)
     {
         if (args.Handled
