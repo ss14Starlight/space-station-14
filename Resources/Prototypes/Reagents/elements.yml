@@ -183,7 +183,7 @@
           type: [ Arachnid, Cyclorite ]
           inverted: true
         amount: 0.4
-  
+
 - type: reagent
   id: Lithium
   name: reagent-name-lithium

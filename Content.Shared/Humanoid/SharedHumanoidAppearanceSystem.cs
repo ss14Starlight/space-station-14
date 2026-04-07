@@ -459,7 +459,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         {
             return;
         }
-        
+
         if (!humanoid.AllowProfileOverride) return; //Starlight
 
         SaveBaseProfile((uid, humanoid), profile);
@@ -490,7 +490,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             {
                 if (!prototype.ForcedColoring)
                 {
-                    AddMarking(uid, marking.MarkingId, marking.MarkingColors, marking.IsGlowing, false); //starlight
+                    AddMarking(uid, marking.MarkingId, marking.MarkingColors, prototype.ForcedGlowing || marking.IsGlowing, false); //starlight
                 }
                 else
                 {
@@ -529,7 +529,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
                 profile.Appearance.EyeColor,
                 humanoid.MarkingSet
             );
-            AddMarking(uid, marking.MarkingId, markingColors, marking.IsGlowing, false); //starlight
+            AddMarking(uid, marking.MarkingId, markingColors, prototype.ForcedGlowing || marking.IsGlowing, false); //starlight
         }
 
         EnsureDefaultMarkings(uid, humanoid);

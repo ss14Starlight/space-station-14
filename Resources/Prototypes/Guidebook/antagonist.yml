@@ -61,7 +61,7 @@
   id: Thieves
   name: guide-entry-thieves
   text: "/ServerInfo/Guidebook/Antagonist/Thieves.xml"
-  
+
 - type: guideEntry
   id: Wizard
   name: guide-entry-wizard
@@ -71,4 +71,4 @@
   id: Xenoborgs
   name: guide-entry-xenoborgs
   text: "/ServerInfo/Guidebook/Antagonist/Xenoborgs.xml"
-  
+

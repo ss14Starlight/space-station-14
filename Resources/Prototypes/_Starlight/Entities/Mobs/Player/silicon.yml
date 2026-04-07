@@ -97,7 +97,7 @@
     reregister: false
     job: Borg
   - type: GhostTakeoverAvailable
-  
+
 - type: entity
   parent: XenoborgHeavyDerelict
   id: PlayerXenoBorgHeavyDerelict
@@ -120,8 +120,8 @@
           blacklist:
             tags:
             - MechReactor
-          
-- type: entity 
+
+- type: entity
   parent: PlayerXenoBorgHeavyDerelict
   id: PlayerXenoBorgHeavyDerelictGhostRole
   suffix: Ghost role
@@ -135,7 +135,7 @@
         reregister: false
         job: Borg
       - type: GhostTakeoverAvailable
-          
+
 - type: entity
   parent: XenoborgEngiDerelict
   id: PlayerXenoBorgEngiDerelict

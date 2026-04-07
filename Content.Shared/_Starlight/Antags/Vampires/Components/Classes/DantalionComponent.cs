@@ -43,7 +43,7 @@ public sealed partial class DantalionComponent : VampireClassComponent
 
 	[ViewVariables(VVAccess.ReadOnly)]
 	public bool BloodBondProcessingDamage = false;
-	
+
 	[DataField]
 	public EntProtoId rallyOverlayEffect = "VampireRallyOverlayEffect";
 }

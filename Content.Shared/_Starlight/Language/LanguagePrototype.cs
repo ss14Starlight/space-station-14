@@ -40,7 +40,7 @@ public sealed partial class LanguagePrototype : IPrototype
     /// </summary>
     [DataField("speech")]
     public SpeechOverrideInfo SpeechOverride = new();
-    
+
     /// <summary>
     /// Prefix used in chat to send message with this language.
     /// Leave null if you don't want this feature for some reason.
@@ -103,7 +103,7 @@ public sealed partial class SpeechOverrideInfo
     /// </summary>
     [DataField]
     public bool RequireSpeech = true;
-    
+
     /// <summary>
     ///     If false, the entity can use this language even when it's unable to make sound.
     /// </summary>

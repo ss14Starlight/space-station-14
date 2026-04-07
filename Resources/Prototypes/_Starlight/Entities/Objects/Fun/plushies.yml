@@ -10,7 +10,7 @@
     sprite: _Starlight/Objects/Fun/Plushies/matthew_plushie.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/matthew_plushie.rsi
-    layers: 
+    layers:
       - state: icon
       - state: icon-unshaded
         shader: unshaded
@@ -36,7 +36,7 @@
     sprite: _Starlight/Objects/Fun/Plushies/emmie_plushie.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/emmie_plushie.rsi
-    layers: 
+    layers:
       - state: icon
       - state: icon-unshaded
         shader: unshaded
@@ -62,7 +62,7 @@
     sprite: _Starlight/Objects/Fun/Plushies/morgana_plushie.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/morgana_plushie.rsi
-    layers: 
+    layers:
       - state: icon
   - type: ItemToggle
     onUse: false
@@ -86,7 +86,7 @@
     sprite: _Starlight/Objects/Fun/Plushies/morgana_round_plushie.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/morgana_round_plushie.rsi
-    layers: 
+    layers:
       - state: icon
   - type: ItemToggle
     onUse: false
@@ -110,7 +110,7 @@
     sprite: _Starlight/Objects/Fun/Plushies/kiosha_plushie.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/kiosha_plushie.rsi
-    layers: 
+    layers:
       - state: icon
   - type: ItemToggle
     onUse: false
@@ -134,7 +134,7 @@
     sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/lance_plushie.rsi
-    layers: 
+    layers:
       - state: icon
       - state: icon-unshaded
         shader: unshaded
@@ -160,7 +160,7 @@
     sprite: _Starlight/Objects/Fun/Plushies/killer_plushie.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/killer_plushie.rsi
-    layers: 
+    layers:
       - state: icon
       - state: icon-unshaded
         shader: unshaded
@@ -186,7 +186,7 @@
     sprite: _Starlight/Objects/Fun/Plushies/amali_plushie.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/amali_plushie.rsi
-    layers: 
+    layers:
       - state: icon
   # reason I didn't make a female human base plushie is because they wanted specific sounds. Will make one eventually. Probably.a
   - type: EmitSoundOnUse
@@ -233,7 +233,7 @@
     sprite: _Starlight/Objects/Fun/Plushies/oog_plushie.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/oog_plushie.rsi
-    layers: 
+    layers:
       - state: icon
   - type: ItemToggle
     onUse: false
@@ -257,7 +257,7 @@
     sprite: _Starlight/Objects/Fun/Plushies/vanilla_plushie.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/vanilla_plushie.rsi
-    layers: 
+    layers:
       - state: icon
   - type: ItemToggle
     onUse: false
@@ -282,7 +282,7 @@
     sprite: _Starlight/Objects/Fun/Plushies/op_plushie.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/op_plushie.rsi
-    layers: 
+    layers:
       - state: icon
   - type: ItemToggle
     onUse: false
@@ -307,7 +307,7 @@
   - type: Item
     size: Small
     sprite: _Starlight/Objects/Fun/Plushies/mozan_plushie.rsi
-    
+
 - type: entity
   parent: BaseMothPlushie
   id: PlushieKoni
@@ -349,7 +349,7 @@
       clothingVisuals:
         head:
           - state: equipped-HELMET
-      
+
 
 - type: entity
   parent: BasePlushie
@@ -425,7 +425,7 @@
 
 - type: entity
   parent: BaseLizardPlushie
-  id: PlushieMimeLizard 
+  id: PlushieMimeLizard
   name: lizard mime plushie
   description: Wait, where is the sou-- oh.
   components:
@@ -486,7 +486,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/vika_plushie.rsi
     state: icon
-      
+
 - type: entity
   parent: BasePlushie
   id: AbductorPlushie
@@ -522,7 +522,7 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: AbductorPlushie
-      
+
 - type: entity
   parent: BasePlushie
   id: AxolotlPlushie
@@ -558,7 +558,7 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: AxolotlPlushie
-      
+
 - type: entity
   parent: BasePlushie
   id: BorbPlushie
@@ -630,7 +630,7 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: CreaturePlushie
-      
+
 - type: entity
   parent: BasePlushie
   id: GnomePlushie
@@ -666,7 +666,7 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: GnomePlushie
-      
+
 - type: entity
   parent: BasePlushie
   id: GoatPlushie
@@ -702,7 +702,7 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: GoatPlushie
-      
+
 - type: entity
   parent: BasePlushie
   id: IanPlushie
@@ -738,7 +738,7 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: StarlightIanPlushie
-      
+
 - type: entity
   parent: BasePlushie
   id: LisaPlushie
@@ -774,7 +774,7 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: LisaPlushie
-      
+
 - type: entity
   parent: BasePlushie
   id: KittenPlushie
@@ -810,7 +810,7 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: KittenPlushie
-      
+
 - type: entity
   parent: BasePlushie
   id: PigPlushie
@@ -846,7 +846,7 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: PigPlushie
-      
+
 - type: entity
   parent: BasePlushie
   id: RenaultPlushie
@@ -882,7 +882,7 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: RenaultPlushie
-      
+
 - type: entity
   parent: BasePlushie
   id: SnailPlushie
@@ -918,7 +918,7 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: SnailPlushie
-      
+
 - type: entity
   parent: BasePlushie
   id: SquishimsCow
@@ -954,7 +954,7 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: SquishimsCow
-      
+
 - type: entity
   parent: BasePlushie
   id: SquishimsFrog
@@ -990,7 +990,7 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: SquishimsFrog
-      
+
 - type: entity
   parent: BasePlushie
   id: SusPlushie
@@ -1551,7 +1551,7 @@
           dataset: PlushiesRedwoods
         - type: TextToSpeech
           voice: slr1
-   
+
 - type: entity
   parent: BasePlushie
   id: PlushieDoxesTheCaptain #Weh!
@@ -1793,7 +1793,7 @@
     sprite: _Starlight/Objects/Fun/Plushies/killa_plushie.rsi
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Plushies/killa_plushie.rsi
-    layers: 
+    layers:
       - state: KillaTamalePlush
   - type: ItemToggle
     onUse: false

@@ -208,17 +208,17 @@ namespace Content.Shared.Chemistry.Reagent
             return removed;
         }
 
-        public IEnumerable<string> GuidebookReagentEffectsDescription(IPrototypeManager prototype, IEntitySystemManager entSys, IEnumerable<EntityEffect> effects, FixedPoint2 metabolism)
+        public IEnumerable<string> GuidebookReagentEffectsDescription(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc, IEnumerable<EntityEffect> effects, FixedPoint2 metabolism) // Starlight
         {
-            return effects.Select(x => GuidebookReagentEffectDescription(prototype, entSys, x, metabolism))
+            return effects.Select(x => GuidebookReagentEffectDescription(prototype, entSys, loc, x, metabolism)) // Starlight
                 .Where(x => x is not null)
                 .Select(x => x!)
                 .ToArray();
         }
 
-        public string? GuidebookReagentEffectDescription(IPrototypeManager prototype, IEntitySystemManager entSys, EntityEffect effect, FixedPoint2 metabolism)
+        public string? GuidebookReagentEffectDescription(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc, EntityEffect effect, FixedPoint2 metabolism) // Starlight
         {
-            if (effect.EntityEffectGuidebookText(prototype, entSys) is not { } description)
+            if (effect.EntityEffectGuidebookText(prototype, entSys, loc) is not { } description) // Starlight
                 return null;
 
             var quantity = (double)(effect.MinScale * metabolism);
@@ -247,16 +247,16 @@ namespace Content.Shared.Chemistry.Reagent
 
         public List<string>? PlantMetabolisms = null;
 
-        public ReagentGuideEntry(ReagentPrototype proto, IPrototypeManager prototype, IEntitySystemManager entSys)
+        public ReagentGuideEntry(ReagentPrototype proto, IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc)  // Starlught
         {
             ReagentPrototype = proto.ID;
             GuideEntries = proto.Metabolisms?
-                .Select(x => (x.Key, x.Value.MakeGuideEntry(prototype, entSys, proto)))
+                .Select(x => (x.Key, x.Value.MakeGuideEntry(prototype, entSys, loc, proto))) // Starlught
                 .ToDictionary(x => x.Key, x => x.Item2);
             if (proto.PlantMetabolisms.Count > 0)
             {
                 PlantMetabolisms =
-                    new List<string>(proto.GuidebookReagentEffectsDescription(prototype, entSys, proto.PlantMetabolisms, FixedPoint2.New(1f)));
+                    new List<string>(proto.GuidebookReagentEffectsDescription(prototype, entSys, loc, proto.PlantMetabolisms, FixedPoint2.New(1f))); // Starlught
             }
         }
     }
@@ -281,9 +281,9 @@ namespace Content.Shared.Chemistry.Reagent
 
         public string EntityEffectFormat => "guidebook-reagent-effect-description";
 
-        public ReagentEffectsGuideEntry MakeGuideEntry(IPrototypeManager prototype, IEntitySystemManager entSys, ReagentPrototype proto)
+        public ReagentEffectsGuideEntry MakeGuideEntry(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc, ReagentPrototype proto)
         {
-            return new ReagentEffectsGuideEntry(MetabolismRate, proto.GuidebookReagentEffectsDescription(prototype, entSys, Effects, MetabolismRate).ToArray());
+            return new ReagentEffectsGuideEntry(MetabolismRate, proto.GuidebookReagentEffectsDescription(prototype, entSys, loc, Effects, MetabolismRate).ToArray()); // Starlught
         }
     }
 

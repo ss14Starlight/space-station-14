@@ -226,7 +226,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
                 {
                     case (byte)DisplayModes.Temperature:
                         box.BackgroundColor = GetColor(293.15, 1200, exists ? _data[vect].Temperature : 0);
-                        ViewLabel.Text = Loc.GetString("comp-nuclear-reactor-ui-view-temp"); 
+                        ViewLabel.Text = Loc.GetString("comp-nuclear-reactor-ui-view-temp");
                         break;
                     case (byte)DisplayModes.Neutron:
                         box.BackgroundColor = GetColor(0, 7, exists ? _data[vect].NeutronCount : 0);
@@ -240,10 +240,10 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
                 var icon = exists ? _data[vect].IconName : "base";
                 _reactorRect[vect].TexturePath = "/Textures/_FarHorizons/Interface/FissionGenerator/reactor_part_inserted/" +  icon + ".png";
-                _reactorRect[vect].Modulate = y == _targetX && x == _targetY 
-                    ? Color.InterpolateBetween(Color.FromHex("#666"), Color.FromHex("#222"), ((float)Math.Sin(_targetPulse) / 2) + 1) 
+                _reactorRect[vect].Modulate = y == _targetX && x == _targetY
+                    ? Color.InterpolateBetween(Color.FromHex("#666"), Color.FromHex("#222"), ((float)Math.Sin(_targetPulse) / 2) + 1)
                     : Color.Black;
-                
+
                 _reactorButton[vect].ToolTip = exists && (_data[vect].SpentFuel > 0 || _data[vect].Radioactivity > 0 || _data[vect].NeutronRadioactivity > 0)
                     ? "Fuel Level: " + (int)Math.Round(GetFuelLevel(_data[vect]) * 100) + "%"
                     : "";
