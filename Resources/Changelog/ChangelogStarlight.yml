@@ -1,24 +1,4 @@
 Entries:
-- author: NEVEC
-  changes:
-  - message: Added the Mail Companion for Mail Technicians to scan deliveries and track recipients through suit sensors.
-    type: Add
-  - message: Added a dedicated crew-monitor style HUD and custom Mail Companion sprites.
-    type: Add
-  - message: Mail Companion tracking now expires after 1 minute and enters a 30 second recalibration cooldown.
-    type: Tweak
-  - message: Opening the tracked delivery now immediately resets the Mail Companion so it can be used again.
-    type: Fix
-  id: 381901
-  time: '2026-03-21T07:33:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3819
-- author: redmushie, Rinary
-  changes:
-  - message: Fixed crash from putting shoes on while moving.
-    type: Fix
-  id: 383601
-  time: '2026-03-21T08:46:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3836
 - author: Rinary1
   changes:
   - message: Changed wield logic, now you wield guns with chamber, when you have free hands or when your bolt is closed, in another cases you will close bolt first.
@@ -1129,4 +1109,18 @@ Entries:
   id: 404102
   time: '2026-04-06T23:14:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4059
+- author: STARLIGHT TEAM
+  changes:
+  - message: The playtime modal has been reworked. It now shows playtime from the other servers too.
+    type: Add
+  id: 404103
+  time: '2026-04-07T06:17:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4045
+- author: STARLIGHT TEAM
+  changes:
+  - message: The panic bunker now correctly accepts playtime from other servers.
+    type: Fix
+  id: 404104
+  time: '2026-04-07T06:17:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4045
 Order: -1
