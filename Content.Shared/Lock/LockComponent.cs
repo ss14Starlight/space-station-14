@@ -133,23 +133,23 @@ public sealed partial class LockComponent : Component
     public bool AllowRepeatedLocking = true;
 
     // Starlight Start
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool PopupMessage = true;
 
-    [DataField]
-    public bool PowerNeeded = false;
+    [DataField, AutoNetworkedField]
+    public bool PowerNeeded;
 
     /// <summary>
     ///  Whether or not the lock can be auto unlocked when pickuped.
     /// </summary>
-    [DataField]
-    public bool AutoUnlock = false;
+    [DataField, AutoNetworkedField]
+    public bool AutoUnlock;
 
     /// <summary>
     ///  Whether or not the lock can be auto locked when placed.
     /// </summary>
-    [DataField]
-    public bool AutoLock = false;
+    [DataField, AutoNetworkedField]
+    public bool AutoLock;
     // Starlight End
 }
 
