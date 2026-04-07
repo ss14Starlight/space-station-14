@@ -25,4 +25,6 @@ public sealed partial class VampireThrallComponent : BaseMindRoleComponent
     public FixedPoint2 HolyWaterToBreakFree = FixedPoint2.New(30);
     [DataField]
     public ProtoId<ReagentPrototype> HolyWaterReagentId = "Holywater";
+    [DataField]
+    public TimeSpan DeconvertStunDuration = TimeSpan.FromSeconds(4);
 }

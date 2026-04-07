@@ -64,7 +64,9 @@ public sealed partial class VampireSleepActionEvent : EntityTargetActionEvent
 public sealed partial class VampireSleepDoAfterEvent : SimpleDoAfterEvent
 {
     [DataField]
-    public int BloodCost;
+    public int BloodCost = 15;
+    [DataField]
+    public TimeSpan Duration = TimeSpan.FromSeconds(10);
 }
 
 public sealed partial class VampireRejuvenateIActionEvent : InstantActionEvent;

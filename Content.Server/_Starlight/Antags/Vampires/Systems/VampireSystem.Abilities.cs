@@ -665,7 +665,7 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-        var duration = TimeSpan.FromSeconds(10);
+        var duration = args.Duration;
         _statusEffects.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, duration);
         args.Handled = true;
     }

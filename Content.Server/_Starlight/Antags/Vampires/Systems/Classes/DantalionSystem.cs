@@ -130,7 +130,7 @@ public sealed class DantalionSystem : EntitySystem
 
     private void OnBloodDrank(EntityUid uid, DantalionComponent dantalion, ref VampireBloodDrankEvent args)
     {
-        if (!TryComp<VampireComponent>(uid, out var vampire) || vampire.TotalBlood < 300)
+        if (!TryComp<VampireComponent>(uid, out var vampire) || vampire.TotalBlood < dantalion.HealBloodThreshold)
             return;
 
         HealDantalionThralls((uid, dantalion));
@@ -256,7 +256,7 @@ public sealed class DantalionSystem : EntitySystem
             return;
 
         _role.MindAddRole(thrallMindId, "MindRoleThrall", thrallMind, true);
-        _mind.TryAddObjective(thrallMindId, thrallMind, "VampireThrallObeyMasterObjective");
+        _mind.TryAddObjective(thrallMindId, thrallMind, ThrallObeyMasterObjectiveId);
 
         //adds pop-up for target informing them they have been enthralled
         if (_player.TryGetSessionById(thrallMind.UserId, out var session))
@@ -292,14 +292,19 @@ public sealed class DantalionSystem : EntitySystem
         if (!_mind.TryGetMind(thrall, out var mindId, out var mind))
             return false;
 
-        var stunTime = TimeSpan.FromSeconds(4);
+        var stunTime = TimeSpan.FromSeconds(4); //default if comp is missing data for some reason
+        if (TryComp<VampireThrallComponent>(thrall, out var comp))
+        {
+            stunTime = comp.DeconvertStunDuration;
+        }
+
         _stun.TryUpdateParalyzeDuration(thrall, stunTime);
 
         //Remove the component
         RemComp<VampireThrallComponent>(thrall);
 
         //Remove objectives
-        if (_mind.TryFindObjective((mindId, mind), "VampireThrallObeyMasterObjective", out var Objective) && Objective != null)
+        if (_mind.TryFindObjective((mindId, mind), ThrallObeyMasterObjectiveId, out var Objective) && Objective != null)
             _mind.TryRemoveObjective(mindId, mind, Objective.Value);
 
         //Remove role
@@ -346,10 +351,10 @@ public sealed class DantalionSystem : EntitySystem
     {
         var limit = dantalion.BaseThrallLimit;
 
-        if (comp.TotalBlood >= 400)
+        if (comp.TotalBlood >= dantalion.ThrallLevel2Blood)
             limit++;
 
-        if (comp.TotalBlood >= 600)
+        if (comp.TotalBlood >= dantalion.ThrallLevel3Blood)
             limit++;
 
         if (comp.FullPower)
@@ -385,9 +390,9 @@ public sealed class DantalionSystem : EntitySystem
         foreach (var thrall in IterateAndCheckThralls(ent))
         {
             var healSpec = new DamageSpecifier();
-            healSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_bruteGroupId), -FixedPoint2.New(3));
-            healSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_burnGroupId), -FixedPoint2.New(3));
-            healSpec += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_asphyxiationTypeId), -FixedPoint2.New(5));
+            healSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_bruteGroupId), -dantalion.ThrallHealBrute);
+            healSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_burnGroupId), -dantalion.ThrallHealBurn);
+            healSpec += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_asphyxiationTypeId), -dantalion.ThrallHealAsphyxiation);
             _damageableSystem.TryChangeDamage(thrall, healSpec, true);
         }
     }
