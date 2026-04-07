@@ -88,18 +88,29 @@ public sealed class PAIShuttleRamSystem : EntitySystem
                 continue; // skip collision check on the seeding tick
             }
 
-            if (TryComp<PhysicsComponent>(tracker.ShuttleGrid, out var body))
+            // Re-seed if console moved to a different grid or the tracked grid is no longer valid.
+            var currentGrid = Transform(consoleEnt).GridUid;
+            if (currentGrid != tracker.ShuttleGrid)
             {
-                var deltaV = (body.LinearVelocity - tracker.LastShuttleVelocity).Length();
-                tracker.LastShuttleVelocity = body.LinearVelocity;
+                tracker.ShuttleGrid = default;
+                continue;
+            }
 
-                if (deltaV >= RamDeltaVThreshold)
-                {
-                    var throwDir = tracker.LastShuttleVelocity.LengthSquared() > 0.01f
-                        ? tracker.LastShuttleVelocity.Normalized()
-                        : new Vector2(1f, 0f);
-                    toEject.Add((uid, throwDir));
-                }
+            if (!TryComp<PhysicsComponent>(tracker.ShuttleGrid, out var body))
+            {
+                tracker.ShuttleGrid = default;
+                continue;
+            }
+
+            var deltaV = (body.LinearVelocity - tracker.LastShuttleVelocity).Length();
+            tracker.LastShuttleVelocity = body.LinearVelocity;
+
+            if (deltaV >= RamDeltaVThreshold)
+            {
+                var throwDir = tracker.LastShuttleVelocity.LengthSquared() > 0.01f
+                    ? tracker.LastShuttleVelocity.Normalized()
+                    : new Vector2(1f, 0f);
+                toEject.Add((uid, throwDir));
             }
         }
 
