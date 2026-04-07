@@ -112,7 +112,7 @@
         Heat: 0.90
         Radiation: 0.75
   - type: PointLight
-    # Starlight: PointLight radius/energy parameters from parents
+    # Starlight: PointLight energy/radius moved to ClothingHeadLightParams(..) prototypes
     color: "#00ffff"
   - type: Tag
     tags:

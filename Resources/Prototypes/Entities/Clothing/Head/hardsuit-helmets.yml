@@ -343,7 +343,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
-  # - type: PointLight # Starlight: See base prototypes for PointLight parameters
+    # Starlight: PointLight energy/radius moved to ClothingHeadLightParams(..) prototypes
   - type: Tag
     tags:
     - CorgiWearable
@@ -400,7 +400,7 @@
       - state: equipped-head-dog
       - state: equipped-head-unshaded-dog
         shader: unshaded
-#  - type: PointLight # Starlight: Inherited from parents
+    # Starlight: PointLight energy/radius moved to ClothingHeadLightParams(..) prototypes
   - type: PressureProtection
     highPressureMultiplier: 0.72
     lowPressureMultiplier: 1000
@@ -709,7 +709,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
-#  - type: PointLight # Starlight: Inherited from parents
+  # Starlight: PointLight energy/radius moved to ClothingHeadLightParams(..) prototypes
 # Starlight
   - type: Tag
     tags:
@@ -960,7 +960,7 @@
         shader: unshaded
   - type: PointLight # Color matches visor colors, radius/energy same as mining hardsuit for the big captain.
     color: "#f3ea9c"
-    # Starlight: Inherit radius/energy parameters from parents
+    # Starlight: PointLight energy/radius moved to ClothingHeadLightParams(..) prototypes
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
