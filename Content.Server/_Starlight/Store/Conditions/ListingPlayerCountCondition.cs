@@ -10,7 +10,7 @@ namespace Content.Server.Store.Conditions;
 /// Basically copied from PlayerCountConidition.
 /// </remarks>
 public sealed partial class ListingPlayerCountCondition : ListingCondition
-{   
+{
     /// <summary>
     /// Minimum players needed for this listing to be available.
     /// </summary>

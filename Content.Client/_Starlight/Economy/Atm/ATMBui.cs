@@ -69,7 +69,7 @@ public sealed class ATMBui : BoundUserInterface
         _window.WithdrawInput.OnTextChanged += _ =>
             _window.WithdrawButton.Disabled = !int.TryParse(_window.WithdrawInput.Text, out _amount)
                 || _amount <= 0 || _amount > _currentBalance;
-        
+
         _window.WithdrawButton.OnPressed += _ =>
         {
             SendMessage(new ATMWithdrawBuiMsg { Amount = _amount });

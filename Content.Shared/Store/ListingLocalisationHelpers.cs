@@ -37,11 +37,11 @@ public static class ListingLocalisationHelpers
                         {
                             maxStock = max;
                         }
-                        
+
                         // Use the localization with the stock count parameter in X/Y format
                         name = Loc.GetString(listingData.Name, ("stock", $"{stock}/{maxStock}"));
                     }
-                    
+
                     return name;
                 }
                 // Fallback to checking conditions
@@ -62,17 +62,17 @@ public static class ListingLocalisationHelpers
                                 // Get the current stock count and maximum stock limit
                                 var currentStock = StockLimitedListingCondition.GetCurrentStock(listingData.ID, stockCondition.StockLimit);
                                 var maxStock = StockLimitedListingCondition.GetMaxStock(listingData.ID, stockCondition.StockLimit);
-                                
+
                                 // Use the localization with the stock count parameter in X/Y format
                                 name = Loc.GetString(listingData.Name, ("stock", $"{currentStock}/{maxStock}"));
                             }
-                            
+
                             return name;
                         }
                     }
                 }
             }
-            
+
             name = Loc.GetString(listingData.Name);
         }
         // STARLIGHT END
@@ -99,7 +99,7 @@ public static class ListingLocalisationHelpers
             {
                 // Check if we have stock count and last purchaser in metadata
                 var metadata = listingData.GetMetadata();
-                if (metadata != null && 
+                if (metadata != null &&
                     metadata.TryGetValue("stock", out var stockObj) && stockObj is int stock &&
                     metadata.TryGetValue("lastPurchaser", out var lastPurchaserObj) && lastPurchaserObj is string purchaserText)
                 {
@@ -107,7 +107,7 @@ public static class ListingLocalisationHelpers
                     if (metadata.TryGetValue("outOfStock", out var outOfStockObj) && outOfStockObj is bool outOfStock && outOfStock)
                     {
                         // Use the localization with "Out of Stock" and last purchaser parameters
-                        desc = Loc.GetString(listingData.Description, 
+                        desc = Loc.GetString(listingData.Description,
                             ("stock", Loc.GetString("store-ui-button-out-of-stock")),
                             ("lastPurchaser", purchaserText)
                         );
@@ -120,14 +120,14 @@ public static class ListingLocalisationHelpers
                         {
                             maxStock = max;
                         }
-                        
+
                         // Use the localization with the stock count and last purchaser parameters in X/Y format
-                        desc = Loc.GetString(listingData.Description, 
+                        desc = Loc.GetString(listingData.Description,
                             ("stock", $"{stock}/{maxStock}"),
                             ("lastPurchaser", purchaserText)
                         );
                     }
-                    
+
                     return desc;
                 }
                 // Fallback to checking conditions
@@ -139,17 +139,17 @@ public static class ListingLocalisationHelpers
                         {
                             // Get the last purchaser
                             var lastPurchaser = StockLimitedListingCondition.GetLastPurchaser(listingData.ID);
-                            
+
                             // Format the last purchaser string
-                            var lastPurchaserText = string.IsNullOrEmpty(lastPurchaser) 
-                                ? "" 
+                            var lastPurchaserText = string.IsNullOrEmpty(lastPurchaser)
+                                ? ""
                                 : Loc.GetString(" Last purchased by: {0}", ("name", lastPurchaser));
-                            
+
                             // Check if the item is out of stock
                             if (StockLimitedListingCondition.IsOutOfStock(listingData.ID))
                             {
                                 // Use the localization with "Out of Stock" and last purchaser parameters
-                                desc = Loc.GetString(listingData.Description, 
+                                desc = Loc.GetString(listingData.Description,
                                     ("stock", Loc.GetString("store-ui-button-out-of-stock")),
                                     ("lastPurchaser", lastPurchaserText)
                                 );
@@ -159,20 +159,20 @@ public static class ListingLocalisationHelpers
                                 // Get the current stock count and maximum stock limit
                                 var currentStock = StockLimitedListingCondition.GetCurrentStock(listingData.ID, stockCondition.StockLimit);
                                 var maxStock = StockLimitedListingCondition.GetMaxStock(listingData.ID, stockCondition.StockLimit);
-                                
+
                                 // Use the localization with the stock count and last purchaser parameters
-                                desc = Loc.GetString(listingData.Description, 
+                                desc = Loc.GetString(listingData.Description,
                                     ("stock", $"{currentStock}/{maxStock}"),
                                     ("lastPurchaser", lastPurchaserText)
                                 );
                             }
-                            
+
                             return desc;
                         }
                     }
                 }
             }
-            
+
             desc = Loc.GetString(listingData.Description);
         } // STARLIGHT END
         else if (listingData.ProductEntity != null)

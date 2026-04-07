@@ -44,7 +44,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: MAP_FIX.py <path-to-.yml-file-or-directory>")
         sys.exit(1)
-    
+
     input_path = sys.argv[1]
     #Convert to absolute path
     script_dir = os.path.dirname(os.path.abspath(__file__))

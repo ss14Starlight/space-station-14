@@ -10,28 +10,28 @@
 #    #pistol
 #    - proto: MobSyndicateFootsoldierViper
 #      cost: 18
-#    - proto: MobSyndicateFootsoldierCobra 
+#    - proto: MobSyndicateFootsoldierCobra
 #      cost: 22
 #      prob: 0.9
 #    #rifle
-#    - proto: MobSyndicateFootsoldierAk 
+#    - proto: MobSyndicateFootsoldierAk
 #      cost: 42
 #      prob: 0.7
 #    #grenade
-#    - proto: MobSyndicateFootsoldierChina 
+#    - proto: MobSyndicateFootsoldierChina
 #      cost: 80
 #      prob: 0.2
 #    #laser
-#    - proto: MobSyndicateFootsoldierLaserCarbine 
+#    - proto: MobSyndicateFootsoldierLaserCarbine
 #      cost: 20
 #      prob: 0.8
-#    - proto: MobSyndicateFootsoldierMakeshiftLaser 
+#    - proto: MobSyndicateFootsoldierMakeshiftLaser
 #      cost: 16
 #    #boss
 #    - proto: MobSyndicateFootsoldierBoss
 #      cost: 100
 #      prob: 0.2
-#  difficulties: 
+#  difficulties:
 #    - Impossible
 #  configs:
 #    DefenseStructure: WeaponTurretDungeonSyndicate
@@ -53,18 +53,18 @@
     - proto: MobSovietComradeSawn
       cost: 8
     #pistol
-    - proto: MobSovietComradeMakarov 
+    - proto: MobSovietComradeMakarov
       cost: 10
       prob: 0.9
     #rifle
-    - proto: MobSovietComradeAk 
+    - proto: MobSovietComradeAk
       cost: 30
       prob: 0.5
     #boss / meeeh
     - proto: MobBearSoviet
       cost: 35
       prob: 0.4
-  difficulties: 
+  difficulties:
     - Difficult
   configs:
     DefenseStructure: WeaponTurretSyndicateBroken
@@ -77,7 +77,7 @@
   entries:
     - proto: MobElder
       cost: 463
-  difficulties: 
+  difficulties:
     - Impossible
   configs:
     DefenseStructure: WeaponTurretSyndicateBroken
@@ -90,7 +90,7 @@
       cost: 4
   biomes:
     - Abyss
-  difficulties: 
+  difficulties:
     - Challenging
   configs:
     DefenseStructure: WeaponTurretSyndicate
@@ -103,7 +103,7 @@
 #       cost: 40000
 #   biomes:
 #     - Abyss
-#   difficulties: 
+#   difficulties:
 #     - Difficult
 #   configs:
 #     DefenseStructure: WeaponTurretSyndicate
@@ -131,7 +131,7 @@
     - proto: WeaponTurretXeno
       prob: 0.2
       cost: 2
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
   configs:
@@ -155,7 +155,7 @@
     - proto: MobDragonDungeon
       cost: 10
       prob: 0.02
-  difficulties: 
+  difficulties:
     - Moderate
     - Easy
   configs:

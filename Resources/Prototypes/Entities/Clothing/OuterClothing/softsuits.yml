@@ -16,7 +16,6 @@
     - CorgiWearable
     - WhitelistChameleon
     - CorgiWearable
-    - IPCExternalCooling # Far Horizons
 
 #Syndicate EVA
 - type: entity
@@ -34,7 +33,6 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
   - type: StaticPrice
     price: 1000 # Helmet is 500
 
@@ -93,7 +91,6 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
 
 #NTSRA Voidsuit / Ancient Voidsuit
 - type: entity
@@ -144,7 +141,7 @@
         Heat: 0.90
         Radiation: 0.75
         Caustic: 0.5
-  - type: ZombificationResistance 
+  - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.5 # Starlight Edit
   - type: GroupExamine
   - type: StealTarget
@@ -182,4 +179,3 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons

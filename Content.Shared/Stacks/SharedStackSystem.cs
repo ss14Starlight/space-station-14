@@ -31,7 +31,7 @@ public abstract partial class SharedStackSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
     [Dependency] private readonly SharedStorageSystem _storage = default!;
-    
+
     // Starlight BEGIN
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     private const string StackCustomSplitBoundUserInterface = "StackCustomSplitBoundUserInterface";
@@ -198,9 +198,9 @@ public abstract partial class SharedStackSystem : EntitySystem
             return;
 
         var user = args.User; // Can't pass ref events into verbs
- 
+
         var @event = args;
-        
+
         // Starlight BEGIN
         var proto = _prototype.Index(ent.Comp.StackTypeId);
         args.Verbs.Add(new AlternativeVerb()
@@ -212,7 +212,7 @@ public abstract partial class SharedStackSystem : EntitySystem
             Priority = 2
         });
         // Starlight END
-        
+
         AlternativeVerb halve = new()
         {
             Text = Loc.GetString("comp-stack-split-halve"),
@@ -256,7 +256,7 @@ public abstract partial class SharedStackSystem : EntitySystem
     {
 
     }
-    
+
     /// <summary>
     /// STARLIGHT: Handle custom split size messages from the UI.
     /// </summary>
@@ -264,7 +264,7 @@ public abstract partial class SharedStackSystem : EntitySystem
     {
         if (stack.Count <= 0 || msg.Value <= 0)
             return;
-        
+
         UserSplit((uid, stack), msg.Actor, Math.Min(msg.Value, stack.Count));
     }
 }

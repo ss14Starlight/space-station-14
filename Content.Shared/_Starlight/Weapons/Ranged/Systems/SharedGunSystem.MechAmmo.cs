@@ -41,7 +41,7 @@ public abstract partial class SharedGunSystem
     {
         if (!ent.Comp.Mech.HasValue || !TryComp(ent.Comp.Mech.Value, out MechComponent? mechComp))
             return;
-        
+
         if (mechComp.BatterySlot.ContainedEntity != null &&
             TryComp(mechComp.BatterySlot.ContainedEntity.Value, out BatteryComponent? batteryComp))
         {
@@ -51,7 +51,7 @@ public abstract partial class SharedGunSystem
             {
                 if(!_mech.TryChangeEnergy(ent.Comp.Mech.Value, ent.Comp.FireCost))
                     break;
-                    
+
                 args.Ammo.Add(GetShootable(ent, args.Coordinates));
             }
         }
@@ -68,7 +68,7 @@ public abstract partial class SharedGunSystem
     {
         if (!ent.Comp.Mech.HasValue || !TryComp(ent.Comp.Mech.Value, out MechComponent? mechComp))
             return;
-        
+
         if (mechComp.BatterySlot.ContainedEntity != null &&
             TryComp(mechComp.BatterySlot.ContainedEntity.Value, out BatteryComponent? batteryComp))
         {
