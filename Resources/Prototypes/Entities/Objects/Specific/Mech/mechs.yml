@@ -22,6 +22,11 @@
     equipmentWhitelist:
       tags:
       - IndustrialMech
+# STARLIGHT BEGIN
+  - type: MeleeThrowOnHit
+    speed: 10
+    distance: 1
+# STARLIGHT END
 
 - type: entity
   id: SpecialMech
@@ -95,6 +100,11 @@
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.75
+    # STARLIGHT BEGIN
+    angle: 0
+    animation: WeaponArcFist
+    wideAnimation: WeaponArcFist
+    # STARLIGHT END
     damage:
       types:
         Blunt: 25 #thwack
@@ -447,6 +457,19 @@
       collection: FootstepClown
       params:
         variation: 0.17
+  # STARLIGHT BEGIN
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Structural: 2
+    soundHit:
+      path: /Audio/Items/bikehorn.ogg
+  - type: MeleeThrowOnHit
+    speed: 1
+    distance: 2
+  # STARLIGHT END
   - type: Mech
     baseState: base
     openState: base-open
@@ -634,6 +657,11 @@
       types:
         Blunt: 30 #THWACK
         Structural: 180
+  # STARLIGHT BEGIN
+  - type: MeleeThrowOnHit
+    speed: 15
+    distance: 2.5
+  # STARLIGHT END
   - type: MovementSpeedModifier
 # 🌟Starlight-start🌟
     baseWalkSpeed: 2 #All mechs walk at the same speed
@@ -695,6 +723,11 @@
       types:
         Blunt: 40
         Structural: 220
+  # STARLIGHT BEGIN
+  - type: MeleeThrowOnHit
+    speed: 18
+    distance: 4
+  # STARLIGHT END
   - type: MovementSpeedModifier
     baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 2.8 #Starlight - No longer unusably slow
@@ -829,6 +862,11 @@
       types:
         Blunt: 60
         Structural: 400
+  # STARLIGHT BEGIN
+  - type: MeleeThrowOnHit
+    speed: 20
+    distance: 5
+  # STARLIGHT END
   - type: MovementSpeedModifier
     baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 3.7
@@ -901,6 +939,11 @@
       types:
         Blunt: 30
         Structural: 200
+  # STARLIGHT BEGIN
+  - type: MeleeThrowOnHit
+    speed: 15
+    distance: 3
+  # STARLIGHT END
   - type: MovementSpeedModifier
     baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 4.5 # 🌟Starlight-Change - Faster than regular Gygax
@@ -976,6 +1019,11 @@
       types:
         Blunt: 50
         Structural: 400
+  # STARLIGHT BEGIN
+  - type: MeleeThrowOnHit
+    speed: 20
+    distance: 5
+  # STARLIGHT END
   - type: MovementSpeedModifier
     baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
     baseSprintSpeed: 2.2 #Starlight - No longer unusably slow
