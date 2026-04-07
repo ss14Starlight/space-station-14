@@ -1,15 +1,4 @@
 Entries:
-- author: Xale
-  changes:
-  - message: Improve mob pack-forming system to not be reliant on mob collision.
-    type: Tweak
-  - message: Aggressive mob packs will no longer replay the alert chime each time a new pack member is added.
-    type: Fix
-  - message: Compsognathus mobs will no longer open doors within an 8 tile radius.
-    type: Fix
-  id: 385801
-  time: '2026-03-22T20:49:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3858
 - author: Conflee
   changes:
   - message: Added Aquarium, Coat Rack, Grandfather Clock, Junction Boxes, and Piggy Bank as decoration options. Grandfather Clock is animated and plays ticking sounds, Junction Boxes break into LV Coils, and the Piggy Bank can be broken for random coins.
@@ -947,4 +936,11 @@ Entries:
   id: 404124
   time: '2026-04-07T18:18:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4062
+- author: Conflee
+  changes:
+  - message: Allowed Interdyne and NanoMed Security medical venders to be restocked with a NanoMed Restock Box, as previously due to oversight they could never be refilled by any means.
+    type: Fix
+  id: 404125
+  time: '2026-04-07T18:24:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4049
 Order: -1
