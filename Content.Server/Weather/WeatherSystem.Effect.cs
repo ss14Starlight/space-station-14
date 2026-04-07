@@ -143,7 +143,6 @@ public sealed partial class WeatherSystem
 
     /// <summary>
     /// Drains the pending entities queue, raising <see cref="WeatherEntityAffectedEvent"/> for each.
-    /// Budget-limited by <c>weather.max_affected_per_tick</c>.
     /// </summary>
     private void ProcessApplying(EntityUid weatherUid, WeatherEffectProcessingState state)
     {
