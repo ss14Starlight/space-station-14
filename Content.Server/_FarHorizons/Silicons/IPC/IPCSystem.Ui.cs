@@ -13,7 +13,6 @@ public sealed partial class IPCSystem
     private void InitializeUI()
     {
         SubscribeLocalEvent<IPCUserInterfaceComponent, IPCEjectBrainBuiMessage>(OnEjectBrainBuiMessage);
-        SubscribeLocalEvent<IPCUserInterfaceComponent, IPCEjectBatteryBuiMessage>(OnEjectBatteryBuiMessage);
         SubscribeLocalEvent<IPCUserInterfaceComponent, IPCSetNameBuiMessage>(OnSetNameBuiMessage);
         SubscribeLocalEvent<IPCUserInterfaceComponent, BoundUIOpenedEvent>(OnUIOpened);
 
@@ -59,19 +58,6 @@ public sealed partial class IPCSystem
         EjectBrain(ent.Owner, args.Actor);
     }
 
-    private void OnEjectBatteryBuiMessage(Entity<IPCUserInterfaceComponent> ent, ref IPCEjectBatteryBuiMessage args)
-    {
-        if (!TryComp<IPCLockComponent>(ent.Owner, out var lockComp)) return;
-
-        if (lockComp.Lock.Locked || !lockComp.WiresPanel.Open)
-        {
-            _popup.PopupEntity(Loc.GetString(lockComp.LockedPopupMessage), ent);
-            _audio.PlayPvs(lockComp.LockedSound, ent);
-            return;
-        }
-
-        EjectBattery(ent.Owner, args.Actor);
-    }
     private void OnSetNameBuiMessage(Entity<IPCUserInterfaceComponent> ent, ref IPCSetNameBuiMessage args)
     {
         if (args.Name.Length > _maxNameLength ||

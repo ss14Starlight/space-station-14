@@ -3,6 +3,9 @@ using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
 using Robust.Shared.Prototypes;
+using Content.Shared.Inventory;
+using Content.Shared._Starlight.CoolingUnit;
+using Content.Shared.Item.ItemToggle.Components;
 
 namespace Content.Server._FarHorizons.Silicons.IPC;
 
@@ -13,7 +16,7 @@ public sealed partial class IPCSystem
         var query = EntityQueryEnumerator<IPCThermalRegulationComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if(_timing.CurTime < comp.NextUpdate ||
+            if (_timing.CurTime < comp.NextUpdate ||
                !TryComp<TemperatureComponent>(uid, out var temp) ||
                temp.CurrentTemperature == 0)
                 continue;
@@ -27,16 +30,11 @@ public sealed partial class IPCSystem
     {
         if (!Resolve(ent, ref ent.Comp2) ||
             ExternalCooling(ent, ent.Comp2) ||
-            _atmos.GetContainingMixture(ent.Owner) is not GasMixture gas)
+            _atmos.GetContainingMixture(ent.Owner) is not { } gas)
             return;
 
-        var passiveHeat = 0f;
-        if (ent.Comp2.CurrentTemperature > gas.Temperature)
-            passiveHeat -= ent.Comp1.RadiateHeat;
-        if (!_state.IsDead(ent))
-            passiveHeat += ent.Comp1.ProduceHeat;
+        RadiateHeat(ent, ent.Comp2, gas.Temperature, _state.IsDead(ent) ? 0 : ent.Comp1.ProduceHeat);
 
-        _tempSys.ChangeHeat(ent, passiveHeat, ignoreHeatResistance: true, ent);
         ent.Comp1.FansCurrentlyOff = FanShutOff(ent, gas);
 
         ent.Comp1.CurrentTemp = ent.Comp2.CurrentTemperature;
@@ -56,22 +54,31 @@ public sealed partial class IPCSystem
 
     private bool ExternalCooling(Entity<IPCThermalRegulationComponent> ent, TemperatureComponent temp)
     {
-        if (ent.Comp.ExternalCoolingCheckSlots.Count == 0)
-            return false;
+        if (HasComp<InventoryComponent>(ent) && _inventorySystem.TryGetSlots(ent, out var slots))
+            foreach (var slot in slots)
+                if (_inventorySystem.TryGetSlotEntity(ent, slot.Name, out var slotent) && HasComp<CoolingUnitComponent>(slotent)
+                    && TryComp<ItemToggleComponent>(slotent, out var itemtoggle) && itemtoggle.Activated)
+                {
+                    ent.Comp.FansCurrentlyOff = false;
+                    ent.Comp.CanSwitchModeIn = TimeSpan.Zero;
+                    ent.Comp.CurrentTemp = temp.CurrentTemperature;
+                    HandleFans(ent, temp, null, true, true);
+                    UpdateThermalsAlert(ent);
+                    Dirty(ent);
+                    return true;
+                }
 
-        foreach (var slotID in ent.Comp.ExternalCoolingCheckSlots)
-            if (!_container.TryGetContainer(ent, slotID, out var container) ||
-                container.ContainedEntities.Count != 1 ||
-                !_tag.HasTag(container.ContainedEntities[0], ent.Comp.ExternalCoolingTag))
-                return false;
+        return false;
+    }
 
-        ent.Comp.FansCurrentlyOff = false;
-        ent.Comp.CanSwitchModeIn = TimeSpan.Zero;
-        ent.Comp.CurrentTemp = temp.CurrentTemperature;
-        HandleFans(ent, temp, null, true, true);
-        UpdateThermalsAlert(ent);
-        Dirty(ent);
-        return true;
+    private void RadiateHeat(Entity<IPCThermalRegulationComponent> ent, TemperatureComponent temp, float externalTemp, float produceHeat = 0)
+    {
+        var tempDelta = temp.CurrentTemperature - externalTemp;
+
+        if (tempDelta > 0)
+            _tempSys.ChangeHeat(ent, produceHeat - (tempDelta * ent.Comp.RadiateHeatEfficiency), ignoreHeatResistance: true, temp);
+        else if (produceHeat > 0)
+            _tempSys.ChangeHeat(ent, produceHeat, ignoreHeatResistance: true, temp);
     }
 
     private bool FanShutOff(Entity<IPCThermalRegulationComponent> ent, GasMixture gas) =>
@@ -82,7 +89,7 @@ public sealed partial class IPCSystem
 
     private static bool CanSwitchFan(Entity<IPCThermalRegulationComponent> ent)
     {
-        if(ent.Comp.CanSwitchModeIn <= TimeSpan.Zero)
+        if (ent.Comp.CanSwitchModeIn <= TimeSpan.Zero)
             return true;
 
         ent.Comp.CanSwitchModeIn -= ent.Comp.RefreshRate;
