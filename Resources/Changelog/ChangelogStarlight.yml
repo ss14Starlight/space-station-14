@@ -1,144 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Senior Mail Technician Jumpsuit/Jumpskirt, Senior Mail Technician Visor, Senior Mail Technician Boots, Senior Mail Technician Trunk, Senior Mail PDA, Senior Mail Technician Mail Bag (60 Hours Mail Technician).
-    type: Add
-  - message: Mail Technician Jumpsuit/Jumpskirt, Mail Technician Visor (can be flipped), Mail Technician Boots.
-    type: Add
-  - message: Mail Technician Trunk. It's wider than a duffel, but only 4 spaces tall. Can hold 3 full packages, but it's 5% slower than the duffel.
-    type: Add
-  - message: Golden Mail Trolley Flatpack. (100 Hours Mail Technician).
-    type: Add
-  - message: Cargo Technicians now spawn with a cargo utility belt, allowing them to carry all of their paperwork on them. The appraisal tool now spawns in here. (Ported from Far Horizons, although with a tweaked whitelist. The sprite's different here, but I used FH's sprite as a reference for the color scheme.).
-    type: Add
-  - message: Cargo Technicians now spawn with a boxcutter in their belt.
-    type: Add
-  - message: Golden Appraisal Tool. (100 Hours Cargo Technician).
-    type: Add
-  - message: Added Mail Access!.
-    type: Add
-  - message: Added Mail Airlocks and Windoors.
-    type: Add
-  - message: Added Cargo Technician and Mail Technician Lockers.
-    type: Add
-  - message: Space Courier Bundle to the Fashion vendor, containing green versions of the above items. Comes in an equally luxurious Space Courier Trunk. There's something special about the one in the fashion vendor, too...
-    type: Add
-  - message: Stamps now have the Stamp tag.
-    type: Add
-  - message: Added Mail Technician Jumpsuit/Jumpskirt, Mail Visor, Mail Technician Boots, and a Cargo Utility Belt to the CargoDrobe.
-    type: Add
-  - message: Added a singular mail trunk to the MNGR wire CargoDrobe inventory.
-    type: Add
-  - message: You can now emag the CargoDrobe to get additional Salvage backpacks.
-    type: Add
-  - message: Mail Technicians now have their own loadout options for Head, Jumpsuit, Outer Clothing (nothing unique, yet), Boots, Backpack, PDA, Bag, and Trolley.
-    type: Tweak
-  - message: Cargo Technicians now have a loadout option for their Appraisal Tool.
-    type: Tweak
-  - message: The Mail Teleporter now requires Mail Access.
-    type: Tweak
-  - message: Renamed mailman.yml to mail_technician.yml to be consistent with naming scheme.
-    type: Fix
-  - message: Fixed Boxcutter only counting as Security contraband instead of Security-Cargo.
-    type: Fix
-  - message: All of Cargo gains access to the rest of Cargo minus Salv Lead/QM on skeleton crew.
-    type: Fix
-  id: 377101
-  time: '2026-03-21T19:30:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3771
-- author: wonderfulnewworld
-  changes:
-  - message: Fixes a duplicate rocket yaml linter failure that somehow appeared when everything got renamed to /Starlight.
-    type: Fix
-  id: 385201
-  time: '2026-03-21T19:49:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3852
-- author: Xale
-  changes:
-  - message: Chicken shawarma is now classified as a meat food.
-    type: Fix
-  - message: Doner kebab is now classified as a meat food.
-    type: Fix
-  - message: Souvlaki gyros sandwich is now classified as a meat food.
-    type: Fix
-  id: 385501
-  time: '2026-03-21T21:09:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3855
-- author: TaserTheFox
-  changes:
-  - message: Slightly tweaked the wording of the evac shuttle dock message.
-    type: Tweak
-  id: 385901
-  time: '2026-03-22T08:06:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3859
-- author: BigfootBravo
-  changes:
-  - message: Chittin now can use the tts system.
-    type: Fix
-  id: 386101
-  time: '2026-03-22T08:14:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3861
-- author: wonderfulnewworld
-  changes:
-  - message: (Bagel) Adds a mail room w/Mail Technician lockers + 1 extra mail tech round start slot.
-    type: Add
-  - message: (Bagel) Adds Cargo Technician lockers.
-    type: Add
-  - message: (Bagel) Adds Departmental Communications Consoles.
-    type: Add
-  - message: (Bagel) Expands Law Department to have a bedroom room for Magistrate.
-    type: Add
-  - message: (Bagel) Removes Chemistry from Brigmed.
-    type: Remove
-  - message: (Bagel) Tweaks Mains around Law to account for Magistrate's room.
-    type: Tweak
-  - message: (Bagel) Adds a couple more emergency lights in the east main hallways.
-    type: Fix
-  id: 385601
-  time: '2026-03-22T08:49:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3856
-- author: wonderfulnewworld and Conflee
-  changes:
-  - message: Added Interdyne Enterprise/Commercial vendors & wall versions. These should replace the NanoMeds on Serpentscrest/can be mapped on Nukie Bases/used for admins. The Enterprise ones can accept Medical or SyndicateAgent access.
-    type: Add
-  - message: Added new posters for Interdyne, Waffle Corp, DONK CO., and Comitas Systems. These can randomly show up in the ContraPoster pool.
-    type: Add
-  - message: Added a new poster for DeForest Medical. This can randomly show up in the LegitPoster pool.
-    type: Add
-  - message: Added new flags for Cybersun, Interdyne, Waffle Corp, and DONK CO.
-    type: Add
-  - message: Adds Interdyne bruise packs/ointments. They use the sprites of the red ones from security, but only stack to 10. They can only be found in the Interdyne vendors.
-    type: Add
-  - message: The SyndieJuice has a unique sprite now.
-    type: Add
-  - message: Added Ominous Pills. These are similar to Strange Pills, but have a much higher chance of killing you. They do, however, have *more* of each chemical, so if you get lucky...
-    type: Add
-  - message: Added Strange Pills to NanoMed MNGR inventories.
-    type: Tweak
-  - message: You can now emag NanoMeds to get some Desoxy and Ominous Pills.
-    type: Tweak
-  - message: You can now emag the ChemVend to get Ominous Pills.
-    type: Tweak
-  id: 386501
-  time: '2026-03-22T17:16:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3865
-- author: SevenShades
-  changes:
-  - message: (Boxcars) Added a public crew monitoring console to medical.
-    type: Add
-  - message: (Boxcars) Departmental announcement consoles.
-    type: Add
-  - message: (Boxcars) Added more emergency lights.
-    type: Add
-  - message: (Boxcars) Sec front doors are now brig access.
-    type: Fix
-  - message: (Boxcars) AI console is now linked to the core by default.
-    type: Fix
-  - message: (Boxcars) Fixed engineering fax machine name.
-    type: Fix
-  id: 385701
-  time: '2026-03-22T17:23:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3857
 - author: Cujo
   changes:
   - message: (Cork) added all of the new departmental communication consoles.
@@ -1121,4 +981,60 @@ Entries:
   id: 404112
   time: '2026-04-07T08:36:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4008
+- author: wonderfulnewworld
+  changes:
+  - message: The Thieving Gloves have had their price doubled, and only have a 1 second StripTimeReduction instead of 2.
+    type: Tweak
+  id: 404113
+  time: '2026-04-07T14:29:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4023
+- author: wonderfulnewworld
+  changes:
+  - message: Removed Emag from Thief Syndicate bundle, replacing it with a Camera Bug and a 60sec Hyperzine injector.
+    type: Tweak
+  id: 404114
+  time: '2026-04-07T14:29:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4023
+- author: wonderfulnewworld
+  changes:
+  - message: Replaced the lighter in the the Thief Syndicate bundle with an Interdyne Flippo. Might as well be on theme, no?.
+    type: Tweak
+  id: 404115
+  time: '2026-04-07T14:29:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4023
+- author: wonderfulnewworld
+  changes:
+  - message: Replaced Jaws of Life in the Thief Tool bundle with a (Stealth) Syndicate Jaws of Life.
+    type: Tweak
+  id: 404116
+  time: '2026-04-07T14:29:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4023
+- author: wonderfulnewworld
+  changes:
+  - message: Added a Binary Encryption Key to the Thief Communicator bundle.
+    type: Tweak
+  id: 404117
+  time: '2026-04-07T14:29:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4023
+- author: wonderfulnewworld
+  changes:
+  - message: Added a bottle of Tazinide and a Healium-O2-N2 mix tank to the Thief Sleeper bundle.
+    type: Tweak
+  id: 404118
+  time: '2026-04-07T14:29:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4023
+- author: wonderfulnewworld
+  changes:
+  - message: You can no longer instant-steal as a Thief with Thieving gloves.
+    type: Fix
+  id: 404119
+  time: '2026-04-07T14:29:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4023
+- author: wonderfulnewworld
+  changes:
+  - message: The Stealth Syndicate Jaws of Life now actually look like the normal jaws of life.
+    type: Fix
+  id: 404120
+  time: '2026-04-07T14:29:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4023
 Order: -1
