@@ -1,51 +1,4 @@
 Entries:
-- author: Cujo
-  changes:
-  - message: (Cork) added all of the new departmental communication consoles.
-    type: Add
-  - message: (Cork) re-added the missing PTech in HoP's office, as well as the missing document printer for public use near the window.
-    type: Fix
-  - message: (Cork) added paper bins for most all departments, with public ones in the library.
-    type: Add
-  - message: (Cork) added initial atmosphere fixes for the TEG burn chamber (vacuum) and the Sauna gas miner.
-    type: Add
-  - message: (Cork) extended and linked the docking/salvage arm's conveyor belts.
-    type: Tweak
-  - message: (Cork) expanded QM's office and altered the layout of the mining/salvage locker room to account for announcement console changes. Unfortunately this came at the cost of narrowing the one maints hall nearby.
-    type: Tweak
-  - message: (Cork) added various random industrial tools and other materials spawns to compensate for the loss of a welding and electrical supply locker in maints.
-    type: Add
-  - message: (Cork) fixed an issue with toolboxes spawning with nothing in them.
-    type: Fix
-  - message: (Cork) updated the comms room telecommunications server with the law channel there instead of having a separate law telecommunications server.
-    type: Tweak
-  - message: (Cork) widened and shuffled around Botany with minor space-saving measures for better air alarm access.
-    type: Tweak
-  - message: (Cork) moved prisoner processing lockers from the north of Genpop, to the south of Genpop.
-    type: Tweak
-  - message: (Cork) swapped the locations of the Brigmed and Surgeon bays, swapping their accesses accordingly. This was done to allow Brigmed better access to Medbay.
-    type: Tweak
-  - message: (Cork) added a proper sink to Brigmed.
-    type: Add
-  - message: (Cork) shuffled around Chemistry for overall better clustering of the Chemist workstation.
-    type: Tweak
-  - message: (Cork) added proper medicine lockers, bodybags, and a cell charging station by the defibrillator.
-    type: Add
-  - message: (Cork) added a single nitrous oxide, CO2, and O2 canister to Arti, complete with a manual valve to the scrubbers in arti bays for greater control over the arti bay chambers' gas environments (including spacing).
-    type: Add
-  - message: (Cork) streamlined atmos pipe connections in some places for to be neater, more efficient, and/or more readable with pump labels! (namely Cryopod, TEG, Arti, AI, and ENG).
-    type: Tweak
-  - message: (Cork) consolidated atmospheric waste pipes in a safer fashion to help mitigate burn chamber heat backflow and waste loop overheating.
-    type: Tweak
-  - message: (Cork) added freezers for atmospheric distro and waste loops to help with interior temperature regulation (after hearing people were somehow pipeburning/heating distro with the TEG burn chamber bleed outlet?).
-    type: Add
-  - message: (Cork) removed the two storage canisters and filters in ENG to make the ENG room less cluttered and allow for the aforementioned placement of freezers.
-    type: Remove
-  - message: (Cork) fixed CE's room scrubbers not scrubbing. Sorry Polly.
-    type: Fix
-  id: 386901
-  time: '2026-03-22T19:23:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3869
 - author: Vonte
   changes:
   - message: (Manor) completely remodelled security and its contents, go into map or check the PR for full picture.
@@ -1037,4 +990,11 @@ Entries:
   id: 404120
   time: '2026-04-07T14:29:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4023
+- author: Unknown
+  changes:
+  - message: Added salt lamp plush.
+    type: Add
+  id: 404121
+  time: '2026-04-07T18:11:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3992
 Order: -1
