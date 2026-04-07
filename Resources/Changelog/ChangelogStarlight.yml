@@ -1,21 +1,4 @@
 Entries:
-- author: walksanatora
-  changes:
-  - message: Added Tippy to discord autolog.
-    type: Add
-  - message: Added announce and announceui to discord autolog.
-    type: Add
-  - message: Added setgamemap to discord autolog.
-    type: Add
-  - message: Added antag ctrls to discord autolog.
-    type: Add
-  - message: Added setalertlevel of admeme alerts to discord autolog.
-    type: Add
-  - message: Fixed dev crash upon cosmic cult victory.
-    type: Fix
-  id: 387001
-  time: '2026-03-22T20:42:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3870
 - author: Xale
   changes:
   - message: Improve mob pack-forming system to not be reliant on mob collision.
@@ -957,4 +940,11 @@ Entries:
   id: 404123
   time: '2026-04-07T18:15:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4063
+- author: JMxm5
+  changes:
+  - message: Increased canister volume of the Funky-originating gases (BZ, Healium, …) from 1000 L to 1500 L to match the Starlight standard.
+    type: Fix
+  id: 404124
+  time: '2026-04-07T18:18:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4062
 Order: -1
