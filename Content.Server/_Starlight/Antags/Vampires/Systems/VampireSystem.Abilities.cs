@@ -647,7 +647,6 @@ public sealed partial class VampireSystem : EntitySystem
         if (args.Handled || args.Cancelled || args.Target == null)
             return;
 
-
         var target = args.Target.Value;
 
         if (_flashImmunity.HasFlashImmunityVisionBlockers(target))
@@ -656,14 +655,14 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-        if (!CheckAndConsumeBloodCost(uid, comp, null, args.BloodCost))
-            return;
-
         if (HasComp<MindShieldComponent>(target))
         {
             _popup.PopupEntity(Loc.GetString("vampire-sleep-shielded"), uid, uid, PopupType.SmallCaution);
             return;
         }
+
+        if (!CheckAndConsumeBloodCost(uid, comp, null, args.BloodCost))
+            return;
 
         var duration = args.Duration;
         _statusEffects.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, duration);
