@@ -15,7 +15,7 @@
     state: oilpack
   - type: Healing
     damageContainers:
-      - Biological
+      - IPC
     damage:
       types:
         Bloodloss: -0.5 #lowers bloodloss damage
@@ -31,10 +31,6 @@
       params:
         volume: 1.0
         variation: 0.125
-  - type: InteractRestriction
-    restrictInteractionTarget:
-       whitelist:
-        - IPC
   - type: Stack
     stackType: OilPack
     count: 10
