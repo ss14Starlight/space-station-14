@@ -63,8 +63,8 @@
 - type: entity
   id: CrateSaltLamp
   parent: CrateGenericSteel
-  name: Salt Lamp Plushie Crate
-  description: Contains one Small Salt Lamp Plushie and one Large Salt Lamp Plushie. Perfect for adding a cozy ambiance to any room.
+  name: salt lamp plushie crate
+  description: Contains one small salt lamp plushie and one large salt lamp plushie. Perfect for adding a cozy ambiance to any room.
   components:
   - type: EntityTableContainerFill
     containers:
