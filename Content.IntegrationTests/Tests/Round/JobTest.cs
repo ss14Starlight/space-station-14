@@ -139,8 +139,9 @@ public sealed class JobTest
         var captain = pair.Server.ProtoMan.Index(Captain);
         var engineer = pair.Server.ProtoMan.Index(Engineer);
         var passenger = pair.Server.ProtoMan.Index(Passenger);
-        Assert.That(captain.Weight, Is.GreaterThan(engineer.Weight));
-        Assert.That(engineer.Weight, Is.EqualTo(passenger.Weight));
+        // starlight change https://github.com/ss14Starlight/space-station-14/pull/1109
+        //Assert.That(captain.Weight, Is.GreaterThan(engineer.Weight));
+        //Assert.That(engineer.Weight, Is.EqualTo(passenger.Weight));
 
         await pair.SetJobPriorities(
             //starlight change https://github.com/ss14Starlight/space-station-14/pull/1109

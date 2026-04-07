@@ -502,6 +502,65 @@
     - UplinkWearables
 
 - type: listing
+  id: UplinkSatchelSyndicate
+  name: uplink-satchel-syndicate-name
+  description: uplink-satchel-syndicate-desc
+  productEntity: ClothingBackpackSatchelSyndicate
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 3
+  categories:
+    - UplinkWearables
+
+- type: listing
+  id: UplinkDuffelSyndicate
+  name: uplink-duffel-syndicate-name
+  description: uplink-duffel-syndicate-desc
+  productEntity: ClothingBackpackDuffelSyndicate
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkWearables
+
+- type: listing
+  id: UplinkTrunkSyndicate
+  name: uplink-trunk-syndicate-name
+  description: uplink-trunk-syndicate-desc
+  productEntity: ClothingBackpackTrunkSyndicate
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - MailTech
+        - Quartermaster
+        - Captain
+
+# Pointless
+- type: listing
+  id: UplinkSyndieDrobe
+  name: uplink-syndiedrobe-name
+  description: uplink-syndiedrobe-desc
+  productEntity: SyndieDrobeFlatpack
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 15
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkPointless
+
+- type: listing
   id: UplinkClothingOuterArmorElegantRaid
   name: uplink-syndie-elegant-raid-name
   description: uplink-syndie-elegant-raid-desc

@@ -5,6 +5,8 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Medical;
 using Content.Shared.Mobs;
+using Content.Shared.Power.Components;
+using Content.Shared.PowerCell.Components;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
@@ -40,8 +42,11 @@ public sealed partial class IPCSystem
         if (ent.Comp.DefibDamage != null)
             _damageable.TryChangeDamage(ent.Owner, ent.Comp.DefibDamage);
 
-        if (ent.Comp.DefibBatteryDrain)
-            DrainBattery((ent, null));
+        if (ent.Comp.DefibBatteryDrain && _powerCell.TryGetBatteryFromEntityOrSlot(ent.Owner, out var battery) && TryComp<BatteryComponent>(battery, out var batterycomp))
+        {
+            _electrocution.TryDoElectrocution(args.EntityUsingDefib, ent, defib.ZapDamage, defib.WritheDuration, true, ignoreInsulation: true);
+            _battery.SetCharge((battery.Value, batterycomp), 0);
+        }
 
         _audio.PlayPvs(defib.ZapSound, args.Defib);
         args.Cancel();

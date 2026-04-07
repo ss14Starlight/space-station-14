@@ -16,7 +16,6 @@
     - CorgiWearable
     - WhitelistChameleon
     - CorgiWearable
-    - IPCExternalCooling # Far Horizons
 
 #Syndicate EVA
 - type: entity
@@ -34,7 +33,6 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
   - type: StaticPrice
     price: 1000 # Helmet is 500
 
@@ -93,7 +91,6 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
 
 #NTSRA Voidsuit / Ancient Voidsuit
 - type: entity
@@ -182,4 +179,3 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons

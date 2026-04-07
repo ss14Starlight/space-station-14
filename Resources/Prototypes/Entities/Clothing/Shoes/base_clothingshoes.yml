@@ -1,16 +1,35 @@
- # Starlight-start: moved into: ClothingShoesBaseUntieable
 - type: entity
   abstract: true
-  parent: ClothingShoesBaseUntieable
+  parent: Clothing
   id: ClothingShoesBase
   components:
-  - type: ShoelaceTieable
-# Starlight-end
+  - type: Clothing
+    slots:
+    - FEET
+  - type: Sprite
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+  - type: ProtectedFromStepTriggers
 
 - type: entity
   abstract: true
-  parent: ClothingShoesBaseUntieable # Starlight-edit
-  id: ClothingShoesBaseButcherableUntieable # Starlight-edit
+  parent: ClothingShoesBase
+  id: ClothingShoesBaseButcherable
   components:
   - type: Butcherable
     butcheringType: Knife
@@ -24,8 +43,8 @@
 # stuff common to all military boots
 - type: entity
   abstract: true
-  parent: [ClothingShoesBaseUntieable, ClothingSlotBase] # Starlight-edit
-  id: ClothingShoesMilitaryBaseUntieable # Starlight-edit
+  parent: [ClothingShoesBase, ClothingSlotBase]
+  id: ClothingShoesMilitaryBase
   components:
   - type: Matchbox
   - type: ItemSlots

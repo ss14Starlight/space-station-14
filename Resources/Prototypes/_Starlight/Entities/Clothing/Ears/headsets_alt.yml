@@ -177,8 +177,8 @@
 - type: entity
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltBlackstar
-  name: blackstar mercenary headset
-  description: A headset used by elite blackstar mercenaries.
+  name: Blackstar mercenary headset
+  description: A headset used by elite Blackstar mercenaries.
   components:
     - type: Headset
     - type: ContainerFill
