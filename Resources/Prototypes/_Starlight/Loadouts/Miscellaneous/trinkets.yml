@@ -49,7 +49,7 @@
     back:
     - TrumpetInstrument
   groupBy: "Instruments"
-  
+
 - type: loadout
   id: CoderSocks
   effects:
@@ -396,7 +396,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMailTech
-      time: 18000 # 5 hours of being ignored while carrying a parcelbomb. 
+      time: 18000 # 5 hours of being ignored while carrying a parcelbomb.
   equipment:
     shoes: ClothingShoesSkates
 
@@ -578,7 +578,7 @@
   equipment:
     shoes: ClothingClothWrap
   groupBy: "cloth wraps"
-  
+
 - type: loadout
   id: PawBootTrinket
   equipment:
@@ -649,3 +649,27 @@
   equipment:
     head: ClothingHeadHatTacticalMaidHeadband
   groupBy: "maid outfit"
+
+- type: loadout
+  id: TreasureCoinIron
+  storage:
+    back:
+      - TreasureCoinIron
+
+- type: loadout
+  id: TreasureCoinSilver
+  storage:
+    back:
+      - TreasureCoinSilver
+
+- type: loadout
+  id: TreasureCoinGold
+  storage:
+    back:
+      - TreasureCoinGold
+
+- type: loadout
+  id: PictureFrame
+  storage:
+    back:
+      - PictureFrame

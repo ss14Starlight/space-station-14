@@ -19,7 +19,7 @@
           path: /Maps/_Starlight/Shuttles/cargo_silica.yml
         - type: StationJobs
           availableJobs:
-            #service 
+            #service
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 2, 2 ]
@@ -76,7 +76,7 @@
             #law
             Magistrate: [ 1, 1 ]
             IAA: [ 2, 2 ]
-            #Representives
+            #Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]

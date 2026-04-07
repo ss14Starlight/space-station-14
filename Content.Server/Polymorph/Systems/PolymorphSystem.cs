@@ -125,7 +125,7 @@ public sealed partial class PolymorphSystem : EntitySystem
         PolymorphEntity(ent, args.Config);
         args.Handled = true;
     }
-    
+
     private void OnPolymorphConfigActionEvent(Entity<PolymorphableComponent> ent, ref PolymorphConfigActionEvent args)
     {
         if (args.Handled) return;
@@ -209,7 +209,7 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         // mostly just for vehicles
         _buckle.TryUnbuckle(uid, uid, true);
-        
+
         var targetTransformComp = Transform(uid);
 
         if (configuration.PolymorphSound != null)
@@ -396,7 +396,7 @@ public sealed partial class PolymorphSystem : EntitySystem
             RemComp<UncryoableComponent>(parent);
         }
         //#endregion Starlight
-        
+
         if (TryComp<PolymorphableComponent>(parent, out var polymorphableComponent))
             polymorphableComponent.LastPolymorphEnd = _gameTiming.CurTime;
 
@@ -462,7 +462,7 @@ public sealed partial class PolymorphSystem : EntitySystem
         if (actions.TryGetValue(id, out var action))
             _actions.RemoveAction(target.Owner, action);
     }
-    
+
     //Starlight begin
     public void CreatePolymorphAction(string id, PolymorphConfiguration config, EntityUid target, PolymorphableComponent? comp)
     {
@@ -470,7 +470,7 @@ public sealed partial class PolymorphSystem : EntitySystem
         comp.PolymorphConfigActions ??= new();
         if (comp.PolymorphConfigActions.ContainsKey(id))
             return;
-        
+
         var entProto = _proto.Index(config.Entity);
 
         EntityUid? actionId = default!;

@@ -1,7 +1,7 @@
 - type: entity
   id: BoxFolderNanoTrasenClipboard
   parent: BoxFolderClipboard
-  name: nanotrasen clipboard
+  name: NanoTrasen clipboard
   description: A stylish clipboard in NanoTrasen colors.
   components:
     - type: Sprite
@@ -161,7 +161,7 @@
             - DoorBumpOpener
         hop_clipboard_target_id:
           minCount: 2
-          whitelist: 
+          whitelist:
             tags:
             - DoorBumpOpener
     - type: MeleeWeapon

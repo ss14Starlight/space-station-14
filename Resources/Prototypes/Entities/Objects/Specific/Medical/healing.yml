@@ -14,7 +14,7 @@
     price: 0
   # Starlight-edit: start
   - type: ItemPrice
-    priceCategory: medical  
+    priceCategory: medical
   #Starlight-edit: end
 
 - type: entity

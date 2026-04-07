@@ -38,7 +38,7 @@ public sealed class SlimeBrainSystem : EntitySystem
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly PathfindingSystem _pathfinding = default!;
-    
+
     /// <summary>
     /// The set of food targets slimes can safely eat.
     /// </summary>
@@ -55,12 +55,12 @@ public sealed class SlimeBrainSystem : EntitySystem
     /// How far to look for food at each slime.
     /// </summary>
     public readonly float FoodSearchRange = 5F;
-    
+
     /// <summary>
     /// The amount of damage below which the slime brain will consider the target to be edible.
     /// </summary>
     public readonly FixedPoint2 TargetDamageThreshold = 100;
-    
+
     /// <summary>
     /// If not null, will only allow slimes to eat entities with the specified damage container.
     /// If null, will make slimes try to eat everything.
@@ -73,7 +73,7 @@ public sealed class SlimeBrainSystem : EntitySystem
         if (_entManager.HasComponent<SlimeComponent>(entity)) return false;
 
         if (!_entManager.TryGetComponent<DamageableComponent>(entity, out var damage)) return false;
-        
+
         // Don't target entities that aren't mobs
         if (!_entManager.HasComponent<MobStateComponent>(entity)) return false;
 

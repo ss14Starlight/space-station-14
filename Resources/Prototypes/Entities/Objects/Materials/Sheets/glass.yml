@@ -87,6 +87,25 @@
         reagents:
         - ReagentId: Silicon
           Quantity: 10
+  - type: ConditionalHealing
+    healingDefinitions:
+      - allowedTags: [IPC]
+        healing:
+          damageContainers:
+            - IPC
+          damage: {}
+          delay: 2
+          adjustEyeDamage: -1 # 1 glass = 1 weld
+          healingBeginSound:
+            path: "/Audio/Items/Medical/ointment_begin.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+          healingEndSound:
+            path: "/Audio/Items/Medical/ointment_end.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
 
 - type: entity
   parent: SheetGlass

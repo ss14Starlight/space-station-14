@@ -59,6 +59,8 @@
     damageContainers:
     - Inorganic
     - Silicon
+    - IPC
+  - type: ShowAccessReaderSettings
   # Starlight end
 
   # Visual
@@ -224,14 +226,14 @@
   defaultModules:
   - BorgModuleTool # Starlight
   - BorgModuleMusique
-  # Starlight start 
+  # Starlight start
   - BorgModuleBartending
   - BorgModuleCooking
   - BorgModuleBotany
   - BorgModuleBooks
   # Starlight end
   - BorgModuleClowning
-  
+
   radioChannels:
   - Science
   - Service

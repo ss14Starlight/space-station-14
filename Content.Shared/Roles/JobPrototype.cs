@@ -64,14 +64,14 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public bool RequireAdminNotify { get; private set; } = false;
-        
+
         /// <summary> // Starlight begin
         ///     When set in job yaml - the player will receive a message about their specific job rules.
         /// </summary>
-        [DataField("rules")] 
+        [DataField("rules")]
         public LocId? JobRules { get; private set; }
         // Starlight end
-        
+
         /// <summary>
         ///     Should this job appear in preferences menu?
         /// </summary>
@@ -93,6 +93,12 @@ namespace Content.Shared.Roles
 
         [DataField]
         public bool CanBeAntag { get; private set; } = true;
+
+        /// <summary>
+        ///     STARLIGHT: Whether to bypass EOR pacification.
+        /// </summary>
+        [DataField]
+        public bool BypassEorPacification { get; private set; }
 
         /// <summary>
         ///     The "weight" or importance of this job. If this number is large, the job system will assign this job

@@ -2,7 +2,7 @@
   parent:
     [BaseCentcommContraband, ClothingOuterVestWeb]
   id: ClothingOuterVestWebNTNCEnsign
-  name: nanotrasen navy marine ensign's carapace.
+  name: NanoTrasen navy marine ensign's carapace.
   description: An armoured carapace designed for the best of the best within the navy, allowing the wearer to remain protected and stylish.
   components:
     - type: Sprite
@@ -13,7 +13,7 @@
 - type: entity
   parent: [ClothingOuterArmorBase, BaseCentcommContraband]
   id: ClothingOuterVestNTNC
-  name: nanotrasen navy marine's vest
+  name: NanoTrasen navy marine's vest
   description: Much better than a standard type-1 security vest. Don't lose it, you will NOT get a replacement.
   components:
     - type: Sprite

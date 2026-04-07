@@ -71,7 +71,7 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
             _sprite.AddBlankLayer((uid, sprite), 0);
             _sprite.LayerMapSet((uid, sprite), layerName, 0);
 
-            // Disconnected connectors are offset from center to show under big machine sprites. 
+            // Disconnected connectors are offset from center to show under big machine sprites.
             _sprite.LayerSetRsi((uid, sprite), 0, component.Disconnected.RsiPath);
             _sprite.LayerSetRsiState((uid, sprite), 0, component.Disconnected.RsiState);
             _sprite.LayerSetDirOffset((uid, sprite), 0, ToOffset(direction));
@@ -157,7 +157,7 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
             {
                 var layer = args.Sprite[layerKey2];
                 layer.Visible = hasNode && !coveredByFloor;
-                
+
                 if (layer.Visible)
                 {
                     // Swap sprite based on connection state

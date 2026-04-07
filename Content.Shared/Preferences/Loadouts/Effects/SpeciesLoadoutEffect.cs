@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -12,15 +13,19 @@ public sealed partial class SpeciesLoadoutEffect : LoadoutEffect
     public List<ProtoId<SpeciesPrototype>> Species = new();
 
     public override bool Validate(HumanoidCharacterProfile profile, RoleLoadout loadout, ICommonSession? session, IDependencyCollection collection,
-        [NotNullWhen(false)] out FormattedMessage? reason)
+        out FormattedMessage reason) // Starlight: Always return reason
     {
-        if (Species.Contains(profile.Species))
-        {
-            reason = null;
-            return true;
-        }
+        // Starlight BEGIN
+        var protoManager = collection.Resolve<IPrototypeManager>();
+        var sb = new StringBuilder();
+        foreach (var s in Species)
+            sb.Append(Loc.GetString(protoManager.Index(s).Name) + " ");
 
-        reason = FormattedMessage.FromUnformatted(Loc.GetString("loadout-group-species-restriction"));
-        return false;
+        var success = Species.Contains(profile.Species);
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            success ? "loadout-species-restriction-pass" : "loadout-species-restriction-fail",
+            ("species", sb)));
+        return success;
+        // Starlight END
     }
 }

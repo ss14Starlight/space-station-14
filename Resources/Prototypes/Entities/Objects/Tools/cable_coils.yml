@@ -12,7 +12,13 @@
   - type: Tag
     tags:
     - CableCoil
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
   - type: Stack
+  # Starlight end
     stackType: Cable
   - type: Sprite
     sprite: Objects/Tools/cable-coils.rsi
@@ -47,8 +53,8 @@
   # 🌟Starlight-start🌟
   - type: ItemPrice
     priceCategory: miscellaneous
-  - type: Retractor
   - type: SurgeryTool
+  - type: Retractor
     successRate: 0.6 # really not ideal, but in a pinch...
     speed: 1.5
     startSound:
@@ -94,6 +100,29 @@
           Quantity: 2
         - ReagentId: Carbon #steel-reinforced
           Quantity: 1
+  - type: ConditionalHealing
+    healingDefinitions:
+      - allowedTags: [IPC]
+        healing:
+          damageContainers:
+            - IPC
+          delay: 2
+          damage:
+            types:
+              Heat: -10
+              Cold: -10
+              Shock: -10
+              Caustic: -10
+          healingBeginSound:
+            path: "/Audio/Items/Medical/ointment_begin.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+          healingEndSound:
+            path: "/Audio/Items/Medical/ointment_end.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
 
 - type: entity
   parent: CableHVStack
