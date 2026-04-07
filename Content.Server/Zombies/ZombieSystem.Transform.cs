@@ -257,13 +257,13 @@ public sealed partial class ZombieSystem
         //The zombie gets the assigned damage weaknesses and strengths
         _damageable.SetDamageModifierSetId(target, "Zombie");
 
-        // Starlight-start: zombie HP buff — add 25 HP to all non-alive thresholds
+        // Starlight-start: zombie HP buff — add ThresholdBoost HP to all non-alive thresholds
         if (TryComp<MobThresholdsComponent>(target, out var threshComp))
         {
             foreach (var state in new[] { MobState.Critical, MobState.Dead })
             {
                 if (_mobThreshold.TryGetThresholdForState(target, state, out var cur, threshComp))
-                    _mobThreshold.SetMobStateThreshold(target, cur.Value + 15, state, threshComp);
+                    _mobThreshold.SetMobStateThreshold(target, cur.Value + zombiecomp.ThresholdBoost, state, threshComp);
             }
         }
         // Starlight-end

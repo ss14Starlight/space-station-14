@@ -1,5 +1,6 @@
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.FixedPoint;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
@@ -111,8 +112,8 @@ public sealed partial class ZombieComponent : Component
         DamageDict = new ()
         {
             { "Blunt", -0.7 }, // Starlight-edit
-            { "Slash", -0.7 }, // Starlight-edit
-            { "Piercing", -0.6 }, // Starlight-edit
+            { "Slash", -0.6 }, // Starlight-edit
+            { "Piercing", -0.5 }, // Starlight-edit
             { "Heat", -0.2 }, // Starlight-edit
             { "Shock", -0.1 }, // Starlight-edit
             { "Bloodloss", -0.5 } // Starlight-edit
@@ -171,6 +172,14 @@ public sealed partial class ZombieComponent : Component
     /// </summary>
     [DataField("BiteSpeed")]
     public float BiteSpeed = 1.0f;
+
+    // Starlight-start: zombie HP buff — configurable threshold boost
+    /// <summary>
+    /// Amount to increase Critical and Dead mob state thresholds upon zombification.
+    /// </summary>
+    [DataField("thresholdBoost")]
+    public FixedPoint2 ThresholdBoost = 15;
+    // Starlight-end
 
     /// <summary>
     ///     Path to antagonist alert sound.
