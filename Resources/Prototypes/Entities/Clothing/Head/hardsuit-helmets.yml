@@ -260,6 +260,7 @@
       - state: equipped-head-unshaded-resomi
         shader: unshaded
       # Starlight - End
+    # Starlight: PointLight energy/radius moved to ClothingHeadLightParams(..) prototypes
   - type: PressureProtection
     highPressureMultiplier: 0.72
     lowPressureMultiplier: 1000
