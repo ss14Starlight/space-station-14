@@ -33,7 +33,7 @@ public sealed partial class ThievingSystem : EntitySystem
             args.Additive -= component.StripTimeReduction;
         }
         // Starlight start
-        if (args.Additive.Seconds < MaxStripReduction.Seconds && args.Additive.Seconds > AdminStripReduction.Seconds)
+        if (args.Additive < MaxStripReduction && args.Additive > AdminStripReduction)
         {
             args.Additive = MaxStripReduction; //We kept thieving gloves, but them combining to 3 makes it so you can instant-steal stuff, so this fixes that, without making everything take longer to steal.
         }
