@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge]
   id: BaseMobCyclorite
   abstract: true
@@ -151,7 +151,7 @@
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: MobCycloriteDummy
+  id: AppearanceCyclorite
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance

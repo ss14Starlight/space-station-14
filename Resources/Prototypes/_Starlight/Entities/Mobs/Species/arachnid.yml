@@ -1,11 +1,10 @@
 - type: entity
   save: false
   name: Urist McWebs
-  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge] # Starlight
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge]
   id: BaseMobArachnid
   abstract: true
   components:
-  # Starlight-start: Languages
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
@@ -14,7 +13,6 @@
     - GalacticCommon
     - Chittin
   - type: IgnoreSpiderWeb
-  # Starlight-end
   - type: Absorbable
   - type: Body
     prototype: Arachnid

@@ -45,7 +45,7 @@
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: MobElfDummy
+  id: AppearanceElf
   categories: [ HideSpawnMenu ]
   components:
   - type: Inventory

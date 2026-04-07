@@ -119,7 +119,7 @@
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: MobLagomorphDummy
+  id: AppearanceLagomorph
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance

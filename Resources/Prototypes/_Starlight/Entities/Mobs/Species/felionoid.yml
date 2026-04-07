@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable]
   id: BaseMobFelionoid
   abstract: true
@@ -134,7 +134,7 @@
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: MobFelionoidDummy
+  id: AppearanceFelionoid
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
