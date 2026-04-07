@@ -74,3 +74,17 @@
   - type: InstantAction
     event: !type:OpenStorageOrganEvent
       key: RightLeg
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleCoolingUnit
+  name: Toggle Cooling Unit
+  description: Toggle the portable cooling unit.
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: Interface/Alerts/temperature.rsi
+      state: cold1
+  - type: InstantAction
+    event: !type:ToggleActionEvent

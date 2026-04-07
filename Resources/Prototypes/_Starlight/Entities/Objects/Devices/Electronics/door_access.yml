@@ -96,3 +96,30 @@
   components:
     - type: AccessReader
       access: [["Solgov"]]
+
+#Communist
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCommunist
+  suffix: Communist, Locked
+  components:
+    - type: AccessReader
+      access: [["Communist"]]
+
+# Wizard
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsWizard
+  suffix: Wizard, Locked
+  components:
+    - type: AccessReader
+      access: [["Wizard"]]
+
+#Blackstar
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsBlackstar
+  suffix: Blackstar, Locked
+  components:
+    - type: AccessReader
+      access: [["Blackstar"]]
