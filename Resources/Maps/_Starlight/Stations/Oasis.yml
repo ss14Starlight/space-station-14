@@ -4,7 +4,7 @@ meta:
   engineVersion: 272.0.0
   forkId: starlight
   forkVersion: 1a4ce7845e2b1a2f7f392d6f89f83dae0e1f27a3
-  time: 03/26/2026 06:19:25
+  time: 04/07/2026 23:14:51
   entityCount: 35608
 maps:
 - 1
@@ -9160,7 +9160,7 @@ entities:
             0: 62207
           10,-13:
             2: 9766
-            3: 136
+            6: 136
           11,-12:
             0: 4913
           11,-11:
@@ -9169,7 +9169,7 @@ entities:
             0: 65262
           11,-13:
             0: 4352
-            3: 119
+            6: 119
             2: 8
           12,-10:
             0: 65520
@@ -9281,7 +9281,7 @@ entities:
             0: 65427
           -13,-12:
             0: 56524
-            3: 17
+            6: 17
           -12,-11:
             0: 60943
           -13,-11:
@@ -9400,10 +9400,10 @@ entities:
           -11,2:
             0: 1
             2: 240
-            4: 57344
+            3: 57344
           -11,3:
             2: 61440
-            5: 224
+            4: 224
           -10,1:
             0: 49039
           -10,2:
@@ -9439,14 +9439,14 @@ entities:
             2: 57305
           -11,6:
             2: 61440
-            3: 224
+            6: 224
           -11,7:
             2: 65535
           -11,4:
-            6: 224
-            3: 57344
+            5: 224
+            6: 57344
           -11,5:
-            3: 57568
+            6: 57568
           -11,8:
             2: 65535
           -10,6:
@@ -9552,9 +9552,9 @@ entities:
           -7,-17:
             2: 4592
           -7,-15:
-            3: 60928
+            6: 60928
           -6,-15:
-            3: 256
+            6: 256
             0: 34952
           -6,-14:
             0: 65528
@@ -9572,7 +9572,7 @@ entities:
             0: 30487
           -13,-14:
             0: 52232
-            3: 23
+            6: 23
           -11,-16:
             0: 4352
           -11,-15:
@@ -9587,9 +9587,9 @@ entities:
             0: 16307
           -10,-16:
             0: 8704
-            3: 32768
+            6: 32768
           -10,-17:
-            3: 49152
+            6: 49152
             0: 4
           -16,-6:
             2: 16076
@@ -9621,7 +9621,7 @@ entities:
             0: 52420
           -15,-9:
             0: 34952
-            3: 256
+            6: 256
           -14,-8:
             0: 49080
           -14,-7:
@@ -9641,32 +9641,32 @@ entities:
           -13,-7:
             0: 18022
           -16,-12:
-            3: 32
+            6: 32
           -16,-11:
-            3: 32768
+            6: 32768
           -16,-10:
-            3: 8
+            6: 8
           -15,-11:
-            3: 13036
+            6: 13036
             0: 32768
           -15,-10:
-            3: 307
+            6: 307
             0: 34952
           -15,-12:
             0: 34
-            3: 51336
+            6: 51336
           -14,-12:
-            3: 4607
+            6: 4607
             0: 49152
           -14,-11:
-            3: 17
+            6: 17
             0: 63692
           -14,-10:
             0: 65535
           -14,-13:
-            3: 59392
+            6: 59392
           -13,-13:
-            3: 4352
+            6: 4352
             0: 1604
           8,9:
             0: 65535
@@ -9698,7 +9698,7 @@ entities:
             0: 4095
           10,12:
             0: 305
-            3: 3276
+            6: 3276
           11,9:
             0: 21877
           11,10:
@@ -9706,7 +9706,7 @@ entities:
           11,11:
             0: 1606
           11,12:
-            3: 4095
+            6: 4095
             2: 49152
           12,8:
             0: 12637
@@ -9868,27 +9868,27 @@ entities:
           14,-9:
             0: 36623
           15,-8:
-            3: 16
+            6: 16
           15,-6:
-            3: 16
+            6: 16
             0: 4096
             2: 32768
           15,-9:
             0: 4353
-            3: 8
+            6: 8
           16,-5:
             2: 304
           12,-11:
-            3: 32772
+            6: 32772
           12,-12:
             2: 12
           12,-13:
             2: 52303
           13,-12:
             2: 15
-            3: 16384
+            6: 16384
           13,-11:
-            3: 65228
+            6: 65228
           13,-10:
             0: 65520
           13,-13:
@@ -9896,7 +9896,7 @@ entities:
           14,-12:
             2: 15
           14,-11:
-            3: 65521
+            6: 65521
           14,-10:
             0: 65520
           14,-13:
@@ -9904,16 +9904,16 @@ entities:
           15,-12:
             2: 1
           15,-11:
-            3: 28688
+            6: 28688
           15,-10:
             0: 4368
-            3: 52420
+            6: 52420
           15,-13:
             2: 4511
           16,-10:
-            3: 4371
+            6: 4371
           16,-9:
-            3: 1
+            6: 1
           -4,9:
             0: 7421
           -5,9:
@@ -9928,7 +9928,7 @@ entities:
             0: 65520
           -4,12:
             0: 34995
-            3: 12288
+            6: 12288
             2: 16384
           -3,9:
             0: 4095
@@ -9979,7 +9979,7 @@ entities:
             0: 65535
           -5,12:
             0: 13311
-            3: 32768
+            6: 32768
           -13,8:
             2: 8
             0: 7955
@@ -10003,17 +10003,17 @@ entities:
             2: 4096
           -11,9:
             2: 4607
-            3: 49152
+            6: 49152
           -11,10:
             2: 33041
-            3: 204
+            6: 204
           -11,11:
             2: 36088
           -10,9:
             2: 52479
-            3: 4096
+            6: 4096
           -10,10:
-            3: 17
+            6: 17
             0: 32768
             2: 136
           -10,11:
@@ -10027,7 +10027,7 @@ entities:
             0: 65535
           7,-15:
             0: 36608
-            3: 7
+            6: 7
           8,-14:
             0: 61183
           8,-16:
@@ -10041,9 +10041,9 @@ entities:
           11,-16:
             2: 7936
           10,-14:
-            3: 34816
+            6: 34816
           11,-14:
-            3: 29440
+            6: 29440
             2: 49
           11,-15:
             2: 4369
@@ -10053,29 +10053,29 @@ entities:
             0: 30479
           5,-16:
             0: 13107
-            3: 2184
+            6: 2184
           5,-15:
             0: 16191
           5,-17:
             0: 13107
-            3: 34952
+            6: 34952
           5,-14:
             2: 1096
           6,-16:
-            3: 61439
+            6: 61439
           6,-15:
             0: 3841
-            3: 14
+            6: 14
           6,-14:
             2: 559
           6,-17:
-            3: 63281
+            6: 63281
           7,-16:
-            3: 32627
+            6: 32627
           7,-14:
             2: 1091
           7,-17:
-            3: 4096
+            6: 4096
           -9,13:
             0: 65520
           -8,13:
@@ -10097,7 +10097,7 @@ entities:
             0: 65521
           -7,13:
             2: 49698
-            3: 1024
+            6: 1024
             0: 8
           -6,13:
             0: 17663
@@ -10108,25 +10108,25 @@ entities:
             0: 228
           -5,13:
             0: 51
-            3: 49288
+            6: 49288
           -5,14:
             2: 50247
-            3: 8
+            6: 8
           -5,15:
             0: 65520
           -4,13:
-            3: 61491
+            6: 61491
             2: 68
             0: 136
           -4,14:
-            3: 52991
+            6: 52991
           -4,15:
             0: 65520
           -3,13:
             0: 52479
-            3: 4096
+            6: 4096
           -3,14:
-            3: 4369
+            6: 4369
             0: 52428
           -3,15:
             0: 16380
@@ -10227,18 +10227,18 @@ entities:
             2: 255
           8,13:
             0: 1262
-            3: 57344
+            6: 57344
           8,14:
-            3: 76
+            6: 76
           9,13:
             0: 17
-            3: 31884
+            6: 31884
           9,14:
-            3: 1
+            6: 1
           9,15:
             2: 255
           10,13:
-            3: 19
+            6: 19
           10,15:
             2: 55
           10,14:
@@ -10258,14 +10258,14 @@ entities:
           13,7:
             2: 16384
             0: 272
-            3: 3276
+            6: 3276
           14,9:
             2: 248
           14,8:
             2: 52428
           14,7:
             2: 51404
-            3: 307
+            6: 307
           15,8:
             2: 56797
           15,9:
@@ -10280,12 +10280,12 @@ entities:
             0: 5990
           13,6:
             0: 4876
-            3: 52224
+            6: 52224
           14,5:
             0: 7633
           14,6:
             0: 15
-            3: 13056
+            6: 13056
           15,5:
             0: 35768
           15,6:
@@ -10380,16 +10380,16 @@ entities:
             0: 14
           -16,7:
             2: 416
-            3: 7748
+            6: 7748
           -16,8:
             2: 4113
             0: 50380
-            3: 256
+            6: 256
           -17,7:
             2: 32768
           -16,6:
             0: 8192
-            3: 16384
+            6: 16384
             2: 34816
           -15,6:
             2: 33086
@@ -10411,16 +10411,16 @@ entities:
             0: 57308
           -17,8:
             2: 33920
-            3: 2048
+            6: 2048
           -16,9:
             2: 41217
-            3: 19984
+            6: 19984
             0: 12
           -17,9:
             2: 128
           -16,10:
             2: 2208
-            3: 68
+            6: 68
           -15,9:
             0: 7
             2: 20352
@@ -10482,18 +10482,18 @@ entities:
           -15,-16:
             2: 65520
           -15,-13:
-            3: 64
+            6: 64
           -14,-16:
             2: 24404
           -14,-15:
             2: 20
-            3: 52960
+            6: 52960
           -14,-17:
             2: 24404
           -13,-15:
-            3: 29456
+            6: 29456
           -14,-14:
-            3: 8
+            6: 8
           4,-18:
             0: 65520
           3,-18:
@@ -10644,7 +10644,7 @@ entities:
           -10,-19:
             2: 4096
           -10,-18:
-            3: 4
+            6: 4
           -9,-17:
             2: 224
           -8,-17:
@@ -10850,9 +10850,6 @@ entities:
           moles: {}
         - volume: 2500
           temperature: 293.15
-          moles: {}
-        - volume: 2500
-          temperature: 293.15
           moles:
             Nitrogen: 6666.982
         - volume: 2500
@@ -10863,6 +10860,9 @@ entities:
           temperature: 293.15
           moles:
             Plasma: 6666.982
+        - volume: 2500
+          temperature: 293.15
+          moles: {}
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -16069,7 +16069,7 @@ entities:
       pos: 33.5,-28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -159576.2
+      secondsUntilStateChange: -159626.77
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16111,7 +16111,7 @@ entities:
       pos: 37.5,18.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -215254.75
+      secondsUntilStateChange: -215305.31
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16158,7 +16158,7 @@ entities:
       pos: -18.5,-39.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -211406.73
+      secondsUntilStateChange: -211457.3
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16291,7 +16291,7 @@ entities:
     - type: AccessReader
       accessListsOriginal: []
     - type: Door
-      secondsUntilStateChange: -215202.19
+      secondsUntilStateChange: -215252.75
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16347,7 +16347,7 @@ entities:
       pos: 22.5,-12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -296670.22
+      secondsUntilStateChange: -296720.78
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -17947,7 +17947,7 @@ entities:
       pos: 52.5,-0.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -212633.62
+      secondsUntilStateChange: -212684.19
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18234,7 +18234,7 @@ entities:
       pos: 40.5,2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -210100.3
+      secondsUntilStateChange: -210150.86
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18249,7 +18249,7 @@ entities:
       pos: -22.5,26.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -525866.2
+      secondsUntilStateChange: -525916.75
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18573,7 +18573,7 @@ entities:
       pos: 42.5,10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -192004.52
+      secondsUntilStateChange: -192055.08
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18942,7 +18942,7 @@ entities:
       pos: -13.5,-45.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -211405.33
+      secondsUntilStateChange: -211455.89
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -19169,7 +19169,7 @@ entities:
       pos: 29.5,-42.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -226367.83
+      secondsUntilStateChange: -226418.39
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -19309,7 +19309,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -624695
+      secondsUntilStateChange: -624745.56
       state: Opening
   - uid: 631
     components:
@@ -19321,7 +19321,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -624697.6
+      secondsUntilStateChange: -624748.2
       state: Opening
   - uid: 632
     components:
@@ -19333,7 +19333,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -624696.5
+      secondsUntilStateChange: -624747.06
       state: Opening
   - uid: 633
     components:
@@ -19344,7 +19344,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -624695.7
+      secondsUntilStateChange: -624746.25
       state: Opening
   - uid: 28476
     components:
@@ -173680,7 +173680,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -189099.58
+      secondsUntilStateChange: -189150.14
       state: Opening
     - type: Airlock
       autoClose: False
