@@ -1,48 +1,4 @@
 Entries:
-- author: TaserTheFox
-  changes:
-  - message: Capitalization and naming inconsistency.
-    type: Tweak
-  id: 384701
-  time: '2026-03-21T15:52:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3847
-- author: Shades
-  changes:
-  - message: Added Ghost Ping for Important Ghost Roles.
-    type: Add
-  id: 384601
-  time: '2026-03-21T16:21:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3846
-- author: CawsForConcern
-  changes:
-  - message: Fixed custom / event admin grids failing to load.
-    type: Fix
-  id: 384401
-  time: '2026-03-21T16:38:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3844
-- author: STARLIGHT TEAM
-  changes:
-  - message: The chime wait time is limited to 3 seconds.
-    type: Fix
-  id: 383801
-  time: '2026-03-21T16:44:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3838
-- author: redmushie
-  changes:
-  - message: All handheld crew monitors now come with medium batteries.
-    type: Tweak
-  - message: All handheld crew monitors now use 25% less energy per opening of the UI or receiving an alert.
-    type: Tweak
-  id: 385001
-  time: '2026-03-21T17:58:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3850
-- author: redmushie
-  changes:
-  - message: Re-randomize the randomness. You should hear less Wilhelm screams.
-    type: Fix
-  id: 384301
-  time: '2026-03-21T18:01:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3843
 - author: Scarlet Lightweaver.
   changes:
   - message: Added reinforced shuttle and plastitium wall varients for admemes.
@@ -1123,4 +1079,46 @@ Entries:
   id: 404105
   time: '2026-04-07T07:29:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4029
+- author: wonderfulnewworld
+  changes:
+  - message: Adds a Syndicate Trunk to the uplink for MailTechs, the QM, and the Captain.
+    type: Add
+  id: 404106
+  time: '2026-04-07T07:30:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4034
+- author: wonderfulnewworld
+  changes:
+  - message: Added a SyndieDrobe flatpack to the uplink for 20TC. (15TC on discount.).
+    type: Add
+  id: 404107
+  time: '2026-04-07T07:30:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4034
+- author: wonderfulnewworld
+  changes:
+  - message: 'Added a new traitor objective: Reopen Syndieland!'
+    type: Add
+  id: 404108
+  time: '2026-04-07T07:30:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4034
+- author: wonderfulnewworld
+  changes:
+  - message: Added the Syndicate Backpack, Satchel, and Trunk (rare) to the Syndie Mains Loot pool.
+    type: Add
+  id: 404109
+  time: '2026-04-07T07:30:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4034
+- author: wonderfulnewworld
+  changes:
+  - message: You can now buy standalone Syndicate Satchels and Duffels in the Uplink for 3 and 2 TC respectively.
+    type: Tweak
+  id: 404110
+  time: '2026-04-07T07:30:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4034
+- author: wonderfulnewworld
+  changes:
+  - message: Renamed Mail Technician Trunk/Senior Mail Technician Trunk to Mail Trunk/Senior Mail Trunk respectively for consistency with the Syndicate Trunk.
+    type: Tweak
+  id: 404111
+  time: '2026-04-07T07:30:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4034
 Order: -1
