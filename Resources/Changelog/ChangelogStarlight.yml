@@ -1,11 +1,4 @@
 Entries:
-- author: Rinary1
-  changes:
-  - message: Changed wield logic, now you wield guns with chamber, when you have free hands or when your bolt is closed, in another cases you will close bolt first.
-    type: Tweak
-  id: 384501
-  time: '2026-03-21T15:46:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3845
 - author: TaserTheFox
   changes:
   - message: Capitalization and naming inconsistency.
@@ -1123,4 +1116,11 @@ Entries:
   id: 404104
   time: '2026-04-07T06:17:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4045
+- author: BigfootBravo
+  changes:
+  - message: IPC Guidebook has more information.
+    type: Tweak
+  id: 404105
+  time: '2026-04-07T07:29:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4029
 Order: -1
