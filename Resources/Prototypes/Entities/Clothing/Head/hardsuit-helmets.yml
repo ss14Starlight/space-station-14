@@ -894,7 +894,7 @@
 
 #Organic Space Suit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadLightParamsIntermediate ]
+  parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitLing
   name: organic space helmet
   description: A spaceworthy biomass of pressure and temperature resistant tissue.
