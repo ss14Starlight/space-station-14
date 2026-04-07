@@ -7,6 +7,7 @@ using Content.Shared.Roles.Components;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Shared._Starlight.Roles.Components;
+using Content.Shared._Starlight.Antags.SELF;
 using SELFRuleComponent = Content.Server._Starlight.GameTicking.Rules.Components.SELFRuleComponent;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
@@ -31,6 +32,9 @@ public sealed class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
         var ent = args.EntityUid;
 
         _antag.SendBriefing(ent, MakeBriefing(ent), null, null);
+
+        // Mark the player entity as a SELF agent for whitelists/blacklists
+        EnsureComp<SELFAgentComponent>(ent);
     }
 
     // Character screen briefing
