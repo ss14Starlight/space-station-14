@@ -1,58 +1,4 @@
 Entries:
-- author: Vonte
-  changes:
-  - message: (Manor) completely remodelled security and its contents, go into map or check the PR for full picture.
-    type: Add
-  - message: (Manor) Reworked part of engineering and atmos.
-    type: Add
-  - message: (Manor) added turbine to engineering.
-    type: Add
-  - message: (Manor) added departmental communications consoles to all relevant departments.
-    type: Add
-  - message: (Manor) added a second dock to the cargo docking arm so hopefully both Mining and Salvage can dock their shuttles.
-    type: Add
-  - message: (Manor) adds a water vapour miner to atmos.
-    type: Add
-  - message: (Manor) added a couple of vending machines in public areas that were lacking.
-    type: Add
-  - message: (Manor) added backup generators to engi along with fuel.
-    type: Add
-  - message: (Manor) Sci now gets some snacks and drinks outside their breakroom.
-    type: Add
-  - message: (Manor) updated flooring and stage in the main service Broadwalk.
-    type: Tweak
-  - message: (Manor) extended cloning bay to make it function as a possible chemistry factory with plumbing.
-    type: Tweak
-  - message: (Manor) organised the gas storage in sci.
-    type: Tweak
-  - message: (Manor) brought back old medical in sci maints and extended maints to the east to fit a new xenobio area.
-    type: Tweak
-  - message: (Manor) changed some parts of maints around security/engineering.
-    type: Tweak
-  - message: (Manor) security now has access to the crematorium.
-    type: Tweak
-  - message: (Manor) partially updated dorms in preparation for part 2 of this Manor revamp.
-    type: Tweak
-  - message: (Manor) re-fixed the disposals.
-    type: Fix
-  - message: (Manor) Magistrate now gets the filled version of their locker.
-    type: Fix
-  - message: (Manor) Robo now uses the correct windoors.
-    type: Fix
-  - message: (Manor) The button to close the shutters outside medical now actually works.
-    type: Fix
-  - message: (Manor) with tears in my eyes removed the chem locker from brigmed.
-    type: Remove
-  id: 378101
-  time: '2026-03-22T19:38:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3781
-- author: Conflee
-  changes:
-  - message: Added 9 new AI Screens and 7 new AI Holograms.
-    type: Add
-  id: 387101
-  time: '2026-03-22T20:38:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3871
 - author: walksanatora
   changes:
   - message: Added Tippy to discord autolog.
@@ -997,4 +943,18 @@ Entries:
   id: 404121
   time: '2026-04-07T18:11:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3992
+- author: DenneMiao
+  changes:
+  - message: Increased the TC cost of the elegant raid suit to match its value (10 to 12).
+    type: Tweak
+  id: 404122
+  time: '2026-04-07T18:15:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4063
+- author: DenneMiao
+  changes:
+  - message: Increased the TC cost of the murder socks for nukies only (1 to 2).
+    type: Tweak
+  id: 404123
+  time: '2026-04-07T18:15:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4063
 Order: -1
