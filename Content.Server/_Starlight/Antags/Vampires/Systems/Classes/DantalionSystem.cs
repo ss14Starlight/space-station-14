@@ -292,11 +292,10 @@ public sealed class DantalionSystem : EntitySystem
         if (!_mind.TryGetMind(thrall, out var mindId, out var mind))
             return false;
 
-        var stunTime = TimeSpan.FromSeconds(4); //default if comp is missing data for some reason
-        if (TryComp<VampireThrallComponent>(thrall, out var comp))
-        {
-            stunTime = comp.DeconvertStunDuration;
-        }
+        if (!TryComp<VampireThrallComponent>(thrall, out var comp))
+            return false;
+
+        stunTime = comp.DeconvertStunDuration;
 
         _stun.TryUpdateParalyzeDuration(thrall, stunTime);
 
