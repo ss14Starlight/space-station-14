@@ -295,7 +295,7 @@ public sealed class DantalionSystem : EntitySystem
         if (!TryComp<VampireThrallComponent>(thrall, out var comp))
             return false;
 
-        stunTime = comp.DeconvertStunDuration;
+        var stunTime = comp.DeconvertStunDuration;
 
         _stun.TryUpdateParalyzeDuration(thrall, stunTime);
 
