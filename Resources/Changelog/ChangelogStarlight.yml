@@ -1,11 +1,4 @@
 Entries:
-- author: Scarlet Lightweaver.
-  changes:
-  - message: Added reinforced shuttle and plastitium wall varients for admemes.
-    type: Add
-  id: 382101
-  time: '2026-03-21T18:17:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3821
 - author: wonderfulnewworld
   changes:
   - message: Senior Mail Technician Jumpsuit/Jumpskirt, Senior Mail Technician Visor, Senior Mail Technician Boots, Senior Mail Technician Trunk, Senior Mail PDA, Senior Mail Technician Mail Bag (60 Hours Mail Technician).
@@ -1121,4 +1114,11 @@ Entries:
   id: 404111
   time: '2026-04-07T07:30:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4034
+- author: Scarlet lightweaver
+  changes:
+  - message: Changed the terminators tracking beacon to be entirely hidden from others in the stripping UI.
+    type: Tweak
+  id: 404112
+  time: '2026-04-07T08:36:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4008
 Order: -1
