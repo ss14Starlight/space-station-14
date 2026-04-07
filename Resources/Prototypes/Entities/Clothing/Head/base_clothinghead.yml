@@ -67,8 +67,7 @@
   - type: ItemTogglePointLight
   - type: PointLight
     enabled: false
-    radius: 3
-    energy: 1
+    # Starlight: Energy/radius moved to ClothingHeadLightParams(..) prototypes
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     netsync: false
@@ -201,7 +200,6 @@
 
 - type: entity
   abstract: true
-  parent: ClothingHeadWithLightBasic # Starlight: Basic light intensity
   # must parent both this and the desired helmet base when using
   id: ClothingHeadSuitWithLightBase
   name: base hardsuit helmet with light
