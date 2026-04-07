@@ -66,9 +66,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         }
 
         NoPatientDataText.Visible = false;
-   
         PrintReportButton.Disabled = !PrintReportButton.Visible || !(state.ScanMode ?? false) || !(state.CanPrint ?? false); // Starlight-edit: Printable health reports.
-
         // Scan Mode
 
         ScanModeLabel.Text = state.ScanMode.HasValue
@@ -101,8 +99,6 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         // Basic Diagnostic
         // Starlight-start: shared formatting.
         TemperatureLabel.Text = HealthAnalyzerFormatting.FormatTemperature(state.Temperature);
-
-        
         BloodLabel.Text = HealthAnalyzerFormatting.FormatBloodLevelWithSeverity(state.BloodLevel);
         BloodLabel.FontColorOverride = HealthAnalyzerFormatting.GetBloodLevelSeverityColor(state.BloodLevel);
         // Starlight-end

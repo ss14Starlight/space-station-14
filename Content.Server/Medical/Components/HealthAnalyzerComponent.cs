@@ -80,7 +80,7 @@ public sealed partial class HealthAnalyzerComponent : Component
     [DataField]
     public TimeSpan PrintCooldown = TimeSpan.FromSeconds(5);
     // Starlight-end
-    
+
     /// <summary>
     /// Whether to show up the popup
     /// </summary>

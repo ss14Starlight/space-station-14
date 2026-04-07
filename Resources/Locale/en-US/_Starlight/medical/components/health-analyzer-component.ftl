@@ -10,6 +10,7 @@ health-analyzer-report-section-summary = Summary
 health-analyzer-report-section-injuries = Injuries
 health-analyzer-report-patient-name = [bold]Name:[/bold] {$name}
 health-analyzer-report-patient-species = [bold]Species:[/bold] {$species}
+health-analyzer-report-patient-shift-time = [bold]Shift Time:[/bold] {$time}
 health-analyzer-report-summary-status = [bold]Status:[/bold] {$status}
 health-analyzer-report-summary-temperature = [bold]Temperature:[/bold] {$temperature}
 health-analyzer-report-summary-blood = [bold]Blood Level:[/bold] {$blood}

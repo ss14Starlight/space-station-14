@@ -23,6 +23,7 @@ using Content.Shared.Popups;
 using Content.Shared.PowerCell;
 using Content.Shared.Temperature.Components;
 using Content.Shared.Traits.Assorted;
+using Content.Shared._Starlight.Time; // Starlight-edit
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -46,6 +47,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     // Starlight-start: Printable health reports.
+    [Dependency] private readonly TimeSystem _timeSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly PaperSystem _paperSystem = default!;
@@ -352,6 +354,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             return;
         }
 
+        paperComp.EditingDisabled = true;
         _handsSystem.PickupOrDrop(user, paper, checkActionBlocker: false);
         _metaData.SetEntityName(paper, Loc.GetString("health-analyzer-report-title", ("name", snapshot.RawName)));
         _paperSystem.SetContent((paper, paperComp), BuildReportMarkup(snapshot));
@@ -362,6 +365,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     private HealthAnalyzerPatientSnapshot BuildPatientSnapshot(EntityUid patient)
     {
         var uiState = GetHealthAnalyzerUiState(patient);
+        var (shiftTime, _) = _timeSystem.GetStationTime();
         var entityName = HasComp<MetaDataComponent>(patient)
             ? Identity.Name(patient, EntityManager)
             : Loc.GetString("health-analyzer-window-entity-unknown-text");
@@ -391,9 +395,10 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             entityName,
             FormattedMessage.EscapeText(entityName),
             FormattedMessage.EscapeText(species),
+            shiftTime.ToString(@"hh\:mm"),
             FormattedMessage.EscapeText(status),
-                uiState.Temperature,
-                uiState.BloodLevel,
+            uiState.Temperature,
+            uiState.BloodLevel,
             damageable.TotalDamage,
             groupedInjuries);
     }
@@ -434,6 +439,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         message.AddMarkupOrThrow(Loc.GetString("health-analyzer-report-patient-name", ("name", snapshot.Name)));
         message.PushNewline();
         message.AddMarkupOrThrow(Loc.GetString("health-analyzer-report-patient-species", ("species", snapshot.Species)));
+        message.PushNewline();
+        message.AddMarkupOrThrow(Loc.GetString("health-analyzer-report-patient-shift-time", ("time", snapshot.ShiftTime)));
         message.PushNewline();
         message.PushNewline();
 
@@ -491,6 +498,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         string RawName,
         string Name,
         string Species,
+        string ShiftTime,
         string Status,
         float Temperature,
         float BloodLevel,
