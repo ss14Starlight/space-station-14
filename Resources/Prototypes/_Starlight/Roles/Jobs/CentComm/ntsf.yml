@@ -56,3 +56,10 @@
   inhand:
   - PrototypeVibroblade
 
+- type: chameleonOutfit
+  id: NanoTrasenSpecialForcesChameleonOutfit
+  job: NanoTrasenSpecialForces
+  equipment:
+    outerClothing: ClothingOuterHardsuitNTSF
+    gloves: ClothingHandsGlovesCombat
+

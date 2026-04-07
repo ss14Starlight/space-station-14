@@ -219,6 +219,10 @@
         - id: Flare
         - id: FoodSnackNutribrick
         - id: PlasmamanSuitRecharger # Starlight-edit: added recharge crystal
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,2,3
   - type: Sprite
     sprite: _Starlight/Objects/Storage/plasma_emergencybox.rsi
     layers:

@@ -32,6 +32,13 @@
     - RubberStampCentcom
     - MindShieldImplanter
 
+- type: chameleonOutfit
+  id: CentralCommandOperatorChameleonOutfit
+  job: CentralCommandOperator
+  equipment:
+    jumpsuit: ClothingAltUniformJumpsuitCentcomOfficial
+    gloves: ClothingHandsGlovesColorBlack
+
 # Central Domestic Division CDD
 - type: startingGear
   id: CentralDomesticDivisionGear
