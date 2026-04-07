@@ -537,6 +537,8 @@ namespace Content.Shared.Cuffs
                     Dirty(newCuff, newComp);
                     EnsureComp<UnremoveableComponent>(newCuff);
                     _hands.DoPickup(borgChassis, borgCuff.HandId, newCuff, chassisHands);
+                    if (!_hands.TryGetHeldItem((borgChassis, chassisHands), borgCuff.HandId, out var pickedUp) || pickedUp != newCuff)
+                        QueueDel(newCuff);
                 }
             }
 
@@ -780,6 +782,8 @@ namespace Content.Shared.Cuffs
                     {
                         EnsureComp<UnremoveableComponent>(cuffsToRemove);
                         _hands.DoPickup(borgChassis, borgCuff.HandId, cuffsToRemove, chassisHands);
+                        if (!_hands.TryGetHeldItem((borgChassis, chassisHands), borgCuff.HandId, out var pickedUp) || pickedUp != cuffsToRemove)
+                            QueueDel(cuffsToRemove);
                     }
                 }
                 // Starlight: borg cuff whose owner is gone/invalid — always delete to avoid leaking into gameplay
