@@ -40,6 +40,9 @@
     - Wooden
   - type: StaticPrice
     price: 250
+  - type: Construction
+    graph: ChairSL
+    node: chairRegal
 
 #Regal Throne
 - type: entity
@@ -51,6 +54,9 @@
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/Chairs/throne.rsi
     state: base
+  - type: Construction
+    graph: ChairSL
+    node: chairThrone
 
 #Sleek Office Chair
 - type: entity
@@ -61,6 +67,9 @@
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/Chairs/sleek_office_chair.rsi
     state: base
+  - type: Construction
+    graph: ChairSL
+    node: chairOfficeSleek
 
 #Comfy Chair Gray (Basic/Default)
 - type: entity
@@ -100,6 +109,9 @@
   - type: Icon
     sprite: _Starlight/Structures/Furniture/Chairs/comfy_chair.rsi
     state: base
+  - type: Construction
+    graph: ChairSL
+    node: chairComfyWhite
 
 #Comfy Chair Blue
 - type: entity
@@ -118,7 +130,10 @@
   - type: Icon
     sprite: _Starlight/Structures/Furniture/Chairs/comfy_chair.rsi
     state: base
-
+  - type: Construction
+    graph: ChairSL
+    node: chairComfyBlue
+    
 #Comfy Chair Red
 - type: entity
   name: comfy chair
@@ -136,7 +151,10 @@
   - type: Icon
     sprite: _Starlight/Structures/Furniture/Chairs/comfy_chair.rsi
     state: base
-
+  - type: Construction
+    graph: ChairSL
+    node: chairComfyRed
+    
 #Comfy Chair Green
 - type: entity
   name: comfy chair
@@ -154,7 +172,10 @@
   - type: Icon
     sprite: _Starlight/Structures/Furniture/Chairs/comfy_chair.rsi
     state: base
-
+  - type: Construction
+    graph: ChairSL
+    node: chairComfyGreen
+    
 #Comfy Chair Brown
 - type: entity
   name: comfy chair
@@ -172,6 +193,9 @@
   - type: Icon
     sprite: _Starlight/Structures/Furniture/Chairs/comfy_chair.rsi
     state: base
+  - type: Construction
+    graph: ChairSL
+    node: chairComfyBrown
 
 - type: entity
   name: carp chair
@@ -188,4 +212,3 @@
     - type: Sprite
       sprite: _Starlight/Structures/Furniture/Chairs/carp.rsi
       state: carp
-
