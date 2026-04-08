@@ -1,6 +1,6 @@
 # Anything human specific (e.g. UI, input) goes under MobHuman
 - type: entity
-  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge] # Starlight
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge, BaseInventoryFemaleJumpsuit] # Starlight
   id: BaseMobHuman
   name: Urist McHands
   abstract: true
@@ -30,25 +30,4 @@
     hideLayersOnEquip:
     - Hair
     - Snout
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
   - type: Wagging # Starlight
-
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobHumanDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female

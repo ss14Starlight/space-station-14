@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McHands The Dwarf
-  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable] # Starlight. They are small.
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable, BaseInventoryFemaleJumpsuit] # Starlight. They are small.
   id: BaseMobDwarf
   abstract: true
   components:
@@ -69,25 +69,3 @@
     hideLayersOnEquip:
     - Hair
     - Snout
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobDwarfDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  #- type: ScaleVisuals # STARLIGHT
-  #  scale: 1, 0.8 # STARLIGHT
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female

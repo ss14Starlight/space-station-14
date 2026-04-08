@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McCookie
-  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge] # Starlight
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge, BaseInventoryFemaleJumpsuit] # Starlight
   id: BaseMobGingerbread
   abstract: true
   components:
@@ -50,26 +50,3 @@
           - MobLayer
   - type: TypingIndicator
     proto: gingerbread
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
-
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobGingerbreadDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: Gingerbread
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female

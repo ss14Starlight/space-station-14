@@ -1,6 +1,6 @@
 - type: entity
   name: Urist McSlime
-  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge] # Starlight
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge, BaseInventoryFemaleJumpsuit] # Starlight
   id: BaseMobSlimePerson
   abstract: true
   components:
@@ -138,28 +138,6 @@
       types:
         Asphyxiation: -1.0
     maxSaturation: 15
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
   - type: ShowThirstIcons # starlight
   - type: SolutionScanner # starlight
   - type: Wagging # starlight
-
-- type: entity
-  parent: MobHumanDummy
-  id: MobSlimePersonDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: SlimePerson
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female

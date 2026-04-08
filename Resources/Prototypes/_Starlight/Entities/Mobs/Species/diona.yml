@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McPlants
-  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge] # Starlight
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge, BaseInventoryDiona] # Starlight
   id: BaseMobDiona
   abstract: true
   components:
@@ -134,28 +134,4 @@
     actionPrototype: DionaGibAction
     allowedStates:
     - Dead
-  - type: Inventory
-    templateId: diona
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
   - type: Rootable
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobDionaDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: Diona
-  - type: Inventory
-    templateId: diona
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female

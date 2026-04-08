@@ -5,6 +5,7 @@
   - MobFlammable
   - BaseMobSpecies
   - BaseSpeciesPickupableLarge # Starlight
+  - BaseInventoryFemaleJumpsuit
   id: BaseMobSkeletonPerson
   abstract: true
   components:
@@ -108,13 +109,6 @@
     alternateState: Standing
   - type: FlashImmunity
     showInExamine: false
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
   - type: Instrument
     program: 13 # Xylophone. Woodblock is 115 (another good option)
   - type: ActivatableUI
@@ -133,18 +127,3 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobSkeletonPersonDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: Skeleton
-  - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
