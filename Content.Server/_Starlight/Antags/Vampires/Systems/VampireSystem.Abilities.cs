@@ -703,7 +703,7 @@ public sealed partial class VampireSystem : EntitySystem
             var knockedDown = HasComp<KnockedDownComponent>(target);
 
             // If target in front
-            if (dot > 0.7f && !knockedDown)
+            if (dot > args.DotForwardLimit && !knockedDown)
             {
                 _stun.TryAddParalyzeDuration(target, args.FrontParalyzeDuration * effectScale);
 
@@ -715,7 +715,7 @@ public sealed partial class VampireSystem : EntitySystem
                 StartGlareDotEffect(target, uid, args.DotStaminaDamage * effectScale, 0, true);
             }
             // If target behind
-            else if (dot < -0.7f && !knockedDown)
+            else if (dot < args.DotBackwardLimit && !knockedDown)
                 _stamina.TakeStaminaDamage(target, args.BehindStaminaDamage * effectScale, stam, source: uid);
             // else target is to the side
             else

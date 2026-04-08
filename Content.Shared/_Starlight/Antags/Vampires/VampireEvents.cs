@@ -66,6 +66,18 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     /// </summary>
     [DataField]
     public Dictionary<string, FixedPoint2> Reagents = new Dictionary<string, FixedPoint2>{ {"MuteToxin", 0.5} };
+
+    /// <summary>
+    ///
+    /// </summary>
+    [DataField]
+    public float DotForwardLimit = 0.7f;
+
+    /// <summary>
+    ///
+    /// </summary>
+    [DataField]
+    public float DotBackwardLimit = -0.7f;
 }
 
 public sealed partial class VampireSleepActionEvent : EntityTargetActionEvent
