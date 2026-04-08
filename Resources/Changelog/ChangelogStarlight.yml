@@ -1,59 +1,4 @@
 Entries:
-- author: CawsForConcern
-  changes:
-  - message: (Barratry) Protection Anchors.
-    type: Add
-  - message: (Barratry) New Law Office.
-    type: Add
-  - message: (Barratry) IAA Lockers.
-    type: Add
-  - message: (Barratry) Magistrate Lockers.
-    type: Add
-  - message: (Barratry) Wall-mounted Mass Scanner by Cargo Front.
-    type: Add
-  - message: (Barratry) AI Restoration Console.
-    type: Add
-  - message: (Barratry) Departmental Comms Consoles.
-    type: Add
-  - message: (Barratry) Duty Officer.
-    type: Add
-  - message: (Barratry) Nanotrasen Career Trainers.
-    type: Add
-  - message: (Barratry) NCT Office.
-    type: Add
-  - message: (Barratry) Stasis bed in Brigmed.
-    type: Add
-  - message: (Barratry) Performers.
-    type: Add
-  - message: (Barratry) Deep fryers.
-    type: Add
-  - message: (Barratry) Head of Security Weapon Spawner.
-    type: Add
-  - message: (Barratry) HOP ticket machine.
-    type: Add
-  - message: (Barratry) Crew Monitor to HOP.
-    type: Add
-  - message: (Barratry) Working Station Map by HOP.
-    type: Add
-  - message: (Barratry) Doubled the amount of Janitor slots.
-    type: Add
-  - message: (Barratry) More dirt.
-    type: Add
-  - message: (Barratry) Extra remote signalers in the shops.
-    type: Add
-  - message: (Barratry) Removed the turnstiles from HOP and reversed the direction of the line-up to be sane.
-    type: Tweak
-  - message: (Barratry) Missing floor decals in Cargo.
-    type: Fix
-  - message: (Barratry) Station AI vision should be a lot better in general / consistent now.
-    type: Fix
-  - message: (Barratry) Linked AI Upload to AI core.
-    type: Fix
-  - message: (Barratry) Brigmed Locker, ChemMaster, Chem Dispenser.
-    type: Remove
-  id: 391601
-  time: '2026-03-24T21:24:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3916
 - author: Cujo
   changes:
   - message: added an entirely new chemistry and medical department layout, complete with a new waiting room, front desk area, paramedic bay, and a janitor service corridor from maints.
@@ -869,4 +814,11 @@ Entries:
   id: 404142
   time: '2026-04-08T18:07:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4051
+- author: FeralCreature
+  changes:
+  - message: All health analyzers now have the ability to print out a health report containing a patient's information and damages.
+    type: Add
+  id: 404143
+  time: '2026-04-08T18:19:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4066
 Order: -1
