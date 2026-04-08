@@ -142,6 +142,9 @@ public sealed partial class ProjectileComponent : Component
 }
 
 
+/// <summary>
+///     STARLIGHT: The type of particle, which determines how it's treated in terms of collision and penetration.
+/// </summary>
 public enum ParticleType
 {
     Solid,
