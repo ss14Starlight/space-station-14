@@ -260,7 +260,7 @@
 
 - type: decal
   id: blackclaw
-  tags: ["crayon", "blackclaw"]
+  tags: ["crayon", "blackclaw", "crayon-5-graffiti"]
   defaultCleanable: true
   defaultCustomColor: true
   defaultSnap: false
@@ -270,7 +270,7 @@
 
 - type: decal
   id: circle
-  tags: ["crayon", "circle"]
+  tags: ["crayon", "circle", "crayon-5-graffiti"]
   defaultCleanable: true
   defaultCustomColor: true
   defaultSnap: false
@@ -280,7 +280,7 @@
 
 - type: decal
   id: circledirty
-  tags: ["crayon", "circle"]
+  tags: ["crayon", "circle", "crayon-5-graffiti"]
   defaultCleanable: true
   defaultCustomColor: true
   defaultSnap: false
@@ -290,7 +290,7 @@
 
 - type: decal
   id: crosshairs
-  tags: ["crayon", "crosshairs"]
+  tags: ["crayon", "crosshairs", "crayon-5-graffiti"]
   defaultCleanable: true
   defaultCustomColor: true
   defaultSnap: false
@@ -300,7 +300,7 @@
 
 - type: decal
   id: meow
-  tags: ["crayon", "meow", "cat"]
+  tags: ["crayon", "meow", "cat", "crayon-5-graffiti"]
   defaultCleanable: true
   defaultCustomColor: true
   defaultSnap: false
@@ -310,7 +310,7 @@
 
 - type: decal
   id: pulse
-  tags: ["crayon", "pulse"]
+  tags: ["crayon", "pulse", "crayon-5-graffiti"]
   defaultCleanable: true
   defaultCustomColor: true
   defaultSnap: false
@@ -320,7 +320,7 @@
 
 - type: decal
   id: square
-  tags: ["crayon", "square"]
+  tags: ["crayon", "square", "crayon-5-graffiti"]
   defaultCleanable: true
   defaultCustomColor: true
   defaultSnap: false
