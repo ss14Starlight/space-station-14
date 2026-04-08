@@ -27,3 +27,13 @@
   cost: 2500
   category: cargoproduct-category-name-fun
   group: market
+
+- type: cargoProduct
+  id: FunSaltLamp
+  icon:
+    sprite: _Starlight/Objects/Specific/supermatter.rsi
+    state: supermatter
+  product: CrateSaltLamp
+  cost: 2000
+  category: cargoproduct-category-name-fun
+  group: market
