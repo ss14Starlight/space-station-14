@@ -4,7 +4,6 @@ using Content.Server.Polymorph.Systems;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Systems;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Maps;
 using Robust.Shared.Map.Components;
@@ -21,7 +20,6 @@ public sealed class SanguinePoolSystem : SharedSanguinePoolSystem
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly PuddleSystem _puddle = default!;
 
     public override void Update(float frameTime)
