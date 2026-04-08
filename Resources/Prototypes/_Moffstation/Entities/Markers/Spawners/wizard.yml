@@ -40,13 +40,13 @@
 
 - type: entity
   parent: SpawnPointGhostWizardDuelistBase
-  id: SpawnPointGhostWizardDuelistViolet
-  name: violet wizard duelist spawn point
+  id: SpawnPointGhostWizardDuelistPurple # Starlight, violet -> Purple
+  name: purple wizard duelist spawn point # Starlight, violet -> Purple
   categories: [ HideSpawnMenu, Spawner ]
   components:
   - type: GhostRole
     mindRoles:
-    - MindRoleWizardDuelistViolet
+    - MindRoleWizardDuelistPurple # Starlight, violet -> Purple
 
 # Starlight start
 

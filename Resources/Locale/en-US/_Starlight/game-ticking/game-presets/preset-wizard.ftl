@@ -14,22 +14,22 @@ wizard-duelist-blue-role-greeting =
     There have been disagreements between the various schools of the space wizards federation, resulting in the call for a wizard duel, and the blue wizards of the Broken Moon have sent you as their champion for this cause.
     Meet with your wizard competitors, set the terms of agreement for this duel, and prove that the blue wizards are the masters of sorcery!
 
-wizard-duelist-violet-role-greeting =
+wizard-duelist-purple-role-greeting =
     It's wizard time, fireball!
-    There have been disagreements between the various schools of the space wizards federation, resulting in the call for a wizard duel, and the violet wizards of Mu'keiji have sent you as their champion for this cause.
-    Meet with your wizard competitors, set the terms of agreement for this duel, and prove that the violet wizards shine in the court of battle!
+    There have been disagreements between the various schools of the space wizards federation, resulting in the call for a wizard duel, and the purple wizards of Mu'keiji have sent you as their champion for this cause.
+    Meet with your wizard competitors, set the terms of agreement for this duel, and prove that the purple wizards shine in the court of battle!
 
 wizard-duelist-yellow-role-greeting =
     It's wizard time, fireball!
-    There have been disagreements between the various schools of the space wizards federation, resulting in the call for a wizard duel, and the yellow wizards of word have sent you as their champion for this cause.
-    Meet with your wizard competitors, set the terms of agreement for this duel, and prove that the yellow wizards are the brightest of all!
+    There have been disagreements between the various schools of the space wizards federation, resulting in the call for a wizard duel, and the yellow wizards of the Lunar Prophets have sent you as their champion for this cause.
+    Meet with your wizard competitors, set the terms of agreement for this duel, and prove that the yellow wizards can see all outcomes!
 
 wizard-duelist-green-role-greeting =
     It's wizard time, fireball!
-    There have been disagreements between the various schools of the space wizards federation, resulting in the call for a wizard duel, and the green wizards of the word have sent you as their champion for this cause.
-    Meet with your wizard competitors, set the terms of agreement for this duel, and prove that the green wizards are in a league of their own!
+    There have been disagreements between the various schools of the space wizards federation, resulting in the call for a wizard duel, and the green wizards of the Disciples of Evergrow have sent you as their champion for this cause.
+    Meet with your wizard competitors, set the terms of agreement for this duel, and prove that the green wizards are the wisest of all!
 
 wizard-duelist-orange-role-greeting =
     It's wizard time, fireball!
-    There have been disagreements between the various schools of the space wizards federation, resulting in the call for a wizard duel, and the orange wizards of word have sent you as their champion for this cause.
-    Meet with your wizard competitors, set the terms of agreement for this duel, and prove that the orange wizards are filled with unquenchable mystic spirit!
+    There have been disagreements between the various schools of the space wizards federation, resulting in the call for a wizard duel, and the orange wizards of the Transcendence Stars have sent you as their champion for this cause.
+    Meet with your wizard competitors, set the terms of agreement for this duel, and prove that the orange wizards are filled with indomitable curiosity!

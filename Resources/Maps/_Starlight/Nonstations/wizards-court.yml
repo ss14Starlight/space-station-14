@@ -3592,7 +3592,7 @@ entities:
       inSlotFlag: HEAD
     - type: Physics
       canCollide: False
-- proto: ClothingHeadHatVioletwizard
+- proto: ClothingHeadHatPurplewizard
   entities:
   - uid: 1324
     components:
@@ -3643,7 +3643,7 @@ entities:
       inSlotFlag: OUTERCLOTHING
     - type: Physics
       canCollide: False
-- proto: ClothingOuterWizardViolet
+- proto: ClothingOuterWizardPurple
   entities:
   - uid: 1323
     components:

@@ -43,34 +43,34 @@
 
 - type: startingGear
   parent: WizardDuelistBaseGear
-  id: WizardDuelistVioletGear
+  id: WizardDuelistPurpleGear # Starlight Violet -> Purple
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorPurple
-    head: ClothingHeadHatVioletwizard
-    outerClothing: ClothingOuterWizardViolet
+    head: ClothingHeadHatPurplewizard # Starlight Violet -> Purple
+    outerClothing: ClothingOuterWizardPurple # Starlight Violet -> Purple
 
 # Starlight start
 - type: startingGear
   parent: WizardDuelistBaseGear
   id: WizardDuelistYellowGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitColorRed
-    head: ClothingHeadHatRedwizard
-    outerClothing: ClothingOuterWizardRed
+    jumpsuit: ClothingUniformJumpsuitColorYellow
+    head: ClothingHeadHatYellowwizard
+    outerClothing: ClothingOuterWizardYellow
 
 - type: startingGear
   parent: WizardDuelistBaseGear
   id: WizardDuelistGreenGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitColorDarkBlue
-    head: ClothingHeadHatWizard
-    outerClothing: ClothingOuterWizard
+    jumpsuit: ClothingUniformJumpsuitColorGreen
+    head: ClothingHeadHatGreenwizard
+    outerClothing: ClothingOuterWizardGreen
 
 - type: startingGear
   parent: WizardDuelistBaseGear
   id: WizardDuelistOrangeGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitColorPurple
-    head: ClothingHeadHatVioletwizard
-    outerClothing: ClothingOuterWizardViolet
+    jumpsuit: ClothingUniformJumpsuitColorOrange
+    head: ClothingHeadHatOrangewizard
+    outerClothing: ClothingOuterWizardOrange
 # Starlight end

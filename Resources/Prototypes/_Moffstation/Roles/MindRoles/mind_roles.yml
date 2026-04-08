@@ -26,10 +26,10 @@
 
 - type: entity
   parent: MindRoleWizardDuelistBase
-  id: MindRoleWizardDuelistViolet
-  name: Violet Wizard Duelist Role
+  id: MindRoleWizardDuelistPurple # Starlight, violet -> Purple
+  name: Purple Wizard Duelist Role # Starlight, violet -> Purple
   components:
-  - type: WizardDuelistVioletRole
+  - type: WizardDuelistPurpleRole # Starlight, violet -> Purple
 
 # Starlight start
 - type: entity

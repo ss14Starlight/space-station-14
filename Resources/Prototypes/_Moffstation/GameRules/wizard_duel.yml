@@ -67,16 +67,17 @@
       tags:
         - CantBecomeRevolutionary
       # Starlight-end
-    - prefRoles: [ WizardDuelist ] # Violet Wizard Duelist
-      min: 1
+    - prefRoles: [ WizardDuelist ] # Starlight, Purple Wizard Duelist
+      min: 0 # Starlight, only spawn above 90pop
       max: 1
-      spawnerPrototype: SpawnPointGhostWizardDuelistViolet
+      playerRatio: 90 # Starlight, only spawn above 90pop
+      spawnerPrototype: SpawnPointGhostWizardDuelistPurple # Starlight, violet -> Purple
       roleLoadout:
       - RoleSurvivalWizardDuelist
       briefing:
-        text: wizard-duelist-violet-role-greeting
+        text: wizard-duelist-purple-role-greeting # Starlight, violet -> Purple
         color: Turquoise
-      startingGear: WizardDuelistVioletGear
+      startingGear: WizardDuelistPurpleGear # Starlight, violet -> Purple
       components:
       - type: NpcFactionMember
         factions:
@@ -87,7 +88,7 @@
         - NamesWizardLast
         nameFormat: name-format-wizard
       mindRoles:
-      - MindRoleWizardDuelistViolet
+      - MindRoleWizardDuelistPurple # Starlight, violet -> Purple
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
@@ -115,8 +116,9 @@
       tags:
         - CantBecomeRevolutionary
     - prefRoles: [ WizardDuelist ] # Green Wizard Duelist
-      min: 1
+      min: 0 # Only spawn above 70pop
       max: 1
+      playerRatio: 70 # Only spawn above 70pop
       spawnerPrototype: SpawnPointGhostWizardDuelistGreen
       roleLoadout:
       - RoleSurvivalWizardDuelist
@@ -138,8 +140,9 @@
       tags:
         - CantBecomeRevolutionary
     - prefRoles: [ WizardDuelist ] # Orange Wizard Duelist
-      min: 1
+      min: 0 # Only spawn above 110pop
       max: 1
+      playerRatio: 110 # Only spawn above 110pop, the rarest wizard
       spawnerPrototype: SpawnPointGhostWizardDuelistOrange
       roleLoadout:
       - RoleSurvivalWizardDuelist

@@ -7,7 +7,10 @@
   <Box>
     <GuideEntityEmbed Entity="ClothingHeadHatRedwizard" Caption=""/>
     <GuideEntityEmbed Entity="ClothingHeadHatWizard" Caption=""/>
-    <GuideEntityEmbed Entity="ClothingHeadHatVioletwizard" Caption=""/>
+    <GuideEntityEmbed Entity="ClothingHeadHatYellowwizard" Caption=""/><!-- Starlight, Yellow Wizard -->
+    <GuideEntityEmbed Entity="ClothingHeadHatGreenwizard" Caption=""/><!-- Starlight, Green Wizard -->
+    <GuideEntityEmbed Entity="ClothingHeadHatPurplewizard" Caption=""/><!-- Starlight, violet -> Purple, and moved to after Green Wizard. -->
+    <GuideEntityEmbed Entity="ClothingHeadHatOrangewizard" Caption=""/><!-- Starlight, Orange Wizard -->
   </Box>
   In aeons of conflict and strife, the various schools of the Space Wizards Federation have learned to resolve their differences in ways that best reflect their unpredictable nature; the ancient rite of a wizard duel!
   With each faction sending one of their own to act as the representative of their school, these wizards compete to prove that their mastery of sorcery and magic is unparalleled, helping decide the future of the Space Wizards Federation in events following.

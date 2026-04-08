@@ -10,9 +10,9 @@ public sealed partial class WizardDuelistRedRoleComponent : Component;
 [RegisterComponent]
 public sealed partial class WizardDuelistBlueRoleComponent : Component;
 
-// Added to mind role entities to tag that they are a violet wizard duelist.
+// Added to mind role entities to tag that they are a purple wizard duelist. // Starlight, violet -> Purple
 [RegisterComponent]
-public sealed partial class WizardDuelistVioletRoleComponent : Component;
+public sealed partial class WizardDuelistPurpleRoleComponent : Component; // Starlight, violet -> Purple
 
 //Starlight start
 // More Wizard colors

@@ -6,8 +6,16 @@
     ClothingHeadHatWizardFake: 3
     ClothingHeadHatRedwizard: 3
     ClothingOuterWizardRed: 3
+    ClothingHeadHatYellowwizard: 3 # Starlight start
+    ClothingOuterWizardYellow: 3
+    ClothingHeadHatGreenwizard: 3
+    ClothingOuterWizardGreen: 3
+    ClothingHeadHatOrangewizard: 3
+    ClothingOuterWizardOrange: 3 # Starlight end
     ClothingHeadHatVioletwizard: 3
     ClothingOuterWizardViolet: 3
+    ClothingHeadHatPeachwizard: 3 # Starlight
+    ClothingOuterWizardPeach: 3 # Starlight
     ClothingHeadHelmetWizardHelm: 3
     ClothingShoesWizard: 9
     #TODO:
