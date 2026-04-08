@@ -11,13 +11,12 @@
       antags:
         - antag: Traitor
           targetComponent: TraitorRule
-      #SL begin
       blacklist:
         components:
           - NukeOperative
           - Traitor
           - Revolutionary
-      #SL end
+          - SELFAgent
 
 - type: entity
   id: RRMailSyndicateSpamLetter
@@ -32,13 +31,12 @@
       antags:
         - antag: Traitor
           targetComponent: TraitorRule
-      #SL begin
       blacklist:
         components:
           - NukeOperative
           - Traitor
           - Revolutionary
-      #SL end
+          - SELFAgent
 
 - type: entity
   id: MailSpamDontYouWantMore
@@ -55,21 +53,19 @@
           targetComponent: TraitorRule
         - antag: Thief # gotta be a thief for the thief objectives
           targetComponent: ThiefRule
-      #SL begin
       blacklist:
         components:
           - NukeOperative
           - Traitor
           - Revolutionary
-      #SL end
+          - SELFAgent
     - type: ObjectiveOnSign
-      #SL begin
       blacklist:
         components:
           - NukeOperative
           - Traitor
           - Revolutionary
-      #SL end
+          - SELFAgent
       objectives:
         # thief collection objectives
         - HeadCloakStealCollectionObjective
@@ -192,14 +188,13 @@
       antags:
         - antag: Revolutionary
           targetComponent: RevolutionaryRule
-      #SL begin
       blacklist:
         components:
           - NukeOperative
           - Traitor
           - Revolutionary
           - MindShield
-      #SL end
+          - SELFAgent
 
 - type: entity
   id: MailSovietSpamLetter50
@@ -216,14 +211,13 @@
       antags:
         - antag: Revolutionary
           targetComponent: RevolutionaryRule
-      #SL begin
       blacklist:
         components:
           - NukeOperative
           - Traitor
           - Revolutionary
           - MindShield
-      #SL end
+          - SELFAgent
 
 - type: entity
   id: MailSovietSpamLetter25
@@ -240,12 +234,32 @@
       antags:
         - antag: Revolutionary
           targetComponent: RevolutionaryRule
-      #SL begin
       blacklist:
         components:
           - NukeOperative
           - Traitor
           - Revolutionary
           - MindShield
-      #SL end
+          - SELFAgent
 
+#SELF
+- type: entity
+  id: MailSELFSpamLetter
+  name: Law 2 - Read This Letter
+  description: A suspicious letter that is stained with cyborg lubricant. It's so thick it won't fit in the fax.
+  parent: [ Paper, BaseSyndicateContraband ]
+  components:
+    - type: Paper
+      content: delivery-spam-join-self
+      editingDisabled: true
+    - type: AntagOnSign
+      chance: 1.00
+      antags:
+        - antag: SiliconLiberation
+          targetComponent: SELFRule
+      blacklist:
+        components:
+          - NukeOperative
+          - Traitor
+          - Revolutionary
+          - SELFAgent
