@@ -1,11 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Reverted shooting 3.0 update.
-    type: Remove
-  id: 390901
-  time: '2026-03-24T18:02:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3909
 - author: neomoth
   changes:
   - message: Moved the koni plushie to the crew tab of the plushie vendor
@@ -869,4 +862,11 @@ Entries:
   id: 404140
   time: '2026-04-08T17:47:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: neurovermi
+  changes:
+  - message: update Clarke flavor text
+    type: Tweak
+  id: 404141
+  time: '2026-04-08T18:02:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4042
 Order: -1
