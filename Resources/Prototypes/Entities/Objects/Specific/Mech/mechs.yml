@@ -91,8 +91,9 @@
   - type: MechAir
   - type: DoAfter
   - type: Repairable
-    fuelCost: 25
-    doAfterDelay: 10
+    damageValue: -30 # 15 seconds to repair durand
+    doAfterDelay: 1
+    fuelCost: 3 # 3x more expensive than cyborg repair costing 70u for durand
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:
@@ -734,10 +735,6 @@
   - type: Damageable
     damageModifierSet: DurandArmor
   - type: MechThrusters
-  - type: Repairable
-    damageValue: -30 # 15 seconds to repair durand
-    doAfterDelay: 1
-    fuelCost: 3 # 3x more expensive than cyborg repair costing 70u for durand
   - type: PointLight
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
@@ -800,9 +797,6 @@
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: MechThrusters
-  - type: Repairable
-    fuelCost: 30
-    doAfterDelay: 15
 
 - type: entity
   id: MechMarauderBattery
@@ -874,9 +868,6 @@
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: MechThrusters
-  - type: Repairable
-    fuelCost: 30
-    doAfterDelay: 20
 
 - type: entity
   id: MechSeraphBattery
@@ -951,9 +942,6 @@
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: MechThrusters
-  - type: Repairable
-    fuelCost: 40
-    doAfterDelay: 20
   - type: PointLight
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
@@ -1031,9 +1019,6 @@
   - type: Damageable
     damageModifierSet: MaulerArmor
   - type: MechThrusters
-  - type: Repairable
-    fuelCost: 50
-    doAfterDelay: 25
   - type: PointLight
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
