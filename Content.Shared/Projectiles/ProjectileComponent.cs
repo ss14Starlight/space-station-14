@@ -115,4 +115,37 @@ public sealed partial class ProjectileComponent : Component
     /// </summary>
     [DataField]
     public FixedPoint2 PenetrationAmount = FixedPoint2.Zero;
+
+    #region Starlight
+    /// <summary>
+    ///     STARLIGHT: What kind of particle this is, either solid or intangible.
+    /// </summary>
+    [DataField]
+    public ParticleType ParticleType = ParticleType.Solid;
+
+    /// <summary>
+    ///     STARLIGHT: The amount of hits so far. Only relevant for Intangible particles.
+    /// </summary>
+    public int Hits;
+
+    /// <summary>
+    ///     STARLIGHT: The maximum hits that are permissible for this particle. Only relevant for Intangible particles.
+    /// </summary>
+    [DataField]
+    public int MaximumHits = 1;
+
+    /// <summary>
+    ///     STARLIGHT: Whether to delete this particle when Hits >= MaximumHits. If false, the particle continues without hitting.
+    /// </summary>
+    [DataField]
+    public bool DeleteOnMaximumHits;
 }
+
+
+public enum ParticleType
+{
+    Solid,
+    Intangible
+}
+
+#endregion

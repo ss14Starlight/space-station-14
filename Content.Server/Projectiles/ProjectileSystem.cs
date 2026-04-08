@@ -73,7 +73,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
             component.ProjectileSpent = !TryPenetrate((uid, component), damage, damageRequired);
         }
-        else
+        else if (component.ParticleType == ParticleType.Solid) // Starlight
         {
             component.ProjectileSpent = true;
         }
@@ -95,7 +95,8 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             //Starlight end
         }
 
-        if (component.DeleteOnCollide && component.ProjectileSpent)
+        if (component is { ParticleType: ParticleType.Solid, DeleteOnCollide: true, ProjectileSpent: true } // Starlight: Original logic for Solid
+            or { ParticleType: ParticleType.Intangible, DeleteOnMaximumHits: true, ProjectileSpent: true }) // Starlight: New logic for Impermanent
             QueueDel(uid);
 
         if (component.ImpactEffect != null && TryComp(uid, out TransformComponent? xform))
@@ -104,7 +105,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         }
     }
 
-    private bool TryPenetrate(Entity<ProjectileComponent> projectile, DamageSpecifier damage, FixedPoint2 damageRequired)
+    private bool TryPenetrateSolid(Entity<ProjectileComponent> projectile, DamageSpecifier damage, FixedPoint2 damageRequired) // Starlight: Renamed, see methods below
     {
         // If penetration is to be considered, we need to do some checks to see if the projectile should stop.
         if (projectile.Comp.PenetrationThreshold == 0)
@@ -140,4 +141,26 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
         return true;
     }
+
+    #region Starlight
+    /// <summary>
+    ///     STARLIGHT: TryPenetrate for particles with the Intangible type.
+    /// </summary>
+    private bool TryPenetrateIntangible(Entity<ProjectileComponent> projectile) =>
+        ++projectile.Comp.Hits < projectile.Comp.MaximumHits;
+
+    /// <summary>
+    ///     STARLIGHT: Drop-in replacement method that disambiguates the original <see cref="TryPenetrate"/> call
+    ///     between <see cref="TryPenetrateSolid"/> and <see cref="TryPenetrateIntangible"/>.
+    /// </summary>
+    /// <param name="projectile"></param>
+    /// <param name="damage"></param>
+    /// <param name="damageRequired"></param>
+    /// <returns></returns>
+    private bool TryPenetrate(Entity<ProjectileComponent> projectile, DamageSpecifier damage,
+        FixedPoint2 damageRequired) =>
+        projectile.Comp.ParticleType == ParticleType.Solid
+            ? TryPenetrateSolid(projectile, damage, damageRequired)
+            : TryPenetrateIntangible(projectile);
+    #endregion
 }
