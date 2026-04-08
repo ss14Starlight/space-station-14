@@ -192,8 +192,8 @@
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-rd
-    stampedColor: "#1f66a0"
-    stampState: "paper_stamp-rd"
+    stampedColor: "#9900FF" # Starlight
+    stampState: "paper_stamp-purplerd" # Starlight
   - type: Sprite
     state: stamp-rd
 

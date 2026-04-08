@@ -244,6 +244,14 @@
     {
       "name": "paper_stamp-standby",
       "copyright": "by mikeysaurus"
+    },
+    {
+      "name": "paper_stamp-purplerd",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432, color adjusted by redmushie (github)"
+    },
+    {
+      "name": "paper_stamp-crd",
+      "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432, color adjusted by redmushie (github)"
     }
   ]
 }

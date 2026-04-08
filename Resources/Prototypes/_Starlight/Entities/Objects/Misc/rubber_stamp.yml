@@ -105,7 +105,7 @@
   components:
   - type: Stamp
     stampedName: "Central Engineering Division"
-    stampedColor: "#FEFF38"
+    stampedColor: "#db951d"
     stampState: "paper_stamp-ntrep"
   - type: Sprite
     state: stamp-ce
@@ -144,8 +144,8 @@
   components:
   - type: Stamp
     stampedName: "Central Research Division"
-    stampedColor: "#9900FF"
-    stampState: "paper_stamp-rd"
+    stampedColor: "#ad59c0"
+    stampState: "paper_stamp-crd"
   - type: Sprite
     state: stamp-wizard
 
