@@ -17,6 +17,15 @@ public sealed partial class TechnologyDatabaseComponent : Component
     [DataField("mainDiscipline", customTypeSerializer: typeof(PrototypeIdSerializer<TechDisciplinePrototype>))]
     public string? MainDiscipline;
 
+    /// <summary>
+    /// Seed used for deterministic technology card selection.
+    /// Set once on the server and synced to clients so that the same set of
+    /// available technologies always produces the same card selection.
+    /// </summary>
+    [AutoNetworkedField]
+    [DataField]
+    public int CardSeed;
+
     [AutoNetworkedField]
     [DataField("currentTechnologyCards")]
     public List<string> CurrentTechnologyCards = new();

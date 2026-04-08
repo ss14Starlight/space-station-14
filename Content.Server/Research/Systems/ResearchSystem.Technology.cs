@@ -17,6 +17,7 @@ public sealed partial class ResearchSystem
             return;
 
         primaryDb.MainDiscipline = otherDb.MainDiscipline;
+        primaryDb.CardSeed = otherDb.CardSeed;
         primaryDb.CurrentTechnologyCards = otherDb.CurrentTechnologyCards;
         primaryDb.SupportedDisciplines = otherDb.SupportedDisciplines;
         primaryDb.UnlockedTechnologies = otherDb.UnlockedTechnologies;

@@ -24,6 +24,16 @@ public abstract class SharedResearchSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, TechnologyDatabaseComponent component, MapInitEvent args)
     {
+        // Research clients (e.g. R&D computers) get their cards from the server via sync.
+        // Generating cards here would overwrite the synced cards with a new random selection,
+        // allowing players to "reroll" by deconstructing and reconstructing the machine.
+        if (HasComp<ResearchClientComponent>(uid))
+            return;
+
+        // Generate a seed for deterministic card selection that persists for this entity's lifetime.
+        if (component.CardSeed == 0)
+            component.CardSeed = _random.Next(1, int.MaxValue);
+
         UpdateTechnologyCards(uid, component);
     }
 
@@ -33,7 +43,23 @@ public abstract class SharedResearchSystem : EntitySystem
             return;
 
         var availableTechnology = GetAvailableTechnologies(uid, component);
-        _random.Shuffle(availableTechnology);
+
+        // Use a deterministic shuffle seeded by the component's CardSeed combined with
+        // a hash of the available technology set. This ensures the same set of available
+        // techs always produces the same card selection, preventing "reroll" exploits.
+        var setHash = 0;
+        foreach (var tech in availableTechnology)
+        {
+            setHash = unchecked(setHash * 397 ^ tech.ID.GetHashCode());
+        }
+        var seededRng = new System.Random(unchecked(component.CardSeed + setHash));
+
+        // Fisher-Yates shuffle with deterministic RNG
+        for (var i = availableTechnology.Count - 1; i > 0; i--)
+        {
+            var j = seededRng.Next(i + 1);
+            (availableTechnology[i], availableTechnology[j]) = (availableTechnology[j], availableTechnology[i]);
+        }
 
         component.CurrentTechnologyCards.Clear();
         foreach (var discipline in component.SupportedDisciplines)
