@@ -58,10 +58,10 @@ marking-FelionoidHeadCalico = Calico Head
 marking-FelionoidHeadStripes = Striped Head
 
 # Tattoos
-marking-FelionoidArmTattooHeartL = Left Arm Heart Tattoo
-marking-FelionoidArmTattooHeartR = Right Arm Heart Tattoo
-marking-FelionoidChestHive = Hive Back Tattoo
-marking-FelionoidChestNightling = Nightling Chest Tattoo
+marking-TattooFelionoidHeartLeftArm = Left Arm Heart Tattoo
+marking-TattooFelionoidHeartRightArm = Right Arm Heart Tattoo
+marking-TattooFelionoidHiveChest = Hive Back Tattoo
+marking-TattooFelionoidNightlingChest = Nightling Chest Tattoo
 
 # Snout
 marking-FelionoidSnout = Snout
