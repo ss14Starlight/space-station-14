@@ -494,6 +494,8 @@
     - Xenoborg
     - Binary
   - type: BorgChassis
+    jobIconOverride: JobIconXenoborg # Starlight
+    jobTitleOverride: chat-radio-xenoborg # Starlight
     maxModules: 0
     hasMindState: robot_e
     noMindState: robot_e_r
