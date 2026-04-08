@@ -295,3 +295,7 @@ command-description-aitakeover =
     Make the piped entity take over the target AI core.
 command-description-mobthreshold-initialize =
     Properly initializes a new mob threshold onto an entity.
+command-description-corporeal-on =
+    Makes your ghost visible and grants it the ability to speak.
+command-descriptoin-corporeal-off =
+    Makes your ghost invisible and revokes the ability to speak.
