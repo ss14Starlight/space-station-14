@@ -1,75 +1,4 @@
 Entries:
-- author: wonderfulnewworld, princess_gurchi, Killer Tamashi
-  changes:
-  - message: You can now carry every species. Bigger species won't even fit in bags of holding.
-    type: Add
-  - message: You can now see when someone is carrying someone.
-    type: Tweak
-  id: 387701
-  time: '2026-03-23T08:47:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3877
-- author: redmushie
-  changes:
-  - message: Biomass reclaimers now tell you why they are refusing to work via popup text.
-    type: Add
-  id: 388301
-  time: '2026-03-23T09:21:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3883
-- author: wonderfulnewworld & [pcaessayrs](https://github.com/pcaessayrs)
-  changes:
-  - message: The ninja now spawns with a chain sickle. They can use this to grapple to things _very_ quickly, or can be thrown as a bola in a pinch. Also deals solid damage, too, giving ninja an easier to use ranged weapon than the shurikens.
-    type: Add
-  id: 388101
-  time: '2026-03-23T09:37:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3881
-- author: Roro
-  changes:
-  - message: Fixed Construction bag not quick opening inhand.
-    type: Fix
-  id: 388401
-  time: '2026-03-23T13:50:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3884
-- author: CawsForConcern
-  changes:
-  - message: Lifeboats, larger escape pods that can be mapped to stations.
-    type: Add
-  - message: New sprites for "internals crates" which reflect the fact they contain both O2 and N2 emergency equipment.
-    type: Add
-  id: 388901
-  time: '2026-03-23T17:30:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3889
-- author: R3v3l4t1on
-  changes:
-  - message: Cyborgs no longer have any access when out of power. Better manage that power cell.
-    type: Remove
-  id: 389001
-  time: '2026-03-24T06:21:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3890
-- author: Born Stellar
-  changes:
-  - message: Corgium and a few other silly chems that can do hard to heal damage have been put on the NT-ISD watch list as illicit chemicals. Use is restricted to Clowns and prescriptions filed by physiologists.
-    type: Tweak
-  id: 389401
-  time: '2026-03-24T06:19:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3894
-- author: CawsForConcern
-  changes:
-  - message: (Silica) Added a Lifeboat escape pod dock by Dorms.
-    type: Add
-  - message: (Silica) Updated Maints Bar's stage to use the new platforms.
-    type: Fix
-  - message: (SIlica) Updated some more stairs I missed to the new stair sprites.
-    type: Fix
-  id: 389301
-  time: '2026-03-24T06:52:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3893
-- author: CrazyPhantom
-  changes:
-  - message: The ban screen will now show the associated ban ID to help with appeals.
-    type: Add
-  id: 390001
-  time: '2026-03-24T11:00:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3900
 - author: STARLIGHT TEAM
   changes:
   - message: Reverted shooting 3.0 update.
@@ -877,4 +806,67 @@ Entries:
   id: 404131
   time: '2026-04-08T07:06:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4035
+- author: Born Stellar
+  changes:
+  - message: Spelling error in Space law corrected.
+    type: Fix
+  id: 404132
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: Glare revered to previous state.
+    type: Tweak
+  id: 404133
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: New ability called sleep which costs 15 blood, single target, and a 5 second do-after and has a 2 minute cool down. Flash protection and mind-shields prevent sleeping. Sleep lasts for 10 seconds.
+    type: Add
+  id: 404134
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: Vampires can no longer drink from dead beings.
+    type: Tweak
+  id: 404135
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: Vampires can no longer drink from beings that have zero blood.
+    type: Fix
+  id: 404136
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: Security guidelines for criminal Vampires now recommends tracking and electro-packing Vampires. Also states plainly that vampires with unusual abilities are always guilty of Cannibalism and Minor Assault at minimum.
+    type: Tweak
+  id: 404137
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: Borgs cannot be glared or forced into hibernation anymore.
+    type: Fix
+  id: 404138
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: Thralls are now shown in the admin player view.
+    type: Fix
+  id: 404139
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: Thralls now gain and lose objectives as one would expect them to.
+    type: Fix
+  id: 404140
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
 Order: -1
