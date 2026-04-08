@@ -1,20 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Made Platforms able to take damage and be broken. They are slightly weaker than solid walls.
-    type: Fix
-  id: 388001
-  time: '2026-03-23T06:11:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3880
-- author: SevenShades
-  changes:
-  - message: Added wooden diagonal decals.
-    type: Add
-  - message: Added rotated versions of existing diagonal decals to make them easier to use.
-    type: Add
-  id: 386601
-  time: '2026-03-23T08:42:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3866
 - author: wonderfulnewworld, princess_gurchi, Killer Tamashi
   changes:
   - message: You can now carry every species. Bigger species won't even fit in bags of holding.
@@ -879,4 +863,18 @@ Entries:
   id: 404129
   time: '2026-04-08T06:58:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4038
+- author: wonderfulnewworld
+  changes:
+  - message: Only Wizards can use wands, staffs, and magical weapons, except for the Staff of Animation/Teleport Scroll. Be cautious about mind swapping; only the Wizard's body is worthy of using magical items.
+    type: Tweak
+  id: 404130
+  time: '2026-04-08T07:06:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4035
+- author: wonderfulnewworld
+  changes:
+  - message: Summon Magic and Summon Guns now costs 25 WizCoin, so WizCoins can be mapped now in small amounts if desired/allowed.
+    type: Tweak
+  id: 404131
+  time: '2026-04-08T07:06:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4035
 Order: -1
