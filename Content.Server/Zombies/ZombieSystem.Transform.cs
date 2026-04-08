@@ -260,11 +260,16 @@ public sealed partial class ZombieSystem
         // Starlight-start: zombie HP buff — add ThresholdBoost HP to all non-alive thresholds
         if (TryComp<MobThresholdsComponent>(target, out var threshComp))
         {
+            // Capture all values before any writes; SetMobStateThreshold mutates the
+            // dictionary in-place and could clobber the next state's key mid-loop.
+            var boosts = new List<(FixedPoint2 NewValue, MobState State)>();
             foreach (var state in new[] { MobState.Critical, MobState.Dead })
             {
                 if (_mobThreshold.TryGetThresholdForState(target, state, out var cur, threshComp))
-                    _mobThreshold.SetMobStateThreshold(target, cur.Value + zombiecomp.ThresholdBoost, state, threshComp);
+                    boosts.Add((cur.Value + zombiecomp.ThresholdBoost, state));
             }
+            foreach (var (newValue, state) in boosts)
+                _mobThreshold.SetMobStateThreshold(target, newValue, state, threshComp);
         }
         // Starlight-end
 
