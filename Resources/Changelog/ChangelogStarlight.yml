@@ -1,21 +1,4 @@
 Entries:
-- author: Cujo
-  changes:
-  - message: added an entirely new chemistry and medical department layout, complete with a new waiting room, front desk area, paramedic bay, and a janitor service corridor from maints.
-    type: Add
-  - message: added cryox, a gas analyzer, and an inlet pressure regulator to the cryopod loop room.
-    type: Add
-  - message: de-cluttered atmos, swapped glass for reinforced walls between gas miners, shuffled TEG room and burn chamber further north; moved canisters room south.
-    type: Tweak
-  - message: separated power main over 2 APCs in atmos, and added an airlock to space closer to TEG.
-    type: Add
-  - message: minor re-arrangement of heads' offices (including law) for new consoles.
-    type: Tweak
-  - message: minor re-arrangement of robotics exosuit fabricators (again).
-    type: Tweak
-  id: 391301
-  time: '2026-03-24T21:31:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3913
 - author: CawsForConcern
   changes:
   - message: (Cluster) Protection Anchors.
@@ -821,4 +804,11 @@ Entries:
   id: 404143
   time: '2026-04-08T18:19:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4066
+- author: Unknown
+  changes:
+  - message: (Ming) Added SpawnpointLatejoin to Arrivals (failsafe that prevents Arrivals from gibbing you).
+    type: Fix
+  id: 404144
+  time: '2026-04-08T18:20:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4065
 Order: -1
