@@ -1,7 +1,6 @@
 using Content.Shared.Actions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Content.Shared.Eye; // Starlight
 
 namespace Content.Shared.Ghost;
 
@@ -52,36 +51,9 @@ public sealed partial class GhostComponent : Component
 
     /// <summary>
     /// Ensures this ghost always remains visible, this means both to alive players, and preventing clientside toggling.
+    /// This is read-only since you should be using the corporeal command for this.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool AlwaysVisible
-    {
-        get;
-        set
-        {
-            var em = IoCManager.Resolve<IEntityManager>();
-            var vis = em.System<SharedVisibilitySystem>();
-            var query = em.EntityQueryEnumerator<GhostComponent, VisibilityComponent>();
-            while (query.MoveNext(out var uid, out var ghost, out var visComp))
-            {
-                if (ghost != this) continue;
-                if (value)
-                {
-                    vis.AddLayer((uid, visComp), (int)VisibilityFlags.Normal, false);
-                    vis.RemoveLayer((uid, visComp), (int)VisibilityFlags.Ghost, false);
-                }
-                else
-                {
-                    vis.AddLayer((uid, visComp), (int)VisibilityFlags.Ghost, false);
-                    vis.RemoveLayer((uid, visComp), (int)VisibilityFlags.Normal, false);
-                }
-
-                vis.RefreshVisibility((uid, visComp));
-                field = value;
-                break;
-            }
-        }
-    }
+    [DataField, AutoNetworkedField, ViewVariables] public bool AlwaysVisible;
     //Starlight end
 
     // End actions

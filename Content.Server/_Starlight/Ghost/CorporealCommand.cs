@@ -2,10 +2,12 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Content.Shared.Emoting;
+using Content.Shared.Eye;
 using Content.Shared.Ghost;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Content.Shared.Starlight.TextToSpeech;
+using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Toolshed;
 
@@ -18,6 +20,8 @@ namespace Content.Server._Starlight.Ghost;
 [AdminCommand(AdminFlags.Fun)]
 public sealed class CorporealCommand : ToolshedCommand
 {
+    private VisibilitySystem? _visibility;
+
     [CommandImplementation("on")]
     public EntityUid MakeCorporeal(IInvocationContext ctx, [PipedArgument] EntityUid uid)
     {
@@ -33,6 +37,7 @@ public sealed class CorporealCommand : ToolshedCommand
         EnsureComp<EmotingComponent>(uid);
         EnsureComp<VocalComponent>(uid);
         EnsureComp<TextToSpeechComponent>(uid);
+        ToggleVisibility(uid, true);
         return uid;
     }
 
@@ -66,6 +71,7 @@ public sealed class CorporealCommand : ToolshedCommand
         RemComp<SpeechComponent>(uid);
         RemComp<EmotingComponent>(uid);
         RemComp<VocalComponent>(uid);
+        ToggleVisibility(uid, false);
         return uid;
     }
 
@@ -84,4 +90,21 @@ public sealed class CorporealCommand : ToolshedCommand
     public IEnumerable<ICommonSession> MakeNonCorporeal(IInvocationContext ctx,
         [PipedArgument] IEnumerable<ICommonSession> session) =>
         session.Select(x => MakeNonCorporeal(ctx, x));
+
+    private void ToggleVisibility(EntityUid uid, bool visible)
+    {
+        _visibility ??= EntitySystemManager.GetEntitySystem<VisibilitySystem>();
+        if (!TryComp<VisibilityComponent>(uid, out var visComp)) return;
+        if (visible)
+        {
+            _visibility.AddLayer((uid, visComp), (int)VisibilityFlags.Normal, false);
+            _visibility.RemoveLayer((uid, visComp), (int)VisibilityFlags.Ghost, false);
+        }
+        else
+        {
+            _visibility.AddLayer((uid, visComp), (int)VisibilityFlags.Ghost, false);
+            _visibility.RemoveLayer((uid, visComp), (int)VisibilityFlags.Normal, false);
+        }
+        _visibility.RefreshVisibility((uid, visComp));
+    }
 }
