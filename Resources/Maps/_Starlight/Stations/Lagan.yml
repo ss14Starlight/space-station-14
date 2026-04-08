@@ -147954,8 +147954,6 @@ entities:
       pos: 68.5,25.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 23197
     components:
     - type: Transform
@@ -147969,8 +147967,6 @@ entities:
       pos: 70.5,29.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 23199
     components:
     - type: Transform
@@ -147988,8 +147984,6 @@ entities:
       pos: 69.5,25.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 23202
     components:
     - type: Transform
@@ -147997,16 +147991,12 @@ entities:
       pos: 68.5,29.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 23203
     components:
     - type: Transform
       pos: 70.5,25.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 23204
     components:
     - type: Transform
@@ -148034,8 +148024,6 @@ entities:
       pos: 71.5,27.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 23209
     components:
     - type: Transform
@@ -148043,8 +148031,6 @@ entities:
       pos: 71.5,26.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 23210
     components:
     - type: Transform
@@ -148075,8 +148061,6 @@ entities:
       pos: 71.5,28.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 23215
     components:
     - type: Transform
@@ -148095,8 +148079,6 @@ entities:
       pos: 69.5,29.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
 - proto: ShuttersWindow
   entities:
   - uid: 23218
