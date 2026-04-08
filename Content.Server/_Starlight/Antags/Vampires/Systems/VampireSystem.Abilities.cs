@@ -710,7 +710,7 @@ public sealed partial class VampireSystem : EntitySystem
                 _stamina.TakeStaminaDamage(target, args.FrontStaminaDamage * effectScale, stam, source: uid);
 
                 // Mute target
-                TryInjectReagents(target, args.Reagents);
+                TryInjectReagents(target, args.Reagents, effectScale);
 
                 StartGlareDotEffect(target, uid, args.DotStaminaDamage * effectScale, 0, true);
             }
@@ -724,6 +724,8 @@ public sealed partial class VampireSystem : EntitySystem
 
                 _stamina.TakeStaminaDamage(target, args.SideStaminaDamage * effectScale, stam, source: uid);
             }
+            //reset effectScale for next possible target
+            effectScale = 1.0f;
         }
 
         args.Handled = true;
@@ -732,12 +734,11 @@ public sealed partial class VampireSystem : EntitySystem
     /// <summary>
     /// Try to inject whatever chem is specified
     /// </summary>
-    private bool TryInjectReagents(EntityUid uid, Dictionary<string, FixedPoint2> reagents)
+    private bool TryInjectReagents(EntityUid uid, Dictionary<string, FixedPoint2> reagents, float effectScale)
     {
         var solution = new Solution();
         foreach (var reagent in reagents)
-            solution.AddReagent(reagent.Key, reagent.Value);
-
+            solution.AddReagent(reagent.Key, reagent.Value * effectScale);
         if (!_solution.TryGetInjectableSolution(uid, out var targetSolution, out var _))
             return false;
 
