@@ -416,8 +416,9 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
 
-        if (!HasComp<IPCBatteryComponent>(target) //IPCs don't have blood
-            && (!TryComp<MobStateComponent>(target, out var mobState) || mobState.CurrentState == Shared.Mobs.MobState.Dead)) //Dead things arn't a good source of flowing blood
+        if (HasComp<IPCBatteryComponent>(target) //IPCs don't have blood
+            || (!TryComp<MobStateComponent>(target, out var mobState) //Is the entitiy a mob at all?
+            || mobState.CurrentState == Shared.Mobs.MobState.Dead)) //Dead things arn't a good source of flowing blood
         {
             _popup.PopupEntity(Loc.GetString("vampire-drink-target-not-viable"), uid, uid, Shared.Popups.PopupType.MediumCaution);
             comp.IsDrinking = false;
