@@ -661,8 +661,8 @@ public sealed partial class VampireSystem : EntitySystem
         if (!CheckAndConsumeBloodCost(uid, comp, null, args.BloodCost))
             return;
 
-        var duration = args.Duration;
-        _statusEffects.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, duration);
+        //Put the target to sleep
+        _statusEffects.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, args.Duration);
         args.Handled = true;
     }
 
