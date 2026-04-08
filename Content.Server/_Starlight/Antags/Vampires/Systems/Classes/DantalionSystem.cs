@@ -299,9 +299,6 @@ public sealed class DantalionSystem : EntitySystem
 	/// </summary>
     private bool TryReleaseThrall(EntityUid thrall)
     {
-        if (!_mind.TryGetMind(thrall, out var mindId, out var mind))
-            return false;
-
         if (!TryComp<VampireThrallComponent>(thrall, out var comp))
             return false;
 
@@ -309,15 +306,17 @@ public sealed class DantalionSystem : EntitySystem
 
         _stun.TryUpdateParalyzeDuration(thrall, stunTime);
 
+        if (_mind.TryGetMind(thrall, out var mindId, out var mind))
+        {
+            //Remove objectives
+            if (_mind.TryFindObjective((mindId, mind), ThrallObeyMasterObjectiveId, out var Objective) && Objective != null)
+                _mind.TryRemoveObjective(mindId, mind, Objective.Value);
+            //Remove role
+            _role.MindRemoveRole<VampireThrallComponent>(mindId);
+        }
+
         //Remove the component
         RemComp<VampireThrallComponent>(thrall);
-
-        //Remove objectives
-        if (_mind.TryFindObjective((mindId, mind), ThrallObeyMasterObjectiveId, out var Objective) && Objective != null)
-            _mind.TryRemoveObjective(mindId, mind, Objective.Value);
-
-        //Remove role
-        _role.MindRemoveRole<VampireThrallComponent>(mindId);
 
         if (TryComp<CollectiveMindComponent>(thrall, out var cmComp))
             _collectiveMind.UpdateCollectiveMind(thrall, cmComp);
