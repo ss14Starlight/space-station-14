@@ -257,3 +257,73 @@
   sprite:
     sprite: _Starlight/Decals/graffiti.rsi
     state: tally
+
+- type: decal
+  id: blackclaw
+  tags: ["crayon", "blackclaw"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi/12tie.rsi
+    state: blackclaw
+
+- type: decal
+  id: circle
+  tags: ["crayon", "circle"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi/12tie.rsi
+    state: circle
+
+- type: decal
+  id: circledirty
+  tags: ["crayon", "circle"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi/12tie.rsi
+    state: circle_dirty
+
+- type: decal
+  id: crosshairs
+  tags: ["crayon", "crosshairs"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi/12tie.rsi
+    state: crosshairs
+
+- type: decal
+  id: meow
+  tags: ["crayon", "meow", "cat"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi/12tie.rsi
+    state: meow
+
+- type: decal
+  id: pulse
+  tags: ["crayon", "pulse"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi/12tie.rsi
+    state: pulse
+
+- type: decal
+  id: square
+  tags: ["crayon", "square"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/graffiti.rsi/12tie.rsi
+    state: square
