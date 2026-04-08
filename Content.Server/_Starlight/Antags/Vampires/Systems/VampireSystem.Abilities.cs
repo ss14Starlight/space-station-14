@@ -417,8 +417,8 @@ public sealed partial class VampireSystem : EntitySystem
 
 
         if (HasComp<IPCBatteryComponent>(target) //IPCs don't have blood
-            || (!TryComp<MobStateComponent>(target, out var mobState) //Is the entitiy a mob at all?
-            || mobState.CurrentState == Shared.Mobs.MobState.Dead)) //Dead things arn't a good source of flowing blood
+            || (!TryComp<MobStateComponent>(target, out var mobState) //Is the entity a mob at all?
+            || mobState.CurrentState == Shared.Mobs.MobState.Dead)) //Dead things aren't a good source of flowing blood
         {
             _popup.PopupEntity(Loc.GetString("vampire-drink-target-not-viable"), uid, uid, Shared.Popups.PopupType.MediumCaution);
             comp.IsDrinking = false;
@@ -426,17 +426,15 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         var sipInefficiency = 0f;
-        var sipAmount = comp.sipAmount;
+        var sipAmount = comp.SipAmount;
 
         if (HasComp<HumanoidAppearanceComponent>(args.Args.Target.Value))
         {
-            sipInefficiency = 1f / 0.5f;  //comp.humanoidEfficiency;
-            sipAmount = comp.sipAmount; // comp.sipAmountHuman; //todo make yml work
+            sipInefficiency = 1f / comp.HumanoidEfficiency;
         }
         else
         {
-            sipInefficiency = 1f / 0.125f; //comp.nonHumanoidEfficiency;
-            sipAmount = comp.sipAmount / 4; //comp.sipAmountNonHuman; //todo make yml work
+            sipInefficiency = 1f / comp.NonHumanoidEfficiency;
         }
 
         var maxCanDrink = comp.MaxBloodPerTarget - drunkFromTarget;
@@ -462,10 +460,10 @@ public sealed partial class VampireSystem : EntitySystem
             }
 
             //Biting Damage
-            //Little bit of additional damage to disincentivize blood donations
-            var BiteDamage = new DamageSpecifier();
-            BiteDamage += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_pierceTypeId), FixedPoint2.New(0.05) * actualSipAmount); //5 pierce per 10u
-            _damageableSystem.TryChangeDamage(target, BiteDamage, ignoreResistances: true);
+            //A little bit of additional damage to disincentivize blood donations
+            var biteDamage = new DamageSpecifier();
+            biteDamage += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_pierceTypeId), comp.SipPierceDamage * actualSipAmount); //5 pierce per 10u
+            _damageableSystem.TryChangeDamage(target, biteDamage, ignoreResistances: true);
             _blood.TryModifyBleedAmount(target, 1);
 
 
@@ -493,10 +491,10 @@ public sealed partial class VampireSystem : EntitySystem
 
             // Base healing
             var baseHealSpec = new DamageSpecifier();
-            baseHealSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_bruteGroupId), -FixedPoint2.New(2));
-            baseHealSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_burnGroupId), -FixedPoint2.New(2));
-            baseHealSpec += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_poisonTypeId), -FixedPoint2.New(4));
-            baseHealSpec += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_oxyLossTypeId), -FixedPoint2.New(10));
+            baseHealSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_bruteGroupId), -comp.VampHealBrute);
+            baseHealSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_burnGroupId), -comp.VampHealBurn);
+            baseHealSpec += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_poisonTypeId), -comp.VampHealPois);
+            baseHealSpec += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_oxyLossTypeId), -comp.VampHealAsphyxiation);
             _damageableSystem.TryChangeDamage(uid, baseHealSpec, true);
 
             RaiseLocalEvent(uid, new VampireBloodDrankEvent(target, actualSipAmount));
@@ -522,7 +520,7 @@ public sealed partial class VampireSystem : EntitySystem
             {
                 comp.IsDrinking = false;
                 if (currentDrunkFromTarget >= comp.MaxBloodPerTarget)
-                _popup.PopupEntity(Loc.GetString("vampire-drink-target-hard-max", ("amount", comp.MaxBloodPerTarget)), uid, uid);
+                    _popup.PopupEntity(Loc.GetString("vampire-drink-target-hard-max", ("amount", comp.MaxBloodPerTarget)), uid, uid);
             }
         }
         else
@@ -562,7 +560,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         var dargs = new DoAfterArgs(EntityManager, uid, TimeSpan.FromSeconds(1.25), new VampireDrinkBloodDoAfterEvent(), uid, target)
         {
-            DistanceThreshold = 1.5f,
+            DistanceThreshold = comp.BiteDistanceThreshold,
             BreakOnDamage = true,
             BreakOnHandChange = true,
             BreakOnMove = true,
@@ -617,11 +615,11 @@ public sealed partial class VampireSystem : EntitySystem
 
         var doAfter = new DoAfterArgs(EntityManager, uid, args.ChannelTime, new VampireSleepDoAfterEvent { BloodCost = bloodCost }, uid, target)
         {
-            DistanceThreshold = 2.5f,
+            DistanceThreshold = args.SleepDistanceThreshold,
             BreakOnDamage = true,
             BreakOnMove = true,
             BreakOnWeightlessMove = true,
-            MovementThreshold = 0.1f,
+            MovementThreshold = args.SleepMovementThreshold,
             RequireCanInteract = true,
             BlockDuplicate = true,
             CancelDuplicate = true
