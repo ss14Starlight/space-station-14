@@ -242,8 +242,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     private bool IsInvalidDrinkTarget(EntityUid user, EntityUid target, bool showPopup = true)
     {
-        if (!HasComp<VampireComponent>(target)
-            && !HasComp<VampireThrallComponent>(target))
+        if (!HasComp<VampireComponent>(target) && !HasComp<VampireThrallComponent>(target))
             return false;
 
         if (showPopup)
