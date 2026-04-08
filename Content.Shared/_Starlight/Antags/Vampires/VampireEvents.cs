@@ -21,10 +21,22 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     public float Range = 1f;
 
     /// <summary>
-    /// How much to scale effects if target is wearing flash protetion
+    /// How much to scale effects if target is wearing flash protection
     /// </summary>
     [DataField]
     public float FlashImmunityEffectScale = 0.5f;
+
+    /// <summary>
+    /// How many seconds do we need to Paralyze entity in front of glare source.
+    /// </summary>
+    [DataField]
+    public TimeSpan FrontParalyzeDuration = TimeSpan.FromSeconds(4);
+
+    /// <summary>
+    /// How many seconds do we need to Paralyze entity behind of glare source.
+    /// </summary>
+    [DataField]
+    public TimeSpan SideParalyzeDuration = TimeSpan.FromSeconds(2);
 
     /// <summary>
     /// How much we need to apply stamina damage on entity in front of glare source

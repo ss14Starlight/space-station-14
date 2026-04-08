@@ -712,7 +712,7 @@ public sealed partial class VampireSystem : EntitySystem
             // If target in front
             if (dot > 0.7f && !knockedDown)
             {
-                _stun.TryAddParalyzeDuration(target, TimeSpan.FromSeconds(2 * effectScale));
+                _stun.TryAddParalyzeDuration(target, args.FrontParalyzeDuration * effectScale);
 
                 _stamina.TakeStaminaDamage(target, args.FrontStaminaDamage * effectScale, stam, source: uid);
 
@@ -733,7 +733,7 @@ public sealed partial class VampireSystem : EntitySystem
                 _stamina.TakeStaminaDamage(target, args.BehindStaminaDamage * effectScale, stam, source: uid);
             else
             {
-                _stun.TryAddParalyzeDuration(target, TimeSpan.FromSeconds(4 * effectScale));
+                _stun.TryAddParalyzeDuration(target, args.SideParalyzeDuration * effectScale);
 
                 _stamina.TakeStaminaDamage(target, args.SideStaminaDamage * effectScale, stam, source: uid);
             }
