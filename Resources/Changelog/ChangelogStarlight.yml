@@ -1,98 +1,6 @@
 Entries:
 - author: Conflee
   changes:
-  - message: Added Aquarium, Coat Rack, Grandfather Clock, Junction Boxes, and Piggy Bank as decoration options. Grandfather Clock is animated and plays ticking sounds, Junction Boxes break into LV Coils, and the Piggy Bank can be broken for random coins.
-    type: Add
-  - message: Added Bee Box, Bee Hive, Snake Nest, and Mouse Nest, plus a Random Nest Spawner for mapping in Maints. These nests spawn 1 of their respective mob when hit/broken. The Bee Hive and Box are a source of Honeycomb and Honey Frame.
-    type: Add
-  - message: Added Honey Bar, Honey Frame, Honey Comb, Honey Loaf, Honey Roll, Honey Slice. Prep for future Beekeeping PR.
-    type: Add
-  - message: Added Metal floors and Grates. 3 new grates- Gray, Red, and Brown. 6 new Metal floors, Dark, Brown, Blue, Purple, Red, and Green.
-    type: Add
-  - message: Added 4 new posters- Plasma Information, Thunderdome, NanoTrasen Fancy, and 24/7.
-    type: Add
-  - message: Added 2 Safety Signs, with glow in the dark text- EXIT and EVAC.
-    type: Add
-  - message: Starlight-unique tiles can now be crafted in a Tile Cutter.
-    type: Tweak
-  id: 385401
-  time: '2026-03-22T20:52:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3854
-- author: mikeysaurus
-  changes:
-  - message: Adds new GitHub workflow to verify that the Prototypes/_StarLight directory no longer exists.
-    type: Add
-  id: 387901
-  time: '2026-03-23T02:39:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3879
-- author: Tytos
-  changes:
-  - message: Added to serpentcrest, new syndicate corporation banners and interdyne medical vendor.
-    type: Add
-  - message: added to serpentcrest document printers in sec.
-    type: Tweak
-  id: 387201
-  time: '2026-03-23T04:11:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3872
-- author: CawsForConcern
-  changes:
-  - message: (Silica) Performers.
-    type: Add
-  - message: (Silica) Boxers.
-    type: Add
-  - message: (Silica) Boxing Ring, replaces old HOP.
-    type: Add
-  - message: (Silica) New HOP Office, replaces old Vault and Command Washrooms.
-    type: Add
-  - message: (Silica) New Vault, replaces old Service Washrooms.
-    type: Add
-  - message: (Silica) Widened Medical Maints and added new loot and some more nooks.
-    type: Add
-  - message: (Silica) Widened Science Maints and added new loot.
-    type: Add
-  - message: (Silica) New Washrooms by Dorms.
-    type: Add
-  - message: (Silica) Expanded Maints by Dorms.
-    type: Add
-  - message: (Silica) Doubled the size of Atmospherics.
-    type: Add
-  - message: (Silica) Second burn chamber for Atmospherics.
-    type: Add
-  - message: (Silica) Polly the Parrot to CE's Office.
-    type: Add
-  - message: (Silica) New Cryosleep, west of Arrivals.
-    type: Add
-  - message: (Silica) Made it so that non-Engineers can pass-thru Engineering maints.
-    type: Add
-  - message: (Silica) Implemented new railings and new platforms ported by Conf to appropriate areas.
-    type: Add
-  - message: (Silica) Replaced all of the stairs with the new ones ported by Conf.
-    type: Add
-  - message: (Silica) 2 more Atmos Tech job slots (one roundstart, one latejoin).
-    type: Add
-  - message: (Silica) 1 more Engineer job slot (latejoin).
-    type: Add
-  - message: (Silica) Expanded the Engineering and Atmos Locker Rooms slightly.
-    type: Add
-  - message: (Silica) Nicer decals for Arrivals.
-    type: Tweak
-  - message: (Silica) Drastically cut the amount of lights in Maints and many rooms in general - should reduce visual glitches where light rendering starts flickering.
-    type: Tweak
-  - message: (Silica) Emergency shuttle has its distro turned on automatically.
-    type: Tweak
-  - message: (Silica) Cargo shuttle distro and waste pipes are now colored accordingly.
-    type: Tweak
-  - message: (Silica) Added a Station Beacon for Disposals.
-    type: Fix
-  - message: (Silica) Xenobio APC was unnamed.
-    type: Fix
-  - message: (Silica) Cargo shuttle now uses the correct shuttle computer.
-    type: Fix
-  id: 377001
-  time: '2026-03-23T04:43:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3770
-- author: Conflee
-  changes:
   - message: Made Platforms able to take damage and be broken. They are slightly weaker than solid walls.
     type: Fix
   id: 388001
@@ -943,4 +851,32 @@ Entries:
   id: 404125
   time: '2026-04-07T18:24:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4049
+- author: Coolsurf6
+  changes:
+  - message: Mech Exotic Reactors are now re-searchable as a Tier 4 Industrial.
+    type: Add
+  id: 404126
+  time: '2026-04-08T06:58:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4038
+- author: Coolsurf6
+  changes:
+  - message: Exosuit Air Tanks are no longer 2x bigger than an air canister and now hold 100L.
+    type: Tweak
+  id: 404127
+  time: '2026-04-08T06:58:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4038
+- author: Coolsurf6
+  changes:
+  - message: Mechs now repair like cyborgs slowly over time with a welder.
+    type: Tweak
+  id: 404128
+  time: '2026-04-08T06:58:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4038
+- author: Coolsurf6
+  changes:
+  - message: Mech Chainsword now deal slashing damage instead of piercing.
+    type: Tweak
+  id: 404129
+  time: '2026-04-08T06:58:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4038
 Order: -1
