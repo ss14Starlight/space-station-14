@@ -1,145 +1,6 @@
 Entries:
 - author: CawsForConcern
   changes:
-  - message: (Cluster) Protection Anchors.
-    type: Add
-  - message: (Cluster) Performers.
-    type: Add
-  - message: (Cluster) Deep fryer.
-    type: Add
-  - message: (Cluster) Departmental Comms Consoles.
-    type: Add
-  - message: (Cluster) HOP Ticket Machine.
-    type: Add
-  - message: (Cluster) More emergency lighting.
-    type: Add
-  - message: (Cluster) One lifeboat, replaces escape pod by Dorms.
-    type: Add
-  - message: (Cluster) Maintenance is now dark.
-    type: Tweak
-  - message: (Cluster) Removed lights in places that had too many.
-    type: Tweak
-  - message: (Cluster) Brigmed Chemical Locker.
-    type: Remove
-  id: 390501
-  time: '2026-03-24T21:39:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3905
-- author: salarua
-  changes:
-  - message: The guidebook glossary is now easier to read.
-    type: Tweak
-  id: 389201
-  time: '2026-03-24T21:42:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3892
-- author: redmushie
-  changes:
-  - message: You can see all job and antag requirements by hovering the job/antag names, even if you meet the requirements.
-    type: Add
-  - message: In the Ghost Roles menu, you can now see the requirements of roles you've unlocked by hovering the Request/Join Raffle buttons.
-    type: Add
-  - message: In the Loadout menu, you can now see loadout item requirements, even if you have them unlocked.
-    type: Add
-  id: 388501
-  time: '2026-03-24T21:45:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3885
-- author: Shades, Killer Tamashi (Prototypes/Sprites) & Princess Gurchi (C#/Protoypes)
-  changes:
-  - message: Added IPCs.
-    type: Add
-  - message: Anyone with cybernetics/cyberlimbs are now effected by emp (Eg. If you have cyber eyes you'll go blind for a bit).
-    type: Add
-  - message: Barotrauma no longer does direct temperature damage, and is instead dependent on the temperature of the environment you're in.
-    type: Tweak
-  - message: Borgs will also experience 10 seconds of glitching on EMP.
-    type: Add
-  id: 382201
-  time: '2026-03-24T23:50:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3822
-- author: STARLIGHT TEAM
-  changes:
-  - message: Porting part of the Wizden changes.
-    type: Tweak
-  id: 392201
-  time: '2026-03-25T00:10:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3922
-- author: wonderfulnewworld
-  changes:
-  - message: Fixes WeaponRifleLionhunter migration causing a fail to launch.
-    type: Fix
-  id: 392501
-  time: '2026-03-25T00:43:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3925
-- author: Shades
-  changes:
-  - message: Fix IPCs
-    type: Fix
-  id: 392801
-  time: '2026-03-25T01:14:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3928
-- author: BigfootBravo
-  changes:
-  - message: Fixed a few IPC bugs.
-    type: Fix
-  id: 393301
-  time: '2026-03-25T13:05:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3933
-- author: CawsForConcern
-  changes:
-  - message: (Cog) Fixed the entire mail routing system (eardrums rejoice).
-    type: Fix
-  id: 393001
-  time: '2026-03-25T13:21:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3930
-- author: Vonte
-  changes:
-  - message: (Manor) Fixed turnstiles into genpop sowwy.
-    type: Fix
-  id: 392301
-  time: '2026-03-25T13:26:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3923
-- author: wonderfulnewworld
-  changes:
-  - message: You can no longer label everyone.
-    type: Fix
-  - message: You can now carry Exterminators.
-    type: Fix
-  id: 392401
-  time: '2026-03-25T13:29:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3924
-- author: wonderfulnewworld
-  changes:
-  - message: Renames ui-options-tts.ftl to examine.ftl.
-    type: Tweak
-  - message: Moves the examine.ftl and voices.ftl to a new tts folder.
-    type: Tweak
-  - message: Fixes duplicate TTS loc error.
-    type: Fix
-  id: 393101
-  time: '2026-03-25T13:33:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3931
-- author: Conflee, Nyxilath
-  changes:
-  - message: Added Syndicate Dead Drops, a new midround event. This event teleports a Syndicate Briefcase with 3-4 uplink items onto the station, announcing that this has happened to everyone but also telling those with Syndicate Comms the rough location at the same time, creating a rush to secure the loot first. May be anchored under floor tiles, requiring a t-ray to find.
-    type: Add
-  id: 392701
-  time: '2026-03-25T13:45:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3927
-- author: TaserTheFox
-  changes:
-  - message: Fixed misspelling of "Representives".
-    type: Fix
-  id: 392601
-  time: '2026-03-25T14:33:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3926
-- author: CawsForConcern
-  changes:
-  - message: Pie cannons can now be used when pacified (Thieves rejoice).
-    type: Tweak
-  id: 394401
-  time: '2026-03-25T19:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3944
-- author: CawsForConcern
-  changes:
   - message: (Leth) Mailing unit in Cargo.
     type: Add
   - message: (Leth) Mail system actually works now - no more 'one way' mail routes. Send as much mail as your heart desires.
@@ -811,4 +672,109 @@ Entries:
   id: 404144
   time: '2026-04-08T18:20:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4065
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) ViroDrobe to Virolgoy.
+    type: Add
+  id: 404145
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) GeneDrobe to Medical Hallway.
+    type: Add
+  id: 404146
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) Mail Tech Lockers.
+    type: Add
+  id: 404147
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) Made Chemistry bigger and added a second Hotplate.
+    type: Add
+  id: 404148
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) Protection Anchors in Vault and Armory.
+    type: Add
+  id: 404149
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) Removed redundant camera servers from AI Core.
+    type: Tweak
+  id: 404150
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) Engineering's scrubbers are now publicly accessible.
+    type: Tweak
+  id: 404151
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) Removed a turret from AI Core and re-decorated it.
+    type: Tweak
+  id: 404152
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) Missing Captain's fax machine added.
+    type: Fix
+  id: 404153
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) Missing Funding Allocation computer added.
+    type: Fix
+  id: 404154
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) Missing decals by Engineering Tools room added.
+    type: Fix
+  id: 404155
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) Stairs from GenPop north exit converted to the new stairs.
+    type: Fix
+  id: 404156
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) Engineering airlocks to Security substation rooms are no longer all access (whoops).
+    type: Fix
+  id: 404157
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) Bridge disposal unit wasn't connected to Disposal network.
+    type: Fix
+  id: 404158
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
+  changes:
+  - message: (Silica) Virology disposal unit wasn't connected to Disposal network.
+    type: Fix
+  id: 404159
+  time: '2026-04-08T18:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4070
 Order: -1
