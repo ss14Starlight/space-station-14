@@ -252,12 +252,11 @@ public sealed class DantalionSystem : EntitySystem
     }
 
     /// <summary>
-    /// Actempts to apply the thrall objective and gives them the pop-up if it has been applied
+    /// Attempts to apply the thrall objective and gives them the pop-up if it has been applied
     /// </summary>
     private void TryAssignThrallObeyObjective(EntityUid master, EntityUid thrall)
     {
-        if (!_mind.TryGetMind(thrall, out var thrallMindId, out var thrallMind)
-            || !_mind.TryGetMind(master, out var masterMindId, out _))
+        if (!_mind.TryGetMind(thrall, out var thrallMindId, out var thrallMind))
             return;
 
         _role.MindAddRole(thrallMindId, "MindRoleThrall", thrallMind, true);
