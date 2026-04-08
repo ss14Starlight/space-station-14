@@ -96,7 +96,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         }
 
         if (component is { ProjectileType: ProjectileType.Solid, DeleteOnCollide: true, ProjectileSpent: true } // Starlight: Original logic for Solid
-            or { ProjectileType: ProjectileType.Intangible, DeleteOnMaximumHits: true, ProjectileSpent: true }) // Starlight: New logic for Impermanent
+            or { ProjectileType: ProjectileType.Intangible, DeleteOnMaximumHits: true, ProjectileSpent: true }) // Starlight: New logic for Intangible
             QueueDel(uid);
 
         if (component.ImpactEffect != null && TryComp(uid, out TransformComponent? xform))
