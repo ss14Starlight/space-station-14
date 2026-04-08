@@ -373,8 +373,6 @@ entities:
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
-    - type: TileHistory
-      chunkHistory: {}
     - type: ExplosionAirtightGrid
   - uid: 411
     components:
