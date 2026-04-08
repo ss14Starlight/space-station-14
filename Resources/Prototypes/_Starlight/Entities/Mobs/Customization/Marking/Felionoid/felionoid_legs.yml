@@ -15,7 +15,7 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  pawmittens_legsR
-  
+
 - type: marking
   id: FelionoidLegTabbyL
   bodyPart: LLeg
