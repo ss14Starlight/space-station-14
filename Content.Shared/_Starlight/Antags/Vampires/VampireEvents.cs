@@ -2,7 +2,6 @@ using Content.Shared.Actions;
 using Content.Shared.DoAfter;
 using Content.Shared.Polymorph;
 using Robust.Shared.Audio;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
