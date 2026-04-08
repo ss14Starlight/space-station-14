@@ -41,6 +41,7 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+        - Wizard
       # Starlight-end
     - prefRoles: [ WizardDuelist ] # Blue Wizard Duelist
       min: 1
@@ -66,6 +67,7 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+        - Wizard
       # Starlight-end
     - prefRoles: [ WizardDuelist ] # Starlight, Purple Wizard Duelist
       min: 0 # Starlight, only spawn above 90pop
@@ -92,6 +94,7 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+        - Wizard
     - prefRoles: [ WizardDuelist ] # Yellow Wizard Duelist
       min: 1
       max: 1
@@ -115,6 +118,7 @@
       - MindRoleWizardDuelistYellow
       tags:
         - CantBecomeRevolutionary
+        - Wizard
     - prefRoles: [ WizardDuelist ] # Green Wizard Duelist
       min: 0 # Only spawn above 70pop
       max: 1
@@ -139,6 +143,7 @@
       - MindRoleWizardDuelistGreen
       tags:
         - CantBecomeRevolutionary
+        - Wizard
     - prefRoles: [ WizardDuelist ] # Orange Wizard Duelist
       min: 0 # Only spawn above 110pop
       max: 1
@@ -163,6 +168,7 @@
       - MindRoleWizardDuelistOrange
       tags:
         - CantBecomeRevolutionary
+        - Wizard
       # Starlight end
   - type: DynamicRuleCost
     cost: 150
