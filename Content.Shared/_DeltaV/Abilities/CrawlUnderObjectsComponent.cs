@@ -35,6 +35,12 @@ public sealed partial class CrawlUnderObjectsComponent : Component
 
     [DataField]
     public EntProtoId? ActionProto;
+
+    /// <summary>
+    /// If true, hands are blocked while sneaking (cannot equip/hold items).
+    /// </summary>
+    [DataField]
+    public bool BlockHands = true;
 }
 
 [Serializable, NetSerializable]

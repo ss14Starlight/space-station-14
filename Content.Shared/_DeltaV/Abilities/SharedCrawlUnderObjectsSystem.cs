@@ -1,6 +1,10 @@
 using Content.Shared.Actions;
 using Content.Shared.Climbing.Components;
 using Content.Shared.Climbing.Events;
+using Content.Shared.Hands.Components;
+using Content.Shared.Hands;
+using Content.Shared.Item;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Maps;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
@@ -25,10 +29,15 @@ public sealed class SharedCrawlUnderObjectsSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<CrawlUnderObjectsComponent, ComponentStartup>(OnStartup);
-
         SubscribeLocalEvent<CrawlUnderObjectsComponent, ToggleCrawlingStateEvent>(OnAbilityToggle);
         SubscribeLocalEvent<CrawlUnderObjectsComponent, AttemptClimbEvent>(OnAttemptClimb);
         SubscribeLocalEvent<CrawlUnderObjectsComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
+
+        // SubscribeLocalEvent<CrawlUnderObjectsComponent, DropAttemptEvent>(OnDropAttempt); MIKEY Keep delete?
+        SubscribeLocalEvent<CrawlUnderObjectsComponent, PickupAttemptEvent>(OnPickupAttempt);
+        SubscribeLocalEvent<CrawlUnderObjectsComponent, AttackAttemptEvent>(OnAttackAttempt);
+        SubscribeLocalEvent<CrawlUnderObjectsComponent, UseAttemptEvent>(OnUseAttempt);
+        // SubscribeLocalEvent<CrawlUnderObjectsComponent, InteractionAttemptEvent>(OnInteractionAttempt); // Too broad of a listener MIKEY kep delete?
     }
 
     private void OnAbilityToggle(EntityUid uid, CrawlUnderObjectsComponent component, ToggleCrawlingStateEvent args)
@@ -128,6 +137,50 @@ public sealed class SharedCrawlUnderObjectsSystem : EntitySystem
 
         Dirty(uid, component);
     }
+    // --- Hand-blocking event handlers (cuff-style) ---
+    // - MIKEY keep delete?
+    // private void OnDropAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref DropAttemptEvent args)
+    // {
+    //     if (component.Enabled && component.BlockHands)
+    //         args.Cancel();
+    // }
+
+    private void OnPickupAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref PickupAttemptEvent args)
+    {
+        if (IsOnCollidingTile(uid) && component.Enabled && component.BlockHands)
+        {
+            _popup.PopupClient(Loc.GetString("crawl-under-objects-pickup-fail"), uid, uid);
+            args.Cancel();
+        }
+    }
+
+    private void OnAttackAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref AttackAttemptEvent args)
+    {
+        if (IsOnCollidingTile(uid) && component.Enabled && component.BlockHands)
+        {
+            _popup.PopupClient(Loc.GetString("crawl-under-objects-attack-fail"), uid, uid);
+            args.Cancel();
+        }
+    }
+
+    private void OnUseAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref UseAttemptEvent args)
+    {
+        if (IsOnCollidingTile(uid) && component.Enabled && component.BlockHands)
+        {
+            _popup.PopupClient(Loc.GetString("crawl-under-objects-use-fail"), uid, uid);
+            args.Cancel();
+        }
+    }
+
+    // Too broad of an event listener - MIKEY keep delete?
+    // private void OnInteractionAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref InteractionAttemptEvent args)
+    // {
+    //     if (IsOnCollidingTile(uid) && component.Enabled && component.BlockHands)
+    //     {
+    //         _popup.PopupClient(Loc.GetString("crawl-under-objects-interact-fail"), uid, uid);
+    //         args.Cancelled = true;
+    //     }
+    // }
 
     private bool IsOnCollidingTile(EntityUid uid)
     {
