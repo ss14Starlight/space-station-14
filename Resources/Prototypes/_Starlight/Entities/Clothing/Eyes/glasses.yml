@@ -161,6 +161,7 @@
     tags:
     - HudMedical
     - CorgiWearable
+    - WhitelistChameleon
   - type: EyeProtection
     protectionTime: 5
   - type: StealTarget
@@ -244,6 +245,7 @@
     - type: Tag
       tags:
         - HudMedical
+        - WhitelistChameleon
 
 # USSP
 
