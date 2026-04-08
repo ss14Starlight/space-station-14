@@ -1,11 +1,4 @@
 Entries:
-- author: neomoth
-  changes:
-  - message: Moved the koni plushie to the crew tab of the plushie vendor
-    type: Tweak
-  id: 391701
-  time: '2026-03-24T21:04:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3917
 - author: CawsForConcern
   changes:
   - message: (Barratry) Protection Anchors.
@@ -869,4 +862,11 @@ Entries:
   id: 404141
   time: '2026-04-08T18:02:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4042
+- author: Shades
+  changes:
+  - message: Fixes Weather not having an effect.
+    type: Fix
+  id: 404142
+  time: '2026-04-08T18:07:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4051
 Order: -1
