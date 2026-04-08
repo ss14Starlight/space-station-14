@@ -23,7 +23,7 @@
 - type: entity
   parent: ClothingBackpackTrunk
   id: ClothingBackpackTrunkMail
-  name: mail technician trunk
+  name: mail trunk
   description: A huge trunk made of every aspiring mail technician's dreams.
   components:
   - type: Sprite
@@ -32,11 +32,35 @@
 - type: entity
   parent: ClothingBackpackTrunk
   id: ClothingBackpackTrunkMailSenior
-  name: senior mail technician trunk
+  name: senior mail trunk
   description: A huge trunk for the station's strongest mail technicians.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Trunks/mailseniortrunk.rsi
+
+- type: entity
+  parent: [ClothingBackpackTrunk, BaseMinorContraband]
+  id: ClothingBackpackTrunkSyndicate
+  name: syndicate trunk
+  description: Huge, metal, reflective, and stylish. All the other syndicates will want to get their hands on this trunk.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Trunks/syndicate.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: Storage
+    grid:
+    - 0,0,12,3
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 15
+    soundHit:
+      collection: MetalThud
+  - type: Reflect  # It's a metal trunk
+    reflectProb: 0.2
+    reflects:
+      - Energy
 
 # Fashion-O-Mat
 - type: entity
