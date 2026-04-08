@@ -1,6 +1,7 @@
 - type: entity
   parent: WeatherBase
   id: WeatherRadStorm
+  name: radstorm
   components:
     - type: WeatherStatusEffect
       sprite:
@@ -24,6 +25,7 @@
 - type: entity
   parent: WeatherBase
   id: WeatherSolarFlare
+  name: solar flare
   components:
     - type: WeatherStatusEffect
       sprite:
@@ -52,6 +54,7 @@
 - type: entity
   parent: WeatherBase
   id: WeatherAuroraCaelus
+  name: aurora caelus
   components:
     - type: WeatherStatusEffect
       sprite:
@@ -67,6 +70,7 @@
 - type: entity
   parent: WeatherBase
   id: WeatherSpaceWhale
+  name: space whale
   components:
     - type: ParallaxStatusEffect
       parallax: SpaceWhale
@@ -74,6 +78,7 @@
 - type: entity
   parent: WeatherBase
   id: WeatherCosmic
+  name: cosmic
   components:
     - type: ParallaxStatusEffect
       parallax: CosmicFinaleParallax

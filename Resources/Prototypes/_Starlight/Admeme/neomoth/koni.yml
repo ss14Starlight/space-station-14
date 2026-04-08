@@ -13,6 +13,8 @@
         Male: UnisexCatMoth
         Female: UnisexCatMoth
         Unsexed: UnisexCatMoth
+    - type: TextToSpeech
+      voice: ICASSP48
     - type: Body
       prototype: CatMoth
     - type: Icon
@@ -21,7 +23,7 @@
     - type: HumanoidAppearance
       species: CatMoth
       # Set all of this shit up manually because CatMoth is not roundstart so it can't just be saved to a character yml.
-      allowProfileOverride: true # Test fix
+      allowProfileOverride: false
       gender: Female
       eyeColor: '#000000FF'
       skinColor: '#5D4AC7FF'
