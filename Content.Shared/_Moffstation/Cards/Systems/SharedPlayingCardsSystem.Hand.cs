@@ -168,6 +168,12 @@ public abstract partial class SharedPlayingCardsSystem
         if (args.Handled || args.Used == args.Target)
             return;
 
+        // Starlight begin: prevent opening UI when not using a card/cardstack on the cardhand.
+        // realistically you should only be able to do this if you're using a card or cardstack on it.
+        if (!HasComp<PlayingCardComponent>(args.Used) && !HasComp<PlayingCardHandComponent>(args.Used) && !HasComp<PlayingCardDeckComponent>(args.Used))
+            return;
+        // Starlight end
+
         OpenPickerUi(targetHand, args.Used, args.User);
         args.Handled = true;
     }
