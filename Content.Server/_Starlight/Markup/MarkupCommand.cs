@@ -64,6 +64,21 @@ public sealed class MarkupCommand : ToolshedCommand
         return uid;
     }
 
+    [CommandImplementation("listdesc")]
+    public EntityUid ListDescriptions(IInvocationContext ctx, [PipedArgument] EntityUid uid)
+    {
+        EnsureDescriptionComp(uid, out var comp);
+        if (comp.Texts.Count == 0)
+        {
+            ctx.WriteLine($"Entity with uid {uid} has no markup descriptions.");
+            return uid;
+        }
+        ctx.WriteLine($"Markup descriptions for entity {uid}:");
+        foreach (var kvp in comp.Texts)
+            ctx.WriteLine($"- {kvp.Key}: \"{kvp.Value.Replace("\"", "\\\"")}\"");
+        return uid;
+    }
+
     [CommandImplementation("adddesc")]
     public IEnumerable<EntityUid> AddDescription(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid,
         string id, string text) =>
@@ -83,6 +98,11 @@ public sealed class MarkupCommand : ToolshedCommand
     public IEnumerable<EntityUid>
         ClearDescription(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid) =>
         uid.Select(x => ClearDescription(ctx, x));
+
+    [CommandImplementation("listdesc")]
+    public IEnumerable<EntityUid>
+        ListDescriptions(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid) =>
+        uid.Select(x => ListDescriptions(ctx, x));
 
     private void EnsureDescriptionComp(EntityUid uid, out MarkupDescriptionComponent comp)
     {

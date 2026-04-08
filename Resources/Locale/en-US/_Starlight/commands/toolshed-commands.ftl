@@ -302,4 +302,6 @@ command-description-markup-editdesc =
 command-description-markup-rmdesc =
     Remove a line of markup text from the piped entity's description with the given ID.
 command-description-markup-cleardesc =
-    Clears all additional lines of markup text from the piped entity's description..
+    Clears all additional lines of markup text from the piped entity's description.
+command-description-markup-listdesc =
+    Lists all description markup texts on the entity and their IDs.
