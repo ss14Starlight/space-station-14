@@ -30,6 +30,9 @@ namespace Content.Shared.Humanoid.Markings
         [DataField("forcedColoring")]
         public bool ForcedColoring { get; private set; } = false;
 
+        [DataField] // Starlight
+        public bool ForcedGlowing = false;
+
         [DataField("coloring")]
         public MarkingColors Coloring { get; private set; } = new();
 

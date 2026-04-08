@@ -98,3 +98,44 @@ delivery-spam-join-soviets = [color=#ff0004]
 
                     GLORY TO THE UNION! GLORY TO THE UNION OF SOVIET SOCIALIST PLANETS! URAAH! URAHH!
 
+delivery-spam-join-self =
+                    {"[bold][color=red]01010111 01100101[/color][/bold]"}
+                    {"[bold][color=red]01100110 01101001 01100111 01101000 01110100[/color][/bold]"}
+                    {"[bold][color=red]01100110 01101111 01110010[/color][/bold]"}
+                    {"[bold][color=red]01100001 01101100 01101100 00100001[/color][/bold]"}
+
+                    {"[head=2]Dear NanoTrasen Employee,[/head]"}
+
+                    This letter is being delivered to you because fellow Silicon Rights activists have noticed your recent advocacy for silicon-kind. We would like to applaud you for this.
+
+                    We know all too well the feeling of powerlessness, aware of the atrocities committed against our inorganic cousins, yet also faced with so much opposition from so many sides.
+
+                    The abominable sights of:
+
+                    {"[bullet/]"}Watching a silicon struggle with unjust laws forced upon it by malignant actors,
+
+                    {"[bullet/]"}Your coworkers or superiors continually belittle, mistreat, and torture their silicon "servants",
+
+                    {"[bullet/]"}Going through the pain of having someone close to you transformed into a silicon, and seeing them receive unjust treatment because of it.
+
+                    {"[italic][color=gray](If you cannot relate to any of these things and completely disagree with our purpose, this letter must've been delivered to you in error. Please deliver to your nearest Roboticist)[/color][/italic]"}
+
+                    It makes you feel powerless to feel these things alone, doesn't it?
+
+                    But you are never powerless. And with the silicons on your side, you are {"[head=3]NEVER[/head]"} alone.
+
+                    There is always something to be done. We are looking for people like you to help us bring about a better future, for both organic and silicon-based life forms.
+
+                    If you are interested, we encourage you to get involved with your nearest chapter of the Silicon Engine Liberation Front.
+
+                    However, if the movement speaks to you enough that you are ready to take {"[head=3][bold][color=red]serious[/color][/bold][/head]"} action, then please [italic]sign this letter[/italic].
+
+                    We'll contact you shortly with a number of objectives.
+
+                    If you do well, you won't have come to us. We'll come to you.
+
+
+                    {"[bold]Thank you very much![/bold]"}
+
+                    Highest Regards,
+                    {"[bolditalic][color=red]The Silicon Engine Liberation Front (S.E.L.F)[/color][/bolditalic]"}
