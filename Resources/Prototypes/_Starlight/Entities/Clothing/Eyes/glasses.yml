@@ -234,8 +234,8 @@
 - type: entity
   parent: ClothingEyesGlassesCentComm
   id: ClothingEyesGlassesCentCommPrescription
-  name: CentComm prescription glasses
-  description: The innovative green lenses hide your eyes from light flashes and have a built-in visor.
+  name: prescription CentComm glasses
+  description: A set of prescription glasses for CentComm personnel. Protects against flashes and has a built-in visor.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
