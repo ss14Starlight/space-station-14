@@ -666,7 +666,6 @@ public sealed partial class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
-
     /// <summary>
     /// Action that stuns nearby mobs for a short duration
     /// </summary>
@@ -725,14 +724,14 @@ public sealed partial class VampireSystem : EntitySystem
 
                 _stamina.TakeStaminaDamage(target, args.SideStaminaDamage * effectScale, stam, source: uid);
             }
-
-            // Start DOT effect with limited ticks
-            StartGlareDotEffect(target, uid, args.DotStaminaDamage * effectScale, 0, false);
         }
 
         args.Handled = true;
     }
 
+    /// <summary>
+    /// Try to inject whatever chem is specified
+    /// </summary>
     private bool TryInjectReagents(EntityUid uid, Dictionary<string, FixedPoint2> reagents)
     {
         var solution = new Solution();
