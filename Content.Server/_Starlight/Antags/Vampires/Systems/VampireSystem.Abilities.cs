@@ -36,6 +36,7 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Starlight.Overlay;
@@ -681,7 +682,7 @@ public sealed partial class VampireSystem : EntitySystem
         var targets = _lookup.GetEntitiesInRange(uid, args.Range, LookupFlags.Dynamic | LookupFlags.Sundries);
 
         var ourXform = Transform(uid);
-        var ourDirection = ourXform.LocalRotation.ToVec();
+        var ourDirection = ourXform.LocalRotation.ToWorldVec();
         var ourPosition = ourXform.LocalPosition;
         var effectScale = 1.0f;
 
@@ -710,21 +711,15 @@ public sealed partial class VampireSystem : EntitySystem
 
                 _stamina.TakeStaminaDamage(target, args.FrontStaminaDamage * effectScale, stam, source: uid);
 
-                // Mute for 8 second
-                EnsureComp<MutedComponent>(target);
-                Timer.Spawn(args.MuteDuration * effectScale, () =>
-                {
-                    if (Exists(target))
-                        RemComp<MutedComponent>(target);
-                });
+                // Mute target
+                TryInjectReagents(target, args.Reagents);
 
                 StartGlareDotEffect(target, uid, args.DotStaminaDamage * effectScale, 0, true);
-
-                return;
             }
             // If target behind
             else if (dot < -0.7f && !knockedDown)
                 _stamina.TakeStaminaDamage(target, args.BehindStaminaDamage * effectScale, stam, source: uid);
+            // else target is to the side
             else
             {
                 _stun.TryAddParalyzeDuration(target, args.SideParalyzeDuration * effectScale);
@@ -737,6 +732,21 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         args.Handled = true;
+    }
+
+    private bool TryInjectReagents(EntityUid uid, Dictionary<string, FixedPoint2> reagents)
+    {
+        var solution = new Solution();
+        foreach (var reagent in reagents)
+            solution.AddReagent(reagent.Key, reagent.Value);
+
+        if (!_solution.TryGetInjectableSolution(uid, out var targetSolution, out var _))
+            return false;
+
+        if (!_solution.TryAddSolution(targetSolution.Value, solution))
+            return false;
+
+        return true;
     }
 
     private void StartGlareDotEffect(EntityUid target, EntityUid source, float damage, int tickCount, bool doStaminaDamage)

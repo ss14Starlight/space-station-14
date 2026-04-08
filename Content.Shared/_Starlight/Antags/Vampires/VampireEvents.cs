@@ -41,25 +41,31 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     /// How much we need to apply stamina damage on entity in front of glare source
     /// </summary>
     [DataField]
-    public float FrontStaminaDamage = 30f;
+    public float FrontStaminaDamage = 25f;
 
     /// <summary>
     /// How much we need to apply stamina damage on entity behind of glare source
     /// </summary>
     [DataField]
-    public float BehindStaminaDamage = 30f;
+    public float BehindStaminaDamage = 25f;
 
     /// <summary>
     /// How much we need to apply stamina damage on entity which is located to the left or right of glare source
     /// </summary>
     [DataField]
-    public float SideStaminaDamage = 40f;
+    public float SideStaminaDamage = 25f;
 
     /// <summary>
     /// How much we need to apply additional stamina damage on entity in front of glare source.
     /// </summary>
     [DataField]
-    public float DotStaminaDamage = 15f;
+    public float DotStaminaDamage = 5f;
+
+    /// <summary>
+    /// chem and amount to inject to targets.
+    /// </summary>
+    [DataField]
+    public Dictionary<string, FixedPoint2> Reagents = new Dictionary<string, FixedPoint2>{ {"MuteToxin", 0.5} };
 
     /// <summary>
     /// How many seconds do we need to mute entity in front of glare source.
