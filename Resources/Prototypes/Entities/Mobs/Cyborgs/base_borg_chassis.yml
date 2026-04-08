@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMob, StripableInventoryBase, BaseSiliconLanguages] #Starlight Languages
+  parent: [BaseMob, StripableInventoryBase, BaseSiliconLanguages] #Starlight Languages #starlight Nubody will not pass.
   id: BaseBorgChassisNotIonStormable
   name: cyborg
   description: A man-machine hybrid that assists in station activity. They love being asked to state their laws over and over.
@@ -141,7 +141,9 @@
           tags:
           - MechReactor
         #Starlight End
+  # Starlight - start
   - type: Body
+  # Starlight - end
   - type: StatusEffects
     allowed:
     - Flashed

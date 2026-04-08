@@ -157,36 +157,42 @@
 # Nymphs that the organs will turn into
 - type: entity
   id: OrganDionaNymphBrain
-  parent: MobDionaNymph
+  parent: MobDionaNymph #starlight Nubody will not pass.
   categories: [ HideSpawnMenu ]
   name: diona nymph
   suffix: Brain
   description: Contains the brain of a formerly fully-formed Diona. Killing this would kill the Diona forever. You monster.
   components:
   - type: IsDeadIC
+  # Starlight - start
   - type: Body
     prototype: AnimalNymphBrain
+  # Starlight - end
 
 - type: entity
   id: OrganDionaNymphStomach
-  parent: MobDionaNymphAccent
+  parent: MobDionaNymphAccent #starlight Nubody will not pass.
   categories: [ HideSpawnMenu ]
   name: diona nymph
   suffix: Stomach
   description: Contains the stomach of a formerly fully-formed Diona. It doesn't taste any better for it.
   components:
   - type: IsDeadIC
+  # Starlight - start
   - type: Body
     prototype: AnimalNymphStomach
+  # Starlight - end
 
 - type: entity
   id: OrganDionaNymphLungs
-  parent: MobDionaNymphAccent
+  parent: MobDionaNymphAccent #starlight Nubody will not pass.
   categories: [ HideSpawnMenu ]
   name: diona nymph
   suffix: Lungs
   description: Contains the lungs of a formerly fully-formed Diona. Breathtaking.
   components:
   - type: IsDeadIC
+  # Starlight - start
   - type: Body
     prototype: AnimalNymphLungs
+  # Starlight - end
