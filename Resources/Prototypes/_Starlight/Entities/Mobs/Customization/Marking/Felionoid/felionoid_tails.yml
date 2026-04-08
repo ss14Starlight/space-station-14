@@ -21,6 +21,7 @@
       state: tail_wagging
 
 # This don't work - I have no idea why. Get commented out nerd
+# Tail is not rendering correctly/at all, seems to be confusing the layers?
 #- type: marking
 #  id: FelionoidTailTipAnimated
 #  bodyPart: Tail
