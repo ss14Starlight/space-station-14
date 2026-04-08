@@ -713,3 +713,82 @@
         - WeaponMechSpecialMousetrapMortar
         - MechEquipmentHorn
         - WeaponMechSpecialPieCannon
+
+# Reticence
+- type: entity
+  id: MechMimeSyndie
+  parent: [ BaseMech, CombatMech, BaseSyndicateContraband, SyndieMech ]
+  name: Reticence
+  description: A lightweight mech favored by mime assassins. Whisper-quiet servos and shock absorber arrays result in drastically reduced footstep sound.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      noRot: true
+      sprite: Objects/Specific/Mech/mecha.rsi
+      layers:
+        - map: [ "enum.MechVisualLayers.Base" ]
+          state: darkgygax
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+        params:
+          volume: -12
+    - type: Mech
+      baseState: reticence
+      openState: reticence-open
+      brokenState: reticence-broken
+      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      airtight: true
+      maxIntegrity: 250
+      maxEquipmentAmount: 4
+      pilotWhitelist:
+        components:
+          - HumanoidAppearance
+    - type: MeleeWeapon
+      hidden: true
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 20
+          Structural: 150
+    # STARLIGHT BEGIN
+    - type: MeleeThrowOnHit
+      speed: 15
+      distance: 3
+    # STARLIGHT END
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
+      baseSprintSpeed: 4.5 # 🌟Starlight-Change - Faster than regular Gygax
+    - type: Damageable
+      damageModifierSet: MediumArmorSyndi
+    - type: MechThrusters
+    - type: Repairable
+      fuelCost: 40
+      doAfterDelay: 20
+    - type: PointLight
+      mask: /Textures/Effects/LightMasks/cone.png
+      autoRot: true
+      radius: 7
+      energy: 6
+      enabled: false
+
+- type: entity
+  parent: MechMimeSyndie
+  id: MechMimeSyndieBattery
+  suffix: Battery, Air
+  components:
+    - type: ContainerFill
+      containers:
+        mech-battery-slot:
+          - MechReactorMicro
+        mech-gas-tank-slot:
+          - MechAirTankFilled
+
+- type: entity
+  parent: MechMimeSyndieBattery
+  id: MechMimeSyndieFilled
+  suffix: Battery, Filled
+  components:
+    - type: Mech
+      startingEquipment:
+        - WeaponMechSniperMime

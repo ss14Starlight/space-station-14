@@ -16,6 +16,7 @@
 - type: entity
   id: CannonAmmoBananaCream
   parent: FoodPieBananaCream
+  categories: [ HideSpawnMenu ]
   components:
   - type: Edible
     trash: [] # I want to not leave trash at all if these are going to be fired a lot.
