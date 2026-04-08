@@ -277,9 +277,6 @@ public sealed class DantalionSystem : EntitySystem
             return;
 
         dantalion.ThrallSlotsUsed = Math.Max(0, dantalion.ThrallSlotsUsed - 1);
-
-        if (!TerminatingOrDeleted(uid))
-            _popup.PopupEntity(Loc.GetString("vampire-thrall-released"), uid, uid, PopupType.SmallCaution);
     }
 
     private void OnDantalionShutdown(EntityUid uid, DantalionComponent component, ComponentShutdown args)
