@@ -78,6 +78,22 @@
       Alive: IPCHealth
       Critical: BorgCrit
       Dead: BorgDead
+    showOverlays: false
+  - type: HealthExaminable
+    examinableTypes:
+    - Blunt
+    - Slash
+    - Piercing
+    - Heat
+    - Shock
+    - Cold
+    - Caustic
+    - Radiation
+    locPrefix: silicon
+  - type: DamagedSiliconAccent
+    damageAtMaxCorruption: 100 # This should be the same value as MobThresholds - Critical.
+    enableChargeCorruption: false
+  - type: CyborgSparkEffect
   - type: WiresPanel
   - type: DamageVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
@@ -121,7 +137,7 @@
   - type: Stamina
     staminaAlert: "IPCStamina"
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: IPC
     damageModifierSet: IPC
   - type: SolutionContainerManager
     solutions:
@@ -159,7 +175,7 @@
       Male: MaleIPC
       Female: FemaleIPC
       Unsexed: MaleIPC
-  # - type: VisionOrganRequiredForVision
+    wilhelmProbability: 0
   # IPC slots
   - type: ContainerContainer
     containers:
@@ -171,6 +187,9 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMedium
+        blacklist:
+          tags:
+          - MechReactor
   # Brain
   - type: IPCBrainHolder
   - type: ContainerFill
@@ -202,6 +221,7 @@
     noPowerDeathEmote: DeathgaspIPC
   - type: Deathgasp
     prototype: DeathgaspIPC
+    damageType: Shock
   - type: PowerCellSlot
     cellSlotId: cell_slot
     fitsInCharger: true
@@ -354,18 +374,13 @@
         Heat: 2.5 #per second, scales with temperature & other constants
   - type: IPCThermalRegulation
     produceHeat: 2000 # How much heat generated inside the body per second (only when on)
-    radiateHeat: 300 # Passive heat loss, even when dead and/or spaced
+    radiateHeatEfficiency: 2 # Proportional to temperature outside
     minEffectivePressure: 80
     maxEffectivePressure: 200 # Outside of optimal window fans become less effective
     minPressure: 10
     maxPressure: 500 # Outside of this window fans stop working entirely
     maxTemperature: 414 # ~140C just above highest mode
     # External cooling completely turns off natual heat generation and loss.
-    # Active cooling will still work until the temperature is normal, then it will stay unchanging until external cooling is removed
-    externalCoolingTag: IPCExternalCooling # Items must have this tag on them
-    externalCoolingCheckSlots: # All slots must have item in them, and all these items must have tag
-      - outerClothing
-      #- head # uncomment and add tags to helmets if you want them to be closed in space
     fansEfficiencyLowThreshold: 0.15 # Efficiency has to be lower than this before fansEfficiencyLowAlert is shown (percentage, from 0 to 1)
     fansOffExamineText: ipc-thermals-examine-off
     fansOffDiagnosticsText: ipc-thermals-diagnostics-off
@@ -401,6 +416,8 @@
         examineText: ipc-thermals-examine-extreme
         diagnosticsText: ipc-thermals-diagnostics-extreme
         modeAlert: IPCFansSpeedExtreme
+  - type: Flammable
+    firestackFade: -0.8 # Not much to burn + they take way too much damage even from a bit
 
 - type: entity
   parent: BaseSpeciesDummy
