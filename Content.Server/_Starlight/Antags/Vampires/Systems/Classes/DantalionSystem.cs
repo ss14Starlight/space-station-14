@@ -309,6 +309,18 @@ public sealed class DantalionSystem : EntitySystem
             _role.MindRemoveRole<VampireThrallComponent>(mindId);
         }
 
+        if (comp.Master is { } master && TryComp(master, out DantalionComponent? dantalion))
+        {
+            dantalion.BloodBondLinkedThralls.Remove(thrall);
+
+            if (TryComp<VampireBloodBondBeamComponent>(master, out var beamComp) &&
+                beamComp.ActiveBeams.Remove(thrall, out var connection))
+            {
+                var removeEvent = new VampireBloodBondBeamEvent(GetNetEntity(connection.Source), GetNetEntity(connection.Target), false);
+                RaiseNetworkEvent(removeEvent);
+            }
+        }
+
         //Remove the component
         RemComp<VampireThrallComponent>(thrall);
 
