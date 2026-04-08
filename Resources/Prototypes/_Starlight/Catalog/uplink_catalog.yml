@@ -567,7 +567,7 @@
   icon: { sprite: /Textures/_Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi, state: icon }
   productEntity: ClothingBackpackSyndicateElegantRaidBundle
   cost:
-    Telecrystal: 10
+    Telecrystal: 12
   categories:
     - UplinkPointless
   conditions:
@@ -582,9 +582,29 @@
   description: uplink-clothing-murder-socks-desc
   productEntity: ClothingUnderSocksMurder
   cost:
+    Telecrystal: 2
+  categories:
+    - UplinkPointless
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkClothingMurderShocksAgent
+  name: uplink-clothing-murder-socks-name
+  description: uplink-clothing-murder-socks-desc
+  productEntity: ClothingUnderSocksMurder
+  cost:
     Telecrystal: 1
   categories:
     - UplinkPointless
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
 
 # Allies
 - type: listing

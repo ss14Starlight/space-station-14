@@ -111,7 +111,7 @@
     - type: GasTank
       outputPressure: 21.3
       air:
-        volume: 3000
+        volume: 100
         temperature: 293.15
       tankLowPressure: 30.0
 

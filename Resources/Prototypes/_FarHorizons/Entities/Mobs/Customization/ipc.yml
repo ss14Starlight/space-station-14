@@ -659,6 +659,15 @@
     - sprite: _FarHorizons/Mobs/Customization/ipc/standard/standard_main.rsi
       state: head_m
 
+- type: marking
+  id: MarkingStandardChest
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [IPC]
+  sprites:
+    - sprite: _FarHorizons/Mobs/Customization/ipc/standard/standard_main.rsi
+      state: torso_m
+
 ###BISHOP###
 - type: marking
   id: MarkingBishopHeadMonitor
