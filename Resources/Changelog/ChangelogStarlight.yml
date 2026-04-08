@@ -1,15 +1,6 @@
 Entries:
 - author: CawsForConcern
   changes:
-  - message: (Leth) Mailing unit in Cargo.
-    type: Add
-  - message: (Leth) Mail system actually works now - no more 'one way' mail routes. Send as much mail as your heart desires.
-    type: Fix
-  id: 394201
-  time: '2026-03-25T19:14:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3942
-- author: CawsForConcern
-  changes:
   - message: (Orwell) CentComm clipboard and bedsheet from NTR room, replaced with NT variants instead.
     type: Remove
   id: 394001
@@ -777,4 +768,11 @@ Entries:
   id: 404159
   time: '2026-04-08T18:20:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4070
+- author: STARLIGHT TEAM
+  changes:
+  - message: Lathe machine interfaces now display their proper names.
+    type: Tweak
+  id: 404160
+  time: '2026-04-08T18:22:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4076
 Order: -1
