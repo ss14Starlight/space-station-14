@@ -66,12 +66,6 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     /// </summary>
     [DataField]
     public Dictionary<string, FixedPoint2> Reagents = new Dictionary<string, FixedPoint2>{ {"MuteToxin", 0.5} };
-
-    /// <summary>
-    /// How many seconds do we need to mute entity in front of glare source.
-    /// </summary>
-    [DataField]
-    public TimeSpan MuteDuration = TimeSpan.FromSeconds(8);
 }
 
 public sealed partial class VampireSleepActionEvent : EntityTargetActionEvent
