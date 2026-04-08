@@ -1,5 +1,6 @@
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
+using Content.Shared.Roles.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -10,12 +11,12 @@ namespace Content.Shared._Starlight.Antags.Vampires.Components;
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentState]
-public sealed partial class VampireThrallComponent : Component
+public sealed partial class VampireThrallComponent : BaseMindRoleComponent
 {
     /// <summary>
     ///     The vampire currently controlling this thrall
     /// </summary>
-    [AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public EntityUid? Master;
 
     [DataField]
@@ -24,4 +25,6 @@ public sealed partial class VampireThrallComponent : Component
     public FixedPoint2 HolyWaterToBreakFree = FixedPoint2.New(30);
     [DataField]
     public ProtoId<ReagentPrototype> HolyWaterReagentId = "Holywater";
+    [DataField]
+    public TimeSpan DeconvertStunDuration = TimeSpan.FromSeconds(4);
 }

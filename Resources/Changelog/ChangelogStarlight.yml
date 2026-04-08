@@ -1,197 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Added Aquarium, Coat Rack, Grandfather Clock, Junction Boxes, and Piggy Bank as decoration options. Grandfather Clock is animated and plays ticking sounds, Junction Boxes break into LV Coils, and the Piggy Bank can be broken for random coins.
-    type: Add
-  - message: Added Bee Box, Bee Hive, Snake Nest, and Mouse Nest, plus a Random Nest Spawner for mapping in Maints. These nests spawn 1 of their respective mob when hit/broken. The Bee Hive and Box are a source of Honeycomb and Honey Frame.
-    type: Add
-  - message: Added Honey Bar, Honey Frame, Honey Comb, Honey Loaf, Honey Roll, Honey Slice. Prep for future Beekeeping PR.
-    type: Add
-  - message: Added Metal floors and Grates. 3 new grates- Gray, Red, and Brown. 6 new Metal floors, Dark, Brown, Blue, Purple, Red, and Green.
-    type: Add
-  - message: Added 4 new posters- Plasma Information, Thunderdome, NanoTrasen Fancy, and 24/7.
-    type: Add
-  - message: Added 2 Safety Signs, with glow in the dark text- EXIT and EVAC.
-    type: Add
-  - message: Starlight-unique tiles can now be crafted in a Tile Cutter.
-    type: Tweak
-  id: 385401
-  time: '2026-03-22T20:52:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3854
-- author: mikeysaurus
-  changes:
-  - message: Adds new GitHub workflow to verify that the Prototypes/_StarLight directory no longer exists.
-    type: Add
-  id: 387901
-  time: '2026-03-23T02:39:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3879
-- author: Tytos
-  changes:
-  - message: Added to serpentcrest, new syndicate corporation banners and interdyne medical vendor.
-    type: Add
-  - message: added to serpentcrest document printers in sec.
-    type: Tweak
-  id: 387201
-  time: '2026-03-23T04:11:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3872
-- author: CawsForConcern
-  changes:
-  - message: (Silica) Performers.
-    type: Add
-  - message: (Silica) Boxers.
-    type: Add
-  - message: (Silica) Boxing Ring, replaces old HOP.
-    type: Add
-  - message: (Silica) New HOP Office, replaces old Vault and Command Washrooms.
-    type: Add
-  - message: (Silica) New Vault, replaces old Service Washrooms.
-    type: Add
-  - message: (Silica) Widened Medical Maints and added new loot and some more nooks.
-    type: Add
-  - message: (Silica) Widened Science Maints and added new loot.
-    type: Add
-  - message: (Silica) New Washrooms by Dorms.
-    type: Add
-  - message: (Silica) Expanded Maints by Dorms.
-    type: Add
-  - message: (Silica) Doubled the size of Atmospherics.
-    type: Add
-  - message: (Silica) Second burn chamber for Atmospherics.
-    type: Add
-  - message: (Silica) Polly the Parrot to CE's Office.
-    type: Add
-  - message: (Silica) New Cryosleep, west of Arrivals.
-    type: Add
-  - message: (Silica) Made it so that non-Engineers can pass-thru Engineering maints.
-    type: Add
-  - message: (Silica) Implemented new railings and new platforms ported by Conf to appropriate areas.
-    type: Add
-  - message: (Silica) Replaced all of the stairs with the new ones ported by Conf.
-    type: Add
-  - message: (Silica) 2 more Atmos Tech job slots (one roundstart, one latejoin).
-    type: Add
-  - message: (Silica) 1 more Engineer job slot (latejoin).
-    type: Add
-  - message: (Silica) Expanded the Engineering and Atmos Locker Rooms slightly.
-    type: Add
-  - message: (Silica) Nicer decals for Arrivals.
-    type: Tweak
-  - message: (Silica) Drastically cut the amount of lights in Maints and many rooms in general - should reduce visual glitches where light rendering starts flickering.
-    type: Tweak
-  - message: (Silica) Emergency shuttle has its distro turned on automatically.
-    type: Tweak
-  - message: (Silica) Cargo shuttle distro and waste pipes are now colored accordingly.
-    type: Tweak
-  - message: (Silica) Added a Station Beacon for Disposals.
-    type: Fix
-  - message: (Silica) Xenobio APC was unnamed.
-    type: Fix
-  - message: (Silica) Cargo shuttle now uses the correct shuttle computer.
-    type: Fix
-  id: 377001
-  time: '2026-03-23T04:43:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3770
-- author: Conflee
-  changes:
-  - message: Made Platforms able to take damage and be broken. They are slightly weaker than solid walls.
-    type: Fix
-  id: 388001
-  time: '2026-03-23T06:11:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3880
-- author: SevenShades
-  changes:
-  - message: Added wooden diagonal decals.
-    type: Add
-  - message: Added rotated versions of existing diagonal decals to make them easier to use.
-    type: Add
-  id: 386601
-  time: '2026-03-23T08:42:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3866
-- author: wonderfulnewworld, princess_gurchi, Killer Tamashi
-  changes:
-  - message: You can now carry every species. Bigger species won't even fit in bags of holding.
-    type: Add
-  - message: You can now see when someone is carrying someone.
-    type: Tweak
-  id: 387701
-  time: '2026-03-23T08:47:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3877
-- author: redmushie
-  changes:
-  - message: Biomass reclaimers now tell you why they are refusing to work via popup text.
-    type: Add
-  id: 388301
-  time: '2026-03-23T09:21:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3883
-- author: wonderfulnewworld & [pcaessayrs](https://github.com/pcaessayrs)
-  changes:
-  - message: The ninja now spawns with a chain sickle. They can use this to grapple to things _very_ quickly, or can be thrown as a bola in a pinch. Also deals solid damage, too, giving ninja an easier to use ranged weapon than the shurikens.
-    type: Add
-  id: 388101
-  time: '2026-03-23T09:37:22.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3881
-- author: Roro
-  changes:
-  - message: Fixed Construction bag not quick opening inhand.
-    type: Fix
-  id: 388401
-  time: '2026-03-23T13:50:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3884
-- author: CawsForConcern
-  changes:
-  - message: Lifeboats, larger escape pods that can be mapped to stations.
-    type: Add
-  - message: New sprites for "internals crates" which reflect the fact they contain both O2 and N2 emergency equipment.
-    type: Add
-  id: 388901
-  time: '2026-03-23T17:30:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3889
-- author: R3v3l4t1on
-  changes:
-  - message: Cyborgs no longer have any access when out of power. Better manage that power cell.
-    type: Remove
-  id: 389001
-  time: '2026-03-24T06:21:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3890
-- author: Born Stellar
-  changes:
-  - message: Corgium and a few other silly chems that can do hard to heal damage have been put on the NT-ISD watch list as illicit chemicals. Use is restricted to Clowns and prescriptions filed by physiologists.
-    type: Tweak
-  id: 389401
-  time: '2026-03-24T06:19:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3894
-- author: CawsForConcern
-  changes:
-  - message: (Silica) Added a Lifeboat escape pod dock by Dorms.
-    type: Add
-  - message: (Silica) Updated Maints Bar's stage to use the new platforms.
-    type: Fix
-  - message: (SIlica) Updated some more stairs I missed to the new stair sprites.
-    type: Fix
-  id: 389301
-  time: '2026-03-24T06:52:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3893
-- author: CrazyPhantom
-  changes:
-  - message: The ban screen will now show the associated ban ID to help with appeals.
-    type: Add
-  id: 390001
-  time: '2026-03-24T11:00:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3900
-- author: STARLIGHT TEAM
-  changes:
-  - message: Reverted shooting 3.0 update.
-    type: Remove
-  id: 390901
-  time: '2026-03-24T18:02:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3909
-- author: neomoth
-  changes:
-  - message: Moved the koni plushie to the crew tab of the plushie vendor
-    type: Tweak
-  id: 391701
-  time: '2026-03-24T21:04:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3917
 - author: CawsForConcern
   changes:
   - message: (Barratry) Protection Anchors.
@@ -943,4 +750,123 @@ Entries:
   id: 404125
   time: '2026-04-07T18:24:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4049
+- author: Coolsurf6
+  changes:
+  - message: Mech Exotic Reactors are now re-searchable as a Tier 4 Industrial.
+    type: Add
+  id: 404126
+  time: '2026-04-08T06:58:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4038
+- author: Coolsurf6
+  changes:
+  - message: Exosuit Air Tanks are no longer 2x bigger than an air canister and now hold 100L.
+    type: Tweak
+  id: 404127
+  time: '2026-04-08T06:58:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4038
+- author: Coolsurf6
+  changes:
+  - message: Mechs now repair like cyborgs slowly over time with a welder.
+    type: Tweak
+  id: 404128
+  time: '2026-04-08T06:58:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4038
+- author: Coolsurf6
+  changes:
+  - message: Mech Chainsword now deal slashing damage instead of piercing.
+    type: Tweak
+  id: 404129
+  time: '2026-04-08T06:58:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4038
+- author: wonderfulnewworld
+  changes:
+  - message: Only Wizards can use wands, staffs, and magical weapons, except for the Staff of Animation/Teleport Scroll. Be cautious about mind swapping; only the Wizard's body is worthy of using magical items.
+    type: Tweak
+  id: 404130
+  time: '2026-04-08T07:06:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4035
+- author: wonderfulnewworld
+  changes:
+  - message: Summon Magic and Summon Guns now costs 25 WizCoin, so WizCoins can be mapped now in small amounts if desired/allowed.
+    type: Tweak
+  id: 404131
+  time: '2026-04-08T07:06:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4035
+- author: Born Stellar
+  changes:
+  - message: Spelling error in Space law corrected.
+    type: Fix
+  id: 404132
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: Glare revered to previous state.
+    type: Tweak
+  id: 404133
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: New ability called sleep which costs 15 blood, single target, and a 5 second do-after and has a 2 minute cool down. Flash protection and mind-shields prevent sleeping. Sleep lasts for 10 seconds.
+    type: Add
+  id: 404134
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: Vampires can no longer drink from dead beings.
+    type: Tweak
+  id: 404135
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: Vampires can no longer drink from beings that have zero blood.
+    type: Fix
+  id: 404136
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: Security guidelines for criminal Vampires now recommends tracking and electro-packing Vampires. Also states plainly that vampires with unusual abilities are always guilty of Cannibalism and Minor Assault at minimum.
+    type: Tweak
+  id: 404137
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: Borgs cannot be glared or forced into hibernation anymore.
+    type: Fix
+  id: 404138
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: Thralls are now shown in the admin player view.
+    type: Fix
+  id: 404139
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: Born Stellar
+  changes:
+  - message: Thralls now gain and lose objectives as one would expect them to.
+    type: Fix
+  id: 404140
+  time: '2026-04-08T17:47:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3578
+- author: neurovermi
+  changes:
+  - message: update Clarke flavor text
+    type: Tweak
+  id: 404141
+  time: '2026-04-08T18:02:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4042
+- author: Shades
+  changes:
+  - message: Fixes Weather not having an effect.
+    type: Fix
+  id: 404142
+  time: '2026-04-08T18:07:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4051
 Order: -1
