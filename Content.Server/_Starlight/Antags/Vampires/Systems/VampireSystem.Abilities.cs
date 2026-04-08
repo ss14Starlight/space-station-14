@@ -697,9 +697,7 @@ public sealed partial class VampireSystem : EntitySystem
                 continue;
 
             if (_flashImmunity.HasFlashImmunityVisionBlockers(target))
-                effectScale = 0.5f;
-            else
-                effectScale = 1.0f;
+                effectScale = args.FlashImmunityEffectScale;
 
             var targetPosition = Transform(target).LocalPosition;
             var vectorToTarget = Vector2.Normalize(targetPosition - ourPosition);

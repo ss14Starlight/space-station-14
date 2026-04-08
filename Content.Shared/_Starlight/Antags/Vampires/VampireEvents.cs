@@ -21,6 +21,12 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     public float Range = 1f;
 
     /// <summary>
+    /// How much to scale effects if target is wearing flash protetion
+    /// </summary>
+    [DataField]
+    public float FlashImmunityEffectScale = 0.5f;
+
+    /// <summary>
     /// How much we need to apply stamina damage on entity in front of glare source
     /// </summary>
     [DataField]
