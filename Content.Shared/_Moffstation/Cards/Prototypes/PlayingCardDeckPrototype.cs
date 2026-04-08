@@ -94,7 +94,7 @@ public sealed partial class PlayingCardDeckPrototypeElementPrototypeReference : 
 
     /// If the card should spawn in the deck facing down.
     [DataField]
-    public bool FaceDown;
+    public bool FaceDown = true; // Starlight: All cards should start face down.
 
     /// How many copies of this card should be included. Note that this is ONLY used when initializing a deck entity's
     /// contents.
