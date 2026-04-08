@@ -19,7 +19,7 @@
       damage:
         types:
           Radiation: 25
-      particleType: Intangible # Starlight BEGIN
+      projectileType: Intangible # Starlight BEGIN
       maximumHits: 3
       deleteOnMaximumHits: true # Starlight END
     - type: Physics
@@ -79,7 +79,7 @@
     damage:
       types:
         Radiation: 25 # Starlight: Consistency
-    particleType: Intangible # Starlight BEGIN
+    projectileType: Intangible # Starlight BEGIN
     maximumHits: 3
     deleteOnMaximumHits: true # Starlight END
   - type: TimedDespawn

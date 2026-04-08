@@ -118,24 +118,24 @@ public sealed partial class ProjectileComponent : Component
 
     #region Starlight
     /// <summary>
-    ///     STARLIGHT: What kind of particle this is, either solid or intangible.
+    ///     STARLIGHT: What kind of projectile this is, either solid or intangible.
     /// </summary>
     [DataField]
-    public ParticleType ParticleType = ParticleType.Solid;
+    public ProjectileType ProjectileType = ProjectileType.Solid;
 
     /// <summary>
-    ///     STARLIGHT: The amount of hits so far. Only relevant for Intangible particles.
+    ///     STARLIGHT: The amount of hits so far. Only relevant for Intangible projectiles.
     /// </summary>
     public int Hits;
 
     /// <summary>
-    ///     STARLIGHT: The maximum hits that are permissible for this particle. Only relevant for Intangible particles.
+    ///     STARLIGHT: The maximum hits that are permissible for this projectile. Only relevant for Intangible projectiles.
     /// </summary>
     [DataField]
     public int MaximumHits = 1;
 
     /// <summary>
-    ///     STARLIGHT: Whether to delete this particle when Hits >= MaximumHits. If false, the particle continues without hitting.
+    ///     STARLIGHT: Whether to delete this projectile when Hits >= MaximumHits. If false, the projectile continues without hitting.
     /// </summary>
     [DataField]
     public bool DeleteOnMaximumHits;
@@ -143,9 +143,9 @@ public sealed partial class ProjectileComponent : Component
 
 
 /// <summary>
-///     STARLIGHT: The type of particle, which determines how it's treated in terms of collision and penetration.
+///     STARLIGHT: The type of projectile, which determines how it's treated in terms of collision and penetration.
 /// </summary>
-public enum ParticleType
+public enum ProjectileType
 {
     Solid,
     Intangible
