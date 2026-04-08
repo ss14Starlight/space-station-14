@@ -251,6 +251,11 @@ namespace Content.Client.Inventory
             if (!_inv.TryGetSlotContainer(invUid, slotId, out var container, out var slotDef, inv))
                 return;
 
+            // Starlight start
+            if (slotDef.HideFromStrip && _player.LocalEntity != invUid)
+                return;
+            // Starlight end
+
             var entity = container.ContainedEntity;
 
             // Moffstation - Begin - Obscuring virtual entities are unique per item

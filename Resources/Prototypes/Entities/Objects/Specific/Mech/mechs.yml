@@ -735,8 +735,9 @@
     damageModifierSet: DurandArmor
   - type: MechThrusters
   - type: Repairable
-    fuelCost: 30
-    doAfterDelay: 15
+    damageValue: -30 # 15 seconds to repair durand
+    doAfterDelay: 1
+    fuelCost: 3 # 3x more expensive than cyborg repair costing 70u for durand
   - type: PointLight
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true

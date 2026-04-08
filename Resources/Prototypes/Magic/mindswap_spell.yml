@@ -2,7 +2,7 @@
   parent: BaseEntitySpellAction
   id: ActionMindSwap
   name: Mind Swap
-  description: Exchange bodies with another person!
+  description: Exchange bodies with another person! You'll lose access to most wizard equipment while in another body... is it worth it? # Starlight
   components:
   - type: Action
     useDelay: 180
