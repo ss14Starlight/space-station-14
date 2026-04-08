@@ -226,7 +226,7 @@ namespace Content.Shared.Preferences
 
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
             var speciesProto = prototypeManager.Index<SpeciesPrototype>(species);
-            
+
             var profile = new HumanoidCharacterProfile()
             {
                 Species = species,

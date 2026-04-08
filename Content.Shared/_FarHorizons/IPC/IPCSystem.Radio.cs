@@ -8,7 +8,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._FarHorizons.Silicons.IPC;
 
-public abstract partial class SharedIPCSystem 
+public abstract partial class SharedIPCSystem
 {
     protected virtual void SetupRadio()
     {
@@ -41,7 +41,7 @@ public abstract partial class SharedIPCSystem
         }
         return false;
     }
-    
+
     public void EjectEncryptionKeys(EntityUid target, EntityUid user){
         if (!TryComp<IPCRadioComponent>(target, out var radio))
             return;

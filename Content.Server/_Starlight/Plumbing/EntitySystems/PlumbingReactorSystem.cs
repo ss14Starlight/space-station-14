@@ -265,7 +265,7 @@ public sealed class PlumbingReactorSystem : EntitySystem
 
     private void OnSetTemperature(Entity<PlumbingReactorComponent> ent, ref PlumbingReactorSetTemperatureMessage args)
     {
-        // Clamp to reasonable values 
+        // Clamp to reasonable values
         ent.Comp.TargetTemperature = Math.Clamp(args.Temperature, MinTemperature, MaxTemperature);
         DirtyField(ent, ent.Comp, nameof(PlumbingReactorComponent.TargetTemperature));
         ClickSound(ent.Owner);

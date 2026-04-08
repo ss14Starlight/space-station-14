@@ -33,7 +33,7 @@ public sealed class VampireDrainBeamEvent : EntityEventArgs
 {
     public NetEntity Source { get; }
     public NetEntity Target { get; }
-    public bool Create { get; } 
+    public bool Create { get; }
 
     public VampireDrainBeamEvent(NetEntity source, NetEntity target, bool create)
     {

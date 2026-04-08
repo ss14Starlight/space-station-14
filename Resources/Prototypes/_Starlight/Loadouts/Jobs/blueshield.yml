@@ -17,7 +17,7 @@
   id: BlueShieldBountyHat
   equipment:
     head: ClothingHeadHatBlueShieldSheriff
-    
+
 - type: loadout
   id: BlueShieldBackpack
   equipment:
@@ -117,7 +117,7 @@
   id: BlueShieldMedicalBelt
   equipment:
     belt: ClothingBeltBlueShieldMedicalBeltFilled
-    
+
 - type: loadout
   id: BlueShieldPDA
   equipment:

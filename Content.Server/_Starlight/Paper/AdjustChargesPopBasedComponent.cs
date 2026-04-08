@@ -7,5 +7,5 @@ namespace Content.Server._Starlight.Paper;
 public sealed partial class AdjustChargesPopBasedComponent : Component
 {
     [DataField]
-    public FixedPoint2 Percent = 0.65; 
+    public FixedPoint2 Percent = 0.65;
 }

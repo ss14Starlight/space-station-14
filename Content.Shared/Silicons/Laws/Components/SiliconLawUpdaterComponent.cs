@@ -16,7 +16,7 @@ public sealed partial class SiliconLawUpdaterComponent : Component
     /// </summary>
     //[DataField(required: true)] Starlight-edit: Changed to device linking
     //public ComponentRegistry Components; Starlight-edit: Changed to device linking
-    
+
     [DataField, AutoNetworkedField]
     public EntityUid? Core; // Starlight-edit
 }

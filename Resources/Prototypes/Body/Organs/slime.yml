@@ -65,7 +65,7 @@
   - type: Item
     size: Small
     heldPrefix: lungs
-    
+
 - type: entity
   id: OrganSlimeHeart
   parent: [BaseHumanOrgan, BaseOrganHeart]

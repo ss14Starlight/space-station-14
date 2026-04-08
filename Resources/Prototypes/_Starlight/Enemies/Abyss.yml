@@ -39,7 +39,7 @@
       thresholds:
         0: Alive
         1500: Dead
-    - type: Destructible # Overwriting MobDamageable so elders don't randomly explode if you shoot them with a PKA too much 
+    - type: Destructible # Overwriting MobDamageable so elders don't randomly explode if you shoot them with a PKA too much
       thresholds:
       - trigger:
           !type:DamageTypeTrigger

@@ -28,4 +28,4 @@ public sealed partial class RestrictByEquippedTagComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public SoundSpecifier? DenialSound;
-} 
+}

@@ -320,7 +320,7 @@ public sealed class VampireShadowBoxingPunchEvent : EntityEventArgs
         Target = target;
     }
     [DataField]
-    public TimeSpan PunchLifetime = TimeSpan.FromSeconds(0.33); 
+    public TimeSpan PunchLifetime = TimeSpan.FromSeconds(0.33);
     [DataField]
     public string EffectProto = "VampireShadowBoxingPunch";
 }
@@ -385,7 +385,7 @@ public sealed partial class VampirePacifyActionEvent : EntityTargetActionEvent
     [DataField]
     public TimeSpan PacifyDuration = TimeSpan.FromSeconds(40);
 }
-        
+
 public sealed partial class VampireSubspaceSwapActionEvent : EntityTargetActionEvent
 {
     [DataField]
@@ -558,7 +558,7 @@ public sealed partial class VampireChargeActionEvent : WorldTargetActionEvent
     /// </summary>
     [DataField]
     public float ChargeSpeed = 35f;
-    
+
     [DataField]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Effects/Footsteps/largethud.ogg");
 }

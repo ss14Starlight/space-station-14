@@ -35,7 +35,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
         {
             foreach (var target in args.HitEntities)
             {
-                if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(target, out var body))
+                if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(target, out var body, log: false))
                 {
                     var part = _random.Pick(weapon.Comp.Parts);
                     {

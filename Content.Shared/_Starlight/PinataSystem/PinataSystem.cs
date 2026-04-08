@@ -41,9 +41,9 @@ public sealed class PinataSystem : EntitySystem
     {
         foreach (var organ in guts)
             QueueDel(organ);
-        
+
         guts.Clear();
-        
+
         if (ent.Comp.GibTable == null)
             return;
 
@@ -55,7 +55,7 @@ public sealed class PinataSystem : EntitySystem
         var damPerGroup = args.Damage.GetDamagePerGroup(_proto);
         if (!damPerGroup.TryGetValue("Brute", out var brute) || brute <= 5 || ent.Comp.HitTable == null) //Has to be a decent hit
             return;
-            
+
         SpawnItem(ent, ent.Comp.HitTable);
     }
 

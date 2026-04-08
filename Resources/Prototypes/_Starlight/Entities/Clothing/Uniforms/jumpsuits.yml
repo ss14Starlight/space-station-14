@@ -605,7 +605,7 @@
   id: ClothingAltUniformJumpsuitCentcomOfficial
   name: CentComm officer's jumpsuit
   description: It's a jumpsuit worn by CentComm officers.
-  components: 
+  components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcom_official.rsi
   - type: Clothing
@@ -626,7 +626,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitRisk
   name: station daredevil's  jumpsuit
-  description: A jumpsuit with red lines along the sides. 
+  description: A jumpsuit with red lines along the sides.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/riskjumpsuit.rsi
@@ -643,7 +643,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_paramedic.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_paramedic.rsi
-    
+
 - type: entity
   parent: [ ClothingUniformBase , BaseSalvageContraband ]
   id: ClothingUniformJumpsuitSalvageMercWhite
@@ -709,7 +709,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/tsfelite.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/tsfelite.rsi
-    
+
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNCT
