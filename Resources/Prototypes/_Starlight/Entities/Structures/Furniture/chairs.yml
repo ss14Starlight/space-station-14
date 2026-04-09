@@ -133,7 +133,7 @@
   - type: Construction
     graph: ChairSL
     node: chairComfyBlue
-    
+
 #Comfy Chair Red
 - type: entity
   name: comfy chair
@@ -154,7 +154,7 @@
   - type: Construction
     graph: ChairSL
     node: chairComfyRed
-    
+
 #Comfy Chair Green
 - type: entity
   name: comfy chair
@@ -175,7 +175,7 @@
   - type: Construction
     graph: ChairSL
     node: chairComfyGreen
-    
+
 #Comfy Chair Brown
 - type: entity
   name: comfy chair

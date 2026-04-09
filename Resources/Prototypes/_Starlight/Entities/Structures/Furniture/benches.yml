@@ -63,7 +63,7 @@
     state: base
   - type: Construction
     graph: BenchSL
-    node: pewMid
+    node: pewRight
 
 - type: entity
   name: Wood Pew
@@ -76,7 +76,7 @@
     state: base
   - type: Construction
     graph: BenchSL
-    node: pewRight
+    node: pewMid
 
 #region Bench White
 - type: entity

@@ -55,7 +55,7 @@
             - material: FloorCarpetRed
               amount: 1
               doAfter: 1
-        
+
 
     - node: chairOfficeSleek
       entity: ChairOfficeSleek
@@ -128,7 +128,7 @@
           steps:
             - tool: Screwing
               doAfter: 1
-              
+
     - node: chairRegal
       entity: ChairRegal
       edges:
@@ -140,6 +140,9 @@
             - !type:SpawnPrototype
               prototype: FloorCarpetItemWhite
               amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
 
     - node: chairThrone
       entity: ChairThrone
