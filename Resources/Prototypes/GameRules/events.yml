@@ -363,9 +363,8 @@
     - spawnerPrototype: SpawnPointGhostWizard
       min: 1
       max: 3 # Starlight
-      playerRatio: 45 # Starlight, you know, could be neat for multiple wizards to late spawn.
       prefRoles: [ Wizard ] #starlight
-      playerRatio: 1
+      playerRatio: 45 # Starlight, you know, could be neat for multiple wizards to late spawn.
       pickPlayer: false
       startingGear: WizardBlueGear
       roleLoadout:
