@@ -91,7 +91,7 @@
   - type: MindRole
     roleType: Neutral
     sortWeight: 0
-    fallbackPlayTimeTracker: GhostSkeleton    
+    fallbackPlayTimeTracker: GhostSkeleton
 
 # Downstream antagonists
 
@@ -147,6 +147,17 @@
     roleType: SoloAntagonist
     subtype: role-subtype-vampire
   - type: VampireRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleThrall
+  name: Thrall Role
+  components:
+  - type: MindRole
+    antagPrototype: Thrall
+    roleType: TeamAntagonist
+    subtype: role-subtype-thrall
+  - type: VampireThrall
 
 - type: entity
   parent: BaseMindRoleAntag

@@ -10,7 +10,7 @@ namespace Content.Server._Starlight.Administration.Commands;
 public sealed class ContainerCommand : ToolshedCommand
 {
     private SharedContainerSystem? _container;
-    
+
     #region insert implementations
 
     [CommandImplementation("insertentity")]
@@ -21,7 +21,7 @@ public sealed class ContainerCommand : ToolshedCommand
         _container.InsertOrDrop(uid, container);
         return target;
     }
-    
+
     [CommandImplementation("insertentity")]
     public ContainerRef InsertEntity([PipedArgument] ContainerRef container, EntityUid uid)
     {
@@ -44,7 +44,7 @@ public sealed class ContainerCommand : ToolshedCommand
         uid.Select(x => InsertEntity(target, containerId, x));
 
     #endregion
-    
+
     #region create implementations
 
     [CommandImplementation("create")]
@@ -58,7 +58,7 @@ public sealed class ContainerCommand : ToolshedCommand
     [CommandImplementation("create")]
     public IEnumerable<EntityUid> Create([PipedArgument] IEnumerable<EntityUid> target, string containerId) =>
         target.Select(x => Create(x, containerId));
-    
+
     [CommandImplementation("createslot")]
     public EntityUid CreateSlot([PipedArgument] EntityUid target, string containerId)
     {
@@ -70,11 +70,11 @@ public sealed class ContainerCommand : ToolshedCommand
     [CommandImplementation("createslot")]
     public IEnumerable<EntityUid> CreateSlot([PipedArgument] IEnumerable<EntityUid> target, string containerId) =>
         target.Select(x => CreateSlot(x, containerId));
-    
+
     #endregion
-    
+
     #region delete implementations
-    
+
     [CommandImplementation("delete")]
     public EntityUid Delete([PipedArgument] EntityUid target, string containerId)
     {
@@ -83,7 +83,7 @@ public sealed class ContainerCommand : ToolshedCommand
         _container.ShutdownContainer(container);
         return target;
     }
-    
+
     [CommandImplementation("delete")]
     public void Delete([PipedArgument] ContainerRef container)
     {
@@ -95,9 +95,9 @@ public sealed class ContainerCommand : ToolshedCommand
     [CommandImplementation("delete")]
     public IEnumerable<EntityUid> Delete([PipedArgument] IEnumerable<EntityUid> target, string containerId) =>
         target.Select(x => Delete(x, containerId));
-    
+
     #endregion
-    
+
     #region drop implementation
 
     [CommandImplementation("drop")]
@@ -108,7 +108,7 @@ public sealed class ContainerCommand : ToolshedCommand
         _container.EmptyContainer(container);
         return target;
     }
-    
+
     [CommandImplementation("drop")]
     public ContainerRef Drop([PipedArgument] ContainerRef container)
     {
@@ -117,7 +117,7 @@ public sealed class ContainerCommand : ToolshedCommand
         _container.EmptyContainer(container.Container);
         return container;
     }
-    
+
     [CommandImplementation("dropandget")]
     public IEnumerable<EntityUid> DropGetEntities([PipedArgument] EntityUid target, string containerId)
     {
@@ -142,7 +142,7 @@ public sealed class ContainerCommand : ToolshedCommand
         _container.ShutdownContainer(container);
         return target;
     }
-    
+
     [CommandImplementation("dropanddelete")]
     public void DropAndDelete([PipedArgument] ContainerRef container)
     {
@@ -150,11 +150,11 @@ public sealed class ContainerCommand : ToolshedCommand
         _container ??= EntityManager.System<SharedContainerSystem>();
         _container.ShutdownContainer(container.Container);
     }
-    
+
     [CommandImplementation("drop")]
     public IEnumerable<EntityUid> Drop([PipedArgument] IEnumerable<EntityUid> target, string containerId) =>
         target.Select(x => Drop(x, containerId));
-    
+
     [CommandImplementation("dropandget")]
     public IEnumerable<EntityUid> DropGetEntities([PipedArgument] IEnumerable<EntityUid> target, string containerId) =>
         target.SelectMany(x=>DropGetEntities(x, containerId));
@@ -164,7 +164,7 @@ public sealed class ContainerCommand : ToolshedCommand
         target.Select(x => DropAndDelete(x, containerId));
 
     #endregion
-    
+
     #region get implementations
 
     [CommandImplementation("get")]

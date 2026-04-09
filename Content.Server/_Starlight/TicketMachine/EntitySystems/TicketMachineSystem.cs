@@ -14,7 +14,7 @@ public sealed class TicketMachineSystem : SharedTicketMachineSystem
     public override void Initialize()
     {
         base.Initialize();
-    
+
         //Device linking
         SubscribeLocalEvent<TicketMachineComponent, SignalReceivedEvent>(OnSignalReceived);
     }
@@ -23,7 +23,7 @@ public sealed class TicketMachineSystem : SharedTicketMachineSystem
 
     private void OnSignalReceived(EntityUid uid, TicketMachineComponent component, ref SignalReceivedEvent args)
     {
-        if (args.Port == component.NextNumberPort && _powerReceiverSystem.IsPowered(uid) 
+        if (args.Port == component.NextNumberPort && _powerReceiverSystem.IsPowered(uid)
             && component.displayNumber < component.lastIssuedNumber) // You can't go higher than the number of issued tickets
         {
             component.displayNumber++;
@@ -41,10 +41,10 @@ public sealed class TicketMachineSystem : SharedTicketMachineSystem
                     continue;
                 }
 
-                if (TryComp<TicketComponent>(ticket, out var ticketComp) 
+                if (TryComp<TicketComponent>(ticket, out var ticketComp)
                     && ticketComp.Number > component.displayNumber) // Only burn tickets which are already served
                     continue;
-                
+
                 _flammableSystem.Ignite(ticket, uid);
                 burnedTickets.Add(ticket);
             }

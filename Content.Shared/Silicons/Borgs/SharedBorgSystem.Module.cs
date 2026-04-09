@@ -204,7 +204,7 @@ public abstract partial class SharedBorgSystem
             if (item is { } pickUp)
             {
                 _hands.DoPickup(chassis, handId, pickUp, hands);
-                
+
                 if (!hand.ForceRemovable && hand.Hand.Whitelist == null && hand.Hand.Blacklist == null)
                 {
                     _tag.AddTag(pickUp, module.Comp.ModuleItemTag); // Starlight

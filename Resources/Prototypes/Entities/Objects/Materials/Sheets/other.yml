@@ -4,6 +4,12 @@
   id: SheetOtherBase
   description: A sheet of material, used often on the station in various applications.
   components:
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+  # Starlight end
   - type: Sprite
     sprite: Objects/Materials/Sheets/other.rsi
   - type: Item
@@ -119,11 +125,11 @@
       - allowedTags: [IPC]
         healing:
           damageContainers:
-            - Biological
+            - IPC
           delay: 2
           damage:
-            groups:
-              Toxin: -20 # 10 each
+            types:
+              Radiation: -10
           healingBeginSound:
             path: "/Audio/Items/Medical/ointment_begin.ogg"
             params:

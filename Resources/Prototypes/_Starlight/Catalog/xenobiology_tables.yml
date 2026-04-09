@@ -474,7 +474,7 @@
       - id: MobLuminousPerson
       - id: MobLuminousObject
       - id: MobLuminousEntity
-      
+
       #Admeme things
       #Watchers... dont know what they are but they seem to be a basalisk but flying
       - id: MobWatcherLavaland

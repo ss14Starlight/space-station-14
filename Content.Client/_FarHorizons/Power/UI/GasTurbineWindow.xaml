@@ -76,16 +76,16 @@
 					</controls:StripeBack>
 				</BoxContainer>
 			</BoxContainer>
-			
+
 			<!--Blade / Stator info-->
 			<BoxContainer Name="PartInfo" Orientation="Horizontal" VerticalExpand="True" Margin="4">
 				<PanelContainer StyleClasses="Inset" HorizontalExpand="True" Margin="4">
 					<TextureRect Name="BladeTexture" SetSize="128 128" TextureScale="2 2" HorizontalAlignment="Center" VerticalAlignment="Center"
 									 TexturePath="/Textures/_FarHorizons/Interface/FissionGenerator/gas_turbine_parts/blade.png"/>
-					
+
 					<BoxContainer Name="BladeInfo" Orientation="Vertical" HorizontalExpand="True" Margin="4">
 						<Label Name="BladeInfoName" Text="{Loc 'gas-turbine-ui-blade'}" StyleClasses="LabelKeyText" HorizontalAlignment="Center" HorizontalExpand="True"/>
-						
+
 						<SpriteView Name="BladeEntityView" SetSize="128 128" Scale="2 2" OverrideDirection="South" Margin="15" />
 						<BoxContainer VerticalExpand="True"/>
 
@@ -97,14 +97,14 @@
 						</GridContainer>
 					</BoxContainer>
 				</PanelContainer>
-				
+
 				<PanelContainer StyleClasses="Inset" HorizontalExpand="True" Margin="4">
 					<TextureRect Name="StatorTexture" SetSize="128 128" TextureScale="2 2" HorizontalAlignment="Center"
 								 TexturePath="/Textures/_FarHorizons/Interface/FissionGenerator/gas_turbine_parts/stator.png"/>
-					
+
 					<BoxContainer Name="StatorInfo" Orientation="Vertical" HorizontalExpand="True" Margin="4">
 						<Label Name="StatorInfoName" Text="{Loc 'gas-turbine-ui-stator'}" StyleClasses="LabelKeyText" HorizontalAlignment="Center" HorizontalExpand="True"/>
-						
+
 						<SpriteView Name="StatorEntityView" SetSize="128 128" Scale="2 2" OverrideDirection="South" Margin="15" />
 						<BoxContainer VerticalExpand="True"/>
 
@@ -117,7 +117,7 @@
 					</BoxContainer>
 				</PanelContainer>
 			</BoxContainer>
-			
+
 		</TabContainer>
 		<!--Footer-->
 		<BoxContainer Name="Footer" Orientation="Vertical">
