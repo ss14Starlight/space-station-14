@@ -138,6 +138,33 @@
 
 - type: entity
   parent: EncryptionKey
+  id: EncryptionKeyWinds
+  name: winds of magic encryption key
+  description: An encryption key that grants limited access to the Winds of Magic.
+  suffix: Winds of Magic
+  components:
+    - type: EncryptionKey
+      channels:
+        - Winds
+      defaultChannel: Winds
+    - type: Sprite
+      layers:
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: crypt_purple
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: wizard_label
+
+- type: entity
+  parent: EncryptionKeyWinds
+  id: EncryptionKeyWindsUnremovable
+  name: winds of magic encryption key
+  description: An encryption key that grants permanent access to the Winds of Magic.
+  suffix: Winds of Magic, Unremovable
+  components:
+    - type: Unremoveable
+
+- type: entity
+  parent: EncryptionKey
   id: EncryptionKeyAspace
   name: aspace encryption key
   description: An encryption key for people being tortured by admins.

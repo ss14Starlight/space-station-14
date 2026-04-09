@@ -26,6 +26,7 @@
       briefing:
         text: wizard-duelist-red-role-greeting
         color: Turquoise
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
       startingGear: WizardDuelistRedGear
       components:
       - type: NpcFactionMember
@@ -52,6 +53,7 @@
       briefing:
         text: wizard-duelist-blue-role-greeting
         color: Turquoise
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
       startingGear: WizardDuelistBlueGear
       components:
       - type: NpcFactionMember
@@ -79,6 +81,7 @@
       briefing:
         text: wizard-duelist-purple-role-greeting # Starlight, violet -> Purple
         color: Turquoise
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
       startingGear: WizardDuelistPurpleGear # Starlight, violet -> Purple
       components:
       - type: NpcFactionMember
@@ -104,6 +107,7 @@
       briefing:
         text: wizard-duelist-yellow-role-greeting
         color: Turquoise
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg"
       startingGear: WizardDuelistYellowGear
       components:
       - type: NpcFactionMember
@@ -129,6 +133,7 @@
       briefing:
         text: wizard-duelist-green-role-greeting
         color: Turquoise
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg"
       startingGear: WizardDuelistGreenGear
       components:
       - type: NpcFactionMember
@@ -154,6 +159,7 @@
       briefing:
         text: wizard-duelist-orange-role-greeting
         color: Turquoise
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg"
       startingGear: WizardDuelistOrangeGear
       components:
       - type: NpcFactionMember

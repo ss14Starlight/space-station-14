@@ -327,6 +327,7 @@
       containers:
         key_slots:
         - EncryptionKeyStationMaster
+        - EncryptionKeyWindsUnremovable # Starlight
     - type: Sprite
       sprite: Clothing/Ears/Headsets/wizard.rsi
     - type: Clothing
