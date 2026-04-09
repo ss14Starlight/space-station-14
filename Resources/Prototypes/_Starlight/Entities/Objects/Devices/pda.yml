@@ -587,6 +587,17 @@
     - DoorBumpOpener
 
 - type: entity
+  parent: ClearPDA
+  id: XenoborgiClearPDA
+  suffix: Xenoborgi
+  components:
+    - type: Pda
+      id: XenoborgiIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
   parent: ParamedicPDA
   id: SeniorParamedicPDA
   name: senior paramedic PDA
