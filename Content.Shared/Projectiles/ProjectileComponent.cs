@@ -139,8 +139,8 @@ public sealed partial class ProjectileComponent : Component
     /// </summary>
     [DataField]
     public bool DeleteOnMaximumHits;
+    #endregion
 }
-
 
 /// <summary>
 ///     STARLIGHT: The type of projectile, which determines how it's treated in terms of collision and penetration.
@@ -150,5 +150,3 @@ public enum ProjectileType
     Solid,
     Intangible
 }
-
-#endregion
