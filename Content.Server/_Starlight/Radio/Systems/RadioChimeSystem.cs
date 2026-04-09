@@ -34,7 +34,7 @@ public sealed class RadioChimeSystem : EntitySystem
             return false;
 
         // Check if the headset has a RadioChimeComponent
-        if (!TryComp<RadioChimeComponent>(headsetEntity.Value, out var radioChime) 
+        if (!TryComp<RadioChimeComponent>(headsetEntity.Value, out var radioChime)
             || radioChime.Sound is null)
             return false;
 

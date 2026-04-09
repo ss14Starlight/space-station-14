@@ -2706,7 +2706,7 @@
       base:
         - options: Default
           data:
-            drawdepth: Mobs   
+            drawdepth: Mobs
             sprite: Mobs/Animals/spider.rsi
             map: ["enum.DamageStateVisualLayers.Base", "movement"]
             state: tarantula
@@ -2760,7 +2760,7 @@
         base:
           - options: Default
             data:
-              drawdepth: Mobs   
+              drawdepth: Mobs
               sprite: Mobs/Animals/clownspider.rsi
               map: ["enum.DamageStateVisualLayers.Base", "movement"]
               state: clown

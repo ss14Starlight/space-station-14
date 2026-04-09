@@ -47,7 +47,7 @@ public sealed class GlitchingEffectOverlay : Overlay
         if (playerEntity == null ||
             ScreenTexture == null)
             return;
-        
+
         if (_entMan.TryGetComponent<EyeComponent>(playerEntity, out var content))
             _shader.SetParameter("Zoom", content.Zoom.X);
 

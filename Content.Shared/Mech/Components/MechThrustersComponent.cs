@@ -9,10 +9,10 @@ public sealed partial class MechThrustersComponent : Component
     [DataField]
     [AutoNetworkedField]
     public bool ThrustersEnabled = false;
-    
+
     [ViewVariables(VVAccess.ReadWrite), DataField("drawRate")]
     public float DrawRate = 1f;
-    
+
     [DataField("nextUpdate", customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
     public TimeSpan NextUpdateTime;

@@ -76,6 +76,6 @@ public sealed partial class RailroadingMetabolizeTaskSystem : EntitySystem
         args.IsCompleted = ent.Comp.Reagents.All(x => ent.Comp.MetabolizedReagents.TryGetValue(x.Reagent.Prototype, out var quantity) && quantity >= x.Quantity);
     }
 
-    private void OnConsumeTaskPicked(Entity<RailroadMetabolizeTaskComponent> ent, ref RailroadingCardChosenEvent args) 
+    private void OnConsumeTaskPicked(Entity<RailroadMetabolizeTaskComponent> ent, ref RailroadingCardChosenEvent args)
         => EnsureComp<RailroadMetabolizerWatcherComponent>(args.Subject.Owner);
 }

@@ -185,7 +185,7 @@
     sprite: _Starlight/Objects/Specific/Chapel/rigveda.rsi
   - type: Item
     sprite: _Starlight/Objects/Specific/Chapel/rigveda.rsi
-    
+
 - type: entity
   parent: Bible
   name: bibble

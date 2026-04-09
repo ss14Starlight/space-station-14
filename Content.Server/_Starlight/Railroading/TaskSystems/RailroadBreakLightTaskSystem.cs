@@ -21,7 +21,7 @@ public sealed partial class RailroadBreakLightTaskSystem : EntitySystem
         SubscribeLocalEvent<RailroadBreakLightTaskComponent, RailroadingCardChosenEvent>(OnTaskPicked);
         SubscribeLocalEvent<RailroadBreakLightTaskComponent, RailroadingCardCompletionQueryEvent>(OnTaskCompletionQuery);
         SubscribeLocalEvent<RailroadBreakLightTaskComponent, CollectObjectiveInfoEvent>(OnCollectObjectiveInfo);
-        
+
         SubscribeLocalEvent<RailroadBreakLightWatcherComponent, OnLightBreakEvent>(OnLightBreakEvent);
     }
 
