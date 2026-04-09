@@ -28,7 +28,7 @@
     - WizardPersonalAI
   storage:
     back:
-    - EncryptionKeyWinds # Starlight end, reward for killing a wizard, or something they can use to "assign" an apprentice
+    - EncryptionKeyWinds # Starlight end, reward for killing a wizard, or something they can use to "assign" an apprentice. Non-duelists don't get this, it spawns on their shuttle instead. (It's not mapped in wizard's court to stop 1 wizard from taking all 6 of them.)
 
 - type: startingGear
   parent: WizardDuelistBaseGear

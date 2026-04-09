@@ -12,11 +12,8 @@
     belt: ClothingBeltWand
     pocket1: WizardTeleportScroll
     pocket2: WizardsGrimoire
-  inhand: # Starlight start
-    - WizardPersonalAI
-  storage:
-    back:
-    - EncryptionKeyWinds # Starlight end, reward for killing a wizard, or something they can use to "assign" an apprentice
+  inhand: # Starlight
+    - WizardPersonalAI # Starlight
 
 - type: startingGear
   id: WizardRedGear
