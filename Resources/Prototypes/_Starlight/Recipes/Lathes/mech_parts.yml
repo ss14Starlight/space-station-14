@@ -223,6 +223,16 @@
     Bananium: 1000
 
 - type: latheRecipe
+  id: MechEquipmentHonkerAirHorn
+  result: WeaponMechSpecialAirHorn
+  categories:
+  - Mech
+  completetime: 10
+  materials:
+    Steel: 1200
+    bananium: 1000
+
+- type: latheRecipe
   id: MechEquipmentHonkerBananaMortar
   result: WeaponMechSpecialBananaMortar
   categories:

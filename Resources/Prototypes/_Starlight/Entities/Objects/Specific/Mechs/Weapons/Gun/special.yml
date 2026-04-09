@@ -83,7 +83,7 @@
     - type: Appearance
 
 - type: entity
-  id: MechEquipmentAirHorn
+  id: WeaponMechSpecialAirHorn
   parent: [ BaseMechEquipment, SpecialMechEquipment ]
   name: hOnKeR 5000
   description: Holy shit, that's loud! HONK!
