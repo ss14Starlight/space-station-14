@@ -134,7 +134,7 @@
     price: 35
   - type: Construction
     graph: BenchSL
-    node: whiteComfBenchEndLeft
+    node: whiteComfBenchLeft
 
 - type: entity
   name: comfortable bench
