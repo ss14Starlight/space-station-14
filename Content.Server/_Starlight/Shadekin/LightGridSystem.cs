@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared._Starlight.Shadekin;
 using Robust.Server.GameObjects;
+using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
@@ -15,9 +16,12 @@ public sealed class LightGridSystem : EntitySystem
     [Dependency] private readonly IParallelManager _parallel = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedMapSystem _maps = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     private readonly Dictionary<EntityUid, Dictionary<Vector2i, float>> _lightGrids = new();
+    private readonly Dictionary<EntityUid, List<WorldLightSourceData>> _mapLights = new();
+    private readonly Dictionary<EntityUid, List<WorldLightSourceData>> _containerLights = new();
     // Reused every tick so we dont murder GC
     private readonly HashSet<Entity<OccluderComponent>> _occluders = new();
     private EntityQuery<OccluderComponent> _occluderQuery;
@@ -33,7 +37,7 @@ public sealed class LightGridSystem : EntitySystem
     // cap for normalizing light from multiple overlapping sources
     private const float MaxExposure = 3f;
     private const float NearbyGridSearchRange = 3f;
-        private const int NeighborSampleRadius = 2;
+    private const int NeighborSampleRadius = 2;
     private static readonly Angle _directionalLightHalfAngle = Angle.FromDegrees(60f);
 
     private LightJob _job;
@@ -44,6 +48,13 @@ public sealed class LightGridSystem : EntitySystem
         float Brightness,
         Angle Direction,
         bool CastShadows,
+        bool Directional);
+
+    private record struct WorldLightSourceData(
+        Vector2 Position,
+        float Radius,
+        float Brightness,
+        Angle Direction,
         bool Directional);
 
     public override void Initialize()
@@ -64,6 +75,9 @@ public sealed class LightGridSystem : EntitySystem
             return;
 
         _nextUpdate = _timing.CurTime + _updateInterval;
+
+        _mapLights.Clear();
+        _containerLights.Clear();
 
         var grids = new Dictionary<EntityUid, (MapGridComponent Grid, BroadphaseComponent Broadphase)>();
         var lightSourcesByGrid = new Dictionary<EntityUid, List<LightSourceData>>();
@@ -98,22 +112,10 @@ public sealed class LightGridSystem : EntitySystem
             }
         }
 
-        if (grids.Count == 0)
-            return;
-
         var lightQuery = EntityQueryEnumerator<PointLightComponent, TransformComponent>();
         while (lightQuery.MoveNext(out var lightUid, out var lightComp, out var xform))
         {
-            if (xform.GridUid is not { } gridUid)
-                continue;
-
-            if (!grids.TryGetValue(gridUid, out var gridData))
-                continue;
-
             if (HasComp<DarkLightComponent>(lightUid) || HasComp<ShadegenAffectedComponent>(lightUid))
-                continue;
-
-            if ((_metaQuery.GetComponent(lightUid).Flags & MetaDataFlags.InContainer) != 0)
                 continue;
 
             // deal with disabled light with negative energy
@@ -130,19 +132,52 @@ public sealed class LightGridSystem : EntitySystem
             if (brightness <= 0f)
                 continue;
 
-            var tile = _maps.LocalToTile(gridUid, gridData.Grid, coords);
-            var sources = GetOrCreateBucket(lightSourcesByGrid, gridUid);
+            var worldPos = _transform.GetWorldPosition(xform);
+            if (lightComp.Offset != Vector2.Zero)
+                worldPos += _transform.GetWorldRotation(xform, _xformQuery).RotateVec(lightComp.Offset);
+
             var directional = lightComp.MaskPath != null;
-            var direction = directional
+            var localDirection = directional
                 ? (lightComp.MaskAutoRotate ? xform.LocalRotation + lightComp.Rotation : lightComp.Rotation)
                 : Angle.Zero;
+            var worldDirection = directional
+                ? (lightComp.MaskAutoRotate ? _transform.GetWorldRotation(xform, _xformQuery) + lightComp.Rotation : lightComp.Rotation)
+                : Angle.Zero;
 
-            sources.Add(new LightSourceData(
-                tile,
+            if (GetLightBlockingContainer(lightUid) is { } containerUid)
+            {
+                GetOrCreateBucket(_containerLights, containerUid).Add(new WorldLightSourceData(
+                    worldPos,
+                    lightComp.Radius,
+                    brightness,
+                    worldDirection,
+                    directional));
+                continue;
+            }
+
+            if (xform.GridUid is { } gridUid && grids.TryGetValue(gridUid, out var gridData))
+            {
+                var tile = _maps.LocalToTile(gridUid, gridData.Grid, coords);
+                var sources = GetOrCreateBucket(lightSourcesByGrid, gridUid);
+
+                sources.Add(new LightSourceData(
+                    tile,
+                    lightComp.Radius,
+                    brightness,
+                    localDirection,
+                    lightComp.CastShadows,
+                    directional));
+                continue;
+            }
+
+            if (xform.MapUid is not { } mapUid)
+                continue;
+
+            GetOrCreateBucket(_mapLights, mapUid).Add(new WorldLightSourceData(
+                worldPos,
                 lightComp.Radius,
                 brightness,
-                direction,
-                lightComp.CastShadows,
+                worldDirection,
                 directional));
         }
 
@@ -308,25 +343,34 @@ public sealed class LightGridSystem : EntitySystem
         return energy * luminance;
     }
 
-    private static bool IsWithinDirectionalCone(LightSourceData source, Vector2i delta)
+    private static bool IsWithinDirectionalCone(Angle direction, bool directional, Vector2 delta)
     {
-        if (!source.Directional || delta == Vector2i.Zero)
+        if (!directional || delta == Vector2.Zero)
             return true;
 
-        var angle = Angle.FromWorldVec(new Vector2(delta.X, delta.Y));
-        var diff = Angle.ShortestDistance(source.Direction, angle);
+        var angle = Angle.FromWorldVec(delta);
+        var diff = Angle.ShortestDistance(direction, angle);
         return Math.Abs(diff.Theta) <= _directionalLightHalfAngle.Theta;
     }
 
-    private static float GetLightIntensity(LightSourceData source, float dist)
+    private static bool IsWithinDirectionalCone(LightSourceData source, Vector2i delta)
+        => IsWithinDirectionalCone(source.Direction, source.Directional, new Vector2(delta.X, delta.Y));
+
+    private static bool IsWithinDirectionalCone(WorldLightSourceData source, Vector2 delta)
+        => IsWithinDirectionalCone(source.Direction, source.Directional, delta);
+
+    private static float GetLightIntensity(float radius, float brightness, float dist)
     {
-        if (dist > source.Radius)
+        if (dist > radius)
             return 0f;
 
-        var ratio = dist / source.Radius;
+        var ratio = dist / radius;
         var attenuation = 1f - (ratio * ratio);
-        return source.Brightness * attenuation * attenuation;
+        return brightness * attenuation * attenuation;
     }
+
+    private static float GetLightIntensity(LightSourceData source, float dist)
+        => GetLightIntensity(source.Radius, source.Brightness, dist);
 
     public float GetExposure(EntityUid uid) => Math.Clamp(GetFullExposure(uid) / MaxExposure, 0f, 1f);
 
@@ -337,15 +381,16 @@ public sealed class LightGridSystem : EntitySystem
             return 0f;
 
         var worldPos = _transform.GetWorldPosition(xform);
+
+        if (GetLightBlockingContainer(uid) is { } containerUid)
+            return GetDirectLightExposure(_containerLights.GetValueOrDefault(containerUid), worldPos);
+
         var size = NearbyGridSearchRange * 2f;
         var bounds = Box2.CenteredAround(worldPos, new Vector2(size, size));
 
         _intersectingGrids.Clear();
         var intersectingGrids = _intersectingGrids;
         _mapManager.FindGridsIntersecting(mapUid, bounds, ref intersectingGrids, includeMap: false);
-
-        if (_intersectingGrids.Count == 0)
-            return 0f;
 
         var exposure = 0f;
 
@@ -389,7 +434,48 @@ public sealed class LightGridSystem : EntitySystem
             exposure += best;
         }
 
+        exposure += GetDirectLightExposure(_mapLights.GetValueOrDefault(mapUid), worldPos);
+
         return exposure;
+    }
+
+    private float GetDirectLightExposure(List<WorldLightSourceData>? lightSources, Vector2 worldPos)
+    {
+        if (lightSources == null)
+            return 0f;
+
+        var exposure = 0f;
+
+        foreach (var source in lightSources)
+        {
+            var delta = worldPos - source.Position;
+            if (!IsWithinDirectionalCone(source, delta))
+                continue;
+
+            var intensity = GetLightIntensity(source.Radius, source.Brightness, delta.Length());
+            if (intensity > 0f)
+                exposure += intensity;
+        }
+
+        return exposure;
+    }
+
+    private EntityUid? GetLightBlockingContainer(EntityUid uid)
+    {
+        var current = uid;
+
+        while (Exists(current)
+               && _container.TryGetContainingContainer(
+                   (current, _xformQuery.GetComponent(current), _metaQuery.GetComponent(current)),
+                   out var container))
+        {
+            if (container.OccludesLight)
+                return container.Owner;
+
+            current = container.Owner;
+        }
+
+        return null;
     }
 
     public float GetTileLight(EntityUid gridUid, Vector2i tile)
