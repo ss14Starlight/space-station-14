@@ -727,7 +727,7 @@
       sprite: Objects/Specific/Mech/mecha.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
-          state: darkgygax
+          state: reticence
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
