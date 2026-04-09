@@ -8,4 +8,7 @@ public sealed partial class MechAirHornComponent : Component
 {
     [DataField, AutoNetworkedField]
     public SoundSpecifier HornSound = new SoundPathSpecifier("/Audio/Items/airhorn.ogg");
+
+    [DataField, AutoNetworkedField]
+    public float Range = 10f;
 }

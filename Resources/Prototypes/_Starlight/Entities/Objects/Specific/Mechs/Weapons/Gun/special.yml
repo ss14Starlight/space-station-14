@@ -95,5 +95,6 @@
     - type: MechEquipmentAction
       actionId: ActionMechActivateAirHorn
     - type: MechAirHorn
+      range: 10
     - type: Slippery
-
+      staminaDamage: 15

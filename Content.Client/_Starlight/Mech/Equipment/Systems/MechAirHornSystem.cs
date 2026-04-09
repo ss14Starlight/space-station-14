@@ -11,6 +11,10 @@ public sealed class MechAirHornSystem : SharedMechAirHornSystem
 
     protected override void OnHonkHorn(EntityUid uid, MechAirHornComponent comp, MechActivateAirHornEvent args)
     {
+        if (args.Handled)
+            return;
+
+        args.Handled = true;
         var user = args.Performer;
         var xform = Transform(user);
         _audio.PlayPredicted(comp.HornSound, xform.Coordinates, user);

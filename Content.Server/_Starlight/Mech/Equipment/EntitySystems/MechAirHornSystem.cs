@@ -13,14 +13,17 @@ public sealed class MechAirHornSystem : SharedMechAirHornSystem
 
     protected override void OnHonkHorn(EntityUid uid, MechAirHornComponent comp, MechActivateAirHornEvent args)
     {
+        if (args.Handled)
+            return;
+
         if (!TryComp<SlipperyComponent>(uid, out var slipComp))
             return;
+
+        args.Handled = true;
+
         var user = args.Performer;
-        slipComp.SlipData.RequiredSlipSpeed = 0f;
-        slipComp.SlipData.KnockdownTime = TimeSpan.FromSeconds(.8);
-        slipComp.SlipData.StunTime = TimeSpan.FromSeconds(.2);
         var xform = Transform(user);
-        foreach (var ent in _entityLookup.GetEntitiesInRange<MobStateComponent>(xform.Coordinates, 10.0f, LookupFlags.Uncontained))
+        foreach (var ent in _entityLookup.GetEntitiesInRange<MobStateComponent>(xform.Coordinates, comp.Range, LookupFlags.Uncontained))
         {
             _slippery.TrySlip(args.Performer, slipComp, ent, false);
         }
