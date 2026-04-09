@@ -19,7 +19,7 @@ highp float get_luminance(highp vec3 color) {
 
 void fragment() {
     highp vec2 uv = FRAGCOORD.xy * SCREEN_PIXEL_SIZE.xy;
-    
+
     // Glitch / psudo-pixel sorting
 
     highp vec4 first_sample = zTextureSpec(SCREEN_TEXTURE, uv);
@@ -34,11 +34,11 @@ void fragment() {
             highp float movement = sin((step * waveFrequency) + (TIME * waveSpeed)) * waveAmplitude;
             highp vec2 sample_uv = uv - (dir * step * sortPower / Zoom) + (wiggle_dir * movement);
             highp vec4 next_sample = zTextureSpec(SCREEN_TEXTURE, sample_uv);
-            
+
             if (get_luminance(next_sample.rgb) > threshold) {
                 final_color = next_sample;
             } else {
-                break; 
+                break;
             }
         }
     }

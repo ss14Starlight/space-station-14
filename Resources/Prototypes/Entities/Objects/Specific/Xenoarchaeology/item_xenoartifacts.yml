@@ -129,7 +129,13 @@
         Quantity: 10
   - type: StaticPrice
     price: 0
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
   - type: Stack
+  # Starlight end
     stackType: ArtifactFragment
   - type: GuideHelp
     guides:

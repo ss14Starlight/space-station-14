@@ -11,11 +11,11 @@ namespace Content.Client._Starlight.ViewVariables;
 public sealed class ClientViewVariablesSystem : EntitySystem
 {
     [Dependency] private readonly IClientConsoleHost _shell = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeNetworkEvent<OpenViewVariablesEvent>(OnOpenViewVariables);
     }
 

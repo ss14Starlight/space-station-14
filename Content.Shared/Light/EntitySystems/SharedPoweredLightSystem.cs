@@ -60,7 +60,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
 
         SubscribeLocalEvent<AlertLevelDimmedLightComponent, GetDimmedLightLevelEvent>(OnGetDimmedLightLevel); // Starlight
     }
-    
+
     /// <summary>
     /// STARLIGHT: Handle light dimming during higher alert levels.
     /// </summary>
@@ -307,7 +307,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
         {
             var lightLevelEv = new GetDimmedLightLevelEvent(lightEnergy, lightRadius, powerUse);
             RaiseLocalEvent(uid, lightLevelEv);
-            
+
             lightEnergy = lightLevelEv.LightEnergy;
             lightRadius = lightBulb.LightRadius;
             powerUse = (int) Math.Ceiling((double) lightBulb.PowerUse);

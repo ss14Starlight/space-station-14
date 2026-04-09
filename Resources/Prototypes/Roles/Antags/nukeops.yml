@@ -16,7 +16,7 @@
   - !type:DepartmentTimeRequirement # At the very least please know basic med.
     department: Medical
     time: 4h
-  - !type:RoleTimeRequirement # Tradeoff for not having too high Sec time; You should know how to use your uplink. 
+  - !type:RoleTimeRequirement # Tradeoff for not having too high Sec time; You should know how to use your uplink.
     role: AntagTraitor
     time: 1h # 1 shift, to teach you how to use an uplink. Starlight end
   guides: [ NuclearOperatives ]

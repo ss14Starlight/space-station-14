@@ -127,7 +127,7 @@ public abstract class SharedEmpSystem : EntitySystem
         // TODO: replace with PredictedSpawn once it works with animated sprites
         if (ev.Affected && _net.IsServer)
             Spawn(EmpDisabledEffectPrototype, Transform(uid).Coordinates);
-        
+
         //Starlight Start
         //Disrupt humanoids.
         if(TryComp(uid, out HumanoidAppearanceComponent? _))

@@ -50,7 +50,7 @@ jobs:
         run: |
           missing_prs='${{ steps.find_prs.outputs.missing_prs }}'
           echo "Processing PRs: $missing_prs"
-          
+
           # Parse JSON array and process each PR
           echo "$missing_prs" | jq -r '.[]' | while read pr_number; do
             echo "Processing PR #$pr_number"

@@ -1046,7 +1046,7 @@
     Telecrystal: 5
   categories:
   - UplinkDisruption
-    
+
 - type: listing
   id: UplinkRadioJammer
   name: uplink-radio-jammer-name
@@ -1943,6 +1943,9 @@
   name: uplink-backpack-syndicate-name
   description: uplink-backpack-syndicate-desc
   productEntity: ClothingBackpackSyndicate
+  discountCategory: usualDiscounts # Starlight start
+  discountDownTo:
+    Telecrystal: 1 # Starlight end
   cost:
     Telecrystal: 2
   categories:

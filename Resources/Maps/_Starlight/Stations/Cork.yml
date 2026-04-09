@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: starlight
   forkVersion: 98ed414b870bb26f73591ff16b3cbcdd742352a5
-  time: 03/22/2026 16:51:26
-  entityCount: 10599
+  time: 03/31/2026 12:10:50
+  entityCount: 10600
 maps:
 - 1
 grids:
@@ -60795,30 +60795,36 @@ entities:
       parent: 2
     - type: AccessReader
       accessListsOriginal: []
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
   - uid: 7329
     components:
     - type: Transform
       pos: 27.5,2.5
       parent: 2
-  - uid: 7330
-    components:
-    - type: Transform
-      pos: 50.5,-13.5
-      parent: 2
+    - type: Battery
+      maxCharge: 59000000
+      startingCharge: 59000000
   - uid: 7331
     components:
     - type: Transform
       pos: 27.5,0.5
+      parent: 2
+    - type: Battery
+      maxCharge: 59000000
+      startingCharge: 59000000
+- proto: SMESAdvanced
+  entities:
+  - uid: 7330
+    components:
+    - type: Transform
+      pos: 50.5,-13.5
       parent: 2
   - uid: 7332
     components:
     - type: Transform
       pos: 27.5,1.5
       parent: 2
-- proto: SMESBasic
-  entities:
   - uid: 10467
     components:
     - type: Transform
@@ -61376,6 +61382,13 @@ entities:
     components:
     - type: Transform
       pos: 10.5,-9.5
+      parent: 2
+- proto: SpawnPointChemist
+  entities:
+  - uid: 10600
+    components:
+    - type: Transform
+      pos: 2.5,8.5
       parent: 2
 - proto: SpawnPointChiefEngineer
   entities:

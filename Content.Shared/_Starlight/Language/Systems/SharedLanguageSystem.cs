@@ -24,7 +24,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
     /// The chat prefix used to begin parsing a language. e.g. <c>^gcThis will parse to Galactic Common</c>.
     /// </summary>
     public static readonly char ChatPrefixChar = '^';
-    
+
     /// <summary>
     ///     A cached instance of <see cref="UniversalPrototype"/>
     /// </summary>
@@ -43,7 +43,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
     {
         Universal = _prototype.Index(UniversalPrototype);
         Languages = _prototype.EnumeratePrototypes<LanguagePrototype>().Select(x => new ProtoId<LanguagePrototype>(x.ID)).ToHashSet();
-        
+
         SubscribeLocalEvent<LanguageKnowledgeComponent, CloningEvent>(OnClone);
         SubscribeLocalEvent<LanguageKnowledgeComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<AdditionalLanguageKnowledgeComponent, MapInitEvent>(OnMapInitAdditional);
@@ -57,13 +57,13 @@ public abstract partial class SharedLanguageSystem : EntitySystem
         var clone = ev.CloneUid;
         var comp = EnsureComp<LanguageKnowledgeComponent>(ev.CloneUid);
         if (HasComp<RestoreLanguageCacheOnCloneComponent>(ent) && TryComp<LanguageCacheComponent>(ent, out var cache))
-        {  
+        {
             RestoreCache((ent, cache));
         }
         else
         {
             comp.SpokenLanguages = ent.Comp.SpokenLanguages;
-            comp.UnderstoodLanguages = ent.Comp.UnderstoodLanguages;   
+            comp.UnderstoodLanguages = ent.Comp.UnderstoodLanguages;
         }
         if (TryComp<LanguageSpeakerComponent>(clone, out var speaker))
             UpdateEntityLanguages((clone,speaker));
@@ -191,7 +191,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
             || string.IsNullOrEmpty(ent.Comp.CurrentLanguage)
             || !_prototype.TryIndex<LanguagePrototype>(ent.Comp.CurrentLanguage, out var proto))
             return Universal;
-        
+
         // Begin parsing
         var text = input;
         if (text.Length<4 || !text.StartsWith(ChatPrefixChar)) return proto;
@@ -209,7 +209,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
             parsed = true;
             return lang;
         }
-        
+
         return proto;
     }
 
@@ -224,7 +224,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
     /// </summary
     /// <remarks>This simply returns the value of <see cref="LanguageSpeakerComponent.SpokenLanguages"/>.</remarks>
     public List<ProtoId<LanguagePrototype>> GetUnderstoodLanguages(EntityUid uid) => TryComp<LanguageSpeakerComponent>(uid, out var component) ? component.UnderstoodLanguages : [];
-    
+
 
     public void SetLanguage(Entity<LanguageSpeakerComponent?> ent, ProtoId<LanguagePrototype> language)
     {
@@ -301,7 +301,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
 
         return false;
     }
-    
+
     /// <summary>
     ///     Immediately refreshes the cached lists of spoken and understood languages for the given entity.
     /// </summary>

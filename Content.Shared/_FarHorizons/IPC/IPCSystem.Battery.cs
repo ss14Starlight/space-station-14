@@ -22,7 +22,7 @@ public abstract partial class SharedIPCSystem
 
     private void AddBatteryAltVerbs(GetVerbsEvent<AlternativeVerb> ev)
     {
-        if (!ev.CanComplexInteract || 
+        if (!ev.CanComplexInteract ||
             !TryComp<IPCBatteryComponent>(ev.User, out var battery) ||
             !TryComp(ev.Target, out MetaDataComponent? metadata) ||
             metadata.EntityPrototype == null ||
@@ -66,10 +66,10 @@ public abstract partial class SharedIPCSystem
             args.Cancelled = true;
     }
 
-    private void OnBatteryStartup(Entity<IPCBatteryComponent> ent, ref ComponentStartup args) 
+    private void OnBatteryStartup(Entity<IPCBatteryComponent> ent, ref ComponentStartup args)
     {
-        ent.Comp.PowerCellSlot = EnsureComp<PowerCellSlotComponent>(ent);
-        ent.Comp.BatteryDrainer = EnsureComp<BatteryDrainerComponent>(ent);
+        EnsureComp<PowerCellSlotComponent>(ent);
+        EnsureComp<BatteryDrainerComponent>(ent);
         EnsureComp<PowerCellDrawComponent>(ent);
     }
 

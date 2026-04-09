@@ -22,7 +22,7 @@
         - material: Steel
           amount: 2
           doAfter: 1
-    
+
       - to: filterflippedAlt2
         steps:
         - material: Steel

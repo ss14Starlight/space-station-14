@@ -32,8 +32,12 @@ public sealed partial class MeleeWeaponSystem
         if (localPos == Vector2.Zero || animation == null)
             return;
 
-        if (!_xformQuery.TryGetComponent(user, out var userXform) || userXform.MapID == MapId.Nullspace)
+        // Starlight Begin - Mech wideswing
+        var originEntity = GetOriginEntity(user);
+
+        if (!_xformQuery.TryGetComponent(originEntity, out var userXform) || userXform.MapID == MapId.Nullspace)
             return;
+        // Starlight End
 
         var animationUid = Spawn(animation, userXform.Coordinates);
 
@@ -234,7 +238,7 @@ public sealed partial class MeleeWeaponSystem
             },
         };
     }
-    
+
     //Starlight begin
     private Animation GetOldSlashAnimation(SpriteComponent sprite, Angle arc, Angle spriteRotation)
     {

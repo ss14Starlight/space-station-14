@@ -53,7 +53,7 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
         if (!IsGridPacificationTarget(target)) return; // Only pacify people on Evac and CC grids.
         if (IsMindRolePacificationImmune(target)) return; // IC bypass (taken roles of ERT, Decimus, CC, ..)
         if (IsGhostRolePacificationImmune(target)) return; // IC bypass (same as previous, only when ghost role wasn't taken)
-        
+
         EnsureComp<PacifiedComponent>(target);
         EnsureComp<PreventEorgComponent>(target);
     }
@@ -90,7 +90,7 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
             return false;
         return job.BypassEorPacification;
     }
-    
+
     /// <summary>
     /// Check whether a grid is a target for pacification. Returns true for Evac and CentComm only.
     /// </summary>
@@ -101,7 +101,7 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
 
         if (HasComp<EmergencyShuttleComponent>(grid))
             return true; // Evac shuttle (escape pods don't count for this) = pacified
-        
+
         AllEntityQuery<StationCentcommComponent>().MoveNext(out var centcomm);
         if (centcomm != null && centcomm.Entity == grid)
             return true; // CC = pacified
@@ -133,12 +133,12 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
         while (mechQuery.MoveNext(out var uid, out _))
             SpreadPeace(uid);
     }
-    
+
     private void OnValidatePossiblyEorgAction(EntityUid uid, EorgActionComponent component, ref ActionValidateEvent args)
     {
         if (!_isEnabled || !_roundedEnded) return;
         if (!TryComp<PreventEorgComponent>(args.User, out _))  return;
-        
+
         _popup.PopupEntity(Loc.GetString("eorg-action"), args.User, args.User, PopupType.LargeCaution);
         args.Invalid = true;
     }
