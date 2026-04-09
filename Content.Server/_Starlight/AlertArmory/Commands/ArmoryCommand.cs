@@ -156,7 +156,7 @@ public sealed class ArmoryCommand : IConsoleCommand
         foreach (var station in targetStations)
         {
             var comp = entMan.GetComponent<AlertArmoryStationComponent>(station);
-            
+
             if (!ValidateAndCheckTransit(shell, entMan, comp, args[2].ToLowerInvariant(), out var armoryKey))
                 return;
 
@@ -174,7 +174,7 @@ public sealed class ArmoryCommand : IConsoleCommand
             shell.WriteError("Usage: armory recall <stationid/all> <armoryid>");
             return;
         }
-        
+
         List<EntityUid> targetStations = [];
         if(args[1]=="all") targetStations.AddRange(stationSys.GetStations());
         else if (entMan.TryParseNetEntity(args[1], out var uid))
@@ -183,7 +183,7 @@ public sealed class ArmoryCommand : IConsoleCommand
         foreach (var station in targetStations)
         {
             var comp = entMan.GetComponent<AlertArmoryStationComponent>(station);
-            
+
             if (!ValidateAndCheckTransit(shell, entMan, comp, args[2].ToLowerInvariant(), out var armoryKey))
                 return;
 
@@ -233,7 +233,7 @@ public sealed class ArmoryCommand : IConsoleCommand
                 CompletionHelper.Components<StationDataComponent>(args[1], entMan)
                     .Append(new CompletionOption("all")),
                 "Station ID or all");
-        
+
         if (args.Length == 3)
         {
             var subcommand = args[0].ToLowerInvariant();

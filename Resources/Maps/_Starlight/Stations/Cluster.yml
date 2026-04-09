@@ -83688,13 +83688,15 @@ entities:
       parent: 2
     - type: StockLimitedProcessing
       processingListings: {}
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
   - uid: 12281
     components:
     - type: Transform
       pos: 20.5,-9.5
       parent: 2
+- proto: SMESAdvanced
+  entities:
   - uid: 12282
     components:
     - type: Transform
@@ -83717,6 +83719,20 @@ entities:
     - type: Transform
       pos: 33.5,-16.5
       parent: 2
+  - uid: 12288
+    components:
+    - type: MetaData
+      name: South Solars SMES
+    - type: Transform
+      pos: -33.5,-26.5
+      parent: 2
+  - uid: 12291
+    components:
+    - type: MetaData
+      name: North Solars SMES
+    - type: Transform
+      pos: -28.5,26.5
+      parent: 2
 - proto: SMESBasic
   entities:
   - uid: 12286
@@ -83733,13 +83749,6 @@ entities:
     - type: Transform
       pos: -42.5,20.5
       parent: 2
-  - uid: 12288
-    components:
-    - type: MetaData
-      name: South Solars SMES
-    - type: Transform
-      pos: -33.5,-26.5
-      parent: 2
   - uid: 12289
     components:
     - type: MetaData
@@ -83753,13 +83762,6 @@ entities:
       name: AI Core SMES
     - type: Transform
       pos: -1.5,42.5
-      parent: 2
-  - uid: 12291
-    components:
-    - type: MetaData
-      name: North Solars SMES
-    - type: Transform
-      pos: -28.5,26.5
       parent: 2
 - proto: SMESMachineCircuitboard
   entities:

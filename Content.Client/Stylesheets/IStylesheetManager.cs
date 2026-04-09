@@ -19,7 +19,7 @@ public interface IStylesheetManager
 
     [Obsolete("Update to use SheetSystem instead")]
     Stylesheet SheetSpace { get; }
-    
+
     [Obsolete("Update to use SheetSystem instead")]
     Stylesheet Starlight { get; }
 

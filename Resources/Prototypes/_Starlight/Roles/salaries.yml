@@ -61,7 +61,7 @@
     Magistrate: 176
 
     Visitor: 0
-  
+
 - type: SalaryRoleBonus
   id: BlackOpsBonus
   roles:
@@ -85,7 +85,7 @@
   roles:
   - 1275161200115712071 # AlfaTester
   multiplayer: 0.20
-  
+
 - type: SalaryRoleBonus
   id: SeniorityBonusBeta
   roles:
@@ -109,31 +109,31 @@
   roles:
   - 1294134860050595862 # CopperEventWinner
   multiplayer: 0.10
-  
+
 - type: SalaryRoleBonus
   id: VeteranPayout
   roles:
   - 1327261545469575179 # Honorary Member
   multiplayer: 0.20
-    
+
 - type: SalaryRoleBonus
   id: SkillAdvancementBonus
   roles:
   - 1308143973684088883 # Changelog
-  multiplayer: 0.01 # fun 
+  multiplayer: 0.01 # fun
 
 - type: SalaryRoleBonus
   id: ContributionRoyaltyStarlight
   roles:
   - 1348034282370896012 # Contributor Starlight
   multiplayer: 0.10
-  
+
 - type: SalaryRoleBonus
   id: ContributionRoyaltyWizden
   roles:
   - 929452566092324954 # Contributor Wizden
   multiplayer: 0.10
-    
+
 - type: SalaryRoleBonus
   id: ContributionRoyaltyTrieste
   roles:

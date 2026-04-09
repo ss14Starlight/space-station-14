@@ -40,11 +40,11 @@ public sealed class SLMoverController : SharedMoverController
 
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    [Dependency] private readonly IParallelManager _parallel = default!; 
-    [Dependency] private readonly IPlayerManager _players = default!; 
-    [Dependency] private readonly SharedAudioSystem _audio = default!; 
+    [Dependency] private readonly IParallelManager _parallel = default!;
+    [Dependency] private readonly IPlayerManager _players = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
-    private HandleMobMovementJob _handleMobMovementJob; 
+    private HandleMobMovementJob _handleMobMovementJob;
 
     private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, TransformComponent)>)> _shuttlePilots = new();
 
@@ -56,7 +56,7 @@ public sealed class SLMoverController : SharedMoverController
         SubscribeLocalEvent<InputMoverComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<InputMoverComponent, PlayerDetachedEvent>(OnPlayerDetached);
 
-        _handleMobMovementJob = new HandleMobMovementJob(this); 
+        _handleMobMovementJob = new HandleMobMovementJob(this);
     }
 
     private void OnRelayPlayerAttached(Entity<RelayInputMoverComponent> entity, ref PlayerAttachedEvent args)

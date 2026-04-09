@@ -282,7 +282,7 @@
     outerClothing: ClothingOuterArmorBasicSlim
     pocket1: WeaponPistolMk58
     pocket2: MagazinePistolRubber
-  inhand: 
+  inhand:
   - FlashlightSeclite
 
 - type: startingGear

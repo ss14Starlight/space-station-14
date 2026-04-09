@@ -7,6 +7,6 @@ public sealed class NullLinkPlayTimeManager : INullLinkPlayTimeManager
 {
     [Dependency] private readonly JobRequirementsManager _jobRequirements = default!;
 
-    public TimeSpan GetPlayTime(string server, Guid _, string tracker) 
+    public TimeSpan GetPlayTime(string server, Guid _, string tracker)
         => _jobRequirements.GetServerPlaytime(server, tracker);
 }

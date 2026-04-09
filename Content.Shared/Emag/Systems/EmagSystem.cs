@@ -96,7 +96,7 @@ public sealed class EmagSystem : EntitySystem
         EnsureComp<EmaggedComponent>(target, out var emaggedComp);
         emaggedComp.OwningFaction = ent.Comp.OwningFaction;
         Dirty(target, emaggedComp);
-        
+
         if (!emaggedEvent.Repeatable)
         {
             emaggedComp.EmagType |= typeToUse;

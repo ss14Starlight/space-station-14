@@ -30,7 +30,7 @@
   - PowerGeneration
   radioChannels:
   - Engineering
- 
+
 - type: technology
   id: NuclearPowerRecycling
   name: research-technology-nuclear-recycling

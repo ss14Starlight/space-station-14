@@ -16,14 +16,14 @@ public sealed partial class FHCCVars
     public static readonly CVarDef<float> NeutronReactionBias =
         CVarDef.Create("reactor.neutron_reaction_bias", 1f, CVar.SERVERONLY);
 
-    
+
     /// <summary>
     /// The amount of a property consumed by a reaction
     /// </summary>
     public static readonly CVarDef<float> ReactionReactant =
         CVarDef.Create("reactor.reaction_reactant", 0.01f, CVar.SERVERONLY);
 
-    
+
     /// <summary>
     /// The amount of a property resultant from a reaction
     /// </summary>
@@ -59,5 +59,5 @@ public sealed partial class FHCCVars
     /// </summary>
     public static readonly CVarDef<float> ReactorPartBurnTemp =
         CVarDef.Create("reactor.part_burn_temp", 400f, CVar.SERVERONLY);
-    
+
 }

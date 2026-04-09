@@ -2,7 +2,6 @@ using Content.Shared.Actions;
 using Content.Shared.DoAfter;
 using Content.Shared.Polymorph;
 using Robust.Shared.Audio;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -19,6 +18,24 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     /// </summary>
     [DataField]
     public float Range = 1f;
+
+    /// <summary>
+    /// How much to scale effects if target is wearing flash protection
+    /// </summary>
+    [DataField]
+    public float FlashImmunityEffectScale = 0.5f;
+
+    /// <summary>
+    /// How many seconds do we need to Paralyze entity in front of glare source.
+    /// </summary>
+    [DataField]
+    public TimeSpan FrontParalyzeDuration = TimeSpan.FromSeconds(4);
+
+    /// <summary>
+    /// How many seconds do we need to Paralyze entity behind of glare source.
+    /// </summary>
+    [DataField]
+    public TimeSpan SideParalyzeDuration = TimeSpan.FromSeconds(2);
 
     /// <summary>
     /// How much we need to apply stamina damage on entity in front of glare source
@@ -49,6 +66,29 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     /// </summary>
     [DataField]
     public TimeSpan MuteDuration = TimeSpan.FromSeconds(8);
+}
+
+public sealed partial class VampireSleepActionEvent : EntityTargetActionEvent
+{
+    /// <summary>
+    ///     Channel duration, in seconds, before the target is put to sleep
+    /// </summary>
+    [DataField]
+    public TimeSpan ChannelTime = TimeSpan.FromSeconds(5);
+    [DataField]
+    public float SleepDistanceThreshold = 2.5f; //How far a target may be for sleep to work
+    [DataField]
+    public float SleepMovementThreshold = 0.1f; //How far a target may move for sleep to work during the do after
+}
+
+[Serializable, NetSerializable]
+public sealed partial class VampireSleepDoAfterEvent : SimpleDoAfterEvent
+{
+    [DataField]
+    public int BloodCost = 15;
+    [DataField]
+    public TimeSpan Duration = TimeSpan.FromSeconds(10);
+
 }
 
 public sealed partial class VampireRejuvenateIActionEvent : InstantActionEvent;
@@ -320,7 +360,7 @@ public sealed class VampireShadowBoxingPunchEvent : EntityEventArgs
         Target = target;
     }
     [DataField]
-    public TimeSpan PunchLifetime = TimeSpan.FromSeconds(0.33); 
+    public TimeSpan PunchLifetime = TimeSpan.FromSeconds(0.33);
     [DataField]
     public string EffectProto = "VampireShadowBoxingPunch";
 }
@@ -385,7 +425,7 @@ public sealed partial class VampirePacifyActionEvent : EntityTargetActionEvent
     [DataField]
     public TimeSpan PacifyDuration = TimeSpan.FromSeconds(40);
 }
-        
+
 public sealed partial class VampireSubspaceSwapActionEvent : EntityTargetActionEvent
 {
     [DataField]
@@ -558,7 +598,7 @@ public sealed partial class VampireChargeActionEvent : WorldTargetActionEvent
     /// </summary>
     [DataField]
     public float ChargeSpeed = 35f;
-    
+
     [DataField]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Effects/Footsteps/largethud.ogg");
 }

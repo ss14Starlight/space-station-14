@@ -23,11 +23,13 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared.Inventory;
+using Content.Server.Electrocution;
 
 namespace Content.Server._FarHorizons.Silicons.IPC;
 
 /// <inheritdoc/>
-public sealed partial class IPCSystem : SharedIPCSystem 
+public sealed partial class IPCSystem : SharedIPCSystem
 {
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly BatteryDrainerSystem _drainer = default!;
@@ -54,7 +56,9 @@ public sealed partial class IPCSystem : SharedIPCSystem
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
-    
+    [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
+
 
     public override void Initialize()
     {

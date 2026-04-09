@@ -53,6 +53,7 @@
     damageContainers:
     - Inorganic
     - Silicon
+    - IPC # SL
   - type: ItemSlots
     slots:
       cell_slot:

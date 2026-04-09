@@ -17,22 +17,22 @@ These intelligent inhabitants of the Abyss are emotionally reserved and have a s
   - They take twice as long to stand up from prone and double the stamina to push themselves up.
   - Due to their size, they stretch external clothing to such an extent that they can fit [color=yellow]two suit items[/color] on their back.
   - Their eyes are less sensitive to red colors but provide better vision in the dark.
-  
+
   ## Poison and Medicine Changes
-  Cyclorites suffer from metabolism issues that hinder them when injected with either medicines or toxins. 
-  
+  Cyclorites suffer from metabolism issues that hinder them when injected with either medicines or toxins.
+
   - Medicine is metabolised at [color=yellow]half strength[/color] meaning making medicines leave the bloodstream twice as fast.
-  
+
   [color=#999999][italic]Medicine that metabolise at [bold]0.5 units[/bold] per tick will instead metabolise [bold]1 unit[/bold] per tick. Healing amounts are not changed.[italic][/color]
   - Poisons metabolise at [color=yellow]double strength[/color] making them last in their bloodstreams twice as long.
-  
+
   [color=#999999][italic]Poisons that metabolise at [bold]0.5 units[/bold] per tick will instead metabolise [bold]0.25 units[/bold] per tick. Poison damage or effects are not changed.[italic][/color]
 
   ## Resistance to Movement Speed Changes
   Cyclorites being heavy and strong are [color=yellow]50%[/color] less affected by ailments and clothing that [color=yellow]increase or decrease[/color] their speed. Cyclorites are still slowed [color=yellow]100%[/color] from damage.
-  
+
   [color=#999999][italic]Speed decreases such as a hardsuit that slows them down by [bold]30%[/bold] only slows them down by [bold]15%[/bold][/color][/italic]
-  
+
   [color=#999999][italic]Speed increases such as speed boots that speed you up by [bold]50%[/bold] only speed you up by [bold]25%[/bold][/color][/italic]
-  
+
 </Document>
