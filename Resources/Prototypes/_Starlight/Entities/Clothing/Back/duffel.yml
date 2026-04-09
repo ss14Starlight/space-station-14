@@ -11,7 +11,7 @@
   - type: Storage
     grid:
     - 0,0,8,4
-    
+
 - type: entity
   parent: ClothingBackpackDuffelAbductor
   id: ClothingBackpackDuffelAbductorBundle
@@ -19,7 +19,7 @@
   components:
   - type: Tag
     tags: []
-    
+
 - type: entity
   parent: ClothingBackpackDuffel
   id: ClothingBackpackDuffelRoboticist
@@ -60,7 +60,7 @@
   parent: [ClothingBackpackDuffel, BaseBlueShieldContraband]
   id: ClothingBackpackDuffelBlueShield
   name: blueshield duffel bag
-  description: The bag for a Blueshield Officer who is ready for any contingency. 
+  description: The bag for a Blueshield Officer who is ready for any contingency.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Duffels/blueshield.rsi

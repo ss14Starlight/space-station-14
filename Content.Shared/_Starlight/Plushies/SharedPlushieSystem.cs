@@ -12,7 +12,7 @@ public sealed class SharedPlushieSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         // Prevent eating for cuddly plushies
         SubscribeLocalEvent<CuddleMessageComponent, IngestibleEvent>(OnIngestible);
     }

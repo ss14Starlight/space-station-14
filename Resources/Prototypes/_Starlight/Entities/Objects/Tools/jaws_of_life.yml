@@ -1,12 +1,17 @@
 - type: entity
   name: jaws of life
-  parent: SyndicateJawsOfLife
+  parent: JawsOfLife
   id: SyndicateJawsOfLifeStealth # For the saboteur borg: It's syndie jaws painted as normal jaws.
-  description: A set of jaws of life, compressed through the magic of science.
+  description: A set of jaws of life. The paint job seems to be a bit strange...
   components:
-  - type: Sprite
-    sprite: Objects/Tools/jaws_of_life.rsi
-    state: jaws_pry
+  - type: Prying
+    force: true
+    speedModifier: 3.0
+    playSoundOnDoafter: false
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 14
 
 - type: entity
   name: medical jaws of life

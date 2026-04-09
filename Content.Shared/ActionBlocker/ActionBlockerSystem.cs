@@ -82,7 +82,7 @@ namespace Content.Shared.ActionBlocker
         {
             if (!CanConsciouslyPerformAction(user))
                 return false;
-            
+
             if (HasComp<StationAiOverlayComponent>(user) && HasComp<AbductorScientistComponent>(user) || HasComp<StationAiOverlayComponent>(user) && HasComp<AbductorAgentComponent>(user))
                 return false;
 

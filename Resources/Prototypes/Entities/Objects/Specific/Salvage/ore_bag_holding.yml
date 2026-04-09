@@ -9,7 +9,7 @@
     verbToggleOn: "Activate Magnet"
     verbToggleOff: "Deactivate Magnet"
   - type: ComponentToggler
-    components: 
+    components:
     - type: MagnetPickup
       range: 2
       requiresEquipping: false  # Starlight Edit - make it work even without being equipped

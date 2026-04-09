@@ -6,7 +6,7 @@
   alertViewEntity: AlertVampireBloodSpriteView
   name: alerts-vampire-blood-name
   description: alerts-vampire-blood-desc
-  
+
 - type: entity
   id: AlertVampireBloodSpriteView
   categories: [ HideSpawnMenu ]

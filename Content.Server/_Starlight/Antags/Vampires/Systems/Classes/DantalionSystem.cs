@@ -24,8 +24,6 @@ using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
 using Content.Shared.Stealth.Components;
-using Content.Server.Objectives;
-using Content.Server.Objectives.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
@@ -34,6 +32,7 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Prototypes;
 using Content.Server.EUI;
+using Content.Server.Roles;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -49,9 +48,7 @@ public sealed class DantalionSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!;
-    [Dependency] private readonly ObjectivesSystem _objectives = default!;
     [Dependency] private readonly Content.Shared.Mind.SharedMindSystem _mind = default!;
-    [Dependency] private readonly TargetObjectiveSystem _targetObjectives = default!;
     [Dependency] private readonly VampireSystem _vampire = default!;
     [Dependency] private readonly Content.Server.Actions.ActionsSystem _actions = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -70,6 +67,7 @@ public sealed class DantalionSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly EuiManager _euiMan = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly RoleSystem _role = default!;
 
     public override void Initialize()
     {
@@ -94,6 +92,9 @@ public sealed class DantalionSystem : EntitySystem
         SubscribeLocalEvent<VampireThrallComponent, DamageBeforeApplyEvent>(OnThrallDamage);
     }
 
+    /// <summary>
+    /// Check if a thrall has meet conditions for de-conversion every frame
+    /// </summary>
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -105,23 +106,27 @@ public sealed class DantalionSystem : EntitySystem
             if (!Exists(uid))
                 continue;
 
-            var holywater = _solution.GetTotalPrototypeQuantity(uid, thrall.HolyWaterReagentId);
-            if (holywater <= FixedPoint2.Zero)
-                continue;
-
-            thrall.HolyWaterConsumed += holywater;
-
+            thrall.HolyWaterConsumed = _solution.GetTotalPrototypeQuantity(uid, thrall.HolyWaterReagentId);
             if (thrall.HolyWaterConsumed >= thrall.HolyWaterToBreakFree)
             {
+                if (!TryReleaseThrall(uid))
+                    continue;
                 _popup.PopupEntity(Loc.GetString("vampire-thrall-holy-water-freed"), uid, uid, PopupType.Medium);
-                RemComp<VampireThrallComponent>(uid);
             }
+            else if (HasComp<MindShieldComponent>(uid))
+            {
+                if (!TryReleaseThrall(uid))
+                    continue;
+                _popup.PopupEntity(Loc.GetString("vampire-thrall-released"), uid, uid, PopupType.Medium);
+            }
+            else
+                continue;
         }
     }
 
     private void OnBloodDrank(EntityUid uid, DantalionComponent dantalion, ref VampireBloodDrankEvent args)
     {
-        if (!TryComp<VampireComponent>(uid, out var vampire) || vampire.TotalBlood < 300)
+        if (!TryComp<VampireComponent>(uid, out var vampire) || vampire.TotalBlood < dantalion.HealBloodThreshold)
             return;
 
         HealDantalionThralls((uid, dantalion));
@@ -129,6 +134,9 @@ public sealed class DantalionSystem : EntitySystem
 
     #region Enthrall
 
+    /// <summary>
+    /// Checks if a target can be enthralled and starts a do after if they can be
+    /// </summary>
     private void OnEnthrall(EntityUid uid, DantalionComponent dantalion, ref VampireEnthrallActionEvent args)
     {
         if (args.Handled || !Exists(args.Target))
@@ -148,7 +156,7 @@ public sealed class DantalionSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), uid, uid, PopupType.MediumCaution);
             return;
         }
-        
+
         if (!IsValidEnthrallTarget(uid, target))
         {
             _popup.PopupEntity(Loc.GetString("vampire-enthrall-invalid"), uid, uid, PopupType.MediumCaution);
@@ -192,6 +200,9 @@ public sealed class DantalionSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("vampire-enthrall-start", ("target", Identity.Entity(target, EntityManager))), uid, uid);
     }
 
+    /// <summary>
+    /// double checks the target can be enthralled and subtract blood from vampire to then give the target the thrall comp, objective, mind comp, and hivemind along with triggering a pop-up to inform the player they have been enthralled
+    /// </summary>
     private void OnEnthrallDoAfter(EntityUid uid, DantalionComponent dantalion, ref VampireEnthrallDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled || args.Target == null)
@@ -240,22 +251,20 @@ public sealed class DantalionSystem : EntitySystem
         args.Handled = true;
     }
 
+    /// <summary>
+    /// Attempts to apply the thrall objective and gives them the pop-up if it has been applied
+    /// </summary>
     private void TryAssignThrallObeyObjective(EntityUid master, EntityUid thrall)
     {
-        if (!_mind.TryGetMind(thrall, out var thrallMindId, out var thrallMind)
-            || !_mind.TryGetMind(master, out var masterMindId, out _))
+        if (!_mind.TryGetMind(thrall, out var thrallMindId, out var thrallMind))
             return;
 
-        var objective = _objectives.TryCreateObjective(thrallMindId, thrallMind, ThrallObeyMasterObjectiveId);
-        if (objective == null)
-            return;
-        
+        _role.MindAddRole(thrallMindId, "MindRoleThrall", thrallMind, true);
+        _mind.TryAddObjective(thrallMindId, thrallMind, ThrallObeyMasterObjectiveId);
+
         //adds pop-up for target informing them they have been enthralled
         if (_player.TryGetSessionById(thrallMind.UserId, out var session))
             _euiMan.OpenEui(new VampireThrallEui(), session);
-
-        _targetObjectives.SetTarget(objective.Value, masterMindId);
-        _mind.AddObjective(thrallMindId, thrallMind, objective.Value);
     }
 
     private void OnThrallShutdown(EntityUid uid, VampireThrallComponent component, ComponentShutdown args)
@@ -265,9 +274,6 @@ public sealed class DantalionSystem : EntitySystem
             return;
 
         dantalion.ThrallSlotsUsed = Math.Max(0, dantalion.ThrallSlotsUsed - 1);
-
-        if (!TerminatingOrDeleted(uid))
-            _popup.PopupEntity(Loc.GetString("vampire-thrall-released"), uid, uid, PopupType.SmallCaution);
     }
 
     private void OnDantalionShutdown(EntityUid uid, DantalionComponent component, ComponentShutdown args)
@@ -279,23 +285,54 @@ public sealed class DantalionSystem : EntitySystem
             return;
 
         foreach (var thrall in component.Thralls.ToArray())
-            ReleaseThrall(uid, component, thrall);
+            TryReleaseThrall(thrall);
     }
 
-    private void ReleaseThrall(EntityUid master, DantalionComponent component, EntityUid thrall)
+    /// <summary>
+	///     Called if a thrall is to be released from their master. Removes the antag component, objectives, role, and hivemind from the player
+	/// </summary>
+    private bool TryReleaseThrall(EntityUid thrall)
     {
-        if (!TryComp<VampireThrallComponent>(thrall, out var thrallComp) || thrallComp.Master != master)
+        if (!TryComp<VampireThrallComponent>(thrall, out var comp))
+            return false;
+
+        var stunTime = comp.DeconvertStunDuration;
+
+        _stun.TryUpdateParalyzeDuration(thrall, stunTime);
+
+        if (_mind.TryGetMind(thrall, out var mindId, out var mind))
         {
-            component.Thralls.Remove(thrall);
-            return;
+            //Remove objectives
+            if (_mind.TryFindObjective((mindId, mind), ThrallObeyMasterObjectiveId, out var Objective) && Objective != null)
+                _mind.TryRemoveObjective(mindId, mind, Objective.Value);
+            //Remove role
+            _role.MindRemoveRole<VampireThrallComponent>(mindId);
         }
 
+        if (comp.Master is { } master && TryComp(master, out DantalionComponent? dantalion))
+        {
+            dantalion.BloodBondLinkedThralls.Remove(thrall);
+
+            if (TryComp<VampireBloodBondBeamComponent>(master, out var beamComp) &&
+                beamComp.ActiveBeams.Remove(thrall, out var connection))
+            {
+                var removeEvent = new VampireBloodBondBeamEvent(GetNetEntity(connection.Source), GetNetEntity(connection.Target), false);
+                RaiseNetworkEvent(removeEvent);
+            }
+        }
+
+        //Remove the component
         RemComp<VampireThrallComponent>(thrall);
 
         if (TryComp<CollectiveMindComponent>(thrall, out var cmComp))
             _collectiveMind.UpdateCollectiveMind(thrall, cmComp);
+
+        return true;
     }
 
+    /// <summary>
+	///     Checks if the vampire has enough blood to perform the action they are trying to perform
+	/// </summary>
     private bool TryGetActionBloodCost(EntityUid actionEntity, out int bloodCost)
     {
         bloodCost = 0;
@@ -331,10 +368,10 @@ public sealed class DantalionSystem : EntitySystem
     {
         var limit = dantalion.BaseThrallLimit;
 
-        if (comp.TotalBlood >= 400)
+        if (comp.TotalBlood >= dantalion.ThrallLevel2Blood)
             limit++;
 
-        if (comp.TotalBlood >= 600)
+        if (comp.TotalBlood >= dantalion.ThrallLevel3Blood)
             limit++;
 
         if (comp.FullPower)
@@ -370,9 +407,9 @@ public sealed class DantalionSystem : EntitySystem
         foreach (var thrall in IterateAndCheckThralls(ent))
         {
             var healSpec = new DamageSpecifier();
-            healSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_bruteGroupId), -FixedPoint2.New(3));
-            healSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_burnGroupId), -FixedPoint2.New(3));
-            healSpec += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_asphyxiationTypeId), -FixedPoint2.New(5));
+            healSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_bruteGroupId), -dantalion.ThrallHealBrute);
+            healSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_burnGroupId), -dantalion.ThrallHealBurn);
+            healSpec += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_asphyxiationTypeId), -dantalion.ThrallHealAsphyxiation);
             _damageableSystem.TryChangeDamage(thrall, healSpec, true);
         }
     }
@@ -580,7 +617,7 @@ public sealed class DantalionSystem : EntitySystem
         {
             if (!Exists(thrall))
                 continue;
-            
+
             // Remove stuns
             if (HasComp<StunnedComponent>(thrall))
                 RemComp<StunnedComponent>(thrall);

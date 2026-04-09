@@ -55,7 +55,7 @@
     - type: Tag
       tags:
       - HighRiskItem
-    
+
 - type: entity
   parent: BaseComputerCircuitboard
   id: MiningShuttleConsoleCircuitboard

@@ -58,7 +58,7 @@ public sealed class FlavorProfileSystem : EntitySystem
         if (TryComp<UnableToTasteComponent>(user, out var _))
             return Loc.GetString(BlandFlavorMessage);
         // Starlight-edit: end
-            
+
         var flavors = GetFlavorsFromReagents(solution, FlavorLimit);
         var ev = new FlavorProfileModificationEvent(user, flavors);
         RaiseLocalEvent(user, ev, true);

@@ -66,7 +66,7 @@
   - DiamondGasTurbineBlade
   - GoldGasTurbineBlade
   - PlasteelGasTurbineBlade
- 
+
 - type: latheRecipePack
   id: GasTurbineStators
   recipes:

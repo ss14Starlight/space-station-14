@@ -25,7 +25,7 @@
         </ColorBox>
         <ColorBox>
             <Box>
-                Neutron Stimulated Emmission Chance 
+                Neutron Stimulated Emmission Chance
             </Box>
         </ColorBox>
         <ColorBox>
@@ -48,7 +48,7 @@
                 Reflection Chance
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#bfc031">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Bananium
@@ -89,7 +89,7 @@
                 [protodata="BananiumReactorFuelRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#566558">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Bohrum
@@ -130,7 +130,7 @@
                 [protodata="BohrumReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#b18b25">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Brass
@@ -171,7 +171,7 @@
                 [protodata="BrassReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#828aa4">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Cerenkite
@@ -212,7 +212,7 @@
                 [protodata="CerenkiteReactorFuelRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#80ffff">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Diamond
@@ -253,7 +253,7 @@
                 [protodata="DiamondReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#a8ccd7">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Glass
@@ -294,7 +294,7 @@
                 [protodata="GlassReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#ffd700">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Gold
@@ -335,7 +335,7 @@
                 [protodata="GoldReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#7e009e">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Plasma
@@ -376,7 +376,7 @@
                 [protodata="PlasmaReactorFuelRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#b35989">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Plasma Glass
@@ -417,7 +417,7 @@
                 [protodata="PlasmaGlassReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#696969">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Plasteel
@@ -458,7 +458,7 @@
                 [protodata="PlasteelReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#404888">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Plutonium
@@ -499,7 +499,7 @@
                 [protodata="PlutoniumReactorFuelRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#c0c0c0">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Silver
@@ -540,7 +540,7 @@
                 [protodata="SilverReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#808080">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Steel
@@ -581,7 +581,7 @@
                 [protodata="SteelReactorControlRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#32a852">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Uranium
@@ -622,7 +622,7 @@
                 [protodata="UraniumReactorFuelRod" comp="ReactorPart" member="GuidebookReflectChance"/]
             </Box>
         </ColorBox>
-        
+
         <ColorBox Color="#3cab38">
             <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
                 Uranium Glass
@@ -673,7 +673,7 @@
 
 	# Turbine Part Material Effects
 	These tables list the effects of each material within the turbine.
-	
+
 	## Blades
 	<Table Columns="3">
 		<ColorBox>
@@ -785,7 +785,7 @@
 				Efficiency
 			</Box>
 		</ColorBox>
-		
+
 		<ColorBox Color="#ffd700">
 			<Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
 				Gold

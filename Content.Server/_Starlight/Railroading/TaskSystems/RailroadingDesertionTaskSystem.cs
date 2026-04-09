@@ -51,7 +51,7 @@ public sealed partial class RailroadingDesertionTaskSystem : EntitySystem
             Progress = ent.Comp.IsCompleted ? 1.0f : 0.0f,
         });
 
-    private void OnTaskCompletionQuery(Entity<RailroadDesertionTaskComponent> ent, ref RailroadingCardCompletionQueryEvent args) 
+    private void OnTaskCompletionQuery(Entity<RailroadDesertionTaskComponent> ent, ref RailroadingCardCompletionQueryEvent args)
         => args.IsCompleted = ent.Comp.IsCompleted;
 
     private bool IsOnStation(Entity<RailroadableComponent> subject)

@@ -8,7 +8,7 @@
     tags:
     - CombatKnife
     - Knife
-  - type: Sprite 
+  - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/finka.rsi
     state: icon
   - type: MeleeWeapon
@@ -43,7 +43,6 @@
     - ForceableFollow
   - type: Item
     sprite: _Starlight/Objects/Weapons/Melee/finka_admeme.rsi
-  - type: Sprite 
+  - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/finka_admeme.rsi
     state: icon
-  
