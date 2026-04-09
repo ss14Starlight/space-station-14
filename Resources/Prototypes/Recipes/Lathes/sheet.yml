@@ -2,7 +2,7 @@
   id: SheetSteel
   printTicket: true
   result: SheetSteel1
-  completetime: 0.1
+  completetime: 0.1 # Starlight-edit
   materials:
     RawIron: 100
     Coal: 30
@@ -21,7 +21,7 @@
   id: SheetGlass1
   printTicket: true
   result: SheetGlass1
-  completetime: 0.1
+  completetime: 0.1 # Starlight-edit
   materials:
     RawQuartz: 100
 
@@ -50,7 +50,7 @@
   id: SheetRGlassRaw
   printTicket: true
   result: SheetRGlass1
-  completetime: 0.1
+  completetime: 0.1 # Starlight-edit
   materials:
     RawQuartz: 100
     RawIron: 50
@@ -71,7 +71,7 @@
   id: SheetPGlass1
   printTicket: true
   result: SheetPGlass1
-  completetime: 0.1
+  completetime: 0.1 # Starlight-edit
   materials:
     RawQuartz: 100
     RawPlasma: 100
@@ -90,7 +90,7 @@
   id: SheetRPGlass1
   printTicket: true
   result: SheetRPGlass1
-  completetime: 0.1
+  completetime: 0.1 # Starlight-edit
   materials:
     RawQuartz: 100
     RawPlasma: 100
@@ -113,7 +113,7 @@
   id: SheetPlasma1
   printTicket: true
   result: SheetPlasma1
-  completetime: 0.1
+  completetime: 0.1 # Starlight-edit
   materials:
     RawPlasma: 100
 
@@ -130,7 +130,7 @@
   id: SheetPlasteel1
   printTicket: true
   result: SheetPlasteel1
-  completetime: 0.1
+  completetime: 0.1 # Starlight-edit
   materials:
     RawPlasma: 100
     RawIron: 200 #Twice as durable as steel, Twice the material cost
@@ -160,7 +160,7 @@
   id: SheetUGlass1
   printTicket: true
   result: SheetUGlass1
-  completetime: 0.1
+  completetime: 0.1 # Starlight-edit
   materials:
     RawUranium: 100
     RawQuartz: 100
@@ -179,7 +179,7 @@
   id: SheetRUGlass1
   printTicket: true
   result: SheetRUGlass1
-  completetime: 0.1
+  completetime: 0.1 # Starlight-edit
   materials:
     RawUranium: 100
     RawQuartz: 100
@@ -237,7 +237,7 @@
   id: SheetUranium1
   printTicket: true
   result: SheetUranium1
-  completetime: 0.1
+  completetime: 0.1 # Starlight-edit
   materials:
     RawUranium: 100
 
@@ -245,7 +245,7 @@
   id: IngotGold1
   printTicket: true
   result: IngotGold1
-  completetime: 0.1
+  completetime: 0.1 # Starlight-edit
   materials:
     RawGold: 100
 
@@ -253,7 +253,7 @@
   id: IngotSilver1
   printTicket: true
   result: IngotSilver1
-  completetime: 0.1
+  completetime: 0.1 # Starlight-edit
   materials:
     RawSilver: 100
 
@@ -270,7 +270,7 @@
   id: MaterialBananium1
   printTicket: true
   result: MaterialBananium1
-  completetime: 0.1
+  completetime: 0.1 # Starlight-edit
   materials:
     RawBananium: 100
 
