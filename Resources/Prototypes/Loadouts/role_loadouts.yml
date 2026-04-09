@@ -794,9 +794,3 @@
   groups:
   - GroupEVATank
 
-# Wizard duelist from Moff Station. Placed here instead of in Moff's files since they're not a free agent here.
-- type: roleLoadout
-  id: RoleSurvivalWizardDuelist
-  groups:
-  - SurvivalExtended
-  - GroupSpeciesBreathTool
