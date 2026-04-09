@@ -1,11 +1,4 @@
 Entries:
-- author: CawsForConcern
-  changes:
-  - message: (Silica) Missing LV wire between HOP and Vault that was causing the main greenway to be unpowered.
-    type: Fix
-  id: 394601
-  time: '2026-03-26T08:12:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3946
 - author: Ohelig
   changes:
   - message: Fixes a bug where borgs lose Syndicate radio if emagged before they choose a chassis type.
@@ -775,4 +768,11 @@ Entries:
   id: 404165
   time: '2026-04-09T11:37:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4086
+- author: Unknown
+  changes:
+  - message: Directional signs no longer overlap when the camera is at 90 or 270 degrees.
+    type: Fix
+  id: 404166
+  time: '2026-04-09T11:40:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4088
 Order: -1
