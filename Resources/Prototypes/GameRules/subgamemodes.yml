@@ -97,7 +97,7 @@
     selectionTime: PrePlayerSpawn
     definitions:
     - prefRoles: [ Wizard ]
-      max: 3 # Starlight. Less egregious than the full wizard mode.
+      max: 4 # Starlight. Less egregious than the full wizard mode. Increased mildly since main wizard gamemode is gone now.
       playerRatio: 55 # Starlight, ensures Beta only has 1 wizard. Also less egregious.
       spawnerPrototype: SpawnPointGhostWizard
       roleLoadout:
