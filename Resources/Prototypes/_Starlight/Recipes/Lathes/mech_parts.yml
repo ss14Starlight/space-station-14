@@ -220,7 +220,7 @@
   completetime: 10
   materials:
     Steel: 1200
-    Bananium: 1000
+    Bananium: 1150
 
 - type: latheRecipe
   id: MechEquipmentHonkerAirHorn
@@ -230,7 +230,7 @@
   completetime: 10
   materials:
     Steel: 1200
-    bananium: 1000
+    Bananium: 1200
 
 - type: latheRecipe
   id: MechEquipmentHonkerBananaMortar

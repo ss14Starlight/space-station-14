@@ -58,7 +58,7 @@
   id: WeaponMechSpecialPieCannon
   parent: [ BaseMechWeaponRange, SpecialMechEquipment ]
   suffix: Mech Weapon, Gun, Special, Mortar
-  name: Mechanized Pie Cannon
+  name: HX-3 Mechanized Pie Cannon
   description: An instrument of clowning for the 26th century. Honk 'em all...
   components:
     - type: Sprite
