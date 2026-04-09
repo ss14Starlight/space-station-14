@@ -111,7 +111,9 @@ public sealed class AchievementSystem : EntitySystem
     public double AddProgress(Guid userId, string progressType, double amount = 1)
     {
         AddRoundProgress(userId, progressType, amount);
-        return _nullLinkPlayers.AddAchievementProgress(userId, progressType, amount);
+        var value = _nullLinkPlayers.AddAchievementProgress(userId, progressType, amount);
+        _nullLinkPlayers.SendAchievementList(userId);
+        return value;
     }
 
     public double AddProgressAndCheck(ICommonSession session, string progressType, double amount = 1)
@@ -162,6 +164,7 @@ public sealed class AchievementSystem : EntitySystem
     public void ResetProgress(Guid userId, string? progressType = null)
     {
         _nullLinkPlayers.ResetAchievementProgress(userId, progressType);
+        _nullLinkPlayers.SendAchievementList(userId);
     }
 
     public async ValueTask<bool> TryUnlockAtProgressAsync(ICommonSession session, string achievementId, string progressType, double requiredProgress, string? characterName = null)
