@@ -532,7 +532,7 @@
     tags:
     - PetWearable
     - CorgiWearable
-    - HamsterWearable
+#    - HamsterWearable # Starlight
     - ClothMade
     - WhitelistChameleon
 
