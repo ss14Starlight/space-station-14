@@ -1432,6 +1432,8 @@
     spawned:
     - id: FoodMeat
       amount: 3
+  - type: Puller
+    needsHands: false
   - type: CanHostGuardian
   - type: NPCRetaliation
     attackMemoryLength: 10
