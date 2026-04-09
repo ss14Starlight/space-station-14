@@ -16,6 +16,7 @@ public sealed class PlayerData
     public Dictionary<string, Dictionary<string, TimeSpan>> RolePlayTimePerServer { get; set; } = [];
     public ulong DiscordId { get; set; }
     public ImmutableHashSet<Achievement> UnlockedAchievements { get; set; } = [];
+    public bool AchievementCacheHydrated { get; set; }
     public ConcurrentDictionary<string, double> AchievementProgress { get; set; } = new();
 
     public void SyncRoles(PlayerRolesSyncEvent ev) => Roles = [.. ev.Roles];

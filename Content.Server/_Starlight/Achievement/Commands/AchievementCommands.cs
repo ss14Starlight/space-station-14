@@ -1,4 +1,5 @@
 using Content.Server._NullLink.PlayerData;
+using Content.Server._NullLink.Helpers;
 using Content.Server.Administration;
 using Content.Shared._Starlight.Achievement;
 using Content.Shared.Administration;
@@ -58,7 +59,9 @@ public sealed class AchievementUnlockCommand : LocalizedCommands
         }
 
         var system = _systems.GetEntitySystem<AchievementSystem>();
-        system.TryUnlockAchievement(session, args[1]);
+        system.TryUnlockAchievementAsync(session, args[1])
+            .AsTask()
+            .FireAndForget();
 
         shell.WriteLine($"Achievement '{args[1]}' unlocked for {args[0]}.");
     }
@@ -99,7 +102,9 @@ public sealed class AchievementLockCommand : LocalizedCommands
         }
 
         var system = _systems.GetEntitySystem<AchievementSystem>();
-        system.TryLockAchievement(session, args[1]);
+        system.TryLockAchievementAsync(session, args[1])
+            .AsTask()
+            .FireAndForget();
 
         shell.WriteLine($"Achievement '{args[1]}' locked for {args[0]}.");
     }

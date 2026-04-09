@@ -64,18 +64,21 @@ public sealed class AchievementSystem : EntitySystem
     }
 
     #region Achievement Management
-    public bool HasAchievementUnlocked(ICommonSession session, string achievementId)
+    private bool HasAchievementUnlocked(ICommonSession session, string achievementId)
         => _nullLinkPlayers.HasAchievementUnlocked(session.UserId, achievementId);
 
-    public bool UnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
+    public ValueTask<bool> HasAchievementUnlockedAsync(ICommonSession session, string achievementId)
+        => _nullLinkPlayers.HasAchievementUnlockedAsync(session.UserId, achievementId);
+
+    private bool UnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
         => _nullLinkPlayers.UnlockAchievement(session.UserId, achievementId, characterName ?? GetCharacterName(session));
 
-    public bool LockAchievement(ICommonSession session, string achievementId)
+    private bool LockAchievement(ICommonSession session, string achievementId)
         => _nullLinkPlayers.LockAchievement(session.UserId, achievementId);
 
-    public bool TryUnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
+    public async ValueTask<bool> TryUnlockAchievementAsync(ICommonSession session, string achievementId, string? characterName = null)
     {
-        if (HasAchievementUnlocked(session, achievementId))
+        if (await HasAchievementUnlockedAsync(session, achievementId))
             return false;
 
         var result = UnlockAchievement(session, achievementId, characterName);
@@ -88,9 +91,9 @@ public sealed class AchievementSystem : EntitySystem
         return result;
     }
 
-    public bool TryLockAchievement(ICommonSession session, string achievementId)
+    public async ValueTask<bool> TryLockAchievementAsync(ICommonSession session, string achievementId)
     {
-        if (!HasAchievementUnlocked(session, achievementId))
+        if (!await HasAchievementUnlockedAsync(session, achievementId))
             return false;
 
         var result = LockAchievement(session, achievementId);
@@ -114,14 +117,18 @@ public sealed class AchievementSystem : EntitySystem
     public double AddProgressAndCheck(ICommonSession session, string progressType, double amount = 1)
     {
         var value = AddProgress(session, progressType, amount);
-        CheckProgressAchievements(session, progressType);
+        CheckProgressAchievementsAsync(session, progressType)
+            .AsTask()
+            .FireAndForget();
         return value;
     }
 
     public double AddProgressAndCheck(Guid userId, string progressType, double amount = 1)
     {
         var value = AddProgress(userId, progressType, amount);
-        CheckProgressAchievements(userId, progressType);
+        CheckProgressAchievementsAsync(userId, progressType)
+            .AsTask()
+            .FireAndForget();
         return value;
     }
 
@@ -157,15 +164,20 @@ public sealed class AchievementSystem : EntitySystem
         _nullLinkPlayers.ResetAchievementProgress(userId, progressType);
     }
 
-    public bool TryUnlockAtProgress(ICommonSession session, string achievementId, string progressType, double requiredProgress, string? characterName = null)
+    public async ValueTask<bool> TryUnlockAtProgressAsync(ICommonSession session, string achievementId, string progressType, double requiredProgress, string? characterName = null)
     {
         if (GetProgress(session, progressType) < requiredProgress)
             return false;
 
-        return TryUnlockAchievement(session, achievementId, characterName);
+        return await TryUnlockAchievementAsync(session, achievementId, characterName);
     }
 
     public void CheckProgressAchievements(ICommonSession session, string progressType, string? characterName = null)
+        => CheckProgressAchievementsAsync(session, progressType, characterName)
+            .AsTask()
+            .FireAndForget();
+
+    public async ValueTask CheckProgressAchievementsAsync(ICommonSession session, string progressType, string? characterName = null)
     {
         foreach (var achievement in _prototypeManager.EnumeratePrototypes<AchievementPrototype>())
         {
@@ -175,19 +187,24 @@ public sealed class AchievementSystem : EntitySystem
                     : GetProgress(session, type)))
                 continue;
 
-            TryUnlockAchievement(session, achievement.ID, characterName);
+            await TryUnlockAchievementAsync(session, achievement.ID, characterName);
         }
     }
 
     public void CheckProgressAchievements(Guid userId, string progressType, string? characterName = null)
+        => CheckProgressAchievementsAsync(userId, progressType, characterName)
+            .AsTask()
+            .FireAndForget();
+
+    public async ValueTask CheckProgressAchievementsAsync(Guid userId, string progressType, string? characterName = null)
     {
         if (!_playerManager.TryGetSessionById(new NetUserId(userId), out var session))
             return;
 
-        CheckProgressAchievements(session, progressType, characterName);
+        await CheckProgressAchievementsAsync(session, progressType, characterName);
     }
 
-    public bool TryUnlockAtProgress(Guid userId, string achievementId, string progressType, double requiredProgress, string? characterName = null)
+    public async ValueTask<bool> TryUnlockAtProgressAsync(Guid userId, string achievementId, string progressType, double requiredProgress, string? characterName = null)
     {
         if (GetProgress(userId, progressType) < requiredProgress)
             return false;
@@ -195,7 +212,7 @@ public sealed class AchievementSystem : EntitySystem
         if (!_playerManager.TryGetSessionById(new NetUserId(userId), out var session))
             return false;
 
-        return TryUnlockAchievement(session, achievementId, characterName);
+        return await TryUnlockAchievementAsync(session, achievementId, characterName);
     }
     #endregion
 
@@ -268,7 +285,9 @@ public sealed class AchievementSystem : EntitySystem
                 || smokable.State != SmokableState.Lit)
                 continue;
 
-            TryUnlockAchievement(session, "oppenheimer");
+            TryUnlockAchievementAsync(session, "oppenheimer")
+                .AsTask()
+                .FireAndForget();
         }
     }
 

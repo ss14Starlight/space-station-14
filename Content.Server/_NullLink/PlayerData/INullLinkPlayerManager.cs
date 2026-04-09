@@ -20,6 +20,7 @@ public interface INullLinkPlayerManager
     ValueTask UpdateResource(ResourceChangedEvent ev);
     ValueTask<HashSet<Achievement>> GetUnlockedAchievements(Guid userId);
     bool HasAchievementUnlocked(Guid userId, string achievementId);
+    ValueTask<bool> HasAchievementUnlockedAsync(Guid userId, string achievementId);
     bool UnlockAchievement(Guid userId, string achievementId, string characterName);
     bool LockAchievement(Guid userId, string achievementId);
     ValueTask<Dictionary<string, double>> GetAchievementProgress(Guid userId);
