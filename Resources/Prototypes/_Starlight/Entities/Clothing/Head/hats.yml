@@ -673,7 +673,7 @@
     sprite: _Starlight/Clothing/Head/Hats/wizard_orange.rsi
 
 - type: entity
-  parent: ClothingHeadHatVioletwizard # Parents violet since violet wizard hat sprite base
+  parent: ClothingHeadHatWizardBase # Parents base since no hamster sprite
   id: ClothingHeadHatPeachwizard
   name: peach wizard hat
   description: A strange-looking peach hat that most certainly belongs to a powerful magic-user.
@@ -682,3 +682,9 @@
     sprite: _Starlight/Clothing/Head/Hats/wizard_peach.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/wizard_peach.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - WhitelistChameleon
