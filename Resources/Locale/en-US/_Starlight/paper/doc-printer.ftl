@@ -23,50 +23,6 @@ doc-text-printer-report-morgue =
     ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
-doc-text-printer-enemy-of-corporation-designation =
-   ⠀[logo]            [cclogo]
-
-                             [head=3]NT-CC Consortium Services[/head]
-
-                  [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
-    ────────────────────────────────────────
-   ⠀⠀             [bold]ENEMY OF CORPORATION DESIGNATION FORM[/bold]
-    ────────────────────────────────────────
-    Date and Time: [form]
-    Document Compiler: [signature]
-
-    Name of Enemy Combatant:  [form]
-    Organization of Origin: [form]
-
-    Individual is charged with the following (minimum of two) extreme, or above, crimes:
-    ⠀• [form]
-    ⠀• [form]
-
-    Additionally, the individual was found to be in possession of the following identifying item:
-    ⠀• [form]
-
-    Or, alternatively, individual has confessed, whether verbally or in writing,
-    witnessed by at least two mindshielded crewmembers, whose names are:
-    ⠀• [signature]
-    ⠀• [signature]
-
-    Authority ordering the Designation (Name + Position): [signature]
-
-   ⠀ [italic]This order can only be issued either the (Acting) Head of Security,[/italic]
-   ⠀ [italic]Captain, or Magistrate. It must be approved by at least 2[/italic]
-   ⠀ [italic]of these individuals, and they must provide their stamps.[/italic]
-   ⠀ [italic]The prisoner is to remain under watch in captivity until evacuation.[/italic]
-   ⠀ [italic]When completed, form must be faxed to CentComm with all haste.[/italic]
-   ⠀ [italic]If CentComm, or any of the above mentioned officials,[/italic]
-   ⠀ [italic]deny this motion, the prisoner must be reinstated as crew[/italic]
-   ⠀ [italic]and tried normally as per Corporate Law.[/italic]
-
-
-
-
-
-    ────────────────────────────────────────
-   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 doc-text-printer-report-station =
    ⠀[logo]            [cclogo]
@@ -1375,4 +1331,45 @@ doc-text-printer-salvagelead-report =
     Further notes: [form]
 
      ────────────────────────────────────────
+   ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
+
+doc-text-printer-enemy-of-corporation-designation =
+   ⠀[logo]            [cclogo]
+
+                             [head=3]NT-CC Consortium Services[/head]
+
+                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
+    ────────────────────────────────────────
+    ⠀⠀             [bold]ENEMY OF CORPORATION DESIGNATION FORM[/bold]
+    ────────────────────────────────────────
+    Date and Time: [form]
+    Document Compiler: [signature]
+
+    Name of Enemy Combatant:  [form]
+    Organization of Origin: [form]
+
+    Individual is charged with the following (minimum of two) extreme, or above, crimes:
+    ⠀• [form]
+    ⠀• [form]
+
+    Additionally, the individual has tied themselves to the enemy organization with the following contraband or crime.
+    This contraband or crime must not be the same as the two extreme crimes mentioned above.
+    ⠀• [form]
+
+    Alternatively, individual has confessed their allegiance, whether verbally or in writing.
+    This was witnessed by at least two mindshielded crewmembers, whose signatures are below.
+    ⠀• [signature]
+    ⠀• [signature]
+
+    Authority ordering the Designation (Name + Position): [signature]
+
+   ⠀ [italic]This order can only be issued either the (Acting) Head of Security,[/italic]
+   ⠀ [italic]Captain, or Magistrate. It must be approved by at least 2[/italic]
+   ⠀ [italic]of these individuals, and they must provide their stamps.[/italic]
+   ⠀ [italic]The prisoner is to remain under watch in captivity until evacuation.[/italic]
+   ⠀ [italic]When completed, form must be faxed to CentComm with all haste.[/italic]
+   ⠀ [italic]If CentComm, or any of the above mentioned officials,[/italic]
+   ⠀ [italic]deny this motion, the prisoner must be reinstated as crew[/italic]
+   ⠀ [italic]and tried normally as per Corporate Law.[/italic]
+    ────────────────────────────────────────
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
