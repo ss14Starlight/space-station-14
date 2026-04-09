@@ -1,13 +1,4 @@
 Entries:
-- author: Kirb
-  changes:
-  - message: Felionoids, avali, dwarves, and resomi are significantly more yoinkable, it takes 3 seconds to pick them up.
-    type: Tweak
-  - message: lagomorphs, vulps, cyclorite, diona and shadekin are actually heavy, and take 7.5 seconds to pick up.
-    type: Tweak
-  id: 390801
-  time: '2026-03-27T04:54:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3908
 - author: mikeysaurus
   changes:
   - message: Adds new CentComm Turnstiles, immune to Syndicate tampering, in fashionable green and gold, for use in Centcomm Outposts.
@@ -737,4 +728,11 @@ Entries:
   id: 404176
   time: '2026-04-09T11:45:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4052
+- author: HoofedEar
+  changes:
+  - message: R&D computers can no longer reroll available research by being rebuilt repeatedly.
+    type: Fix
+  id: 404177
+  time: '2026-04-09T15:17:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4094
 Order: -1
