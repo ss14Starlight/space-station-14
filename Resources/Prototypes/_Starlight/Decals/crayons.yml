@@ -265,7 +265,7 @@
   defaultCustomColor: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/graffiti.rsi/12tie.rsi
+    sprite: _Starlight/Decals/12tie.rsi
     state: blackclaw
 
 - type: decal
@@ -275,7 +275,7 @@
   defaultCustomColor: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/graffiti.rsi/12tie.rsi
+    sprite: _Starlight/Decals/12tie.rsi
     state: circle
 
 - type: decal
@@ -285,7 +285,7 @@
   defaultCustomColor: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/graffiti.rsi/12tie.rsi
+    sprite: _Starlight/Decals/12tie.rsi
     state: circle_dirty
 
 - type: decal
@@ -295,7 +295,7 @@
   defaultCustomColor: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/graffiti.rsi/12tie.rsi
+    sprite: _Starlight/Decals/12tie.rsi
     state: crosshairs
 
 - type: decal
@@ -305,7 +305,7 @@
   defaultCustomColor: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/graffiti.rsi/12tie.rsi
+    sprite: _Starlight/Decals/12tie.rsi
     state: meow
 
 - type: decal
@@ -315,7 +315,7 @@
   defaultCustomColor: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/graffiti.rsi/12tie.rsi
+    sprite: _Starlight/Decals/12tie.rsi
     state: pulse
 
 - type: decal
@@ -325,5 +325,5 @@
   defaultCustomColor: true
   defaultSnap: false
   sprite:
-    sprite: _Starlight/Decals/graffiti.rsi/12tie.rsi
+    sprite: _Starlight/Decals/12tie.rsi
     state: square
