@@ -79,14 +79,14 @@ public sealed class LightDebugOverlay : Robust.Client.Graphics.Overlay
         for (var i = 0; i < msg.OverlayData.Length; i++)
         {
             var intensity = msg.OverlayData[i];
-            if (intensity is null)
+            if (intensity <= 0f)
                 continue;
 
             var x = i % range;
             var y = i / range;
             var tile = new Vector2i(baseIdx.X + x, baseIdx.Y + y);
 
-            var normalized = Math.Clamp(intensity.Value / 15f, 0f, 1f);
+            var normalized = Math.Clamp(intensity / 15f, 0f, 1f);
 
             Color color;
             if (normalized < 0.5f)
@@ -134,15 +134,15 @@ public sealed class LightDebugOverlay : Robust.Client.Graphics.Overlay
                 continue;
 
             var intensity = msg.OverlayData[i];
-            if (intensity is null)
+            if (intensity <= 0f)
                 continue;
 
-            var state = GetShadekinState(intensity.Value);
+            var state = GetShadekinState(intensity);
             var lineHeight = _font.GetLineHeight(1f);
             var offset = new Vector2(0, lineHeight);
             var pos = mousePos.Position + new Vector2(12, 12);
 
-            handle.DrawString(_font, pos, $"Light: {intensity.Value.ToString("F2", CultureInfo.InvariantCulture)}");
+            handle.DrawString(_font, pos, $"Light: {intensity.ToString("F2", CultureInfo.InvariantCulture)}");
             pos += offset;
             handle.DrawString(_font, pos, $"State: {state}");
             pos += offset;

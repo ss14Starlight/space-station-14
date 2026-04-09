@@ -42,21 +42,6 @@ public sealed class LightGridSystem : EntitySystem
 
     private LightJob _job;
 
-    private record struct LightSourceData(
-        Vector2i Tile,
-        float Radius,
-        float Brightness,
-        Angle Direction,
-        bool CastShadows,
-        bool Directional);
-
-    private record struct WorldLightSourceData(
-        Vector2 Position,
-        float Radius,
-        float Brightness,
-        Angle Direction,
-        bool Directional);
-
     public override void Initialize()
     {
         base.Initialize();
