@@ -380,3 +380,43 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+#Pews
+- type: construction
+  id: PewEndLeft
+  name: construction-recipe-pew-left
+  graph: BenchSL
+  startNode: start
+  targetNode: pewLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: PewMiddle
+  name: construction-recipe-pew-mid
+  graph: BenchSL
+  startNode: start
+  targetNode: pewMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: PewEndRight
+  name: construction-recipe-pew-right
+  graph: BenchSL
+  startNode: start
+  targetNode: pewRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

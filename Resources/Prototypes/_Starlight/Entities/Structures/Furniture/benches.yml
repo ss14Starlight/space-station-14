@@ -48,6 +48,9 @@
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/Benches/pew_end_left.rsi
     state: base
+  - type: Construction
+    graph: BenchSL
+    node: pewLeft
 
 - type: entity
   name: Wood Pew
@@ -58,6 +61,9 @@
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/Benches/pew_end_right.rsi
     state: base
+  - type: Construction
+    graph: BenchSL
+    node: pewMid
 
 - type: entity
   name: Wood Pew
@@ -68,6 +74,9 @@
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/Benches/pew_middle.rsi
     state: base
+  - type: Construction
+    graph: BenchSL
+    node: pewRight
 
 #region Bench White
 - type: entity

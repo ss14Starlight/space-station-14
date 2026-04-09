@@ -32,6 +32,10 @@ construction-recipe-comfy-bench-green-left = comfortable bench (green, end, left
 construction-recipe-comfy-bench-green-right = comfortable bench (green, end, right)
 construction-recipe-comfy-bench-green-mid = comfortable bench (green, middle)
 
+construction-recipe-pew-left = wooden pew (left)
+construction-recipe-pew-mid = wooden pew (middle)
+construction-recipe-pew-right = wooden pew (right)
+
 ##Sofas
 construction-recipe-sofa-gray-corner = sofa (gray, corner)
 construction-recipe-sofa-gray-left = sofa (gray, end, left)
@@ -62,3 +66,7 @@ construction-recipe-sofa-brown-corner = sofa (brown, corner)
 construction-recipe-sofa-brown-left = sofa (brown, end, left)
 construction-recipe-sofa-brown-right = sofa (brown, end, right)
 construction-recipe-sofa-brown-mid = sofa (brown, middle)
+
+construction-recipe-booth-left = diner booth (left)
+construction-recipe-booth-mid = diner booth (middle)
+construction-recipe-booth-right = diner booth (right)

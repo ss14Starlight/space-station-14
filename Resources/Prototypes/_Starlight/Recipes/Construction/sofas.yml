@@ -317,3 +317,42 @@
   conditions:
     - !type:TileNotBlocked
 
+#region Dinner booths
+- type: construction
+  id: DinerEndLeft
+  name: construction-recipe-booth-left
+  graph: SofaSL
+  startNode: start
+  targetNode: boothLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: DinerMiddle
+  name: construction-recipe-booth-mid
+  graph: SofaSL
+  startNode: start
+  targetNode: boothMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: DinerRight
+  name: construction-recipe-booth-right
+  graph: SofaSL
+  startNode: start
+  targetNode: boothRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

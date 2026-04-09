@@ -16,6 +16,9 @@
     bodyType: Static
   - type: StaticPrice
     price: 35
+  - type: Construction
+    graph: SofaSL
+    node: boothLeft
 
 - type: entity
   name: diner booth
@@ -34,6 +37,9 @@
     bodyType: Static
   - type: StaticPrice
     price: 35
+  - type: Construction
+    graph: SofaSL
+    node: boothRight
 
 - type: entity
   name: diner booth
@@ -52,6 +58,9 @@
     bodyType: Static
   - type: StaticPrice
     price: 35
+  - type: Construction
+    graph: SofaSL
+    node: boothMid
 
 #region Sofa Fancy
 - type: entity

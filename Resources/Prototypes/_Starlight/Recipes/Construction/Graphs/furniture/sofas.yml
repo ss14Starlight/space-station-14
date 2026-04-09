@@ -180,6 +180,28 @@
               doAfter: 1
             - material: Cloth
               amount: 1
+#region Booths
+        - to: boothLeft
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+            - material: Plastic
+              amount: 2
+        - to: boothRight
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+            - material: Plastic
+              amount: 2
+        - to: boothMid
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+            - material: Plastic
+              amount: 2
 
 #region Node-Gray
     - node: graySofaCorner
@@ -543,6 +565,52 @@
             - !type:SpawnPrototype
               prototype: MaterialCloth1
               amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+#region Node-Booths
+
+    - node: boothLeft
+      entity: DinerEndLeft
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: boothRight
+      entity: DinerEndRight
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: boothMid
+      entity: DinerMiddle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 2
           steps:
             - tool: Screwing
               doAfter: 2

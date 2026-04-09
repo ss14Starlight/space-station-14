@@ -151,6 +151,22 @@
               doAfter: 1
             - material: Cloth
               amount: 1
+#region Wooden Pews
+        - to: pewLeft
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 1
+        - to: pewMid
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 1
+        - to: pewRight
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 1
 
 #region Node-White
     - node: whiteComfBenchCorner
@@ -453,6 +469,43 @@
             - !type:SpawnPrototype
               prototype: MaterialCloth1
               amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+#region Node-Wooden Pews
+    - node: pewLeft
+      entity: PewEndLeft
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 4
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: pewMid
+      entity: PewMiddle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 4
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: pewRight
+      entity: PewEndRight
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 4
           steps:
             - tool: Screwing
               doAfter: 2
