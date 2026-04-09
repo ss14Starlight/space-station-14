@@ -119,7 +119,8 @@
   - type: SolutionScanner
   - type: IgnoreUIRange
   - type: ShowAntagIcons
-  - type: ShowCriminalRecordIcons # Starlight BEGIN
+  - type: AdminGhostHud # Starlight BEGIN
+  - type: ShowCriminalRecordIcons
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
   - type: ShowSyndicateIcons

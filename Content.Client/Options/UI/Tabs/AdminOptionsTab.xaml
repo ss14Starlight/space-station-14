@@ -4,6 +4,15 @@
     <BoxContainer Orientation="Vertical">
         <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
             <BoxContainer Orientation="Vertical" Margin="8">
+                <!-- Starlight BEGIN -->
+                <Label Text="{Loc 'ui-options-admin-ghost-hud'}"
+                       StyleClasses="LabelKeyText"/>
+                <CheckBox Name="EnableAGhostJobIcons" Text="{Loc 'ui-options-admin-ghost-hud-show-job-icons'}" />
+                <CheckBox Name="EnableAGhostMindshieldIcons" Text="{Loc 'ui-options-admin-ghost-hud-show-mindshield-icons'}" />
+                <CheckBox Name="EnableAGhostCriminalRecordIcons" Text="{Loc 'ui-options-admin-ghost-hud-show-criminal-record-icons'}" />
+                <CheckBox Name="EnableAGhostFactionIcons" Text="{Loc 'ui-options-admin-ghost-hud-show-faction-icons'}" />
+                <CheckBox Name="EnableAGhostHealthBars" Text="{Loc 'ui-options-admin-ghost-hud-show-health-bars'}" />
+                <!-- Starlight END -->
                 <Label Text="{Loc 'ui-options-admin-player-panel'}"
                        StyleClasses="LabelKeyText"/>
                 <ui:OptionDropDown Name="DropDownPlayerTabSymbolSetting" Title="{Loc 'ui-options-admin-player-tab-symbol-setting'}" />

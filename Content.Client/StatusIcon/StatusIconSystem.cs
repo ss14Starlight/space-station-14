@@ -1,5 +1,8 @@
+using Content.Shared._Starlight.UI;
 using Content.Shared.CCVar;
 using Content.Shared.Ghost;
+using Content.Shared.Overlays;
+using Content.Shared.Starlight.CCVar;
 using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Content.Shared.Stealth.Components;
@@ -20,6 +23,8 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
     [Dependency] private readonly IOverlayManager _overlay = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
+
+    private static readonly string MindShieldIconId = "MindShieldIcon";
 
     private bool _globalEnabled;
     private bool _localEnabled;
@@ -76,6 +81,26 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
         // Always show our icons to our entity
         if (viewer == ent.Owner)
             return true;
+
+        // Starlight BEGIN: Client settings decides if these icons are shown for Admin ghosts.
+        if (HasComp<AdminGhostHudComponent>(viewer))
+        {
+            switch (data)
+            {
+                case JobIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostJobIcons):
+                case FactionIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostFactionIcons):
+                case HealthIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostHealthBars):
+                case SecurityIconPrototype mindshieldIcon when
+                    mindshieldIcon.ID == MindShieldIconId && (
+                        !_configuration.GetCVar(StarlightCCVars.AdminGhostJobIcons) ||
+                        !_configuration.GetCVar(StarlightCCVars.AdminGhostMindshieldIcons)):
+                case SecurityIconPrototype criminalRecordIcon
+                    when criminalRecordIcon.ID != MindShieldIconId &&
+                         !_configuration.GetCVar(StarlightCCVars.AdminGhostCriminalRecordIcons):
+                    return false;
+            }
+        }
+        // Starlight END
 
         if (data.VisibleToGhosts && HasComp<GhostComponent>(viewer))
             return true;

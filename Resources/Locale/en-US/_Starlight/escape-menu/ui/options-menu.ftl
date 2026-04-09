@@ -35,3 +35,13 @@ ui-options-ranged-sight-scale = Sights Scale
 ui-options-ranged-sight-offset = Sights Basic Offset
 ui-options-sight-main-color = Sight Main Color
 ui-options-sight-second-color = Sight Second Color
+
+## Admin
+
+ui-options-admin-ghost-hud = Admin Ghost HUD
+
+ui-options-admin-ghost-hud-show-job-icons = Show job icons
+ui-options-admin-ghost-hud-show-mindshield-icons = Show mindshield outline (requires job icons)
+ui-options-admin-ghost-hud-show-criminal-record-icons = Show criminal record icons
+ui-options-admin-ghost-hud-show-faction-icons = Show faction icons
+ui-options-admin-ghost-hud-show-health-bars = Show health bars
