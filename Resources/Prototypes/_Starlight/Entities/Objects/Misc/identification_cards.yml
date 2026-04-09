@@ -370,6 +370,16 @@
     listNumber: false
 
 - type: entity
+  parent: AssistantDerelictBorgiIDCard
+  id: XenoborgiIDCard
+  name: xenoborgi ID card
+  suffix: Xenoborgi
+  components:
+    - type: IdCard
+      jobTitle: chat-radio-xenoborg
+      jobIcon: JobIconXenoborg
+
+- type: entity
   parent: IDCardStandard
   id: CentcomIDCardNTSF
   name: NTSF ID card
