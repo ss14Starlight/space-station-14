@@ -59,6 +59,7 @@
     damageContainers:
     - Inorganic
     - Silicon
+    - IPC
   - type: ShowAccessReaderSettings
   # Starlight end
 

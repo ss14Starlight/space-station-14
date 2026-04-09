@@ -92,7 +92,7 @@
       - allowedTags: [IPC]
         healing:
           damageContainers:
-            - Biological
+            - IPC
           damage: {}
           delay: 2
           adjustEyeDamage: -1 # 1 glass = 1 weld

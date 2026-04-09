@@ -29,6 +29,7 @@ using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
 using Content.Shared.Starlight;
 using Content.Shared.Starlight.CCVar;
+using Robust.Shared.Utility;
 #endregion Starlight
 
 /*
@@ -93,13 +94,24 @@ namespace Content.Server.Connection
         private IPIntel.IPIntel _ipintel = default!;
         private ConntrackResolver _conntrack = default!; // Starlight
 
-        private RoleRequirementPrototype? _bunkerBypass; // NullLink
+        // nulllink start
+        private RoleRequirementPrototype? _bunkerBypass;
+        private ServerPlaytimeRecognitionPrototype? _serverPlaytimeRecognition;
+        private string? _project;
+        private string? _server;
+        // nulllink end
+
         public void PostInit()
         {
             InitializeWhitelist();
-            _cfg.OnValueChanged(NullLinkCCVars.BunkerBypass, reqProtoId
-                => _bunkerBypass = _prototypeManager.TryIndex<RoleRequirementPrototype>(reqProtoId, out var proto) ? proto : null, true); // NullLink
+
             _conntrack = new ConntrackResolver(_http, _cfg, _logManager); // Starlight
+            // NullLink start
+            _cfg.OnValueChanged(NullLinkCCVars.Project, x => _project = x, true);
+            _cfg.OnValueChanged(NullLinkCCVars.Server, x => _server = x, true);
+            _cfg.OnValueChanged(NullLinkCCVars.BunkerBypass, reqProtoId
+                => _bunkerBypass = _prototypeManager.TryIndex<RoleRequirementPrototype>(reqProtoId, out var proto) ? proto : null, true);
+            // NullLink end
         }
 
         public void Initialize()
@@ -292,11 +304,9 @@ namespace Content.Server.Connection
 
                 var minMinutesAge = _cfg.GetCVar(CCVars.PanicBunkerMinAccountAge);
                 var record = await _db.GetPlayerRecordByUserId(userId);
-                var validAccountAge = record != null &&
-                                      record.FirstSeenTime.CompareTo(DateTimeOffset.UtcNow - TimeSpan.FromMinutes(minMinutesAge)) <= 0;
                 var bypassAllowed = _cfg.GetCVar(CCVars.BypassBunkerWhitelist) && await _db.GetWhitelistStatusAsync(userId);
 
-                // NullLink Bypass start
+                // NullLink
                 try
                 {
                     if (!bypassAllowed
@@ -307,7 +317,27 @@ namespace Content.Server.Connection
                 catch (Exception)
                 {
                 }
-                // NullLink Bypass end
+
+                var minOverallMinutes = _cfg.GetCVar(CCVars.PanicBunkerMinOverallMinutes);
+                var overallTime = (await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall) ?? new();
+
+                try
+                {
+                    if (_actors.TryGetServerGrain(out var serverGrain)
+                        && _prototypeManager.TryIndex<ServerPlaytimeRecognitionPrototype>(_project ?? "", out var proto)
+                        && proto.Recognition.TryGetValue(_server ?? "", out var recs))
+                    {
+                        var nulllinkPlaytime = await serverGrain.GetPlayTime(e.UserId, [PlayTimeTrackingShared.TrackerOverall], [.. recs]);
+                        overallTime.TimeSpent += TimeSpan.FromSeconds(nulllinkPlaytime.Sum(x => x.Time.TotalSeconds));
+                    }
+                }
+                catch (Exception)
+                {
+                }
+
+                var validAccountAge = record != null &&
+                      record.FirstSeenTime.CompareTo(DateTimeOffset.UtcNow - TimeSpan.FromMinutes(minMinutesAge)) <= 0;
+                // NullLink
 
                 // Use the custom reason if it exists & they don't have the minimum account age
                 if (customReason != string.Empty && !validAccountAge && !bypassAllowed)
@@ -322,8 +352,6 @@ namespace Content.Server.Connection
                             ("reason", Loc.GetString("panic-bunker-account-reason-account", ("minutes", minMinutesAge)))), null);
                 }
 
-                var minOverallMinutes = _cfg.GetCVar(CCVars.PanicBunkerMinOverallMinutes);
-                var overallTime = (await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall);
                 var haveMinOverallTime = overallTime != null && overallTime.TimeSpent.TotalMinutes > minOverallMinutes;
 
                 // Use the custom reason if it exists & they don't have the minimum time
