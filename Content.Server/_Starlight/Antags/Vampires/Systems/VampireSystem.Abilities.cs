@@ -734,12 +734,12 @@ public sealed partial class VampireSystem : EntitySystem
     /// <summary>
     /// Try to inject whatever chem is specified
     /// </summary>
-    private bool TryInjectReagents(EntityUid uid, Dictionary<string, FixedPoint2> reagents, float effectScale)
+    private bool TryInjectReagents(EntityUid target, Dictionary<string, FixedPoint2> reagents, float effectScale)
     {
         var solution = new Solution();
         foreach (var reagent in reagents)
             solution.AddReagent(reagent.Key, reagent.Value * effectScale);
-        if (!_solution.TryGetInjectableSolution(uid, out var targetSolution, out var _))
+        if (!_solution.TryGetInjectableSolution(target, out var targetSolution, out var _))
             return false;
 
         if (!_solution.TryAddSolution(targetSolution.Value, solution))
