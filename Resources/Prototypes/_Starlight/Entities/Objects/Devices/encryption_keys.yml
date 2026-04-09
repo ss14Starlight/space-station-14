@@ -183,9 +183,9 @@
     defaultChannel: Winds
   - type: Sprite
     layers:
-        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
-          state: crypt_purple
-        - state: cap_label
+    - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+      state: crypt_purple
+    - state: cap_label
 
 - type: entity
   parent: EncryptionKeyWizardMaster
