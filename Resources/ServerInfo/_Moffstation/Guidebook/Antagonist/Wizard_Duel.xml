@@ -2,7 +2,7 @@
   # Wizard Duel
 
   <Box>
-    [color=#457573][italic]I CHALLENGE THEE TO A DUEL![italic][/color]
+    [color=#457573][italic]I CHALLENGE THEE TO A DUEL![/italic][/color]
   </Box>
   <Box>
     <GuideEntityEmbed Entity="ClothingHeadHatRedwizard" Caption=""/>
