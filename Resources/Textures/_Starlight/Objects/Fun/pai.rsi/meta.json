@@ -8,13 +8,18 @@
   },
   "states": [
     {
+      "name": "wizard-pai-base",
+	  "copyright": "TG Station, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
       "name": "wizard-icon-pai-off",
-	  "copyright": "TG Station, wonderfulnewworld"
+	  "copyright": "TG Station, wonderfulnewworld",
 	  "license": "CC-BY-SA-3.0"
     },
     {
       "name": "wizard-pai-off-overlay",
-	  "copyright": "TG Station, wonderfulnewworld"
+	  "copyright": "TG Station, wonderfulnewworld",
 	  "license": "CC-BY-SA-3.0"
     },
     {
@@ -25,7 +30,7 @@
           0.8
         ]
       ],
-	  "copyright": "TG Station, wonderfulnewworld"
+	  "copyright": "TG Station, wonderfulnewworld",
 	  "license": "CC-BY-SA-3.0"
     },
     {
@@ -36,7 +41,7 @@
           0.8
         ]
       ],
-	  "copyright": "TG Station, wonderfulnewworld"
+	  "copyright": "TG Station, wonderfulnewworld",
 	  "license": "CC-BY-SA-3.0"
     }
   ]

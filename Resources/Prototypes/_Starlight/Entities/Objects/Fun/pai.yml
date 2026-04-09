@@ -31,12 +31,6 @@
     - type: Unremoveable
 
 - type: entity
-  parent: EncryptionKeyStationMaster
-  id: EncryptionKeyWizardPAI
-  components:
-    - type: Unremoveable
-
-- type: entity
   parent: PersonalAI
   id: WizardPersonalAI
   name: wizard personal ai device
@@ -58,10 +52,10 @@
   - type: ContainerFill #Starlight pAI comms rework, see PR #3299
     containers:
       key_slots:
-      - EncryptionKeyWizardPAI
-      - EncryptionKeyWindsUnremovable
+      - EncryptionKeyWizardMasterUnremovable
   - type: EncryptionKeyHolder #Starlight pAI comms rework, see PR #3299
-    keySlots: 3
+    keySlots: 2
+  - type: UniversalLanguageSpeaker
   - type: Appearance
   - type: GenericVisualizer
     visuals:

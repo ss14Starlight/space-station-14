@@ -29,6 +29,7 @@
         sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
       startingGear: WizardDuelistRedGear
       components:
+      - type: UniversalLanguageSpeaker # Starlight
       - type: NpcFactionMember
         factions:
         - Wizard
@@ -56,6 +57,7 @@
         sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
       startingGear: WizardDuelistBlueGear
       components:
+      - type: UniversalLanguageSpeaker # Starlight
       - type: NpcFactionMember
         factions:
         - Wizard
@@ -84,6 +86,7 @@
         sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
       startingGear: WizardDuelistPurpleGear # Starlight, violet -> Purple
       components:
+      - type: UniversalLanguageSpeaker # Starlight
       - type: NpcFactionMember
         factions:
         - Wizard
@@ -110,6 +113,7 @@
         sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg"
       startingGear: WizardDuelistYellowGear
       components:
+      - type: UniversalLanguageSpeaker
       - type: NpcFactionMember
         factions:
         - Wizard
@@ -136,6 +140,7 @@
         sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg"
       startingGear: WizardDuelistGreenGear
       components:
+      - type: UniversalLanguageSpeaker
       - type: NpcFactionMember
         factions:
         - Wizard
@@ -162,6 +167,7 @@
         sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg"
       startingGear: WizardDuelistOrangeGear
       components:
+      - type: UniversalLanguageSpeaker
       - type: NpcFactionMember
         factions:
         - Wizard
