@@ -1,11 +1,4 @@
 Entries:
-- author: BigfootBravo
-  changes:
-  - message: Fixed IPC heads not rendering correctly
-    type: Fix
-  id: 394501
-  time: '2026-03-26T08:04:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3945
 - author: CawsForConcern
   changes:
   - message: (Silica) Missing LV wire between HOP and Vault that was causing the main greenway to be unpowered.
@@ -775,4 +768,11 @@ Entries:
   id: 404164
   time: '2026-04-09T11:30:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4083
+- author: Unknown
+  changes:
+  - message: Monkeys and Kobolds can now taildrag again.
+    type: Fix
+  id: 404165
+  time: '2026-04-09T11:37:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4086
 Order: -1
