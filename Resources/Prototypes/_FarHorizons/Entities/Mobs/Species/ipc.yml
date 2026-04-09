@@ -212,12 +212,11 @@
         maxDistance: 5
       path: /Audio/_FarHorizons/Effects/Alerts/healthpanel-alert.ogg
     drainAllowedTargets:
+      - APCConstructed
       - APCBasic
       - APCHighCapacity
       - APCSuperCapacity
       - APCHyperCapacity
-      - SubstationBasic
-      - SubstationWallBasic
     noPowerDeathEmote: DeathgaspIPC
   - type: Deathgasp
     prototype: DeathgaspIPC
