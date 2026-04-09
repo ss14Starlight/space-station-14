@@ -1,4 +1,4 @@
-#STEEL
+#region STEEL
 - type: entity
   parent: [ BaseStructure, BaseStructureDissolvable ]
   id: RailingEnd
@@ -58,6 +58,9 @@
     delay: 2
     fx: EffectRCDDeconstruct2
   - type: Climbable
+  - type: Construction
+    graph: RailingSL
+    node: railingEnd
 
 - type: entity
   parent: [ BaseStructure, BaseStructureDissolvable ]
@@ -118,8 +121,11 @@
     delay: 2
     fx: EffectRCDDeconstruct2
   - type: Climbable
+  - type: Construction
+    graph: RailingSL
+    node: railingEndAlt
 
-# WOOD
+#region WOOD
 - type: entity
   parent: [ BaseStructure, BaseStructureDissolvable ] # Starlight-edit
   id: BaseRailingWood
@@ -162,6 +168,8 @@
     cost: 2
     delay: 2
     fx: EffectRCDDeconstruct2
+  - type: Construction
+    graph: RailingSL
 
 - type: entity
   parent: BaseRailingWood
@@ -206,6 +214,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Climbable
+  - type: Construction
+    node: railingWood
 
 - type: entity
   parent: BaseRailingWood
@@ -250,6 +260,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Climbable
+  - type: Construction
+    node: railingEndWood
 
 - type: entity
   parent: BaseRailingWood
@@ -294,6 +306,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Climbable
+  - type: Construction
+    node: railingEndAltWood
 
 - type: entity
   parent: BaseRailingWood
@@ -347,6 +361,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Climbable
+  - type: Construction
+    node: railingCornerWood
 
 - type: entity
   parent: BaseRailingWood
@@ -391,6 +407,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Climbable
+  - type: Construction
+    node: railingCornerSmallWood
 
 - type: entity
   parent: BaseRailingWood
@@ -453,8 +471,10 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Climbable
+  - type: Construction
+    node: railingRoundWood
 
-# YELLOW
+#region YELLOW
 - type: entity
   parent: [ BaseStructure, BaseStructureDissolvable ] # Starlight-edit
   id: BaseRailingYellow
@@ -502,6 +522,8 @@
     cost: 2
     delay: 2
     fx: EffectRCDDeconstruct2
+  - type: Construction
+    graph: RailingSL
 
 - type: entity
   parent: BaseRailingYellow
@@ -554,6 +576,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Climbable
+  - type: Construction
+    node: railingYellow
 
 - type: entity
   parent: BaseRailingYellow
@@ -606,6 +630,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Climbable
+  - type: Construction
+    node: railingEndYellow
 
 - type: entity
   parent: BaseRailingYellow
@@ -658,6 +684,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Climbable
+  - type: Construction
+    node: railingEndAltYellow
 
 - type: entity
   parent: BaseRailingYellow
@@ -719,6 +747,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Climbable
+  - type: Construction
+    node: railingCornerYellow
 
 - type: entity
   parent: BaseRailingYellow
@@ -771,6 +801,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Climbable
+  - type: Construction
+    node: railingCornerSmallYellow
 
 - type: entity
   parent: BaseRailingYellow
@@ -841,8 +873,10 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Climbable
+  - type: Construction
+    node: railingRoundYellow
 
-# Boxing
+#region Boxing
 - type: entity
   parent: [ BaseStructure, BaseStructureDissolvable ] # Starlight-edit
   id: BaseRailingBoxing
@@ -873,6 +907,8 @@
     cost: 2
     delay: 2
     fx: EffectRCDDeconstruct2
+  - type: Construction
+    graph: RailingSL
 
 - type: entity
   parent: BaseRailingBoxing
@@ -908,6 +944,8 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
   - type: Climbable
+  - type: Construction
+    node: railingBoxing
 
 - type: entity
   parent: BaseRailingBoxing
@@ -952,5 +990,6 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
   - type: Climbable
-
+  - type: Construction
+    node: railingCornerBoxing
 

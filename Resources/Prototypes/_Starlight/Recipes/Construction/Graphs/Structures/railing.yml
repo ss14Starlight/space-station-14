@@ -1,0 +1,333 @@
+- type: constructionGraph
+  id: RailingSL
+  start: start
+  graph:
+    - node: start
+      edges:
+#region Steel
+        - to: railingEnd
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: MetalRod
+              amount: 1
+              doAfter: 2
+        - to: railingEndAlt
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: MetalRod
+              amount: 1
+              doAfter: 2
+
+#region Wood
+        - to: railingWood
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 1
+              doAfter: 2
+        - to: railingEndWood
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 1
+              doAfter: 2
+        - to: railingEndAltWood
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 1
+              doAfter: 2
+        - to: railingCornerWood
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2.5
+        - to: railingCornerSmallWood
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 1
+              doAfter: 2
+        - to: railingRoundWood
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2
+#region Yellow
+        - to: railingYellow
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: MetalRod
+              amount: 1
+              doAfter: 2
+        - to: railingEndYellow
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: MetalRod
+              amount: 1
+              doAfter: 2
+        - to: railingEndAltYellow
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: MetalRod
+              amount: 1
+              doAfter: 2
+        - to: railingCornerYellow
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: MetalRod
+              amount: 2
+              doAfter: 2.5
+        - to: railingCornerSmallYellow
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: MetalRod
+              amount: 1
+              doAfter: 2
+        - to: railingRoundYellow
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: MetalRod
+              amount: 2
+              doAfter: 2
+#region Boxing
+        - to: railingBoxing
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Plastic
+              amount: 1
+              doAfter: 2
+        - to: railingCornerBoxing
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Plastic
+              amount: 2
+              doAfter: 2.5
+
+#region Node-Steel
+    - node: railingEnd
+      entity: RailingEnd
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+    - node: railingEndAlt
+      entity: RailingEndAlt
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+#region Node-Wood
+    - node: railingWood
+      entity: RailingWood
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+    - node: railingEndWood
+      entity: RailingWoodEnd
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+    - node: railingEndAltWood
+      entity: RailingWoodEndAlt
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+    - node: railingCornerWood
+      entity: RailingCornerWood
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+
+    - node: railingCornerSmallWood
+      entity: RailingCornerSmallWood
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+    - node: railingRoundWood
+      entity: RailingRoundWood
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+#region Node-Yellow
+    - node: railingYellow
+      entity: RailingYellow
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+    - node: railingEndYellow
+      entity: RailingYellowEnd
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+    - node: railingEndAltYellow
+      entity: RailingYellowEndAlt
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+    - node: railingCornerYellow
+      entity: RailingCornerYellow
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+
+    - node: railingCornerSmallYellow
+      entity: RailingCornerSmallYellow
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+    - node: railingRoundYellow
+      entity: RailingRoundYellow
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: PartRodMetal1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+#region Node-Boxing
+    - node: railingBoxing
+      entity: RailingBoxing
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+    - node: railingCornerBoxing
+      entity: RailingCornerBoxing
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetPlastic1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
