@@ -1,13 +1,6 @@
 Entries:
 - author: CawsForConcern
   changes:
-  - message: (Orwell) CentComm clipboard and bedsheet from NTR room, replaced with NT variants instead.
-    type: Remove
-  id: 394001
-  time: '2026-03-25T19:28:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3940
-- author: CawsForConcern
-  changes:
   - message: (Lobster) Replaced the custom Galoshnts with the real Galoshnts.
     type: Tweak
   id: 393901
@@ -775,4 +768,11 @@ Entries:
   id: 404160
   time: '2026-04-08T18:22:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4076
+- author: BigfootBravo
+  changes:
+  - message: IPCs can now draw power from newly constructed apcs.
+    type: Fix
+  id: 404161
+  time: '2026-04-09T08:16:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4089
 Order: -1
