@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/09/2026 04:31:29
-  entityCount: 1882
+  time: 04/09/2026 05:22:10
+  entityCount: 1885
 maps:
 - 411
 grids:
@@ -8095,6 +8095,23 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -30.5,11.5
+      parent: 1
+  - uid: 1883
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 31.5,11.5
+      parent: 1
+  - uid: 1884
+    components:
+    - type: Transform
+      pos: 3.5,-22.5
+      parent: 1
+  - uid: 1885
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -30.5,5.5
       parent: 1
 - proto: SpacemenFigurineSpawner90
   entities:

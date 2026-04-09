@@ -31,7 +31,7 @@
     - type: Unremoveable
 
 - type: entity
-  parent: PersonalAI
+  parent: [ PersonalAI, BaseMagicalContraband ]
   id: WizardPersonalAI
   name: wizard personal ai device
   description: Your magical pal who's fun to be with!
