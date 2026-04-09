@@ -180,6 +180,30 @@
               doAfter: 1
             - material: Cloth
               amount: 1
+
+#region Fancy
+        - to: fancyLeft
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2
+            - material: Cloth
+              amount: 2
+        - to: fancyRight
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2
+            - material: Cloth
+              amount: 2
+        - to: fancyMid
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2
+            - material: Cloth
+              amount: 2
+
 #region Booths
         - to: boothLeft
           steps:
@@ -568,8 +592,8 @@
           steps:
             - tool: Screwing
               doAfter: 2
-#region Node-Booths
 
+#region Node-Booths
     - node: boothLeft
       entity: DinerEndLeft
       edges:
@@ -610,6 +634,53 @@
               amount: 2
             - !type:SpawnPrototype
               prototype: SheetPlastic1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+#region Node-Fancy
+
+    - node: fancyLeft
+      entity: SofaFancyEndLeft
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: fancyRight
+      entity: SofaFancyEndRight
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: fancyMid
+      entity: SofaFancyMiddle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
               amount: 2
           steps:
             - tool: Screwing

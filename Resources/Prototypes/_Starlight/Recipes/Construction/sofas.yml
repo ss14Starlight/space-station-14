@@ -317,6 +317,46 @@
   conditions:
     - !type:TileNotBlocked
 
+#region Fancy sofa
+- type: construction
+  id: SofaFancyEndLeft
+  name: construction-recipe-sofa-fancy-left
+  graph: SofaSL
+  startNode: start
+  targetNode: fancyLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaFancyMiddle
+  name: construction-recipe-sofa-fancy-mid
+  graph: SofaSL
+  startNode: start
+  targetNode: fancyMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaFancyRight
+  name: construction-recipe-sofa-fancy-right
+  graph: SofaSL
+  startNode: start
+  targetNode: fancyRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
 #region Dinner booths
 - type: construction
   id: DinerEndLeft

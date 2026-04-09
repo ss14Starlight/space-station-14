@@ -81,6 +81,15 @@
 #region Bench White
 - type: entity
   name: comfortable bench
+  id: BenchWhiteComfy
+  parent: BenchComfy
+  components:
+  - type: Construction
+    graph: BenchSL
+    node: whiteComfBench
+
+- type: entity
+  name: comfortable bench
   suffix: Corner. White
   id: BenchComfyCorner
   parent: SeatBase
@@ -347,6 +356,9 @@
       color: "#767e82"
     - state: bench_solo_cover
       color: "#767e82"
+  - type: Construction
+    graph: Seat
+    node: grayComfBench
 
 - type: entity
   id: BenchGrayComfyCorner
@@ -424,6 +436,9 @@
       color: "#767e82"
     - state: bench_solo_cover
       color: "#3c9950"
+  - type: Construction
+    graph: Seat
+    node: greenComfBench
 
 - type: entity
   id: BenchGreenComfyCorner

@@ -7,6 +7,13 @@
         - !type:DestroyEntity {}
       edges:
 #region White
+        - to: whiteComfBench
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
         - to: whiteComfBenchCorner
           steps:
             - material: Steel
@@ -94,6 +101,13 @@
             - material: Cloth
               amount: 1
 #region Gray
+        - to: grayComfBench
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
         - to: grayComfBenchCorner
           steps:
             - material: Steel
@@ -123,6 +137,13 @@
             - material: Cloth
               amount: 1
 #region Green
+        - to: greenComfBench
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
         - to: greenComfBenchCorner
           steps:
             - material: Steel
@@ -169,6 +190,21 @@
               doAfter: 1
 
 #region Node-White
+    - node: whiteComfBench
+      entity: BenchWhiteComfy
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
     - node: whiteComfBenchCorner
       entity: BenchComfyCorner
       edges:
@@ -352,6 +388,21 @@
               doAfter: 2
 
 #region Node-Gray
+    - node: grayComfBench
+      entity: BenchGrayComfy
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
     - node: grayComfBenchCorner
       entity: BenchGrayComfyCorner
       edges:
@@ -413,6 +464,21 @@
               doAfter: 2
 
 #region Node-Green
+    - node: greenComfBench
+      entity: BenchGreenComfy
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
     - node: greenComfBenchCorner
       entity: BenchGreenComfyCorner
       edges:

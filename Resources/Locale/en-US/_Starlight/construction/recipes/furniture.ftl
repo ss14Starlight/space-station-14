@@ -7,6 +7,7 @@ construction-recipe-comfy-chair-red = comfy chair (red)
 construction-recipe-comfy-chair-brown = comfy chair (brown)
 
 ##Benches
+construction-recipe-white-comf-bench = comfortable bench (white)
 construction-recipe-comfy-bench-white-corner = comfortable bench (white, corner)
 construction-recipe-comfy-bench-white-left = comfortable bench (white, end, left)
 construction-recipe-comfy-bench-white-right = comfortable bench (white, end, right)
@@ -22,11 +23,13 @@ construction-recipe-comfy-bench-blue-left = comfortable bench (blue, end, left)
 construction-recipe-comfy-bench-blue-right = comfortable bench (blue, end, right)
 construction-recipe-comfy-bench-blue-mid = comfortable bench (blue, middle)
 
+construction-recipe-gray-comf-bench = comfortable bench (gray)
 construction-recipe-comfy-bench-gray-corner = comfortable bench (gray, corner)
 construction-recipe-comfy-bench-gray-left = comfortable bench (gray, end, left)
 construction-recipe-comfy-bench-gray-right = comfortable bench (gray, end, right)
 construction-recipe-comfy-bench-gray-mid = comfortable bench (gray, middle)
 
+construction-recipe-green-comf-bench = comfortable bench (green)
 construction-recipe-comfy-bench-green-corner = comfortable bench (green, corner)
 construction-recipe-comfy-bench-green-left = comfortable bench (green, end, left)
 construction-recipe-comfy-bench-green-right = comfortable bench (green, end, right)
@@ -66,6 +69,10 @@ construction-recipe-sofa-brown-corner = sofa (brown, corner)
 construction-recipe-sofa-brown-left = sofa (brown, end, left)
 construction-recipe-sofa-brown-right = sofa (brown, end, right)
 construction-recipe-sofa-brown-mid = sofa (brown, middle)
+
+construction-recipe-sofa-fancy-left = fancy sofa (left)
+construction-recipe-sofa-fancy-right = fancy sofa (right)
+construction-recipe-sofa-fancy-mid = fancy sofa (middle)
 
 construction-recipe-booth-left = diner booth (left)
 construction-recipe-booth-mid = diner booth (middle)

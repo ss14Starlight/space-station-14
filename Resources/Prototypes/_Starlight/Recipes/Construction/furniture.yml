@@ -118,6 +118,19 @@
 #region Benches
 #White
 - type: construction
+  id: BenchWhiteComfy
+  name: construction-recipe-white-comf-bench
+  graph: BenchSL
+  startNode: start
+  targetNode: whiteComfBench
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
   id: BenchComfyCorner
   name: construction-recipe-comfy-bench-white-corner
   graph: BenchSL
@@ -169,7 +182,7 @@
   conditions:
     - !type:TileNotBlocked
 
-#Red
+#region Red
 - type: construction
   id: BenchRedComfyCorner
   name: construction-recipe-comfy-bench-red-corner
@@ -222,7 +235,7 @@
   conditions:
     - !type:TileNotBlocked
 
-#Blue
+#region Blue
 - type: construction
   id: BenchBlueComfyCorner
   name: construction-recipe-comfy-bench-blue-corner
@@ -275,7 +288,21 @@
   conditions:
     - !type:TileNotBlocked
 
-#Gray
+#region Gray
+
+- type: construction
+  id: GrayComfBench
+  name: construction-recipe-gray-comf-bench
+  graph: BenchSL
+  startNode: start
+  targetNode: grayComfBench
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
 - type: construction
   id: BenchGrayComfyCorner
   name: construction-recipe-comfy-bench-gray-corner
@@ -328,7 +355,20 @@
   conditions:
     - !type:TileNotBlocked
 
-#Green
+#region Green
+- type: construction
+  id: BenchGreenComfy
+  name: construction-recipe-green-comf-bench
+  graph: BenchSL
+  startNode: start
+  targetNode: greenComfBench
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
 - type: construction
   id: BenchGreenComfyCorner
   name: construction-recipe-comfy-bench-green-corner
@@ -381,7 +421,7 @@
   conditions:
     - !type:TileNotBlocked
 
-#Pews
+#region Pews
 - type: construction
   id: PewEndLeft
   name: construction-recipe-pew-left

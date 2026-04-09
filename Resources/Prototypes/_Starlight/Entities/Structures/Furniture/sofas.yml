@@ -80,6 +80,9 @@
     bodyType: Static
   - type: StaticPrice
     price: 35
+  - type: Construction
+    graph: SofaSL
+    node: fancyLeft
 
 - type: entity
   name: fancy sofa
@@ -98,6 +101,9 @@
     bodyType: Static
   - type: StaticPrice
     price: 35
+  - type: Construction
+    graph: SofaSL
+    node: fancyRight
 
 - type: entity
   name: fancy sofa
@@ -116,6 +122,9 @@
     bodyType: Static
   - type: StaticPrice
     price: 35
+  - type: Construction
+    graph: SofaSL
+    node: fancyMid
 
 #region Sofa Gray
 - type: entity
