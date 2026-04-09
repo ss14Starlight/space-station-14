@@ -1,112 +1,4 @@
 Entries:
-- author: Ohelig
-  changes:
-  - message: Fixes a bug where borgs lose Syndicate radio if emagged before they choose a chassis type.
-    type: Fix
-  id: 392001
-  time: '2026-03-26T08:21:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3920
-- author: Conflee
-  changes:
-  - message: Changed rendering of Platforms, using ChildEntities, so objects like tables or chairs placed in the same tile as a platform render properly with the perspective.
-    type: Tweak
-  id: 394701
-  time: '2026-03-26T08:29:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3947
-- author: wonderfulnewworld
-  changes:
-  - message: Interdyne vendors now have their own ads. They do not imply Syndicate collaboration.
-    type: Add
-  - message: Updates Interdyne life-aid sprites to be more similar to the NanoMed band-aids.
-    type: Tweak
-  id: 392901
-  time: '2026-03-26T10:03:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3929
-- author: NULLLINK TEAM
-  changes:
-  - message: Added cross-project sync for player notes.
-    type: Add
-  id: 376801
-  time: '2026-03-26T20:16:30.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3768
-- author: CawsForConcern
-  changes:
-  - message: (Box) Fixed the entire mail system.
-    type: Fix
-  id: 395601
-  time: '2026-03-26T21:14:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3956
-- author: STARLIGHT TEAM
-  changes:
-  - message: Removed SpaceDog.
-    type: Remove
-  - message: Aurora does not pulse colors anymore (for now).
-    type: Tweak
-  id: 395701
-  time: '2026-03-26T21:18:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3957
-- author: CawsForConcern
-  changes:
-  - message: (Cluster) Cargo maints no longer dead-ends, you can now walk through Engineering all the way to Arrivals maints just like on the original version of Cluster.
-    type: Add
-  - message: (Cluster) Electrolyzer added to Atmos.
-    type: Add
-  - message: (Cluster) Added a new Materials room to Engineering with various supplies.
-    type: Add
-  - message: (Cluster) SUPERPACMAN and uranium added to Engineering.
-    type: Add
-  - message: (Cluster) Moved the Generators from the AME Room to the Materials Room.
-    type: Tweak
-  id: 395901
-  time: '2026-03-27T03:29:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3959
-- author: Shades
-  changes:
-  - message: Nullspace Anchors/Protectors Blocks Cultists Abilities are their Ranges are now Extanded.
-    type: Add
-  - message: Removed Octarine Alert (Replaced by Omega).
-    type: Remove
-  - message: Flavor Cult toward Nullspace/Starlight.
-    type: Tweak
-  - message: Cosmic Cult now fully sees Nullspace.
-    type: Tweak
-  - message: Cosmic Cult Armor now protect against TheDark.
-    type: Add
-  - message: Cosmic Cult got their own language to whisper to eachother... its act&replace the previous Radio.
-    type: Tweak
-  - message: Wizard & Bright-Eye cannot be converted until Tier 3.
-    type: Tweak
-  - message: Null Fragmentation works on IPCs.
-    type: Add
-  - message: Cosmic Cult Tier 2 is now more subtle.
-    type: Tweak
-  - message: Cosmic Cult Tier 3 Block all FTL From leaving the station. (restored if cult defeated).
-    type: Add
-  - message: Cosmic Cult win will Gib everyone on the same map as Station, CC, The Dark is now unaffected.
-    type: Tweak
-  id: 396101
-  time: '2026-03-27T03:38:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3961
-- author: Conflee
-  changes:
-  - message: Changed flashlights and helmet lights so they rotate more smoothly with where you are facing. This means in combat mode you can slowly pan a flashlight around a room much more seamlessly.
-    type: Tweak
-  - message: Added lights to a few objects that previously lacked them, like cloning pods, medical scanners, and active cryopods.
-    type: Add
-  - message: Changed many light sources to no longer cast shadows. This is because the game can only render 20-30 shadow casting lights before it starts culling, causing lights to flicker. It can render over 250 non shadow casting lights however. PDA light and other low radius or low brightness lights were the ones changed mostly.
-    type: Tweak
-  - message: Changed how lights function on many objects to be more realistic. The most notable are all computers and consoles now having a cone mask and custom defined light colors. This means light only projects 'forwards' out the screens, and the color matches the screen colors. These do not cast shadows, for optimization reasons. Fireplaces and a few other light sources got similar treatments.
-    type: Tweak
-  id: 393201
-  time: '2026-03-27T03:46:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3932
-- author: Coolsurf6
-  changes:
-  - message: Removed Cyclorite Colourblindness for eyestrain and accessibility reasons.
-    type: Remove
-  id: 395101
-  time: '2026-03-27T03:50:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3951
 - author: Kirb
   changes:
   - message: Felionoids, avali, dwarves, and resomi are significantly more yoinkable, it takes 3 seconds to pick them up.
@@ -775,4 +667,74 @@ Entries:
   id: 404166
   time: '2026-04-09T11:40:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4088
+- author: Cvlancer & OMEGA[Aurok / Vanta].
+  changes:
+  - message: (Oasis) Added railings in koi room to prevent them from biting.
+    type: Add
+  id: 404167
+  time: '2026-04-09T11:45:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4052
+- author: Cvlancer & OMEGA[Aurok / Vanta].
+  changes:
+  - message: (Oasis) Added new ring ropes to boxing ring.
+    type: Add
+  id: 404168
+  time: '2026-04-09T11:45:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4052
+- author: Cvlancer & OMEGA[Aurok / Vanta].
+  changes:
+  - message: (Oasis) Added piggy bank to vault.
+    type: Add
+  id: 404169
+  time: '2026-04-09T11:45:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4052
+- author: Cvlancer & OMEGA[Aurok / Vanta].
+  changes:
+  - message: (Oasis) Added tider,changeling, and wizard targets to firing range.
+    type: Add
+  id: 404170
+  time: '2026-04-09T11:45:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4052
+- author: Cvlancer & OMEGA[Aurok / Vanta].
+  changes:
+  - message: (Oasis) Added aquarium to gen pop dorm and medical bay lobby.
+    type: Add
+  id: 404171
+  time: '2026-04-09T11:45:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4052
+- author: Cvlancer & OMEGA[Aurok / Vanta].
+  changes:
+  - message: (Oasis) Added maints connecting library maints to docking arm lobby.
+    type: Add
+  id: 404172
+  time: '2026-04-09T11:45:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4052
+- author: Cvlancer & OMEGA[Aurok / Vanta].
+  changes:
+  - message: (Oasis) Added two borg spawn points. (Scrapyard,evil ai).
+    type: Add
+  id: 404173
+  time: '2026-04-09T11:45:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4052
+- author: Cvlancer & OMEGA[Aurok / Vanta].
+  changes:
+  - message: (Oasis) Made gen pop island distro start automatically.
+    type: Tweak
+  id: 404174
+  time: '2026-04-09T11:45:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4052
+- author: Cvlancer & OMEGA[Aurok / Vanta].
+  changes:
+  - message: (Oasis) AME rewired and all main engines plus AME now feed into 3 different SMES power banks. (that then also all feed into station).
+    type: Tweak
+  id: 404175
+  time: '2026-04-09T11:45:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4052
+- author: Cvlancer & OMEGA[Aurok / Vanta].
+  changes:
+  - message: (Oasis) Teg piping reworked. (Done by OMEGA[Aurok / Vanta]).
+    type: Tweak
+  id: 404176
+  time: '2026-04-09T11:45:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4052
 Order: -1
