@@ -38,7 +38,7 @@ public sealed class AlignDirectionalSign : PlacementMode
         var tileCenterY = CurrentTile.Y + 0.5f;
         var relativeY = MouseCoords.Y - tileCenterY;
 
-        // Snap to the nearest 6-pixel increment
+        // Snap to the nearest 3-pixel increment
         var snappedY = MathF.Round(relativeY / step) * step;
 
         // Clamp so signs stay within the vertical bounds of the tile
