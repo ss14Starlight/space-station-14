@@ -1,25 +1,4 @@
 Entries:
-- author: CawsForConcern
-  changes:
-  - message: (Lobster) Replaced the custom Galoshnts with the real Galoshnts.
-    type: Tweak
-  id: 393901
-  time: '2026-03-25T20:05:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3939
-- author: CawsForConcern
-  changes:
-  - message: (Cog) Missing MV cables added to Science, should no longer be unpowered at roundstart.
-    type: Fix
-  id: 393701
-  time: '2026-03-26T07:39:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3937
-- author: CawsForConcern
-  changes:
-  - message: (Bagel) Doors for the Engineering Substation are now correctly marked as Engineering Airlocks instead of Maints Airlocks (access remains the same, but this is for visual clarity).
-    type: Fix
-  id: 393801
-  time: '2026-03-26T07:43:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3938
 - author: BigfootBravo
   changes:
   - message: Fixed IPC heads not rendering correctly
@@ -775,4 +754,25 @@ Entries:
   id: 404161
   time: '2026-04-09T08:16:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4089
+- author: neomoth
+  changes:
+  - message: Xenoborgs now use the correct job icon over comms again.
+    type: Fix
+  id: 404162
+  time: '2026-04-09T11:30:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4083
+- author: neomoth
+  changes:
+  - message: Xenoborgis now display xenoborg icon as their job on the status hud.
+    type: Fix
+  id: 404163
+  time: '2026-04-09T11:30:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4083
+- author: neomoth
+  changes:
+  - message: Xenomoproach no longer hears each comms message twice.
+    type: Fix
+  id: 404164
+  time: '2026-04-09T11:30:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4083
 Order: -1
