@@ -460,6 +460,35 @@
   - type: AccessReader
     access: [["Medical"], ["SyndicateAgent"]]
 
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineCAD
+  name: AdmiMax
+  description: Need to manage some documents? CAD has you covered!
+  components:
+    - type: VendingMachine
+      pack: AdmiMaxInventory
+      showPrices: false
+      offState: off
+      brokenState: broken
+      normalState: normal-unshaded
+    - type: Sprite
+      sprite: _Starlight/Structures/Machines/VendingMachines/admimax.rsi
+      layers:
+        - state: "off"
+          map: ["enum.VendingMachineVisualLayers.Base"]
+        - state: "off"
+          map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+          shader: unshaded
+        - state: panel
+          map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - type: PointLight
+      radius: 1.5
+      energy: 3.0
+      color: "#568ef0"
+    - type: AccessReader
+      access: [["CentralCommand"]]
+
 # Empty
 - type: entity
   parent: VendingMachineCondiments
