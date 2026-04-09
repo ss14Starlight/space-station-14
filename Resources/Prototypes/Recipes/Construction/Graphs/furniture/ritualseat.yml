@@ -42,7 +42,7 @@
         - to: chairRitual
           completed:
             - !type:SpawnPrototype
-              prototype: HeadSkeleton #Starlight 
+              prototype: HeadSkeleton #Starlight
               amount: 1
           steps:
             - tool: Prying
