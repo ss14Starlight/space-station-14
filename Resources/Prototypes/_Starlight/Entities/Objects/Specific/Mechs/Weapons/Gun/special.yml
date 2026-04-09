@@ -81,3 +81,19 @@
       proto: CannonAmmoBananaCream
       fireCost: 60
     - type: Appearance
+
+- type: entity
+  id: MechEquipmentAirHorn
+  parent: [ BaseMechEquipment, SpecialMechEquipment ]
+  name: hOnKeR 5000
+  description: Holy shit, that's loud! HONK!
+  components:
+    - type: MechEquipment
+      equipmentType: Passive
+    - type: Sprite
+      state: mecha_honker
+    - type: MechEquipmentAction
+      actionId: ActionMechActivateAirHorn
+    - type: MechAirHorn
+    - type: Slippery
+

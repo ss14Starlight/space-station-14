@@ -490,5 +490,5 @@
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: BulletAntiMateriel
-    fireCost: 60
+    fireCost: 150
   - type: Appearance
