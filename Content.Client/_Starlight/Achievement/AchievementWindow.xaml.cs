@@ -26,13 +26,14 @@ public sealed partial class AchievementWindow : DefaultWindow
     {
         AchievementList.RemoveAllChildren();
         var spriteSystem = _entitySystems.GetEntitySystem<SpriteSystem>();
+        var visibleAchievements = protoManager.EnumeratePrototypes<AchievementPrototype>()
+            .Where(proto => !proto.Hidden || achievements.IsUnlocked(proto.ID))
+            .ToList();
 
-        foreach (var proto in protoManager.EnumeratePrototypes<AchievementPrototype>())
+        for (var i = 0; i < visibleAchievements.Count; i++)
         {
+            var proto = visibleAchievements[i];
             var unlocked = achievements.IsUnlocked(proto.ID);
-
-            if (proto.Hidden && !unlocked)
-                continue;
 
             var row = new BoxContainer
             {
@@ -98,8 +99,8 @@ public sealed partial class AchievementWindow : DefaultWindow
             row.AddChild(infoBox);
             AchievementList.AddChild(row);
 
-            var separator = new HSeparator();
-            AchievementList.AddChild(separator);
+            if (i < visibleAchievements.Count - 1)
+                AchievementList.AddChild(new HSeparator());
         }
     }
 }

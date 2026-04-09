@@ -14,6 +14,8 @@ namespace Content.Client._Starlight.Achievement;
 [UsedImplicitly]
 public sealed class AchievementUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
+    private const int NotificationDisplayDuration = 5000;
+
     [Dependency] private readonly IClientAchievementManager _achievements = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
@@ -91,7 +93,7 @@ public sealed class AchievementUIController : UIController, IOnStateEntered<Game
         _notification?.Close();
         _notification?.Dispose();
 
-        _notification = new DefaultWindow
+        var notif = _notification = new DefaultWindow
         {
             Title = Loc.GetString("achievement-notification-title"),
         };
@@ -100,14 +102,16 @@ public sealed class AchievementUIController : UIController, IOnStateEntered<Game
         {
             Text = Loc.GetString("achievement-notification-body", ("name", Loc.GetString(proto.Name))),
         };
-        _notification.Contents.AddChild(label);
-        _notification.OpenCentered();
+        notif.Contents.AddChild(label);
+        notif.OpenCentered();
 
-        Timer.Spawn(5000, () =>
+        Timer.Spawn(NotificationDisplayDuration, () =>
         {
-            _notification?.Close();
-            _notification?.Dispose();
-            _notification = null;
+            notif.Close();
+            notif.Dispose();
+
+            if (_notification == notif)
+                _notification = null;
         });
     }
 }

@@ -13,12 +13,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
     public async ValueTask<HashSet<Achievement>> GetUnlockedAchievements(Guid userId)
     {
         if (!_actors.TryGetServerGrain(out var serverGrain))
-        {
-            if (_playerById.TryGetValue(userId, out var fallbackData))
-                fallbackData.AchievementCacheHydrated = true;
-
             return TryGetCachedAchievements(userId, out var cachedAchievements) ? cachedAchievements : [];
-        }
 
         try
         {
