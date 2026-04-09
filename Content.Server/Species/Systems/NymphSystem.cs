@@ -1,9 +1,9 @@
 using Content.Server.Mind;
 using Content.Shared.Species.Components;
-using Content.Shared.Body.Events;
 using Content.Shared.Zombies;
 using Content.Server.Zombies;
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.Medical.Body.Events;
 
 namespace Content.Server.Species.Systems;
 

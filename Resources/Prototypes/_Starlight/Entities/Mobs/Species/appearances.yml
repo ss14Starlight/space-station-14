@@ -47,9 +47,6 @@
   parent: [BaseSpeciesDummy, BaseInventoryFemaleJumpsuit]
   id: AppearanceDwarf
   categories: [ HideSpawnMenu ]
-  components:
-  #- type: ScaleVisuals # STARLIGHT
-  #  scale: 1, 0.8 # STARLIGHT
 
 - type: entity
   parent: [BaseSpeciesDummy, BaseInventoryFemaleJumpsuit]
