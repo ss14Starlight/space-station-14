@@ -1,33 +1,13 @@
-using System.Collections.Concurrent;
 using System.Threading.Tasks;
-using Content.Server._NullLink.Helpers;
-using Starlight.NullLink;
-using Starlight.NullLink.Event;
 
 namespace Content.Server._NullLink.PlayerData;
 
 public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
 {
-    public async ValueTask<Dictionary<string, double>> GetAchievementProgress(Guid userId)
+    public ValueTask<Dictionary<string, double>> GetAchievementProgress(Guid userId)
     {
-        if (!_actors.TryGetServerGrain(out var serverGrain))
-            return TryGetCachedProgress(userId, out var cached) ? cached : [];
-
-        try
-        {
-            var progress = await serverGrain.GetAchievementProgress(userId);
-            var copy = new ConcurrentDictionary<string, double>(progress);
-
-            if (_playerById.TryGetValue(userId, out var playerData))
-                playerData.AchievementProgress = copy;
-
-            return new Dictionary<string, double>(progress);
-        }
-        catch (Exception ex)
-        {
-            _sawmill.Error($"GetAchievementProgress failed for {userId}: {ex}");
-            return TryGetCachedProgress(userId, out var cached) ? cached : [];
-        }
+        return ValueTask.FromResult(
+            TryGetCachedProgress(userId, out var cached) ? cached : new Dictionary<string, double>());
     }
 
     public double GetCachedAchievementProgress(Guid userId, string key)
@@ -44,34 +24,13 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         if (!_playerById.TryGetValue(userId, out var playerData))
             return 0;
 
-        var value = playerData.AchievementProgress.AddOrUpdate(key, amount, (_, existing) => existing + amount);
-
-        if (_actors.TryGetServerGrain(out var serverGrain))
-            serverGrain.SetAchievementProgress(userId, key, value)
-                .FireAndForget(err => _sawmill.Error($"SetAchievementProgress failed for {userId}/{key}: {err}"));
-
-        return value;
+        return playerData.AchievementProgress.AddOrUpdate(key, amount, (_, existing) => existing + amount);
     }
 
     public void ResetAchievementProgress(Guid userId, string? key = null)
     {
         if (!_playerById.TryGetValue(userId, out var playerData))
             return;
-
-        if (_actors.TryGetServerGrain(out var serverGrain))
-        {
-            if (string.IsNullOrEmpty(key))
-            {
-                foreach (var k in playerData.AchievementProgress.Keys)
-                    serverGrain.SetAchievementProgress(userId, k, 0)
-                        .FireAndForget(err => _sawmill.Error($"ResetAchievementProgress failed for {userId}/{k}: {err}"));
-            }
-            else
-            {
-                serverGrain.SetAchievementProgress(userId, key, 0)
-                    .FireAndForget(err => _sawmill.Error($"ResetAchievementProgress failed for {userId}/{key}: {err}"));
-            }
-        }
 
         if (string.IsNullOrEmpty(key))
         {
@@ -80,24 +39,6 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         }
 
         playerData.AchievementProgress.TryRemove(key, out _);
-    }
-
-    public ValueTask SyncAchievementProgress(PlayerAchievementProgressSyncEvent ev)
-    {
-        if (!_playerById.TryGetValue(ev.Player, out var playerData))
-            return ValueTask.CompletedTask;
-
-        playerData.AchievementProgress = new ConcurrentDictionary<string, double>(ev.Progress);
-        return ValueTask.CompletedTask;
-    }
-
-    public ValueTask UpdateAchievementProgressChanged(AchievementProgressChangedEvent ev)
-    {
-        if (!_playerById.TryGetValue(ev.Player, out var playerData))
-            return ValueTask.CompletedTask;
-
-        playerData.AchievementProgress[ev.ProgressType] = ev.Value;
-        return ValueTask.CompletedTask;
     }
 
     private bool TryGetCachedProgress(Guid userId, out Dictionary<string, double> progress)

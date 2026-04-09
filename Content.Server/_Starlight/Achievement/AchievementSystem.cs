@@ -1,13 +1,21 @@
 using System.Threading.Tasks;
 using Content.Server._NullLink.Helpers;
 using Content.Server._NullLink.PlayerData;
+using Content.Server.Chat;
+using Content.Server.Nuke;
 using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Achievement;
 using Content.Shared.GameTicking;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Inventory;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Smoking;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -18,6 +26,7 @@ public sealed class AchievementSystem : EntitySystem
     [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayers = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
 
     private readonly Dictionary<Guid, Dictionary<string, double>> _roundProgress = [];
     private readonly HashSet<Guid> _progressFetched = [];
@@ -26,20 +35,25 @@ public sealed class AchievementSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
-        SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<VampireComponent, VampireBloodDrankEvent>(OnVampireBloodDrank);
+        SubscribeLocalEvent<NukeExplodedEvent>(OnNukeExploded);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
 
         foreach (var session in _playerManager.Sessions)
         {
-            if (session.Status != SessionStatus.Disconnected)
-            {
-                _progressFetched.Add(session.UserId);
-                _nullLinkPlayers.GetAchievementProgress(session.UserId)
-                    .AsTask()
-                    .FireAndForget();
-            }
+            if (session.Status == SessionStatus.Disconnected)
+                continue;
+
+            _progressFetched.Add(session.UserId);
+            _nullLinkPlayers.GetUnlockedAchievements(session.UserId)
+                .AsTask()
+                .ContinueWith(_ =>
+                {
+                    if (session.Status == SessionStatus.InGame)
+                        _nullLinkPlayers.SendAchievementList(session.UserId);
+                })
+                .FireAndForget();
         }
     }
 
@@ -50,32 +64,40 @@ public sealed class AchievementSystem : EntitySystem
     }
 
     #region Achievement Management
-    public ValueTask<HashSet<Starlight.NullLink.Achievement>> GetUnlockedAchievements(ICommonSession session)
-        => _nullLinkPlayers.GetUnlockedAchievements(session.UserId);
-
-    public ValueTask<bool> HasAchievementUnlocked(ICommonSession session, string achievementId)
+    public bool HasAchievementUnlocked(ICommonSession session, string achievementId)
         => _nullLinkPlayers.HasAchievementUnlocked(session.UserId, achievementId);
 
-    public ValueTask<bool> UnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
+    public bool UnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
         => _nullLinkPlayers.UnlockAchievement(session.UserId, achievementId, characterName ?? GetCharacterName(session));
 
-    public ValueTask<bool> LockAchievement(ICommonSession session, string achievementId)
+    public bool LockAchievement(ICommonSession session, string achievementId)
         => _nullLinkPlayers.LockAchievement(session.UserId, achievementId);
 
-    public async ValueTask<bool> TryUnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
+    public bool TryUnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
     {
-        if (await HasAchievementUnlocked(session, achievementId))
+        if (HasAchievementUnlocked(session, achievementId))
             return false;
 
-        return await UnlockAchievement(session, achievementId, characterName);
+        var result = UnlockAchievement(session, achievementId, characterName);
+        if (result)
+        {
+            _nullLinkPlayers.SendAchievementNotification(session.UserId, achievementId);
+            _nullLinkPlayers.SendAchievementList(session.UserId);
+        }
+
+        return result;
     }
 
-    public async ValueTask<bool> TryLockAchievement(ICommonSession session, string achievementId)
+    public bool TryLockAchievement(ICommonSession session, string achievementId)
     {
-        if (!await HasAchievementUnlocked(session, achievementId))
+        if (!HasAchievementUnlocked(session, achievementId))
             return false;
 
-        return await LockAchievement(session, achievementId);
+        var result = LockAchievement(session, achievementId);
+        if (result)
+            _nullLinkPlayers.SendAchievementList(session.UserId);
+
+        return result;
     }
     #endregion
 
@@ -89,26 +111,26 @@ public sealed class AchievementSystem : EntitySystem
         return _nullLinkPlayers.AddAchievementProgress(userId, progressType, amount);
     }
 
-    public async ValueTask<double> AddProgressAndCheck(ICommonSession session, string progressType, double amount = 1)
+    public double AddProgressAndCheck(ICommonSession session, string progressType, double amount = 1)
     {
         var value = AddProgress(session, progressType, amount);
-        await CheckProgressAchievements(session, progressType);
+        CheckProgressAchievements(session, progressType);
         return value;
     }
 
-    public async ValueTask<double> AddProgressAndCheck(Guid userId, string progressType, double amount = 1)
+    public double AddProgressAndCheck(Guid userId, string progressType, double amount = 1)
     {
         var value = AddProgress(userId, progressType, amount);
-        await CheckProgressAchievements(userId, progressType);
+        CheckProgressAchievements(userId, progressType);
         return value;
     }
 
-    public async ValueTask<double> AddProgressAndCheck(EntityUid uid, string progressType, double amount = 1)
+    public double AddProgressAndCheck(EntityUid uid, string progressType, double amount = 1)
     {
         if (!_playerManager.TryGetSessionByEntity(uid, out var session))
             return 0;
 
-        return await AddProgressAndCheck(session, progressType, amount);
+        return AddProgressAndCheck(session, progressType, amount);
     }
 
     public double AddProgress(EntityUid uid, string progressType, double amount = 1)
@@ -135,15 +157,15 @@ public sealed class AchievementSystem : EntitySystem
         _nullLinkPlayers.ResetAchievementProgress(userId, progressType);
     }
 
-    public async ValueTask<bool> TryUnlockAtProgress(ICommonSession session, string achievementId, string progressType, double requiredProgress, string? characterName = null)
+    public bool TryUnlockAtProgress(ICommonSession session, string achievementId, string progressType, double requiredProgress, string? characterName = null)
     {
         if (GetProgress(session, progressType) < requiredProgress)
             return false;
 
-        return await TryUnlockAchievement(session, achievementId, characterName);
+        return TryUnlockAchievement(session, achievementId, characterName);
     }
 
-    public async ValueTask CheckProgressAchievements(ICommonSession session, string progressType, string? characterName = null)
+    public void CheckProgressAchievements(ICommonSession session, string progressType, string? characterName = null)
     {
         foreach (var achievement in _prototypeManager.EnumeratePrototypes<AchievementPrototype>())
         {
@@ -153,27 +175,27 @@ public sealed class AchievementSystem : EntitySystem
                     : GetProgress(session, type)))
                 continue;
 
-            await TryUnlockAchievement(session, achievement.ID, characterName);
+            TryUnlockAchievement(session, achievement.ID, characterName);
         }
     }
 
-    public async ValueTask CheckProgressAchievements(Guid userId, string progressType, string? characterName = null)
+    public void CheckProgressAchievements(Guid userId, string progressType, string? characterName = null)
     {
-        if (!_playerManager.TryGetSessionById(userId, out var session))
+        if (!_playerManager.TryGetSessionById(new NetUserId(userId), out var session))
             return;
 
-        await CheckProgressAchievements(session, progressType, characterName);
+        CheckProgressAchievements(session, progressType, characterName);
     }
 
-    public async ValueTask<bool> TryUnlockAtProgress(Guid userId, string achievementId, string progressType, double requiredProgress, string? characterName = null)
+    public bool TryUnlockAtProgress(Guid userId, string achievementId, string progressType, double requiredProgress, string? characterName = null)
     {
         if (GetProgress(userId, progressType) < requiredProgress)
             return false;
 
-        if (!_playerManager.TryGetSessionById(userId, out var session))
+        if (!_playerManager.TryGetSessionById(new NetUserId(userId), out var session))
             return false;
 
-        return await TryUnlockAchievement(session, achievementId, characterName);
+        return TryUnlockAchievement(session, achievementId, characterName);
     }
     #endregion
 
@@ -183,13 +205,20 @@ public sealed class AchievementSystem : EntitySystem
         switch (e.NewStatus)
         {
             case SessionStatus.Connected:
-            case SessionStatus.InGame:
                 if (_progressFetched.Add(e.Session.UserId))
                 {
-                    _nullLinkPlayers.GetAchievementProgress(e.Session.UserId)
+                    _nullLinkPlayers.GetUnlockedAchievements(e.Session.UserId)
                         .AsTask()
+                        .ContinueWith(_ =>
+                        {
+                            if (e.Session.Status == SessionStatus.InGame)
+                                _nullLinkPlayers.SendAchievementList(e.Session.UserId);
+                        })
                         .FireAndForget();
                 }
+                break;
+            case SessionStatus.InGame:
+                _nullLinkPlayers.SendAchievementList(e.Session.UserId);
                 break;
             case SessionStatus.Disconnected:
                 _progressFetched.Remove(e.Session.UserId);
@@ -202,41 +231,45 @@ public sealed class AchievementSystem : EntitySystem
         AddProgress(ev.Player, AchievementProgressKeys.SpawnCount);
         AddProgress(ev.Player, ev.LateJoin ? AchievementProgressKeys.SpawnLateJoinCount : AchievementProgressKeys.SpawnRoundStartCount);
 
-        CheckProgressAchievements(ev.Player, AchievementProgressKeys.SpawnCount)
-            .AsTask()
-            .FireAndForget();
-        CheckProgressAchievements(ev.Player, ev.LateJoin ? AchievementProgressKeys.SpawnLateJoinCount : AchievementProgressKeys.SpawnRoundStartCount)
-            .AsTask()
-            .FireAndForget();
+        CheckProgressAchievements(ev.Player, AchievementProgressKeys.SpawnCount);
+        CheckProgressAchievements(ev.Player, ev.LateJoin ? AchievementProgressKeys.SpawnLateJoinCount : AchievementProgressKeys.SpawnRoundStartCount);
 
         if (!string.IsNullOrEmpty(ev.JobId))
         {
             var progressType = AchievementProgressKeys.SpawnJob(ev.JobId);
             AddProgress(ev.Player, progressType);
-            CheckProgressAchievements(ev.Player, progressType)
-                .AsTask()
-                .FireAndForget();
+            CheckProgressAchievements(ev.Player, progressType);
         }
-    }
-
-    private void OnMobStateChanged(MobStateChangedEvent ev)
-    {
-        if (ev.NewMobState != MobState.Dead || ev.OldMobState == MobState.Dead)
-            return;
-
-        AddProgress(ev.Target, AchievementProgressKeys.MobDeathCount);
-        CheckProgressAchievements(ev.Target, AchievementProgressKeys.MobDeathCount)
-            .AsTask()
-            .FireAndForget();
     }
 
     private void OnVampireBloodDrank(EntityUid uid, VampireComponent component, VampireBloodDrankEvent ev)
     {
         _ = component;
 
-        AddProgressAndCheck(uid, AchievementProgressKeys.VampireBloodDrank, ev.Amount)
-            .AsTask()
-            .FireAndForget();
+        AddProgressAndCheck(uid, AchievementProgressKeys.VampireBloodDrank, ev.Amount);
+    }
+
+    private void OnNukeExploded(NukeExplodedEvent ev)
+    {
+        foreach (var session in _playerManager.Sessions)
+        {
+            if (session.AttachedEntity is not { } uid)
+                continue;
+
+            if (!TryComp<MobStateComponent>(uid, out var mobState)
+                || mobState.CurrentState == MobState.Dead)
+                continue;
+
+            if (ev.OwningStation != null && Transform(uid).GridUid != ev.OwningStation)
+                continue;
+
+            if (!_inventory.TryGetSlotEntity(uid, "mask", out var maskItem)
+                || !TryComp<SmokableComponent>(maskItem, out var smokable)
+                || smokable.State != SmokableState.Lit)
+                continue;
+
+            TryUnlockAchievement(session, "oppenheimer");
+        }
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)

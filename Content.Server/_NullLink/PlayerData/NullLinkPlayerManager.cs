@@ -7,6 +7,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.Database;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Shared._NullLink;
+using Content.Shared._Starlight.Achievement;
 using Content.Shared.NullLink.CCVar;
 using Robust.Server.Player;
 using Robust.Shared.Asynchronous;
@@ -49,6 +50,8 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         _netMgr.RegisterNetMessage<MsgUpdatePlayerRoles>();
         _netMgr.RegisterNetMessage<MsgUpdatePlayerPlayTime>();
         _netMgr.RegisterNetMessage<MsgUpdatePlayerResources>();
+        _netMgr.RegisterNetMessage<MsgAchievementList>();
+        _netMgr.RegisterNetMessage<MsgAchievementNotification>();
         _playerManager.PlayerStatusChanged += PlayerStatusChanged;
         InitializeLinking();
         _cfg.OnValueChanged(NullLinkCCVars.RoleReqMentors, UpdateMentors, true);
@@ -73,11 +76,8 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
                 serverGrain.PlayerConnected(player.Key)
                     .FireAndForget(err => _sawmill.Error($"PlayerConnected after reconnect failed for {player.Key}: {err}"));
                 GetUnlockedAchievements(player.Key)
-                    .Then(_ => { })
+                    .Then(_ => SendAchievementList(player.Key))
                     .FireAndForget(err => _sawmill.Error($"Achievement sync after reconnect failed for {player.Key}: {err}"));
-                GetAchievementProgress(player.Key)
-                    .Then(_ => { })
-                    .FireAndForget(err => _sawmill.Error($"Achievement progress sync after reconnect failed for {player.Key}: {err}"));
             }
     }
 

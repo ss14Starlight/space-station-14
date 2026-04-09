@@ -5,21 +5,12 @@
   category: onboarding
   hidden: false
   showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/Icons.rsi
+    state: FishMedal
   requirements:
   - progressType: spawn.count
     requiredProgress: 1
-
-- type: achievement
-  id: first_death
-  name: achievement-first-death-name
-  description: achievement-first-death-description
-  category: milestones
-  hidden: false
-  showProgress: false
-  requirements:
-  - progressType: mob.death.count
-    requiredProgress: 1
-
 
 # vampire my beloved....
 - type: achievement
@@ -27,13 +18,13 @@
   name: achievement-festival-of-blood-name
   description: achievement-festival-of-blood-description
   category: vampire
-  hidden: true
+  hidden: false
   showProgress: true
   icon:
     sprite: _Starlight/Interface/Achievements/Icons.rsi
     state: DraculaJrMedal
   requirements:
-  - progressType: vampire.blood-drank
+  - progressType: vampire.blooddrank
     requiredProgress: 3000
 
 # manual-only, granted by admins via achievement_unlock command
@@ -49,4 +40,16 @@
   icon:
     sprite: _Starlight/Interface/Achievements/Icons.rsi
     state: ContributorMedal
+  requirements: []
+
+- type: achievement
+  id: oppenheimer
+  name: achievement-getnuked-name
+  description: achievement-getnuked-description
+  category: milestones
+  hidden: true
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/Icons.rsi
+    state: HeliosMedal
   requirements: []

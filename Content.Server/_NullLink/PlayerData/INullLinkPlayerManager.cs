@@ -19,16 +19,13 @@ public interface INullLinkPlayerManager
     ValueTask UpdateRoles(RolesChangedEvent ev);
     ValueTask UpdateResource(ResourceChangedEvent ev);
     ValueTask<HashSet<Achievement>> GetUnlockedAchievements(Guid userId);
-    ValueTask<bool> HasAchievementUnlocked(Guid userId, string achievementId);
-    ValueTask<bool> UnlockAchievement(Guid userId, string achievementId, string characterName);
-    ValueTask<bool> LockAchievement(Guid userId, string achievementId);
-    ValueTask SyncAchievements(PlayerAchievementsSyncEvent ev);
-    ValueTask UpdateAchievementUnlocked(AchievementUnlockedEvent ev);
-    ValueTask UpdateAchievementLocked(AchievementLockedEvent ev);
+    bool HasAchievementUnlocked(Guid userId, string achievementId);
+    bool UnlockAchievement(Guid userId, string achievementId, string characterName);
+    bool LockAchievement(Guid userId, string achievementId);
     ValueTask<Dictionary<string, double>> GetAchievementProgress(Guid userId);
     double GetCachedAchievementProgress(Guid userId, string key);
     double AddAchievementProgress(Guid userId, string key, double amount);
     void ResetAchievementProgress(Guid userId, string? key = null);
-    ValueTask SyncAchievementProgress(PlayerAchievementProgressSyncEvent ev);
-    ValueTask UpdateAchievementProgressChanged(AchievementProgressChangedEvent ev);
+    void SendAchievementList(Guid userId);
+    void SendAchievementNotification(Guid userId, string achievementId);
 }

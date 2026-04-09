@@ -12,6 +12,15 @@
     },
     {
       "name": "ContributorMedal"
+    },
+    {
+      "name": "DamnedMedal"
+    },
+    {
+      "name": "FishMedal"
+    },
+    {
+      "name": "HeliosMedal"
     }
   ]
 }

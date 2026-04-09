@@ -1,0 +1,12 @@
+<ui:AchievementWindow xmlns="https://spacestation14.io"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:ui="clr-namespace:Content.Client._Starlight.Achievement"
+                      Title="{Loc 'achievement-window-title'}"
+                      MinSize="420 350"
+                      SetSize="480 500">
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
+            <BoxContainer Name="AchievementList" Orientation="Vertical" HorizontalExpand="True" SeparationOverride="4" />
+        </ScrollContainer>
+    </BoxContainer>
+</ui:AchievementWindow>
