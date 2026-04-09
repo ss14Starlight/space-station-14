@@ -253,6 +253,9 @@
     jobIcon: JobIconSoviet
   - type: NanoChatCard
     listNumber: false
+  - type: Access
+    tags:
+      - Communist
 
 - type: entity
   parent: [ IDCardStandard, BaseSyndicateContraband ]
@@ -365,6 +368,16 @@
     - Atmospherics
   - type: NanoChatCard
     listNumber: false
+
+- type: entity
+  parent: AssistantDerelictBorgiIDCard
+  id: XenoborgiIDCard
+  name: xenoborgi ID card
+  suffix: Xenoborgi
+  components:
+    - type: IdCard
+      jobTitle: chat-radio-xenoborg
+      jobIcon: JobIconXenoborg
 
 - type: entity
   parent: IDCardStandard
@@ -575,3 +588,23 @@
     - DoorBumpOpener
     - WhitelistChameleon
     - WhitelistChameleonIdCard
+
+# Blackstar
+- type: entity
+  parent: IDCardStandard
+  id: BlackstarIDCard
+  name: Blackstar ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: mercenary
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: Blackstar
+    - type: IdCard
+      jobTitle: job-name-blackstar
+      jobIcon: JobIconBlackstar
+    - type: Access
+      tags:
+        - Blackstar
