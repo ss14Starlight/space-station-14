@@ -659,7 +659,7 @@
       sprite: Objects/Specific/Mech/Mechs/Basic/honker.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
-          state: base
+          state: dark
     - type: FootstepModifier
       footstepSoundCollection:
         collection: FootstepClown
