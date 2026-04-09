@@ -18,7 +18,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Physics;
-using Content.Shared.Speech.Muting;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
