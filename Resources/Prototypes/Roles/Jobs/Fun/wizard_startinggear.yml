@@ -12,8 +12,6 @@
     belt: ClothingBeltWand
     pocket1: WizardTeleportScroll
     pocket2: WizardsGrimoire
-  inhand: # Starlight
-    - WizardPersonalAI # Starlight
 
 - type: startingGear
   id: WizardRedGear
