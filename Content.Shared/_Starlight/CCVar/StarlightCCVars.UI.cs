@@ -38,4 +38,17 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<bool> AdminGhostHealthBars =
         CVarDef.Create("ui.admin_ghost_health_bars", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether to see health icons as admin ghost.
+    /// </summary>
+    public static readonly CVarDef<bool> AdminGhostHealthIcons =
+        CVarDef.Create("ui.admin_ghost_health_icons", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Whether to see satiation icons as admin ghost.
+    /// </summary>
+    public static readonly CVarDef<bool> AdminGhostSatiationIcons =
+        CVarDef.Create("ui.admin_ghost_satiation_icons", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
 }

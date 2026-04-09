@@ -65,7 +65,9 @@ public sealed partial class AdminOptionsTab : Control
         Control.AddOptionCheckBox(StarlightCCVars.AdminGhostMindshieldIcons, EnableAGhostMindshieldIcons);
         Control.AddOptionCheckBox(StarlightCCVars.AdminGhostCriminalRecordIcons, EnableAGhostCriminalRecordIcons);
         Control.AddOptionCheckBox(StarlightCCVars.AdminGhostFactionIcons, EnableAGhostFactionIcons);
-        Control.AddOptionCheckBox(StarlightCCVars.AdminGhostHealthBars, EnableAGhostHealthBars); // Starlight END
+        Control.AddOptionCheckBox(StarlightCCVars.AdminGhostHealthBars, EnableAGhostHealthBars);
+        Control.AddOptionCheckBox(StarlightCCVars.AdminGhostHealthIcons, EnableAGhostHealthIcons);
+        Control.AddOptionCheckBox(StarlightCCVars.AdminGhostSatiationIcons, EnableAGhostSatiationIcons); // Starlight END
 
         Control.Initialize();
 

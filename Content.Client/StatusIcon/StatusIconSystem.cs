@@ -25,6 +25,8 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
     [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
 
     private static readonly string MindShieldIconId = "MindShieldIcon";
+    private static readonly string HungerIconIdPrefix = "HungerIcon"; // Starlight
+    private static readonly string ThirstIconIdPrefix = "ThirstIcon"; // Starlight
 
     private bool _globalEnabled;
     private bool _localEnabled;
@@ -82,14 +84,15 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
         if (viewer == ent.Owner)
             return true;
 
-        // Starlight BEGIN: Client settings decides if these icons are shown for Admin ghosts.
+        // Starlight BEGIN: For Admin ghosts, client settings decide if these icons are shown.
         if (HasComp<AdminGhostHudComponent>(viewer))
         {
             switch (data)
             {
                 case JobIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostJobIcons):
                 case FactionIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostFactionIcons):
-                case HealthIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostHealthBars):
+                case HealthIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostHealthIcons):
+                case SatiationIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostSatiationIcons):
                 case SecurityIconPrototype mindshieldIcon when
                     mindshieldIcon.ID == MindShieldIconId && (
                         !_configuration.GetCVar(StarlightCCVars.AdminGhostJobIcons) ||

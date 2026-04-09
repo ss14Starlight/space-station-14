@@ -45,3 +45,5 @@ ui-options-admin-ghost-hud-show-mindshield-icons = Show mindshield outline (requ
 ui-options-admin-ghost-hud-show-criminal-record-icons = Show criminal record icons
 ui-options-admin-ghost-hud-show-faction-icons = Show faction icons
 ui-options-admin-ghost-hud-show-health-bars = Show health bars
+ui-options-admin-ghost-hud-show-health-icons = Show health icons
+ui-options-admin-ghost-hud-show-satiation-icons = Show satiation icons

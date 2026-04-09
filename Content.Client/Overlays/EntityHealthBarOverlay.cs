@@ -12,6 +12,10 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.UI; // Starlight
+using Content.Shared.Starlight.CCVar; // Starlight
+using Robust.Client.Player; // Starlight
+using Robust.Shared.Configuration; // Starlight
 using static Robust.Shared.Maths.Color;
 
 namespace Content.Client.Overlays;
@@ -23,6 +27,8 @@ public sealed class EntityHealthBarOverlay : Overlay
 {
     private readonly IEntityManager _entManager;
     private readonly IPrototypeManager _prototype;
+    private readonly IPlayerManager _playerManager; // Starlight
+    private readonly IConfigurationManager _configManager; // Starlight
 
     private readonly SharedTransformSystem _transform;
     private readonly MobStateSystem _mobStateSystem;
@@ -36,10 +42,12 @@ public sealed class EntityHealthBarOverlay : Overlay
     public HashSet<string> DamageContainers = new();
     public ProtoId<HealthIconPrototype>? StatusIcon;
 
-    public EntityHealthBarOverlay(IEntityManager entManager, IPrototypeManager prototype)
+    public EntityHealthBarOverlay(IEntityManager entManager, IPrototypeManager prototype, IPlayerManager playerManager, IConfigurationManager configManager) // Starlight
     {
         _entManager = entManager;
         _prototype = prototype;
+        _playerManager = playerManager; // Starlight
+        _configManager = configManager; // Starlight
         _transform = _entManager.System<SharedTransformSystem>();
         _mobStateSystem = _entManager.System<MobStateSystem>();
         _mobThresholdSystem = _entManager.System<MobThresholdSystem>();
@@ -59,6 +67,13 @@ public sealed class EntityHealthBarOverlay : Overlay
         var rotationMatrix = Matrix3Helpers.CreateRotation(-rotation);
         _prototype.Resolve(StatusIcon, out var statusIcon);
 
+        // Starlight BEGIN
+        var viewer = _playerManager.LocalSession?.AttachedEntity;
+        if (_entManager.HasComponent<AdminGhostHudComponent>(viewer) &&
+            !_configManager.GetCVar(StarlightCCVars.AdminGhostHealthBars))
+            return;
+        // Starlight END
+
         var query = _entManager.AllEntityQueryEnumerator<MobThresholdsComponent, MobStateComponent, DamageableComponent, SpriteComponent>();
         while (query.MoveNext(out var uid,
             out var mobThresholdsComponent,
@@ -66,8 +81,10 @@ public sealed class EntityHealthBarOverlay : Overlay
             out var damageableComponent,
             out var spriteComponent))
         {
+            /* Starlight BEGIN
             if (statusIcon != null && !_statusIconSystem.IsVisible((uid, _entManager.GetComponent<MetaDataComponent>(uid)), statusIcon))
-                continue;
+                 continue;
+            Starlight END */
 
             // We want the stealth user to still be able to see his health bar himself
             if (!xformQuery.TryGetComponent(uid, out var xform) ||
