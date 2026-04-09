@@ -5,7 +5,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Achievement;
 
-[Prototype("achievement")]
+[Prototype]
 public sealed partial class AchievementPrototype : IPrototype
 {
     [IdDataField]
