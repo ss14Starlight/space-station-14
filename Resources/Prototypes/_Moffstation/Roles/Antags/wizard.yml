@@ -19,13 +19,16 @@
   equipment:
     shoes: ClothingShoesWizard
     id: WizardPDA
-    back: ClothingBackpack # Starlight, Wizard backpack
+    back: ClothingBackpackWizard # Starlight, Wizard backpack!
     ears: ClothingHeadsetAltWizard
     belt: ClothingBeltWand
     pocket1: WizardTeleportScroll
     pocket2: WizardsGrimoire # Starlight, basic grimoire
-  inhand:
+  inhand: # Starlight start
     - WizardPersonalAI
+  storage:
+    back:
+    - EncryptionKeyWinds # Starlight end, reward for killing a wizard, or something they can use to "assign" an apprentice
 
 - type: startingGear
   parent: WizardDuelistBaseGear

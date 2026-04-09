@@ -4,7 +4,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorDarkBlue
     head: ClothingHeadHatWizard
-    back: ClothingBackpack # Wizard backpack?
+    back: ClothingBackpackWizard # Starlight, Wizard backpack!
     outerClothing: ClothingOuterWizard
     shoes: ClothingShoesWizard
     id: WizardPDA
@@ -12,8 +12,11 @@
     belt: ClothingBeltWand
     pocket1: WizardTeleportScroll
     pocket2: WizardsGrimoire
-  inhand: # Starlight
-    - WizardPersonalAI # Starlight
+  inhand: # Starlight start
+    - WizardPersonalAI
+  storage:
+    back:
+    - EncryptionKeyWinds # Starlight end, reward for killing a wizard, or something they can use to "assign" an apprentice
 
 - type: startingGear
   id: WizardRedGear
