@@ -175,6 +175,10 @@
       - id: ClothingUniformJumpsuitOperative
       - id: ClothingUniformJumpskirtOperative
     - id: ClothingBackpackDuffelSyndicate
+    - id: ClothingBackpackSyndicate # Starlight start
+    - id: ClothingBackpackSatchelSyndicate
+    - id: ClothingBackpackTrunkSyndicate
+      weight: 0.5 # Starlight end
     - id: CyberPen
     - id: CigPackSyndicate
     - id: ClothingBackpackDuffelSyndicatePyjamaBundle
