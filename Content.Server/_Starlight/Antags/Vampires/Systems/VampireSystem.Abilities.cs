@@ -689,6 +689,8 @@ public sealed partial class VampireSystem : EntitySystem
             if (target == uid)
                 continue;
 
+            //reset effectScale for next possible target
+            effectScale = 1.0f;
             if (_flashImmunity.HasFlashImmunityVisionBlockers(target))
                 effectScale = args.FlashImmunityEffectScale;
 
@@ -724,8 +726,6 @@ public sealed partial class VampireSystem : EntitySystem
 
                 _stamina.TakeStaminaDamage(target, args.SideStaminaDamage * effectScale, stam, source: uid);
             }
-            //reset effectScale for next possible target
-            effectScale = 1.0f;
         }
 
         args.Handled = true;
