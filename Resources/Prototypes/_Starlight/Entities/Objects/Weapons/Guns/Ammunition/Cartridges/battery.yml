@@ -19,7 +19,7 @@
   - type: SpentAmmoVisuals
   - type: Contraband
     allowedDepartments: [ Security, CentralCommand, Command, Cargo ]
-  
+
 - type: entity
   id: CartridgeBattery
   name: cartridge (laser)

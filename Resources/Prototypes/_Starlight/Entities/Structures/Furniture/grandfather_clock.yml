@@ -4,10 +4,10 @@
   parent: BaseStructure
   description: Tick, tock. Old but reliable.
   components:
-  - type: AmbientSound 
+  - type: AmbientSound
     volume: -5
     range: 4
-    sound: 
+    sound:
       path: /Audio/_Starlight/Ambience/Objects/clock.ogg
   - type: Rotatable
   - type: Anchorable
@@ -23,7 +23,7 @@
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
-    bodyType: Dynamic
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:

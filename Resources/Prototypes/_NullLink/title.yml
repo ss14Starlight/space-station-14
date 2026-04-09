@@ -1,8 +1,8 @@
 - type: titleBuilder
-  id: Starlight 
+  id: Starlight
   segments:
   - # testers
-    titles: 
+    titles:
     - text: "α"
       color: "#35e500"
       roles:
@@ -12,7 +12,7 @@
       roles:
       - 1294130153651306516 # BetaTester
   - # role
-    titles: 
+    titles:
     - text: "Host"
       color: "#EC9C49"
       roles:
@@ -114,7 +114,7 @@
       roles:
       - 1348034282370896012 # Contributor
   - # badge
-    titles: 
+    titles:
     - text: "[font=\"Icon\"][/font]"
       color: "#ed0bc4"
       roles:

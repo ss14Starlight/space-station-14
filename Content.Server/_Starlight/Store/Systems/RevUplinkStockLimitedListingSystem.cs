@@ -17,11 +17,11 @@ public sealed class RevUplinkStockLimitedListingSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<StorePurchaseAttemptEvent>(OnStorePurchaseAttempt);
         SubscribeLocalEvent<StorePurchaseCompletedEvent>(OnStorePurchaseCompleted);
     }
-    
+
     /// <summary>
     /// Handles the StorePurchaseAttemptEvent for stock-limited listings.
     /// </summary>
@@ -30,28 +30,28 @@ public sealed class RevUplinkStockLimitedListingSystem : EntitySystem
         // Get the store component
         if (!TryComp<StoreComponent>(args.StoreEntity, out var storeComp))
             return;
-        
+
         // Find the listing
         var listingId = args.ListingId; // Store in local variable to avoid using ref parameter in lambda
         var listing = storeComp.FullListingsCatalog.FirstOrDefault(x => x.ID.Equals(listingId));
         if (listing == null)
             return;
-        
+
         // Check if this is a stock-limited listing
         if (listing.Conditions == null)
             return;
-        
+
         foreach (var condition in listing.Conditions)
         {
             if (condition is not StockLimitedListingCondition)
                 continue;
-            
+
             // Get the StockLimitedProcessingComponent
             if (!TryComp<StockLimitedProcessingComponent>(args.StoreEntity, out var processingComp))
             {
                 processingComp = EnsureComp<StockLimitedProcessingComponent>(args.StoreEntity);
             }
-            
+
             // Check if this listing is already being processed
             if (processingComp.ProcessingListings.TryGetValue(listing.ID, out var isProcessing) && isProcessing)
             {
@@ -59,13 +59,13 @@ public sealed class RevUplinkStockLimitedListingSystem : EntitySystem
                 args.Cancel = true;
                 return;
             }
-            
+
             // Mark that we're processing this listing
             processingComp.ProcessingListings[listing.ID] = true;
             break;
         }
     }
-    
+
     /// <summary>
     /// Handles the StorePurchaseCompletedEvent for stock-limited listings.
     /// </summary>
@@ -74,26 +74,26 @@ public sealed class RevUplinkStockLimitedListingSystem : EntitySystem
         // Get the store component
         if (!TryComp<StoreComponent>(args.StoreEntity, out var storeComp))
             return;
-        
+
         // Find the listing
         var listingId = args.ListingId; // Store in local variable to avoid using ref parameter in lambda
         var listing = storeComp.FullListingsCatalog.FirstOrDefault(x => x.ID.Equals(listingId));
         if (listing == null)
             return;
-        
+
         // Check if this is a stock-limited listing
         if (listing.Conditions == null)
             return;
-        
+
         foreach (var condition in listing.Conditions)
         {
             if (condition is not StockLimitedListingCondition)
                 continue;
-            
+
             // Get the StockLimitedProcessingComponent
             if (!TryComp<StockLimitedProcessingComponent>(args.StoreEntity, out var processingComp))
                 return;
-            
+
             // Mark that we're done processing this listing
             processingComp.ProcessingListings[listing.ID] = false;
             break;

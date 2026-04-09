@@ -18,7 +18,7 @@ public sealed partial class BatterySelfRechargerComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables]
     public float AutoRechargeRate;
-    
+
     //Starlight begin
     [ViewVariables(VVAccess.ReadWrite)]
     public float AutoRechargeRateVV

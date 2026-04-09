@@ -62,6 +62,6 @@ public sealed partial class FrenchAccentSystem : EntitySystem
         return msg;
     }
 
-    private void OnAccentGet(EntityUid uid, FrenchAccentComponent component, AccentGetEvent args) 
+    private void OnAccentGet(EntityUid uid, FrenchAccentComponent component, AccentGetEvent args)
         => args.Message = Accentuate(args.Message, component);
 }

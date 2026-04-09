@@ -91,7 +91,7 @@ internal sealed class ChatManager : IChatManager
                 throw new ArgumentOutOfRangeException(nameof(channel), channel, null);
         }
     }
-    
+
     public void UpdatePermissions()
     {
         PermissionsUpdated?.Invoke();
