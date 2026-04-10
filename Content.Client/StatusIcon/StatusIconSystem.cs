@@ -94,7 +94,7 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
                 case SecurityIconPrototype mindShieldIcon when
                     mindShieldIcon.ID == MindShieldIconId && (
                         !_configuration.GetCVar(StarlightCCVars.AdminGhostJobIcons) ||
-                        !_configuration.GetCVar(StarlightCCVars.AdminGhostMindshieldIcons)):
+                        !_configuration.GetCVar(StarlightCCVars.AdminGhostMindShieldIcons)):
                 case SecurityIconPrototype criminalRecordIcon
                     when criminalRecordIcon.ID != MindShieldIconId &&
                          !_configuration.GetCVar(StarlightCCVars.AdminGhostCriminalRecordIcons):

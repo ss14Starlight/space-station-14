@@ -62,7 +62,7 @@ public sealed partial class AdminOptionsTab : Control
         Control.AddOptionCheckBox(CCVars.AdminOverlayPlaytime, EnableOverlayPlaytimeCheckBox);
         Control.AddOptionCheckBox(CCVars.AdminOverlayStartingJob, EnableOverlayStartingJobCheckBox);
         Control.AddOptionCheckBox(StarlightCCVars.AdminGhostJobIcons, EnableAGhostJobIcons); // Starlight BEGIN
-        Control.AddOptionCheckBox(StarlightCCVars.AdminGhostMindshieldIcons, EnableAGhostMindshieldIcons);
+        Control.AddOptionCheckBox(StarlightCCVars.AdminGhostMindShieldIcons, EnableAGhostMindShieldIcons);
         Control.AddOptionCheckBox(StarlightCCVars.AdminGhostCriminalRecordIcons, EnableAGhostCriminalRecordIcons);
         Control.AddOptionCheckBox(StarlightCCVars.AdminGhostFactionIcons, EnableAGhostFactionIcons);
         Control.AddOptionCheckBox(StarlightCCVars.AdminGhostHealthBars, EnableAGhostHealthBars);

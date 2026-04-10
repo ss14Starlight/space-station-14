@@ -18,7 +18,7 @@ public sealed partial class StarlightCCVars
     /// <summary>
     /// Whether to see mindshield icons as admin ghost.
     /// </summary>
-    public static readonly CVarDef<bool> AdminGhostMindshieldIcons =
+    public static readonly CVarDef<bool> AdminGhostMindShieldIcons =
         CVarDef.Create("ui.admin_ghost_mindshield_icons", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
@@ -43,12 +43,12 @@ public sealed partial class StarlightCCVars
     /// Whether to see health icons as admin ghost.
     /// </summary>
     public static readonly CVarDef<bool> AdminGhostHealthIcons =
-        CVarDef.Create("ui.admin_ghost_health_icons", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("ui.admin_ghost_health_icons", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// Whether to see satiation icons as admin ghost.
     /// </summary>
     public static readonly CVarDef<bool> AdminGhostSatiationIcons =
-        CVarDef.Create("ui.admin_ghost_satiation_icons", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("ui.admin_ghost_satiation_icons", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
 }
