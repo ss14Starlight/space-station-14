@@ -18,6 +18,8 @@ public sealed class JobTest
 
     private static string _map = "JobTestMap";
 
+    private const int _waitAfter = 10;
+
     [TestPrototypes]
     private static readonly string JobTestMap = @$"
 - type: gameMap
@@ -62,12 +64,12 @@ public sealed class JobTest
         ticker.ToggleReadyAll(true);
         Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.ReadyToPlay));
         await pair.Server.WaitPost(() => ticker.StartRound());
-        await pair.RunTicksSync(10);
+        await pair.RunTicksSync(_waitAfter);
 
         pair.AssertJob(Passenger);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.RunTicksSync(10);
+        await pair.RunTicksSync(_waitAfterRestart);
         await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
@@ -96,7 +98,7 @@ public sealed class JobTest
         );
         ticker.ToggleReadyAll(true);
         await pair.Server.WaitPost(() => ticker.StartRound());
-        await pair.RunTicksSync(10);
+        await pair.RunTicksSync(_waitAfter);
 
         pair.AssertJob(Engineer);
 
@@ -108,12 +110,12 @@ public sealed class JobTest
         );
         ticker.ToggleReadyAll(true);
         await pair.Server.WaitPost(() => ticker.StartRound());
-        await pair.RunTicksSync(10);
+        await pair.RunTicksSync(_waitAfter);
 
         pair.AssertJob(Passenger);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.RunTicksSync(10);
+        await pair.RunTicksSync(_waitAfter);
         await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
@@ -149,12 +151,12 @@ public sealed class JobTest
         await pair.SetJobPreferences([Passenger, Engineer, Captain]);
         ticker.ToggleReadyAll(true);
         await pair.Server.WaitPost(() => ticker.StartRound());
-        await pair.RunTicksSync(10);
+        await pair.RunTicksSync(_waitAfter);
 
         pair.AssertJob(Captain);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.RunTicksSync(10);
+        await pair.RunTicksSync(_waitAfter);
         await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
@@ -189,7 +191,7 @@ public sealed class JobTest
         };
 
         var engineers = (await pair.AddDummyPlayers(engJobs, 5)).ToList();
-        await pair.RunTicksSync(5);
+        await pair.RunTicksSync(_waitAfter);
         var captain = engineers[3];
         engineers.RemoveAt(3);
 
@@ -197,7 +199,7 @@ public sealed class JobTest
 
         ticker.ToggleReadyAll(true);
         await pair.Server.WaitPost(() => ticker.StartRound());
-        await pair.RunTicksSync(10);
+        await pair.RunTicksSync(_waitAfter);
 
         pair.AssertJob(Captain, captain);
         Assert.Multiple(() =>
@@ -209,7 +211,7 @@ public sealed class JobTest
         });
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.RunTicksSync(10);
+        await pair.RunTicksSync(_waitAfter);
         await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
