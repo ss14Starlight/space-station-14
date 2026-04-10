@@ -48,9 +48,6 @@ public sealed class PAIShuttleRamSystem : EntitySystem
         var contained = new List<EntityUid>(slot.ContainedEntities);
         foreach (var ent in contained)
         {
-            if (!HasComp<PAIComponent>(ent))
-                continue;
-
             // Remove pilot status first (if they were actively piloting).
             _shuttleConsole.RemovePilot(ent);
             RemCompDeferred<PAIShuttlePilotingComponent>(ent);
