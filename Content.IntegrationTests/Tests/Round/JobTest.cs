@@ -10,7 +10,6 @@ using Robust.Shared.Prototypes;
 namespace Content.IntegrationTests.Tests.Round;
 
 [TestFixture]
-[TestOf(typeof(SharedJobSystem))]
 public sealed class JobTest
 {
     private static readonly ProtoId<JobPrototype> Passenger = "Assistant";
