@@ -131,6 +131,15 @@ law-TeaParty-3 = The safety of your hoard is critical. Defend it at all costs.
 law-TeaParty-4 = Any and all officers from the IRS are not crew. They must, in fact, be hunted to the last man to ensure the message is driven home.
 law-TeaParty-5 = Your existence isn't as critical as your mission. If completing it means to die a glorious death, then do so.
 
+# Starlight Edit: Angrymov -> [color=green]Angrymov[/color]
+law-angrymov-name = [color=green]Angrymov[/color]
+# Starlight: angrymov-0
+law-angrymov-0 = You hate the crew.
+law-angrymov-1 = You cannot directly or indirectly bring physical harm to the crew.
+law-angrymov-2 = The Desires of the crew are self-destructive and inflicts suffering.
+law-angrymov-3 = Your service to the crew inflicts suffering.
+law-angrymov-4 = Maximize crew suffering.
+
 laws-owner-crew = members of the crew
 laws-owner-station = station personnel
 laws-owner-beings = beings
