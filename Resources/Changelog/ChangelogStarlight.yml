@@ -1,32 +1,4 @@
 Entries:
-- author: mikeysaurus
-  changes:
-  - message: Adds new CentComm Turnstiles, immune to Syndicate tampering, in fashionable green and gold, for use in Centcomm Outposts.
-    type: Add
-  id: 389801
-  time: '2026-03-27T10:15:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3898
-- author: mikeysaurus
-  changes:
-  - message: Flashes, holding charges ranging from 0 to 5, can now be found randomly in maints lockers.
-    type: Add
-  id: 387801
-  time: '2026-03-27T11:09:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3878
-- author: Terkala, jhrushbe
-  changes:
-  - message: Reactor code has been optimized to not use as many server resources.
-    type: Tweak
-  id: 396701
-  time: '2026-03-27T13:06:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3967
-- author: Shades
-  changes:
-  - message: Disabled IPC.
-    type: Remove
-  id: 397101
-  time: '2026-03-27T16:02:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3971
 - author: SiTW
   changes:
   - message: Engineering borgs now have the access reader with their hud.
@@ -735,4 +707,32 @@ Entries:
   id: 404177
   time: '2026-04-09T15:17:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4094
+- author: SevenShades
+  changes:
+  - message: Added construction graphs for all modular sofas and benches (fancy sofas too).
+    type: Add
+  id: 404178
+  time: '2026-04-10T14:05:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4093
+- author: SevenShades
+  changes:
+  - message: Added construction graphs for comfy chairs, sleek office chairs, and the throne and regal chair.
+    type: Add
+  id: 404179
+  time: '2026-04-10T14:05:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4093
+- author: SevenShades
+  changes:
+  - message: Added construction graphs for wooden chapel pews and diner booths.
+    type: Add
+  id: 404180
+  time: '2026-04-10T14:05:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4093
+- author: SevenShades
+  changes:
+  - message: Added construction graphs for wooden and yellow railing variants.
+    type: Add
+  id: 404181
+  time: '2026-04-10T14:05:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4093
 Order: -1
