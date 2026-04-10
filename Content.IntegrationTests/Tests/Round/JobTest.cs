@@ -44,7 +44,11 @@ public sealed class JobTest
     [Test]
     public async Task StartRoundTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings { InLobby = true });
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings { 
+            InLobby = true,
+            Connected = true,
+            DummyTicker = false
+        });
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
         var ticker = pair.Server.System<GameTicker>();
@@ -74,7 +78,11 @@ public sealed class JobTest
     [Test]
     public async Task JobPreferenceTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings { InLobby = true });
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings { 
+            InLobby = true,
+            Connected = true,
+            DummyTicker = false
+        });
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
         var ticker = pair.Server.System<GameTicker>();
@@ -117,7 +125,11 @@ public sealed class JobTest
     [Test]
     public async Task JobWeightTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings { InLobby = true });
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings { 
+            InLobby = true,
+            Connected = true,
+            DummyTicker = false
+        });
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
         var ticker = pair.Server.System<GameTicker>();
@@ -153,7 +165,11 @@ public sealed class JobTest
     [Test]
     public async Task JobPriorityTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings { InLobby = true });
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings { 
+            InLobby = true,
+            Connected = true,
+            DummyTicker = false
+        });
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
         var ticker = pair.Server.System<GameTicker>();
