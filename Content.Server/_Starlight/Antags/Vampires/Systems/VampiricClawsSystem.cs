@@ -6,10 +6,10 @@ using Content.Shared.Popups;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Wieldable;
+using Content.Shared._Starlight.Medical.Body.Systems;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 

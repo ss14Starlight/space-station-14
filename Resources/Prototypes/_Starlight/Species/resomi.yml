@@ -10,7 +10,7 @@
   femaleFirstNames: names_resomi_first
   lastNames: names_resomi_packs
   naming: FirstLast
-  dollPrototype: MobResomiDummy
+  dollPrototype: AppearanceResomi
   skinColoration: Hues
   minAge: 23
   youngAge: 103
