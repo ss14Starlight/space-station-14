@@ -92,7 +92,7 @@
   components:
   - type: Stamp
     stampedName: "Central Cargo Division"
-    stampedColor: "#B45F06"
+    stampedColor: "#9e794a"
     stampState: "paper_stamp-qm"
   - type: Sprite
     state: stamp-detective
