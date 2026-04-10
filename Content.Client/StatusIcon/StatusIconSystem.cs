@@ -1,8 +1,7 @@
-using Content.Shared._Starlight.UI;
 using Content.Shared.CCVar;
 using Content.Shared.Ghost;
-using Content.Shared.Overlays;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.UI; // Starlight
+using Content.Shared.Starlight.CCVar; // Starlight
 using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Content.Shared.Stealth.Components;

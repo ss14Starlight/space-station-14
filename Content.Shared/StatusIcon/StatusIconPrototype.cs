@@ -136,8 +136,9 @@ public sealed partial class HealthIconPrototype : StatusIconPrototype, IInheriti
     public bool Abstract { get; private set; }
 }
 
+#region Starlight
 /// <summary>
-/// StatusIcons for the med HUD health bar
+/// Virtual status icon for med HUD health bar visibility
 /// </summary>
 [Prototype]
 public sealed partial class HealthBarIconPrototype : StatusIconPrototype, IInheritingPrototype
@@ -151,6 +152,7 @@ public sealed partial class HealthBarIconPrototype : StatusIconPrototype, IInher
     [AbstractDataField]
     public bool Abstract { get; private set; }
 }
+#endregion
 
 /// <summary>
 /// StatusIcons for the beer goggles and fried onion goggles
