@@ -13,6 +13,7 @@
   id: BaseSignDirectional
   abstract: true
   components:
+    - type: DirectionalSign
     - type: Sprite
       snapCardinals: false
 
