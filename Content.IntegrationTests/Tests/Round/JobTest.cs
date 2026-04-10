@@ -69,7 +69,7 @@ public sealed class JobTest
         pair.AssertJob(Passenger);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.RunTicksSync(_waitAfterRestart);
+        await pair.RunTicksSync(_waitAfter);
         await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
