@@ -1,14 +1,14 @@
 using System.Numerics;
-using Content.Server.Body.Systems;
 using Content.Shared.Buckle;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Standing;
 using Robust.Shared.GameObjects;
+using Content.Shared._Starlight.Medical.Body.Part;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.IntegrationTests.Tests.Buckle
 {

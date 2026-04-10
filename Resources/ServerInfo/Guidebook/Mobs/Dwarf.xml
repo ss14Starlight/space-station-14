@@ -2,7 +2,7 @@
   # Dwarves
 
   <Box>
-    <GuideEntityEmbed Entity="MobDwarf" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceDwarf" Caption=""/>
   </Box>
 
   Dwarves are similar to humans in most respect, but tolerate alcohol better and are healed by it.

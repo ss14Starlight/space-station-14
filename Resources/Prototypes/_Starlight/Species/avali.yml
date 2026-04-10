@@ -6,7 +6,7 @@
   sprites: MobAvaliSprites
   defaultSkinTone: "#D2B48C"
   markingLimits: MobAvaliMarkingLimits
-  dollPrototype: MobAvaliDummy
+  dollPrototype: AppearanceAvali
   skinColoration: Hues
   maleFirstNames: names_avali_first
   femaleFirstNames: names_avali_first
