@@ -1,36 +1,11 @@
-#bathroom
+#region Sofas
+#region Gray
 - type: construction
-  id: Sink
-  graph: Sink
+  id: SofaCorner
+  name: construction-recipe-sofa-gray-corner
+  graph: SofaSL
   startNode: start
-  targetNode: sink
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-#region Chairs
-- type: construction
-  id: ChairOfficeSleek
-  graph: ChairSL
-  startNode: start
-  targetNode: chairOfficeSleek
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-#comfy chairs
-- type: construction
-  id: ChairComfyWhite
-  name: construction-recipe-comfy-chair-white
-  graph: ChairSL
-  startNode: start
-  targetNode: chairComfyWhite
+  targetNode: graySofaCorner
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -39,11 +14,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: ChairComfyBlue
-  name: construction-recipe-comfy-chair-blue
-  graph: ChairSL
+  id: SofaEndLeft
+  name: construction-recipe-sofa-gray-left
+  graph: SofaSL
   startNode: start
-  targetNode: chairComfyBlue
+  targetNode: graySofaLeft
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -52,11 +27,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: ChairComfyGreen
-  name: construction-recipe-comfy-chair-green
-  graph: ChairSL
+  id: SofaEndRight
+  name: construction-recipe-sofa-gray-right
+  graph: SofaSL
   startNode: start
-  targetNode: chairComfyGreen
+  targetNode: graySofaRight
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -65,11 +40,25 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: ChairComfyRed
-  name: construction-recipe-comfy-chair-red
-  graph: ChairSL
+  id: SofaMiddle
+  name: construction-recipe-sofa-gray-mid
+  graph: SofaSL
   startNode: start
-  targetNode: chairComfyRed
+  targetNode: graySofaMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region White
+- type: construction
+  id: SofaCornerWhite
+  name: construction-recipe-sofa-white-corner
+  graph: SofaSL
+  startNode: start
+  targetNode: whiteSofaCorner
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -78,24 +67,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: ChairComfyBrown
-  name: construction-recipe-comfy-chair-brown
-  graph: ChairSL
+  id: SofaEndLeftWhite
+  name: construction-recipe-sofa-white-left
+  graph: SofaSL
   startNode: start
-  targetNode: chairComfyBrown
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-# Regal
-- type: construction
-  id: ChairRegal
-  graph: ChairSL
-  startNode: start
-  targetNode: chairRegal
+  targetNode: whiteSofaLeft
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -104,25 +80,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: ChairThrone
-  graph: ChairSL
+  id: SofaEndRightWhite
+  name: construction-recipe-sofa-white-right
+  graph: SofaSL
   startNode: start
-  targetNode: chairThrone
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-#region Benches
-#White
-- type: construction
-  id: BenchWhiteComfy
-  name: construction-recipe-white-comf-bench
-  graph: BenchSL
-  startNode: start
-  targetNode: whiteComfBench
+  targetNode: whiteSofaRight
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -131,103 +93,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: BenchComfyCorner
-  name: construction-recipe-comfy-bench-white-corner
-  graph: BenchSL
+  id: SofaMiddleWhite
+  name: construction-recipe-sofa-white-mid
+  graph: SofaSL
   startNode: start
-  targetNode: whiteComfBenchCorner
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: BenchComfyEndLeft
-  name: construction-recipe-comfy-bench-white-left
-  graph: BenchSL
-  startNode: start
-  targetNode: whiteComfBenchLeft
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: BenchComfyEndRight
-  name: construction-recipe-comfy-bench-white-right
-  graph: BenchSL
-  startNode: start
-  targetNode: whiteComfBenchRight
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: BenchComfyMiddle
-  name: construction-recipe-comfy-bench-white-mid
-  graph: BenchSL
-  startNode: start
-  targetNode: whiteComfBenchMid
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-#region Red
-- type: construction
-  id: BenchRedComfyCorner
-  name: construction-recipe-comfy-bench-red-corner
-  graph: BenchSL
-  startNode: start
-  targetNode: redComfBenchCorner
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: BenchRedComfyEndLeft
-  name: construction-recipe-comfy-bench-red-left
-  graph: BenchSL
-  startNode: start
-  targetNode: redComfBenchLeft
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: BenchRedComfyEndRight
-  name: construction-recipe-comfy-bench-red-right
-  graph: BenchSL
-  startNode: start
-  targetNode: redComfBenchRight
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: BenchRedComfyMiddle
-  name: construction-recipe-comfy-bench-red-mid
-  graph: BenchSL
-  startNode: start
-  targetNode: redComfBenchMid
+  targetNode: whiteSofaMid
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -237,11 +107,11 @@
 
 #region Blue
 - type: construction
-  id: BenchBlueComfyCorner
-  name: construction-recipe-comfy-bench-blue-corner
-  graph: BenchSL
+  id: SofaCornerBlue
+  name: construction-recipe-sofa-blue-corner
+  graph: SofaSL
   startNode: start
-  targetNode: blueComfBenchCorner
+  targetNode: blueSofaCorner
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -250,11 +120,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: BenchBlueComfyEndLeft
-  name: construction-recipe-comfy-bench-blue-left
-  graph: BenchSL
+  id: SofaEndLeftBlue
+  name: construction-recipe-sofa-blue-left
+  graph: SofaSL
   startNode: start
-  targetNode: blueComfBenchLeft
+  targetNode: blueSofaLeft
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -263,11 +133,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: BenchBlueComfyEndRight
-  name: construction-recipe-comfy-bench-blue-right
-  graph: BenchSL
+  id: SofaEndRightBlue
+  name: construction-recipe-sofa-blue-right
+  graph: SofaSL
   startNode: start
-  targetNode: blueComfBenchRight
+  targetNode: blueSofaRight
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -276,11 +146,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: BenchBlueComfyMiddle
-  name: construction-recipe-comfy-bench-blue-mid
-  graph: BenchSL
+  id: SofaMiddleBlue
+  name: construction-recipe-sofa-blue-mid
+  graph: SofaSL
   startNode: start
-  targetNode: blueComfBenchMid
+  targetNode: blueSofaMid
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -288,27 +158,13 @@
   conditions:
     - !type:TileNotBlocked
 
-#region Gray
-
+#region Red
 - type: construction
-  id: GrayComfBench
-  name: construction-recipe-gray-comf-bench
-  graph: BenchSL
+  id: SofaCornerRed
+  name: construction-recipe-sofa-red-corner
+  graph: SofaSL
   startNode: start
-  targetNode: grayComfBench
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: BenchGrayComfyCorner
-  name: construction-recipe-comfy-bench-gray-corner
-  graph: BenchSL
-  startNode: start
-  targetNode: grayComfBenchCorner
+  targetNode: redSofaCorner
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -317,11 +173,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: BenchGrayComfyEndLeft
-  name: construction-recipe-comfy-bench-gray-left
-  graph: BenchSL
+  id: SofaEndLeftRed
+  name: construction-recipe-sofa-red-left
+  graph: SofaSL
   startNode: start
-  targetNode: grayComfBenchLeft
+  targetNode: redSofaLeft
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -330,11 +186,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: BenchGrayComfyEndRight
-  name: construction-recipe-comfy-bench-gray-right
-  graph: BenchSL
+  id: SofaEndRightRed
+  name: construction-recipe-sofa-red-right
+  graph: SofaSL
   startNode: start
-  targetNode: grayComfBenchRight
+  targetNode: redSofaRight
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -343,11 +199,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: BenchGrayComfyMiddle
-  name: construction-recipe-comfy-bench-gray-mid
-  graph: BenchSL
+  id: SofaMiddleRed
+  name: construction-recipe-sofa-red-mid
+  graph: SofaSL
   startNode: start
-  targetNode: grayComfBenchMid
+  targetNode: redSofaMid
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -357,11 +213,11 @@
 
 #region Green
 - type: construction
-  id: BenchGreenComfy
-  name: construction-recipe-green-comf-bench
-  graph: BenchSL
+  id: SofaCornerGreen
+  name: construction-recipe-sofa-green-corner
+  graph: SofaSL
   startNode: start
-  targetNode: greenComfBench
+  targetNode: greenSofaCorner
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -370,11 +226,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: BenchGreenComfyCorner
-  name: construction-recipe-comfy-bench-green-corner
-  graph: BenchSL
+  id: SofaEndLeftGreen
+  name: construction-recipe-sofa-green-left
+  graph: SofaSL
   startNode: start
-  targetNode: greenComfBenchCorner
+  targetNode: greenSofaLeft
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -383,11 +239,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: BenchGreenComfyEndLeft
-  name: construction-recipe-comfy-bench-green-left
-  graph: BenchSL
+  id: SofaEndRightGreen
+  name: construction-recipe-sofa-green-right
+  graph: SofaSL
   startNode: start
-  targetNode: greenComfBenchLeft
+  targetNode: greenSofaRight
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -396,11 +252,25 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: BenchGreenComfyEndRight
-  name: construction-recipe-comfy-bench-green-right
-  graph: BenchSL
+  id: SofaMiddleGreen
+  name: construction-recipe-sofa-green-mid
+  graph: SofaSL
   startNode: start
-  targetNode: greenComfBenchRight
+  targetNode: greenSofaMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Brown
+- type: construction
+  id: SofaCornerBrown
+  name: construction-recipe-sofa-brown-corner
+  graph: SofaSL
+  startNode: start
+  targetNode: brownSofaCorner
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -409,25 +279,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: BenchGreenComfyMiddle
-  name: construction-recipe-comfy-bench-green-mid
-  graph: BenchSL
+  id: SofaEndLeftBrown
+  name: construction-recipe-sofa-brown-left
+  graph: SofaSL
   startNode: start
-  targetNode: greenComfBenchMid
-  category: construction-category-furniture
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-#region Pews
-- type: construction
-  id: PewEndLeft
-  name: construction-recipe-pew-left
-  graph: BenchSL
-  startNode: start
-  targetNode: pewLeft
+  targetNode: brownSofaLeft
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -436,11 +292,11 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: PewMiddle
-  name: construction-recipe-pew-mid
-  graph: BenchSL
+  id: SofaEndRightBrown
+  name: construction-recipe-sofa-brown-right
+  graph: SofaSL
   startNode: start
-  targetNode: pewMid
+  targetNode: brownSofaRight
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -449,11 +305,91 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: PewEndRight
-  name: construction-recipe-pew-right
-  graph: BenchSL
+  id: SofaMiddleBrown
+  name: construction-recipe-sofa-brown-mid
+  graph: SofaSL
   startNode: start
-  targetNode: pewRight
+  targetNode: brownSofaMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Fancy sofa
+- type: construction
+  id: SofaFancyEndLeft
+  name: construction-recipe-sofa-fancy-left
+  graph: SofaSL
+  startNode: start
+  targetNode: fancyLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaFancyMiddle
+  name: construction-recipe-sofa-fancy-mid
+  graph: SofaSL
+  startNode: start
+  targetNode: fancyMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaFancyRight
+  name: construction-recipe-sofa-fancy-right
+  graph: SofaSL
+  startNode: start
+  targetNode: fancyRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Dinner booths
+- type: construction
+  id: DinerEndLeft
+  name: construction-recipe-booth-left
+  graph: SofaSL
+  startNode: start
+  targetNode: boothLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: DinerMiddle
+  name: construction-recipe-booth-mid
+  graph: SofaSL
+  startNode: start
+  targetNode: boothMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: DinerRight
+  name: construction-recipe-booth-right
+  graph: SofaSL
+  startNode: start
+  targetNode: boothRight
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
