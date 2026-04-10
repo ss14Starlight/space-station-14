@@ -1,20 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Fixed Bee Hives, Bee Boxes, and Meatroid Walls test failing due to Material Arbitrage Tests.
-    type: Fix
-  id: 397601
-  time: '2026-03-27T18:57:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3976
-- author: STARLIGHT TEAM
-  changes:
-  - message: Improved card UI significantly.
-    type: Tweak
-  - message: Added the Captain's mode specific card "War" with a 10% chance to appear. If accepted, a notification will announce the start of the war, along with an evacuation requirement to deliver at least 90% of the crew listed on the manifest to CentCom. In response, a dozen deserter cards are added to the pool, with the objective of hiding on the station. Deserters gain access to a hidden section in vending machines containing tools and smoke grenades.
-    type: Add
-  id: 396001
-  time: '2026-03-27T21:05:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3960
 - author: redmushie
   changes:
   - message: End-of-round pacification is now only applied on the Evac shuttle and on CentComm. This makes it easier for station-ending antags and Security to keep doing what they have to do on station. EORG rules still apply.
@@ -735,4 +719,18 @@ Entries:
   id: 404183
   time: '2026-04-10T14:15:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4087
+- author: redmushie
+  changes:
+  - message: CentComm prescription and jamjar glasses.
+    type: Add
+  id: 404184
+  time: '2026-04-10T14:18:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4075
+- author: redmushie
+  changes:
+  - message: All CentComm glasses are selectable for chameleon glasses.
+    type: Fix
+  id: 404185
+  time: '2026-04-10T14:18:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4075
 Order: -1
