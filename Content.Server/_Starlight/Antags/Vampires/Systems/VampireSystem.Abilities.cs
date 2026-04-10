@@ -670,13 +670,13 @@ public sealed partial class VampireSystem : EntitySystem
     /// </summary>
     private void OnGlare(EntityUid uid, VampireComponent comp, ref VampireGlareActionEvent args)
     {
+        //If vampire cannot see, they cannot glare
+        if (!TryComp<BlindableComponent>(uid, out var blindable) || blindable.IsBlind)
+            return;
+
         if (args.Handled
             || !comp.ActionEntities.TryGetValue("ActionVampireGlare", out var actionEntity)
             || !CheckAndConsumeBloodCost(uid, comp, actionEntity))
-            return;
-
-        //If vampire cannot see, they cannot glare
-        if (!TryComp<BlindableComponent>(uid, out var blindable) || blindable.IsBlind)
             return;
 
         // Find targets within 1 tile around the vampire
