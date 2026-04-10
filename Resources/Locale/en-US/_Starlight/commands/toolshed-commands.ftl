@@ -286,7 +286,7 @@ command-description-stationinit-rmjob =
 command-description-stationinit-setallowevents =
     Set allowing events to target this station.
 command-description-stationinit-setdovariationpass =
-    Set allowing the roundstart variation pass to be ran on the newly created station.
+    Set allowing the roundstart variation pass to be run on the newly created station.
 command-description-stationinit-namegrid =
     Rename the target grid, the name of the grid is what will be used for the station's name when initializing.
 command-description-stationinit-initialize =
