@@ -19,7 +19,7 @@
   suffix: Limited
   components:
   - type: LimitedCharges
-  
+
 - type: entity
   parent: AccessOverider
   id: AccessOveriderRecharging
