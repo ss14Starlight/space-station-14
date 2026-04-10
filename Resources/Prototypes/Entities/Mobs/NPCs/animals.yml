@@ -514,7 +514,7 @@
 
 - type: entity
   name: mothroach
-  parent: MobCockroach
+  parent: MobCockroach #starlight Nubody will not pass.
   id: MobMothroach
   description: This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches.
   components:
@@ -639,8 +639,10 @@
   - type: NpcFactionMember
     factions:
     - Mouse
+  # Starlight - start
   - type: Body
     prototype: Mothroach
+  # Starlight - end
   - type: TypingIndicator
     proto: moth
   - type: Destructible
@@ -918,7 +920,7 @@
 
 - type: entity
   name: cow
-  parent: SimpleMobBase
+  parent: SimpleMobBase #starlight Nubody will not pass.
   id: MobCow
   description: Moo.
   components:
@@ -991,8 +993,10 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Starlight - start
   - type: Body
     prototype: AnimalRuminant
+  # Starlight - end
   - type: HTN
     rootTask:
       task: RuminantCompound
@@ -1003,7 +1007,7 @@
 
 - type: entity
   name: crab
-  parent: SimpleMobBase
+  parent: SimpleMobBase #starlight Nubody will not pass.
   id: MobCrab
   description: A folk legend goes around that his claw snaps spacemen out of existence over distasteful remarks. Be polite and tolerant for your own safety.
   components:
@@ -1076,12 +1080,14 @@
   - type: HTN
     rootTask:
       task: RuminantCompound
+  # Starlight - start
   - type: Body
     prototype: AnimalHemocyanin
+  # Starlight - end
 
 - type: entity
   name: goat
-  parent: SimpleMobBase
+  parent: SimpleMobBase #starlight Nubody will not pass.
   id: MobGoat
   description: Her spine consists of long sharp segments, no wonder she is so grumpy.
   components:
@@ -1173,8 +1179,10 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Starlight - start
   - type: Body
     prototype: AnimalRuminant
+  # Starlight - end
   - type: NPCRetaliation
     attackMemoryLength: 5
   - type: FactionException
@@ -1330,7 +1338,7 @@
 - type: entity
   name: genetic ancestor
   id: MobBaseAncestor
-  parent: [SimpleMobBase, StripableInventoryBase]
+  parent: [SimpleMobBase, StripableInventoryBase] #starlight Nubody will not pass.
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
@@ -1402,9 +1410,11 @@
         clownedon:
           True: {visible: true}
           False: {visible: false}
+  # Starlight - start
   - type: Body
     prototype: Primate
     requiredLegs: 1 # TODO: More than 1 leg
+  # Starlight - end
   - type: CreamPied
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
@@ -1432,6 +1442,8 @@
     spawned:
     - id: FoodMeat
       amount: 3
+  - type: Puller
+    needsHands: false
   - type: CanHostGuardian
   - type: NPCRetaliation
     attackMemoryLength: 10
@@ -1783,7 +1795,7 @@
 
 - type: entity
   name: mouse
-  parent: SimpleMobBase
+  parent: SimpleMobBase #starlight Nubody will not pass.
   id: MobMouse
   description: Squeak!
   components:
@@ -1795,8 +1807,10 @@
     - Mouse
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
+  # Starlight - start
   - type: Body
     prototype: Mouse
+  # Starlight - end
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -2573,7 +2587,7 @@
 # Code unique spider prototypes or combine them all into one spider and get a
 # random sprite state when you spawn it.
 - type: entity
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleMobBase, MobCombat ] #starlight Nubody will not pass.
   id: MobSpiderBase
   abstract: true
   components:
@@ -2602,8 +2616,10 @@
     - id: FoodMeatSpider
       amount: 2
   - type: CombatMode
+  # Starlight - start
   - type: Body
     prototype: AnimalHemocyanin
+  # Starlight - end
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -2706,7 +2722,7 @@
       base:
         - options: Default
           data:
-            drawdepth: Mobs   
+            drawdepth: Mobs
             sprite: Mobs/Animals/spider.rsi
             map: ["enum.DamageStateVisualLayers.Base", "movement"]
             state: tarantula
@@ -2760,7 +2776,7 @@
         base:
           - options: Default
             data:
-              drawdepth: Mobs   
+              drawdepth: Mobs
               sprite: Mobs/Animals/clownspider.rsi
               map: ["enum.DamageStateVisualLayers.Base", "movement"]
               state: clown
@@ -4055,7 +4071,7 @@
         Base: reindeer_doe_dead
 
 - type: entity
-  parent: MobCorgiBase
+  parent: MobCorgiBase #starlight Nubody will not pass.
   id: MobCorgiSmart
   name: smart corgi
   description: An unusually smart dog.
@@ -4115,8 +4131,10 @@
   - type: Dna # Starlight
   - type: Fingerprint # Starlight
   # Implement custom borgi body type
+  # Starlight - start
   - type: Body
     prototype: SmartCorgi
+  # Starlight - end
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 180

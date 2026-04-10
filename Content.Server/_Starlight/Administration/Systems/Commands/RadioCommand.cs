@@ -12,10 +12,10 @@ namespace Content.Server.Administration.Commands;
 public sealed class RadioCommand : ToolshedCommand
 {
     [Dependency] private readonly IComponentFactory _factory = default!;
-    
+
     private static Type[] _parsers = [typeof(ISupportsCustomChannelsTypeParser)];
     public override Type[] TypeParameterParsers => _parsers;
-    
+
     [CommandImplementation("addcustom")]
     public EntityUid Create<T>([PipedArgument] EntityUid uid, string id,
         string name, char keycode, int frequency, string hex, bool longRange, bool ensure = false) where T : ISupportsCustomChannels, IComponent, new()

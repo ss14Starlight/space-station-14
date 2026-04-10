@@ -103,15 +103,15 @@ internal static class ServerContentIoC
         deps.Register<DiscordChatLink>();
 
         // 🌟Starlight🌟 start
-        deps.Register<ISharedPlayersRoleManager, PlayerRolesManager>(); 
-        deps.Register<IPlayerRolesManager, PlayerRolesManager>();     
+        deps.Register<ISharedPlayersRoleManager, PlayerRolesManager>();
+        deps.Register<IPlayerRolesManager, PlayerRolesManager>();
         deps.Register<ITTSClient, TTSClient>();
         deps.Register<ItemPriceManager, ItemPriceManager>();
         deps.Register<IBugReportManager, BugReportManager>();
         deps.Register<PreWrittenDocumentManager>();
         // 🌟Starlight🌟 end
         // nulllink start
-        deps.Register<IActorRouter, ActorRouter>(); 
+        deps.Register<IActorRouter, ActorRouter>();
         deps.Register<NullLinkPlayerManager>();
         deps.Register<INullLinkPlayerManager, NullLinkPlayerManager>();
         deps.Register<INullLinkPlayTimeManager, NullLinkPlayTimeManager>();

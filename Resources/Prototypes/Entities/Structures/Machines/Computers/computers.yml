@@ -183,6 +183,7 @@
       board: !type:Container
         ents: []
       disk_slot: !type:ContainerSlot {}
+      pai_slot: !type:ContainerSlot {} # Starlight
   - type: GuideHelp
     guides:
     - ShuttleCraft
@@ -755,6 +756,7 @@
       board: !type:Container
       IdCardConsole-privilegedId: !type:ContainerSlot
       IdCardConsole-targetId: !type:ContainerSlot
+      pai_slot: !type:ContainerSlot # Starlight
 
 - type: entity
   parent: BaseComputerAiAccess

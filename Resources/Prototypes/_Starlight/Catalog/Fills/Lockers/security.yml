@@ -176,7 +176,7 @@
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
   id: GunSafeHeavyWeapons # To save remapping
-  name: DMR safe 
+  name: DMR safe
   description: Contains a set of L10 DMRs
   components:
   - type: EntityTableContainerFill

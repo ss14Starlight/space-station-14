@@ -5,7 +5,7 @@
   prototype: MobFelionoid
   sprites: MobFelionoidSprites
   markingLimits: MobFelionoidMarkingLimits
-  dollPrototype: MobFelionoidDummy
+  dollPrototype: AppearanceFelionoid
   skinColoration: Hues
   defaultSkinTone: "#666666"
   maleFirstNames: names_felionoid

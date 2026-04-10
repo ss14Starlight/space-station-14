@@ -11,10 +11,10 @@ public sealed partial class ActionGrantAction : OnSignAction
     /// </summary>
     [DataField]
     public List<EntProtoId<ActionComponent>> Actions = [];
-    
+
     private IEntityManager _entityManager = default!;
     private ActionsSystem _actionsSystem = default!;
-    
+
     public override bool Action(EntityUid paper, ActionsOnSignComponent component, EntityUid target)
     {
         foreach (var action in Actions)

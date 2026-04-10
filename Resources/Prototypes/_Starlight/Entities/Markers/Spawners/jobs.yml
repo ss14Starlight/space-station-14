@@ -9,6 +9,7 @@
     layers:
       - state: green
       - state: roboticist
+      - state: jobicon
 
 - type: entity
   id: SpawnPointMagistrate
@@ -78,6 +79,7 @@
     layers:
     - state: green
     - state: salvagelead
+    - state: jobicon
 
 - type: entity
   id: SpawnPointminingspecialist
@@ -91,6 +93,7 @@
     layers:
       - state: green
       - state: miningspecialist
+      - state: jobicon
 
 - type: entity
   id: SpawnPointmailtech
@@ -106,7 +109,7 @@
       - state: mailtech
       - state: jobicon
 
-- type: entity 
+- type: entity
   id: SpawnPointDutyOfficer
   parent: SpawnPointJobBase
   name: dutyofficer
@@ -159,6 +162,7 @@
     layers:
       - state: green
       - state: boxer
+      - state: jobicon
 
 - type: entity
   id: SpawnPointZookeeper
@@ -171,6 +175,7 @@
     layers:
       - state: green
       - state: zookeeper
+      - state: jobicon
 
 - type: entity
   id: SpawnPointNCT

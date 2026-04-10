@@ -106938,13 +106938,15 @@ entities:
       parent: 2
     - type: StockLimitedProcessing
       processingListings: {}
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
   - uid: 15178
     components:
     - type: Transform
       pos: 34.5,-11.5
       parent: 2
+- proto: SMESAdvanced
+  entities:
   - uid: 15179
     components:
     - type: Transform
@@ -106970,8 +106972,6 @@ entities:
     - type: Transform
       pos: 33.5,-9.5
       parent: 2
-- proto: SMESBasic
-  entities:
   - uid: 15184
     components:
     - type: MetaData
@@ -106979,6 +106979,8 @@ entities:
     - type: Transform
       pos: 12.5,-33.5
       parent: 2
+- proto: SMESBasic
+  entities:
   - uid: 15185
     components:
     - type: MetaData

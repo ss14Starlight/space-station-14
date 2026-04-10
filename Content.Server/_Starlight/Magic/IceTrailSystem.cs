@@ -64,7 +64,7 @@ public sealed class IceTrailSystem : EntitySystem
 
             // Starlight: Convert map coordinates to tile indices
             var centerIndices = _mapSystem.CoordinatesToTile(gridUid, grid, coords);
-            
+
             // Starlight: Get all tiles in a 1.5-tile radius circle around the projectile
             var circle = new Circle(coords.Position, 1.5f); // Starlight: 1.5-tile radius for ice coverage
             var tilesToFreeze = _mapSystem.GetTilesIntersecting(gridUid, grid, circle, ignoreEmpty: false);

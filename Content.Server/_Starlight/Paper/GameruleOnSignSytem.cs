@@ -21,7 +21,7 @@ public sealed class GameruleOnSignSytem : EntitySystem
 
     private void OnMapInit(EntityUid uid, GameruleOnSignComponent comp, ref MapInitEvent init)
     {
-        if (comp.KeepFaxable) 
+        if (comp.KeepFaxable)
             return;
         RemComp<FaxableObjectComponent>(uid); //cause this breaks shit like infinite antags
     }

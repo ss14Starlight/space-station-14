@@ -49,7 +49,7 @@ namespace Content.Client.Lobby.UI
         private readonly List<ScrollContainer> _jobLists = new();
 
         private int? _selectedSlot;
-        
+
         public BoxContainer CharList => CharacterList;
 
         public LateJoinGui()
@@ -302,7 +302,7 @@ namespace Content.Client.Lobby.UI
                         // Starlight BEGIN
                         var allowed = _jobRequirements.IsAllowed(prototype, humanoid, out var reason);
                         jobButton.Disabled = !allowed;
-                        
+
                         var tooltip = new Tooltip();
                         tooltip.SetMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("job-no-requirements")));
                         jobButton.TooltipSupplier = _ => tooltip;
