@@ -47,7 +47,6 @@ public sealed class DantalionSystem : EntitySystem
 
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ObjectivesSystem _objectives = default!;
     [Dependency] private readonly Content.Shared.Mind.SharedMindSystem _mind = default!;
     [Dependency] private readonly VampireSystem _vampire = default!;
     [Dependency] private readonly Content.Server.Actions.ActionsSystem _actions = default!;
@@ -327,6 +326,8 @@ public sealed class DantalionSystem : EntitySystem
         RemComp<VampireThrallComponent>(thrall);
 
         _language.RemoveLanguage(thrall, "Dantalion");
+
+        return true;
     }
 
     /// <summary>
