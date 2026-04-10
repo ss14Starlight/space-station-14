@@ -41,7 +41,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
     // nulllink start
     private Dictionary<string, TimeSpan> _originalRoles = [];
-    private readonly Dictionary<string, TimeSpan> _mergedRoles = new();
+    private readonly Dictionary<string, TimeSpan> _mergedRoles = [];
     private Dictionary<string, Dictionary<string, TimeSpan>> _rolesPerServer = [];
     private ServerPlaytimeRecognitionPrototype? _serverPlaytimeRecognition;
     private string? _project;
@@ -334,6 +334,80 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     public TimeSpan FetchOverallPlaytime()
         => _mergedRoles
             .TryGetValue("Overall", out var overallPlaytime) ? overallPlaytime : TimeSpan.Zero;
+
+    // starlight start
+    public string? GetCurrentServerName() => _server;
+
+    public IReadOnlyDictionary<string, Dictionary<string, TimeSpan>> GetRolesPerServer() => _rolesPerServer;
+
+    public Dictionary<string, TimeSpan> GetOriginalRoles() => _originalRoles;
+
+    public TimeSpan FetchOverallPlaytime(Dictionary<string, TimeSpan> roles)
+        => roles.TryGetValue("Overall", out var overallPlaytime) ? overallPlaytime : TimeSpan.Zero;
+
+    public IEnumerable<KeyValuePair<JobPrototype, TimeSpan>> FetchPlaytimeByRoles(Dictionary<string, TimeSpan> roles)
+    {
+        var jobsToMap = _prototypes.EnumeratePrototypes<JobPrototype>();
+        foreach (var job in jobsToMap)
+        {
+            if (roles.TryGetValue(job.PlayTimeTracker, out var time))
+                yield return new KeyValuePair<JobPrototype, TimeSpan>(job, time);
+        }
+    }
+
+    public IEnumerable<KeyValuePair<DepartmentPrototype, TimeSpan>> FetchPlaytimeByDepartments(Dictionary<string, TimeSpan> roles)
+    {
+        var departmentsToMap = _prototypes.EnumeratePrototypes<DepartmentPrototype>();
+        foreach (var department in departmentsToMap)
+        {
+            var departmentTime = TimeSpan.Zero;
+            foreach (var job in department.Roles)
+            {
+                if (!_prototypes.TryIndex(job, out JobPrototype? jobProto))
+                    continue;
+                if (roles.TryGetValue(jobProto.PlayTimeTracker, out var time))
+                    departmentTime += time;
+            }
+            if (departmentTime == TimeSpan.Zero)
+                continue;
+            yield return new KeyValuePair<DepartmentPrototype, TimeSpan>(department, departmentTime);
+        }
+    }
+
+    public IEnumerable<KeyValuePair<AntagPrototype, TimeSpan>> FetchPlaytimeByAntags(Dictionary<string, TimeSpan> roles)
+    {
+        var antagsToMap = _prototypes.EnumeratePrototypes<AntagPrototype>();
+        foreach (var antag in antagsToMap)
+        {
+            if (antag.PlayTimeTracker == null)
+                continue;
+            if (roles.TryGetValue(antag.PlayTimeTracker, out var time))
+                yield return new KeyValuePair<AntagPrototype, TimeSpan>(antag, time);
+        }
+    }
+
+    public IEnumerable<KeyValuePair<PlayTimeTrackerPrototype, TimeSpan>> FetchPlaytimeMiscellaneous(
+        Dictionary<string, TimeSpan> roles,
+        IEnumerable<KeyValuePair<JobPrototype, TimeSpan>> jobPlaytimes,
+        IEnumerable<KeyValuePair<AntagPrototype, TimeSpan>> antagPlaytimes)
+    {
+        var trackers = _prototypes.EnumeratePrototypes<PlayTimeTrackerPrototype>();
+        var exclude = new HashSet<string> { "Overall" };
+        foreach (var jobPlaytime in jobPlaytimes)
+            exclude.Add(jobPlaytime.Key.PlayTimeTracker);
+        foreach (var antagPlaytime in antagPlaytimes)
+            if (antagPlaytime.Key.PlayTimeTracker != null)
+                exclude.Add(antagPlaytime.Key.PlayTimeTracker);
+        foreach (var tracker in trackers)
+        {
+            if (exclude.Contains(tracker.ID))
+                continue;
+            if (!roles.TryGetValue(tracker.ID, out var rolePlaytime))
+                continue;
+            yield return new KeyValuePair<PlayTimeTrackerPrototype, TimeSpan>(tracker, rolePlaytime);
+        }
+    }
+    // starlight end
 
     //starlight edit, string changed to JobPrototype
     public IEnumerable<KeyValuePair<JobPrototype, TimeSpan>> FetchPlaytimeByRoles()

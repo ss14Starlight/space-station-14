@@ -4,11 +4,9 @@ using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
-using Content.Shared.Ghost;
-using Content.Shared.Maps;
 using Content.Shared.Parallax;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
@@ -30,7 +28,8 @@ using Content.Server._Starlight.Station; // Starlight
 using Content.Server.Camera; // Starlight
 using Content.Shared._Starlight.Camera; // Starlight
 using Content.Shared.Station.Components; // Starlight
-using Robust.Server.Player; // Starlight
+using Robust.Server.Player;
+using Content.Shared.Body.Components; // Starlight
 
 namespace Content.Server.Shuttles.Systems;
 

@@ -1,6 +1,7 @@
 using Content.Server.Weather.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Light.Components;
+using Content.Shared.Mobs.Components;
 using Content.Shared.StatusEffectNew.Components;
 using Content.Shared.Weather;
 using Content.Shared.Weather.Effects;
@@ -24,42 +25,29 @@ public sealed partial class WeatherSystem
     private EntityQuery<MapComponent> _mapCompQuery;
     private EntityQuery<RoofComponent> _roofQuery;
     private EntityQuery<TransformComponent> _xformQuery;
-
-    private int _maxAffectedPerTick;
-    private int _maxTilesScannedPerTick;
+    private EntityQuery<MapGridComponent> _gridQuery; // SL
 
     /// <summary>
     /// Per-weather processing state for time-budgeted gathering and application.
     /// </summary>
     private readonly Dictionary<EntityUid, WeatherEffectProcessingState> _processingStates = new();
 
-    /// <summary>
-    /// Reusable buffer for entity lookups — avoids per-tile allocations.
-    /// </summary>
-    private readonly HashSet<EntityUid> _entityBuffer = new();
-
     private void InitEffects()
     {
         _mapCompQuery = GetEntityQuery<MapComponent>();
         _roofQuery = GetEntityQuery<RoofComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
+        _gridQuery = GetEntityQuery<MapGridComponent>(); // SL
 
         SubscribeLocalEvent<WeatherEffectsComponent, ComponentInit>(OnWeatherEffectsInit);
         SubscribeLocalEvent<WeatherEntityEffectComponent, ComponentShutdown>(OnWeatherEffectsShutdown);
-
-        Subs.CVar(_cfg, CCVars.WeatherMaxAffectedPerTick, val => _maxAffectedPerTick = val, true);
-        Subs.CVar(_cfg, CCVars.WeatherMaxTilesScannedPerTick, val => _maxTilesScannedPerTick = val, true);
     }
 
     private void OnWeatherEffectsInit(Entity<WeatherEffectsComponent> ent, ref ComponentInit args)
-    {
-        ent.Comp.NextEffectTime = Timing.CurTime + ent.Comp.MaxEffectFrequency;
-    }
+        => ent.Comp.NextEffectTime = Timing.CurTime + ent.Comp.MaxEffectFrequency;
 
     private void OnWeatherEffectsShutdown(Entity<WeatherEntityEffectComponent> ent, ref ComponentShutdown args)
-    {
-        _processingStates.Remove(ent.Owner);
-    }
+        => _processingStates.Remove(ent.Owner);
 
     private void UpdateEffects(float frameTime)
     {
@@ -89,14 +77,6 @@ public sealed partial class WeatherSystem
         state.Phase = EffectProcessingPhase.Gathering;
         state.PendingEntities.Clear();
         state.ProcessedEntities.Clear();
-        state.Grids.Clear();
-        state.CurrentGridIndex = 0;
-        state.TileEnumeratorValid = false;
-
-        foreach (var grid in _mapManager.GetAllGrids(mapId))
-        {
-            state.Grids.Add(grid);
-        }
     }
 
     private void ProcessStates()
@@ -131,67 +111,41 @@ public sealed partial class WeatherSystem
     /// </summary>
     private void ProcessGathering(WeatherEffectProcessingState state)
     {
-        var tilesScanned = 0;
-
-        while (state.CurrentGridIndex < state.Grids.Count)
+        // Starlight - Start
+        var query = EntityQueryEnumerator<MobStateComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out _, out var xform))
         {
-            var grid = state.Grids[state.CurrentGridIndex];
-            var gridUid = grid.Owner;
-            var gridComp = grid.Comp;
+            if (xform.MapUid != state.MapUid)
+                continue;
 
-            _roofQuery.TryGetComponent(gridUid, out var roofComp);
-
-            if (!state.TileEnumeratorValid)
+            if (xform.GridUid is { } gridUid && _gridQuery.TryGetComponent(gridUid, out var gridComp))
             {
-                state.CurrentTileEnumerator = _mapSystem.GetAllTilesEnumerator(gridUid, gridComp);
-                state.TileEnumeratorValid = true;
-            }
-
-            while (state.CurrentTileEnumerator.MoveNext(out var tileRef))
-            {
-                tilesScanned++;
-
-                if (!CanWeatherAffect((gridUid, gridComp, roofComp), tileRef.Value))
-                {
-                    if (tilesScanned >= _maxTilesScannedPerTick)
-                        return;
+                var tileRef = _mapSystem.GetTileRef(gridUid, gridComp, xform.Coordinates);
+                if (!CanWeatherAffectGridTile(gridUid, tileRef))
                     continue;
-                }
-
-                // Find all entities on this weather-exposed tile.
-                _entityBuffer.Clear();
-                _lookup.GetLocalEntitiesIntersecting(gridUid, tileRef.Value.GridIndices, _entityBuffer,
-                    gridComp: gridComp);
-
-                foreach (var entUid in _entityBuffer)
-                {
-                    // Deduplicate: entities spanning multiple tiles are only queued once.
-                    if (state.ProcessedEntities.Add(entUid))
-                        state.PendingEntities.Enqueue(entUid);
-                }
-
-                if (tilesScanned >= _maxTilesScannedPerTick)
-                    return;
             }
 
-            state.CurrentGridIndex++;
-            state.TileEnumeratorValid = false;
+            state.PendingEntities.Enqueue(uid);
         }
+        // Starlight - End
 
-        // All grids/tiles scanned — transition to applying.
         state.Phase = state.PendingEntities.Count > 0
             ? EffectProcessingPhase.Applying
             : EffectProcessingPhase.Idle;
     }
 
+    // Starlight
+    private bool CanWeatherAffectGridTile(EntityUid gridUid, TileRef tileRef)
+    {
+        var roofComp = _roofQuery.TryGetComponent(gridUid, out var rc) ? rc : null;
+        return CanWeatherAffect(new Entity<MapGridComponent?, RoofComponent?>(gridUid, null, roofComp), tileRef);
+    }
+
     /// <summary>
     /// Drains the pending entities queue, raising <see cref="WeatherEntityAffectedEvent"/> for each.
-    /// Budget-limited by <c>weather.max_affected_per_tick</c>.
     /// </summary>
     private void ProcessApplying(EntityUid weatherUid, WeatherEffectProcessingState state)
     {
-        var processed = 0;
-
         while (state.PendingEntities.TryDequeue(out var targetUid))
         {
             if (!_xformQuery.TryGetComponent(targetUid, out var xform) || xform.MapUid != state.MapUid)
@@ -199,10 +153,6 @@ public sealed partial class WeatherSystem
 
             var ev = new WeatherEntityAffectedEvent(targetUid);
             RaiseLocalEvent(weatherUid, ref ev);
-
-            processed++;
-            if (processed >= _maxAffectedPerTick)
-                return;
         }
 
         state.Phase = EffectProcessingPhase.Idle;
@@ -230,12 +180,6 @@ internal sealed class WeatherEffectProcessingState
 
     public EntityUid MapUid;
     public MapId MapId;
-
-    // Gathering state — supports pause/resume across ticks.
-    public List<Entity<MapGridComponent>> Grids = new();
-    public int CurrentGridIndex;
-    public GridTileEnumerator CurrentTileEnumerator;
-    public bool TileEnumeratorValid;
 
     public readonly Queue<EntityUid> PendingEntities = new();
     public readonly HashSet<EntityUid> ProcessedEntities = new();

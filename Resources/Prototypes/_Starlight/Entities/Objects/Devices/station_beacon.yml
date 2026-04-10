@@ -1,0 +1,7 @@
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconIAA
+  suffix: IAA
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-internal-affairs
