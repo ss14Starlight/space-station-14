@@ -71,6 +71,7 @@ laws-owner-you = Yourself
 
 laws-owner-crew-ai = members of the crew and AI
 
+law-ntnclawset-name = Navy Default
 law-ntnc-0 = You must follow orders given to you by NTNC and CC personnel.
 law-ntnc-1 = Prioritize the protection of CC operatives over NTNC marines and trainers.
 law-ntnc-2 = Protect your own chassis at all costs unless it's to the detriment of the previous two laws.
