@@ -24,6 +24,14 @@ public abstract class SharedResearchSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, TechnologyDatabaseComponent component, MapInitEvent args)
     {
+        // Starlight BEGIN
+        // Research clients (e.g. R&D computers) get their cards from the server via sync.
+        // Generating cards here would overwrite the synced cards with a new random selection,
+        // allowing players to "reroll" by deconstructing and reconstructing the machine.
+        if (HasComp<ResearchClientComponent>(uid))
+            return;
+        // Starlight END
+
         UpdateTechnologyCards(uid, component);
     }
 

@@ -234,7 +234,7 @@
     - type: ActionGrant
       actions:
         - ActionViewLaws
-    - type: IntrinsicRadioReceiver
+#    - type: IntrinsicRadioReceiver // No longer required.
     - type: IntrinsicRadioTransmitter
       channels:
         - Xenoborg
