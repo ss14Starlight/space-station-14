@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Starlight.Medical.Surgery;
 using Content.Shared._Starlight.Medical.Damage;

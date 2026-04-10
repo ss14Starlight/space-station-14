@@ -18,7 +18,6 @@ using Content.Shared.Actions;
 using Content.Shared.Station;
 using Content.Shared.Popups;
 using Content.Shared.Body.Systems;
-using Content.Shared.Body.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Tag;
@@ -34,6 +33,7 @@ using Content.Shared.StatusEffectNew;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Map.Components;
 using Content.Server.GameTicking;
+using Content.Shared._Starlight.Medical.Body.Events;
 
 namespace Content.Server._Starlight.Shadekin;
 
@@ -130,7 +130,7 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     private void NullSpaceShunt(EntityUid uid, ShadekinComponent component, NullSpaceShuntEvent args)
     {
-        if (TryComp<BodyComponent>(uid, out var body) && _bodySystem.TryGetBodyOrganEntityComps<OrganShadekinCoreComponent>((uid, body), out _))
+        if (TryComp<BodyComponent>(uid, out var body) && _bodySystem.TryGetOrgansWithComponent<OrganShadekinCoreComponent>((uid, body), out _)) // Wizden
         {
             _popup.PopupEntity(Loc.GetString("shadekin-shunt"), uid, uid, PopupType.LargeCaution);
             _stunSystem.TryKnockdown(uid, TimeSpan.FromSeconds(1), autoStand: false);
