@@ -15,7 +15,7 @@
   - type: Physics
     bodyType: Static
   - type: StaticPrice
-    price: 35
+    price: 70
   - type: Construction
     graph: SofaSL
     node: boothLeft
@@ -36,7 +36,7 @@
   - type: Physics
     bodyType: Static
   - type: StaticPrice
-    price: 35
+    price: 70
   - type: Construction
     graph: SofaSL
     node: boothRight
@@ -57,7 +57,7 @@
   - type: Physics
     bodyType: Static
   - type: StaticPrice
-    price: 35
+    price: 70
   - type: Construction
     graph: SofaSL
     node: boothMid
