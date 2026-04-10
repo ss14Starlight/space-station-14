@@ -1,19 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: End-of-round pacification is now only applied on the Evac shuttle and on CentComm. This makes it easier for station-ending antags and Security to keep doing what they have to do on station. EORG rules still apply.
-    type: Tweak
-  - message: Changelings and Vampires no longer accumulate hunger during EOR.
-    type: Tweak
-  - message: Various NT and CC jobs are now exempt from EOR pacification (such as ERT).
-    type: Add
-  - message: Emags and authentication disruptors no longer work while the user is EOR pacified.
-    type: Add
-  - message: Some damaging antagonist abilities are disabled while EOR pacified.
-    type: Add
-  id: 390201
-  time: '2026-03-27T21:24:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3902
 - author: Conflee
   changes:
   - message: Swapped the armored Captain's Winter Coat in the Uniform Fab for an unarmored version for consistency with HoS and Warden's winter coats, both of which are unarmored versions when made in the Uniform Fab. No free infinite carapice level armory, use the Anvil or Cargo if you want tons of armor.
@@ -733,4 +718,11 @@ Entries:
   id: 404185
   time: '2026-04-10T14:18:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4075
+- author: Way, 12tie.
+  changes:
+  - message: Added 7 new decals sprited by 12tie.
+    type: Add
+  id: 404186
+  time: '2026-04-10T14:23:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4082
 Order: -1
