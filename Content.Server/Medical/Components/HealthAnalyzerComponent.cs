@@ -118,5 +118,5 @@ public sealed partial class HealthAnalyzerComponent : Component
 
     [DataField]
     public EntityUid? ActionEntity;
-    //FarHorizons En
+    //FarHorizons End
 }
