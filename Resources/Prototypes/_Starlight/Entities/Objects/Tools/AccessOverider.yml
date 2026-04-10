@@ -25,6 +25,5 @@
   id: AccessOveriderRecharging
   suffix: Limited, recharging
   components:
-  - type: LimitedCharges
   - type: AutoRecharge
 
