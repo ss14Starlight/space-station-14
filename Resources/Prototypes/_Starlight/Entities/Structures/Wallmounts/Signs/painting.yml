@@ -2,7 +2,7 @@
   parent: PaintingBase
   id: PaintingRedTide
   name: Red Tide Painting
-  description: A vivid painting depicting a crimson wave crashing against dark rocks. 
+  description: A vivid painting depicting a crimson wave crashing against dark rocks.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/paintings.rsi

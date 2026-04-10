@@ -3,7 +3,7 @@
   parent: [ BaseItem, BaseMajorContraband ]
   name: gizmo
   description: A device that inserts a nano tracker, which can be used to target a teleportation beam.
-  components: 
+  components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/gizmo.rsi
     state: icon
@@ -23,13 +23,13 @@
     angle: 60
     animation: WeaponArcThrust
   - type: AbductorGizmo
-  
+
 - type: entity
   id: AbductorExtractor
   parent: [ BaseItem, BaseMajorContraband ]
   name: extractor
   description: A device that extracts a heart for easier implantation of new heart.
-  components: 
+  components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/extractor.rsi
     state: icon

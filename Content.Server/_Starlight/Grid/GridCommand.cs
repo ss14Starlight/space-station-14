@@ -13,7 +13,7 @@ namespace Content.Server._Starlight.Grid;
 public sealed class GridCommand : ToolshedCommand
 {
     [Dependency] private readonly IPlayerManager _plr = default!;
-    
+
     [CommandImplementation("getplayers")]
     public IEnumerable<EntityUid> GetPlayersOnGrid([PipedArgument] EntityUid grid, bool excludeGhosts = false)
     {

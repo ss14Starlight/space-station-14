@@ -8,7 +8,7 @@
     sprite: _Starlight/Objects/Weapons/Melee/silencer.rsi
     size: Small
     storedRotation: -90
-  - type: Sprite 
+  - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/silencer.rsi
     state: icon
   - type: RestrictByUserTag

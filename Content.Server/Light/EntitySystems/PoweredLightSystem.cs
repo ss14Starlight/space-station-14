@@ -27,7 +27,7 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
     [Dependency] private readonly GameTicker _gameTicker = default!; // SL
     [Dependency] private readonly ChatSystem _chat = default!; // SL
     [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // SL
-    
+
     public override void Initialize()
     {
         base.Initialize();
@@ -79,7 +79,7 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
         if (!TryComp<AlertLevelComponent>(args.Station, out var alertLevelComp)) return;
         if (alertLevelComp.AlertLevels == null) return;
         if (!alertLevelComp.AlertLevels.Levels.TryGetValue(args.AlertLevel, out var levelAfter)) return;
-        
+
         var query = EntityQueryEnumerator<PoweredLightComponent>();
         while (query.MoveNext(out var uid, out var light))
         {
@@ -93,7 +93,7 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
                 UpdateLight(uid, light);
                 continue;
             }
-            
+
             // Otherwise, ensure the component exists and set its value.
             var alertLevelDimming = EnsureComp<AlertLevelDimmedLightComponent>(uid);
             alertLevelDimming.LightEnergyMultiplier = levelAfter.DimmedLightMultiplier.Value;

@@ -63,7 +63,7 @@ public sealed class CardSelectionEui : BaseEui
             .Box
             (
                 BoxContainer.LayoutOrientation.Horizontal,
-                box => 
+                box =>
                 {
                     box.Align = BoxContainer.AlignMode.Center;
                     state

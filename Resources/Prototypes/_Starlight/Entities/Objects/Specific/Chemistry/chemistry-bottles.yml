@@ -12,3 +12,18 @@
         reagents:
         - ReagentId: ChloralHydrate
           Quantity: 30
+
+- type: entity
+  id: ChemistryBottleTazinide
+  suffix: tazinide
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-tazinide
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Tazinide
+          Quantity: 30

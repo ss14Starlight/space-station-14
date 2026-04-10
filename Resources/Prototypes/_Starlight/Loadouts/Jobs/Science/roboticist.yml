@@ -2,32 +2,32 @@
 
 - type: loadout
   id: RoboticistCap
-  equipment: 
+  equipment:
     head: ClothingHeadHatCorpsoft
 
 - type: loadout
   id: SkullBandana
-  equipment: 
+  equipment:
     head: ClothingHeadBandSkull
 
 - type: loadout
   id: RoboticistBlackCapFlipped
-  equipment: 
+  equipment:
     head: ClothingHeadHatBlacksoftFlipped
-    
+
 # Back
 
 - type: loadout
   id: RoboticistBackpack
-  equipment: 
+  equipment:
     back: ClothingBackpackRoboticist
-    
+
 - type: loadout
   id: RoboticistSatchel
-  equipment: 
+  equipment:
     back: ClothingBackpackSatchelRoboticist
-    
+
 - type: loadout
   id: RoboticistDuffel
-  equipment: 
+  equipment:
     back: ClothingBackpackDuffelRoboticist

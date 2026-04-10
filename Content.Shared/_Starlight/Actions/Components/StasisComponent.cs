@@ -25,7 +25,7 @@ public sealed partial class StasisComponent : Component
 
     [DataField, AutoNetworkedField]
     public TimeSpan UpdateInterval = TimeSpan.FromSeconds(1);
-    
+
     /// <summary>
     /// Whether the entity should be visible. This is synced to ensure proper PVS handling.
     /// </summary>

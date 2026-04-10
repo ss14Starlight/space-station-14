@@ -36,7 +36,7 @@ public sealed partial class SurgerySpeciesConditionComponent : Component
 {
     [DataField]
     public HashSet<ProtoId<SpeciesPrototype>> SpeciesBlacklist = [];
-    
+
     [DataField]
     public HashSet<ProtoId<SpeciesPrototype>> SpeciesWhitelist = [];
 }
@@ -45,7 +45,7 @@ public sealed partial class SurgeryOrganExistConditionComponent : Component
 {
     [DataField]
     public ComponentRegistry? Organ;
-    
+
     [DataField]
     public string? Container;
 }
@@ -60,7 +60,7 @@ public sealed partial class SurgeryOrganDontExistConditionComponent : Component
 {
     [DataField]
     public ComponentRegistry? Organ;
-    
+
     [DataField]
     public string? Container;
 }

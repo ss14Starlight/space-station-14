@@ -25,7 +25,7 @@
   - type: Lock
     lockOnClick: false
     autoUnlock: false
-    autoLock: false 
+    autoLock: false
   - type: LockVisuals
   - type: AccessReader
     access: [["Medical"]]

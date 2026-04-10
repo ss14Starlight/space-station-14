@@ -16,9 +16,6 @@
   id: IPC
 
 - type: Tag
-  id: IPCExternalCooling
-
-- type: Tag
   id: OilPack
 
 - type: Tag

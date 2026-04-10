@@ -13,7 +13,7 @@ namespace Content.Server._Starlight.Factions;
 public sealed class FactionCommand : ToolshedCommand
 {
     private NpcFactionSystem? _faction;
-    
+
     [CommandImplementation("add")]
     public EntityUid AddFaction([PipedArgument] EntityUid uid, ProtoId<NpcFactionPrototype> faction)
     {
@@ -53,7 +53,7 @@ public sealed class FactionCommand : ToolshedCommand
         _faction.IgnoreEntity(uid, target);
         return uid;
     }
-    
+
     [CommandImplementation("unignore")]
     public EntityUid UnIgnore([PipedArgument] EntityUid uid, EntityUid target)
     {
@@ -61,7 +61,7 @@ public sealed class FactionCommand : ToolshedCommand
         _faction.UnIgnoreEntity(uid, target);
         return uid;
     }
-    
+
     [CommandImplementation("clear")]
     public EntityUid Clear([PipedArgument] EntityUid uid)
     {
@@ -72,29 +72,29 @@ public sealed class FactionCommand : ToolshedCommand
 
     [CommandImplementation("add")]
     public IEnumerable<EntityUid> AddFaction([PipedArgument] IEnumerable<EntityUid> uid, ProtoId<NpcFactionPrototype> faction)
-        => uid.Select(x=>AddFaction(x, faction)); 
+        => uid.Select(x=>AddFaction(x, faction));
 
     [CommandImplementation("remove")]
     public IEnumerable<EntityUid> RemoveFaction([PipedArgument] IEnumerable<EntityUid> uid, ProtoId<NpcFactionPrototype> faction)
-        => uid.Select(x=>RemoveFaction(x, faction)); 
+        => uid.Select(x=>RemoveFaction(x, faction));
 
     [CommandImplementation("aggro")]
     public IEnumerable<EntityUid> Aggro([PipedArgument] IEnumerable<EntityUid> uid, EntityUid target)
-        => uid.Select(x=>Aggro(x, target)); 
+        => uid.Select(x=>Aggro(x, target));
 
     [CommandImplementation("deaggro")]
     public IEnumerable<EntityUid> DeAggro([PipedArgument] IEnumerable<EntityUid> uid, EntityUid target)
-        => uid.Select(x=>DeAggro(x, target)); 
+        => uid.Select(x=>DeAggro(x, target));
 
     [CommandImplementation("ignore")]
     public IEnumerable<EntityUid> Ignore([PipedArgument] IEnumerable<EntityUid> uid, EntityUid target)
-        => uid.Select(x=>Ignore(x, target)); 
+        => uid.Select(x=>Ignore(x, target));
 
     [CommandImplementation("unignore")]
     public IEnumerable<EntityUid> UnIgnore([PipedArgument] IEnumerable<EntityUid> uid, EntityUid target)
-        => uid.Select(x=>UnIgnore(x, target)); 
+        => uid.Select(x=>UnIgnore(x, target));
 
     [CommandImplementation("clear")]
     public IEnumerable<EntityUid> Clear([PipedArgument] IEnumerable<EntityUid> uid)
-        => uid.Select(Clear); 
+        => uid.Select(Clear);
 }

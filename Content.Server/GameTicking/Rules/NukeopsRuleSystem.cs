@@ -419,7 +419,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     }
 
     private void DistributeExtraTc(Entity<NukeopsRuleComponent> nukieRule)
-    {   
+    {
         // Starlight-start
         var crewCount = _stationCrewCount.GetTotalCrewCount();
 
