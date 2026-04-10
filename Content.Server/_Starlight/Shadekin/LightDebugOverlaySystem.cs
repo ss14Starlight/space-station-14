@@ -80,7 +80,7 @@ public sealed class LightDebugOverlaySystem : SharedLightDebugOverlaySystem
 
                 var entityTile = _mapSystem.GetTileRef(grid, grid, xform.Coordinates).GridIndices;
                 var baseTile = new Vector2i(entityTile.X - LocalViewRange / 2, entityTile.Y - LocalViewRange / 2);
-                var overlayData = new float[LocalViewRange * LocalViewRange];
+                var overlayData = new byte[LocalViewRange * LocalViewRange];
 
                 var index = 0;
                 for (var y = 0; y < LocalViewRange; y++)

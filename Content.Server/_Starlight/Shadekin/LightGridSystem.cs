@@ -19,7 +19,7 @@ public sealed class LightGridSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedMapSystem _maps = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    private readonly Dictionary<EntityUid, Dictionary<Vector2i, float>> _lightGrids = new();
+    private readonly Dictionary<EntityUid, Dictionary<Vector2i, byte>> _lightGrids = new();
     private readonly Dictionary<EntityUid, List<WorldLightSourceData>> _mapLights = new();
     private readonly Dictionary<EntityUid, List<WorldLightSourceData>> _containerLights = new();
     // Reused every tick so we dont murder GC
@@ -39,6 +39,7 @@ public sealed class LightGridSystem : EntitySystem
     private const float NearbyGridSearchRange = 3f;
     private const int NeighborSampleRadius = 2;
     private static readonly Angle _directionalLightHalfAngle = Angle.FromDegrees(60f);
+    private const float LightByteScale = 16f;
 
     private LightJob _job;
 
@@ -207,7 +208,7 @@ public sealed class LightGridSystem : EntitySystem
     {
         if (!_lightGrids.TryGetValue(gridUid, out var lightMap))
         {
-            lightMap = new Dictionary<Vector2i, float>();
+            lightMap = new Dictionary<Vector2i, byte>();
             _lightGrids[gridUid] = lightMap;
         }
 
@@ -254,7 +255,7 @@ public sealed class LightGridSystem : EntitySystem
             foreach (var (tile, intensity) in _job.LocalResults[i])
             {
                 lightMap.TryGetValue(tile, out var existing);
-                lightMap[tile] = existing + intensity;
+                lightMap[tile] = EncodeLight(DecodeLight(existing) + intensity);
             }
         }
 
@@ -357,6 +358,17 @@ public sealed class LightGridSystem : EntitySystem
     private static float GetLightIntensity(LightSourceData source, float dist)
         => GetLightIntensity(source.Radius, source.Brightness, dist);
 
+    private static byte EncodeLight(float intensity)
+    {
+        if (intensity <= 0f) return 0;
+        return (byte)Math.Min(intensity * (255f / LightByteScale) + 0.5f, 255f);
+    }
+
+    private static float DecodeLight(byte value)
+    {
+        return value * (LightByteScale / 255f);
+    }
+
     public float GetExposure(EntityUid uid) => Math.Clamp(GetFullExposure(uid) / MaxExposure, 0f, 1f);
 
     public float GetFullExposure(EntityUid uid)
@@ -388,9 +400,9 @@ public sealed class LightGridSystem : EntitySystem
             var tile = _maps.LocalToTile(grid.Owner, grid.Comp, new EntityCoordinates(grid.Owner, localPos));
 
             // entity directly on lit tile
-            if (lightMap.TryGetValue(tile, out var direct))
+            if (lightMap.TryGetValue(tile, out var directByte) && directByte != 0)
             {
-                exposure += direct;
+                exposure += DecodeLight(directByte);
                 continue;
             }
 
@@ -404,9 +416,10 @@ public sealed class LightGridSystem : EntitySystem
                         continue;
 
                     var neighbor = tile + new Vector2i(dx, dy);
-                    if (!lightMap.TryGetValue(neighbor, out var nVal) || nVal <= 0f)
+                    if (!lightMap.TryGetValue(neighbor, out var nByte) || nByte == 0)
                         continue;
 
+                    var nVal = DecodeLight(nByte);
                     var dist = new Vector2(dx, dy).Length();
                     var attenuation = 1f / (1f + dist * dist);
                     var effective = nVal * attenuation;
@@ -463,12 +476,12 @@ public sealed class LightGridSystem : EntitySystem
         return null;
     }
 
-    public float GetTileLight(EntityUid gridUid, Vector2i tile)
+    public byte GetTileLight(EntityUid gridUid, Vector2i tile)
     {
         if (!_lightGrids.TryGetValue(gridUid, out var lightMap))
-            return 0f;
+            return 0;
 
-        return lightMap.GetValueOrDefault(tile, 0f);
+        return lightMap.GetValueOrDefault(tile);
     }
 
     // The shadowcasting beast

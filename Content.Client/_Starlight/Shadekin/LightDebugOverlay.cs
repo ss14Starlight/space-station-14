@@ -29,6 +29,8 @@ public sealed class LightDebugOverlay : Robust.Client.Graphics.Overlay
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace | OverlaySpace.ScreenSpace;
 
+    public const float LightByteScale = 16f;
+
     internal LightDebugOverlay(LightDebugOverlaySystem system)
     {
         IoCManager.InjectDependencies(this);
@@ -78,9 +80,11 @@ public sealed class LightDebugOverlay : Robust.Client.Graphics.Overlay
 
         for (var i = 0; i < msg.OverlayData.Length; i++)
         {
-            var intensity = msg.OverlayData[i];
-            if (intensity <= 0f)
+            var raw = msg.OverlayData[i];
+            if (raw == 0)
                 continue;
+
+            var intensity = raw * (LightByteScale / 255f);
 
             var x = i % range;
             var y = i / range;
@@ -133,10 +137,11 @@ public sealed class LightDebugOverlay : Robust.Client.Graphics.Overlay
             if (i < 0 || i >= msg.OverlayData.Length)
                 continue;
 
-            var intensity = msg.OverlayData[i];
-            if (intensity <= 0f)
+            var raw = msg.OverlayData[i];
+            if (raw == 0)
                 continue;
 
+            var intensity = raw * (LightByteScale / 255f);
             var state = GetShadekinState(intensity);
             var lineHeight = _font.GetLineHeight(1f);
             var offset = new Vector2(0, lineHeight);

@@ -125,17 +125,6 @@ public sealed partial class ShadekinSystem : EntitySystem
         _alerts.ShowAlert(uid, component.ShadekinAlert, state);
     }
 
-    /// <summary>
-    /// Return an illumination float value with is how many "energy" of light is hitting our ent.
-    /// WARNING: This function might be expensive, Avoid calling it too much and CACHE THE RESULT!
-    /// </summary>
-    /// <param name="uid"></param>
-    /// <returns></returns>
-    public float GetLightExposure(EntityUid uid)
-    {
-        return _lightGrid.GetFullExposure(uid);
-    }
-
     private void SetPassiveBuff(EntityUid uid, ShadekinState shadekinState)
     {
         if (!TryComp<PassiveDamageComponent>(uid, out var passive))
@@ -269,7 +258,7 @@ public sealed partial class ShadekinSystem : EntitySystem
                 // I had a brain moment, apprently if one is false its does not check for the other?
             }
             else
-                lightExposure = GetLightExposure(uid);
+                lightExposure = _lightGrid.GetFullExposure(uid);
 
             CheckThresholds(uid, component, lightExposure);
 

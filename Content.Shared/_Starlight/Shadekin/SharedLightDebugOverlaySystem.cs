@@ -12,9 +12,9 @@ public abstract class SharedLightDebugOverlaySystem : EntitySystem
     {
         public NetEntity GridId { get; }
         public Vector2i BaseIdx { get; }
-        public float[] OverlayData { get; }
+        public byte[] OverlayData { get; }
 
-        public LightDebugOverlayMessage(NetEntity gridId, Vector2i baseIdx, float[] overlayData)
+        public LightDebugOverlayMessage(NetEntity gridId, Vector2i baseIdx, byte[] overlayData)
         {
             GridId = gridId;
             BaseIdx = baseIdx;
