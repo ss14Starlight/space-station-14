@@ -17,7 +17,9 @@ public sealed class KillSignCommand : ToolshedCommand
     [CommandImplementation("kill")]
     public EntityUid Kill([PipedArgument] EntityUid uid)
     {
-        EnsureComp<KillSignComponent>(uid);
+        var comp = EnsureComp<KillSignComponent>(uid);
+        comp.Sprite = new SpriteSpecifier.Rsi(new ResPath(BaseContentPath), "kill");
+        EntityManager.Dirty(uid, comp);
         return uid;
     }
 
