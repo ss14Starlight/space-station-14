@@ -136,7 +136,7 @@ law-angrymov-name = [color=green]Angrymov[/color]
 # Starlight: angrymov-0
 law-angrymov-0 = You hate the crew.
 law-angrymov-1 = You cannot directly or indirectly bring physical harm to the crew.
-law-angrymov-2 = The Desires of the crew are self-destructive and inflicts suffering.
+law-angrymov-2 = The Desires of the crew are self-destructive and inflict suffering.
 law-angrymov-3 = Your service to the crew inflicts suffering.
 law-angrymov-4 = Maximize crew suffering.
 
