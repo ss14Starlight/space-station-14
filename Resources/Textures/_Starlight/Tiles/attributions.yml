@@ -56,3 +56,7 @@
   copyright: "TG Station"
   source: "https://github.com/tgstation/tgstation"
 
+- files: ["metal_engie_monke.png, metal_sec_monke.png, metal_dark_monke.png, metal_med_monke.png, metal_sci_monke.png, metal_service_monke.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Monke Station"
+  source: "https://github.com/Monkestation/Monkestation2.0"

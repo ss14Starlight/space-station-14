@@ -24,3 +24,5 @@
   - type: Prying
     speedModifier: 1.5 # Jaws of life speed
     pryPowered: true
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
+    playSoundOnDoafter: true #SL

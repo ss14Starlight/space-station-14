@@ -25,6 +25,9 @@
   - type: GroupExamine
   - type: Tag
     tags:
+#Starlight
+    - CorgiWearable
+#starlight end
     - Hardsuit
     - WhitelistChameleon
   - type: ProtectedFromStepTriggers
@@ -116,6 +119,7 @@
     slots: WITHOUT_POCKET
   - type: Tag
     tags:
+    - AtmosFireSuit
     - CorgiWearable
     - WhitelistChameleon
   - type: HideLayerClothing
@@ -151,6 +155,12 @@
   - type: HideLayerClothing
     slots:
     - Tail
+# SL Start - Dog Addition
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+# SL End
 
 # TODO - Make infiltration decloak on damage, idk how
 - type: entity
@@ -236,6 +246,11 @@
     sprite: Clothing/OuterClothing/Suits/chicken.rsi
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterBase
@@ -274,6 +289,11 @@
       toggleable-clothing: !type:ContainerSlot {}
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterBase
@@ -325,6 +345,12 @@
   - type: HideLayerClothing
     slots:
     - Tail
+# SL Start - Dog Addition
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+# SL end
 
 - type: entity
   parent: ClothingOuterSuitCarp
@@ -342,4 +368,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitCarp
   - type: StaticPrice
     price: 1500
-
+# SL Start - Dog Addition
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+# SL end

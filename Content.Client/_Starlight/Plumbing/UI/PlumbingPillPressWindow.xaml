@@ -24,6 +24,12 @@
             <Button Name="SetDosageButton" Text="{Loc plumbing-pill-press-set}" MinWidth="50" />
         </BoxContainer>
 
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Label Text="{Loc plumbing-pill-press-label}" />
+            <LineEdit Name="LabelInput" MinWidth="60" HorizontalExpand="True" />
+            <Button Name="SetLabelButton" Text="{Loc plumbing-pill-press-set}" MinWidth="50" />
+        </BoxContainer>
+
         <PanelContainer StyleClasses="LowDivider" />
 
         <!-- Pill type selector (hidden for patches) -->

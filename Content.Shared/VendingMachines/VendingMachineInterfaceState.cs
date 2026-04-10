@@ -13,7 +13,7 @@ namespace Content.Shared.VendingMachines
             ID = id;
         }
     }
-    
+
     // 🌟Starlight🌟 start
     /// <summary>
     /// Request balance information from server

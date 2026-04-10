@@ -68,14 +68,19 @@
   - AcousticGuitarInstrument
   - TrumpetInstrument
   - RoadCone
+  - MaidOutfit
+  - MaidGloves
+  - MaidOutfitTactical
+  - MaidHeadbandTactical
+  - TacticalMaidGloves
   - CoderSocks
+  - PawBootTrinket
   - CatEars
   - BunnyEars
   - DogEars
   - ClothWrapGloveTrinket
   - ClothWrapShoeTrinket
   - RollerSkates
-  - LilyFlower
   - RolliePack
   - GoldRing
   - SilverRing
@@ -88,10 +93,14 @@
   - RubberQuack
   - GatchaBox
   - WristWatch
+  - TreasureCoinIron
+  - TreasureCoinSilver
+  - TreasureCoinGold
   - ZippoLighter
   - MedChecker
   - ChanceSack
   - StationMap
+  - PictureFrame
   - YaharJar
   - PaperFolder1
   - PaperFolder2
@@ -115,7 +124,6 @@
   - CigPackBub
   - PillCanisterPsicodine
   - ClothingDogTags
-  - Boxblacklight
   - PersonalAI
   - GoldenPersonalAI # Starlight end
   - AACTablet # DeltaV
@@ -148,6 +156,7 @@
   - EmergencyElfOxygen # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreather # 🌟Starlight🌟
+  - EmergencyIPC # 🌟Starlight🌟
 
 # nitrogen or oxygen tank, depending on what your species needs
 - type: loadoutGroup
@@ -336,6 +345,7 @@
   - TatteredClothes
   - TieDye
   - VintageClothes
+  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup
@@ -416,6 +426,7 @@
   - BartenderJumpsuit
   - BartenderJumpskirt
   - BartenderJumpsuitPurple
+  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup
@@ -441,6 +452,9 @@
   minLimit: 0
   loadouts:
   - LizardPlushieServiceWorker
+  - LizardPlushieBartender # Starlight
+  - LizardPlushieBotanist # Starlight
+  - LizardPlushieChef # Starlight
 
 - type: loadoutGroup
   id: ChefHead
@@ -462,6 +476,7 @@
   loadouts:
   - ChefJumpsuit
   - ChefJumpskirt
+  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup
@@ -704,6 +719,13 @@
   loadouts:
   - ClownSuit
   - ClownSkirt
+  - ClownFormalJumpsuit # Starlight
+  - ClownFormalJumpskirt # Starlight
+  - ClownClownJumpsuit # Starlight
+  - ClownClownJumpskirt # Starlight
+  - ClownCandyJumpskirt # Starlight
+  - ClownStripedJumpskirt # Starlight
+  - ClownSpottedJumpskirt # Starlight
   - JesterSuit
   - JesterAltSuit
 
@@ -746,6 +768,7 @@
   - EmergencyElfOxygenClown # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherClown # 🌟Starlight🌟
+  - EmergencyIPC # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: ClownJobTrinkets
@@ -815,6 +838,7 @@
   - EmergencySpeciesMothMime
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherMime # 🌟Starlight🌟
+  - EmergencyIPC # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: MimeJobTrinkets
@@ -1233,6 +1257,7 @@
   - EmergencyElfOxygenExtended # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherExtended # 🌟Starlight🌟
+  - EmergencyIPC # 🌟Starlight🌟
 
 # Science
 - type: loadoutGroup
@@ -1704,6 +1729,7 @@
   - EmergencyElfOxygenSecurity # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonbreatherSecurity # 🌟Starlight🌟
+  - EmergencyIPC # 🌟Starlight🌟
 
 # Medical
 - type: loadoutGroup
@@ -1976,6 +2002,7 @@
   - EmergencyElfOxygenMedical # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherMedical # 🌟Starlight🌟
+  - EmergencyIPC # 🌟Starlight🌟
 
 # Wildcards
 - type: loadoutGroup
@@ -2023,6 +2050,7 @@
   - EmergencyElfOxygenSyndicate # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherSyndicate # 🌟Starlight🌟
+  - EmergencyIPC # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: SurvivalMilitaryDouble
@@ -2033,6 +2061,7 @@
   - EmergencyNitrogenMilitaryDouble
   - EmergencyOxygenMilitaryDouble
   - EmergencyElfOxygenMilitaryDouble # Starlight
+  - EmergencyIPC # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: GroupSpeciesBreathTool

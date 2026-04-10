@@ -198,7 +198,7 @@
       force: true
       speedModifier: 1.5 # faster because carp are kinda strong
       useSound:
-         path: /Audio/Items/crowbar.ogg 
+         path: /Audio/Items/crowbar.ogg
 
 - type: entity
   id: MobCarpDungeon

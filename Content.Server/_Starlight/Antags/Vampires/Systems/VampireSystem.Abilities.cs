@@ -32,6 +32,14 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Popups;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.Eye.Blinding.Systems;
+using Content.Shared.Eye.Blinding.Components;
+using Content.Shared._FarHorizons.Silicons.IPC.Components;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mindshield.Components;
+using Content.Shared.Starlight.Overlay;
+
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -41,15 +49,21 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly BlindableSystem _blindable = default!;
     private static readonly SoundSpecifier _biteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
     private static readonly SoundSpecifier _devourSound = new SoundPathSpecifier("/Audio/Effects/demon_consume.ogg");
     private readonly Dictionary<EntityUid, List<EntityUid>> _playerShadowSnares = new();
+    [Dependency] private readonly FlashImmunitySystem _flashImmunity = default!;
 
     private void InitializeAbilities()
     {
         SubscribeLocalEvent<VampireComponent, VampireToggleFangsActionEvent>(OnToggleFangs);
 
         SubscribeLocalEvent<VampireComponent, VampireGlareActionEvent>(OnGlare);
+
+        SubscribeLocalEvent<VampireComponent, VampireSleepActionEvent>(OnSleep);
+        SubscribeLocalEvent<VampireComponent, VampireSleepDoAfterEvent>(OnSleepDoAfter);
 
         SubscribeLocalEvent<VampireComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<VampireComponent, BeforeInteractHandEvent>(OnBeforeInteractHand);
@@ -68,6 +82,7 @@ public sealed partial class VampireSystem : EntitySystem
             subs.Event<VampireClassChosenBuiMsg>(OnVampireClassChosen);
             subs.Event<VampireClassClosedBuiMsg>(OnVampireClassClosed);
         });
+
     }
 
     private void OnUseInHand(Entity<VampireDevourableComponent> ent, ref UseInHandEvent args)
@@ -149,9 +164,9 @@ public sealed partial class VampireSystem : EntitySystem
             || !_map.TryGetTileRef(gridUid.Value, gridComp, coords, out var tileRef))
             return false;
 
-         return !_turf.IsSpace(tileRef) &&
-             !_turf.IsTileBlocked(tileRef, CollisionGroup.Impassable) &&
-             !IsTileBlockedByEntities(coords);
+        return !_turf.IsSpace(tileRef) &&
+            !_turf.IsTileBlocked(tileRef, CollisionGroup.Impassable) &&
+            !IsTileBlockedByEntities(coords);
     }
 
     internal bool HasChosenClass(EntityUid uid)
@@ -167,7 +182,7 @@ public sealed partial class VampireSystem : EntitySystem
     }
 
     /// <summary>
-    /// Common validation for vampire abilities 
+    /// Common validation for vampire abilities
     /// component check + class validation + action cost
     /// </summary>
     internal bool ValidateVampireAbility(EntityUid uid, [NotNullWhen(true)] out VampireComponent? comp, ProtoId<VampireClassPrototype>? requiredClass = null, EntityUid? actionEntity = null)
@@ -226,7 +241,8 @@ public sealed partial class VampireSystem : EntitySystem
 
     private bool IsInvalidDrinkTarget(EntityUid user, EntityUid target, bool showPopup = true)
     {
-        if (!HasComp<VampireComponent>(target) && !HasComp<VampireThrallComponent>(target))
+        if (!HasComp<VampireComponent>(target)
+            && !HasComp<VampireThrallComponent>(target))
             return false;
 
         if (showPopup)
@@ -250,7 +266,7 @@ public sealed partial class VampireSystem : EntitySystem
             // Check if entity has a physics component with impassable collision
             if (TryComp<PhysicsComponent>(ent, out var physics) &&
                 physics.CanCollide &&
-                (physics.CollisionMask & (int) CollisionGroup.Impassable) != 0)
+                (physics.CollisionMask & (int)CollisionGroup.Impassable) != 0)
                 return true;
 
             // Check for door components that typically block movement
@@ -272,7 +288,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     #endregion
 
-    #region Base Abilities 
+    #region Base Abilities
     private void OnToggleFangs(EntityUid uid, VampireComponent comp, ref VampireToggleFangsActionEvent args)
     {
         if (args.Handled)
@@ -297,7 +313,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         if (target == uid
             || !HasComp<BloodstreamComponent>(target)
-            || !HasComp<HumanoidAppearanceComponent>(target))
+            )
             return;
 
         if (IsInvalidDrinkTarget(uid, target))
@@ -328,7 +344,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (!Exists(target)
             || target == uid
             || !HasComp<BloodstreamComponent>(target)
-            || !HasComp<HumanoidAppearanceComponent>(target))
+            )
             return;
 
         if (IsInvalidDrinkTarget(uid, target))
@@ -350,6 +366,9 @@ public sealed partial class VampireSystem : EntitySystem
         args.Handled = true;
     }
 
+    /// <summary>
+    /// System for checking if a target can be drank from and handling the drinking
+    /// </summary>
     private void OnDrinkDoAfter(EntityUid uid, VampireComponent comp, ref VampireDrinkBloodDoAfterEvent args)
     {
         if (args.Handled)
@@ -366,7 +385,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (!comp.FangsExtended
             || args.Args.Target == null
             || !HasComp<BloodstreamComponent>(args.Args.Target.Value)
-            || !HasComp<HumanoidAppearanceComponent>(args.Args.Target.Value))
+            )
         {
             comp.IsDrinking = false;
             return;
@@ -390,14 +409,68 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-        var maxCanDrink = comp.MaxBloodPerTarget - drunkFromTarget;
-        var actualSipAmount = MathF.Min(comp.SipAmount, maxCanDrink);
 
-        if (_blood.TryModifyBloodLevel(target, -actualSipAmount * 2))
+        if (HasComp<IPCBatteryComponent>(target) //IPCs don't have blood
+            || (!TryComp<MobStateComponent>(target, out var mobState) //Is the entity a mob at all?
+            || mobState.CurrentState == Shared.Mobs.MobState.Dead)) //Dead things aren't a good source of flowing blood
         {
-            comp.DrunkBlood += (int)actualSipAmount;
-            comp.TotalBlood += (int)actualSipAmount;
+            _popup.PopupEntity(Loc.GetString("vampire-drink-target-not-viable"), uid, uid, Shared.Popups.PopupType.MediumCaution);
+            comp.IsDrinking = false;
+            return;
+        }
 
+        var sipInefficiency = 0f;
+        var sipAmount = comp.SipAmount;
+
+        if (HasComp<HumanoidAppearanceComponent>(args.Args.Target.Value))
+        {
+            sipInefficiency = 1f / comp.HumanoidEfficiency;
+        }
+        else
+        {
+            sipInefficiency = 1f / comp.NonHumanoidEfficiency;
+        }
+
+        var maxCanDrink = comp.MaxBloodPerTarget - drunkFromTarget;
+        var actualSipAmount = MathF.Min(sipAmount, maxCanDrink);
+
+        //attempt to drain the target's blood level
+        if (_blood.GetBloodLevel(target) <= 0.0f) //Check the taget has blood to drink at all
+        {
+            comp.IsDrinking = false; //Blood level reduction failed
+            _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"), uid, uid, Shared.Popups.PopupType.MediumCaution);
+            return;
+        }
+
+        if (_blood.TryModifyBloodLevel(target, -actualSipAmount * sipInefficiency))
+        {
+            //Blood level reduction success
+            comp.DrunkBlood += (int)actualSipAmount;
+
+            //Confirm target is a humanoid before progressing objectives
+            if (HasComp<HumanoidAppearanceComponent>(args.Args.Target.Value))
+            {
+                comp.TotalBlood += (int)actualSipAmount;
+            }
+
+            //Biting Damage
+            //A little bit of additional damage to disincentivize blood donations
+            var biteDamage = new DamageSpecifier();
+            biteDamage += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_pierceTypeId), comp.SipPierceDamage * actualSipAmount); //5 pierce per 10u
+            _damageableSystem.TryChangeDamage(target, biteDamage, ignoreResistances: true);
+            _blood.TryModifyBleedAmount(target, 1);
+
+
+            //Add in blindness instead of cancer
+            if (TryComp<BlindableComponent>(target, out var blindable) && 2 <= comp.BlindInc)
+            {
+                _blindable.AdjustEyeDamage((target, blindable), 1);
+                comp.BlindInc = 0;
+            }
+            else if (comp.BlindInc < 2)
+            {
+                comp.BlindInc += 1;
+            }
             RaiseLocalEvent(uid, new VampireProgressionChangedEvent());
 
             if (!comp.BloodDrunkFromTargets.ContainsKey(target))
@@ -412,10 +485,10 @@ public sealed partial class VampireSystem : EntitySystem
 
             // Base healing
             var baseHealSpec = new DamageSpecifier();
-            baseHealSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_bruteGroupId), -FixedPoint2.New(2));
-            baseHealSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_burnGroupId), -FixedPoint2.New(2));
-            baseHealSpec += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_poisonTypeId), -FixedPoint2.New(4));
-            baseHealSpec += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_oxyLossTypeId), -FixedPoint2.New(10));
+            baseHealSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_bruteGroupId), -comp.VampHealBrute);
+            baseHealSpec += new DamageSpecifier(_proto.Index<DamageGroupPrototype>(_burnGroupId), -comp.VampHealBurn);
+            baseHealSpec += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_poisonTypeId), -comp.VampHealPois);
+            baseHealSpec += new DamageSpecifier(_proto.Index<DamageTypePrototype>(_oxyLossTypeId), -comp.VampHealAsphyxiation);
             _damageableSystem.TryChangeDamage(uid, baseHealSpec, true);
 
             RaiseLocalEvent(uid, new VampireBloodDrankEvent(target, actualSipAmount));
@@ -445,7 +518,13 @@ public sealed partial class VampireSystem : EntitySystem
             }
         }
         else
-            comp.IsDrinking = false;
+        {
+            comp.IsDrinking = false; //Blood level reduction failed
+            _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"), uid, uid, Shared.Popups.PopupType.MediumCaution);
+            return;
+        }
+
+
     }
 
     partial void UpdateVampireAlert(EntityUid uid)
@@ -475,7 +554,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         var dargs = new DoAfterArgs(EntityManager, uid, TimeSpan.FromSeconds(1.25), new VampireDrinkBloodDoAfterEvent(), uid, target)
         {
-            DistanceThreshold = 1.5f,
+            DistanceThreshold = comp.BiteDistanceThreshold,
             BreakOnDamage = true,
             BreakOnHandChange = true,
             BreakOnMove = true,
@@ -491,10 +570,110 @@ public sealed partial class VampireSystem : EntitySystem
         }
     }
 
+    /// <summary>
+	///     On use of action to attempt to sleep a single target; check if target can be slept, if vamp has enough blood, and trigger a doafter
+	/// </summary>
+    private void OnSleep(EntityUid uid, VampireComponent comp, ref VampireSleepActionEvent args)
+    {
+        if (args.Handled || !Exists(args.Target))
+            return;
+
+
+        var actionEntity = args.Action.Owner;
+
+        if (!TryGetActionBloodCost(actionEntity, out var bloodCost))
+            return;
+
+        var target = args.Target;
+
+       if (target == uid)
+            return;
+
+        if (IsProtectedByFaith(target) && comp.FullPower != true)
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), uid, uid, Shared.Popups.PopupType.MediumCaution);
+            return;
+        }
+
+        if (_flashImmunity.HasFlashImmunityVisionBlockers(target))
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-sleep-protected"), uid, uid, PopupType.MediumCaution);
+            return;
+        }
+
+        if (comp.DrunkBlood < bloodCost)
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-not-enough-blood"), uid, uid, PopupType.MediumCaution);
+            return;
+        }
+
+        var doAfter = new DoAfterArgs(EntityManager, uid, args.ChannelTime, new VampireSleepDoAfterEvent { BloodCost = bloodCost }, uid, target)
+        {
+            DistanceThreshold = args.SleepDistanceThreshold,
+            BreakOnDamage = true,
+            BreakOnMove = true,
+            BreakOnWeightlessMove = true,
+            MovementThreshold = args.SleepMovementThreshold,
+            RequireCanInteract = true,
+            BlockDuplicate = true,
+            CancelDuplicate = true
+        };
+
+        if (!_doAfter.TryStartDoAfter(doAfter))
+            return;
+
+        args.Handled = true;
+    }
+
+    private bool TryGetActionBloodCost(EntityUid actionEntity, out int bloodCost)
+    {
+        bloodCost = 0;
+
+        if (!Exists(actionEntity) || !TryComp<VampireActionComponent>(actionEntity, out var actionComp))
+            return false;
+
+        bloodCost = (int)Math.Max(actionComp.BloodCost, 0);
+        return true;
+    }
+
+    /// <summary>
+	///     Triggered once sleep do after is completed, check one more time to see if the target has somehow gained immunity during the do after and if not consume the blood cost and apply the sleep.
+	/// </summary>
+    private void OnSleepDoAfter(EntityUid uid, VampireComponent comp, ref VampireSleepDoAfterEvent args)
+    {
+        if (args.Handled || args.Cancelled || args.Target == null)
+            return;
+
+        var target = args.Target.Value;
+
+        if (_flashImmunity.HasFlashImmunityVisionBlockers(target))
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-sleep-protected"), uid, uid, PopupType.MediumCaution);
+            return;
+        }
+
+        if (HasComp<MindShieldComponent>(target))
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-sleep-shielded"), uid, uid, PopupType.SmallCaution);
+            return;
+        }
+
+        if (!CheckAndConsumeBloodCost(uid, comp, null, args.BloodCost))
+            return;
+
+        var duration = args.Duration;
+        _statusEffects.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, duration);
+        args.Handled = true;
+    }
+
+
+    /// <summary>
+    /// Action that stuns nearby mobs for a short duration
+    /// </summary>
     private void OnGlare(EntityUid uid, VampireComponent comp, ref VampireGlareActionEvent args)
     {
-        if (args.Handled 
-            || !comp.ActionEntities.TryGetValue("ActionVampireGlare", out var actionEntity) 
+        if (args.Handled
+            || !comp.ActionEntities.TryGetValue("ActionVampireGlare", out var actionEntity)
             || !CheckAndConsumeBloodCost(uid, comp, actionEntity))
             return;
 
@@ -504,17 +683,21 @@ public sealed partial class VampireSystem : EntitySystem
         var ourXform = Transform(uid);
         var ourDirection = ourXform.LocalRotation.ToVec();
         var ourPosition = ourXform.LocalPosition;
+        var effectScale = 1.0f;
 
         foreach (var target in targets)
         {
             if (target == uid)
                 continue;
 
+            if (_flashImmunity.HasFlashImmunityVisionBlockers(target))
+                effectScale = args.FlashImmunityEffectScale;
+
             var targetPosition = Transform(target).LocalPosition;
             var vectorToTarget = Vector2.Normalize(targetPosition - ourPosition);
 
             var dot = Vector2.Dot(ourDirection, vectorToTarget);
-            
+
             if (!TryComp<StaminaComponent>(target, out var stam))
                 continue;
 
@@ -523,34 +706,34 @@ public sealed partial class VampireSystem : EntitySystem
             // If target in front
             if (dot > 0.7f && !knockedDown)
             {
-                _stun.TryAddParalyzeDuration(target, TimeSpan.FromSeconds(2));
+                _stun.TryAddParalyzeDuration(target, args.FrontParalyzeDuration * effectScale);
 
-                _stamina.TakeStaminaDamage(target, args.FrontStaminaDamage, stam, source: uid);
+                _stamina.TakeStaminaDamage(target, args.FrontStaminaDamage * effectScale, stam, source: uid);
 
                 // Mute for 8 second
                 EnsureComp<MutedComponent>(target);
-                Timer.Spawn(args.MuteDuration, () =>
+                Timer.Spawn(args.MuteDuration * effectScale, () =>
                 {
                     if (Exists(target))
                         RemComp<MutedComponent>(target);
                 });
 
-                StartGlareDotEffect(target, uid, args.DotStaminaDamage, 0, true);
+                StartGlareDotEffect(target, uid, args.DotStaminaDamage * effectScale, 0, true);
 
-                return; 
+                return;
             }
             // If target behind
             else if (dot < -0.7f && !knockedDown)
-                _stamina.TakeStaminaDamage(target, args.BehindStaminaDamage, stam, source: uid);
+                _stamina.TakeStaminaDamage(target, args.BehindStaminaDamage * effectScale, stam, source: uid);
             else
             {
-                _stun.TryAddParalyzeDuration(target, TimeSpan.FromSeconds(4));
+                _stun.TryAddParalyzeDuration(target, args.SideParalyzeDuration * effectScale);
 
-                _stamina.TakeStaminaDamage(target, args.SideStaminaDamage, stam, source: uid);
+                _stamina.TakeStaminaDamage(target, args.SideStaminaDamage * effectScale, stam, source: uid);
             }
 
             // Start DOT effect with limited ticks
-            StartGlareDotEffect(target, uid, args.DotStaminaDamage, 0, false);
+            StartGlareDotEffect(target, uid, args.DotStaminaDamage * effectScale, 0, false);
         }
 
         args.Handled = true;
@@ -571,8 +754,8 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void OnRejuvenateI(EntityUid uid, VampireComponent comp, ref VampireRejuvenateIActionEvent args)
     {
-        if (args.Handled 
-            || !comp.ActionEntities.TryGetValue("ActionVampireRejuvenateI", out var actionEntity) 
+        if (args.Handled
+            || !comp.ActionEntities.TryGetValue("ActionVampireRejuvenateI", out var actionEntity)
             || !CheckAndConsumeBloodCost(uid, comp, actionEntity))
             return;
 
@@ -596,8 +779,8 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void OnRejuvenateII(EntityUid uid, VampireComponent comp, ref VampireRejuvenateIIActionEvent args)
     {
-        if (args.Handled 
-            || !comp.ActionEntities.TryGetValue("ActionVampireRejuvenateII", out var actionEntity) 
+        if (args.Handled
+            || !comp.ActionEntities.TryGetValue("ActionVampireRejuvenateII", out var actionEntity)
             || !CheckAndConsumeBloodCost(uid, comp, actionEntity))
             return;
 
@@ -693,7 +876,7 @@ public sealed partial class VampireSystem : EntitySystem
         int uniqueHumanoids = 0;
         foreach (var kv in comp.BloodDrunkFromTargets.Keys)
             if (Exists(kv) && HasComp<HumanoidAppearanceComponent>(kv))
-                uniqueHumanoids++; 
+                uniqueHumanoids++;
         comp.UniqueHumanoidVictims = uniqueHumanoids;
         var prev = comp.FullPower;
         comp.FullPower = comp.TotalBlood > 1000 && uniqueHumanoids >= 8;
@@ -713,8 +896,8 @@ public sealed partial class VampireSystem : EntitySystem
 
         var slots = new[] { "mask", "head" };
         foreach (var slot in slots)
-            if (_inventory.TryGetSlotEntity(uid, slot, out var ent) && 
-                TryComp<IngestionBlockerComponent>(ent.Value, out var blocker) && 
+            if (_inventory.TryGetSlotEntity(uid, slot, out var ent) &&
+                TryComp<IngestionBlockerComponent>(ent.Value, out var blocker) &&
                 blocker.Enabled)
 
                 return true;

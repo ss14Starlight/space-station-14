@@ -1,0 +1,6 @@
+- type: stack
+  parent: BaseSheetStack
+  id: Adamantine
+  name: stack-adamantine
+  icon: { sprite: /Textures/Objects/Materials/Sheets/metal.rsi, state: brass }
+  spawn: SheetAdamantine1

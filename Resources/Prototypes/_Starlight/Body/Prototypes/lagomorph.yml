@@ -1,0 +1,57 @@
+﻿- type: body
+  id: Lagomorph
+  name: "Lagomorph"
+  root: torso
+  slots:
+    head:
+      part: HeadLagomorph
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+        tongue: OrganHumanTongue
+        eye_implant: null
+        brain_implant: null
+    torso:
+      part: TorsoLagomorph
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganLagomorphHeart
+        lungs: OrganHumanLungs
+        stomach: OrganLagomorphStomach
+        liver: OrganHumanLiver
+        kidneys: OrganHumanKidneys
+        cavity: null
+    right arm:
+      part: RightArmLagomorph
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmLagomorph
+      connections:
+      - left hand
+    right hand:
+      part: RightHandLagomorph
+      organs:
+        hand_implant: null
+    left hand:
+      part: LeftHandLagomorph
+      organs:
+        hand_implant: null
+    right leg:
+      part: RightLegLagomorph
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegLagomorph
+      connections:
+      - left foot
+    right foot:
+      part: RightFootLagomorph
+    left foot:
+      part: LeftFootLagomorph

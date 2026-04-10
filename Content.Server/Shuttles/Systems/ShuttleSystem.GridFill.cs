@@ -129,7 +129,7 @@ public sealed partial class ShuttleSystem
     private bool TryGridSpawn(EntityUid targetGrid, EntityUid stationUid, MapId mapId, GridSpawnGroup group, out EntityUid spawned)
     {
         spawned = EntityUid.Invalid;
-        
+
         if (group.Paths.Count == 0)
         {
             Log.Error($"Found no paths for GridSpawn");
@@ -194,7 +194,7 @@ public sealed partial class ShuttleSystem
                     break; // can break, we already found the grid that created this station
                 }
             // Starlight end
-            
+
             for (var i = 0; i < count; i++)
             {
                 EntityUid spawned;

@@ -44,6 +44,7 @@ public sealed partial class SalarySystem : SharedSalarySystem
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly INullLinkPlayerManager _nullLinkRoles = default!;
     [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!;
+    [Dependency] private readonly ISharedNullLinkPlayerResourcesManager _playerResources = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _time = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
@@ -57,20 +58,20 @@ public sealed partial class SalarySystem : SharedSalarySystem
     private readonly Dictionary<ICommonSession, TimeSpan> _lastSalary = [];
     private SalariesPrototype _salaries = new();
     private float _defaultBonusMultiplier = 1.0f;
-    
+
     public override void Initialize()
     {
         SubscribeLocalEvent<RoundStartingEvent>(ev => _lastSalary.Clear());
         _configurationManager.OnValueChanged(StarlightCCVars.SalaryMultiplier, UpdateBonusMultiplier, true);
-        
+
         _salaries = _prototypes.Index<SalariesPrototype>("standart");
-        
+
         base.Initialize();
     }
 
-    private void UpdateBonusMultiplier(float value) 
+    private void UpdateBonusMultiplier(float value)
         => _defaultBonusMultiplier = value;
-    
+
     public override void Update(float frameTime)
     {
         _delayAccumulator += frameTime;
@@ -87,8 +88,8 @@ public sealed partial class SalarySystem : SharedSalarySystem
                     _lastSalary.Add(query.Current.Session, _time.CurTime);
                     continue;
                 }
-                if (!_entityManager.TryGetComponent<MobStateComponent>(query.Current.Session.AttachedEntity, out var state) 
-                    || state.CurrentState == MobState.Critical 
+                if (!_entityManager.TryGetComponent<MobStateComponent>(query.Current.Session.AttachedEntity, out var state)
+                    || state.CurrentState == MobState.Critical
                     || state.CurrentState == MobState.Dead)
                     continue;
                 if (_time.CurTime - lastTime > TimeSpan.FromMinutes(15)
@@ -98,11 +99,12 @@ public sealed partial class SalarySystem : SharedSalarySystem
                     var roles = _roles.MindGetAllRoleInfo((mind.Value.Owner, mind.Value.Comp));
                     foreach (var role in roles)
                     {
-                        if (_salaries.Jobs.TryGetValue(role.Prototype, out var salary))
+                        if (_salaries.Jobs.TryGetValue(role.Prototype, out var salary)
+                            && _playerResources.TryGetResource(query.Current.Session, "credits", out var balance))
                         {
                             var amount = CalculateSalaryWithBonuses(salary, query.Current.Session);
 
-                            query.Current.Data.Balance += amount;
+                            _playerResources.TryUpdateResource(query.Current.Session, "credits", amount);
                             var message = Loc.GetString("economy-chat-salary-message", ("amount", amount), ("sender", "NanoTrasen"));
                             var wrappedMessage = Loc.GetString("economy-chat-salary-wrapped-message", ("amount", amount), ("sender", "NanoTrasen"), ("senderColor", "#2384CE"));
                             _chat.ChatMessageToOne(ChatChannel.Notifications, message, wrappedMessage, default, false, query.Current.Session.Channel, Color.FromHex("#57A3F7"));
@@ -131,11 +133,10 @@ public sealed partial class SalarySystem : SharedSalarySystem
 
     internal void Donate(ICommonSession session, int amount)
     {
-        var playerData = _playerRolesManager.GetPlayerData(session);
-        if (playerData == null)
+        if (!_playerResources.TryGetResource(session, "credits", out var balance))
             return;
 
-        playerData.Balance += amount;
+        _playerResources.TryUpdateResource(session, "credits", amount);
 
         // We need to make a prototype
         var i = _random.Next(0, 20);

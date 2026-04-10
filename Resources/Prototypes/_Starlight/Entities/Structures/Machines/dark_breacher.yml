@@ -1,0 +1,117 @@
+- type: entity
+  id: MachineDarkBreacher
+  parent: [BaseMachinePowered, ConstructibleMachine]
+  name: dark breacher
+  description: The portal to the dark...
+  components:
+  - type: Machine
+    board: DarkBreacherMachineCircuitboard
+  - type: DarkBreacher
+  - type: Sprite
+    noRot: true
+    sprite: _Starlight/Structures/Machines/darkbreacher.rsi
+    layers:
+    - state: base
+    - state: active
+      shader: unshaded
+      map: ["unlit"]
+    - sprite: _Starlight/Structures/Specific/Anomalies/dark.rsi
+      state: portal
+      scale: 0.7, 0.7
+      map: ["portal"]
+      visible: false
+  - type: AmbientSound
+    enabled: false
+    sound:
+      path: /Audio/Machines/scan_loop.ogg
+    range: 5
+    volume: -8
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: ExtensionCableReceiver
+  - type: ApcPowerReceiver
+    powerLoad: 7500
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#83C9D7"
+    castShadows: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerChargeVisuals.State:
+        unlit:
+          Off: { state: error }
+          On: { state: active }
+          Unpowered: { state: error }
+      enum.PowerChargeVisuals.Active:
+        unlit:
+          True: { visible: True }
+          False: { visible: False }
+        portal:
+          True: { visible: True }
+          False: { visible: False }
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MachineFrameDestroyed:
+            min: 1
+            max: 1
+  - type: Repairable
+    fuelCost: 10
+    doAfterDelay: 5
+  - type: PowerCharge
+    windowTitle: dark-breacher-window-title
+    switchedOn: false
+    charge: 0.1
+    idlePower: 500
+    activePower: 5000
+  - type: ActivatableUI
+    key: enum.PowerChargeUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.PowerChargeUiKey.Key:
+        type: PowerChargeBoundUserInterface
+  - type: Portal
+    arrivalSound: /Audio/Items/hiss.ogg
+    departureSound: /Audio/Items/hiss.ogg
+    canTeleportToOtherMaps: true
+    randomTeleport: false
+  - type: GuideHelp
+    guides:
+      - Brighteye
+      - Shadekin
+  - type: StaticPrice
+    price: 50000
+
+- type: entity
+  id: MachineDarkBreacherPowered
+  parent: MachineDarkBreacher
+  suffix: Powered
+  components:
+  - type: PowerCharge
+    switchedOn: true
+    charge: 1

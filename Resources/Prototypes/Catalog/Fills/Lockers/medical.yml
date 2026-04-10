@@ -142,6 +142,7 @@
     - id: JetInjector
     - id: PlushieKiosha #starlight
     - id: EmergencyHandheldCrewMonitor #starlight
+    - id: JawsOfLifeMed #Starlight
 
 - type: entity
   parent: LockerParamedic

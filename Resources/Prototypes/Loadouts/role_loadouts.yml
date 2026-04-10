@@ -96,7 +96,8 @@
   id: JobServiceWorker
   groups:
   - GroupTankHarness
-  - BartenderJumpsuit
+  - ServiceWorkerHead # Starlight
+  - ServiceWorkerJumpsuit # Starlight
   - CommonBackpack
   - CivilianShoes # 🌟Starlight🌟
   - Glasses
@@ -304,6 +305,7 @@
   - CargoTechnicianOuterClothing
   - CargoTechnicianShoes
   - CargoTechnicianID
+  - CargoTechnicianAppraisalTool # Starlight
   - Glasses
   - Survival
   - Trinkets

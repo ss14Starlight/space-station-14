@@ -23,7 +23,7 @@
   - WelderIndustrialAdvanced
   - ClothingEyesGlassesMeson
   - ClothingHandsGlovesColorYellow
-  - JawsOfLife
+  - SyndicateJawsOfLifeStealth # Starlight. Break in, thief.
   - RemoteSignaller
   - Multitool
   - C4
@@ -47,16 +47,17 @@
 - type: thiefBackpackSet
   id: SyndieSet
   name: thief-backpack-category-syndie-name
-  description: thief-backpack-category-syndie-description
+  description: thief-backpack-category-syndie-description-starlight # Starlight
   sprite:
     sprite: Objects/Specific/Syndicate/telecrystal.rsi
     state: telecrystal
   content:
   - RadioJammer
   - TraitorCodePaper
-  - Emag
+  - CameraBug # Starlight. Until thieves get an emag that can't arm borgs, stop giving them the ability to make guns. Was originally a syndie encryption key but Thieves aren't told not to reveal nukies like pAIs.
+  - Stimpack # Starlight. Needed something to make up for losing the emag. When the Emag is replaced with a ThiefMag, this can be removed.
   - AccessBreaker
-  - Lighter
+  - InterdyneFlippo # Starlight. Might as well keep the theme, no?
   - CigPackSyndicate
   - Telecrystal10 #The thief cannot use them, but it may induce communication with traitors
   - SyndicatePersonalAI # [Starlight] allows the thief to be able to communicate indirectly with traitors, without accidentally spoiling nukies.
@@ -64,25 +65,28 @@
 - type: thiefBackpackSet
   id: SleeperSet
   name: thief-backpack-category-sleeper-name
-  description: thief-backpack-category-sleeper-description
+  description: thief-backpack-category-sleeper-description-starlight
   sprite:
     sprite: Objects/Tanks/anesthetic.rsi
     state: icon
   content:
   - ChemistryBottleNocturine
   - ChemistryBottleNocturine
+  - ChemistryBottleTazinide # Starlight
   - HypopenBox
   - NitrousOxideTankFilled
+  - HealiumTankFilled # Starlight, for those nitrogen breathers
 
 - type: thiefBackpackSet
   id: CommunicatorSet
   name: thief-backpack-category-communicator-name
-  description: thief-backpack-category-communicator-description
+  description: thief-backpack-category-communicator-description-starlight
   sprite:
     sprite: Objects/Devices/communication.rsi
     state: old-radio
   content:
   - EncryptionKeyStationMaster
+  - EncryptionKeyBinarySyndicate # Starlight. Useful for spying on borgs.
   - CyberPen
   - BriefcaseThiefBribingBundleFilled
   - VoiceMaskImplanter

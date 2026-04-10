@@ -33,4 +33,6 @@ public sealed partial class RailroadCardComponent : Component
 
     [DataField]
     public List<Texture> Images = [];
+
+    public EntityUid Subject;
 }

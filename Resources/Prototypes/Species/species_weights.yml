@@ -2,16 +2,20 @@
 - type: weightedRandomSpecies
   id: SpeciesWeights
   weights:
-    Human: 5
-    Reptilian: 4
+    Human: 10
+    Reptilian: 5
+    Moth: 5
+    Vulpkanin: 5
     SlimePerson: 4
-    Moth: 4
-    Dwarf: 2
-    Diona: 2
-    Vox: 1
-    Vulpkanin: 4
-    Cyclorite: 3
-    Felionoid: 3
+    IPC: 4
+    Elf: 3
+    Lagomorph: 3
     Avali: 3
     Resomi: 3
+    Felionoid: 3
+    Thaven: 2
+    Dwarf: 2
+    Diona: 2
+    Cyclorite: 2
     Shadekin: 2
+    Vox: 1

@@ -57,6 +57,13 @@ public sealed class DecalPainter
     private void Run(Image canvas, DecalData data, Vector2 customOffset = default)
     {
         var decal = data.Decal;
+
+        // Starlight-start
+        if (string.IsNullOrEmpty(decal.Id))
+            return; // Just return without error.
+
+        // Starlight-end
+
         if (!_decalTextures.TryGetValue(decal.Id, out var sprite))
         {
             Console.WriteLine($"Decal {decal.Id} did not have an associated prototype.");

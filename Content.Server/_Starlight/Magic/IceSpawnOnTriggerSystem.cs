@@ -13,7 +13,7 @@ namespace Content.Server._Starlight.Magic;
 /// <summary>
 /// Starlight: System that handles spawning IceCrust debris in a circle pattern when a projectile with
 /// IceSpawnOnTriggerComponent hits a humanoid entity.
-/// 
+///
 /// This creates a visual area of frozen ground by spawning IceCrust entities
 /// and freezing the atmosphere to create a realistic ice storm effect.
 /// </summary>
@@ -44,7 +44,7 @@ public sealed class IceSpawnOnTriggerSystem : EntitySystem
     {
         // Starlight: Get the user/target from the trigger event
         var target = args.User;
-        
+
         // Starlight: If no target, don't spawn ice
         if (target == null)
             return;
@@ -52,7 +52,7 @@ public sealed class IceSpawnOnTriggerSystem : EntitySystem
         // Starlight: If we require a humanoid target, check for HumanoidAppearanceComponent and MobStateComponent
         if (ent.Comp.RequireHumanoid)
         {
-            if (!HasComp<HumanoidAppearanceComponent>(target.Value) || 
+            if (!HasComp<HumanoidAppearanceComponent>(target.Value) ||
                 !HasComp<MobStateComponent>(target.Value))
             {
                 return; // Starlight: Not a living humanoid, don't spawn ice circle

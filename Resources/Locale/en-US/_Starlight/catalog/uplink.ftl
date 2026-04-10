@@ -14,7 +14,7 @@ uplink-switchblade-name = Switchblade
 uplink-switchblade-desc = A cheap blade that switches people from being alive to not.
 
 uplink-mind-control-implant-name = Mind Control Implanter
-uplink-mind-control-implant-desc = Turn your frenemy into a friend. They will follow any order from any Syndicate as long as they can escape to CentComm.
+uplink-mind-control-implant-desc = Turn your frenemy into a friend. They will follow any order you give them.
 
 uplink-toxic-grenade-name = Acidic Gas Grenade
 uplink-toxic-grenade-desc = A painful crowd control gas grenade full of Sulfuric Acid. Good for clearing the masses out of a chokepoint. Turn on your internals first.

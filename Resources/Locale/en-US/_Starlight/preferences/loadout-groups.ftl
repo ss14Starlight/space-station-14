@@ -67,6 +67,15 @@ loadout-group-civilian-shoes = Shoes
 loadout-group-mime-shoes = Mime shoes
 
 # Cargo
+loadout-group-cargo-technician-appraisal-tool = Cargo Technician appraisal tool
+loadout-group-mail-technician-head = Mail Technician head
+loadout-group-mail-technician-jumpsuit = Mail Technician jumpsuit
+loadout-group-mail-technician-backpack = Mail Technician backpack
+loadout-group-mail-technician-outerclothing = Mail Technician outer clothing
+loadout-group-mail-technician-shoes = Mail Technician shoes
+loadout-group-mail-technician-id = Mail Technician ID
+loadout-group-mail-technician-bag = Mail Technician bag
+loadout-group-mail-technician-trolley = Mail Technician trolley
 loadout-group-salvage-specialist-jumpsuit = Salvage Specialist jumpsuit
 loadout-group-salvage-lead-jumpsuit = Salvage Lead jumpsuit
 loadout-group-mining-specialist-jumpsuit = Mining Specialist jumpsuit
@@ -88,8 +97,16 @@ loadout-group-chemist-bag = Chemist bag
 loadout-group-chemist-labeler = Chemist labeler
 loadout-group-chemist-shoes = Chemist shoes
 
-# Janitor
+# Service
 loadout-group-janitor-neck = Janitor neck
+
+loadout-group-serviceworker-head = Service worker head
+loadout-group-serviceworker-jumpsuit = Service worker jumpsuit
+loadout-group-serviceworker-outerclothing = Service worker outer clothing
+
+loadout-group-performer-head = Performer head
+loadout-group-performer-jumpsuit = Performer jumpsuit
+loadout-group-performer-outerclothing = Performer outer clothing
 
 # Other
 loadout-group-scarves = Scarf

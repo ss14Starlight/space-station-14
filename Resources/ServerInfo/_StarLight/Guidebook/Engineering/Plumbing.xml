@@ -12,14 +12,21 @@
   All plumbing machines and ducts are [color=#a4885c]rotatable[/color]. Use the rotation key before or after placing to orient inlets and outlets correctly. Machines must be oriented so their connectors line up with adjacent ducts. Most plumbing machines are rotatable while anchored.
 
   ## Fluid Ducts
-  Fluid ducts are pipes that carry reagents between machines. They similar to atmos pipes, place them with the RPLD and they automatically connect to adjacent ducts and machines to form a [color=#a4885c]plumbing network[/color]. Ducts hide under floor tiles. There are four variants:
+  Fluid ducts are pipes that carry reagents between machines. They are similar to atmos pipes, place them with the RPLD and they automatically connect to adjacent ducts and machines to form a [color=#a4885c]plumbing duct network[/color]. Ducts hide under floor tiles.
+
+  Plumbing ducts support [color=#a4885c]three duct layers[/color]: Primary, Secondary, and Tertiary. Use the RPLD mode switch (or free mode guide dots) to choose which layer a duct is placed on.
+
+  There are five duct variants:
 
   <Box>
     <GuideEntityEmbed Entity="GuidebookPlumbingDuctStraight" Caption="Straight"/>
     <GuideEntityEmbed Entity="GuidebookPlumbingDuctBend" Caption="Bend"/>
     <GuideEntityEmbed Entity="GuidebookPlumbingDuctTJunction" Caption="T-Junction"/>
     <GuideEntityEmbed Entity="GuidebookPlumbingDuctFourway" Caption="Fourway"/>
+    <GuideEntityEmbed Entity="GuidebookPlumbingDuctManifold" Caption="Manifold"/>
   </Box>
+
+  The [color=#a4885c]Manifold[/color] bridges ducts connected to each of its sides. It can connect separate ducts across all three layers.
 
   ## Connector Colors
   Each machine's connectors are color-coded:
@@ -37,5 +44,8 @@
 
   ## Machines
   See [textlink="Plumbing Machines" link="PlumbingMachines"] for details on each machine.
+
+  Some non-plumbing machines also support plumbing connections, including the [color=#a4885c]ChemMaster[/color], [color=#a4885c]Chemical Dispenser[/color], and [color=#a4885c]Industrial Reagent Grinder[/color].
+
 
 </Document>

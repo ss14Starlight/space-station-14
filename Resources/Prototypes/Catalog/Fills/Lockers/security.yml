@@ -58,6 +58,7 @@
     - id: ClothingOuterHardsuitWarden
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight - Beep, Boop!
     - id: ClothingMaskBreath
 
 - type: entity
@@ -158,6 +159,7 @@
       prob: 0.15
     - id: PlushieMorgana #starlight
     - id: PlushieKiller #starlight
+    - id: JawsOfLifeMed #Starlight
 
 
 - type: entity

@@ -241,7 +241,7 @@ public sealed class DamageModifyEvent(DamageSpecifier damage, EntityUid? origin 
     /// How much does this penetrate armor?
     /// </summary>
     public float ArmorPenetration = armorPenetration;
-    
+
     /// <summary>
     /// Can the damage from this reduce the overall damage on the target?
     /// </summary>

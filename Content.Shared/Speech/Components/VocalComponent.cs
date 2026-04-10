@@ -47,7 +47,7 @@ public sealed partial class VocalComponent : Component
     ///     Currently loaded emote sounds prototype, based on entity sex.
     ///     Null if no valid prototype for entity sex was found.
     /// </summary>
-    [ViewVariables]
+    [ViewVariables(VVAccess.ReadWrite)] // Starlight-edit: There is zero reason not to make this editable.
     [AutoNetworkedField]
     public ProtoId<EmoteSoundsPrototype>? EmoteSounds = null;
 

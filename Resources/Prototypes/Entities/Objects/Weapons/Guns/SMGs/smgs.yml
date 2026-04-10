@@ -22,6 +22,8 @@
     - Back
     - suitStorage
   - type: AmmoCounter
+  - type: CanDualWield # 🌟Starlight🌟
+    dualWieldInaccuracyPenalty: 68
   - type: Gun
     minAngle: 2
     maxAngle: 16

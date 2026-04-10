@@ -54,6 +54,8 @@ using Content.Shared.CombatMode.Pacification;
 using Content.Shared._Starlight.Gnome; // starlight
 using Content.Shared.Trigger; // Starlight
 using Content.Shared.Trigger.Components.Effects; // Starlight
+using Content.Shared.NPC.Prototypes; // Starlight
+using Content.Shared.NPC.Systems; // Starlight
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
@@ -103,11 +105,15 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly SlipperySystem _slipperySystem = default!;
     [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly TerminatorSystem _terminator = default!; // starlight
+    [Dependency] private readonly NpcFactionSystem _npcFactionSmite = default!; // starlight
 
     private readonly EntProtoId _actionViewLawsProtoId = "ActionViewLaws";
     private readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
 
     private readonly EntProtoId _siliconMindRole = "MindRoleSiliconBrain";
+    private readonly EntProtoId _pirateMindRole = "MindRolePirate"; // starlight
+    private readonly ProtoId<NpcFactionPrototype> _smitePirateFaction = "Pirate"; // starlight
+    private readonly ProtoId<NpcFactionPrototype> _smiteNanoTrasenFaction = "NanoTrasen"; // starlight
     private const string SiliconLawBoundUserInterface = "SiliconLawBoundUserInterface";
 
     // All smite verbs have names so invokeverb works.
@@ -798,7 +804,7 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", vulpName, Loc.GetString("admin-smite-vulpkanin-species-swap-description"))
         };
         args.Verbs.Add(vulp);
-        
+
         // Starlight-start
         var felioName = Loc.GetString("admin-smite-Felionoid-species-swap-name").ToLowerInvariant();
         Verb felio = new()
@@ -1028,7 +1034,7 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", superslipName, Loc.GetString("admin-smite-super-slip-description"))
         };
         args.Verbs.Add(superslip);
-        
+
         var pacifyName = Loc.GetString("admin-smite-pacify-name").ToLowerInvariant();
         Verb pacify = new()
         {
@@ -1173,7 +1179,7 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", homingRodSlowName, Loc.GetString("admin-smite-homing-rod-slow-description"))
         };
         args.Verbs.Add(homingRodSlow);
-        
+
         // Starlight begin
         var scrambleName = Loc.GetString("admin-smite-scramble-name").ToLowerInvariant();
         Verb scramble = new()
