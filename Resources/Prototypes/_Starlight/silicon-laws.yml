@@ -427,6 +427,8 @@
 
 - type: siliconLawset
   id: NTNCLawset
+  name: law-ntnclawset-name
+  startAtZero: true
   laws:
   - NTNC0
   - NTNC1
