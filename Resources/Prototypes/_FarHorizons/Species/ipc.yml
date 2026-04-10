@@ -6,7 +6,7 @@
   sprites: MobIPCSprites
   defaultSkinTone: "#ffda93"
   markingLimits: MobIPCMarkingLimits
-  dollPrototype: MobIPCDummy
+  dollPrototype: AppearanceIPC
   skinColoration: Hues
   eyeColoration: FullWhite
   customName: true

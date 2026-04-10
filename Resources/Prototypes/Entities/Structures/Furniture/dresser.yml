@@ -298,7 +298,7 @@
       weight: 0.0008
     - id: ClothingOuterDogi
       weight: 0.00001
-    - id: HeadHuman
+    - id: HeadHuman # Starlight
       weight: 0.00001
     - id: OrganHumanKidneys
       weight: 0.00001
