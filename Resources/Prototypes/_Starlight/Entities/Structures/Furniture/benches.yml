@@ -357,7 +357,7 @@
     - state: bench_solo_cover
       color: "#767e82"
   - type: Construction
-    graph: Seat
+    graph: SeatSL
     node: grayComfBench
 
 - type: entity
@@ -437,7 +437,7 @@
     - state: bench_solo_cover
       color: "#3c9950"
   - type: Construction
-    graph: Seat
+    graph: SeatSL
     node: greenComfBench
 
 - type: entity
