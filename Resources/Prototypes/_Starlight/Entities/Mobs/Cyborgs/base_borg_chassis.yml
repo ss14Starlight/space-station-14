@@ -240,6 +240,7 @@
       - !type:EmptyContainersBehaviour
         containers:
         - borg_brain
+        - borg_module
         - cell_slot
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
