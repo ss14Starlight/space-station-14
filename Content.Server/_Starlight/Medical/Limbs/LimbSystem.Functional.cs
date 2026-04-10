@@ -1,4 +1,5 @@
-using Content.Server.Body.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Limbs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
