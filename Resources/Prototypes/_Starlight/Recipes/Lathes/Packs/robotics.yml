@@ -59,6 +59,9 @@
     - MechReactorHigh
     - MechReactorHyper
     - MechReactorMicro
+    - MechReactorShielded
+    - MechReactorBurnout
+    - MechReactorCavalier
 
 - type: latheRecipePack
   id: StarlightMechWeapon

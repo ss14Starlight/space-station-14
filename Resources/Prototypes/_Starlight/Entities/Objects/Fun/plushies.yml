@@ -1985,3 +1985,69 @@
       tags:
         - Payload
         - ClothMade
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieSaltLampLarge
+  name: large salt lamp plushie
+  description: Larger safe version of everyone's favorite salt lamp.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/supermatter.rsi
+    state: supermatter
+    scale: 0.7, 0.7
+  - type: PointLight
+    radius: 3
+    energy: 2
+    netsync: false
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+      params:
+        volume: -5
+    handle: false
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieSaltLampSmall
+  name: small salt lamp plushie
+  description: Small safe version of everyone's favorite salt lamp.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/supermatter.rsi
+    state: supermatter
+    scale: 0.4, 0.4
+  - type: PointLight
+    radius: 3
+    energy: 2
+    netsync: false
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+      params:
+        volume: -5
+    handle: false
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Starlight/Effects/supermatter/crystal_crack_1.ogg

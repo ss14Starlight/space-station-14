@@ -257,6 +257,15 @@ public abstract class SharedStrippableSystem : EntitySystem
             return false;
         }
 
+        // Starlight start: server-side HideFromStrip enforcement
+        if (_inventorySystem.TryGetSlot(target, slot, out var insertSlotDef) &&
+            insertSlotDef.HideFromStrip &&
+            user.Owner != target)
+        {
+            return false;
+        }
+        // Starlight end
+
         var targetIdentity = Identity.Entity(target, EntityManager);
 
         if (_inventorySystem.TryGetSlotEntity(target, slot, out _))
@@ -367,6 +376,15 @@ public abstract class SharedStrippableSystem : EntitySystem
         EntityUid item,
         string slot)
     {
+        // Starlight start: server-side HideFromStrip enforcement
+        if (_inventorySystem.TryGetSlot(target, slot, out var removeSlotDef) &&
+            removeSlotDef.HideFromStrip &&
+            user != target)
+        {
+            return false;
+        }
+        // Starlight end
+
         if (!_inventorySystem.TryGetSlotEntity(target, slot, out var slotItem))
         {
             _popupSystem.PopupCursor(Loc.GetString("strippable-component-item-slot-free-message", ("owner", Identity.Entity(target, EntityManager))));

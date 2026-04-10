@@ -19,9 +19,20 @@ namespace Content.Client.HealthAnalyzer.UI
             base.Open();
 
             _window = this.CreateWindow<HealthAnalyzerWindow>();
+            // Starlight-start: Printable health reports.
+            _window.SetPrintReportVisible(true);
+            _window.PrintReportPressed += OnPrintReportPressed;
+            // Starlight-end
 
             _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
         }
+
+        // Starlight-start: Printable health reports.
+        private void OnPrintReportPressed()
+        {
+            SendMessage(new HealthAnalyzerPrintReportMessage());
+        }
+        // Starlight-end
 
         protected override void ReceiveMessage(BoundUserInterfaceMessage message)
         {
