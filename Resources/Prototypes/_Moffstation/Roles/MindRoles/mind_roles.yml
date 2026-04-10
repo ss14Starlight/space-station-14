@@ -15,21 +15,21 @@
   id: MindRoleWizardDuelistRed
   name: Red Wizard Duelist Role
   components:
-  - type: WizardDuelistRedRole
+  - type: WizardDuelistRole
 
 - type: entity
   parent: MindRoleWizardDuelistBase
   id: MindRoleWizardDuelistBlue
   name: Blue Wizard Duelist Role
   components:
-  - type: WizardDuelistBlueRole
+  - type: WizardDuelistRole
 
 - type: entity
   parent: MindRoleWizardDuelistBase
   id: MindRoleWizardDuelistPurple # Starlight, violet -> Purple
   name: Purple Wizard Duelist Role # Starlight, violet -> Purple
   components:
-  - type: WizardDuelistPurpleRole # Starlight, violet -> Purple
+  - type: WizardDuelistRole # Starlight, violet -> Purple
 
 # Starlight start
 - type: entity
@@ -37,19 +37,19 @@
   id: MindRoleWizardDuelistYellow
   name: Yellow Wizard Duelist Role
   components:
-  - type: WizardDuelistYellowRole
+  - type: WizardDuelistRole
 
 - type: entity
   parent: MindRoleWizardDuelistBase
   id: MindRoleWizardDuelistGreen
   name: Green Wizard Duelist Role
   components:
-  - type: WizardDuelistGreenRole
+  - type: WizardDuelistRole
 
 - type: entity
   parent: MindRoleWizardDuelistBase
   id: MindRoleWizardDuelistOrange
   name: Orange Wizard Duelist Role
   components:
-  - type: WizardDuelistOrangeRole
+  - type: WizardDuelistRole
 # Starlight end
