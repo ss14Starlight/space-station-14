@@ -12,7 +12,7 @@ public sealed partial class GasMinerComponent : Component
     ///     Operational state of the miner.
     /// </summary>
     [AutoNetworkedField]
-    [ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadWrite)] // Starlight-edit
     public GasMinerState MinerState = GasMinerState.Disabled;
 
     /// <summary>
@@ -49,6 +49,13 @@ public sealed partial class GasMinerComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public float SpawnAmount = Atmospherics.MolesCellStandard * 20f;
+
+    //Starlight begin
+    /// <summary>
+    ///     Whether the gas miner needs to be anchored to work or not.
+    /// </summary>
+    [DataField] public bool RequireAnchored = true;
+    //Starlight end
 }
 
 [Serializable, NetSerializable]
