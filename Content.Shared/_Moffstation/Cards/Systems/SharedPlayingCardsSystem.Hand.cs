@@ -103,13 +103,20 @@ public abstract partial class SharedPlayingCardsSystem
     /// Takes and tries to pick up the card specified by <paramref name="args"/>.
     private void OnPlayingCardPicked(Entity<HandsComponent> entity, ref PlayingCardPickedEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || !_gameTiming.IsFirstTimePredicted)
             return;
 
-        // Dumb special case for when somebody hits "E" on the hand in their active hand.
+        if (!_hands.CanPickupAnyHand(entity, args.SourceHand))
+        {
+            _popup.PopupPredictedCursor(Loc.GetString(PlayingCardHandComponent.CantPickupNoFreeHands), entity);
+            return;
+        }
+
+        bool pickedUp;
         if (_hands.TryGetActiveItem(entity.AsNullable(), out var activeItem) && activeItem == args.SourceHand)
         {
-            _hands.TryPickupAnyHand(
+            // Dumb special case for when somebody hits "E" on the hand in their active hand.
+            pickedUp = _hands.TryPickupAnyHand(
                 entity,
                 TakePickedCard(args, Transform(entity).Coordinates),
                 animate: false,
@@ -118,17 +125,18 @@ public abstract partial class SharedPlayingCardsSystem
         }
         else
         {
-            var pickedUp = _hands.TryPickup(
+            pickedUp = _hands.TryPickupAnyHand(
                 entity,
                 TakePickedCard(args, Transform(entity).Coordinates),
-                handId: null,
                 animate: false,
                 handsComp: entity
             );
-            if (!pickedUp)
-            {
-                this.AssertOrLogError("Failed to pick up picked card");
-            }
+        }
+
+        if (!pickedUp)
+        {
+            this.AssertOrLogError("Failed to pick up picked card");
+            return;
         }
 
         args.Handled = true;

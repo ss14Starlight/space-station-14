@@ -229,8 +229,9 @@ public abstract partial class SharedPlayingCardsSystem
             () =>
             {
                 VerbAudioAndPopup(PlayingCardDeckComponent.Verbs.CutDeck, entity, user);
-                var newDeckContents = Take(entity, ^(entity.Comp.NumCards / 2).., Transform(entity).Coordinates, user);
-                return CreateDeckPredicted(newDeckContents, user, entity.Comp.Prototype);
+                var degenerateDeck = CreateDeckPredicted([], user, entity.Comp.Prototype);
+                Transfer(entity, degenerateDeck, ^(entity.Comp.NumCards / 2).., user);
+                return degenerateDeck;
             }
         );
     }
