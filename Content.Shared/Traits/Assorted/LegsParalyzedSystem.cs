@@ -11,7 +11,7 @@ public sealed class LegsParalyzedSystem : EntitySystem
 {
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
     [Dependency] private readonly StandingStateSystem _standingSystem = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private readonly SharedBodySystem _bodySystem = default!; // Starlight
 
     public override void Initialize()
     {
@@ -32,7 +32,7 @@ public sealed class LegsParalyzedSystem : EntitySystem
     private void OnShutdown(EntityUid uid, LegsParalyzedComponent component, ComponentShutdown args)
     {
         _standingSystem.Stand(uid);
-        _bodySystem.UpdateMovementSpeed(uid);
+        _bodySystem.UpdateMovementSpeed(uid); // Starlight
     }
 
     private void OnBuckled(EntityUid uid, LegsParalyzedComponent component, ref BuckledEvent args)

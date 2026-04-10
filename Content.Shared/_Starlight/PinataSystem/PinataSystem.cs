@@ -1,7 +1,6 @@
 //Copyright © 2025 .cerol (Discord), Licensed under MIT License.
 //Changes after https://github.com/ss14Starlight/space-station-14/pull/2054/commits/e18dafedad110b20cdc17d054fe35413a1831f59 licensed under Starlight License.
 
-using Content.Shared.Body.Events;
 using Content.Shared.Damage;
 using Content.Shared.Gibbing;
 using Content.Shared.Throwing;

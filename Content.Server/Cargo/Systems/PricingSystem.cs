@@ -1,5 +1,4 @@
 ﻿using Content.Server.Administration;
-using Content.Server.Body.Systems;
 using Content.Server.Cargo.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Administration;
@@ -18,6 +17,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Research.Prototypes;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -28,7 +28,7 @@ public sealed class PricingSystem : EntitySystem
 {
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
+    [Dependency] private readonly BodySystem _bodySystem = default!; // Starlight
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
@@ -95,7 +95,7 @@ public sealed class PricingSystem : EntitySystem
             Log.Error($"Tried to get the mob price of {ToPrettyString(uid)}, which has no {nameof(MobStateComponent)}.");
             return;
         }
-
+        // Starlight start
         var partPenalty = 0.0;
         if (TryComp<BodyComponent>(uid, out var body))
         {
@@ -108,6 +108,7 @@ public sealed class PricingSystem : EntitySystem
         }
 
         args.Price += (component.Price - partPenalty) * (_mobStateSystem.IsAlive(uid, state) ? 1.0 : component.DeathPenalty);
+        // Starlight end
     }
 
     private double GetSolutionPrice(Entity<SolutionContainerManagerComponent> entity)
