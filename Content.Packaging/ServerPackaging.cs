@@ -43,6 +43,14 @@ public static class ServerPackaging
         "System.Diagnostics.EventLog.Messages",   // Starlight
     };
 
+    // Starlight
+    private static readonly HashSet<string> ServerForceContentAssemblies = new()
+    {
+        "Microsoft.Extensions.Configuration.dll",
+        "Microsoft.Extensions.Configuration.Abstractions.dll",
+        "Microsoft.Extensions.Configuration.Binder.dll",
+    };
+
     private static readonly HashSet<string> BinSkipFolders = new()
     {
         // Roslyn localization files, screw em.
@@ -211,7 +219,11 @@ public static class ServerPackaging
         var depsContent = deps.RecursiveGetLibrariesFrom("Content.Server").SelectMany(GetLibraryNames);
         var depsRobust = deps.RecursiveGetLibrariesFrom("Robust.Server").SelectMany(GetLibraryNames);
 
-        var depsContentExclusive = depsContent.Except(depsRobust).ToHashSet();
+        // Starlight start
+        var depsContentExclusive = depsContent
+            .Where(p => !depsRobust.Contains(p) || ServerForceContentAssemblies.Contains(p))
+            .ToHashSet();
+        // Starlight end
 
         // Remove .dll suffix and apply filtering.
         var names = depsContentExclusive.Select(p => p[..^4]).Where(p => !ServerNotExtraAssemblies.Any(p.StartsWith));
