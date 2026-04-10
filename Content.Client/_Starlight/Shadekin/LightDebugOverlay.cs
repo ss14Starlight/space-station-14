@@ -16,6 +16,9 @@ namespace Content.Client._Starlight.Shadekin;
 
 public sealed class LightDebugOverlay : Robust.Client.Graphics.Overlay
 {
+    private const float MaxColorIntensity = 15f;
+    public const float LightByteScale = 16f;
+
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IInputManager _input = default!;
@@ -28,8 +31,6 @@ public sealed class LightDebugOverlay : Robust.Client.Graphics.Overlay
     private List<(Entity<MapGridComponent>, LightDebugOverlayMessage)> _grids = new();
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace | OverlaySpace.ScreenSpace;
-
-    public const float LightByteScale = 16f;
 
     internal LightDebugOverlay(LightDebugOverlaySystem system)
     {
@@ -90,7 +91,7 @@ public sealed class LightDebugOverlay : Robust.Client.Graphics.Overlay
             var y = i / range;
             var tile = new Vector2i(baseIdx.X + x, baseIdx.Y + y);
 
-            var normalized = Math.Clamp(intensity / 15f, 0f, 1f);
+            var normalized = Math.Clamp(intensity / MaxColorIntensity, 0f, 1f);
 
             Color color;
             if (normalized < 0.5f)

@@ -10,6 +10,8 @@ namespace Content.Server._Starlight.Shadekin;
 
 public sealed class LightDebugOverlaySystem : SharedLightDebugOverlaySystem
 {
+    private const float UpdateRate = 20f;
+
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -17,7 +19,7 @@ public sealed class LightDebugOverlaySystem : SharedLightDebugOverlaySystem
     [Dependency] private readonly LightGridSystem _lightGrid = default!;
 
     private readonly HashSet<ICommonSession> _playerObservers = new();
-    private float _updateCooldown = 1f / 20f;
+    private float _updateCooldown = 1f / UpdateRate;
 
     private List<Entity<MapGridComponent>> _grids = new();
 
@@ -94,7 +96,7 @@ public sealed class LightDebugOverlaySystem : SharedLightDebugOverlaySystem
                     }
                 }
 
-                var msg = new LightDebugOverlayMessage(GetNetEntity(grid), baseTile, overlayData);
+                var msg = new LightDebugOverlayMessage(GetNetEntity(grid.Owner), baseTile, overlayData);
                 RaiseNetworkEvent(msg, session.Channel);
             }
         }

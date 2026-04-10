@@ -22,6 +22,10 @@ public sealed class LightGridSystem : EntitySystem
     private readonly Dictionary<EntityUid, Dictionary<Vector2i, byte>> _lightGrids = new();
     private readonly Dictionary<EntityUid, List<WorldLightSourceData>> _mapLights = new();
     private readonly Dictionary<EntityUid, List<WorldLightSourceData>> _containerLights = new();
+    private readonly Dictionary<EntityUid, (MapGridComponent Grid, BroadphaseComponent Broadphase)> _grids = new();
+    private readonly Dictionary<EntityUid, List<LightSourceData>> _lightSourcesByGrid = new();
+    private readonly Dictionary<EntityUid, List<(Vector2i Tile, float Range)>> _shadegenZonesByGrid = new();
+    private readonly List<EntityUid> _staleGrids = new();
     // Reused every tick so we dont murder GC
     private readonly HashSet<Entity<OccluderComponent>> _occluders = new();
     private EntityQuery<OccluderComponent> _occluderQuery;
@@ -32,6 +36,7 @@ public sealed class LightGridSystem : EntitySystem
 
     private readonly HashSet<Vector2i> _opaque = new();
     private readonly HashSet<Vector2i> _scanTiles = new();
+    private readonly HashSet<Vector2i> _blockedTiles = new();
     private readonly List<Entity<MapGridComponent>> _intersectingGrids = new();
 
     // cap for normalizing light from multiple overlapping sources
@@ -65,36 +70,32 @@ public sealed class LightGridSystem : EntitySystem
         _mapLights.Clear();
         _containerLights.Clear();
 
-        var grids = new Dictionary<EntityUid, (MapGridComponent Grid, BroadphaseComponent Broadphase)>();
-        var lightSourcesByGrid = new Dictionary<EntityUid, List<LightSourceData>>();
-        var shadegenZonesByGrid = new Dictionary<EntityUid, List<(Vector2i Tile, float Range)>>();
+        _grids.Clear();
+        _lightSourcesByGrid.Clear();
+        _shadegenZonesByGrid.Clear();
 
         var gridQuery = EntityQueryEnumerator<MapGridComponent, BroadphaseComponent>();
         while (gridQuery.MoveNext(out var gridUid, out var gridComp, out var broadphase))
         {
-            grids[gridUid] = (gridComp, broadphase);
+            _grids[gridUid] = (gridComp, broadphase);
         }
 
         // remove light data for grids that no longer exist
         if (_lightGrids.Count > 0)
         {
-            List<EntityUid>? staleGrids = null;
+            _staleGrids.Clear();
 
             foreach (var cachedGrid in _lightGrids.Keys)
             {
-                if (grids.ContainsKey(cachedGrid))
+                if (_grids.ContainsKey(cachedGrid))
                     continue;
 
-                staleGrids ??= new List<EntityUid>();
-                staleGrids.Add(cachedGrid);
+                _staleGrids.Add(cachedGrid);
             }
 
-            if (staleGrids != null)
+            foreach (var staleGrid in _staleGrids)
             {
-                foreach (var staleGrid in staleGrids)
-                {
-                    _lightGrids.Remove(staleGrid);
-                }
+                _lightGrids.Remove(staleGrid);
             }
         }
 
@@ -123,9 +124,6 @@ public sealed class LightGridSystem : EntitySystem
                 worldPos += _transform.GetWorldRotation(xform, _xformQuery).RotateVec(lightComp.Offset);
 
             var directional = lightComp.MaskPath != null;
-            var localDirection = directional
-                ? (lightComp.MaskAutoRotate ? xform.LocalRotation + lightComp.Rotation : lightComp.Rotation)
-                : Angle.Zero;
             var worldDirection = directional
                 ? (lightComp.MaskAutoRotate ? _transform.GetWorldRotation(xform, _xformQuery) + lightComp.Rotation : lightComp.Rotation)
                 : Angle.Zero;
@@ -141,10 +139,14 @@ public sealed class LightGridSystem : EntitySystem
                 continue;
             }
 
-            if (xform.GridUid is { } gridUid && grids.TryGetValue(gridUid, out var gridData))
+            if (xform.GridUid is { } gridUid && _grids.TryGetValue(gridUid, out var gridData))
             {
-                var tile = _maps.LocalToTile(gridUid, gridData.Grid, coords);
-                var sources = GetOrCreateBucket(lightSourcesByGrid, gridUid);
+                var localPos = Vector2.Transform(worldPos, _transform.GetInvWorldMatrix(gridUid, _xformQuery));
+                var tile = _maps.LocalToTile(gridUid, gridData.Grid, new EntityCoordinates(gridUid, localPos));
+                var localDirection = directional
+                    ? worldDirection - _transform.GetWorldRotation(gridUid, _xformQuery)
+                    : Angle.Zero;
+                var sources = GetOrCreateBucket(_lightSourcesByGrid, gridUid);
 
                 sources.Add(new LightSourceData(
                     tile,
@@ -173,18 +175,18 @@ public sealed class LightGridSystem : EntitySystem
             if (shadegenXform.GridUid is not { } gridUid)
                 continue;
 
-            if (!grids.TryGetValue(gridUid, out var gridData))
+            if (!_grids.TryGetValue(gridUid, out var gridData))
                 continue;
 
             var tile = _maps.LocalToTile(gridUid, gridData.Grid, shadegenXform.Coordinates);
-            var zones = GetOrCreateBucket(shadegenZonesByGrid, gridUid);
+            var zones = GetOrCreateBucket(_shadegenZonesByGrid, gridUid);
             zones.Add((tile, shadegen.Range));
         }
 
-        foreach (var (gridUid, gridData) in grids)
+        foreach (var (gridUid, gridData) in _grids)
         {
-            lightSourcesByGrid.TryGetValue(gridUid, out var lightSources);
-            shadegenZonesByGrid.TryGetValue(gridUid, out var shadegenZones);
+            _lightSourcesByGrid.TryGetValue(gridUid, out var lightSources);
+            _shadegenZonesByGrid.TryGetValue(gridUid, out var shadegenZones);
             RebuildGrid(gridUid, gridData.Grid, gridData.Broadphase, lightSources, shadegenZones);
         }
     }
@@ -215,6 +217,26 @@ public sealed class LightGridSystem : EntitySystem
         lightMap.Clear();
         _opaque.Clear();
         _scanTiles.Clear();
+        _blockedTiles.Clear();
+
+        if (shadegenZones != null)
+        {
+            foreach (var (center, range) in shadegenZones)
+            {
+                var rangeInt = (int)Math.Ceiling(range);
+                for (var x = -rangeInt; x <= rangeInt; x++)
+                {
+                    for (var y = -rangeInt; y <= rangeInt; y++)
+                    {
+                        var dist = new Vector2(x, y).Length();
+                        if (dist > range)
+                            continue;
+
+                        _blockedTiles.Add(center + new Vector2i(x, y));
+                    }
+                }
+            }
+        }
 
         if (lightSources is null || lightSources.Count == 0)
             return;
@@ -246,8 +268,19 @@ public sealed class LightGridSystem : EntitySystem
             _job.LocalResults.Add(new Dictionary<Vector2i, float>());
         }
 
+        if (_job.Vis1.Count > lightSources.Count)
+        {
+            var removeCount = _job.Vis1.Count - lightSources.Count;
+            _job.Vis1.RemoveRange(lightSources.Count, removeCount);
+            _job.Vis2.RemoveRange(lightSources.Count, removeCount);
+            _job.OpaqueLocal.RemoveRange(lightSources.Count, removeCount);
+            _job.BoundaryArr.RemoveRange(lightSources.Count, removeCount);
+            _job.LocalResults.RemoveRange(lightSources.Count, removeCount);
+        }
+
         _job.LightSources = lightSources;
         _job.Opaque = _opaque;
+        _job.BlockedTiles = _blockedTiles;
         _parallel.ProcessNow(_job, lightSources.Count);
 
         for (var i = 0; i < lightSources.Count; i++)
@@ -256,25 +289,6 @@ public sealed class LightGridSystem : EntitySystem
             {
                 lightMap.TryGetValue(tile, out var existing);
                 lightMap[tile] = EncodeLight(DecodeLight(existing) + intensity);
-            }
-        }
-
-        if (shadegenZones is null)
-            return;
-
-        // wipe everything in shadegen radius
-        foreach (var (center, range) in shadegenZones)
-        {
-            var rangeInt = (int)Math.Ceiling(range);
-            for (var x = -rangeInt; x <= rangeInt; x++)
-            {
-                for (var y = -rangeInt; y <= rangeInt; y++)
-                {
-                    var tile = center + new Vector2i(x, y);
-                    var dist = new Vector2(x, y).Length();
-                    if (dist <= range)
-                        lightMap.Remove(tile);
-                }
             }
         }
     }
@@ -492,6 +506,7 @@ public sealed class LightGridSystem : EntitySystem
         private const int VisEmpty = int.MinValue;
 
         public HashSet<Vector2i> Opaque = new();
+        public HashSet<Vector2i> BlockedTiles = new();
         public List<LightSourceData> LightSources = new();
         public readonly List<int[]> Vis1 = new();
         public readonly List<int[]> Vis2 = new();
@@ -519,11 +534,15 @@ public sealed class LightGridSystem : EntitySystem
                         if (!IsWithinDirectionalCone(source, new Vector2i(x, y)))
                             continue;
 
+                        var tile = eyePos + new Vector2i(x, y);
+                        if (BlockedTiles.Contains(tile))
+                            continue;
+
                         var dist = new Vector2(x, y).Length();
                         var intensity = GetLightIntensity(source, dist);
 
                         if (intensity > 0.01f)
-                            results[eyePos + new Vector2i(x, y)] = intensity;
+                            results[tile] = intensity;
                     }
                 }
                 return;
@@ -619,15 +638,19 @@ public sealed class LightGridSystem : EntitySystem
                     if (!IsWithinDirectionalCone(source, delta))
                         continue;
 
+                    var tile = eyePos + delta;
+                    if (BlockedTiles.Contains(tile))
+                        continue;
+
                     var intensity = GetLightIntensity(source, dist);
 
                     if (intensity > 0.01f)
-                        results[eyePos + delta] = intensity;
+                        results[tile] = intensity;
                 }
             }
 
             // The light source tile itself
-            if (!results.ContainsKey(eyePos))
+            if (!BlockedTiles.Contains(eyePos) && !results.ContainsKey(eyePos))
                 results[eyePos] = source.Brightness;
         }
 
