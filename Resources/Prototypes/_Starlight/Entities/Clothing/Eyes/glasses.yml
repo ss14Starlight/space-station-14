@@ -161,6 +161,7 @@
     tags:
     - HudMedical
     - CorgiWearable
+    - WhitelistChameleon
   - type: EyeProtection
     protectionTime: 5
   - type: StealTarget
@@ -229,6 +230,22 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionscience.rsi
   - type: VisionCorrection
+
+- type: entity
+  parent: ClothingEyesGlassesCentComm
+  id: ClothingEyesGlassesCentCommPrescription
+  name: prescription CentComm glasses
+  description: A set of prescription glasses for CentComm personnel. Protects against flashes and has a built-in visor.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
+    - type: VisionCorrection
+    - type: Tag
+      tags:
+        - HudMedical
+        - WhitelistChameleon
 
 # USSP
 
@@ -321,4 +338,16 @@
       - type: EyeProtection
         protectionTime: 5
 
-
+- type: entity
+  parent: ClothingEyesGlassesJamjar
+  id: ClothingEyesGlassesJamjarCentComm
+  name: CentComm jamjar glasses
+  description: For looking at their profits with even wider eyes.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Glasses/jamjarcentcomm.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Glasses/jamjarcentcomm.rsi
+    - type: Tag
+      tags:
+        - WhitelistChameleon

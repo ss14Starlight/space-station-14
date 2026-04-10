@@ -40,3 +40,216 @@
     - !type:NoWindowsInTile
   objectType: Structure
   placementMode: SnapgridCenter
+
+#railings
+#region Steel
+- type: construction
+  id: RailingEnd
+  name: construction-recipe-railing-end
+  graph: RailingSL
+  startNode: start
+  targetNode: railingEnd
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingEndAlt
+  name: construction-recipe-railing-end-alt
+  graph: RailingSL
+  startNode: start
+  targetNode: railingEndAlt
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+#region Wood
+- type: construction
+  id: RailingWood
+  name: construction-recipe-railing-wood
+  graph: RailingSL
+  startNode: start
+  targetNode: railingWood
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingWoodEnd
+  name: construction-recipe-railing-end-wood
+  graph: RailingSL
+  startNode: start
+  targetNode: railingEndWood
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingWoodEndAlt
+  name: construction-recipe-railing-end-alt-wood
+  graph: RailingSL
+  startNode: start
+  targetNode: railingEndAltWood
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingCornerWood
+  name: construction-recipe-railing-corner-wood
+  graph: RailingSL
+  startNode: start
+  targetNode: railingCornerWood
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingCornerSmallWood
+  name: construction-recipe-railing-corner-small-wood
+  graph: RailingSL
+  startNode: start
+  targetNode: railingCornerSmallWood
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingRoundWood
+  name: construction-recipe-railing-round-wood
+  graph: RailingSL
+  startNode: start
+  targetNode: railingRoundWood
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+#region Yellow
+- type: construction
+  id: RailingYellow
+  name: construction-recipe-railing-yellow
+  graph: RailingSL
+  startNode: start
+  targetNode: railingYellow
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingYellowEnd
+  name: construction-recipe-railing-end-yellow
+  graph: RailingSL
+  startNode: start
+  targetNode: railingEndYellow
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingYellowEndAlt
+  name: construction-recipe-railing-end-alt-yellow
+  graph: RailingSL
+  startNode: start
+  targetNode: railingEndAltYellow
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingCornerYellow
+  name: construction-recipe-railing-corner-yellow
+  graph: RailingSL
+  startNode: start
+  targetNode: railingCornerYellow
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingCornerSmallYellow
+  name: construction-recipe-railing-corner-small-yellow
+  graph: RailingSL
+  startNode: start
+  targetNode: railingCornerSmallYellow
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingRoundYellow
+  name: construction-recipe-railing-round-yellow
+  graph: RailingSL
+  startNode: start
+  targetNode: railingRoundYellow
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+#region Boxing rope
+- type: construction
+  id: RailingBoxing
+  name: construction-recipe-railing-boxing
+  graph: RailingSL
+  startNode: start
+  targetNode: railingBoxing
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: RailingCornerBoxing
+  name: construction-recipe-railing-corner-boxing
+  graph: RailingSL
+  startNode: start
+  targetNode: railingCornerBoxing
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
