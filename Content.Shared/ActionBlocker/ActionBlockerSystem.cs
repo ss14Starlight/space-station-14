@@ -1,6 +1,5 @@
 ﻿using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Silicons.StationAi;
-using Content.Shared.Body.Events;
 using Content.Shared._Starlight.Body.Events; // Starlight edit
 using Content.Shared.Emoting;
 using Content.Shared.Hands;
@@ -15,6 +14,7 @@ using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
+using Content.Shared._Starlight.Medical.Body.Events;
 
 namespace Content.Shared.ActionBlocker
 {

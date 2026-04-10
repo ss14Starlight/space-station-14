@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McHands
-  parent: BaseMobHuman
+  parent: BaseMobHuman #Starlight
   id: MobHuman
 
 #Syndie
