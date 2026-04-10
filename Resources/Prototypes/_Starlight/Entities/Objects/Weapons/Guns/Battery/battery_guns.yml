@@ -995,7 +995,7 @@
 # NTNC
 - type: entity
   name: cyborg pulse carbine
-  parent: [ WeaponAdvancedLaser, BaseCentcommContraband ]
+  parent: [ BaseCentcommContraband, WeaponAdvancedLaser ]
   id: CentcommCyborgLaser
   description: A pulse carbine modified for use by cyborgs.
   components:
