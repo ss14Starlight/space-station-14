@@ -24,9 +24,7 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
 
-    private static readonly string MindShieldIconId = "MindShieldIcon";
-    private static readonly string HungerIconIdPrefix = "HungerIcon"; // Starlight
-    private static readonly string ThirstIconIdPrefix = "ThirstIcon"; // Starlight
+    private const string MindShieldIconId = "MindShieldIcon"; // Starlight
 
     private bool _globalEnabled;
     private bool _localEnabled;
@@ -92,9 +90,10 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
                 case JobIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostJobIcons):
                 case FactionIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostFactionIcons):
                 case HealthIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostHealthIcons):
+                case HealthBarIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostHealthBars):
                 case SatiationIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostSatiationIcons):
-                case SecurityIconPrototype mindshieldIcon when
-                    mindshieldIcon.ID == MindShieldIconId && (
+                case SecurityIconPrototype mindShieldIcon when
+                    mindShieldIcon.ID == MindShieldIconId && (
                         !_configuration.GetCVar(StarlightCCVars.AdminGhostJobIcons) ||
                         !_configuration.GetCVar(StarlightCCVars.AdminGhostMindshieldIcons)):
                 case SecurityIconPrototype criminalRecordIcon

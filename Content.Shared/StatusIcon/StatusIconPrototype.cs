@@ -137,6 +137,22 @@ public sealed partial class HealthIconPrototype : StatusIconPrototype, IInheriti
 }
 
 /// <summary>
+/// StatusIcons for the med HUD health bar
+/// </summary>
+[Prototype]
+public sealed partial class HealthBarIconPrototype : StatusIconPrototype, IInheritingPrototype
+{
+    /// <inheritdoc />
+    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<HealthIconPrototype>))]
+    public string[]? Parents { get; private set; }
+
+    /// <inheritdoc />
+    [NeverPushInheritance]
+    [AbstractDataField]
+    public bool Abstract { get; private set; }
+}
+
+/// <summary>
 /// StatusIcons for the beer goggles and fried onion goggles
 /// </summary>
 [Prototype]
