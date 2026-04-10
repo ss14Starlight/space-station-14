@@ -1,5 +1,5 @@
+using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared.Actions;
-using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Devour.Components;
 using Content.Shared.DoAfter;

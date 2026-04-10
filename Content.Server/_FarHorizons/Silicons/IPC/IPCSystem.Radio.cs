@@ -1,5 +1,4 @@
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
-using Content.Shared.Body.Events;
 using Content.Shared.Gibbing;
 using Content.Shared.Radio.Components;
 using Content.Shared.Roles;

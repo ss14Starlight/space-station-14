@@ -1,4 +1,4 @@
-using Content.Shared.Body.Systems;
+using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
