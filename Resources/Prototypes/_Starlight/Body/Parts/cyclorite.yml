@@ -112,7 +112,7 @@
     - type: MovementBodyPart
       sprintSpeed : 3.825
       maxDensity: 155
-      
+
 - type: entity
   id: RightLegCyclorite
   name: "right cyclorite leg"

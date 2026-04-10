@@ -463,7 +463,7 @@
 
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: cooking-module }
-    
+
 # region Syndicate
 - type: entity
   id: BorgModuleSyndicateAdvancedTool
@@ -707,7 +707,7 @@
           - BodyPart
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: surgery-module }
-    
+
 # region Xenoborg
 - type: entity
   parent: [ BaseXenoborgModuleGeneric, BaseProviderBorgModule, BaseXenoborgContraband ]
@@ -837,7 +837,7 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Cargo/mail.rsi
-    layers: 
+    layers:
     - state: icon
     - state: postmark
     - state: locked
@@ -861,7 +861,7 @@
           components:
           - Delivery
     - hand: # Second one is so it can pick up packages
-        emptyRepresentative: BorgModuleMailPlaceholder 
+        emptyRepresentative: BorgModuleMailPlaceholder
         emptyLabel: borg-slot-mail-empty
         whitelist:
           components:
@@ -964,8 +964,8 @@
     - item: EmagTeaParty
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-door-remote-module }
-    
-    
+
+
 - type: entity
   id: BorgModuleMiningDefense
   parent: [ BaseBorgModuleMining, BaseProviderBorgModule ]
@@ -974,7 +974,7 @@
   components:
   - type: Sprite
     layers:
-    - state: mining 
+    - state: mining
     - state: icon-salvage-defense
   - type: ItemBorgModule
     hands:

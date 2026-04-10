@@ -31,7 +31,7 @@
   - type: OrganVisualization
     layer: Eyes
     prototypes:
-      Default: MobHumanoidEyes
+      Default: MobIPCEyes
   - type: HumanoidEMPCompositeElement
     effect:
       glitchDuration: 10.0

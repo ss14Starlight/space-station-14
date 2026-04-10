@@ -121,7 +121,7 @@ public sealed partial class GuideDeepFryerEmbed : PanelContainer, IDocumentTag, 
 
         CookTimeLabel.SetMessage(msg);
     }
-    
+
     private void GenerateDeviceType(DeepFryingRecipePrototype recipe)
     {
         var msg = new FormattedMessage();

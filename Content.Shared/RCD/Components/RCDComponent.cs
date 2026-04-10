@@ -59,7 +59,7 @@ public sealed partial class RCDComponent : Component
     [DataField, AutoNetworkedField]
     public bool IsRpd { get; set; } = false;
     // Starlight End
-    
+
     // Starlight Start: RPLD support
     /// <summary>
     /// Indicates whether this is an RPLD (plumbing)

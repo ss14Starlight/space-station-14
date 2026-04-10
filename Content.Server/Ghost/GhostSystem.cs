@@ -6,6 +6,7 @@ using Content.Server.GameTicking;
 using Content.Server.Ghost.Components;
 using Content.Server.Ghost.Roles;
 using Content.Server.Mind;
+using Content.Server.Mobs;
 using Content.Server.Roles.Jobs;
 using Content.Shared.Actions;
 using Content.Shared.CCVar;
@@ -409,16 +410,18 @@ namespace Content.Server.Ghost
         public void MakeVisible(bool visible)
         {
             var entityQuery = EntityQueryEnumerator<GhostComponent, VisibilityComponent>();
-            while (entityQuery.MoveNext(out var uid, out var _, out var vis))
+            //Starlight begin: ghost admemes
+            while (entityQuery.MoveNext(out var uid, out var ghost, out var vis))
             {
-                if (!_tag.HasTag(uid, AllowGhostShownByEventTag))
+                if (!_tag.HasTag(uid, AllowGhostShownByEventTag) && !ghost.AlwaysVisible)
                     continue;
 
-                if (visible)
+                if (visible || ghost.AlwaysVisible)
                 {
                     _visibilitySystem.AddLayer((uid, vis), (int) VisibilityFlags.Normal, false);
                     _visibilitySystem.RemoveLayer((uid, vis), (int) VisibilityFlags.Ghost, false);
                 }
+                //Starlight end
                 else
                 {
                     _visibilitySystem.AddLayer((uid, vis), (int) VisibilityFlags.Ghost, false);
@@ -581,6 +584,8 @@ namespace Content.Server.Ghost
                     //todo: what if they dont breathe lol
                     //cry deeply
 
+                    // ! THIS IS A STARLIGHT MOMENT... I NEED MY SHADEKIN AND IPC TO DIIIIIE!
+
                     FixedPoint2 dealtDamage = 200;
 
                     if (TryComp<DamageableComponent>(playerEntity, out var damageable)
@@ -590,7 +595,13 @@ namespace Content.Server.Ghost
                         dealtDamage = playerDeadThreshold - damageable.TotalDamage;
                     }
 
-                    DamageSpecifier damage = new(_prototypeManager.Index(AsphyxiationDamageType), dealtDamage);
+                    // Starlight - Start
+                    var damageType = _prototypeManager.Index(AsphyxiationDamageType);
+                    if (TryComp<DeathgaspComponent>(playerEntity, out var deathgasp))
+                        damageType = _prototypeManager.Index(deathgasp.DamageType);
+
+                    DamageSpecifier damage = new(damageType, dealtDamage);
+                    // Starlight - End
 
                     _damageable.ChangeDamage(playerEntity.Value, damage, true);
                 }

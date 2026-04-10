@@ -50,7 +50,7 @@
         - Welder
         - PowerCell
 #        - Geiger # Starlight start
-#        - TrayScanner 
+#        - TrayScanner
 #        - GasAnalyzer # Starlight end
         - HandLabeler
 #  - type: StorageFill Starlight start

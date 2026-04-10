@@ -14,8 +14,8 @@ public sealed class SlimeFireproofPotionSystem : EntitySystem
     [Dependency] private readonly TemperatureSystem _temperatureSystem = default!;
     [Dependency] private readonly FireProtectionSystem _fireProtectionSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-    
-    
+
+
     public override void Initialize()
     {
         base.Initialize();

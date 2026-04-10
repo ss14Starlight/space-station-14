@@ -281,7 +281,7 @@ namespace Content.Client.Examine
                     continue;
 
                 var richLabel = new RichTextLabel() { Margin = new Thickness(4, 4, 0, 4)};
-                richLabel.SetMessage(message);
+                richLabel.SetMessage(message, null, null); // Starlight-edit: allow more markup in examine tooltips. Sanitize them elsewhere.
                 vBox.AddChild(richLabel);
                 break;
             }

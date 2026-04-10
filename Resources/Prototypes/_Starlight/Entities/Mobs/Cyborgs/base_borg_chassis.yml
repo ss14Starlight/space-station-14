@@ -36,6 +36,8 @@
       - Xenoborg
       - Binary
   - type: BorgChassis
+    jobIconOverride: JobIconXenoborg
+    jobTitleOverride: chat-radio-xenoborg
     maxModules: 3
     hasMindState: robot_e
     noMindState: robot_e_r

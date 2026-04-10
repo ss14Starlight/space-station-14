@@ -77,7 +77,7 @@
   - type: FiringPinHolder
     supportedPins: [ Rifle, GunUpgrade ]
   # Starlight
-  
+
 
 - type: entity
   name: AKMS

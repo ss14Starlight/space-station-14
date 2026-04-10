@@ -18,7 +18,7 @@ public sealed partial class SlowAccentSystem : EntitySystem
         SubscribeLocalEvent<SlowAccentComponent, AccentGetEvent>(OnAccentGet);
     }
 
-    private void OnAccentGet(Entity<SlowAccentComponent> ent, ref AccentGetEvent args) 
+    private void OnAccentGet(Entity<SlowAccentComponent> ent, ref AccentGetEvent args)
         => args.Message.Text = Accentuate(args.Message.Text);
 
     public static string Accentuate(string message)

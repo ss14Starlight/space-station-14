@@ -86,7 +86,7 @@ public partial class ChatBox : UIWidget
     public void Repopulate()
     {
         Contents.Clear();
-        
+
         foreach (var child in Contents.Children.ToArray())
         {
             if (child.Name != "_v_scroll")
@@ -104,7 +104,7 @@ public partial class ChatBox : UIWidget
     private void OnChannelFilter(ChatChannel channel, bool active)
     {
         Contents.Clear();
-        
+
         foreach (var child in Contents.Children.ToArray())
         {
             if (child.Name != "_v_scroll")
@@ -203,7 +203,7 @@ public partial class ChatBox : UIWidget
     {
         // Update channel select button to correct channel if we have a prefix.
         _controller.UpdateSelectedChannel(this);
-        
+
         _controller.UpdateLanguageNotifier(this); // Starlight
 
         // Warn typing indicator about change
