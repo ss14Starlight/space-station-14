@@ -130,6 +130,9 @@ namespace Content.Server.Atmos.Piping.EntitySystems
             _timer -= _atmosphereSystem.AtmosTime;
 
             var time = _gameTiming.CurTime;
+
+            var updatedDevices = new HashSet<EntityUid>(); // Starlight
+
             var ev = new AtmosDeviceUpdateEvent(_atmosphereSystem.AtmosTime, null, null);
             foreach (var device in _joinedDevices)
             {
@@ -139,6 +142,7 @@ namespace Content.Server.Atmos.Piping.EntitySystems
                     RejoinAtmosphere(device);
                 }
                 RaiseLocalEvent(device, ref ev);
+                updatedDevices.Add(device.Owner); // Starlight
                 device.Comp.LastProcess = time;
             }
 
@@ -153,7 +157,7 @@ namespace Content.Server.Atmos.Piping.EntitySystems
                 comp.RequestJoinSystem = false;
                 Entity<AtmosDeviceComponent> device = (uid, comp);
                 RejoinAtmosphere(device);
-                RaiseLocalEvent(device, ref ev);
+                if(!updatedDevices.Contains(device.Owner)) RaiseLocalEvent(device, ref ev);
                 device.Comp.LastProcess = time;
             }
             //Starlight end

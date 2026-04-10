@@ -50,12 +50,12 @@ public sealed partial class GasMinerComponent : Component
     [DataField]
     public float SpawnAmount = Atmospherics.MolesCellStandard * 20f;
 
-    //Starlight begin
+    #region Starlight
     /// <summary>
     ///     Whether the gas miner needs to be anchored to work or not.
     /// </summary>
     [DataField] public bool RequireAnchored = true;
-    //Starlight end
+    #endregion
 }
 
 [Serializable, NetSerializable]

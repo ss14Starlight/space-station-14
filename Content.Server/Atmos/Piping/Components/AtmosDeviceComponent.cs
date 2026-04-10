@@ -41,12 +41,12 @@ public sealed partial class AtmosDeviceComponent : Component
     [ViewVariables]
     public TimeSpan LastProcess = TimeSpan.Zero;
 
-    //Starlight begin
+    #region Starlight
     /// <summary>
     ///     Upon being set to true, will attempt to join atmosphere system, then be set to false.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)] public bool RequestJoinSystem;
-    //Starlight end
+    #endregion
 }
 
 /// <summary>
