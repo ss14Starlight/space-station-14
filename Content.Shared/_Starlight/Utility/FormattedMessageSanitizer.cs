@@ -13,6 +13,12 @@ public static class FormattedMessageSanitizer
      */
     public static string[] ItemLabelTags = new[] { "color", "bold", "bolditalic", "italic", "mono" };
 
+    public static string[] PaperLabelTags =
+        new[]
+        {
+            "color", "bold", "bolditalic", "italic", "mono", "icon", "scramble", "font", "head", "bullet" //, "slogo", "cclogo", "logo" <- uncomment once these don't break and make text go out of bounds of the examine textbox
+        };
+
     /// <summary>
     /// Sanitize the given message using a whitelist, allowing only explicitly permitted tags and/or raw text.
     /// </summary>
