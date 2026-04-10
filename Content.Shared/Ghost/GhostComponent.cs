@@ -94,7 +94,7 @@ public sealed partial class GhostComponent : Component
     [DataField, AutoNetworkedField]
     public Color Color = Color.White;
 
-    //Starlight begin
+    #region Starlight
     /// <summary>
     /// Permits this ghost to speak in local chat instead of forwarding local messages to dead ooc.
     /// </summary>
@@ -105,7 +105,7 @@ public sealed partial class GhostComponent : Component
     /// This is read-only since you should be using the corporeal command for this.
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables] public bool AlwaysVisible;
-    //Starlight end
+    #endregion
 }
 
 public sealed partial class ToggleFoVActionEvent : InstantActionEvent { }
