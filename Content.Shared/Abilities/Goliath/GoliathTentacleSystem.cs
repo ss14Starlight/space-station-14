@@ -58,13 +58,11 @@ public sealed class GoliathTentacleSystem : DelayableEntitySystem
                 _turf.IsSpace(tileRef) ||
                 _turf.IsTileBlocked(tileRef, CollisionGroup.Impassable))
                 return;
-
-            if (_net.IsServer)
-                Spawn(args.EntityId, pos);
+            // Starlight-start
+            PredictedSpawn(args.EntityId, pos);
             if ((Action<EntityCoordinates>?)action is not null && spawnPos.TryDequeue(out var newPos))
-            {
                 EnqueueNext(() => action(newPos));
-            }
+            // Starlight-end
         }
 
         EnqueueNext(() => action(spawnPos.Dequeue()));
