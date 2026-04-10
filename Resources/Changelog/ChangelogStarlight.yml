@@ -1,11 +1,4 @@
 Entries:
-- author: SiTW
-  changes:
-  - message: Engineering borgs now have the access reader with their hud.
-    type: Tweak
-  id: 397301
-  time: '2026-03-27T16:07:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3973
 - author: Kirb, LankLTE MilonPL, Boaz1111, Aexxie
   changes:
   - message: Engraveables items, add things to their description for other players to read, port form cosmatic drift.
@@ -735,4 +728,11 @@ Entries:
   id: 404181
   time: '2026-04-10T14:05:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4093
+- author: redmushie
+  changes:
+  - message: CED and CCD stamps colors adjusted to improve legibility and distinctness.
+    type: Tweak
+  id: 404182
+  time: '2026-04-10T14:10:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4101
 Order: -1
