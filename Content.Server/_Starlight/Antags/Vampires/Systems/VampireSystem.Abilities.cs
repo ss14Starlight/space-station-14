@@ -675,6 +675,10 @@ public sealed partial class VampireSystem : EntitySystem
             || !CheckAndConsumeBloodCost(uid, comp, actionEntity))
             return;
 
+        //If vampire cannot see, they cannot glare
+        if (!TryComp<BlindableComponent>(uid, out var blindable) || blindable.IsBlind)
+            return;
+
         // Find targets within 1 tile around the vampire
         var targets = _lookup.GetEntitiesInRange(uid, args.Range, LookupFlags.Dynamic | LookupFlags.Sundries);
 
