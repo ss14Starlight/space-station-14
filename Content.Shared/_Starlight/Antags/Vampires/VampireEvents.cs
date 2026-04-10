@@ -68,13 +68,13 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     public Dictionary<string, FixedPoint2> Reagents = new Dictionary<string, FixedPoint2>{ {"MuteToxin", 0.5} };
 
     /// <summary>
-    ///
+    /// Maximum dot product of vector between vampire direction facing and target direction to proc the forward facing portion of the glare ability
     /// </summary>
     [DataField]
     public float DotForwardLimit = 0.7f;
 
     /// <summary>
-    ///
+    /// Minimum dot product of vector between vampire direction facing and target direction to proc the sideways facing portion of the glare ability
     /// </summary>
     [DataField]
     public float DotBackwardLimit = -0.7f;
