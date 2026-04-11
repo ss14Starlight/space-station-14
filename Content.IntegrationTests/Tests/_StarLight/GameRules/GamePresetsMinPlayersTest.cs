@@ -37,7 +37,10 @@ public sealed class GamePresetsMinPlayersTest
                 errorPresets.Add($"{preset.ID}: preset={minPlayers}, required={minPlayersRules}");
         }
 
-        Assert.That(errorPresets.Count, Is.Zero, $"Found invalid preset/rule min-player configuration(s): {string.Join(", ", errorPresets)}");
+        Assert.That(
+            errorPresets.Count,
+            Is.Zero,
+            $"Found invalid preset/rule min-player configuration(s):{Environment.NewLine}{string.Join(Environment.NewLine, errorPresets)}");
     }
 
     private int GetBiggestMinPlayers(GamePresetPrototype preset, IPrototypeManager manager, IComponentFactory factory, List<string> errors)
