@@ -100,7 +100,8 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
         if (viewer == ent.Owner)
             return true;
 
-        // Starlight BEGIN: For Admin ghosts, client settings decide if these icons are shown.
+        #region Starlight
+        // For Admin ghosts, client settings decide if these icons are shown.
         if (HasComp<AdminGhostHudComponent>(viewer))
         {
             switch (data)
@@ -117,7 +118,7 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
                     return false;
             }
         }
-        // Starlight END
+        #endregion
 
         if (data.VisibleToGhosts && HasComp<GhostComponent>(viewer))
             return true;
