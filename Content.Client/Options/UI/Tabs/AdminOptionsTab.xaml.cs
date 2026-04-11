@@ -54,16 +54,22 @@ public sealed partial class AdminOptionsTab : Control
 
         #region Starlight
         var playerTabJobIconSettings = new List<OptionDropDownCVar<string>.ValueOption>();
-        foreach (var setting in Enum.GetValues(typeof(AdminPlayerTabJobOption)))
+        foreach (var setting in Enum.GetValues<AdminPlayerTabJobOption>())
         {
-            playerTabJobIconSettings.Add(new OptionDropDownCVar<string>.ValueOption(setting.ToString()!, Loc.GetString($"ui-options-admin-ghost-hud-setting-job-{setting.ToString()!.ToLower()}")));
+            playerTabJobIconSettings.Add(new OptionDropDownCVar<string>.ValueOption(setting.ToString(), Loc.GetString($"ui-options-admin-ghost-hud-setting-job-{setting.ToString()!.ToLower()}")));
         }
 
         var playerTabHealthIconSettings = new List<OptionDropDownCVar<string>.ValueOption>();
-        foreach (var setting in Enum.GetValues(typeof(AdminPlayerTabHealthOption)))
+        foreach (var setting in Enum.GetValues<AdminPlayerTabHealthOption>())
         {
-            playerTabHealthIconSettings.Add(new OptionDropDownCVar<string>.ValueOption(setting.ToString()!, Loc.GetString($"ui-options-admin-ghost-hud-setting-health-{setting.ToString()!.ToLower()}")));
+            playerTabHealthIconSettings.Add(new OptionDropDownCVar<string>.ValueOption(setting.ToString(), Loc.GetString($"ui-options-admin-ghost-hud-setting-health-{setting.ToString()!.ToLower()}")));
         }
+
+        Control.AddOptionDropDown(StarlightCCVars.AdminGhostHudJobSetting, DropDownAGhostJobIconSetting, playerTabJobIconSettings);
+        Control.AddOptionDropDown(StarlightCCVars.AdminGhostHudHealthSetting, DropDownAGhostHealthIconSetting, playerTabHealthIconSettings);
+        Control.AddOptionCheckBox(StarlightCCVars.AdminGhostHudShowCriminalRecordIcons, EnableAGhostCriminalRecordIcons);
+        Control.AddOptionCheckBox(StarlightCCVars.AdminGhostHudShowFactionIcons, EnableAGhostFactionIcons);
+        Control.AddOptionCheckBox(StarlightCCVars.AdminGhostHudShowSatiationIcons, EnableAGhostSatiationIcons);
         #endregion
 
         Control.AddOptionDropDown(CCVars.AdminPlayerTabSymbolSetting, DropDownPlayerTabSymbolSetting, playerTabSymbolSettings);
@@ -75,11 +81,6 @@ public sealed partial class AdminOptionsTab : Control
 
         Control.AddOptionCheckBox(CCVars.AdminOverlayPlaytime, EnableOverlayPlaytimeCheckBox);
         Control.AddOptionCheckBox(CCVars.AdminOverlayStartingJob, EnableOverlayStartingJobCheckBox);
-        Control.AddOptionDropDown(StarlightCCVars.AdminGhostHudJobSetting, DropDownAGhostJobIconSetting, playerTabJobIconSettings); // Starlight BEGIN
-        Control.AddOptionDropDown(StarlightCCVars.AdminGhostHudHealthSetting, DropDownAGhostHealthIconSetting, playerTabHealthIconSettings);
-        Control.AddOptionCheckBox(StarlightCCVars.AdminGhostHudShowCriminalRecordIcons, EnableAGhostCriminalRecordIcons);
-        Control.AddOptionCheckBox(StarlightCCVars.AdminGhostHudShowFactionIcons, EnableAGhostFactionIcons);
-        Control.AddOptionCheckBox(StarlightCCVars.AdminGhostHudShowSatiationIcons, EnableAGhostSatiationIcons); // Starlight END
 
         Control.Initialize();
 
