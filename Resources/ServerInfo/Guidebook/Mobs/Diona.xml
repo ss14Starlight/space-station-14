@@ -2,7 +2,7 @@
   # Diona
 
   <Box>
-    <GuideEntityEmbed Entity="MobDiona" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceDiona" Caption=""/>
   </Box>
 
   They can't wear shoes, but are not slowed by Kudzu.

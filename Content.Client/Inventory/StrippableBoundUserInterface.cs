@@ -231,6 +231,11 @@ namespace Content.Client.Inventory
             if (!_inv.TryGetSlotContainer(invUid, slotId, out var container, out var slotDef, inv))
                 return;
 
+            // Starlight start
+            if (slotDef.HideFromStrip && _player.LocalEntity != invUid)
+                return;
+            // Starlight end
+
             var entity = container.ContainedEntity;
 
             // If this is a full pocket, obscure the real entity
