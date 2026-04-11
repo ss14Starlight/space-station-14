@@ -8,7 +8,7 @@ namespace Content.Shared.Ghost;
 /// Represents an observer ghost.
 /// Handles limiting interactions, using ghost abilities, ghost visibility, and ghost warping.
 /// </summary>
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedGhostSystem))]
+[RegisterComponent, NetworkedComponent] // Starlight-edit: Remove access parameter. Corporeal command needs to access.
 [AutoGenerateComponentState(true), AutoGenerateComponentPause]
 public sealed partial class GhostComponent : Component
 {
@@ -93,6 +93,19 @@ public sealed partial class GhostComponent : Component
     /// <remarks>Used to allow admins to change ghost colors. Should be removed if the capability to edit existing sprite colors is ever added back.</remarks>
     [DataField, AutoNetworkedField]
     public Color Color = Color.White;
+
+    #region Starlight
+    /// <summary>
+    /// Permits this ghost to speak in local chat instead of forwarding local messages to dead ooc.
+    /// </summary>
+    [DataField] public bool BypassGhostChat;
+
+    /// <summary>
+    /// Ensures this ghost always remains visible, this means both to alive players, and preventing clientside toggling.
+    /// This is read-only since you should be using the corporeal command for this.
+    /// </summary>
+    [DataField, AutoNetworkedField, ViewVariables] public bool AlwaysVisible;
+    #endregion
 }
 
 public sealed partial class ToggleFoVActionEvent : InstantActionEvent { }

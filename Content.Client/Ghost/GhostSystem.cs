@@ -34,10 +34,13 @@ namespace Content.Client.Ghost
                 _ghostVisibility = value;
 
                 var query = AllEntityQuery<GhostComponent, SpriteComponent>();
-                while (query.MoveNext(out var uid, out _, out var sprite))
+                //Starlight begin: ghost admemes
+                while (query.MoveNext(out var uid, out var ghost, out var sprite))
                 {
+                    if (ghost.AlwaysVisible) continue;
                     _sprite.SetVisible((uid, sprite), value || uid == _playerManager.LocalEntity);
                 }
+                //Starlight end
             }
         }
 
