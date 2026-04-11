@@ -5,13 +5,11 @@ using Content.Shared.Timing;
 
 namespace Content.Server._Starlight.EventSelector;
 
-public sealed class EventSelectorRadialMenuSystem : SharedEventSelectorSystem
+public sealed class EventSelectorSystem : SharedEventSelectorSystem
 {
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly SharedChargesSystem _charges = default!;
-
-    private const string DelayId = "EventSelectorId"; 
 
     public override void Initialize()
     {
@@ -44,7 +42,7 @@ public sealed class EventSelectorRadialMenuSystem : SharedEventSelectorSystem
         if (!TryComp<UseDelayComponent>(entity.Owner, out var useDelayComp))
             return;
 
-        _useDelay.SetLength((entity.Owner, useDelayComp), selected.UseDelay, DelayId);
-        _useDelay.TryResetDelay((entity.Owner, useDelayComp), false, DelayId);
+        _useDelay.SetLength((entity.Owner, useDelayComp), selected.UseDelay, _delayId);
+        _useDelay.TryResetDelay((entity.Owner, useDelayComp), false, _delayId);
     }
 }

@@ -12,7 +12,7 @@ public abstract class SharedEventSelectorSystem : EntitySystem
     [Dependency] private readonly SharedChargesSystem _charges = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
-    private const string DelayId = "EventSelectorId"; 
+    protected const string _delayId = "EventSelectorId"; 
 
     public override void Initialize()
     {
@@ -43,7 +43,7 @@ public abstract class SharedEventSelectorSystem : EntitySystem
         popupString = null;
         
         
-        if (_useDelay.IsDelayed(ent.Owner, DelayId))
+        if (_useDelay.IsDelayed(ent.Owner, _delayId))
         {
             popupString = Loc.GetString("syndicate-disruptor-cooldown");
             return false;

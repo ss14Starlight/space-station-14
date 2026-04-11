@@ -31,7 +31,7 @@
         - name: syndicate-disruptor-gas-leak
           protoIdIcon: ClothingMaskGas
           gameRule: GasLeak
-          useDelay: 0
+          useDelay: 20m
         - name: syndicate-disruptor-bureaucratic-error
           protoIdIcon: BoxFolderRed
           gameRule: BureaucraticError
