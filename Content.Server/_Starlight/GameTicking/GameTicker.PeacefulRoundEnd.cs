@@ -53,15 +53,29 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
     /// Validate an entity is eligible for pacification, and applies it if so.
     /// </summary>
     /// <param name="target">The entity to potentially pacify</param>
-    /// <param name="xformSourceUid">An alternative entity to use for checking what grid the entity is on.
+    /// <param name="altUid">Secondary entity to check for pacification immunity. Used for polymorphs to prevent
+    /// pacifying the original body while the mind is in a polymorphed one.</param>
+    /// <param name="xformOverride">An alternative entity to use for checking what grid the entity is on.
     /// Useful for polymorphs, as the original body will be elsewhere.</param>
-    private void SpreadPeace(EntityUid target, EntityUid? xformSourceUid = null)
+    private void SpreadPeace(EntityUid target, EntityUid? altUid = null, EntityUid? xformOverride = null)
     {
         if (!_isEnabled || !_roundedEnded) return;
-        if (_rolesReq.IsPeacefulBypass(target)) return; // OOC bypass (staff, extroles, ..)
-        if (!IsGridPacificationTarget(xformSourceUid ?? target)) return; // Only pacify people on Evac and CC grids.
+
+        // If the entity is polymorphed, also spread peace to the original body, using the
+        // polymorphed entity's location as determining grid.
+        if (TryComp<PolymorphedEntityComponent>(target, out var polymorph) && polymorph.Parent != null)
+            SpreadPeace(polymorph.Parent.Value, altUid: target, xformOverride: target);
+
+        // OOC bypass (staff, extroles, ...). We check for both target and alt since the mind is in only one of them.
+        if (_rolesReq.IsPeacefulBypass(target) ||
+            (altUid != null && _rolesReq.IsPeacefulBypass(altUid.Value))) return;
+
+        // Only pacify people on Evac and CC grids. If xformOverride is set, use that for location.
+        if (!IsGridPacificationTarget(xformOverride ?? target)) return;
+
+        // IC bypasses only apply to a specific body.
         if (IsMindRolePacificationImmune(target)) return; // IC bypass (taken roles of ERT, Decimus, CC, ..)
-        if (IsGhostRolePacificationImmune(target)) return; // IC bypass (same as previous, only when ghost role wasn't taken)
+        if (IsGhostRolePacificationImmune(target)) return; // IC bypass (only when ghost role wasn't taken)
 
         EnsureComp<PacifiedComponent>(target);
         EnsureComp<PreventEorgComponent>(target);
@@ -136,13 +150,7 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
 
         var mobMoverQuery = EntityQueryEnumerator<MobMoverComponent>();
         while (mobMoverQuery.MoveNext(out var uid, out _))
-        {
             SpreadPeace(uid);
-
-            // If "uid" is a polymorphed entity, also spread peace to the original body.
-            if (TryComp<PolymorphedEntityComponent>(uid, out var polymorph) && polymorph.Parent != null)
-                SpreadPeace(polymorph.Parent.Value, uid);
-        }
 
         var mechQuery = EntityQueryEnumerator<MechComponent>();
         while (mechQuery.MoveNext(out var uid, out _))
@@ -164,7 +172,9 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
 
     /// <summary>
     /// If someone with <see cref="PreventEorgComponent"/> polymorphs, also apply it to their polymorph.
+    /// In this case their locations will be identical so we don't override that parameter.
     /// </summary>
-    private void OnPolymorphed(EntityUid uid, PreventEorgComponent comp, PolymorphedEvent ev) => SpreadPeace(ev.NewEntity);
+    private void OnPolymorphed(EntityUid uid, PreventEorgComponent comp, PolymorphedEvent ev) =>
+        SpreadPeace(ev.NewEntity, ev.OldEntity);
 
 }
