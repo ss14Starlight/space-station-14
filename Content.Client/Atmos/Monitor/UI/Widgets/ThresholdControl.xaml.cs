@@ -163,4 +163,13 @@ public sealed partial class ThresholdControl : BoxContainer
 
         _enabled.Pressed = !threshold.Ignore;
     }
+
+    // Starlight-start: Air alarm buttons for enabling/disabling all thresholds
+    public void SetEnabled(bool enabled)
+    {
+        _enabled.Pressed = enabled;
+        _threshold.Ignore = !enabled;
+        ThresholdDataChanged!.Invoke(_type, _threshold, _gas);
+    }
+    // Starlight-end
 }
