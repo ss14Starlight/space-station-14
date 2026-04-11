@@ -2,8 +2,7 @@
   <PropertyGroup>
     <OutputPath>..\bin\Content.IntegrationTests\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-	<!-- Starlight: Enable nullable reference types -->
-	<Nullable>enable</Nullable>
+	<Nullable>disable</Nullable>
   </PropertyGroup>
   <Import Project="../MSBuild/Content.props" />
   <ItemGroup>
