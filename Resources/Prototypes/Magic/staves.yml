@@ -41,7 +41,7 @@
   id: AnimationStaff
   parent: [ BaseItem, BaseMagicalContraband ]
   name: staff of animation
-  description: Brings inanimate objects to life!
+  description: Brings inanimate objects to life! Seems to be simpler to use than the other ones, anyone could use this. # Starlight
   components:
   - type: LimitedCharges
     maxCharges: 5
@@ -65,6 +65,7 @@
   - type: Tag
     tags:
     - WizardWand
+
 
 - type: entity
   parent: BaseAction

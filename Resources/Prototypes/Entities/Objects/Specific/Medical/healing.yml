@@ -244,10 +244,6 @@
       params:
         volume: 1.0
         variation: 0.125
-  - type: InteractRestriction #Far Horizons
-    restrictInteractionTarget:
-      blacklist:
-      - IPC
   - type: Stack
     stackType: Bloodpack
     count: 10

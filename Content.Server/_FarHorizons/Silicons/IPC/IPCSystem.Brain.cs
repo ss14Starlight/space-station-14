@@ -1,5 +1,5 @@
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
-using Content.Shared.Body.Events;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Database;
 using Content.Shared.Gibbing;
 using Content.Shared.Interaction;
@@ -62,7 +62,8 @@ public sealed partial class IPCSystem
     private void OnBrainInteractUsing(Entity<IPCBrainHolderComponent> ent, ref AfterInteractUsingEvent args)
     {
         if (!args.CanReach || args.Handled ||
-            !TryComp(args.Used, out BorgBrainComponent? brain))
+            !TryComp(args.Used, out BorgBrainComponent? brain)
+            || HasComp<StationAIShuntComponent>(args.Used)) // Yeah, No "AI" IPC...
             return;
 
         if (TryComp<WiresPanelComponent>(ent, out var panel) && !panel.Open)

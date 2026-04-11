@@ -9,6 +9,7 @@ using Content.Shared.Popups;
 using Content.Shared.PowerCell;
 using Content.Shared.Power;
 using Content.Shared.Power.Components;
+using Content.Shared.PowerCell.Components;
 
 namespace Content.Server._FarHorizons.Silicons.IPC;
 
@@ -32,8 +33,15 @@ public sealed partial class IPCSystem
         SubscribeLocalEvent<IPCBatteryComponent, BeingGibbedEvent>(OnBatteryGibbed);
     }
 
-    private void OnBatteryGibbed(Entity<IPCBatteryComponent> ent, ref BeingGibbedEvent args) =>
-        _container.EmptyContainer(ent.Comp.BatteryContainerSlot);
+    private void OnBatteryGibbed(Entity<IPCBatteryComponent> ent, ref BeingGibbedEvent args)
+    {
+        if (!TryComp<PowerCellSlotComponent>(ent, out var slot)
+            || !_container.TryGetContainer(ent, slot.CellSlotId, out var container))
+            return;
+
+        _container.EmptyContainer(container);
+    }
+
     private void OnBatteryTimerStart(Entity<IPCBatteryComponent> ent, ref IPCBatteryDeathTimerStart args)
     {
         if (!TryComp<IPCReviveComponent>(ent, out var revive) || revive.DamageSoundEnt == null)
@@ -47,7 +55,7 @@ public sealed partial class IPCSystem
         _audio.Stop(ent.Comp.Playing, ent.Comp.Playing?.Comp);
         ent.Comp.Playing = null;
 
-        if(!args.Interrupted && TryComp<MobStateComponent>(ent, out var mobState))
+        if (!args.Interrupted && TryComp<MobStateComponent>(ent, out var mobState))
         {
             _chat.TryEmoteWithChat(ent, ent.Comp.NoPowerDeathEmote);
             _state.ChangeMobState(ent, MobState.Dead, mobState);
@@ -55,7 +63,7 @@ public sealed partial class IPCSystem
     }
     private void OnBatteryTimerUpdate(Entity<IPCBatteryComponent> ent, ref IPCBatteryDeathTimerUpdate args)
     {
-        if(ent.Comp.WarningText != null)
+        if (ent.Comp.WarningText != null)
             _popup.PopupEntity(Loc.GetString(ent.Comp.WarningText), ent, PopupType.LargeCaution);
     }
 
@@ -102,7 +110,7 @@ public sealed partial class IPCSystem
 
     private void UpdateDeathTimer(Entity<IPCBatteryComponent> ent, PowerCellChangedEvent? slotChangedEv = null)
     {
-        if(!_powerCell.HasDrawCharge(ent.Owner))
+        if (!_powerCell.HasDrawCharge(ent.Owner))
             StartDeathTimer(ent);
         else
             StopDeathTimer(ent);
@@ -111,7 +119,8 @@ public sealed partial class IPCSystem
             _drainer.SetBattery(ent.Owner, battery);
     }
 
-    public void StartDeathTimer(Entity<IPCBatteryComponent> ent){
+    public void StartDeathTimer(Entity<IPCBatteryComponent> ent)
+    {
         if (ent.Comp.TimerActive)
             return;
 
@@ -125,7 +134,8 @@ public sealed partial class IPCSystem
         RaiseLocalEvent(ent, new IPCBatteryDeathTimerStart());
     }
 
-    public void StopDeathTimer(Entity<IPCBatteryComponent> ent){
+    public void StopDeathTimer(Entity<IPCBatteryComponent> ent)
+    {
         if (!ent.Comp.TimerActive)
             return;
 
@@ -149,27 +159,5 @@ public sealed partial class IPCSystem
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
-    }
-
-    public void DrainBattery(Entity<IPCBatteryComponent?> ent)
-    {
-        if (!Resolve(ent, ref ent.Comp) ||
-            ent.Comp.BatteryContainerSlot.ContainedEntity == null)
-            return;
-
-        _battery.SetCharge(ent.Comp.BatteryContainerSlot.ContainedEntity.Value, 0);
-    }
-
-    public void EjectBattery(Entity<IPCBatteryComponent?> ent, EntityUid user)
-    {
-
-        if (!Resolve(ent, ref ent.Comp) ||
-            ent.Comp.BatteryContainerSlot.ContainedEntity == null)
-            return;
-
-        var battery = ent.Comp.BatteryContainerSlot.ContainedEntity.Value;
-        _container.EmptyContainer(ent.Comp.BatteryContainerSlot);
-
-        _hands.PickupOrDrop(user, battery, dropNear: true);
     }
 }
