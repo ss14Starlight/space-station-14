@@ -40,7 +40,7 @@
         mask:
         - MachineMask
         layer:
-          - MachineLayer
+        - MachineLayer
   - type: MaterialStorage
     whitelist:
       tags:
