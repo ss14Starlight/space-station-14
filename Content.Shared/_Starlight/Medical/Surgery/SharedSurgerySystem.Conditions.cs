@@ -6,6 +6,7 @@ using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
 using Content.Shared.Body.Systems;
+using Content.Shared._Starlight.Medical.Body.Part;
 
 namespace Content.Shared.Starlight.Medical.Surgery;
 // Based on the RMC14.

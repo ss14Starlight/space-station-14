@@ -1,5 +1,5 @@
-﻿using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
+﻿using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Shared.Body.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.EntityEffects.Effects.Body;

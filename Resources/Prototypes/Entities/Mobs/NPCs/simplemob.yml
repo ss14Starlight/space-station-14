@@ -35,7 +35,7 @@
 
 - type: entity
   abstract: true
-  parent:
+  parent: #starlight Nubody will not pass.
   - BaseSimpleMob
   - MobAtmosExposed
   - MobCombat
@@ -53,8 +53,10 @@
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
+  # Starlight - start
   - type: Body
     prototype: Animal
+  # Starlight - end
   - type: Climbing
   - type: NameIdentifier
     group: GenericNumber
