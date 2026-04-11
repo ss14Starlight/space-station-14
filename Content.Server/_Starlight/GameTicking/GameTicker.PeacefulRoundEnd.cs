@@ -73,7 +73,7 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
         // Only pacify people on Evac and CC grids. If xformOverride is set, use that for location.
         if (!IsGridPacificationTarget(xformOverride ?? target)) return;
 
-        // IC bypasses only apply to a specific mind roles (taken roles of ERT, Decimus, CC, ..)..
+        // IC bypasses only apply to a specific mind roles (taken roles of ERT, Decimus, CC, ...).
         // While it might appear we plainly check both target and alt, there's a guaranteed directionality
         // about mind roles. If an ERT player gets carp polymorphed, the carp should also not get pacified, as the
         // player is still roleplaying being ERT. Since polymorphs don't have their own mind roles we can be confident
