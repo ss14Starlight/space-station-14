@@ -29,14 +29,15 @@ public sealed class GamePresetsMinPlayersTest
             if (preset.ID == TestPreset)
                 continue; // This preset is specifically for testing and has a MinPlayers value that doesn't match its rules, so ignore it
             var minPlayers = preset.MinPlayers ?? 0;
-            Assert.That(minPlayers, Is.GreaterThanOrEqualTo(0));
+            if (minPlayers < 0)
+                errorPresets.Add($"{preset.ID}: preset MinPlayers is negative ({minPlayers})");
             var minPlayersRules = GetBiggestMinPlayers(preset, protoMan, compFactory, errorPresets);
 
             if (minPlayers < minPlayersRules)
                 errorPresets.Add($"{preset.ID}: preset={minPlayers}, required={minPlayersRules}");
         }
 
-        Assert.That(errorPresets.Count, Is.Zero, $"The following presets have a MinPlayers value that is too low: {string.Join(", ", errorPresets)}");
+        Assert.That(errorPresets.Count, Is.Zero, $"Found invalid preset/rule min-player configuration(s): {string.Join(", ", errorPresets)}");
     }
 
     private int GetBiggestMinPlayers(GamePresetPrototype preset, IPrototypeManager manager, IComponentFactory factory, List<string> errors)
