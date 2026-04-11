@@ -1,4 +1,3 @@
-using Content.Server.Body.Systems;
 using Content.Shared._Starlight.Devil.DamnationActions;
 using Robust.Shared.Random;
 using System.Linq;
@@ -11,6 +10,7 @@ using Content.Shared.Popups;
 using Content.Server.Hands.Systems;
 using Content.Shared.Throwing;
 using Content.Shared._Starlight.Devil;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server._Starlight.Devil.DamnationActions;
 
