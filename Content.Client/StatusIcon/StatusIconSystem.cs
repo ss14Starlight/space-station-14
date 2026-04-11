@@ -28,7 +28,7 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
     private bool _localEnabled;
 
     private const string MindShieldIconId = "MindShieldIcon"; // Starlight
-    private AdminPlayerTabJobIconOption _jobIconOption; // Starlight
+    private AdminPlayerTabJobOption _jobOption; // Starlight
     private AdminPlayerTabHealthOption _healthOption; // Starlight
 
     /// <inheritdoc/>
@@ -55,8 +55,8 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
     #region Starlight
     private void OnAGhostJobSettingChanged(string obj)
     {
-        if (!Enum.TryParse(obj, out _jobIconOption))
-            _jobIconOption = AdminPlayerTabJobIconOption.JobAndMindShield;
+        if (!Enum.TryParse(obj, out _jobOption))
+            _jobOption = AdminPlayerTabJobOption.JobAndMindShield;
     }
 
     private void OnAGhostHealthSettingChanged(string obj)
@@ -105,12 +105,12 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
         {
             switch (data)
             {
-                case JobIconPrototype when _jobIconOption < AdminPlayerTabJobIconOption.Job:
+                case JobIconPrototype when _jobOption < AdminPlayerTabJobOption.Job:
                 case FactionIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostHudShowFactionIcons):
                 case HealthIconPrototype when _healthOption is not AdminPlayerTabHealthOption.Icons and not AdminPlayerTabHealthOption.IconsAndBars:
                 case HealthBarIconPrototype when _healthOption is not AdminPlayerTabHealthOption.Bars and not AdminPlayerTabHealthOption.IconsAndBars:
                 case SatiationIconPrototype when !_configuration.GetCVar(StarlightCCVars.AdminGhostHudShowSatiationIcons):
-                case SecurityIconPrototype mindShieldIcon when mindShieldIcon.ID == MindShieldIconId && _jobIconOption != AdminPlayerTabJobIconOption.JobAndMindShield:
+                case SecurityIconPrototype mindShieldIcon when mindShieldIcon.ID == MindShieldIconId && _jobOption != AdminPlayerTabJobOption.JobAndMindShield:
                 case SecurityIconPrototype criminalRecordIcon
                     when criminalRecordIcon.ID != MindShieldIconId &&
                          !_configuration.GetCVar(StarlightCCVars.AdminGhostHudShowCriminalRecordIcons):

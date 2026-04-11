@@ -54,7 +54,7 @@ public sealed partial class AdminOptionsTab : Control
 
         #region Starlight
         var playerTabJobIconSettings = new List<OptionDropDownCVar<string>.ValueOption>();
-        foreach (var setting in Enum.GetValues(typeof(AdminPlayerTabJobIconOption)))
+        foreach (var setting in Enum.GetValues(typeof(AdminPlayerTabJobOption)))
         {
             playerTabJobIconSettings.Add(new OptionDropDownCVar<string>.ValueOption(setting.ToString()!, Loc.GetString($"ui-options-admin-ghost-hud-setting-job-{setting.ToString()!.ToLower()}")));
         }

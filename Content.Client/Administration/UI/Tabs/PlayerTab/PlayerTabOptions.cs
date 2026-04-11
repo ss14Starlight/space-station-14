@@ -24,7 +24,7 @@ public enum AdminPlayerTabSymbolOption
 }
 
 #region Starlight
-public enum AdminPlayerTabJobIconOption
+public enum AdminPlayerTabJobOption
 {
     Off,
     Job,
