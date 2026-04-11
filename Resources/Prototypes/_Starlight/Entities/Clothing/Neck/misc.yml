@@ -84,3 +84,14 @@
     sprite: _Starlight/Clothing/Neck/Misc/tsf_badge.rsi
   - type: Item
     size: Tiny
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckNarsiestole
+  name: blood-red stole
+  description: The stole is decorated with depections of veins, muscle tissue, and uncut stone it feels heavy. 
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Misc/narsiestole.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Misc/narsiestole.rsi

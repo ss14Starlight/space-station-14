@@ -626,3 +626,14 @@
     sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
+
+- type: entity
+  parent: [ClothingHeadBase]
+  id: ClothingHeadHatBrassGear
+  name: brass gear
+  description: Rust coats the surface of the brass gear, it just about fits the shape of your head.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/brassgear.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/brassgear.rsi

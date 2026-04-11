@@ -35,6 +35,11 @@
     head: ClothingHeadHatFez
 
 - type: loadout
+  id: ChaplainBrassGear
+  equipment:
+    head: ClothingHeadHatBrassGear
+
+- type: loadout
   id: ChaplainNunHood
   equipment:
     head: ClothingHeadHatHoodNunHood
@@ -60,6 +65,23 @@
   equipment:
     mask: ClothingMaskPlague
 
+# Neck
+
+- type: loadout
+  id: ChaplainNarsieStole
+  equipment:
+    neck: ClothingNeckNarsiestole
+
+- type: loadout
+  id: ChaplainRatvarMantle
+  equipment:
+    neck: ClothingNeckRatvarcloak
+
+- type: loadout
+  id: ChaplainGenericStole
+  equipment:
+    neck: ClothingNeckStoleChaplain
+
 # Jumpsuit
 - type: loadout
   id: ChaplainJumpsuit
@@ -80,12 +102,6 @@
   id: ChaplainRobesLight
   equipment:
     jumpsuit: ClothingUniformJumpsuitMonasticRobeLight
-
-# Neck
-- type: loadout
-  id: ChaplainNeck
-  equipment:
-    neck: ClothingNeckStoleChaplain
 
 # Outer clothing
 - type: loadout

@@ -552,6 +552,16 @@
   - ChaplainPlagueHat
   - ChaplainWitchHat
   - ChaplainWitchHatAlt
+  - ChaplainBrassGear
+
+- type: loadoutGroup
+  id: ChaplainNeck
+  name: loadout-group-chaplain-neck
+  minLimit: 0
+  loadouts:
+  - ChaplainNarsieStole
+  - ChaplainRatvarMantle
+  - ChaplainGenericStole
 
 - type: loadoutGroup
   id: ChaplainMask
@@ -579,13 +589,6 @@
   - ChaplainNunRobe
   - ChaplainBlackHoodie
   - ChaplainHoodie
-
-- type: loadoutGroup
-  id: ChaplainNeck
-  name: loadout-group-chaplain-neck
-  minLimit: 0
-  loadouts:
-  - ChaplainNeck
 
 - type: loadoutGroup
   id: ChaplainJobTrinkets

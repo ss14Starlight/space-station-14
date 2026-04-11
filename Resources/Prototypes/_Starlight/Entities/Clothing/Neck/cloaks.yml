@@ -628,3 +628,14 @@
     sprite:  _Starlight/Clothing/Neck/Cloaks/warden.rsi
   - type: Clothing
     sprite:  _Starlight/Clothing/Neck/Cloaks/warden.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase ]
+  id: ClothingNeckRatvarcloak
+  name: brassworker's cloak
+  description: An oil-soaked cloak embelished with brass, it feels heavy.
+  components:
+  - type: Sprite
+    sprite:  _Starlight/Clothing/Neck/Cloaks/ratvarcloak.rsi
+  - type: Clothing
+    sprite:  _Starlight/Clothing/Neck/Cloaks/ratvarcloak.rsi
