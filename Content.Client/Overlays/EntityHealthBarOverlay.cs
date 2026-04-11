@@ -67,7 +67,7 @@ public sealed class EntityHealthBarOverlay : Overlay
             out var spriteComponent))
         {
             if (statusIcon != null && !_statusIconSystem.IsVisible((uid, _entManager.GetComponent<MetaDataComponent>(uid)), statusIcon))
-                 continue;
+                continue;
 
             // We want the stealth user to still be able to see his health bar himself
             if (!xformQuery.TryGetComponent(uid, out var xform) ||
