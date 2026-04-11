@@ -41,7 +41,7 @@ public abstract class SharedEventSelectorSystem : EntitySystem
     public bool CanActivate(Entity<EventSelectorRadialMenuComponent> ent, [NotNullWhen(false)] out string? popupString)
     {
         popupString = null;
-        
+
         if (_useDelay.IsDelayed(ent.Owner, _delayId))
         {
             popupString = Loc.GetString("syndicate-disruptor-cooldown");
