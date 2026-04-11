@@ -89,7 +89,7 @@
   parent: ClothingNeckBase
   id: ClothingNeckNarsiestole
   name: blood-red stole
-  description: The stole is decorated with depections of veins, muscle tissue, and uncut stone it feels heavy. 
+  description: The stole is decorated with depictions of veins, muscle tissue, and uncut stone. It feels heavy.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Neck/Misc/narsiestole.rsi
