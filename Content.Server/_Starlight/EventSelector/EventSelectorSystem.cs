@@ -33,7 +33,7 @@ public sealed class EventSelectorSystem : SharedEventSelectorSystem
             return;
 
         var selected = entity.Comp.RadialMenuEntries[args.Index];
-        
+
         var rule = _ticker.AddGameRule(selected.GameRule);
         _ticker.StartGameRule(rule);
 

@@ -8,7 +8,7 @@ namespace Content.Client._Starlight.EventSelector;
 public sealed class EventSelectorRadialMenuBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    
+
     private SimpleRadialMenu? _triggerRadialMenu;
 
     protected override void Open()

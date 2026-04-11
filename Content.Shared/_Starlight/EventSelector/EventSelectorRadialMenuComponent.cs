@@ -49,7 +49,7 @@ public sealed partial class EventSelectorRadialMenuEntry
     /// </summary>
     [DataField(required: true)]
     public EntProtoId<GameRuleComponent> GameRule;
-    
+
     /// <summary>
     /// Length of cooldown after the event is selected
     /// </summary>

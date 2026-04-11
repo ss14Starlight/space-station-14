@@ -12,12 +12,12 @@ public abstract class SharedEventSelectorSystem : EntitySystem
     [Dependency] private readonly SharedChargesSystem _charges = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
-    protected const string _delayId = "EventSelectorId"; 
+    protected const string _delayId = "EventSelectorId";
 
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<EventSelectorRadialMenuComponent, ActivatableUIOpenAttemptEvent>(OnUIOpenAttempt);
     }
 
@@ -41,7 +41,6 @@ public abstract class SharedEventSelectorSystem : EntitySystem
     public bool CanActivate(Entity<EventSelectorRadialMenuComponent> ent, [NotNullWhen(false)] out string? popupString)
     {
         popupString = null;
-        
         
         if (_useDelay.IsDelayed(ent.Owner, _delayId))
         {
