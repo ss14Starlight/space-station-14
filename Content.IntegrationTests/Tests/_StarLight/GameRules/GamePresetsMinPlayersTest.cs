@@ -30,7 +30,7 @@ public sealed class GamePresetsMinPlayersTest
                 continue; // This preset is specifically for testing and has a MinPlayers value that doesn't match its rules, so ignore it
             var minPlayers = preset.MinPlayers ?? 0;
             Assert.That(minPlayers, Is.GreaterThanOrEqualTo(0));
-            var minPlayersRules = GetBiggestMinPlayers(preset, protoMan, compFactory);
+            var minPlayersRules = GetBiggestMinPlayers(preset, protoMan, compFactory, errorPresets);
 
             if (minPlayers < minPlayersRules)
                 errorPresets.Add($"{preset.ID}: preset={minPlayers}, required={minPlayersRules}");
@@ -39,20 +39,20 @@ public sealed class GamePresetsMinPlayersTest
         Assert.That(errorPresets.Count, Is.Zero, $"The following presets have a MinPlayers value that is too low: {string.Join(", ", errorPresets)}");
     }
 
-    private int GetBiggestMinPlayers(GamePresetPrototype preset, IPrototypeManager manager, IComponentFactory factory)
+    private int GetBiggestMinPlayers(GamePresetPrototype preset, IPrototypeManager manager, IComponentFactory factory, List<string> errors)
     {
         var biggest = 0;
         foreach (var rule in preset.Rules)
         {
             if (!manager.TryIndex<EntityPrototype>(rule, out var ruleProto))
             {
-                Assert.Fail($"Rule prototype '{rule}' not found in preset '{preset.ID}'");
+                errors.Add($"Rule prototype '{rule}' not found in preset '{preset.ID}'");
                 continue;
             }
 
             if (!TryGetComponent<GameRuleComponent>(ruleProto.Components, factory, out var ruleComponent))
             {
-                Assert.Fail($"Rule '{rule}' in preset '{preset.ID}' has no GameRuleComponent");
+                errors.Add($"Rule '{rule}' in preset '{preset.ID}' has no GameRuleComponent");
                 continue;
             }
 
