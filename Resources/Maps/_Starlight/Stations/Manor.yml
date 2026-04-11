@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/11/2026 05:45:02
-  entityCount: 32577
+  time: 04/11/2026 05:53:16
+  entityCount: 32579
 maps:
 - 1
 grids:
@@ -12031,7 +12031,7 @@ entities:
       pos: 1.5,-2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -83902.06
+      secondsUntilStateChange: -84388.21
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12138,7 +12138,7 @@ entities:
       pos: -52.5,58.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -110674.04
+      secondsUntilStateChange: -111160.19
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14037,7 +14037,7 @@ entities:
       pos: 18.5,53.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -284562.97
+      secondsUntilStateChange: -285049.12
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14650,7 +14650,7 @@ entities:
       pos: -61.5,49.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -140433.89
+      secondsUntilStateChange: -140920.03
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -99014,7 +99014,7 @@ entities:
       pos: 66.5,41.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -37325.44
+      secondsUntilStateChange: -37811.59
       state: Closing
     - type: Firelock
       emergencyCloseCooldown: 11124.3888776
@@ -100459,7 +100459,7 @@ entities:
       pos: -27.5,81.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -25435.402
+      secondsUntilStateChange: -25921.549
       state: Closing
   - uid: 15903
     components:
@@ -167351,7 +167351,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 41.5,1.5
       parent: 2
-  - uid: 32576
+  - uid: 32577
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -167447,7 +167447,7 @@ entities:
     - type: Transform
       pos: -45.5,3.5
       parent: 2
-  - uid: 32574
+  - uid: 32575
     components:
     - type: Transform
       pos: 31.5,77.5
@@ -167471,7 +167471,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 43.5,1.5
       parent: 2
-  - uid: 32572
+  - uid: 32573
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -167622,12 +167622,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 36.5,80.5
       parent: 2
-  - uid: 32571
+  - uid: 32572
     components:
     - type: Transform
       pos: -5.5,80.5
       parent: 2
-  - uid: 32573
+  - uid: 32574
     components:
     - type: Transform
       pos: 3.5,80.5
@@ -167658,12 +167658,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 36.5,81.5
       parent: 2
-  - uid: 32575
+  - uid: 32576
     components:
     - type: Transform
       pos: -4.5,80.5
       parent: 2
-  - uid: 32577
+  - uid: 32578
     components:
     - type: Transform
       pos: 4.5,80.5
@@ -179344,6 +179344,18 @@ entities:
       canCollide: False
     - type: InsideEntityStorage
       storage: 23681
+- proto: ToolboxRoboticistFilled
+  entities:
+  - uid: 32571
+    components:
+    - type: Transform
+      pos: 57.511436,27.096884
+      parent: 2
+  - uid: 32579
+    components:
+    - type: Transform
+      pos: 57.48175,24.101622
+      parent: 2
 - proto: TowelColorNT
   entities:
   - uid: 13538
