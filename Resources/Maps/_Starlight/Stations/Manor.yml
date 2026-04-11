@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/11/2026 06:08:20
-  entityCount: 32580
+  time: 04/11/2026 08:42:51
+  entityCount: 32568
 maps:
 - 1
 grids:
@@ -12031,7 +12031,7 @@ entities:
       pos: 1.5,-2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -85276.23
+      secondsUntilStateChange: -85394.36
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12138,7 +12138,7 @@ entities:
       pos: -52.5,58.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -112048.2
+      secondsUntilStateChange: -112166.336
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14037,7 +14037,7 @@ entities:
       pos: 18.5,53.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -285937.16
+      secondsUntilStateChange: -286055.28
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14650,7 +14650,7 @@ entities:
       pos: -61.5,49.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -141808.05
+      secondsUntilStateChange: -141926.19
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -99020,7 +99020,7 @@ entities:
       pos: 66.5,41.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -38699.605
+      secondsUntilStateChange: -38817.742
       state: Closing
     - type: Firelock
       emergencyCloseCooldown: 11124.3888776
@@ -100465,7 +100465,7 @@ entities:
       pos: -27.5,81.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -26809.566
+      secondsUntilStateChange: -26927.703
       state: Closing
   - uid: 15903
     components:
@@ -167286,18 +167286,6 @@ entities:
       parent: 2
 - proto: RMCPlatformStairLeftDark
   entities:
-  - uid: 16336
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 31.5,79.5
-      parent: 2
-  - uid: 25727
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 8.5,77.5
-      parent: 2
   - uid: 25794
     components:
     - type: Transform
@@ -167338,12 +167326,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,80.5
       parent: 2
-  - uid: 32550
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 31.5,77.5
-      parent: 2
   - uid: 32554
     components:
     - type: Transform
@@ -167374,12 +167356,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 41.5,1.5
-      parent: 2
-  - uid: 32577
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 12.5,78.5
       parent: 2
 - proto: RMCPlatformStairRight
   entities:
@@ -167415,11 +167391,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,5.5
       parent: 2
-  - uid: 25896
-    components:
-    - type: Transform
-      pos: 8.5,77.5
-      parent: 2
   - uid: 25900
     components:
     - type: Transform
@@ -167431,11 +167402,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 4.5,80.5
-      parent: 2
-  - uid: 25902
-    components:
-    - type: Transform
-      pos: 31.5,79.5
       parent: 2
   - uid: 25905
     components:
@@ -167471,11 +167437,6 @@ entities:
     - type: Transform
       pos: -45.5,3.5
       parent: 2
-  - uid: 32575
-    components:
-    - type: Transform
-      pos: 31.5,77.5
-      parent: 2
 - proto: RMCPlatformStairRightWood
   entities:
   - uid: 25912
@@ -167494,12 +167455,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 43.5,1.5
-      parent: 2
-  - uid: 32573
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 12.5,78.5
       parent: 2
 - proto: RMCStairs
   entities:
@@ -167692,26 +167647,6 @@ entities:
     - type: Transform
       pos: 4.5,80.5
       parent: 2
-- proto: RMCStairsDarkSolo
-  entities:
-  - uid: 25929
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 8.5,77.5
-      parent: 2
-  - uid: 25930
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 31.5,79.5
-      parent: 2
-  - uid: 25931
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 31.5,77.5
-      parent: 2
 - proto: RMCStairsWood
   entities:
   - uid: 25911
@@ -167765,13 +167700,6 @@ entities:
     components:
     - type: Transform
       pos: 25.5,41.5
-      parent: 2
-- proto: RMCStairsWoodSolo
-  entities:
-  - uid: 25936
-    components:
-    - type: Transform
-      pos: 12.5,78.5
       parent: 2
 - proto: RockGuitarInstrument
   entities:
