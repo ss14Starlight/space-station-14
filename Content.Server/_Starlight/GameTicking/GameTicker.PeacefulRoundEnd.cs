@@ -53,28 +53,35 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
     /// Validate an entity is eligible for pacification, and applies it if so.
     /// </summary>
     /// <param name="target">The entity to potentially pacify</param>
-    /// <param name="altUid">Secondary entity to check for pacification immunity. Used for polymorphs to prevent
+    /// <param name="alt">Secondary entity to check for pacification immunity. Used for polymorphs to prevent
     /// pacifying the original body while the mind is in a polymorphed one.</param>
     /// <param name="xformOverride">An alternative entity to use for checking what grid the entity is on.
     /// Useful for polymorphs, as the original body will be elsewhere.</param>
-    private void SpreadPeace(EntityUid target, EntityUid? altUid = null, EntityUid? xformOverride = null)
+    private void SpreadPeace(EntityUid target, EntityUid? alt = null, EntityUid? xformOverride = null)
     {
         if (!_isEnabled || !_roundedEnded) return;
 
         // If the entity is polymorphed, also spread peace to the original body, using the
         // polymorphed entity's location as determining grid.
         if (TryComp<PolymorphedEntityComponent>(target, out var polymorph) && polymorph.Parent != null)
-            SpreadPeace(polymorph.Parent.Value, altUid: target, xformOverride: target);
+            SpreadPeace(polymorph.Parent.Value, alt: target, xformOverride: target);
 
         // OOC bypass (staff, extroles, ...). We check for both target and alt since the mind is in only one of them.
         if (_rolesReq.IsPeacefulBypass(target) ||
-            (altUid != null && _rolesReq.IsPeacefulBypass(altUid.Value))) return;
+            (alt != null && _rolesReq.IsPeacefulBypass(alt.Value))) return;
 
         // Only pacify people on Evac and CC grids. If xformOverride is set, use that for location.
         if (!IsGridPacificationTarget(xformOverride ?? target)) return;
 
-        // IC bypasses only apply to a specific body.
-        if (IsMindRolePacificationImmune(target)) return; // IC bypass (taken roles of ERT, Decimus, CC, ..)
+        // IC bypasses only apply to a specific mind roles (taken roles of ERT, Decimus, CC, ..)..
+        // While it might appear we plainly check both target and alt, there's a guaranteed directionality
+        // about mind roles. If an ERT player gets carp polymorphed, the carp should also not get pacified, as the
+        // player is still roleplaying being ERT. Since polymorphs don't have their own mind roles we can be confident
+        // that the mind roles reflect the mind roles of the main body. As such we can safely check both target and alt
+        // without any unintended side effects.
+        if (IsMindRolePacificationImmune(target) ||
+            (alt != null && IsMindRolePacificationImmune(alt.Value))) return;
+
         if (IsGhostRolePacificationImmune(target)) return; // IC bypass (only when ghost role wasn't taken)
 
         EnsureComp<PacifiedComponent>(target);
