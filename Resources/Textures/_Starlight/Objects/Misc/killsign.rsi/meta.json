@@ -196,16 +196,16 @@
                 ]
             ]
         },
-		{
-			"name": "point",
-			"directions": 1,
-			"delays":
-			[
-				[
-					0.15,
-					0.15
-				]
-			]
-		}
+        {
+            "name": "point",
+            "directions": 1,
+            "delays":
+            [
+                [
+                    0.15,
+                    0.15
+                ]
+            ]
+        }
     ]
 }
