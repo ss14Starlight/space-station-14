@@ -356,7 +356,7 @@
     duration: 1
     earliestStart: 30
     reoccurrenceDelay: 60
-    minimumminimumPlayers: 45 # 🌟Starlight🌟 Casualization
+    minimumPlayers: 45 # 🌟Starlight🌟 Casualization
   - type: AntagSelection
     agentName: wizard-round-end-name
     definitions:
@@ -421,7 +421,7 @@
   components:
   - type: StationEvent
     earliestStart: 15
-    minimumminimumPlayers: 15
+    minimumPlayers: 15
     weight: 7
     duration: 240
   - type: KudzuGrowthRule
@@ -482,7 +482,7 @@
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
     earliestStart: 15
-    minimumminimumPlayers: 15
+    minimumPlayers: 15
     weight: 5
     duration: 60
   - type: VentClogRule
@@ -497,7 +497,7 @@
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
     earliestStart: 40 # 🌟Starlight🌟 Casualization
-    minimumminimumPlayers: 15
+    minimumPlayers: 15
     weight: 3.5 # 🌟Starlight🌟 Casualization
     duration: 60
   - type: VentCrittersRule
@@ -519,7 +519,7 @@
     startAudio:
       path: /Audio/Announcements/attention.ogg
     earliestStart: 40 # 🌟Starlight🌟 Casualization
-    minimumminimumPlayers: 15
+    minimumPlayers: 15
     weight: 3.5 # 🌟Starlight🌟 Casualization
     duration: 60
   - type: VentCrittersRule
@@ -541,7 +541,7 @@
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
     earliestStart: 40 # 🌟Starlight🌟 Casualization
-    minimumminimumPlayers: 15
+    minimumPlayers: 15
     weight: 3.5 # 🌟Starlight🌟 Casualization
     duration: 60
   - type: VentCrittersRule
@@ -559,7 +559,7 @@
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
     earliestStart: 40 # 🌟Starlight🌟 Casualization
-    minimumminimumPlayers: 20
+    minimumPlayers: 20
     weight: 1.5
     duration: 60
   - type: VentCrittersRule
@@ -573,7 +573,7 @@
   components:
   - type: StationEvent
     earliestStart: 90
-    minimumminimumPlayers: 40
+    minimumPlayers: 40
     weight: 1 # Zombies was happening basically every single survival round, so now it's super rare
     duration: 1
     occursDuringRoundEnd: false
@@ -610,7 +610,7 @@
   - type: StationEvent
     earliestStart: 55 # 🌟Starlight🌟 Casualization
     weight: 3 # 🌟Starlight🌟 Casualization
-    minimumminimumPlayers: 35 # 🌟Starlight🌟 Casualization
+    minimumPlayers: 35 # 🌟Starlight🌟 Casualization
     duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end scrreen (not always "Neutral outcome!") and... ending the game if the station is nuked.
   - type: RuleGrids
   - type: LoadMapRule
@@ -654,7 +654,7 @@
     globalAnnouncement: false # Starlight
     earliestStart: 40 # 🌟Starlight🌟 Casualization
     weight: 6 # 🌟Starlight🌟 Casualization
-    minimumminimumPlayers: 15
+    minimumPlayers: 15
     maxOccurrences: 1 # can only happen once per round
     startAnnouncement: station-event-communication-interception
     startAudio:
@@ -698,7 +698,7 @@
   - type: StationEvent
     globalAnnouncement: false # Starlight
     earliestStart: 20
-    minimumminimumPlayers: 15
+    minimumPlayers: 15
     weight: 6
     duration: 30
     maxOccurrences: 2
@@ -724,7 +724,7 @@
   components:
   - type: StationEvent
     earliestStart: 0
-    minimumminimumPlayers: 20
+    minimumPlayers: 20
     maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
     weight: 5
   - type: MobReplacementRule
@@ -743,7 +743,7 @@
     startAudio:
       path: /Audio/Announcements/attention.ogg
     weight: 2
-    minimumminimumPlayers: 25
+    minimumPlayers: 25
     reoccurrenceDelay: 20
     maxOccurrences: 2
   - type: GreytideVirusRule
@@ -764,7 +764,7 @@
   - type: StationEvent
     earliestStart: 0
     duration: 1
-    minimumminimumPlayers: 1
+    minimumPlayers: 1
     maxOccurrences: 4 #SL 2 -> 4
     weight: 10
   - type: RandomSpawnRule
@@ -779,7 +779,7 @@
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
-    minimumminimumPlayers: 4
+    minimumPlayers: 4
     duration: null
   - type: SpaceSpawnRule
     spawnDistance: 0
@@ -801,7 +801,7 @@
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
-    minimumminimumPlayers: 4
+    minimumPlayers: 4
     duration: null
   - type: SpaceSpawnRule
     spawnDistance: 0
@@ -823,7 +823,7 @@
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
-    minimumminimumPlayers: 4
+    minimumPlayers: 4
     duration: null
   - type: SpaceSpawnRule
     spawnDistance: 0
@@ -845,7 +845,7 @@
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
-    minimumminimumPlayers: 4
+    minimumPlayers: 4
     duration: null
   - type: SpaceSpawnRule
     spawnDistance: 0
@@ -867,7 +867,7 @@
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
-    minimumminimumPlayers: 4
+    minimumPlayers: 4
     duration: null
   - type: SpaceSpawnRule
     spawnDistance: 0
@@ -889,7 +889,7 @@
     weight: 2.5
     earliestStart: 25
     reoccurrenceDelay: 20
-    minimumminimumPlayers: 15
+    minimumPlayers: 15
     duration: null
   - type: SpaceSpawnRule
     spawnDistance: 0
