@@ -181,7 +181,7 @@
     - tator
   name: traitor-title
   description: traitor-description
-  minPlayers: 5 # 🌟Starlight🌟
+  minPlayers: 0 # 🌟Starlight🌟
   showInVote: true # 🌟Starlight🌟
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
