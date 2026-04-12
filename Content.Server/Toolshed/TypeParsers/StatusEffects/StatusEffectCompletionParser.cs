@@ -11,6 +11,6 @@ public sealed class StatusEffectCompletionParser : CustomCompletionParser<EntPro
 {
     public override CompletionResult? TryAutocomplete(ParserContext ctx, CommandArgument? arg)
     {
-        return CompletionResult.FromHintOptions(IoCManager.Resolve<StatusEffectsSystem>().StatusEffectPrototypes.Keys, GetArgHint(arg)); // Starlight
+        return CompletionResult.FromHintOptions(IoCManager.Resolve<IEntityManager>().System<StatusEffectsSystem>().StatusEffectPrototypes.Keys, GetArgHint(arg)); // Starlight
     }
 }
