@@ -944,4 +944,11 @@ Entries:
   id: 404262
   time: '2026-04-12T08:01:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4120
+- author: Rinary
+  changes:
+  - message: Fixed min players amount on Xenoborgs/Wizards/Traitor presets, now they have the same min players value as their game rules. I.e. fixes bugs when round won't start even without forced game preset.
+    type: Fix
+  id: 404263
+  time: '2026-04-12T10:43:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4126
 Order: -1
