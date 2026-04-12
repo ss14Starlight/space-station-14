@@ -671,7 +671,7 @@ public sealed partial class VampireSystem : EntitySystem
     private void OnGlare(EntityUid uid, VampireComponent comp, ref VampireGlareActionEvent args)
     {
         //If vampire cannot see, they cannot glare
-        if (!TryComp<BlindableComponent>(uid, out var blindable) || blindable.IsBlind)
+        if (TryComp<BlindableComponent>(uid, out var blindable) && blindable.IsBlind)
             return;
 
         if (args.Handled
