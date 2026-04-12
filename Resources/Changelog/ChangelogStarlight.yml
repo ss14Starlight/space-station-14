@@ -741,4 +741,32 @@ Entries:
   id: 404233
   time: '2026-04-12T07:21:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4024
+- author: mikeysaurus, Kirb, DocMoth
+  changes:
+  - message: Adds 30 markings for felionoids, courtesy of Kirb & DocMoth!
+    type: Add
+  id: 404234
+  time: '2026-04-12T07:23:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4003
+- author: mikeysaurus, Kirb, DocMoth
+  changes:
+  - message: Warrior Ca---Felionoid naming datasets have been updated to support a prefix/suffix system.
+    type: Tweak
+  id: 404235
+  time: '2026-04-12T07:23:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4003
+- author: mikeysaurus, Kirb, DocMoth
+  changes:
+  - message: Default Felionoid tail can now toggle wagging.
+    type: Tweak
+  id: 404236
+  time: '2026-04-12T07:23:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4003
+- author: mikeysaurus, Kirb, DocMoth
+  changes:
+  - message: Felionoid entry in the guidebook has been updated with the Wiki lore and some missing information.
+    type: Tweak
+  id: 404237
+  time: '2026-04-12T07:23:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4003
 Order: -1
