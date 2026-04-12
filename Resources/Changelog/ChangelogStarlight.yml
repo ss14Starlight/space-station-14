@@ -783,4 +783,11 @@ Entries:
   id: 404239
   time: '2026-04-12T07:28:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4061
+- author: Unknown
+  changes:
+  - message: Document printers now have player collision.
+    type: Fix
+  id: 404240
+  time: '2026-04-12T07:30:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4097
 Order: -1
