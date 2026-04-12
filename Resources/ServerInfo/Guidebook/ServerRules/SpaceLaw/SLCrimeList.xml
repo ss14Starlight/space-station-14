@@ -392,7 +392,6 @@
     </ColorBox>
     <ColorBox Color="#475c7d">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Enemy of Corporation (8)
       </Box>
     </ColorBox>
     <ColorBox>
@@ -419,7 +418,7 @@
 
   7. Disturbance, Vigilantism, Rioting
 
-  8. Sedition, Conspiracy, Treason, Enemy of Corporation
+  8. Sedition, Conspiracy, Treason
 
   ## Minor Crimes
   Those who commit a minor crime should be issued a warning for their first offense, however repeat offenses are cumulative and should result in jail time of up to 5 minutes per minor crime committed.
@@ -826,7 +825,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To consume any part of a sentient humanoid. Consumption of vital components should be treated more harshly. This can be charged on top of other charges such as Murder or Assault if the suspect committed these crimes to obtain the parts consumed. Consumption of blood is considered cannibalism unless the source is consensual under the Religious Freedoms act (Paperwork with the Chaplain and Captain's stamp are required for this exception). Discarded blood (Such as blood that a janitor would mop) is considered consensually given and does not require paperwork to be consumed.
+        To consume any part of a sentient humanoid. Consumption of vital components should be treated more harshly. This can be charged on top of other charges such as Murder or Assault if the suspect committed these crimes to obtain the parts consumed.To kill three or more sentient humanoids with malicious intent. This only applies when there have been multiple killings with intention.
       </Box>
     </ColorBox>
   </Table>
@@ -891,12 +890,11 @@
     </ColorBox>
     <ColorBox Color="#4d2e2e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To kill three or more sentient humanoid with malicious intent. Only applies when there have been multiple killings with intention.
+        To kill three or more sentient humanoids with malicious intent. This only applies when there have been multiple killings with intention.
       </Box>
     </ColorBox>
     <ColorBox Color="#475c7d">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Enemy of Corporation
       </Box>
     </ColorBox>
     <ColorBox Color="#475c7d">

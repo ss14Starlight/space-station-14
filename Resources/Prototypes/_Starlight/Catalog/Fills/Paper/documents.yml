@@ -454,6 +454,15 @@
       content: doc-text-printer-execution-dnr-order
 
 - type: entity
+  parent: PrintedDocument
+  id: PrintedDocumentEOCDesignation
+  name: Enemy of Corporation Designation
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-enemy-of-corporation-designation
+
+- type: entity
   id: BoxFolderClipboardFilled
   suffix: Filled
   parent: BoxFolderClipboard

@@ -10,3 +10,453 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+#region Chairs
+- type: construction
+  id: ChairOfficeSleek
+  graph: ChairSL
+  startNode: start
+  targetNode: chairOfficeSleek
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#comfy chairs
+- type: construction
+  id: ChairComfyWhite
+  name: construction-recipe-comfy-chair-white
+  graph: ChairSL
+  startNode: start
+  targetNode: chairComfyWhite
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ChairComfyBlue
+  name: construction-recipe-comfy-chair-blue
+  graph: ChairSL
+  startNode: start
+  targetNode: chairComfyBlue
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ChairComfyGreen
+  name: construction-recipe-comfy-chair-green
+  graph: ChairSL
+  startNode: start
+  targetNode: chairComfyGreen
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ChairComfyRed
+  name: construction-recipe-comfy-chair-red
+  graph: ChairSL
+  startNode: start
+  targetNode: chairComfyRed
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ChairComfyBrown
+  name: construction-recipe-comfy-chair-brown
+  graph: ChairSL
+  startNode: start
+  targetNode: chairComfyBrown
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+# Regal
+- type: construction
+  id: ChairRegal
+  graph: ChairSL
+  startNode: start
+  targetNode: chairRegal
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: ChairThrone
+  graph: ChairSL
+  startNode: start
+  targetNode: chairThrone
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Benches
+#White
+- type: construction
+  id: BenchWhiteComfy
+  name: construction-recipe-white-comf-bench
+  graph: BenchSL
+  startNode: start
+  targetNode: whiteComfBench
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchComfyCorner
+  name: construction-recipe-comfy-bench-white-corner
+  graph: BenchSL
+  startNode: start
+  targetNode: whiteComfBenchCorner
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchComfyEndLeft
+  name: construction-recipe-comfy-bench-white-left
+  graph: BenchSL
+  startNode: start
+  targetNode: whiteComfBenchLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchComfyEndRight
+  name: construction-recipe-comfy-bench-white-right
+  graph: BenchSL
+  startNode: start
+  targetNode: whiteComfBenchRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchComfyMiddle
+  name: construction-recipe-comfy-bench-white-mid
+  graph: BenchSL
+  startNode: start
+  targetNode: whiteComfBenchMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Red
+- type: construction
+  id: BenchRedComfyCorner
+  name: construction-recipe-comfy-bench-red-corner
+  graph: BenchSL
+  startNode: start
+  targetNode: redComfBenchCorner
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchRedComfyEndLeft
+  name: construction-recipe-comfy-bench-red-left
+  graph: BenchSL
+  startNode: start
+  targetNode: redComfBenchLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchRedComfyEndRight
+  name: construction-recipe-comfy-bench-red-right
+  graph: BenchSL
+  startNode: start
+  targetNode: redComfBenchRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchRedComfyMiddle
+  name: construction-recipe-comfy-bench-red-mid
+  graph: BenchSL
+  startNode: start
+  targetNode: redComfBenchMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Blue
+- type: construction
+  id: BenchBlueComfyCorner
+  name: construction-recipe-comfy-bench-blue-corner
+  graph: BenchSL
+  startNode: start
+  targetNode: blueComfBenchCorner
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchBlueComfyEndLeft
+  name: construction-recipe-comfy-bench-blue-left
+  graph: BenchSL
+  startNode: start
+  targetNode: blueComfBenchLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchBlueComfyEndRight
+  name: construction-recipe-comfy-bench-blue-right
+  graph: BenchSL
+  startNode: start
+  targetNode: blueComfBenchRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchBlueComfyMiddle
+  name: construction-recipe-comfy-bench-blue-mid
+  graph: BenchSL
+  startNode: start
+  targetNode: blueComfBenchMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Gray
+
+- type: construction
+  id: GrayComfBench
+  name: construction-recipe-gray-comf-bench
+  graph: BenchSL
+  startNode: start
+  targetNode: grayComfBench
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchGrayComfyCorner
+  name: construction-recipe-comfy-bench-gray-corner
+  graph: BenchSL
+  startNode: start
+  targetNode: grayComfBenchCorner
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchGrayComfyEndLeft
+  name: construction-recipe-comfy-bench-gray-left
+  graph: BenchSL
+  startNode: start
+  targetNode: grayComfBenchLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchGrayComfyEndRight
+  name: construction-recipe-comfy-bench-gray-right
+  graph: BenchSL
+  startNode: start
+  targetNode: grayComfBenchRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchGrayComfyMiddle
+  name: construction-recipe-comfy-bench-gray-mid
+  graph: BenchSL
+  startNode: start
+  targetNode: grayComfBenchMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Green
+- type: construction
+  id: BenchGreenComfy
+  name: construction-recipe-green-comf-bench
+  graph: BenchSL
+  startNode: start
+  targetNode: greenComfBench
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchGreenComfyCorner
+  name: construction-recipe-comfy-bench-green-corner
+  graph: BenchSL
+  startNode: start
+  targetNode: greenComfBenchCorner
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchGreenComfyEndLeft
+  name: construction-recipe-comfy-bench-green-left
+  graph: BenchSL
+  startNode: start
+  targetNode: greenComfBenchLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchGreenComfyEndRight
+  name: construction-recipe-comfy-bench-green-right
+  graph: BenchSL
+  startNode: start
+  targetNode: greenComfBenchRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: BenchGreenComfyMiddle
+  name: construction-recipe-comfy-bench-green-mid
+  graph: BenchSL
+  startNode: start
+  targetNode: greenComfBenchMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Pews
+- type: construction
+  id: PewEndLeft
+  name: construction-recipe-pew-left
+  graph: BenchSL
+  startNode: start
+  targetNode: pewLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: PewMiddle
+  name: construction-recipe-pew-mid
+  graph: BenchSL
+  startNode: start
+  targetNode: pewMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: PewEndRight
+  name: construction-recipe-pew-right
+  graph: BenchSL
+  startNode: start
+  targetNode: pewRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
