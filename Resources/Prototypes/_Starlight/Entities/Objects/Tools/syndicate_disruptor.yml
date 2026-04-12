@@ -1,0 +1,120 @@
+# todo: eventually allow this to be triggered remotely
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: BaseEventSelector
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: Objects/Devices/communication.rsi
+      layers:
+        - state: old-radio
+    - type: EventSelectorRadialMenu
+    - type: UserInterface
+      interfaces:
+        enum.EventSelectorRadialMenuKey.Key:
+          type: EventSelectorRadialMenuBoundUserInterface
+    - type: ActivatableUI
+      key: enum.EventSelectorRadialMenuKey.Key
+    - type: UseDelay
+      delay: 0
+
+- type: entity
+  parent: BaseEventSelector
+  id: SyndicateDisruptor
+  name: syndicate disruptor
+  description: Call in various disruptions to create opportunities, such as power or comms outages. Each feature applies a different cooldown.
+  suffix: agent
+  components:
+    - type: EventSelectorRadialMenu
+      radialMenuEntries:
+        - name: syndicate-disruptor-gas-leak
+          protoIdIcon: ClothingMaskGas
+          gameRule: GasLeak
+          useDelay: 20m
+        - name: syndicate-disruptor-bureaucratic-error
+          protoIdIcon: BoxFolderRed
+          gameRule: BureaucraticError
+          useDelay: 25m
+        - name: syndicate-disruptor-clerical-error
+          protoIdIcon: BoxFolderBlue
+          gameRule: ClericalError
+          useDelay: 15m
+        - name: syndicate-disruptor-breaker-flip
+          protoIdIcon: APCBasic
+          gameRule: BreakerFlip
+          useDelay: 15m
+        - name: syndicate-disruptor-ion-storm
+          protoIdIcon: BorgChassisGeneric
+          gameRule: IonStorm
+          useDelay: 45m
+        - name: syndicate-disruptor-comms-blackout
+          protoIdIcon: TelecomServer
+          gameRule: CommunicationBlackout
+          useDelay: 20m
+        - name: syndicate-disruptor-power-grid-check
+          protoIdIcon: SubstationBasic
+          gameRule: PowerGridCheck
+          useDelay: 20m
+        - name: syndicate-disruptor-door-lagging-virus
+          protoIdIcon: AirlockAssembly
+          gameRule: DoorLaggingVirus
+          useDelay: 45m
+    - type: LimitedCharges
+      lastCharges: 3
+      maxCharges: 3
+
+# Syndicate Signaller Version
+- type: entity
+  parent: BaseEventSelector
+  id: SyndicateDisruptorSignaller
+  name: syndicate disruptor signaller
+  description: Call in various disruptions to create opportunities, such as power or comms outages. Each feature applies a different cooldown.
+  suffix: signaller
+  components:
+    - type: EventSelectorRadialMenu
+      radialMenuEntries:
+        - name: syndicate-disruptor-gas-leak
+          protoIdIcon: ClothingMaskGas
+          gameRule: GasLeak
+          useDelay: 20m
+        - name: syndicate-disruptor-bureaucratic-error
+          protoIdIcon: BoxFolderRed
+          gameRule: BureaucraticError
+          useDelay: 20m
+        - name: syndicate-disruptor-clerical-error
+          protoIdIcon: BoxFolderBlue
+          gameRule: ClericalError
+          useDelay: 15m
+        - name: syndicate-disruptor-breaker-flip
+          protoIdIcon: APCBasic
+          gameRule: BreakerFlip
+          useDelay: 15m
+        - name: syndicate-disruptor-ion-storm
+          protoIdIcon: BorgChassisGeneric
+          gameRule: IonStorm
+          useDelay: 30m
+        - name: syndicate-disruptor-comms-blackout
+          protoIdIcon: TelecomServer
+          gameRule: CommunicationBlackout
+          useDelay: 20m
+        - name: syndicate-disruptor-power-grid-check
+          protoIdIcon: SubstationBasic
+          gameRule: PowerGridCheck
+          useDelay: 20m
+        - name: syndicate-disruptor-door-lagging-virus
+          protoIdIcon: AirlockAssembly
+          gameRule: DoorLaggingVirus
+          useDelay: 30m
+        - name: syndicate-disruptor-security-drill
+          protoIdIcon: Stunbaton
+          gameRule: SecurityDrill
+          useDelay: 30m
+        - name: syndicate-disruptor-night-shift
+          protoIdIcon: LightBulb
+          gameRule: NightShift
+          useDelay: 15m
+        - name: syndicate-disruptor-syndie-evac
+          protoIdIcon: PosterContrabandSyndicateRecruitment
+          gameRule: UnknownShuttleSyndieEvacPod
+          useDelay: 60m
