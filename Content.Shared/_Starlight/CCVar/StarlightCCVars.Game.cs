@@ -45,4 +45,22 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<bool> AutogammaRiftEnabled =
         CVarDef.Create("game.autogamma_enabled", false, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Enables voting for how long EOR will be, off by default.
+    /// </summary>
+    public static readonly CVarDef<bool> EnableEndRoundTimeVotes =
+        CVarDef.Create("game.round_end_time_vote_enabled", true, CVar.SERVERONLY);
+
+    /// <summary>
+    /// How many seconds between each time-vote option.
+    /// </summary>
+    public static readonly CVarDef<float> EndRoundTimeVoteSpacing =
+        CVarDef.Create("game.round_end_time_vote_spacing", 300f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// How many different options to generate for end-round times.
+    /// </summary>
+    public static readonly CVarDef<int> EndRoundTimeVoteAmount =
+        CVarDef.Create("game.round_end_time_vote_amount", 3, CVar.SERVERONLY);
 }

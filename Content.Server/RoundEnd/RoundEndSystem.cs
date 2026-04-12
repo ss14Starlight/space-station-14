@@ -21,6 +21,9 @@ using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Station.Components;
 using Timer = Robust.Shared.Timing.Timer;
+using Content.Shared.Starlight.CCVar;
+using Content.Server.Voting.Managers;
+using Content.Server.Voting;
 
 namespace Content.Server.RoundEnd
 {
@@ -41,6 +44,9 @@ namespace Content.Server.RoundEnd
         [Dependency] private readonly EmergencyShuttleSystem _shuttle = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
+        // Starlight begin
+        [Dependency] private readonly IVoteManager _votes = default!;
+        // Starlight end
 
         public TimeSpan DefaultCooldownDuration { get; set; } = TimeSpan.FromSeconds(30);
 
@@ -305,6 +311,74 @@ namespace Content.Server.RoundEnd
             }
         }
 
+        /// <summary>
+        /// STARLIGHT
+        /// Ends round, but with a vote for how long EOR should be
+        /// </summary>
+        private void EndRoundWithTimeVote(CancellationTokenSource countdownTokenSource)
+        {
+            var defaultTime = TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.RoundRestartTime));
+            var optionSpacing = TimeSpan.FromSeconds(_cfg.GetCVar(StarlightCCVars.EndRoundTimeVoteSpacing));
+            var optionQuantity = _cfg.GetCVar(StarlightCCVars.EndRoundTimeVoteAmount);
+
+            var options = new VoteOptions
+            {
+                Title = Loc.GetString("eor-time-vote-title"),
+                InitiatorText = Loc.GetString("eor-time-vote-initiator"),
+                Duration = TimeSpan.FromSeconds(15f),
+            };
+
+            options.Options.Add(($"{defaultTime.Minutes}", defaultTime));
+            var lastSavedNegativeTime = defaultTime;
+            var lastSavedPositiveTime = defaultTime;
+
+            for (int i = 1; i < optionQuantity; i++)
+            {
+                if (lastSavedNegativeTime.Seconds - optionSpacing.Seconds < 0)
+                {
+                    lastSavedNegativeTime = lastSavedNegativeTime.Subtract(optionSpacing);
+                    options.Options.Add(($"{lastSavedNegativeTime.Minutes}", lastSavedNegativeTime));
+                    i++;
+                }
+
+                lastSavedPositiveTime = lastSavedPositiveTime.Add(optionSpacing);
+                options.Options.Add(($"{lastSavedPositiveTime.Minutes}", lastSavedPositiveTime));
+            }
+
+            var vote = _votes.CreateVote(options);
+
+            vote.OnFinished += (_, args) =>
+            {
+                TimeSpan picked;
+                if (args.Winner == null)
+                {
+                    picked = defaultTime;
+                }
+                else
+                {
+                    picked = (TimeSpan)args.Winner;
+                }
+                int time;
+                string unitsLocString;
+                if (picked.TotalSeconds < 60)
+                {
+                    time = picked.Seconds;
+                    unitsLocString = "eta-units-seconds";
+                }
+                else
+                {
+                    time = picked.Minutes;
+                    unitsLocString = "eta-units-minutes";
+                }
+                _chatManager.DispatchServerAnnouncement(
+                    Loc.GetString(
+                        "round-end-system-round-restart-eta-announcement",
+                        ("time", time),
+                        ("units", Loc.GetString(unitsLocString))));
+                Timer.Spawn(picked, AfterEndRoundRestart, countdownTokenSource.Token);
+            };
+        }
+
         public void EndRound(TimeSpan? countdownTime = null)
         {
             if (_gameTicker.RunLevel != GameRunLevel.InRound) return;
@@ -314,6 +388,14 @@ namespace Content.Server.RoundEnd
             _gameTicker.EndRound();
             _countdownTokenSource?.Cancel();
             _countdownTokenSource = new();
+
+            // Starlight
+            if (_cfg.GetCVar(StarlightCCVars.EnableEndRoundTimeVotes))
+            {
+                EndRoundWithTimeVote(_countdownTokenSource);
+                return;
+            }
+            // Starlight END
 
             countdownTime ??= TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.RoundRestartTime));
             int time;
