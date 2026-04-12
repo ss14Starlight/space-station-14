@@ -930,4 +930,11 @@ Entries:
   id: 404260
   time: '2026-04-12T07:55:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4118
+- author: Caws
+  changes:
+  - message: (Kiloton) NCT Office now has a document printer.
+    type: Add
+  id: 404261
+  time: '2026-04-12T07:58:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4119
 Order: -1
