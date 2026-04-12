@@ -50,7 +50,7 @@ public sealed partial class StarlightCCVars
     /// Enables voting for how long EOR will be, off by default.
     /// </summary>
     public static readonly CVarDef<bool> EnableEndRoundTimeVotes =
-        CVarDef.Create("game.round_end_time_vote_enabled", true, CVar.SERVERONLY);
+        CVarDef.Create("game.round_end_time_vote_enabled", false, CVar.SERVERONLY);
 
     /// <summary>
     /// How many seconds between each time-vote option.
