@@ -769,4 +769,18 @@ Entries:
   id: 404237
   time: '2026-04-12T07:23:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4003
+- author: redmushie
+  changes:
+  - message: Admin ghosts now see a ton of HUD icons by default.
+    type: Add
+  id: 404238
+  time: '2026-04-12T07:28:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4061
+- author: redmushie
+  changes:
+  - message: Admin settings to toggle the HUD icons on or off.
+    type: Add
+  id: 404239
+  time: '2026-04-12T07:28:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4061
 Order: -1
