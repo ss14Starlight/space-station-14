@@ -706,4 +706,25 @@ Entries:
   id: 404228
   time: '2026-04-12T07:18:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3984
+- author: Trosling
+  changes:
+  - message: Moved Enemy of Corporation from Corporate Law to SoP, and made it overall a much more fleshed out sentence.
+    type: Tweak
+  id: 404229
+  time: '2026-04-12T07:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4050
+- author: Trosling
+  changes:
+  - message: EoC is now no longer just an instant death sentence, but is also now applicable in more situations.
+    type: Tweak
+  id: 404230
+  time: '2026-04-12T07:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4050
+- author: Trosling
+  changes:
+  - message: Vampires now fit in EoC, and have had a few Corporate Law changes.
+    type: Tweak
+  id: 404231
+  time: '2026-04-12T07:20:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4050
 Order: -1
