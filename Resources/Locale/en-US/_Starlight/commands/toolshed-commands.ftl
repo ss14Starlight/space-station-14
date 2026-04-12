@@ -225,6 +225,8 @@ command-description-killsign-blind =
     Apply a killsign to the entity using the blind sprite.
 command-description-killsign-admin =
     Apply a killsign to the entity using the admin sprite.
+command-description-killsign-point =
+    Apply a killsign to the entity using the point sprite.
 command-description-killsign-rm =
     Remove a killsign from the entity
 command-description-fixinput =

@@ -257,6 +257,15 @@ public sealed class KillSignCommand : ToolshedCommand
         return uid;
     }
 
+    [CommandImplementation("point")]
+    public EntityUid Point([PipedArgument] EntityUid uid)
+    {
+        var comp = EnsureComp<KillSignComponent>(uid);
+        comp.Sprite = new SpriteSpecifier.Rsi(new ResPath(SLContentPath), "point");
+        EntityManager.Dirty(uid, comp);
+        return uid;
+    }
+
     [CommandImplementation("rm")]
     public EntityUid RemoveKillSign([PipedArgument] EntityUid uid)
     {
@@ -371,6 +380,10 @@ public sealed class KillSignCommand : ToolshedCommand
     [CommandImplementation("admin")]
     public IEnumerable<EntityUid> Admin([PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(Admin);
+
+    [CommandImplementation("point")]
+    public IEnumerable<EntityUid> Point([PipedArgument] IEnumerable<EntityUid> uid)
+        => uid.Select(Point);
 
     [CommandImplementation("rm")]
     public IEnumerable<EntityUid> RemoveKillSign([PipedArgument] IEnumerable<EntityUid> uid)
