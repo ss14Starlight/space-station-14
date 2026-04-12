@@ -41,6 +41,8 @@ public sealed class GamePresetsMinPlayersTest
             errorPresets.Count,
             Is.Zero,
             $"Found invalid preset/rule min-player configuration(s):{Environment.NewLine}{string.Join(Environment.NewLine, errorPresets)}");
+
+        await pair.CleanReturnAsync();
     }
 
     private int GetBiggestMinPlayers(GamePresetPrototype preset, IPrototypeManager manager, IComponentFactory factory, List<string> errors)
