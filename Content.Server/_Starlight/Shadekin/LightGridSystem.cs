@@ -559,6 +559,7 @@ public sealed class LightGridSystem : EntitySystem
         }
 
         exposure += GetDirectLightExposure(_mapLights.GetValueOrDefault(mapUid), worldPos);
+        exposure += GetMapAmbientExposure(xform.MapID);
 
         return exposure;
     }
@@ -608,6 +609,19 @@ public sealed class LightGridSystem : EntitySystem
             return 0;
 
         return lightMap.GetValueOrDefault(tile);
+    }
+
+    private float GetMapAmbientExposure(MapId mapId)
+    {
+        var mapEntity = _maps.GetMapOrInvalid(mapId);
+
+        if (mapEntity == EntityUid.Invalid)
+            return 0f;
+
+        if (!TryComp<MapLightComponent>(mapEntity, out var mapLight))
+            return 0f;
+
+        return GetLightBrightness(mapLight.AmbientLightColor, 1f);
     }
 
     // The shadowcasting beast
