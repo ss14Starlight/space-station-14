@@ -37,6 +37,9 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+// Starlight Start: Secure Terminal salary penalty
+using Content.Server.Starlight.SecureTerminal;
+// Starlight End
 
 namespace Content.Shared.Starlight.Economy;
 public sealed partial class SalarySystem : SharedSalarySystem
@@ -126,8 +129,22 @@ public sealed partial class SalarySystem : SharedSalarySystem
             if(bonus.Roles.Any(playerData.Roles.Contains))
                 bonusMultiplier += bonus.Multiplayer;
 
-        return (int)Math.Ceiling(baseSalary * bonusMultiplier);
+        // Starlight Start: Secure Terminal salary penalty
+        var stationPenalty = GetStationSalaryPenalty();
+        return (int)Math.Ceiling(baseSalary * bonusMultiplier * (1f - stationPenalty));
+        // Starlight End
     }
+
+    // Starlight Start: Secure Terminal salary penalty
+    private float GetStationSalaryPenalty()
+    {
+        var maxPenalty = 0f;
+        var query = _entityManager.EntityQueryEnumerator<SecureCommandTerminalStationComponent>();
+        while (query.MoveNext(out _, out var comp))
+            maxPenalty = Math.Max(maxPenalty, comp.SalaryPenalty);
+        return maxPenalty;
+    }
+    // Starlight End
 
     internal void Donate(ICommonSession session, int amount)
     {

@@ -1,0 +1,269 @@
+# Secure Command Terminal – Request Prototypes
+# Accessible from all Command-level Comms Consoles.
+# All fees drawn from each authorizer's account when the countdown begins.
+
+# ── ERT Security ─────────────────────────────────────────────────────────────
+# Only available during War Ops.  Requires Captain/HoS.
+- type: secureTerminalRequest
+  id: ErtSecurity
+  name: secure-terminal-ert-security-name
+  description: secure-terminal-ert-security-desc
+  announcement: secure-terminal-ert-security-announcement
+  announcementColor: "#ff4444"
+  activationDelaySecs: 600
+  fee: 5000
+  salaryPenalty: 0.05
+  actionType: ErtShuttle
+  gameruleId: ERTSecurityShuttleSpawn
+  requiresWarDeclared: true
+  sortOrder: 40
+  authGroups:
+    - [ Captain, HeadOfSecurity ]
+    - [ Captain, HeadOfSecurity ]
+  authGroupLabels:
+    - "Captain / HoS (1)"
+    - "Captain / HoS (2)"
+  cooldownSecs: 3600
+
+# ── ERT Engineering ───────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ErtEngineering
+  name: secure-terminal-ert-engineering-name
+  description: secure-terminal-ert-engineering-desc
+  announcement: secure-terminal-ert-engineering-announcement
+  announcementColor: "#ffaa33"
+  activationDelaySecs: 600
+  fee: 5000
+  salaryPenalty: 0.05
+  actionType: ErtShuttle
+  gameruleId: ERTEngineeringShuttleSpawn
+  sortOrder: 50
+  authGroups:
+    - [ Captain, ChiefEngineer ]
+    - [ Captain, ChiefEngineer ]
+  authGroupLabels:
+    - "Captain / CE (1)"
+    - "Captain / CE (2)"
+  cooldownSecs: 3600
+
+# ── ERT Medical ───────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ErtMedical
+  name: secure-terminal-ert-medical-name
+  description: secure-terminal-ert-medical-desc
+  announcement: secure-terminal-ert-medical-announcement
+  announcementColor: "#33ff66"
+  activationDelaySecs: 600
+  fee: 5000
+  salaryPenalty: 0.05
+  actionType: ErtShuttle
+  gameruleId: ERTMedicalShuttleSpawn
+  sortOrder: 60
+  authGroups:
+    - [ Captain, ChiefMedicalOfficer ]
+    - [ Captain, ChiefMedicalOfficer ]
+  authGroupLabels:
+    - "Captain / CMO (1)"
+    - "Captain / CMO (2)"
+  cooldownSecs: 3600
+
+# ── ERT Janitorial ────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ErtJanitorial
+  name: secure-terminal-ert-janitorial-name
+  description: secure-terminal-ert-janitorial-desc
+  announcement: secure-terminal-ert-janitorial-announcement
+  announcementColor: "#aaffaa"
+  activationDelaySecs: 600
+  fee: 5000
+  salaryPenalty: 0.05
+  actionType: ErtShuttle
+  gameruleId: ERTJanitorShuttleSpawn
+  sortOrder: 70
+  authGroups:
+    - [ Captain, HeadOfPersonnel ]
+    - [ Captain, HeadOfPersonnel ]
+  authGroupLabels:
+    - "Captain / HoP (1)"
+    - "Captain / HoP (2)"
+  cooldownSecs: 3600
+
+# ── ERT Chaplain ──────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ErtChaplain
+  name: secure-terminal-ert-chaplain-name
+  description: secure-terminal-ert-chaplain-desc
+  announcement: secure-terminal-ert-chaplain-announcement
+  announcementColor: "#ddddff"
+  activationDelaySecs: 600
+  fee: 5000
+  salaryPenalty: 0.05
+  actionType: ErtShuttle
+  gameruleId: ERTChaplainShuttleSpawn
+  sortOrder: 80
+  authGroups:
+    - [ Captain, Ntrep ]
+    - [ Captain, Ntrep ]
+  authGroupLabels:
+    - "Captain / NTR (1)"
+    - "Captain / NTR (2)"
+  cooldownSecs: 3600
+
+# ── Code GAMMA ────────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: CodeGamma
+  name: secure-terminal-code-gamma-name
+  description: secure-terminal-code-gamma-desc
+  announcement: secure-terminal-code-gamma-announcement
+  announcementColor: "#ff66cc"
+  activationDelaySecs: 5
+  fee: 2500
+  salaryPenalty: 0.1
+  actionType: AlertLevel
+  alertLevel: gamma
+  sortOrder: 10
+  authGroups:
+    - [ Captain, HeadOfSecurity, Ntrep ]
+    - [ Captain, HeadOfSecurity, Ntrep ]
+  authGroupLabels:
+    - "Captain / HoS / NTR (1)"
+    - "Captain / HoS / NTR (2)"
+  cooldownSecs: 900
+
+# ── Code PSI ──────────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: CodePsi
+  name: secure-terminal-code-psi-name
+  description: secure-terminal-code-psi-desc
+  announcement: secure-terminal-code-psi-announcement
+  announcementColor: "#2288ff"
+  activationDelaySecs: 5
+  fee: 2500
+  salaryPenalty: 0.1
+  actionType: AlertLevel
+  alertLevel: psi
+  sortOrder: 20
+  authGroups:
+    - [ Captain, HeadOfSecurity, ResearchDirector ]
+    - [ Captain, HeadOfSecurity, ResearchDirector ]
+  authGroupLabels:
+    - "Captain / HoS / RD (1)"
+    - "Captain / HoS / RD (2)"
+  cooldownSecs: 900
+
+# ── End GAMMA ─────────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: EndGamma
+  parentId: CodeGamma
+  name: secure-terminal-end-gamma-name
+  description: secure-terminal-end-gamma-desc
+  announcement: secure-terminal-end-gamma-announcement
+  announcementColor: "#66ff99"
+  activationDelaySecs: 5
+  fee: 0
+  salaryPenalty: 0.0
+  actionType: AlertLevel
+  alertLevel: green
+  requiresAlertLevel: gamma
+  requiresAlertActiveMinutes: 15
+  sortOrder: 12
+  authGroups:
+    - [ Captain, HeadOfSecurity, Ntrep ]
+    - [ Captain, HeadOfSecurity, Ntrep ]
+  authGroupLabels:
+    - "Captain / HoS / NTR (1)"
+    - "Captain / HoS / NTR (2)"
+  cooldownSecs: 0
+
+# ── End PSI ───────────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: EndPsi
+  parentId: CodePsi
+  name: secure-terminal-end-psi-name
+  description: secure-terminal-end-psi-desc
+  announcement: secure-terminal-end-psi-announcement
+  announcementColor: "#66ff99"
+  activationDelaySecs: 5
+  fee: 0
+  salaryPenalty: 0.0
+  actionType: AlertLevel
+  alertLevel: green
+  requiresAlertLevel: psi
+  requiresAlertActiveMinutes: 15
+  sortOrder: 22
+  authGroups:
+    - [ Captain, HeadOfSecurity, ResearchDirector ]
+    - [ Captain, HeadOfSecurity, ResearchDirector ]
+  authGroupLabels:
+    - "Captain / HoS / RD (1)"
+    - "Captain / HoS / RD (2)"
+  cooldownSecs: 0
+
+# ── Gamma Armory ──────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ArmoryGamma
+  name: secure-terminal-armory-gamma-name
+  description: secure-terminal-armory-gamma-desc
+  announcement: secure-terminal-armory-gamma-announcement
+  announcementColor: "#ff66cc"
+  activationDelaySecs: 60
+  fee: 5000
+  salaryPenalty: 0.08
+  actionType: Armory
+  armoryKey: gamma
+  requiresAlertLevel: gamma
+  recallMinDelaySecs: 120
+  oneTimeUse: true
+  sortOrder: 11
+  authGroups:
+    - [ Captain, HeadOfSecurity, Ntrep ]
+    - [ Captain, HeadOfSecurity, Ntrep ]
+  authGroupLabels:
+    - "Captain / HoS / NTR (1)"
+    - "Captain / HoS / NTR (2)"
+  cooldownSecs: 3600
+
+# ── Psi Armory ────────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ArmoryPsi
+  name: secure-terminal-armory-psi-name
+  description: secure-terminal-armory-psi-desc
+  announcement: secure-terminal-armory-psi-announcement
+  announcementColor: "#2288ff"
+  activationDelaySecs: 60
+  fee: 5000
+  salaryPenalty: 0.08
+  actionType: Armory
+  armoryKey: psi
+  requiresAlertLevel: psi
+  recallMinDelaySecs: 120
+  oneTimeUse: true
+  sortOrder: 21
+  authGroups:
+    - [ Captain, HeadOfSecurity, ResearchDirector ]
+    - [ Captain, HeadOfSecurity, ResearchDirector ]
+  authGroupLabels:
+    - "Captain / HoS / RD (1)"
+    - "Captain / HoS / RD (2)"
+  cooldownSecs: 3600
+
+# ── Emergency Medical Pod ─────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: EmergencyMedicalPod
+  name: secure-terminal-med-pod-name
+  description: secure-terminal-med-pod-desc
+  announcement: secure-terminal-med-pod-announcement
+  announcementColor: "#33ff66"
+  activationDelaySecs: 300
+  fee: 5000
+  salaryPenalty: 0.05
+  actionType: ErtShuttle
+  gameruleId: ERTMedicalShuttleSpawn
+  sortOrder: 30
+  authGroups:
+    - [ Captain, ChiefMedicalOfficer ]
+    - [ Captain, ChiefMedicalOfficer ]
+  authGroupLabels:
+    - "Captain / CMO (1)"
+    - "Captain / CMO (2)"
+  cooldownSecs: 3600

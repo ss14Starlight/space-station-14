@@ -23,6 +23,7 @@ using Robust.Shared.Configuration;
 using System;
 using System.Collections.Generic;
 using Content.Server.Shuttles.Components;
+using Content.Shared.Starlight.SecureTerminal;
 using Content.Shared.Speech;
 using Content.Shared.Station.Components;
 using Robust.Shared.Player;
@@ -68,6 +69,10 @@ namespace Content.Server.Communications
 
             // On console init, set cooldown
             SubscribeLocalEvent<CommunicationsConsoleComponent, MapInitEvent>(OnCommunicationsConsoleMapInit);
+
+            // Starlight Start: Secure Command Terminal
+            SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleOpenSecureTerminalMessage>(OnOpenSecureTerminalMessage);
+            // Starlight End
         }
 
         public override void Update(float frameTime)
@@ -113,6 +118,17 @@ namespace Content.Server.Communications
             comp.AdditionalGrids.Add(ccComp.Entity.Value);
             //Starlight end
         }
+
+        // Starlight Start: Secure Command Terminal
+        private void OnOpenSecureTerminalMessage(EntityUid uid, CommunicationsConsoleComponent comp,
+            CommunicationsConsoleOpenSecureTerminalMessage msg)
+        {
+            if (msg.Actor is not { Valid: true } actor) return;
+            if (!CanUse(actor, uid)) return;
+            if (!HasComp<SecureCommandTerminalConsoleComponent>(uid)) return;
+            _uiSystem.TryOpenUi(uid, SecureCommandTerminalUiKey.Key, actor);
+        }
+        // Starlight End
 
         /// <summary>
         /// Update the UI of every comms console.

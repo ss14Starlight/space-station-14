@@ -14,7 +14,6 @@ namespace Content.Client.Communications.UI
     public sealed class CommunicationsConsoleBoundUserInterface : BoundUserInterface
     {
         [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IGameTiming _timing = default!; // Starlight
 
         [ViewVariables]
         private CommunicationsConsoleMenu? _menu;
@@ -32,6 +31,9 @@ namespace Content.Client.Communications.UI
             _menu.OnBroadcast += BroadcastButtonPressed;
             _menu.OnAlertLevel += AlertLevelSelected;
             _menu.OnEmergencyLevel += EmergencyShuttleButtonPressed;
+            // Starlight Start: Secure Command Terminal
+            _menu.SecureTerminalButton.OnPressed += _ => SendMessage(new CommunicationsConsoleOpenSecureTerminalMessage());
+            // Starlight End
         }
 
         public void AlertLevelSelected(string level)

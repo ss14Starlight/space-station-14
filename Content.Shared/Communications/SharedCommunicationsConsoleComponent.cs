@@ -105,4 +105,10 @@ namespace Content.Shared.Communications
     {
         Key
     }
+
+    // Starlight Start: Secure Command Terminal
+    /// <summary>Sent from the client when the player presses the "Secure Terminal" button.</summary>
+    [Serializable, NetSerializable]
+    public sealed class CommunicationsConsoleOpenSecureTerminalMessage : BoundUserInterfaceMessage { }
+    // Starlight End
 }
