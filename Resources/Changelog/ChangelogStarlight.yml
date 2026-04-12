@@ -811,4 +811,11 @@ Entries:
   id: 404243
   time: '2026-04-12T07:42:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4080
+- author: Caws
+  changes:
+  - message: (Silica) Xenobio's airlock doors are now access-locked to Science as intended.
+    type: Fix
+  id: 404244
+  time: '2026-04-12T07:51:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4115
 Order: -1
