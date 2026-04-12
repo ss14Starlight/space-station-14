@@ -806,7 +806,7 @@ public sealed partial class AdminVerbSystem
                 {
                     var showHealthBars = EnsureComp<ShowHealthBarsComponent>(args.Target);
                     showHealthBars.DamageContainers.Add("Biological");
-                    showHealthBars.HealthStatusIcon = "HealthIcon";
+                    showHealthBars.HealthStatusIcon = "HealthBarMarkerIcon"; // Starlight
 
                     var showHealthIcons = EnsureComp<ShowHealthIconsComponent>(args.Target);
                     showHealthIcons.DamageContainers.Add("Biological");
