@@ -64,8 +64,8 @@ public sealed partial class RailroadingDeliveryRewardSystem : AccUpdateEntitySys
         {
             if (!TryDeliver(pending.Card, pending.Subject))
                 _queue.Enqueue(pending);
-            else
-                processed++;
+
+            processed++;
         }
     }
 
