@@ -224,4 +224,5 @@ public enum SpeciesNaming : byte
     FirstLast,
     FirstDashFirst,
     TheFirstofLast,
+    PrefixSuffix, // Starlight
 }

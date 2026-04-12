@@ -335,6 +335,21 @@
   name: guide-entry-sl-security-sop-specialsituations
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/SpecialSituations.xml"
   priority: 11
+  children:
+  - security-sop-enemy-of-corporation
+  - security-sop-hostage-situations
+
+- type: guideEntry
+  id: security-sop-enemy-of-corporation
+  name: guide-entry-sl-security-sop-enemy-of-corporation
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/SpecialSituations/EnemyOfCorporation.xml"
+  priority: 1
+
+- type: guideEntry
+  id: security-sop-hostage-situations
+  name: guide-entry-sl-security-sop-hostage-situations
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/SpecialSituations/HostageSituations.xml"
+  priority: 2
 
 - type: guideEntry
   id: legal-sop-intro

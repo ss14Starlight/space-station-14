@@ -141,6 +141,7 @@
   name: dynamic-title
   showInVote: false # admin-only for now until we fix some bugs
   description: dynamic-description
+  minPlayers: 5 # 🌟Starlight🌟
   rules:
   - DynamicRule
   - DummyNonAntag
@@ -180,7 +181,7 @@
     - tator
   name: traitor-title
   description: traitor-description
-  minPlayers: 4
+  minPlayers: 0 # 🌟Starlight🌟
   showInVote: true # 🌟Starlight🌟
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
@@ -250,6 +251,7 @@
   - wizard
   name: wizard-title
   description: wizard-description
+  minPlayers: 40 # 🌟Starlight🌟
   showInVote: false
   rules:
   - Wizard
@@ -266,6 +268,7 @@
     - xenoborgs
   name: xenoborgs-title
   description: xenoborgs-description
+  minPlayers: 20 # 🌟Starlight🌟
   showInVote: true # 🌟Starlight🌟
   rules:
   - Xenoborgs

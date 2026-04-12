@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
-using Content.Server.Body.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Rotation;

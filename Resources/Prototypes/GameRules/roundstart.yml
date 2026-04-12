@@ -277,7 +277,7 @@
   id: Traitor
   components:
   - type: GameRule
-    minPlayers: 5
+    minPlayers: 0 # Starlight-edit
     delay:
       min: 240
       max: 420
