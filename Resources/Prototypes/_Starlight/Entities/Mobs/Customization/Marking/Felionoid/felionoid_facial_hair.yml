@@ -4,7 +4,7 @@
   markingCategory: FacialHair
   speciesRestriction: [Felionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/felionoid_facial_hair.rsi
+    - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
       state: beard_s
 
 - type: marking
@@ -13,7 +13,7 @@
   markingCategory: FacialHair
   speciesRestriction: [Felionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/felionoid_facial_hair.rsi
+    - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
       state: colonel_s
 
 - type: marking
@@ -22,7 +22,7 @@
   markingCategory: FacialHair
   speciesRestriction: [Felionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/felionoid_facial_hair.rsi
+    - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
       state: fu_s
 
 - type: marking
@@ -31,7 +31,7 @@
   markingCategory: FacialHair
   speciesRestriction: [Felionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/felionoid_facial_hair.rsi
+    - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
       state: mane_s
 
 - type: marking
@@ -40,5 +40,5 @@
   markingCategory: FacialHair
   speciesRestriction: [Felionoid]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/felionoid_facial_hair.rsi
+    - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
       state: neck_s
