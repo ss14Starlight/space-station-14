@@ -1208,3 +1208,23 @@
     - type: Tag
       tags:
         - FlatpackBlacklist
+
+# Blue SMES
+- type: entity
+  id: SMESHyperAdvancedMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: hyper advanced SMES machine board
+  description: A machine printed circuit board for a Hyper Advanced SMES.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: power_mod
+  - type: MachineBoard
+    prototype: SMESBlueEmpty
+    stackRequirements:
+      Manipulator: 2
+      CableHV: 30
+    componentRequirements:
+      PowerCell:
+        amount: 4
+        defaultPrototype: PowerCellHigh
