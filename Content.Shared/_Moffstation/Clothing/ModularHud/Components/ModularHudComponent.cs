@@ -61,6 +61,7 @@ public sealed partial class ModularHudComponent : Component
     [DataField] public LocId MissingToolQualityErrorText = "modularhud-verb-remove-modules-error-missing-tool-quality";
     [DataField] public LocId NoModulesToRemovePopupText = "modularhud-verb-remove-modules-error-no-modules-to-remove";
 
+    [DataField] public LocId CapacityExamineText = "modularhud-examine-capacity";
     [DataField] public LocId NoModulesExamineText = "modularhud-examine-no-modules";
     [DataField] public LocId HeaderExamineText = "modularhud-examine-modules-header";
     [DataField] public LocId ModuleItemExamineText = "modularhud-examine-module-item";

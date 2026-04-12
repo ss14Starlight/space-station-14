@@ -324,14 +324,18 @@ public abstract partial class SharedModularHudSystem : EntitySystem
             if (!modules.MoveNext())
             {
                 args.PushMarkup(Loc.GetString(entity.Comp.NoModulesExamineText));
-                return;
+            }
+            else
+            {
+                args.PushMarkup(Loc.GetString(entity.Comp.HeaderExamineText));
+                do
+                {
+                    args.PushMarkup(Loc.GetString(entity.Comp.ModuleItemExamineText, ("module", modules.Current)));
+                } while (modules.MoveNext());
             }
 
-            args.PushMarkup(Loc.GetString(entity.Comp.HeaderExamineText));
-            do
-            {
-                args.PushMarkup(Loc.GetString(entity.Comp.ModuleItemExamineText, ("module", modules.Current)));
-            } while (modules.MoveNext());
+            args.PushMarkup(Loc.GetString(entity.Comp.CapacityExamineText,
+                ("capacity", entity.Comp.MaximumContainedModules)));
         }
     }
 
@@ -355,24 +359,35 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     ) where TArgs : ContainerModifiedMessage
     {
         if (args.Container.ID != entity.Comp.ModuleContainerId ||
-            !TryComp<ModularHudModuleComponent>(args.Entity, out var moduleComp))
+            !HasComp<ModularHudModuleComponent>(args.Entity))
             return;
 
-        RefreshEffectsForModules([(args.Entity, moduleComp)]);
-        SyncVisuals(entity);
+        var parentUid = Transform(entity).ParentUid;
+        if (HasComp<InventoryComponent>(parentUid) &&
+            _inventory.InSlotWithAnyFlags(entity.Owner, entity.Comp.ActiveSlots))
+        {
+            RefreshVisualsAndEffects(entity, parentUid);
+        }
+        else
+        {
+            RefreshVisualsAndEffects(entity, null);
+        }
     }
 
-    private void OnGotEquipped(Entity<ModularHudComponent> entity, ref GotEquippedEvent args) => RefreshEffectsForWearerForContainedModules(entity, args.EquipTarget); // Starlight
+    private void OnGotEquipped(Entity<ModularHudComponent> entity, ref GotEquippedEvent args) => RefreshVisualsAndEffects(entity, args.EquipTarget); // Starlight
 
-    private void OnGotUneqipped(Entity<ModularHudComponent> entity, ref GotUnequippedEvent args) => RefreshEffectsForWearerForContainedModules(entity, args.EquipTarget); // Starlight
+    private void OnGotUneqipped(Entity<ModularHudComponent> entity, ref GotUnequippedEvent args) => RefreshVisualsAndEffects(entity, args.EquipTarget); // Starlight
 
     /// This function contains a functional grab-bag of whatever function calls / event raisings need to happen to cause
     /// the disparate HUD effects to be updated when the modular HUD is un/equipped.
-    private void RefreshEffectsForWearerForContainedModules(Entity<ModularHudComponent> entity, EntityUid equippee)
+    private void RefreshVisualsAndEffects(Entity<ModularHudComponent> entity, EntityUid? equippee)
     {
-        _blurryVision.UpdateBlurMagnitude(equippee, CompOrNull<BlindableComponent>(equippee)?.IsWearingGlasses ?? false); // Starlight
-        var flashEv = new FlashImmunityChangedEvent(_flash.IsFlashImmune(equippee));
-        RaiseLocalEvent(equippee, ref flashEv);
+        if (equippee is { } e)
+        {
+            _blurryVision.UpdateBlurMagnitude(e, CompOrNull<BlindableComponent>(equippee)?.IsWearingGlasses ?? false); // Starlight
+            var flashEv = new FlashImmunityChangedEvent(_flash.IsFlashImmune(e));
+            RaiseLocalEvent(e, ref flashEv);
+        }
 
         RefreshEffectsForModules(GetModules(entity));
         SyncVisuals(entity);

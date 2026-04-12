@@ -12,14 +12,16 @@ public sealed class BlurryVisionSystem : EntitySystem
 
         SubscribeLocalEvent<VisionCorrectionComponent, GotEquippedEvent>(OnGlassesEquipped);
         SubscribeLocalEvent<VisionCorrectionComponent, GotUnequippedEvent>(OnGlassesUnequipped);
-        SubscribeLocalEvent<VisionCorrectionComponent, InventoryRelayedEvent<GetBlurEvent>>(OnGetBlur);
+        Subs.SubscribeWithRelay<VisionCorrectionComponent, GetBlurEvent>(OnGetBlur, held: false); // Moffstation - Modular HUDs need to handle both the basic event and the inventory relayed one
     }
 
-    private void OnGetBlur(Entity<VisionCorrectionComponent> glasses, ref InventoryRelayedEvent<GetBlurEvent> args)
+    // Moffstation - Begin - Modular HUDs need this to be base + relayed
+    private void OnGetBlur(Entity<VisionCorrectionComponent> glasses, ref GetBlurEvent args)
     {
-        args.Args.Blur += glasses.Comp.VisionBonus;
-        args.Args.CorrectionPower *= glasses.Comp.CorrectionPower;
+        args.Blur += glasses.Comp.VisionBonus;
+        args.CorrectionPower *= glasses.Comp.CorrectionPower;
     }
+    // Moffstation - End
 
     public void UpdateBlurMagnitude(Entity<BlindableComponent?> ent, bool glasses) // starlight change: glasses param
     {

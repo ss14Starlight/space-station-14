@@ -1,15 +1,19 @@
 # Verbs
 modularhud-verb-insert-module = Insert module
-modularhud-verb-insert-module-message = Inserts the { $module } into the { $hud }.
-modularhud-verb-insert-module-error-fails-requirements = This { $module } is incompatible with the { $hud }.
-modularhud-verb-insert-module-error-slots-full = the { $hud } is full.
+modularhud-verb-insert-module-message = Inserts { THE($module) } into { THE($hud) }.
+modularhud-verb-insert-module-error-fails-requirements = This { $module } {CONJUGATE-BE(module)} incompatible with { THE($hud) }.
+modularhud-verb-insert-module-error-slots-full = { CAPITALIZE(THE($hud)) } {CONJUGATE-BE(hud)} full.
 modularhud-verb-remove-modules = Remove modules
-modularhud-verb-remove-modules-message = Removes the modules from the { $hud }.
+modularhud-verb-remove-modules-message = Removes the modules from { THE($hud) }.
 modularhud-verb-remove-modules-error-missing-tool-quality = You need something capable of {$quality} to do that.
-modularhud-verb-remove-modules-error-no-modules-to-remove = The { $hud } is already empty.
+modularhud-verb-remove-modules-error-no-modules-to-remove = { CAPITALIZE(THE($hud)) } {CONJUGATE-BE(hud)} already empty.
 
 # Examine
-modularhud-examine-no-modules = It contains no modules
+modularhud-examine-capacity = It has room for { $capacity ->
+  [1] [bold]one[/bold] module
+  *[other] [bold]{ $capacity }[/bold] modules
+} in total.
+modularhud-examine-no-modules = It contains no modules.
 modularhud-examine-modules-header = It contains:
 modularhud-examine-module-item = - [bold]{$module}[/bold]
 
