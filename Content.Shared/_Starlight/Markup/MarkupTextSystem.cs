@@ -13,7 +13,7 @@ public sealed class MarkupTextSystem : EntitySystem
 
     private void OnExamined(Entity<MarkupDescriptionComponent> entity, ref ExaminedEvent args)
     {
-        using (args.PushGroup("markupcomp", 10))
+        using (args.PushGroup("markupcomp", entity.Comp.Priority))
             foreach (var text in entity.Comp.Texts.Values)
                 args.PushMarkup(text);
     }
