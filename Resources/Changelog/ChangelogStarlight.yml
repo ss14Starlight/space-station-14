@@ -818,4 +818,32 @@ Entries:
   id: 404244
   time: '2026-04-12T07:51:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4115
+- author: Caws
+  changes:
+  - message: (Box) Security station beacon.
+    type: Add
+  id: 404245
+  time: '2026-04-12T07:52:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4116
+- author: Caws
+  changes:
+  - message: (Box) Brigmed station beacon.
+    type: Add
+  id: 404246
+  time: '2026-04-12T07:52:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4116
+- author: Caws
+  changes:
+  - message: (Box) "Solars" station beacons updated to use cardinal directions, e.g. "Solars NE / NW / SE / SW".
+    type: Tweak
+  id: 404247
+  time: '2026-04-12T07:52:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4116
+- author: Caws
+  changes:
+  - message: (Box) GenPop's station beacon is now 'Brig' instead of 'Perma'.
+    type: Fix
+  id: 404248
+  time: '2026-04-12T07:52:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4116
 Order: -1
