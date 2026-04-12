@@ -790,4 +790,25 @@ Entries:
   id: 404240
   time: '2026-04-12T07:30:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4097
+- author: redmushie
+  changes:
+  - message: Particles (from particle accelerator/decelerators) now hit at most three targets, and dissipate after.
+    type: Tweak
+  id: 404241
+  time: '2026-04-12T07:42:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4080
+- author: redmushie
+  changes:
+  - message: Particle decelerators now decelerate 3x as much.
+    type: Tweak
+  id: 404242
+  time: '2026-04-12T07:42:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4080
+- author: redmushie
+  changes:
+  - message: Antiparticles do equal damage to regular particles.
+    type: Tweak
+  id: 404243
+  time: '2026-04-12T07:42:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4080
 Order: -1
