@@ -214,7 +214,7 @@
     globalAnnouncement: false # Starlight
     weight: 3 # 🌟Starlight🌟 Casualization
     earliestStart: 50 # 🌟Starlight🌟 Casualization
-    reoccurrenceDelay: 45 # 🌟Starlight🌟 Casualization
+    reoccurrenceDelay:  # 🌟Starlight🌟 Casualization
     minimumPlayers: 40 # 🌟Starlight🌟 Casualization
     duration: null
   - type: SpaceSpawnRule
@@ -246,8 +246,8 @@
     globalAnnouncement: false # Starlight
     weight: 3 # 🌟Starlight🌟 Casualization
     duration: null
-    earliestStart: 45 # 🌟Starlight🌟 Casualization
-    reoccurrenceDelay: 45 # 🌟Starlight🌟 Casualization
+    earliestStart:  # 🌟Starlight🌟 Casualization
+    reoccurrenceDelay:  # 🌟Starlight🌟 Casualization
     minimumPlayers: 30
   - type: SpaceSpawnRule
   - type: AntagLoadProfileRule
@@ -342,7 +342,7 @@
   - type: StationEvent
     weight: 7.5
     duration: 1
-    earliestStart: 30 # SL 45 -> 30
+    earliestStart: 30 # SL  -> 30
     minimumPlayers: 20
   - type: RandomSpawnRule
     prototype: MobRevenant
@@ -356,7 +356,7 @@
     duration: 1
     earliestStart: 30
     reoccurrenceDelay: 60
-    minimumPlayers: 45 # 🌟Starlight🌟 Casualization
+    minimumPlayers:  # 🌟Starlight🌟 Casualization
   - type: AntagSelection
     agentName: wizard-round-end-name
     definitions:
@@ -364,7 +364,7 @@
       min: 1
       max: 3 # Starlight
       prefRoles: [ Wizard ] #starlight
-      playerRatio: 45 # Starlight, you know, could be neat for multiple wizards to late spawn.
+      playerRatio: 60 # Starlight, you know, could be neat for multiple wizards to late spawn.
       pickPlayer: false
       startingGear: WizardBlueGear
       roleLoadout:
