@@ -699,4 +699,11 @@ Entries:
   id: 404227
   time: '2026-04-10T14:28:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4039
+- author: beck
+  changes:
+  - message: 'Add a new syndicate item: the disruptor! Allows you to call in minor threats to the station for 6 tc.'
+    type: Add
+  id: 404228
+  time: '2026-04-12T07:18:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3984
 Order: -1
