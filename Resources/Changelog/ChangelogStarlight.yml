@@ -937,4 +937,11 @@ Entries:
   id: 404261
   time: '2026-04-12T07:58:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4119
+- author: Caws
+  changes:
+  - message: (Lobster) Toolbox altar in Tools Room, vampires rejoice.
+    type: Remove
+  id: 404262
+  time: '2026-04-12T08:01:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4120
 Order: -1
