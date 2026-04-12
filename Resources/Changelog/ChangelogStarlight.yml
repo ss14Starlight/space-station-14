@@ -727,4 +727,18 @@ Entries:
   id: 404231
   time: '2026-04-12T07:20:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4050
+- author: R3v3l4t1on, Abby
+  changes:
+  - message: Adds the NTNC HAW from FH, but with new sprites from Abby.
+    type: Add
+  id: 404232
+  time: '2026-04-12T07:21:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4024
+- author: R3v3l4t1on, Abby
+  changes:
+  - message: Changed the gun on the HAW to not be hilariously OP. It's still pretty strong. But it won't 1-shot avali.
+    type: Tweak
+  id: 404233
+  time: '2026-04-12T07:21:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4024
 Order: -1
