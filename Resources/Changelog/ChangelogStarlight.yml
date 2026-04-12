@@ -860,4 +860,74 @@ Entries:
   id: 404250
   time: '2026-04-12T07:55:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4117
+- author: Caws
+  changes:
+  - message: (Boxcars) Freezer added to Genpop.
+    type: Add
+  id: 404251
+  time: '2026-04-12T07:55:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4118
+- author: Caws
+  changes:
+  - message: (Boxcars) CMO fax machine was not named.
+    type: Fix
+  id: 404252
+  time: '2026-04-12T07:55:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4118
+- author: Caws
+  changes:
+  - message: (Boxcars) Law fax machine was not named.
+    type: Fix
+  id: 404253
+  time: '2026-04-12T07:55:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4118
+- author: Caws
+  changes:
+  - message: (Boxcars) NTR office fax was named 'NCT', fixed.
+    type: Fix
+  id: 404254
+  time: '2026-04-12T07:55:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4118
+- author: Caws
+  changes:
+  - message: (Boxcars) NCT office fax was named 'NTR', fixed.
+    type: Fix
+  id: 404255
+  time: '2026-04-12T07:55:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4118
+- author: Caws
+  changes:
+  - message: (Boxcars) Three morgue units in Morgue were facing into a wall.
+    type: Fix
+  id: 404256
+  time: '2026-04-12T07:55:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4118
+- author: Caws
+  changes:
+  - message: (Boxcars) QM's office no longer starts unpowered.
+    type: Fix
+  id: 404257
+  time: '2026-04-12T07:55:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4118
+- author: Caws
+  changes:
+  - message: (Boxcars) Atmos' exit airlock now properly bolts / cycles.
+    type: Fix
+  id: 404258
+  time: '2026-04-12T07:55:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4118
+- author: Caws
+  changes:
+  - message: (Boxcars) Chemistry now has a centrifuge.
+    type: Fix
+  id: 404259
+  time: '2026-04-12T07:55:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4118
+- author: Caws
+  changes:
+  - message: (Boxcars) Many rooms should no longer partially spaced at roundstart.
+    type: Fix
+  id: 404260
+  time: '2026-04-12T07:55:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4118
 Order: -1
