@@ -11,9 +11,5 @@ public sealed partial class MarkupDescriptionComponent : Component
     /// Text that will be appended to the description of an entity on examine.
     /// Is a dictionary so an ID can be assigned to it, primarily for toolshed.
     /// </summary>
-    [DataField, AutoNetworkedField] public Dictionary<string, string> Texts = [];
-    /// <summary>
-    /// If you want to alter the priority, for whatever ungodly reason.
-    /// </summary>
-    [DataField, AutoNetworkedField] public int Priority = 10;
+    [DataField, AutoNetworkedField] public Dictionary<string, (int, string)> Texts = [];
 }
