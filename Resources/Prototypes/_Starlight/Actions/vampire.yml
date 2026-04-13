@@ -28,7 +28,7 @@
   description: Paralyze and mute nearby targets, dealing stamina damage over time.
   components:
     - type: Action
-      useDelay: 90
+      useDelay: 60
       itemIconStyle: NoItem
       priority: 2
       icon:
@@ -39,6 +39,32 @@
     - type: VampireAction
       bloodToUnlock: 0
       bloodCost: 0
+- type: entity
+  parent: BaseAction
+  id: ActionVampireSleep
+  name: Sleep (15)
+  description: Put target to sleep for 10 seconds
+  components:
+    - type: Action
+      useDelay: 120
+      itemIconStyle: NoItem
+      priority: 25
+      icon:
+        sprite: _Starlight/Vampire/actions_vampire.rsi
+        state: sleep_icon
+    - type: TargetAction
+      range: 2
+      checkCanAccess: false
+      interactOnMiss: false
+    - type: EntityTargetAction
+      canTargetSelf: false
+      whitelist:
+        components:
+          - HumanoidAppearance
+      event: !type:VampireSleepActionEvent
+    - type: VampireAction
+      bloodToUnlock: 0
+      bloodCost: 15
 
 - type: entity
   parent: BaseAction
@@ -229,6 +255,7 @@
       bloodToUnlock: 800
       bloodCost: 100
       requiredClass: Hemomancer
+    - type: EorgAction
 
 - type: entity
   parent: BaseAction
@@ -293,6 +320,7 @@
       bloodToUnlock: 200
       bloodCost: 20
       requiredClass: Umbrae
+    - type: EorgAction
 
 - type: entity
   parent: BaseAction
@@ -342,6 +370,7 @@
       bloodToUnlock: 800
       bloodCost: 50
       requiredClass: Umbrae
+    - type: EorgAction
 
 - type: entity
   parent: BaseAction
@@ -436,6 +465,7 @@
       bloodToUnlock: 150
       bloodCost: 150
       requiredClass: Dantalion
+    - type: EorgAction
 
 - type: entity
   parent: BaseAction
@@ -444,7 +474,7 @@
   description: Flood a victim's mind with bliss, pacifying them for 40 seconds.
   components:
     - type: Action
-      useDelay: 30 
+      useDelay: 30
       itemIconStyle: NoItem
       priority: 26
       icon:

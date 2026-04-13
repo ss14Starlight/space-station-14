@@ -1,0 +1,23 @@
+- type: entity
+  save: false
+  id: BaseSpeciesPickupableLarge
+  abstract: true
+  components:
+  - type: Item
+    size: Huge
+    allowDirectHandPickup: false
+    shape:
+    - 0, 0, 10, 9 # If you have a bluespace bag..
+  - type: RestrictNestingItem
+  - type: MultiHandedItem
+  - type: CanEscapeInventory
+    baseResistTime: 2
+  - type: VisualPickupable
+  - type: PickupableSpeedRelay
+
+- type: entity
+  id: VisualPickupableCloneEntity
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+    - type: PickupableVisuals

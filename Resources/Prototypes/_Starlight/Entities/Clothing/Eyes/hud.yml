@@ -170,7 +170,7 @@
 - type: entity
   parent: [ClothingEyesBase, BaseCentcommContraband]
   id: ClothingEyesHudCentComm
-  name: centcomm officer's hud
+  name: CentComm officer's hud
   description: A Innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
   components:
     - type: Sprite

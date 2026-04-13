@@ -24,6 +24,7 @@
       - Radio
       - HolofanProjector
       - Multitool
+      - GrappleGun #FH
       - AppraisalTool
       - JawsOfLife
       - GPS
@@ -72,7 +73,7 @@
           - Wirecutter
 
           #Starlight
-          - ImprovisedWirecutter          
+          - ImprovisedWirecutter
       crowbar:
         whitelist:
           tags:

@@ -78,7 +78,7 @@ namespace Content.Server.Administration.Systems
         // Maximum length a message can be before it is cut off
         // Should be shorter than DescriptionMax
         private const ushort MessageLengthCap = 3000;
-        
+
         private readonly TimeSpan _messageCooldown = TimeSpan.FromSeconds(2);
 
         private readonly Queue<(NetUserId Channel, string Text, TimeSpan Timestamp)> _recentMessages = new();
@@ -655,12 +655,12 @@ namespace Content.Server.Administration.Systems
                 // Unauthorized bwoink (log?)
                 return;
             }
-            
+
             var currentTime = _timing.RealTime;
 
             if (IsOnCooldown(message.UserId, currentTime) && senderAdmin == null)
                 return;
-            
+
             if (IsSpam(message.UserId, message.Text) && senderAdmin == null)
                 _banManager.CreateServerBan(senderSession.UserId, senderSession.Name, null, null, null, 0, NoteSeverity.High, "Automatic AHELP Antispam system Ban, If this ban is wrong, file an appeal.");
 
@@ -879,7 +879,7 @@ namespace Content.Server.Administration.Systems
             /// </summary>
             public bool OnCall;
         }
-        
+
         private void AddToRecentMessages(NetUserId channelId, string text, TimeSpan timestamp)
         {
             _recentMessages.Enqueue((channelId, text, timestamp));
@@ -889,7 +889,7 @@ namespace Content.Server.Administration.Systems
                 _recentMessages.Dequeue();
             }
         }
-        
+
         private bool IsOnCooldown(NetUserId channelId, TimeSpan currentTime)
         {
             var lastMessage = _recentMessages
@@ -899,7 +899,7 @@ namespace Content.Server.Administration.Systems
 
             return lastMessage != default && (currentTime - lastMessage.Timestamp) < _messageCooldown;
         }
-        
+
         private bool IsSpam(NetUserId channelId, string text)
         {
             var recentMessages = _recentMessages

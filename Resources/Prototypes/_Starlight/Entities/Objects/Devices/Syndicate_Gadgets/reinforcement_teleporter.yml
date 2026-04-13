@@ -9,6 +9,7 @@
       name: ghost-role-information-syndicate-cyborg-medical-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       mindRoles:
       - MindRoleGhostRoleSilicon
       raffle:
@@ -27,6 +28,7 @@
       name: ghost-role-information-syndicate-cyborg-saboteur-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       mindRoles:
       - MindRoleGhostRoleSilicon
       raffle:
@@ -45,6 +47,7 @@
       name: ghost-role-information-syndicate-cyborg-stealth-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       mindRoles:
       - MindRoleGhostRoleSilicon
       raffle:

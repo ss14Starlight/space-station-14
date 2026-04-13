@@ -230,10 +230,10 @@ public sealed partial class StatusEffectsSystem : EntitySystem
         if (effectComp.MaximumDuration != null && duration > effectComp.MaximumDuration)
             duration = effectComp.MaximumDuration;
         // Starlight END
-        
+
         var endTime = delay == null ? _timing.CurTime + duration : _timing.CurTime + delay + duration;
         SetStatusEffectEndTime((effect.Value, effectComp), endTime);
-        var startTime = delay == null ? TimeSpan.Zero : _timing.CurTime + delay.Value;
+        var startTime = delay == null ? _timing.CurTime : _timing.CurTime + delay.Value;
         SetStatusEffectStartTime(effect.Value, startTime);
 
         TryApplyStatusEffect((statusEffect.Value, effectComp));
@@ -293,7 +293,7 @@ public sealed partial class StatusEffectsSystem : EntitySystem
         // It's already infinitely long can't add or subtract from infinity...
         if (effect.Comp.EndEffectTime is null)
             return;
-        
+
         // Starlight START
         var uncappedEndTime = effect.Comp.EndEffectTime + delta;
         var exceedsMaximumDuration = effect.Comp.MaximumDuration != null

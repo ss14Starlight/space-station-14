@@ -19,9 +19,9 @@
   kind: source
   path: "/Textures/_Starlight/Shaders/thermal-screen.swsl"
   params:
-    ThermalBoost: 1.5  
-    ThermalIntensity: 1  
-    
+    ThermalBoost: 1.5
+    ThermalIntensity: 1
+
 - type: shader
   id: BrightnessShader
   kind: source

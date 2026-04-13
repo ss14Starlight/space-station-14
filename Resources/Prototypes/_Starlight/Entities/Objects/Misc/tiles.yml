@@ -507,3 +507,95 @@
       - FloorWoodChessRed
   - type: Stack
     stackType: FloorTileItemWoodChessRed
+
+# Metal
+
+- type: entity
+  name: dark metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalDark
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_dark
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalDark
+  - type: Stack
+    stackType: FloorTileMetalDark
+
+- type: entity
+  name: brown metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalBrown
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_engie
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalBrown
+  - type: Stack
+    stackType: FloorTileMetalBrown
+
+- type: entity
+  name: blue  metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalBlue
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_med
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalBlue
+  - type: Stack
+    stackType: FloorTileMetalBlue
+
+- type: entity
+  name: purple metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalPurple
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_sci
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalPurple
+  - type: Stack
+    stackType: FloorTileMetalPurple
+
+- type: entity
+  name: red metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalRed
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_sec
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalRed
+  - type: Stack
+    stackType: FloorTileMetalRed
+
+- type: entity
+  name: green metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalGreen
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_service
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalGreen
+  - type: Stack
+    stackType: FloorTileMetalGreen

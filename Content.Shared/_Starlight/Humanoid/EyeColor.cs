@@ -43,11 +43,22 @@ public static class EyeColor
         return Color.FromHsv(hsv);
     }
 
+    public static bool VerifyFullWhite(Color color)
+    {
+        return color == Color.White;
+    }
+
+    public static Color MakeFullWhiteValid(Color color)
+    {
+        return Color.White;
+    }
+
     public static bool VerifyEyeColor(HumanoidEyeColor type, Color color)
     {
         return type switch
         {
             HumanoidEyeColor.Shadekin => VerifyShadekin(color),
+            HumanoidEyeColor.FullWhite => VerifyFullWhite(color),
             _ => false,
         };
     }
@@ -57,6 +68,7 @@ public static class EyeColor
         return type switch
         {
             HumanoidEyeColor.Shadekin => MakeShadekinValid(color),
+            HumanoidEyeColor.FullWhite => MakeFullWhiteValid(color),
             _ => color
         };
     }
@@ -66,6 +78,7 @@ public enum HumanoidEyeColor : byte
 {
     Standard,
     Shadekin,
+    FullWhite,
 }
 
 [ByRefEvent]

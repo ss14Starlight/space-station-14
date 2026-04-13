@@ -12,7 +12,7 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#43c4f7"
-        
+
 - type: entity
   id: CartridgePistol40SP
   name: cartridge (.40 SP)
@@ -31,7 +31,7 @@
     tags:
       - Cartridge
       - CartridgePistolDP
-      
+
 - type: entity
   id: CartridgePistol40HP
   name: cartridge (.40 HP)
@@ -80,7 +80,7 @@
 - type: entity
   id: CartridgePistolImprovised
   name: improvised cartridge (.35 auto)
-  description: A handmade pistol bullet, uses phosphorus as a propellent instead of gunpowder which makes it much less effective. 
+  description: A handmade pistol bullet, uses phosphorus as a propellent instead of gunpowder which makes it much less effective.
   parent: [BaseCartridgePistol, BaseMinorContraband]
   components:
   - type: CartridgeAmmo

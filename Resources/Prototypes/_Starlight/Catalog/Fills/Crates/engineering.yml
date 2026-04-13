@@ -1,7 +1,7 @@
 - type: entity
   id: CrateSupermatterFlatpack
   parent: CrateEngineeringSecure
-  name: Supermatter Crate
+  name: supermatter crate
   description: Supermatter, your solution for things regular matter can't handle.
   components:
   - type: EntityTableContainerFill
@@ -63,7 +63,7 @@
 - type: entity
   id: CrateNuclearReactorFlatpack
   parent: CrateEngineeringSecure
-  name: Nuclear Reactor Crate
+  name: nuclear reactor crate
   description: A crate containing a flatpacked Nuclear Reactor. Parts sold Separately.
   components:
   - type: EntityTableContainerFill
@@ -75,7 +75,7 @@
 - type: entity
   id: CrateGasTurbineFlatpack
   parent: CrateEngineeringSecure
-  name: Gas Turbine Crate
+  name: gas turbine crate
   description: A crate containing a flatpacked Gas Turbine. Parts sold Separately.
   components:
   - type: EntityTableContainerFill
@@ -87,7 +87,7 @@
 - type: entity
   id: CrateNuclearReactorSmallFlatpack
   parent: CrateEngineeringSecure
-  name: Small Nuclear Reactor Crate
+  name: small nuclear reactor crate
   description: A crate containing a flatpacked  Small Nuclear Reactor. Parts sold Separately.
   components:
   - type: EntityTableContainerFill
@@ -99,7 +99,7 @@
 - type: entity
   id: CrateGasTurbineSmallFlatpack
   parent: CrateEngineeringSecure
-  name: Small Gas Turbine Crate
+  name: small gas turbine crate
   description: A crate containing a flatpacked Small Gas Turbine. Parts sold Separately.
   components:
   - type: EntityTableContainerFill

@@ -21,7 +21,8 @@
 #    - RRCardMetabolizeTest
 #    - RRCardCriminal
 #    - RRCardMailOpen
-     - RRCardTerminate
+#    - RRCardTerminate
+    - RRCardWar
 
 - type: entity
   parent: BaseGameRule
@@ -62,9 +63,9 @@
   - type: RailroadRule
     preSpawnDelay: 1
     delay: 1
-    cards: 
+    cards:
     - RRCardTerminate
-    
+
 - type: entity
   parent: BaseGameRule
   id: RailroadingMinor
@@ -79,8 +80,9 @@
     delay: 10
     cards:
     # antagonists
-    
+
     - RRCardCriminal
+    - RRCardWar
 
     # open mail
 
@@ -94,13 +96,13 @@
     - RRCardFoodHerbSalad
     - RRCardFoodMelonFruitBowl
     - RRCardFoodStew
-    
+
     # Metabolize: Smokeables
-    
+
     - RRCardMetabolizeNicotine
-    
+
     # Metabolize: Alcohol Drinks
-    
+
     - RRCardMetabolizeAbsinthe
     - RRCardMetabolizeAle
     - RRCardMetabolizeBeer

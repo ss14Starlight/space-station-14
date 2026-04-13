@@ -59,6 +59,40 @@
         - id: RedRegaliaGloves
         - id: RedRegaliaCloak
         - id: SlickShoes
+
+- type: entity
+  parent: ClothingBackpackTrunkSpaceCourier
+  id: BoxCourier
+  name: space courier trunk
+  suffix: Bundle
+  description: A stylish green costume bundle themed after a legendary space courier. Ranked 9/13 on popular review websites!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingEyesSpaceCourierGoggles
+        - id: ClothingUniformJumpsuitSpaceCourier
+        - id: ClothingHandsGlovesColorBlack
+        - id: ClothingOuterCoatSpaceCourier
+        - id: ClothingShoesBootsSpaceCourier
+
+- type: entity
+  parent: ClothingBackpackTrunkSpaceCourierPAI
+  id: BoxCourierPAI
+  name: space courier trunk
+  suffix: Bundle, Ghost Role
+  description: A stylish green costume bundle themed after a legendary space courier. Ranked 9/13 on popular review websites!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingEyesSpaceCourierGoggles
+        - id: ClothingUniformJumpsuitSpaceCourier
+        - id: ClothingHandsGlovesColorBlack
+        - id: ClothingOuterCoatSpaceCourier
+        - id: ClothingShoesBootsSpaceCourier
 # Fashion-O-Mat-End
 
 # Expedition Encryption Keys

@@ -1,0 +1,57 @@
+- type: entity
+  id: WeaponMechSpecialMousetrapMortar
+  parent: [ BaseMechWeaponRange, SpecialMechEquipment ]
+  suffix: Mech Weapon, Gun, Special, Mortar
+  name: mousetrap mortar
+  description: Mounted mousetrap launcher.
+  components:
+  - type: Sprite
+    state: mecha_mousetrapmrtr
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    clumsyProof: true # Starlight
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
+    proto: MousetrapArmed
+    fireCost: 100
+  - type: Appearance
+
+- type: entity
+  id: WeaponMechSpecialBananaMortar
+  parent: [ BaseMechWeaponRange, SpecialMechEquipment ]
+  suffix: Mech Weapon, Gun, Special, Mortar
+  name: banana mortar
+  description: Mounted banana peel launcher.
+  components:
+  - type: Sprite
+    state: mecha_bananamrtr
+  - type: Gun
+    minAngle: 24
+    maxAngle: 25
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    clumsyProof: true # Starlight
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  #- type: AmmoCounter #Starlight - Mechs can't see this anyway
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
+    proto: TrashBananaPeel
+    fireCost: 100
+  - type: Appearance

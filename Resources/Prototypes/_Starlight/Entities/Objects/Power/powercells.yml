@@ -11,7 +11,7 @@
     - map: [ "enum.PowerCellVisualLayers.Base" ]
       state: tiny
   - type: Item
-    size: Small    
+    size: Small
   - type: Battery
     maxCharge: 250 #while in theory this could give five uses, in practice it gives 2-3 uses (between charge-up time, cooldown and idle-time). Any lower and the margins are too narrow to get more than 1 use out of the defib.
     startingCharge: 250
@@ -240,3 +240,36 @@
   - type: MechSpeedModifier
     sprintModifier: 1.5
     walkModifier: 1
+
+- type: entity
+  id: PowerCageOmega
+  parent: BasePowerCage
+  name: omega-capacity power cage
+  description: An extremely high-capacity power cage engineered for the most power-hungry shuttle weapon systems. Three times the capacity of a high-capacity cage, and three times the price. Noticeably heavier than standard cages.
+  components:
+  - type: Tag
+    tags:
+      - PowerCage
+      - PowerCageOmega
+  - type: Sprite
+    sprite: Objects/Power/power_cages.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: high
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+      color: "#FF8800"
+  - type: Battery
+    maxCharge: 18600
+    startingCharge: 18600
+  - type: StaticPrice
+    price: 9000
+
+- type: entity
+  id: PowerCageOmegaEmpty
+  parent: PowerCageOmega
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0

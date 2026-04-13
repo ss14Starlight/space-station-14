@@ -8,14 +8,8 @@
     },
     "states": [
         {
-            "name": "bottler",
-            "directions": 4,
-            "copyright": "TGStation"
-        },
-        {
             "name": "disposal",
-            "directions": 4,
-            "copyright": "TGStation"
+            "directions": 4
         },
         {
             "name": "disposal_working",
@@ -25,28 +19,23 @@
                 [ 0.1, 0.1, 0.1, 0.1, 0.1 ],
                 [ 0.1, 0.1, 0.1, 0.1, 0.1 ],
                 [ 0.1, 0.1, 0.1, 0.1, 0.1 ]
-            ],
-            "copyright": "TGStation"
+            ]
         },
         {
             "name": "ductConnector",
-            "directions": 4,
-            "copyright": "TGStation"
+            "directions": 4
         },
         {
             "name": "ductConnector_connected",
-            "directions": 4,
-            "copyright": "TGStation"
+            "directions": 4
         },
         {
             "name": "filter",
-            "directions": 4,
-            "copyright": "TGStation"
+            "directions": 4
         },
         {
             "name": "filterF",
-            "directions": 4,
-            "copyright": "TGStation"
+            "directions": 4
         },
         {
             "name": "pill_press",
@@ -56,63 +45,47 @@
                 [ 0.1, 0.1, 0.1 ],
                 [ 0.1, 0.1, 0.1 ],
                 [ 0.1, 0.1, 0.1 ]
-            ],
-            "copyright": "TGStation"
+            ]
         },
         {
             "name": "pill_press_off",
-            "directions": 4,
-            "copyright": "TGStation"
+            "directions": 4
         },
         {
             "name": "pipe_input",
-            "directions": 4,
-            "copyright": "TGStation"
+            "directions": 4
         },
         {
             "name": "pipe_output",
-            "directions": 4,
-            "copyright": "TGStation"
+            "directions": 4
         },
         {
             "name": "reaction_chamber",
-            "directions": 4,
-            "copyright": "TGStation"
+            "directions": 4
         },
         {
             "name": "reaction_chamber_on",
             "directions": 4,
-            "delays": [ [ 0.2, 0.2, 0.2, 0.2 ], [ 0.2, 0.2, 0.2, 0.2 ], [ 0.2, 0.2, 0.2, 0.2 ], [ 0.2, 0.2, 0.2, 0.2 ] ],
-            "copyright": "TGStation"
+            "delays": [ [ 0.2, 0.2, 0.2, 0.2 ], [ 0.2, 0.2, 0.2, 0.2 ], [ 0.2, 0.2, 0.2, 0.2 ], [ 0.2, 0.2, 0.2, 0.2 ] ]
         },
         {
             "name": "synthesizer",
-            "directions": 4,
-            "copyright": "TGStation"
-        },
-        {
-            "name": "synthesizer_inactive",
-            "directions": 4,
-            "copyright": "TGStation"
+            "directions": 4
         },
         {
             "name": "synthesizer_overlay",
-            "directions": 4,
-            "copyright": "TGStation"
+            "directions": 4
         },
         {
             "name": "tank",
-            "directions": 4,
-            "copyright": "TGStation"
+            "directions": 4
         },
         {
             "name": "buffer_tank",
-            "directions": 4,
-            "copyright": "TGStation"
+            "directions": 4
         },
         {
-            "name": "tap_output",
-            "copyright": "TGStation"
+            "name": "tap_output"
         }
     ]
 }

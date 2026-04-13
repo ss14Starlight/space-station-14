@@ -1,6 +1,5 @@
 using Content.Server.Ghost;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
 using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
@@ -9,6 +8,7 @@ using Content.Shared.Mobs;
 using Content.Shared.VentCrawl.Components;
 using Robust.Shared.Player;
 using Content.Shared.NodeContainer;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server.VentCrawl;
 

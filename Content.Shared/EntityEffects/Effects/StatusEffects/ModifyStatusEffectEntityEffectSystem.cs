@@ -47,19 +47,22 @@ public sealed partial class ModifyStatusEffect : BaseStatusEntityEffect<ModifySt
     [DataField(required: true)]
     public EntProtoId EffectProto;
 
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
-        Time == null
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
+    {
+        var reagentName = loc.GetEntityData(EffectProto).Name; // Starlight
+        return Time == null
             ? Loc.GetString(
                 "entity-effect-guidebook-status-effect-indef",
                 ("chance", Probability),
                 ("type", Type),
-                ("key", prototype.Index(EffectProto).Name),
+                ("key", reagentName), // Starlight  Fix the cause of the localization warnings.
                 ("delay", Delay.TotalSeconds))
             : Loc.GetString(
                 "entity-effect-guidebook-status-effect",
                 ("chance", Probability),
                 ("type", Type),
                 ("time", Time.Value.TotalSeconds),
-                ("key", prototype.Index(EffectProto).Name),
+                ("key", reagentName), // Starlight  Fix the cause of the localization warnings.
                 ("delay", Delay.TotalSeconds));
+    }
 }

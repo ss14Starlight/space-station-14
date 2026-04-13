@@ -33,6 +33,7 @@ using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared._Starlight.Mech;
+using Content.Shared._Starlight.Weapons.Melee.Events;
 #endregion
 
 namespace Content.Shared.Mech.EntitySystems;
@@ -72,6 +73,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, CanDropTargetEvent>(OnCanDragDrop);
         SubscribeLocalEvent<MechComponent, GotEmaggedEvent>(OnEmagged);
 
+        SubscribeLocalEvent<MechPilotComponent, GetMeleeOriginEvent>(OnGetMeleeOrigin); // Starlight
         SubscribeLocalEvent<MechPilotComponent, GetMeleeWeaponEvent>(OnGetMeleeWeapon);
         SubscribeLocalEvent<MechPilotComponent, CanAttackFromContainerEvent>(OnCanAttackFromContainer);
         SubscribeLocalEvent<MechPilotComponent, AttackAttemptEvent>(OnAttackAttempt);
@@ -471,7 +473,7 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         //Starlight Start - play sounds dependent on *battery*
         if (component.BatterySlot.ContainedEntity != null && TryComp(component.BatterySlot.ContainedEntity, out BatteryComponent? battery))
-        {        
+        {
             if ((int)(_battery.GetCharge((component.BatterySlot.ContainedEntity.Value, battery)) / battery.MaxCharge * 100) <= 33 //Starlight Edit: Earlier low power warning, and we run it off of the % power readout
                 && component.PlayPowerSound
                 && component.PilotSlot.ContainedEntity != null)
@@ -617,6 +619,20 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (TryComp<MechComponent>(component.Mech, out var mechComp))
             UpdateAppearance(component.Mech, mechComp);
     }
+
+    #region Starlight
+    private void OnGetMeleeOrigin(EntityUid uid, MechPilotComponent component, GetMeleeOriginEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!HasComp<MechComponent>(component.Mech))
+            return;
+
+        args.OriginEntity = component.Mech;
+        args.Handled = true;
+    }
+    #endregion
 
     private void OnGetMeleeWeapon(EntityUid uid, MechPilotComponent component, GetMeleeWeaponEvent args)
     {

@@ -37,7 +37,7 @@
       Steel: 100
   - type: StaticPrice
     price: 30
-  
+
 - type: entity
   name: abductor's screwdriver
   parent: [ BaseItem, BaseMajorContraband ]
@@ -76,7 +76,7 @@
       Steel: 100
   - type: StaticPrice
     price: 30
-    
+
 - type: entity
   name: abductor's wrench
   parent: [ Wrench, BaseMajorContraband ]
@@ -97,7 +97,7 @@
       - Anchoring
     useSound:
       path: /Audio/Items/ratchet.ogg
-      
+
 - type: entity
   name: abductor's multitool
   parent: [ Multitool, BaseMajorContraband ]
@@ -119,7 +119,7 @@
   components:
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Items/crowbar_drop.ogg  
+      path: /Audio/Items/crowbar_drop.ogg
   - type: Sprite
     sprite: _Starlight/Objects/Tools/makeshift_omnitool.rsi
     state: wrench
@@ -127,13 +127,13 @@
     sprite: _Starlight/Objects/Tools/makeshift_omnitool.rsi
   - type: Prying
     enabled: false
-    speedModifier: 0.25 
+    speedModifier: 0.25
   - type: ToolTileCompatible
     delay: 4
   - type: Tool
     qualities:
       - Screwing
-    speedModifier: 0.25  
+    speedModifier: 0.25
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
@@ -284,6 +284,12 @@
   - type: Tag
     tags:
     - ImprovisedScrewdriver
+  - type: ScrewdriverSurgery
+    startSound:
+      /Audio/Items/screwdriver.ogg
+    speed: 1.5
+  - type: SurgeryTool
+  #FarHorizons End
 
 - type: entity
   name: improvised wirecutter
@@ -308,7 +314,7 @@
         Slash: 2 #WHY IS WIZ SO OBSESSED WITH PIERCE
     soundHit:
       path: "/Audio/Items/wirecutter.ogg"
-    attackRate: 2 
+    attackRate: 2
   - type: Item
     sprite: _Starlight/Objects/Tools/improvised_wirecutters.rsi
     storedRotation: -90
@@ -319,6 +325,13 @@
     useSound:
       path: /Audio/Items/wirecutter.ogg
     speedModifier: 0.50
+  #FarHorizons Start
+  - type: WirecutterSurgery
+    startSound:
+      path: /Audio/Items/wirecutter.ogg
+    speed: 1.5
+  - type: SurgeryTool
+  #FarHorizons End
 
 - type: entity
   name: improvised wrench
@@ -354,6 +367,13 @@
     useSound:
       path: /Audio/Items/ratchet.ogg
     speedModifier: 0.50
+  #FarHorizons Start
+  - type: WrenchSurgery
+    startSound:
+      path: /Audio/Items/ratchet.ogg
+    speed: 1.5
+  - type: SurgeryTool
+  #FarHorizons End
 
 - type: entity
   name: improvised multitool
@@ -396,6 +416,13 @@
     tags:
       - ImprovisedMultitool
       - DoorElectronicsConfigurator
+  #FarHorizons Start
+  - type: MultitoolSurgery
+    startSound:
+      path: /Audio/Items/multitool_drop.ogg
+    speed: 1.5
+  - type: SurgeryTool
+    #FarHorizons End
 
 - type: entity
   name: improvised omnitool
@@ -405,7 +432,7 @@
   components:
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Items/crowbar_drop.ogg  
+      path: /Audio/Items/crowbar_drop.ogg
   - type: Sprite
     sprite: _Starlight/Objects/Tools/improvised_omnitool.rsi
     layers:
@@ -660,7 +687,7 @@
   components:
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Items/crowbar_drop.ogg  
+      path: /Audio/Items/crowbar_drop.ogg
   - type: Sprite
     sprite: _Starlight/Objects/Tools/forged_omnitool.rsi
     layers:

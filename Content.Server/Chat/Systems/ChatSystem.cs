@@ -175,7 +175,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         LanguagePrototype? languageOverride = null // Starlight
         )
     {
-        if (HasComp<GhostComponent>(source))
+        if (TryComp<GhostComponent>(source, out var ghost) && !ghost.BypassGhostChat) // Starlight-edit: ghost admemes
         {
             // Ghosts can only send dead chat messages, so we'll forward it to InGame OOC.
             TrySendInGameOOCMessage(source, message.Text, InGameOOCChatType.Dead, range == ChatTransmitRange.HideChat, shell, player); // Starlight
@@ -222,7 +222,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         // Starlight begin
         LanguagePrototype language;
-        
+
         if (message.Text.StartsWith(SharedLanguageSystem.ChatPrefixChar))
             language = _language.GetLanguageFromPrefix(source, ref message.Text, out _, true);
         else language = languageOverride ?? _language.GetLanguage(source);
@@ -732,7 +732,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             // How the entity perceives the message depends on whether it can understand its language
             var perceivedMessage = canUnderstandLanguage ? message.Text : languageObfuscatedMessage; // Starlight
             var obfuscated = canUnderstandLanguage != true;
-            
+
             var whisperClearRange = WhisperClearRange;
             var whisperMuffledRange = WhisperMuffledRange;
             if (TryComp<ChatListenerRangeComponent>(listener, out var rangeComp))
@@ -1172,7 +1172,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 continue;
 
             var observer = ghostHearing.HasComponent(playerEntity);
-            
+
             //Starlight begin | Check what's larger, the passed voice range or, if it exists, the voice range on ChatListenerRangeComponent
             var distanceToCheck = voiceGetRange;
             if(TryComp<ChatListenerRangeComponent>(playerEntity, out var rangeComp))

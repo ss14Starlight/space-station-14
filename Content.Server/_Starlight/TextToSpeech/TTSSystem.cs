@@ -93,7 +93,10 @@ public sealed partial class TTSSystem : EntitySystem
         {
             var text = CleanText(args.Message.Tts);
             _chime.TryGetSenderHeadsetChime(args.Source, out var chime);
-            var filter = Filter.Entities(args.Receivers).RemovePlayers(_ignoredRecipients);
+            var filter = Filter.Entities(args.Receivers).RemovePlayers(_ignoredRecipients)
+                .RemoveWhere(x => x.AttachedEntity.HasValue
+                    && x.AttachedEntity != args.Source
+                    && !_language.CanUnderstand(x.AttachedEntity.Value, args.Language.ID));
             var voice = GetOrAssignVoice(args.Source);
             var channel = new ProtoId<RadioChannelPrototype>(args.Channel.ID);
 
@@ -166,7 +169,8 @@ public sealed partial class TTSSystem : EntitySystem
         args.Message.Tts ??= args.Message.Text;
         if (!_isEnabled
             || args.Message.Tts.Length > MaxChars
-            || !args.Language.SpeechOverride.RequireSpeech)
+            || (!args.Language.SpeechOverride.RequireSpeech && !args.Language.SpeechOverride.RequireSound)
+            )
             return;
 
         await Task.Yield();

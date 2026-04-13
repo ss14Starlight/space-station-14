@@ -100,7 +100,7 @@ public sealed class DragonRuleSystem : GameRuleSystem<DragonRuleComponent>
             _dragonWinInfo.WithLabels([
                 alive.ToString(),
                 dragon.Comp.Rifts?.ToString() ?? "0"
-            ]).Inc(devoured);  
+            ]).Inc(devoured);
         }
     }
     #endregion

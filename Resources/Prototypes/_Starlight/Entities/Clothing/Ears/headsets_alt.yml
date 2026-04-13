@@ -1,32 +1,13 @@
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseCommandContraband]
+  parent: [ClothingHeadsetAlt, BaseCentcommContraband]
   id: ClothingHeadsetAltCentCom
-  name: centcom over-ear headset
+  name: CentComm over-ear headset
   components:
   - type: ContainerFill
     containers:
       key_slots:
       - EncryptionKeyCentCom
       - EncryptionKeyStationMaster
-  - type: Sprite
-    sprite: Clothing/Ears/Headsets/centcom.rsi
-  - type: Clothing
-    sprite: Clothing/Ears/Headsets/centcom.rsi
-  - type: RadioChime
-    sound:
-      path: /Audio/_Starlight/Effects/Radio/cc.ogg
-
-- type: entity
-  parent: [ClothingHeadsetAlt, BaseCommandContraband]
-  id: ClothingHeadsetAltCentComNTNC
-  name: centcom over-ear headset
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyCommand
-      - EncryptionKeyCommon
-      - EncryptionKeySecurity
   - type: Sprite
     sprite: Clothing/Ears/Headsets/centcom.rsi
   - type: Clothing
@@ -49,7 +30,7 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Ears/Headsets/abductor.rsi
 
-    
+
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetHoP
@@ -196,8 +177,8 @@
 - type: entity
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltBlackstar
-  name: blackstar mercenary headset
-  description: A headset used by elite blackstar mercenaries.
+  name: Blackstar mercenary headset
+  description: A headset used by elite Blackstar mercenaries.
   components:
     - type: Headset
     - type: ContainerFill

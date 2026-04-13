@@ -10,11 +10,11 @@
     prototypes:
       Default: MobResomiEyes
   - type: FunctionalOrgan
-    comps: 
+    comps:
     - type: NightVision
     - type: FlashModifier
       modifier: 2
-      
+
 - type: entity # Starlight
   id: OrganResomiHeart
   parent: OrganHumanHeart

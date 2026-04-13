@@ -29,6 +29,15 @@
 
 - type: entity
   parent: BaseFlatpack
+  id: GoldenMailTrolleyFlatpack
+  name: golden mail trolley flatpack
+  description: A flatpack used for constructing a brilliant golden mail trolley.
+  components:
+  - type: Flatpack
+    entity: GoldenMailTrolley
+
+- type: entity
+  parent: BaseFlatpack
   id: KitchenStoveFlatpack
   name: stove flatpack
   description: A flatpack used for constructing an stove.
@@ -53,3 +62,12 @@
   components:
   - type: Flatpack
     entity: FloraTreeChristmas02
+
+- type: entity
+  parent: [BaseFlatpack, BaseMinorContraband]
+  id: SyndieDrobeFlatpack
+  name: SyndieDrobe flatpack
+  description: Looks like Syndieland's back in business.
+  components:
+  - type: Flatpack
+    entity: VendingMachineSyndieDrobe

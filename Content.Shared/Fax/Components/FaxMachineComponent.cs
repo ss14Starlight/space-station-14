@@ -161,24 +161,24 @@ public sealed partial class FaxPrintout
 
     [DataField]
     public bool Locked { get; private set; }
-    
-    // Starlight-start 
+
+    // Starlight-start
     // cargo slips data
     [DataField]
-    public string? Product{ get; private set; } 
-    
+    public string? Product{ get; private set; }
+
     [DataField]
-    public string? Requester{ get; private set; }  
-    
+    public string? Requester{ get; private set; }
+
     [DataField]
-    public string? Reason{ get; private set; }  
-    
+    public string? Reason{ get; private set; }
+
     [DataField]
-    public int? OrderQuantity{ get; private set; }  
-    
+    public int? OrderQuantity{ get; private set; }
+
     [DataField]
     public string? Account{ get; private set; }
-    
+
     // Starlight-end
 
     private FaxPrintout()
@@ -216,10 +216,10 @@ public sealed partial class FaxPrintout
         OrderQuantity = orderQuantity;
         Account = account;
         // Starlight-end
-        
+
 
     }
-            
-        
+
+
 }
 
