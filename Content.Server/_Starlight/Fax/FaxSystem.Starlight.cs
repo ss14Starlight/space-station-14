@@ -20,7 +20,7 @@ public sealed partial class MinimalFaxInfo
         Sender = from;
         StampedBy = printout.StampedBy is null
             ? null
-            : new List<StampDisplayInfo>(prinout.StampedBy);
+            : [.. printout.StampedBy];
     }
 }
 
