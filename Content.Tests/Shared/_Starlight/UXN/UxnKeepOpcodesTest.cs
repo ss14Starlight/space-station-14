@@ -284,6 +284,7 @@ public sealed class UxnKeepOpcodeTest : ContentUnitTest
         Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.SystemMem[target], Is.EqualTo(0x32));
         Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(offset));
+        Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(0x32));
     }
 
     [Test]
@@ -338,6 +339,7 @@ public sealed class UxnKeepOpcodeTest : ContentUnitTest
         Assert.That(uxn.DevMem[0x00], Is.EqualTo(0x32));
         Assert.That(testdev.deo, Is.EqualTo(0x00));
         Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(0x00));
+        Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(0x32));
     }
 
     [Test]

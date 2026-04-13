@@ -1,0 +1,11 @@
+drifloon.tal, core.tal, acid.tal
+    https://git.sr.ht/~rabbits/drifblim
+opctest.tal
+    https://git.sr.ht/~rabbits/uxn-utils
+system_test.tal
+    https://wiki.xxiivv.com/etc/varvara.system.tal.txt
+console.tal
+    https://wiki.xxiivv.com/etc/varvara.console.tal.txt
+
+examples/*
+    all hand written by walksanator... they suck...
