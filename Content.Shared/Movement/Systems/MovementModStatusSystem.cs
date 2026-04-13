@@ -17,7 +17,7 @@ namespace Content.Shared.Movement.Systems;
 /// could occupy same prototype, but be aware that this will make controlling duration of effect
 /// extra 'challenging', as it will be shared too.
 /// </remarks>
-public sealed partial class MovementModStatusSystem : EntitySystem
+public sealed class MovementModStatusSystem : EntitySystem
 {
     public static readonly EntProtoId ReagentSpeed = "ReagentSpeedStatusEffect";
     public static readonly EntProtoId VomitingSlowdown = "VomitingSlowdownStatusEffect";
@@ -25,8 +25,8 @@ public sealed partial class MovementModStatusSystem : EntitySystem
     public static readonly EntProtoId FlashSlowdown = "FlashSlowdownStatusEffect";
     public static readonly EntProtoId StatusEffectFriction = "StatusEffectFriction";
 
-    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private readonly StatusEffectsSystem _status = default!;
 
     public override void Initialize()
     {
@@ -52,7 +52,7 @@ public sealed partial class MovementModStatusSystem : EntitySystem
         ref StatusEffectRelayedEvent<RefreshMovementSpeedModifiersEvent> args
     )
     {
-        args.Args.ModifySpeed(entity.Comp.WalkSpeedModifier, entity.Comp.SprintSpeedModifier); // Starlight edit
+        args.Args.ModifySpeed(entity.Comp.WalkSpeedModifier, entity.Comp.SprintSpeedModifier);
     }
 
     private void OnRefreshFrictionStatus(Entity<FrictionStatusEffectComponent> ent, ref StatusEffectRelayedEvent<RefreshFrictionModifiersEvent> args)
@@ -158,8 +158,7 @@ public sealed partial class MovementModStatusSystem : EntitySystem
     /// <param name="status">Status effect entity whose modifiers we are updating</param>
     /// <param name="walkSpeedModifier">New walkSpeedModifer we're applying</param>
     /// <param name="sprintSpeedModifier">New sprintSpeedModifier we're applying</param>
-    public bool TryUpdateMovementStatus(
-        EntityUid uid,
+    public bool TryUpdateMovementStatus(EntityUid uid,
         Entity<MovementModStatusEffectComponent?> status,
         float walkSpeedModifier,
         float sprintSpeedModifier
@@ -170,10 +169,8 @@ public sealed partial class MovementModStatusSystem : EntitySystem
 
         status.Comp.SprintSpeedModifier = sprintSpeedModifier;
         status.Comp.WalkSpeedModifier = walkSpeedModifier;
-        // Starlight - without this the client keeps the prototype's default modifiers, so any predicted
-        // speed refresh (standing up, equipping clothing...) mispredicts until the server corrects it.
-        Dirty(status.Owner, status.Comp);
-
+        Dirty(status);
+        
         _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
 
         return true;
