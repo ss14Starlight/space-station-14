@@ -1189,4 +1189,18 @@ Entries:
   id: 404297
   time: '2026-04-13T12:35:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4107
+- author: neurovermi
+  changes:
+  - message: Dark H.O.N.K and Reticence mechs, admin spawn only.
+    type: Add
+  id: 404298
+  time: '2026-04-13T12:39:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4096
+- author: neurovermi
+  changes:
+  - message: Mech Pie Cannon and Air Horn, available to research.
+    type: Add
+  id: 404299
+  time: '2026-04-13T12:39:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4096
 Order: -1
