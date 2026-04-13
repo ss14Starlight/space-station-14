@@ -69,6 +69,13 @@ public sealed class GameMapCommand : ToolshedCommand
             ctx.WriteMarkup($"[color=red]No map with the id {id} was found.[/color]");
             return EntityUid.Invalid;
         }
+
+        if (_map.IsInitialized(mapId))
+        {
+            ctx.WriteLine($"Map ID {mapId} is already initialized.");
+            return EntityUid.Invalid;
+        }
+
         _map.InitializeMap(mapId);
         ctx.WriteLine($"Map ID {mapId} initialized.");
         return map.Value;
