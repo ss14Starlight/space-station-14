@@ -1028,4 +1028,116 @@ Entries:
   id: 404274
   time: '2026-04-13T07:29:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4144
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) Added protection anchors to the armory and the vault.
+    type: Add
+  id: 404275
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) The Boxer's Association's story finally takes them to Manor! But standing in their way is their rival, Willow...
+    type: Add
+  id: 404276
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) The Performers have arrived in Manor.
+    type: Add
+  id: 404277
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) Added Engi dispenser to engineering.
+    type: Add
+  id: 404278
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) Added something wehcellent.
+    type: Add
+  id: 404279
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) Added something catty.
+    type: Add
+  id: 404280
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) Added Cargo Technician and Mail Technician lockers.
+    type: Add
+  id: 404281
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) Added Deep Fryers, and moved Alexander to the Kitchen.
+    type: Add
+  id: 404282
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) Added some not-suspicious toolboxes to Robotics. What, were you expecting something else?
+    type: Add
+  id: 404283
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) Added a document printer to the Magistrate's office in place of an extra LawDrobe.
+    type: Add
+  id: 404284
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) Removed extra Magistrate Locker, spawnpoint, and LawDrobe.
+    type: Remove
+  id: 404285
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) Severely decreased the amount of Monkey Cubes in Xenobio, at Pun Pun's request.
+    type: Remove
+  id: 404286
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) Removed 1 of the 2 Paddies from the Armory.
+    type: Remove
+  id: 404287
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) Brigmed chemical capabilities replaced with topicals and a NanoMed Security. ChemMaster and other chemical production phased out.
+    type: Tweak
+  id: 404288
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) Replaced all the public-facing stairs with perspective stairs.
+    type: Tweak
+  id: 404289
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: wonderfulnewworld
+  changes:
+  - message: (Manor) Mail Technicians can actually spawn now.
+    type: Fix
+  id: 404290
+  time: '2026-04-13T07:40:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4123
 Order: -1
