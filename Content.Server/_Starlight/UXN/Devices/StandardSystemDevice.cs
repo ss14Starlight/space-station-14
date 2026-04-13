@@ -6,8 +6,11 @@ namespace Content.Server._Starlight.UXN.Devices;
 public class StandardSystemDevice : UXNDevice
 {
     public StandardSystemDevice(int numBanks = 0)
-    => ExtraPages = [.. Enumerable.Repeat(new UxnMem(), Math.Min(numBanks,ushort.MaxValue))]; //clamped because any more and UXN cant access them.
-    
+    {
+        var bankCount = Math.Clamp(numBanks, 0, ushort.MaxValue);
+        ExtraPages = [.. Enumerable.Range(0, bankCount).Select(_ => new UxnMem())];
+    }
+
     public Dictionary<string, UXNDevice> AttachableDevices = new();
     public Dictionary<string, byte> AttachedDevices = new();
 
@@ -32,7 +35,7 @@ public class StandardSystemDevice : UXNDevice
                 break;
         }
     }
-    
+
     public override void WriteValue(byte memTarget, Byte256 deviceMem, UXNProcessor proc)
     {
         var lsn = memTarget & 0x0F;
@@ -67,7 +70,7 @@ public class StandardSystemDevice : UXNDevice
             case 0x04: //wst
                 proc.WorkingStack.SetPointer(deviceMem[memTarget]);
                 break;
-            case 0x06: //rst
+            case 0x05: //rst
                 proc.ReturnStack.SetPointer(deviceMem[memTarget]);
                 break;
             case 0x0e: //debug

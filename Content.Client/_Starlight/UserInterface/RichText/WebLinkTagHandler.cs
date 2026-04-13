@@ -12,6 +12,9 @@ namespace Content.Client._Starlight.UserInterface.RichText;
 [UsedImplicitly]
 public sealed class WebLinkTag : IMarkupTagHandler
 {
+    [Dependency] private readonly IUriOpener _uriOpener = default!;
+
+    public WebLinkTag() => IoCManager.InjectDependencies(this);
 
     public string Name => "weblink";
 
@@ -34,7 +37,7 @@ public sealed class WebLinkTag : IMarkupTagHandler
         label.DefaultCursorShape = Control.CursorShape.Hand;
 
         label.OnMouseEntered += _ => label.FontColorOverride = Color.LightSkyBlue;
-        label.OnMouseExited += _ => label.FontColorOverride = Color.CornflowerBlue;
+        label.OnMouseExited += _ => label.FontColorOverride = TextLinkTag.LinkColor;
         label.OnKeyBindDown += args => OnKeybindDown(args, link, label);
 
         control = label;
@@ -48,6 +51,6 @@ public sealed class WebLinkTag : IMarkupTagHandler
         if (control == null)
             return;
 
-        IoCManager.Resolve<IUriOpener>().OpenUri(link);
+        _uriOpener.OpenUri(link);
     }
 }

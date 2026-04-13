@@ -1,4 +1,3 @@
-using System;
 using Content.Server._Starlight.UXN;
 using NUnit.Framework;
 using Robust.Shared.IoC;
@@ -6,7 +5,7 @@ using Robust.Shared.Random;
 
 namespace Content.Tests.Shared._Starlight.UXN;
 
-// Basic tests of various damage prototypes and classes.
+// Basic test of opcodes in uxn with the return flag enabled.
 [TestFixture]
 public sealed class UxnReturnOpcodeTest : ContentUnitTest
 {

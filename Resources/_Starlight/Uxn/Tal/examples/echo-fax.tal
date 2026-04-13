@@ -39,7 +39,7 @@ BRK
 @dict
 &fax-name "faxmachine $1
 &dlay-name "delay $1
-&title "Ping 20 "Nanotransen 20 "Station $1
+&title "Ping 20 "Nanotrasen 20 "Station $1
 
 @mmu
 &fax 03 =dict/fax-name 0f

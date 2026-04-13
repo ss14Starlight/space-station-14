@@ -2,13 +2,13 @@
 
 @program
 
-	;hello-word
+	;hello-world
 	&while ( -- )
 		LDAk #18 DEO
 		INC2 LDAk ?&while
 	POP2 #010f DEO
 	BRK
 
-@hello-word
+@hello-world
 	"Hello 20 "Uxn! 0a00
 

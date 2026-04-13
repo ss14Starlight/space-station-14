@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text;
 using Content.Server._Starlight.UXN;
 using Content.Server._Starlight.UXN.Devices;
@@ -33,18 +34,13 @@ public sealed class TestUxnCompiler
         {
             var uxnRunner = new UXNProcessor();
             var mem = uxnRunner.SystemMem;
-            ushort writeHead = 0x100;
-            var stream = resourceManager.ContentFileRead(res);
-            Span<byte> span = new byte[32];
-            while (stream.CanRead)
+            using var stream = resourceManager.ContentFileRead(res);
+            using var ms = new MemoryStream();
+            stream.CopyTo(ms);
+            var romBytes = ms.ToArray();
+            for (int i = 0; i < romBytes.Length; i++)
             {
-                var amnt = stream.Read(span);
-                if (amnt == 0) break;
-                for (int i = 0; i < amnt; i++)
-                {
-                    mem[writeHead] = span[i];
-                    writeHead++;
-                }
+                mem[(ushort)(0x100 + i)] = romBytes[i];
             }
 
             var stdio = uxnRunner.AttachDevice(0x1, new FakeStdioDevice(stdin, argv, sawmill));

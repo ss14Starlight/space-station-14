@@ -60,7 +60,7 @@ Firstly, there are [weblink="no precedence rules" link="https://wiki.xxiivv.com/
 </Table>
 [/color][/mono]
 
-Uxntal numbers are expressed in [weblink="hexadecimal" link="https://wiki.xxiivv.com/site/hexadecimal.html"]. Which means that counting goes like: one, two, three, four, five, six, seven, eight, nine, ha, be, ce, de, he, fe, ten! It takes some getting used to, but don't worry, you'll get the hang of it. Now, without further ado..
+Uxntal numbers are expressed in [weblink="hexadecimal" link="https://wiki.xxiivv.com/site/hexadecimal.html"]. Which means that counting goes like: one, two, three, four, five, six, seven, eight, nine, A, B, C, D, E, F, ten! It takes some getting used to, but don't worry, you'll get the hang of it. Now, without further ado..
 
 ## Let's dive into it!
 The following example program prints the phrase "Hello World!" by pushing the address to a label on the stack, and iterating through each letter of the [textlink="string" link="UxntalStrings"] found at that address. A loop increments the pointer until it reaches end of the text, at which point, the stack is emptied and the evaluation ends.

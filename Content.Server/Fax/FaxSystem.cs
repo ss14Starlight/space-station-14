@@ -641,7 +641,7 @@ public sealed class FaxSystem : EntitySystem
         if (component.NotifyAdmins)
             NotifyAdmins(faxName, printout);
 
-        var faxrecvd = new FaxRecievedEvent
+        var faxrecvd = new FaxReceivedEvent
         {
             Info = new MinimalFaxInfo(printout, fromAddress ?? "????-????")
         };

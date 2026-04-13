@@ -1,4 +1,3 @@
-using System;
 using Content.Server._Starlight.UXN;
 using NUnit.Framework;
 using Robust.Shared.IoC;
@@ -15,7 +14,7 @@ public sealed class TestDevice : UXNDevice
     public override void WriteValue(byte memTarget, Byte256 deviceMem, UXNProcessor proc) => deo = memTarget;
 }
 
-// Basic tests of various damage prototypes and classes.
+// Basic test of opcodes in uxn with no flags enabled.
 [TestFixture]
 public sealed class UxnOpcodeTest : ContentUnitTest
 {

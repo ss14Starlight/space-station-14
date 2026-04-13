@@ -5,10 +5,7 @@ using System.Reflection;
 using System.Text;
 using Content.Server._Starlight.UXN;
 using Content.Server._Starlight.UXN.Devices;
-using Content.Tests;
 using NUnit.Framework;
-using Robust.Shared.Log;
-using Robust.Shared.Utility;
 
 namespace Content.Tests.Shared._Starlight.UXN;
 

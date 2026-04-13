@@ -19,9 +19,9 @@ public sealed class Byte256
 
     public ushort GetShort(byte baseAddr)
     {
-        var lsb = this[baseAddr];
-        var msb = this[baseAddr+1];
-        return (ushort)((lsb << 8) | msb);
+        var lsb = this[baseAddr+1];
+        var msb = this[baseAddr];
+        return (ushort)((msb << 8) | lsb);
     }
 
     public void PutShort(byte addr, ushort val)
@@ -94,11 +94,11 @@ public sealed class UxnMem
 
     public ushort GetShort(ushort baseAddr)
     {
-        var lsb = this[baseAddr];
-        var msb = this[(ushort)(baseAddr + 1)];
-        return (ushort)((lsb << 8) | msb);
+        var msb = this[baseAddr];
+        var lsb = this[(ushort)(baseAddr + 1)];
+        return (ushort)((msb << 8) | lsb);
     }
-    
+
     public void PutShort(ushort addr, ushort val)
     {
         this[addr] = (byte)(val >> 8);
@@ -175,7 +175,6 @@ public class UXNDevice
         if (bufferLen == 0)
         {
             byte read = 0xff;
-            ushort readAddr = addr;
             ushort counter = 1;
             while (read != 0 && counter != 0)
             {
@@ -235,6 +234,7 @@ public partial struct UxnFrame
 [DataDefinition]
 public sealed partial class UXNProcessor
 {
+    public const ushort RESET_VECTOR = 0x100;  //starts right at the END of zero-page
     public static readonly string[] DISASM_TABLE = ["BRK", "INC", "POP", "NIP", "SWP", "ROT", "DUP", "OVR", "EQU", "NEQ", "GTH", "LTH", "JMP", "JCN", "JSR", "STH", "LDZ", "STZ", "LDR", "STR", "LDA", "STA", "DEI", "DEO", "ADD", "SUB", "MUL", "DIV", "AND", "ORA", "EOR", "SFT", "JCI", "INC2", "POP2", "NIP2", "SWP2", "ROT2", "DUP2", "OVR2", "EQU2", "NEQ2", "GTH2", "LTH2", "JMP2", "JCN2", "JSR2", "STH2", "LDZ2", "STZ2", "LDR2", "STR2", "LDA2", "STA2", "DEI2", "DEO2", "ADD2", "SUB2", "MUL2", "DIV2", "AND2", "ORA2", "EOR2", "SFT2", "JMI", "INCr", "POPr", "NIPr", "SWPr", "ROTr", "DUPr", "OVRr", "EQUr", "NEQr", "GTHr", "LTHr", "JMPr", "JCNr", "JSRr", "STHr", "LDZr", "STZr", "LDRr", "STRr", "LDAr", "STAr", "DEIr", "DEOr", "ADDr", "SUBr", "MULr", "DIVr", "ANDr", "ORAr", "EORr", "SFTr", "JSI", "INC2r", "POP2r", "NIP2r", "SWP2r", "ROT2r", "DUP2r", "OVR2r", "EQU2r", "NEQ2r", "GTH2r", "LTH2r", "JMP2r", "JCN2r", "JSR2r", "STH2r", "LDZ2r", "STZ2r", "LDR2r", "STR2r", "LDA2r", "STA2r", "DEI2r", "DEO2r", "ADD2r", "SUB2r", "MUL2r", "DIV2r", "AND2r", "ORA2r", "EOR2r", "SFT2r", "LIT", "INCk", "POPk", "NIPk", "SWPk", "ROTk", "DUPk", "OVRk", "EQUk", "NEQk", "GTHk", "LTHk", "JMPk", "JCNk", "JSRk", "STHk", "LDZk", "STZk", "LDRk", "STRk", "LDAk", "STAk", "DEIk", "DEOk", "ADDk", "SUBk", "MULk", "DIVk", "ANDk", "ORAk", "EORk", "SFTk", "LIT2", "INC2k", "POP2k", "NIP2k", "SWP2k", "ROT2k", "DUP2k", "OVR2k", "EQU2k", "NEQ2k", "GTH2k", "LTH2k", "JMP2k", "JCN2k", "JSR2k", "STH2k", "LDZ2k", "STZ2k", "LDR2k", "STR2k", "LDA2k", "STA2k", "DEI2k", "DEO2k", "ADD2k", "SUB2k", "MUL2k", "DIV2k", "AND2k", "ORA2k", "EOR2k", "SFT2k", "LITr", "INCkr", "POPkr", "NIPkr", "SWPkr", "ROTkr", "DUPkr", "OVRkr", "EQUkr", "NEQkr", "GTHkr", "LTHkr", "JMPkr", "JCNkr", "JSRkr", "STHkr", "LDZkr", "STZkr", "LDRkr", "STRkr", "LDAkr", "STAkr", "DEIkr", "DEOkr", "ADDkr", "SUBkr", "MULkr", "DIVkr", "ANDkr", "ORAkr", "EORkr", "SFTkr", "LIT2r", "INC2kr", "POP2kr", "NIP2kr", "SWP2kr", "ROT2kr", "DUP2kr", "OVR2kr", "EQU2kr", "NEQ2kr", "GTH2kr", "LTH2kr", "JMP2kr", "JCN2kr", "JSR2kr", "STH2kr", "LDZ2kr", "STZ2kr", "LDR2kr", "STR2kr", "LDA2kr", "STA2kr", "DEI2kr", "DEO2kr", "ADD2kr", "SUB2kr", "MUL2kr", "DIV2kr", "AND2kr", "ORA2kr", "EOR2kr", "SFT2kr"];
     public UXNProcessor() => Reset();
 
@@ -248,13 +248,13 @@ public sealed partial class UXNProcessor
     public Byte256 DevMem { get; private set; } = new();
 
     [ViewVariables]
-    public ushort PC = 0x100; //starts right at the END of zero-page
+    public ushort PC = RESET_VECTOR;
 
     [ViewVariables]
     public UxnMem SystemMem { get; private set; } = new();
     [ViewVariables]
     public UxnStack WorkingStack { get; private set; } = new();
-    
+
     [ViewVariables]
     public UxnStack ReturnStack { get; private set; } = new();
     [ViewVariables]
@@ -300,14 +300,14 @@ public sealed partial class UXNProcessor
         InstructionCounter++;
         RealInstructionCounter++;
 
-        bool keep = (instr & 0x80) != 0x00;
-        bool ret = (instr & 0x40) != 0x00;
-        bool shrt = (instr & 0x20) != 0x00;
+        bool keep = (instr & (byte)UxnOpcodeFlag.Keep) != 0x00;
+        bool ret = (instr & (byte)UxnOpcodeFlag.Return) != 0x00;
+        bool shrt = (instr & (byte)UxnOpcodeFlag.Short) != 0x00;
         bool imme = (instr & 0x1F) == 0x00;
 
         var stack = ret ? ReturnStack : WorkingStack;
         var otherStack = ret ? WorkingStack : ReturnStack;
-        
+
         var masked = imme ? instr : instr & 0x1F;
         switch ((UxnOpcode)masked)
         {
@@ -854,7 +854,7 @@ public sealed partial class UXNProcessor
     }
 
     /// <summary>
-    /// runs steps uxn instructions. 
+    /// runs steps uxn instructions.
     /// </summary>
     /// <param name="steps">the number of teps to run</param>
     /// <returns>if the uxn has completely ran out of events or has raised a status code.</returns>
@@ -915,6 +915,11 @@ public sealed partial class UXNProcessor
                 }
                 if (_events.Count > 0)
                 {
+                    if (_events.Peek().PreRun(this))
+                    {
+                        Running = false;
+                        return false;
+                    }
                     _events.Dequeue().PerformEvent(this);
                 }
                 else

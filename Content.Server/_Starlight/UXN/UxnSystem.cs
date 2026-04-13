@@ -51,7 +51,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
         SubscribeLocalEvent<UxnComponent, DeviceNetworkPacketEvent>(OnChipRecievePacket);
         #region Device subscriptions
         SubscribeLocalEvent<FaxMachineComponent, OnGetUxnDevices>(OnGetUxnDevicesFaxMachine);
-        SubscribeLocalEvent<UxnAttachedComponent, FaxRecievedEvent>(OnFaxRecieved);
+        SubscribeLocalEvent<UxnAttachedComponent, FaxReceivedEvent>(OnFaxRecieved);
         #endregion
         #region cvar subs
         _configurationManager.OnValueChanged(StarlightCCVars.UxnMaxInstrLimit, v => _maxInstrs = v);
@@ -104,7 +104,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
             }
             Dirty(ent);
         }
-        
+
         if (TryComp<UxnAttachableComponent>(target, out var attachable))
         {
             if (HasComp<UxnAttachedComponent>(target))
@@ -128,6 +128,13 @@ public sealed partial class UxnSystem : SharedUxnSystem
 
             var uxn = new UXNProcessor();
             uxn.SystemDevice.AttachableDevices = devEv.Devices;
+            if (ent.Comp.CompiledRom.Count > 0xFF00)
+            {
+                RemComp<UxnAttachedComponent>(target);
+                ent.Comp.CompilerOutput += "\nCompiled ROM exceeds UXN address space.";
+                Dirty(ent);
+                return;
+            }
             var mem = uxn.SystemMem;
             ushort writeHead = 0x100;
             Span<byte> span = new byte[32];
@@ -177,13 +184,13 @@ public sealed partial class UxnSystem : SharedUxnSystem
     private void OnGetUxnDevicesFaxMachine(Entity<FaxMachineComponent> ent, ref OnGetUxnDevices ev)
         => ev.AddDevice(ent, new FaxComponentDevice());
 
-    private void OnFaxRecieved(Entity<UxnAttachedComponent> ent, ref FaxRecievedEvent ev)
+    private void OnFaxRecieved(Entity<UxnAttachedComponent> ent, ref FaxReceivedEvent ev)
     {
         var uxn = ent.Comp.Uxn!;
         var attached = uxn.SystemDevice.AttachedDevices;
         var id = new FaxComponentDevice().Id;
         if (!attached.TryGetValue(id, out var value))
-            return; //it is not attached so dont have it listen for events. 
+            return; //it is not attached so dont have it listen for events.
         var dev = (FaxComponentDevice)uxn.Devices[value];
         dev.MakeEvent(uxn, ev.Info);
     }
@@ -200,7 +207,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
         var attached = uxn.SystemDevice.AttachedDevices;
         var id = new NetworkDevice().Id;
         if (!attached.TryGetValue(id, out var value))
-            return; //it is not attached so dont have it listen for events. 
+            return; //it is not attached so dont have it listen for events.
         var dev = (NetworkDevice)uxn.Devices[value];
         dev.MakeEvent(uxn, ev);
     }
@@ -236,6 +243,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
                 writeHead++;
             }
         }
+        stream.Dispose();
 
         var stdio = _compiler.AttachDevice(0x01, new FakeStdioDevice(uxnTal));
 

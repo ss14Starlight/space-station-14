@@ -94,9 +94,8 @@ public sealed partial class AdminVerbSystem : EntitySystem
                 args.Verbs.Add(new()
                 {
                     Act = () => {
-                        var writer = _resourceManager.UserData.OpenWrite(new ResPath("/uxn-dump.bin"));
+                        using var writer = _resourceManager.UserData.OpenWrite(new ResPath("/uxn-dump.bin"));
                         writer.Write([.. uxn.CompiledRom]);
-                        writer.Close();
                     },
                     Text = "Dump ROM",
                     Message = "Dumps the rom of the UXN chip to /uxn-dump.bin",
@@ -106,13 +105,16 @@ public sealed partial class AdminVerbSystem : EntitySystem
                 args.Verbs.Add(new()
                 {
                     Act = () => {
-                        var uxn = attached.Uxn!;
-                        var writer = _resourceManager.UserData.OpenWrite(new ResPath("/uxn-running-rom.bin"));
-                        writer.Write([.. uxn.SystemMem._inner]);
-                        writer.Close();
-                        writer = _resourceManager.UserData.OpenWrite(new ResPath("/uxn-runniing-device.bin"));
-                        writer.Write([.. uxn.DevMem._inner]);
-                        writer.Close();               
+                        if (attached.Uxn is not { } uxn)
+                            return;
+                        using (var writer = _resourceManager.UserData.OpenWrite(new ResPath("/uxn-running-rom.bin")))
+                        {
+                            writer.Write([.. uxn.SystemMem._inner]);
+                        }
+                        using (var writer = _resourceManager.UserData.OpenWrite(new ResPath("/uxn-running-device.bin")))
+                        {
+                            writer.Write([.. uxn.DevMem._inner]);
+                        }
                     },
                     Text = "Dump UXN",
                     Message = "Dumps the ram/device memory/working/return stacks to various uxn-running-*.bin files",

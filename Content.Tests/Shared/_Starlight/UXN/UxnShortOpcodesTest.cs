@@ -1,4 +1,3 @@
-using System;
 using Content.Server._Starlight.UXN;
 using NUnit.Framework;
 using Robust.Shared.IoC;
@@ -6,7 +5,7 @@ using Robust.Shared.Random;
 
 namespace Content.Tests.Shared._Starlight.UXN;
 
-// Basic tests of various damage prototypes and classes.
+// Basic test of opcodes in uxn with the short flag enabled.
 [TestFixture]
 public sealed class UxnShortOpcodeTest : ContentUnitTest
 {
@@ -262,7 +261,7 @@ public sealed class UxnShortOpcodeTest : ContentUnitTest
         Assert.That(uxn.SystemMem[0xff], Is.EqualTo(0x12));
         Assert.That(uxn.SystemMem[0x00], Is.EqualTo(0x34));
     }
-    
+
     [Test]
     [TestCase(0xfd)]
     [TestCase(0x10)]
@@ -462,7 +461,9 @@ public sealed class UxnShortOpcodeTest : ContentUnitTest
         uxn.WorkingStack.PushShort(left);
         uxn.WorkingStack.PushShort(right);
         Assert.That(uxn.Step(), Is.False);
-        Assert.That(uxn.WorkingStack.PopShort(true), Is.EqualTo((ushort)(left / right)));
+        Assert.That(
+            uxn.WorkingStack.PopShort(true),
+            Is.EqualTo(right != 0 ? (ushort)(left / right) : (ushort)0x0000));
     }
 
     [Test]

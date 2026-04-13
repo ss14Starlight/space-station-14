@@ -13,17 +13,19 @@ public sealed partial class MinimalFaxInfo
     public string Sender;
     public List<StampDisplayInfo>? StampedBy = null;
 
-    public MinimalFaxInfo(FaxPrintout prinout, string from)
+    public MinimalFaxInfo(FaxPrintout printout, string from)
     {
-        Content = prinout.Content;
-        Name = prinout.Name;
+        Content = printout.Content;
+        Name = printout.Name;
         Sender = from;
-        StampedBy = prinout.StampedBy;
+        StampedBy = printout.StampedBy is null
+            ? null
+            : new List<StampDisplayInfo>(prinout.StampedBy);
     }
 }
 
 [ByRefEvent]
-public struct FaxRecievedEvent
+public struct FaxReceivedEvent
 {
     public MinimalFaxInfo Info;
 }
