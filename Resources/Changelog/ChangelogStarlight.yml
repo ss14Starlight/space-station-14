@@ -1217,4 +1217,11 @@ Entries:
   id: 404301
   time: '2026-04-13T20:15:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4151
+- author: JMxm5
+  changes:
+  - message: Added buttons to the air alarm Sensors tab that allow enabling/disabling all threshold groups of a device at once.
+    type: Add
+  id: 404302
+  time: '2026-04-13T20:24:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4124
 Order: -1
