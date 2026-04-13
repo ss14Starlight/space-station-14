@@ -38,6 +38,14 @@ public sealed class KillSignCommand : ToolshedCommand
         ["admin"] = (SLContentPath, "admin"),
     };
 
+    private EntityUid ApplyKillSign(EntityUid uid, (string path, string state) data)
+    {
+        var comp = EnsureComp<KillSignComponent>(uid);
+        comp.Sprite = new SpriteSpecifier.Rsi(new ResPath(data.path), data.state);
+        EntityManager.Dirty(uid, comp);
+        return uid;
+    }
+
     [CommandImplementation("set")]
     public EntityUid Set(IInvocationContext ctx, [PipedArgument] EntityUid uid, string type)
     {
@@ -46,10 +54,8 @@ public sealed class KillSignCommand : ToolshedCommand
             ctx.WriteLine($"Unknown kill sign type: {type}");
             return uid;
         }
-        var comp = EnsureComp<KillSignComponent>(uid);
-        comp.Sprite = new SpriteSpecifier.Rsi(new ResPath(data.path), data.state);
-        EntityManager.Dirty(uid, comp);
-        return uid;
+
+        return ApplyKillSign(uid, data);
     }
 
     [CommandImplementation("rm")]
@@ -61,7 +67,15 @@ public sealed class KillSignCommand : ToolshedCommand
 
     [CommandImplementation("set")]
     public IEnumerable<EntityUid> Set(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string type)
-        => uid.Select(x => Set(ctx, x, type));
+    {
+        if (!Sprites.TryGetValue(type, out var data))
+        {
+            ctx.WriteLine($"Unknown kill sign type: {type}");
+            return uid;
+        }
+
+        return uid.Select(x => ApplyKillSign(x, data));
+    }
 
     [CommandImplementation("rm")]
     public IEnumerable<EntityUid> RemoveKillSign([PipedArgument] IEnumerable<EntityUid> uid)
