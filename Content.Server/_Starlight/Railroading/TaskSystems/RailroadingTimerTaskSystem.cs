@@ -32,7 +32,7 @@ public sealed partial class RailroadingTimerTaskSystem : AccUpdateEntitySystem
 
     protected override void AccUpdate(float _)
     {
-        var query = EntityQueryEnumerator<RailroadTimerTaskComponent>();
+        var query = AllEntityQuery<RailroadTimerTaskComponent>();
         while (query.MoveNext(out var ent, out var comp))
         {
             if (comp.IsCompleted) continue;
@@ -46,14 +46,15 @@ public sealed partial class RailroadingTimerTaskSystem : AccUpdateEntitySystem
         }
     }
 
-
     private void OnCollectObjectiveInfo(Entity<RailroadTimerTaskComponent> ent, ref CollectObjectiveInfoEvent args)
-        => args.Objectives.Add(new ObjectiveInfo
-        {
-            Title = Loc.GetString(ent.Comp.Message, ("duration", ent.Comp.Duration.TotalMinutes)),
-            Icon = ent.Comp.Icon,
-            Progress = Math.Clamp((float)((_timing.CurTime - ent.Comp.Started).TotalSeconds / (_timing.CurTime - ent.Comp.EndTime).TotalSeconds), 0.0f, 1.0f)
-        });
+    => args.Objectives.Add(new ObjectiveInfo
+    {
+        Title = Loc.GetString(ent.Comp.Message, ("duration", ent.Comp.Duration.TotalMinutes)),
+        Icon = ent.Comp.Icon,
+        Progress = ent.Comp.IsCompleted
+                ? 1.0f
+                : Math.Clamp((float)((_timing.CurTime - ent.Comp.Started).TotalSeconds / (ent.Comp.EndTime - ent.Comp.Started).TotalSeconds), 0.0f, 1.0f)
+    });
 
     private void OnTaskCompletionQuery(Entity<RailroadTimerTaskComponent> ent, ref RailroadingCardCompletionQueryEvent args)
     {

@@ -161,3 +161,18 @@ thaven-mood-perceived-dissonance-desc = {$language} hurts your delicate ears and
 
 thaven-mood-germophobe-name = Germophobe
 thaven-mood-germophobe-desc = You are afraid of these little creatures that conquer every nook and cranny. Make sure to clean your tools and workplace regularly with soap, so not even prints are left.
+
+thaven-mood-forgetful-name = Forgetful
+thaven-mood-forgetful-desc = You have trouble remembering things for more than a few minutes.
+
+thaven-mood-unfinished-thoughts-name = Unfinished Thoughts
+thaven-mood-unfinished-thoughts-desc = You rarely finish sentences.
+
+thaven-mood-caveman-name = Caveman
+thaven-mood-caveman-desc = You can only speak in words with one syllable.
+
+thaven-mood-anger-problems-name = Anger Problems
+thaven-mood-anger-problems-desc = You hate everyone, but you would never hurt them.
+
+thaven-mood-allergies-name = Allergies
+thaven-mood-allergies-desc = You're allergic to {$item} and should avoid being near it as much as you can.
