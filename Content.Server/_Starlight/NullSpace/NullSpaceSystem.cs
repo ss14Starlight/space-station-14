@@ -39,6 +39,7 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
     [Dependency] private readonly NullSpacePhaseSystem _phaseSystem = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly CosmicCultRuleSystem _cosmicCult = default!;
+    [Dependency] private readonly VisibilitySystem _visibility = default!;
 
     public override void Initialize()
     {
@@ -50,31 +51,18 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
         SubscribeLocalEvent<NullSpaceComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
         SubscribeLocalEvent<NullSpaceComponent, NullSpaceShuntEvent>(NullSpaceShunt);
         SubscribeLocalEvent<NullSpaceComponent, GetVisMaskEvent>(OnGetVisMask);
-
-        _player.PlayerStatusChanged += OnPlayerStatusChanged;
     }
 
     private void OnGetVisMask(Entity<NullSpaceComponent> uid, ref GetVisMaskEvent args) =>
         args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
 
-    // We do this to prevent a SoftLock... due to visibilitySystem.
-    private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
-    {
-        if (args.NewStatus != SessionStatus.Disconnected)
-            return;
-
-        if (TryComp<NullSpaceComponent>(args.Session.AttachedEntity, out var nullspacecomp))
-        {
-            SpawnAtPosition(_shadekinShadow, Transform(args.Session.AttachedEntity.Value).Coordinates);
-            RemComp(args.Session.AttachedEntity.Value, nullspacecomp);
-
-            if (TryComp<PullableComponent>(args.Session.AttachedEntity, out var pullable) && pullable.BeingPulled)
-                _pulling.TryStopPull(args.Session.AttachedEntity.Value, pullable);
-        }
-    }
-
     public void OnStartup(EntityUid uid, NullSpaceComponent component, MapInitEvent args)
     {
+        var visibility = EnsureComp<VisibilityComponent>(uid);
+        _visibility.RemoveLayer((uid, visibility), (int)VisibilityFlags.Normal, false);
+        _visibility.AddLayer((uid, visibility), (int)VisibilityFlags.NullSpace, false);
+        _visibility.RefreshVisibility(uid, visibility);
+
         _eye.RefreshVisibilityMask(uid);
 
         var stealth = EnsureComp<StealthComponent>(uid);
@@ -127,6 +115,13 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 
     public void OnShutdown(EntityUid uid, NullSpaceComponent component, ComponentShutdown args)
     {
+        if (TryComp<VisibilityComponent>(uid, out var visibility))
+        {
+            _visibility.RemoveLayer((uid, visibility), (int)VisibilityFlags.NullSpace, false);
+            _visibility.AddLayer((uid, visibility), (int)VisibilityFlags.Normal, false);
+            _visibility.RefreshVisibility(uid, visibility);
+        }
+
         SuppressFactions(uid, component, false);
 
         RemComp<StealthComponent>(uid);
