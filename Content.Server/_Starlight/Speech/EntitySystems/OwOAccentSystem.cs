@@ -41,7 +41,7 @@ public sealed class OwOAccentSystem : EntitySystem
         return message;
     }
 
-    private void OnAccent(Entity<OwOAccentComponent> entity, ref AccentGetEvent args) 
+    private void OnAccent(Entity<OwOAccentComponent> entity, ref AccentGetEvent args)
         => args.Message = Accentuate(args.Message);
 
     private void OnAccentRelayed(Entity<OwOAccentComponent> entity, ref StatusEffectRelayedEvent<AccentGetEvent> args)

@@ -12,7 +12,7 @@
   id: evil
   flavorType: Base
   description: flavor-basic-evil
-  
+
 - type: flavor
   id: thaslop
   flavorType: complex

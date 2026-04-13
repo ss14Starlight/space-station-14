@@ -42,7 +42,7 @@
   - !type:PlantAdjustHealth
     amount: 0.75
   pricePerUnit: 3
-  
+
 # The worst part of Christmas. Functionally the same as Syrup.
 - type: reagent
   id: CranberrySauce

@@ -24,6 +24,7 @@ using Content.Shared.UserInterface;
 using Robust.Shared.Localization;
 using Content.Server.Botany.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -41,6 +42,13 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
     [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private readonly RadarLaserSystem _laserSystem = default!; // _Starlight
+    [Dependency] private readonly IGameTiming _timing = default!; // _Starlight
+
+    // _Starlight - periodic blip/laser update
+    // How often (in seconds) to push fresh blip state to all open radar consoles.
+    private const float BlipUpdateInterval = 0.25f;
+    private float _blipUpdateTimer = 0f;
 
     private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -287,6 +295,43 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         if (_ui.HasUi(consoleUid, ShuttleConsoleUiKey.Key))
         {
+            // _Starlight - populate blips and laser traces
+            // Populate radar blips for entities with RadarBlipComponent (e.g. artillery shells)
+            var consoleMapCoords = _transform.GetMapCoordinates(consoleUid);
+            var maxRangeSq = navState.MaxRange * navState.MaxRange;
+            var blipQuery = AllEntityQuery<RadarBlipComponent, TransformComponent>();
+            while (blipQuery.MoveNext(out var blipUid, out var blip, out var blipXform))
+            {
+                if (blip.RequireInSpace && blipXform.GridUid != null)
+                    continue;
+                if (blipXform.MapID != consoleMapCoords.MapId)
+                    continue;
+                var blipMapCoords = _transform.GetMapCoordinates(blipUid, blipXform);
+                if ((blipMapCoords.Position - consoleMapCoords.Position).LengthSquared() > maxRangeSq)
+                    continue;
+                navState.Blips.Add(new RadarBlipData(GetNetCoordinates(blipXform.Coordinates), blip.Color, blip.Scale, blip.Shape)); // _Starlight - shape
+            }
+
+            // _Starlight - Apollo hitscan laser beam traces
+            // Populate laser traces from hitscan guns with RadarLaserTrackerComponent.
+            var laserQuery = AllEntityQuery<RadarLaserTrackerComponent, TransformComponent>();
+            while (laserQuery.MoveNext(out var laserUid, out var tracker, out var laserXform))
+            {
+                if (laserXform.MapID != consoleMapCoords.MapId)
+                    continue;
+                foreach (var (origin, dir, _) in tracker.Traces)
+                {
+                    // Only show traces from guns within radar range.
+                    if ((origin.Position - consoleMapCoords.Position).LengthSquared() > maxRangeSq)
+                        continue;
+                    navState.Lasers.Add(new RadarLaserData(
+                        GetNetCoordinates(laserXform.Coordinates),
+                        dir,
+                        tracker.MaxRange,
+                        tracker.LaserColor));
+                }
+            }
+
             _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState));
         }
     }
@@ -315,6 +360,18 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         {
             RemovePilot(uid, comp);
         }
+
+        // Starlight - Start
+        _blipUpdateTimer += frameTime;
+        if (_blipUpdateTimer < BlipUpdateInterval)
+            return;
+        _blipUpdateTimer = 0f;
+
+        // _Starlight - prune expired Apollo laser traces before syncing state
+        _laserSystem.PruneExpiredTraces((float)_timing.CurTime.TotalSeconds);
+
+        RefreshShuttleConsoles();
+        // Starlight - End
     }
 
     protected override void HandlePilotShutdown(EntityUid uid, PilotComponent component, ComponentShutdown args)

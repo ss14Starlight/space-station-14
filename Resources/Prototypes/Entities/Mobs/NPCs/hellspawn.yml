@@ -1,6 +1,6 @@
 - type: entity
   name: hellspawn
-  parent:
+  parent: #starlight Nubody will not pass.
   - BaseSimpleMob
   - MobCombat
   - MobBloodstream
@@ -13,6 +13,7 @@
     name: ghost-role-information-hellspawn-name
     description: ghost-role-information-hellspawn-description
     rules: ghost-role-information-antagonist-rules
+    important: true # SL
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
     raffle:
@@ -27,8 +28,10 @@
   - type: NpcFactionMember
     factions:
       - SimpleHostile
+  # Starlight - start
   - type: Body
     prototype: Animal
+  # Starlight - end
   - type: Damageable
     damageContainer: BiologicalMetaphysical
     damageModifierSet: HellSpawn

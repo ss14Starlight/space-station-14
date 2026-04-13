@@ -4,6 +4,12 @@
   id: SheetOtherBase
   description: A sheet of material, used often on the station in various applications.
   components:
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+  # Starlight end
   - type: Sprite
     sprite: Objects/Materials/Sheets/other.rsi
   - type: Item
@@ -114,6 +120,26 @@
     - ConstructionMaterial
     - SheetPlasma # Funky atmos - /tg/ gases # Starlight Edit: PlasmaSheet -> SheetPlasma
     - TiderAnvilParts # Starlight
+  - type: ConditionalHealing
+    healingDefinitions:
+      - allowedTags: [IPC]
+        healing:
+          damageContainers:
+            - IPC
+          delay: 2
+          damage:
+            types:
+              Radiation: -10
+          healingBeginSound:
+            path: "/Audio/Items/Medical/ointment_begin.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+          healingEndSound:
+            path: "/Audio/Items/Medical/ointment_end.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
 
 - type: entity
   parent: SheetPlasma

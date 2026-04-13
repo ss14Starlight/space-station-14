@@ -27,10 +27,10 @@ namespace Content.Client.VendingMachines
             _menu = this.CreateWindowCenteredLeft<VendingMachineMenu>();
             _menu.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
             _menu.OnItemSelected += OnItemSelected;
-            
+
             Refresh(); // 🌟Starlight🌟
-            
-            // 🌟Starlight🌟 
+
+            // 🌟Starlight🌟
             if (_showPrices)
             {
                 RequestBalance(); // Client ask too, server also pushes on open now
@@ -63,7 +63,7 @@ namespace Content.Client.VendingMachines
 
             _menu?.Populate(_cachedInventory, enabled, _showPrices);
 
-            // 🌟Starlight start🌟 
+            // 🌟Starlight start🌟
             if (_menu != null)
             {
                 if (_showPrices)
@@ -88,7 +88,7 @@ namespace Content.Client.VendingMachines
             _cachedInventory = system.GetAllInventory(Owner);
             _menu?.UpdateAmounts(_cachedInventory, enabled, _showPrices); // 🌟Starlight🌟
 
-            // 🌟Starlight start🌟 
+            // 🌟Starlight start🌟
             if (_menu != null)
             {
                 if (_showPrices)
@@ -101,7 +101,7 @@ namespace Content.Client.VendingMachines
                     _menu.ToggleBalance();
                 }
             }
-             // 🌟Starlight end🌟 
+             // 🌟Starlight end🌟
         }
 
         private void OnItemSelected(GUIBoundKeyEventArgs args, ListData data)

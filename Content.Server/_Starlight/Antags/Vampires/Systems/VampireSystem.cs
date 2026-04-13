@@ -1,6 +1,5 @@
 using Content.Server.Actions;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Shared._Starlight.Antags.Vampires;
@@ -22,6 +21,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Server.Body.Components;
+using Content.Server.GameTicking;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
@@ -35,6 +35,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Prometheus;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -70,6 +71,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
     private ISawmill? _sawmill;
     private static readonly ProtoId<DamageGroupPrototype> _bruteGroupId = "Brute";
     private static readonly ProtoId<DamageGroupPrototype> _burnGroupId = "Burn";
@@ -330,7 +332,7 @@ public sealed partial class VampireSystem : EntitySystem
         var wasStarving = before <= 0f;
         var changed = false;
 
-        if (before > 0f)
+        if (before > 0f && _gameTicker.RunLevel < GameRunLevel.PostRound) // No hunger EOR
         {
             comp.BloodFullness = MathF.Max(0f, before - comp.FullnessDecayPerSecond);
             changed = !MathF.Abs(comp.BloodFullness - before).Equals(0f);
@@ -543,9 +545,9 @@ public sealed partial class VampireSystem : EntitySystem
         }
     }
 
-    private void OnComponentRemove(EntityUid uid, VampireComponent comp, ComponentRemove _) 
+    private void OnComponentRemove(EntityUid uid, VampireComponent comp, ComponentRemove _)
         => TryRemoveAbilities(uid, comp);
-     
+
     private void TryRemoveAbilities(EntityUid uid, VampireComponent comp)
     {
         foreach (var (_, action) in comp.ActionEntities)
@@ -553,7 +555,7 @@ public sealed partial class VampireSystem : EntitySystem
         comp.ActionEntities.Clear();
         Dirty(uid, comp);
     }
-    
+
 
     private int GetActionBloodThreshold(EntProtoId actionId)
     {

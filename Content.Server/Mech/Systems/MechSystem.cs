@@ -1,5 +1,4 @@
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Mech.Components;
 using Content.Shared.ActionBlocker;
@@ -48,7 +47,8 @@ using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Timing;
-using Content.Shared.Movement.Systems; //Starlight
+using Content.Shared.Movement.Systems;
+using Content.Server._Starlight.Medical.Body.Systems; //Starlight
 #endregion Starlight
 
 namespace Content.Server.Mech.Systems;
@@ -689,7 +689,7 @@ public sealed partial class MechSystem : SharedMechSystem
         _container.Insert(toInsert, component.BatterySlot);
         component.Energy = _battery.GetCharge(toInsert);
         component.MaxEnergy = battery.MaxCharge;
-        
+
         _movementSpeedModifier.RefreshMovementSpeedModifiers(uid); //Starlight - mech reactors with speed mods
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block

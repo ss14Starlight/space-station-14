@@ -158,7 +158,7 @@
   description: Spawns a web pole that spawns webs around at free tiles.
   components:
   - type: Action
-    icon: 
+    icon:
       sprite: _Starlight/Structures/Specific/TerrorSpiders/buildings_48.rsi
       state: pole
     useDelay: 3
@@ -179,7 +179,7 @@
   description: Spawns a web cocoon that heals spider which entered in it.
   components:
   - type: Action
-    icon: 
+    icon:
       sprite: _Starlight/Structures/Specific/TerrorSpiders/buildings.rsi
       state: cocoon
     useDelay: 3

@@ -219,7 +219,7 @@ namespace Content.Client.Stylesheets
                 PatchMarginBottom = 3,
                 ExpandMarginBottom = 3,
                 ContentMarginBottomOverride = 0
-            };            
+            };
             // 🌟Starlight🌟 end
             var windowBackgroundTex = resCache.GetTexture("/Textures/Interface/Nano/window_background.png");
             var windowBackground = new StyleBoxTexture

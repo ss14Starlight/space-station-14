@@ -303,3 +303,45 @@
     Plastic: 300
     Gold: 200
     Uranium: 200
+
+- type: latheRecipe
+  id: MechReactorShielded
+  result: MechReactorShielded
+  categories:
+    - Mech
+  completetime: 15
+  materials:
+    Steel: 1000
+    Glass: 1000
+    Plastic: 500
+    Gold: 500
+    Silver: 500
+    Diamond: 500
+
+- type: latheRecipe
+  id: MechReactorBurnout
+  result: MechReactorBurnout
+  categories:
+    - Mech
+  completetime: 15
+  materials:
+    Steel: 1000
+    Glass: 1000
+    Plastic: 500
+    Gold: 200
+    Uranium: 1000
+    Plasma: 1000
+
+- type: latheRecipe
+  id: MechReactorCavalier
+  result: MechReactorCavalier
+  categories:
+    - Mech
+  completetime: 15
+  materials:
+    Steel: 1000
+    Glass: 1000
+    Plastic: 500
+    Gold: 200
+    Silver: 1000
+    Uranium: 1000

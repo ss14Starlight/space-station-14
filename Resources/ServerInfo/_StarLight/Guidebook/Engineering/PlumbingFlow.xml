@@ -41,5 +41,5 @@
   ## Tips
   - Use the [color=#a4885c]plunger[/color] to clear stuck reagents from any machine's buffer.
   - Machines only pull when they have space in their buffer. A full buffer stops pulling until reagents are pulled from it.
-  - Use a buffer tank when you want reactor product fed back into a supply network for other reactors to use while also keeping a separate product output network for collection (dispenser/ChemMaster/etc.). 
+  - Use a buffer tank when you want reactor product fed back into a supply network for other reactors to use while also keeping a separate product output network for collection (dispenser/ChemMaster/etc.).
 </Document>

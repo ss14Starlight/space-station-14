@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMob, StripableInventoryBase, BaseSiliconLanguages] #Starlight Languages
+  parent: [BaseMob, StripableInventoryBase, BaseSiliconLanguages] #Starlight Languages #starlight Nubody will not pass.
   id: BaseBorgChassisNotIonStormable
   name: cyborg
   description: A man-machine hybrid that assists in station activity. They love being asked to state their laws over and over.
@@ -141,7 +141,9 @@
           tags:
           - MechReactor
         #Starlight End
+  # Starlight - start
   - type: Body
+  # Starlight - end
   - type: StatusEffects
     allowed:
     - Flashed
@@ -150,6 +152,7 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
+    allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
@@ -242,6 +245,7 @@
     - CanPilot
     - SiliconEmotes
     - Unimplantable
+    - SiliconEmotesFH #FH, yes it's intentional that there's two of them.
   - type: Emoting
   - type: GuideHelp
     guides:
@@ -272,6 +276,7 @@
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   #endregion
+  - type: GlitchOnEMP #Far Horizons
 
 - type: entity
   abstract: true
@@ -491,6 +496,8 @@
     - Xenoborg
     - Binary
   - type: BorgChassis
+    jobIconOverride: JobIconXenoborg # Starlight
+    jobTitleOverride: chat-radio-xenoborg # Starlight
     maxModules: 0
     hasMindState: robot_e
     noMindState: robot_e_r

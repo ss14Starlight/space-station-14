@@ -2,7 +2,7 @@
   abstract: true
   id: FashionBase
   conditions:
-    - !type:ListingLimitedStockCondition 
+    - !type:ListingLimitedStockCondition
       stock: 1
 
 - type: listing
@@ -476,6 +476,18 @@
   productEntity: BoxRegalia
   cost:
     NTCredit: 500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: BoxCourierPAI
+  icon: { sprite: _Starlight/Interface/fashion.rsi, state: courier }
+  productEntity: BoxCourierPAI
+  cost:
+    NTCredit: 1500
   categories:
     - SLFashionOther
   conditions:

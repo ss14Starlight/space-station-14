@@ -46,10 +46,10 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         SubscribeLocalEvent<GizmoMarkEvent>(OnGizmoMark);
     }
 
-    private void AbductorScientistComponentStartup(Entity<AbductorScientistComponent> ent, ref ComponentStartup args) 
+    private void AbductorScientistComponentStartup(Entity<AbductorScientistComponent> ent, ref ComponentStartup args)
         => InitializeComponentStartup(ent.Owner, ent.Comp);
 
-    private void AbductorAgentComponentStartup(Entity<AbductorAgentComponent> ent, ref ComponentStartup args) 
+    private void AbductorAgentComponentStartup(Entity<AbductorAgentComponent> ent, ref ComponentStartup args)
         => InitializeComponentStartup(ent.Owner, ent.Comp);
 
     private void InitializeComponentStartup(EntityUid uid, Component comp)
@@ -88,7 +88,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             _popup.PopupEntity(Loc.GetString("abductor-return-cuffed"), ev.Performer, ev.Performer);
             return;
         }
-          
+
         AbductorAgentComponent? agentComp = null;
         if (!TryComp<AbductorScientistComponent>(ev.Performer, out var scientistComp) && !TryComp<AbductorAgentComponent>(ev.Performer, out agentComp))
             EnsureComp<AbductorScientistComponent>(ev.Performer, out scientistComp);
@@ -122,7 +122,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             BreakOnDamage = true
         };
 
-        
+
         _doAfter.TryStartDoAfter(doAfter);
         ev.Handled = true;
     }

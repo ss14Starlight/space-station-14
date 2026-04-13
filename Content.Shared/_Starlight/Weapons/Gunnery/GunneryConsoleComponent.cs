@@ -11,13 +11,6 @@ namespace Content.Shared._Starlight.Weapons.Gunnery;
 [RegisterComponent]
 public sealed partial class GunneryConsoleComponent : Component
 {
-    /// <summary>
-    /// Maximum targeting range in world units (metres).
-    /// Default 512 covers most engagement distances for shuttle combat.
-    /// </summary>
-    [DataField]
-    public float MaxRange = 512f;
-
     // ── Server-only runtime state ──────────────────────────────────────────
     // These are never serialized; they are set each frame by GunneryConsoleSystem.
 

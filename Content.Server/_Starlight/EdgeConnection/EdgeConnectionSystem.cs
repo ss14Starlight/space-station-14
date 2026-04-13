@@ -55,7 +55,7 @@ public sealed class EdgeConnectionSystem : EntitySystem
     private void UpdateConnections(Entity<EdgeConnectionComponent> ent)
     {
         var xform = Transform(ent);
-        
+
         if (!xform.Anchored || !TryComp<MapGridComponent>(xform.GridUid, out var grid))
         {
             _appearance.SetData(ent, EdgeConnectionVisuals.ConnectionMask, EdgeConnectionFlags.None);
@@ -127,7 +127,7 @@ public sealed class EdgeConnectionSystem : EntitySystem
 
         // Round to nearest 90 degrees
         var quarterTurns = (int)Math.Round(degrees / 90.0) % 4;
-        
+
         // Invert if counterclockwise
         if (!clockwise)
             quarterTurns = (4 - quarterTurns) % 4;
@@ -155,7 +155,7 @@ public sealed class EdgeConnectionSystem : EntitySystem
                 if ((flags & EdgeConnectionFlags.South) != 0) rotated |= EdgeConnectionFlags.East;
                 if ((flags & EdgeConnectionFlags.East) != 0) rotated |= EdgeConnectionFlags.North;
             }
-            
+
             flags = rotated;
         }
 
@@ -171,7 +171,7 @@ public sealed class EdgeConnectionSystem : EntitySystem
     {
         var anchored = _map.GetAnchoredEntitiesEnumerator(gridUid, grid, tile);
         var entityXform = Transform(entity);
-        
+
         while (anchored.MoveNext(out var other))
         {
             if (other == entity)
@@ -192,7 +192,7 @@ public sealed class EdgeConnectionSystem : EntitySystem
             // Only connect if both entities have the same rotation
             var entityDegrees = ((int)Math.Round(entityXform.LocalRotation.Degrees) % 360 + 360) % 360;
             var otherDegrees = ((int)Math.Round(otherXform.LocalRotation.Degrees) % 360 + 360) % 360;
-            
+
             if (entityDegrees == otherDegrees)
                 return true;
         }
@@ -207,7 +207,7 @@ public sealed class EdgeConnectionSystem : EntitySystem
     {
         if (!TryComp(ent, out TransformComponent? xform))
             return;
-        
+
         if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
             return;
 
@@ -226,7 +226,7 @@ public sealed class EdgeConnectionSystem : EntitySystem
     private void UpdateNeighborsAtTile(EntityUid gridUid, MapGridComponent grid, Vector2i tile)
     {
         var anchored = _map.GetAnchoredEntitiesEnumerator(gridUid, grid, tile);
-        
+
         while (anchored.MoveNext(out var other))
         {
             if (TryComp<EdgeConnectionComponent>(other, out var comp))

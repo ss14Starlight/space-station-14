@@ -34,7 +34,7 @@
   alias:
   - all
   name: all-at-once-title
-  minPlayers: 15 # Starlight, for Delta
+  minPlayers: 50 # Starlight
   description: all-at-once-description
   showInVote: false
   rules:
@@ -67,7 +67,7 @@
   name: aller-at-once-title
   description: aller-at-once-description
   showInVote: false #Please god dont do this
-  minPlayers: 15 # Starlight, for Delta
+  minPlayers: 50 # Starlight
   rules:
     - Nukeops
     - Traitor
@@ -95,9 +95,11 @@
     - CockroachMigration # Starlight, ShitStation
     - MouseMigration # Starlight, ShitStation
     - SLChangeling # Starlight
+    - Vampire #Starlight
     - SiliconLiberation #Starlight
     - Brighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
+    - LoneOpsSpawn # Starlight
     - RailroadingTerminator # Starlight
     - RailroadingMinor # Starlight
 
@@ -137,6 +139,7 @@
   name: dynamic-title
   showInVote: false # admin-only for now until we fix some bugs
   description: dynamic-description
+  minPlayers: 5 # 🌟Starlight🌟
   rules:
   - DynamicRule
   - DummyNonAntag
@@ -176,7 +179,7 @@
     - tator
   name: traitor-title
   description: traitor-description
-  minPlayers: 4
+  minPlayers: 0 # 🌟Starlight🌟
   showInVote: true # 🌟Starlight🌟
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
@@ -246,6 +249,7 @@
   - wizard
   name: wizard-title
   description: wizard-description
+  minPlayers: 40 # 🌟Starlight🌟
   showInVote: false
   rules:
   - Wizard
@@ -262,6 +266,7 @@
     - xenoborgs
   name: xenoborgs-title
   description: xenoborgs-description
+  minPlayers: 20 # 🌟Starlight🌟
   showInVote: true # 🌟Starlight🌟
   rules:
   - Xenoborgs
@@ -309,7 +314,7 @@
   - KesslerSyndromeScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
-  
+
 - type: gamePreset
   id: Vampire
   alias:
@@ -360,7 +365,7 @@
     - BasicStationEventScheduler
     - BasicRoundstartVariation
 
-#Starlight EventLight Gamemode for Event Usage 
+#Starlight EventLight Gamemode for Event Usage
 - type: gamePreset
   id: EventLight
   alias:

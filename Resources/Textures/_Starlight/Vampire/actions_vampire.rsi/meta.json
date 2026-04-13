@@ -8,9 +8,6 @@
     },
     "states": [
         {
-            "name": "bg_vampire"
-        },
-        {
             "name": "glare"
         },
         {
@@ -23,13 +20,16 @@
             "name": "fangs_extended"
         },
 	    {
-	        "name": "select_class"	
+	        "name": "select_class"
 	    },
         {
             "name": "blood_objective"
         },
         {
             "name": "survive_icon"
+        },
+        {
+            "name": "sleep_icon"
         }
     ]
 }

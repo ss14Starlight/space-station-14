@@ -43,6 +43,7 @@
   - type: AccessReader
     access: [["Paramedic"]]
 
+# Mining
 - type: entity
   parent: DoorElectronics
   id: DoorElectronicsMining
@@ -51,6 +52,7 @@
     - type: AccessReader
       access: [["Mining"]]
 
+#Salvage-Mining
 - type: entity # Combination door for salvage and mining access
   parent: DoorElectronics
   id: DoorElectronicsSalvageMining
@@ -58,6 +60,15 @@
   components:
     - type: AccessReader
       access: [["Salvage"], ["Mining"]]
+
+#Mail Technician
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMail
+  suffix: Mail, Locked
+  components:
+    - type: AccessReader
+      access: [["Mail"]]
 
 #Brigmedic
 - type: entity
@@ -85,3 +96,30 @@
   components:
     - type: AccessReader
       access: [["Solgov"]]
+
+#Communist
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCommunist
+  suffix: Communist, Locked
+  components:
+    - type: AccessReader
+      access: [["Communist"]]
+
+# Wizard
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsWizard
+  suffix: Wizard, Locked
+  components:
+    - type: AccessReader
+      access: [["Wizard"]]
+
+#Blackstar
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsBlackstar
+  suffix: Blackstar, Locked
+  components:
+    - type: AccessReader
+      access: [["Blackstar"]]

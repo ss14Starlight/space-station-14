@@ -1,0 +1,35 @@
+﻿- type: latheRecipe
+  parent: BaseElectronicsRecipe
+  abstract: true
+  id: BaseCircuitboardRecipeHigh
+  completetime: 4
+  materials:
+    Steel: 500
+    Glass: 500
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  abstract: true
+  id: BaseGoldCircuitboardRecipeHigh
+  materials:
+    Steel: 500
+    Glass: 500
+    Gold: 200
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  abstract: true
+  id: BaseSilverCircuitboardRecipeHigh
+  materials:
+    Steel: 500
+    Glass: 500
+    Silver: 200
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  abstract: true
+  id: BaseBananiumCircuitboardRecipeHigh
+  materials:
+    Steel: 500
+    Glass: 500
+    Bananium: 200

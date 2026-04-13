@@ -140,7 +140,7 @@
 - type: entity
   parent: [ClothingEyesBase, BaseCentcommContraband]
   id: ClothingEyesGlassesCentComm
-  name: centcomm officer's glasses
+  name: CentComm officer's glasses
   description: The innovative green lenses hide your eyes from light flashes and have a built-in visor.
   components:
   - type: Sprite
@@ -161,6 +161,7 @@
     tags:
     - HudMedical
     - CorgiWearable
+    - WhitelistChameleon
   - type: EyeProtection
     protectionTime: 5
   - type: StealTarget
@@ -230,6 +231,22 @@
     sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionscience.rsi
   - type: VisionCorrection
 
+- type: entity
+  parent: ClothingEyesGlassesCentComm
+  id: ClothingEyesGlassesCentCommPrescription
+  name: prescription CentComm glasses
+  description: A set of prescription glasses for CentComm personnel. Protects against flashes and has a built-in visor.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
+    - type: VisionCorrection
+    - type: Tag
+      tags:
+        - HudMedical
+        - WhitelistChameleon
+
 # USSP
 
 - type: entity
@@ -284,3 +301,53 @@
     - type: EyeProtection
     - type: IdentityBlocker
       coverage: EYES
+
+# Fashion
+- type: entity
+  parent: [ClothingEyesBase, BaseToggleClothing]
+  id: ClothingEyesSpaceCourierGoggles
+  name: space courier goggles
+  description: Stylish space courier replica goggles. Provides nominal eye protection, but you shouldn't count on it.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Glasses/spacecourier.rsi
+      layers:
+      - state: icon
+        map: [ "enum.ToggleableVisuals.Layer" ]
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Glasses/spacecourier.rsi
+      slots:
+      - HEAD
+      - EYES
+    - type: ItemToggle # Starts in activated state
+      activated: true
+    - type: ToggleClothing
+      action: ActionToggleWeldingMask
+    - type: Appearance
+    - type: WeldingMask
+    - type: GenericVisualizer
+      visuals:
+        enum.ToggleableVisuals.Enabled:
+          enum.ToggleableVisuals.Layer:
+            True: {state: icon}
+            False: {state: icon-up}
+    - type: ComponentToggler
+      components:
+      - type: IdentityBlocker
+        coverage: EYES
+      - type: EyeProtection
+        protectionTime: 5
+
+- type: entity
+  parent: ClothingEyesGlassesJamjar
+  id: ClothingEyesGlassesJamjarCentComm
+  name: CentComm jamjar glasses
+  description: For looking at their profits with even wider eyes.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Glasses/jamjarcentcomm.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Glasses/jamjarcentcomm.rsi
+    - type: Tag
+      tags:
+        - WhitelistChameleon

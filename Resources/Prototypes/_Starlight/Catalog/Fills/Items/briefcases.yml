@@ -10,3 +10,65 @@
           - id: Paper
           - id: Pen
           - id: RubberStampIAA
+
+# Syndicate dead drop
+- type: entity
+  parent: MarkerBase
+  id: SyndieDeadDropSpawner
+  name: Syndicate High Command # Used for radio announcement
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    table: !type:AllSelector
+      children:
+      - id: BriefcaseSyndieDeadDrop
+      - id: EffectFlashRedspace
+
+- type: entity
+  parent: [ BaseSubfloorAnchorStorageAnchored, BriefcaseSyndicateRedspace, BaseMinorContraband ]
+  id: BriefcaseSyndieDeadDrop
+  name: syndicate briefcase
+  suffix: Dead Drop, Do Not Map
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:GroupSelector
+        rolls: !type:RangeNumberSelector
+          range: 3, 4
+        children:
+        # Weapons
+        - id: HomerunBat
+        - id: EnergyDaggerBox
+        - id: WeaponPistolViper
+        - id: WeaponRevolverPython
+        - id: CyberEyeThermal
+        # Grenades
+        - id: SmokeGrenade
+        - id: EmpGrenade
+        - id: C4
+        - id: X4
+        # Clothing
+        - id: ClothingShoesBootsMagSyndie
+        - id: ClothingMaskGasSyndicate
+        # Tools
+        - id: ChameleonProjector
+        - id: CameraBug
+        - id: SyndicateJawsOfLife
+        - id: RadioJammer
+        - id: AccessBreaker
+        - id: CyberPen
+        - id: SyndimovCircuitBoard
+        - id: SyndicateIDCard
+        - id: AgentIDCard
+        # Chemicals
+        - id: Stimpack
+        - id: CombatMedipen
+        - id: CigPackSyndicate
+        - id: ChemistryBottleNocturine
+        # Fun
+        - id: SyndicatePersonalAI
+        - id: RubberStampSyndicate
+        - id: UplinkLighterBox
+        - id: BalloonOperative
+        - id: LubeGrenade
+        - id: GatfruitSeeds

@@ -1,4 +1,14 @@
 - type: entity
+  parent: CrateInternals
+  id: CrateInternalsO2N2
+  name: emergency crate
+  components:
+  - type: Icon
+    sprite: _Starlight/Structures/Storage/Crates/o2n2.rsi
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/Crates/o2n2.rsi
+
+- type: entity
   parent: CrateGenericSteel
   id: CrateSoviet
   name: SSF marine crate

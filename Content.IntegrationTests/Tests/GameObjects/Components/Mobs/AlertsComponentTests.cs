@@ -88,7 +88,8 @@ namespace Content.IntegrationTests.Tests.GameObjects.Components.Mobs
                 var alertControls = clientAlertsUI.AlertContainer.Children.Select(c => (AlertControl) c);
                 var alertIDs = alertControls.Select(ac => ac.Alert.ID).ToArray();
                 var expectedIDs = new[] { "HumanHealth", "Debug1", "Debug2" };
-                Assert.That(alertIDs, Is.SupersetOf(expectedIDs));
+                var expectedIPCIDs = new[] { "IPCHealth", "Debug1", "Debug2" }; // Far Horizons
+                Assert.That(alertIDs, Is.SupersetOf(expectedIDs).Or.SupersetOf(expectedIPCIDs)); // Far Horizons
             });
 
             await server.WaitAssertion(() =>
@@ -105,7 +106,8 @@ namespace Content.IntegrationTests.Tests.GameObjects.Components.Mobs
                 var alertControls = clientAlertsUI.AlertContainer.Children.Select(c => (AlertControl) c);
                 var alertIDs = alertControls.Select(ac => ac.Alert.ID).ToArray();
                 var expectedIDs = new[] { "HumanHealth", "Debug2" };
-                Assert.That(alertIDs, Is.SupersetOf(expectedIDs));
+                var expectedIPCIDs = new[] { "IPCHealth", "Debug2" }; // Far Horizons
+                Assert.That(alertIDs, Is.SupersetOf(expectedIDs).Or.SupersetOf(expectedIPCIDs)); // Far Horizons
             });
 
             await pair.CleanReturnAsync();
