@@ -1161,4 +1161,11 @@ Entries:
   id: 404293
   time: '2026-04-13T08:17:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4142
+- author: STARLIGHT TEAM
+  changes:
+  - message: Temporary removed cosmic cult from gamerules pool and reverted PR which breaks comms.
+    type: Remove
+  id: 404294
+  time: '2026-04-13T08:57:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4147
 Order: -1
