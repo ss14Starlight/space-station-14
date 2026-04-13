@@ -309,3 +309,33 @@ command-description-markup-cleardesc =
     Clears all additional lines of markup text from the piped entity's description.
 command-description-markup-listdesc =
     Lists all description markup texts on the piped entity and their IDs.
+command-description-map-get =
+    Gets the map that the piped entity is currently on.
+command-description-map-getid =
+    Gets a map by its ID.
+command-description-map-init =
+    Initializes the piped map entity.
+command-description-map-initid =
+    Initializes the map with the specified ID.
+command-description-map-pause =
+    Pauses the piped map entity.
+command-description-map-pauseid =
+    Pauses the map with the specified ID.
+command-description-map-unpause =
+    Unpauses the piped map entity.
+command-description-map-unpauseid =
+    Unpauses the map with the specified ID.
+command-description-map-load =
+    Loads a map from the specified path to the specified map ID.
+command-description-map-loadoffset =
+    Loads a map from the specified path with the given map ID. Allows specifying an offset and rotation.
+command-description-map-add =
+    Adds a new map with the specified map ID. Lets you choose whether to initialize it or not.
+command-description-map-rm =
+    Properly removes the piped map entity.
+command-description-map-rmid =
+    Properly removes the map with the specified ID.
+command-description-map-save =
+    Saves the piped map entity to the given path.
+command-description-map-saveid =
+    Saves the map with the specified ID to the given path.
