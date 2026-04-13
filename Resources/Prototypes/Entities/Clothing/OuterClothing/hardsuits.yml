@@ -922,7 +922,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-  - type: TheDarkImmune # SL
+    - IPCExternalCooling # Far Horizons
 
 #Ling Space Suit
 - type: entity

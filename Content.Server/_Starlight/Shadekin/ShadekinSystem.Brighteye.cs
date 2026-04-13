@@ -63,7 +63,6 @@ public sealed partial class ShadekinSystem : EntitySystem
 
                 if (core.Comp1.OrganOwner != uid)
                 {
-                    component.LesserKin = true;
                     component.MaxEnergy = 100;
                     component.PhaseCost = 100;
 
