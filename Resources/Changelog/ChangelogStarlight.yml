@@ -972,4 +972,39 @@ Entries:
   id: 404266
   time: '2026-04-12T21:50:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4143
+- author: Born Stellar
+  changes:
+  - message: Glare now checks directions properly, which should make it feel much more consistent.
+    type: Fix
+  id: 404267
+  time: '2026-04-13T07:13:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4081
+- author: Born Stellar
+  changes:
+  - message: Glare no longer instantly recharges in any direction.
+    type: Fix
+  id: 404268
+  time: '2026-04-13T07:13:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4081
+- author: Born Stellar
+  changes:
+  - message: Glare actually mutes the target for 8 seconds.
+    type: Fix
+  id: 404269
+  time: '2026-04-13T07:13:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4081
+- author: Born Stellar
+  changes:
+  - message: Glare full trigger no longer stuns targets for 15 seconds due to the immense sustained stamina damage, only the intended 4 seconds plus enough stamina damage to follow up with a stamina stun with only a few swings of a baton afterwards.
+    type: Tweak
+  id: 404270
+  time: '2026-04-13T07:13:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4081
+- author: Born Stellar
+  changes:
+  - message: Glare requires the vampire not be blind to work. Blindfold your vamps to prevent them doing crazy stuff.
+    type: Tweak
+  id: 404271
+  time: '2026-04-13T07:13:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4081
 Order: -1
