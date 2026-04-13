@@ -951,4 +951,25 @@ Entries:
   id: 404263
   time: '2026-04-12T10:43:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4126
+- author: Conflee
+  changes:
+  - message: Renamed the Blue SMES to the Hyper Advanced SMES.
+    type: Tweak
+  id: 404264
+  time: '2026-04-12T21:50:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4143
+- author: Conflee
+  changes:
+  - message: Added a new circuit board, unlocked from the Industrial Engineering research by Sci alongside the Advanced SMES board. The Hyper Advanced Board costs 2 gold instead of 1, and the Hyper Advanced SMES requires 4 High Capacity Cells to build, but it is 4x more powerful than the Advanced SMES.
+    type: Add
+  id: 404265
+  time: '2026-04-12T21:50:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4143
+- author: Conflee
+  changes:
+  - message: Resprited the SMES, Advanced SMES, and Hyper Advanced SMES to be more polished and clean versions of the old sprites. The SMES is now smaller, with the Advanced SMES and Hyper Advanced SMES being wider and having an animated cooling fan on top.
+    type: Tweak
+  id: 404266
+  time: '2026-04-12T21:50:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4143
 Order: -1
