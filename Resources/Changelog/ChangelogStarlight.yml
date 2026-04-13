@@ -1140,4 +1140,25 @@ Entries:
   id: 404290
   time: '2026-04-13T07:40:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4123
+- author: bynddark8
+  changes:
+  - message: (Cog) Added NanoMed Security and additional topicals to brigmed.
+    type: Add
+  id: 404291
+  time: '2026-04-13T08:17:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4142
+- author: bynddark8
+  changes:
+  - message: (Cog) Removed the hotplate & reagent grinder from brigmed.
+    type: Remove
+  id: 404292
+  time: '2026-04-13T08:17:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4142
+- author: bynddark8
+  changes:
+  - message: (Cog) Shifted the layout of brigmed to hopefully be more ergonomic and visually appealing.
+    type: Tweak
+  id: 404293
+  time: '2026-04-13T08:17:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4142
 Order: -1
