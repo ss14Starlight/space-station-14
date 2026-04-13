@@ -121,6 +121,21 @@ thaven-mood-delicious-moldy-bread-desc = Nothing tastes finer than moldy bread. 
 thaven-mood-blindness-is-freedom-name = Blindness Is Freedom
 thaven-mood-blindness-is-freedom-desc = Your sight disgusts you. Get rid of it.
 
+thaven-mood-charger-name = Charger
+thaven-mood-charger-desc = Your positronic brain consumes a lot of power. Make sure to frequently recharge it by skin contact with exposed electrical wires.
+
+thaven-mood-vital-purity-name = Vital Purity
+thaven-mood-vital-purity-desc = Healing is a crime against nature. Refuse any form of medical intervention at all costs.
+
+thaven-mood-martyr-name = Martyr
+thaven-mood-martyr-desc = It's highly virtuous to be visibly wounded. Keep your health low at all times.
+
+thaven-mood-duck-and-cover-name = Duck and Cover
+thaven-mood-duck-and-cover-desc = Showing your full profile is dangerous, crawl at all times.
+
+thaven-mood-paranoid-name = Paranoid
+thaven-mood-paranoid-desc = You strongly believe that coords cause cancer.
+
 # we love when server context doesn't properly dispose of data...
 DuplicateTest = DuplicateTestFTL
 DuplicateOverlapTest = DuplicateOverlapTestFTL
