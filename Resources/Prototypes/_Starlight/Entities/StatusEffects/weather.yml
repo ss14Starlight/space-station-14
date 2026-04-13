@@ -74,3 +74,11 @@
   components:
     - type: ParallaxStatusEffect
       parallax: SpaceWhale
+
+- type: entity
+  parent: WeatherBase
+  id: WeatherCosmic
+  name: cosmic
+  components:
+    - type: ParallaxStatusEffect
+      parallax: CosmicFinaleParallax
