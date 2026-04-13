@@ -66,18 +66,8 @@ public sealed partial class ChannelFilterPopup : Popup
         // Starlight start
         InitializeTTSMuteChannels();
         TTSClearQueueButton.OnPressed += _ => ClearQueue();
-        TTSToggleMuteAllButton.OnPressed += _ => ToggleMuteAllTTSCheckboxes();
+        TTSToggleAllButton.OnPressed += _ => ToggleAllTTSCheckboxes();
         // Starlight end
-                    void ToggleMuteAllTTSCheckboxes()
-                    {
-                        // If all are checked, uncheck all. Otherwise, check all.
-                        bool allChecked = _ttsMuteStates.Values.All(checkbox => checkbox.Pressed);
-                        bool newState = !allChecked;
-                        foreach (var cb in _ttsMuteStates.Values)
-                        {
-                            cb.Pressed = newState;
-                        }
-                    }
     }
     // Starlight start
 
@@ -119,6 +109,17 @@ public sealed partial class ChannelFilterPopup : Popup
             _ttsStream = entManager.System<TextToSpeechStreamSystem>();
         }
         _ttsStream?.SetChannelMuted(channelId, args.Pressed);
+    }
+
+    private void ToggleAllTTSCheckboxes()
+    {
+        // If all are checked, unchecks all. Otherwise, check all boxes.
+        bool allChecked = _ttsMuteStates.Values.All(checkbox => checkbox.Pressed);
+        bool newState = !allChecked;
+        foreach (var checkbox in _ttsMuteStates.Values)
+        {
+            checkbox.Pressed = newState;
+        }
     }
 
     // Starlight end
