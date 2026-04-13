@@ -1,0 +1,58 @@
+- type: entity
+  name: MT-6 "Arbitration"
+  id: WeaponLightMachineGunMedTak
+  parent: BaseWeaponLightMachineGun
+  description: An ultralight assault LMG developed for MedTak security.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Weapons/MedTak/LMG.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-5
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 10000
+  - type: Item
+    sprite: _Starlight/Admeme/Weapons/MedTak/LMG.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Weapons/MedTak/LMG.rsi
+    quickEquip: false
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg
+    soundBoltClosed:
+      path: /Audio/Weapons/Guns/Bolt/rifle_bolt_closed.ogg
+    soundBoltOpened:
+      path: /Audio/Weapons/Guns/Bolt/rifle_bolt_open.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: LightRifleHeavyMagazineSP
+        insertSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
+        ejectSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
+        whitelist:
+          tags:
+            - LightRifleHeavy
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: HeldSpeedModifier
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/m90.ogg
+    minAngle: 15
+    maxAngle: 30
+    angleIncrease: 2
+    angleDecay: 10
+    fireRate: 8

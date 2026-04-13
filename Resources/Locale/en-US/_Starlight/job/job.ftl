@@ -24,6 +24,10 @@ job-title-tsf-MARSOC = MARSOC Marine
 
 job-name-blackstar = Blackstar Mercenary
 
+job-name-medtak-medic = MedTak medic
+job-name-medtak-pilot = MedTak pilot
+job-name-medtak-security = MedTak security
+
 job-greet-information-rules = {$jobRules}
 
 role-type-corporate-aligned-name = Corporate Aligned

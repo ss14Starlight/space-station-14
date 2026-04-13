@@ -40,3 +40,19 @@
     modifiers:
       coefficients:
         Heat: 0.9
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieMedic
+  id: ClothingHeadHelmetHardsuitMedTak
+  name: MedTak operator helmet
+  description: An armoured helmet worn by MedTak operators.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Head/Hardsuits/medtak_hardsuit_helmet.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Head/Hardsuits/medtak_hardsuit_helmet.rsi
+  - type: PointLight
+    color: "#d55858"
+  - type: Pierceable
+    level: HardenedMetal
+  - type: Tag

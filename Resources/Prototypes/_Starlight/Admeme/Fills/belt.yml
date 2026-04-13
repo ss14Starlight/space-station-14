@@ -1,0 +1,79 @@
+#MedTak
+- type: entity
+  id: ClothingBeltMedTakFilledHeavy
+  parent: ClothingBeltMedTak
+  suffix: Filled, Security, Heavy
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: JawsOfLife
+        - id: LightRifleHeavyMagazineHP
+        - id: LightRifleHeavyMagazineHP
+        - id: LightRifleHeavyMagazineSP
+        - id: LightRifleHeavyMagazineSP
+        - id: MagazinePistol40SP
+        - id: MedicatedSuture
+        - id: RegenerativeMesh
+        - id: Tourniquet
+        - id: WeaponPistolSP8AR
+
+- type: entity
+  id: ClothingBeltMedTakFilledRifle
+  parent: ClothingBeltMedTak
+  suffix: Filled, Security, Rifle
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: JawsOfLife
+        - id: MagazineRifleM52HP
+        - id: MagazineRifleM52HP
+        - id: MagazineRifleM52SP
+        - id: MagazineRifleM52SP
+        - id: MagazinePistol40SP
+        - id: MedicatedSuture
+        - id: RegenerativeMesh
+        - id: Tourniquet
+        - id: WeaponPistolSP8AR
+
+- type: entity
+  id: ClothingBeltMedTakFilledMedic
+  parent: ClothingBeltMedTak
+  suffix: Filled, Medic
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: JawsOfLife
+        - id: MedkitMedTakFilled
+        - id: TacticalJetInjector
+        - id: MedicatedSuture
+        - id: MedicatedSuture
+        - id: RegenerativeMesh
+        - id: MagazinePistol40SP
+        - id: MagazinePistol40SP
+        - id: WeaponPistolSP8AR
+
+- type: entity
+  id: ClothingBeltMedTakFilledPilot
+  parent: ClothingBeltMedTak
+  suffix: Filled, Pilot
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: JawsOfLife
+        - id: PowerDrill
+        - id: WelderExperimental
+        - id: Multitool
+        - id: MedicatedSuture
+        - id: RegenerativeMesh
+        - id: Tourniquet
+        - id: MagazinePistol40SP
+        - id: MagazinePistol40SP
+        - id: WeaponPistolSP8AR

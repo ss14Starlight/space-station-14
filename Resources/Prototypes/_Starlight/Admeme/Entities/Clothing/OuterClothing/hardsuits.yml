@@ -28,3 +28,32 @@
       tags:
         - Hardsuit
         - WhitelistChameleon
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndieMedic
+  id: ClothingOuterHardsuitMedTak
+  name: MedTak operator hardsuit
+  description: An armoured hardsuit worn by MedTak operators.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/medtak_hardsuit.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/medtak_hardsuit.rsi
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitMedTak
+    - type: Tag
+      tags:
+        - Hardsuit
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndieMedic
+  id: ClothingOuterHardsuitMedTakTest
+  name: MedTak operator hardsuit
+  description: An armoured hardsuit worn by MedTak operators.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/medtak_hardsuit.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/medtak_hardsuit.rsi
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitMedTak
