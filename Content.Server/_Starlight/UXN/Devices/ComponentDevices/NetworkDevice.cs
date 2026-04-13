@@ -15,11 +15,7 @@ public sealed partial class NetworkDevice : ComponentUxnDevice<DeviceNetworkComp
     public override string Id => "network";
     private DeviceNetworkSystem _deviceNetwork = default!;
     private readonly Queue<DeviceNetworkPacketEvent> _readQueue = new();
-    protected override void SetupCore(EntityUid euid, DeviceNetworkComponent comp)
-    {
-        var _entMan = IoCManager.Resolve<IEntitySystemManager>();
-        _deviceNetwork = _entMan.GetEntitySystem<DeviceNetworkSystem>();
-    }
+    protected override void SetupCore(EntityUid euid, DeviceNetworkComponent comp) => _deviceNetwork = _entSysMan.GetEntitySystem<DeviceNetworkSystem>();
 
     public void MakeEvent(UXNProcessor uxn, DeviceNetworkPacketEvent ev)
     {
@@ -36,7 +32,7 @@ public sealed partial class NetworkDevice : ComponentUxnDevice<DeviceNetworkComp
 public static class UxnDeviceNetworkConstants
 {
     /// <summary>
-    /// what is the Contents the UXN is transmitting. should be a IEnuerable<byte>
+    /// what is the Contents the UXN is transmitting. should be a IEnumerable<byte>
     /// </summary>
     public const string Contents = "contents";
 }

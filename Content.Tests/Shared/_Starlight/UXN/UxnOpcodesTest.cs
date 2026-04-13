@@ -386,7 +386,7 @@ public sealed class UxnOpcodeTest : ContentUnitTest
     }
 
     [Test]
-    [Repeat(5, false)]
+    [Repeat(5, StopOnFailure = false)]
     public void AND()
     {
         var uxn = new UXNProcessor();
@@ -400,7 +400,7 @@ public sealed class UxnOpcodeTest : ContentUnitTest
     }
 
     [Test]
-    [Repeat(5, false)]
+    [Repeat(5, StopOnFailure = false)]
     public void ORA()
     {
         var uxn = new UXNProcessor();
@@ -414,7 +414,7 @@ public sealed class UxnOpcodeTest : ContentUnitTest
     }
 
     [Test]
-    [Repeat(5, false)]
+    [Repeat(5, StopOnFailure = false)]
     public void XOR()
     {
         var uxn = new UXNProcessor();

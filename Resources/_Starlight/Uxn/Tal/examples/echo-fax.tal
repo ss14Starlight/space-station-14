@@ -11,10 +11,10 @@
 ;mmu/fax .System/expansion DEO2 ( attach the fax device )
 
 .Faxcmd/reload .Fax/cmd DEO ( reload the fax list )
-;recieved .Fax/vector DEO2
+;received .Fax/vector DEO2
 BRK
 
-@recieved
+@received
 .Faxcmd/readnext .Fax/cmd DEO ( prepare next fax because of event )
 ;delay .Delay/vector DEO2
 #0005 .Delay/time DEO2

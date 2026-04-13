@@ -159,16 +159,12 @@ public class StandardSystemDevice : UXNDevice
     private void SystemDetachCommand(ushort baseAddr, UxnMem mem, UXNProcessor proc)
     {
         var dtchSlot = (byte)(mem[(ushort)(baseAddr + 1)] & 0x0F);
-        if (!AttachedDevices.ContainsValue(dtchSlot))
+        var entry = AttachedDevices.FirstOrDefault(p => p.Value == dtchSlot);
+        if (entry.Key is null)
             return; //this slot was not attached via a command. as such it isn't safe to detach
 
-        proc.Devices[dtchSlot & 0x0F].OnDetach(proc); //call on detach so the device can clean up if it needs to
-        proc.AttachDevice((byte)(dtchSlot & 0x0F), new UXNDevice()); //detach by attaching a blank device
-
-        if (AttachedDevices.FirstOrDefault(p => p.Value == dtchSlot)
-            is { Key: var key })
-        {
-            AttachedDevices.Remove(key);
-        }
+        proc.Devices[dtchSlot & 0x0F].OnDetach(proc);
+        proc.AttachDevice((byte)(dtchSlot & 0x0F), new UXNDevice());
+        AttachedDevices.Remove(entry.Key);
     }
 }

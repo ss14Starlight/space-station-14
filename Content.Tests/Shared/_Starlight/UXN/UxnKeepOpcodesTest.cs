@@ -410,7 +410,7 @@ public sealed class UxnKeepOpcodeTest : ContentUnitTest
     }
 
     [Test]
-    [Repeat(5, false)]
+    [Repeat(5, StopOnFailure = false)]
     public void ANDk()
     {
         var uxn = new UXNProcessor();
@@ -426,7 +426,7 @@ public sealed class UxnKeepOpcodeTest : ContentUnitTest
     }
 
     [Test]
-    [Repeat(5, false)]
+    [Repeat(5, StopOnFailure = false)]
     public void ORAk()
     {
         var uxn = new UXNProcessor();
@@ -437,10 +437,12 @@ public sealed class UxnKeepOpcodeTest : ContentUnitTest
         uxn.WorkingStack.PushByte(right);
         Assert.That(uxn.Step(), Is.False);
         Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(left | right));
+        Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(right));
+        Assert.That(uxn.WorkingStack.PopByte(true), Is.EqualTo(left));
     }
 
     [Test]
-    [Repeat(5, false)]
+    [Repeat(5, StopOnFailure = false)]
     public void EORk()
     {
         var uxn = new UXNProcessor();

@@ -133,7 +133,7 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     [TestCase(0x01, 0x01, false)]
     [TestCase(0xf8, 0x01, true)]
     [TestCase(0x01, 0xf8, false)]
-    public void GTH(byte left, byte right, bool expected)
+    public void GTHr(byte left, byte right, bool expected)
     {
         var uxn = new UXNProcessor();
         uxn.SystemMem[0x100] = (byte)UxnOpcode.GTH | (byte)UxnOpcodeFlag.Return;
@@ -369,7 +369,7 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     }
 
     [Test]
-    [Repeat(5, false)]
+    [Repeat(5, StopOnFailure = false)]
     public void ANDr()
     {
         var uxn = new UXNProcessor();
@@ -383,7 +383,7 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     }
 
     [Test]
-    [Repeat(5, false)]
+    [Repeat(5, StopOnFailure = false)]
     public void ORAr()
     {
         var uxn = new UXNProcessor();
@@ -397,7 +397,7 @@ public sealed class UxnReturnOpcodeTest : ContentUnitTest
     }
 
     [Test]
-    [Repeat(5, false)]
+    [Repeat(5, StopOnFailure = false)]
     public void EORr()
     {
         var uxn = new UXNProcessor();

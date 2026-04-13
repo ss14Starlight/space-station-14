@@ -2,6 +2,7 @@
 
 public abstract class ComponentUxnDevice<T> : UXNDevice where T : IComponent
 {
+    [Dependency] protected readonly IEntitySystemManager _entSysMan = default!;
     public ComponentUxnDevice() => IoCManager.InjectDependencies(this);
     public virtual string Id => typeof(T).Name[..^"Component".Length];
 

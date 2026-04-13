@@ -27,7 +27,6 @@ public sealed class TestUxnCompiler
         var server = pair.Server;
 
         var resourceManager = server.ResolveDependency<IResourceManager>();
-        var uxnSystem = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<UxnSystem>();
         var sawmill = server.ResolveDependency<ILogManager>().GetSawmill("uxn.testrunner");
 
         await server.WaitAssertion(() =>
@@ -49,7 +48,7 @@ public sealed class TestUxnCompiler
             sawmill.Info($"Ran {uxnRunner.RealInstructionCounter} instructions");
             sawmill.Info($"Program output:\n{new string(Encoding.ASCII.GetChars([.. stdio.FakedOutput])).Trim()}");
 
-            //Make sure program succeded.
+            //Make sure program succeeded.
             Assert.That(uxnRunner.SystemDevice.Status, Is.EqualTo(expected));
         });
 

@@ -86,7 +86,6 @@ public sealed partial class AdminVerbSystem : EntitySystem
             if (HasComp<ActorComponent>(args.Target)) args.Verbs.Add(preventObjectiveTargeting);
         }
 
-        #region Starlight
         if (_adminManager.HasAdminFlag(player, AdminFlags.Debug))
         {
             // TODO: make these in-game tools in some-way (cause hexdumps are REALLY usefull when debugging assembly programs)
@@ -94,7 +93,7 @@ public sealed partial class AdminVerbSystem : EntitySystem
                 args.Verbs.Add(new()
                 {
                     Act = () => {
-                        using var writer = _resourceManager.UserData.OpenWrite(new ResPath("/uxn-dump.bin"));
+                        using var writer = _resourceManager.UserData.OpenWrite(new ResPath($"/uxn-dump-{args.Target.Id}.bin"));
                         writer.Write([.. uxn.CompiledRom]);
                     },
                     Text = "Dump ROM",
@@ -107,11 +106,11 @@ public sealed partial class AdminVerbSystem : EntitySystem
                     Act = () => {
                         if (attached.Uxn is not { } uxn)
                             return;
-                        using (var writer = _resourceManager.UserData.OpenWrite(new ResPath("/uxn-running-rom.bin")))
+                        using (var writer = _resourceManager.UserData.OpenWrite(new ResPath($"/uxn-running-rom-{args.Target.Id}.bin")))
                         {
                             writer.Write([.. uxn.SystemMem._inner]);
                         }
-                        using (var writer = _resourceManager.UserData.OpenWrite(new ResPath("/uxn-running-device.bin")))
+                        using (var writer = _resourceManager.UserData.OpenWrite(new ResPath($"/uxn-running-device-{args.Target.Id}.bin")))
                         {
                             writer.Write([.. uxn.DevMem._inner]);
                         }
@@ -120,7 +119,5 @@ public sealed partial class AdminVerbSystem : EntitySystem
                     Message = "Dumps the ram/device memory/working/return stacks to various uxn-running-*.bin files",
                     Category = VerbCategory.Debug
                 });
-        }
-        #endregion
     }
 }

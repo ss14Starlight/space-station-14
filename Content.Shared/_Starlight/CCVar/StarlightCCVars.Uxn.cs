@@ -14,7 +14,8 @@ public sealed partial class StarlightCCVars
     /// <summary>
     /// The default maximum number of instrs a UXN can execute at once.
     /// this value can be overriden/underclocked by <see cref="UxnMaxInstrLimit"/> via
-    /// Math.Min(UxnDefaultInstrLimit * ((UxnMaxInstrLimit/(UxnDefaultInstrLimit*UxnCount)), UxnDefaultInstrLimit)
+    /// min(default_instrs * ((maximum_instrs/(default_instrs * count)), default_instrs)
+    /// or simply put it will run default_instrs at once max. but if there is more uxns then it divides the avaliable instructions from maximum_instrs among the processors.
     /// </summary>
     public static readonly CVarDef<int> UxnDefaultInstrLimit =
         CVarDef.Create("uxn.default_instrs", 1000, CVar.SERVERONLY);

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Content.Shared.Fax.Components;
+﻿using Content.Shared.Fax.Components;
 using Content.Shared.Paper;
 
 namespace Content.Server._Starlight.Fax;

@@ -186,7 +186,7 @@ public class UXNDevice
             output.Length--; //Delete the last character
         } else
         {
-            for (short i = 0; i < bufferLen; i++)
+            for (ushort i = 0; i < bufferLen; i++)
             {
                 output.Append(Encoding.ASCII.GetChars([mem[(ushort)(addr + i)]]));
             }
