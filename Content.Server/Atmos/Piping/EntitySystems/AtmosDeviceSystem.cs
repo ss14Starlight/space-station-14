@@ -131,8 +131,6 @@ namespace Content.Server.Atmos.Piping.EntitySystems
 
             var time = _gameTiming.CurTime;
 
-            var updatedDevices = new HashSet<EntityUid>(); // Starlight
-
             var ev = new AtmosDeviceUpdateEvent(_atmosphereSystem.AtmosTime, null, null);
             foreach (var device in _joinedDevices)
             {
@@ -142,25 +140,8 @@ namespace Content.Server.Atmos.Piping.EntitySystems
                     RejoinAtmosphere(device);
                 }
                 RaiseLocalEvent(device, ref ev);
-                updatedDevices.Add(device.Owner); // Starlight
                 device.Comp.LastProcess = time;
             }
-
-            /*
-             * Starlight begin: Check all atmos devices for RequestJoinSystem being true because apparently this is
-             * better than having a get;set; in a component according to SL maints. Very performant!
-             */
-            var query = EntityQueryEnumerator<AtmosDeviceComponent>();
-            while (query.MoveNext(out var uid, out var comp))
-            {
-                if (!comp.RequestJoinSystem) continue;
-                comp.RequestJoinSystem = false;
-                Entity<AtmosDeviceComponent> device = (uid, comp);
-                RejoinAtmosphere(device);
-                if(!updatedDevices.Contains(device.Owner)) RaiseLocalEvent(device, ref ev);
-                device.Comp.LastProcess = time;
-            }
-            //Starlight end
         }
 
         public bool IsJoinedOffGrid(Entity<AtmosDeviceComponent> device)
