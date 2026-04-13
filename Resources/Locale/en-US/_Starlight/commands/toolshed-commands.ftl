@@ -172,7 +172,7 @@ command-description-mind-takeoverwipe =
 command-description-mind-controlwipe =
     Wipe the target player's mind and make them control the piped entity, creating a new mind and making the entity sentient.
 command-description-killsign-set =
-    Apply a killsign to the entity using the kill sprite.
+    Apply a killsign to the entity using the specified state.
 command-description-killsign-list =
     Lists all available killsigns.
 command-description-killsign-rm =
