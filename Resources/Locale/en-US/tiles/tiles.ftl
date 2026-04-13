@@ -157,3 +157,4 @@ tiles-ironsand-concrete-slab = ironsand concrete slab
 tiles-ironsand-concrete-smooth = smooth ironsand concrete floor
 tiles-ironsand-packed = packed ironsand
 tiles-ironsand-paved = paved ironsand
+tiles-astro-asteroid-tile = astro-asteroid tile
