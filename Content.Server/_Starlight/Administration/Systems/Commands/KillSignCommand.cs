@@ -17,7 +17,6 @@ public sealed class KillSignCommand : ToolshedCommand
     private static readonly Dictionary<string, (string path, string state)> Sprites = new()
     {
         ["kill"] = (BaseContentPath, "kill"),
-        ["stinky"] = (BaseContentPath, "stinky"),
         ["raider"] = (BaseContentPath, "raider"),
         ["peak"] = (BaseContentPath, "peak"),
         ["nerd"] = (BaseContentPath, "nerd"),
