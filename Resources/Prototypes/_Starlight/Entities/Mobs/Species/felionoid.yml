@@ -43,7 +43,7 @@
   - type: Butcherable
     butcheringType: Spike
     spawned:
-    - id: FoodMeatHuman
+    - id: FoodMeat
       amount: 3
   - type: Damageable
     damageContainer: Biological
@@ -93,3 +93,4 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Wagging
