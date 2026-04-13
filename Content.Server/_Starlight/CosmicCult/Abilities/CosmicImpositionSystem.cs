@@ -1,7 +1,5 @@
-using Content.Server.Popups;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
-using Content.Shared._Starlight.NullSpace;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Audio;
@@ -15,8 +13,6 @@ public sealed class CosmicImpositionSystem : EntitySystem
     [Dependency] private readonly CosmicCultSystem _cult = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -42,13 +38,6 @@ public sealed class CosmicImpositionSystem : EntitySystem
 
     private void OnCosmicImposition(Entity<CosmicCultComponent> uid, ref EventCosmicImposition args)
     {
-        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
-            if (HasComp<NullSpaceBlockerComponent>(entity))
-            {
-                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
-                return;
-            }
-
         EnsureComp<CosmicImposingComponent>(uid, out var comp);
         comp.Expiry = _timing.CurTime + uid.Comp.CosmicImpositionDuration;
         Spawn(uid.Comp.ImpositionVFX, Transform(uid).Coordinates);

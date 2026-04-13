@@ -16,29 +16,24 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Hands;
-using Robust.Server.Player;
-using Robust.Shared.Player;
-using Robust.Shared.Enums;
 using Content.Server._Starlight.Bluespace;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Gravity;
-using Content.Server._Starlight.CosmicCult;
 
 namespace Content.Server._Starlight.NullSpace;
 
 public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 {
+    [Dependency] private readonly VisibilitySystem _visibilitySystem = default!;
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
     [Dependency] private readonly EyeSystem _eye = default!;
     [Dependency] private readonly NpcFactionSystem _factions = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly NullSpacePhaseSystem _phaseSystem = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly CosmicCultRuleSystem _cosmicCult = default!;
 
     public override void Initialize()
     {
@@ -49,33 +44,21 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
         SubscribeLocalEvent<NullSpaceComponent, AtmosExposedGetAirEvent>(OnExpose);
         SubscribeLocalEvent<NullSpaceComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
         SubscribeLocalEvent<NullSpaceComponent, NullSpaceShuntEvent>(NullSpaceShunt);
-        SubscribeLocalEvent<NullSpaceComponent, GetVisMaskEvent>(OnGetVisMask);
-
-        _player.PlayerStatusChanged += OnPlayerStatusChanged;
     }
 
-    private void OnGetVisMask(Entity<NullSpaceComponent> uid, ref GetVisMaskEvent args) =>
-        args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
-
-    // We do this to prevent a SoftLock... due to visibilitySystem.
-    private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
-    {
-        if (args.NewStatus != SessionStatus.Disconnected)
-            return;
-
-        if (TryComp<NullSpaceComponent>(args.Session.AttachedEntity, out var nullspacecomp))
-        {
-            SpawnAtPosition(_shadekinShadow, Transform(args.Session.AttachedEntity.Value).Coordinates);
-            RemComp(args.Session.AttachedEntity.Value, nullspacecomp);
-
-            if (TryComp<PullableComponent>(args.Session.AttachedEntity, out var pullable) && pullable.BeingPulled)
-                _pulling.TryStopPull(args.Session.AttachedEntity.Value, pullable);
-        }
-    }
 
     public void OnStartup(EntityUid uid, NullSpaceComponent component, MapInitEvent args)
     {
-        _eye.RefreshVisibilityMask(uid);
+        var visibility = EnsureComp<VisibilityComponent>(uid);
+        _visibilitySystem.RemoveLayer((uid, visibility), (int)VisibilityFlags.Normal, false);
+        _visibilitySystem.AddLayer((uid, visibility), (int)VisibilityFlags.NullSpace, false);
+        _visibilitySystem.RefreshVisibility(uid, visibility);
+
+        if (TryComp<EyeComponent>(uid, out var eye))
+            _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int)VisibilityFlags.NullSpace, eye);
+
+        if (TryComp<TemperatureComponent>(uid, out var temp))
+            temp.AtmosTemperatureTransferEfficiency = 0;
 
         var stealth = EnsureComp<StealthComponent>(uid);
         _stealth.SetVisibility(uid, 0.8f, stealth);
@@ -86,7 +69,6 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 
         EnsureComp<PressureImmunityComponent>(uid);
         EnsureComp<FTLSmashImmuneComponent>(uid);
-        EnsureComp<TemperatureImmunityComponent>(uid);
 
         if (TryComp<GravityAffectedComponent>(uid, out var grav))
             _gravity.RefreshWeightless((uid, grav), false);
@@ -127,22 +109,30 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 
     public void OnShutdown(EntityUid uid, NullSpaceComponent component, ComponentShutdown args)
     {
+        if (TryComp<VisibilityComponent>(uid, out var visibility))
+        {
+            _visibilitySystem.AddLayer((uid, visibility), (int)VisibilityFlags.Normal, false);
+            _visibilitySystem.RemoveLayer((uid, visibility), (int)VisibilityFlags.NullSpace, false);
+            _visibilitySystem.RefreshVisibility(uid, visibility);
+        }
+
+        if (TryComp<EyeComponent>(uid, out var eye))
+            _eye.SetVisibilityMask(uid, (int)VisibilityFlags.Normal, eye);
+
+        if (TryComp<TemperatureComponent>(uid, out var temp))
+            temp.AtmosTemperatureTransferEfficiency = 0.1f;
+
         SuppressFactions(uid, component, false);
 
         RemComp<StealthComponent>(uid);
         RemComp<PressureImmunityComponent>(uid);
         RemComp<FTLSmashImmuneComponent>(uid);
 
-        if (_cosmicCult.AssociatedGamerule(uid) is not { } cult || cult.Comp.CurrentTier != 3)
-            EnsureComp<TemperatureImmunityComponent>(uid);
-
         _virtualItem.DeleteInHandsMatching(uid, uid);
     }
 
     public void OnRemove(EntityUid uid, NullSpaceComponent component, ComponentRemove args)
     {
-        _eye.RefreshVisibilityMask(uid);
-
         if (TryComp<GravityAffectedComponent>(uid, out var grav))
             _gravity.RefreshWeightless((uid, grav));
     }
@@ -161,7 +151,7 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
                     if (TryComp<VirtualItemComponent>(item, out var vcomp))
                     {
                         // safety check just to make sure you dont pull something into nullspace by phasing out.
-                        if (HasComp<NullSpaceComponent>(vcomp.BlockingEntity)) _phaseSystem.Phase(vcomp.BlockingEntity);
+                        if(HasComp<NullSpaceComponent>(vcomp.BlockingEntity)) _phaseSystem.Phase(vcomp.BlockingEntity);
                         continue;
                     }
 

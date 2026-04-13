@@ -119,7 +119,7 @@ namespace Content.Server.Ghost
             // If component not deleting they can see ghosts.
             if (ent.Comp.LifeStage <= ComponentLifeStage.Running)
             {
-                args.VisibilityMask |= (int)VisibilityFlags.Ghost | (int)VisibilityFlags.Net | (int)VisibilityFlags.NullSpace; // 🌟Starlight🌟
+                args.VisibilityMask |= (int)VisibilityFlags.Ghost | (int)VisibilityFlags.Net | (int)VisibilityFlags.CosmicCultMonument; // 🌟Starlight🌟
             }
         }
 
