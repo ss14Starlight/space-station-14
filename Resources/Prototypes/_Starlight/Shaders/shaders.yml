@@ -6,6 +6,25 @@
     ShiftIntensity: 1.0
 
 - type: shader
+  id: StencilDrawUnshaded
+  kind: canvas
+  light_mode: unshaded
+  stencil:
+    ref: 1
+    op: Keep
+    func: NotEqual
+
+- type: shader
+  id: Cyberspace
+  kind: source
+  path: "/Textures/_Starlight/Shaders/cyberspace.swsl"
+  params:
+    spacing: 0.2
+    dotRad: 0.01
+    maxHeight: 0.09
+    baseStretch: 0.0
+
+- type: shader
   id: ModernNightVisionShader
   kind: source
   path: "/Textures/_Starlight/Shaders/night.swsl"
