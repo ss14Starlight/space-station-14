@@ -14,7 +14,7 @@ namespace Content.Server._Starlight.Map;
 
 [ToolshedCommand]
 [AdminCommand(AdminFlags.Admin)]
-public sealed class MapCommand : ToolshedCommand
+public sealed class GameMapCommand : ToolshedCommand
 {
     private MapLoaderSystem? _loader;
     private MapSystem? _map;
