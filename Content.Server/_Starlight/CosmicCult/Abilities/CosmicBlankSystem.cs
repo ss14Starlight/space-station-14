@@ -1,10 +1,12 @@
 using System.Collections.Immutable;
 using Content.Server._Starlight.CosmicCult.Components;
+using Content.Server._Starlight.Bluespace;
 using Content.Server.Bible.Components;
 using Content.Server.Popups;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
+using Content.Shared._Starlight.NullSpace;
 using Content.Shared.DoAfter;
 using Content.Shared.Effects;
 using Content.Shared.IdentityManagement;
@@ -32,6 +34,7 @@ public sealed class CosmicBlankSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     public override void Initialize()
     {
@@ -48,8 +51,23 @@ public sealed class CosmicBlankSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
             return;
         }
+
+        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
+            if (HasComp<NullSpaceBlockerComponent>(entity))
+            {
+                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
+                return;
+            }
+
         if (args.Handled)
             return;
+
+        // Target is in Nullspace? Shunt it!
+        if (HasComp<NullSpaceComponent>(args.Target))
+        {
+            var ev = new NullSpaceShuntEvent();
+            RaiseLocalEvent(args.Target, ref ev);
+        }
 
         var doargs = new DoAfterArgs(EntityManager, uid, uid.Comp.CosmicBlankDelay, new EventCosmicBlankDoAfter(), uid, args.Target)
         {
