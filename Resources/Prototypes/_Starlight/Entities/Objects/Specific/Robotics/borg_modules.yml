@@ -52,6 +52,35 @@
       - state: base-stripes-inhand-right
         color: "#7B0F12"
 
+- type: entity
+  parent: BaseBorgModule
+  id: BaseBorgModuleCentcomm
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - BorgModuleCentcomm
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+  - type: Item
+    inhandVisuals: # todo fix these
+      left:
+      - state: base-icon-inhand-left
+        color: "#6E9EE0"
+      - state: base-module-inhand-left
+        color: "#337dd6"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#FF00CC"
+      right:
+      - state: base-icon-inhand-right
+        color: "#6E9EE0"
+      - state: base-module-inhand-right
+        color: "#337dd6"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#FF00CC"
+
 # generic modules
 - type: entity
   id: BorgModuleUppies
@@ -138,7 +167,7 @@
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
 
-# TSF
+# region TSF
 - type: entity
   id: BorgModuleTSF
   parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
@@ -187,7 +216,7 @@
     - state: security
   - type: ItemBorgModule
     hands:
-    - item: AccessOverider
+    - item: AccessOveriderRecharging
     - item: TSFBatonModel5
     - item: WeaponPistolTSFBorg
     - item: WeaponAdvancedLaser
@@ -1018,3 +1047,74 @@
         - item: JetpackXenoborg
     - type: BorgModuleIcon
       icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }
+
+# region NTNC
+
+- type: entity
+  parent: [BaseBorgModuleCentcomm,BaseProviderBorgModule,BaseCentcommContraband]
+  id: CentcommLaserModule
+  name: CentComm cyborg laser module.
+  description: Module with a standard issue HAW laser.
+  components:
+  - type: Sprite
+    layers:
+    - state: centcomm
+    - state: icon-centcomm
+  - type: ItemBorgModule
+    hands:
+    - item: CentcommCyborgLaser
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser2-module }
+
+- type: entity
+  parent: [ BaseBorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
+  id: CentcommAccessBreakerModule
+  name: CentComm Breacher Module
+  description: Module with an ERT-modified Access Configurator designed to quickly allow access into an area.
+  components:
+  - type: Sprite
+    layers:
+    - state: centcomm
+    - state: icon-centcomm
+  - type: ItemBorgModule
+    hands:
+    - item: AccessOveriderRecharging
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-access-breaker-module }
+
+- type: entity
+  id: CentcommBulwarkModule
+  parent: [ BaseBorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
+  name: CentComm bulwark module
+  description: A module that comes with an energy chainsword and shield.
+  components:
+    - type: Sprite
+      layers:
+      - state: centcomm
+      - state: icon-centcomm
+    - type: ItemBorgModule
+      hands:
+      - item: EnergyShieldCyber
+      - item: CyberEnergyChainsword
+    - type: BorgModuleIcon
+      icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-esword-module }
+
+- type: entity
+  parent: [ BaseBorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
+  id: CentcommModuleSpaceMovement
+  name: CentComm space movement module
+  description: After seeing the success of the thruster module, CentComm decided to develop a proper jetpack for their most valued cyborgs.
+  components:
+  - type: Sprite
+    layers:
+    - state: centcomm
+    - state: icon-centcomm
+  - type: ItemBorgModule
+    hands:
+    - item: HandheldGPSBasic
+    - item: HandHeldMassScannerBorg
+    - item: HandheldStationMapUnpowered
+    - item: WeaponGrapplingGun
+    - item: JetpackCyborgCentcomm
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }

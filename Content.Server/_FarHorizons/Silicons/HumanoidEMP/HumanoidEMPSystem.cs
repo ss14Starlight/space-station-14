@@ -1,4 +1,3 @@
-using Content.Server.Body.Systems;
 using Content.Server._FarHorizons.Silicons.Glitching;
 using Content.Server.Hands.Systems;
 using Content.Server.Stunnable;
@@ -8,6 +7,7 @@ using Content.Shared.Emp;
 using Content.Shared.Movement.Systems;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Timing;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server._FarHorizons.Silicons.HumanoidEMP;
 

@@ -61,11 +61,14 @@
             MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 5, 7 ]
             SalvageLead: [ 1, 1 ]
+            MailTech: [ 2, 3 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 2, 2 ]
+            Performer: [ 4, 4 ]
+            Boxer: [ 2, 2 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 3, 5 ]

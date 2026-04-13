@@ -12,5 +12,5 @@ public sealed partial class RailroadAvoidHandcuffsTaskComponent : Component
     public SpriteSpecifier Icon = new SpriteSpecifier.Rsi(new ResPath("Objects/Misc/handcuffs.rsi"), "handcuff");
 
     [DataField]
-    public bool IsCompleted = true;
+    public bool IsFailed = false;
 }

@@ -991,3 +991,63 @@
       - FiringPinLaser
   - type: FiringPinHolder
     supportedPins: [ Laser ]
+
+# NTNC
+- type: entity
+  name: cyborg pulse carbine
+  parent: [ BaseCentcommContraband, WeaponAdvancedLaser ]
+  id: CentcommCyborgLaser
+  description: A pulse carbine modified for use by cyborgs.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: stun
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: stun-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 3
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: Appearance
+  - type: BatteryAmmoProvider
+    proto: TaserBolt
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: TaserBolt
+      fireCost: 100
+      magState: stun
+      visualState: stun
+    - proto: RedLaserBeam
+      fireCost: 50
+      magState: kill
+      visualState: kill
+    - proto: DestroyBeam
+      fireCost: 300
+      magState: destroy
+      visualState: destroy
+  - type: MagazineVisuals
+    magState: stun
+    steps: 5
+    zeroVisible: true
+  - type: GunFireModeSounds
+    sounds:
+      2:
+        path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: Battery
+    maxCharge: 3000
+    startingCharge: 3000
+  - type: BatterySelfRecharger
+    autoRechargeRate: 100
+    autoRechargePauseTime: 5

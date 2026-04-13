@@ -18,7 +18,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Physics;
-using Content.Shared.Speech.Muting;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -36,6 +35,7 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Starlight.Overlay;
@@ -241,8 +241,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     private bool IsInvalidDrinkTarget(EntityUid user, EntityUid target, bool showPopup = true)
     {
-        if (!HasComp<VampireComponent>(target)
-            && !HasComp<VampireThrallComponent>(target))
+        if (!HasComp<VampireComponent>(target) && !HasComp<VampireThrallComponent>(target))
             return false;
 
         if (showPopup)
@@ -661,17 +660,20 @@ public sealed partial class VampireSystem : EntitySystem
         if (!CheckAndConsumeBloodCost(uid, comp, null, args.BloodCost))
             return;
 
-        var duration = args.Duration;
-        _statusEffects.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, duration);
+        //Put the target to sleep
+        _statusEffects.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, args.Duration);
         args.Handled = true;
     }
-
 
     /// <summary>
     /// Action that stuns nearby mobs for a short duration
     /// </summary>
     private void OnGlare(EntityUid uid, VampireComponent comp, ref VampireGlareActionEvent args)
     {
+        //If vampire cannot see, they cannot glare
+        if (TryComp<BlindableComponent>(uid, out var blindable) && blindable.IsBlind)
+            return;
+
         if (args.Handled
             || !comp.ActionEntities.TryGetValue("ActionVampireGlare", out var actionEntity)
             || !CheckAndConsumeBloodCost(uid, comp, actionEntity))
@@ -681,7 +683,7 @@ public sealed partial class VampireSystem : EntitySystem
         var targets = _lookup.GetEntitiesInRange(uid, args.Range, LookupFlags.Dynamic | LookupFlags.Sundries);
 
         var ourXform = Transform(uid);
-        var ourDirection = ourXform.LocalRotation.ToVec();
+        var ourDirection = ourXform.LocalRotation.ToWorldVec();
         var ourPosition = ourXform.LocalPosition;
         var effectScale = 1.0f;
 
@@ -690,6 +692,8 @@ public sealed partial class VampireSystem : EntitySystem
             if (target == uid)
                 continue;
 
+            //reset effectScale for next possible target
+            effectScale = 1.0f;
             if (_flashImmunity.HasFlashImmunityVisionBlockers(target))
                 effectScale = args.FlashImmunityEffectScale;
 
@@ -704,39 +708,47 @@ public sealed partial class VampireSystem : EntitySystem
             var knockedDown = HasComp<KnockedDownComponent>(target);
 
             // If target in front
-            if (dot > 0.7f && !knockedDown)
+            if (dot > args.DotForwardLimit && !knockedDown)
             {
                 _stun.TryAddParalyzeDuration(target, args.FrontParalyzeDuration * effectScale);
 
                 _stamina.TakeStaminaDamage(target, args.FrontStaminaDamage * effectScale, stam, source: uid);
 
-                // Mute for 8 second
-                EnsureComp<MutedComponent>(target);
-                Timer.Spawn(args.MuteDuration * effectScale, () =>
-                {
-                    if (Exists(target))
-                        RemComp<MutedComponent>(target);
-                });
+                // Mute target
+                TryInjectReagents(target, args.Reagents, effectScale);
 
                 StartGlareDotEffect(target, uid, args.DotStaminaDamage * effectScale, 0, true);
-
-                return;
             }
             // If target behind
-            else if (dot < -0.7f && !knockedDown)
+            else if (dot < args.DotBackwardLimit && !knockedDown)
                 _stamina.TakeStaminaDamage(target, args.BehindStaminaDamage * effectScale, stam, source: uid);
+            // else target is to the side
             else
             {
                 _stun.TryAddParalyzeDuration(target, args.SideParalyzeDuration * effectScale);
 
                 _stamina.TakeStaminaDamage(target, args.SideStaminaDamage * effectScale, stam, source: uid);
             }
-
-            // Start DOT effect with limited ticks
-            StartGlareDotEffect(target, uid, args.DotStaminaDamage * effectScale, 0, false);
         }
 
         args.Handled = true;
+    }
+
+    /// <summary>
+    /// Try to inject whatever chem is specified
+    /// </summary>
+    private bool TryInjectReagents(EntityUid target, Dictionary<string, FixedPoint2> reagents, float effectScale)
+    {
+        var solution = new Solution();
+        foreach (var reagent in reagents)
+            solution.AddReagent(reagent.Key, reagent.Value * effectScale);
+        if (!_solution.TryGetInjectableSolution(target, out var targetSolution, out var _))
+            return false;
+
+        if (!_solution.TryAddSolution(targetSolution.Value, solution))
+            return false;
+
+        return true;
     }
 
     private void StartGlareDotEffect(EntityUid target, EntityUid source, float damage, int tickCount, bool doStaminaDamage)

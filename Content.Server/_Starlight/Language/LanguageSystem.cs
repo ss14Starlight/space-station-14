@@ -88,7 +88,10 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
 
     private void OnRadioReceiveEvent(EntityUid uid, LanguageKnowledgeComponent _, ref RadioReceiveEvent args)
     {
-        if ((args.Language.SpeechOverride.RadioChannel is null && args.Channel is not null && args.Channel == args.Language.SpeechOverride.RadioChannel)|| !TryComp<ActorComponent>(uid, out var actor))
+        if (args.Language.SpeechOverride.RadioChannel is null
+            || args.Channel is null
+            || args.Channel.ID != args.Language.SpeechOverride.RadioChannel
+            || !TryComp<ActorComponent>(uid, out var actor))
             return;
 
         _netMan.ServerSendMessage(new MsgChatMessage{ Message = args.OriginalChatMsg }, actor.PlayerSession.Channel);
