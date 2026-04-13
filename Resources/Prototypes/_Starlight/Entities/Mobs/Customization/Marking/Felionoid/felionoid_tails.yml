@@ -1,0 +1,34 @@
+# Static
+- type: marking
+  id: FelionoidTail
+  bodyPart: Tail
+  markingCategory: Tail
+  waggingId: FelionoidTailAnimated
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: tail_behind
+
+# Animated
+- type: marking
+  id: FelionoidTailAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  staticId: FelionoidTail
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: tail_wagging
+
+# This don't work - I have no idea why. Get commented out nerd
+# Tail is not rendering correctly/at all, seems to be confusing the layers?
+#- type: marking
+#  id: FelionoidTailTipAnimated
+#  bodyPart: Tail
+#  markingCategory: Tail
+#  speciesRestriction: [Felionoid]
+#  sprites:
+#    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+#      state: tail_base_wagging
+#    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+#      state: tail_tip_wagging

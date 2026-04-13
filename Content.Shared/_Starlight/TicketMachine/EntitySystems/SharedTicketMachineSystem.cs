@@ -75,7 +75,7 @@ public abstract class SharedTicketMachineSystem : EntitySystem
     /// </summary>
     private void OnHandInteract(EntityUid uid, TicketMachineComponent component, InteractHandEvent args)
     {
-        if (!_gameTiming.IsFirstTimePredicted || args.Handled 
+        if (!_gameTiming.IsFirstTimePredicted || args.Handled
             || !CanIssueTicket(uid, component, out var paper))
             return;
 
@@ -87,10 +87,10 @@ public abstract class SharedTicketMachineSystem : EntitySystem
             args.Handled = true;
             return;
         }
-        
+
         var ticket = EntityManager.PredictedSpawnAtPosition(component.TicketProtoId, Transform(uid).Coordinates);
         args.Handled = true;
-        
+
         if (TryComp<TicketComponent>(ticket, out var ticketComponent))
         {
             component.lastIssuedNumber++;
@@ -121,7 +121,7 @@ public abstract class SharedTicketMachineSystem : EntitySystem
 
         if (container.ContainedEntities.Count == 0)
             return false;
-        
+
         if (container.ContainedEntities.First() is not { Valid: true } paperEntity)
             return false;
         else

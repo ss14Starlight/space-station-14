@@ -19,7 +19,7 @@ public sealed class ClientComponentControlSystem : EntitySystem
 
     private void OnAfterHandleState(EntityUid uid, ClientCompControlComponent comp, AfterAutoHandleStateEvent _) =>
         EnsureState(uid, comp);
-    
+
     private void EnsureState(EntityUid uid, ClientCompControlComponent comp)
     {
         foreach (var c in comp.EnsuredComponents)

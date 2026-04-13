@@ -8,7 +8,7 @@
     layers:
     - state: stunbaton_off
       map: [ "enum.ToggleableVisuals.Layer" ]
-      
+
 - type: entity
   name: purple stun baton
   parent: [ Stunbaton, BaseSecurityContraband ]

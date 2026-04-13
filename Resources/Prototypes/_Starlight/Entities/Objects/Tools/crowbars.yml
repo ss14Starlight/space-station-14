@@ -6,7 +6,7 @@
   components:
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Items/crowbar_drop.ogg  
+      path: /Audio/Items/crowbar_drop.ogg
   - type: Sprite
     sprite: _Starlight/Objects/Tools/makeshift_omnitool.rsi
     state: base

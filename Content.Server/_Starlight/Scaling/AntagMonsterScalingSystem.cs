@@ -29,7 +29,7 @@ public sealed class ScalingSystem : SharedScalingSystem
     double _securityWeight;
     double _salvageWeight;
     double _centcomWeight;
-    
+
     public override void Initialize()
     {
         base.Initialize();

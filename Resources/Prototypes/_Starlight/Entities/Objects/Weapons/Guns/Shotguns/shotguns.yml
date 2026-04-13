@@ -107,7 +107,7 @@
       ballistic-ammo: !type:Container
       revolver-ammo: !type:Container
       firing_pin: !type:Container
-      
+
 - type: entity
   name: Tkach Ya-Sui GA 12 revolver
   parent: [BaseWeaponShotgunAny, BaseSecuritySalvageContraband]
