@@ -119,5 +119,6 @@ public sealed partial class AdminVerbSystem : EntitySystem
                     Message = "Dumps the ram/device memory/working/return stacks to various uxn-running-*.bin files",
                     Category = VerbCategory.Debug
                 });
+        }
     }
 }
