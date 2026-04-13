@@ -202,7 +202,7 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
 
     #region Utility
     /// <summary>
-    /// Gets pointers into device memory from the 
+    /// Gets pointers into device memory from the
     /// </summary>
     /// <param name="memTarget">the memory address of the device (gets & 0xF0'd so it can be  any value apart of the device)</param>
     /// <param name="deviceMem">the memory to read pointers from</param>

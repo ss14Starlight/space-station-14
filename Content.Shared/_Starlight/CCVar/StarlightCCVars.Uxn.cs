@@ -7,7 +7,7 @@ public sealed partial class StarlightCCVars
     /// <summary>
     /// The maximum number of instructions a UXN can run in a single tick. above this UXNs start getting throttled
     /// </summary>
-    
+
     public static readonly CVarDef<int> UxnMaxInstrLimit =
         CVarDef.Create("uxn.maximum_instrs", 100000, CVar.SERVERONLY);
 

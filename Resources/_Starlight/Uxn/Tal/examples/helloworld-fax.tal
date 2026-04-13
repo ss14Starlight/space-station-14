@@ -21,7 +21,7 @@ BRK ( execute the event )
 .Faxcmd/dumpnames .Fax/cmd DEO ( get the CC fax id. which should ALWAYS be the first one because it is the first one to be loaded )
 
 ;buf/addr .Fax/bnk1ptr DEO2 ( Point our fax machine at CC )
-#0009 .Fax/bnk1len DEO2 
+#0009 .Fax/bnk1len DEO2
 .Faxcmd/settarget .Fax/cmd DEO ( execute )
 
 ( fax is ready! )
@@ -41,4 +41,4 @@ BRK ( execute the event )
 &fax 03 =dict/fax-name 0f
 &delay 03 =dict/dlay-name 0e
 
-@buf &name "Central 20 "Command $1 &addr "XXXX-XXXX 
+@buf &name "Central 20 "Command $1 &addr "XXXX-XXXX

@@ -7,7 +7,7 @@ public sealed partial class UxnComponent : Component
 {
     [ViewVariables, AutoNetworkedField]
     public string CompilerOutput = "";
-    
+
     [ViewVariables, AutoNetworkedField]
     public int AssembledSize = 0;
 
