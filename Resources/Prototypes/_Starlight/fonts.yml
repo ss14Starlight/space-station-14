@@ -45,3 +45,7 @@
 - type: font
   id: Lagomorphian
   path: /Fonts/_Starlight/Lagomorphian.ttf
+
+- type: font
+  id: Cosmic
+  path: /Fonts/_Starlight/Cosmic.otf

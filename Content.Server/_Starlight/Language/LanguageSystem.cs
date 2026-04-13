@@ -1,23 +1,32 @@
 using System.Linq;
 using Content.Server.Radio;
+using Content.Server.Radio.EntitySystems;
 using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared._Starlight.Language.Events;
 using Content.Shared._Starlight.Language.Systems;
+using Content.Shared.ActionBlocker;
+using Content.Shared.Chat;
 using Content.Shared.Radio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Language;
 
 public sealed partial class LanguageSystem : SharedLanguageSystem
 {
+    [Dependency] private readonly INetManager _netMan = default!;
+    [Dependency] private readonly RadioSystem _radioSystem = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<LanguageSpeakerComponent, MapInitEvent>(OnInitLanguageSpeaker);
         SubscribeLocalEvent<LanguageSpeakerComponent, ComponentGetState>(OnGetLanguageState);
+        SubscribeLocalEvent<LanguageKnowledgeComponent, RadioReceiveEvent>(OnRadioReceiveEvent);
         SubscribeLocalEvent<UniversalLanguageSpeakerComponent, DetermineEntityLanguagesEvent>(OnDetermineUniversalLanguages);
         SubscribeNetworkEvent<LanguagesSetMessage>(OnClientSetLanguage);
 
@@ -87,10 +96,10 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
     // the incoming channel matches it, and the entity has an active player session.
     private void OnRadioReceiveEvent(EntityUid uid, LanguageKnowledgeComponent _, ref RadioReceiveEvent args)
     {
-        if (args.Language.SpeechOverride.RadioChannel is null   // language doesn't use a radio override — not our job
-            || args.Channel is null                              // no channel on the event (shouldn't happen, safety)
-            || args.Channel != args.Language.SpeechOverride.RadioChannel // wrong channel for this language
-            || !TryComp<ActorComponent>(uid, out var actor))    // entity has no player to send to
+        if (args.Language.SpeechOverride.RadioChannel is null
+            || args.Channel is null
+            || args.Channel.ID != args.Language.SpeechOverride.RadioChannel
+            || !TryComp<ActorComponent>(uid, out var actor))
             return;
 
         _netMan.ServerSendMessage(new MsgChatMessage{ Message = args.OriginalChatMsg }, actor.PlayerSession.Channel);

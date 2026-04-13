@@ -86,7 +86,7 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
         var stationUid = _station.GetStationInMap(Transform(uid).MapID);
         if (stationUid != null)
         {
-            _alert.SetLevel(stationUid.Value, "octarine", true, true, true, true);
+            _alert.SetLevel(stationUid.Value, "omega", true, true, true, true);
         }
 
         if (TryComp<ActivatableUIComponent>(uid, out var uiComp))

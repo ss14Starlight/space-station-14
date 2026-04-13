@@ -4,6 +4,7 @@ using Content.Server.Popups;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
+using Content.Shared._Starlight.NullSpace;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Polymorph;
@@ -17,6 +18,7 @@ public sealed class CosmicLapseSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     private static readonly ProtoId<PolymorphPrototype> HumanLapse = "CosmicLapseMobHuman";
 
@@ -34,6 +36,14 @@ public sealed class CosmicLapseSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
             return;
         }
+
+        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
+            if (HasComp<NullSpaceBlockerComponent>(entity))
+            {
+                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
+                return;
+            }
+
         action.Handled = true;
         var tgtpos = Transform(action.Target).Coordinates;
         Spawn(uid.Comp.LapseVFX, tgtpos);
