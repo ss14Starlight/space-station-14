@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "sprites by Wayiscute",
+    "size": {
+        "x": 108,
+        "y": 115
+    },
+    "states": [
+        {
+            "name": "drytreeA"
+        },
+        {
+            "name": "drytreeB"
+        }
+    ]
+}
