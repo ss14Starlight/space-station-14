@@ -826,7 +826,7 @@ public sealed partial class ChatUIController : UIController
 
         if (chatChannel == ChatSelectChannel.Local)
         {
-            if (_ghost?.IsGhost != true)
+            if (_ghost?.IsGhost != true && _ghost?.Player?.BypassGhostChat != true) // Starlight edit
                 return (chatChannel, text, null, null, null, language); //Starlight edit
             else
                 chatChannel = ChatSelectChannel.Dead;

@@ -64,9 +64,7 @@ internal sealed class ChatManager : IChatManager
                 break;
 
             case ChatSelectChannel.Dead:
-                // Starlight begin: forward this to local if you AREN'T a ghost. Handle admin check in dsay on server. Trusting client is bad!
-                if (_systems.GetEntitySystemOrNull<GhostSystem>() is {IsGhost: false})
-                    goto case ChatSelectChannel.Local;
+                // Starlight begin: dsay is AllCommand now. Handle all checks on the server. Trusting client is bad!
                 _consoleHost.ExecuteCommand($"dsay \"{CommandParsing.Escape(str)}\"");
                 // Starlight end
                 break;
