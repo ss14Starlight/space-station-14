@@ -103,7 +103,7 @@
     - LoneOpsSpawn # Starlight
     - RailroadingTerminator # Starlight
     - RailroadingMinor # Starlight
-    - CosmicCult # Starlight
+    # - CosmicCult # Starlight
 
 - type: gamePreset
   id: Extended
