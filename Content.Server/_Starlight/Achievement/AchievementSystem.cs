@@ -18,18 +18,21 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Achievement;
 
 public sealed class AchievementSystem : EntitySystem
 {
     [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayers = default!;
+    [Dependency] private readonly IAchievementRewardManager _achievementRewards = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
 
+    private static readonly TimeSpan AchievementHydrationRetryDelay = TimeSpan.FromSeconds(3);
     private readonly Dictionary<Guid, Dictionary<string, double>> _roundProgress = [];
-    private readonly HashSet<Guid> _progressFetched = [];
+    private readonly HashSet<Guid> _achievementFetchInFlight = [];
 
     public override void Initialize()
     {
@@ -45,15 +48,7 @@ public sealed class AchievementSystem : EntitySystem
             if (session.Status == SessionStatus.Disconnected)
                 continue;
 
-            _progressFetched.Add(session.UserId);
-            _nullLinkPlayers.GetUnlockedAchievements(session.UserId)
-                .AsTask()
-                .ContinueWith(_ =>
-                {
-                    if (session.Status == SessionStatus.InGame)
-                        _nullLinkPlayers.SendAchievementList(session.UserId);
-                })
-                .FireAndForget();
+            QueueAchievementHydration(session);
         }
     }
 
@@ -70,10 +65,10 @@ public sealed class AchievementSystem : EntitySystem
     public ValueTask<bool> HasAchievementUnlockedAsync(ICommonSession session, string achievementId)
         => _nullLinkPlayers.HasAchievementUnlockedAsync(session.UserId, achievementId);
 
-    private bool UnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
+    private ValueTask<bool> UnlockAchievement(ICommonSession session, string achievementId, string? characterName = null)
         => _nullLinkPlayers.UnlockAchievement(session.UserId, achievementId, characterName ?? GetCharacterName(session));
 
-    private bool LockAchievement(ICommonSession session, string achievementId)
+    private ValueTask<bool> LockAchievement(ICommonSession session, string achievementId)
         => _nullLinkPlayers.LockAchievement(session.UserId, achievementId);
 
     public async ValueTask<bool> TryUnlockAchievementAsync(ICommonSession session, string achievementId, string? characterName = null)
@@ -81,9 +76,10 @@ public sealed class AchievementSystem : EntitySystem
         if (await HasAchievementUnlockedAsync(session, achievementId))
             return false;
 
-        var result = UnlockAchievement(session, achievementId, characterName);
+        var result = await UnlockAchievement(session, achievementId, characterName);
         if (result)
         {
+            _achievementRewards.GrantRewards(session, achievementId);
             _nullLinkPlayers.SendAchievementNotification(session.UserId, achievementId);
             _nullLinkPlayers.SendAchievementList(session.UserId);
         }
@@ -96,7 +92,7 @@ public sealed class AchievementSystem : EntitySystem
         if (!await HasAchievementUnlockedAsync(session, achievementId))
             return false;
 
-        var result = LockAchievement(session, achievementId);
+        var result = await LockAchievement(session, achievementId);
         if (result)
             _nullLinkPlayers.SendAchievementList(session.UserId);
 
@@ -225,23 +221,21 @@ public sealed class AchievementSystem : EntitySystem
         switch (e.NewStatus)
         {
             case SessionStatus.Connected:
-                if (_progressFetched.Add(e.Session.UserId))
-                {
-                    _nullLinkPlayers.GetUnlockedAchievements(e.Session.UserId)
-                        .AsTask()
-                        .ContinueWith(_ =>
-                        {
-                            if (e.Session.Status == SessionStatus.InGame)
-                                _nullLinkPlayers.SendAchievementList(e.Session.UserId);
-                        })
-                        .FireAndForget();
-                }
+                QueueAchievementHydration(e.Session);
                 break;
             case SessionStatus.InGame:
-                _nullLinkPlayers.SendAchievementList(e.Session.UserId);
+                if (_nullLinkPlayers.TryGetPlayerData(e.Session.UserId, out var playerData)
+                    && playerData.AchievementCacheHydrated)
+                {
+                    _nullLinkPlayers.SendAchievementList(e.Session.UserId);
+                }
+                else
+                {
+                    QueueAchievementHydration(e.Session);
+                }
                 break;
             case SessionStatus.Disconnected:
-                _progressFetched.Remove(e.Session.UserId);
+                _achievementFetchInFlight.Remove(e.Session.UserId);
                 break;
         }
     }
@@ -262,12 +256,8 @@ public sealed class AchievementSystem : EntitySystem
         }
     }
 
-    private void OnVampireBloodDrank(EntityUid uid, VampireComponent component, VampireBloodDrankEvent ev)
-    {
-        _ = component;
-
-        AddProgressAndCheck(uid, AchievementProgressKeys.VampireBloodDrank, ev.Amount);
-    }
+    private void OnVampireBloodDrank(EntityUid uid, VampireComponent _, VampireBloodDrankEvent ev)
+        => AddProgressAndCheck(uid, AchievementProgressKeys.VampireBloodDrank, ev.Amount);
 
     private void OnNukeExploded(NukeExplodedEvent ev)
     {
@@ -328,6 +318,60 @@ public sealed class AchievementSystem : EntitySystem
             return meta.EntityName;
 
         return session.Name;
+    }
+
+    private void QueueAchievementHydration(ICommonSession session)
+    {
+        if (session.Status == SessionStatus.Disconnected)
+            return;
+
+        if (_nullLinkPlayers.TryGetPlayerData(session.UserId, out var playerData)
+            && playerData.AchievementCacheHydrated)
+        {
+            _nullLinkPlayers.SendAchievementList(session.UserId);
+            return;
+        }
+
+        if (!_achievementFetchInFlight.Add(session.UserId))
+            return;
+
+        HydrateAchievementsAsync(session.UserId)
+            .FireAndForget();
+    }
+
+    private async Task HydrateAchievementsAsync(Guid userId)
+    {
+        try
+        {
+            await _nullLinkPlayers.GetUnlockedAchievements(userId);
+        }
+        finally
+        {
+            _achievementFetchInFlight.Remove(userId);
+        }
+
+        if (!_nullLinkPlayers.TryGetPlayerData(userId, out var playerData))
+            return;
+
+        if (playerData.Session.Status == SessionStatus.Disconnected)
+            return;
+
+        if (playerData.AchievementCacheHydrated)
+        {
+            _nullLinkPlayers.SendAchievementList(userId);
+            return;
+        }
+
+        Timer.Spawn(AchievementHydrationRetryDelay, () =>
+        {
+            if (!_playerManager.TryGetSessionById(new NetUserId(userId), out var retrySession))
+                return;
+
+            if (retrySession.Status == SessionStatus.Disconnected)
+                return;
+
+            QueueAchievementHydration(retrySession);
+        });
     }
     #endregion
 }

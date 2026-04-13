@@ -19,7 +19,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._NullLink.PlayerData;
 
-public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
+public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager, IAchievementRewardManager
 {
     [Dependency] private readonly IActorRouter _actors = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -72,13 +72,13 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
             return;
 
         foreach (var player in _playerById)
-            {
-                serverGrain.PlayerConnected(player.Key)
-                    .FireAndForget(err => _sawmill.Error($"PlayerConnected after reconnect failed for {player.Key}: {err}"));
-                GetUnlockedAchievements(player.Key)
-                    .Then(_ => SendAchievementList(player.Key))
-                    .FireAndForget(err => _sawmill.Error($"Achievement sync after reconnect failed for {player.Key}: {err}"));
-            }
+        {
+            serverGrain.PlayerConnected(player.Key)
+                .FireAndForget(err => _sawmill.Error($"PlayerConnected after reconnect failed for {player.Key}: {err}"));
+            GetUnlockedAchievements(player.Key)
+                .Then(_ => SendAchievementList(player.Key))
+                .FireAndForget(err => _sawmill.Error($"Achievement sync after reconnect failed for {player.Key}: {err}"));
+        }
     }
 
     public void Shutdown()

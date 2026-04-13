@@ -21,8 +21,8 @@ public interface INullLinkPlayerManager
     ValueTask<HashSet<Achievement>> GetUnlockedAchievements(Guid userId);
     bool HasAchievementUnlocked(Guid userId, string achievementId);
     ValueTask<bool> HasAchievementUnlockedAsync(Guid userId, string achievementId);
-    bool UnlockAchievement(Guid userId, string achievementId, string characterName);
-    bool LockAchievement(Guid userId, string achievementId);
+    ValueTask<bool> UnlockAchievement(Guid userId, string achievementId, string characterName);
+    ValueTask<bool> LockAchievement(Guid userId, string achievementId);
     ValueTask<Dictionary<string, double>> GetAchievementProgress(Guid userId);
     double GetCachedAchievementProgress(Guid userId, string key);
     double AddAchievementProgress(Guid userId, string key, double amount);

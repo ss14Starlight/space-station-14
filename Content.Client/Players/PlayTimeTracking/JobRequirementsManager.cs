@@ -15,13 +15,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 #region Starlight
-using Content.Client._Starlight.Managers;
-using Content.Client.Lobby;
-using Content.Shared.Starlight;
+using Content.Client._Starlight.Achievement;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
-using static Content.Shared._NullLink.NullLink;
-using Microsoft.CodeAnalysis;
 #endregion Starlight
 
 namespace Content.Client.Players.PlayTimeTracking;
@@ -34,6 +30,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly IClientAchievementManager _achievements = default!;
 
     private readonly List<string> _jobBans = new();
     private readonly List<string> _antagBans = new();
@@ -65,6 +62,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         _net.RegisterNetMessage<MsgUpdatePlayerPlayTime>(Update);
         _cfg.OnValueChanged(NullLinkCCVars.Project, x => _project = x, true);
         _cfg.OnValueChanged(NullLinkCCVars.Server, x => _server = x, true);
+        _achievements.AchievementsUpdated += OnAchievementsUpdated;
         // NullLink end
 
         _client.RunLevelChanged += ClientOnRunLevelChanged;
@@ -114,6 +112,9 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
         Updated?.Invoke();
     }
+
+    private void OnAchievementsUpdated()
+        =>  Updated?.Invoke();
     // Nulllink end
 
     private void ClientOnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)

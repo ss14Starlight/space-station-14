@@ -1,8 +1,5 @@
-using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
-using Content.Server._NullLink.Helpers;
 using Content.Shared._Starlight.Achievement;
 using Starlight.NullLink;
 
@@ -13,19 +10,23 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
     public async ValueTask<HashSet<Achievement>> GetUnlockedAchievements(Guid userId)
     {
         if (!_actors.TryGetServerGrain(out var serverGrain))
+        {
             return TryGetCachedAchievements(userId, out var cachedAchievements) ? cachedAchievements : [];
+        }
 
         try
         {
             var achievements = await serverGrain.GetUnlockedAchievements(userId);
+            HashSet<Achievement> mergedAchievements = new (achievements);
 
             if (_playerById.TryGetValue(userId, out var playerData))
             {
-                playerData.UnlockedAchievements = [.. achievements];
+                mergedAchievements = MergeAchievements(playerData.UnlockedAchievements, achievements);
+                playerData.UnlockedAchievements = [.. mergedAchievements];
                 playerData.AchievementCacheHydrated = true;
             }
 
-            return new HashSet<Achievement>(achievements);
+            return mergedAchievements;
         }
         catch (Exception ex)
         {
@@ -54,49 +55,46 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         return achievements.Any(a => a.AchievementId == achievementId);
     }
 
-    public bool UnlockAchievement(Guid userId, string achievementId, string characterName)
+    public async ValueTask<bool> UnlockAchievement(Guid userId, string achievementId, string characterName)
     {
-        if (_playerById.TryGetValue(userId, out var playerData))
+        if (!_actors.TryGetServerGrain(out var serverGrain))
         {
-            var achievements = playerData.UnlockedAchievements.ToHashSet();
-            achievements.RemoveWhere(achievement => achievement.AchievementId == achievementId);
-            achievements.Add(new Achievement
-            {
-                AchievementId = achievementId,
-                GrantingServer = _actors.Server ?? string.Empty,
-                UnlockingCharacter = characterName,
-                UnlockTime = DateTime.UtcNow,
-            });
-            playerData.UnlockedAchievements = [.. achievements];
-            playerData.AchievementCacheHydrated = true;
+            _sawmill.Error($"UnlockAchievement failed for {userId}/{achievementId}: server grain is unavailable.");
+            return false;
         }
 
-        if (_actors.TryGetServerGrain(out var serverGrain))
+        try
         {
-            serverGrain.UnlockAchievement(userId, achievementId, characterName)
-                .FireAndForget(ex => _sawmill.Error($"UnlockAchievement grain call failed for {userId}/{achievementId}: {ex}"));
+            await serverGrain.UnlockAchievement(userId, achievementId, characterName);
+            SetCachedAchievementUnlocked(userId, achievementId, characterName);
+            return true;
         }
-
-        return true;
+        catch (Exception ex)
+        {
+            _sawmill.Error($"UnlockAchievement grain call failed for {userId}/{achievementId}: {ex}");
+            return false;
+        }
     }
 
-    public bool LockAchievement(Guid userId, string achievementId)
+    public async ValueTask<bool> LockAchievement(Guid userId, string achievementId)
     {
-        if (_playerById.TryGetValue(userId, out var playerData))
+        if (!_actors.TryGetServerGrain(out var serverGrain))
         {
-            var achievements = playerData.UnlockedAchievements.ToHashSet();
-            achievements.RemoveWhere(achievement => achievement.AchievementId == achievementId);
-            playerData.UnlockedAchievements = [.. achievements];
-            playerData.AchievementCacheHydrated = true;
+            _sawmill.Error($"LockAchievement failed for {userId}/{achievementId}: server grain is unavailable.");
+            return false;
         }
 
-        if (_actors.TryGetServerGrain(out var serverGrain))
+        try
         {
-            serverGrain.LockAchievement(userId, achievementId)
-                .FireAndForget(ex => _sawmill.Error($"LockAchievement grain call failed for {userId}/{achievementId}: {ex}"));
+            await serverGrain.LockAchievement(userId, achievementId);
+            SetCachedAchievementLocked(userId, achievementId);
+            return true;
         }
-
-        return true;
+        catch (Exception ex)
+        {
+            _sawmill.Error($"LockAchievement grain call failed for {userId}/{achievementId}: {ex}");
+            return false;
+        }
     }
 
     private bool TryGetCachedAchievements(Guid userId, out HashSet<Achievement> achievements)
@@ -109,6 +107,51 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
 
         achievements = [];
         return false;
+    }
+
+    private static HashSet<Achievement> MergeAchievements(IEnumerable<Achievement> localAchievements, IEnumerable<Achievement> remoteAchievements)
+    {
+        var merged = remoteAchievements.ToDictionary(achievement => achievement.AchievementId, achievement => achievement);
+
+        foreach (var achievement in localAchievements)
+        {
+            if (!merged.TryGetValue(achievement.AchievementId, out var existing)
+                || achievement.UnlockTime >= existing.UnlockTime)
+            {
+                merged[achievement.AchievementId] = achievement;
+            }
+        }
+
+        return [.. merged.Values];
+    }
+
+    private void SetCachedAchievementUnlocked(Guid userId, string achievementId, string characterName)
+    {
+        if (!_playerById.TryGetValue(userId, out var playerData))
+            return;
+
+        var achievements = playerData.UnlockedAchievements.ToHashSet();
+        achievements.RemoveWhere(achievement => achievement.AchievementId == achievementId);
+        achievements.Add(new Achievement
+        {
+            AchievementId = achievementId,
+            GrantingServer = _actors.Server ?? string.Empty,
+            UnlockingCharacter = characterName,
+            UnlockTime = DateTime.UtcNow,
+        });
+        playerData.UnlockedAchievements = [.. achievements];
+        playerData.AchievementCacheHydrated = true;
+    }
+
+    private void SetCachedAchievementLocked(Guid userId, string achievementId)
+    {
+        if (!_playerById.TryGetValue(userId, out var playerData))
+            return;
+
+        var achievements = playerData.UnlockedAchievements.ToHashSet();
+        achievements.RemoveWhere(achievement => achievement.AchievementId == achievementId);
+        playerData.UnlockedAchievements = [.. achievements];
+        playerData.AchievementCacheHydrated = true;
     }
 
     public void SendAchievementList(Guid userId)

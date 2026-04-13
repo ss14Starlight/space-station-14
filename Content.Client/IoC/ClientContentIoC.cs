@@ -22,6 +22,7 @@ using Content.Client.Stylesheets;
 using Content.Client.Viewport;
 using Content.Client.Voting;
 using Content.Shared._NullLink;
+using Content.Shared._Starlight.Achievement;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
@@ -80,6 +81,7 @@ namespace Content.Client.IoC
             // NullLink end
 
             collection.Register<IClientAchievementManager, ClientAchievementManager>(); // Starlight
+            collection.Register<IAchievementRewardManager, ClientAchievementManager>(); // Starlight
             collection.Register<PreWrittenDocumentManager>(); // Starlight
         }
     }

@@ -32,11 +32,8 @@ public sealed partial class AchievementPrototype : IPrototype
     [DataField]
     public List<AchievementRequirement> Requirements { get; private set; } = [];
 
-
-    // for achievements that game systems cant track progress, like for event participation/winner
-    // maybe ill not do it, im very lazy yk
-    //public bool IsManualOnly => Requirements.Count == 0;
-
+    [DataField]
+    public List<AchievementReward> Rewards { get; private set; } = [];
 
     // few helpers that idk where else to put, maybe they should be in a system,
     // but they rely on the prototype data so here we are
@@ -46,6 +43,22 @@ public sealed partial class AchievementPrototype : IPrototype
     public bool AreRequirementsMet(Func<string, bool, double> progressResolver)
         => Requirements.Count > 0
            && Requirements.All(r => progressResolver(r.ProgressType, r.PerRound) >= r.RequiredProgress);
+}
+
+[DataDefinition]
+public sealed partial class AchievementReward
+{
+    [DataField("type", required: true)]
+    public AchievementRewardType Type { get; private set; }
+
+    [DataField("id", required: true)]
+    public string ID { get; private set; } = string.Empty;
+
+    [DataField]
+    public LocId? Name { get; private set; }
+
+    [DataField]
+    public string? Text { get; private set; }
 }
 
 [DataDefinition]

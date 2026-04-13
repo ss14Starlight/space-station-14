@@ -2,12 +2,16 @@ using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
 using JetBrains.Annotations;
+using Robust.Client.Audio;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Client.UserInterface.Controls;
-using Robust.Client.UserInterface.CustomControls;
+using Robust.Client.UserInterface;
 using Content.Shared._Starlight.Achievement;
+using Robust.Shared.Audio;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using System.Numerics;
 
 namespace Content.Client._Starlight.Achievement;
 
@@ -15,25 +19,29 @@ namespace Content.Client._Starlight.Achievement;
 public sealed class AchievementUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
     private const int NotificationDisplayDuration = 5000;
+    private const float NotificationWidth = 460f;
+    private const float NotificationTopOffset = 18f;
+    private static readonly SoundPathSpecifier _notificationSound = new("/Audio/Effects/chime.ogg");
 
     [Dependency] private readonly IClientAchievementManager _achievements = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [UISystemDependency] private readonly AudioSystem _audio = default!;
 
-    private MenuButton? AchievementButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.AchievementButton;
+    private MenuButton? _achievementButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.AchievementButton;
 
     private AchievementWindow? _window;
-    private DefaultWindow? _notification;
+    private AchievementNotification? _notification;
 
     public void OnStateEntered(GameplayState state)
     {
         _window = UIManager.CreateWindow<AchievementWindow>();
 
-        if (AchievementButton != null)
+        if (_achievementButton != null)
         {
-            _window.OnClose += () => AchievementButton.Pressed = false;
+            _window.OnClose += () => _achievementButton.Pressed = false;
             _window.OnOpen += () =>
             {
-                AchievementButton.Pressed = true;
+                _achievementButton.Pressed = true;
                 _window.Populate(_protoManager, _achievements);
             };
         }
@@ -48,24 +56,22 @@ public sealed class AchievementUIController : UIController, IOnStateEntered<Game
         _achievements.AchievementsUpdated -= OnAchievementsUpdated;
 
         _window?.Close();
-        _window?.Dispose();
         _window = null;
 
-        _notification?.Close();
-        _notification?.Dispose();
+        _notification?.Orphan();
         _notification = null;
     }
 
     public void LoadButton()
     {
-        if (AchievementButton != null)
-            AchievementButton.OnPressed += OnButtonPressed;
+        if (_achievementButton != null)
+            _achievementButton.OnPressed += OnButtonPressed;
     }
 
     public void UnloadButton()
     {
-        if (AchievementButton != null)
-            AchievementButton.OnPressed -= OnButtonPressed;
+        if (_achievementButton != null)
+            _achievementButton.OnPressed -= OnButtonPressed;
     }
 
     private void OnButtonPressed(BaseButton.ButtonEventArgs obj)
@@ -90,27 +96,29 @@ public sealed class AchievementUIController : UIController, IOnStateEntered<Game
         if (!_protoManager.TryIndex<AchievementPrototype>(achievementId, out var proto))
             return;
 
-        _notification?.Close();
-        _notification?.Dispose();
+        _notification?.Orphan();
 
-        var notif = _notification = new DefaultWindow
+        var notification = _notification = new AchievementNotification();
+        notification.SetAchievement(proto);
+        notification.CloseRequested += () =>
         {
-            Title = Loc.GetString("achievement-notification-title"),
+            notification.Orphan();
+            if (_notification == notification)
+                _notification = null;
         };
+        UIManager.WindowRoot.AddChild(notification);
+        LayoutContainer.SetAnchorPreset(notification, LayoutContainer.LayoutPreset.TopLeft);
+        LayoutContainer.SetPosition(notification,
+            new Vector2(MathF.Max((UIManager.WindowRoot.Width - NotificationWidth) / 2f, 0f), NotificationTopOffset));
 
-        var label = new Label
-        {
-            Text = Loc.GetString("achievement-notification-body", ("name", Loc.GetString(proto.Name))),
-        };
-        notif.Contents.AddChild(label);
-        notif.OpenCentered();
+        _audio.PlayGlobal(_notificationSound, Filter.Local(), false,
+            AudioParams.Default.WithVolume(-2f));
 
         Timer.Spawn(NotificationDisplayDuration, () =>
         {
-            notif.Close();
-            notif.Dispose();
+            notification.Orphan();
 
-            if (_notification == notif)
+            if (_notification == notification)
                 _notification = null;
         });
     }
