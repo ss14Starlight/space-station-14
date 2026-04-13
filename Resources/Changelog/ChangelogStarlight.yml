@@ -1014,4 +1014,18 @@ Entries:
   id: 404272
   time: '2026-04-13T07:27:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4138
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed the bug where the criminal letter would not spawn if the mailbox had no power.
+    type: Fix
+  id: 404273
+  time: '2026-04-13T07:29:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4144
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed a visual bug where a timed task that was completed was displayed as failed.
+    type: Fix
+  id: 404274
+  time: '2026-04-13T07:29:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4144
 Order: -1
