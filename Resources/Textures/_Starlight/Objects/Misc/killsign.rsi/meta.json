@@ -10,28 +10,6 @@
     "states":
     [
         {
-            "name": "dumb",
-            "directions": 1,
-            "delays":
-            [
-                [
-                    0.15,
-                    0.15
-                ]
-            ]
-        },
-        {
-            "name": "blind",
-            "directions": 1,
-            "delays":
-            [
-                [
-                    0.15,
-                    0.15
-                ]
-            ]
-        },
-        {
             "name": "l",
             "directions": 1,
             "delays":
@@ -65,28 +43,6 @@
             ]
         },
         {
-            "name": "harmbatong",
-            "directions": 1,
-            "delays":
-            [
-                [
-                    0.15,
-                    0.15
-                ]
-            ]
-        },
-        {
-            "name": "gay",
-            "directions": 1,
-            "delays":
-            [
-                [
-                    0.15,
-                    0.15
-                ]
-            ]
-        },
-        {
             "name": "ssd",
             "directions": 1,
             "delays":
@@ -99,28 +55,6 @@
         },
         {
             "name": "clueless",
-            "directions": 1,
-            "delays":
-            [
-                [
-                    0.15,
-                    0.15
-                ]
-            ]
-        },
-        {
-            "name": "fat",
-            "directions": 1,
-            "delays":
-            [
-                [
-                    0.15,
-                    0.15
-                ]
-            ]
-        },
-        {
-            "name": "moff",
             "directions": 1,
             "delays":
             [
