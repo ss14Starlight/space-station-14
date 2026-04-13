@@ -14,7 +14,6 @@ using Content.Shared.StatusEffectNew;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Content.Shared.Light.Components;
-using Content.Shared._Starlight.NullSpace;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
@@ -40,13 +39,6 @@ public sealed class CosmicSiphonSystem : EntitySystem
 
     private void OnCosmicSiphon(Entity<CosmicCultComponent> uid, ref EventCosmicSiphon args)
     {
-        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
-            if (HasComp<NullSpaceBlockerComponent>(entity))
-            {
-                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
-                return;
-            }
-
         if (uid.Comp.EntropyStored >= uid.Comp.EntropyStoredCap)
         {
             _popup.PopupEntity(Loc.GetString("cosmicability-siphon-full"), uid, uid);

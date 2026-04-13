@@ -31,7 +31,6 @@
     icon:
       sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: blank
-    checkCanInteract: false
   - type: TargetAction
   - type: EntityTargetAction
     canTargetSelf: true

@@ -78,12 +78,6 @@ public sealed partial class BrighteyeComponent : Component
     public ProtoId<AlertPrototype> RejuvenationAlert { get; set; } = "ShadekinRejuvenateAlert";
 
     /// <summary>
-    /// Is the Bright-Eye a Lesser Version (non orignal core owner)?
-    /// </summary>
-    [DataField]
-    public bool LesserKin = false;
-
-    /// <summary>
     /// How many Energy the brighteye has.
     /// </summary>
     [DataField, AutoNetworkedField]

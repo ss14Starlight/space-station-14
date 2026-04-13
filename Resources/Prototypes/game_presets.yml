@@ -56,7 +56,6 @@
     - SiliconLiberation #Starlight
     - Brighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
-    - CosmicCult #Starlight
 
 - type: gamePreset
   id: AllerAtOnce
@@ -103,7 +102,6 @@
     - LoneOpsSpawn # Starlight
     - RailroadingTerminator # Starlight
     - RailroadingMinor # Starlight
-    - CosmicCult # Starlight
 
 - type: gamePreset
   id: Extended

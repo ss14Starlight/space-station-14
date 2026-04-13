@@ -144,7 +144,7 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
 
     private void OnGetVisMask(Entity<CosmicCultComponent> uid, ref GetVisMaskEvent args)
     {
-        args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
+        args.VisibilityMask |= (int)VisibilityFlags.CosmicCultMonument;
     }
 
     /// <summary>
