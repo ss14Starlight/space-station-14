@@ -22,7 +22,7 @@ public sealed partial class NetworkDevice : ComponentUxnDevice<DeviceNetworkComp
         _readQueue.Enqueue(ev);
         uxn.PushEvent(new GenericVectorEvent(
             uxn.DevMem.GetShort(
-                (byte)((uxn.SystemDevice.AttachedDevices[Id] << 0x4) + 0x0E)
+                (byte)((uxn.SystemDevice.AttachedDevices[Id] << 0x4) + (byte)NetworkDeviceMemory.ReadVector)
                 )
             )
          );
@@ -35,4 +35,12 @@ public static class UxnDeviceNetworkConstants
     /// what is the Contents the UXN is transmitting. should be a IEnumerable<byte>
     /// </summary>
     public const string Contents = "contents";
+}
+
+public enum NetworkDeviceMemory : byte
+{
+    /// <summary>
+    /// where will we return to upon recieving a packet.
+    /// </summary>
+    ReadVector = 0x0E
 }

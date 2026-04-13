@@ -142,7 +142,7 @@ public class StandardSystemDevice : UXNDevice
     private void SystemAttachCommand(ushort baseAddr, UxnMem mem, UXNProcessor proc)
     {
         var nameptr = mem.GetShort((ushort)(baseAddr + 1));
-        var name = ReadBuffered(mem, 0, nameptr).ToLower();
+        var name = ReadBuffered(mem, 0, nameptr).ToLowerInvariant();
         var slot = mem[(ushort)(baseAddr + 3)];
 
         if (!AttachableDevices.ContainsKey(name))

@@ -19,7 +19,7 @@ public sealed class Byte256
 
     public ushort GetShort(byte baseAddr)
     {
-        var lsb = this[baseAddr+1];
+        var lsb = this[baseAddr + 1];
         var msb = this[baseAddr];
         return (ushort)((msb << 8) | lsb);
     }
@@ -184,7 +184,8 @@ public class UXNDevice
                 output.Append(Encoding.ASCII.GetChars([read]));
             }
             output.Length--; //Delete the last character
-        } else
+        }
+        else
         {
             for (ushort i = 0; i < bufferLen; i++)
             {
@@ -826,6 +827,10 @@ public sealed partial class UXNProcessor
     /// </summary>
     public void Reset()
     {
+        foreach (var d in Devices)
+        {
+            d.OnDetach(this);
+        }
         PC = 0x100;
         DevMem = new();
         SystemMem = new();
@@ -848,6 +853,7 @@ public sealed partial class UXNProcessor
     public T AttachDevice<T>(byte slot, T device) where T : UXNDevice
     {
         var devices = Devices;
+        devices[slot & 0x0F]?.OnDetach(this);
         devices[slot & 0x0F] = device;
         device.OnAttach(this);
         return device;
@@ -903,6 +909,17 @@ public sealed partial class UXNProcessor
 
     public bool RunUnlimited()
     {
+        if (!Running)
+        {
+            if (_events.Count == 0)
+                return true;
+            if (_events.Peek().PreRun(this))
+                return false;
+
+            _events.Dequeue().PerformEvent(this);
+            Running = true;
+        }
+
         while (Running)
         {
             if (Step())
@@ -934,56 +951,56 @@ public sealed partial class UXNProcessor
 
 public enum UxnOpcode : byte
 {
-    BRK   = 0x00,
+    BRK = 0x00,
     #region immediates
-    JCI   = 0x20,
-    JMI   = 0x40,
-    JSI   = 0x60,
-    LIT   = 0x80,
-    LIT2  = 0xA0,
-    LITr  = 0xC0,
+    JCI = 0x20,
+    JMI = 0x40,
+    JSI = 0x60,
+    LIT = 0x80,
+    LIT2 = 0xA0,
+    LITr = 0xC0,
     LIT2r = 0xE0,
     #endregion
     #region basic stack
-    INC   = 0x01,
-    POP   = 0x02,
-    NIP   = 0x03,
-    SWP   = 0x04,
-    ROT   = 0x05,
-    DUP   = 0x06,
-    OVR   = 0x07,
+    INC = 0x01,
+    POP = 0x02,
+    NIP = 0x03,
+    SWP = 0x04,
+    ROT = 0x05,
+    DUP = 0x06,
+    OVR = 0x07,
     #endregion
     #region comparisons
-    EQU   = 0x08,
-    NEQ   = 0x09,
-    GTH   = 0x0A,
-    LTH   = 0x0B,
+    EQU = 0x08,
+    NEQ = 0x09,
+    GTH = 0x0A,
+    LTH = 0x0B,
     #endregion
     #region JMPs
-    JMP   = 0x0C,
-    JCN   = 0x0D,
-    JSR   = 0x0E,
-    STH   = 0x0F,
+    JMP = 0x0C,
+    JCN = 0x0D,
+    JSR = 0x0E,
+    STH = 0x0F,
     #endregion
     #region memory manipulation
-    LDZ   = 0x10,
-    STZ   = 0x11,
-    LDR   = 0x12,
-    STR   = 0x13,
-    LDA   = 0x14,
-    STA   = 0x15,
-    DEI   = 0x16,
-    DEO   = 0x17,
+    LDZ = 0x10,
+    STZ = 0x11,
+    LDR = 0x12,
+    STR = 0x13,
+    LDA = 0x14,
+    STA = 0x15,
+    DEI = 0x16,
+    DEO = 0x17,
     #endregion
     #region math
-    ADD   = 0x18,
-    SUB   = 0x19,
-    MUL   = 0x1A,
-    DIV   = 0x1B,
-    AND   = 0x1C,
-    OR    = 0x1D,
-    XOR   = 0x1E,
-    SFT   = 0x1F
+    ADD = 0x18,
+    SUB = 0x19,
+    MUL = 0x1A,
+    DIV = 0x1B,
+    AND = 0x1C,
+    OR = 0x1D,
+    XOR = 0x1E,
+    SFT = 0x1F
     #endregion
 }
 

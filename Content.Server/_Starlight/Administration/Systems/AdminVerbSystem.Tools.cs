@@ -97,7 +97,7 @@ public sealed partial class AdminVerbSystem : EntitySystem
                         writer.Write([.. uxn.CompiledRom]);
                     },
                     Text = "Dump ROM",
-                    Message = "Dumps the rom of the UXN chip to /uxn-dump.bin",
+                    Message = "Dumps the rom of the UXN chip to /uxn-dump-{euid}.bin",
                     Category = VerbCategory.Debug
                 });
             if (TryComp<UxnAttachedComponent>(args.Target, out var attached))
@@ -116,7 +116,7 @@ public sealed partial class AdminVerbSystem : EntitySystem
                         }
                     },
                     Text = "Dump UXN",
-                    Message = "Dumps the ram/device memory/working/return stacks to various uxn-running-*.bin files",
+                    Message = "Dumps the ram/device memory/working/return stacks to various uxn-running-[rom/device]-{euid}.bin files",
                     Category = VerbCategory.Debug
                 });
         }
