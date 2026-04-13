@@ -1210,4 +1210,11 @@ Entries:
   id: 404300
   time: '2026-04-13T18:49:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4113
+- author: mikeysaurus
+  changes:
+  - message: Adds the AdmiMax vendor, containing everything a CC official needs to respond to faxes.
+    type: Add
+  id: 404301
+  time: '2026-04-13T20:15:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4151
 Order: -1
