@@ -56,7 +56,7 @@
     - SiliconLiberation #Starlight
     - Brighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
-    - CosmicCult #Starlight
+    # - CosmicCult #Starlight
 
 - type: gamePreset
   id: AllerAtOnce

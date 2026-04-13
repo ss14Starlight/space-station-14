@@ -16,9 +16,6 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Hands;
-using Robust.Server.Player;
-using Robust.Shared.Player;
-using Robust.Shared.Enums;
 using Content.Server._Starlight.Bluespace;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Stunnable;
@@ -35,7 +32,6 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
     [Dependency] private readonly PullingSystem _pulling = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly NullSpacePhaseSystem _phaseSystem = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly CosmicCultRuleSystem _cosmicCult = default!;
