@@ -16,7 +16,6 @@ using Content.Shared._Starlight.Railroading;
 using Content.Server._Starlight.Railroading;
 using Content.Shared.Light.Components;
 using Content.Shared.Throwing;
-using Content.Shared._Starlight.CosmicCult.Components;
 
 namespace Content.Server._Starlight.Shadekin;
 
@@ -109,10 +108,6 @@ public sealed class DarkPortalSystem : EntitySystem
     {
         component.Portal = null;
         _alerts.ShowAlert(uid, component.PortalAlert);
-
-        if (HasComp<CosmicCultComponent>(uid))
-            return;
-
         _actionsSystem.AddAction(uid, ref component.PortalAction, component.BrighteyePortalAction, uid);
         _actionsSystem.SetCooldown(component.PortalAction, TimeSpan.FromSeconds(300));
     }

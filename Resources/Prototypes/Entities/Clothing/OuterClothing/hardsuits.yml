@@ -922,7 +922,6 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-  - type: TheDarkImmune # SL
 
 #Ling Space Suit
 - type: entity

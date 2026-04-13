@@ -14,8 +14,6 @@ using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Content.Shared.Light.Components;
-using Content.Shared._Starlight.NullSpace;
-using Content.Server.Popups;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
@@ -30,7 +28,6 @@ public sealed class CosmicGlareSystem : EntitySystem
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly SharedCosmicCultSystem _cosmicCult = default!;
     [Dependency] private readonly SharedInteractionSystem _interact = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
 
     private HashSet<Entity<PoweredLightComponent>> _lights = [];
 
@@ -43,13 +40,6 @@ public sealed class CosmicGlareSystem : EntitySystem
 
     private void OnCosmicGlare(Entity<CosmicCultComponent> uid, ref EventCosmicGlare args)
     {
-        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
-            if (HasComp<NullSpaceBlockerComponent>(entity))
-            {
-                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
-                return;
-            }
-
         _audio.PlayPvs(uid.Comp.GlareSFX, uid);
         Spawn(uid.Comp.GlareVFX, Transform(uid).Coordinates);
         _cult.MalignEcho(uid);
