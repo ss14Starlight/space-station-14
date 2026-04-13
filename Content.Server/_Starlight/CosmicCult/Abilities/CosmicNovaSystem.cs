@@ -14,8 +14,6 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Damage.Systems;
-using Content.Server.Popups;
-using Content.Shared._Starlight.NullSpace;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
@@ -30,8 +28,6 @@ public sealed class CosmicNovaSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
 
     private static readonly EntProtoId Projectile = "ProjectileCosmicNova";
 
@@ -48,13 +44,6 @@ public sealed class CosmicNovaSystem : EntitySystem
     /// </summary>
     private void OnCosmicNova(Entity<CosmicCultComponent> uid, ref EventCosmicNova args)
     {
-        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
-            if (HasComp<NullSpaceBlockerComponent>(entity))
-            {
-                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
-                return;
-            }
-
         var startPos = _transform.GetMapCoordinates(args.Performer);
         var targetPos = _transform.ToMapCoordinates(args.Target);
         var userVelocity = _physics.GetMapLinearVelocity(args.Performer);

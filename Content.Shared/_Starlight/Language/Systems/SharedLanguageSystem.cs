@@ -5,6 +5,7 @@ using Content.Shared._Starlight.Language.Events;
 using Content.Shared.GameTicking;
 using Robust.Shared.Prototypes;
 using Content.Shared.Cloning.Events;
+using Content.Shared.Zombies;
 
 namespace Content.Shared._Starlight.Language.Systems;
 

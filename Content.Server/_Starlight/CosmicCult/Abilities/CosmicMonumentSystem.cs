@@ -10,7 +10,6 @@ using Content.Shared.Station.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Content.Shared._Starlight.NullSpace;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
@@ -47,13 +46,6 @@ public sealed class CosmicMonumentSystem : EntitySystem
     //guess I should ask for specific feedback for this one tiny feature?
     private void OnCosmicPlaceMonument(Entity<CosmicCultLeadComponent> uid, ref EventCosmicPlaceMonument args)
     {
-        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
-            if (HasComp<NullSpaceBlockerComponent>(entity))
-            {
-                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, uid);
-                return;
-            }
-
         if (!VerifyPlacement(uid, out var pos))
             return;
 

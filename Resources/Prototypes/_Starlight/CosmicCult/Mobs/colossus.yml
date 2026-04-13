@@ -171,11 +171,13 @@
     - Binary
     - Common
     - Science
+    - CosmicRadio
   - type: ActiveRadio
     channels:
     - Binary
     - Common
     - Science
+    - CosmicRadio
   - type: ZombieImmune
   - type: UserInterface
     interfaces:
@@ -240,12 +242,9 @@
   - type: GuideHelp
     guides:
     - CosmicColossus
-  - type: LanguageKnowledge
-    speaks:
-    - Cosmic
-    understands:
-    - Cosmic
+  #region Starlight languages
   - type: UniversalLanguageSpeaker
+  #endregion
 
 - type: entity
   parent: [ MobCosmicColossusBase ]
