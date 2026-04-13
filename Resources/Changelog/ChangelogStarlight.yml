@@ -1203,4 +1203,11 @@ Entries:
   id: 404299
   time: '2026-04-13T12:39:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4096
+- author: Way
+  changes:
+  - message: Added new steel beam decals for mappers.
+    type: Add
+  id: 404300
+  time: '2026-04-13T18:49:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4113
 Order: -1
