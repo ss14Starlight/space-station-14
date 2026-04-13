@@ -154,10 +154,10 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
                         if(HasComp<NullSpaceComponent>(vcomp.BlockingEntity)) _phaseSystem.Phase(vcomp.BlockingEntity);
                         continue;
                     }
-    
+
                     _hands.DoDrop((uid, handsComponent), hand, true);
                 }
-    
+
                 if (_virtualItem.TrySpawnVirtualItemInHand(uid, uid, out var virtItem))
                     EnsureComp<UnremoveableComponent>(virtItem.Value);
             }

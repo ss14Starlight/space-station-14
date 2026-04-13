@@ -223,7 +223,7 @@ public sealed class RadioSystem : EntitySystem
             Source = messageSource,
             Message = message,
             Language = language,
-            SuppressTTS = suppressTTS, 
+            SuppressTTS = suppressTTS,
             Receivers = [.. ev.Receivers]
         });
         // Starlight end
@@ -341,7 +341,7 @@ public sealed class RadioSystem : EntitySystem
         _replay.RecordServerMessage(msg);
         _messages.Remove(message);
     }
-    
+
     private (string, string) GetJobIcon(EntityUid messageSource)
     {
         var iconId = "JobIconNoId";
@@ -423,7 +423,7 @@ public sealed class RadioSystem : EntitySystem
                 ("name", namestring),
                 ("message", message));
     }
-    
+
     private string WrapCustomRadioMessage(
         EntityUid source,
         CustomRadioChannelData channel,
@@ -493,7 +493,7 @@ public sealed class RadioSystem : EntitySystem
         {
             radio.Channels = [.. args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p))];
             Dirty(ent, radio);
-        } 
+        }
         //Starlight end
     }
     #endregion Starlight
