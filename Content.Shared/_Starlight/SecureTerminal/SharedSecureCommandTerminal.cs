@@ -6,7 +6,16 @@ namespace Content.Shared.Starlight.SecureTerminal;
 /// Marker component added to communications consoles that have the Secure Command Terminal feature.
 /// </summary>
 [RegisterComponent]
-public sealed partial class SecureCommandTerminalConsoleComponent : Component { }
+public sealed partial class SecureCommandTerminalConsoleComponent : Component
+{
+    /// <summary>
+    /// When false the terminal UI is completely inert — no proposals can be created or authorized.
+    /// Set to true on Command comms consoles, false on Syndicate/Wizard equivalents.
+    /// Editable in VV at runtime.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool Enabled = false;
+}
 
 [Serializable, NetSerializable]
 public enum SecureCommandTerminalUiKey { Key }

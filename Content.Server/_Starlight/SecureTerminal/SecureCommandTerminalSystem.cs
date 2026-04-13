@@ -132,11 +132,19 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
 
     // ── BUI Events ───────────────────────────────────────────────────────────
 
-    private void OnUiOpened(EntityUid uid, SecureCommandTerminalConsoleComponent _, BoundUIOpenedEvent ev)
-        => UpdateConsoleInterface(uid);
-
-    private void OnRequest(EntityUid uid, SecureCommandTerminalConsoleComponent _, SecureTerminalRequestMessage msg)
+    private void OnUiOpened(EntityUid uid, SecureCommandTerminalConsoleComponent comp, BoundUIOpenedEvent ev)
     {
+        if (!comp.Enabled)
+        {
+            _ui.CloseUi(uid, SecureCommandTerminalUiKey.Key, ev.Actor);
+            return;
+        }
+        UpdateConsoleInterface(uid);
+    }
+
+    private void OnRequest(EntityUid uid, SecureCommandTerminalConsoleComponent comp, SecureTerminalRequestMessage msg)
+    {
+        if (!comp.Enabled) return;
         var actor = msg.Actor;
         if (!actor.IsValid()) return;
 

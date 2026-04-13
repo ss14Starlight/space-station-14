@@ -222,7 +222,8 @@ namespace Content.Server.Communications
                 callRecallCooldownEnd: recallEndTime,
                 shuttleCountdownEnd: _roundEndSystem.ExpectedCountdownEnd,
                 shuttleCallsAllowed: _roundEndSystem.GetShuttleCallsEnabled(),
-                lastCountdownStart: _roundEndSystem.LastCountdownStart
+                lastCountdownStart: _roundEndSystem.LastCountdownStart,
+                hasSecureTerminal: TryComp<Content.Shared.Starlight.SecureTerminal.SecureCommandTerminalConsoleComponent>(uid, out var sct) && sct.Enabled
             // Starlight edit End
             ));
         }

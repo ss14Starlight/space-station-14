@@ -105,6 +105,9 @@ namespace Content.Client.Communications.UI
                 _menu.UpdateAlertLevels(commsState.AlertLevels, _menu.CurrentLevel);
                 _menu.AlertLevelButton.Disabled = !_menu.AlertLevelSelectable;
                 _menu.EmergencyShuttleButton.Disabled = !_menu.CanCall || !_menu.ShuttleCallsAllowed; // Starlight edit
+                // Starlight Start: Secure Command Terminal
+                _menu.SecureTerminalButton.Visible = commsState.HasSecureTerminal;
+                // Starlight End
                 _menu.AnnounceButton.Disabled = !_menu.CanAnnounce;
                 _menu.BroadcastButton.Disabled = !_menu.CanBroadcast;
             }
