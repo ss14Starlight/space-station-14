@@ -15,3 +15,9 @@ public enum RadioDeviceVisualLayers : byte
     Broadcasting,
     Speaker
 }
+
+[Serializable, NetSerializable]
+public enum TelecomServerVisuals : byte
+{
+    Overheated
+}
