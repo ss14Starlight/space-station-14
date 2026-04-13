@@ -84,7 +84,6 @@
     autoRechargeRate: 5
   - type: TypingIndicatorClothing
     proto: CosmicTyping
-  - type: TheDarkImmune
 
 # COSMIC CULT HARDSUIT HELMET
 - type: entity

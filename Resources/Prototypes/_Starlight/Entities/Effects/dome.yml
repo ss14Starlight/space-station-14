@@ -150,7 +150,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 6.2
+          radius: 3.8
         density: 0
         hard: false
         mask:
@@ -160,7 +160,7 @@
   - type: Sprite
     drawdepth: LowFloors
     sprite: Effects/EnergyDome/energydome_big.rsi
-    scale: 2.5, 2.5
+    scale: 1.5, 1.5
     layers:
     - state: big
       color: "#6c15ae"
@@ -169,7 +169,6 @@
     maxVisibility: 0.8
     lastVisibility: 0.8
   - type: NullSpaceBlocker
-    bypassPVS: true
   - type: TheDarkImmune
     ranged: true
 

@@ -72,6 +72,7 @@ public sealed partial class MechEjectPilotEvent : InstantActionEvent
 {
 }
 
+#region Starlight
 public sealed partial class MechToggleInternalsEvent : InstantActionEvent
 {
 }
@@ -85,6 +86,13 @@ public sealed partial class MechToggleThrustersEvent : InstantActionEvent
 }
 
 public sealed partial class MechToggleNightVisionEvent : InstantActionEvent
+{
+}
+
+/// <summary>
+/// Event raised to honk the air horn. Honk!
+/// </summary>
+public sealed partial class MechActivateAirHornEvent : InstantActionEvent
 {
 }
 
@@ -103,3 +111,4 @@ public readonly record struct BeforePilotInsertEvent(EntityUid Mech, EntityUid P
 
     public readonly EntityUid Pilot = Pilot;
 }
+#endregion

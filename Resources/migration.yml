@@ -758,3 +758,19 @@ HandheldHealthAnalyzerEmpty: HandheldHealthAnalyzer
 
 #2026-01-09
 BorgModuleAdvancedChemical: BorgModuleAdvancedTopical
+
+# 2026-01-14
+# Starlight start
+OrganHumanHead: HeadHuman
+OrganSkeletonPersonHead: HeadSkeleton
+OrganHumanArmLeft: LeftArmHuman
+OrganSkeletonPersonArmLeft: LeftArmSkeleton
+OrganSkeletonPersonHandLeft: LeftHandSkeleton
+OrganHumanLegLeft: LeftLegHuman
+OrganSkeletonPersonLegLeft: LeftLegSkeleton
+OrganHumanArmRight: RightArmHuman
+OrganSkeletonPersonHandRight: RightHandSkeleton
+OrganHumanLegRight: RightLegHuman
+OrganSkeletonPersonTorso: TorsoSkeleton
+OrganSkeletonPersonArmRight: RightArmSkeleton
+# Starlight end

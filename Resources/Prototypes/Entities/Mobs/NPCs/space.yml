@@ -404,13 +404,15 @@
     - type: SalvageMobRestrictions
 
 - type: entity
-  parent: SimpleSpaceMobBase
+  parent: SimpleSpaceMobBase #starlight Nubody will not pass.
   id: MobSnail
   name: snail
   description: Revolting unless you're french.
   components:
+  # Starlight - start
   - type: Body
     prototype: Mouse
+  # Starlight - end
   - type: GhostRole
     makeSentient: true
     allowSpeech: false
@@ -599,12 +601,14 @@
   - type: MovementAlwaysTouching
 
 - type: entity
-  parent: MobSnail
+  parent: MobSnail #starlight Nubody will not pass.
   id: MobSnailMoth
   name: Snoth
   components:
+  # Starlight - start
   - type: Body
     prototype: Mothroach
+  # Starlight - end
   - type: GhostRole
     name: ghost-role-information-snoth-name
     description: ghost-role-information-snoth-description

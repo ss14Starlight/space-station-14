@@ -2,7 +2,6 @@ using Content.Shared.Actions;
 using Content.Shared.DoAfter;
 using Content.Shared.Polymorph;
 using Robust.Shared.Audio;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -21,34 +20,87 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     public float Range = 1f;
 
     /// <summary>
+    /// How much to scale effects if target is wearing flash protection
+    /// </summary>
+    [DataField]
+    public float FlashImmunityEffectScale = 0.5f;
+
+    /// <summary>
+    /// How many seconds do we need to Paralyze entity in front of glare source.
+    /// </summary>
+    [DataField]
+    public TimeSpan FrontParalyzeDuration = TimeSpan.FromSeconds(4);
+
+    /// <summary>
+    /// How many seconds do we need to Paralyze entity behind of glare source.
+    /// </summary>
+    [DataField]
+    public TimeSpan SideParalyzeDuration = TimeSpan.FromSeconds(2);
+
+    /// <summary>
     /// How much we need to apply stamina damage on entity in front of glare source
     /// </summary>
     [DataField]
-    public float FrontStaminaDamage = 30f;
+    public float FrontStaminaDamage = 25f;
 
     /// <summary>
     /// How much we need to apply stamina damage on entity behind of glare source
     /// </summary>
     [DataField]
-    public float BehindStaminaDamage = 30f;
+    public float BehindStaminaDamage = 25f;
 
     /// <summary>
     /// How much we need to apply stamina damage on entity which is located to the left or right of glare source
     /// </summary>
     [DataField]
-    public float SideStaminaDamage = 40f;
+    public float SideStaminaDamage = 25f;
 
     /// <summary>
     /// How much we need to apply additional stamina damage on entity in front of glare source.
     /// </summary>
     [DataField]
-    public float DotStaminaDamage = 15f;
+    public float DotStaminaDamage = 5f;
 
     /// <summary>
-    /// How many seconds do we need to mute entity in front of glare source.
+    /// chem and amount to inject to targets.
     /// </summary>
     [DataField]
-    public TimeSpan MuteDuration = TimeSpan.FromSeconds(8);
+    public Dictionary<string, FixedPoint2> Reagents = new Dictionary<string, FixedPoint2>{ {"MuteToxin", 0.5} };
+
+    /// <summary>
+    /// Minimum dot product of vector between vampire direction facing and target direction to proc the forward facing portion of the glare ability
+    /// </summary>
+    [DataField]
+    public float DotForwardLimit = 0.7f;
+
+    /// <summary>
+    /// Maximum dot product of vector between vampire direction facing and target direction to proc the backwards facing portion of the glare ability
+    /// </summary>
+    [DataField]
+    public float DotBackwardLimit = -0.7f;
+}
+
+public sealed partial class VampireSleepActionEvent : EntityTargetActionEvent
+{
+    /// <summary>
+    ///     Channel duration, in seconds, before the target is put to sleep
+    /// </summary>
+    [DataField]
+    public TimeSpan ChannelTime = TimeSpan.FromSeconds(5);
+    [DataField]
+    public float SleepDistanceThreshold = 2.5f; //How far a target may be for sleep to work
+    [DataField]
+    public float SleepMovementThreshold = 0.1f; //How far a target may move for sleep to work during the do after
+}
+
+[Serializable, NetSerializable]
+public sealed partial class VampireSleepDoAfterEvent : SimpleDoAfterEvent
+{
+    [DataField]
+    public int BloodCost = 15;
+    [DataField]
+    public TimeSpan Duration = TimeSpan.FromSeconds(10);
+
 }
 
 public sealed partial class VampireRejuvenateIActionEvent : InstantActionEvent;
