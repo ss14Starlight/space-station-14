@@ -53,6 +53,7 @@ public sealed class AtmosCommand : ToolshedCommand
         if (HasComp<GridAtmosphereComponent>(uid))
         {
             ctx.WriteLine($"Entity {uid} already has an atmosphere.");
+            return uid;
         }
         if (!TryEnsureAtmosphere(ctx, uid, out _, out _))
             return uid;

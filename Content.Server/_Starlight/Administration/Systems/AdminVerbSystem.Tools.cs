@@ -91,7 +91,8 @@ public sealed partial class AdminVerbSystem : EntitySystem
                 Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/AdminActions/rejuvenate.png")),
                 Act = () =>
                 {
-                    var device = _entities.GetComponent<AtmosDeviceComponent>(args.Target);
+                    if(!_entities.TryGetComponent<AtmosDeviceComponent>(args.Target, out var device))
+                        return;
                     var sys = _sys.GetEntitySystem<AtmosDeviceSystem>();
                     sys.RejoinAtmosphere((args.Target, device));
                 },

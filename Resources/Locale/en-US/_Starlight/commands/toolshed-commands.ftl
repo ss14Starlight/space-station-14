@@ -308,6 +308,6 @@ command-description-markup-listdesc =
 command-description-atmos-add =
     Adds an atmosphere to a piped grid.
 command-description-atmos-fix =
-    Fix the atmosphere of a piiped grid.
+    Fix the atmosphere of a piped grid.
 command-description-atmos-rejoin =
     Attempt to make a piped atmospherics device rejoin an atmosphere.
