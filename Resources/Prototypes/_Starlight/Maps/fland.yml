@@ -41,7 +41,7 @@
             MedicalDoctor: [ 6, 6 ]
             Paramedic: [ 2, 2 ]
             MedicalIntern: [ 4, 4 ]
-            Surgeon: [ 2, 2 ]  
+            Surgeon: [ 2, 2 ]
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]
@@ -66,14 +66,15 @@
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
-            Musician: [ 1, 2 ]
+            Musician: [ 2, 2 ]
+            Performer: [ 2, 3 ]
             #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 3, 4 ]
             #law
             Magistrate: [ 1, 1 ]
             IAA: [ 2, 2 ]
-            #Representives
+            #Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]

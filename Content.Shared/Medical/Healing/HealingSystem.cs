@@ -1,6 +1,5 @@
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
 using System.Linq;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -22,6 +21,10 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
+using Content.Shared._FarHorizons.Medical.ConditionalHealing;
+using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.Eye.Blinding.Systems;
+using Content.Shared._Starlight.Medical.Body.Systems;
 
 namespace Content.Shared.Medical.Healing;
 
@@ -37,6 +40,8 @@ public sealed class HealingSystem : EntitySystem
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly ConditionalHealingSystem _conditionalHealing = default!; // Far Horizons
+    [Dependency] private readonly BlindableSystem _blindable = default!; // Far Horizons
 
     public override void Initialize()
     {
@@ -54,7 +59,13 @@ public sealed class HealingSystem : EntitySystem
             return;
 
         if (!TryComp(args.Used, out HealingComponent? healing))
-            return;
+        {
+            // Far Horizons, handle fake components from conditional healing
+            if(args.Used is null || _conditionalHealing.SelectBestMatch(args.Used.Value, target) is not ConditionalHealingData healingData)
+                return;
+            healing = healingData.MakeComponent();
+            healing.Owner = args.Used.Value;
+        }
 
         if (healing.DamageContainers is not null &&
             target.Comp.DamageContainerID is not null &&
@@ -83,10 +94,18 @@ public sealed class HealingSystem : EntitySystem
         if (healing.ModifyBloodLevel != 0 && bloodstream != null)
             _bloodstreamSystem.TryModifyBloodLevel((target.Owner, bloodstream), healing.ModifyBloodLevel);
 
+        // Far Horizons
+        // Restores vision
+        if (healing.AdjustEyeDamage != 0 && TryComp(target, out BlindableComponent? blindable))
+            _blindable.AdjustEyeDamage((target, blindable), healing.AdjustEyeDamage);
+
         if (!_damageable.TryChangeDamage(target.Owner, healing.Damage * _damageable.UniversalTopicalsHealModifier, out var healed, true, origin: args.Args.User) && healing.BloodlossModifier != 0)
             return;
 
-        var total = healed.GetTotal();
+        if (healed == null && healing.BloodlossModifier != 0 && healing.AdjustEyeDamage != 0) // Far Horizons - added eye healing
+            return;
+
+        var total = healed?.GetTotal();
 
         // Re-verify that we can heal the damage.
         var dontRepeat = false;
@@ -184,6 +203,13 @@ public sealed class HealingSystem : EntitySystem
             }
         }
 
+        // Far Horizons start
+        if (healing.Comp.AdjustEyeDamage != 0 &&
+            TryComp<BlindableComponent>(target, out var blindable) &&
+            blindable.EyeDamage != 0)
+            return true;
+        // Far Horizons end
+
         return false;
     }
 
@@ -205,7 +231,8 @@ public sealed class HealingSystem : EntitySystem
             args.Handled = true;
     }
 
-    private bool TryHeal(Entity<HealingComponent> healing, Entity<DamageableComponent?> target, EntityUid user)
+    // Far Horizons - made function public
+    public bool TryHeal(Entity<HealingComponent> healing, Entity<DamageableComponent?> target, EntityUid user)
     {
         if (!Resolve(target, ref target.Comp, false))
             return false;

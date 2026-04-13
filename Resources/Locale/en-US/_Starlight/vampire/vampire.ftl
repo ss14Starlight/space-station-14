@@ -9,6 +9,9 @@ alerts-vampire-fed-desc = Your current blood fullness. Drink blood to stay fed.
 roles-antag-vamire-name = Vampire
 roles-antag-vampire-description = Feed on the crew. Extend your fangs and drink their blood.
 
+roles-antag-thrall-name = Thrall
+roles-antag-thrall-description = Serve your master faithfully and obey their commands.
+
 vampire-roundend-name = vampire
 
 vampire-drink-start = You sink your fangs into {CAPITALIZE(THE($target))}.
@@ -18,11 +21,14 @@ vampire-not-enough-blood = Not enough blood.
 vampire-mouth-covered = Your mouth is covered!
 vampire-drink-invalid-target = You cannot drink blood from vampires or their thralls.
 vampire-target-protected-by-faith = This person is protected by their faith!
-vampire-target-sickly = This person's blood is tainted and must be cleansed.
+vampire-drink-target-empty = This being is out of blood!
 vampire-drink-target-maxed = You have already drunk { $amount } units of blood from this target.
 vampire-drink-target-hard-max = You have drunk the maximum amount of blood from this target ({ $amount } units).
 vampire-full-power-achieved = Your vampiric essence surges full power achieved!
 vampire-umbrae-full-power-fov = The shadows bend to your will. You can now see through walls!
+vampire-drink-target-not-viable = This being does not have flowing blood, they need to be alive!
+vampire-sleep-shielded = This being cannot be put to sleep due to an implant!
+vampire-sleep-protected = Better eye contact is required...
 
 vampire-role-greeting = You are a vampire!
     Your blood thirst compels you to feed on crew members. Use your abilities to turn other crew.
@@ -53,7 +59,7 @@ roundend-prepend-vampire-drained-named = {$name} was the most bloodthirsty vampi
 # Vampire class selection tooltips
 vampire-class-hemomancer-tooltip = Hemomancer
     Focuses on blood magic and the manipulation of blood around you
-    
+
 vampire-class-umbrae-tooltip = Umbrae
     Focuses on darkness, stealth ambushing and mobility
 
@@ -150,7 +156,7 @@ vampire-blood-bond-stop-blood = The bond shreds itself; you lack the blood to su
 
 action-vampire-not-enough-power = Your power is insufficient (need >1000 total blood & 8 unique victims).
 
-# Gargantua 
+# Gargantua
 vampire-blood-swell-start = Your muscles swell with unholy power
 vampire-blood-swell-end = The blood rage subsides.
 
@@ -179,3 +185,9 @@ alerts-vampire-blood-swell-name = Blood Swell
 alerts-vampire-blood-swell-desc = Your muscles surge with unholy power.
 alerts-vampire-blood-rush-name = Blood Rush
 alerts-vampire-blood-rush-desc = Supernatural speed courses through your limbs.
+
+Vamp-converted-title = Enthralled!
+Vamp-converted-text =
+    You have been Enthralled!
+    Obey your master faithfully, you may access the hivemind with '+p'
+Vamp-converted-confirm = Understood

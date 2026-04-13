@@ -53493,7 +53493,7 @@ entities:
     - type: Transform
       pos: 8.718154,12.626069
       parent: 2
-- proto: WeaponRevolverSnubRevolver
+- proto: WeaponRevolverPython
   entities:
   - uid: 1773
     components:

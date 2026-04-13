@@ -39,6 +39,18 @@
         - proto: PowerCellAntiqueProto
           cost: 5
           prob: 0.5
+        - proto: MechReactorAntique
+          cost: 5
+          prob: 0.5
+        - proto: MechReactorBurnout
+          cost: 5
+          prob: 0.5
+        - proto: MechReactorShielded
+          cost: 5
+          prob: 0.5
+        - proto: MechReactorCavalier
+          cost: 5
+          prob: 0.5
         - proto: ProtolatheMachineCircuitboard
         - proto: RandomArtifactSpawner
           cost: 2
@@ -78,7 +90,7 @@
         - proto: MagazineBoxPistolIncendiary
           prob: 0.8
           cost: 8
-                    
+
         - proto: BoxBeanbag
           prob: 0.6
           cost: 10
@@ -103,7 +115,7 @@
         - proto: BoxShellTranquilizer
           prob: 0.3
           cost: 15
-                              
+
         - proto: MagazineBoxPistolSP
           prob: 0.2
           cost: 1

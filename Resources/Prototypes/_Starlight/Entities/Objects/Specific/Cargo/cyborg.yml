@@ -58,6 +58,9 @@
           startingItem: PowerCellMicroreactor
           disableEject: true
           swap: false
+          blacklist:
+            tags:
+            - MechReactor
     - type: Sprite
       sprite: _Starlight/Objects/Specific/Cargo/borg_clamp.rsi
       layers:

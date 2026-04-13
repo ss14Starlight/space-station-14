@@ -16,6 +16,9 @@ public sealed class TtsJob
     [JsonPropertyName("e")]
     public int Effect { get; set; }
 
+    [JsonPropertyName("v")]
+    public int Version { get; set; } = 2;
+
     [JsonPropertyName("ts")]
     public long Timestamp { get; set; }
 }

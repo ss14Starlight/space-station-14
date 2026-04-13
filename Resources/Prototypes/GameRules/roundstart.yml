@@ -277,7 +277,7 @@
   id: Traitor
   components:
   - type: GameRule
-    minPlayers: 5
+    minPlayers: 0 # Starlight-edit
     delay:
       min: 240
       max: 420
@@ -286,7 +286,7 @@
     definitions:
     - prefRoles: [ Traitor ]
       max: 24 # Starlight. More of future proofing. If we ever actually average 240 pop then we'll need to actually do something else.
-      playerRatio: 10 # Starlight. It's this number so Beta doesn't lose out on their 6th traitor.
+      playerRatio: 12 # Starlight. Beta loses 1 traitor, since it's impossible for them to have 6 now at a 1:12 ratio with 65 as their max.
       blacklist:
         components:
         - AntagImmune
@@ -460,6 +460,7 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+        - Wizard
       # Starlight-end
   - type: DynamicRuleCost
     cost: 150

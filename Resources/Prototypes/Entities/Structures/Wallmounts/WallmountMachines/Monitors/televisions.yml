@@ -37,6 +37,7 @@
     radius: 1.5
     energy: 3.0
     color: "#b89f25"
+    castShadows: false #SL lighting optimization
   - type: Destructible
     thresholds:
       - trigger:

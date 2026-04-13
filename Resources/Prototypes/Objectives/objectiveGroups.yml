@@ -51,7 +51,7 @@
     CriminalReportsStealObjective: 0.75 #Starlight Unique Target
     SecureKnowledgeStealObjective:  0.75 #Starlight Unique Target
     # Starlight end
-    
+
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
@@ -123,7 +123,6 @@
     #HOSWeaponStealObjective: 1                # HoS Gun variants, Traitor target, not thief
     FiringPinStealObjective: 1
     FiringPinAdvancedLaserStealObjective: 1
-    FiringPinSmartLMGStealObjective: 1
     LogProbeCartridgeStealObjective: 1 # Detective
     MedTekCartridgeStealObjective: 1 # CMO, yet again
     SecurityTechFabCircuitboardStealObjective: 1 # sec

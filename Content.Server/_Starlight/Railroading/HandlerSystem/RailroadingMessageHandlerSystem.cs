@@ -23,7 +23,7 @@ public sealed partial class RailroadingMessageHandlerSystem : EntitySystem
         SubscribeLocalEvent<RailroadMessageOnChosenComponent, RailroadingCardChosenEvent>(OnChosen);
     }
 
-    private void OnChosen(Entity<RailroadMessageOnChosenComponent> ent, ref RailroadingCardChosenEvent args) 
+    private void OnChosen(Entity<RailroadMessageOnChosenComponent> ent, ref RailroadingCardChosenEvent args)
     {
         if (!_players.TryGetSessionByEntity(args.Subject, out var player))
             return;

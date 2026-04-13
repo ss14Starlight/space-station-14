@@ -36,7 +36,7 @@
   result: SpeedLoaderMagnumHP
   materials:
     Steel: 190
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: SpeedLoaderMagnumFMJ
@@ -50,7 +50,7 @@
   result: SpeedLoaderMagnumPractice
   materials:
     Steel: 90
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: SpeedLoaderMagnumUranium
@@ -109,14 +109,14 @@
   result: MagazineBoxMagnumSP
   materials:
     Steel: 240
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumHP
   result: MagazineBoxMagnumHP
   materials:
     Steel: 240
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumFMJ
@@ -137,7 +137,7 @@
   result: MagazineBoxMagnumIncendiary
   materials:
     Plastic: 240
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumUranium
@@ -145,7 +145,7 @@
   materials:
     Plastic: 240
     Uranium: 180
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumAP

@@ -22,7 +22,7 @@ namespace Content.Server.Speech.Muting
             SubscribeLocalEvent<MutedComponent, SpeakAttemptEvent>(OnSpeakAttempt);
             SubscribeLocalEvent<MutedComponent, EmoteEvent>(OnEmote, before: new[] { typeof(VocalSystem), typeof(MumbleAccentSystem) });
             SubscribeLocalEvent<MutedComponent, ScreamActionEvent>(OnScreamAction, before: new[] { typeof(VocalSystem) });
-            
+
             // Starlight START
             // Remove when WizDen finally migrates mute status effect to StatusEffectNew
             SubscribeLocalEvent<MutedComponent, StatusEffectAppliedEvent>((_, _, ref args) => EnsureComp<MutedComponent>(args.Target));

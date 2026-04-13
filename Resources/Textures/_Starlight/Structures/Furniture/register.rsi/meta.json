@@ -10,10 +10,6 @@
     {
       "name": "register",
       "directions": 4
-    },
-    {
-      "name": "register-open",
-      "directions": 4
     }
   ]
 }

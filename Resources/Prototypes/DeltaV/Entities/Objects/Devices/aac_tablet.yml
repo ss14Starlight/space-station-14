@@ -43,5 +43,5 @@
   - type: AACTablet
   # Starlight Start: TTS
   - type: TextToSpeech
-    voice: borgOliveOffender
+    voice: johnson
   # Starlight End: TTS

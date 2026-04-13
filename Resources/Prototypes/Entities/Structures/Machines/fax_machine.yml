@@ -48,13 +48,11 @@
       whitelist:
         components:
           - FaxableObject #used to be PaperComponent - brainfood1183
-  #region Starlight
-      #      blacklist: removed blacklist cause we can fax em.
+      # Starlight-edit: removed blacklist
+      #      blacklist:
       #        components:
       #          - CargoSlip
-  - type: UxnAttachable # you can attach little micro-processors to this!
-  #endregion
-      
+  - type: UxnAttachable #Starlight you can attach little micro-processors to this!
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:

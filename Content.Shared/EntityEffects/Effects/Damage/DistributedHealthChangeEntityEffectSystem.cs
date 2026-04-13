@@ -41,7 +41,7 @@ public sealed partial class DistributedHealthChange : EntityEffectBase<Distribut
     [DataField]
     public bool IgnoreResistances = true;
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
     {
         var damages = new List<string>();
         var heals = false;
@@ -73,7 +73,7 @@ public sealed partial class DistributedHealthChange : EntityEffectBase<Distribut
             }
 
             damages.Add(
-                Loc.GetString("health-change-display",
+                loc.GetString("health-change-display",
                     ("kind", groupProto.LocalizedName),
                     ("amount", MathF.Abs(amount.Float() * mod)),
                     ("deltasign", sign)
@@ -83,7 +83,7 @@ public sealed partial class DistributedHealthChange : EntityEffectBase<Distribut
         // We use health change since in practice it's not even and distributed is a mouthful.
         // Also because healing groups not using even or distributed healing should be kill.
         var healsordeals = heals ? deals ? "both" : "heals" : deals ? "deals" : "none";
-        return Loc.GetString("entity-effect-guidebook-health-change",
+        return loc.GetString("entity-effect-guidebook-health-change",
             ("chance", Probability),
             ("changes", ContentLocalizationManager.FormatList(damages)),
             ("healsordeals", healsordeals));

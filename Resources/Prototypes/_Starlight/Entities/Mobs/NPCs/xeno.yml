@@ -83,7 +83,7 @@
     animation: WeaponArcBite
     damage:
       groups:
-        Brute: 20 
+        Brute: 20
   - type: DamageStateVisuals
     states:
       Alive:

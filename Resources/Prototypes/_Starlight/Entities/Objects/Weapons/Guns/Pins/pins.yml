@@ -59,8 +59,6 @@
   - type: FiringPin
     pinType: SmartLMG
   - type: FiringPinShotCounter
-  - type: StealTarget
-    stealGroup: FiringPinSmartLMG
 
 - type: entity
   parent: FiringPin

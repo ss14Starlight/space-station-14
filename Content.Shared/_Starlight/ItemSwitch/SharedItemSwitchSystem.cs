@@ -52,7 +52,7 @@ public abstract class SharedItemSwitchSystem : EntitySystem
     {
         if (args.Handled || !ent.Comp.OnUse || ent.Comp.States.Count == 0) return;
         args.Handled = true;
-        
+
         if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hiden)
             return;
 
@@ -78,7 +78,7 @@ public abstract class SharedItemSwitchSystem : EntitySystem
             });
             addedVerbs++;
         }
-        
+
         if (addedVerbs > 0)
             args.ExtraCategories.Add(VerbCategory.Switch);
     }
@@ -89,10 +89,10 @@ public abstract class SharedItemSwitchSystem : EntitySystem
             return;
 
         args.Handled = true;
-        
+
         if (ent.Comp.States.TryGetValue(Next(ent), out var state) && state.Hiden)
             return;
-        
+
         Switch((ent.Owner, ent.Comp), Next(ent), args.User, predicted: ent.Comp.Predictable);
     }
 

@@ -830,6 +830,12 @@
     radius: 3.5
     color: orange
     energy: 0.5
+  - type: RadarBlip # Starlight
+    color: "#44FFAA"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+  - type: PDTarget # Starlight
 
 - type: entity
   id: BulletWeakRocket
@@ -874,6 +880,12 @@
     radius: 3.5
     color: orange
     energy: 0.5
+  - type: RadarBlip # Starlight
+    color: "#44FFAA"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+  - type: PDTarget # Starlight
 
 - type: entity
   id: BulletGrenadeBaton
@@ -912,6 +924,12 @@
     intensitySlope: 5
     maxIntensity: 10
     canCreateVacuum: false
+  - type: RadarBlip # Starlight
+    color: "#FFDD00"
+    scale: 1
+    shape: Square
+    requireInSpace: true
+  - type: PDTarget # Starlight
 
 - type: entity
   id: BulletGrenadeFlash
@@ -953,6 +971,12 @@
     triggerKey: trigger
     fillPrototype: PelletClusterLessLethal
     capacity: 30
+  - type: RadarBlip # Starlight
+    color: "#FFDD00"
+    scale: 1
+    shape: Square
+    requireInSpace: true
+  - type: PDTarget # Starlight
 
 - type: entity
   parent: BaseBulletTrigger
@@ -1007,6 +1031,12 @@
     radius: 3.5
     color: blue
     energy: 0.5
+  - type: RadarBlip # Starlight
+    color: "#44FFAA"
+    scale: 1
+    shape: Circle
+    requireInSpace: true
+  - type: PDTarget # Starlight
 
 - type: entity
   id: BulletCap

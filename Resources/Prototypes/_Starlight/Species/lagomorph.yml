@@ -5,7 +5,7 @@
   prototype: MobLagomorph
   sprites: MobLagomorphSprites
   markingLimits: MobLagomorphMarkingLimits
-  dollPrototype: MobLagomorphDummy
+  dollPrototype: AppearanceLagomorph
   skinColoration: Hues
   customName: true
   minAge: 22

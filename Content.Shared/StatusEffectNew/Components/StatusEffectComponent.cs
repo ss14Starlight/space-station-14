@@ -31,7 +31,7 @@ public sealed partial class StatusEffectComponent : Component
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField, AutoNetworkedField]
     public TimeSpan? EndEffectTime;
-    
+
     /// <summary>
     ///     STARLIGHT: Maximum duration of this status effect that it can stack up to. Relative to now, not start time.
     /// </summary>
@@ -56,4 +56,10 @@ public sealed partial class StatusEffectComponent : Component
     /// </summary>
     [DataField]
     public EntityWhitelist? Blacklist;
+
+    /// <summary>
+    /// QoL function, returns total duration of this status effect.
+    /// </summary>
+    [ViewVariables]
+    public TimeSpan Duration => EndEffectTime == null ? TimeSpan.MaxValue : EndEffectTime.Value - StartEffectTime;
 }

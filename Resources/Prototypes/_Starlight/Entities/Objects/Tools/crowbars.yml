@@ -6,7 +6,7 @@
   components:
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/Items/crowbar_drop.ogg  
+      path: /Audio/Items/crowbar_drop.ogg
   - type: Sprite
     sprite: _Starlight/Objects/Tools/makeshift_omnitool.rsi
     state: base
@@ -33,6 +33,13 @@
   - type: Tag
     tags:
       - Crowbar
+  #FarHorizons Start
+  - type: CrowbarSurgery
+    startSound:
+      path: /Audio/Items/crowbar.ogg
+    speed: 1.5
+  - type: SurgeryTool
+  #FarHorizons End
 
 - type: entity
   name: improvised crowbar

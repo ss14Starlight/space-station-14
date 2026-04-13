@@ -169,8 +169,8 @@ public sealed class OrganGasTankWindow
             MinSize = new Vector2(0, 10)
         });
 
-        _btnEmptyOrgan = new Button 
-        { 
+        _btnEmptyOrgan = new Button
+        {
             Text = Loc.GetString("organ-gas-tank-window-empty-organ-button"),
             Margin = new Thickness(25, 0, 25, 7)
         };

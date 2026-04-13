@@ -5,12 +5,12 @@
   description: "A simple plastic cigarette lighter."
   components:
   - type: SurgeryTool
+  - type: Cautery
     successRate: 0.1
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
-  - type: Cautery
   - type: IgnitionSource
     ignited: false
   - type: ItemToggle
@@ -420,7 +420,7 @@
 - type: entity
   parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: CybersunFlippo
-  name: CyberSun flippo # Starlight-edit
+  name: CyberSun flippo
   description: "A Sleek black and magenta flippo lighter, bearing the logo and iconography of CyberSun Industries."
   components:
   - type: Sprite
@@ -464,7 +464,7 @@
 - type: entity
   parent: [BaseBrandedLighter, FlippoLighter] #SL Edit: added flippolighter parent
   id: NanotrasenFlippo
-  name: Nanotrasen flippo  # Starlight-edit
+  name: NanoTrasen flippo  # Starlight-edit
   description: "A navy blue luxury flippo, generally handed out to loyal heads of staff instead of a payraise. Fueled with liquid plasma and burns a little hotter than usual."
   components:
   - type: Sprite
@@ -481,7 +481,7 @@
         types:
             Heat: 4
   - type: ItemToggleSize
-    activatedSize: Small 
+    activatedSize: Small
   - type: ItemToggleHot #Starlight-end
   - type: PointLight
     enabled: false
@@ -640,7 +640,7 @@
   - type: Item
     sprite: Objects/Tools/Lighters/donkco.rsi
   - type: Welder #
-    fuelConsumption: 0.02 
+    fuelConsumption: 0.02
     fuelLitCost: 0.01 # Starlight-edit
     tankSafe: true
   - type: Tag

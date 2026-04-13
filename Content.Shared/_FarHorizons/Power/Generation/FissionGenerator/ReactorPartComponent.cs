@@ -1,5 +1,7 @@
 using Content.Shared._FarHorizons.Materials;
+using Content.Shared._FarHorizons.Materials.Systems;
 using Content.Shared.Atmos;
+using Content.Shared.Guidebook;
 using Content.Shared.Materials;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -17,6 +19,7 @@ namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 public sealed partial class ReactorPartComponent : Component
 {
     [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IEntityManager _entMan = default!;
 
     /// <summary>
     /// Icon of this component as it shows in the UIs.
@@ -36,6 +39,7 @@ public sealed partial class ReactorPartComponent : Component
     [DataField]
     public int RodType = 0;
 
+    [Flags]
     public enum RodTypes
     {
         None = 0,
@@ -91,12 +95,14 @@ public sealed partial class ReactorPartComponent : Component
     /// The dangerous temperature above which this component starts to melt. 1700K is the melting point of steel.
     /// </summary>
     [DataField]
+    [GuidebookData]
     public float MeltingPoint = 1700;
 
     /// <summary>
     /// How much gas this component can hold, and will be processed per tick.
     /// </summary>
     [DataField]
+    [GuidebookData]
     public float GasVolume = 0;
 
     /// <summary>
@@ -172,6 +178,72 @@ public sealed partial class ReactorPartComponent : Component
     }
 
     public bool HasRodType(RodTypes type) => (RodType & (int)type) == (int)type;
+
+    #region Guidebook
+    [GuidebookData]
+    public double GuidebookThermalTransferValue => Math.Round(MaterialSystem.CalculateHeatTransferCoefficient(Properties, Properties), 1);
+
+    [GuidebookData]
+    public string GuidebookNeutronInteractChance => FormatPercent(!TryResolveEntman()
+            ? 0
+            : (Properties.Density * _entMan.System<SharedReactorPartSystem>().ReactionRate * _entMan.System<SharedReactorPartSystem>().NeutronReactionBias));
+
+    [GuidebookData]
+    public string GuidebookNeutronStimulatedEmmissionChance => FormatPercent(!TryResolveEntman()
+            ? 0
+            : Properties.NeutronRadioactivity * _entMan.System<SharedReactorPartSystem>().ReactionRate * _entMan.System<SharedReactorPartSystem>().NeutronReactionBias);
+
+    [GuidebookData]
+    public string GuidebookStimulatedEmmissionChance => FormatPercent(!TryResolveEntman()
+            ? 0
+            : Properties.Radioactivity * _entMan.System<SharedReactorPartSystem>().ReactionRate * _entMan.System<SharedReactorPartSystem>().NeutronReactionBias);
+
+    [GuidebookData]
+    public string GuidebookNeutronDecayChance => FormatPercent(!TryResolveEntman()
+            ? 0
+            : Properties.NeutronRadioactivity * _entMan.System<SharedReactorPartSystem>().ReactionRate);
+
+    [GuidebookData]
+    public string GuidebookDecayChance => FormatPercent(!TryResolveEntman()
+            ? 0
+            : Properties.Radioactivity * _entMan.System<SharedReactorPartSystem>().ReactionRate);
+
+    [GuidebookData]
+    public string GuidebookReflectChance => FormatPercent(!TryResolveEntman()
+            ? 0
+            : Properties.Hardness * _entMan.System<SharedReactorPartSystem>().ReactionRate);
+
+    [GuidebookData]
+    public float GuidebookHotTemp => !TryResolveEntman()
+            ? 0
+            : _entMan.System<SharedReactorPartSystem>().ReactorPartHotTemp;
+
+    [GuidebookData]
+    public float GuidebookBurnTemp => !TryResolveEntman()
+            ? 0
+            : _entMan.System<SharedReactorPartSystem>().ReactorPartBurnTemp;
+
+    /// <summary>
+    /// Attempts to resolve the entity manager.
+    /// </summary>
+    /// <remarks>During prototype loading this may fail, but it will pass during runtime when it matters.</remarks>
+    /// <returns>If the entity manager is resolved.</returns>
+    private bool TryResolveEntman()
+    {
+        try // The try-catch is because sometimes IoCManager.Resolve() will throw an exception
+        {
+            IoCManager.Resolve(ref _entMan);
+        }
+        catch
+        {
+            return false;
+        }
+
+        return _entMan != null;
+    }
+
+    private static string FormatPercent(double value) => value <= 0 ? "" : Math.Round(value, 1).ToString() + "%";
+    #endregion
 }
 
 /// <summary>

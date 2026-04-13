@@ -260,7 +260,7 @@ public sealed class FaxSystem : EntitySystem
         });
 
         args.Handled = true;
-        
+
     }
 
     private void OnEmagged(EntityUid uid, FaxMachineComponent component, ref GotEmaggedEvent args)
@@ -317,7 +317,7 @@ public sealed class FaxSystem : EntitySystem
                     args.Data.TryGetValue(FaxConstants.FaxPaperPrototypeData, out string? prototypeId);
                     args.Data.TryGetValue(FaxConstants.FaxPaperLockedData, out bool? locked);
                     // Starlight-start
-                    args.Data.TryGetValue(FaxConstants.FaxSlipProduct, out string? slipProduct); 
+                    args.Data.TryGetValue(FaxConstants.FaxSlipProduct, out string? slipProduct);
                     args.Data.TryGetValue(FaxConstants.FaxSlipRequester,  out string? slipRequester);
                     args.Data.TryGetValue(FaxConstants.FaxSlipReason, out string? slipReason);
                     args.Data.TryGetValue(FaxConstants.FaxSlipOrderQuantity, out int? slipOrderQuantity);
@@ -564,8 +564,8 @@ public sealed class FaxSystem : EntitySystem
         TryComp<NameModifierComponent>(sendEntity, out var nameMod);
 
         TryComp<LabelComponent>(sendEntity, out var labelComponent);
-        
-        
+
+
         var payload = new NetworkPayload()
         {
             { DeviceNetworkConstants.Command, FaxConstants.FaxPrintCommand },
@@ -589,7 +589,7 @@ public sealed class FaxSystem : EntitySystem
             payload[FaxConstants.FaxPaperStampStateData] = paper.StampState;
             payload[FaxConstants.FaxPaperStampedByData] = paper.StampedBy;
         }
-        
+
         //starlight start
         //This feels bad and hacky, probably better ways to do this...
         //chnaged faxConstants.cs and FaxMachineComponent.cs with hacky
@@ -601,8 +601,8 @@ public sealed class FaxSystem : EntitySystem
             payload[FaxConstants.FaxSlipOrderQuantity] = cargoSlipComponent?.OrderQuantity;
             payload[FaxConstants.FaxSlipOrderAccount] = cargoSlipComponent?.Account.Id;
         }
-        
-        
+
+
         //starlight end
 
         _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, payload);
@@ -659,7 +659,7 @@ public sealed class FaxSystem : EntitySystem
 
         var entityToSpawn = printout.PrototypeId.Length == 0 ? component.PrintPaperId.ToString() : printout.PrototypeId;
         var printed = Spawn(entityToSpawn, Transform(uid).Coordinates);
-        
+
         if (TryComp<PaperComponent>(printed, out var paper))
         {
             _paperSystem.SetContent((printed, paper), printout.Content);
@@ -674,7 +674,7 @@ public sealed class FaxSystem : EntitySystem
             }
 
             paper.EditingDisabled = printout.Locked;
-            
+
         }
 
         _metaData.SetEntityName(printed, printout.Name);
@@ -683,7 +683,7 @@ public sealed class FaxSystem : EntitySystem
         {
             _labelSystem.Label(printed, label);
         }
-        
+
         // Starlight Start || this is such a hack T-T
         if (printout.Product != null && printout.Requester != null && printout.Reason != null && printout.OrderQuantity != null && printout.Account != null)
         {
@@ -695,7 +695,7 @@ public sealed class FaxSystem : EntitySystem
             slip.Account = printout.Account;
         }
         // Starlight end
-        
+
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"\"{component.FaxName}\" {ToPrettyString(uid):tool} printed {ToPrettyString(printed):subject}: {printout.Content}");
     }
 

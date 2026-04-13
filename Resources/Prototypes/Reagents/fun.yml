@@ -467,6 +467,9 @@
   group: Toxins
   desc: reagent-desc-corgiessence
   physicalDesc: reagent-physical-desc-fluffy
+  allowedJobs:                # Starlight
+  - Chemist                   # Starlight
+  contrabandSeverity: Major   # Starlight None -> major
   flavor: dogfood
   color: "#ed9715"
   metabolisms:
@@ -512,6 +515,7 @@
   group: Toxins
   desc: reagent-desc-catessence
   physicalDesc: reagent-physical-desc-milky
+  contrabandSeverity: Minor   # Starlight None -> minor
   flavor: cannedtuna
   color: "#d8bed8"
   metabolisms:
@@ -573,6 +577,7 @@
   name: reagent-name-canidessence
   group: Toxins
   desc: reagent-desc-canidessence
+  contrabandSeverity: Minor   # Starlight None -> minor
   physicalDesc: reagent-physical-desc-bubbly
   flavor: dogfood
   color: "#b87333"

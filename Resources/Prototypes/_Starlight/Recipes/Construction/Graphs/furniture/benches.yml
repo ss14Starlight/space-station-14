@@ -1,0 +1,577 @@
+- type: constructionGraph
+  id: BenchSL
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+#region White
+        - to: whiteComfBench
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: whiteComfBenchCorner
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: whiteComfBenchLeft
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: whiteComfBenchRight
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: whiteComfBenchMid
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+#region Red
+        - to: redComfBenchCorner
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: redComfBenchLeft
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: redComfBenchRight
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: redComfBenchMid
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+#region Blue
+        - to: blueComfBenchCorner
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: blueComfBenchLeft
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: blueComfBenchRight
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: blueComfBenchMid
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+#region Gray
+        - to: grayComfBench
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: grayComfBenchCorner
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: grayComfBenchLeft
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: grayComfBenchRight
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: grayComfBenchMid
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+#region Green
+        - to: greenComfBench
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: greenComfBenchCorner
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: greenComfBenchLeft
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: greenComfBenchRight
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+        - to: greenComfBenchMid
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 1
+#region Wooden Pews
+        - to: pewLeft
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 1
+        - to: pewMid
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 1
+        - to: pewRight
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 1
+
+#region Node-White
+    - node: whiteComfBench
+      entity: BenchWhiteComfy
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: whiteComfBenchCorner
+      entity: BenchComfyCorner
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: whiteComfBenchLeft
+      entity: BenchComfyEndLeft
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: whiteComfBenchRight
+      entity: BenchComfyEndRight
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: whiteComfBenchMid
+      entity: BenchComfyMiddle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+#region Node-Red
+    - node: redComfBenchCorner
+      entity: BenchRedComfyCorner
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: redComfBenchLeft
+      entity: BenchRedComfyEndLeft
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: redComfBenchRight
+      entity: BenchRedComfyEndRight
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: redComfBenchMid
+      entity: BenchRedComfyMiddle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+#region Node-Blue
+    - node: blueComfBenchCorner
+      entity: BenchBlueComfyCorner
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: blueComfBenchLeft
+      entity: BenchBlueComfyEndLeft
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: blueComfBenchRight
+      entity: BenchBlueComfyEndRight
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: blueComfBenchMid
+      entity: BenchBlueComfyMiddle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+#region Node-Gray
+    - node: grayComfBench
+      entity: BenchGrayComfy
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: grayComfBenchCorner
+      entity: BenchGrayComfyCorner
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: grayComfBenchLeft
+      entity: BenchGrayComfyEndLeft
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: grayComfBenchRight
+      entity: BenchGrayComfyEndRight
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: grayComfBenchMid
+      entity: BenchGrayComfyMiddle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+#region Node-Green
+    - node: greenComfBench
+      entity: BenchGreenComfy
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: greenComfBenchCorner
+      entity: BenchGreenComfyCorner
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: greenComfBenchLeft
+      entity: BenchGreenComfyEndLeft
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: greenComfBenchRight
+      entity: BenchGreenComfyEndRight
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: greenComfBenchMid
+      entity: BenchGreenComfyMiddle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+#region Node-Wooden Pews
+    - node: pewLeft
+      entity: PewEndLeft
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 4
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: pewMid
+      entity: PewMiddle
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 4
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: pewRight
+      entity: PewEndRight
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 4
+          steps:
+            - tool: Screwing
+              doAfter: 2

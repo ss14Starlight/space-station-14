@@ -20,7 +20,7 @@ public sealed class TeachALessonConditionSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<TeachALessonTargetComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveAfterAssignEvent>((ent, ref _) => OnAfterAssign(ent));
         SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
@@ -73,12 +73,12 @@ public sealed class TeachALessonConditionSystem : EntitySystem
             return;
         var targetComponent = EnsureComp<TeachALessonTargetComponent>(targetMobUid.Value);
         targetComponent.Teachers.Add(ent);
-        
+
     }
 
     private void OnMobStateChanged(Entity<TeachALessonTargetComponent> ent, ref MobStateChangedEvent args)
     {
-        if (args.NewMobState != MobState.Dead) 
+        if (args.NewMobState != MobState.Dead)
             return;
         foreach (var teacher in ent.Comp.Teachers)
         {

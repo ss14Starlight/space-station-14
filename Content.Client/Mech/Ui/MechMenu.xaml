@@ -25,6 +25,11 @@
                                  SetHeight="25"
                                  MaxValue="1"
                                  Value="0">
+                        <!-- Starlight start -->
+                        <ProgressBar.ForegroundStyleBoxOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#FF4000"/>
+                        </ProgressBar.ForegroundStyleBoxOverride>
+                        <!-- Starlight end -->
                         <Label Name="EnergyDisplay"
                                Margin="5 0 0 0"
                                HorizontalAlignment="Left"

@@ -7,11 +7,11 @@
   roles:
   - Magistrate
   - IAA
-  
+
 - type: department
-  id: Representives
-  name: department-Representives
-  description: department-Representives-description
+  id: Representatives
+  name: department-Representatives
+  description: department-Representatives-description
   color: "#05255D"
   roles:
   - BlueShield
