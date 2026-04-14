@@ -49,6 +49,12 @@ public sealed partial class ThavenMoodsComponent : Component
     /// </summary>
     [DataField(serverOnly: true)]
     public ProtoId<DatasetPrototype> Wildcard = SharedThavenMoodSystem.WildcardDataset;
+
+    /// <summary>
+    /// Chance of getting a random "wildcard" mood added during an ion storm.
+    /// </summary>
+    [DataField]
+    public float IonStormMoodChance = 0.25f;
 }
 
 public sealed partial class ToggleMoodsScreenEvent : InstantActionEvent;

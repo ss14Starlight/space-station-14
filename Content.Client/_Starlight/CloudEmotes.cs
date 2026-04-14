@@ -34,7 +34,7 @@ public sealed class ClouldEmotesSystem : EntitySystem
     {
         if (!_prototypeManager.TryIndex<CloudEmotePrototype>(emote, out var cloudEmote))
             return;
-            
+
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
 

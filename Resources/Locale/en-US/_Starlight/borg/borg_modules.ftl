@@ -13,3 +13,6 @@ borg-slot-nuke-disk-empty = Nuke Disk
 borg-slot-bounty-empty = Bounties and Slips
 borg-slot-mail-empty = Letters
 borg-slot-organs-empty = Organs and Implants
+borg-slot-knives-empty = Knives
+borg-slot-pkaupgrade-empty = PKA Upgrades
+borg-slot-goliath-empty = Goliath Plates

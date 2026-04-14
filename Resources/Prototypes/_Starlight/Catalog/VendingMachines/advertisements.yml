@@ -1,0 +1,17 @@
+- type: localizedDataset
+  id: DonkPocketMachineAds
+  values:
+    prefix: advertisement-donkpocket-
+    count: 10
+
+- type: localizedDataset
+  id: IceCreamAds
+  values:
+    prefix: advertisement-icecream-
+    count: 12
+
+- type: localizedDataset
+  id: InterdyneAds
+  values:
+    prefix: advertisement-interdyne-
+    count: 9

@@ -1,0 +1,22 @@
+- type: entity
+  id: MechCartridge
+  abstract: true
+  components:
+    - type: CartridgeAmmo
+      deleteOnSpawn: true
+
+- type: entity
+  id: ShellShotgunMechIncendiary
+  parent: [ShellShotgunIncendiary, MechCartridge]
+
+- type: entity
+  id: ShellShotgunMech
+  parent: [ShellShotgun, MechCartridge]
+
+- type: entity
+  id: CannonAmmoBananaCream
+  parent: FoodPieBananaCream
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Edible
+    trash: [] # I want to not leave trash at all if these are going to be fired a lot.

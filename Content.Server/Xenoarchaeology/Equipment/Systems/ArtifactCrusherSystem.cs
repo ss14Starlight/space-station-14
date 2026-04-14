@@ -1,4 +1,3 @@
-using Content.Server.Body.Systems;
 using Content.Server.Stack;
 using Content.Shared.Body.Components;
 using Content.Shared.Gibbing;
@@ -42,8 +41,10 @@ public sealed class ArtifactCrusherSystem : SharedArtifactCrusherSystem
                 }
             }
 
+            // Starlight - start
             if (!TryComp<BodyComponent>(contained, out var body))
                 Del(contained);
+            // Starlight - end
 
             var gibs = _gibbing.Gib(contained);
             foreach (var gib in gibs)

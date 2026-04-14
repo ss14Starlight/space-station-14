@@ -1,12 +1,16 @@
+// Starlight Start
+using System;
+using System.Collections.Generic;
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
+using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
-using Content.Shared.Screen.Components;
+using Content.Shared._Starlight.Speech;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
@@ -17,15 +21,14 @@ using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
+using Content.Shared.Screen.Components;
+using Content.Shared.Speech;
+using Content.Shared.Speech.Muting;
+using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 // Starlight Start
-using System;
-using System.Collections.Generic;
-using Content.Server.Shuttles.Components;
 using Content.Shared.Starlight.SecureTerminal;
-using Content.Shared.Speech;
-using Content.Shared.Station.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 // Starlight End
@@ -50,7 +53,7 @@ namespace Content.Server.Communications
         private const float UIUpdateInterval = 5.0f;
         // Starlight Start
         private const float DefaultGlobalRecallCooldownSeconds = 30f;
-        private float _globalRecallCooldownRemaining = 0f; 
+        private float _globalRecallCooldownRemaining = 0f;
         // Starlight End
 
         public override void Initialize()
@@ -110,7 +113,7 @@ namespace Content.Server.Communications
         {
             comp.AnnouncementCooldownRemaining = comp.InitialDelay;
             UpdateCommsConsoleInterface(uid, comp);
-            
+
             //Starlight begin
             if (!TryComp<StationMemberComponent>(Transform(uid).GridUid, out var stationMember)) return;
             if (!TryComp<StationCentcommComponent>(stationMember.Station, out var ccComp)) return;
@@ -189,7 +192,7 @@ namespace Content.Server.Communications
                         levels = new();
                         foreach (var (id, detail) in alertComp.AlertLevels.Levels)
                         {
-                            if (detail.Selectable)
+                            if (detail.Selectable && (comp.SettableAlertLevels == null || comp.SettableAlertLevels.Contains(id))) // Starlight
                             {
                                 levels.Add(id);
                             }
@@ -213,6 +216,7 @@ namespace Content.Server.Communications
             // Starlight edit Start
             _uiSystem.SetUiState(uid, CommunicationsConsoleUiKey.Key, new CommunicationsConsoleInterfaceState(
                 canAnnounce: CanAnnounce(comp),
+                canBroadcast: comp.CanBroadcast,
                 canCall: CanCallOrRecall(comp),
                 alertLevels: levels,
                 currentAlert: currentLevel,
@@ -278,10 +282,16 @@ namespace Content.Server.Communications
                 return;
             }
 
+            // Starlight BEGIN
+            var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(uid, mob);
+            RaiseLocalEvent(tryGetIdentityShortInfoEvent);
+            var author = tryGetIdentityShortInfoEvent.Title;
+            // Starlight END
+
             var stationUid = _stationSystem.GetOwningStation(uid);
             if (stationUid != null)
             {
-                _alertLevelSystem.SetLevel(stationUid.Value, message.Level, true, true);
+                _alertLevelSystem.SetLevel(stationUid.Value, message.Level, true, true, actor: comp.AnnounceSentBy ? author : null); // Starlight: +actor
                 _adminLogger.Add(LogType.Action, LogImpact.Extreme, $"{ToPrettyString(message.Actor):player} has set {message.Level} alert level");  // Starlight (Far-Horizons)
             }
         }
@@ -290,12 +300,20 @@ namespace Content.Server.Communications
             CommunicationsConsoleAnnounceMessage message)
         {
             var maxLength = _cfg.GetCVar(CCVars.ChatMaxAnnouncementLength);
-            var msg = SharedChatSystem.SanitizeAnnouncement(message.Message, maxLength);
             //#region Starlight
+            var msg = new SpeechMessage
+            {
+                Text = message.Message,
+                Tts = message.Message,
+                Modifier = SpeechModifier.None
+            };
+            msg.Text = SharedChatSystem.SanitizeAnnouncement(message.Message, maxLength);
             msg = _chatSystem.SanitizeMessageReplaceWords(msg);
             var accentEv = new AccentGetEvent(uid, msg);
             RaiseLocalEvent(uid,accentEv);
             msg = accentEv.Message;
+
+            EntityUid? speaker = null;
             //#endregion Starlight
             var author = Loc.GetString("comms-console-announcement-unknown-sender");
             if (message.Actor is { Valid: true } mob)
@@ -311,6 +329,11 @@ namespace Content.Server.Communications
                     return;
                 }
 
+                // Starlight start
+                if (!HasComp<MutedComponent>(mob))
+                    speaker = mob;
+                // Starlight end
+
                 var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(uid, mob);
                 RaiseLocalEvent(tryGetIdentityShortInfoEvent);
                 author = tryGetIdentityShortInfoEvent.Title;
@@ -319,7 +342,7 @@ namespace Content.Server.Communications
             comp.AnnouncementCooldownRemaining = comp.Delay;
             UpdateCommsConsoleInterface(uid, comp);
 
-            var ev = new CommunicationConsoleAnnouncementEvent(uid, comp, msg, message.Actor);
+            var ev = new CommunicationConsoleAnnouncementEvent(uid, comp, msg.Text, message.Actor); // Starlight
             RaiseLocalEvent(ref ev);
 
             // allow admemes with vv
@@ -327,17 +350,17 @@ namespace Content.Server.Communications
             title ??= comp.Title;
 
             if (comp.AnnounceSentBy)
-                msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
+                msg.Text += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
 
             if (comp.Global)
             {
-                _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
+                _chatSystem.DispatchGlobalAnnouncement(msg.Tts ?? msg.Text, title, announcementSound: comp.Sound, colorOverride: comp.Color, speaker: speaker); // Starlight
 
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following global announcement: {msg}");
                 return;
             }
 
-            _chatSystem.DispatchCommunicationsConsoleAnnouncement(uid, msg, title, announcementSound: comp.Sound, colorOverride: comp.Color); // 🌟Starlight🌟
+            _chatSystem.DispatchCommunicationsConsoleAnnouncement(uid, msg.Text, title, announcementSound: comp.Sound, speaker: speaker, colorOverride: comp.Color); // 🌟Starlight🌟
             //Starlight begin
             foreach (var grid in comp.AdditionalGrids)
             {
@@ -348,8 +371,8 @@ namespace Content.Server.Communications
                     if (gridUid == Transform(uid).GridUid) return false; // They already got the announcement from the dispatch above this
                     return gridUid == grid;
                 });
-                
-                _chatSystem.DispatchFilteredAnnouncement(allPlayersOnGrid, msg, announcementSound: comp.Sound, colorOverride: comp.Color, sender: title);
+                // These are not recorded in replays since they are unnecessary and cause multiple to send at once in the replay, which is annoying as shit.
+                _chatSystem.DispatchFilteredAnnouncement(allPlayersOnGrid, msg.Text, announcementSound: comp.Sound, colorOverride: comp.Color, sender: title, recordToReplay: false);
             }
             //Starlight end
 
@@ -361,6 +384,9 @@ namespace Content.Server.Communications
         {
             if (!TryComp<DeviceNetworkComponent>(uid, out var net))
                 return;
+
+            if (!component.CanBroadcast) // Starlight
+                return; // Starlight
 
             var payload = new NetworkPayload
             {

@@ -1,0 +1,12 @@
+- type: entity
+  parent: SurveillanceCameraRouterBase
+  id: SurveillanceCameraRouterIsolatedNetwork
+  name: camera router
+  suffix: Isolated Network
+  components:
+    - type: DeviceNetwork
+      deviceNetId: Wired
+      receiveFrequencyId: SurveillanceCameraIsolatedNetwork
+      transmitFrequencyId: SurveillanceCameraIsolatedNetwork
+    - type: SurveillanceCameraRouter
+      subnetFrequency: SurveillanceCameraIsolatedNetwork

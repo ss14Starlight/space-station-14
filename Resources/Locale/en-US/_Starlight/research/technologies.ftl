@@ -38,5 +38,8 @@ research-technology-loot-only-2 = Loot Only Technologies Tier 2
 research-technology-loot-only-3 = Loot Only Technologies Tier 3
 
 research-technology-bluespace-manipulation = Bluespace Manipulation
+research-technology-darkbreacher = Dark Breacher
 
 research-technology-basic-xenobiology = Basic Xenobiology
+
+research-technology-exotic-reactor = Exosuit Exotic Reactors

@@ -1,0 +1,7 @@
+- type: latheRecipe
+  id: Hydra
+  result: WeaponLauncherHydra
+  completetime: 8
+  materials:
+    Plastic: 600
+    Steel: 200

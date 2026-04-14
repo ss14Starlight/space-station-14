@@ -12,10 +12,10 @@ public sealed partial class AbductorAgentComponent : Component
 {
     [DataField("position"), AutoNetworkedField]
     public EntityCoordinates? SpawnPosition;
-    
+
     [DataField, AutoNetworkedField]
     public EntityUid? Console;
-    
+
     [DataField, AutoNetworkedField]
     public EntityUid? Scientist;
 }

@@ -42173,7 +42173,7 @@ entities:
         New T.S.A. Directorate has ordered stricter protocols for those arriving from outside of Trans-Solar Territory. Foreigners require an ID supplement.
 
 
-        Inspectors should observe for discrepencies in Height, Weight, Physical Appearance, Expiration Date, and Thumbprint. 
+        Inspectors should observe for discrepencies in Height, Weight, Physical Appearance, Expiration Date, and Thumbprint.
 
 
         Any discrepency is grounds for Denial of entry and immediate confinement.
@@ -49705,7 +49705,7 @@ entities:
     - type: Transform
       pos: -5.5,50.5
       parent: 1
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
   - uid: 7064
     components:
@@ -52290,7 +52290,7 @@ entities:
     - type: Transform
       pos: 6.5,0.5
       parent: 1
-- proto: TurnstileCommand
+- proto: TurnstileCentComm
   entities:
   - uid: 5741
     components:

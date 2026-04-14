@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseAction
+  id: ActionMedTek
+  name: Analyze Patient
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Specific/Medical/healthanalyzer.rsi
+      state: icon
+    itemIconStyle: BigAction
+    checkCanInteract: false
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:MedTekActionEvent

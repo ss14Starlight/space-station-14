@@ -26,19 +26,18 @@ public sealed partial class LoadoutContainer : BoxContainer
         set => SelectButton.Text = value;
     }
 
-    public LoadoutContainer(ProtoId<LoadoutPrototype> proto, bool disabled, FormattedMessage? reason)
+    public LoadoutContainer(ProtoId<LoadoutPrototype> proto, bool disabled, FormattedMessage reason) // Starlight: Always has reason
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
         SelectButton.Disabled = disabled;
 
-        if (disabled && reason != null)
-        {
-            var tooltip = new Tooltip();
-            tooltip.SetMessage(reason);
-            SelectButton.TooltipSupplier = _ => tooltip;
-        }
+        // Starlight BEGIN
+        var tooltip = new Tooltip();
+        tooltip.SetMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("loadout-no-requirements")));
+        SelectButton.TooltipSupplier = _ => tooltip;
+        // Starlight END
 
         if (_protoManager.Resolve(proto, out var loadProto))
         {

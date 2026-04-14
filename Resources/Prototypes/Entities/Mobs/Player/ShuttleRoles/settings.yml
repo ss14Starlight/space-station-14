@@ -258,7 +258,7 @@
 
 - type: randomHumanoidSettings
   id: VisitorParamedic
-  parent: VisitorMedical
+  parent: [ EventHumanoidMindShielded, VisitorMedical ] # Starlight: Don't forget mindshield
   components:
     - type: GhostRole
       name: job-name-paramedic
@@ -754,6 +754,7 @@
       name: ghost-role-information-syndie-soldier-teamlead-name
       description: ghost-role-information-syndie-soldier-teamlead-description
       rules: ghost-role-information-rules-team-antagonist
+      important: true # SL
       raffle:
         settings: default
       mindRoles:
@@ -774,6 +775,7 @@
       name: ghost-role-information-syndie-soldier-name
       description: ghost-role-information-syndie-soldier-description
       rules: ghost-role-information-rules-team-antagonist
+      important: true # SL
       raffle:
         settings: default
       mindRoles:
@@ -805,6 +807,7 @@
   id: PirateScooner
   parent: EventHumanoid
   components:
+    - type: Pirate # Starlight
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -812,6 +815,7 @@
       name: ghost-role-information-pirate-name
       description: ghost-role-information-pirate-description
       rules: ghost-role-information-rules-team-antagonist
+      important: true # SL
       raffle:
         settings: default
       mindRoles:
@@ -824,6 +828,7 @@
   id: PirateCaptainScooner
   parent: EventHumanoid
   components:
+    - type: Pirate # Starlight
     - type: NpcFactionMember
       factions:
       - Syndicate
@@ -831,6 +836,7 @@
       name: ghost-role-information-pirate-captain-name
       description: ghost-role-information-pirate-captain-description
       rules: ghost-role-information-rules-team-antagonist
+      important: true # SL
       raffle:
         settings: default
       mindRoles:

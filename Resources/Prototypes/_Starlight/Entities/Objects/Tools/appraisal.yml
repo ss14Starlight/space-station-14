@@ -1,0 +1,12 @@
+- type: entity
+  parent: AppraisalTool
+  id: GoldenAppraisalTool
+  name: golden appraisal tool
+  description: A golden appraisal tool, reserved for the most elite of cargo technicians. Can it determine the worth of the universe?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/golden_appraisal_tool.rsi
+    state: icon
+  - type: Item
+    sprite: _Starlight/Objects/Tools/golden_appraisal_tool.rsi
+    size: Small

@@ -31,6 +31,7 @@
     BoxCandleSmall: 2
     Urn: 5
     Bible: 1
+    CosmicCenser: 1 # Starlight: Cosmic Cult
   contrabandInventory:
     FoodBakedBunHotX: 2
     DrinkWineBottleFull: 1

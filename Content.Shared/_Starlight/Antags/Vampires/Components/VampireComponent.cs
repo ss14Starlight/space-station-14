@@ -3,6 +3,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
+
 namespace Content.Shared._Starlight.Antags.Vampires.Components;
 
 [RegisterComponent, NetworkedComponent]
@@ -24,7 +25,8 @@ public sealed partial class VampireComponent : Component
     {
         "ActionVampireToggleFangs",
         "ActionVampireGlare",
-        "ActionVampireRejuvenateI"
+        "ActionVampireRejuvenateI",
+        "ActionVampireSleep"
     };
 
     /// <summary>
@@ -53,12 +55,30 @@ public sealed partial class VampireComponent : Component
     public int DrunkBlood = 0;
 
     /// <summary>
+    /// bites since last time blindness was applied.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int BlindInc = 0;
+
+    /// <summary>
     /// Determines whether the fangs are extended or not.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField, AutoNetworkedField]
     public bool FangsExtended = false;
 
-    public float SipAmount = 10f;
+    /// <summary>
+    /// Parameters around blood drinking.
+    /// </summary>
+    [DataField]
+    public float SipAmount = 10f; //amount of blood in u drawn from target per bite
+    [DataField]
+    public float SipPierceDamage = 0.05f; //damage per 1u of blood drawn from target
+    [DataField]
+    public float HumanoidEfficiency = 0.5f; //how much blood drawn from target is actually drank vs spilled from humanoids
+    [DataField]
+    public float NonHumanoidEfficiency = 0.125f; //how much blood drawn from target is actually drank vs spilled from animals
+    [DataField]
+    public float BiteDistanceThreshold = 1.5f; //How far a target may be for biting to work
 
     /// <summary>
     /// Current blood fullness used instead of normal food needs.
@@ -118,6 +138,18 @@ public sealed partial class VampireComponent : Component
 
     [DataField]
     public float HolyPlaceRange = 8f;
+
+    /// <summary>
+    /// Healing factors
+    /// </summary>
+    [DataField]
+    public int VampHealBurn = 2;
+    [DataField]
+    public int VampHealBrute = 2;
+    [DataField]
+    public int VampHealAsphyxiation = 10;
+    [DataField]
+    public int VampHealPois = 4;
 
     [DataField]
     public ProtoId<ReagentPrototype> HolyWaterReagentId = "Holywater";

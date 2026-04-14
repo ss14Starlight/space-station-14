@@ -16,7 +16,7 @@ public sealed partial class TargetCryoTeleportationComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan? ExitTime;
-    
+
     [DataField]
     public NetUserId? UserId;
 

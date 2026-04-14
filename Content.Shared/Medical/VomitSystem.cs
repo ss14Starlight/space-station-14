@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
@@ -28,7 +29,7 @@ public sealed class VomitSystem : EntitySystem
     [Dependency] private readonly ThirstSystem _thirst = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!; // Starlight
     [Dependency] private readonly SharedForensicsSystem _forensics = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedPuddleSystem _puddle = default!;
@@ -38,7 +39,7 @@ public sealed class VomitSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BodyComponent, TryVomitEvent>(TryBodyVomitSolution);
+        SubscribeLocalEvent<BodyComponent, TryVomitEvent>(TryBodyVomitSolution); // Starlight
     }
 
     private const float ChemMultiplier = 0.1f;
@@ -50,8 +51,9 @@ public sealed class VomitSystem : EntitySystem
     private readonly SoundSpecifier _vomitSound = new SoundCollectionSpecifier(VomitCollection,
         AudioParams.Default.WithVariation(0.2f).WithVolume(-4f));
 
-    private void TryBodyVomitSolution(Entity<BodyComponent> ent, ref TryVomitEvent args)
+    private void TryBodyVomitSolution(Entity<BodyComponent> ent, ref TryVomitEvent args) // Starlight
     {
+        // Starlight start
         if (args.Handled)
             return;
 
@@ -68,6 +70,7 @@ public sealed class VomitSystem : EntitySystem
         }
 
         args.Handled = true;
+        // Starlight end
     }
 
     /// <summary>

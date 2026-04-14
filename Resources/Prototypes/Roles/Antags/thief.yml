@@ -7,7 +7,7 @@
   guides: [ Thieves ]
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 3h # Starlight
+    time: 5h # Starlight. Low stakes, low involvement.
   playTimeTracker: AntagThief # Starlight
 
 - type: startingGear

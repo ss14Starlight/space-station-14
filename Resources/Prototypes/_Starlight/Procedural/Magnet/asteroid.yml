@@ -1,0 +1,350 @@
+## TRASH
+
+# Large asteroids, typically 1
+- type: dungeonConfig
+  id: BlobAsteroidTrash
+  # Floor generation
+  layers:
+  - !type:NoiseDunGen
+    tileCap: 800
+    capStd: 32
+    iterations: 3
+    layers:
+      - tile: Plating
+        threshold: 0.30
+        noise:
+          frequency: 0.020
+          noiseType: OpenSimplex2
+          fractalType: FBm
+          octaves: 2
+          lacunarity: 2
+
+  # Generate biome
+  - !type:BiomeDunGen
+    biomeTemplate: Trash
+  - !type:OreDunGen
+    replacement: WallTrash
+    entity: TrashWallLootSpawner
+    count: 8
+    minGroupSize: 0
+    maxGroupSize: 1
+
+# Multiple smaller asteroids
+# This is a pain so we generate fewer tiles
+- type: dungeonConfig
+  id: ClusterTrash
+  # Floor generation
+  layers:
+  - !type:NoiseDunGen
+    tileCap: 600
+    capStd: 32
+    layers:
+      - tile: Plating
+        threshold: 0.10
+        noise:
+          frequency: 0.130
+          noiseType: OpenSimplex2
+          fractalType: FBm
+          octaves: 2
+          lacunarity: 2
+
+  # Generate biome
+  - !type:BiomeDunGen
+    biomeTemplate: Trash
+  - !type:OreDunGen
+    replacement: WallTrash
+    entity: TrashWallLootSpawner
+    count: 8
+    minGroupSize: 0
+    maxGroupSize: 1
+
+# Long and spindly, less smooth than blob
+- type: dungeonConfig
+  id: SpindlyTrash
+  # Floor generation
+  layers:
+  - !type:NoiseDunGen
+    tileCap: 500
+    capStd: 32
+    layers:
+      - tile: Plating
+        threshold: -0.50
+        noise:
+          frequency: 0.055
+          noiseType: Cellular
+          fractalType: FBm
+          octaves: 3
+          lacunarity: 2
+          cellularDistanceFunction: Euclidean
+
+  # Generate biome
+  - !type:BiomeDunGen
+    biomeTemplate: Trash
+  - !type:OreDunGen
+    replacement: WallTrash
+    entity: TrashWallLootSpawner
+    count: 8
+    minGroupSize: 0
+    maxGroupSize: 1
+
+# Lots of holes in it
+- type: dungeonConfig
+  id: SwissCheeseTrash
+  # Floor generation
+  layers:
+  - !type:NoiseDunGen
+    tileCap: 500
+    capStd: 32
+    layers:
+      - tile: Plating
+        threshold: -0.10
+        noise:
+          frequency: 0.155
+          noiseType: OpenSimplex2
+          fractalType: FBm
+          octaves: 2
+          lacunarity: 2
+
+  # Generate biome
+  - !type:BiomeDunGen
+    biomeTemplate: Trash
+  - !type:OreDunGen
+    replacement: WallTrash
+    entity: TrashWallLootSpawner
+    count: 8
+    minGroupSize: 0
+    maxGroupSize: 1
+
+## MEAT
+
+# Large asteroids, typically 1
+- type: dungeonConfig
+  id: BlobAsteroidMeat
+  # Floor generation
+  layers:
+  - !type:NoiseDunGen
+    tileCap: 800
+    capStd: 32
+    iterations: 3
+    layers:
+      - tile: FloorFlesh
+        threshold: 0.30
+        noise:
+          frequency: 0.020
+          noiseType: OpenSimplex2
+          fractalType: FBm
+          octaves: 2
+          lacunarity: 2
+
+  # Generate biome
+  - !type:BiomeDunGen
+    biomeTemplate: Meat
+  - !type:OreDunGen
+    replacement: WallMeatroid
+    entity: WallMeatroid
+    count: 8
+    minGroupSize: 0
+    maxGroupSize: 1
+
+# Multiple smaller asteroids
+# This is a pain so we generate fewer tiles
+- type: dungeonConfig
+  id: ClusterMeat
+  # Floor generation
+  layers:
+  - !type:NoiseDunGen
+    tileCap: 700
+    capStd: 32
+    layers:
+      - tile: FloorFlesh
+        threshold: 0.10
+        noise:
+          frequency: 0.130
+          noiseType: OpenSimplex2
+          fractalType: FBm
+          octaves: 2
+          lacunarity: 2
+
+  # Generate biome
+  - !type:BiomeDunGen
+    biomeTemplate: Meat
+  - !type:OreDunGen
+    replacement: WallMeatroid
+    entity: WallMeatroid
+    count: 8
+    minGroupSize: 0
+    maxGroupSize: 1
+
+# Long and spindly, less smooth than blob
+- type: dungeonConfig
+  id: SpindlyMeat
+  # Floor generation
+  layers:
+  - !type:NoiseDunGen
+    tileCap: 600
+    capStd: 32
+    layers:
+      - tile: FloorFlesh
+        threshold: -0.50
+        noise:
+          frequency: 0.055
+          noiseType: Cellular
+          fractalType: FBm
+          octaves: 3
+          lacunarity: 2
+          cellularDistanceFunction: Euclidean
+
+  # Generate biome
+  - !type:BiomeDunGen
+    biomeTemplate: Meat
+  - !type:OreDunGen
+    replacement: WallMeatroid
+    entity: WallMeatroid
+    count: 8
+    minGroupSize: 0
+    maxGroupSize: 1
+
+# Lots of holes in it
+- type: dungeonConfig
+  id: SwissCheeseMeat
+  # Floor generation
+  layers:
+  - !type:NoiseDunGen
+    tileCap: 600
+    capStd: 32
+    layers:
+      - tile: FloorFlesh
+        threshold: -0.10
+        noise:
+          frequency: 0.155
+          noiseType: OpenSimplex2
+          fractalType: FBm
+          octaves: 2
+          lacunarity: 2
+
+  # Generate biome
+  - !type:BiomeDunGen
+    biomeTemplate: Meat
+  - !type:OreDunGen
+    replacement: WallMeatroid
+    entity: WallMeatroid
+    count: 8
+    minGroupSize: 0
+    maxGroupSize: 1
+
+## ICE
+
+# Large asteroids, typically 1
+- type: dungeonConfig
+  id: BlobAsteroidSnow
+  # Floor generation
+  layers:
+  - !type:NoiseDunGen
+    tileCap: 800
+    capStd: 32
+    iterations: 3
+    layers:
+      - tile: FloorAstroSnow
+        threshold: 0.30
+        noise:
+          frequency: 0.020
+          noiseType: OpenSimplex2
+          fractalType: FBm
+          octaves: 2
+          lacunarity: 2
+
+  # Generate biome
+  - !type:BiomeDunGen
+    biomeTemplate: IceAsteroid
+  - !type:OreDunGen
+    replacement: WallRockSnow
+    entity: WallRockSnow
+    count: 8
+    minGroupSize: 0
+    maxGroupSize: 1
+
+# Multiple smaller asteroids
+# This is a pain so we generate fewer tiles
+- type: dungeonConfig
+  id: ClusterSnow
+  # Floor generation
+  layers:
+  - !type:NoiseDunGen
+    tileCap: 700
+    capStd: 32
+    layers:
+      - tile: FloorAstroSnow
+        threshold: 0.10
+        noise:
+          frequency: 0.130
+          noiseType: OpenSimplex2
+          fractalType: FBm
+          octaves: 2
+          lacunarity: 2
+
+  # Generate biome
+  - !type:BiomeDunGen
+    biomeTemplate: IceAsteroid
+  - !type:OreDunGen
+    replacement: WallRockSnow
+    entity: WallRockSnow
+    count: 8
+    minGroupSize: 0
+    maxGroupSize: 1
+
+# Long and spindly, less smooth than blob
+- type: dungeonConfig
+  id: SpindlySnow
+  # Floor generation
+  layers:
+  - !type:NoiseDunGen
+    tileCap: 600
+    capStd: 32
+    layers:
+      - tile: FloorAstroSnow
+        threshold: -0.50
+        noise:
+          frequency: 0.055
+          noiseType: Cellular
+          fractalType: FBm
+          octaves: 3
+          lacunarity: 2
+          cellularDistanceFunction: Euclidean
+
+  # Generate biome
+  - !type:BiomeDunGen
+    biomeTemplate: IceAsteroid
+  - !type:OreDunGen
+    replacement: WallRockSnow
+    entity: WallRockSnow
+    count: 8
+    minGroupSize: 0
+    maxGroupSize: 1
+
+# Lots of holes in it
+- type: dungeonConfig
+  id: SwissCheeseSnow
+  # Floor generation
+  layers:
+  - !type:NoiseDunGen
+    tileCap: 600
+    capStd: 32
+    layers:
+      - tile: FloorAstroSnow
+        threshold: -0.10
+        noise:
+          frequency: 0.155
+          noiseType: OpenSimplex2
+          fractalType: FBm
+          octaves: 2
+          lacunarity: 2
+
+  # Generate biome
+  - !type:BiomeDunGen
+    biomeTemplate: IceAsteroid
+  - !type:OreDunGen
+    replacement: WallRockSnow
+    entity: WallRockSnow
+    count: 8
+    minGroupSize: 0
+    maxGroupSize: 1
