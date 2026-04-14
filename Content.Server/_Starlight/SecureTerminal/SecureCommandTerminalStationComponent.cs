@@ -42,6 +42,11 @@ public sealed class SecureTerminalProposalData
 {
     public string RequestId = string.Empty;
 
+    /// <summary>The reason of the Request.</summary>
+    public string Reason = string.Empty;
+
+    public bool AdminApproved = false;
+
     /// <summary>
     /// Each entry: PlayerUid, display name, job name, which auth-group index they satisfy.
     /// </summary>

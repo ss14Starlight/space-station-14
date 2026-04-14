@@ -21,6 +21,10 @@ public sealed partial class SecureCommandTerminalRequestPrototype : IPrototype
     [DataField]
     public string Description = string.Empty;
 
+    /// <summary>If true, will announce the proposal.</summary>
+    [DataField]
+    public bool ProposalAnnouncement = true;
+
     /// <summary>
     /// Localization key for the global announcement sent when all signatures are collected
     /// (i.e., when the countdown begins).  Null = no announcement.
@@ -99,6 +103,17 @@ public sealed partial class SecureCommandTerminalRequestPrototype : IPrototype
     public List<string> AuthGroupLabels = new();
 
     // ── Conditions ────────────────────────────────────────────────────────────
+    /// <summary>If true, the request will require a reason, this reason will be logged and if RequiresAdminApproval, will be fully showed to admins.</summary>
+    [DataField]
+    public bool RequireReason;
+
+    /// <summary>If true, the request will need to be Authorized by at least ONE Admin.</summary>
+    [DataField]
+    public bool RequiresAdminApproval;
+
+    /// <summary>If true, will bypass RequiresAdminApproval if no active admins.</summary>
+    [DataField]
+    public bool BypassIfNoAdmin = true;
 
     /// <summary>If true, the request button is hidden/disabled unless War Ops are active.</summary>
     [DataField]
@@ -142,4 +157,5 @@ public enum SecureTerminalActionType
     ErtShuttle,
     AlertLevel,
     Armory,
+    NukeCodes,
 }

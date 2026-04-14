@@ -716,13 +716,13 @@
     range: 4
     ports:
       - BodyScannerSender
-  # Starlight-end
 
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerComms
   name: communications computer
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
+  abstract: true
   components:
   - type: Sprite
     layers:
@@ -741,9 +741,6 @@
   - type: CommunicationsConsole
     title: comms-console-announcement-title-station
     sound: /Audio/_Starlight/Announcements/announce2.ogg #Starlight
-  # Starlight Start: Secure Command Terminal
-  - type: SecureCommandTerminalConsole
-  # Starlight End
   - type: DeviceNetwork
     deviceNetId: Wireless
     transmitFrequencyId: ShuttleTimer
@@ -768,6 +765,17 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+
+- type: entity
+  parent: ComputerComms
+  id: StationComputerComms
+  components:
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-station
+    sound: /Audio/_Starlight/Announcements/announce2.ogg #Starlight
+  - type: SecureCommandTerminalConsole
+    enabled: true # ! Turn this true when its done!
+  # Starlight-End
 
 - type: entity
   parent: ComputerComms
@@ -868,6 +876,10 @@
     radius: 1.5
     energy: 4.0
     color: "#00FF00"
+  # Starlight
+  - type: SecureCommandTerminalConsole
+    enabled: true
+    admin: true
 
 - type: entity
   parent: BaseComputerAiAccess

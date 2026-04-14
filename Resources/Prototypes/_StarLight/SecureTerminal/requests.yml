@@ -267,3 +267,31 @@
     - "Captain / CMO (1)"
     - "Captain / CMO (2)"
   cooldownSecs: 3600
+
+# ── Self Destruct Code ─────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: NukeRequest
+  name: secure-terminal-nukerequest-name
+  description: secure-terminal-nukerequest-desc
+  announcementColor: Red
+  requireReason: true
+  requiresAdminApproval: true
+  bypassIfNoAdmin: false
+  activationDelaySecs: 30
+  fee: 10000
+  salaryPenalty: 1
+  actionType: NukeCodes
+  oneTimeUse: true
+  sortOrder: 500
+  authGroups:
+    - [ Captain ]
+    - [ Command ]
+    - [ Command ]
+    - [ Command ]
+    - [ Ntrep ]
+  authGroupLabels:
+    - "Captain (1)"
+    - "Command Member (2)"
+    - "Command Member (3)"
+    - "Command Member (4)"
+    - "NanoTrasen Representative (5)"

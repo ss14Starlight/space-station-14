@@ -43,11 +43,16 @@ secure-terminal-on-cooldown-note = { $minutes ->
 secure-terminal-requires-alert-suffix = Need: {$level}
 secure-terminal-requires-war-suffix = Need: War Ops
 
+secure-terminal-reason = Insert request reason:
+
 ## Server → global announcements
 
 secure-terminal-proposal-created = {$request} has been requested and is awaiting co-authorization.
+secure-terminal-proposal-created-reason = {$request} has been requested and is awaiting co-authorization, Reason: {$reason}
 secure-terminal-proposal-denied = {$request} request has been cancelled.
+secure-terminal-proposal-denied-cc = {$request} request has been denied by Central Command.
 secure-terminal-radio-proposal = {$request} has been proposed. Please go to the nearest Comms Console to authorize or deny.
+secure-terminal-radio-proposal-reason = {$request} has been proposed. Please go to the nearest Comms Console to authorize or deny, Reason: {$reason}
 secure-terminal-radio-denied = {$request} request has been cancelled.
 secure-terminal-activation-countdown = {$request} has been fully authorized.
     Activating in {$minutes} minutes.
@@ -69,8 +74,13 @@ secure-terminal-already-active = Another request is already pending or activatin
 secure-terminal-no-active-proposal = No active proposal found for this request.
 secure-terminal-already-authorized = You have already authorized this proposal.
 secure-terminal-insufficient-funds = Insufficient credits to cover the processing fee for this request.
-secure-terminal-authorized-by = Attention — {$request} has been authorized. Authorized by: {$signatories}.
+secure-terminal-authorized-by = Attention — {$request} request has been authorized. Authorized by: {$signatories}.
 secure-terminal-armory-recalled = {$request} recall order issued. Armory deployment has been cancelled.
+secure-terminal-awaiting-admin = Attention — {$request} request has been send. Awaiting authorization by Central Command.
+
+secure-terminal-admin = Requesting Admin Approval for: {$request}
+                        Reason: {$reason}
+                        Use the AGhost or Central Command Secure terminal to Approve/Deny the Request.
 
 ## Request names & descriptions
 
@@ -134,3 +144,8 @@ secure-terminal-med-pod-name = Emergency Medical Pod
 secure-terminal-med-pod-desc = Dispatches the Emergency Medical Pod — rapid-deployment triage with surgical and revival equipment.
     Use when mass casualties exceed the station's medical capacity.
 secure-terminal-med-pod-announcement = The Emergency Medical Pod has been authorized and is en route. Estimated arrival: 5 minutes.
+
+secure-terminal-nukerequest-name = Self Destruct Code
+secure-terminal-nukerequest-desc = Request the nuclear self-destruct codes.
+                                   Misuse of the nuclear request system will not be tolerated under any circumstances.
+                                   Transmission does not guarantee a response.

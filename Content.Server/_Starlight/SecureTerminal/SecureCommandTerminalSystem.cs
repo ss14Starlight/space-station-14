@@ -24,6 +24,10 @@ using Content.Server.Mind;
 using Content.Server.Chat.Managers;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.AlertLevel;
+using Content.Server.Administration;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Audio;
+using Content.Server.Nuke;
 
 namespace Content.Server.Starlight.SecureTerminal;
 
@@ -50,6 +54,10 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
     [Dependency] private readonly SharedIdCardSystem _idCard = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
+    [Dependency] private readonly IAdminManager _adminManager = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly NukeCodePaperSystem _nukeCodeSystem = default!;
 
     public override void Initialize()
     {
@@ -103,7 +111,6 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
 
             foreach (var requestId in toFire)
             {
-                var oneTimeUse = false;
                 if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var proto))
                 {
                     ExecuteAction(stationUid, proto);
@@ -167,6 +174,31 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             return;
         }
 
+        // Reason Check
+        if (proto.RequireReason)
+        {
+            if (!TryComp<ActorComponent>(actor, out var actorcomp) || actorcomp.PlayerSession is null)
+                return;
+
+            _quickDialog.OpenDialog(actorcomp.PlayerSession, Loc.GetString("secure-terminal-reason"), "",
+            (string message) =>
+            {
+                if (actorcomp.PlayerSession is null)
+                    return;
+
+                CreateProposal(uid, msg, actor, stationUid.Value, stationComp, proto, comp, message);
+            }, () =>
+            {
+                return;
+            });
+            return;
+        }
+        else
+            CreateProposal(uid, msg, actor, stationUid.Value, stationComp, proto, comp);
+    }
+
+    private void CreateProposal(EntityUid uid, SecureTerminalRequestMessage msg, EntityUid actor, EntityUid stationUid, SecureCommandTerminalStationComponent stationComp, SecureCommandTerminalRequestPrototype proto, SecureCommandTerminalConsoleComponent comp, string? reason = null)
+    {
         // Condition checks
         if (proto.RequiresWarDeclared && !IsWarDeclared())
         {
@@ -174,7 +206,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             return;
         }
         if (proto.RequiresAlertLevel != null &&
-            TryComp<AlertLevelComponent>(stationUid.Value, out var alertComp) &&
+            TryComp<AlertLevelComponent>(stationUid, out var alertComp) &&
             alertComp.CurrentLevel != proto.RequiresAlertLevel)
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-wrong-alert"), actor, PopupType.Medium);
@@ -216,8 +248,11 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         var proposal = new SecureTerminalProposalData { RequestId = msg.RequestId };
         stationComp.ActiveProposals[msg.RequestId] = proposal;
 
+        if (reason is not null)
+            proposal.Reason = reason;
+
         // The requestor automatically authorizes their matching group(s)
-        TryAuthorize(actor, proposal, proto);
+        TryAuthorize(actor, proposal, proto, comp);
 
         _adminLog.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(actor):player} created secure terminal proposal: {msg.RequestId}");
@@ -225,21 +260,24 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         _chatManager.SendAdminAnnouncement(
             $"Secure Terminal — {MetaData(actor).EntityName} ({GetJobName(actor)}) proposed: {Loc.GetString(proto.Name)}.");
 
-        _chat.DispatchGlobalAnnouncement(
-            Loc.GetString("secure-terminal-proposal-created",
-                ("request", Loc.GetString(proto.Name))),
-            colorOverride: Color.Yellow);
+        var proposalAnnounce = Loc.GetString("secure-terminal-proposal-created", ("request", Loc.GetString(proto.Name)));
+        if (reason is not null)
+            proposalAnnounce = Loc.GetString("secure-terminal-proposal-created-reason", ("request", Loc.GetString(proto.Name)), ("reason", reason));
 
-        _radio.SendRadioMessage(uid,
-            Loc.GetString("secure-terminal-radio-proposal",
-                ("request", Loc.GetString(proto.Name))),
-            "Command", uid);
+        if (proto.ProposalAnnouncement)
+            _chat.DispatchGlobalAnnouncement(proposalAnnounce, colorOverride: Color.Yellow);
 
-        CheckAndStartCountdown(stationUid.Value, stationComp, msg.RequestId, proto);
-        UpdateAllConsolesForStation(stationUid.Value);
+        var proposalRadio = Loc.GetString("secure-terminal-radio-proposal", ("request", Loc.GetString(proto.Name)));
+        if (reason is not null)
+            proposalRadio = Loc.GetString("secure-terminal-radio-proposal-reason", ("request", Loc.GetString(proto.Name)), ("reason", reason));
+
+        _radio.SendRadioMessage(uid, proposalRadio, "Command", uid);
+
+        CheckAndStartCountdown(stationUid, stationComp, msg.RequestId, proto);
+        UpdateAllConsolesForStation(stationUid);
     }
 
-    private void OnAuthorize(EntityUid uid, SecureCommandTerminalConsoleComponent _, SecureTerminalAuthorizeMessage msg)
+    private void OnAuthorize(EntityUid uid, SecureCommandTerminalConsoleComponent comp, SecureTerminalAuthorizeMessage msg)
     {
         var actor = msg.Actor;
         if (!actor.IsValid()) return;
@@ -258,13 +296,15 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             return;
         }
 
-        if (proposal.Authorizers.Any(a => a.PlayerUid == actor))
+        if (comp.Admin)
+            proposal.AdminApproved = true;
+        else if (proposal.Authorizers.Any(a => a.PlayerUid == actor))
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-already-authorized"), actor, PopupType.Medium);
             return;
         }
 
-        if (!TryAuthorize(actor, proposal, proto))
+        if (!TryAuthorize(actor, proposal, proto, comp))
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-authorize-denied"), actor, PopupType.Medium);
             return;
@@ -280,7 +320,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         UpdateAllConsolesForStation(stationUid.Value);
     }
 
-    private void OnDeny(EntityUid uid, SecureCommandTerminalConsoleComponent _, SecureTerminalDenyMessage msg)
+    private void OnDeny(EntityUid uid, SecureCommandTerminalConsoleComponent comp, SecureTerminalDenyMessage msg)
     {
         var actor = msg.Actor;
         if (!actor.IsValid()) return;
@@ -313,15 +353,23 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             _chatManager.SendAdminAnnouncement(
                 $"Secure Terminal — {MetaData(actor).EntityName} ({GetJobName(actor)}) DENIED / cancelled: {Loc.GetString(proto.Name)}.");
 
-            _chat.DispatchGlobalAnnouncement(
-                Loc.GetString("secure-terminal-proposal-denied",
-                    ("request", Loc.GetString(proto.Name))),
+            if (comp.Admin)
+                if (proto.ProposalAnnouncement)
+                _chat.DispatchGlobalAnnouncement(
+                    Loc.GetString("secure-terminal-proposal-denied-cc",
+                        ("request", Loc.GetString(proto.Name))),
+                colorOverride: Color.Red);
+            else if (proto.ProposalAnnouncement)
+                _chat.DispatchGlobalAnnouncement(
+                    Loc.GetString("secure-terminal-proposal-denied",
+                        ("request", Loc.GetString(proto.Name))),
                 colorOverride: Color.Red);
 
-            _radio.SendRadioMessage(uid,
-                Loc.GetString("secure-terminal-radio-denied",
-                    ("request", Loc.GetString(proto.Name))),
-                "Command", uid);
+            if (!comp.Admin)
+                _radio.SendRadioMessage(uid,
+                    Loc.GetString("secure-terminal-radio-denied",
+                        ("request", Loc.GetString(proto.Name))),
+                    "Command", uid);
         }
 
         UpdateAllConsolesForStation(stationUid.Value);
@@ -406,8 +454,11 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
     /// Returns true if an unsatisfied group was claimed.
     /// </summary>
     private bool TryAuthorize(EntityUid actor, SecureTerminalProposalData proposal,
-        SecureCommandTerminalRequestPrototype proto)
+        SecureCommandTerminalRequestPrototype proto, SecureCommandTerminalConsoleComponent terminal)
     {
+        if (terminal.Admin)
+            return true;
+
         var accessTags = _access.FindAccessTags(actor);
         var satisfied = BuildSatisfiedGroups(proposal, proto);
 
@@ -447,6 +498,21 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
 
         var satisfied = BuildSatisfiedGroups(proposal, proto);
         if (!satisfied.All(s => s)) return;
+
+        // Admin Approval
+        if (proto.RequiresAdminApproval && !proposal.AdminApproved)
+        {
+            if (_adminManager.ActiveAdmins.Count() > 0 || !proto.BypassIfNoAdmin)
+            {
+                _chat.DispatchGlobalAnnouncement(Loc.GetString("secure-terminal-awaiting-admin", ("request", Loc.GetString(proto.Name))), colorOverride: proto.AnnouncementColor);
+                _chatManager.SendAdminAlert(Loc.GetString("secure-terminal-admin", ("request", Loc.GetString(proto.Name)), ("reason", proposal.Reason)));
+                _audio.PlayGlobal("/Audio/Misc/adminlarm.ogg",
+                    Filter.Empty().AddPlayers(_adminManager.ActiveAdmins),
+                    false,
+                    AudioParams.Default.WithVolume(-8f));
+                return;
+            }
+        }
 
         proposal.Status = SecureTerminalProposalStatus.Activating;
         proposal.ActivateAt = _timing.CurTime + TimeSpan.FromSeconds(proto.ActivationDelaySecs);
@@ -488,6 +554,10 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             case SecureTerminalActionType.Armory:
                 if (proto.ArmoryKey != null)
                     _armory.SendArmory(stationUid, proto.ArmoryKey);
+                break;
+
+            case SecureTerminalActionType.NukeCodes:
+                _nukeCodeSystem.SendNukeCodes(stationUid);
                 break;
         }
     }

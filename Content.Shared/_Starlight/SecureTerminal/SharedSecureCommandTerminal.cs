@@ -15,6 +15,10 @@ public sealed partial class SecureCommandTerminalConsoleComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool Enabled = false;
+
+    /// <summary>If true, will be able to approve/deny AdminNeededRequest.</summary>
+    [DataField]
+    public bool Admin = false;
 }
 
 [Serializable, NetSerializable]
