@@ -242,11 +242,7 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
     /// <summary>
     /// If someone with <see cref="PreventEorgComponent"/> polymorphs, also apply it to their polymorph.
     /// </summary>
-    private void OnPolymorphed(EntityUid uid, PreventEorgComponent comp, PolymorphedEvent ev)
-    {
-        if (HasComp<PreventEorgComponent>(ev.OldEntity))
-            Pacify(ev.NewEntity);
-    }
+    private void OnPolymorphed(EntityUid uid, PreventEorgComponent comp, PolymorphedEvent ev) => Pacify(ev.NewEntity);
 
     #endregion
 
