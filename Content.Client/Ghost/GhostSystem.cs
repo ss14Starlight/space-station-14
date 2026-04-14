@@ -37,7 +37,7 @@ namespace Content.Client.Ghost
                 //Starlight begin: ghost admemes
                 while (query.MoveNext(out var uid, out var ghost, out var sprite))
                 {
-                    if (ghost.AlwaysVisible) continue;
+                    if (!value && ghost.AlwaysVisible) value = true;
                     _sprite.SetVisible((uid, sprite), value || uid == _playerManager.LocalEntity);
                 }
                 //Starlight end

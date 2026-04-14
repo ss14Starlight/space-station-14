@@ -27,6 +27,7 @@ public sealed class CosmicTransmuteSystem : EntitySystem
             if (HasComp<NullSpaceBlockerComponent>(entity))
             {
                 _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, args.User);
+                args.Cancel();
                 return;
             }
 
