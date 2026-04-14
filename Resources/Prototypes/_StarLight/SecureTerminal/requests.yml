@@ -2,29 +2,6 @@
 # Accessible from all Command-level Comms Consoles.
 # All fees drawn from each authorizer's account when the countdown begins.
 
-# ── WarOps-Reponse Security ─────────────────────────────────────────────────────────────
-# Only available during War Ops.  Requires Captain/HoS.
-- type: secureTerminalRequest
-  id: WaropsSecurity
-  name: secure-terminal-warops-security-name
-  description: secure-terminal-warops-security-desc
-  announcement: secure-terminal-warops-security-announcement
-  announcementColor: "#ff4444"
-  activationDelaySecs: 1800
-  requiresWarDeclared: true
-  fee: 5000
-  salaryPenalty: 0.05
-  actionType: ErtShuttle
-  gameruleId: ERTSecurityShuttleSpawn
-  sortOrder: 31
-  authGroups:
-    - [ Captain, HeadOfSecurity ]
-    - [ Captain, HeadOfSecurity ]
-  authGroupLabels:
-    - "Captain / HoS (1)"
-    - "Captain / HoS (2)"
-  cooldownSecs: 3600
-
 # ── ERT Security ─────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
   id: ErtSecurity
@@ -32,10 +9,9 @@
   description: secure-terminal-ert-security-desc
   announcement: secure-terminal-ert-security-announcement
   announcementColor: "#ff4444"
-  activationDelaySecs: 600
+  activationDelaySecs: 1800
+  requiresWarDeclared: true
   requireReason: true
-  requiresAdminApproval: true
-  bypassIfNoAdmin: false
   fee: 5000
   salaryPenalty: 0.05
   actionType: ErtShuttle
@@ -58,7 +34,6 @@
   announcementColor: "#ffaa33"
   activationDelaySecs: 600
   requireReason: true
-  requiresAdminApproval: true
   fee: 5000
   salaryPenalty: 0.05
   actionType: ErtShuttle
@@ -81,7 +56,6 @@
   announcementColor: "#33ff66"
   activationDelaySecs: 600
   requireReason: true
-  requiresAdminApproval: true
   fee: 5000
   salaryPenalty: 0.05
   actionType: ErtShuttle
@@ -104,7 +78,6 @@
   announcementColor: "#aaffaa"
   activationDelaySecs: 600
   requireReason: true
-  requiresAdminApproval: true
   fee: 5000
   salaryPenalty: 0.05
   actionType: ErtShuttle
@@ -127,7 +100,6 @@
   announcementColor: "#ddddff"
   activationDelaySecs: 600
   requireReason: true
-  requiresAdminApproval: true
   fee: 5000
   salaryPenalty: 0.05
   actionType: ErtShuttle
@@ -150,7 +122,6 @@
   announcementColor: Violet
   activationDelaySecs: 600
   requireReason: true
-  requiresAdminApproval: true
   fee: 5000
   salaryPenalty: 0.05
   actionType: ErtShuttle
