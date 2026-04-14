@@ -1,6 +1,5 @@
 using Content.Server.Actions;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Shared._Starlight.Antags.Vampires;
@@ -36,6 +35,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Prometheus;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 

@@ -295,6 +295,10 @@ command-description-aitakeover =
     Make the piped entity take over the target AI core.
 command-description-mobthreshold-initialize =
     Properly initializes a new mob threshold onto an entity.
+command-description-corporeal-on =
+    Makes your ghost visible and grants it the ability to speak.
+command-description-corporeal-off =
+    Makes your ghost invisible and revokes the ability to speak.
 command-description-markup-adddesc =
     Add markup text to the piped entity's description with the given ID.
 command-description-markup-editdesc =
@@ -311,3 +315,7 @@ command-description-atmos-fix =
     Fix the atmosphere of a piped grid.
 command-description-atmos-rejoin =
     Attempt to make a piped atmospherics device rejoin an atmosphere.
+command-description-jobs-makeunlimited =
+    Make a job slot unlimited.
+command-description-jobs-makelimited =
+    Make a job slot limited. Allows resetting to 0, or to whatever the midround count would be.

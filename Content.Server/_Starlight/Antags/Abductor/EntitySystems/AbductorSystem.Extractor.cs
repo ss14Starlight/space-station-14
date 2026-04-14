@@ -27,7 +27,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     {
         if (!_actionBlockerSystem.CanInstrumentInteract(args.User, args.Used, args.Target)
             || !args.Target.HasValue
-            || !_body.TryGetBodyOrganEntityComps<OrganHeartComponent>(args.Target.Value, out var hearts)
+            || !_body.TryGetOrgansWithComponent<OrganHeartComponent>(args.Target.Value, out var hearts) // Wizden
             || hearts.Count < 1)
             return;
 
@@ -52,7 +52,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     private void OnExtractDoAfter(Entity<AbductorExtractorComponent> ent, ref AbductorExtractDoAfterEvent args)
     {
         if (args.Target == null
-            || !_body.TryGetBodyOrganEntityComps<OrganHeartComponent>(args.Target.Value, out var hearts))
+            || !_body.TryGetOrgansWithComponent<OrganHeartComponent>(args.Target.Value, out var hearts))
             return;
 
         _admin.Add(LogType.InteractUsing, LogImpact.Low, $"Heart successfully extracted from {ToPrettyString(args.Target.Value)} using {ToPrettyString(ent.Owner)} by {ToPrettyString(args.User)}");

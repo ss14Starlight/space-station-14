@@ -30,7 +30,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes; // Starlight-edit
 using Robust.Shared.Timing;
 using Robust.Shared.Utility; // Starlight-edit
-using Content.Server.Body.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server.Medical;
 
