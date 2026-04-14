@@ -2,6 +2,8 @@ command-description-jobs-jobs =
     Returns all jobs on a station.
 command-description-jobs-job =
     Returns a given job on a station.
+command-description-jobs-setunliunlimited =
+    Makes all piped jobs unlimited
 command-description-jobs-isinfinite =
     Returns true if the input job is infinite, otherwise false.
 command-description-jobs-adjust =
