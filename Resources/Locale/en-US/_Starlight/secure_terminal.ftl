@@ -85,7 +85,7 @@ secure-terminal-awaiting-admin = Attention — {$request} request has been send.
 
 secure-terminal-admin = Requesting Admin Approval for: {$request}
                         Reason: {$reason}
-                        Use the AGhost or Central Command Secure terminal to Approve/Deny the Request.
+                        Use the AGhost to Approve/Deny the Request.
 
 ## Request names & descriptions
 

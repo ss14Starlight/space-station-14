@@ -966,9 +966,6 @@
     radius: 2.5 #SL
     energy: 1.5 #SL
     color: "#00FF00"
-  # Starlight
-  - type: SecureCommandTerminalConsole
-    admin: true
 
 - type: entity
   parent: BaseComputerAiAccess

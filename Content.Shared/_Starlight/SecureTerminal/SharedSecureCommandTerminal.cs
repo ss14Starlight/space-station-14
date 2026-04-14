@@ -14,7 +14,7 @@ public sealed partial class SecureCommandTerminalConsoleComponent : Component
     /// Editable in VV at runtime.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public bool Enabled = false;
+    public bool Enabled = true;
 
     /// <summary>If true, will be able to approve/deny AdminNeededRequest.</summary>
     [DataField]
