@@ -19,7 +19,7 @@ public sealed class Byte256
 
     public ushort GetShort(byte baseAddr)
     {
-        var lsb = this[baseAddr + 1];
+        var lsb = this[(byte)(baseAddr + 1)];
         var msb = this[baseAddr];
         return (ushort)((msb << 8) | lsb);
     }

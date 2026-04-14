@@ -163,7 +163,6 @@ public class StandardSystemDevice : UXNDevice
         if (entry.Key is null)
             return; //this slot was not attached via a command. as such it isn't safe to detach
 
-        proc.Devices[dtchSlot & 0x0F].OnDetach(proc);
         proc.AttachDevice((byte)(dtchSlot & 0x0F), new UXNDevice());
         AttachedDevices.Remove(entry.Key);
     }
