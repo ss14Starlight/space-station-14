@@ -14,12 +14,12 @@ public sealed class MsgAchievementList : NetMessage
     public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
     {
         var unlockedCount = buffer.ReadVariableInt32();
-        UnlockedAchievements.EnsureCapacity(unlockedCount);
+        UnlockedAchievements = new HashSet<string>(unlockedCount);
         for (var i = 0; i < unlockedCount; i++)
             UnlockedAchievements.Add(buffer.ReadString());
 
         var progressCount = buffer.ReadVariableInt32();
-        Progress.EnsureCapacity(progressCount);
+        Progress = new Dictionary<string, double>(progressCount);
         for (var i = 0; i < progressCount; i++)
         {
             var key = buffer.ReadString();

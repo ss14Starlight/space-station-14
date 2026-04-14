@@ -38,8 +38,8 @@ public sealed class ClientAchievementManager : IClientAchievementManager, IAchie
 
     private void OnAchievementList(MsgAchievementList message)
     {
-        UnlockedAchievements = message.UnlockedAchievements;
-        Progress = message.Progress;
+        UnlockedAchievements = new HashSet<string>(message.UnlockedAchievements);
+        Progress = new Dictionary<string, double>(message.Progress);
         AchievementsUpdated?.Invoke();
     }
 

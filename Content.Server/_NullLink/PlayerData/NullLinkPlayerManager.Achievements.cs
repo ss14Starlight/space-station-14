@@ -22,9 +22,12 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
 
             if (_playerById.TryGetValue(userId, out var playerData))
             {
-                mergedAchievements = MergeAchievements(playerData.UnlockedAchievements, achievements);
-                playerData.UnlockedAchievements = [.. mergedAchievements];
-                playerData.AchievementCacheHydrated = true;
+                lock (playerData.AchievementSyncRoot)
+                {
+                    mergedAchievements = MergeAchievements(playerData.UnlockedAchievements, achievements);
+                    playerData.UnlockedAchievements = [.. mergedAchievements];
+                    playerData.AchievementCacheHydrated = true;
+                }
             }
 
             return mergedAchievements;
@@ -38,18 +41,25 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
 
     public bool HasAchievementUnlocked(Guid userId, string achievementId)
     {
-        return _playerById.TryGetValue(userId, out var playerData)
-            && playerData.AchievementCacheHydrated
-            && TryGetCachedAchievements(userId, out var cached)
-            && cached.Any(a => a.AchievementId == achievementId);
+        if (!_playerById.TryGetValue(userId, out var playerData))
+            return false;
+
+        lock (playerData.AchievementSyncRoot)
+        {
+            return playerData.AchievementCacheHydrated
+                && playerData.UnlockedAchievements.Any(a => a.AchievementId == achievementId);
+        }
     }
 
     public async ValueTask<bool> HasAchievementUnlockedAsync(Guid userId, string achievementId)
     {
-        if (_playerById.TryGetValue(userId, out var playerData)
-            && playerData.AchievementCacheHydrated)
+        if (_playerById.TryGetValue(userId, out var playerData))
         {
-            return playerData.UnlockedAchievements.Any(a => a.AchievementId == achievementId);
+            lock (playerData.AchievementSyncRoot)
+            {
+                if (playerData.AchievementCacheHydrated)
+                    return playerData.UnlockedAchievements.Any(a => a.AchievementId == achievementId);
+            }
         }
 
         var achievements = await GetUnlockedAchievements(userId);
@@ -114,8 +124,11 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
     {
         if (_playerById.TryGetValue(userId, out var playerData))
         {
-            achievements = new HashSet<Achievement>(playerData.UnlockedAchievements);
-            return true;
+            lock (playerData.AchievementSyncRoot)
+            {
+                achievements = new HashSet<Achievement>(playerData.UnlockedAchievements);
+                return true;
+            }
         }
 
         achievements = [];
@@ -143,17 +156,20 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         if (!_playerById.TryGetValue(userId, out var playerData))
             return;
 
-        var achievements = playerData.UnlockedAchievements.ToHashSet();
-        achievements.RemoveWhere(achievement => achievement.AchievementId == achievementId);
-        achievements.Add(new Achievement
+        lock (playerData.AchievementSyncRoot)
         {
-            AchievementId = achievementId,
-            GrantingServer = _actors.Server ?? string.Empty,
-            UnlockingCharacter = characterName,
-            UnlockTime = DateTime.UtcNow,
-        });
-        playerData.UnlockedAchievements = [.. achievements];
-        playerData.AchievementCacheHydrated = true;
+            var achievements = playerData.UnlockedAchievements.ToHashSet();
+            achievements.RemoveWhere(achievement => achievement.AchievementId == achievementId);
+            achievements.Add(new Achievement
+            {
+                AchievementId = achievementId,
+                GrantingServer = _actors.Server ?? string.Empty,
+                UnlockingCharacter = characterName,
+                UnlockTime = DateTime.UtcNow,
+            });
+            playerData.UnlockedAchievements = [.. achievements];
+            playerData.AchievementCacheHydrated = true;
+        }
     }
 
     private void SetCachedAchievementLocked(Guid userId, string achievementId)
@@ -161,10 +177,13 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         if (!_playerById.TryGetValue(userId, out var playerData))
             return;
 
-        var achievements = playerData.UnlockedAchievements.ToHashSet();
-        achievements.RemoveWhere(achievement => achievement.AchievementId == achievementId);
-        playerData.UnlockedAchievements = [.. achievements];
-        playerData.AchievementCacheHydrated = true;
+        lock (playerData.AchievementSyncRoot)
+        {
+            var achievements = playerData.UnlockedAchievements.ToHashSet();
+            achievements.RemoveWhere(achievement => achievement.AchievementId == achievementId);
+            playerData.UnlockedAchievements = [.. achievements];
+            playerData.AchievementCacheHydrated = true;
+        }
     }
 
     public void SendAchievementList(Guid userId)
@@ -172,11 +191,20 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         if (!_playerById.TryGetValue(userId, out var playerData))
             return;
 
+        HashSet<string> unlockedAchievements;
+        lock (playerData.AchievementSyncRoot)
+        {
+            if (!playerData.AchievementCacheHydrated)
+                return;
+
+            unlockedAchievements = playerData.UnlockedAchievements
+                .Select(a => a.AchievementId)
+                .ToHashSet();
+        }
+
         var msg = new MsgAchievementList
         {
-            UnlockedAchievements = playerData.UnlockedAchievements
-                .Select(a => a.AchievementId)
-                .ToHashSet(),
+            UnlockedAchievements = unlockedAchievements,
             Progress = new Dictionary<string, double>(playerData.AchievementProgress),
         };
 
