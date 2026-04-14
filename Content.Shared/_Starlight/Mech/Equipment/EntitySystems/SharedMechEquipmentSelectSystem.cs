@@ -1,6 +1,7 @@
 using Content.Shared.Popups;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
+using Content.Shared.Mech.Equipment.Components;
 
 namespace Content.Shared._Starlight.Mech.Equipment.EntitySystems;
 
@@ -32,8 +33,13 @@ public sealed class SharedMechEquipmentSelectSystem : EntitySystem
     {
         var equipment = GetEntity(msg.SelectedEquipment);
 
-        if (equipment.HasValue && !comp.EquipmentContainer.Contains(equipment.Value))
-            return;
+        if (equipment.HasValue)
+        {
+            if (!TryComp<MechEquipmentComponent>(equipment.Value, out var equipComp)
+                || equipComp.EquipmentType != EquipmentType.Active
+                || !comp.EquipmentContainer.Contains(equipment.Value))
+                return;
+        }
 
         comp.CurrentSelectedEquipment = equipment;
 
