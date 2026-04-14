@@ -31,6 +31,7 @@ using Robust.Shared.Configuration;
 using Content.Shared.Starlight.SecureTerminal;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Shared.Silicons.StationAi;
 // Starlight End
 
 namespace Content.Server.Communications
@@ -129,6 +130,7 @@ namespace Content.Server.Communications
             if (msg.Actor is not { Valid: true } actor) return;
             if (!CanUse(actor, uid)) return;
             if (!HasComp<SecureCommandTerminalConsoleComponent>(uid)) return;
+            if (HasComp<StationAiHeldComponent>(actor)) return;
             _uiSystem.TryOpenUi(uid, SecureCommandTerminalUiKey.Key, actor);
         }
         // Starlight End
