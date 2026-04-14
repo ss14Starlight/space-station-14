@@ -37,7 +37,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Prometheus;
 using Content.Server._Starlight.Medical.Body.Systems;
-using Content.Shared.Physics;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
