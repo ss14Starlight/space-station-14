@@ -339,3 +339,7 @@ command-description-gamemap-save =
     Saves the piped map entity to the given path.
 command-description-gamemap-saveid =
     Saves the map with the specified ID to the given path.
+command-description-jobs-makeunlimited =
+    Make a job slot unlimited.
+command-description-jobs-makelimited =
+    Make a job slot limited. Allows resetting to 0, or to whatever the midround count would be.

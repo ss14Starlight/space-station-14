@@ -52,6 +52,8 @@
     - MechEquipmentKineticAccelerator
     - MechEquipmentHonkerBananaMortar
     - MechEquipmentHonkerMousetrapMortar
+    - MechEquipmentHonkerPieCannon
+    - MechEquipmentHonkerAirHorn
 
 - type: latheRecipePack
   id: StarlightMechReactors
