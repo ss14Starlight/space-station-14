@@ -59,7 +59,7 @@ public sealed class SetBalanceCommand : IConsoleCommand
             return;
         }
 
-        data.Balance = amount;
+        //data.Balance = amount;
         shell.WriteLine($"Set {session.Name}'s balance to {amount} credits.");
     }
 }

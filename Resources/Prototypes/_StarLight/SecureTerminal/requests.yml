@@ -11,11 +11,12 @@
   announcement: secure-terminal-ert-security-announcement
   announcementColor: "#ff4444"
   activationDelaySecs: 600
+  requireReason: true
+  requiresAdminApproval: true
   fee: 5000
   salaryPenalty: 0.05
   actionType: ErtShuttle
   gameruleId: ERTSecurityShuttleSpawn
-  requiresWarDeclared: true
   sortOrder: 40
   authGroups:
     - [ Captain, HeadOfSecurity ]
@@ -33,6 +34,8 @@
   announcement: secure-terminal-ert-engineering-announcement
   announcementColor: "#ffaa33"
   activationDelaySecs: 600
+  requireReason: true
+  requiresAdminApproval: true
   fee: 5000
   salaryPenalty: 0.05
   actionType: ErtShuttle
@@ -54,6 +57,8 @@
   announcement: secure-terminal-ert-medical-announcement
   announcementColor: "#33ff66"
   activationDelaySecs: 600
+  requireReason: true
+  requiresAdminApproval: true
   fee: 5000
   salaryPenalty: 0.05
   actionType: ErtShuttle
@@ -75,6 +80,8 @@
   announcement: secure-terminal-ert-janitorial-announcement
   announcementColor: "#aaffaa"
   activationDelaySecs: 600
+  requireReason: true
+  requiresAdminApproval: true
   fee: 5000
   salaryPenalty: 0.05
   actionType: ErtShuttle
@@ -96,6 +103,8 @@
   announcement: secure-terminal-ert-chaplain-announcement
   announcementColor: "#ddddff"
   activationDelaySecs: 600
+  requireReason: true
+  requiresAdminApproval: true
   fee: 5000
   salaryPenalty: 0.05
   actionType: ErtShuttle
@@ -117,6 +126,8 @@
   announcement: secure-terminal-code-gamma-announcement
   announcementColor: "#ff66cc"
   activationDelaySecs: 5
+  requireReason: true
+  requiresAdminApproval: true
   fee: 2500
   salaryPenalty: 0.1
   actionType: AlertLevel
