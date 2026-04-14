@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Shared._Starlight.Achievement;
+using Content.Shared.NullLink.CCVar;
 using Starlight.NullLink;
 
 namespace Content.Server._NullLink.PlayerData;
@@ -59,6 +60,12 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
     {
         if (!_actors.TryGetServerGrain(out var serverGrain))
         {
+            if (!_cfg.GetCVar(NullLinkCCVars.Enabled))
+            {
+                _sawmill.Debug($"UnlockAchievement skipped for {userId}/{achievementId}: NullLink is disabled.");
+                return false;
+            }
+
             _sawmill.Error($"UnlockAchievement failed for {userId}/{achievementId}: server grain is unavailable.");
             return false;
         }
@@ -80,6 +87,12 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
     {
         if (!_actors.TryGetServerGrain(out var serverGrain))
         {
+            if (!_cfg.GetCVar(NullLinkCCVars.Enabled))
+            {
+                _sawmill.Debug($"LockAchievement skipped for {userId}/{achievementId}: NullLink is disabled.");
+                return false;
+            }
+
             _sawmill.Error($"LockAchievement failed for {userId}/{achievementId}: server grain is unavailable.");
             return false;
         }
