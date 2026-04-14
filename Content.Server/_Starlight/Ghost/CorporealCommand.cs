@@ -1,5 +1,7 @@
 using System.Linq;
 using Content.Server.Administration;
+using Content.Server.Ghost;
+using Content.Shared._Starlight.Ghost;
 using Content.Shared.Administration;
 using Content.Shared.Emoting;
 using Content.Shared.Eye;
@@ -21,10 +23,12 @@ namespace Content.Server._Starlight.Ghost;
 public sealed class CorporealCommand : ToolshedCommand
 {
     private VisibilitySystem? _visibility;
+    private GhostSystem? _ghost;
 
     [CommandImplementation("on")]
     public EntityUid MakeCorporeal(IInvocationContext ctx, [PipedArgument] EntityUid uid)
     {
+        _ghost ??= EntitySystemManager.GetEntitySystem<GhostSystem>();
         if (!TryComp<GhostComponent>(uid, out var ghost))
         {
             ctx.WriteLine("Target must be a ghost.");
@@ -39,6 +43,7 @@ public sealed class CorporealCommand : ToolshedCommand
         EnsureComp<VocalComponent>(uid);
         EnsureComp<TextToSpeechComponent>(uid);
         ToggleVisibility(uid, true);
+        _ghost.CorporealStateChanged(uid, true);
         return uid;
     }
 
@@ -61,6 +66,7 @@ public sealed class CorporealCommand : ToolshedCommand
     [CommandImplementation("off")]
     public EntityUid MakeNonCorporeal(IInvocationContext ctx, [PipedArgument] EntityUid uid)
     {
+        _ghost ??= EntitySystemManager.GetEntitySystem<GhostSystem>();
         if (!TryComp<GhostComponent>(uid, out var ghost))
         {
             ctx.WriteLine("Target must be a ghost.");
@@ -74,6 +80,7 @@ public sealed class CorporealCommand : ToolshedCommand
         RemComp<EmotingComponent>(uid);
         RemComp<VocalComponent>(uid);
         ToggleVisibility(uid, false);
+        _ghost.CorporealStateChanged(uid, false);
         return uid;
     }
 

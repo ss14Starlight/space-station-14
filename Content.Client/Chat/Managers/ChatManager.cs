@@ -64,13 +64,9 @@ internal sealed class ChatManager : IChatManager
                 break;
 
             case ChatSelectChannel.Dead:
-                if (_systems.GetEntitySystemOrNull<GhostSystem>() is {IsGhost: true})
-                    goto case ChatSelectChannel.Local;
-
-                if (_adminMgr.HasFlag(AdminFlags.Admin))
-                    _consoleHost.ExecuteCommand($"dsay \"{CommandParsing.Escape(str)}\"");
-                else
-                    _sawmill.Warning("Tried to speak on deadchat without being ghost or admin.");
+                // Starlight begin: dsay is AllCommand now. Handle all checks on the server. Trusting client is bad!
+                _consoleHost.ExecuteCommand($"dsay \"{CommandParsing.Escape(str)}\"");
+                // Starlight end
                 break;
 
             // TODO sepearate radio and say into separate commands.
