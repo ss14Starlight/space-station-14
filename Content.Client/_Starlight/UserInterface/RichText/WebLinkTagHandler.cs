@@ -44,11 +44,9 @@ public sealed class WebLinkTag : IMarkupTagHandler
         return true;
     }
 
-    private void OnKeybindDown(GUIBoundKeyEventArgs args, string link, Control? control)
+    private void OnKeybindDown(GUIBoundKeyEventArgs args, string link, Control control)
     {
         if (args.Function != EngineKeyFunctions.UIClick)
-            return;
-        if (control == null)
             return;
 
         _uriOpener.OpenUri(link);

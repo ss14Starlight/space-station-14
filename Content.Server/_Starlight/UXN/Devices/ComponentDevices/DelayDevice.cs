@@ -12,21 +12,22 @@ public sealed partial class DelayDevice : ComponentUxnDevice<UxnAttachedComponen
 {
     public override string Id => "delay";
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    protected override void SetupCore(EntityUid euid, UxnAttachedComponent comp) => throw new NotImplementedException();
+
+    protected override void SetupCore(EntityUid euid, UxnAttachedComponent comp) { }
     public override void WriteValue(byte memTarget, Byte256 deviceMem, UXNProcessor proc)
     {
         if ((memTarget & 0x0F) == 0x02)
         {
             var badr = memTarget & 0xF0;
-            var future = _gameTiming.CurTime + TimeSpan.FromSeconds(deviceMem.GetShort((byte)(badr + 0x02)));
+            var future = _gameTiming.CurTime + TimeSpan.FromSeconds(deviceMem.GetShort((byte)(badr + (byte)DelayDeviceOffsets.Time)));
             Entity.Comp.DelayExecution = future;
-            proc.PushEvent(new ContinueFromPauseEvent(deviceMem.GetShort((byte)(badr)), Entity.Comp));
+            proc.PushEvent(new ContinueFromPauseEvent(deviceMem.GetShort((byte)badr), Entity.Comp));
         }
     }
 }
 
 /// <summary>
-/// A event raised when you want a UXN to pause execution until the GameTimer has passed a ceartain time.
+/// A event raised when you want a UXN to pause execution until the GameTimer has passed a certain time.
 /// suggested to also be sent alongside <see cref="UxnAttachedComponent.DelayExecution"/> to prevent the UXN from "spin looping" while this event is on the stack.
 /// </summary>
 public sealed partial class ContinueFromPauseEvent : UxnEvent
@@ -41,4 +42,10 @@ public sealed partial class ContinueFromPauseEvent : UxnEvent
     }
     public override bool PreRun(UXNProcessor proc) => Comp.DelayExecution > _gameTiming.CurTime;
     public override void PerformEvent(UXNProcessor proc) => proc.PC = Vector;
+}
+
+public enum DelayDeviceOffsets : byte
+{
+    Vector = 0x00,
+    Time = 0x02
 }

@@ -5,6 +5,7 @@ namespace Content.Server._Starlight.UXN.Devices;
 public sealed class FakeStdioDevice : UXNDevice
 {
     private string _fakedInput = "";
+    private bool _stdinClosed = false;
     public List<byte> FakedOutput = [];
     public List<byte> FakedError = [];
 
@@ -74,16 +75,20 @@ public sealed class FakeStdioDevice : UXNDevice
     public void MakeEvent(UXNProcessor proc)
     {
         if (_fakedInput.Length <= 0)
+        {
+            if (!_stdinClosed)
+            {
+                _stdinClosed = true;
+                proc.PushEvent(new ArgvCharEvent(0x00, 0x04)); //End of Stdin is a null byte not a newline.
+            }
             return;
+        }
         var letter = _fakedInput[0];
         var letterByte = Encoding.ASCII.GetBytes(letter.ToString())[0];
         _fakedInput = _fakedInput[1..];
         _sawmill?.Info($"FakedStdio: push char '{letter}'");
         CharCount++;
         proc.PushEvent(new StdioCharEvent(letterByte, this));
-
-        if (_fakedInput.Length == 0)
-            proc.PushEvent(new ArgvCharEvent(0x00, 0x04)); //end of stdin is null not a newline IG?
     }
 }
 

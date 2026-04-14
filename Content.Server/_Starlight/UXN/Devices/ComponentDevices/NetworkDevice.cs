@@ -40,7 +40,7 @@ public static class UxnDeviceNetworkConstants
 public enum NetworkDeviceMemory : byte
 {
     /// <summary>
-    /// where will we return to upon recieving a packet.
+    /// where will we return to upon receiving a packet.
     /// </summary>
     ReadVector = 0x0E
 }

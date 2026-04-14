@@ -20,15 +20,15 @@ public class StandardSystemDevice : UXNDevice
     public override void ReadValue(byte memTarget, Byte256 deviceMem, UXNProcessor proc)
     {
         var lsn = memTarget & 0x0F;
-        switch (lsn)
+        switch ((StandardSystemDeviceMemory)lsn)
         {
-            case 0x04: //wst
+            case StandardSystemDeviceMemory.WriteStackPointer: //wst
                 deviceMem[memTarget] = proc.WorkingStack.StackPointer;
                 break;
-            case 0x05: //rst
+            case StandardSystemDeviceMemory.ReturnStackPointer: //rst
                 deviceMem[memTarget] = proc.ReturnStack.StackPointer;
                 break;
-            case 0x0f: //state
+            case StandardSystemDeviceMemory.State: //state
                 deviceMem[memTarget] = Status;
                 break;
             default:
@@ -39,44 +39,44 @@ public class StandardSystemDevice : UXNDevice
     public override void WriteValue(byte memTarget, Byte256 deviceMem, UXNProcessor proc)
     {
         var lsn = memTarget & 0x0F;
-        switch (lsn)
+        switch ((StandardSystemDeviceMemory)lsn)
         {
-            case 0x03: //expansion, Lower Half
+            case StandardSystemDeviceMemory.Expansion: //expansion, Lower Half
                 // get the address into system memory to read the expansion command from there
                 var res = deviceMem.GetShort((byte)(memTarget - 0x01)); //since this is on the "least significant" half we gotta go one back to get the whole short.
                 var mem = proc.SystemMem; //shorter name for readability :3c
                 var cmd = mem[res];
-                switch (cmd)
+                switch ((StandardSystemDeviceExpansionCommands)cmd)
                 {
-                    /*fill length* bank* start* value */ case 0x00:
+                    /*fill length* bank* start* value */ case StandardSystemDeviceExpansionCommands.Fill:
                         SystemFillCommand(res, mem);
                         break;
-                    /*cpyl length* src_bank* src_addr* dest_bank* dest_addr* */ case 0x01:
+                    /*cpyl length* src_bank* src_addr* dest_bank* dest_addr* */ case StandardSystemDeviceExpansionCommands.CopyLeft:
                         SystemCopyLeftCommand(res, mem);
                         break;
-                    /*cpyr length* src_bank* src_addr* dest_bank* dest_addr* */ case 0x02:
+                    /*cpyr length* src_bank* src_addr* dest_bank* dest_addr* */ case StandardSystemDeviceExpansionCommands.CopyRight:
                         SystemCopyRightCommand(res, mem);
                         break;
-                    /*atch name* slot*/ case 0x03:
+                    /*atch name* slot*/ case StandardSystemDeviceExpansionCommands.Attach:
                         SystemAttachCommand(res, mem, proc);
                         break;
-                    /*dtch slot*/ case 0x04:
+                    /*dtch slot*/ case StandardSystemDeviceExpansionCommands.Detach:
                         SystemDetachCommand(res, mem, proc);
                         break;
                     default:
                         break; //Specified command does not exists.
                 };
                 break;
-            case 0x04: //wst
+            case StandardSystemDeviceMemory.WriteStackPointer: //wst
                 proc.WorkingStack.SetPointer(deviceMem[memTarget]);
                 break;
-            case 0x05: //rst
+            case StandardSystemDeviceMemory.ReturnStackPointer: //rst
                 proc.ReturnStack.SetPointer(deviceMem[memTarget]);
                 break;
-            case 0x0e: //debug
+            case StandardSystemDeviceMemory.Debug: //debug
                 System.Diagnostics.Debugger.Break(); //BREAKPOINT!!... that doesn't work for some reason... ugh...
                 break;
-            case 0x0f: //state
+            case StandardSystemDeviceMemory.State: //state
                 Status = deviceMem[memTarget];
                 break;
             default:
@@ -145,15 +145,15 @@ public class StandardSystemDevice : UXNDevice
         var name = ReadBuffered(mem, 0, nameptr).ToLowerInvariant();
         var slot = mem[(ushort)(baseAddr + 3)];
 
-        if (!AttachableDevices.ContainsKey(name))
-            return; //we dont have a device by that name
+        if ((!AttachableDevices.TryGetValue(name, out var value)) || AttachedDevices.ContainsKey(name))
+            return; //we dont have a device by that name or it's already attached
 
         var dev = proc.Devices[slot & 0x0F];
         if (dev.GetType() != typeof(UXNDevice))
             return; //device slot is taken
 
-        proc.AttachDevice((byte)(slot & 0x0F), AttachableDevices[name]);
-        AttachedDevices[name] = ((byte)(slot & 0x0F)); //mark this slot as detachable so it can be detached later if needed.
+        proc.AttachDevice((byte)(slot & 0x0F), value);
+        AttachedDevices[name] = (byte)(slot & 0x0F); //mark this slot as detachable so it can be detached later if needed.
     }
 
     private void SystemDetachCommand(ushort baseAddr, UxnMem mem, UXNProcessor proc)
@@ -166,4 +166,22 @@ public class StandardSystemDevice : UXNDevice
         proc.AttachDevice((byte)(dtchSlot & 0x0F), new UXNDevice());
         AttachedDevices.Remove(entry.Key);
     }
+}
+
+public enum StandardSystemDeviceMemory : byte
+{
+    Expansion = 0x03,
+    WriteStackPointer = 0x04,
+    ReturnStackPointer = 0x05,
+    Debug = 0x0E,
+    State = 0x0F
+}
+
+public enum StandardSystemDeviceExpansionCommands : byte
+{
+    Fill = 0x00,
+    CopyLeft = 0x01,
+    CopyRight = 0x02,
+    Attach = 0x03,
+    Detach = 0x04
 }

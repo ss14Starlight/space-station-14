@@ -21,7 +21,7 @@ public sealed partial class AdminVerbSystem : EntitySystem
     [Dependency] private readonly ISharedAdminManager _adminManager = default!;
     [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IResourceManager _resourceManager= default!;
+    [Dependency] private readonly IResourceManager _resourceManager = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<GetVerbsEvent<Verb>>(AddVerbs);

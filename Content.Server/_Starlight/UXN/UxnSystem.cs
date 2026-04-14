@@ -54,8 +54,8 @@ public sealed partial class UxnSystem : SharedUxnSystem
         SubscribeLocalEvent<UxnAttachedComponent, FaxReceivedEvent>(OnFaxRecieved);
         #endregion
         #region cvar subs
-        _configurationManager.OnValueChanged(StarlightCCVars.UxnMaxInstrLimit, v => _maxInstrs = v);
-        _configurationManager.OnValueChanged(StarlightCCVars.UxnDefaultInstrLimit, v => _defaultInstrs = v);
+        _configurationManager.OnValueChanged(StarlightCCVars.UxnMaxInstrLimit, v => _maxInstrs = v, invokeImmediately: true);
+        _configurationManager.OnValueChanged(StarlightCCVars.UxnDefaultInstrLimit, v => _defaultInstrs = v, invokeImmediately: true);
         #endregion
     }
 

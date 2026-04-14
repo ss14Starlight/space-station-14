@@ -316,24 +316,21 @@ public sealed partial class UXNProcessor
             #region immediates
             case UxnOpcode.JCI: // JCI
                 {
-                    var msb = SystemMem[PC];
-                    var addr = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
+                    var addr = SystemMem.GetShort(PC);
                     PC += 2;
                     if (stack.PopByte(false) != 0) PC += addr;
                 }
                 break;
             case UxnOpcode.JMI: // JMI
                 {
-                    var msb = SystemMem[PC];
-                    var addr = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
+                    var addr = SystemMem.GetShort(PC);
                     PC += addr;
                     PC += 2;
                 }
                 break;
             case UxnOpcode.JSI: // JSI
                 {
-                    var msb = SystemMem[PC];
-                    var addr = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
+                    var addr = SystemMem.GetShort(PC);
                     PC += 2;
                     ReturnStack.PushShort(PC);
                     PC += addr;
@@ -347,8 +344,7 @@ public sealed partial class UXNProcessor
                 break;
             case UxnOpcode.LIT2: // LIT2
                 {
-                    var msb = SystemMem[PC];
-                    var res = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
+                    var res = SystemMem.GetShort(PC);
                     PC += 2;
                     stack.PushShort(res);
                 }
@@ -361,8 +357,7 @@ public sealed partial class UXNProcessor
                 break;
             case UxnOpcode.LIT2r: // LIT2r
                 {
-                    var msb = SystemMem[PC];
-                    var res = (ushort)((msb << 8) | SystemMem[(ushort)(PC + 1)]);
+                    var res = SystemMem.GetShort(PC);
                     PC += 2;
                     stack.PushShort(res);
                 }

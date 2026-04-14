@@ -37,6 +37,8 @@ public sealed class TestUxnCompiler
             using var ms = new MemoryStream();
             stream.CopyTo(ms);
             var romBytes = ms.ToArray();
+            if (romBytes.Length > 0xFEFF) // 0xFEFF is 0x100 less then 0xFFFF which is the max size of UXN memory.
+                Assert.Fail($"ROM {file} is too large to fit in UXN memory!");
             for (int i = 0; i < romBytes.Length; i++)
             {
                 mem[(ushort)(0x100 + i)] = romBytes[i];

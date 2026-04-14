@@ -8,10 +8,12 @@ namespace Content.Tests.Shared._Starlight.UXN;
 public sealed class UxnImmediateOpcodeTest : ContentUnitTest
 {
     [Test]
-    [TestCase(0xfe, true)] //jumps back 2 bytes to the instr just *before* the jmp
+    [TestCase(0xfe, true)] //foward 254 bytes
     [TestCase(0x10, true)]
+    [TestCase(-2, true)] //negative jump using short instead of ushort
     [TestCase(0xfe, false)] //cond is false
     [TestCase(0x10, false)]
+    [TestCase(-2, false)]
     public void JCI(short jmp, bool cond)
     {
         var uxn = new UXNProcessor();

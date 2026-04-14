@@ -112,8 +112,8 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                     break;
                 }
 
-                var name = ReadBuffered(proc.SystemMem, buf1size, buf1ptr).Trim();
-                var contents = ReadBuffered(proc.SystemMem, buf2size, buf2ptr).Trim();
+                var name = ReadBuffered(proc.SystemMem, buf1size, buf1ptr).Trim('\0');
+                var contents = ReadBuffered(proc.SystemMem, buf2size, buf2ptr).Trim('\0');
                 var payload = new NetworkPayload
                 {
                     [DeviceNetworkConstants.Command] = FaxConstants.FaxPrintCommand,
