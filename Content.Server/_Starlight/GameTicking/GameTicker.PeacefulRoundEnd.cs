@@ -109,16 +109,15 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
     }
 
     /// <summary>
-    /// Pacify a target. If the system is disabled, only marks them with <see cref="PreventEorgComponent"/>.
+    /// Pacify a target immediately.
     /// </summary>
-    /// <param name="target"></param>
+    /// <param name="target">The target to pacify</param>
     private void Pacify(EntityUid target)
     {
         if (HasComp<PreventEorgComponent>(target)) return;
 
         var wasPacified = HasComp<PacifiedComponent>(target);
-        if (_isEnabled)
-            EnsureComp<PacifiedComponent>(target);
+        EnsureComp<PacifiedComponent>(target);
 
         var preventEorg = EnsureComp<PreventEorgComponent>(target);
         preventEorg.WasPacifiedPrior = wasPacified;
