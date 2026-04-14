@@ -87,6 +87,7 @@ public sealed class JobsCommand : ToolshedCommand
     public IEnumerable<int> Amount([PipedArgument] IEnumerable<JobSlotRef> @ref)
         => @ref.Select(Amount);
 
+    // Starlight begin
     [CommandImplementation("setunlimited")]
     public JobSlotRef SetUnlimited(IInvocationContext ctx, [PipedArgument] JobSlotRef @ref)
     {
@@ -120,8 +121,10 @@ public sealed class JobsCommand : ToolshedCommand
     }
 
     [CommandImplementation("setlimited")]
-    public IEnumerable<JobSlotRef> SetLimited(IInvocationContext ctx, [PipedArgument] IEnumerable<JobSlotRef> @ref, bool resetToMidroundCount) =>
+    public IEnumerable<JobSlotRef> SetLimited(IInvocationContext ctx, [PipedArgument] IEnumerable<JobSlotRef> @ref,
+        bool resetToMidroundCount) =>
         @ref.Select(x => SetLimited(ctx, x, resetToMidroundCount));
+    // Starlight end
 }
 
 // Used for Toolshed queries.
