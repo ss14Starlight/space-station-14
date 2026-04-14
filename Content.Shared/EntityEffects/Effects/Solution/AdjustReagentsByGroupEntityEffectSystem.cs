@@ -1,4 +1,4 @@
-﻿using Content.Shared.Body.Prototypes;
+﻿using Content.Shared._Starlight.Medical.Body.Prototypes;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;

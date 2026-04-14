@@ -1,0 +1,17 @@
+- type: marking
+  id: FelionoidHandPawMittensR
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state:  pawmittens_handsR
+
+- type: marking
+  id: FelionoidHandPawMittensL
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state:  pawmittens_handsL

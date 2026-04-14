@@ -24,7 +24,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 // Starlight Start
-using Content.Server.Body.Systems;
 using Content.Server.GameTicking;
 using Robust.Shared.GameObjects.Components.Localization;
 using Content.Server._Starlight.Medical.Limbs;
@@ -32,6 +31,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Prometheus;
 using Content.Server._Starlight.Administration.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
 // Starlight End
 
 namespace Content.Server.Station.Systems;

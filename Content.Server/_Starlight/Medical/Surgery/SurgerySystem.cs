@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Shared.Body.Part;
@@ -16,6 +15,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Server.Administration.Systems;
 using Content.Shared.Damage.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
