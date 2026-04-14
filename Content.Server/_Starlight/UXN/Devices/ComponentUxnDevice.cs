@@ -10,7 +10,7 @@ public abstract class ComponentUxnDevice<T> : UXNDevice where T : IComponent
 
     public void Setup(EntityUid euid, T comp)
     {
-        Entity = new Entity<T>(euid, (T)comp);
+        Entity = new Entity<T>(euid, comp);
         SetupCore(euid, comp);
     }
 

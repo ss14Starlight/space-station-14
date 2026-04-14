@@ -120,8 +120,8 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                     [FaxConstants.FaxPaperNameData] = name,
                     [FaxConstants.FaxPaperContentData] = contents,
                 };
-                _deviceNetwork.QueuePacket(Entity, component.DestinationFaxAddress, payload);
-                deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.Okay;
+                var result = _deviceNetwork.QueuePacket(Entity, component.DestinationFaxAddress, payload)? FaxDeviceStatus.Okay : FaxDeviceStatus.UnknownError;
+                deviceMem[memTarget & 0xF0] = (byte)result;
                 break;
             #endregion
             #region Reading Commands (processing incoming faxes)
@@ -129,8 +129,9 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                 deviceMem[memTarget & 0xF0] = (byte)Math.Min(ReadQueue.Count, 0xFF);
                 break;
             case FaxDeviceCommand.NextIncoming: //Read number of faxes in-buffer
-                if (!(ReadQueue.Count > 0))
+                if (ReadQueue.Count == 0)
                 {
+                    Next = null;
                     deviceMem[memTarget & 0xF0] = (byte)FaxDeviceStatus.NoIncoming;
                     break;
                 }
@@ -298,5 +299,6 @@ public enum FaxDeviceStatus : byte
     InvalidAddr = 0x80,
     NoIncoming,
     NoStamps,
+    UnknownError,
     InformationBuffered = 0xFF
 }

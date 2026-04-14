@@ -826,7 +826,7 @@ public sealed partial class UXNProcessor
         {
             d.OnDetach(this);
         }
-        PC = 0x100;
+        PC = RESET_VECTOR;
         DevMem = new();
         SystemMem = new();
         ReturnStack = new();

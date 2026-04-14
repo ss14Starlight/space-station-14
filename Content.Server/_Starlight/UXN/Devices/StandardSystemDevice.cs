@@ -179,9 +179,9 @@ public enum StandardSystemDeviceMemory : byte
 
 public enum StandardSystemDeviceExpansionCommands : byte
 {
-    Fill = 0x00,
-    CopyLeft = 0x01,
-    CopyRight = 0x02,
-    Attach = 0x03,
-    Detach = 0x04
+    Fill,
+    CopyLeft,
+    CopyRight,
+    Attach,
+    Detach
 }

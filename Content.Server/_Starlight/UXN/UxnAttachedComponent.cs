@@ -9,7 +9,7 @@ public sealed partial class UxnAttachedComponent : Component
     public UXNProcessor? Uxn = null;
 
     [ViewVariables]
-    public ContainerSlot ChipHolder = new();
+    public ContainerSlot ChipHolder = default!;
 
     /// <summary>
     /// when set this UXN's execution is skipped until the specified time frame. this also makes it stop counting towards the global instruction limit.
