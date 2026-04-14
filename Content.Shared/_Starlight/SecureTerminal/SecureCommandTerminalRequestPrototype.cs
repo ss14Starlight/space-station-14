@@ -63,6 +63,13 @@ public sealed partial class SecureCommandTerminalRequestPrototype : IPrototype
     [DataField]
     public float SalaryPenalty = 0.05f;
 
+    /// <summary>
+    /// Seconds timer to collect all authorizations before getting auto-cancelled.
+    /// If 0, no Timer will be applied.
+    /// </summary>
+    [DataField]
+    public int AuthTimer = 0;
+
     // ── Action ───────────────────────────────────────────────────────────────
 
     /// <summary>What type of action to perform when the timer expires.</summary>

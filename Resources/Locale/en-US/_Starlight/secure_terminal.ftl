@@ -23,6 +23,7 @@ secure-terminal-auth-waiting = No active proposal for this request.
 secure-terminal-auth-desc = Current proposal — no response = [color=red]red[/color], agreed = [color=green]green[/color]:
 secure-terminal-awaiting-member = Awaiting authorised command member...
 
+secure-terminal-pending-countdown-label = Expire in {$minutes}m {$seconds}s…
 secure-terminal-countdown-label = Activating in {$minutes}m {$seconds}s…
 
 secure-terminal-salary-note = Station salary reduced by {$penalty}% due to mobilization cost.
@@ -53,8 +54,8 @@ secure-terminal-proposal-created = {$request} has been requested and is awaiting
 secure-terminal-proposal-created-reason = {$request} has been requested and is awaiting co-authorization, Reason: {$reason}
 secure-terminal-proposal-denied = {$request} request has been cancelled.
 secure-terminal-proposal-denied-cc = {$request} request has been denied by Central Command.
-secure-terminal-radio-proposal = {$request} has been proposed. Please go to the nearest Comms Console to authorize or deny.
-secure-terminal-radio-proposal-reason = {$request} has been proposed. Please go to the nearest Comms Console to authorize or deny, Reason: {$reason}
+secure-terminal-radio-proposal = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny.
+secure-terminal-radio-proposal-reason = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny, Reason: {$reason}
 secure-terminal-radio-denied = {$request} request has been cancelled.
 secure-terminal-activation-countdown = {$request} has been fully authorized.
     Activating in {$minutes} minutes.
@@ -64,7 +65,7 @@ secure-terminal-unknown-job = Unknown
 ## Popup messages
 
 secure-terminal-no-station = No station found for this console.
-secure-terminal-request-denied = Access denied. Only the Captain or NTR may create proposals.
+secure-terminal-request-denied = Access denied.
 secure-terminal-authorize-denied = You do not hold the required clearance to co-sign this request.
 secure-terminal-requires-war = This request is only available when War Ops have been formally declared.
 secure-terminal-wrong-alert = The current alert level does not meet this request's requirements.
@@ -75,6 +76,8 @@ secure-terminal-already-pending = A proposal for this request is already pending
 secure-terminal-already-active = Another request is already pending or activating. Wait for it to complete before making a new one.
 secure-terminal-no-active-proposal = No active proposal found for this request.
 secure-terminal-already-authorized = You have already authorized this proposal.
+secure-terminal-already-used = This terminal already authorized this proposal.
+secure-terminal-auth-note = This terminal is only for authorization.
 secure-terminal-insufficient-funds = Insufficient credits to cover the processing fee for this request.
 secure-terminal-authorized-by = Attention — {$request} request has been authorized. Authorized by: {$signatories}.
 secure-terminal-armory-recalled = {$request} recall order issued. Armory deployment has been cancelled.

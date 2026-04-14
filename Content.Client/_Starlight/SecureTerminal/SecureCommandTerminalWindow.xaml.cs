@@ -58,7 +58,17 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         if (_lastState == null || _selectedRequestId == null) return;
 
         var proposal = _lastState.Proposals.Find(p => p.RequestId == _selectedRequestId);
-        if (proposal is { Status: SecureTerminalProposalStatus.Activating, ActivateAt: not null })
+        if (proposal is { Status: SecureTerminalProposalStatus.Pending, AuthTimer: not null })
+        {
+            var remaining = proposal.AuthTimer.Value - _timing.CurTime;
+            if (remaining <= TimeSpan.Zero)
+                remaining = TimeSpan.Zero;
+            CountdownLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("secure-terminal-pending-countdown-label",
+                ("minutes", (int)remaining.TotalMinutes),
+                ("seconds", remaining.Seconds))));
+            CountdownLabel.Visible = true;
+        }
+        else if (proposal is { Status: SecureTerminalProposalStatus.Activating, ActivateAt: not null })
         {
             var remaining = proposal.ActivateAt.Value - _timing.CurTime;
             if (remaining <= TimeSpan.Zero)

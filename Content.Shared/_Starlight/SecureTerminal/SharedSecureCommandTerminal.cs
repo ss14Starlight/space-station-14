@@ -19,6 +19,10 @@ public sealed partial class SecureCommandTerminalConsoleComponent : Component
     /// <summary>If true, will be able to approve/deny AdminNeededRequest.</summary>
     [DataField]
     public bool Admin = false;
+
+    /// <summary>If true, this temrinal will only be able to approve/deny</summary>
+    [DataField]
+    public bool AuthTerminal = false;
 }
 
 [Serializable, NetSerializable]
@@ -90,6 +94,8 @@ public sealed class SecureTerminalProposalState
     /// Null while still gathering authorizations.
     /// </summary>
     public TimeSpan? ActivateAt;
+
+    public TimeSpan? AuthTimer;
 
     public SecureTerminalProposalStatus Status;
 }

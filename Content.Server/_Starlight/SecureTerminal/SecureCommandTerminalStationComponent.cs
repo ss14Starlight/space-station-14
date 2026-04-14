@@ -1,4 +1,5 @@
 using Content.Shared.Starlight.SecureTerminal;
+using NetCord;
 
 namespace Content.Server.Starlight.SecureTerminal;
 
@@ -52,8 +53,12 @@ public sealed class SecureTerminalProposalData
     /// </summary>
     public readonly List<(EntityUid PlayerUid, string Name, string Job, int GroupIndex)> Authorizers = new();
 
+    public readonly List<EntityUid> UsedTerminals = new();
+
     /// <summary>CurTime when the action fires. Null while still collecting signatures.</summary>
     public TimeSpan? ActivateAt;
+
+    public TimeSpan? AuthTimer;
 
     public SecureTerminalProposalStatus Status = SecureTerminalProposalStatus.Pending;
 }
