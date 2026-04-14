@@ -355,15 +355,15 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
 
             if (comp.Admin)
                 if (proto.ProposalAnnouncement)
-                _chat.DispatchGlobalAnnouncement(
-                    Loc.GetString("secure-terminal-proposal-denied-cc",
-                        ("request", Loc.GetString(proto.Name))),
-                colorOverride: Color.Red);
-            else if (proto.ProposalAnnouncement)
-                _chat.DispatchGlobalAnnouncement(
-                    Loc.GetString("secure-terminal-proposal-denied",
-                        ("request", Loc.GetString(proto.Name))),
-                colorOverride: Color.Red);
+                    _chat.DispatchGlobalAnnouncement(
+                        Loc.GetString("secure-terminal-proposal-denied-cc",
+                            ("request", Loc.GetString(proto.Name))),
+                    colorOverride: Color.Red);
+                else if (proto.ProposalAnnouncement)
+                    _chat.DispatchGlobalAnnouncement(
+                        Loc.GetString("secure-terminal-proposal-denied",
+                            ("request", Loc.GetString(proto.Name))),
+                    colorOverride: Color.Red);
 
             if (!comp.Admin)
                 _radio.SendRadioMessage(uid,
@@ -517,14 +517,17 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         proposal.Status = SecureTerminalProposalStatus.Activating;
         proposal.ActivateAt = _timing.CurTime + TimeSpan.FromSeconds(proto.ActivationDelaySecs);
 
-        // Authorized-by announcement listing all signatories
-        var signatories = string.Join(", ",
-            proposal.Authorizers.Select(a => $"{a.Name} ({a.Job})"));
-        _chat.DispatchGlobalAnnouncement(
-            Loc.GetString("secure-terminal-authorized-by",
-                ("request", Loc.GetString(proto.Name)),
-                ("signatories", signatories)),
-            colorOverride: proto.AnnouncementColor);
+        if (proto.ProposalAnnouncement)
+        {
+            // Authorized-by announcement listing all signatories
+            var signatories = string.Join(", ",
+                proposal.Authorizers.Select(a => $"{a.Name} ({a.Job})"));
+            _chat.DispatchGlobalAnnouncement(
+                Loc.GetString("secure-terminal-authorized-by",
+                    ("request", Loc.GetString(proto.Name)),
+                    ("signatories", signatories)),
+                colorOverride: proto.AnnouncementColor);
+        }
 
         // Per-request announcement (ERT dispatch notice, Code GAMMA text, etc.)
         if (proto.Announcement != null)

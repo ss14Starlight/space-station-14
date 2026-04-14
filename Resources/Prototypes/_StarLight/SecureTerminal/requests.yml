@@ -2,8 +2,30 @@
 # Accessible from all Command-level Comms Consoles.
 # All fees drawn from each authorizer's account when the countdown begins.
 
-# ── ERT Security ─────────────────────────────────────────────────────────────
+# ── WarOps-Reponse Security ─────────────────────────────────────────────────────────────
 # Only available during War Ops.  Requires Captain/HoS.
+- type: secureTerminalRequest
+  id: WaropsSecurity
+  name: secure-terminal-warops-security-name
+  description: secure-terminal-warops-security-desc
+  announcement: secure-terminal-warops-security-announcement
+  announcementColor: "#ff4444"
+  activationDelaySecs: 1800
+  requiresWarDeclared: true
+  fee: 5000
+  salaryPenalty: 0.05
+  actionType: ErtShuttle
+  gameruleId: ERTSecurityShuttleSpawn
+  sortOrder: 31
+  authGroups:
+    - [ Captain, HeadOfSecurity ]
+    - [ Captain, HeadOfSecurity ]
+  authGroupLabels:
+    - "Captain / HoS (1)"
+    - "Captain / HoS (2)"
+  cooldownSecs: 3600
+
+# ── ERT Security ─────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
   id: ErtSecurity
   name: secure-terminal-ert-security-name
@@ -13,6 +35,7 @@
   activationDelaySecs: 600
   requireReason: true
   requiresAdminApproval: true
+  bypassIfNoAdmin: false
   fee: 5000
   salaryPenalty: 0.05
   actionType: ErtShuttle
@@ -118,6 +141,30 @@
     - "Captain / NTR (2)"
   cooldownSecs: 3600
 
+# ── ERT CBURN ──────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ErtCBURN
+  name: secure-terminal-ert-cburn-name
+  description: secure-terminal-ert-cburn-desc
+  announcement: secure-terminal-ert-cburn-announcement
+  announcementColor: Violet
+  activationDelaySecs: 600
+  requireReason: true
+  requiresAdminApproval: true
+  fee: 5000
+  salaryPenalty: 0.05
+  actionType: ErtShuttle
+  gameruleId: CBURNShuttleSpawn
+  requiresAlertLevel: violet
+  sortOrder: 90
+  authGroups:
+    - [ Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector ]
+    - [ Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector ]
+  authGroupLabels:
+    - "Captain / HoS / CMO / RD (1)"
+    - "Captain / HoS / CMO / RD (2)"
+  cooldownSecs: 3600
+
 # ── Code GAMMA ────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
   id: CodeGamma
@@ -162,14 +209,35 @@
     - "Captain / HoS / RD (2)"
   cooldownSecs: 900
 
+# ── Code Violet ──────────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: CodeViolet
+  name: secure-terminal-code-violet-name
+  description: secure-terminal-code-violet-desc
+  announcementColor: Violet
+  proposalAnnouncement: false
+  activationDelaySecs: 5
+  fee: 0
+  salaryPenalty: 0.0
+  actionType: AlertLevel
+  alertLevel: violet
+  sortOrder: 25
+  authGroups:
+    - [ Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector ]
+    - [ Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector ]
+  authGroupLabels:
+    - "Captain / HoS / CMO / RD (1)"
+    - "Captain / HoS / CMO / RD (2)"
+  cooldownSecs: 900
+
 # ── End GAMMA ─────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
   id: EndGamma
   parentId: CodeGamma
   name: secure-terminal-end-gamma-name
   description: secure-terminal-end-gamma-desc
-  announcement: secure-terminal-end-gamma-announcement
   announcementColor: "#66ff99"
+  proposalAnnouncement: false
   activationDelaySecs: 5
   fee: 0
   salaryPenalty: 0.0
@@ -186,6 +254,30 @@
     - "Captain / HoS / NTR (2)"
   cooldownSecs: 0
 
+# ── End Violet ─────────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: EndViolet
+  parentId: CodeViolet
+  name: secure-terminal-end-violet-name
+  description: secure-terminal-end-violet-desc
+  announcementColor: Violet
+  proposalAnnouncement: false
+  activationDelaySecs: 5
+  fee: 0
+  salaryPenalty: 0.0
+  actionType: AlertLevel
+  alertLevel: green
+  requiresAlertLevel: violet
+  requiresAlertActiveMinutes: 10
+  sortOrder: 12
+  authGroups:
+    - [ Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector ]
+    - [ Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector ]
+  authGroupLabels:
+    - "Captain / HoS / CMO / RD (1)"
+    - "Captain / HoS / CMO / RD (2)"
+  cooldownSecs: 0
+
 # ── End PSI ───────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
   id: EndPsi
@@ -194,6 +286,7 @@
   description: secure-terminal-end-psi-desc
   announcement: secure-terminal-end-psi-announcement
   announcementColor: "#66ff99"
+  proposalAnnouncement: false
   activationDelaySecs: 5
   fee: 0
   salaryPenalty: 0.0

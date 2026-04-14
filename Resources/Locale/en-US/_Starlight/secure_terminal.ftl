@@ -84,10 +84,14 @@ secure-terminal-admin = Requesting Admin Approval for: {$request}
 
 ## Request names & descriptions
 
-secure-terminal-ert-security-name = ERT Security
-secure-terminal-ert-security-desc = Deploys an ERT Security detail. Only available during War Ops.
+secure-terminal-warops-security-name = ERT War Ops
+secure-terminal-warops-security-desc = Deploys an ERT Security detail Specialized for War Ops. Only available during War Ops.
     Use when the station is under direct armed assault during a declared War Ops.
     [color=orange]Requires War Ops to be declared.[/color]
+secure-terminal-warops-security-announcement = An Emergency Response Team — Security Specialized detail — has been authorized and is en route. Estimated arrival: 30 minutes.
+
+secure-terminal-ert-security-name = ERT Security
+secure-terminal-ert-security-desc = Deploys an ERT Security detail.
 secure-terminal-ert-security-announcement = An Emergency Response Team — Security detail — has been authorized and is en route. Estimated arrival: 10 minutes.
 
 secure-terminal-ert-engineering-name = ERT Engineering
@@ -109,6 +113,10 @@ secure-terminal-ert-chaplain-name = ERT Chaplain
 secure-terminal-ert-chaplain-desc = Deploys an ERT Chaplain for crew morale and last rites support.
     Provides pastoral support and maintains crew morale during prolonged emergencies.
 secure-terminal-ert-chaplain-announcement = An Emergency Response Team — Chaplaincy — has been authorized and is en route. Estimated arrival: 10 minutes.
+
+secure-terminal-ert-cburn-name = ERT CBURN
+secure-terminal-ert-cburn-desc = Deploys an ERT CBURN detail.
+secure-terminal-ert-cburn-announcement = An Emergency Response Team — CBURN detail — has been authorized and is en route. Estimated arrival: 10 minutes.
 
 secure-terminal-code-gamma-name = Code GAMMA
 secure-terminal-code-gamma-desc = Escalates the station to [color=palevioletred]GAMMA[/color] alert. Martial law — all civilians are to be escorted by security to safe areas.
@@ -149,3 +157,9 @@ secure-terminal-nukerequest-name = Self Destruct Code
 secure-terminal-nukerequest-desc = Request the nuclear self-destruct codes.
                                    Misuse of the nuclear request system will not be tolerated under any circumstances.
                                    Transmission does not guarantee a response.
+
+secure-terminal-code-violet-name = Code Violet
+secure-terminal-code-violet-desc = Escalates the station to [color=Violet]Violet[/color] alert.
+
+secure-terminal-end-violet-name = End violet Alert
+secure-terminal-end-violet-desc = Lifts [color=Violet]Violet[/color] alert and returns the station to Green. Requires Violet to have been active for at least 10 minutes.
