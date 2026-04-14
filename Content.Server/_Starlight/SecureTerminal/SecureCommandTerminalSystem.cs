@@ -204,6 +204,10 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-requires-war"), actor, PopupType.Medium);
             return;
+        } else if (proto.RequiresWarNotDeclared && IsWarDeclared())
+        {
+            _popup.PopupCursor(Loc.GetString("secure-terminal-requires-no-war-note"), actor, PopupType.Medium);
+            return;
         }
         if (proto.RequiresAlertLevel != null &&
             TryComp<AlertLevelComponent>(stationUid, out var alertComp) &&

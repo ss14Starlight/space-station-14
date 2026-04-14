@@ -30,6 +30,8 @@ secure-terminal-delay-note = { $minutes ->
     [1] ETA: 1 minute after authorization.
    *[other] ETA: {$minutes} minutes after authorization.
 }
+
+secure-terminal-requires-no-war-note = Disabled during War Ops.
 secure-terminal-requires-war-note = Only available during War Ops.
 secure-terminal-requires-alert-note = Requires {$level} alert to be active.
 secure-terminal-alert-time-remaining = { $minutes ->
@@ -84,11 +86,15 @@ secure-terminal-admin = Requesting Admin Approval for: {$request}
 
 ## Request names & descriptions
 
+secure-terminal-warops-security-name = Nuclear Responce Team
+secure-terminal-warops-security-desc = Deploys an ERT Security detail Specialized for War Ops. Only available during War Ops.
+    Use when the station is under direct armed assault during a declared War Ops.
+    [color=orange]Requires War Ops to be declared.[/color]
+secure-terminal-warops-security-announcement = An Emergency Response Team — Security Specialized detail — has been authorized and is en route. Estimated arrival: 30 minutes.
+
 secure-terminal-ert-security-name = ERT Security
-secure-terminal-ert-security-desc = Deploys an ERT Security detail. Only available during War Ops.
-                                    Use when the station is under direct armed assault during a declared War Ops.
-                                    [color=orange]Requires War Ops to be declared.[/color]
-secure-terminal-ert-security-announcement = An Emergency Response Team — Security detail — has been authorized and is en route. Estimated arrival: 30 minutes.
+secure-terminal-ert-security-desc = Deploys an ERT Security detail.
+secure-terminal-ert-security-announcement = An Emergency Response Team — Security detail — has been authorized and is en route. Estimated arrival: 10 minutes.
 
 secure-terminal-ert-engineering-name = ERT Engineering
 secure-terminal-ert-engineering-desc = Deploys an ERT Engineering detail to assist with critical station infrastructure.
@@ -112,7 +118,7 @@ secure-terminal-ert-chaplain-announcement = An Emergency Response Team — Chapl
 
 secure-terminal-ert-cburn-name = ERT CBURN
 secure-terminal-ert-cburn-desc = Deploys an ERT CBURN detail.
-secure-terminal-ert-cburn-announcement = An Emergency Response Team — CBURN — has been authorized and is en route. Estimated arrival: 10 minutes.
+secure-terminal-ert-cburn-announcement = An Emergency Response Team — CBURN detail — has been authorized and is en route. Estimated arrival: 10 minutes.
 
 secure-terminal-code-gamma-name = Code GAMMA
 secure-terminal-code-gamma-desc = Escalates the station to [color=palevioletred]GAMMA[/color] alert. Martial law — all civilians are to be escorted by security to safe areas.

@@ -2,6 +2,29 @@
 # Accessible from all Command-level Comms Consoles.
 # All fees drawn from each authorizer's account when the countdown begins.
 
+# ── WarOps-Reponse Security ─────────────────────────────────────────────────────────────
+# Only available during War Ops.  Requires Captain/HoS.
+- type: secureTerminalRequest
+  id: WaropsSecurity
+  name: secure-terminal-warops-security-name
+  description: secure-terminal-warops-security-desc
+  announcement: secure-terminal-warops-security-announcement
+  announcementColor: "#ff4444"
+  activationDelaySecs: 1800
+  requiresWarDeclared: true
+  fee: 5000
+  salaryPenalty: 0.1
+  actionType: ErtShuttle
+  gameruleId: ERTSecurityShuttleSpawn
+  sortOrder: 35
+  authGroups:
+    - [ Captain, HeadOfSecurity ]
+    - [ Captain, HeadOfSecurity ]
+  authGroupLabels:
+    - "Captain / HoS (1)"
+    - "Captain / HoS (2)"
+  cooldownSecs: 3600
+
 # ── ERT Security ─────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
   id: ErtSecurity
@@ -9,9 +32,11 @@
   description: secure-terminal-ert-security-desc
   announcement: secure-terminal-ert-security-announcement
   announcementColor: "#ff4444"
-  activationDelaySecs: 1800
-  requiresWarDeclared: true
+  activationDelaySecs: 600
+  requiresWarNotDeclared: true
   requireReason: true
+  requiresAdminApproval: true
+  bypassIfNoAdmin: false
   fee: 5000
   salaryPenalty: 0.05
   actionType: ErtShuttle
@@ -121,6 +146,7 @@
   announcement: secure-terminal-ert-cburn-announcement
   announcementColor: Violet
   activationDelaySecs: 600
+  requiresWarNotDeclared: true
   requireReason: true
   fee: 5000
   salaryPenalty: 0.05
@@ -199,7 +225,7 @@
   authGroupLabels:
     - "Captain / HoS / CMO / RD (1)"
     - "Captain / HoS / CMO / RD (2)"
-  cooldownSecs: 900
+  cooldownSecs: 600
 
 # ── End GAMMA ─────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -282,6 +308,7 @@
   announcement: secure-terminal-armory-gamma-announcement
   announcementColor: "#ff66cc"
   activationDelaySecs: 60
+  requiresWarNotDeclared: true
   fee: 5000
   salaryPenalty: 0.08
   actionType: Armory
@@ -306,6 +333,7 @@
   announcement: secure-terminal-armory-psi-announcement
   announcementColor: "#2288ff"
   activationDelaySecs: 60
+  requiresWarNotDeclared: true
   fee: 5000
   salaryPenalty: 0.08
   actionType: Armory

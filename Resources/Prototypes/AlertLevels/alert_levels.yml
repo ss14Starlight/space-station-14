@@ -15,7 +15,7 @@
       emergencyLightColor: DodgerBlue
       shuttleTime: 600
     violet:
-      announcement: alert-level-starlight-violet-announcement
+      announcement: alert-level-violet-announcement
       selectable: false
       sound: /Audio/_Starlight/Announcements/siren_spooky.ogg
       disableSelection: true

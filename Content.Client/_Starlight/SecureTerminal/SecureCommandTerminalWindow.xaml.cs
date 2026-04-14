@@ -110,10 +110,11 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         var onCooldown = state.CoolingDown.ContainsKey(proto.ID);
         var wrongAlert = proto.RequiresAlertLevel != null && state.CurrentAlertLevel != proto.RequiresAlertLevel;
         var needsWar = proto.RequiresWarDeclared && !state.IsWarDeclared;
+        var needsNoWar = proto.RequiresWarNotDeclared && state.IsWarDeclared;
         var alertMinutesElapsed = (_timing.CurTime - state.AlertLevelSetAt).TotalMinutes;
         var alertNotLongEnough = proto.RequiresAlertActiveMinutes > 0 && alertMinutesElapsed < proto.RequiresAlertActiveMinutes;
         var isDeployed = state.DeployedArmories.ContainsKey(proto.ID);
-        var unavailable = isUsed || needsWar || onCooldown || wrongAlert || alertNotLongEnough;
+        var unavailable = isUsed || needsWar || needsNoWar || onCooldown || wrongAlert || alertNotLongEnough;
 
         var proposal = state.Proposals.Find(p => p.RequestId == proto.ID);
         var statusSuffix = GetStatusSuffix(proposal, onCooldown, isUsed, wrongAlert, needsWar, proto.RequiresAlertLevel, isDeployed);
@@ -185,6 +186,9 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         var warNote = proto.RequiresWarDeclared && !state.IsWarDeclared
             ? $"\n[color=red]{Loc.GetString("secure-terminal-requires-war-note")}[/color]"
             : string.Empty;
+        var noWarNote = proto.RequiresWarNotDeclared && state.IsWarDeclared
+            ? $"\n[color=red]{Loc.GetString("secure-terminal-requires-no-war-note")}[/color]"
+            : string.Empty;
         var alertNote = proto.RequiresAlertLevel != null && state.CurrentAlertLevel != proto.RequiresAlertLevel
             ? $"\n[color=red]{Loc.GetString("secure-terminal-requires-alert-note", ("level", proto.RequiresAlertLevel.ToUpperInvariant()))}[/color]"
             : string.Empty;
@@ -225,7 +229,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
             $"{Loc.GetString(proto.Description)}" +
             (proto.SalaryPenalty > 0 ? $"\n{Loc.GetString("secure-terminal-salary-note", ("penalty", (int)(proto.SalaryPenalty * 100)))}" : string.Empty) +
             $"\n{Loc.GetString("secure-terminal-delay-note", ("minutes", Math.Max(1, proto.ActivationDelaySecs / 60)))}" +
-            warNote + alertNote + alertTimeNote + cooldownNote + usedNote));
+            warNote + noWarNote + alertNote + alertTimeNote + cooldownNote + usedNote));
 
         // Request button – available if no pending/activating proposal and not on CD
         var proposal = state.Proposals.Find(p => p.RequestId == proto.ID);
@@ -237,6 +241,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
             && !state.UsedOnce.Contains(proto.ID)
             && state.Proposals.Count == 0
             && !(proto.RequiresWarDeclared && !state.IsWarDeclared)
+            && !(proto.RequiresWarNotDeclared && state.IsWarDeclared)
             && !(proto.RequiresAlertLevel != null && state.CurrentAlertLevel != proto.RequiresAlertLevel)
             && !(proto.RequiresAlertActiveMinutes > 0 && alertMinutesElapsed < proto.RequiresAlertActiveMinutes);
 
@@ -291,6 +296,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
             var childAvailable = !state.UsedOnce.Contains(child.ID)
                 && !state.CoolingDown.ContainsKey(child.ID)
                 && !(child.RequiresWarDeclared && !state.IsWarDeclared)
+                && !(child.RequiresWarNotDeclared && state.IsWarDeclared)
                 && !(child.RequiresAlertLevel != null && state.CurrentAlertLevel != child.RequiresAlertLevel)
                 && !(child.RequiresAlertActiveMinutes > 0 && childAlertElapsed < child.RequiresAlertActiveMinutes)
                 && state.Proposals.Find(p => p.RequestId == child.ID) == null;

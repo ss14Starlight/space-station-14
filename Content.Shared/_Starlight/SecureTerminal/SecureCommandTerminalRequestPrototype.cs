@@ -119,6 +119,10 @@ public sealed partial class SecureCommandTerminalRequestPrototype : IPrototype
     [DataField]
     public bool RequiresWarDeclared;
 
+    /// <summary>If true, the request button is hidden/disabled when War Ops is active.</summary>
+    [DataField]
+    public bool RequiresWarNotDeclared;
+
     /// <summary>If set, requires this alert level to be currently active on the station.</summary>
     [DataField]
     public string? RequiresAlertLevel;
