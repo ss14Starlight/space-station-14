@@ -28,6 +28,8 @@ using Content.Server.Administration;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
 using Content.Server.Nuke;
+using Content.Shared.Doors.Components;
+using Content.Shared.Doors.Systems;
 
 namespace Content.Server.Starlight.SecureTerminal;
 
@@ -58,6 +60,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly NukeCodePaperSystem _nukeCodeSystem = default!;
+    [Dependency] private readonly SharedAirlockSystem _airlock = default!;
 
     public override void Initialize()
     {
@@ -204,7 +207,8 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-requires-war"), actor, PopupType.Medium);
             return;
-        } else if (proto.RequiresWarNotDeclared && IsWarDeclared())
+        }
+        else if (proto.RequiresWarNotDeclared && IsWarDeclared())
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-requires-no-war-note"), actor, PopupType.Medium);
             return;
@@ -565,6 +569,24 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
 
             case SecureTerminalActionType.NukeCodes:
                 _nukeCodeSystem.SendNukeCodes(stationUid);
+                break;
+
+            case SecureTerminalActionType.AirlockAccess:
+                var airlockQuery = AllEntityQuery<AirlockComponent, TransformComponent>();
+                while (airlockQuery.MoveNext(out var ent, out var airlockcomp, out var xform))
+                {
+                    if (CompOrNull<StationMemberComponent>(xform.GridUid)?.Station != stationUid)
+                        continue;
+
+                    if (HasComp<FirelockComponent>(ent))
+                        continue;
+
+                    if (proto.AllowedAccesses is null || proto.AllowedAccesses.Count() <= 0)
+                        _airlock.SetEmergencyAccess((ent, airlockcomp), proto.AccessEnabled);
+                    else
+                        if (_access.GetMainAccessReader(ent, out var accessEnt) && _access.AreAccessTagsAllowed(proto.AllowedAccesses, accessEnt.Value.Comp))
+                            _airlock.SetEmergencyAccess((ent, airlockcomp), proto.AccessEnabled);
+                }
                 break;
         }
     }

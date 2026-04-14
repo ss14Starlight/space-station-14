@@ -1,3 +1,4 @@
+using Content.Shared.Access;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -79,6 +80,14 @@ public sealed partial class SecureCommandTerminalRequestPrototype : IPrototype
     /// <summary>Armory key to dispatch (Armory action).</summary>
     [DataField]
     public string? ArmoryKey;
+
+    /// <summary>Acess whitelist for MaintenanceAccess or StationAccess action.</summary>
+    [DataField]
+    public List<ProtoId<AccessLevelPrototype>>? AllowedAccesses = new();
+
+    /// <summary>Acess toggle for MaintenanceAccess or StationAccess action.</summary>
+    [DataField]
+    public bool AccessEnabled;
 
     // ── Authorization ─────────────────────────────────────────────────────────
 
@@ -162,4 +171,5 @@ public enum SecureTerminalActionType
     AlertLevel,
     Armory,
     NukeCodes,
+    AirlockAccess,
 }

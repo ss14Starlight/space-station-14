@@ -165,3 +165,19 @@ secure-terminal-code-violet-desc = Escalates the station to [color=Violet]Violet
 
 secure-terminal-end-violet-name = End violet Alert
 secure-terminal-end-violet-desc = Lifts [color=Violet]Violet[/color] alert and returns the station to Green. Requires Violet to have been active for at least 10 minutes.
+
+secure-terminal-emergency-maintenance-name = Emergency Maintenance Access
+secure-terminal-emergency-maintenance-desc = Grant Emergency Maintenance Access
+secure-terminal-emergency-maintenance-announcement = Access restrictions on maintenance and external airlocks have been removed.
+
+secure-terminal-end-emergency-maintenance-name = Revoke Emergency Maintenance Access
+secure-terminal-end-emergency-maintenance-desc = Revoke Emergency Maintenance Access
+secure-terminal-end-emergency-maintenance-announcement = Access restrictions on maintenance and external airlocks have been re-added.
+
+secure-terminal-emergency-station-name = Station-Wide Emergency Access
+secure-terminal-emergency-station-desc = Activate Station-Wide Emergency Access
+secure-terminal-emergency-station-announcement = Access restrictions on all station airlocks have been removed due to an ongoing crisis. Trespassing laws still apply unless ordered otherwise by Command staff.
+
+secure-terminal-end-emergency-station-name = Deactivate Station-Wide Emergency Access
+secure-terminal-end-emergency-station-desc = Deactivate Station-Wide Emergency Access
+secure-terminal-end-emergency-station-announcement = Access restrictions on all station airlocks have been re-added. Seek station AI or a colleague's assistance if you are stuck.

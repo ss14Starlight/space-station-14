@@ -2,6 +2,8 @@
 # Accessible from all Command-level Comms Consoles.
 # All fees drawn from each authorizer's account when the countdown begins.
 
+#region ERT
+
 # ── WarOps-Reponse Security ─────────────────────────────────────────────────────────────
 # Only available during War Ops.  Requires Captain/HoS.
 - type: secureTerminalRequest
@@ -18,8 +20,8 @@
   gameruleId: ERTSecurityShuttleSpawn
   sortOrder: 35
   authGroups:
-    - [ Captain, HeadOfSecurity ]
-    - [ Captain, HeadOfSecurity ]
+    - [Captain, HeadOfSecurity]
+    - [Captain, HeadOfSecurity]
   authGroupLabels:
     - "Captain / HoS (1)"
     - "Captain / HoS (2)"
@@ -43,8 +45,8 @@
   gameruleId: ERTSecurityShuttleSpawn
   sortOrder: 40
   authGroups:
-    - [ Captain, HeadOfSecurity ]
-    - [ Captain, HeadOfSecurity ]
+    - [Captain, HeadOfSecurity]
+    - [Captain, HeadOfSecurity]
   authGroupLabels:
     - "Captain / HoS (1)"
     - "Captain / HoS (2)"
@@ -65,8 +67,8 @@
   gameruleId: ERTEngineeringShuttleSpawn
   sortOrder: 50
   authGroups:
-    - [ Captain, ChiefEngineer ]
-    - [ Captain, ChiefEngineer ]
+    - [Captain, ChiefEngineer]
+    - [Captain, ChiefEngineer]
   authGroupLabels:
     - "Captain / CE (1)"
     - "Captain / CE (2)"
@@ -87,8 +89,8 @@
   gameruleId: ERTMedicalShuttleSpawn
   sortOrder: 60
   authGroups:
-    - [ Captain, ChiefMedicalOfficer ]
-    - [ Captain, ChiefMedicalOfficer ]
+    - [Captain, ChiefMedicalOfficer]
+    - [Captain, ChiefMedicalOfficer]
   authGroupLabels:
     - "Captain / CMO (1)"
     - "Captain / CMO (2)"
@@ -109,8 +111,8 @@
   gameruleId: ERTJanitorShuttleSpawn
   sortOrder: 70
   authGroups:
-    - [ Captain, HeadOfPersonnel ]
-    - [ Captain, HeadOfPersonnel ]
+    - [Captain, HeadOfPersonnel]
+    - [Captain, HeadOfPersonnel]
   authGroupLabels:
     - "Captain / HoP (1)"
     - "Captain / HoP (2)"
@@ -131,8 +133,8 @@
   gameruleId: ERTChaplainShuttleSpawn
   sortOrder: 80
   authGroups:
-    - [ Captain, Ntrep ]
-    - [ Captain, Ntrep ]
+    - [Captain, Ntrep]
+    - [Captain, Ntrep]
   authGroupLabels:
     - "Captain / NTR (1)"
     - "Captain / NTR (2)"
@@ -155,12 +157,14 @@
   requiresAlertLevel: violet
   sortOrder: 90
   authGroups:
-    - [ Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector ]
-    - [ Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector ]
+    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
+    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
   authGroupLabels:
     - "Captain / HoS / CMO / RD (1)"
     - "Captain / HoS / CMO / RD (2)"
   cooldownSecs: 3600
+
+#region Alert Levels
 
 # ── Code GAMMA ────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -178,8 +182,8 @@
   alertLevel: gamma
   sortOrder: 10
   authGroups:
-    - [ Captain, HeadOfSecurity, Ntrep ]
-    - [ Captain, HeadOfSecurity, Ntrep ]
+    - [Captain, HeadOfSecurity, Ntrep]
+    - [Captain, HeadOfSecurity, Ntrep]
   authGroupLabels:
     - "Captain / HoS / NTR (1)"
     - "Captain / HoS / NTR (2)"
@@ -199,8 +203,8 @@
   alertLevel: psi
   sortOrder: 20
   authGroups:
-    - [ Captain, HeadOfSecurity, ResearchDirector ]
-    - [ Captain, HeadOfSecurity, ResearchDirector ]
+    - [Captain, HeadOfSecurity, ResearchDirector]
+    - [Captain, HeadOfSecurity, ResearchDirector]
   authGroupLabels:
     - "Captain / HoS / RD (1)"
     - "Captain / HoS / RD (2)"
@@ -220,8 +224,8 @@
   alertLevel: violet
   sortOrder: 25
   authGroups:
-    - [ Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector ]
-    - [ Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector ]
+    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
+    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
   authGroupLabels:
     - "Captain / HoS / CMO / RD (1)"
     - "Captain / HoS / CMO / RD (2)"
@@ -244,8 +248,8 @@
   requiresAlertActiveMinutes: 15
   sortOrder: 12
   authGroups:
-    - [ Captain, HeadOfSecurity, Ntrep ]
-    - [ Captain, HeadOfSecurity, Ntrep ]
+    - [Captain, HeadOfSecurity, Ntrep]
+    - [Captain, HeadOfSecurity, Ntrep]
   authGroupLabels:
     - "Captain / HoS / NTR (1)"
     - "Captain / HoS / NTR (2)"
@@ -268,8 +272,8 @@
   requiresAlertActiveMinutes: 10
   sortOrder: 12
   authGroups:
-    - [ Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector ]
-    - [ Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector ]
+    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
+    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
   authGroupLabels:
     - "Captain / HoS / CMO / RD (1)"
     - "Captain / HoS / CMO / RD (2)"
@@ -293,12 +297,14 @@
   requiresAlertActiveMinutes: 15
   sortOrder: 22
   authGroups:
-    - [ Captain, HeadOfSecurity, ResearchDirector ]
-    - [ Captain, HeadOfSecurity, ResearchDirector ]
+    - [Captain, HeadOfSecurity, ResearchDirector]
+    - [Captain, HeadOfSecurity, ResearchDirector]
   authGroupLabels:
     - "Captain / HoS / RD (1)"
     - "Captain / HoS / RD (2)"
   cooldownSecs: 0
+
+#region Armory
 
 # ── Gamma Armory ──────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -318,8 +324,8 @@
   oneTimeUse: true
   sortOrder: 11
   authGroups:
-    - [ Captain, HeadOfSecurity, Ntrep ]
-    - [ Captain, HeadOfSecurity, Ntrep ]
+    - [Captain, HeadOfSecurity, Ntrep]
+    - [Captain, HeadOfSecurity, Ntrep]
   authGroupLabels:
     - "Captain / HoS / NTR (1)"
     - "Captain / HoS / NTR (2)"
@@ -343,8 +349,8 @@
   oneTimeUse: true
   sortOrder: 21
   authGroups:
-    - [ Captain, HeadOfSecurity, ResearchDirector ]
-    - [ Captain, HeadOfSecurity, ResearchDirector ]
+    - [Captain, HeadOfSecurity, ResearchDirector]
+    - [Captain, HeadOfSecurity, ResearchDirector]
   authGroupLabels:
     - "Captain / HoS / RD (1)"
     - "Captain / HoS / RD (2)"
@@ -364,12 +370,104 @@
   gameruleId: ERTMedicalShuttleSpawn
   sortOrder: 30
   authGroups:
-    - [ Captain, ChiefMedicalOfficer ]
-    - [ Captain, ChiefMedicalOfficer ]
+    - [Captain, ChiefMedicalOfficer]
+    - [Captain, ChiefMedicalOfficer]
   authGroupLabels:
     - "Captain / CMO (1)"
     - "Captain / CMO (2)"
   cooldownSecs: 3600
+
+#region Emergency Access
+
+# ── Emergency Maintenance Access ─────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: EmergencyMaintenanceRequest
+  name: secure-terminal-emergency-maintenance-name
+  description: secure-terminal-emergency-maintenance-desc
+  announcement: secure-terminal-emergency-maintenance-announcement
+  proposalAnnouncement: false
+  activationDelaySecs: 0
+  fee: 0
+  salaryPenalty: 0.0
+  actionType: AirlockAccess
+  accessEnabled: true
+  allowedAccesses:
+    - Maintenance
+    - External
+  sortOrder: 100
+  authGroups:
+    - [Command]
+    - [Command]
+  authGroupLabels:
+    - "Command (1)"
+    - "Command (2)"
+  cooldownSecs: 600
+
+# ── End Emergency Maintenance Access ─────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: EndEmergencyMaintenanceRequest
+  parentId: EmergencyMaintenanceRequest
+  name: secure-terminal-end-emergency-maintenance-name
+  description: secure-terminal-end-emergency-maintenance-desc
+  announcement: secure-terminal-end-emergency-maintenance-announcement
+  proposalAnnouncement: false
+  activationDelaySecs: 0
+  fee: 0
+  salaryPenalty: 0.0
+  actionType: AirlockAccess
+  accessEnabled: false
+  allowedAccesses:
+    - Maintenance
+    - External
+  sortOrder: 101
+  authGroups:
+    - [Command]
+  authGroupLabels:
+    - "Command (1)"
+  cooldownSecs: 0
+
+# ── Station-Wide Emergency Access ─────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: StationEmergencyRequest
+  name: secure-terminal-emergency-station-name
+  description: secure-terminal-emergency-station-desc
+  announcement: secure-terminal-emergency-station-announcement
+  proposalAnnouncement: false
+  activationDelaySecs: 0
+  fee: 0
+  salaryPenalty: 0.0
+  actionType: AirlockAccess
+  accessEnabled: true
+  sortOrder: 120
+  authGroups:
+    - [Command]
+    - [Command]
+  authGroupLabels:
+    - "Command (1)"
+    - "Command (2)"
+  cooldownSecs: 600
+
+# ── End Station-Wide Emergency Access ─────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: EndStationEmergencyRequest
+  parentId: StationEmergencyRequest
+  name: secure-terminal-end-emergency-station-name
+  description: secure-terminal-end-emergency-station-desc
+  announcement: secure-terminal-end-emergency-station-announcement
+  proposalAnnouncement: false
+  activationDelaySecs: 0
+  fee: 0
+  salaryPenalty: 0.0
+  actionType: AirlockAccess
+  accessEnabled: false
+  sortOrder: 121
+  authGroups:
+    - [Command]
+  authGroupLabels:
+    - "Command (1)"
+  cooldownSecs: 0
+
+#region Misc
 
 # ── Self Destruct Code ─────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -387,14 +485,14 @@
   oneTimeUse: true
   sortOrder: 500
   authGroups:
-    - [ Captain ]
-    - [ Command ]
-    - [ Command ]
-    - [ Command ]
-    - [ Ntrep ]
+    - [Captain]
+    - [Command]
+    - [Command]
+    - [Command]
+    - [Ntrep]
   authGroupLabels:
     - "Captain (1)"
-    - "Command Member (2)"
-    - "Command Member (3)"
-    - "Command Member (4)"
+    - "Command (2)"
+    - "Command (3)"
+    - "Command (4)"
     - "NanoTrasen Representative (5)"
