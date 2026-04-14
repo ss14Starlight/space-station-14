@@ -20,10 +20,11 @@ public sealed class SharedMechEquipmentSelectSystem : EntitySystem
     {
         if (args.Handled)
             return;
-        args.Handled = true;
 
         if (!TryComp<UserInterfaceComponent>(uid, out var uiComp))
             return;
+
+        args.Handled = true;
 
         if (!_ui.IsUiOpen((uid, uiComp), MechEquipmentSelectUiKey.Key, args.Performer))
             _ui.OpenUi((uid, uiComp), MechEquipmentSelectUiKey.Key, args.Performer);
