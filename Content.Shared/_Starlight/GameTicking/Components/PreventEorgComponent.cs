@@ -8,5 +8,4 @@ namespace Content.Shared._Starlight.GameTicking.Components;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class PreventEorgComponent : Component
 {
-    public bool WasPacifiedPrior { get; set; }
 }

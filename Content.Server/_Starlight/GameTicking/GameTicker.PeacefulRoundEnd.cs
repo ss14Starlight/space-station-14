@@ -114,13 +114,8 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
     /// <param name="target">The target to pacify</param>
     private void Pacify(EntityUid target)
     {
-        if (HasComp<PreventEorgComponent>(target)) return;
-
-        var wasPacified = HasComp<PacifiedComponent>(target);
         EnsureComp<PacifiedComponent>(target);
-
-        var preventEorg = EnsureComp<PreventEorgComponent>(target);
-        preventEorg.WasPacifiedPrior = wasPacified;
+        EnsureComp<PreventEorgComponent>(target);
     }
 
     #region Pacification checks
