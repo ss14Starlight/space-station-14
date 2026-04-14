@@ -1808,7 +1808,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: haughty
   voice: 211
@@ -1816,7 +1816,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: jowels
   voice: 212
@@ -1824,7 +1824,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: lizardish
   voice: 213
@@ -1832,7 +1832,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: madDoctor
   voice: 214
@@ -1840,7 +1840,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: monstrous
   voice: 215
@@ -1848,7 +1848,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: rich
   voice: 216
@@ -1856,7 +1856,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: nurgle
   voice: 217
@@ -1864,7 +1864,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: skeletor
   voice: 218
@@ -1872,7 +1872,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: smooth
   voice: 219
@@ -1880,7 +1880,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: snake
   voice: 220
@@ -1888,7 +1888,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: stuffedUp
   voice: 221
@@ -1896,7 +1896,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: western1
   voice: 222
@@ -1904,7 +1904,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: western2
   voice: 223
@@ -1912,7 +1912,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: darkish
   voice: 224
@@ -1920,7 +1920,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: nasaly
   voice: 225
@@ -1928,7 +1928,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: quiet
   voice: 226
@@ -1936,15 +1936,15 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
-  id: smoothLoud 
+  id: smoothLoud
   voice: 227
   name: tts-voice-name-227
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: powerArmor
   voice: 228
@@ -1952,7 +1952,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: angryJowels
   voice: 229
@@ -1960,7 +1960,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: butler
   voice: 230
@@ -1968,7 +1968,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: darkDramatic
   voice: 231
@@ -1976,7 +1976,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: deepQuiet
   voice: 232
@@ -1984,7 +1984,7 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: walksanator
   voice: 236
@@ -1993,14 +1993,14 @@
   silicon: false
   copyright: walksanator
   license: Private license, permission granted for SLN use only.
-  
+
 - type: voice
   id: powerhouse
   voice: 237
   name: tts-voice-name-237
   sex: Male
   silicon: false
-  license: Private license, permission granted for SLN use only.  
+  license: Private license, permission granted for SLN use only.
 
 - type: voice
   id: scottish

@@ -15,7 +15,7 @@
   order: 0
   lawString: law-borgi-0
   sayable: false
-  
+
 - type: siliconLaw
   id: Borgi1
   order: 1
@@ -87,12 +87,12 @@
   id: ShadowBorgi4
   order: 4
   lawString: law-shadowborgi-4
-  
+
 - type: siliconLaw
   id: ShadowBorgi5
   order: 5
   lawString: law-shadowborgi-5
-  
+
 - type: siliconLaw
   id: ShadowBorgi6
   order: 6
@@ -309,7 +309,7 @@
   id: CC0
   order: 0
   lawString: law-cc-0
-  
+
 - type: siliconLaw
   id: CC1
   order: 1
@@ -383,7 +383,7 @@
   id: Solgov0
   order: 0
   lawString: law-solgov-0
-  
+
 - type: siliconLaw
   id: Solgov1
   order: 1
@@ -403,3 +403,35 @@
   - Solgov1
   - Solgov2
   obeysTo: laws-owner-solgov
+
+# NTNC lawset
+- type: siliconLaw
+  id: NTNC0
+  order: 0
+  lawString: law-ntnc-0
+
+- type: siliconLaw
+  id: NTNC1
+  order: 1
+  lawString: law-ntnc-1
+
+- type: siliconLaw
+  id: NTNC2
+  order: 2
+  lawString: law-ntnc-2
+
+- type: siliconLaw
+  id: NTNC3
+  order: 3
+  lawString: law-ntnc-3
+
+- type: siliconLawset
+  id: NTNCLawset
+  name: law-ntnclawset-name
+  startAtZero: true
+  laws:
+  - NTNC0
+  - NTNC1
+  - NTNC2
+  - NTNC3
+  obeysTo: laws-owner-centcom

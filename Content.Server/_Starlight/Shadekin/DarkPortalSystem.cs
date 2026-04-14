@@ -154,7 +154,7 @@ public sealed class DarkPortalSystem : EntitySystem
 
         args.Cancel();
     }
-    
+
     private void OnGetInteractionVerbs(EntityUid uid, DarkPortalComponent component, ref GetVerbsEvent<InteractionVerb> args)
     {
         if (!args.CanAccess || component.Brighteye != args.User || !TryComp<AnomalyComponent>(uid, out var anomaly))

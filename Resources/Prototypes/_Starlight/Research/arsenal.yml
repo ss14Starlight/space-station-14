@@ -44,7 +44,7 @@
 - type: technology
   id: EnergyBarriers
   name: research-technology-energy_barriers
-  icon: 
+  icon:
     sprite: Objects/Tools/EnergyDome/reinhardt.rsi
     state: icon
   discipline: Arsenal
@@ -79,7 +79,7 @@
   - MagazinePistolSubMachineGunAP
   radioChannels:
   - Security
-  
+
 - type: technology
   id: IonWeaponry
   name: research-technology-ion-weaponry
@@ -119,7 +119,7 @@
   radioChannels:
   - Security
   - Medical
-  
+
 # Tier 3
 
 - type: technology
@@ -137,7 +137,7 @@
   - ExplosiveTechnology
   radioChannels:
   - Security
-  
+
 - type: technology
   id: Durand
   name: research-technology-durand
@@ -182,7 +182,7 @@
   - Security
   - Medical
 
- # Tier 4 
+ # Tier 4
 
 - type: technology
   id: DecloneTechnology
@@ -197,7 +197,7 @@
   - WeaponDecloner
   radioChannels:
   - Security
-  
+
 - type: technology
   id: ScanGateTechnology
   name: research-technology-scan-gate

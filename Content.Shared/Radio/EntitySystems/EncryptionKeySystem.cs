@@ -170,8 +170,8 @@ public sealed partial class EncryptionKeySystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
         // 🌟Starlight🌟 start
-        if (!component.CanBeExamined)   
-            return;                     
+        if (!component.CanBeExamined)
+            return;
         // 🌟Starlight🌟 end
         if (component.KeyContainer.ContainedEntities.Count == 0)
         {
@@ -237,7 +237,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
                 ("id", proto.LocalizedName),
                 ("freq", proto.Frequency / 10f)));
         }
-        
+
         //Starlight begin
         foreach (var id in customChannels)
         {

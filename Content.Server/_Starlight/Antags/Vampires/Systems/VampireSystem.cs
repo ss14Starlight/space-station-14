@@ -1,6 +1,5 @@
 using Content.Server.Actions;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Shared._Starlight.Antags.Vampires;
@@ -36,6 +35,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Prometheus;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -545,9 +545,9 @@ public sealed partial class VampireSystem : EntitySystem
         }
     }
 
-    private void OnComponentRemove(EntityUid uid, VampireComponent comp, ComponentRemove _) 
+    private void OnComponentRemove(EntityUid uid, VampireComponent comp, ComponentRemove _)
         => TryRemoveAbilities(uid, comp);
-     
+
     private void TryRemoveAbilities(EntityUid uid, VampireComponent comp)
     {
         foreach (var (_, action) in comp.ActionEntities)
@@ -555,7 +555,7 @@ public sealed partial class VampireSystem : EntitySystem
         comp.ActionEntities.Clear();
         Dirty(uid, comp);
     }
-    
+
 
     private int GetActionBloodThreshold(EntProtoId actionId)
     {

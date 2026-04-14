@@ -121,7 +121,7 @@ public sealed class LargeGrabberSystem : EntitySystem
     }
 
     private void OnRemovedFromContainer(EntityUid uid, LargeGrabberComponent component, EntGotRemovedFromContainerMessage args)
-    { 
+    {
         if (!component.DropOnContainerChange)
             return;
 

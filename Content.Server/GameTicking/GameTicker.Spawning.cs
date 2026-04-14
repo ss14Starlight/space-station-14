@@ -309,7 +309,7 @@ namespace Content.Server.GameTicking
                 return;
             }
             //starlight end
-            
+
             _newLifeSystem.SaveCharacterToUsed(player.UserId, playerPreferences.IndexOfCharacter(character));     //🌟Starlight🌟
 
             DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName);

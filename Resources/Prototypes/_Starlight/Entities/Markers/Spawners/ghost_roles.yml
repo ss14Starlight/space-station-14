@@ -60,7 +60,7 @@
     - state: green
     - sprite: Mobs/Species/Terminator/parts.rsi
       state: full
- 
+
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: SpawnPointGhostDerelictCyborg
@@ -72,7 +72,7 @@
     rules: ghost-role-information-silicon-rules
     raffle:
       settings: default
-      
+
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: SpawnPointGhostDerelictCyborg
@@ -84,7 +84,7 @@
       rules: ghost-role-information-silicon-rules
       raffle:
         settings: default
-        
+
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: SpawnPointGhostDerelictCyborg
@@ -96,7 +96,7 @@
       rules: ghost-role-information-silicon-rules
       raffle:
         settings: default
-        
+
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: SpawnPointGhostDerelictCyborg
