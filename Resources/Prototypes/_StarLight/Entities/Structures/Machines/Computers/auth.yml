@@ -40,7 +40,6 @@
         enum.SecureCommandTerminalUiKey.Key:
           type: SecureCommandTerminalBui
     - type: SecureCommandTerminalConsole
-      enabled: true
       authTerminal: true
     - type: Appearance
     - type: ToggleableVisuals

@@ -96,7 +96,6 @@
     initialDelay: 0
     global: true
   - type: SecureCommandTerminalConsole
-    enabled: true
     admin: true
   - type: RadarConsole
     followEntity: true

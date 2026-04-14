@@ -865,7 +865,6 @@
     title: comms-console-announcement-title-station
     sound: /Audio/_Starlight/Announcements/announce2.ogg #Starlight
   - type: SecureCommandTerminalConsole
-    enabled: true # ! Turn this true when its done!
   # Starlight-End
 
 - type: entity
@@ -969,7 +968,6 @@
     color: "#00FF00"
   # Starlight
   - type: SecureCommandTerminalConsole
-    enabled: true
     admin: true
 
 - type: entity
