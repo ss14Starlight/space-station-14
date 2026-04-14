@@ -31,6 +31,7 @@ using Content.Server.Nuke;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Toggleable;
+using Content.Server._Starlight.Administration.Systems;
 
 namespace Content.Server.Starlight.SecureTerminal;
 
@@ -48,7 +49,6 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IPlayerRolesManager _playerRoles = default!;
     [Dependency] private readonly IPrototypeManager _protos = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
@@ -63,6 +63,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
     [Dependency] private readonly NukeCodePaperSystem _nukeCodeSystem = default!;
     [Dependency] private readonly SharedAirlockSystem _airlock = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!;
 
     public override void Initialize()
     {
@@ -309,6 +310,8 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         _adminLog.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(actor):player} created secure terminal proposal: {msg.RequestId}");
 
+        _autolog.LogToDiscord($"created secure terminal proposal: {msg.RequestId}", ToPrettyString(actor));
+
         _chatManager.SendAdminAnnouncement(
             $"Secure Terminal — {MetaData(actor).EntityName} ({GetJobName(actor)}) proposed: {Loc.GetString(proto.Name)}.");
 
@@ -349,7 +352,10 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         }
 
         if (comp.Admin)
+        {
             proposal.AdminApproved = true;
+            _autolog.LogToDiscord($"authorized secure terminal proposal: {msg.RequestId}", ToPrettyString(actor));
+        }
         else if (proposal.Authorizers.Any(a => a.PlayerUid == actor))
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-already-authorized"), actor, PopupType.Medium);
@@ -573,6 +579,8 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
                 return;
             }
         }
+
+        _autolog.LogToDiscord($"activating secure terminal proposal: {requestId}");
 
         proposal.Status = SecureTerminalProposalStatus.Activating;
         proposal.ActivateAt = _timing.CurTime + TimeSpan.FromSeconds(proto.ActivationDelaySecs);
