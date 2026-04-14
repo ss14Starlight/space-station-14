@@ -56,6 +56,15 @@ namespace Content.Server.Radio.EntitySystems
                     continue;
                 }
 
+                var indices = _transformSystem.GetGridTilePositionOrDefault((uid, xform));
+                var grid = xform.GridUid;
+                var map = xform.MapUid;
+                var mixture = _atmosphere.GetTileMixture(grid, map, indices, excite: true);
+                if (mixture == null || mixture.TotalMoles <= 0)
+                {
+                    continue;
+                }
+
                 if (power.PowerDisabled || !_power.IsPowered(uid) || !ServerHasActiveStationChannel(keys))
                 {
                     continue;
@@ -149,11 +158,6 @@ namespace Content.Server.Radio.EntitySystems
 
         private void OnExaminedEvent(EntityUid uid, TelecomServerComponent component, ExaminedEvent args)
         {
-            if (component.Overheated)
-            {
-                args.PushMarkup(Loc.GetString("telecom-overheated"));
-            }
-
             var xform = Transform(uid);
             var indices = _transformSystem.GetGridTilePositionOrDefault((uid, xform));
             var grid = xform.GridUid;
@@ -161,9 +165,18 @@ namespace Content.Server.Radio.EntitySystems
             var serverTemperature = 0f;
 
             var mixture = _atmosphere.GetTileMixture(grid, map, indices, excite: true);
-            if (mixture != null)
+            if (mixture == null || mixture.TotalMoles <= 0)
             {
-                serverTemperature = mixture.Temperature;
+                args.PushMarkup(Loc.GetString("telecom-spaced"));
+                _power.SetPowerDisabled(uid, true, power);
+                return;
+            }
+
+            serverTemperature = mixture.Temperature;
+
+            if (component.Overheated)
+            {   
+                args.PushMarkup(Loc.GetString("telecom-overheated"));
             }
 
             if (Loc.TryGetString("telecom-server-examined",
