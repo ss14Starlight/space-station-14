@@ -25,7 +25,7 @@ namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 /// 0x01 - Re-scan devices
 /// 0x02 - Write scanned devices to buffer1 in the format of name[null]XXXX-XXXX[null]
 /// 0x03 - Update target fax addr from buffer1
-/// 0x04 - send fax. buffer 1 is destination fax **id**. buffer 2 is fax contents.
+/// 0x04 - send fax. buffer 1 is the name on the fax. buffer 2 is fax contents.
 /// 0xf0 - puts the number of buffered faxes into Status
 /// 0xf1 - starts reading content from the next buffered fax
 /// 0xf2 - reads the name of the fax into buffer1

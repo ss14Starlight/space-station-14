@@ -20,25 +20,17 @@ public sealed class FakeStdioDevice : UXNDevice
         Args = argv;
     }
 
-    public override void ReadValue(byte memTarget, Byte256 deviceMem, UXNProcessor proc)
-    {
-        var lsn = memTarget & 0x0F;
-        switch (lsn)
-        {
-            default:
-                break;
-        }
-    }
+    public override void ReadValue(byte memTarget, Byte256 deviceMem, UXNProcessor proc) { }
 
     public override void WriteValue(byte memTarget, Byte256 deviceMem, UXNProcessor proc)
     {
         var lsn = memTarget & 0x0F;
-        switch (lsn)
+        switch ((StdioDevicePorts)lsn)
         {
-            case 0x08: //stdout
+            case StdioDevicePorts.Stdout: //stdout
                 FakedOutput.Add(deviceMem[memTarget]);
                 break;
-            case 0x09: //stderr
+            case StdioDevicePorts.Stderr: //stderr
                 FakedError.Add(deviceMem[memTarget]);
                 break;
             default:
@@ -128,4 +120,10 @@ public sealed class StdioCharEvent : UxnEvent
         mem[0x17] = 0x01; //stdin char spam!
         _dev.MakeEvent(proc);
     }
+}
+
+public enum StdioDevicePorts : byte
+{
+    Stdout = 0x08,
+    Stderr = 0x09,
 }

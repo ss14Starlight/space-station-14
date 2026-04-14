@@ -89,7 +89,7 @@ public class StandardSystemDevice : UXNDevice
         var length = mem.GetShort((ushort)(baseAddr + 0x01));
         var bank = mem.GetShort((ushort)(baseAddr + 0x03));
         var addres = mem.GetShort((ushort)(baseAddr + 0x05));
-        var value = mem[(ushort)(baseAddr + 7)];
+        var value = mem[(ushort)(baseAddr + 0x07)];
         if (bank > ExtraPages.Count)
             return;
 

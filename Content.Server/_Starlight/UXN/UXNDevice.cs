@@ -192,7 +192,7 @@ public class UXNDevice
                 output.Append(Encoding.ASCII.GetChars([mem[(ushort)(addr + i)]]));
             }
         }
-        return output.ToString();
+        return output.ToString().Trim('\0');
     }
 }
 

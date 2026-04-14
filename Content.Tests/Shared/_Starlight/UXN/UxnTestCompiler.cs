@@ -17,19 +17,15 @@ public sealed class UxnTestCompiler : ContentUnitTest
     {
         var uxn = new UXNProcessor();
         using Stream rom = Assembly.GetExecutingAssembly().GetManifestResourceStream("Content.Tests.drifloon.rom")!;
-
         var mem = uxn.SystemMem;
-        ushort writeHead = 0x100;
-        Span<byte> span = new byte[32];
-        while (rom.CanRead)
+        using var ms = new MemoryStream();
+        rom.CopyTo(ms);
+        var romBytes = ms.ToArray();
+        if (romBytes.Length > (ushort.MaxValue - UXNProcessor.RESET_VECTOR + 1)) // 0xFF00 is 0xFF less then 0xFFFF which is the max size of UXN memory.
+            Assert.Fail($"The compiler rom is somehow too large to fit in UXN memory!");
+        for (int i = 0; i < romBytes.Length; i++)
         {
-            var amnt = rom.Read(span);
-            if (amnt == 0) break;
-            for (int i = 0; i < amnt; i++)
-            {
-                mem[writeHead] = span[i];
-                writeHead++;
-            }
+            mem[(ushort)(UXNProcessor.RESET_VECTOR + i)] = romBytes[i];
         }
 
         using Stream tal = Assembly.GetExecutingAssembly().GetManifestResourceStream("Content.Tests.opctest.tal")!;
