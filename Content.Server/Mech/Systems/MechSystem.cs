@@ -469,12 +469,17 @@ public sealed partial class MechSystem : SharedMechSystem
         if (!args.CanAccess || !args.CanInteract)
             return;
 
-        var openUiVerb = new AlternativeVerb
+        // Starlight begin - restrict UI verb to pilot, if pilot present
+        if (IsEmpty(component) || args.User == component.PilotSlot.ContainedEntity)
         {
-            Act = () => ToggleMechUi(uid, component, args.User),
-            Text = Loc.GetString("mech-ui-open-verb")
-        };
-        args.Verbs.Add(openUiVerb);
+            var openUiVerb = new AlternativeVerb
+            {
+                Act = () => ToggleMechUi(uid, component, args.User),
+                Text = Loc.GetString("mech-ui-open-verb")
+            };
+            args.Verbs.Add(openUiVerb);
+        }
+        // Starlight end
 
         if (component.Broken)
             return;
