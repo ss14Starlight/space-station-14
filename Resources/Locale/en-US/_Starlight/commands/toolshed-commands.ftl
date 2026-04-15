@@ -42,11 +42,11 @@ command-description-solution-delete=
 command-description-subtlemessage =
     Sends a subtle message to all the input entities.
 command-description-grid-getplayers =
-    Gets all players on the specified grid(s)
+    Gets all players on the piped grid(s)
 command-description-grid-get =
-    Gets the grid(s) the specified player(s) are standing on.
+    Gets the grid(s) the piped player(s) are standing on.
 command-description-grid-getstation =
-    Gets the station(s) the specified player(s) are standing on.
+    Gets the station(s) that the piped player(s) are standing on, or that of the entity itself if the grid is piped in.
 command-description-crewmanifest-addto =
     Adds the piped entity to the specified station's crew manifest.
 command-description-crewmanifest-removefrom =
