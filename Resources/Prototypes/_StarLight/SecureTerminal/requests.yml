@@ -409,8 +409,8 @@
     - [Command]
     - [Command]
   authGroupLabels:
-    - "Command (1)"
-    - "Command (2)"
+    - "Command Member (1)"
+    - "Command Member (2)"
   cooldownSecs: 600
   authTimer: 20
 
@@ -434,7 +434,7 @@
   authGroups:
     - [Command]
   authGroupLabels:
-    - "Command (1)"
+    - "Command Member (1)"
   cooldownSecs: 0
 
 # ── Station-Wide Emergency Access ─────────────────────────────────────────────────────
@@ -454,8 +454,8 @@
     - [Command]
     - [Command]
   authGroupLabels:
-    - "Command (1)"
-    - "Command (2)"
+    - "Command Member (1)"
+    - "Command Member (2)"
   cooldownSecs: 600
   authTimer: 20
 
@@ -497,15 +497,15 @@
   oneTimeUse: true
   sortOrder: 500
   authGroups:
-    - [Captain]
-    - [Ntrep]
+    - [Captain, Ntrep]
+    - [Captain, Ntrep]
     - [Command]
     - [Command]
     - [Command]
   authGroupLabels:
-    - "Captain (1)"
-    - "NanoTrasen Representative (2)"
-    - "Command (3)"
-    - "Command (4)"
-    - "Command (5)"
+    - "Captain / NTR (1)"
+    - "Captain / NTR (2)"
+    - "Command Member (3)"
+    - "Command Member (4)"
+    - "Command Member (5)"
   authTimer: 30

@@ -374,7 +374,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
             else
             {
                 color = "red";
-                text = $"\u25cb {Loc.GetString("secure-terminal-awaiting-member")}";
+                text = $"\u25cb {Loc.GetString("secure-terminal-awaiting-member", ("label", proposal.GroupLabels[i]))}";
             }
 
             var label = new RichTextLabel();
