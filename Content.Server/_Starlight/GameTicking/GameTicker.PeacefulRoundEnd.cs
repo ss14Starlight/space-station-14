@@ -1,9 +1,9 @@
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles.Components;
+using Content.Server.Polymorph.Components;
 using Content.Server.Shuttles.Components;
 using Content.Shared._NullLink;
 using Content.Shared._Starlight.GameTicking.Components;
-using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.CombatMode.Pacification;
@@ -12,10 +12,9 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Components;
+using Content.Shared.Polymorph;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
-using Content.Shared.Roles.Components;
-using Content.Shared.Starlight;
 using Content.Shared.Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
@@ -44,19 +43,82 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
         SubscribeLocalEvent<GotRehydratedEvent>(OnRehydrateEvent);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
         SubscribeLocalEvent<EorgActionComponent, ActionValidateEvent>(OnValidatePossiblyEorgAction);
+        SubscribeLocalEvent<PreventEorgComponent, PolymorphedEvent>(OnPolymorphed);
     }
 
-    private void SpreadPeace(EntityUid target)
+    /// <summary>
+    /// Validate an entity is eligible for pacification, and applies it if so.
+    /// </summary>
+    /// <param name="target">The entity to potentially pacify</param>
+    private void SpreadPeaceNow(EntityUid target)
     {
         if (!_isEnabled || !_roundedEnded) return;
-        if (_rolesReq.IsPeacefulBypass(target)) return; // OOC bypass (staff, extroles, ..)
-        if (!IsGridPacificationTarget(target)) return; // Only pacify people on Evac and CC grids.
-        if (IsMindRolePacificationImmune(target)) return; // IC bypass (taken roles of ERT, Decimus, CC, ..)
-        if (IsGhostRolePacificationImmune(target)) return; // IC bypass (same as previous, only when ghost role wasn't taken)
+        if (!ShouldPacify(target)) return;
+        Pacify(target);
 
+        // If the entity is polymorphed, also pacify the parent(s).
+        while (TryComp<PolymorphedEntityComponent>(target, out var polymorph) && polymorph.Parent != null)
+        {
+            target = polymorph.Parent.Value;
+            Pacify(target);
+        }
+    }
+
+    /// <summary>
+    /// The queueing counterpart of <see cref="SpreadPeaceNow"/>. Checks if the target is a valid pacification candidate
+    /// and adds them to the candidate list if they are valid pacification.
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="candidates"></param>
+    private void SpreadPeaceQueueing(EntityUid target, ref List<EntityUid> candidates)
+    {
+        if (!ShouldPacify(target)) return;
+        candidates.Add(target);
+
+        // If the entity is polymorphed, also pacify the parent(s).
+        while (TryComp<PolymorphedEntityComponent>(target, out var polymorph) && polymorph.Parent != null)
+        {
+            target = polymorph.Parent.Value;
+            candidates.Add(target);
+        }
+    }
+
+    /// <summary>
+    /// Determine if the target should be pacified. Does not do any polymorph-related checks.
+    /// </summary>
+    /// <param name="target">The entity to test</param>
+    /// <returns>Whether the target should be pacified, not accounting or polymorphs</returns>
+    private bool ShouldPacify(EntityUid target)
+    {
+        // OOC bypass (staff, extroles, ...).
+        if (_rolesReq.IsPeacefulBypass(target))
+            return false;
+
+        // Only pacify people on Evac and CC grids.
+        if (!IsGridPacificationTarget(target))
+            return false;
+
+        // IC bypasses only apply to a specific mind roles (taken roles of ERT, Decimus, CC, ...).
+        // Note that in the case of polymorphs, the mind and thus the mind roles are only contained in the child entity
+        // (the one that is being actively controlled).
+        if (IsMindRolePacificationImmune(target))
+            return false;
+
+        // IC bypass (only when ghost role wasn't taken)
+        return !IsGhostRolePacificationImmune(target);
+    }
+
+    /// <summary>
+    /// Pacify a target immediately.
+    /// </summary>
+    /// <param name="target">The target to pacify</param>
+    private void Pacify(EntityUid target)
+    {
         EnsureComp<PacifiedComponent>(target);
         EnsureComp<PreventEorgComponent>(target);
     }
+
+    #region Pacification checks
 
     /// <summary>
     /// Checks if the entity has any mind roles that are exempt from pacification.
@@ -112,11 +174,14 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
         return false;
     }
 
+    #endregion
+    #region Event handlers
+
     private void OnSpawnComplete(PlayerSpawnCompleteEvent ev)
-        => SpreadPeace(ev.Mob);
+        => SpreadPeaceNow(ev.Mob);
 
     private void OnRehydrateEvent(ref GotRehydratedEvent ev)
-        => SpreadPeace(ev.Target);
+        => SpreadPeaceNow(ev.Target);
 
     private void OnRoundCleanup(RoundRestartCleanupEvent ev)
         => _roundedEnded = false;
@@ -124,22 +189,61 @@ public sealed class PeacefulRoundEndSystem : EntitySystem
     private void OnRoundEnded(RoundEndTextAppendEvent ev)
     {
         _roundedEnded = true;
+        if (!_isEnabled) return;
 
+        var candidates = new List<EntityUid>();
+
+        // Collect candidate entities for pacification.
         var mobMoverQuery = EntityQueryEnumerator<MobMoverComponent>();
         while (mobMoverQuery.MoveNext(out var uid, out _))
-            SpreadPeace(uid);
+            SpreadPeaceQueueing(uid, ref candidates);
 
         var mechQuery = EntityQueryEnumerator<MechComponent>();
         while (mechQuery.MoveNext(out var uid, out _))
-            SpreadPeace(uid);
+            SpreadPeaceQueueing(uid, ref candidates);
+
+        // Remove any candidates that are part of a polymorph chain where some immunity (OOC or job immunity) is at play.
+        var polymorphedQuery = EntityQueryEnumerator<PolymorphedEntityComponent>();
+        while (polymorphedQuery.MoveNext(out var uid, out _))
+        {
+            // Loop from the current node up the polymorph tree.
+            var current = uid;
+            var deleting = false;
+            while (TryComp<PolymorphedEntityComponent>(current, out var polymorphed) && polymorphed.Parent.HasValue)
+            {
+                if (deleting || !candidates.Contains(current))
+                {
+                    deleting = true;
+                    candidates.Remove(polymorphed.Parent.Value);
+                }
+                current = polymorphed.Parent.Value;
+            }
+        }
+
+        // Pacify the remaining candidates.
+        foreach (var uid in candidates)
+            Pacify(uid);
     }
 
+    /// <summary>
+    /// Prevents performing actions marked as <see cref="EorgActionComponent"/> if the user has
+    /// <see cref="PreventEorgComponent"/>.
+    /// </summary>
     private void OnValidatePossiblyEorgAction(EntityUid uid, EorgActionComponent component, ref ActionValidateEvent args)
     {
         if (!_isEnabled || !_roundedEnded) return;
-        if (!TryComp<PreventEorgComponent>(args.User, out _))  return;
+        if (!HasComp<PreventEorgComponent>(args.User))  return;
 
         _popup.PopupEntity(Loc.GetString("eorg-action"), args.User, args.User, PopupType.LargeCaution);
         args.Invalid = true;
     }
+
+
+    /// <summary>
+    /// If someone with <see cref="PreventEorgComponent"/> polymorphs, also apply it to their polymorph.
+    /// </summary>
+    private void OnPolymorphed(EntityUid uid, PreventEorgComponent comp, PolymorphedEvent ev) => Pacify(ev.NewEntity);
+
+    #endregion
+
 }
