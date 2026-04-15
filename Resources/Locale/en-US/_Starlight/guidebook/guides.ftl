@@ -163,3 +163,11 @@ guide-entry-records = Character Records
 
 # Tools
 guide-entry-tools-combination-locks = Combination Locks
+
+
+# Roleplay
+guide-entry-roleplay-intro = Roleplay Guides
+guide-entry-roleplay-01 = The Basics
+guide-entry-roleplay-02 = Collaborative Storytelling
+guide-entry-roleplay-03 = Losing Is Fun
+guide-entry-roleplay-04 = Acting With Mechanics
