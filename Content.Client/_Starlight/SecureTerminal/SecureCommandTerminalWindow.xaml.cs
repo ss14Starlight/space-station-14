@@ -264,7 +264,9 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
             && !(proto.RequiresAlertActiveMinutes > 0 && alertMinutesElapsed < proto.RequiresAlertActiveMinutes);
 
         // Recall button — shown during activating countdown or while armory is deployed
-        var isActivating = proto.OneTimeUse && proposal?.Status == SecureTerminalProposalStatus.Activating;
+        var isActivating =
+            proto.ActionType == SecureTerminalActionType.Armory &&
+            proposal?.Status == SecureTerminalProposalStatus.Activating;
         var showRecall = isActivating || isDeployed;
         RecallButton.Visible = showRecall;
         if (showRecall && proto.RecallMinDelaySecs > 0)

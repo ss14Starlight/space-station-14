@@ -132,13 +132,14 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
 
             var query2 = EntityQueryEnumerator<SecureCommandTerminalConsoleComponent>();
             while (query2.MoveNext(out var consoleUid, out var comp))
-                if (comp.AuthTerminal)
-                {
-                    if (authToLightUp is not null && authToLightUp.Contains(consoleUid))
-                        continue;
+            {
+                if (!comp.AuthTerminal || _stations.GetOwningStation(consoleUid) != stationUid)
+                    continue;
 
-                    _appearance.SetData(consoleUid, ToggleableVisuals.Enabled, false);
-                }
+                _appearance.SetData(consoleUid,
+                    ToggleableVisuals.Enabled,
+                    authToLightUp is not null && authToLightUp.Contains(consoleUid));
+            }
 
             if (toExpire != null)
                 foreach (var requestId in toExpire)
@@ -288,6 +289,12 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             return;
         }
 
+        if (stationComp.DeployedArmories.ContainsKey(msg.RequestId))
+        {
+            _popup.PopupCursor(Loc.GetString("secure-terminal-used-note"), actor, PopupType.Medium);
+            return;
+        }
+
         // Only one active proposal at a time
         if (stationComp.ActiveProposals.Count > 0)
         {
@@ -378,7 +385,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
 
         if (!comp.Admin && proposal.UsedTerminals.Contains(uid))
         {
-            _popup.PopupCursor(Loc.GetString("secure-terminal-already-used"), actor, PopupType.Medium);
+            _popup.PopupCursor(Loc.GetString("secure-terminal-already-activated"), actor, PopupType.Medium);
             return;
         }
 
