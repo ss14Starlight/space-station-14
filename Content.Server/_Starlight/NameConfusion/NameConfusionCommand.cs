@@ -139,7 +139,7 @@ public sealed class NameConfusionCommand : ToolshedCommand
     public EntityUid SetConfuseIntervalTime(IInvocationContext ctx, [PipedArgument] EntityUid uid, float seconds)
     {
         if (!EnsureWorkable(ctx, uid, out var comp)) return uid;
-        if (Math.Abs(seconds) < 0)
+        if (Math.Sign(seconds) < 0)
         {
             ctx.WriteMarkup("[color=red]Seconds cannot be negative.[/color]");
             return uid;
