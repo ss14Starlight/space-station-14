@@ -540,7 +540,7 @@ namespace Content.Shared.Examine
 
         private record ExamineMessagePart(FormattedMessage Message, int Priority, bool DoNewLine, string? Group);
 
-        //Starlight begin: yoink from NameModifierSystem :3
+        #region Starlight
         public void AddNameModifier(LocId locId, int priority = 0, params (string, object)[] extraArgs) =>
             _nameModifiers.Add((locId, priority, extraArgs));
 
@@ -561,7 +561,7 @@ namespace Content.Shared.Examine
 
             return name;
         }
-        //Starlight end
+        #endregion
     }
 
 
