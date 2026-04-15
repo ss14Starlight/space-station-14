@@ -88,7 +88,7 @@ secure-terminal-admin = Requesting Admin Approval for: {$request}
 
 ## Request names & descriptions
 
-secure-terminal-warops-security-name = Nuclear Responce Team
+secure-terminal-warops-security-name = Nuclear Response Team
 secure-terminal-warops-security-desc = Deploys an ERT Security detail Specialized for War Ops. Only available during War Ops.
     Use when the station is under direct armed assault during a declared War Ops.
     [color=orange]Requires War Ops to be declared.[/color]
