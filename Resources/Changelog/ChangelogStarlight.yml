@@ -1238,4 +1238,25 @@ Entries:
   id: 404304
   time: '2026-04-15T10:29:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4129
+- author: CYBERSTARLIGHT TEAM
+  changes:
+  - message: Added a cyberspace effect.
+    type: Add
+  id: 404305
+  time: '2026-04-15T15:56:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4169
+- author: CYBERSTARLIGHT TEAM
+  changes:
+  - message: The ai overlay no longer covers cyberspace objects.
+    type: Tweak
+  id: 404306
+  time: '2026-04-15T15:56:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4169
+- author: CYBERSTARLIGHT TEAM
+  changes:
+  - message: The abductor AI eye no longer fills the screen with black when it steps even slightly into space.
+    type: Fix
+  id: 404307
+  time: '2026-04-15T15:56:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4169
 Order: -1
