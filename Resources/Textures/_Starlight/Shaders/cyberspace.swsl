@@ -26,7 +26,7 @@ highp float ripple(highp vec2 pos, highp vec2 origin, highp float time, highp fl
     highp float fromFront = abs(dist - radius);
     highp float wave = max(0.0, 1.0 - fromFront / width);
     wave *= wave;
-    highp float fade = smoothstep(0.0, 0.5, time) * smoothstep(duration, duration * 0.6, time);
+    highp float fade = smoothstep(0.0, 0.5, time) * (1.0 - smoothstep(duration * 0.6, duration, time));
     return wave * fade;
 }
 

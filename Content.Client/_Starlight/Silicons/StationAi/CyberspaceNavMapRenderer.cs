@@ -44,13 +44,9 @@ internal sealed class CyberspaceNavMapRenderer(IPrototypeManager proto)
 
         if (navMap == null)
         {
-            // No navmap on this grid — clear any geometry left from the previous grid
-            if (gridChanged)
-            {
-                _floorVerts.Clear();
-                _wallVerts.Clear();
-                _doorVerts.Clear();
-            }
+            _floorVerts.Clear();
+            _wallVerts.Clear();
+            _doorVerts.Clear();
             return;
         }
 
