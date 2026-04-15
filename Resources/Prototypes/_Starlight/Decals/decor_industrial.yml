@@ -1,0 +1,108 @@
+#Steel beams
+- type: decal
+  id: steelbeamNorth
+  tags: ["Decal", "metal", "beam", "north"]
+  snapCardinals: false
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/steel_beam.rsi
+    state: steelbeam_north
+
+- type: decal
+  id: steelbeamSouth
+  tags: ["Decal", "metal", "beam", "south"]
+  snapCardinals: false
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/steel_beam.rsi
+    state: steelbeam_south
+
+- type: decal
+  id: steelbeamWest
+  tags: ["Decal", "metal", "beam", "west"]
+  snapCardinals: false
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/steel_beam.rsi
+    state: steelbeam_west
+
+- type: decal
+  id: steelbeamEast
+  tags: ["Decal", "metal", "beam", "east"]
+  snapCardinals: false
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/steel_beam.rsi
+    state: steelbeam_east
+
+- type: decal
+  id: steelbeamNorthEast
+  tags: ["Decal", "metal", "beam", "northeast", "ne"]
+  snapCardinals: false
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/steel_beam.rsi
+    state: steelbeam_northeast
+
+- type: decal
+  id: steelbeamNorthWest
+  tags: ["Decal", "metal", "beam", "northwest", "nw"]
+  snapCardinals: false
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/steel_beam.rsi
+    state: steelbeam_northwest
+
+- type: decal
+  id: steelbeamSouthEast
+  tags: ["Decal", "metal", "beam", "southeast", "se"]
+  snapCardinals: false
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/steel_beam.rsi
+    state: steelbeam_southeast
+
+- type: decal
+  id: steelbeamSouthWest
+  tags: ["Decal", "metal", "beam", "southwest", "sw"]
+  snapCardinals: false
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/steel_beam.rsi
+    state: steelbeam_southwest
+
+- type: decal
+  id: steelbeamNorthEastCorner
+  tags: ["Decal", "metal", "beam", "northeast", "corner"]
+  snapCardinals: false
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/steel_beam.rsi
+    state: steelbeam_northeast_corner
+
+- type: decal
+  id: steelbeamNorthWestCorner
+  tags: ["Decal", "metal", "beam", "northwest", "corner"]
+  snapCardinals: false
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/steel_beam.rsi
+    state: steelbeam_northwest_corner
+
+- type: decal
+  id: steelbeamSouthEastCorner
+  tags: ["Decal", "metal", "beam", "southeast", "corner"]
+  snapCardinals: false
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/steel_beam.rsi
+    state: steelbeam_southeast_corner
+
+- type: decal
+  id: steelbeamSouthWestCorner
+  tags: ["Decal", "metal", "beam", "southwest", "corner"]
+  snapCardinals: false
+  defaultSnap: true
+  sprite:
+    sprite: _Starlight/Decals/steel_beam.rsi
+    state: steelbeam_southwest_corner
