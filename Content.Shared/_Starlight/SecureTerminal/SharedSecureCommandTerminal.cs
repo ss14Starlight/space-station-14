@@ -20,7 +20,7 @@ public sealed partial class SecureCommandTerminalConsoleComponent : Component
     [DataField]
     public bool Admin = false;
 
-    /// <summary>If true, this temrinal will only be able to approve/deny</summary>
+    /// <summary>If true, this terminal will only be able to approve/deny.</summary>
     [DataField]
     public bool AuthTerminal = false;
 }
