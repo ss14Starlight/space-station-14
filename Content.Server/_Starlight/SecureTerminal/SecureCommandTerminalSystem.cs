@@ -446,26 +446,33 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         if (stationUid == null) return;
         if (!TryComp<SecureCommandTerminalStationComponent>(stationUid.Value, out var stationComp)) return;
 
-        if (!stationComp.ActiveProposals.TryGetValue(msg.RequestId, out var proposal) ||
-            proposal.Status != SecureTerminalProposalStatus.Activating)
+        if (!_protos.TryIndex<SecureCommandTerminalRequestPrototype>(msg.RequestId, out var proto) ||
+        proto.ActionType != SecureTerminalActionType.Armory)
         {
-            // Also allow recalling a deployed armory
-            if (!stationComp.DeployedArmories.ContainsKey(msg.RequestId))
-            {
-                _popup.PopupCursor(Loc.GetString("secure-terminal-no-active-proposal"), actor, PopupType.Medium);
-                return;
-            }
+            _popup.PopupCursor(Loc.GetString("secure-terminal-no-active-proposal"), actor, PopupType.Medium);
+            return;
+        }
+
+        var hasActivatingArmory =
+            stationComp.ActiveProposals.TryGetValue(msg.RequestId, out var proposal) &&
+            proposal.Status == SecureTerminalProposalStatus.Activating;
+
+        var hasDeployedArmory = stationComp.DeployedArmories.ContainsKey(msg.RequestId);
+
+        if (!hasActivatingArmory && !hasDeployedArmory)
+        {
+            _popup.PopupCursor(Loc.GetString("secure-terminal-no-active-proposal"), actor, PopupType.Medium);
+            return;
         }
 
         var tags = _access.FindAccessTags(actor);
-        if (!tags.Contains((Robust.Shared.Prototypes.ProtoId<Content.Shared.Access.AccessLevelPrototype>)"Command"))
+        if (!tags.Contains((Robust.Shared.Prototypes.ProtoId<Content.Shared.Access.AccessLevelPrototype>)"Command")) // Your serious?
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-request-denied"), actor, PopupType.Medium);
             return;
         }
 
-        if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(msg.RequestId, out var proto) &&
-            proto.RecallMinDelaySecs > 0)
+        if (proto.RecallMinDelaySecs > 0)
         {
             TimeSpan authorizedAt;
             if (proposal != null && proposal.ActivateAt.HasValue)

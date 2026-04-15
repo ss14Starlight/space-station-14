@@ -231,9 +231,16 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         {
             cooldownNote = string.Empty;
         }
-        var usedNote = state.UsedOnce.Contains(proto.ID)
-            ? $"\n[color=gray]{Loc.GetString("secure-terminal-used-note")}[/color]"
-            : string.Empty;
+        var usedNote = string.Empty;
+        if (state.UsedOnce.Contains(proto.ID))
+        {
+
+            if (proto.ActionType == SecureTerminalActionType.Armory)
+                usedNote = $"\n[color=gray]{Loc.GetString("secure-terminal-used-note")}[/color]";
+            else
+                usedNote = $"\n[color=gray]{Loc.GetString("secure-terminal-already-used")}[/color]";
+        }
+
 
         InfoLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
             $"{Loc.GetString(proto.Description)}" +
