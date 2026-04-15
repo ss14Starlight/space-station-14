@@ -1259,4 +1259,11 @@ Entries:
   id: 404307
   time: '2026-04-15T15:56:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4169
+- author: Conflee
+  changes:
+  - message: Added Roleplay Guides to the Guidebook, to help with onboarding new players, educating them on basics of roleplaying and RP etiquette, and touching on some more advanced rp topics that should be useful for roleplayers of all skill levels to know. To be expanded upon in the future.
+    type: Add
+  id: 404308
+  time: '2026-04-15T16:28:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4167
 Order: -1
