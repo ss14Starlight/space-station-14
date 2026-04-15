@@ -165,7 +165,7 @@ secure-terminal-nukerequest-desc = Request the nuclear self-destruct codes.
 secure-terminal-code-violet-name = Code Violet
 secure-terminal-code-violet-desc = Escalates the station to [color=Violet]Violet[/color] alert.
 
-secure-terminal-end-violet-name = End violet Alert
+secure-terminal-end-violet-name = End Violet Alert
 secure-terminal-end-violet-desc = Lifts [color=Violet]Violet[/color] alert and returns the station to Green. Requires Violet to have been active for at least 10 minutes.
 
 secure-terminal-emergency-maintenance-name = Emergency Maintenance Access
