@@ -81,15 +81,14 @@ secure-terminal-auth-note = This terminal is only for authorization.
 secure-terminal-insufficient-funds = Insufficient credits to cover the processing fee for this request.
 secure-terminal-authorized-by = Attention — {$request} request has been authorized. Authorized by: {$signatories}.
 secure-terminal-armory-recalled = {$request} recall order issued. Armory deployment has been cancelled.
-secure-terminal-awaiting-admin = Attention — {$request} request has been send. Awaiting authorization by Central Command.
-
+secure-terminal-awaiting-admin = Attention — {$request} request has been sent. Awaiting authorization by Central Command.
 secure-terminal-admin = Requesting Admin Approval for: {$request}
                         Reason: {$reason}
                         Use the AGhost to Approve/Deny the Request.
 
 ## Request names & descriptions
 
-secure-terminal-warops-security-name = Nuclear Responce Team
+secure-terminal-warops-security-name = Nuclear Response Team
 secure-terminal-warops-security-desc = Deploys an ERT Security detail Specialized for War Ops. Only available during War Ops.
     Use when the station is under direct armed assault during a declared War Ops.
     [color=orange]Requires War Ops to be declared.[/color]
@@ -166,7 +165,7 @@ secure-terminal-nukerequest-desc = Request the nuclear self-destruct codes.
 secure-terminal-code-violet-name = Code Violet
 secure-terminal-code-violet-desc = Escalates the station to [color=Violet]Violet[/color] alert.
 
-secure-terminal-end-violet-name = End violet Alert
+secure-terminal-end-violet-name = End Violet Alert
 secure-terminal-end-violet-desc = Lifts [color=Violet]Violet[/color] alert and returns the station to Green. Requires Violet to have been active for at least 10 minutes.
 
 secure-terminal-emergency-maintenance-name = Emergency Maintenance Access

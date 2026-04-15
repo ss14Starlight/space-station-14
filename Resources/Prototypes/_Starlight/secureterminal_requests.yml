@@ -2,9 +2,9 @@
 # Accessible from all Command-level Comms Consoles.
 # All fees drawn from each authorizer's account when the countdown begins.
 
-#region ERT
+`#region` ERT
 
-# ── WarOps-Reponse Security ─────────────────────────────────────────────────────────────
+# ── WarOps-Response Security ─────────────────────────────────────────────────────────────
 # Only available during War Ops.  Requires Captain/HoS.
 - type: secureTerminalRequest
   id: WaropsSecurity
