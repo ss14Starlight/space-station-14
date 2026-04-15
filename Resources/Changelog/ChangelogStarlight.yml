@@ -1224,4 +1224,11 @@ Entries:
   id: 404302
   time: '2026-04-13T20:24:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4124
+- author: DocMoth
+  changes:
+  - message: changed a single letter.
+    type: Fix
+  id: 404303
+  time: '2026-04-15T09:52:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4159
 Order: -1
