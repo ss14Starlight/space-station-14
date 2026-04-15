@@ -320,7 +320,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             proposalAnnounce = Loc.GetString("secure-terminal-proposal-created-reason", ("request", Loc.GetString(proto.Name)), ("reason", reason));
 
         if (proto.ProposalAnnouncement)
-            _chat.DispatchGlobalAnnouncement(proposalAnnounce, colorOverride: Color.Yellow);
+            _chat.DispatchGlobalAnnouncement(proposalAnnounce, colorOverride: proto.AnnouncementColor);
 
         var proposalRadio = Loc.GetString("secure-terminal-radio-proposal", ("request", Loc.GetString(proto.Name)));
         if (reason is not null)
@@ -417,17 +417,15 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             _chatManager.SendAdminAnnouncement(
                 $"Secure Terminal — {MetaData(actor).EntityName} ({GetJobName(actor)}) DENIED / cancelled: {Loc.GetString(proto.Name)}.");
 
-            if (comp.Admin)
-                if (proto.ProposalAnnouncement)
-                    _chat.DispatchGlobalAnnouncement(
-                        Loc.GetString("secure-terminal-proposal-denied-cc",
-                            ("request", Loc.GetString(proto.Name))),
-                    colorOverride: Color.Red);
-                else if (proto.ProposalAnnouncement)
-                    _chat.DispatchGlobalAnnouncement(
-                        Loc.GetString("secure-terminal-proposal-denied",
-                            ("request", Loc.GetString(proto.Name))),
-                    colorOverride: Color.Red);
+            if (proto.ProposalAnnouncement)
+            {
+                var locKey = comp.Admin
+                    ? "secure-terminal-proposal-denied-cc"
+                   : "secure-terminal-proposal-denied";
+                _chat.DispatchGlobalAnnouncement(
+                    Loc.GetString(locKey, ("request", Loc.GetString(proto.Name))),
+                    colorOverride: proto.AnnouncementColor);
+            }
 
             if (!comp.Admin)
                 _radio.SendRadioMessage(uid,
@@ -500,7 +498,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             _chat.DispatchGlobalAnnouncement(
                 Loc.GetString("secure-terminal-armory-recalled",
                     ("request", Loc.GetString(proto.Name))),
-                colorOverride: Color.Orange);
+                colorOverride: proto.AnnouncementColor);
 
             _radio.SendRadioMessage(uid,
                 Loc.GetString("secure-terminal-armory-recalled",

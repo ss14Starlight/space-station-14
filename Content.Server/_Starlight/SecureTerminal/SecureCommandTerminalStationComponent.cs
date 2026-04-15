@@ -1,5 +1,4 @@
 using Content.Shared.Starlight.SecureTerminal;
-using NetCord;
 
 namespace Content.Server.Starlight.SecureTerminal;
 
