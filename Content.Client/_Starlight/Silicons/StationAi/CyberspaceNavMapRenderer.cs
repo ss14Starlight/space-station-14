@@ -147,6 +147,5 @@ internal sealed class CyberspaceNavMapRenderer(IPrototypeManager proto)
         verts.Add(new Vector2(x, y));
         verts.Add(new Vector2(x + size, y + size));
         verts.Add(new Vector2(x, y + size));
-        verts.AddRange()
     }
 }
