@@ -88,11 +88,11 @@ public sealed partial class SecureCommandTerminalRequestPrototype : IPrototype
     [DataField]
     public string? ArmoryKey;
 
-    /// <summary>Acess whitelist for MaintenanceAccess or StationAccess action.</summary>
+    /// <summary>Access whitelist for MaintenanceAccess or StationAccess action.</summary>
     [DataField]
     public List<ProtoId<AccessLevelPrototype>>? AllowedAccesses = new();
 
-    /// <summary>Acess toggle for MaintenanceAccess or StationAccess action.</summary>
+    /// <summary>Access toggle for MaintenanceAccess or StationAccess action.</summary>
     [DataField]
     public bool AccessEnabled;
 
