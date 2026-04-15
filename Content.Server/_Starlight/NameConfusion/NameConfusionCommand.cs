@@ -32,7 +32,7 @@ public sealed class NameConfusionCommand : ToolshedCommand
     public EntityUid Restore(IInvocationContext ctx, [PipedArgument] EntityUid uid)
     {
         if (!EnsureWorkable(ctx, uid, out var comp)) return uid;
-        if (comp.Names.Count != 0)
+        if (comp.CurrentName is null)
         {
             ctx.WriteLine($"Entity {uid}'s name was not confused.");
             return uid;
