@@ -1231,4 +1231,11 @@ Entries:
   id: 404303
   time: '2026-04-15T09:52:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4159
+- author: redmushie
+  changes:
+  - message: Polymorphing before or after EOR no longer bypasses EORG prevention measures.
+    type: Fix
+  id: 404304
+  time: '2026-04-15T10:29:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4129
 Order: -1
