@@ -245,6 +245,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         InfoLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(
             $"{Loc.GetString(proto.Description)}" +
             (proto.SalaryPenalty > 0 ? $"\n{Loc.GetString("secure-terminal-salary-note", ("penalty", (int)(proto.SalaryPenalty * 100)))}" : string.Empty) +
+            (proto.Fee > 0 ? $"\n{Loc.GetString("secure-terminal-fee-note", ("fee", proto.Fee))}" : string.Empty) +
             $"\n{Loc.GetString("secure-terminal-delay-note", ("minutes", Math.Max(1, proto.ActivationDelaySecs / 60)))}" +
             warNote + noWarNote + alertNote + alertTimeNote + cooldownNote + usedNote));
 

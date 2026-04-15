@@ -7,8 +7,6 @@ using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Server.Starlight.AlertArmory;
-using Content.Shared.Access;
-using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Database;
 using Content.Shared.Popups;
@@ -23,7 +21,6 @@ using Content.Server.Radio.EntitySystems;
 using Content.Server.Mind;
 using Content.Server.Chat.Managers;
 using Content.Shared.Roles.Jobs;
-using Content.Shared.AlertLevel;
 using Content.Server.Administration;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
@@ -32,6 +29,7 @@ using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Toggleable;
 using Content.Server._Starlight.Administration.Systems;
+using Content.Shared._NullLink;
 
 namespace Content.Server.Starlight.SecureTerminal;
 
@@ -64,6 +62,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
     [Dependency] private readonly SharedAirlockSystem _airlock = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly AutoDiscordLogSystem _autolog = default!;
+    [Dependency] private readonly ISharedNullLinkPlayerResourcesManager _playerResources = default!;
 
     public override void Initialize()
     {
@@ -255,6 +254,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             _popup.PopupCursor(Loc.GetString("secure-terminal-requires-no-war-note"), actor, PopupType.Medium);
             return;
         }
+
         if (proto.RequiresAlertLevel != null &&
             TryComp<AlertLevelComponent>(stationUid, out var alertComp) &&
             alertComp.CurrentLevel != proto.RequiresAlertLevel)
@@ -262,6 +262,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             _popup.PopupCursor(Loc.GetString("secure-terminal-wrong-alert"), actor, PopupType.Medium);
             return;
         }
+
         if (proto.RequiresAlertActiveMinutes > 0 &&
             (_timing.CurTime - stationComp.AlertLevelSetAt).TotalMinutes < proto.RequiresAlertActiveMinutes)
         {
@@ -293,6 +294,19 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             _popup.PopupCursor(Loc.GetString("secure-terminal-already-active"), actor, PopupType.Medium);
             return;
         }
+
+        // We check and charge the fee now, deny on sufficient funds.
+        if (proto.Fee > 0)
+            if (_playerResources.TryGetResource(actor, "credits", out var balance) && balance < proto.Fee)
+            {
+                _popup.PopupCursor($"Insufficient funds. Required: {proto.Fee}\u20a1", actor, PopupType.Medium);
+                return;
+            }
+            else
+            {
+                _playerResources.TryUpdateResource(actor, "credits", -proto.Fee);
+                _popup.PopupCursor($"Debited {proto.Fee}\u20a1. Balance: {balance -= proto.Fee}\u20a1", actor, PopupType.Medium);
+            }
 
         // Create the proposal
         var proposal = new SecureTerminalProposalData { RequestId = msg.RequestId };

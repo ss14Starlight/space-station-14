@@ -26,6 +26,7 @@ secure-terminal-awaiting-member = Awaiting {$label}
 secure-terminal-pending-countdown-label = Expire in {$minutes}m {$seconds}s…
 secure-terminal-countdown-label = Activating in {$minutes}m {$seconds}s…
 
+secure-terminal-fee-note = Processing fee: {$fee}
 secure-terminal-salary-note = Station salary reduced by {$penalty}% due to mobilization cost.
 secure-terminal-delay-note = { $minutes ->
     [1] ETA: 1 minute after authorization.
@@ -78,7 +79,6 @@ secure-terminal-no-active-proposal = No active proposal found for this request.
 secure-terminal-already-authorized = You have already authorized this proposal.
 secure-terminal-already-used = This terminal already authorized this proposal.
 secure-terminal-auth-note = This terminal is only for authorization.
-secure-terminal-insufficient-funds = Insufficient credits to cover the processing fee for this request.
 secure-terminal-authorized-by = Attention — {$request} request has been authorized. Authorized by: {$signatories}.
 secure-terminal-armory-recalled = {$request} recall order issued. Armory deployment has been cancelled.
 secure-terminal-awaiting-admin = Attention — {$request} request has been sent. Awaiting authorization by Central Command.
