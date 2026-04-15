@@ -140,6 +140,7 @@
 - type: entity
   parent: [ClothingEyesBase, BaseCentcommContraband]
   id: ClothingEyesGlassesCentCommBase
+  abstract: true
   components:
     - type: ShowJobIcons
     - type: ShowMindShieldIcons
