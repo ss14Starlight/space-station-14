@@ -90,8 +90,7 @@ secure-terminal-admin = Requesting Admin Approval for: {$request}
 
 secure-terminal-warops-security-name = Nuclear Response Team
 secure-terminal-warops-security-desc = Deploys an ERT Security detail Specialized for War Ops. Only available during War Ops.
-    Use when the station is under direct armed assault during a declared War Ops.
-    [color=orange]Requires War Ops to be declared.[/color]
+                                       Use when the station is under direct armed assault during a declared War Ops.
 secure-terminal-warops-security-announcement = An Emergency Response Team — Security Specialized detail — has been authorized and is en route. Estimated arrival: 30 minutes.
 
 secure-terminal-ert-security-name = ERT Security
@@ -142,14 +141,12 @@ secure-terminal-end-psi-announcement = Code PSI is being lifted. The identified 
 
 secure-terminal-armory-gamma-name = Gamma Armory
 secure-terminal-armory-gamma-desc = Dispatches the [color=palevioletred]Gamma Armory[/color] — heavy weapons cache for GAMMA situations. One-time deployment.
-    Issues heavy-duty security equipment to authorized personnel.
-    [color=orange]Requires Code GAMMA to be active.[/color]
+                                    Issues heavy-duty security equipment to authorized personnel.
 secure-terminal-armory-gamma-announcement = The Gamma Armory has been authorized and is en route.
 
 secure-terminal-armory-psi-name = Psi Armory
 secure-terminal-armory-psi-desc = Dispatches the [color=mediumpurple]Psi Armory[/color] — anti-cybernetic weaponry for PSI situations. One-time deployment.
-    Provides tools needed to neutralize non-conforming silicons.
-    [color=orange]Requires Code PSI to be active.[/color]
+                                  Provides tools needed to neutralize non-conforming silicons.
 secure-terminal-armory-psi-announcement = The Psi Armory has been authorized and is en route.
 
 secure-terminal-med-pod-name = Emergency Medical Pod
