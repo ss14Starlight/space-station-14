@@ -1236,8 +1236,6 @@ doc-text-printer-salvagelead-report =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 doc-text-printer-enemy-of-corporation-designation =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                    [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
