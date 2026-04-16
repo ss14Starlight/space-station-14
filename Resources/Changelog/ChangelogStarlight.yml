@@ -1287,4 +1287,25 @@ Entries:
   id: 404311
   time: '2026-04-16T05:34:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4121
+- author: JMxm5
+  changes:
+  - message: Inline gas filters are now buildable in all five configurations (rather than only three).
+    type: Fix
+  id: 404312
+  time: '2026-04-16T06:11:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4171
+- author: JMxm5
+  changes:
+  - message: Inline gas filters are now buildable with RPDs.
+    type: Add
+  id: 404313
+  time: '2026-04-16T06:11:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4171
+- author: JMxm5
+  changes:
+  - message: Inline gas filters are now spawnable through the entity spawn menu.
+    type: Fix
+  id: 404314
+  time: '2026-04-16T06:11:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4171
 Order: -1
