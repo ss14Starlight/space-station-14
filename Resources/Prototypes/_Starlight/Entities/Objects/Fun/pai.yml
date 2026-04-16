@@ -29,3 +29,38 @@
   id: EncryptionKeySyndiePAI
   components:
     - type: Unremoveable
+
+- type: entity
+  parent: [ PersonalAI, BaseMagicalContraband ]
+  id: WizardPersonalAI
+  name: wizard personal ai device
+  description: Your magical pal who's fun to be with!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/pai.rsi
+    layers:
+    - state: wizard-pai-base
+    - state: wizard-pai-off-overlay
+      shader: unshaded
+      map: ["screen"]
+  - type: ToggleableGhostRole
+    roleName: pai-system-role-name-wizard
+    roleDescription: pai-system-role-description-wizard
+    roleRules: ghost-role-information-wizard-pai-rules
+    mindRoles:
+    - MindRoleGhostRolePAI
+  - type: ContainerFill #Starlight pAI comms rework, see PR #3299
+    containers:
+      key_slots:
+      - EncryptionKeyWizardMasterUnremovable
+  - type: EncryptionKeyHolder #Starlight pAI comms rework, see PR #3299
+    keySlots: 2
+  - type: UniversalLanguageSpeaker
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableGhostRoleVisuals.Status:
+        screen:
+          Off: { state: wizard-pai-off-overlay }
+          Searching: { state: wizard-pai-searching-overlay }
+          On: { state: wizard-pai-on-overlay }
