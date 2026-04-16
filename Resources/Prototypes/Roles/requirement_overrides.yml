@@ -243,8 +243,9 @@
     - !type:OverallPlaytimeRequirement
       time: 0
     Lawyer:
-    - !type:OverallPlaytimeRequirement
-      time: 0
+    - !type:RoleTimeRequirement
+      role: JobIAA
+      time: 1h
     Librarian:
     - !type:OverallPlaytimeRequirement
       time: 0

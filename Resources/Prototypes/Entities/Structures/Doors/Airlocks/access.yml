@@ -12,12 +12,12 @@
 
 - type: entity
   parent: AirlockServiceLocked
-  id: AirlockLawyerLocked
-  suffix: Lawyer, Locked
+  id: AirlockInternalAffairsLocked # Starlight
+  suffix: Internal Affairs, Locked # Starlight
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsLawyer ]
+      board: [ DoorElectronicsInternalAffairs ]
 
 - type: entity
   parent: AirlockServiceLocked
@@ -413,12 +413,12 @@
 
 - type: entity
   parent: AirlockSecurity
-  id: AirlockSecurityLawyerLocked
-  suffix: Security/Lawyer, Locked
+  id: AirlockSecurityInternalAffairsLocked # Starlight
+  suffix: Security/Internal Affairs, Locked # Starlight
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsSecurityLawyer ]
+      board: [ DoorElectronicsSecurityInternalAffairs ] # Starlight
 
 - type: entity
   parent: AirlockSecurity
@@ -463,12 +463,12 @@
 
 - type: entity
   parent: AirlockServiceGlassLocked
-  id: AirlockLawyerGlassLocked
-  suffix: Lawyer, Locked
+  id: AirlockInternalAffairsGlassLocked # Starlight
+  suffix: Internal Affairs, Locked # Starlight
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsLawyer ]
+      board: [ DoorElectronicsInternalAffairs ] # Starlight
 
 - type: entity
   parent: AirlockServiceGlassLocked
@@ -827,12 +827,12 @@
 
 - type: entity
   parent: AirlockSecurityGlass
-  id: AirlockSecurityLawyerGlassLocked
-  suffix: Security/Lawyer, Locked
+  id: AirlockSecurityInternalAffairsGlassLocked # Starlight
+  suffix: Security/Internal Affairs, Locked # Starlight
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsSecurityLawyer ]
+      board: [ DoorElectronicsSecurityInternalAffairs ] # Starlight
 
 - type: entity
   parent: AirlockSecurityGlass
@@ -969,8 +969,8 @@
     sprite: Structures/Doors/Airlocks/Standard/maint.rsi
 
 - type: entity
-  parent: AirlockLawyerLocked
-  id: AirlockMaintLawyerLocked
+  parent: AirlockInternalAffairsLocked # Starlight
+  id: AirlockMaintInternalAffairsLocked # Starlight
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/maint.rsi

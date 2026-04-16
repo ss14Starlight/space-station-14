@@ -1,0 +1,17 @@
+<Document>
+# Lawyer
+
+<GuideEntityEmbed Entity="ToyFigurineLawyer" Caption="Lawyer"/>
+
+1. Lawyers report directly to the Head of Personnel.
+
+2. Lawyers must report to court when summoned for a trial, and are expected to provide legal counsel to their clients.
+
+3. When arbitrating petty disputes, Lawyers are expected to be impartial and provide fair mediation to all parties involved.
+
+4. For sentences longer than 15 minutes, but not those classified as Capital Crimes, prisoners may request a Lawyer to obtain a plea deal. In these cases, Internal Affairs Agents will act as representatives of Security.
+
+4. Unless requested by a member of Security or Command, Lawyers are not expected to involve themselves in the legal matters of prisoners, and must defer to Internal Affairs Agents in these matters.
+
+5. The Head of Personnel retains the right to dismiss a Lawyer from their position immediately, without need for justification.
+</Document>
