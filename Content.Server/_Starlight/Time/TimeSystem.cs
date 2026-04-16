@@ -23,7 +23,7 @@ public sealed partial class TimeSystem : SharedTimeSystem
     /// </summary>
     private void OnRoundStart(RoundStartingEvent ev)
     {
-        Date = DateTime.Now.AddYears(500);
+        Date = DateTime.UtcNow.AddYears(500);
         RaiseNetworkEvent(new RoundDateSetEvent(Date));
     }
 
