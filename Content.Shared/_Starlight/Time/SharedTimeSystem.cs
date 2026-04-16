@@ -8,7 +8,8 @@ public abstract class SharedTimeSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
 
-    protected DateTime Date = DateTime.Now;
+    // Default value is sensible but will be updated later.
+    protected DateTime Date = DateTime.Now.AddYears(500);
 
     private TimeSpan _roundStart;
 
