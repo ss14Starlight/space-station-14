@@ -192,22 +192,6 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconSyndicate-Botanist
-  icon:
-    sprite: *starlight-job-icon-rsi
-    state: SyndicateJanitor
-  jobName: job-name-janitor
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconSyndicate-MedicalDoctor
-  icon:
-    sprite: *starlight-job-icon-rsi
-    state: SyndicateMedicalDoctor
-  jobName: job-name-doctor
-
-- type: jobIcon
-  parent: JobIcon
   id: JobIconSoviet
   icon:
     sprite: *starlight-job-icon-rsi
@@ -266,12 +250,28 @@
     state: CultistChaplain
   allowSelection: false
 
+# BEGIN Syndicate command job icons. Sorted alphabetically.
+
 - type: jobIcon
   parent: JobIcon
   id: JobIconSyndicateCaptain
   icon:
     sprite: *starlight-job-icon-rsi
     state: SyndicateCaptain
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateChiefEngineer
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: SyndicateChiefEngineer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateChiefMedicalOfficer
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: SyndicateChiefMedicalOfficer
 
 - type: jobIcon
   parent: JobIcon
@@ -282,10 +282,33 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconSyndicateHeadOfSecurity
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: SyndicateHeadOfSecurity
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateQuarterMaster
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: SyndicateQuarterMaster
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconSyndicateRedShield
   icon:
     sprite: *starlight-job-icon-rsi
     state: SyndicateRedShield
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateResearchDirector
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: SyndicateResearchDirector
+
+# END Syndicate command job icons
 
 # BEGIN "Evil" inverted variants of various regular station jobs. Sorted alphabetically.
 
@@ -584,6 +607,5 @@
     sprite: *starlight-job-icon-rsi
     state: EvilZookeeper
   jobName: job-name-zookeeper
-
 
 # END Evil job icons
