@@ -4,6 +4,7 @@ job-name-iaa = Internal Affairs Agent
 job-name-blueshield = Blueshield Officer
 job-name-ntncblueshield = NanoTrasen Navy Corps Marine
 job-name-greenshield = Greenshield Officer
+job-name-redshield = Redshield Officer
 job-name-miningspec = Mining Specialist
 job-name-surgeon = Surgeon
 job-name-mailtech = Mail Technician
