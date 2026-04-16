@@ -47,6 +47,15 @@
   color: "#896e14"
   longRange: true
 
+# For WIZARDS & Magic in general
+- type: radioChannel
+  id: Winds
+  name: chat-radio-winds
+  keycode: 'i'
+  frequency: 11037
+  color: "#ff00ff"
+  longRange: true
+
   # For aspace stuff specifically, to keep freelance clear
 - type: radioChannel
   id: Aspace
