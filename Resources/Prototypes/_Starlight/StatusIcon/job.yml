@@ -431,7 +431,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: EvilMedicalDoctor
-  jobName: job-name-medical
+  jobName: job-name-doctor
 
 - type: jobIcon
   parent: JobIcon
