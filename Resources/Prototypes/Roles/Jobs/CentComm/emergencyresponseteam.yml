@@ -384,8 +384,9 @@
     belt: ClothingBeltMilitaryWebbingERT
     pocket2: CombatKnife
     suitstorage: WeaponRiflePeacemaker # Starlight-edit: Changed from: WeaponRifleLecter
-  # SL - Start
-  back:
+  storage:
+    # SL - Start
+    back:
     - BoxZiptie
     - Flash
     - GrenadeFlashBang
@@ -395,8 +396,7 @@
     - TelescopicShield
     - HoloprojectorSecurity
     - PowerCellHigh
-  # SL - End
-  storage:
+    # SL - End
     belt:
     - CrowbarRed
     - Zipties

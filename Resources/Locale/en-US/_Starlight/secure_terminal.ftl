@@ -23,7 +23,7 @@ secure-terminal-auth-waiting = No active proposal for this request.
 secure-terminal-auth-desc = Current proposal — no response = [color=red]red[/color], agreed = [color=green]green[/color]:
 secure-terminal-awaiting-member = Awaiting {$label}
 
-secure-terminal-pending-countdown-label = Expire in {$minutes}m {$seconds}s…
+secure-terminal-pending-countdown-label = Expires in {$minutes}m {$seconds}s…
 secure-terminal-countdown-label = Activating in {$minutes}m {$seconds}s…
 
 secure-terminal-fee-note = Processing fee: {$fee}
@@ -52,11 +52,11 @@ secure-terminal-reason = Insert request reason:
 ## Server → global announcements
 
 secure-terminal-proposal-created = {$request} has been requested and is awaiting co-authorization.
-secure-terminal-proposal-created-reason = {$request} has been requested and is awaiting co-authorization, Reason: {$reason}
+secure-terminal-proposal-created-reason = {$request} has been requested and is awaiting co-authorization. Reason: {$reason}
 secure-terminal-proposal-denied = {$request} request has been cancelled.
 secure-terminal-proposal-denied-cc = {$request} request has been denied by Central Command.
 secure-terminal-radio-proposal = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny.
-secure-terminal-radio-proposal-reason = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny, Reason: {$reason}
+secure-terminal-radio-proposal-reason = {$request} has been proposed. Please go to the nearest Keycard Authentication Device to authorize or deny. Reason: {$reason}
 secure-terminal-radio-denied = {$request} request has been cancelled.
 secure-terminal-activation-countdown = {$request} has been fully authorized.
     Activating in {$minutes} minutes.
@@ -84,12 +84,12 @@ secure-terminal-armory-recalled = {$request} recall order issued. Armory deploym
 secure-terminal-awaiting-admin = Attention — {$request} request has been sent. Awaiting authorization by Central Command.
 secure-terminal-admin = Requesting Admin Approval for: {$request}
                         Reason: {$reason}
-                        Use the AGhost to Approve/Deny the Request.
+                        Use the AGhost to Approve/Deny the request.
 
 ## Request names & descriptions
 
 secure-terminal-warops-security-name = Nuclear Response Team
-secure-terminal-warops-security-desc = Deploys an ERT Security detail Specialized for War Ops. Only available during War Ops.
+secure-terminal-warops-security-desc = Deploys an ERT Security detail specialized for War Ops. Only available during War Ops.
                                        Use when the station is under direct armed assault during a declared War Ops.
 secure-terminal-warops-security-announcement = An Emergency Response Team — Security Specialized detail — has been authorized and is en route. Estimated arrival: 30 minutes.
 
@@ -124,7 +124,7 @@ secure-terminal-ert-cburn-announcement = An Emergency Response Team — CBURN de
 secure-terminal-code-gamma-name = Code GAMMA
 secure-terminal-code-gamma-desc = Escalates the station to [color=palevioletred]GAMMA[/color] alert. Martial law — all civilians are to be escorted by security to safe areas.
     Security must be armed at all times. All civilians must report to their nearest head of staff and be escorted to a secure location. Emergency lights activate.
-secure-terminal-code-gamma-announcement = Attention! Code GAMMA is being put into effect shortly. Martial law will be enforced. all crew report to your nearest head of staff immediately.
+secure-terminal-code-gamma-announcement = Attention! Code GAMMA is being put into effect shortly. Martial law will be enforced. All crew report to your nearest head of staff immediately.
 
 secure-terminal-end-gamma-name = End GAMMA Alert
 secure-terminal-end-gamma-desc = Lifts [color=palevioletred]GAMMA[/color] alert and returns the station to Green. Requires GAMMA to have been active for at least 15 minutes.
@@ -166,17 +166,17 @@ secure-terminal-end-violet-name = End Violet Alert
 secure-terminal-end-violet-desc = Lifts [color=Violet]Violet[/color] alert and returns the station to Green. Requires Violet to have been active for at least 10 minutes.
 
 secure-terminal-emergency-maintenance-name = Emergency Maintenance Access
-secure-terminal-emergency-maintenance-desc = Grant Emergency Maintenance Access
+secure-terminal-emergency-maintenance-desc = Grant Emergency Maintenance Access.
 secure-terminal-emergency-maintenance-announcement = Access restrictions on maintenance and external airlocks have been removed.
 
 secure-terminal-end-emergency-maintenance-name = Revoke Emergency Maintenance Access
-secure-terminal-end-emergency-maintenance-desc = Revoke Emergency Maintenance Access
+secure-terminal-end-emergency-maintenance-desc = Revoke Emergency Maintenance Access.
 secure-terminal-end-emergency-maintenance-announcement = Access restrictions on maintenance and external airlocks have been re-added.
 
 secure-terminal-emergency-station-name = Station-Wide Emergency Access
-secure-terminal-emergency-station-desc = Activate Station-Wide Emergency Access
+secure-terminal-emergency-station-desc = Activate Station-Wide Emergency Access.
 secure-terminal-emergency-station-announcement = Access restrictions on all station airlocks have been removed due to an ongoing crisis. Trespassing laws still apply unless ordered otherwise by Command staff.
 
 secure-terminal-end-emergency-station-name = Deactivate Station-Wide Emergency Access
-secure-terminal-end-emergency-station-desc = Deactivate Station-Wide Emergency Access
+secure-terminal-end-emergency-station-desc = Deactivate Station-Wide Emergency Access.
 secure-terminal-end-emergency-station-announcement = Access restrictions on all station airlocks have been re-added. Seek station AI or a colleague's assistance if you are stuck.
