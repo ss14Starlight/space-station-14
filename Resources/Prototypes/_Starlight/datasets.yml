@@ -1234,3 +1234,26 @@
   values:
   - Singularity
   - Tesla
+
+- type: dataset
+  id: Disasters
+  values:
+  - The captain's midlife crisis
+  - The heat death of the universe
+  - Pun Pun's last shift
+  - The new ice age
+  - The gray tide
+  - The great corgi uprising
+  - The final curtain call
+  - The introduction of a new Nanotrasen policy
+
+- type: dataset
+  id: AppearanceAspects
+  values:
+  - Height
+  - Hair
+  - Skin
+  - Tail or lack thereof
+  - Voice
+  - Clothes
+  - Job
