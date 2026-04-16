@@ -1,8 +1,6 @@
 # Reports
 
 doc-text-printer-report-morgue =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -25,8 +23,6 @@ doc-text-printer-report-morgue =
 
 
 doc-text-printer-report-station =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -53,8 +49,6 @@ doc-text-printer-report-station =
 
 
 doc-text-printer-report-on-elimination-of-violations =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -76,8 +70,6 @@ doc-text-printer-report-on-elimination-of-violations =
 
 
 doc-text-printer-report-department =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -105,8 +97,6 @@ doc-text-printer-report-department =
 
 
 doc-text-printer-report-employee-performance =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -125,8 +115,6 @@ doc-text-printer-report-employee-performance =
 
 
 doc-text-printer-report-on-the-chapters-meeting =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -171,8 +159,6 @@ doc-text-printer-report-on-the-chapters-meeting =
 
 
 doc-text-printer-internal-affairs-agents-report =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -191,8 +177,6 @@ doc-text-printer-internal-affairs-agents-report =
 
 
 doc-text-printer-condition-report =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -215,8 +199,6 @@ doc-text-printer-condition-report =
 
 
 doc-text-printer-object-investigation-report =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -241,8 +223,6 @@ doc-text-printer-object-investigation-report =
 
 
 doc-text-printer-experiment-report =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -270,8 +250,6 @@ doc-text-printer-experiment-report =
 
 
 doc-text-printer-disposal-report =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -295,8 +273,6 @@ doc-text-printer-disposal-report =
 
 
 doc-text-printer-arrest-report =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -329,8 +305,6 @@ doc-text-printer-arrest-report =
 # Statements
 
 doc-text-printer-statement-appointment-interim-chapter =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -349,8 +323,6 @@ doc-text-printer-statement-appointment-interim-chapter =
 
 
 doc-text-printer-employment-statement =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -376,8 +348,6 @@ doc-text-printer-employment-statement =
 
 
 doc-text-printer-resignation-statement =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -398,8 +368,6 @@ doc-text-printer-resignation-statement =
 
 
 doc-text-printer-access-request-statement =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -424,8 +392,6 @@ doc-text-printer-access-request-statement =
 
 
 doc-text-printer-equipment-request-statement =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -451,8 +417,6 @@ doc-text-printer-equipment-request-statement =
 # InquiriesAndAppeals
 
 doc-text-printer-invocation =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -474,8 +438,6 @@ doc-text-printer-invocation =
 
 
 doc-text-printer-evacuation-shuttle-request =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -497,8 +459,6 @@ doc-text-printer-evacuation-shuttle-request =
 
 
 doc-text-printer-shuttle-registration-request =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -524,8 +484,6 @@ doc-text-printer-shuttle-registration-request =
 
 
 doc-text-printer-request-call-centcomm-members =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -545,8 +503,6 @@ doc-text-printer-request-call-centcomm-members =
 
 
 doc-text-printer-request-establish-threat-level =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -566,8 +522,6 @@ doc-text-printer-request-establish-threat-level =
 
 
 doc-text-printer-request-change-salary =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -591,8 +545,6 @@ doc-text-printer-request-change-salary =
 
 
 doc-text-printer-request-for-non-listed-employment =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -620,8 +572,6 @@ doc-text-printer-request-for-non-listed-employment =
 
 
 doc-text-printer-request-for-promotion =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -647,8 +597,6 @@ doc-text-printer-request-for-promotion =
 
 
 doc-text-printer-request-documents =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -672,8 +620,6 @@ doc-text-printer-request-documents =
 
 
 doc-text-printer-request-euthanasia =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -704,8 +650,6 @@ doc-text-printer-request-euthanasia =
 
 
 doc-text-printer-request-construction-work =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -727,8 +671,6 @@ doc-text-printer-request-construction-work =
 
 
 doc-text-printer-request-modernization =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -751,8 +693,6 @@ doc-text-printer-request-modernization =
 
 
 doc-text-printer-request-ert =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -781,8 +721,6 @@ doc-text-printer-request-ert =
 
 
 doc-text-printer-product-order =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -809,8 +747,6 @@ doc-text-printer-product-order =
 # Complaints
 
 doc-text-printer-complaint-violation-labor-rules =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -838,8 +774,6 @@ doc-text-printer-complaint-violation-labor-rules =
 
 
 doc-text-printer-offense-complaint =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -871,8 +805,6 @@ doc-text-printer-offense-complaint =
 # Permissions
 
 doc-text-printer-permission-equipment =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -900,8 +832,6 @@ doc-text-printer-permission-equipment =
 
 
 doc-text-printer-search-permission =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -936,8 +866,6 @@ doc-text-printer-search-permission =
 
 
 doc-text-printer-permission-to-carry-weapons =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -965,8 +893,6 @@ doc-text-printer-permission-to-carry-weapons =
 
 
 doc-text-printer-permission-dispose-body =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -990,8 +916,6 @@ doc-text-printer-permission-dispose-body =
 
 
 doc-text-printer-construction-permit =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -1014,8 +938,6 @@ doc-text-printer-construction-permit =
 
 
 doc-text-printer-surgery-consent-permit =
-    [logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -1050,8 +972,6 @@ doc-text-printer-surgery-consent-permit =
 
 
 doc-text-printer-art-permit =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -1077,8 +997,6 @@ doc-text-printer-art-permit =
 # OrdersAndInstructions
 
 doc-text-printer-dismissal-order =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -1102,8 +1020,6 @@ doc-text-printer-dismissal-order =
 
 
 doc-text-printer-access-revocation-order =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -1129,8 +1045,6 @@ doc-text-printer-access-revocation-order =
 
 
 doc-text-printer-incentive-order =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -1160,8 +1074,6 @@ doc-text-printer-incentive-order =
 
 
 doc-text-printer-prisoner-parole-order =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -1189,8 +1101,6 @@ doc-text-printer-prisoner-parole-order =
 
 
 doc-text-printer-order-recognizing-reasonableness-creature =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -1216,8 +1126,6 @@ doc-text-printer-order-recognizing-reasonableness-creature =
 
 
 doc-text-printer-medical-intervention-order =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -1245,8 +1153,6 @@ doc-text-printer-medical-intervention-order =
 
 
 doc-text-printer-execution-dnr-order =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -1279,8 +1185,6 @@ doc-text-printer-execution-dnr-order =
 # Communications
 
 doc-text-printer-centcomm-communication =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -1301,8 +1205,6 @@ doc-text-printer-centcomm-communication =
 
 
 doc-text-printer-salvagelead-report =
-    ⠀[logo]            [cclogo]
-
                               [head=3]NT-CC Consortium Services[/head]
 
                    [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
