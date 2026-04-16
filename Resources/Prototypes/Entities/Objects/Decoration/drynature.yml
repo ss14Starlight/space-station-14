@@ -9,7 +9,7 @@
     noRot: true
     sprite: _Starlight/Objects/Decoration/DryNature/trees.rsi
     drawdepth: Overdoors
-    offset: 0
+    offset: 0,0.9
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -17,7 +17,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.4,0.4,0.1,-0.7"
+          bounds: "-0.2,0.4,0.1,-0.1"
           #1st&3rd number controls West and East bounds. 2nd&4th control North and South bounds.
         density: 1000
         layer:
@@ -61,7 +61,7 @@
 - type: entity
   parent: BaseTreeDry
   id: DryTreeA
-  name: Dry Tree A
+  name: Dry Tree
   components:
   - type: Sprite
     state: drytreeA
@@ -69,14 +69,15 @@
 - type: entity
   parent: BaseTreeDry
   id: DryTreeB
-  name: Dry Tree B
+  name: Dry Tree
   components:
   - type: Sprite
     state: drytreeB
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.2,0.9,0.2,0.1"
-          #Override
+
+- type: entity
+  parent: BaseTreeDry
+  id: DryTreeC
+  name: Dry Tree
+  components:
+  - type: Sprite
+    state: drytreeC
