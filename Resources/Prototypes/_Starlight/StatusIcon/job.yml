@@ -311,15 +311,31 @@
     sprite: *starlight-job-icon-rsi
     state: SyndicateRedShield
 
-# BEGIN "Evil" inverted variants of various regular station jobs.
+# BEGIN "Evil" inverted variants of various regular station jobs. Sorted alphabetically.
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconEvilCargoTechnician
+  id: JobIconEvilAssistant
   icon:
     sprite: *starlight-job-icon-rsi
-    state: EvilCargoTechnician
-  jobName: job-name-cargotech
+    state: EvilAssistant
+  jobName: job-name-assistant
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilAtmosphericTechnician
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilAtmosphericTechnician
+  jobName: job-name-atmostech
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilBartender
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilBartender
+  jobName: job-name-bartender
 
 - type: jobIcon
   parent: JobIcon
@@ -331,43 +347,43 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconEvilBoxer
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilBoxer
+  jobName: job-name-boxer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilBrigmedic
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilBrigmedic
+  jobName: job-name-brigmedic
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilCargoTechnician
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilCargoTechnician
+  jobName: job-name-cargotech
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilChaplain
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilChaplain
+  jobName: job-name-chaplain
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconEvilChef
   icon:
     sprite: *starlight-job-icon-rsi
     state: EvilChef
   jobName: job-name-chef
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconEvilJanitor
-  icon:
-    sprite: *starlight-job-icon-rsi
-    state: EvilJanitor
-  jobName: job-name-janitor
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconEvilStationEngineer
-  icon:
-    sprite: *starlight-job-icon-rsi
-    state: EvilStationEngineer
-  jobName: job-name-engineer
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconEvilScientist
-  icon:
-    sprite: *starlight-job-icon-rsi
-    state: EvilScientist
-  jobName: job-name-scientist
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconEvilMedicalDoctor
-  icon:
-    sprite: *starlight-job-icon-rsi
-    state: EvilMedicalDoctor
-  jobName: job-name-medical
 
 - type: jobIcon
   parent: JobIcon
@@ -379,11 +395,195 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconEvilDetective
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilDetective
+  jobName: job-name-detective
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilDutyOfficer
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilDutyOfficer
+  jobName: job-name-dutyofficer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilJanitor
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilJanitor
+  jobName: job-name-janitor
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilMailTech
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilMailTech
+  jobName: job-name-mailtech
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilMedicalDoctor
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilMedicalDoctor
+  jobName: job-name-medical
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilMedicalIntern
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilMedicalIntern
+  jobName: job-name-intern
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilMime
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilMime
+  jobName: job-name-mime
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilMusician
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilMusician
+  jobName: job-name-musician
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilParamedic
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilParamedic
+  jobName: job-name-paramedic
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilPerformer
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilPerformer
+  jobName: job-name-performer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilPsychologist
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilPsychologist
+  jobName: job-name-psychologist
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilReporter
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilReporter
+  jobName: job-name-reporter
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilResearchAssistant
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilResearchAssistant
+  jobName: job-name-research-assistant
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilRoboticist
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilRoboticist
+  jobName: job-name-roboticist
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilSalvageLead
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilSalvageLead
+  jobName: job-name-salvagelead
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilSalvaceSpecialist
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilSalvageSpecialist
+  jobName: job-name-salvagespec
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilScientist
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilScientist
+  jobName: job-name-scientist
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilSecurityCadet
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilSecurityCadet
+  jobName: job-name-cadet
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconEvilSecurityOfficer
   icon:
     sprite: *starlight-job-icon-rsi
     state: EvilSecurityOfficer
   jobName: job-name-security
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilServiceWorker
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilServiceWorker
+  jobName: job-name-serviceworker
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilShaftMinder
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilShaftMiner
+  jobName: job-name-miningspec
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilStationEngineer
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilStationEngineer
+  jobName: job-name-engineer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilSurgeon
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilSurgeon
+  jobName: job-name-surgeon
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilTechnicalAssistant
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilTechnicalAssistant
+  jobName: job-name-technical-assistant
 
 - type: jobIcon
   parent: JobIcon
