@@ -33,13 +33,19 @@ namespace Content.Shared._Starlight.Time
 
             var newDate = _date.AddDays(totalDays);
 
-            return (stationTime, newDate.ToString("dd.MM.yyyy"));
+            // ISO 8601 (YYYY-MM-DD or YYYYMMDD)
+            return (stationTime, newDate.ToString("yyyy-MM-dd"));
         }
 
         public string GetDate()
         {
-            // please tell me you guys aren't gonna have a 4 week round yet...
-            return _date.ToString("dd.MM.yyyy");
+            // ISO 8601 (YYYY-MM-DD or YYYYMMDD)
+            return _date.ToString("yyyy-MM-dd");
+        }
+
+        public TimeSpan GetShiftDuration()
+        {
+            return _timing.CurTime - _roundStart;
         }
     }
 }

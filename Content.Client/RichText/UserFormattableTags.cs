@@ -24,6 +24,7 @@ public static class UserFormattableTags
         // Starlight start
         typeof(FormTagHandler),
         typeof(SignatureTagHandler),
+        typeof(DateTimeTagHandler),
         typeof(LogoTag),
         typeof(SyndieLogoTag),
         typeof(CCLogoTag),
