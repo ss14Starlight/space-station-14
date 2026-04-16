@@ -24,8 +24,8 @@ public sealed partial class DoorSystem : SharedDoorSystem
     protected override void OnComponentInit(Entity<DoorComponent> ent, ref ComponentInit args)
     {
         var comp = ent.Comp;
-        comp.OpenSpriteStates = new List<(DoorVisualLayers, string)>(2);
-        comp.ClosedSpriteStates = new List<(DoorVisualLayers, string)>(2);
+        comp.OpenSpriteStates = new List<(Enum, string)>(2);
+        comp.ClosedSpriteStates = new List<(Enum, string)>(2);
 
         comp.OpenSpriteStates.Add((DoorVisualLayers.Base, comp.OpenSpriteState));
         comp.ClosedSpriteStates.Add((DoorVisualLayers.Base, comp.ClosedSpriteState));
@@ -150,6 +150,9 @@ public sealed partial class DoorSystem : SharedDoorSystem
 
                 foreach (var (layer, layerState) in entity.Comp.OpenSpriteStates)
                 {
+                    // Allow animations to play while it's open (e.g., pinion);
+                    // the animation unsets this so we gotta set it again.
+                    _sprite.LayerSetAutoAnimated((entity.Owner, sprite), layer, true);
                     _sprite.LayerSetRsiState((entity.Owner, sprite), layer, layerState);
                 }
 
@@ -166,6 +169,7 @@ public sealed partial class DoorSystem : SharedDoorSystem
 
                 foreach (var (layer, layerState) in entity.Comp.ClosedSpriteStates)
                 {
+                    _sprite.LayerSetAutoAnimated((entity.Owner, sprite), layer, true);
                     _sprite.LayerSetRsiState((entity.Owner, sprite), layer, layerState);
                 }
 
