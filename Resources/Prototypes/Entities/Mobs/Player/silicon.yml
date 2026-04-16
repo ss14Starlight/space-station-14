@@ -536,6 +536,7 @@
     layer: 32768
   - type: Sprite
     sprite: Mobs/Silicon/station_ai.rsi
+    drawdepth: CyberspaceObjects # Starlight
     layers:
     - state: ai_camera
 

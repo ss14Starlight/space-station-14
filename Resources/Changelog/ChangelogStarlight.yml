@@ -1217,4 +1217,207 @@ Entries:
   id: 404301
   time: '2026-04-13T20:15:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4151
+- author: JMxm5
+  changes:
+  - message: Added buttons to the air alarm Sensors tab that allow enabling/disabling all threshold groups of a device at once.
+    type: Add
+  id: 404302
+  time: '2026-04-13T20:24:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4124
+- author: DocMoth
+  changes:
+  - message: changed a single letter.
+    type: Fix
+  id: 404303
+  time: '2026-04-15T09:52:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4159
+- author: redmushie
+  changes:
+  - message: Polymorphing before or after EOR no longer bypasses EORG prevention measures.
+    type: Fix
+  id: 404304
+  time: '2026-04-15T10:29:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4129
+- author: CYBERSTARLIGHT TEAM
+  changes:
+  - message: Added a cyberspace effect.
+    type: Add
+  id: 404305
+  time: '2026-04-15T15:56:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4169
+- author: CYBERSTARLIGHT TEAM
+  changes:
+  - message: The ai overlay no longer covers cyberspace objects.
+    type: Tweak
+  id: 404306
+  time: '2026-04-15T15:56:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4169
+- author: CYBERSTARLIGHT TEAM
+  changes:
+  - message: The abductor AI eye no longer fills the screen with black when it steps even slightly into space.
+    type: Fix
+  id: 404307
+  time: '2026-04-15T15:56:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4169
+- author: Conflee
+  changes:
+  - message: Added Roleplay Guides to the Guidebook, to help with onboarding new players, educating them on basics of roleplaying and RP etiquette, and touching on some more advanced rp topics that should be useful for roleplayers of all skill levels to know. To be expanded upon in the future.
+    type: Add
+  id: 404308
+  time: '2026-04-15T16:28:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4167
+- author: Caws
+  changes:
+  - message: (Orwell) Two banana cream pies to Clown's room and a banana phone.
+    type: Add
+  id: 404309
+  time: '2026-04-16T05:34:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4121
+- author: Caws
+  changes:
+  - message: (Orwell) Removed Toolbox Altar from Security maints, vampires rejoice.
+    type: Remove
+  id: 404310
+  time: '2026-04-16T05:34:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4121
+- author: Caws
+  changes:
+  - message: (Orwell) Removed Bananium altar from Clown room, vampires rejoice.
+    type: Remove
+  id: 404311
+  time: '2026-04-16T05:34:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4121
+- author: JMxm5
+  changes:
+  - message: Inline gas filters are now buildable in all five configurations (rather than only three).
+    type: Fix
+  id: 404312
+  time: '2026-04-16T06:11:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4171
+- author: JMxm5
+  changes:
+  - message: Inline gas filters are now buildable with RPDs.
+    type: Add
+  id: 404313
+  time: '2026-04-16T06:11:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4171
+- author: JMxm5
+  changes:
+  - message: Inline gas filters are now spawnable through the entity spawn menu.
+    type: Fix
+  id: 404314
+  time: '2026-04-16T06:11:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4171
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed corgi reflective vest.
+    type: Fix
+  id: 404315
+  time: '2026-04-16T12:03:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4173
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Added a new gamemode, replacing the base Wizard Gamemode, Wizard Duel! A ferocious duel swirling with conspiracies, schemes, and magic!? Facing ever-stronger foes, what fate awaits the Space Wizards Federation?
+    type: Add
+  id: 404316
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: New Antagonist, Wizard Duelist. It's distinct from Wizard, since Wizard will get loadout options in the future.
+    type: Add
+  id: 404317
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: 'Ported upstream PR #43429, adding updated in-hand wizard outfit sprites.'
+    type: Add
+  id: 404318
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Wizards now spawn with a unique backpack.
+    type: Add
+  id: 404319
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Wizards now have their own unique personal AIs, with access to all channels, and universal, just like them. Wow, isn't that helpful?
+    type: Add
+  id: 404320
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Added a new radio channel available to Wizards and their pAIs; the Winds of Magic.
+    type: Add
+  id: 404321
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: 'Added 2 new Encryption Keys: The Winds of Magic and the Wizard Master Encryption keys.'
+    type: Add
+  id: 404322
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: The Winds of Magic encryption key now spawns on the Wizard's shuttle.
+    type: Add
+  id: 404323
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Added 5 NEW Wizard Outfits, Yellow, Green, Purple, Orange, and Peach!
+    type: Add
+  id: 404324
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Reshaded the Blue and Red Wizard Outfits.
+    type: Tweak
+  id: 404325
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Wizard shuttles now spawn with a Wizard pAI instead of a normal one.
+    type: Tweak
+  id: 404326
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Mid-round Wizards now scale with player ratio. Up to 3 can show up. Beta will never get more than 1.
+    type: Tweak
+  id: 404327
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Alpha Traitor Secret Weight -0.01, Wizard Duel Secret Weight +0.01, becoming 0.05 since it inherited the old Wizard mode's 0.04.
+    type: Tweak
+  id: 404328
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Mid-round Wizards can now use their equipment.
+    type: Fix
+  id: 404329
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: redmushie
+  changes:
+  - message: The shift date and time are now determined by the server, meaning it's now the same for all players.
+    type: Fix
+  id: 404330
+  time: '2026-04-16T12:57:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4178
 Order: -1
