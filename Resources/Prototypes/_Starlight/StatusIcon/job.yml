@@ -254,6 +254,22 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconMedTakLeader
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: MedTakLeader
+  jobName: job-name-medtak-leader
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedTakDispatcher
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: MedTakDispatcher
+  jobName: job-name-medtak-dispatcher
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconMedTakMedic
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi

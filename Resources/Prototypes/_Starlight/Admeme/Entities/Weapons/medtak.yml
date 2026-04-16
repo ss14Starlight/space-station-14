@@ -1,8 +1,9 @@
+# LMG
 - type: entity
-  name: MT-6 "Arbitration"
+  name: CODE-6 "Arbitration"
   id: WeaponLightMachineGunMedTak
-  parent: BaseWeaponLightMachineGun
-  description: An ultralight assault LMG developed for MedTak security.
+  parent: [ BaseWeaponLightMachineGun, BaseMedTakContraband ]
+  description: "An ultralight assault LMG developed for MedTak security.\nAccepts .30 box magazines."
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/Weapons/MedTak/LMG.rsi
@@ -16,8 +17,6 @@
     steps: 6
     zeroVisible: true
   - type: Appearance
-  - type: StaticPrice
-    price: 10000
   - type: Item
     sprite: _Starlight/Admeme/Weapons/MedTak/LMG.rsi
   - type: Clothing
@@ -56,3 +55,88 @@
     angleIncrease: 2
     angleDecay: 10
     fireRate: 8
+
+- type: entity
+  name: CODE-9 "Compliance"
+  parent: [ BaseWeaponRifle, BaseMedTakContraband ]
+  id: WeaponRifleMedTak
+  description: "A bullpuped lightweight rifle designed for MedTak operators.\nAccepts heavy .20 rifle magazines."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Weapons/MedTak/Rifle.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-3
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Clothing
+    sprite: _Starlight/Admeme/Weapons/MedTak/Rifle.rsi
+  - type: Item
+    sprite: _Starlight/Admeme/Weapons/MedTak/Rifle.rsi
+  - type: Gun
+    fireRate: 8
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/aussec.ogg
+      params:
+        volume: -4
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifleM52SP
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifleM52
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeRifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Appearance
+
+# Pistol
+- type: entity
+  name: CODE-4 "Triage"
+  description: "A heavy sidearm issued to MedTak operators.\nAccepts .40 pistol magazines."
+  parent: [ BaseWeaponPistol, BaseMedTakContraband ]
+  id: WeaponPistolMedTak
+  components:
+    - type: Gun
+      fireRate: 5
+      availableModes:
+        - SemiAuto
+      soundGunshot:
+        path: /Audio/_Starlight/Weapons/Guns/Gunshots/sp8ar.ogg
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazinePistol40SP
+          insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+          priority: 2
+          whitelist:
+            tags:
+              - MagazinePistolDP
+          whitelistFailPopup: gun-magazine-whitelist-fail
+        gun_chamber:
+          name: Chamber
+          startingItem: CartridgePistol40SP
+          priority: 1
+          whitelist:
+            tags:
+              - CartridgePistolDP
+    - type: Sprite
+      sprite: _Starlight/Admeme/Weapons/MedTak/Pistol.rsi
+    # - type: ChamberMagazineAmmoProvider
+    #   availablePrefixes:
+    #     - ""

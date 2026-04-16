@@ -24,6 +24,8 @@ job-title-tsf-MARSOC = MARSOC Marine
 
 job-name-blackstar = Blackstar Mercenary
 
+job-name-medtak-dispatcher = MedTak dispatcher
+job-name-medtak-leader = MedTak team leader
 job-name-medtak-medic = MedTak medic
 job-name-medtak-pilot = MedTak pilot
 job-name-medtak-security = MedTak security

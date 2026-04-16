@@ -8,16 +8,15 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: JawsOfLife
+        - id: SyndicateJawsOfLifeStealth
         - id: LightRifleHeavyMagazineHP
-        - id: LightRifleHeavyMagazineHP
+          amount: 2
         - id: LightRifleHeavyMagazineSP
-        - id: LightRifleHeavyMagazineSP
+          amount: 2
         - id: MagazinePistol40SP
-        - id: MedicatedSuture
-        - id: RegenerativeMesh
         - id: Tourniquet
-        - id: WeaponPistolSP8AR
+        - id: MedkitCombatMedTakFilled
+        - id: WeaponPistolMedTak
 
 - type: entity
   id: ClothingBeltMedTakFilledRifle
@@ -28,16 +27,15 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: JawsOfLife
+        - id: SyndicateJawsOfLifeStealth
         - id: MagazineRifleM52HP
-        - id: MagazineRifleM52HP
+          amount: 2
         - id: MagazineRifleM52SP
-        - id: MagazineRifleM52SP
+          amount: 2
         - id: MagazinePistol40SP
-        - id: MedicatedSuture
-        - id: RegenerativeMesh
         - id: Tourniquet
-        - id: WeaponPistolSP8AR
+        - id: MedkitCombatMedTakFilled
+        - id: WeaponPistolMedTak
 
 - type: entity
   id: ClothingBeltMedTakFilledMedic
@@ -48,15 +46,15 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: JawsOfLife
-        - id: MedkitMedTakFilled
+        - id: SyndicateJawsOfLifeStealth
+        - id: BottleCaseMedTakFilled
         - id: TacticalJetInjector
         - id: MedicatedSuture
-        - id: MedicatedSuture
+          amount: 2
         - id: RegenerativeMesh
         - id: MagazinePistol40SP
-        - id: MagazinePistol40SP
-        - id: WeaponPistolSP8AR
+          amount: 2
+        - id: WeaponPistolMedTak
 
 - type: entity
   id: ClothingBeltMedTakFilledPilot
@@ -67,13 +65,12 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: JawsOfLife
+        - id: SyndicateJawsOfLifeStealth
         - id: PowerDrill
         - id: WelderExperimental
         - id: Multitool
-        - id: MedicatedSuture
-        - id: RegenerativeMesh
+        - id: MagazinePistol40SP
+          amount: 2
         - id: Tourniquet
-        - id: MagazinePistol40SP
-        - id: MagazinePistol40SP
-        - id: WeaponPistolSP8AR
+        - id: MedkitCombatMedTakFilled
+        - id: WeaponPistolMedTak

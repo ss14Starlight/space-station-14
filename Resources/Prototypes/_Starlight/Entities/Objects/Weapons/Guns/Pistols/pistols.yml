@@ -193,7 +193,6 @@
   name: sp-8ar
   parent: [WeaponPistolDP, BaseSecurityContraband]
   id: WeaponPistolSP8AR
-  description: Loud and packs a punch, chambered in .40.
   components:
     - type: Gun
       soundGunshot:

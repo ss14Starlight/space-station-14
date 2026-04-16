@@ -1,0 +1,71 @@
+# MedTak
+- type: entity
+  id: ClothingBackpackMedTakFilledMedic
+  parent: ClothingBackpackMedTak
+  suffix: Filled, Medic
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DefibrillatorSyndicate
+        - id: BodyBagMedTakFolded
+        - id: MedTakHoverBedSpawnFolded
+        - id: MagazineBoxPistol40SP
+        - id: SurgicalKitMedTak
+        - id: PowerCellHigh
+        - id: DrinkMREFlask
+        - id: FoodSnackNutribrick
+        - id: MedTakMindShieldImplanter
+        - id: MedTakDeathRattleImplanter
+
+- type: entity
+  id: ClothingBackpackMedTakFilledBasic
+  parent: ClothingBackpackMedTak
+  suffix: Filled, Basic
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineBoxPistol40SP
+        - id: DrinkMREFlask
+        - id: FoodSnackNutribrick
+        - id: MedTakMindShieldImplanter
+        - id: MedTakDeathRattleImplanter
+
+- type: entity
+  id: ClothingBackpackMedTakFilledRifle
+  parent: ClothingBackpackMedTak
+  suffix: Filled, Security, Rifle
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineBoxRifleHP
+        - id: MagazineBoxRifleSP
+        - id: MagazineBoxPistol40SP
+        - id: DrinkMREFlask
+        - id: FoodSnackNutribrick
+        - id: MedTakMindShieldImplanter
+        - id: MedTakDeathRattleImplanter
+
+- type: entity
+  id: ClothingBackpackMedTakFilledLeader
+  parent: ClothingBackpackMedTak
+  suffix: Filled, Security, Leader
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineBoxRifleHP
+        - id: MagazineBoxRifleSP
+        - id: MagazineBoxPistol40SP
+        - id: DrinkMREFlask
+        - id: FoodSnackNutribrick
+        - id: MedTakMindShieldImplanter
+        - id: MedTakDeathRattleImplanter
+        - id: BoxFolderMedTak
+        - id: RubberStampMedTak

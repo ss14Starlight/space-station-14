@@ -612,6 +612,44 @@
 # MedTak
 - type: entity
   parent: IDCardStandard
+  id: MedTakTeamLeadIDCard
+  name: Medtak team leader ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: MedTakLeader
+    - type: IdCard
+      jobTitle: job-name-medtak-leader
+      jobIcon: JobIconMedTakLeader
+    - type: Access
+      tags:
+        - MedTak
+
+- type: entity
+  parent: IDCardStandard
+  id: MedTakDispatcherIDCard
+  name: Medtak dispatcher ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: MedTakDispatcher
+    - type: IdCard
+      jobTitle: job-name-medtak-dispatcher
+      jobIcon: JobIconMedTakDispatcher
+    - type: Access
+      tags:
+        - MedTak
+
+- type: entity
+  parent: IDCardStandard
   id: MedTakMedicIDCard
   name: Medtak medic ID card
   components:

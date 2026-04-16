@@ -865,6 +865,7 @@
     - type: Wires
       layoutId: AirlockMedTak
 
+# MedTak
 - type: entity
   parent: AirlockBrigmedGlass
   id: AirlockMedTakGlassLocked

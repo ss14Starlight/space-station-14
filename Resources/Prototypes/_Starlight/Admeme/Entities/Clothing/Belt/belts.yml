@@ -32,7 +32,7 @@
     sprite: _Starlight/Admeme/Clothing/Belt/ntnc_belt.rsi
 
 - type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase]
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseMedTakContraband ]
   id: ClothingBeltMedTak
   name: MedTak belt
   description: A versatile belt worn by MedTak operators.
