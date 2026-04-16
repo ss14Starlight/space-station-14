@@ -403,6 +403,8 @@
   name: guide-entry-sl-nano-trasen-employee-sop-nt-rep
   text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-nt-rep.xml"
   priority: 1
+  children:
+      - CombinationLocks
 
 - type: guideEntry
   id: nano-trasen-employee-sop-bso
