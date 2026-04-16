@@ -139,7 +139,7 @@
   fee: 5000
   salaryPenalty: 0.05
   actionType: GameRule
-  gameruleId: ERTChaplainShuttleSpawn
+  gameruleId: ERTChaplainSpawn
   oneTimeUse: true
   sortOrder: 80
   authGroups:

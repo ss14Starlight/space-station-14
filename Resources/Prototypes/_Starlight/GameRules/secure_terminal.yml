@@ -1,0 +1,64 @@
+# Shuttles
+
+# Misc
+
+- type: entity
+  categories: [HideSpawnMenu]
+  parent: NoosphericVFX2
+  id: ERTChaplainSpawnEffect
+  components:
+    - type: EmitSoundOnTrigger
+      sound:
+        path: /Audio/_Starlight/CosmicCult/cleanse_deconversion.ogg
+    - type: TriggerOnSpawn
+
+- type: entity
+  categories: [HideSpawnMenu, Spawner]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostERTChaplain
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-chaplain-name
+      description: ghost-role-information-ert-chaplain-description
+      rules: ghost-role-information-corporate-aligned-rules
+      mindRoles:
+        - MindRoleGhostCorporateAligned
+      raffle:
+        settings: default
+      important: true
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertchaplaineva
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTChaplainSpawn
+  components:
+    - type: StationEvent
+    - type: AntagRandomSpawn
+    - type: AntagLoadProfileRule
+    - type: AntagSelection
+      definitions:
+        - spawnerPrototype: SpawnPointGhostERTChaplain
+          pickPlayer: false
+          startingGear: ERTChaplainGearEVA
+          roleLoadout:
+            - RoleSurvivalMilitaryDouble
+          components:
+            - type: BibleUser
+            - type: RandomMetadata
+              nameSegments:
+                - NamesMilitaryLast
+              nameFormat: name-format-ert-specialist
+            - type: AutoImplant
+              implants:
+                - MindShieldImplant
+                - DeathRattleImplantCentcomm
+            - type: SpawnOnTrigger
+              proto: ERTChaplainSpawnEffect
+            - type: TriggerOnSpawn
+      mindRoles:
+        - MindRoleGhostCorporateAligned
