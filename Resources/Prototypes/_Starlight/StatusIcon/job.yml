@@ -282,6 +282,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: SyndicateCaptain
+  jobName: job-name-syndicate-captain
 
 - type: jobIcon
   parent: JobIcon
@@ -289,6 +290,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: SyndicateChiefEngineer
+  jobName: job-name-syndicate-chief-engineer
 
 - type: jobIcon
   parent: JobIcon
@@ -296,6 +298,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: SyndicateChiefMedicalOfficer
+  jobName: job-name-syndicate-chief-medical-officer
 
 - type: jobIcon
   parent: JobIcon
@@ -303,6 +306,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: SyndicateHeadOfPersonnel
+  jobName: job-name-syndicate-head-of-personnel
 
 - type: jobIcon
   parent: JobIcon
@@ -310,6 +314,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: SyndicateHeadOfSecurity
+  jobName: job-name-syndicate-head-of-security
 
 - type: jobIcon
   parent: JobIcon
@@ -317,6 +322,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: SyndicateQuarterMaster
+  jobName: job-name-syndicate-quartermaster
 
 - type: jobIcon
   parent: JobIcon
@@ -324,6 +330,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: SyndicateRedShield
+  jobName: job-name-syndicate-redshield
 
 - type: jobIcon
   parent: JobIcon
@@ -331,6 +338,7 @@
   icon:
     sprite: *starlight-job-icon-rsi
     state: SyndicateResearchDirector
+  jobName: job-name-syndicate-research-director
 
 # END Syndicate command job icons
 

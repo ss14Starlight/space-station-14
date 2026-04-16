@@ -4,7 +4,6 @@ job-name-iaa = Internal Affairs Agent
 job-name-blueshield = Blueshield Officer
 job-name-ntncblueshield = NanoTrasen Navy Corps Marine
 job-name-greenshield = Greenshield Officer
-job-name-redshield = Redshield Officer
 job-name-miningspec = Mining Specialist
 job-name-surgeon = Surgeon
 job-name-mailtech = Mail Technician
@@ -23,6 +22,15 @@ job-title-borgi = Borgi
 
 job-title-tsf-Phantom = Phantom Marine
 job-title-tsf-MARSOC = MARSOC Marine
+
+job-name-syndicate-captain = Syndicate Captain
+job-name-syndicate-chief-engineer = Syndicate Captain
+job-name-syndicate-chief-medical-officer = Syndicate Chief Medical Officer
+job-name-syndicate-head-of-personnel = Syndicate Head of Personnel
+job-name-syndicate-head-of-security = Syndicate Head of Security
+job-name-syndicate-quartermaster = Syndicate Quartermaster
+job-name-syndicate-redshield = Redshield Officer
+job-name-syndicate-research-director = Syndicate Research Director
 
 job-name-blackstar = Blackstar Mercenary
 
