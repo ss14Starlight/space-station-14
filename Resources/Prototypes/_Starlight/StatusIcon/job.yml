@@ -546,7 +546,7 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconEvilSalvaceSpecialist
+  id: JobIconEvilSalvageSpecialist
   icon:
     sprite: *starlight-job-icon-rsi
     state: EvilSalvageSpecialist
@@ -586,7 +586,7 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconEvilShaftMinder
+  id: JobIconEvilShaftMiner
   icon:
     sprite: *starlight-job-icon-rsi
     state: EvilShaftMiner
