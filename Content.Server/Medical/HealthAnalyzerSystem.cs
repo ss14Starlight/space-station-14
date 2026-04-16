@@ -47,7 +47,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     // Starlight-start: Printable health reports.
-    [Dependency] private readonly TimeSystem _timeSystem = default!;
+    [Dependency] private readonly SharedTimeSystem _timeSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly PaperSystem _paperSystem = default!;
