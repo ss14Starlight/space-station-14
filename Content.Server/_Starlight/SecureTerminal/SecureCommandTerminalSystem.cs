@@ -638,7 +638,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
     {
         switch (proto.ActionType)
         {
-            case SecureTerminalActionType.ErtShuttle:
+            case SecureTerminalActionType.GameRule:
                 if (proto.GameruleId != null)
                     _gameTicker.StartGameRule(proto.GameruleId);
                 break;

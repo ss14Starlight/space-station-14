@@ -16,8 +16,9 @@
   requiresWarDeclared: true
   fee: 5000
   salaryPenalty: 0.1
-  actionType: ErtShuttle
+  actionType: GameRule
   gameruleId: ERTSecurityShuttleSpawn
+  oneTimeUse: true
   sortOrder: 35
   authGroups:
     - [Captain, HeadOfSecurity]
@@ -41,8 +42,9 @@
   bypassIfNoAdmin: false
   fee: 5000
   salaryPenalty: 0.05
-  actionType: ErtShuttle
+  actionType: GameRule
   gameruleId: ERTSecurityShuttleSpawn
+  oneTimeUse: true
   sortOrder: 40
   authGroups:
     - [Captain, HeadOfSecurity]
@@ -64,8 +66,9 @@
   requireReason: true
   fee: 5000
   salaryPenalty: 0.05
-  actionType: ErtShuttle
+  actionType: GameRule
   gameruleId: ERTEngineeringShuttleSpawn
+  oneTimeUse: true
   sortOrder: 50
   authGroups:
     - [Captain, ChiefEngineer]
@@ -87,8 +90,9 @@
   requireReason: true
   fee: 5000
   salaryPenalty: 0.05
-  actionType: ErtShuttle
+  actionType: GameRule
   gameruleId: ERTMedicalShuttleSpawn
+  oneTimeUse: true
   sortOrder: 60
   authGroups:
     - [Captain, ChiefMedicalOfficer]
@@ -110,8 +114,9 @@
   requireReason: true
   fee: 5000
   salaryPenalty: 0.05
-  actionType: ErtShuttle
+  actionType: GameRule
   gameruleId: ERTJanitorShuttleSpawn
+  oneTimeUse: true
   sortOrder: 70
   authGroups:
     - [Captain, HeadOfPersonnel]
@@ -133,8 +138,9 @@
   requireReason: true
   fee: 5000
   salaryPenalty: 0.05
-  actionType: ErtShuttle
+  actionType: GameRule
   gameruleId: ERTChaplainShuttleSpawn
+  oneTimeUse: true
   sortOrder: 80
   authGroups:
     - [Captain, Ntrep]
@@ -157,8 +163,9 @@
   requireReason: true
   fee: 5000
   salaryPenalty: 0.05
-  actionType: ErtShuttle
+  actionType: GameRule
   gameruleId: CBURNShuttleSpawn
+  oneTimeUse: true
   requiresAlertLevel: violet
   sortOrder: 90
   authGroups:
@@ -375,7 +382,7 @@
   activationDelaySecs: 300
   fee: 5000
   salaryPenalty: 0.05
-  actionType: ErtShuttle
+  actionType: GameRule
   gameruleId: ERTMedicalShuttleSpawn
   sortOrder: 30
   authGroups:

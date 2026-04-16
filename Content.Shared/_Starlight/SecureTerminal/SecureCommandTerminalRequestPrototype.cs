@@ -174,7 +174,7 @@ public sealed partial class SecureCommandTerminalRequestPrototype : IPrototype
 
 public enum SecureTerminalActionType
 {
-    ErtShuttle,
+    GameRule,
     AlertLevel,
     Armory,
     NukeCodes,
