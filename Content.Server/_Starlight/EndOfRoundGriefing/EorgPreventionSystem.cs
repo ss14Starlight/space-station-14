@@ -48,7 +48,7 @@ public sealed class EorgPreventionSystem : SharedEorgPreventionSystem
         SubscribeLocalEvent<PreventEorgComponent, PolymorphedEvent>(OnPolymorphed);
     }
 
-    private void BroadcastState() => RaiseNetworkEvent(new PreventEorgStateEvent(IsEnabled, HasRoundEnded));
+    private void BroadcastState() => RaiseNetworkEvent(new EorgPreventionStateEvent(IsEnabled, HasRoundEnded));
 
     /// <summary>
     /// Validate an entity is eligible for pacification, and applies it if so.

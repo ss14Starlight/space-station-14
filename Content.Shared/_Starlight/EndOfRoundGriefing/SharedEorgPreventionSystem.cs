@@ -98,12 +98,12 @@ public abstract class SharedEorgPreventionSystem : EntitySystem
 }
 
 [Serializable, NetSerializable]
-public sealed class RequestPreventEorgStateEvent : EntityEventArgs
+public sealed class RequestEorgPreventionStateEvent : EntityEventArgs
 {
 }
 
 [Serializable, NetSerializable]
-public sealed class PreventEorgStateEvent(bool isEnabled, bool isRoundEnded) : EntityEventArgs
+public sealed class EorgPreventionStateEvent(bool isEnabled, bool isRoundEnded) : EntityEventArgs
 {
     public bool IsEnabled { get; } = isEnabled;
     public bool IsRoundEnded { get; } = isRoundEnded;
