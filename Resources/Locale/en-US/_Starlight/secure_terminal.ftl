@@ -119,7 +119,7 @@ secure-terminal-ert-chaplain-announcement = An Emergency Response Team — Chapl
 
 secure-terminal-ert-cburn-name = ERT CBURN
 secure-terminal-ert-cburn-desc = Deploys an ERT CBURN detail.
-secure-terminal-ert-cburn-announcement = An Emergency Response Team — CBURN detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+secure-terminal-ert-cburn-announcement = An Emergency Response Team — CBURN detail — has been authorized and is en route. Estimated arrival: 15 minutes.
 
 secure-terminal-code-gamma-name = Code GAMMA
 secure-terminal-code-gamma-desc = Escalates the station to [color=palevioletred]GAMMA[/color] alert. Martial law — all civilians are to be escorted by security to safe areas.

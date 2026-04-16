@@ -373,6 +373,7 @@
   id: ERTSecurityGearArmedRifle
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTSecurity
+    back: ClothingBackpackERTSecurity # SL
     shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesCentComm
@@ -383,9 +384,18 @@
     belt: ClothingBeltMilitaryWebbingERT
     pocket2: CombatKnife
     suitstorage: WeaponRiflePeacemaker # Starlight-edit: Changed from: WeaponRifleLecter
-  inhand:
-    - WeaponLaserCannon
-    - PortableRecharger
+  # SL - Start
+  back:
+    - BoxZiptie
+    - Flash
+    - GrenadeFlashBang
+    - TearGasGrenade
+    - GrenadeStinger
+    - MedkitCombatFilled # End of first line
+    - TelescopicShield
+    - HoloprojectorSecurity
+    - PowerCellHigh
+  # SL - End
   storage:
     belt:
     - CrowbarRed
