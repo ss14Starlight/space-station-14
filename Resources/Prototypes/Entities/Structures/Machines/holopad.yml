@@ -691,8 +691,8 @@
 
 - type: entity
   parent: Holopad
-  id: HolopadSecurityLawyer
-  suffix: Lawyer
+  id: HolopadSecurityInternalAffairs # Starlight
+  suffix: Internal Affairs # Starlight
   components:
   - type: Label
     currentLabel: holopad-security-lawyer

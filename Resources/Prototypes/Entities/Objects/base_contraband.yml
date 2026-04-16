@@ -195,13 +195,13 @@
     allowedJobs: [ Bartender ]
 
 - type: entity
-  id: BaseSecurityLawyerContraband
+  id: BaseSecurityInternalAffairsContraband # Starlight
   parent: BaseRestrictedContraband
   abstract: true
   components:
   - type: Contraband
     allowedDepartments: [ Security ]
-    allowedJobs: [ Lawyer ]
+    allowedJobs: [ IAA ] # Starlight
 
 - type: entity
   id: BaseJanitorContraband

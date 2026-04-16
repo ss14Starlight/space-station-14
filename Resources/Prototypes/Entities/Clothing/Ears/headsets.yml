@@ -248,7 +248,7 @@
       path: /Audio/_Starlight/Effects/Radio/rd.ogg
 
 - type: entity
-  parent: [ClothingHeadset, BaseSecurityLawyerContraband]
+  parent: [ClothingHeadset, BaseSecurityInternalAffairsContraband] # Starlight
   id: ClothingHeadsetSecurity
   name: security headset
   description: This is used by your elite security force.
