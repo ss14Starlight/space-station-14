@@ -587,10 +587,27 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconEvilVisitor
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilVisitor
+  jobName: job-name-visitor
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconEvilWarden
   icon:
     sprite: *starlight-job-icon-rsi
     state: EvilWarden
   jobName: job-name-warden
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconEvilZookeeper
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: EvilZookeeper
+  jobName: job-name-zookeeper
+
 
 # END Evil job icons
