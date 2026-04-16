@@ -2,7 +2,7 @@
   name: Captain's Management Tablet
   parent: [BaseItem, BaseCommandContraband]
   id: CommunicationTablet
-  description: A portable annoucement computer reserved solely for the captain of the station.
+  description: A portable announcement computer reserved solely for the captain of the station.
   categories: [ DoNotMap ]
   components:
     - type: Sprite
