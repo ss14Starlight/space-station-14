@@ -541,6 +541,7 @@ public sealed class PaperSystem : EntitySystem
         return text;
     }
 
+    /// <summary>
     /// Replaces the nth occurrence of [datetime] tag with replacement text.
     /// </summary>
     private static string ReplaceNthDateTimeTag(string text, int index, string replacement)

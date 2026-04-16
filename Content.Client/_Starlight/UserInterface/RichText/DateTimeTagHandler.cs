@@ -11,7 +11,7 @@ using Robust.Client.Graphics;
 namespace Content.Client.UserInterface.RichText;
 
 /// <summary>
-/// Converts [datetime] tags into clickable buttons that sign with the player's name.
+/// Converts [datetime] tags into clickable buttons that autocomplete the in-game date and shift time.
 /// </summary>
 public sealed class DateTimeTagHandler : IMarkupTagHandler
 {
