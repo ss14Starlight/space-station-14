@@ -98,10 +98,62 @@
             "name": "Commander"
         },
         {
+            "name": "Operative"
+        },
+        {
             "name": "SyndicateAgent"
         },
         {
-            "name": "Operative"
+            "name": "SyndicateCaptain",
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
+        },
+        {
+            "name": "SyndicateCargo",
+            "copyright": "IamSidzilla"
+        },
+        {
+            "name": "SyndicateChef",
+            "copyright": "IamSidzilla"
+        },
+        {
+            "name": "SyndicateChiefEngineer",
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
+        },
+        {
+            "name": "SyndicateChiefMedicalOfficer",
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
+        },
+        {
+            "name": "SyndicateEngineer",
+            "copyright": "IamSidzilla"
+        },
+        {
+            "name": "SyndicateHeadOfPersonnel",
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
+        },
+        {
+            "name": "SyndicateHeadOfSecurity",
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
+        },
+        {
+            "name": "SyndicateJanitor",
+            "copyright": "IamSidzilla"
+        },
+        {
+            "name": "SyndicateQuarterMaster",
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, QuarterMaster modified by K-Dynamic (github), recolor by redmushie (github)"
+        },
+        {
+            "name": "SyndicateRedShield",
+            "copyright": "Starlight contributors, recolor by redmushie (github)"
+        },
+        {
+            "name": "SyndicateResearchDirector",
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
+        },
+        {
+            "name": "SyndicateScience",
+            "copyright": "IamSidzilla"
         },
         {
             "name": "SyndicateSecurity",
@@ -112,192 +164,152 @@
             "copyright": "IamSidzilla"
         },
         {
-            "name": "SyndicateScience",
-            "copyright": "IamSidzilla"
-        },
-        {
-            "name": "SyndicateChef",
-            "copyright": "IamSidzilla"
-        },
-        {
-            "name": "SyndicateEngineer",
-            "copyright": "IamSidzilla"
-        },
-        {
-            "name": "SyndicateCargo",
-            "copyright": "IamSidzilla"
-        },
-        {
-            "name": "SyndicateJanitor",
-            "copyright": "IamSidzilla"
-        },
-        {
-            "name": "SyndicateMedicalDoctor",
-            "copyright": "redmushie"
-        },
-        {
-            "name": "SyndicateBotanist",
-            "copyright": "redmushie"
-        },
-        {
-            "name": "SyndicateCaptain",
-            "copyright": "redmushie"
-        },
-        {
-            "name": "SyndicateHeadOfPersonnel",
-            "copyright": "redmushie"
-        },
-        {
-            "name": "SyndicateRedShield",
-            "copyright": "redmushie"
-        },
-        {
             "name": "EvilAssistant",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilAtmosphericTechnician",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilBartender",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilBotanist",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilBoxer",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Boxer, Chaplain, Janitor, Lawyer, Librarian recoloured by K-Dynamic (github), color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Boxer, Chaplain, Janitor, Lawyer, Librarian recoloured by K-Dynamic (github), recolor by redmushie (github)"
         },
         {
             "name": "EvilBrigmedic",
-            "copyright": "Brigmedic icon made by PuroSlavKing (Github), color changes by redmushie (github)"
+            "copyright": "Brigmedic icon made by PuroSlavKing (Github), recolor by redmushie (github)"
         },
         {
             "name": "EvilCargoTechnician",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilChaplain",
-            "copyright": "Rhetorica, color changes by redmushie (github)"
+            "copyright": "Rhetorica, recolor by redmushie (github)"
         },
         {
             "name": "EvilChef",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilChemist",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilDetective",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilDutyOfficer",
-            "copyright": "BORT, color changes by redmushie (github)"
+            "copyright": "BORT, recolor by redmushie (github)"
         },
         {
             "name": "EvilJanitor",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilMailTech",
-            "copyright": "Happyrobot33, fqqf, color changes by redmushie (github)"
+            "copyright": "Happyrobot33, fqqf, recolor by redmushie (github)"
         },
         {
             "name": "EvilMedicalDoctor",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilMedicalIntern",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilMime",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Mime and Musician recolor by DinnerCalzone (github) at https://github.com/impstation/imp-station-14/commit/233161f02bab7f9f9c03f09f39638ea7c200ee24, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Mime and Musician recolor by DinnerCalzone (github) at https://github.com/impstation/imp-station-14/commit/233161f02bab7f9f9c03f09f39638ea7c200ee24, recolor by redmushie (github)"
         },
         {
             "name": "EvilMusician",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Mime and Musician recolor by DinnerCalzone (github) at https://github.com/impstation/imp-station-14/commit/233161f02bab7f9f9c03f09f39638ea7c200ee24, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Mime and Musician recolor by DinnerCalzone (github) at https://github.com/impstation/imp-station-14/commit/233161f02bab7f9f9c03f09f39638ea7c200ee24, recolor by redmushie (github)"
         },
         {
             "name": "EvilParamedic",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilPerformer",
-            "copyright": "wonderfulnewworld, color changes by redmushie (github)"
+            "copyright": "wonderfulnewworld, recolor by redmushie (github)"
         },
         {
             "name": "EvilPsychologist",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilReporter",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilResearchAssistant",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilRoboticist",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilSalvageLead",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilSalvageSpecialist",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilScientist",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilSecurityCadet",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilSecurityOfficer",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilServiceWorker",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Service Worker resprite by anno_midi (Discord) and spanky-spanky (Github), service icons darkened by frobnic8 (Discord and Github), color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, Service Worker resprite by anno_midi (Discord) and spanky-spanky (Github), service icons darkened by frobnic8 (Discord and Github), recolor by redmushie (github)"
         },
         {
             "name": "EvilShaftMiner",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilStationEngineer",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilSurgeon",
-            "copyright": "Unknown, color changes by redmushie (github)"
+            "copyright": "Unknown, recolor by redmushie (github)"
         },
         {
             "name": "EvilTechnicalAssistant",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilVisitor",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilWarden",
-            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, color changes by redmushie (github)"
+            "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
             "name": "EvilZookeeper",
-            "copyright": "Zookeper by netwy (discort), color changes by redmushie (github)"
+            "copyright": "Zookeper by netwy (discort), recolor by redmushie (github)"
         },
         {
             "name": "HeadRevolutionary",
