@@ -211,7 +211,7 @@ public sealed class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComp
             gender = humanoidGender.Gender.ToString();
         }
 
-        // Get current station time and date using the proper SharedTimeSystem
+        // Get current station time and date using the proper TimeSystem
         var (timeSpan, dateString) = _timeSystem.GetStationTime();
         var stationTime = timeSpan.ToString(@"hh\:mm");
         var stationDate = dateString;
