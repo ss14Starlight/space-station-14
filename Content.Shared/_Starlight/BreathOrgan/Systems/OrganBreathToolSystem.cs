@@ -3,12 +3,13 @@ using Content.Shared.Actions.Components;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
 using Content.Shared.Interaction;
 using Content.Shared.UserInterface;
 using Content.Shared._Starlight.BreathOrgan.Components;
 using Content.Shared.Body.Systems;
+using Content.Shared._Starlight.Medical.Body.Events;
+using Content.Shared._Starlight.Medical.Body.Systems;
 
 namespace Content.Shared._Starlight.BreathOrgan.Systems;
 

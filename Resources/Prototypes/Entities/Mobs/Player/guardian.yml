@@ -180,7 +180,7 @@
 - type: entity
   name: HoloClown
   id: MobHoloClownGuardian
-  parent: [MobGuardianBase, InventoryBase]
+  parent: [MobGuardianBase, InventoryBase] #starlight Nubody will not pass.
   description: A mesmerising whirl of hard-light patterns weaves a blue colored clown of dubious origin.
   components:
     - type: GhostRole
@@ -225,8 +225,10 @@
           map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
           color: "#8adaff"
           shader: unshaded
+    # Starlight - start
     - type: Body
       prototype: Primate
+    # Starlight - end
     - type: Tag
       tags:
         - CannotSuicide

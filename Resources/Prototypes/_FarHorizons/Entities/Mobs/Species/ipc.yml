@@ -212,12 +212,11 @@
         maxDistance: 5
       path: /Audio/_FarHorizons/Effects/Alerts/healthpanel-alert.ogg
     drainAllowedTargets:
+      - APCConstructed
       - APCBasic
       - APCHighCapacity
       - APCSuperCapacity
       - APCHyperCapacity
-      - SubstationBasic
-      - SubstationWallBasic
     noPowerDeathEmote: DeathgaspIPC
   - type: Deathgasp
     prototype: DeathgaspIPC
@@ -418,8 +417,3 @@
         modeAlert: IPCFansSpeedExtreme
   - type: Flammable
     firestackFade: -0.8 # Not much to burn + they take way too much damage even from a bit
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobIPCDummy
-  categories: [ HideSpawnMenu ]

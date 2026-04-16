@@ -30,7 +30,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes; // Starlight-edit
 using Robust.Shared.Timing;
 using Robust.Shared.Utility; // Starlight-edit
-using Content.Server.Body.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server.Medical;
 
@@ -47,7 +47,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     // Starlight-start: Printable health reports.
-    [Dependency] private readonly TimeSystem _timeSystem = default!;
+    [Dependency] private readonly SharedTimeSystem _timeSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly PaperSystem _paperSystem = default!;

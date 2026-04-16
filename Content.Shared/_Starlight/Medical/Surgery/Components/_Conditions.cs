@@ -1,4 +1,4 @@
-﻿using Content.Shared.Body.Part;
+﻿using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Item;
 using Robust.Shared.GameStates;
