@@ -1,0 +1,67 @@
+- type: entity
+  id: BaseNullRift
+  abstract: true
+  name: null rift
+  description: The source of awesome power.
+  components:
+  - type: Transform
+    anchored: True
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+    bodyStatus: InAir
+  - type: Sprite
+    noRot: true
+    drawdepth: Effects
+    sprite: /Textures/_Starlight/Structures/Specific/Magic/power_rift.rsi
+    layers:
+    - state: benign
+      shader: unshaded
+
+- type: entity
+  id: NullRiftBenign
+  name: null rift
+  suffix: Good
+  description: The source of a mage's awesome power.
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: Effects
+    sprite: /Textures/_Starlight/Structures/Specific/Magic/power_rift.rsi
+    layers:
+    - state: benign
+      shader: unshaded
+  - type: AmbientSound
+    range: 5
+    volume: -5
+    sound:
+      path: /Audio/_Starlight/Magic/power_rift.ogg
+  - type: PointLight
+    color: "#1382C0" # medium cerulean
+    radius: 8
+    energy: 10
+
+- type: entity
+  id: NullRiftMalign
+  name: null rift
+  suffix: Evil
+  description: The fount of a sorcerer's vile power.
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: Effects
+    sprite: /Textures/_Starlight/Structures/Specific/Magic/power_rift.rsi
+    layers:
+    - state: malign
+      shader: unshaded
+  - type: AmbientSound
+    range: 5
+    volume: -5
+    sound:
+      path: /Audio/_Starlight/Magic/power_rift.ogg
+  - type: PointLight
+    # color: "#A6FF5D" # chartreuse
+    color: "#6A4FFF" # violet
+    radius: 8
+    energy: 10

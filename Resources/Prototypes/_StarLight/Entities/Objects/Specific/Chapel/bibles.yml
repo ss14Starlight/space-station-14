@@ -13,13 +13,16 @@
 - type: entity
   parent: Bible
   name: book of ages
-  description: "A collection of fulfilled prophecies, telling of the glories of a bejeweled empire."
+  description: "A collection of fulfilled prophecies, telling of the glories of the glittering Quelani Worlds."
   id: BibleBookOfAges
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Chapel/bookofages.rsi
   - type: Item
     sprite: _Starlight/Objects/Specific/Chapel/bookofages.rsi
+  - type: Tag
+    tags:
+    - Grimoire
 
 - type: entity
   parent: Bible
@@ -35,13 +38,16 @@
 - type: entity
   parent: Bible
   name: tome of dread
-  description: "Pain is proof that you are alive."
+  description: "As the Seirythii say, pain is proof that you are alive."
   id: BibleTomeOfDread
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Chapel/tomeofdread.rsi
   - type: Item
     sprite: _Starlight/Objects/Specific/Chapel/tomeofdread.rsi
+  - type: Tag
+    tags:
+    - Grimoire
 
 - type: entity
   parent: Bible
@@ -90,13 +96,16 @@
 - type: entity
   parent: Bible
   name: liber chaotica
-  description: "Why isn't this contraband?"
+  description: "The prophecies of an aielith driven mad by daemons."
   id: BibleLiberChaotica
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Chapel/liberchaotica.rsi
   - type: Item
     sprite: _Starlight/Objects/Specific/Chapel/liberchaotica.rsi
+  - type: Tag
+    tags:
+    - Grimoire
 
 - type: entity
   parent: Bible

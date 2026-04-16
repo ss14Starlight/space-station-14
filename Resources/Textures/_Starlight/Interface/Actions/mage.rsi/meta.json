@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "By Rhetorica for Starlight. Final version will have unique icons for each spell.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "generic"
+	},
+	{
+      "name": "dark"
+	},
+	{
+      "name": "blue"
+	},
+	{
+      "name": "gold"
+	},
+	{
+      "name": "green"
+	},
+	{
+      "name": "grey"
+	},
+	{
+      "name": "high"
+	},
+	{
+      "name": "necromancy"
+	},
+	{
+      "name": "orange"
+	},
+	{
+      "name": "purple"
+	},
+	{
+      "name": "red"
+	},
+	{
+      "name": "white"
+	}
+  ]
+}

@@ -1,75 +1,75 @@
-# Elven Mage spells
+# Elven High Mage spells
 # see spellbook_catalog.yml for Wizard spells
 
 # see cantrip_catalog.yml for Elf cantrips
 # see sorc_catalog.yml for evil Elf spells
-# see highmage_catalog.yml for admeme Elf spells
+# see mage_catalog.yml for regular Elf mage spells
 
 # see bottom of file for paraphernalia (equipment)
 
 # Lesser Magic
 
 - type: listing
-  id: MageSpellFlashCook
+  id: MageSpellFlashCookHigh
   name: mage-spell-flash-cook-name
   description: mage-spell-flash-cook-description
   productAction: ActionMageSpellFlashCook
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellLesser
+  - MageSpellLesserHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellTasteOfFire
+  id: MageSpellTasteOfFireHigh
   name: mage-spell-taste-of-fire-name
   description: mage-spell-taste-of-fire-description
   productAction: ActionMageSpellTasteOfFire
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellLesser
+  - MageSpellLesserHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellSpringBloom
+  id: MageSpellSpringBloomHigh
   name: mage-spell-spring-bloom-name
   description: mage-spell-spring-bloom-description
   productAction: ActionMageSpellSpringBloom
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellLesser
+  - MageSpellLesserHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellWalkBetweenWorlds
+  id: MageSpellWalkBetweenWorldsHigh
   name: mage-spell-walk-between-worlds-name
   description: mage-spell-walk-between-worlds-description
   productAction: ActionMageSpellWalkBetweenWorlds
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellLesser
+  - MageSpellLesserHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellCounterspell
+  id: MageSpellCounterspellHigh
   name: mage-spell-counterspell-name
   description: mage-spell-counterspell-description
   productAction: ActionMageSpellCounterspell
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellLesser
+  - MageSpellLesserHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -77,79 +77,159 @@
 # Blue Magic
 
 - type: listing
-  id: MageSpellComet
+  id: MageSpellCometHigh
   name: mage-spell-comet-name
   description: mage-spell-comet-description
   productAction: ActionMageSpellComet
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellBlue
+  - MageSpellBlueHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellChainLightning
+  id: MageSpellChainLightningHigh
   name: mage-spell-chain-lightning-name
   description: mage-spell-chain-lightning-description
   productAction: ActionMageSpellChainLightning
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellBlue
+  - MageSpellBlueHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellPremonition
+  id: MageSpellPremonitionHigh
   name: mage-spell-premonition-name
   description: mage-spell-premonition-description
   productAction: ActionMageSpellPremonition
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellBlue
+  - MageSpellBlueHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellLightningBolt
+  id: MageSpellLightningBoltHigh
   name: mage-spell-lightning-bolt-name
   description: mage-spell-lightning-bolt-description
   productAction: ActionMageSpellLightningBolt
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellBlue
+  - MageSpellBlueHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellGreaterPremonition
+  id: MageSpellGreaterPremonitionHigh
   name: mage-spell-greater-premonition-name
   description: mage-spell-greater-premonition-description
   productAction: ActionMageSpellGreaterPremonition
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellBlue
+  - MageSpellBlueHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellFindingDivination
+  id: MageSpellFindingDivinationHigh
   name: mage-spell-finding-divination-name
   description: mage-spell-finding-divination-description
   productAction: ActionMageSpellFindingDivination
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellBlue
+  - MageSpellBlueHigh
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# Black Magic
+
+- type: listing
+  id: MageSpellPetrifyHigh
+  name: mage-spell-petrify-name
+  description: mage-spell-petrify-description
+  productAction: ActionMageSpellPetrify
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellBlackHigh
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MageSpellWordOfPainHigh
+  name: mage-spell-word-of-pain-name
+  description: mage-spell-word-of-pain-description
+  productAction: ActionMageSpellWordOfPain
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellBlackHigh
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MageSpellDoomboltHigh
+  name: mage-spell-doombolt-name
+  description: mage-spell-doombolt-description
+  productAction: ActionMageSpellDoombolt
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellBlackHigh
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MageSpellSoulStealerHigh
+  name: mage-spell-soul-stealer-name
+  description: mage-spell-soul-stealer-description
+  productAction: ActionMageSpellSoulStealer
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellBlackHigh
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MageSpellLureOfChaosHigh
+  name: mage-spell-lure-of-chaos-name
+  description: mage-spell-lure-of-chaos-description
+  productAction: ActionMageSpellLureOfChaos
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellBlackHigh
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MageSpellSummonDaemonPackHigh
+  name: mage-spell-summon-daemon-pack-name
+  description: mage-spell-summon-daemon-pack-description
+  productAction: ActionMageSpellSummonDaemonPack
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellBlackHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -157,79 +237,79 @@
 # Red Magic
 
 - type: listing
-  id: MageSpellCauterize
+  id: MageSpellCauterizeHigh
   name: mage-spell-cauterize-name
   description: mage-spell-cauterize-description
   productAction: ActionMageSpellCauterize
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellRed
+  - MageSpellRedHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellConflagration
+  id: MageSpellConflagrationHigh
   name: mage-spell-conflagration-name
   description: mage-spell-conflagration-description
   productAction: ActionMageSpellConflagration
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellRed
+  - MageSpellRedHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellFieryBlast
+  id: MageSpellFieryBlastHigh
   name: mage-spell-fiery-blast-name
   description: mage-spell-fiery-blast-description
   productAction: ActionMageSpellFieryBlast
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellRed
+  - MageSpellRedHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellFlamingSword
+  id: MageSpellFlamingSwordHigh
   name: mage-spell-flaming-sword-name
   description: mage-spell-flaming-sword-description
   productAction: ActionMageSpellFlamingSword
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellRed
+  - MageSpellRedHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellAegis
+  id: MageSpellAegisHigh
   name: mage-spell-aegis-name
   description: mage-spell-aegis-description
   productAction: ActionMageSpellAegis
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellRed
+  - MageSpellRedHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellBoilingBlood
+  id: MageSpellBoilingBloodHigh
   name: mage-spell-boiling-blood-name
   description: mage-spell-boiling-blood-description
   productAction: ActionMageSpellBoilingBlood
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellRed
+  - MageSpellRedHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -237,66 +317,66 @@
 # Green Magic
 
 - type: listing
-  id: MageSpellMasterOfStone
+  id: MageSpellMasterOfStoneHigh
   name: mage-spell-master-of-stone-name
   description: mage-spell-master-of-stone-description
   productAction: ActionMageSpellMasterOfStone
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellGreen
+  - MageSpellGreenHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellFleshOfClay
+  id: MageSpellFleshOfClayHigh
   name: mage-spell-flesh-of-clay-name
   description: mage-spell-flesh-of-clay-description
   productAction: ActionMageSpellFleshOfClay
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellGreen
+  - MageSpellGreenHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellFatherOfThorns
+  id: MageSpellFatherOfThornsHigh
   name: mage-spell-father-of-thorns-name
   description: mage-spell-father-of-thorns-description
   productAction: ActionMageSpellFatherOfThorns
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellGreen
+  - MageSpellGreenHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellTreefriend
+  id: MageSpellTreefriendHigh
   name: mage-spell-treefriend-name
   description: mage-spell-treefriend-description
   productAction: ActionMageSpellTreefriend
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellGreen
+  - MageSpellGreenHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellEarthBlood
+  id: MageSpellEarthBloodHigh
   name: mage-spell-earth-blood-name
   description: mage-spell-earth-blood-description
   productAction: ActionMageSpellEarthBlood
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellGreen
+  - MageSpellGreenHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -304,79 +384,213 @@
 # Gold Magic
 
 - type: listing
-  id: MageSpellMalteseFalcon
+  id: MageSpellMalteseFalconHigh
   name: mage-spell-maltese-falcon-name
   description: mage-spell-maltese-falcon-description
   productAction: ActionMageSpellMalteseFalcon
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellGold
+  - MageSpellGoldHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellCurseOfRust
+  id: MageSpellCurseOfRustHigh
   name: mage-spell-curse-of-rust-name
   description: mage-spell-curse-of-rust-description
   productAction: ActionMageSpellCurseOfRust
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellGold
+  - MageSpellGoldHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellEnchantItem
+  id: MageSpellEnchantItemHigh
   name: mage-spell-enchant-item-name
   description: mage-spell-enchant-item-description
   productAction: ActionMageSpellEnchantItem
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellGold
+  - MageSpellGoldHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellSilverArrows
+  id: MageSpellSilverArrowsHigh
   name: mage-spell-silver-arrows-name
   description: mage-spell-silver-arrows-description
   productAction: ActionMageSpellSilverArrows
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellGold
+  - MageSpellGoldHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellFinalTransmutation
+  id: MageSpellFinalTransmutationHigh
   name: mage-spell-final-transmutation-name
   description: mage-spell-final-transmutation-description
   productAction: ActionMageSpellFinalTransmutation
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellGold
+  - MageSpellGoldHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
 
 - type: listing
-  id: MageSpellEnchantArmor
+  id: MageSpellEnchantArmorHigh
   name: mage-spell-enchant-armor-name
   description: mage-spell-enchant-armor-description
   productAction: ActionMageSpellEnchantArmor
   cost:
     WizCoin: 1 # TODO: balance
   categories:
-  - MageSpellGold
+  - MageSpellGoldHigh
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# White Magic (admin only)
+
+- type: listing
+  id: MageSpellApotheosis
+  name: mage-spell-apotheosis-name
+  description: mage-spell-apotheosis-description
+  productAction: ActionMageSpellApotheosis
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellWhite
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MageSpellSoulQuench
+  name: mage-spell-soul-quench-name
+  description: mage-spell-soul-quench-description
+  productAction: ActionMageSpellSoulQuench
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellWhite
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MageSpellUnmaking
+  name: mage-spell-unmaking-name
+  description: mage-spell-unmaking-description
+  productAction: ActionMageSpellUnmaking
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellWhite
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MageSpellRestoration
+  name: mage-spell-restoration-name
+  description: mage-spell-restoration-description
+  productAction: ActionMageSpellRestoration
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellWhite
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# Purple Magic
+
+- type: listing
+  id: MageSpellSkeletonizeHigh
+  name: mage-spell-skeletonize-name
+  description: mage-spell-skeletonize-description
+  productAction: ActionMageSpellSkeletonize
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellPurpleHigh
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MageSpellInvocationHigh
+  name: mage-spell-invocation-name
+  description: mage-spell-invocation-description
+  productAction: ActionMageSpellInvocation
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellPurpleHigh
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MageSpellRaiseServantHigh
+  name: mage-spell-raise-servant-name
+  description: mage-spell-raise-servant-description
+  productAction: ActionMageSpellRaiseServant
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellPurpleHigh
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MageSpellDanseMacabreHigh
+  name: mage-spell-danse-macabre-name
+  description: mage-spell-danse-macabre-description
+  productAction: ActionMageSpellDanseMacabre
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellPurpleHigh
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MageSpellHandOfDustHigh
+  name: mage-spell-hand-of-dust-name
+  description: mage-spell-hand-of-dust-description
+  productAction: ActionMageSpellHandOfDust
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellPurpleHigh
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: MageSpellGazeHigh
+  name: mage-spell-gaze-name
+  description: mage-spell-gaze-description
+  productAction: ActionMageSpellGaze
+  cost:
+    WizCoin: 1 # TODO: balance
+  categories:
+  - MageSpellPurpleHigh
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -384,66 +598,72 @@
 # Paraphernalia
 
 - type: listing
-  id: MageGearPowerstone
+  id: MageGearPowerstoneHigh
   name: mage-gear-powerstone-name
   description: mage-gear-powerstone-description
   productEntity: PowerstoneCase # needs a case because it leaks damage
   cost:
     WizCoin: 3
   categories:
-  - MageGear
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
+  - MageGearHigh
+
+# the same as a normal chunk of warpstone, but in a dark case, and slightly cheaper:
+- type: listing
+  id: MageGearDarkPowerstoneHigh
+  name: mage-gear-powerstone-name
+  description: mage-gear-powerstone-description
+  productEntity: PowerstoneCaseDark # needs a case because it leaks damage
+  cost:
+    WizCoin: 2
+  categories:
+  - MageGearHigh
 
 - type: listing
-  id: MageGearPowerstoneRed
+  id: MageGearPowerstoneRedHigh
   name: mage-gear-powerstone-red-name
   description: mage-gear-powerstone-red-description
   productEntity: PowerstoneRed
   cost:
     WizCoin: 1
   categories:
-  - MageGear
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
+  - MageGearHigh
 
 - type: listing
-  id: MageGearPowerstoneBlue
+  id: MageGearPowerstoneBlueHigh
   name: mage-gear-powerstone-blue-name
   description: mage-gear-powerstone-blue-description
   productEntity: PowerstoneBlue
   cost:
     WizCoin: 1
   categories:
-  - MageGear
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
+  - MageGearHigh
 
 - type: listing
-  id: MageGearPowerstoneGold
+  id: MageGearPowerstoneGoldHigh
   name: mage-gear-powerstone-gold-name
   description: mage-gear-powerstone-gold-description
   productEntity: PowerstoneGold
   cost:
     WizCoin: 1
   categories:
-  - MageGear
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
+  - MageGearHigh
 
 - type: listing
-  id: MageGearPowerstoneGreen
+  id: MageGearPowerstoneGreenHigh
   name: mage-gear-powerstone-green-name
   description: mage-gear-powerstone-green-description
   productEntity: PowerstoneGreen
   cost:
     WizCoin: 1
   categories:
-  - MageGear
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
+  - MageGearHigh
+
+- type: listing
+  id: MageGearPowerstonePurpleHigh
+  name: mage-gear-powerstone-purple-name
+  description: mage-gear-powerstone-purple-description
+  productEntity: PowerstoneCasePurple # needs a case because it leaks damage
+  cost:
+    WizCoin: 1
+  categories:
+  - MageGearHigh

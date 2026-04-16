@@ -13,7 +13,7 @@ mage-spell-walk-between-worlds-description = Step aside from the physical world,
 mage-spell-counterspell-name = Counterspell
 mage-spell-counterspell-description = Prevents the target from casting any spells for a short while, and breaks the strings animating any nearby objects.
 
-mage-spell-comet-name = The Comet of the Prophet
+mage-spell-comet-name = The Comet of Casandora
 mage-spell-comet-description = When meteors just aren't enough.
 
 mage-spell-chain-lightning-name = Chain Lightning
@@ -134,16 +134,16 @@ mage-gear-powerstone-name = Warpstone
 mage-gear-powerstone-description = A large chunk of radioactive magical slag in a glass carrying case. Permits the casting of non-Lesser spells. Handle with care.
 
 mage-gear-powerstone-red-name = Aqshy Powerstone
-mage-gear-powerstone-red-description = The pure essence of fire, frozen as a strange amorphous crystal. Permits the casting of Red Magic. Handle with care. Caution -- hot!
+mage-gear-powerstone-red-description = The pure essence of fire, frozen as a strange amorphous crystal. Permits the casting of Red Magic. Caution -- hot!
 
 mage-gear-powerstone-blue-name = Azyr Powerstone
-mage-gear-powerstone-blue-description = The pure essence of nature, frozen as a strange amorphous crystal. Permits the casting of Green Magic. Handle with care.
+mage-gear-powerstone-blue-description = The pure essence of nature, frozen as a strange amorphous crystal. Permits the casting of Green Magic.
 
 mage-gear-powerstone-gold-name = Chamon Powerstone
-mage-gear-powerstone-gold-description = The pure essence of alchemy, frozen as a strange amorphous crystal. Permits the casting of Gold Magic. Handle with care.
+mage-gear-powerstone-gold-description = The pure essence of alchemy, frozen as a strange amorphous crystal. Permits the casting of Gold Magic.
 
 mage-gear-powerstone-green-name = Ghyran Powerstone
-mage-gear-powerstone-green-description = The pure essence of life, frozen as a strange amorphous crystal. Permits the casting of Green Magic. Handle with care.
+mage-gear-powerstone-green-description = The pure essence of life, frozen as a strange amorphous crystal. Permits the casting of Green Magic.
 
 mage-gear-powerstone-purple-name = Shyish Powerstone
-mage-gear-powerstone-purple-description = The pure essence of death, frozen as a strange amorphous crystal. Permits the casting of Necromancy. Handle with care.
+mage-gear-powerstone-purple-description = A tainted shard of the essence of death, shot through with dark magic. Permits the casting of Necromancy. Handle with care.

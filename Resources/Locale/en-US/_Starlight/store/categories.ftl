@@ -17,6 +17,8 @@ store-ling-category-utility = Utility
 store-category-cantrips-standard = Standard Cantrips
 
 store-category-mage-gear = Paraphernalia
+store-category-mage-gear-dark = Dark Paraphernalia
+store-category-mage-gear-high = All Paraphernalia
 store-category-mage-spell-lesser = Lesser Magic
 store-category-mage-spell-red = Red Magic
 store-category-mage-spell-green = Green Magic

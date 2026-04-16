@@ -10,6 +10,7 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 45
     itemIconStyle: BigAction
@@ -35,6 +36,7 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 20
     itemIconStyle: BigAction
@@ -59,6 +61,7 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 30
     itemIconStyle: BigAction
@@ -83,6 +86,7 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 15
     itemIconStyle: BigAction
@@ -106,6 +110,7 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 45
     itemIconStyle: BigAction
@@ -130,6 +135,7 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5
     itemIconStyle: BigAction

@@ -170,46 +170,105 @@
 
 # Mage Spells
 
+# To my horror it seems that bad things happen when spells have multiple categories,
+# so extensive duplication was required - on the plus side, costs can be fine-tuned
+
 - type: storeCategory
   id: MageGear
   name: store-category-mage-gear
+  priority: 1
 
 - type: storeCategory
   id: MageGearDark
-  name: store-category-mage-gear
+  name: store-category-mage-gear-dark
+  priority: 1
 
 - type: storeCategory
   id: MageGearHigh
-  name: store-category-mage-gear
+  name: store-category-mage-gear-high
+  priority: 1
 
 - type: storeCategory
   id: MageSpellLesser
   name: store-category-mage-spell-lesser
+  priority: 2
+
+- type: storeCategory
+  id: MageSpellLesserDark
+  name: store-category-mage-spell-lesser
+  priority: 2
+
+- type: storeCategory
+  id: MageSpellLesserHigh
+  name: store-category-mage-spell-lesser
+  priority: 2
 
 - type: storeCategory
   id: MageSpellRed
   name: store-category-mage-spell-red
+  priority: 3
+
+- type: storeCategory
+  id: MageSpellRedDark
+  name: store-category-mage-spell-red
+  priority: 3
+
+- type: storeCategory
+  id: MageSpellRedHigh
+  name: store-category-mage-spell-red
+  priority: 3
 
 - type: storeCategory
   id: MageSpellBlue
   name: store-category-mage-spell-blue
+  priority: 3
+
+- type: storeCategory
+  id: MageSpellBlueHigh
+  name: store-category-mage-spell-blue
+  priority: 3
 
 - type: storeCategory
   id: MageSpellGold
   name: store-category-mage-spell-gold
+  priority: 3
+
+- type: storeCategory
+  id: MageSpellGoldHigh
+  name: store-category-mage-spell-gold
+  priority: 3
 
 - type: storeCategory
   id: MageSpellGreen
   name: store-category-mage-spell-green
+  priority: 3
+
+- type: storeCategory
+  id: MageSpellGreenHigh
+  name: store-category-mage-spell-green
+  priority: 3
 
 - type: storeCategory
   id: MageSpellWhite
   name: store-category-mage-spell-white
+  priority: 5
 
 - type: storeCategory
   id: MageSpellBlack
   name: store-category-mage-spell-black
+  priority: 4
+
+- type: storeCategory
+  id: MageSpellBlackHigh
+  name: store-category-mage-spell-black
+  priority: 4
 
 - type: storeCategory
   id: MageSpellPurple
   name: store-category-mage-spell-purple
+  priority: 3
+
+- type: storeCategory
+  id: MageSpellPurpleHigh
+  name: store-category-mage-spell-purple
+  priority: 3

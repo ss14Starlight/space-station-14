@@ -77,7 +77,12 @@
   - type: Store
     name: store-preset-name-mage
     categories:
-    - CantripsStandard
+    - MageGear
+    - MageSpellLesser
+    - MageSpellRed
+    - MageSpellBlue
+    - MageSpellGold
+    - MageSpellGreen
     currencyWhitelist:
     - WizCoin
 
@@ -88,7 +93,15 @@
   - type: Store
     name: store-preset-name-mage-high
     categories:
-    - CantripsStandard
+    - MageGearHigh
+    - MageSpellLesserHigh
+    - MageSpellRedHigh
+    - MageSpellBlueHigh
+    - MageSpellGoldHigh
+    - MageSpellGreenHigh
+    - MageSpellPurpleHigh
+    - MageSpellWhite
+    - MageSpellBlackHigh
     currencyWhitelist:
     - WizCoin
 
@@ -99,6 +112,10 @@
   - type: Store
     name: store-preset-name-mage-dark
     categories:
-    - CantripsStandard
+    - MageGearDark
+    - MageSpellLesserDark
+    - MageSpellRedDark
+    - MageSpellPurple
+    - MageSpellBlack
     currencyWhitelist:
     - WizCoin

@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "By Rhetorica for Starlight. PLACEHOLDER GRAPHICS, DO NOT MERGE",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "all"
+	},
+	{
+      "name": "all-benign"
+	},
+	{
+      "name": "all-malign"
+	},
+	{
+      "name": "blue"
+	},
+	{
+      "name": "gold"
+	},
+	{
+      "name": "green"
+	},
+	{
+      "name": "purple"
+	},
+	{
+      "name": "purple-malign"
+	},
+	{
+      "name": "red"
+	},
+	{
+	  "name": "inhand-left"
+	},
+	{
+	  "name": "inhand-right"
+	}
+  ]
+}

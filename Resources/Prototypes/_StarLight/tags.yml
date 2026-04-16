@@ -223,6 +223,9 @@
   id: Ghost
 
 - type: Tag
+  id: Grimoire # Signifies that an item is a valid source of lesser magic power for elves
+
+- type: Tag
   id: GygaxArmor
 
 - type: Tag

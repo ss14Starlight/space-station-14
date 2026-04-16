@@ -1,7 +1,7 @@
 # Luminous Orb
 
 - type: entity
-  name: Luminous Orb
+  name: luminous orb
   parent: BaseItem
   id: ElfLuminousOrb
   description: Destined to burn out and fade away.
@@ -60,10 +60,6 @@
       right:
       - state: inhand-right
         shader: unshaded
-  - type: PointLight
-    radius: 1
-    energy: 8
-    color: "#93F02E"
   - type: Unremoveable
   - type: SurgeryTool
     successRate: 1
@@ -74,6 +70,10 @@
   - type: Cautery
   - type: IgnitionSource
     ignited: true
+  - type: PointLight
+    radius: 3
+    energy: 8
+    color: "#93F02E"
   - type: TimedDespawn
     lifetime: 5
   - type: AlwaysHot
@@ -113,12 +113,12 @@
     emptySpriteName: icon-empty
   - type: ExaminableSolution
     solution: pen
+  - type: PointLight
+    radius: 2
+    energy: 8
+    color: "#00ff8c" # kelly green
   - type: TimedDespawn
     lifetime: 15 # Not stockpileable.
-  - type: PointLight
-    radius: 1
-    energy: 8
-    color: "#93F02E"
   - type: Injector
     solutionName: pen
     currentTransferAmount: null
@@ -211,12 +211,12 @@
     emptySpriteName: icon-empty
   - type: ExaminableSolution
     solution: pen
+  - type: PointLight
+    radius: 2
+    energy: 8
+    color: "#ff14a5" # hot pink
   - type: TimedDespawn
     lifetime: 15 # Not stockpileable.
-  - type: PointLight
-    radius: 1
-    energy: 8
-    color: "#93F02E"
   - type: Injector
     solutionName: pen
     currentTransferAmount: null

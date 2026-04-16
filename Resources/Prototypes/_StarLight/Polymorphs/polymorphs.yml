@@ -45,3 +45,18 @@
     forced: true
     inventory: None
     allowRepeatedMorphs: false
+
+# Slightly better than a Wizard Jaunt, but basically just cloned from Polymorphs/polymorph.yml
+- type: polymorph
+  id: WalkBetweenWorlds
+  configuration:
+    entity: EtherealJaunt
+    transferName: true
+    inventory: None
+    forced: true
+    revertOnDeath: true
+    revertOnCrit: true
+    allowRepeatedMorphs: false
+    polymorphSound: /Audio/Magic/ethereal_enter.ogg
+    exitPolymorphSound: /Audio/Magic/ethereal_exit.ogg
+    duration: 5 # TODO: tuning

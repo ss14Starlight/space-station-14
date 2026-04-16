@@ -22,6 +22,9 @@
       ownerOnly: true # your life isn't long enough to study these secrets, mortal
       balance:
         WizCoin: 2
+    - type: Tag
+      tags:
+      - Grimoire
 
 - type: entity
   parent: BookOfCantrips
@@ -34,11 +37,14 @@
       ownerOnly: false # For ease of debugging.
       balance:
         WizCoin: 99999
+    - type: Tag
+      tags:
+      - Grimoire
 
 - type: entity
   parent: [ BaseItem, StorePresetMageChromatic, BaseMagicalContraband ]
   id: BookOfChromaticMagic
-  name: chromatic grimoire
+  name: codex of the winds
   suffix: MAGE
   description: This ancient codex shudders slightly with the awesome power its letters contain. How many spells can you memorize before your mind collapses under their weight?
   components:
@@ -57,30 +63,42 @@
       ownerOnly: true
       balance:
         WizCoin: 12
+    - type: Tag
+      tags:
+      - Grimoire
 
 - type: entity
   parent: [ BaseItem, StorePresetMageHigh, BaseMagicalContraband ]
   id: BookOfHighMagic
   suffix: Admeme
-  name: codex of high magic
+  name: qhaysh encyclopedia
   description: The absolute pinnacle of arcane wisdom. The spells within are so magnificent that anyone could learn them. Even the foulest secrets are among its arsenal. It must never fall into the hands of outsiders.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Misc/books.rsi
       layers:
       - state: high
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
     - type: Store
       refundAllowed: false
       ownerOnly: false
       balance:
         WizCoin: 99999
+    - type: Tag
+      tags:
+      - Grimoire
 
 - type: entity
   parent: [ BaseItem, StorePresetMageDark, BaseMagicalContraband ]
   id: BookOfDarkMagic
-  suffix: Admeme
+  suffix: Sorc
   name: tome of darkness
-  description: Its inky black pages are penned in silver, and bound in the flesh of things of nightmare. To even the most callous and ambitious, it is an unpleasant but necessary evil.
+  description: Its inky black pages are penned in silver, and bound in the flesh of things of nightmare. To even the most callous and ambitious, it is an unpleasant burden.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Misc/books.rsi
@@ -88,8 +106,17 @@
       - state: dark-base
       - state: dark-glow
         shader: unshaded
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
     - type: Store
       refundAllowed: true
       ownerOnly: true
       balance:
         WizCoin: 12
+    - type: Tag
+      tags:
+      - Grimoire

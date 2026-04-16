@@ -1,0 +1,362 @@
+# Mages and Sorcerers need either a Rift or a Powerstone to cast magic.
+# If using a powerstone, it must be carried on one's person.
+
+- type: entity
+  name: portable magic focus
+  abstract: true
+  parent: [BaseItem, BaseMagicalContraband]
+  id: BaseMagicFocus
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    size: Small
+    layers:
+    - state: all
+      shader: unshaded
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    layers:
+    - state: all
+      shader: unshaded
+
+- type: entity
+  name: aethyric powerstone
+  abstract: true
+  parent: BaseMagicFocus
+  id: BasePowerstone
+  description: A bizarre fragment of frozen magic
+  components:
+  - type: PointLight
+    radius: 4
+    energy: 3
+    color: "#44FF00"
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/_Starlight/Magic/cantrip.ogg
+
+- type: entity
+  name: warpstone crystal
+  parent: BasePowerstone
+  id: Powerstone
+  description: A bizarre fragment of frozen magic - extremely dangerous!
+  components:
+  - type: PointLight
+    radius: 8 # light is brighter when case is broken
+    energy: 3
+    color: "#44FF00" # exclusively in slime green
+  - type: AmbientSound
+    range: 5
+    volume: -5
+    sound:
+      path: /Audio/_Starlight/Magic/power_rift.ogg
+  - type: StaticPrice
+    price: 10000 # NanoTrasen REALLY wants this
+  - type: RadiationSource
+    intensity: 7 # as hot as a broken nuclear reactor
+
+- type: entity
+  name: arcane focus
+  parent: BasePowerstone
+  id: PowerstoneCase
+  description: A bizarre fragment of frozen magic in a fragile case
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    size: Small
+    layers:
+    - state: all-benign
+      shader: unshaded
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    layers:
+    - state: all-benign
+      shader: unshaded
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Powerstone:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 5
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 0
+  - type: StaticPrice
+    price: 12000 # NanoTrasen wants this even more
+
+# Bad guys get a different case, for cheaper:
+
+- type: entity
+  name: arcane focus
+  parent: PowerstoneCase
+  id: PowerstoneCaseDark
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    size: Small
+    layers:
+    - state: all-malign
+      shader: unshaded
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    layers:
+    - state: all-malign
+      shader: unshaded
+
+- type: entity
+  abstract: true
+  parent: BasePowerstone
+  id: BasePowerstoneChromatic
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 0
+  - type: StaticPrice
+    price: 8000 # NanoTrasen wants this also, but not quite as much
+
+- type: entity
+  name: blue powerstone
+  parent: BasePowerstoneChromatic
+  id: PowerstoneBlue
+  description: A bizarre frozen chunk of Aethyric energy used to fuel celestial magic
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    size: Small
+    layers:
+    - state: blue
+      shader: unshaded
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    layers:
+    - state: blue
+      shader: unshaded
+  - type: PointLight
+    radius: 4
+    energy: 2
+    color: "#0044FF"
+
+- type: entity
+  name: gold powerstone
+  parent: BasePowerstoneChromatic
+  id: PowerstoneGold
+  description: A bizarre frozen chunk of Aethyric energy used to fuel alchemical magic
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    size: Small
+    layers:
+    - state: gold
+      shader: unshaded
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    layers:
+    - state: gold
+      shader: unshaded
+  - type: PointLight
+    radius: 4
+    energy: 2
+    color: "#FFEE00"
+
+- type: entity
+  name: green powerstone
+  parent: BasePowerstoneChromatic
+  id: PowerstoneGreen
+  description: A bizarre frozen chunk of Aethyric energy used to fuel vivid magic
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    size: Small
+    layers:
+    - state: green
+      shader: unshaded
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    layers:
+    - state: green
+      shader: unshaded
+  - type: PointLight
+    radius: 4
+    energy: 2
+    color: "#11FF33"
+
+- type: entity
+  name: purple powerstone
+  parent: BasePowerstoneChromatic
+  id: PowerstonePurple
+  description: A bizarre frozen chunk of eldritch energy used to fuel necromancy
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    size: Small
+    layers:
+    - state: purple
+      shader: unshaded
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    layers:
+    - state: purple
+      shader: unshaded
+  - type: PointLight
+    radius: 8
+    energy: 3
+    color: "#AA00FF"
+  - type: AmbientSound
+    range: 5
+    volume: -10
+    sound:
+      path: /Audio/Ambience/anomaly_scary.ogg
+  - type: RadiationSource
+    intensity: 5 # not quite as hot as a broken nuclear reactor
+
+- type: entity
+  name: red powerstone
+  parent: BasePowerstoneChromatic
+  id: PowerstoneRed
+  description: A bizarre fragment of Aethyric energy used to fuel fiery magic
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    size: Small
+    layers:
+    - state: red
+      shader: unshaded
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    layers:
+    - state: red
+      shader: unshaded
+  - type: IgnitionSource
+    ignited: true
+  - type: AlwaysHot
+
+- type: entity
+  name: necromantic focus
+  parent: PowerstoneCase
+  id: PowerstoneCasePurple
+  description: A bizarre fragment of frozen magic in a fragile case
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    size: Small
+    layers:
+    - state: purple-malign
+      shader: unshaded
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+  - type: Sprite
+    sprite: _Starlight/Objects/Magic/powerstone.rsi
+    layers:
+    - state: purple-malign
+      shader: unshaded
+  - type: PointLight
+    radius: 4
+    energy: 3
+    color: "#AA00FF"
+  - type: AmbientSound
+    range: 2
+    volume: -24
+    sound:
+      path: /Audio/Ambience/anomaly_scary.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PowerstonePurple:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 13000 # NanoTrasen wants this a fair bit because it's rarer

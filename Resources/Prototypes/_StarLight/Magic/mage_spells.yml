@@ -8,12 +8,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: red
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -30,12 +31,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: red
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -52,12 +54,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: green
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -74,16 +77,16 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: high
   - type: InstantAction
-    event: !type:SpawnItemInHandEvent
-      spawned: ElfLuminousOrb
-      requiresFreeHand: false
+    event: !type:PolymorphActionEvent
+      protoId: WalkBetweenWorlds # see _StarLight/Polymorphs/polymorphs.yml
   - type: SpeakOnAction
     sentence: action-speech-mage-walk-between-worlds
     whisper: true
@@ -96,12 +99,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: generic
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -115,17 +119,18 @@
 - type: entity
   parent: BaseAction
   id: ActionMageSpellComet
-  name: Comet
+  name: Comet of Casandora
   description: When meteors just aren't enough.
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: blue
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -142,12 +147,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: blue
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -164,12 +170,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: blue
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -181,17 +188,18 @@
 - type: entity
   parent: BaseAction
   id: ActionMageSpellLightningBolt
-  name: Lightning Bolt
+  name: Uranon's Thunder Bolt
   description: Puts the fear of the Gods into a target.
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: blue
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -208,12 +216,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: blue
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -230,12 +239,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: blue
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -254,12 +264,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: dark
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -276,12 +287,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: dark
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -298,12 +310,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: dark
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -320,12 +333,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: dark
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -342,12 +356,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: dark
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -364,12 +379,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: dark
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -388,12 +404,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: red
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -410,12 +427,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: red
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -432,12 +450,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: red
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -454,12 +473,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: red
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -476,12 +496,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: red
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -498,12 +519,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: red
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -522,12 +544,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: green
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -544,12 +567,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: green
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -566,12 +590,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: green
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -588,12 +613,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: green
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -610,12 +636,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: green
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -634,12 +661,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: gold
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -656,12 +684,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: gold
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -678,12 +707,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: gold
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -700,12 +730,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: gold
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -722,12 +753,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: gold
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -744,12 +776,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: gold
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -758,7 +791,7 @@
     sentence: action-speech-mage-enchant-armor
     whisper: true
 
-# White Magic (admin only)
+# High Magic (admin only)
 
 - type: entity
   parent: BaseAction
@@ -768,12 +801,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: high
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -790,12 +824,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: high
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -812,12 +847,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: high
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -834,12 +870,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: green
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -848,7 +885,7 @@
     sentence: action-speech-mage-restoration
     whisper: true
 
-# Purple Magic
+# Necromancy & Purple Magic
 
 - type: entity
   parent: BaseAction
@@ -858,12 +895,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: necromancy
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -880,12 +918,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: necromancy
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -902,12 +941,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: necromancy
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -924,12 +964,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: necromancy
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -946,12 +987,13 @@
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: necromancy
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
@@ -963,17 +1005,18 @@
 - type: entity
   parent: BaseAction
   id: ActionMageSpellGaze
-  name: Gaze
+  name: Gaze of the Great Necromancer
   description: Withers the flesh of one upon whom your eyesight falls.
   components:
   - type: Magic
     requiresClothes: false
+    requiresGrimoire: true
   - type: Action
     useDelay: 5 # TODO: balance
     itemIconStyle: BigAction
     icon:
-      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
-      state: icon
+      sprite: _Starlight/Interface/Actions/mage.rsi
+      state: necromancy
   - type: InstantAction
     event: !type:SpawnItemInHandEvent
       spawned: ElfLuminousOrb
