@@ -78,6 +78,7 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly IGameTiming Timing = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly GasTankSystem _gasTank = default!;
+    [Dependency] private readonly SharedWiresSystem _wires = default!;
 #endregion Starlight
 
 
@@ -443,14 +444,26 @@ public sealed partial class MechSystem : SharedMechSystem
         RemoveEquipment(uid, equip, component);
     }
 
+    #region Starlight
     private void OnMaintenanceMessage(EntityUid uid, MechComponent component, MechMaintenanceUiMessage args)
     {
-        component.MaintenanceMode = args.Toggle;
+        TryToggleMaintenanceMode(uid, component, args.Toggle);
 
         Dirty(uid, component); // Starlight-edit: Update Maintenance State
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
     }
+
+    private void TryToggleMaintenanceMode(EntityUid uid, MechComponent component, bool toggle)
+    {
+        if (TryComp<WiresPanelComponent>(uid, out var panelComp))
+        {
+            _wires.TogglePanel(uid, panelComp, toggle, uid);
+        }
+        component.MaintenanceMode = toggle;
+        UpdateUserInterface(uid, component);
+    }
+    #endregion
 
     private void OnOpenUi(EntityUid uid, MechComponent component, MechOpenUiEvent args)
     {
@@ -544,6 +557,7 @@ public sealed partial class MechSystem : SharedMechSystem
                 _hands.DoDrop((args.Args.User, handsComponent), hand);
 
         TryInsert(uid, args.Args.User, component);
+        _ui.CloseUis(uid); // Starlight - close any UIs upon mech entry
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
 
         _factionSystem.Up(args.Args.User, uid);
