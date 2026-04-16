@@ -215,3 +215,4 @@
     sentence: action-speech-spell-summon-magic
     tts: action-speech-spell-summon-magic-tts # Starlight
     modifier: Spell # Starlight
+  - type: EorgPreventAction # Starlight

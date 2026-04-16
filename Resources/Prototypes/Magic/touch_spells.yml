@@ -14,6 +14,7 @@
       components:
       - MobState
     canTargetSelf: false
+  - type: EorgPreventAction # Starlight
 
 - type: entity
   abstract: true
