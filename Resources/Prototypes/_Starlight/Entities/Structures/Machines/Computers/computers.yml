@@ -521,7 +521,7 @@
       canBroadcast: false
       canShuttle: false
     - type: SecureCommandTerminalConsole
-      enabled: false
+      authTerminal: true
     - type: Computer
       board: EngineeringCommsComputerCircuitboard
     - type: PointLight
@@ -559,7 +559,7 @@
       canBroadcast: false
       canShuttle: false
     - type: SecureCommandTerminalConsole
-      enabled: false
+      authTerminal: true
     - type: Computer
       board: MedicalCommsComputerCircuitboard
     - type: PointLight
@@ -597,7 +597,7 @@
       canBroadcast: false
       canShuttle: false
     - type: SecureCommandTerminalConsole
-      enabled: false
+      authTerminal: true
     - type: Computer
       board: ScienceCommsComputerCircuitboard
     - type: PointLight
@@ -638,7 +638,7 @@
       canBroadcast: false
       canShuttle: false
     - type: SecureCommandTerminalConsole
-      enabled: false
+      authTerminal: true
     - type: Computer
       board: SecurityCommsComputerCircuitboard
     - type: PointLight
@@ -676,7 +676,7 @@
       canBroadcast: false
       canShuttle: false
     - type: SecureCommandTerminalConsole
-      enabled: false
+      authTerminal: true
     - type: Computer
       board: ServiceCommsComputerCircuitboard
     - type: PointLight
@@ -714,7 +714,7 @@
       canBroadcast: false
       canShuttle: false
     - type: SecureCommandTerminalConsole
-      enabled: false
+      authTerminal: true
     - type: Computer
       board: CargoCommsComputerCircuitboard
     - type: PointLight
@@ -752,7 +752,7 @@
       canBroadcast: false
       canShuttle: false
     - type: SecureCommandTerminalConsole
-      enabled: false
+      authTerminal: true
     - type: Computer
       board: LawCommsComputerCircuitboard
     - type: PointLight
