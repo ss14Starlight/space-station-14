@@ -74,12 +74,12 @@
         - id: DerelictJanitorCyborgSpawn
         - id: DerelictMedicalCyborgSpawn
         - id: DerelictMiningCyborgSpawn
-        - id: DerelictBorgiSpawn # Starlight
-        - id: DerelictPurrfusCyborgSpawn #Starlight
+        - id: DerelictPurrfusCyborgSpawn # Starlight
     - !type:GroupSelector # Other Borgs
       weight: 15
       children:
-        - id: DerelictSyndicateAssaultCyborgSpawn
+        - id: DerelictBorgiSpawn # Starlight
+   #     - id: DerelictSyndicateAssaultCyborgSpawn # Starlight - no more derelict Syndicate borgs
 
 - type: entity
   id: BaseStationEvent
@@ -881,7 +881,7 @@
 
 - type: entity
   parent: BaseGameRule
-  id: DerelictSyndicateAssaultCyborgSpawn
+  id: DerelictSyndicateAssaultCyborgSpawn # Starlight - admeme only, not rollable
   components:
   - type: StationEvent
     globalAnnouncement: false # Starlight
