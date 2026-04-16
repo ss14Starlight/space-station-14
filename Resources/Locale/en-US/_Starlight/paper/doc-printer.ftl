@@ -1242,7 +1242,7 @@ doc-text-printer-enemy-of-corporation-designation =
     ────────────────────────────────────────
     ⠀⠀             [bold]ENEMY OF CORPORATION DESIGNATION FORM[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Name of Enemy Combatant:  [form]
