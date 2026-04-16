@@ -20,7 +20,6 @@
           enum.ToggleableVisuals.Layer:
             True: { visible: true }
             False: { visible: false }
-    
     - type: ItemToggle
       onActivate: false
       onUse: false
@@ -62,3 +61,4 @@
       interfaces:
         enum.CommunicationsConsoleUiKey.Key:
           type: CommunicationsConsoleBoundUserInterface
+          
