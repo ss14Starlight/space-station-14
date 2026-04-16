@@ -1203,4 +1203,67 @@ Entries:
   id: 404299
   time: '2026-04-13T12:39:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4096
+- author: Way
+  changes:
+  - message: Added new steel beam decals for mappers.
+    type: Add
+  id: 404300
+  time: '2026-04-13T18:49:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4113
+- author: mikeysaurus
+  changes:
+  - message: Adds the AdmiMax vendor, containing everything a CC official needs to respond to faxes.
+    type: Add
+  id: 404301
+  time: '2026-04-13T20:15:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4151
+- author: JMxm5
+  changes:
+  - message: Added buttons to the air alarm Sensors tab that allow enabling/disabling all threshold groups of a device at once.
+    type: Add
+  id: 404302
+  time: '2026-04-13T20:24:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4124
+- author: DocMoth
+  changes:
+  - message: changed a single letter.
+    type: Fix
+  id: 404303
+  time: '2026-04-15T09:52:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4159
+- author: redmushie
+  changes:
+  - message: Polymorphing before or after EOR no longer bypasses EORG prevention measures.
+    type: Fix
+  id: 404304
+  time: '2026-04-15T10:29:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4129
+- author: CYBERSTARLIGHT TEAM
+  changes:
+  - message: Added a cyberspace effect.
+    type: Add
+  id: 404305
+  time: '2026-04-15T15:56:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4169
+- author: CYBERSTARLIGHT TEAM
+  changes:
+  - message: The ai overlay no longer covers cyberspace objects.
+    type: Tweak
+  id: 404306
+  time: '2026-04-15T15:56:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4169
+- author: CYBERSTARLIGHT TEAM
+  changes:
+  - message: The abductor AI eye no longer fills the screen with black when it steps even slightly into space.
+    type: Fix
+  id: 404307
+  time: '2026-04-15T15:56:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4169
+- author: Conflee
+  changes:
+  - message: Added Roleplay Guides to the Guidebook, to help with onboarding new players, educating them on basics of roleplaying and RP etiquette, and touching on some more advanced rp topics that should be useful for roleplayers of all skill levels to know. To be expanded upon in the future.
+    type: Add
+  id: 404308
+  time: '2026-04-15T16:28:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4167
 Order: -1

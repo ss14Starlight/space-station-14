@@ -26,7 +26,7 @@
   abstract: true
   components:
   - type: Inventory
-    speciesId: Avali
+    speciesId: avali
     displacements:
       jumpsuit:
         sizeMaps:
