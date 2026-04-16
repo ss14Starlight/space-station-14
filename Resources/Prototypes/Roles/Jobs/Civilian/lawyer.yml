@@ -1,7 +1,7 @@
 - type: job
   id: Lawyer
   name: job-name-lawyer
-  description: job-description-lawyer
+  description: job-description-lawyer-sl # Starlight, new desc.
   playTimeTracker: JobLawyer
   requirements:
     - !type:RoleTimeRequirement # Starlight start
