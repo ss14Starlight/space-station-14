@@ -5,7 +5,7 @@ namespace Content.Client._Starlight.EndOfRoundGriefing;
 /// <summary>
 /// <inheritdoc/>
 /// </summary>
-public sealed class PreventEorgSystem : SharedPreventEorgSystem
+public sealed class EorgPreventionSystem : SharedEorgPreventionSystem
 {
     public override void Initialize()
     {

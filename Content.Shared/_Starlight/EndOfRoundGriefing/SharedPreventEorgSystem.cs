@@ -12,7 +12,7 @@ namespace Content.Shared._Starlight.EndOfRoundGriefing;
 /// <summary>
 /// Intercepts various events and checks if they can be done.
 /// </summary>
-public abstract class SharedPreventEorgSystem : EntitySystem
+public abstract class SharedEorgPreventionSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
