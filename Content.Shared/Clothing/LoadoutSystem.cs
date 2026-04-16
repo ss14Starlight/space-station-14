@@ -29,7 +29,7 @@ public sealed class LoadoutSystem : EntitySystem
         base.Initialize();
 
         // Wait until the character has all their organs before we give them their loadout
-        SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedBodySystem)]);
+        SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedBodySystem)]); // Starlight
     }
 
     public static string GetJobPrototype(string? loadout)

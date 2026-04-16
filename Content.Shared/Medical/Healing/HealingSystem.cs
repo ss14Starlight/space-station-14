@@ -1,6 +1,5 @@
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
 using System.Linq;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -25,6 +24,7 @@ using Robust.Shared.Audio.Systems;
 using Content.Shared._FarHorizons.Medical.ConditionalHealing;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
+using Content.Shared._Starlight.Medical.Body.Systems;
 
 namespace Content.Shared.Medical.Healing;
 

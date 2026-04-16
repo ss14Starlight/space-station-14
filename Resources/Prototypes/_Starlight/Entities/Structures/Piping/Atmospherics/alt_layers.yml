@@ -424,9 +424,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: _Starlight/Structures/Piping/Atmospherics/inlinegasfilter.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt1.rsi
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasFilter
@@ -440,12 +441,47 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
+    drawdepth: FloorObjects
     sprite: _Starlight/Structures/Piping/Atmospherics/inlinegasfilter.rsi
     layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
+      - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt2.rsi
         state: pipeTrinaryConnectors
         map: [ "enum.PipeVisualLayers.Pipe" ]
       - state: gasFilter
         map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
   - type: Construction
     node: inline_filterAlt2
+
+- type: entity
+  parent: [GasPipeLayerAlt3, GasFilterInline]
+  id: GasFilterInlineAlt3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: _Starlight/Structures/Piping/Atmospherics/inlinegasfilter.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt3.rsi
+      state: pipeTrinaryConnectors
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: gasFilter
+      map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Construction
+    node: inline_filterAlt3
+
+- type: entity
+  parent: [GasPipeLayerAlt4, GasFilterInline]
+  id: GasFilterInlineAlt4
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: _Starlight/Structures/Piping/Atmospherics/inlinegasfilter.rsi
+    layers:
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe_alt4.rsi
+      state: pipeTrinaryConnectors
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: gasFilter
+      map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+  - type: Construction
+    node: inline_filterAlt4

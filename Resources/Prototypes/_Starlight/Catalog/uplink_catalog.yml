@@ -760,6 +760,24 @@
   categories:
     - UplinkWearables
 
+- type: listing
+  id: UplinkSyndicateDisruptor
+  name: uplink-disruptor-name
+  description: uplink-disruptor-desc
+  productEntity: SyndicateDisruptor
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
 # Devices
 
 - type: listing

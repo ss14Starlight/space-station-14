@@ -61,6 +61,12 @@
     - Marrvelous
     - Empath
     - RedLightGreenLight
+    - ColdBlooded
+    - DejaVu
+    - ImpendingDoom
+    - Rebel
+    - AmateurPhotographer
+    - Insecure
 
 
 # You are extremely possessive of your property. Refuse to relinquish it, and if it is misplaced or stolen, it must be retrieved at all costs.
@@ -146,7 +152,7 @@
   conflicts:
     - Atheist
 
-# You are too important to speak to the rabble. You will only talk to Command.
+# You are too important to speak to the rabble. You will only talk to Command and other Thaven.
 - type: thavenMood
   id: OnlySpeakToCommand
   moodName: thaven-mood-only-speak-to-command-name
@@ -361,6 +367,7 @@
     speechType: SpeechRestrictions
   conflicts:
     - MuteSympathizer
+    - Caveman
 
 # The color [COLOR] is the only acceptable color for decorations. Endeavor to make your environment this color where possible.
 #- type: thavenMood
@@ -517,3 +524,41 @@
   conflicts:
     - BlindSympathizer
     - MadHatter
+
+# Cold-blooded: You always feel cold.
+- type: thavenMood
+  id: ColdBlooded
+  moodName: thaven-mood-cold-blooded-name
+  moodDesc: thaven-mood-cold-blooded-desc
+
+# Déjà vu: You feel like all of today has happened before.
+- type: thavenMood
+  id: DejaVu
+  moodName: thaven-mood-deja-vu-name
+  moodDesc: thaven-mood-deja-vu-desc
+
+# Impending doom: Something bad is going to happen and you know exactly where and when.
+- type: thavenMood
+  id: ImpendingDoom
+  moodName: thaven-mood-impending-doom-name
+  moodDesc: thaven-mood-impending-doom-desc
+
+# Rebel: You feel the need to speak ill of those in charge.
+- type: thavenMood
+  id: Rebel
+  moodName: thaven-mood-rebel-name
+  moodDesc: thaven-mood-rebel-desc
+
+# Amateur Photographer: You feel the need to use flashes to take pictures of everyone on station.
+- type: thavenMood
+  id: AmateurPhotographer
+  moodName: thaven-mood-amateur-photographer-name
+  moodDesc: thaven-mood-amateur-photographer-desc
+
+# Insecure: You care deeply what people think about you, particularly about your $appearance.
+- type: thavenMood
+  id: Insecure
+  moodName: thaven-mood-insecure-name
+  moodDesc: thaven-mood-insecure-desc
+  moodVars:
+    appearance: AppearanceAspects
