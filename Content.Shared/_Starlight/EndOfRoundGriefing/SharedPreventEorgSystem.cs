@@ -57,13 +57,14 @@ public abstract class SharedPreventEorgSystem : EntitySystem
         if (!args.User.HasValue || args.Cancelled) return;
         if (!HasComp<PreventEorgComponent>(args.User)) return;
 
-        _popup.PopupPredicted(Loc.GetString("eorg-action"), uid, uid, PopupType.LargeCaution);
+        _popup.PopupPredicted(Loc.GetString("eorg-action"), args.User.Value, args.User.Value, PopupType.LargeCaution);
         args.Cancelled = true;
     }
 
     private void OnBeforeInteractHand(EntityUid uid, EorgPreventHandInteractComponent component, ref BeforeInteractHandEvent args)
     {
         if (!IsEnabled || !HasRoundEnded) return;
+        if (args.Handled) return;
         if (!HasComp<PreventEorgComponent>(uid)) return;
 
         _popup.PopupPredicted(Loc.GetString("eorg-action"), uid, uid, PopupType.LargeCaution);
@@ -73,6 +74,7 @@ public abstract class SharedPreventEorgSystem : EntitySystem
     private void OnBeforeRangedInteract(EntityUid uid, EorgPreventRangedInteractComponent component, ref BeforeRangedInteractEvent args)
     {
         if (!IsEnabled || !HasRoundEnded) return;
+        if (args.Handled) return;
         if (!HasComp<PreventEorgComponent>(args.User)) return;
 
         _popup.PopupPredicted(Loc.GetString("eorg-action"), uid, uid, PopupType.LargeCaution);
@@ -86,6 +88,7 @@ public abstract class SharedPreventEorgSystem : EntitySystem
     private void OnValidateAction(EntityUid uid, EorgPreventActionComponent component, ref ActionValidateEvent args)
     {
         if (!IsEnabled || !HasRoundEnded) return;
+        if (args.Invalid) return;
         if (!HasComp<PreventEorgComponent>(args.User))  return;
 
         _popup.PopupPredicted(Loc.GetString("eorg-action"), args.User, args.User, PopupType.LargeCaution);
