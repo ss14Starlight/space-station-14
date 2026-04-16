@@ -1420,4 +1420,18 @@ Entries:
   id: 404330
   time: '2026-04-16T12:57:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4178
+- author: redmushie
+  changes:
+  - message: CentComm glasses now also have diagnostic HUD features, such as seeing cyborg and IPC health.
+    type: Add
+  id: 404331
+  time: '2026-04-16T13:19:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4172
+- author: redmushie
+  changes:
+  - message: CentComm jamjar now behave identically to other CC glasses.
+    type: Fix
+  id: 404332
+  time: '2026-04-16T13:19:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4172
 Order: -1
