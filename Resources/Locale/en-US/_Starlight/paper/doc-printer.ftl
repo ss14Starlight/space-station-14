@@ -1105,7 +1105,7 @@ doc-text-printer-order-recognizing-reasonableness-creature =
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀[bold]DECLARATION OF SENTIENCE[/bold]
+                                ⠀[bold]DECLARATION OF SENTIENCE[/bold]
     ────────────────────────────────────────
     Date and Time: [form]
     Document Compiler: [signature]
