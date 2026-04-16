@@ -1315,4 +1315,102 @@ Entries:
   id: 404315
   time: '2026-04-16T12:03:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4173
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Added a new gamemode, replacing the base Wizard Gamemode, Wizard Duel! A ferocious duel swirling with conspiracies, schemes, and magic!? Facing ever-stronger foes, what fate awaits the Space Wizards Federation?
+    type: Add
+  id: 404316
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: New Antagonist, Wizard Duelist. It's distinct from Wizard, since Wizard will get loadout options in the future.
+    type: Add
+  id: 404317
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: 'Ported upstream PR #43429, adding updated in-hand wizard outfit sprites.'
+    type: Add
+  id: 404318
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Wizards now spawn with a unique backpack.
+    type: Add
+  id: 404319
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Wizards now have their own unique personal AIs, with access to all channels, and universal, just like them. Wow, isn't that helpful?
+    type: Add
+  id: 404320
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Added a new radio channel available to Wizards and their pAIs; the Winds of Magic.
+    type: Add
+  id: 404321
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: 'Added 2 new Encryption Keys: The Winds of Magic and the Wizard Master Encryption keys.'
+    type: Add
+  id: 404322
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: The Winds of Magic encryption key now spawns on the Wizard's shuttle.
+    type: Add
+  id: 404323
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Added 5 NEW Wizard Outfits, Yellow, Green, Purple, Orange, and Peach!
+    type: Add
+  id: 404324
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Reshaded the Blue and Red Wizard Outfits.
+    type: Tweak
+  id: 404325
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Wizard shuttles now spawn with a Wizard pAI instead of a normal one.
+    type: Tweak
+  id: 404326
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Mid-round Wizards now scale with player ratio. Up to 3 can show up. Beta will never get more than 1.
+    type: Tweak
+  id: 404327
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Alpha Traitor Secret Weight -0.01, Wizard Duel Secret Weight +0.01, becoming 0.05 since it inherited the old Wizard mode's 0.04.
+    type: Tweak
+  id: 404328
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
+- author: wonderfulnewworld, Nyxilath, ThatGuyUSA
+  changes:
+  - message: Mid-round Wizards can now use their equipment.
+    type: Fix
+  id: 404329
+  time: '2026-04-16T12:26:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4090
 Order: -1
