@@ -11,7 +11,6 @@
     - type: Speech
     - type: NCTTerminal
     - type: WallMount
-      arc: 360
     - type: Physics
       canCollide: false
     - type: Sprite

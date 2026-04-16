@@ -79,7 +79,9 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
 
     private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
     {
-        var stationComp = EnsureComp<SecureCommandTerminalStationComponent>(ev.Station);
+        if (!TryComp<SecureCommandTerminalStationComponent>(ev.Station, out var stationComp))
+            return;
+
         stationComp.AlertLevelSetAt = _timing.CurTime;
         UpdateAllConsolesForStation(ev.Station);
     }
@@ -204,7 +206,8 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             return;
         }
 
-        var stationComp = EnsureComp<SecureCommandTerminalStationComponent>(stationUid.Value);
+        if (!TryComp<SecureCommandTerminalStationComponent>(stationUid.Value, out var stationComp))
+            return;
 
         if (comp.AuthTerminal)
         {

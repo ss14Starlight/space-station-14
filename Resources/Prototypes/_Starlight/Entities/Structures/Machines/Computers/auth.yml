@@ -6,12 +6,12 @@
   description: This device is used to approve/deny station functions, which require more than one ID card to authenticate.
   components:
     - type: WallMount
-      arc: 360
     - type: Physics
       canCollide: false
     - type: Sprite
       drawdepth: SmallObjects
       sprite: _Starlight/Structures/Machines/auth.rsi
+      offset: "0.0,-0.2"
       layers:
         - state: base
         - state: light
