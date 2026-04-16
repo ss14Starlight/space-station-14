@@ -452,8 +452,8 @@ public sealed class PaperSystem : EntitySystem
 
     private void OnDateTimeRequest(Entity<PaperComponent> entity, ref PaperDateTimeRequestMessage args)
     {
-        var date = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
-        var shiftTime = _entitySystem.GetEntitySystem<TimeSystem>().GetShiftDuration();
+        var date = _timeSystem.GetDate();
+        var shiftTime = _timeSystem.GetShiftDuration();
 
         // shift time is more helpful than the date for rounds, date is still included for the flavor
         var formatted = $"{date} // {(int)shiftTime.TotalHours:D2}:{shiftTime.Minutes:D2} Shift Time";
