@@ -77,7 +77,7 @@ public abstract class SharedEorgPreventionSystem : EntitySystem
         if (args.Handled) return;
         if (!HasComp<PreventEorgComponent>(args.User)) return;
 
-        _popup.PopupPredicted(Loc.GetString("eorg-action"), uid, uid, PopupType.LargeCaution);
+        _popup.PopupPredicted(Loc.GetString("eorg-action"), args.User, args.User, PopupType.LargeCaution);
         args.Handled = true;
     }
 
