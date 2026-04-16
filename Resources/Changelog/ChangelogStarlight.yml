@@ -1266,4 +1266,25 @@ Entries:
   id: 404308
   time: '2026-04-15T16:28:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4167
+- author: Caws
+  changes:
+  - message: (Orwell) Two banana cream pies to Clown's room and a banana phone.
+    type: Add
+  id: 404309
+  time: '2026-04-16T05:34:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4121
+- author: Caws
+  changes:
+  - message: (Orwell) Removed Toolbox Altar from Security maints, vampires rejoice.
+    type: Remove
+  id: 404310
+  time: '2026-04-16T05:34:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4121
+- author: Caws
+  changes:
+  - message: (Orwell) Removed Bananium altar from Clown room, vampires rejoice.
+    type: Remove
+  id: 404311
+  time: '2026-04-16T05:34:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4121
 Order: -1
