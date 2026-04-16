@@ -14,7 +14,6 @@
       components:
       - MobState
     canTargetSelf: false
-  - type: EorgPreventAction # Starlight
 
 - type: entity
   abstract: true
@@ -77,6 +76,7 @@
     modifier: Spell
   - type: Magic
     requiresClothes: true
+  - type: EorgPreventAction # Starlight
 
 - type: entity
   parent: BaseSmiteAction
