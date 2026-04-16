@@ -34,8 +34,8 @@
       gun_magazine:
         name: Magazine
         startingItem: LightRifleHeavyMagazineSP
-        insertSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        ejectSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
+        insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
         whitelist:
           tags:
             - LightRifleHeavy

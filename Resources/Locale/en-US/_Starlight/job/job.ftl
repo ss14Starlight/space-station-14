@@ -24,11 +24,11 @@ job-title-tsf-MARSOC = MARSOC Marine
 
 job-name-blackstar = Blackstar Mercenary
 
-job-name-medtak-dispatcher = MedTak dispatcher
-job-name-medtak-leader = MedTak team leader
-job-name-medtak-medic = MedTak medic
-job-name-medtak-pilot = MedTak pilot
-job-name-medtak-security = MedTak security
+job-name-medtak-dispatcher = MedTak Dispatcher
+job-name-medtak-leader = MedTak Team Leader
+job-name-medtak-medic = MedTak Medic
+job-name-medtak-pilot = MedTak Pilot
+job-name-medtak-security = MedTak Security
 
 job-greet-information-rules = {$jobRules}
 

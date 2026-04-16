@@ -613,7 +613,7 @@
 - type: entity
   parent: IDCardStandard
   id: MedTakTeamLeadIDCard
-  name: Medtak team leader ID card
+  name: MedTak team leader ID card
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -632,7 +632,7 @@
 - type: entity
   parent: IDCardStandard
   id: MedTakDispatcherIDCard
-  name: Medtak dispatcher ID card
+  name: MedTak dispatcher ID card
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Misc/id_cards.rsi
