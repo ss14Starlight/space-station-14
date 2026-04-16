@@ -296,10 +296,6 @@ public sealed class DantalionSystem : EntitySystem
         if (!TryComp<VampireThrallComponent>(thrall, out var comp))
             return false;
 
-        var stunTime = comp.DeconvertStunDuration;
-
-        _stun.TryUpdateParalyzeDuration(thrall, stunTime);
-
         if (_mind.TryGetMind(thrall, out var mindId, out var mind))
         {
             //Remove objectives
@@ -326,6 +322,10 @@ public sealed class DantalionSystem : EntitySystem
 
         if (TryComp<CollectiveMindComponent>(thrall, out var cmComp))
             _collectiveMind.UpdateCollectiveMind(thrall, cmComp);
+
+        //If everything worked, thrall gets stunned for a few seconds for them to register that something has changed and notice they are no longer a thrall
+        var stunTime = comp.DeconvertStunDuration;
+        _stun.TryUpdateParalyzeDuration(thrall, stunTime);
 
         return true;
     }

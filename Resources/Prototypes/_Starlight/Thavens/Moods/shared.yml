@@ -37,6 +37,11 @@
     - OppositeDay
     - SirensSong
     - Bloodbank
+    - YourFuneral
+    - BeachDay
+    - BuyAllTheX
+    - TrendyWords
+    - Gossipers
 
 
 # Keep Your Moods Secret: Thaven moods are a strictly-kept secret, and should never be revealed to anyone.
@@ -291,3 +296,42 @@
     - SacredBlood
     - FleshIsSacred
     - LoneActor
+
+# Your Funeral: It's someone's funeral today. Anyone's. Just pick someone, and host their funeral. They don't actually have to be dead, but it would probably be ideal if the funeral attendeees thought they were.
+- type: thavenMood
+  id: YourFuneral
+  moodName: thaven-mood-your-funeral-name
+  moodDesc: thaven-mood-your-funeral-desc
+
+# Beach day!: If there is an open water feature on station, Thaven should congregate there and swim merrily. Should there be no water features, water puddles will do in a pinch!
+- type: thavenMood
+  id: BeachDay
+  moodName: thaven-mood-beach-day-name
+  moodDesc: thaven-mood-beach-day-desc
+
+# Buy All The (X): X is about to happen. Only massive amounts of y and z can prepare Thaven for the coming disaster.
+- type: thavenMood
+  id: BuyAllTheX
+  moodName: thaven-mood-buy-all-the-x-name
+  moodDesc: thaven-mood-buy-all-the-x-desc
+  moodVars:
+    disaster: Disasters
+    item1: Items
+    item2: Items
+
+# Trendy Words: Thaven are always on the frontlines of coolness and therefore use the following words frequently as trendsetters: $WordList
+- type: thavenMood
+  id: TrendyWords
+  moodName: thaven-mood-trendy-words-name
+  moodDesc: thaven-mood-trendy-words-desc
+  moodVars:
+    word1: ThavenWords
+    word2: ThavenWords
+    word3: ThavenWords
+    word4: ThavenWords
+
+# Gossipers: Drama is the highest form of entertainment.
+- type: thavenMood
+  id: Gossipers
+  moodName: thaven-mood-gossipers-name
+  moodDesc: thaven-mood-gossipers-desc
