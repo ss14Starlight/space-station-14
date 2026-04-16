@@ -1,7 +1,6 @@
 # Shuttles
 
 # Misc
-
 - type: entity
   categories: [HideSpawnMenu]
   parent: NoosphericVFX2
@@ -25,6 +24,7 @@
         - MindRoleGhostCorporateAligned
       raffle:
         settings: default
+      job: ERTChaplain
       important: true
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -60,5 +60,5 @@
             - type: SpawnOnTrigger
               proto: ERTChaplainSpawnEffect
             - type: TriggerOnSpawn
-      mindRoles:
-        - MindRoleGhostCorporateAligned
+          mindRoles:
+          - MindRoleGhostCorporateAligned

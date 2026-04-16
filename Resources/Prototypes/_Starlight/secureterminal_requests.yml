@@ -6,126 +6,126 @@
 
 # ── WarOps-Response Security ─────────────────────────────────────────────────────────────
 # Only available during War Ops.  Requires Captain/HoS.
-- type: secureTerminalRequest
-  id: WaropsSecurity
-  name: secure-terminal-warops-security-name
-  description: secure-terminal-warops-security-desc
-  announcement: secure-terminal-warops-security-announcement
-  announcementColor: "#ff4444"
-  activationDelaySecs: 1800
-  requiresWarDeclared: true
-  fee: 5000
-  salaryPenalty: 0.1
-  actionType: GameRule
-  gameruleId: ERTSecurityShuttleSpawn
-  oneTimeUse: true
-  sortOrder: 35
-  authGroups:
-    - [Captain, HeadOfSecurity]
-    - [Captain, HeadOfSecurity]
-  authGroupLabels:
-    - "Captain / HoS (1)"
-    - "Captain / HoS (2)"
-  cooldownSecs: 3600
+# - type: secureTerminalRequest
+#   id: WaropsSecurity
+#   name: secure-terminal-warops-security-name
+#   description: secure-terminal-warops-security-desc
+#   announcement: secure-terminal-warops-security-announcement
+#   announcementColor: "#ff4444"
+#   activationDelaySecs: 1800
+#   requiresWarDeclared: true
+#   fee: 5000
+#   salaryPenalty: 0.1
+#   actionType: GameRule
+#   gameruleId: ERTSecurityShuttleSpawn
+#   oneTimeUse: true
+#   sortOrder: 35
+#   authGroups:
+#     - [Captain, HeadOfSecurity]
+#     - [Captain, HeadOfSecurity]
+#   authGroupLabels:
+#     - "Captain / HoS (1)"
+#     - "Captain / HoS (2)"
+#   cooldownSecs: 3600
 
 # ── ERT Security ─────────────────────────────────────────────────────────────
-- type: secureTerminalRequest
-  id: ErtSecurity
-  name: secure-terminal-ert-security-name
-  description: secure-terminal-ert-security-desc
-  announcement: secure-terminal-ert-security-announcement
-  announcementColor: "#ff4444"
-  activationDelaySecs: 600
-  requiresWarNotDeclared: true
-  requireReason: true
-  requiresAdminApproval: true
-  bypassIfNoAdmin: false
-  fee: 5000
-  salaryPenalty: 0.05
-  actionType: GameRule
-  gameruleId: ERTSecurityShuttleSpawn
-  oneTimeUse: true
-  sortOrder: 40
-  authGroups:
-    - [Captain, HeadOfSecurity]
-    - [Captain, HeadOfSecurity]
-  authGroupLabels:
-    - "Captain / HoS (1)"
-    - "Captain / HoS (2)"
-  cooldownSecs: 3600
-  authTimer: 20
+# - type: secureTerminalRequest
+#   id: ErtSecurity
+#   name: secure-terminal-ert-security-name
+#   description: secure-terminal-ert-security-desc
+#   announcement: secure-terminal-ert-security-announcement
+#   announcementColor: "#ff4444"
+#   activationDelaySecs: 600
+#   requiresWarNotDeclared: true
+#   requireReason: true
+#   requiresAdminApproval: true
+#   bypassIfNoAdmin: false
+#   fee: 5000
+#   salaryPenalty: 0.05
+#   actionType: GameRule
+#   gameruleId: ERTSecurityShuttleSpawn
+#   oneTimeUse: true
+#   sortOrder: 40
+#   authGroups:
+#     - [Captain, HeadOfSecurity]
+#     - [Captain, HeadOfSecurity]
+#   authGroupLabels:
+#     - "Captain / HoS (1)"
+#     - "Captain / HoS (2)"
+#   cooldownSecs: 3600
+#   authTimer: 20
 
 # ── ERT Engineering ───────────────────────────────────────────────────────────
-- type: secureTerminalRequest
-  id: ErtEngineering
-  name: secure-terminal-ert-engineering-name
-  description: secure-terminal-ert-engineering-desc
-  announcement: secure-terminal-ert-engineering-announcement
-  announcementColor: "#ffaa33"
-  activationDelaySecs: 600
-  requireReason: true
-  fee: 5000
-  salaryPenalty: 0.05
-  actionType: GameRule
-  gameruleId: ERTEngineeringShuttleSpawn
-  oneTimeUse: true
-  sortOrder: 50
-  authGroups:
-    - [Captain, ChiefEngineer]
-    - [Captain, ChiefEngineer]
-  authGroupLabels:
-    - "Captain / CE (1)"
-    - "Captain / CE (2)"
-  cooldownSecs: 3600
-  authTimer: 20
+# - type: secureTerminalRequest
+#   id: ErtEngineering
+#   name: secure-terminal-ert-engineering-name
+#   description: secure-terminal-ert-engineering-desc
+#   announcement: secure-terminal-ert-engineering-announcement
+#   announcementColor: "#ffaa33"
+#   activationDelaySecs: 600
+#   requireReason: true
+#   fee: 5000
+#   salaryPenalty: 0.05
+#   actionType: GameRule
+#   gameruleId: ERTEngineeringShuttleSpawn
+#   oneTimeUse: true
+#   sortOrder: 50
+#   authGroups:
+#     - [Captain, ChiefEngineer]
+#     - [Captain, ChiefEngineer]
+#   authGroupLabels:
+#     - "Captain / CE (1)"
+#     - "Captain / CE (2)"
+#   cooldownSecs: 3600
+#   authTimer: 20
 
 # ── ERT Medical ───────────────────────────────────────────────────────────────
-- type: secureTerminalRequest
-  id: ErtMedical
-  name: secure-terminal-ert-medical-name
-  description: secure-terminal-ert-medical-desc
-  announcement: secure-terminal-ert-medical-announcement
-  announcementColor: "#33ff66"
-  activationDelaySecs: 600
-  requireReason: true
-  fee: 5000
-  salaryPenalty: 0.05
-  actionType: GameRule
-  gameruleId: ERTMedicalShuttleSpawn
-  oneTimeUse: true
-  sortOrder: 60
-  authGroups:
-    - [Captain, ChiefMedicalOfficer]
-    - [Captain, ChiefMedicalOfficer]
-  authGroupLabels:
-    - "Captain / CMO (1)"
-    - "Captain / CMO (2)"
-  cooldownSecs: 3600
-  authTimer: 20
+# - type: secureTerminalRequest
+#   id: ErtMedical
+#   name: secure-terminal-ert-medical-name
+#   description: secure-terminal-ert-medical-desc
+#   announcement: secure-terminal-ert-medical-announcement
+#   announcementColor: "#33ff66"
+#   activationDelaySecs: 600
+#   requireReason: true
+#   fee: 5000
+#   salaryPenalty: 0.05
+#   actionType: GameRule
+#   gameruleId: ERTMedicalShuttleSpawn
+#   oneTimeUse: true
+#   sortOrder: 60
+#   authGroups:
+#     - [Captain, ChiefMedicalOfficer]
+#     - [Captain, ChiefMedicalOfficer]
+#   authGroupLabels:
+#     - "Captain / CMO (1)"
+#     - "Captain / CMO (2)"
+#   cooldownSecs: 3600
+#   authTimer: 20
 
 # ── ERT Janitorial ────────────────────────────────────────────────────────────
-- type: secureTerminalRequest
-  id: ErtJanitorial
-  name: secure-terminal-ert-janitorial-name
-  description: secure-terminal-ert-janitorial-desc
-  announcement: secure-terminal-ert-janitorial-announcement
-  announcementColor: "#aaffaa"
-  activationDelaySecs: 600
-  requireReason: true
-  fee: 5000
-  salaryPenalty: 0.05
-  actionType: GameRule
-  gameruleId: ERTJanitorShuttleSpawn
-  oneTimeUse: true
-  sortOrder: 70
-  authGroups:
-    - [Captain, HeadOfPersonnel]
-    - [Captain, HeadOfPersonnel]
-  authGroupLabels:
-    - "Captain / HoP (1)"
-    - "Captain / HoP (2)"
-  cooldownSecs: 3600
-  authTimer: 20
+# - type: secureTerminalRequest
+#   id: ErtJanitorial
+#   name: secure-terminal-ert-janitorial-name
+#   description: secure-terminal-ert-janitorial-desc
+#   announcement: secure-terminal-ert-janitorial-announcement
+#   announcementColor: "#aaffaa"
+#   activationDelaySecs: 600
+#   requireReason: true
+#   fee: 5000
+#   salaryPenalty: 0.05
+#   actionType: GameRule
+#   gameruleId: ERTJanitorShuttleSpawn
+#   oneTimeUse: true
+#   sortOrder: 70
+#   authGroups:
+#     - [Captain, HeadOfPersonnel]
+#     - [Captain, HeadOfPersonnel]
+#   authGroupLabels:
+#     - "Captain / HoP (1)"
+#     - "Captain / HoP (2)"
+#   cooldownSecs: 3600
+#   authTimer: 20
 
 # ── ERT Chaplain ──────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -152,30 +152,30 @@
   authTimer: 20
 
 # ── ERT CBURN ──────────────────────────────────────────────────────────────
-- type: secureTerminalRequest
-  id: ErtCBURN
-  name: secure-terminal-ert-cburn-name
-  description: secure-terminal-ert-cburn-desc
-  announcement: secure-terminal-ert-cburn-announcement
-  announcementColor: Violet
-  activationDelaySecs: 600
-  requiresWarNotDeclared: true
-  requireReason: true
-  fee: 5000
-  salaryPenalty: 0.05
-  actionType: GameRule
-  gameruleId: CBURNShuttleSpawn
-  oneTimeUse: true
-  requiresAlertLevel: violet
-  sortOrder: 90
-  authGroups:
-    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
-    - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
-  authGroupLabels:
-    - "Captain / HoS / CMO / RD (1)"
-    - "Captain / HoS / CMO / RD (2)"
-  cooldownSecs: 3600
-  authTimer: 20
+# - type: secureTerminalRequest
+#   id: ErtCBURN
+#   name: secure-terminal-ert-cburn-name
+#   description: secure-terminal-ert-cburn-desc
+#   announcement: secure-terminal-ert-cburn-announcement
+#   announcementColor: Violet
+#   activationDelaySecs: 600
+#   requiresWarNotDeclared: true
+#   requireReason: true
+#   fee: 5000
+#   salaryPenalty: 0.05
+#   actionType: GameRule
+#   gameruleId: CBURNShuttleSpawn
+#   oneTimeUse: true
+#   requiresAlertLevel: violet
+#   sortOrder: 90
+#   authGroups:
+#     - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
+#     - [Captain, HeadOfSecurity, ChiefMedicalOfficer, ResearchDirector]
+#   authGroupLabels:
+#     - "Captain / HoS / CMO / RD (1)"
+#     - "Captain / HoS / CMO / RD (2)"
+#   cooldownSecs: 3600
+#   authTimer: 20
 
 #region Alert Levels
 
