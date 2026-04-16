@@ -17,6 +17,6 @@ public sealed class EorgPreventionSystem : SharedEorgPreventionSystem
     private void OnStateChanged(EorgPreventionStateEvent ev)
     {
         IsEnabled = ev.IsEnabled;
-        HasRoundEnded = ev.IsRoundEnded;
+        HasRoundEnded = ev.HasRoundEnded;
     }
 }

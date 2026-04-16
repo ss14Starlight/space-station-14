@@ -46,7 +46,11 @@ public sealed class EorgPreventionSystem : SharedEorgPreventionSystem
         SubscribeLocalEvent<GotRehydratedEvent>(OnRehydrateEvent);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
         SubscribeLocalEvent<PreventEorgComponent, PolymorphedEvent>(OnPolymorphed);
+
+        SubscribeNetworkEvent<RequestEorgPreventionStateEvent>(OnRequestEorgPreventionState);
     }
+
+    private void OnRequestEorgPreventionState(RequestEorgPreventionStateEvent msg, EntitySessionEventArgs args) => RaiseNetworkEvent(new EorgPreventionStateEvent(IsEnabled, HasRoundEnded));
 
     private void BroadcastState() => RaiseNetworkEvent(new EorgPreventionStateEvent(IsEnabled, HasRoundEnded));
 

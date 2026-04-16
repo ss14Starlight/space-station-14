@@ -103,8 +103,8 @@ public sealed class RequestEorgPreventionStateEvent : EntityEventArgs
 }
 
 [Serializable, NetSerializable]
-public sealed class EorgPreventionStateEvent(bool isEnabled, bool isRoundEnded) : EntityEventArgs
+public sealed class EorgPreventionStateEvent(bool isEnabled, bool hasRoundEnded) : EntityEventArgs
 {
     public bool IsEnabled { get; } = isEnabled;
-    public bool IsRoundEnded { get; } = isRoundEnded;
+    public bool HasRoundEnded { get; } = hasRoundEnded;
 }
