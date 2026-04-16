@@ -327,3 +327,144 @@
   sprite:
     sprite: _Starlight/Decals/12tie.rsi
     state: square
+-----
+
+- type: decal
+  id: BigArrowGraf
+  tags: ["crayon", "Big Arrow", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/12tie.rsi
+    state: Big_Arrow_Graffiti
+
+- type: decal
+  id: CircleGraf
+  tags: ["crayon", "Circle Graffiti", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/12tie.rsi
+    state: Circle_Graffiti
+
+- type: decal
+  id: EvacGraf
+  tags: ["crayon", "Evac Graffiti", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/12tie.rsi
+    state: Evac_Graffiti
+
+- type: decal
+  id: Eye
+  tags: ["crayon", "Eye", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/12tie.rsi
+    state: Eye
+
+- type: decal
+  id: Flower
+  tags: ["crayon", "Flower", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/12tie.rsi
+    state: Flower
+
+- type: decal
+  id: LeftGraf
+  tags: ["crayon", "Left Decal Graffiti", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/12tie.rsi
+    state: Left_Graffiti
+
+- type: decal
+  id: RIOTGraf
+  tags: ["crayon", "Riot", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/12tie.rsi
+    state: RIOT_Graffiti
+
+- type: decal
+  id: RightGraf
+  tags: ["crayon", "Right Graffiti", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/12tie.rsi
+    state: Right_Graffiti
+
+- type: decal
+  id: Rose
+  tags: ["crayon", "Rose", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/12tie.rsi
+    state: Rose
+
+- type: decal
+  id: SELF
+  tags: ["crayon", "SELF", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/12tie.rsi
+    state: Self_Graffiti
+
+- type: decal
+  id: Shopgraf
+  tags: ["crayon", "Shop Graffiti", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/12tie.rsi
+    state: Shop_Graffiti
+
+- type: decal
+  id: circledirty
+  tags: ["crayon", "circle", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/12tie.rsi
+    state: circle_dirty
+
+- type: decal
+  id: circledirty
+  tags: ["crayon", "circle", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/12tie.rsi
+    state: circle_dirty
+
+- type: decal
+  id: circledirty
+  tags: ["crayon", "circle", "crayon-5-graffiti"]
+  defaultCleanable: true
+  defaultCustomColor: true
+  defaultSnap: false
+  sprite:
+    sprite: _Starlight/Decals/12tie.rsi
+    state: circle_dirty
