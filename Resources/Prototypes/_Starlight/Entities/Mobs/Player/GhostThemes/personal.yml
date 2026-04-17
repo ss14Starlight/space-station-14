@@ -76,7 +76,7 @@ type: ghostTheme
   private: true
   spriteSpecifier:
     sprite:
-      sprite: _Starlight\Mobs\Customization\GhostThemes\ghost-kamila.rsi
+      sprite: _Starlight/Mobs/Customization/GhostThemes/ghost-kamila.rsi
       state: ghost-kamila
     color: "#ffffff"
   requirements:
