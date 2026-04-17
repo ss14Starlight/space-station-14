@@ -23,7 +23,7 @@ public sealed class GridPowerTests
     private static readonly ResPath[] GridPaths =
     [
         new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml"),
-        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Med"),
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Med.yml"),
         new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Jani.yml"),
         new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Engi.yml"),
         new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Full.yml"),
