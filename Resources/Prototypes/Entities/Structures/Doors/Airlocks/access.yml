@@ -11,13 +11,17 @@
     layoutId: AirlockService
 
 - type: entity
-  parent: AirlockServiceLocked
+  parent: Airlock # Starlight
   id: AirlockInternalAffairsLocked # Starlight
   suffix: Internal Affairs, Locked # Starlight
   components:
+  - type: Sprite # Starlight start
+    sprite: _Starlight/Structures/Doors/Airlocks/Standard/internalaffairs.rsi
+  - type: Wires
+    layoutId: AirlockSecurity # Starlight end
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsInternalAffairs ]
+      board: [ DoorElectronicsInternalAffairs ] # Starlight
 
 - type: entity
   parent: AirlockServiceLocked
@@ -462,10 +466,14 @@
     layoutId: AirlockService
 
 - type: entity
-  parent: AirlockServiceGlassLocked
+  parent: AirlockGlass # Starlight
   id: AirlockInternalAffairsGlassLocked # Starlight
   suffix: Internal Affairs, Locked # Starlight
   components:
+  - type: Sprite # Starlight start
+    sprite: _Starlight/Structures/Doors/Airlocks/Glass/internalaffairs.rsi
+  - type: Wires
+    layoutId: AirlockSecurity # Starlight end
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsInternalAffairs ] # Starlight
