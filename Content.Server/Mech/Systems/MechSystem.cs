@@ -434,7 +434,7 @@ public sealed partial class MechSystem : SharedMechSystem
 
         if (!component.MaintenanceMode)
         {
-            _popup.PopupEntity("You need to turn on maintenance mode first!", uid, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString("mech-requires-maintenance-mode"), uid, PopupType.MediumCaution);
             return;
         }
 
@@ -460,7 +460,18 @@ public sealed partial class MechSystem : SharedMechSystem
         {
             _wires.TogglePanel(uid, panelComp, toggle, uid);
         }
+
+        if (component.MaintenanceMode != toggle)
+        {
+            var popupString = toggle ? "mech-maintenance-enabled" : "mech-maintenance-disabled";
+            _popup.PopupPredicted(Loc.GetString(popupString), uid, uid);
+
+            var panelSound = toggle ? component.MaintenanceOnSound : component.MaintenanceOffSound;
+            _audioSystem.PlayPredicted(panelSound, uid, uid);
+        }
+
         component.MaintenanceMode = toggle;
+
         UpdateUserInterface(uid, component);
     }
     #endregion
