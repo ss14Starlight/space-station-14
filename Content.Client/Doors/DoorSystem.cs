@@ -185,7 +185,7 @@ public sealed partial class DoorSystem : SharedDoorSystem
 
                 return;
             case DoorState.Closing:
-                if (entity.Comp.ClosingAnimationTime == TimeSpan.Zero || entity.Comp.CurrentlyCrushing.Count != 0)
+                if (entity.Comp.ClosingAnimationTime == TimeSpan.Zero)
                     return;
 
                 if (_animationSystem.HasRunningAnimation(entity, DoorComponent.CloseKey))
@@ -205,7 +205,9 @@ public sealed partial class DoorSystem : SharedDoorSystem
                 if (_animationSystem.HasRunningAnimation(entity, DoorComponent.EmagKey))
                     return;
 
-                _animationSystem.Play(entity, (Animation)entity.Comp.EmaggingAnimation, DoorComponent.EmagKey);
+                // We are checking beforehand since some doors may not have an emagging visual layer.
+                if (_sprite.TryGetLayer(entity.Owner, DoorVisualLayers.BaseEmagging, out var _, false))
+                    _animationSystem.Play(entity, (Animation)entity.Comp.EmaggingAnimation, DoorComponent.EmagKey);
 
                 return;
         }
