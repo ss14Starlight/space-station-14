@@ -327,7 +327,6 @@
   sprite:
     sprite: _Starlight/Decals/12tie.rsi
     state: square
------
 
 - type: decal
   id: BigArrowGraf
@@ -439,32 +438,3 @@
     sprite: _Starlight/Decals/12tie.rsi
     state: Shop_Graffiti
 
-- type: decal
-  id: circledirty
-  tags: ["crayon", "circle", "crayon-5-graffiti"]
-  defaultCleanable: true
-  defaultCustomColor: true
-  defaultSnap: false
-  sprite:
-    sprite: _Starlight/Decals/12tie.rsi
-    state: circle_dirty
-
-- type: decal
-  id: circledirty
-  tags: ["crayon", "circle", "crayon-5-graffiti"]
-  defaultCleanable: true
-  defaultCustomColor: true
-  defaultSnap: false
-  sprite:
-    sprite: _Starlight/Decals/12tie.rsi
-    state: circle_dirty
-
-- type: decal
-  id: circledirty
-  tags: ["crayon", "circle", "crayon-5-graffiti"]
-  defaultCleanable: true
-  defaultCustomColor: true
-  defaultSnap: false
-  sprite:
-    sprite: _Starlight/Decals/12tie.rsi
-    state: circle_dirty
