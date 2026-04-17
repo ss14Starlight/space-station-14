@@ -41,7 +41,7 @@
         state: kudzu_north
       - map: [ "enum.EdgeLayer.West" ]
         state: kudzu_west ### SL End
-      drawdepth: HighFloorObjects #SL Edit Overdoors -> HighFloorObjects for consistency
+      drawdepth: Overdoors
     - type: KudzuVisuals
     - type: Clickable
     - type: Fixtures
@@ -225,7 +225,7 @@
         state: kudzu_north
       - map: [ "enum.EdgeLayer.West" ]
         state: kudzu_west ### SL End
-      drawdepth: HighFloorObjects #SL Edit Overdoors -> HighFloorObjects for consistency
+      drawdepth: Overdoors
     - type: KudzuVisuals
     - type: Clickable
     - type: Fixtures
