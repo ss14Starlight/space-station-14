@@ -2095,17 +2095,7 @@
   deconstructTools: [ Prying ]
   itemDrop: FloorTileItemAstroIronsandBorderless
   weather: false
-#Starlight-Start
-- type: tile
-  id: FloorAstroAsteroidTile
-  name: tiles-astro-asteroid-tile
-  parent: FloorAsteroidTile
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Prying ]
-  itemDrop: FloorTileItemSteel
-  weather: false
-#Starlight-End
+
 - type: tile
   id: FloorWoodLarge
   name: tiles-wood-large
