@@ -81,4 +81,4 @@ type: ghostTheme
     color: "#ffffff"
   requirements:
   - !type:UsernameRequirement
-    username: KamilaAval
+    username: KamilaAvali
