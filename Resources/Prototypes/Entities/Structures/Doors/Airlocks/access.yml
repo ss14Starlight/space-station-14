@@ -15,10 +15,8 @@
   id: AirlockInternalAffairsLocked # Starlight
   suffix: Internal Affairs, Locked # Starlight
   components:
-  - type: Sprite # Starlight start
-    sprite: _Starlight/Structures/Doors/Airlocks/Standard/internalaffairs.rsi
-  - type: Wires
-    layoutId: AirlockSecurity # Starlight end
+  - type: Wires # Starlight
+    layoutId: AirlockSecurity # Starlight
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsInternalAffairs ] # Starlight
@@ -470,10 +468,8 @@
   id: AirlockInternalAffairsGlassLocked # Starlight
   suffix: Internal Affairs, Locked # Starlight
   components:
-  - type: Sprite # Starlight start
-    sprite: _Starlight/Structures/Doors/Airlocks/Glass/internalaffairs.rsi
-  - type: Wires
-    layoutId: AirlockSecurity # Starlight end
+  - type: Wires # Starlight
+    layoutId: AirlockSecurity # Starlight
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsInternalAffairs ] # Starlight
