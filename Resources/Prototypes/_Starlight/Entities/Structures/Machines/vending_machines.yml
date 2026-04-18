@@ -329,7 +329,7 @@
   parent: VendingMachine
   id: VendingMachineLegalDrobe
   name: LegalDrobe
-  description: Objection! This wardrobe dispenses the rule of law... wait, haven't I seen this before?
+  description: Objection! This wardrobe dispenses the rule of law... wait, haven't you seen this before?
   components:
   - type: VendingMachine
     pack: LegalDrobeInventory
