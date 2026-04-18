@@ -1,0 +1,186 @@
+- type: entity
+  parent: BaseGameRule
+  id: WizardDuel
+  components:
+  - type: LoadMapRule
+    mapPath: /Maps/_Starlight/Nonstations/wizards-court.yml
+  - type: RuleGrids
+  - type: AntagLoadProfileRule
+  - type: GameRule
+    minPlayers: 35
+  - type: AntagObjectives
+    objectives:
+    - WizardDuelistMeetObjective
+    - WizardDuelistRelocateObjective
+    - WizardDuelistDemonstrateObjective
+  - type: AntagSelection
+    agentName: wizard-round-end-name
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ WizardDuelist ] # Red Wizard Duelist
+      min: 1
+      max: 1
+      spawnerPrototype: SpawnPointGhostWizardDuelistRed
+      roleLoadout:
+      - RoleSurvivalWizardDuelist
+      briefing:
+        text: wizard-duelist-red-role-greeting
+        color: Turquoise
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
+      startingGear: WizardDuelistRedGear
+      components:
+      - type: UniversalLanguageSpeaker # Starlight
+      - type: NpcFactionMember
+        factions:
+        - Wizard
+      - type: RandomMetadata
+        nameSegments:
+        - NamesWizardFirst
+        - NamesWizardLast
+        nameFormat: name-format-wizard
+      mindRoles:
+      - MindRoleWizardDuelistRed
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+        - Wizard
+      # Starlight-end
+    - prefRoles: [ WizardDuelist ] # Blue Wizard Duelist
+      min: 1
+      max: 1
+      spawnerPrototype: SpawnPointGhostWizardDuelistBlue
+      roleLoadout:
+      - RoleSurvivalWizardDuelist
+      briefing:
+        text: wizard-duelist-blue-role-greeting
+        color: Turquoise
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
+      startingGear: WizardDuelistBlueGear
+      components:
+      - type: UniversalLanguageSpeaker # Starlight
+      - type: NpcFactionMember
+        factions:
+        - Wizard
+      - type: RandomMetadata
+        nameSegments:
+        - NamesWizardFirst
+        - NamesWizardLast
+        nameFormat: name-format-wizard
+      mindRoles:
+      - MindRoleWizardDuelistBlue
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+        - Wizard
+      # Starlight-end
+    - prefRoles: [ WizardDuelist ] # Starlight, Purple Wizard Duelist
+      min: 0 # Starlight, only spawn above 90pop
+      max: 1
+      playerRatio: 90 # Starlight, only spawn above 90pop
+      spawnerPrototype: SpawnPointGhostWizardDuelistPurple # Starlight, violet -> Purple
+      roleLoadout:
+      - RoleSurvivalWizardDuelist
+      briefing:
+        text: wizard-duelist-purple-role-greeting # Starlight, violet -> Purple
+        color: Turquoise
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
+      startingGear: WizardDuelistPurpleGear # Starlight, violet -> Purple
+      components:
+      - type: UniversalLanguageSpeaker # Starlight
+      - type: NpcFactionMember
+        factions:
+        - Wizard
+      - type: RandomMetadata
+        nameSegments:
+        - NamesWizardFirst
+        - NamesWizardLast
+        nameFormat: name-format-wizard
+      mindRoles:
+      - MindRoleWizardDuelistPurple # Starlight, violet -> Purple
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+        - Wizard
+    - prefRoles: [ WizardDuelist ] # Yellow Wizard Duelist
+      min: 1
+      max: 1
+      spawnerPrototype: SpawnPointGhostWizardDuelistYellow
+      roleLoadout:
+      - RoleSurvivalWizardDuelist
+      briefing:
+        text: wizard-duelist-yellow-role-greeting
+        color: Turquoise
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg"
+      startingGear: WizardDuelistYellowGear
+      components:
+      - type: UniversalLanguageSpeaker
+      - type: NpcFactionMember
+        factions:
+        - Wizard
+      - type: RandomMetadata
+        nameSegments:
+        - NamesWizardFirst
+        - NamesWizardLast
+        nameFormat: name-format-wizard
+      mindRoles:
+      - MindRoleWizardDuelistYellow
+      tags:
+        - CantBecomeRevolutionary
+        - Wizard
+    - prefRoles: [ WizardDuelist ] # Green Wizard Duelist
+      min: 0 # Only spawn above 70pop
+      max: 1
+      playerRatio: 70 # Only spawn above 70pop
+      spawnerPrototype: SpawnPointGhostWizardDuelistGreen
+      roleLoadout:
+      - RoleSurvivalWizardDuelist
+      briefing:
+        text: wizard-duelist-green-role-greeting
+        color: Turquoise
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg"
+      startingGear: WizardDuelistGreenGear
+      components:
+      - type: UniversalLanguageSpeaker
+      - type: NpcFactionMember
+        factions:
+        - Wizard
+      - type: RandomMetadata
+        nameSegments:
+        - NamesWizardFirst
+        - NamesWizardLast
+        nameFormat: name-format-wizard
+      mindRoles:
+      - MindRoleWizardDuelistGreen
+      tags:
+        - CantBecomeRevolutionary
+        - Wizard
+    - prefRoles: [ WizardDuelist ] # Orange Wizard Duelist
+      min: 0 # Only spawn above 110pop
+      max: 1
+      playerRatio: 110 # Only spawn above 110pop, the rarest wizard
+      spawnerPrototype: SpawnPointGhostWizardDuelistOrange
+      roleLoadout:
+      - RoleSurvivalWizardDuelist
+      briefing:
+        text: wizard-duelist-orange-role-greeting
+        color: Turquoise
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg"
+      startingGear: WizardDuelistOrangeGear
+      components:
+      - type: UniversalLanguageSpeaker
+      - type: NpcFactionMember
+        factions:
+        - Wizard
+      - type: RandomMetadata
+        nameSegments:
+        - NamesWizardFirst
+        - NamesWizardLast
+        nameFormat: name-format-wizard
+      mindRoles:
+      - MindRoleWizardDuelistOrange
+      tags:
+        - CantBecomeRevolutionary
+        - Wizard
+      # Starlight end
+  - type: DynamicRuleCost
+    cost: 150
