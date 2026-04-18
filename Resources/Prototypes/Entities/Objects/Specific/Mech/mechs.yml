@@ -99,6 +99,10 @@
     interfaces:
       enum.MechUiKey.Key:
         type: MechBoundUserInterface
+      # STARLIGHT BEGIN - Equipment radial
+      enum.MechEquipmentSelectUiKey.Key:
+        type: MechEquipmentSelectBoundUserInterface
+      # STARLIGHT END
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.75
