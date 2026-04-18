@@ -69,7 +69,7 @@
     - !type:UsernameRequirement
       username: KarmaKitsuna
 
-type: ghostTheme
+- type: ghostTheme
   id: ghost-kamila
   name: Avali Ghost
   description: a ghostly Avali.
