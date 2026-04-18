@@ -22,6 +22,9 @@ namespace Content.Server.Shuttles.Components
         public List<EntityUid> FTLWhitelist = new List<EntityUid>();
 
         #region Starlight
+        /// <summary>
+        /// When the last interface update was transmitted.
+        /// </summary>
         public TimeSpan LastInterfaceUpdatedTime = TimeSpan.Zero;
         #endregion
     }

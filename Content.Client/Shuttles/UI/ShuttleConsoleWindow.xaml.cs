@@ -142,8 +142,8 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         MapContainer.SetShuttle(coordinates?.EntityId);
         MapContainer.SetConsole(owner);
 
-        NavContainer.UpdateState(cState.NavState, cState.DockingPortStates);
+        NavContainer.UpdateState(cState.NavState, cState.DockingPortStates); // Starlight: +dockingPortStates
         MapContainer.UpdateState(cState.MapState);
-        DockContainer.UpdateState(coordinates?.EntityId, cState.DockingPortStates);
+        DockContainer.UpdateState(coordinates?.EntityId, cState.DockingPortStates); // Starlight: +dockingPortStates
     }
 }
