@@ -1448,4 +1448,11 @@ Entries:
   id: 404334
   time: '2026-04-18T06:09:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4192
+- author: Conflee
+  changes:
+  - message: Added edge sprites for all Kudzu types (Kudzu, Flowering, Flesh, and Clown) so you can see when Kudzu is under a table, airlock, or vending machine. This also makes them look more natural as they aren't locked to grids visually anymore.
+    type: Add
+  id: 404335
+  time: '2026-04-18T07:36:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4188
 Order: -1
