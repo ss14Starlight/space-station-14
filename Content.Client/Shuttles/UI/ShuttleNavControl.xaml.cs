@@ -106,7 +106,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         return coords;
     }
 
-    public void UpdateState(NavInterfaceState state)
+    public void UpdateState(NavInterfaceState state, DockingPortStates dockStates)
     {
         SetMatrix(EntManager.GetCoordinates(state.Coordinates), state.Angle);
 
@@ -124,7 +124,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         RotateWithEntity = state.RotateWithEntity;
 
-        _docks = state.Docks;
+        _docks = dockStates.Docks;
         _blips = state.Blips; // _Starlight
         _lasers = state.Lasers; // _Starlight
     }

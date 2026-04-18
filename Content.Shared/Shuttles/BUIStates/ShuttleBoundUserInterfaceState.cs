@@ -8,12 +8,13 @@ public sealed class ShuttleBoundUserInterfaceState : BoundUserInterfaceState
 {
     public NavInterfaceState NavState;
     public ShuttleMapInterfaceState MapState;
-    public DockingInterfaceState DockState;
+    //public DockingInterfaceState DockState; // Starlight
+    public DockingPortStates DockingPortStates;
 
-    public ShuttleBoundUserInterfaceState(NavInterfaceState navState, ShuttleMapInterfaceState mapState, DockingInterfaceState dockState)
+    public ShuttleBoundUserInterfaceState(NavInterfaceState navState, ShuttleMapInterfaceState mapState, DockingPortStates dockingPortStates)
     {
         NavState = navState;
         MapState = mapState;
-        DockState = dockState;
+        DockingPortStates = dockingPortStates;
     }
 }

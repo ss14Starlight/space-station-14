@@ -61,6 +61,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
     private readonly HashSet<Entity<ShuttleConsoleComponent>> _consoles = new();
     private ISawmill _sawmill = default!;
+    private DockingPortStates? _dockingPortStates = null;
 
     private static readonly ProtoId<TagPrototype> CanPilotTag = "CanPilot";
 
@@ -131,11 +132,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         GetExclusions(ref exclusions);
         _consoles.Clear();
         _lookup.GetChildEntities(gridUid, _consoles);
-        DockingInterfaceState? dockState = null;
+        DockingPortStates? docks = null;
 
         foreach (var entity in _consoles)
         {
-            UpdateState(entity, ref dockState);
+            UpdateState(entity, ref docks);
         }
     }
 
@@ -147,11 +148,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         var exclusions = new List<ShuttleExclusionObject>();
         GetExclusions(ref exclusions);
         var query = AllEntityQuery<ShuttleConsoleComponent>();
-        DockingInterfaceState? dockState = null;
+        DockingPortStates? docks = null;
 
         while (query.MoveNext(out var uid, out _))
         {
-            UpdateState(uid, ref dockState);
+            UpdateState(uid, ref docks);
         }
     }
 
@@ -177,14 +178,14 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     private void OnConsoleAnchorChange(EntityUid uid, ShuttleConsoleComponent component,
         ref AnchorStateChangedEvent args)
     {
-        DockingInterfaceState? dockState = null;
-        UpdateState(uid, ref dockState);
+        DockingPortStates? docks = null;
+        UpdateState(uid, ref docks);
     }
 
     private void OnConsolePowerChange(EntityUid uid, ShuttleConsoleComponent component, ref PowerChangedEvent args)
     {
-        DockingInterfaceState? dockState = null;
-        UpdateState(uid, ref dockState);
+        DockingPortStates? docks = null;
+        UpdateState(uid, ref docks);
     }
 
     private bool TryPilot(EntityUid user, EntityUid uid)
@@ -265,7 +266,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         return result;
     }
 
-    private void UpdateState(EntityUid consoleUid, ref DockingInterfaceState? dockState)
+    private void UpdateState(EntityUid consoleUid, ref DockingPortStates? docks)
     {
         EntityUid? entity = consoleUid;
 
@@ -282,16 +283,16 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         NavInterfaceState navState;
         ShuttleMapInterfaceState mapState;
-        dockState ??= GetDockState();
+        docks ??= GetDockingPortStates();
 
         if (shuttleGridUid != null && entity != null)
         {
-            navState = GetNavState(entity.Value, dockState.Docks);
+            navState = GetNavState(entity.Value);
             mapState = GetMapState(shuttleGridUid.Value);
         }
         else
         {
-            navState = new NavInterfaceState(0f, null, null, new Dictionary<NetEntity, List<DockingPortState>>());
+            navState = new NavInterfaceState(0f, null, null);
             mapState = new ShuttleMapInterfaceState(
                 FTLState.Invalid,
                 default,
@@ -344,7 +345,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 }
             }
 
-            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState));
+            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, docks));
         }
     }
 
@@ -460,32 +461,36 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     /// <summary>
     /// Specific for a particular shuttle.
     /// </summary>
-    public NavInterfaceState GetNavState(Entity<RadarConsoleComponent?, TransformComponent?> entity, Dictionary<NetEntity, List<DockingPortState>> docks)
+    public NavInterfaceState GetNavState(Entity<RadarConsoleComponent?, TransformComponent?> entity)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks);
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null);
 
         return GetNavState(
             entity,
-            docks,
             entity.Comp2.Coordinates,
             entity.Comp2.LocalRotation);
     }
 
     public NavInterfaceState GetNavState(
         Entity<RadarConsoleComponent?, TransformComponent?> entity,
-        Dictionary<NetEntity, List<DockingPortState>> docks,
         EntityCoordinates coordinates,
         Angle angle)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks);
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle);
 
         return new NavInterfaceState(
             entity.Comp1.MaxRange,
             GetNetCoordinates(coordinates),
-            angle,
-            docks);
+            angle);
+    }
+
+    public DockingPortStates GetDockingPortStates()
+    {
+        _dockingPortStates ??= new DockingPortStates(new Dictionary<NetEntity, List<DockingPortState>>());
+        var docks = GetAllDocks();
+        return new DockingPortStates(docks);
     }
 
     /// <summary>

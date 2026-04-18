@@ -54,9 +54,9 @@ public sealed partial class NavScreen : BoxContainer
         args.Button.Pressed = NavRadar.ShowDocks;
     }
 
-    public void UpdateState(NavInterfaceState scc)
+    public void UpdateState(NavInterfaceState scc, DockingPortStates dockStates)
     {
-        NavRadar.UpdateState(scc);
+        NavRadar.UpdateState(scc, dockStates);
     }
 
     public void SetMatrix(EntityCoordinates? coordinates, Angle? angle)

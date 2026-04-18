@@ -55,10 +55,10 @@ public sealed partial class DockingScreen : BoxContainer
         }
     }
 
-    public void UpdateState(EntityUid? shuttle, DockingInterfaceState state)
+    public void UpdateState(EntityUid? shuttle, DockingPortStates dockingPortStates)
     {
-        Docks = state.Docks;
-        DockingControl.DockState = state;
+        Docks = dockingPortStates.Docks;
+        DockingControl.Docks = dockingPortStates.Docks;
         DockingControl.GridEntity = shuttle;
         BuildDocks(shuttle);
     }

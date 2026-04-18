@@ -9,9 +9,11 @@ namespace Content.Shared.Shuttles.BUIStates;
 public sealed class NavBoundUserInterfaceState : BoundUserInterfaceState
 {
     public NavInterfaceState State;
+    public DockingPortStates DockStates;
 
-    public NavBoundUserInterfaceState(NavInterfaceState state)
+    public NavBoundUserInterfaceState(NavInterfaceState state, DockingPortStates dockStates)
     {
         State = state;
+        DockStates = dockStates;
     }
 }

@@ -27,8 +27,8 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     private float _blipUpdateTimer = 0f;
 
     // Idle radar update interval.
-    // Since full entity tracking is expensive, we only update the radar every 5 seconds when the UI isn't open.
-    private static readonly TimeSpan _idleUpdateInterval = TimeSpan.FromSeconds(5);
+    // Since full entity tracking is expensive, we only update the radar every 10 seconds when the UI isn't open.
+    private static readonly TimeSpan _idleUpdateInterval = TimeSpan.FromSeconds(10);
     #endregion
 
     public override void Initialize()
@@ -80,15 +80,15 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
             component.UiLastUpdated = _timing.CurTime;
             // Starlight END
             NavInterfaceState state;
-            var docks = _console.GetAllDocks();
+            var dockingPortStates = _console.GetDockingPortStates();
 
             if (coordinates != null && angle != null)
             {
-                state = _console.GetNavState(uid, docks, coordinates.Value, angle.Value);
+                state = _console.GetNavState(uid, coordinates.Value, angle.Value);
             }
             else
             {
-                state = _console.GetNavState(uid, docks);
+                state = _console.GetNavState(uid);
             }
 
             state.RotateWithEntity = !component.FollowEntity;
@@ -130,7 +130,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
                 }
             }
 
-            _uiSystem.SetUiState(uid, RadarConsoleUiKey.Key, new NavBoundUserInterfaceState(state));
+            _uiSystem.SetUiState(uid, RadarConsoleUiKey.Key, new NavBoundUserInterfaceState(state, dockingPortStates));
         }
     }
 }

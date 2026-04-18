@@ -226,7 +226,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
         if (!serverfound)
         {
             _ui.SetUiState(uid, GunneryConsoleUiKey.Key,
-                new GunneryConsoleBoundUserInterfaceState(_console.GetNavState(uid, _console.GetAllDocks()), new List<CannonBlipData>(), null, false));
+                new GunneryConsoleBoundUserInterfaceState(_console.GetNavState(uid), _console.GetDockingPortStates(), new List<CannonBlipData>(), null, false));
 
             return;
         }
@@ -240,13 +240,13 @@ public sealed class GunneryConsoleSystem : EntitySystem
             angle = xform.LocalRotation;
         }
 
-        var docks = _console.GetAllDocks();
+        var dockingPortStates = _console.GetDockingPortStates();
         NavInterfaceState navState;
 
         if (coordinates != null && angle != null)
-            navState = _console.GetNavState(uid, docks, coordinates.Value, angle.Value);
+            navState = _console.GetNavState(uid, coordinates.Value, angle.Value);
         else
-            navState = _console.GetNavState(uid, docks);
+            navState = _console.GetNavState(uid);
 
         // Populate standard radar blips (rockets, shells, etc.)
         var maxRangeSq = navState.MaxRange * navState.MaxRange;
@@ -324,7 +324,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
             : (NetEntity?)null;
 
         _ui.SetUiState(uid, GunneryConsoleUiKey.Key,
-            new GunneryConsoleBoundUserInterfaceState(navState, cannons, trackedNet));
+            new GunneryConsoleBoundUserInterfaceState(navState, dockingPortStates, cannons, trackedNet));
     }
 
     // ── Helpers ────────────────────────────────────────────────────────────
