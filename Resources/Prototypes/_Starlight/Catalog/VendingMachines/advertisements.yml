@@ -14,7 +14,7 @@
   id: LegalDrobeAds
   values:
     prefix: advertisement-legaldrobe-
-    count: 10
+    count: 9
 
 - type: localizedDataset
   id: InterdyneAds
