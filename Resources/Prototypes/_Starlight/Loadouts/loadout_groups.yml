@@ -510,15 +510,26 @@
   - LaceupShoes
 
 - type: loadoutGroup
+  id: LawyerShoes
+  name: loadout-group-lawyer-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+  - BlackShoes
+
+- type: loadoutGroup
   id: IAAShoes
   name: loadout-group-iaa-shoes
   minLimit: 0
   defaultSelected: 1
   loadouts:
-  - BlackShoes
   - LaceupShoes
   - Heels
   - LeatherShoes
+  - BlackShoes
 
 - type: loadoutGroup
   id: BlueShieldShoes

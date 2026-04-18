@@ -110,6 +110,8 @@ loadout-group-performer-head = Performer head
 loadout-group-performer-jumpsuit = Performer jumpsuit
 loadout-group-performer-outerclothing = Performer outer clothing
 
+loadout-group-lawyer-shoes = Lawyer shoes
+
 # Other
 loadout-group-scarves = Scarf
 loadout-group-pins = Pins
