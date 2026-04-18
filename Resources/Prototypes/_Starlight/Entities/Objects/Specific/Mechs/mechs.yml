@@ -417,7 +417,7 @@
     - type: Sprite
       drawdepth: Mobs
       noRot: true
-      sprite: _Starlight/Objects/Specific/Mechs/Mechs
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/seraph.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
           state: base
