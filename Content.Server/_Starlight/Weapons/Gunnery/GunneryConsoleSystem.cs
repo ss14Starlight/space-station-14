@@ -203,6 +203,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
                                  _ui.IsUiOpen(uid, GunneryConsoleUiKey.Key);
         if (!shouldIdleUpdate && !shouldActiveUpdate)
             return;
+        comp.LastInterfaceUpdateTime = _timing.CurTime;
 
         var xform = Transform(uid);
 
