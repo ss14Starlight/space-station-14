@@ -38,6 +38,10 @@
 	        "copyright": "wonderfulnewworld"
         },
         {
+            "name": "LawyerSL",
+            "delays": [[10, 0.2, 0.2, 0.2]]
+        },
+        {
             "name": "CentComm",
             "copyright": "Happyrobot33, fqqf"
         },
