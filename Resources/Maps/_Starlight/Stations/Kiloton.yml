@@ -4,7 +4,7 @@ meta:
   engineVersion: 272.0.0
   forkId: starlight
   forkVersion: 740a475c6b9362e3e7985e14494c48a4dde538ec
-  time: 04/17/2026 22:04:58
+  time: 04/18/2026 09:37:03
   entityCount: 39048
 maps:
 - 1
@@ -15511,7 +15511,6 @@ entities:
       - 15111
       - 15112
       - 15294
-      - 15121
       - 15042
       - 15041
       - 15120
@@ -15581,7 +15580,6 @@ entities:
       - 14986
       - 14992
       - 14991
-      - 15300
     - type: Fixtures
       fixtures: {}
   - uid: 79
@@ -17237,21 +17235,6 @@ entities:
       - 19355
     - type: Fixtures
       fixtures: {}
-  - uid: 187
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -36.5,-21.5
-      parent: 2
-    - type: DeviceList
-      devices:
-      - 15121
-      - 19492
-      - 9690
-      - 783
-      - 15300
-    - type: Fixtures
-      fixtures: {}
   - uid: 188
     components:
     - type: Transform
@@ -17438,6 +17421,21 @@ entities:
       - 19262
       - 19581
       - 19314
+    - type: Fixtures
+      fixtures: {}
+  - uid: 9690
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -36.5,-21.5
+      parent: 2
+    - type: DeviceList
+      devices:
+      - 15300
+      - 783
+      - 15121
+      - 24473
+      - 258
     - type: Fixtures
       fixtures: {}
 - proto: AirAlarmFreezer
@@ -17772,13 +17770,13 @@ entities:
   - uid: 257
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -40.5,-22.5
       parent: 2
-- proto: AirlockBrigmedParaGlassLocked
-  entities:
-  - uid: 258
+  - uid: 27609
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -36.5,-19.5
       parent: 2
 - proto: AirlockCaptainGlassLocked
@@ -21075,11 +21073,12 @@ entities:
   - uid: 783
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -38.5,-20.5
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - 187
+      - 9690
   - uid: 784
     components:
     - type: Transform
@@ -26608,14 +26607,14 @@ entities:
       parent: 2
 - proto: BrigTimer
   entities:
-  - uid: 24473
+  - uid: 464
     components:
     - type: Transform
       pos: -51.5,-5.5
       parent: 2
     - type: DeviceLinkSource
       linkedPorts:
-        464:
+        27608:
         - - Start
           - Close
         - - Timer
@@ -96350,7 +96349,6 @@ entities:
       - 15111
       - 15112
       - 15294
-      - 15121
       - 15042
       - 15041
       - 15120
@@ -96750,6 +96748,15 @@ entities:
       - 197
 - proto: FirelockGlass
   entities:
+  - uid: 258
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -40.5,-22.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 9690
   - uid: 14975
     components:
     - type: Transform
@@ -98160,17 +98167,6 @@ entities:
       - 74
       - 14940
       - 69
-  - uid: 15121
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -40.5,-22.5
-      parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 74
-      - 14940
-      - 187
   - uid: 15122
     components:
     - type: Transform
@@ -99949,15 +99945,15 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 198
-  - uid: 15300
+  - uid: 24473
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -36.5,-19.5
       parent: 2
     - type: DeviceNetwork
       deviceLists:
-      - 187
-      - 78
+      - 9690
 - proto: Fireplace
   entities:
   - uid: 15301
@@ -129875,6 +129871,17 @@ entities:
       parent: 2
 - proto: GasVentPump
   entities:
+  - uid: 15121
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -37.5,-22.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 9690
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 19262
     components:
     - type: Transform
@@ -132165,17 +132172,6 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 19492
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -37.5,-22.5
-      parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 187
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 19493
     components:
     - type: Transform
@@ -132448,17 +132444,15 @@ entities:
       color: '#0055CCFF'
 - proto: GasVentScrubber
   entities:
-  - uid: 9690
+  - uid: 15300
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -39.5,-19.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
-      - 187
+      - 9690
     - type: AtmosPipeColor
       color: '#FF1212FF'
   - uid: 19520
@@ -167514,17 +167508,28 @@ entities:
       fixtures: {}
 - proto: SignalButtonDirectional
   entities:
+  - uid: 19492
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -49.5,-34.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        26667:
+        - - Pressed
+          - Toggle
+        26138:
+        - - Pressed
+          - Toggle
+    - type: Fixtures
+      fixtures: {}
   - uid: 25407
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -36.5,-20.5
       parent: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        258:
-        - - Pressed
-          - DoorBolt
     - type: Fixtures
       fixtures: {}
   - uid: 25408
@@ -168195,22 +168200,6 @@ entities:
         - - Pressed
           - Toggle
         1328:
-        - - Pressed
-          - Toggle
-    - type: Fixtures
-      fixtures: {}
-  - uid: 26667
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -49.5,-34.5
-      parent: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        27608:
-        - - Pressed
-          - Toggle
-        27609:
         - - Pressed
           - Toggle
     - type: Fixtures
@@ -172987,7 +172976,7 @@ entities:
       parent: 2
 - proto: SpawnPointBrigmedic
   entities:
-  - uid: 26138
+  - uid: 187
     components:
     - type: Transform
       pos: -38.5,-20.5
@@ -182500,15 +182489,17 @@ entities:
       parent: 2
 - proto: TintedWindow
   entities:
-  - uid: 27608
+  - uid: 26138
     components:
     - type: Transform
-      pos: -47.5,-36.5
-      parent: 2
-  - uid: 27609
-    components:
-    - type: Transform
+      rot: 1.5707963267948966 rad
       pos: -46.5,-36.5
+      parent: 2
+  - uid: 26667
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -47.5,-36.5
       parent: 2
   - uid: 27610
     components:
@@ -239857,7 +239848,7 @@ entities:
       parent: 2
 - proto: WindoorSecureSecurityLocked
   entities:
-  - uid: 464
+  - uid: 27608
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
