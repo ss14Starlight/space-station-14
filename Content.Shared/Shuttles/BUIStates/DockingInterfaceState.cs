@@ -5,10 +5,12 @@ namespace Content.Shared.Shuttles.BUIStates;
 [Serializable, NetSerializable]
 public sealed class DockingInterfaceState
 {
-    public Dictionary<NetEntity, List<DockingPortState>> Docks;
+    /* Starlight BEGIN
+    // public Dictionary<NetEntity, List<DockingPortState>> Docks;
+    */ // Starlight END
 
-    public DockingInterfaceState(Dictionary<NetEntity, List<DockingPortState>> docks)
+    public DockingInterfaceState() // Starlight: -docks
     {
-        Docks = docks;
+        // Docks = docks; // Starlight
     }
 }

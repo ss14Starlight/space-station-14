@@ -89,15 +89,15 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
             component.LastInterfaceUpdateTime = _timing.CurTime;
             // Starlight END
             NavInterfaceState state;
-            var dockingPortStates = _console.GetDockingPortStates();
+            var docks = _console.GetDockingPortStates(); // Starlight
 
             if (coordinates != null && angle != null)
             {
-                state = _console.GetNavState(uid, coordinates.Value, angle.Value);
+                state = _console.GetNavState(uid, coordinates.Value, angle.Value); // Starlight: -docks
             }
             else
             {
-                state = _console.GetNavState(uid);
+                state = _console.GetNavState(uid); // Starlight: -docks
             }
 
             state.RotateWithEntity = !component.FollowEntity;
@@ -139,7 +139,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
                 }
             }
 
-            _uiSystem.SetUiState(uid, RadarConsoleUiKey.Key, new NavBoundUserInterfaceState(state, dockingPortStates));
+            _uiSystem.SetUiState(uid, RadarConsoleUiKey.Key, new NavBoundUserInterfaceState(state, docks)); // Starlight: +docks
         }
     }
 }

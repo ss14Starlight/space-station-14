@@ -38,11 +38,12 @@ public sealed class NavInterfaceState
     public NavInterfaceState(
         float maxRange,
         NetCoordinates? coordinates,
-        Angle? angle)
+        Angle? angle) // Starlight: -docks
     {
         MaxRange = maxRange;
         Coordinates = coordinates;
         Angle = angle;
+        // Starlight: -docks
     }
 }
 
