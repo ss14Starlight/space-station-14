@@ -51,7 +51,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     private const float BlipUpdateInterval = 0.25f;
     private float _blipUpdateTimer = 0f;
 
-    ///<summary>
+    /// <summary>
     /// How often to transmit UI updates when nobody is actively looking at a console. This makes it so that the
     /// consoles show a slightly outdated state initially when opened, rather than just a blank screen.
     /// </summary>
