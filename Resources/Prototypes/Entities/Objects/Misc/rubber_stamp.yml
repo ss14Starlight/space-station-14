@@ -87,7 +87,7 @@
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-lawyer
-    stampedColor: "#233D57"
+    stampedColor: "#496130" # Starlight, Lawyer is green now
     stampState: "paper_stamp-lawyer"
   - type: Sprite
     state: stamp-lawyer

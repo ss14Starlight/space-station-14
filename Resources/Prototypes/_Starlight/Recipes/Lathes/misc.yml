@@ -559,6 +559,14 @@
      Glass: 500
 
 - type: latheRecipe
+  id: VendingMachineLegalDrobeCircuitboard
+  result: VendingMachineLegalDrobeCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 500
+
+- type: latheRecipe
   parent: BaseLightRecipe
   id: BlackLightTube
   result: BlackLightTube
