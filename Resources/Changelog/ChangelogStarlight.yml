@@ -1462,4 +1462,11 @@ Entries:
   id: 404336
   time: '2026-04-18T08:09:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4177
+- author: Makeshift
+  changes:
+  - message: Added an Astro variant of Asteroid Tiles for mapping use.
+    type: Add
+  id: 404337
+  time: '2026-04-18T08:35:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4153
 Order: -1
