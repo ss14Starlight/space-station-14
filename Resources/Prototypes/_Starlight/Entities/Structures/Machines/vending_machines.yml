@@ -1074,6 +1074,13 @@
     - type: EmptyVendingMachine
 
 - type: entity
+  parent: VendingMachineLegalDrobe
+  id: VendingMachineLegalDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
   parent: VendingMachineMedicalSecurity
   id: VendingMachineMedicalSecurityEmpty
   suffix: Empty
