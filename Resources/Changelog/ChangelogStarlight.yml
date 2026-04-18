@@ -1469,4 +1469,11 @@ Entries:
   id: 404337
   time: '2026-04-18T08:35:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4153
+- author: neurovermi
+  changes:
+  - message: Mech equipment selection now occurs via a radial menu.
+    type: Add
+  id: 404338
+  time: '2026-04-18T09:02:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4160
 Order: -1
