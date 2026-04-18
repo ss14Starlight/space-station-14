@@ -1476,4 +1476,11 @@ Entries:
   id: 404338
   time: '2026-04-18T09:02:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4160
+- author: Unknown
+  changes:
+  - message: Fixed the chemicals in the Chemicals guidebook page not linking to each other.
+    type: Fix
+  id: 404339
+  time: '2026-04-18T16:39:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4195
 Order: -1
