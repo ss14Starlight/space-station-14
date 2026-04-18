@@ -1483,4 +1483,11 @@ Entries:
   id: 404339
   time: '2026-04-18T16:39:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4195
+- author: STARLIGHT TEAM
+  changes:
+  - message: (4 new ghost themes, improvements to 2 older ones, and a panic bunker bypass) for patrons.
+    type: Add
+  id: 404340
+  time: '2026-04-18T21:55:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4200
 Order: -1
