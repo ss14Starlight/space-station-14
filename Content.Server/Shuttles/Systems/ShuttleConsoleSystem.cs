@@ -307,10 +307,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         }
         // Starlight BEGIN
         if (!TryComp<ShuttleConsoleComponent>(consoleUid, out var component)) return;
-        var shouldIdleUpdate = component.LastInterfaceUpdatedTime + _idleUpdateInterval < _timing.CurTime;
+        var shouldIdleUpdate = component.LastInterfaceUpdateTime + _idleUpdateInterval < _timing.CurTime;
         if (_ui.HasUi(consoleUid, ShuttleConsoleUiKey.Key) && (shouldIdleUpdate || _ui.IsUiOpen(consoleUid, ShuttleConsoleUiKey.Key)))
         {
-            component.LastInterfaceUpdatedTime = _timing.CurTime;
+            component.LastInterfaceUpdateTime = _timing.CurTime;
             // Starlight END
 
             // _Starlight - populate blips and laser traces

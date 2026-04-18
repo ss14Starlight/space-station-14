@@ -25,7 +25,7 @@ namespace Content.Server.Shuttles.Components
         /// <summary>
         /// When the last interface update was transmitted.
         /// </summary>
-        public TimeSpan LastInterfaceUpdatedTime = TimeSpan.Zero;
+        public TimeSpan LastInterfaceUpdateTime = TimeSpan.Zero;
         #endregion
     }
 }
