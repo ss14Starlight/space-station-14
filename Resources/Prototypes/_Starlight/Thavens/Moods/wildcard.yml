@@ -40,6 +40,11 @@
     - EngineIsDeity
     - DeliciousMoldyBread
     - BlindnessIsFreedom
+    - Charger
+    - VitalPurity
+    - Martyr
+    - DuckAndCover
+    - Paranoid
 
 
 # You must always lie, and can never acknowledge that you are lying. If anyone asks, you're incapable of deception.
@@ -336,3 +341,39 @@
   conflicts:
     - FleshIsSacred
     - BlindSympathizer
+
+# Charger: Your positronic brain consumes a lot of power. Make sure to frequently recharge it by skin contact with exposed electrical wires.
+- type: thavenMood
+  id: Charger
+  moodName: thaven-mood-charger-name
+  moodDesc: thaven-mood-charger-desc
+  conflicts:
+    - FleshIsSacred
+
+# Vital Purity: Healing is a crime against nature. Refuse any form of medical intervention at all cost.
+- type: thavenMood
+  id: VitalPurity
+  moodName: thaven-mood-vital-purity-name
+  moodDesc: thaven-mood-vital-purity-desc
+  conflicts:
+    - FleshIsSacred
+
+# Martyr: It's highly virtuous to be visibly wounded. Keep your health low at all times.
+- type: thavenMood
+  id: Martyr
+  moodName: thaven-mood-martyr-name
+  moodDesc: thaven-mood-martyr-desc
+  conflicts:
+    - FleshIsSacred
+
+# Duck and cover: Showing your full profile is dangerous, crawl at all times.
+- type: thavenMood
+  id: DuckAndCover
+  moodName: thaven-mood-duck-and-cover-name
+  moodDesc: thaven-mood-duck-and-cover-desc
+
+# Paranoid: You strongly believe that coords cause cancer.
+- type: thavenMood
+  id: Paranoid
+  moodName: thaven-mood-paranoid-name
+  moodDesc: thaven-mood-paranoid-desc

@@ -1,6 +1,5 @@
 using Content.Server.Actions;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Shared._Starlight.Antags.Vampires;
@@ -17,6 +16,7 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
+using Content.Shared.Interaction;
 using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -36,6 +36,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Prometheus;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
@@ -72,6 +73,8 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+
     private ISawmill? _sawmill;
     private static readonly ProtoId<DamageGroupPrototype> _bruteGroupId = "Brute";
     private static readonly ProtoId<DamageGroupPrototype> _burnGroupId = "Burn";
@@ -683,6 +686,9 @@ public sealed partial class VampireSystem : EntitySystem
                 continue;
 
             if (!Transform(ent).Anchored)
+                continue;
+
+            if (!_interaction.InRangeUnobstructed(uid, ent, comp.HolyPlaceRange))
                 continue;
 
             return true;
