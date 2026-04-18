@@ -132,11 +132,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         GetExclusions(ref exclusions);
         _consoles.Clear();
         _lookup.GetChildEntities(gridUid, _consoles);
-        DockingPortStates? docks = null;
+        DockingPortStates? dockState = null;
 
         foreach (var entity in _consoles)
         {
-            UpdateState(entity, ref docks);
+            UpdateState(entity, ref dockState);
         }
     }
 
@@ -148,11 +148,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         var exclusions = new List<ShuttleExclusionObject>();
         GetExclusions(ref exclusions);
         var query = AllEntityQuery<ShuttleConsoleComponent>();
-        DockingPortStates? docks = null;
+        DockingPortStates? dockState = null;
 
         while (query.MoveNext(out var uid, out _))
         {
-            UpdateState(uid, ref docks);
+            UpdateState(uid, ref dockState);
         }
     }
 
@@ -486,12 +486,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             angle);
     }
 
-    public DockingPortStates GetDockingPortStates()
-    {
-        _dockingPortStates ??= new DockingPortStates(new Dictionary<NetEntity, List<DockingPortState>>());
-        var docks = GetAllDocks();
-        return new DockingPortStates(docks);
-    }
+    public DockingPortStates GetDockingPortStates() => new(GetAllDocks()); // Starlight
 
     /// <summary>
     /// Global for all shuttles.

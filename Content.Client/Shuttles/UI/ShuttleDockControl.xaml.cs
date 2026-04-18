@@ -33,7 +33,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
     private EntityCoordinates? _coordinates;
     private Angle? _angle;
 
-    public Dictionary<NetEntity, List<DockingPortState>>? Docks;
+    public Dictionary<NetEntity, List<DockingPortState>>? DockState;
 
     private List<Entity<MapGridComponent>> _grids = new();
 
@@ -99,7 +99,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
 
         if (_coordinates == null ||
             _angle == null ||
-            Docks == null ||
+            DockState == null ||
             !EntManager.TryGetComponent<TransformComponent>(GridEntity, out var gridXform))
         {
             DrawNoSignal(handle);
@@ -148,7 +148,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
             DrawGrid(handle, curGridToView, grid, color);
 
             // Draw any docks on that grid
-            if (!Docks.TryGetValue(EntManager.GetNetEntity(grid), out var gridDocks))
+            if (!DockState.TryGetValue(EntManager.GetNetEntity(grid), out var gridDocks))
                 continue;
 
             foreach (var dock in gridDocks)
@@ -353,12 +353,12 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         _dockButtons.Clear();
         _dockContainers.Clear();
 
-        if (Docks == null)
+        if (DockState == null)
             return;
 
         var gridNent = EntManager.GetNetEntity(GridEntity);
 
-        foreach (var (otherShuttle, docks) in Docks)
+        foreach (var (otherShuttle, docks) in DockState)
         {
             // If it's our shuttle we add a view button
 
