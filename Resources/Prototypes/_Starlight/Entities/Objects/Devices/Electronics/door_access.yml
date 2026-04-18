@@ -70,6 +70,15 @@
     - type: AccessReader
       access: [["Mail"]]
 
+# Legal
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsLegal
+  suffix: Legal, Locked
+  components:
+  - type: AccessReader
+    access: [["Lawyer"]]
+
 #Brigmedic
 - type: entity
   parent: DoorElectronics
