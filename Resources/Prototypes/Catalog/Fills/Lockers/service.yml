@@ -94,6 +94,7 @@
     - id: LightReplacer
     - id: BoxLightMixed
     - id: Holoprojector
+    - id: WireBrush
     # Starlight start
     - !type:GroupSelector
       children:
@@ -111,7 +112,6 @@
       - id: SoapNT
       - id: FlashlightLantern
       - id: Plunger
-      - id: WireBrush
       - id: MoproachBox #Starlight
     - id: WashingMachineFlatpack # Starlight
     - id: BucketSmall # Starlight
