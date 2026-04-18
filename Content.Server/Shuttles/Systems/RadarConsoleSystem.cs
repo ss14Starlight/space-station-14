@@ -20,10 +20,16 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     [Dependency] private readonly RadarLaserSystem _laserSystem = default!; // _Starlight
     [Dependency] private readonly IGameTiming _timing = default!; // _Starlight
 
-    // _Starlight - periodic blip/laser update
+    #region Starlight
+    // Periodic blip/laser update
     // How often (in seconds) to push fresh blip state to all open radar consoles.
     private const float BlipUpdateInterval = 0.25f;
     private float _blipUpdateTimer = 0f;
+
+    // Idle radar update interval.
+    // Since full entity tracking is expensive, we only update the radar every 5 seconds when the UI isn't open.
+    private static readonly TimeSpan _idleUpdateInterval = TimeSpan.FromSeconds(5);
+    #endregion
 
     public override void Initialize()
     {
@@ -67,8 +73,12 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
             angle = Angle.Zero;
         }
 
-        if (_uiSystem.HasUi(uid, RadarConsoleUiKey.Key))
+        // Starlight BEGIN
+        var shouldIdleUpdate = component.UiLastUpdated + _idleUpdateInterval < _timing.CurTime;
+        if (_uiSystem.HasUi(uid, RadarConsoleUiKey.Key) && (shouldIdleUpdate || _uiSystem.IsUiOpen(uid, RadarConsoleUiKey.Key)))
         {
+            component.UiLastUpdated = _timing.CurTime;
+            // Starlight END
             NavInterfaceState state;
             var docks = _console.GetAllDocks();
 

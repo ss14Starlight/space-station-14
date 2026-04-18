@@ -25,4 +25,8 @@ public sealed partial class RadarConsoleComponent : Component
     /// </summary>
     [DataField]
     public bool FollowEntity = false;
+
+    #region Starlight
+    public TimeSpan UiLastUpdated = TimeSpan.Zero;
+    #endregion
 }

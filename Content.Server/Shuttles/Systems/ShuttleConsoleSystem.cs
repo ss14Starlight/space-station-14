@@ -45,10 +45,16 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly RadarLaserSystem _laserSystem = default!; // _Starlight
     [Dependency] private readonly IGameTiming _timing = default!; // _Starlight
 
-    // _Starlight - periodic blip/laser update
+    #region Starlight
+    // Periodic blip/laser update
     // How often (in seconds) to push fresh blip state to all open radar consoles.
     private const float BlipUpdateInterval = 0.25f;
     private float _blipUpdateTimer = 0f;
+
+    // Idle radar update interval.
+    // Since full entity tracking is expensive, we only update the radar every 5 seconds when the UI isn't open.
+    private static readonly TimeSpan _idleUpdateInterval = TimeSpan.FromSeconds(5);
+    #endregion
 
     private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -292,9 +298,15 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 new List<ShuttleBeaconObject>(),
                 new List<ShuttleExclusionObject>());
         }
-
-        if (_ui.HasUi(consoleUid, ShuttleConsoleUiKey.Key))
+        // Starlight BEGIN
+        if (!TryComp<ShuttleConsoleComponent>(consoleUid, out var component))
+            return;
+        var shouldIdleUpdate = component.UiLastUpdated + _idleUpdateInterval < _timing.CurTime;
+        if (_ui.HasUi(consoleUid, ShuttleConsoleUiKey.Key) && (shouldIdleUpdate || _ui.IsUiOpen(consoleUid, ShuttleConsoleUiKey.Key)))
         {
+            component.UiLastUpdated = _timing.CurTime;
+            // Starlight END
+
             // _Starlight - populate blips and laser traces
             // Populate radar blips for entities with RadarBlipComponent (e.g. artillery shells)
             var consoleMapCoords = _transform.GetMapCoordinates(consoleUid);

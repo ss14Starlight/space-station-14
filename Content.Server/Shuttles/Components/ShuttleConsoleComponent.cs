@@ -20,5 +20,9 @@ namespace Content.Server.Shuttles.Components
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField("whitelistSpecific")]
         public List<EntityUid> FTLWhitelist = new List<EntityUid>();
+
+        #region Starlight
+        public TimeSpan UiLastUpdated = TimeSpan.Zero;
+        #endregion
     }
 }
