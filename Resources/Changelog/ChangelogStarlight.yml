@@ -1434,4 +1434,18 @@ Entries:
   id: 404332
   time: '2026-04-16T13:19:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4172
+- author: neurovermi
+  changes:
+  - message: Non-pilots can no longer open the mech stats panel if a pilot is present.
+    type: Tweak
+  id: 404333
+  time: '2026-04-18T06:09:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4192
+- author: neurovermi
+  changes:
+  - message: Mech maintenance panel is tied directly to the maintenance mode state.
+    type: Tweak
+  id: 404334
+  time: '2026-04-18T06:09:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4192
 Order: -1
