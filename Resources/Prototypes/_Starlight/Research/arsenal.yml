@@ -3,7 +3,7 @@
   id: Paddy
   name: research-technology-paddy
   icon:
-    sprite: Objects/Specific/Mech/Mechs/Basic/paddy.rsi
+    sprite: _Starlight/Objects/Specific/Mechs/Mechs/paddy.rsi
     state: base
   discipline: Arsenal
   tier: 2
@@ -20,7 +20,7 @@
   id: Gygax
   name: research-technology-gygax
   icon:
-    sprite: Objects/Specific/Mech/Mechs/Basic/gygax.rsi
+    sprite: _Starlight/Objects/Specific/Mechs/Mechs/gygax.rsi
     state: base
   discipline: Arsenal
   tier: 2
@@ -142,7 +142,7 @@
   id: Durand
   name: research-technology-durand
   icon:
-    sprite: Objects/Specific/Mech/Mechs/Basic/durand.rsi
+    sprite: _Starlight/Objects/Specific/Mechs/Mechs/durand.rsi
     state: base
   discipline: Arsenal
   tier: 3
