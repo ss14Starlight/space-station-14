@@ -51,9 +51,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     private const float BlipUpdateInterval = 0.25f;
     private float _blipUpdateTimer = 0f;
 
-    // Idle radar update interval.
-    // Since full entity tracking is expensive, we only update the radar every 5 seconds when the UI isn't open.
-    private static readonly TimeSpan _idleUpdateInterval = TimeSpan.FromSeconds(5);
+    /// How often to transmit UI updates when nobody is actively looking at a console. This makes it so that the
+    /// consoles show a slightly outdated state initially when opened, rather than just a blank screen.
+    private static readonly TimeSpan _idleUpdateInterval = TimeSpan.FromSeconds(10);
     #endregion
 
     private EntityQuery<MetaDataComponent> _metaQuery;
@@ -302,10 +302,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         // Starlight BEGIN
         if (!TryComp<ShuttleConsoleComponent>(consoleUid, out var component))
             return;
-        var shouldIdleUpdate = component.UiLastUpdated + _idleUpdateInterval < _timing.CurTime;
+        var shouldIdleUpdate = component.LastInterfaceUpdatedTime + _idleUpdateInterval < _timing.CurTime;
         if (_ui.HasUi(consoleUid, ShuttleConsoleUiKey.Key) && (shouldIdleUpdate || _ui.IsUiOpen(consoleUid, ShuttleConsoleUiKey.Key)))
         {
-            component.UiLastUpdated = _timing.CurTime;
+            component.LastInterfaceUpdatedTime = _timing.CurTime;
             // Starlight END
 
             // _Starlight - populate blips and laser traces

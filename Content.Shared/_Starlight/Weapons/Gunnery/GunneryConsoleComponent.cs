@@ -17,6 +17,9 @@ public sealed partial class GunneryConsoleComponent : Component
     /// <summary>Server: EntityUid of the guided projectile currently being steered by this console, if any.</summary>
     public EntityUid? TrackedGuidedProjectile;
 
+    /// <summary>Server: When this console last updated its UI.</summary>
+    public TimeSpan LastInterfaceUpdateTime;
+
     /// <summary>Server: game time at which the last fire command was sent (used to associate spawned guided projectiles).</summary>
     public TimeSpan LastFireTime;
 

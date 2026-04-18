@@ -34,8 +34,16 @@ public sealed class GunneryConsoleSystem : EntitySystem
     [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
-    private const float UpdateInterval = 0.25f;
-    private float _updateTimer;
+    /// <summary>
+    /// How often to transmit UI updates when a player is actively looking at a console.
+    /// </summary>
+    private static readonly TimeSpan _activeUpdateInterval = TimeSpan.FromMilliseconds(250);
+
+    /// <summary>
+    /// How often to transmit UI updates when nobody is actively looking at a console. This makes it so that the
+    /// consoles show a slightly outdated state initially when opened, rather than just a blank screen.
+    /// </summary>
+    private static readonly TimeSpan _idleUpdateInterval = TimeSpan.FromSeconds(5);
 
     public override void Initialize()
     {
@@ -58,12 +66,6 @@ public sealed class GunneryConsoleSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-
-        _updateTimer += frameTime;
-        if (_updateTimer < UpdateInterval)
-            return;
-
-        _updateTimer = 0f;
 
         var query = AllEntityQuery<GunneryConsoleComponent>();
         while (query.MoveNext(out var uid, out var comp))
@@ -194,6 +196,12 @@ public sealed class GunneryConsoleSystem : EntitySystem
     private void UpdateState(EntityUid uid, GunneryConsoleComponent comp)
     {
         if (!_ui.HasUi(uid, GunneryConsoleUiKey.Key))
+            return;
+
+        var shouldIdleUpdate = comp.LastInterfaceUpdateTime + _idleUpdateInterval  < _timing.CurTime;
+        var shouldActiveUpdate = comp.LastInterfaceUpdateTime + _activeUpdateInterval < _timing.CurTime &&
+                                 _ui.IsUiOpen(uid, GunneryConsoleUiKey.Key);
+        if (!shouldIdleUpdate && !shouldActiveUpdate)
             return;
 
         var xform = Transform(uid);

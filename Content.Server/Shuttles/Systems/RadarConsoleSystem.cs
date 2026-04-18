@@ -26,9 +26,15 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     private const float BlipUpdateInterval = 0.25f;
     private float _blipUpdateTimer = 0f;
 
-    // Idle radar update interval.
-    // Since full entity tracking is expensive, we only update the radar every 10 seconds when the UI isn't open.
+    /// <summary>
+    /// How often to transmit UI updates when a player is actively looking at a console.
+    /// </summary>
+    private static readonly TimeSpan _activeUpdateInterval = TimeSpan.FromMilliseconds(500);
+
+    /// How often to transmit UI updates when nobody is actively looking at a console. This makes it so that the
+    /// consoles show a slightly outdated state initially when opened, rather than just a blank screen.
     private static readonly TimeSpan _idleUpdateInterval = TimeSpan.FromSeconds(10);
+
     #endregion
 
     public override void Initialize()
@@ -74,10 +80,12 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         }
 
         // Starlight BEGIN
-        var shouldIdleUpdate = component.UiLastUpdated + _idleUpdateInterval < _timing.CurTime;
-        if (_uiSystem.HasUi(uid, RadarConsoleUiKey.Key) && (shouldIdleUpdate || _uiSystem.IsUiOpen(uid, RadarConsoleUiKey.Key)))
+        var shouldIdleUpdate = component.LastInterfaceUpdateTime + _idleUpdateInterval < _timing.CurTime;
+        var shouldActiveUpdate = component.LastInterfaceUpdateTime + _activeUpdateInterval < _timing.CurTime &&
+                                 _uiSystem.IsUiOpen(uid, RadarConsoleUiKey.Key);
+        if (_uiSystem.HasUi(uid, RadarConsoleUiKey.Key) && (shouldIdleUpdate || shouldActiveUpdate))
         {
-            component.UiLastUpdated = _timing.CurTime;
+            component.LastInterfaceUpdateTime = _timing.CurTime;
             // Starlight END
             NavInterfaceState state;
             var dockingPortStates = _console.GetDockingPortStates();
