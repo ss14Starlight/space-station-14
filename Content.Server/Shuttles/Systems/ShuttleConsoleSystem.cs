@@ -178,14 +178,14 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     private void OnConsoleAnchorChange(EntityUid uid, ShuttleConsoleComponent component,
         ref AnchorStateChangedEvent args)
     {
-        DockingPortStates? docks = null;
-        UpdateState(uid, ref docks);
+        DockingPortStates? dockState = null;
+        UpdateState(uid, ref dockState);
     }
 
     private void OnConsolePowerChange(EntityUid uid, ShuttleConsoleComponent component, ref PowerChangedEvent args)
     {
-        DockingPortStates? docks = null;
-        UpdateState(uid, ref docks);
+        DockingPortStates? dockState = null;
+        UpdateState(uid, ref dockState);
     }
 
     private bool TryPilot(EntityUid user, EntityUid uid)
@@ -266,7 +266,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         return result;
     }
 
-    private void UpdateState(EntityUid consoleUid, ref DockingPortStates? docks)
+    private void UpdateState(EntityUid consoleUid, ref DockingPortStates? dockState)
     {
         EntityUid? entity = consoleUid;
 
@@ -283,7 +283,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         NavInterfaceState navState;
         ShuttleMapInterfaceState mapState;
-        docks ??= GetDockingPortStates();
+        dockState ??= GetDockingPortStates();
 
         if (shuttleGridUid != null && entity != null)
         {
@@ -345,7 +345,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 }
             }
 
-            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, docks));
+            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState));
         }
     }
 
