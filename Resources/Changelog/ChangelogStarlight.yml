@@ -1455,4 +1455,11 @@ Entries:
   id: 404335
   time: '2026-04-18T07:36:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4188
+- author: Way
+  changes:
+  - message: 3 New trees for mappers.
+    type: Add
+  id: 404336
+  time: '2026-04-18T08:09:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4177
 Order: -1
