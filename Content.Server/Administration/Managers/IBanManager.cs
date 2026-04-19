@@ -126,14 +126,67 @@ public interface IBanManager
     public void SendRoleBans(ICommonSession pSession);
 
     #region Starlight
+    /// <summary>
+    /// Asynchronously retrieves a list of server ban definitions matching the specified criteria.
+    /// </summary>
+    /// <param name="address">The IP address to filter bans by. Specify null to ignore this criterion.</param>
+    /// <param name="userId">The user ID to filter bans by. Specify null to ignore this criterion.</param>
+    /// <param name="hwId">The legacy hardware ID to filter bans by. Specify null to ignore this criterion.</param>
+    /// <param name="modernHWIds">A collection of modern hardware IDs to filter bans by. Specify null to ignore this criterion.</param>
+    /// <param name="includeUnbanned">true to include bans that have been unbanned; otherwise, false.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains a list of server ban definitions
+    /// that match the provided filters. The list is empty if no bans are found.</returns>
     public Task<List<ServerBanDef>> GetServerBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true);
 
+    /// <summary>
+    /// Creates a record of an unban action for a previously issued server ban.
+    /// </summary>
+    /// <remarks>Use this method to log or process the removal of a server ban, ensuring auditability and
+    /// proper tracking of unban events.</remarks>
+    /// <param name="banId">The unique identifier of the ban to be lifted. Must correspond to an existing ban.</param>
+    /// <param name="unbanningAdmin">The user ID of the administrator performing the unban action, or null if the unban is automated or not
+    /// attributed to a specific user.</param>
+    /// <param name="unbanTime">The date and time when the unban takes effect.</param>
+    /// <returns>A task that represents the asynchronous operation of recording the unban action.</returns>
     public Task CreateServerUnban(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime);
 
+    /// <summary>
+    /// Retrieves the details of a server ban with the specified identifier.
+    /// </summary>
+    /// <param name="id">The unique identifier of the server ban to retrieve.</param>
+    /// <param name="project">The optional project name to scope the search. If null, the default project is used.</param>
+    /// <param name="server">The optional server name to further filter the search. If null, all servers within the project are considered.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the server ban details if found;
+    /// otherwise, null.</returns>
     public Task<ServerBanDef?> GetServerBanAsync(int id, string? project = null, string? server = null);
 
+    /// <summary>
+    /// Asynchronously retrieves a server ban record that matches the specified address, user ID, hardware ID, or set of
+    /// modern hardware IDs.
+    /// </summary>
+    /// <remarks>At least one identifying parameter should be provided to perform a meaningful search. The
+    /// method checks all provided identifiers and returns the first matching ban, if any.</remarks>
+    /// <param name="address">The IP address to search for an associated server ban. Can be null if not searching by address.</param>
+    /// <param name="userId">The user ID to search for an associated server ban. Can be null if not searching by user ID.</param>
+    /// <param name="hwId">A hardware ID to search for an associated server ban. Can be null if not searching by hardware ID.</param>
+    /// <param name="modernHWIds">A collection of modern hardware IDs to search for an associated server ban. Can be null if not searching by
+    /// modern hardware IDs.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the matching server ban record if
+    /// found; otherwise, null.</returns>
     public Task<ServerBanDef?> GetServerBanAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds);
 
+    /// <summary>
+    /// Asynchronously retrieves a list of server role bans that match the specified criteria.
+    /// </summary>
+    /// <remarks>Multiple criteria can be combined to narrow the search. If all filter parameters are null,
+    /// all server role bans are returned, subject to the value of includeUnbanned.</remarks>
+    /// <param name="address">The IP address to filter bans by. Specify null to ignore this criterion.</param>
+    /// <param name="userId">The user ID to filter bans by. Specify null to ignore this criterion.</param>
+    /// <param name="hwId">The legacy hardware ID to filter bans by. Specify null to ignore this criterion.</param>
+    /// <param name="modernHWIds">A collection of modern hardware IDs to filter bans by. Specify null to ignore this criterion.</param>
+    /// <param name="includeUnbanned">true to include bans that have been unbanned; otherwise, false.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains a list of server role ban
+    /// definitions matching the specified filters. The list is empty if no bans are found.</returns>
     public Task<List<ServerRoleBanDef>> GetServerRoleBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true);
     #endregion
 }
