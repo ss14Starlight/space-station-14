@@ -2015,4 +2015,32 @@ Entries:
   id: 404415
   time: '2026-04-19T13:57:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4199
+- author: redmushie
+  changes:
+  - message: Various harmful and disruptive Wizard abilities are now disabled when EOR pacified.
+    type: Add
+  id: 404416
+  time: '2026-04-19T14:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4180
+- author: redmushie
+  changes:
+  - message: Staff of Animation is now disabled when EOR pacified.
+    type: Add
+  id: 404417
+  time: '2026-04-19T14:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4180
+- author: redmushie
+  changes:
+  - message: Sticky explosives can no longer be planted when EOR pacified.
+    type: Add
+  id: 404418
+  time: '2026-04-19T14:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4180
+- author: redmushie
+  changes:
+  - message: Various harmful grenades can no longer be activated when EOR pacified.
+    type: Add
+  id: 404419
+  time: '2026-04-19T14:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4180
 Order: -1
