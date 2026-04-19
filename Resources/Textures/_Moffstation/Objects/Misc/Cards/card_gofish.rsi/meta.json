@@ -1,0 +1,244 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Sprites created by Huaqas (GitHub) by modifying various SS14 sprites.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "empty"
+        },
+        {
+            "name": "singlecard_down_gofish"
+        },
+        {
+            "name": "background_blue"
+        },
+        {
+            "name": "background_green"
+        },
+        {
+            "name": "background_red"
+        },
+        {
+            "name": "background_yellow"
+        },
+        {
+            "name": "rules"
+        },
+        {
+            "name": "box"
+        },
+        {
+            "name": "box_open"
+        },
+        {
+            "name": "carp"
+        },
+        {
+            "name": "holo"
+        },
+        {
+            "name": "magic"
+        },
+        {
+            "name": "rainbowcarp",
+            "delays": [
+                [
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15
+                ]
+        ]
+        },
+        {
+            "name": "acmeco"
+        },
+        {
+            "name": "dromedaryco"
+        },
+        {
+            "name": "nomads"
+        },
+        {
+            "name": "spessman"
+        },
+        {
+            "name": "ian"
+        },
+        {
+            "name": "lisa"
+        },
+        {
+            "name": "oldian"
+        },
+        {
+            "name": "puppy"
+        },
+        {
+            "name": "appledonut"
+        },
+        {
+            "name": "bungodonut"
+        },
+        {
+            "name": "chocolatedonut"
+        },
+        {
+            "name": "pinkdonut"
+        },
+        {
+            "name": "ertengineer"
+        },
+        {
+            "name": "ertleader"
+        },
+        {
+            "name": "ertmedic"
+        },
+        {
+            "name": "ertsecurity"
+        },
+        {
+            "name": "bingus"
+        },
+        {
+            "name": "exception"
+        },
+        {
+            "name": "floppa"
+        },
+        {
+            "name": "runtime"
+        },
+        {
+            "name": "apple"
+        },
+        {
+            "name": "banana"
+        },
+        {
+            "name": "grapes"
+        },
+        {
+            "name": "orange"
+        },
+        {
+            "name": "brown"
+        },
+        {
+            "name": "grey"
+        },
+        {
+            "name": "real"
+        },
+        {
+            "name": "white"
+        },
+        {
+            "name": "deathshead"
+        },
+        {
+            "name": "moproach"
+        },
+        {
+            "name": "mothroach"
+        },
+        {
+            "name": "rosy"
+        },
+        {
+            "name": "nukieelite"
+        },
+        {
+            "name": "nukiejuggernaut"
+        },
+        {
+            "name": "nukiemedic"
+        },
+        {
+            "name": "nukieoperative"
+        },
+        {
+            "name": "drazil"
+        },
+        {
+            "name": "lizard"
+        },
+        {
+            "name": "rainbowlizard",
+            "delays": [
+                [
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15
+                ]
+        ]
+        },
+        {
+            "name": "spacelizard"
+        },
+        {
+            "name": "fourteenloko"
+        },
+        {
+            "name": "grape"
+        },
+        {
+            "name": "smitecranberry"
+        },
+        {
+            "name": "spacecola"
+        },
+        {
+            "name": "bloodbag"
+        },
+        {
+            "name": "bruisepack"
+        },
+        {
+            "name": "gauze"
+        },
+        {
+            "name": "ointment"
+        },
+        {
+            "name": "clown"
+        },
+        {
+            "name": "mime"
+        },
+        {
+            "name": "passenger"
+        },
+        {
+            "name": "skeleton"
+        }
+    ]
+}
