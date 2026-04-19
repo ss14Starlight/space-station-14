@@ -33,6 +33,7 @@ using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Wires;
+using Content.Shared.Electrocution;
 using Content.Shared._Starlight.Mech;
 using Content.Shared._Starlight.Weapons.Melee.Events;
 #endregion
@@ -91,6 +92,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, CanRepairEvent>(OnRepairAttempt); //  Moved from server side, broken
         SubscribeLocalEvent<MechComponent, AttemptChangePanelEvent>(OnAttemptPanelChanged);
         SubscribeLocalEvent<MechPilotComponent, KnockDownAttemptEvent>(OnKnockdownAttempt);
+        SubscribeLocalEvent<MechPilotComponent, ElectrocutionAttemptEvent>(OnMechPilotElectrocutionAttempt);
         #endregion
 
         InitializeRelay();
@@ -711,6 +713,11 @@ public abstract partial class SharedMechSystem : EntitySystem
     private void OnAttemptPanelChanged(EntityUid uid, MechComponent component, ref AttemptChangePanelEvent args)
     {
         args.Cancelled = args.User != uid;
+    }
+
+    private void OnMechPilotElectrocutionAttempt(EntityUid uid, MechPilotComponent comp, ElectrocutionAttemptEvent args)
+    {
+        args.SiemensCoefficient *= 0f; // Fully insulate the pilot
     }
     #endregion
 }
