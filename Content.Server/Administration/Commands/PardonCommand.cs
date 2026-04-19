@@ -30,12 +30,9 @@ namespace Content.Server.Administration.Commands
             }
 
             // NullLink-start: move to general method at Manager
-            ServerBanDef? ban = null;
-
-            if (!string.IsNullOrWhiteSpace(args[1]) && !string.IsNullOrWhiteSpace(args[2]))
-                ban = await _banManager.GetServerBanAsync(banId, args[1], args[2]);
-            else
-                ban = await _banManager.GetServerBanAsync(banId);
+            var ban = args.Length >= 3 && !string.IsNullOrWhiteSpace(args[1]) && !string.IsNullOrWhiteSpace(args[2])
+                ? await _banManager.GetServerBanAsync(banId, args[1], args[2])
+                : await _banManager.GetServerBanAsync(banId);
             // NullLink-end
 
             if (ban == null)
