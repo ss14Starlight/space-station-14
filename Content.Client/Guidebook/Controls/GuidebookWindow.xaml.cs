@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Linq;
+using Content.Client._Starlight.Guidebook.Richtext;
 using Content.Client.Guidebook.RichText;
 using Content.Client.UserInterface.ControlExtensions;
 using Content.Client.UserInterface.Controls;
@@ -129,22 +130,41 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
 
         LastEntry = entry.Id;
 
-        var (linkableControls, linkControls) = GetLinkableControlsAndLinks(EntryContainer);
-
-        HashSet<IPrototype> availablePrototypeLinks = new();
-        foreach (var linkableControl in linkableControls)
+        // Starlight start
+        void RefreshLinks()
         {
-            var prototype = linkableControl.RepresentedPrototype;
-            if (prototype != null)
-                availablePrototypeLinks.Add(prototype);
+            var (linkableControls, linkControls) = GetLinkableControlsAndLinks(EntryContainer);
+
+            HashSet<IPrototype> availablePrototypeLinks = new();
+            foreach (var linkableControl in linkableControls)
+            {
+                var prototype = linkableControl.RepresentedPrototype;
+                if (prototype != null)
+                    availablePrototypeLinks.Add(prototype);
+            }
+
+            foreach (var linkControl in linkControls)
+            {
+                var prototype = linkControl.LinkedPrototype;
+                if (prototype != null && availablePrototypeLinks.Contains(prototype))
+                    linkControl.EnablePrototypeLink();
+            }
         }
 
-        foreach (var linkControl in linkControls)
+        foreach (var doc in EntryContainer.Children)
         {
-            var prototype = linkControl.LinkedPrototype;
-            if (prototype != null && availablePrototypeLinks.Contains(prototype))
-                linkControl.EnablePrototypeLink();
+            foreach (var docChild in doc.Children)
+            {
+                if (docChild is IDocumentTagOnLoaded onLoaded)
+                {
+                    onLoaded.OnLoaded -= RefreshLinks;
+                    onLoaded.OnLoaded += RefreshLinks;
+                }
+            }
         }
+
+        RefreshLinks();
+        // Starlight end
     }
 
     public void UpdateGuides(
