@@ -1497,4 +1497,11 @@ Entries:
   id: 404341
   time: '2026-04-19T04:38:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4186
+- author: antilogical
+  changes:
+  - message: Fixed EOR Summary Cards.
+    type: Fix
+  id: 404342
+  time: '2026-04-19T05:50:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4205
 Order: -1
