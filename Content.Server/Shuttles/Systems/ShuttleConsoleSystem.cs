@@ -183,14 +183,14 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     {
         DockingInterfaceState? dockState = null;
         DockingPortStates? dockingPortStates = null; // Starlight
-        UpdateState(uid, ref dockState, ref dockingPortStates);
+        UpdateState(uid, ref dockState, ref dockingPortStates); // Starlight
     }
 
     private void OnConsolePowerChange(EntityUid uid, ShuttleConsoleComponent component, ref PowerChangedEvent args)
     {
         DockingInterfaceState? dockState = null;
         DockingPortStates? dockingPortStates = null; // Starlight
-        UpdateState(uid, ref dockState, ref dockingPortStates);
+        UpdateState(uid, ref dockState, ref dockingPortStates); // Starlight
     }
 
     private bool TryPilot(EntityUid user, EntityUid uid)
@@ -271,7 +271,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         return result;
     }
 
-    private void UpdateState(EntityUid consoleUid, ref DockingInterfaceState? dockState, ref DockingPortStates? dockingPortStates, bool forceUpdate = true) // Starlight: DockingPortStates instead
+    private void UpdateState(EntityUid consoleUid, ref DockingInterfaceState? dockState, ref DockingPortStates? dockingPortStates, bool forceUpdate = true) // Starlight: +DockingPortStates, forceUpdate
     {
         EntityUid? entity = consoleUid;
 

@@ -9,7 +9,7 @@ namespace Content.Shared._Starlight.Weapons.Gunnery;
 /// shuttle-mounted cannons and guide EMP rockets.
 /// </summary>
 [RegisterComponent]
-[AutoGenerateComponentPause]
+[AutoGenerateComponentPause] // Starlight
 public sealed partial class GunneryConsoleComponent : Component
 {
     // ── Server-only runtime state ──────────────────────────────────────────

@@ -5,7 +5,7 @@ namespace Content.Shared.Shuttles.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(SharedRadarConsoleSystem))]
-[AutoGenerateComponentPause]
+[AutoGenerateComponentPause] // Starlight
 public sealed partial class RadarConsoleComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]

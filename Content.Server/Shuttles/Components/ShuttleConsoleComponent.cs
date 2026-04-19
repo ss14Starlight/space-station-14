@@ -4,7 +4,7 @@ using Content.Shared.Shuttles.Components;
 namespace Content.Server.Shuttles.Components
 {
     [RegisterComponent]
-    [AutoGenerateComponentPause]
+    [AutoGenerateComponentPause] // Starlight
     public sealed partial class ShuttleConsoleComponent : SharedShuttleConsoleComponent
     {
         [ViewVariables]
