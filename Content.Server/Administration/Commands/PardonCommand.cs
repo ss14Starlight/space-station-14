@@ -17,7 +17,7 @@ namespace Content.Server.Administration.Commands
         {
             var player = shell.Player;
 
-            if (args.Length != 1)
+            if (args.Length is < 1 or > 3) // NullLink-edit: Project and Server name optional parameters
             {
                 shell.WriteLine(Help);
                 return;
