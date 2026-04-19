@@ -43,6 +43,7 @@ public sealed partial class AdminNotesControl : Control
     }
 
     private Dictionary<(int noteId, NoteType noteType), AdminNotesLine> Inputs { get; } = new();
+    private Dictionary<(int noteId, NoteType noteType, string, string), AdminNotesLine> NetworkInputs { get; } = new(); // Starlight-edit: network notes
     private bool CanCreate { get; set; }
     private bool CanDelete { get; set; }
     private bool CanEdit { get; set; }
@@ -192,9 +193,9 @@ public sealed partial class AdminNotesControl : Control
 
     public void SetNotes(Dictionary<(int, NoteType, string, string), SharedAdminNote> notes)
     {
-        foreach (var (key, input) in Inputs)
+        foreach (var (key, input) in NetworkInputs)
         {
-            if (!notes.Keys.Any(k => k.Item1 == key.Item1 && k.Item2 == key.Item2))
+            if (!notes.ContainsKey(key))
             {
                 // Yes this is slower than just updating, but new notes get added at the bottom. The user won't notice.
                 Notes.RemoveAllChildren();
@@ -202,13 +203,13 @@ public sealed partial class AdminNotesControl : Control
                 break;
             }
             Notes.RemoveChild(input);
-            Inputs.Remove(key);
+            NetworkInputs.Remove(key);
         }
 
         var showMoreButtonVisible = false;
         foreach (var note in notes.Values.OrderByDescending(note => note.CreatedAt))
         {
-            if (Inputs.TryGetValue((note.Id, note.NoteType), out var input))
+            if (NetworkInputs.TryGetValue((note.Id, note.NoteType, note.ServerName ?? "", note.ProjectName ?? ""), out var input))
             {
                 input.UpdateNote(note);
                 continue;
@@ -228,7 +229,7 @@ public sealed partial class AdminNotesControl : Control
             }
 
             Notes.AddChild(input);
-            Inputs[(note.Id, note.NoteType)] = input;
+            NetworkInputs[(note.Id, note.NoteType, note.ServerName ?? "", note.ProjectName ?? "")] = input;
             ShowMoreButton.Visible = showMoreButtonVisible;
         }
     }
