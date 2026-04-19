@@ -109,7 +109,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     {
         if (!_prototypeManager.TryIndex<ServerBanRecognitionPrototype>(obj, out var banRecognition))
         {
-            _banRecognition = null
+            _banRecognition = null;
             return;
         }
 
@@ -219,13 +219,15 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             ("name", targetName),
             ("ip", addressRangeString),
             ("hwid", hwidString),
+            ("project", banDef.ProjectName ?? ""), // NullLink-edit: include project and server in log message
+            ("server", banDef.ServerName ?? ""), // NullLink-edit: include project and server in log message
             ("reason", reason));
 
         _sawmill.Info(logMessage);
         _chat.SendAdminAlert(logMessage);
 
         // Starlight-start
-        var ban = await _db.GetServerBanAsync(null, target, null, null);
+        var ban = await _db.GetServerBanAsync(addressRange?.Item1, target, hwid?.Hwid, null);
         if (ban != null)
         {
             SendWebhook(await GenerateBanPayload(ban, minutes));
