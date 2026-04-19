@@ -1420,4 +1420,81 @@ Entries:
   id: 404330
   time: '2026-04-16T12:57:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4178
+- author: redmushie
+  changes:
+  - message: CentComm glasses now also have diagnostic HUD features, such as seeing cyborg and IPC health.
+    type: Add
+  id: 404331
+  time: '2026-04-16T13:19:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4172
+- author: redmushie
+  changes:
+  - message: CentComm jamjar now behave identically to other CC glasses.
+    type: Fix
+  id: 404332
+  time: '2026-04-16T13:19:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4172
+- author: neurovermi
+  changes:
+  - message: Non-pilots can no longer open the mech stats panel if a pilot is present.
+    type: Tweak
+  id: 404333
+  time: '2026-04-18T06:09:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4192
+- author: neurovermi
+  changes:
+  - message: Mech maintenance panel is tied directly to the maintenance mode state.
+    type: Tweak
+  id: 404334
+  time: '2026-04-18T06:09:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4192
+- author: Conflee
+  changes:
+  - message: Added edge sprites for all Kudzu types (Kudzu, Flowering, Flesh, and Clown) so you can see when Kudzu is under a table, airlock, or vending machine. This also makes them look more natural as they aren't locked to grids visually anymore.
+    type: Add
+  id: 404335
+  time: '2026-04-18T07:36:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4188
+- author: Way
+  changes:
+  - message: 3 New trees for mappers.
+    type: Add
+  id: 404336
+  time: '2026-04-18T08:09:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4177
+- author: Makeshift
+  changes:
+  - message: Added an Astro variant of Asteroid Tiles for mapping use.
+    type: Add
+  id: 404337
+  time: '2026-04-18T08:35:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4153
+- author: neurovermi
+  changes:
+  - message: Mech equipment selection now occurs via a radial menu.
+    type: Add
+  id: 404338
+  time: '2026-04-18T09:02:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4160
+- author: Unknown
+  changes:
+  - message: Fixed the chemicals in the Chemicals guidebook page not linking to each other.
+    type: Fix
+  id: 404339
+  time: '2026-04-18T16:39:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4195
+- author: STARLIGHT TEAM
+  changes:
+  - message: (4 new ghost themes, improvements to 2 older ones, and a panic bunker bypass) for patrons.
+    type: Add
+  id: 404340
+  time: '2026-04-18T21:55:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4200
+- author: AllisonKaur and Rhetorica
+  changes:
+  - message: 73 new TTS voices, based on synthetic audio.
+    type: Add
+  id: 404341
+  time: '2026-04-19T04:38:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4186
 Order: -1
