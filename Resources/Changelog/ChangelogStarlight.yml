@@ -1581,4 +1581,11 @@ Entries:
   id: 404353
   time: '2026-04-19T07:51:58.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4206
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fix the race condition when retrieving playtime from other servers.
+    type: Fix
+  id: 404354
+  time: '2026-04-19T11:52:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4204
 Order: -1
