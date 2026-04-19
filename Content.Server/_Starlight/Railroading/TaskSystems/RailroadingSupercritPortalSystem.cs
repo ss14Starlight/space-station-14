@@ -49,6 +49,6 @@ public sealed partial class RailroadingSupercritPortalSystem : EntitySystem
         args.IsCompleted = ent.Comp.IsCompleted;
     }
 
-    private void OnTaskPicked(Entity<RailroadSupercritPortalTaskComponent> ent, ref RailroadingCardChosenEvent args) 
+    private void OnTaskPicked(Entity<RailroadSupercritPortalTaskComponent> ent, ref RailroadingCardChosenEvent args)
         => EnsureComp<RailroadSupercritPortalWatcherComponent>(args.Subject.Owner);
 }

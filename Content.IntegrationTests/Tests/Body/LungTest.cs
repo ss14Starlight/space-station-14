@@ -1,7 +1,6 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
-using Content.Shared.Body.Systems;
 using Content.Shared.Body.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared;
@@ -13,6 +12,7 @@ using System.Linq;
 using System.Numerics;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Medical.Body.Systems;
 
 namespace Content.IntegrationTests.Tests.Body
 {

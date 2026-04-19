@@ -1,5 +1,5 @@
-﻿using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
+﻿using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Shared.Body.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.EntityEffects.Effects.Body;
@@ -27,6 +27,6 @@ public sealed partial class ModifyBleed : EntityEffectBase<ModifyBleed>
     [DataField]
     public float Amount = -1.0f;
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("entity-effect-guidebook-modify-bleed-amount", ("chance", Probability), ("deltasign", MathF.Sign(Amount)));
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
+        => loc.GetString("entity-effect-guidebook-modify-bleed-amount", ("chance", Probability), ("deltasign", MathF.Sign(Amount)));
 }

@@ -16,7 +16,7 @@ public sealed partial class GhostGui : UIWidget
     public event Action? GhostRolesPressed;
     public event Action? NewLifePressed;   //🌟Starlight🌟
     public event Action? GhostThemePressed;   //🌟Starlight🌟
-    
+
     private int _prevNumberRoles;
 
     public GhostGui()

@@ -81,7 +81,7 @@
     tags:
       - FootstepSound
       - DoorBumpOpener
-        
+
 - type: entity
   parent: BaseMobDinosaur
   id: BaseMobDinosaurCarno
@@ -112,7 +112,7 @@
   parent: BaseMobDinosaur
   id: MobDinosaurCompy
   name: compsognathus
-  description: Over-sized chickens 
+  description: Over-sized chickens
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -185,7 +185,7 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/lizard_happy.ogg
-    
+
 - type: entity
   id: FoodEggCompyFertilized
   parent: FoodEgg

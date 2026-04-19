@@ -2,3 +2,4 @@
   id: CombinationLocks
   name: guide-entry-tools-combination-locks
   text: "/ServerInfo/_StarLight/Guidebook/Tools/CombinationLocks.xml"
+  priority: 1

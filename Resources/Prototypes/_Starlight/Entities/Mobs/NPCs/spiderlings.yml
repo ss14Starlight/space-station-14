@@ -2,7 +2,7 @@
 
 - type: entity
   name: spiderling
-  parent: SimpleMobBase 
+  parent: SimpleMobBase
   id: MobSpiderlingBase
   description: a small spider which growth into unknown big and dangerous spider.
   abstract: true
@@ -12,7 +12,7 @@
       base:
         - options: Default
           data:
-            drawdepth: Mobs   
+            drawdepth: Mobs
             sprite: _Starlight/Mobs/Animals/Spiders/spiderling.rsi
             map: ["enum.DamageStateVisualLayers.Base", "movement"]
             state: alive
@@ -105,7 +105,7 @@
 
 - type: entity
   name: spiderling
-  parent: MobSpiderling 
+  parent: MobSpiderling
   id: MobSpiderlingTerrorRed
   components:
   - type: TimedSpawner
@@ -114,7 +114,7 @@
 
 - type: entity
   name: spiderling
-  parent: MobSpiderling 
+  parent: MobSpiderling
   id: MobSpiderlingTerrorGray
   components:
   - type: TimedSpawner
@@ -123,7 +123,7 @@
 
 - type: entity
   name: spiderling
-  parent: MobSpiderling 
+  parent: MobSpiderling
   id: MobSpiderlingTerrorGreen
   components:
   - type: TimedSpawner
@@ -132,7 +132,7 @@
 
 - type: entity
   name: spiderling
-  parent: MobSpiderling 
+  parent: MobSpiderling
   id: MobSpiderlingSpiderAngry
   components:
   - type: TimedSpawner

@@ -1,5 +1,5 @@
-﻿using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
+﻿using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
@@ -38,6 +38,6 @@ public sealed partial class CleanBloodstream : EntityEffectBase<CleanBloodstream
     [DataField]
     public ProtoId<ReagentPrototype>? Excluded;
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("entity-effect-guidebook-clean-bloodstream", ("chance", Probability));
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
+        => loc.GetString("entity-effect-guidebook-clean-bloodstream", ("chance", Probability));
 }

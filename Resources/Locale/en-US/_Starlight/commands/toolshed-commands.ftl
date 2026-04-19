@@ -42,11 +42,11 @@ command-description-solution-delete=
 command-description-subtlemessage =
     Sends a subtle message to all the input entities.
 command-description-grid-getplayers =
-    Gets all players on the specified grid(s)
+    Gets all players on the piped grid(s)
 command-description-grid-get =
-    Gets the grid(s) the specified player(s) are standing on.
+    Gets the grid(s) the piped player(s) are standing on.
 command-description-grid-getstation =
-    Gets the station(s) the specified player(s) are standing on.
+    Gets the station(s) that the piped player(s) are standing on, or that of the entity itself if the grid is piped in.
 command-description-crewmanifest-addto =
     Adds the piped entity to the specified station's crew manifest.
 command-description-crewmanifest-removefrom =
@@ -69,7 +69,7 @@ command-description-vector2dataconstructor-add =
     Add a new Vector2 to the existing definition. Call vector2dataconstructor:new before using this.
 command-description-vector2dataconstructor-clean =
     Clean up an unused Vector2 list definition on the entity.
-command-description-job-set = 
+command-description-job-set =
     Changes the job of the piped entity.
 command-description-job-delset =
     Changes the job of the piped entity by deleting then setting the job, so that the briefing plays.
@@ -171,60 +171,10 @@ command-description-mind-takeoverwipe =
     Wipe your own mind then takeover the entity. This will clear all mindroles and objectives n such.
 command-description-mind-controlwipe =
     Wipe the target player's mind and make them control the piped entity, creating a new mind and making the entity sentient.
-command-description-killsign-kill =
-    Apply a killsign to the entity using the kill sprite.
-command-description-killsign-stinky =
-    Apply a killsign to the entity using the stinky sprite.
-command-description-killsign-raider =
-    Apply a killsign to the entity using the raider sprite.
-command-description-killsign-peak =
-    Apply a killsign to the entity using the peak sprite.
-command-description-killsign-nerd =
-    Apply a killsign to the entity using the nerd sprite.
-command-description-killsign-it =
-    Apply a killsign to the entity using the it sprite.
-command-description-killsign-furry =
-    Apply a killsign to the entity using the furry sprite.
-command-description-killsign-dog =
-    Apply a killsign to the entity using the dog sprite.
-command-description-killsign-cat =
-    Apply a killsign to the entity using the cat sprite.
-command-description-killsign-bald =
-    Apply a killsign to the entity using the bald sprite.
-command-description-killsign-w =
-    Apply a killsign to the entity using the w sprite.
-command-description-killsign-vip =
-    Apply a killsign to the entity using the vip sprite.
-command-description-killsign-ssd =
-    Apply a killsign to the entity using the ssd sprite.
-command-description-killsign-uwu =
-    Apply a killsign to the entity using the uwu sprite.
-command-description-killsign-owo =
-    Apply a killsign to the entity using the owo sprite.
-command-description-killsign-moff =
-    Apply a killsign to the entity using the moff sprite.
-command-description-killsign-l =
-    Apply a killsign to the entity using the l sprite.
-command-description-killsign-honk =
-    Apply a killsign to the entity using the honk sprite.
-command-description-killsign-harmbatong =
-    Apply a killsign to the entity using the harmbatong sprite.
-command-description-killsign-gay =
-    Apply a killsign to the entity using the gay sprite.
-command-description-killsign-fat =
-    Apply a killsign to the entity using the fat sprite.
-command-description-killsign-event =
-    Apply a killsign to the entity using the event sprite.
-command-description-killsign-dumb =
-    Apply a killsign to the entity using the dumb sprite.
-command-description-killsign-dm =
-    Apply a killsign to the entity using the dm sprite.
-command-description-killsign-clueless =
-    Apply a killsign to the entity using the clueless sprite.
-command-description-killsign-blind =
-    Apply a killsign to the entity using the blind sprite.
-command-description-killsign-admin =
-    Apply a killsign to the entity using the admin sprite.
+command-description-killsign-set =
+    Apply a killsign to the entity using the specified state.
+command-description-killsign-list =
+    Lists all available killsigns.
 command-description-killsign-rm =
     Remove a killsign from the entity
 command-description-fixinput =
@@ -285,6 +235,8 @@ command-description-stationinit-rmjob =
     Remove a job from this station.
 command-description-stationinit-setallowevents =
     Set allowing events to target this station.
+command-description-stationinit-setdovariationpass =
+    Set allowing the roundstart variation pass to be run on the newly created station.
 command-description-stationinit-namegrid =
     Rename the target grid, the name of the grid is what will be used for the station's name when initializing.
 command-description-stationinit-initialize =
@@ -293,3 +245,19 @@ command-description-stationinit-initializeget =
     Finish setup and initialize the station, and return the newly created station entity.
 command-description-aitakeover =
     Make the piped entity take over the target AI core.
+command-description-mobthreshold-initialize =
+    Properly initializes a new mob threshold onto an entity.
+command-description-corporeal-on =
+    Makes your ghost visible and grants it the ability to speak.
+command-description-corporeal-off =
+    Makes your ghost invisible and revokes the ability to speak.
+command-description-markup-adddesc =
+    Add markup text to the piped entity's description with the given ID.
+command-description-markup-editdesc =
+    Edit a line of markup text from the piped entity's description with the given ID.
+command-description-markup-rmdesc =
+    Remove a line of markup text from the piped entity's description with the given ID.
+command-description-markup-cleardesc =
+    Clears all additional lines of markup text from the piped entity's description.
+command-description-markup-listdesc =
+    Lists all description markup texts on the piped entity and their IDs.

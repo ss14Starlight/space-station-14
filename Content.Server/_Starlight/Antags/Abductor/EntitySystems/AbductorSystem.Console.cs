@@ -44,7 +44,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
         SubscribeLocalEvent<AbductorComponent, AbductorAttractDoAfterEvent>(OnDoAfterAttract);
     }
-    private void OnAbductGetProgress(Entity<AbductConditionComponent> ent, ref ObjectiveGetProgressEvent args) 
+    private void OnAbductGetProgress(Entity<AbductConditionComponent> ent, ref ObjectiveGetProgressEvent args)
         => args.Progress = AbductProgress(ent, _number.GetTarget(ent.Owner));
 
     private float AbductProgress(Entity<AbductConditionComponent> ent, int target)
@@ -128,14 +128,14 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void TryUpdateObjectiveProgress(EntityUid actor, EntityUid victim, AbductorVictimComponent victimComp, AbductorConsoleComponent component)
     {
-        if (victimComp.Organ == AbductorOrganType.None 
-            || !TryComp<MindContainerComponent>(actor, out var mindContainer) 
+        if (victimComp.Organ == AbductorOrganType.None
+            || !TryComp<MindContainerComponent>(actor, out var mindContainer)
             || mindContainer.Mind is not { } mindId
             || !TryComp<MindComponent>(mindId, out var mind))
             return;
 
         var objId = mind.Objectives.FirstOrDefault(HasComp<AbductConditionComponent>);
-        if (objId == default 
+        if (objId == default
             || !TryComp<AbductConditionComponent>(objId, out var condition))
             return;
 
@@ -216,7 +216,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         }
         else if (_mobState.IsDead(victim)) //The console can grab em if crit. but nothing less.
             return;
-        
+
         _xformSys.SetCoordinates(victim, GetCoordinates(args.TargetCoordinates));
     }
 
@@ -285,7 +285,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         {
             if (HasComp<UnremoveableComponent>(GetEntity(computer.Comp.Armor.Value)))
                 armorLock = true;
-            
+
             if (TryComp<ItemSwitchComponent>(GetEntity(computer.Comp.Armor.Value), out var switchVest)
                 && Enum.TryParse<AbductorArmorModeType>(switchVest.State, ignoreCase: true, out var state))
                 armorMode = state;

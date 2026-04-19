@@ -38,13 +38,23 @@
   frequency: 1882
   color: "#ffce2e"
 
-  # For blackstar stuff once that gets added some day
+  # For Blackstar mercenaries
 - type: radioChannel
   id: Blackstar
   name: chat-radio-blackstar
   keycode: 'r'
   frequency: 1452
-  color: "#24123b"
+  color: "#896e14"
+  longRange: true
+
+# For WIZARDS & Magic in general
+- type: radioChannel
+  id: Winds
+  name: chat-radio-winds
+  keycode: 'i'
+  frequency: 11037
+  color: "#ff00ff"
+  longRange: true
 
   # For aspace stuff specifically, to keep freelance clear
 - type: radioChannel

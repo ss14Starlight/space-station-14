@@ -1,6 +1,5 @@
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
 using System.Linq;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -25,6 +24,7 @@ using Robust.Shared.Audio.Systems;
 using Content.Shared._FarHorizons.Medical.ConditionalHealing;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
+using Content.Shared._Starlight.Medical.Body.Systems;
 
 namespace Content.Shared.Medical.Healing;
 
@@ -64,6 +64,7 @@ public sealed class HealingSystem : EntitySystem
             if(args.Used is null || _conditionalHealing.SelectBestMatch(args.Used.Value, target) is not ConditionalHealingData healingData)
                 return;
             healing = healingData.MakeComponent();
+            healing.Owner = args.Used.Value;
         }
 
         if (healing.DamageContainers is not null &&
@@ -203,8 +204,8 @@ public sealed class HealingSystem : EntitySystem
         }
 
         // Far Horizons start
-        if (healing.Comp.AdjustEyeDamage != 0 && 
-            TryComp<BlindableComponent>(target, out var blindable) && 
+        if (healing.Comp.AdjustEyeDamage != 0 &&
+            TryComp<BlindableComponent>(target, out var blindable) &&
             blindable.EyeDamage != 0)
             return true;
         // Far Horizons end

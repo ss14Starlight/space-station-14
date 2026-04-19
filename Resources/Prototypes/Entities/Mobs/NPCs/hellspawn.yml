@@ -1,6 +1,6 @@
 - type: entity
   name: hellspawn
-  parent:
+  parent: #starlight Nubody will not pass.
   - BaseSimpleMob
   - MobCombat
   - MobBloodstream
@@ -28,8 +28,10 @@
   - type: NpcFactionMember
     factions:
       - SimpleHostile
+  # Starlight - start
   - type: Body
     prototype: Animal
+  # Starlight - end
   - type: Damageable
     damageContainer: BiologicalMetaphysical
     damageModifierSet: HellSpawn

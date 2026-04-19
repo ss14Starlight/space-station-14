@@ -248,7 +248,7 @@
 # All CC/Synd stuff in Fashion-O-Mat is replica
 
 - type: entity
-  parent: [ ClothingNeckBase ] 
+  parent: [ ClothingNeckBase ]
   id: ClothingNeckCloakCentcomBlack
   name: special operations officer cloak
   description: The NanoTrasen logo embroidered in gold speaks for itself.
@@ -305,7 +305,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingUniformDama0965
-  name: black fur cloak 
+  name: black fur cloak
   description: Neat cloak with fur around the neck and hem.
   components:
     - type: Sprite
@@ -372,7 +372,7 @@
     size: Huge
   - type: StaticPrice
     price: 5000
-    
+
 # Salvage Lead
 - type: entity
   parent: [ ClothingNeckBase, BaseSalvageContraband ]
@@ -391,7 +391,7 @@
 - type: entity
   parent: [ ClothingNeckBase, BaseSalvageContraband ]
   id: ClothingNeckMantleDecoratedVeteranSalvager
-  name: veteran salvager's mantle 
+  name: veteran salvager's mantle
   description: A ceremonial mantle with waist-capes, worn by veteran salvagers that have distinguished themselves even further.
   components:
     - type: Sprite
@@ -445,7 +445,7 @@
     # tags:
     # - ClothMade
     # - WhitelistChameleon
-    
+
 # - type: entity
   # parent: ClothingNeckBase
   # id: ClothingNeckTornCapeBlue
@@ -606,7 +606,7 @@
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Neck/supreme-janitor-cloak.rsi
-    
+
 - type: entity
   parent: ClothingNeckBase
   id: RedRegaliaCloak
