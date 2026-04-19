@@ -6,11 +6,11 @@ namespace Content.Shared.Shuttles.BUIStates;
 public sealed class DockingInterfaceState
 {
     /* Starlight BEGIN
-    // public Dictionary<NetEntity, List<DockingPortState>> Docks;
-    */ // Starlight END
+    public Dictionary<NetEntity, List<DockingPortState>> Docks;
 
-    public DockingInterfaceState() // Starlight: -docks
+    public DockingInterfaceState(Dictionary<NetEntity, List<DockingPortState>> docks)
     {
-        // Docks = docks; // Starlight
+        Docks = docks;
     }
+    */ // Starlight END
 }
