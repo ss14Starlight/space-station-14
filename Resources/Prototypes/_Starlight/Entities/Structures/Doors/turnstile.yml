@@ -8,14 +8,6 @@
   - type: AccessReader
     access: [["Command"]]
 
-- type: entity
-  id: TurnstileDebrief
-  parent: Turnstile
-  suffix: Debrief
-  components:
-    - type: AccessReader
-      access: [["Debrief"]]
-
 # CentComm turnstiles
 
 - type: entity
