@@ -1847,4 +1847,165 @@ Entries:
   id: 404391
   time: '2026-04-19T13:20:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: Wood to maints bar.
+    type: Add
+  id: 404392
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Converted one of the gen pop dorms to solitary.
+    type: Add
+  id: 404393
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Random soap spawner to Bathroom.
+    type: Add
+  id: 404394
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Piggybank to vault.
+    type: Add
+  id: 404395
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Replaced the railings in boxing area to boxing rope.
+    type: Add
+  id: 404396
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Button to interrogation tinted windows.
+    type: Add
+  id: 404397
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Tesla to ai core.
+    type: Add
+  id: 404398
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Maints door to botany.
+    type: Add
+  id: 404399
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Posters to botany.
+    type: Add
+  id: 404400
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Goliath cloak to maints alter and sec shuttle.
+    type: Add
+  id: 404401
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Clean bot to artifact room.
+    type: Add
+  id: 404402
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Add wooden pews to courtroom.
+    type: Add
+  id: 404403
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Mail tech locker to mail room.
+    type: Add
+  id: 404404
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Unidentified mantle to maints.
+    type: Add
+  id: 404405
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Parcel's added to mail tech.
+    type: Add
+  id: 404406
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Hydraulic clamp to cargo next to the ripley.
+    type: Add
+  id: 404407
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Removed the strange wiring with smes/generators in ai core area. Now ai core is powered by 3 substations that when disconnected from main station last for 15 minutes before ai runs on reserve battery.
+    type: Tweak
+  id: 404408
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Changed mail tech doors to mail access.
+    type: Tweak
+  id: 404409
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Replaced cargo wardrobes with cargo lockers in cargo break room.
+    type: Tweak
+  id: 404410
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Replaced the maid girder with a reinforced one and also added more reinforced girders to maints.
+    type: Tweak
+  id: 404411
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: A bunch of ai cameras that peaked to far into maints and also dorms.
+    type: Remove
+  id: 404412
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Fixed security being double substationed by cutting two mv wires.
+    type: Fix
+  id: 404413
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: Cvlancer
+  changes:
+  - message: Brigmedic air scrubber.
+    type: Fix
+  id: 404414
+  time: '2026-04-19T13:20:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4194
 Order: -1
