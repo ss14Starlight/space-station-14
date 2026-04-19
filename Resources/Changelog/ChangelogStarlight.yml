@@ -2050,4 +2050,32 @@ Entries:
   id: 404420
   time: '2026-04-19T14:59:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4000
+- author: Shades
+  changes:
+  - message: Adds Machine Analyzer.
+    type: Add
+  id: 404421
+  time: '2026-04-19T23:15:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4106
+- author: Shades
+  changes:
+  - message: Removed Health Analyzer able to scan Borg/IPC.
+    type: Remove
+  id: 404422
+  time: '2026-04-19T23:15:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4106
+- author: Shades
+  changes:
+  - message: Enable IPC.
+    type: Tweak
+  id: 404423
+  time: '2026-04-19T23:15:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4106
+- author: Shades
+  changes:
+  - message: Fixed a bug where Damagecontainer on healthanalyzer was not enforced, (Mostly this affects Robotics PDA that can only scan now borgs/IPC).
+    type: Fix
+  id: 404424
+  time: '2026-04-19T23:15:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4106
 Order: -1
