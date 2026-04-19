@@ -2043,4 +2043,11 @@ Entries:
   id: 404419
   time: '2026-04-19T14:21:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4180
+- author: CrazyPhantom
+  changes:
+  - message: Door Runtime Event will no longer open all the external airlocks.
+    type: Fix
+  id: 404420
+  time: '2026-04-19T14:59:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4000
 Order: -1
