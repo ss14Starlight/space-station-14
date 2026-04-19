@@ -295,11 +295,10 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         if (_actor.TryGetServerGrain(out var serverGrain))
         {
             var network = await serverGrain.RequestBans(userId, address, hwId, modernHWIds, includeUnbanned);
-            foreach (var ban in network)
-            {
-                if (_actor.Server != null && _banRecognition?.Recognition.TryGetValue(_actor.Server, out var targets) == true && targets.Contains($"{_actor.Project}.{_actor.Server}"))
-                    network.Remove(ban);
-            }
+            if (_actor.Server != null && _banRecognition?.Recognition.TryGetValue(_actor.Server, out var targets) == true)
+                // Filter network bans based on recognition rules
+                network = network.Where(ban => !targets.Contains($"{ban.ProjectName}.{ban.ServerName}")).ToList();
+
             bans = bans.Concat(network.ToDef()).ToList();
         }
         return bans;
