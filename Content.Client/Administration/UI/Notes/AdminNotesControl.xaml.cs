@@ -188,6 +188,53 @@ public sealed partial class AdminNotesControl : Control
         }
     }
 
+    #region Starlight
+
+    public void SetNotes(Dictionary<(int, NoteType, string, string), SharedAdminNote> notes)
+    {
+        foreach (var (key, input) in Inputs)
+        {
+            if (!notes.Keys.Any(k => k.Item1 == key.Item1 && k.Item2 == key.Item2))
+            {
+                // Yes this is slower than just updating, but new notes get added at the bottom. The user won't notice.
+                Notes.RemoveAllChildren();
+                Inputs.Clear();
+                break;
+            }
+            Notes.RemoveChild(input);
+            Inputs.Remove(key);
+        }
+
+        var showMoreButtonVisible = false;
+        foreach (var note in notes.Values.OrderByDescending(note => note.CreatedAt))
+        {
+            if (Inputs.TryGetValue((note.Id, note.NoteType), out var input))
+            {
+                input.UpdateNote(note);
+                continue;
+            }
+
+            input = new AdminNotesLine(_sprites, note);
+            input.OnClicked += NoteClicked;
+            input.OnMouseEntered += NoteMouseEntered;
+            input.OnMouseExited += NoteMouseExited;
+
+            UpdateNoteLineAlpha(input);
+
+            if (input.Modulate.A == 0)
+            {
+                input.Visible = false;
+                showMoreButtonVisible = true;
+            }
+
+            Notes.AddChild(input);
+            Inputs[(note.Id, note.NoteType)] = input;
+            ShowMoreButton.Visible = showMoreButtonVisible;
+        }
+    }
+
+    #endregion
+
     private void OnShowMoreButtonPressed(BaseButton.ButtonEventArgs obj)
     {
         foreach (var input in Inputs.Values)

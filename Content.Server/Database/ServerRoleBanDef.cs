@@ -79,7 +79,25 @@ public sealed class ServerRoleBanDef
 public static class RoleBanDefExtensions
 {
     public static AdminBan ToNullLink(this ServerRoleBanDef serverRoleBan)
-        => new(serverRoleBan.Id, serverRoleBan.UserId, serverRoleBan.Address == null ? null : new() { Address = serverRoleBan.Address.Value.address.ToString(), CidrMask = serverRoleBan.Address.Value.cidrMask }, serverRoleBan.HWId == null ? null : new() { Hwid = serverRoleBan.HWId.Hwid.ToArray(), Type = (int)serverRoleBan.HWId.Type }, serverRoleBan.BanTime, serverRoleBan.ExpirationTime, serverRoleBan.RoundId, serverRoleBan.PlaytimeAtNote, serverRoleBan.Reason, serverRoleBan.Severity.ToString(), serverRoleBan.BanningAdmin, serverRoleBan.Unban == null ?[] : new() { serverRoleBan.Unban.ToNullLink() }, serverRoleBan.Role, null, serverRoleBan.ProjectName, serverRoleBan.ServerName);
+        => new()
+        {
+            Id = serverRoleBan.Id,
+            UserId = serverRoleBan.UserId,
+            Address = serverRoleBan.Address == null ? null : new() { Address = serverRoleBan.Address.Value.address.ToString(), CidrMask = serverRoleBan.Address.Value.cidrMask },
+            HWId = serverRoleBan.HWId == null ? null : new() { Hwid = serverRoleBan.HWId.Hwid.ToArray(), Type = (int)serverRoleBan.HWId.Type },
+            BanTime = serverRoleBan.BanTime,
+            ExpirationTime = serverRoleBan.ExpirationTime,
+            RoundId = serverRoleBan.RoundId,
+            PlayTimeAtNote = serverRoleBan.PlaytimeAtNote,
+            Reason = serverRoleBan.Reason,
+            Severity = serverRoleBan.Severity.ToString(),
+            BanningAdmin = serverRoleBan.BanningAdmin,
+            Unban = serverRoleBan.Unban == null ? [] : new() { serverRoleBan.Unban.ToNullLink() },
+            Role = serverRoleBan.Role,
+            ExemptFlags = null,
+            ProjectName = serverRoleBan.ProjectName,
+            ServerName = serverRoleBan.ServerName
+        };
 }
 
 #endregion
