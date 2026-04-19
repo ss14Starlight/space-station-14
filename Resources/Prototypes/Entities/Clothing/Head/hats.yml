@@ -525,14 +525,14 @@
   description: A strange-looking red hat that most certainly belongs to a powerful magic-user.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hats/redwizard.rsi
+    sprite: _Starlight/Clothing/Head/Hats/wizard_red.rsi # Starlight resprited
   - type: Clothing
-    sprite: Clothing/Head/Hats/redwizard.rsi
+    sprite: _Starlight/Clothing/Head/Hats/wizard_red.rsi # Starlight resprited
   - type: Tag
     tags:
     - PetWearable
     - CorgiWearable
-    - HamsterWearable
+#    - HamsterWearable # Starlight
     - ClothMade
     - WhitelistChameleon
 
@@ -807,13 +807,13 @@
 - type: entity
   parent: ClothingHeadHatWizardBase
   id: ClothingHeadHatWizard
-  name: wizard hat
+  name: blue wizard hat # Starlight name consistency
   description: A strange-looking blue hat that most certainly belongs to a powerful magic-user.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hats/wizardhat.rsi
+    sprite: _Starlight/Clothing/Head/Hats/wizard_blue.rsi # Starlight resprited
   - type: Clothing
-    sprite: Clothing/Head/Hats/wizardhat.rsi
+    sprite: _Starlight/Clothing/Head/Hats/wizard_blue.rsi # Starlight resprited
   - type: Tag
     tags:
     - PetWearable
