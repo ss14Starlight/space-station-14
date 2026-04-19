@@ -46,6 +46,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly IGameTiming _timing = default!; // _Starlight
 
     #region Starlight
+    // Periodic blip/laser update
+    // How often (in seconds) to push fresh blip state to all open radar consoles.
+    private const float BlipUpdateInterval = 0.25f;
+    private float _blipUpdateTimer;
+
     /// <summary>
     /// How often to transmit UI updates when a player is actively looking at a console.
     /// </summary>
@@ -283,9 +288,6 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         if (!_ui.HasUi(consoleUid, ShuttleConsoleUiKey.Key) || !(forceUpdate || shouldIdleUpdate || shouldActiveUpdate))
             return;
         component.LastInterfaceUpdateTime = _timing.CurTime;
-
-        // Prune expired laser traces before syncing state
-        _laserSystem.PruneExpiredTraces((float)_timing.CurTime.TotalSeconds);
         // Starlight END
 
         var getShuttleEv = new ConsoleShuttleEvent
@@ -385,6 +387,15 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         foreach (var (uid, comp) in toRemove)
         {
             RemovePilot(uid, comp);
+        }
+
+        // Starlight - Start
+        _blipUpdateTimer += frameTime;
+        if (_blipUpdateTimer >= BlipUpdateInterval)
+        {
+            _blipUpdateTimer = 0;
+            // _Starlight - prune expired Apollo laser traces before syncing state
+            _laserSystem.PruneExpiredTraces((float)_timing.CurTime.TotalSeconds);
         }
 
         RefreshShuttleConsoles(false); // Starlight

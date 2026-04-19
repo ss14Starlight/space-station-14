@@ -21,6 +21,11 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     [Dependency] private readonly IGameTiming _timing = default!; // _Starlight
 
     #region Starlight
+    // Periodic blip/laser update
+    // How often (in seconds) to push fresh blip state to all open radar consoles.
+    private const float BlipUpdateInterval = 0.25f;
+    private float _blipUpdateTimer;
+
     /// <summary>
     /// How often to transmit UI updates when a player is actively looking at a console.
     /// </summary>
@@ -42,6 +47,13 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     public override void Update(float frameTime) // _Starlight
     {
         base.Update(frameTime);
+        _blipUpdateTimer += frameTime;
+        if (_blipUpdateTimer >= BlipUpdateInterval)
+        {
+            _blipUpdateTimer = 0f;
+            // _Starlight - prune expired Apollo laser traces before syncing state
+            _laserSystem.PruneExpiredTraces((float)_timing.CurTime.TotalSeconds);
+        }
 
         var query = AllEntityQuery<RadarConsoleComponent>();
         while (query.MoveNext(out var uid, out var comp))
@@ -75,7 +87,6 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         if (_uiSystem.HasUi(uid, RadarConsoleUiKey.Key) && (shouldIdleUpdate || shouldActiveUpdate))
         {
             component.LastInterfaceUpdateTime = _timing.CurTime;
-            _laserSystem.PruneExpiredTraces((float)_timing.CurTime.TotalSeconds); // Prune expired laser traces
             // Starlight END
             NavInterfaceState state;
             var docks = _console.GetDockingPortStates(); // Starlight
