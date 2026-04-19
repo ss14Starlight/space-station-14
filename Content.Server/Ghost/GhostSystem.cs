@@ -8,6 +8,7 @@ using Content.Server.Ghost.Roles;
 using Content.Server.Mind;
 using Content.Server.Mobs;
 using Content.Server.Roles.Jobs;
+using Content.Shared._Starlight.Ghost;
 using Content.Shared.Actions;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
@@ -410,16 +411,18 @@ namespace Content.Server.Ghost
         public void MakeVisible(bool visible)
         {
             var entityQuery = EntityQueryEnumerator<GhostComponent, VisibilityComponent>();
-            while (entityQuery.MoveNext(out var uid, out var _, out var vis))
+            //Starlight begin: ghost admemes
+            while (entityQuery.MoveNext(out var uid, out var ghost, out var vis))
             {
-                if (!_tag.HasTag(uid, AllowGhostShownByEventTag))
+                if (!_tag.HasTag(uid, AllowGhostShownByEventTag) && !ghost.AlwaysVisible)
                     continue;
 
-                if (visible)
+                if (visible || ghost.AlwaysVisible)
                 {
                     _visibilitySystem.AddLayer((uid, vis), (int) VisibilityFlags.Normal, false);
                     _visibilitySystem.RemoveLayer((uid, vis), (int) VisibilityFlags.Ghost, false);
                 }
+                //Starlight end
                 else
                 {
                     _visibilitySystem.AddLayer((uid, vis), (int) VisibilityFlags.Ghost, false);
@@ -624,6 +627,11 @@ namespace Content.Server.Ghost
 
             return true;
         }
+
+        //Starlight begin: Ghost admeme nonsense. Couldn't think of a better way to tell client to update chat channel permissions.
+        public void CorporealStateChanged(EntityUid uid, bool isCorporeal) =>
+            RaiseNetworkEvent(new GhostCorporealEvent(isCorporeal), uid);
+        //Starlight end
     }
 
     public sealed class GhostAttemptHandleEvent(MindComponent mind, bool canReturnGlobal) : HandledEntityEventArgs

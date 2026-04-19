@@ -20,6 +20,11 @@
     layoutId: AirlockExternal
   - type: Paintable
     group: null
+  # Starlight Start
+  - type: Tag
+    tags:
+      - ExternalAirlock
+  # Starlight End
 
 - type: entity
   parent: AirlockExternal

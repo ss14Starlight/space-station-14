@@ -33,7 +33,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
     private EntityCoordinates? _coordinates;
     private Angle? _angle;
 
-    public DockingInterfaceState? DockState = null;
+    public Dictionary<NetEntity, List<DockingPortState>>? DockState; // Starlight: State extracted from DockingInterfaceState.
 
     private List<Entity<MapGridComponent>> _grids = new();
 
@@ -148,7 +148,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
             DrawGrid(handle, curGridToView, grid, color);
 
             // Draw any docks on that grid
-            if (!DockState.Docks.TryGetValue(EntManager.GetNetEntity(grid), out var gridDocks))
+            if (!DockState.TryGetValue(EntManager.GetNetEntity(grid), out var gridDocks)) // Starlight
                 continue;
 
             foreach (var dock in gridDocks)
@@ -358,7 +358,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
 
         var gridNent = EntManager.GetNetEntity(GridEntity);
 
-        foreach (var (otherShuttle, docks) in DockState.Docks)
+        foreach (var (otherShuttle, docks) in DockState) // Starlight
         {
             // If it's our shuttle we add a view button
 
