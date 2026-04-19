@@ -61,8 +61,6 @@ public sealed partial class Electrocute : EntityEffectBase<Electrocute>
     [DataField]
     public float SiemensCoefficient = 1f;
 
-    [DataField] public bool BypassInsulation = true;
-
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
         => loc.GetString("entity-effect-guidebook-electrocute", ("chance", Probability), ("time", ElectrocuteTime.TotalSeconds), ("stuns", SiemensCoefficient > 0.5f));
 }
