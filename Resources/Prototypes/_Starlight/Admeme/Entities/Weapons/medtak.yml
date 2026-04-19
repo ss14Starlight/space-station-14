@@ -49,9 +49,7 @@
   - type: HeldSpeedModifier
   - type: Gun
     soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/code-6.ogg
-      params:
-        volume: -5
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/m90.ogg
     minAngle: 15
     maxAngle: 30
     angleIncrease: 2
