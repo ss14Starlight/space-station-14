@@ -1707,4 +1707,144 @@ Entries:
   id: 404371
   time: '2026-04-19T12:31:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4198
+- author: Cvlancer
+  changes:
+  - message: Nanomed Security to brigmedic.
+    type: Add
+  id: 404372
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: Oxygen deprivation treatment kit to brigmedic.
+    type: Add
+  id: 404373
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: Station beacon flatpack and multitool to shop maints.
+    type: Add
+  id: 404374
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: A secure empty chemistry crate in drugstore to be able to transport chems safely and securely.
+    type: Add
+  id: 404375
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: Extended the north dock out a little so it might act as a backup evac point if main evac fails.
+    type: Add
+  id: 404376
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: A protective glass window to the light in Solitary.
+    type: Add
+  id: 404377
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: A Solitary closet to gen pop as a quick place to store extremely unruly prisoners while remaining on station.
+    type: Add
+  id: 404378
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: A blue lawyer suit, briefcase, and luxury pen to bar for a certain inspiring monkey.
+    type: Add
+  id: 404379
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: A dim light to interrogation room and a light switch for the observers in interrogation room.
+    type: Add
+  id: 404380
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: Changed changeling targets name to something that does not break metashield.
+    type: Tweak
+  id: 404381
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: Changed center courtyard class to be more diagonal.
+    type: Tweak
+  id: 404382
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: Made IAA'S tinted windows start transparent at shift start.
+    type: Tweak
+  id: 404383
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: One radiation treatment kit and one toxin treatment kit in brig medic.
+    type: Remove
+  id: 404384
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: A secret door in courtroom.
+    type: Remove
+  id: 404385
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: Mail chute in old courtroom. (Outdated).
+    type: Remove
+  id: 404386
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: Added some plating under some shuttle docks that were outside.
+    type: Fix
+  id: 404387
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: Fixed one wall from "Evil ai" being the wrong material.
+    type: Fix
+  id: 404388
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: Changed asteroid tiles inside the maints shop to dark tiles to stop weather effects.
+    type: Fix
+  id: 404389
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: Fixed several walls that had tiles underneath them. (Thanks to @SuspensionPoint for his useful map editor).
+    type: Fix
+  id: 404390
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
+- author: Cvlancer
+  changes:
+  - message: Fixed disposal piping near bridge.
+    type: Fix
+  id: 404391
+  time: '2026-04-19T13:20:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4190
 Order: -1
