@@ -21,6 +21,7 @@
       path: "/Audio/Items/Medical/healthscanner.ogg"
     damageContainers:
     - Silicon
+    - IPC
 
 - type: entity
   parent: BaseMedicalPDA
