@@ -30,6 +30,7 @@ using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Starlight;
 using Content.Client._NullLink;
+using Content.Client._Starlight.Shaders;
 using Content.Shared._Starlight.DocumentManager;
 
 namespace Content.Client.IoC
@@ -79,6 +80,7 @@ namespace Content.Client.IoC
             // NullLink end
 
             collection.Register<PreWrittenDocumentManager>(); // Starlight
+            collection.Register<IStarlightShaderManager, StarlightShaderManager>(); // Starlight
         }
     }
 }

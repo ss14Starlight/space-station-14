@@ -99,7 +99,7 @@ public sealed class GunneryRadarControl : BaseShuttleControl
             WorldMinRange = WorldMaxRange;
         ActualRadarRange = Math.Clamp(ActualRadarRange, WorldMinRange, WorldMaxRange);
 
-        _docks   = nav.Docks;
+        _docks   = state.DockPortStates.Docks;
         _blips   = nav.Blips;
         _lasers  = nav.Lasers;
         _cannons = state.Cannons;
