@@ -1693,4 +1693,11 @@ Entries:
   id: 404369
   time: '2026-04-19T12:31:51.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: CoolSurf6
+  changes:
+  - message: Mech repair-over-time now works on all mechs, as intended.
+    type: Fix
+  id: 404370
+  time: '2026-04-19T12:31:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4203
 Order: -1
