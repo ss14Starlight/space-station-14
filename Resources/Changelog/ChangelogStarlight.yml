@@ -1504,4 +1504,81 @@ Entries:
   id: 404342
   time: '2026-04-19T05:50:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4205
+- author: Wizden team
+  changes:
+  - message: Items given to the medical department round start have been significantly rebalanced. In particular, players no longer spawn with their tools and must get them from a locker or vending machine.
+    type: Tweak
+  id: 404343
+  time: '2026-04-19T07:51:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4206
+- author: Wizden team
+  changes:
+  - message: Thieving Beacons set their coordinates automatically when unfolded.
+    type: Tweak
+  id: 404344
+  time: '2026-04-19T07:51:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4206
+- author: Wizden team
+  changes:
+  - message: The flashbang, explosive grenade, electrical disruptor kit, and cluster grenade have been removed from the traitor uplink.
+    type: Remove
+  id: 404345
+  time: '2026-04-19T07:51:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4206
+- author: Wizden team
+  changes:
+  - message: The grenade penguin has been lowered in price to 4 TC.
+    type: Tweak
+  id: 404346
+  time: '2026-04-19T07:51:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4206
+- author: Wizden team
+  changes:
+  - message: The syndicate bomb has had its explosive power tweaked. It is now a more concentrated explosion over a smaller area.
+    type: Tweak
+  id: 404347
+  time: '2026-04-19T07:51:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4206
+- author: Wizden team
+  changes:
+  - message: The EMP Grenade now detonates on impact.
+    type: Tweak
+  id: 404348
+  time: '2026-04-19T07:51:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4206
+- author: Wizden team
+  changes:
+  - message: Tazinide and Licoxide now are less effective at shocking and don't last as long.
+    type: Tweak
+  id: 404349
+  time: '2026-04-19T07:51:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4206
+- author: Wizden team
+  changes:
+  - message: Nocturine now lasts 9 seconds instead of 6 seconds.
+    type: Tweak
+  id: 404350
+  time: '2026-04-19T07:51:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4206
+- author: Wizden team
+  changes:
+  - message: Hyperzine overdose can no longer be negated completely with Omnizine.
+    type: Tweak
+  id: 404351
+  time: '2026-04-19T07:51:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4206
+- author: Wizden team
+  changes:
+  - message: Hypodarts now have an increased chemical capacity of 10u up from 7u.
+    type: Tweak
+  id: 404352
+  time: '2026-04-19T07:51:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4206
+- author: Wizden team
+  changes:
+  - message: Combat Medkit and Combat Medipen have had their prices reduced to 3 TC.
+    type: Tweak
+  id: 404353
+  time: '2026-04-19T07:51:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4206
 Order: -1
