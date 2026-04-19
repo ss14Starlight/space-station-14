@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Client._Starlight.Guidebook.Richtext;
 using Content.Client.Guidebook.Richtext;
 using Content.Shared.Chemistry.Reagent;
 using JetBrains.Annotations;
@@ -16,7 +17,7 @@ namespace Content.Client.Guidebook.Controls;
 ///     Control for embedding a reagent into a guidebook.
 /// </summary>
 [UsedImplicitly, GenerateTypedNameReferences]
-public sealed partial class GuideReagentGroupEmbed : BoxContainer, IDocumentTag
+public sealed partial class GuideReagentGroupEmbed : BoxContainer, IDocumentTag, IDocumentTagOnLoaded
 {
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -25,6 +26,8 @@ public sealed partial class GuideReagentGroupEmbed : BoxContainer, IDocumentTag
 
     // Starlight
     private List<ReagentPrototype>? _reagentsToAdd;
+
+    public event Action? OnLoaded;
 
     public GuideReagentGroupEmbed()
     {
@@ -77,5 +80,11 @@ public sealed partial class GuideReagentGroupEmbed : BoxContainer, IDocumentTag
             var embed = new GuideReagentEmbed(reagent);
             GroupContainer.AddChild(embed);
         }
+
+        if (_reagentsToAdd.Count > 0)
+            return;
+
+        _reagentsToAdd = null;
+        OnLoaded?.Invoke();
     }
 }

@@ -662,3 +662,12 @@
   itemDrop: FloorTileItemMetalGreen
   heatCapacity: 10000
 
+- type: tile
+  id: FloorAstroAsteroidTile
+  name: tiles-astro-asteroid-tile
+  parent: FloorAsteroidTile
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemSteel
+  weather: false
