@@ -1,5 +1,5 @@
 - type: accessGroup
-  id: CyborgAllAccess # Identical to AllAccess, minus Debrief.
+  id: CyborgAllAccess # Identical to AllAccess, minus Debrief. Parity ensured by CyborgAllAccessParityTest.
   tags:
     - EmergencyShuttleRepealAll
     - Captain
