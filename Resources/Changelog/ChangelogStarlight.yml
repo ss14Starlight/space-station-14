@@ -1700,4 +1700,11 @@ Entries:
   id: 404370
   time: '2026-04-19T12:31:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4203
+- author: Makeshift
+  changes:
+  - message: (Plasma) Interior no longer has weather. You'll no longer get ashed for walking into a hallway during a solar flare!
+    type: Fix
+  id: 404371
+  time: '2026-04-19T12:31:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4198
 Order: -1
