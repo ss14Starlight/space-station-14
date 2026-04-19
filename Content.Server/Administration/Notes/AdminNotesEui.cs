@@ -233,6 +233,7 @@ public sealed class AdminNotesEui : BaseEui
         Notes = (from note in await _notesMan.GetAllAdminRemarks(NotedPlayer)
                  select note.ToShared())
             .ToDictionary(sharedNote => (sharedNote.Id, sharedNote.NoteType));
+        NetworkNotes = [];
         if (_actors.TryGetServerGrain(out var serverGrain))
         {
             NetworkNotes = Convert(await serverGrain.RequestNotes(NotedPlayer) ?? []);
