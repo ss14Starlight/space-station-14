@@ -14,10 +14,13 @@
   - MedicalDoctorBackpack
   - MedicalDoctorSatchel
   - MedicalDoctorDuffel
+  - LeatherSatchel # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: MedicalShoes
   name: loadout-group-medical-doctor-shoes
+  minLimit: 0 # 🌟Starlight🌟
+  defaultSelected: 1 # 🌟Starlight🌟
   loadouts:
   - WhiteShoes
   - MedicalWinterBoots
@@ -76,9 +79,15 @@
 - type: loadoutGroup
   id: ChiefMedicalOfficerShoes
   name: loadout-group-chief-medical-officer-shoes
+  minLimit: 0 # 🌟Starlight🌟
+  defaultSelected: 1 # 🌟Starlight🌟
   loadouts:
   - BrownShoes
+  - WhiteShoes # 🌟Starlight🌟
   - MedicalWinterBoots
+  - Heels # 🌟Starlight🌟
+  - LaceupShoes # 🌟Starlight🌟
+  - LeatherShoes # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: ChiefMedicalOfficerJobTrinkets
@@ -113,6 +122,12 @@
   - MedicalBlueScrubs
   - MedicalGreenScrubs
   - MedicalPurpleScrubs
+  # afterlight start
+  - NurseJumpskirt
+  - CoronerJumpskirt
+  - CoronerJumpsuit
+  - CoronerJumpsuitAlt
+  # afterlight end
 
 - type: loadoutGroup
   id: MedicalDoctorOuterClothing
@@ -122,6 +137,7 @@
   - RegularLabCoat
   - MedicalDoctorWintercoat
   - SeniorPhysicianLabCoat
+  - WindbreakerMedical # 🌟Starlight🌟
 
 - type: loadoutGroup
   id: MedicalDoctorPDA
