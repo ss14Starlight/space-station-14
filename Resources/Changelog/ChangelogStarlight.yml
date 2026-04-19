@@ -2008,4 +2008,11 @@ Entries:
   id: 404414
   time: '2026-04-19T13:20:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4194
+- author: redmushie
+  changes:
+  - message: New replays should use significantly less memory to play back.
+    type: Fix
+  id: 404415
+  time: '2026-04-19T13:57:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4199
 Order: -1
