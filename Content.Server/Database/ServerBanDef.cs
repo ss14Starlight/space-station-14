@@ -101,7 +101,13 @@ namespace Content.Server.Database
                 ? $"{loc.GetString("ban-banned-id", ("id", banId))}\n"
                 : string.Empty;
 
-            var serverProjectLine = ProjectName == null ? string.Empty : ServerName == null ? $"{loc.GetString("ban-project", ("project", ProjectName))}\n" : $"{loc.GetString("ban-project-server", ("project", ProjectName), ("server", ServerName))}\n";
+            string serverProjectLine;
+            if (ProjectName == null)
+                serverProjectLine = string.Empty;
+            else if (ServerName == null)
+                serverProjectLine = $"{loc.GetString("ban-project", ("project", ProjectName ?? ""))}\n";
+            else
+                serverProjectLine = $"{loc.GetString("ban-project-server", ("project", ProjectName ?? ""), ("server", ServerName ?? ""))}\n";
             // Starlight End
 
             // Starlight edit Start: Added banIdLine
