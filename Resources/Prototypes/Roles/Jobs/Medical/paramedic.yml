@@ -27,6 +27,7 @@
   id: ParamedicGear
   equipment:
     ears: ClothingHeadsetMedical
+  storage:
     back:
     - BodyBagLockableFolded #Starlight
     - DefibrillatorParamed #Starlight
