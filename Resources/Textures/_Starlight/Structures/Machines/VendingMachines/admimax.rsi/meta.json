@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "See per-state attribution",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "broken",
+      "copyright": "modified centdrobe by mikeysaurus",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "off",
+      "copyright": "modified centdrobe by mikeysaurus",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "panel",
+      "copyright": "modified centdrobe by mikeysaurus",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "normal-unshaded",
+      "copyright": "modified centdrobe by mikeysaurus",
+      "license": "CC-BY-SA-3.0",
+      "delays": [
+        [
+          1.0,
+          0.1,
+          1.0,
+          0.1,
+          1.0,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

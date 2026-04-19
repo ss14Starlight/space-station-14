@@ -62,3 +62,18 @@
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Back/Backpacks/tsf.rsi
+
+- type: entity
+  parent: [ ClothingBackpack, BaseMagicalContraband ]
+  id: ClothingBackpackWizard
+  name: wizard backpack
+  description: A magical backpack carried by members of the Space Wizards Federation.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/Backpacks/wizard.rsi
+    - type: ExplosionResistance
+      damageCoefficient: 0.1
+    - type: Storage
+      grid:
+      - 0,0,8,4
+

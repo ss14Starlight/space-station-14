@@ -37,6 +37,7 @@
     modifier: Spell
   - type: InstantAction
     event: !type:TowerOfBabelEvent
+  - type: EorgPreventAction
 
 - type: entity
   parent: BaseAction

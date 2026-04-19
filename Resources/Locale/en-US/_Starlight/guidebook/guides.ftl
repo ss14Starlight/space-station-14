@@ -79,8 +79,10 @@ guide-entry-sl-security-sop-prisonertreatment = Prisoner Treatment
 guide-entry-sl-security-sop-parole = Parole
 guide-entry-sl-security-sop-permitacquisition = Permit Acquisiton
 guide-entry-sl-security-sop-specialsituations = Special Situations
+guide-entry-sl-security-sop-enemy-of-corporation = Enemies of the Corporation
+guide-entry-sl-security-sop-hostage-situations = Hostage Situations
 
-guide-entry-rules-changeling-clause = Changeling Clause
+guide-entry-rules-supernatural-entities = Supernatural Entities
 
 guide-entry-sl-legal-sop-intro = Legal
 
@@ -162,3 +164,11 @@ guide-entry-records = Character Records
 
 # Tools
 guide-entry-tools-combination-locks = Combination Locks
+
+
+# Roleplay
+guide-entry-roleplay-intro = Roleplay Guides
+guide-entry-roleplay-01 = The Basics
+guide-entry-roleplay-02 = Collaborative Storytelling
+guide-entry-roleplay-03 = Losing Is Fun
+guide-entry-roleplay-04 = Acting With Mechanics
