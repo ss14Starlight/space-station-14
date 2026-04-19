@@ -53,8 +53,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
     /// <summary>
     /// How often to transmit UI updates when a player is actively looking at a console.
+    /// Turns out the actual data displayed doesn't change much, so a low update rate is fine.
     /// </summary>
-    private static readonly TimeSpan _activeUpdateInterval = TimeSpan.FromMilliseconds(50);
+    private static readonly TimeSpan _activeUpdateInterval = TimeSpan.FromSeconds(1);
 
     /// <summary>
     /// How often to transmit UI updates when nobody is actively looking at a console. This makes it so that the
