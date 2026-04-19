@@ -89,7 +89,7 @@ public sealed class DoorRuntimeRule : StationEventSystem<DoorRuntimeRuleComponen
             if (TryComp<ElectrifiedComponent>(ent, out var electrified))
                 _electrocution.SetElectrified((ent, electrified), false);
 
-            if (_whitelist.CheckBoth(ent, comp.Blacklist, comp.Whitelist))
+            if (!_whitelist.CheckBoth(ent, comp.Blacklist, comp.Whitelist))
                 continue;
 
             _door.TryOpen(ent);
