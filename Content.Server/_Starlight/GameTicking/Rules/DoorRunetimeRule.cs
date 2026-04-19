@@ -7,7 +7,7 @@ using Content.Shared.Electrocution;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Station.Components;
-using Content.Shared.Tag;
+using Content.Shared.Whitelist;
 using Robust.Shared.Timing;
 namespace Content.Server.StationEvents.Events;
 
@@ -16,7 +16,7 @@ public sealed class DoorRunetimeRule : StationEventSystem<DoorRunetimeRuleCompon
     [Dependency] private readonly SharedDoorSystem _door = default!;
     [Dependency] private readonly SharedElectrocutionSystem _electrocution = default!;
     [Dependency] private readonly SharedAirlockSystem _airlock = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
     protected override void Started(EntityUid uid, DoorRunetimeRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -89,7 +89,7 @@ public sealed class DoorRunetimeRule : StationEventSystem<DoorRunetimeRuleCompon
             if (TryComp<ElectrifiedComponent>(ent, out var electrified))
                 _electrocution.SetElectrified((ent, electrified), false);
 
-            if (!string.IsNullOrWhiteSpace(comp.BlacklistTag) && _tag.HasTag(ent, comp.BlacklistTag))
+            if (_whitelist.CheckBoth(ent, comp.Blacklist, comp.Whitelist))
                 continue;
 
             _door.TryOpen(ent);

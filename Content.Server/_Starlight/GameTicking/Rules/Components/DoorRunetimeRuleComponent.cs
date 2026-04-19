@@ -1,6 +1,5 @@
 using Content.Server.StationEvents.Events;
-using Content.Shared.Access;
-using Robust.Shared.Prototypes;
+using Content.Shared.Whitelist;
 
 namespace Content.Server._Starlight.GameTicking.Rules.Components;
 
@@ -10,5 +9,8 @@ public sealed partial class DoorRunetimeRuleComponent : Component
     public readonly HashSet<EntityUid> AffectedEntities = new();
 
     [DataField]
-    public string? BlacklistTag;
+    public EntityWhitelist? Whitelist;
+
+    [DataField]
+    public EntityWhitelist? Blacklist;
 }
