@@ -170,6 +170,7 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                 foreach (var objective in collect.Objectives)
                     WriteObjective(ref completedObjectives, builder, objective.Title, objective.Progress);
             }
+            builder.AppendLine();
         }
         ev.AddLine(builder.AppendLine().ToString());
 
