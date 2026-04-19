@@ -1490,4 +1490,11 @@ Entries:
   id: 404340
   time: '2026-04-18T21:55:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4200
+- author: AllisonKaur and Rhetorica
+  changes:
+  - message: 73 new TTS voices, based on synthetic audio.
+    type: Add
+  id: 404341
+  time: '2026-04-19T04:38:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4186
 Order: -1
