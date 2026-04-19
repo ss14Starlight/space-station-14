@@ -13,7 +13,7 @@ public sealed partial class WrappedComponent : Component
     public TimeSpan SelfUnWrapTime = TimeSpan.FromSeconds(15);
 
     [DataField]
-    public EntProtoId WrappedEffectId = "";
+    public EntProtoId WrappedEffectId = "EffectTerrorCocoon";
 
     public EntityUid? EffectEntity = null;
 }
