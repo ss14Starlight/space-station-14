@@ -1588,4 +1588,109 @@ Entries:
   id: 404354
   time: '2026-04-19T11:52:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4204
+- author: Caws
+  changes:
+  - message: (Boxcars) Freezer added to Genpop.
+    type: Add
+  id: 404355
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: Caws
+  changes:
+  - message: (Boxcars) A few JR PACMAN generators to maints.
+    type: Add
+  id: 404356
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: Caws
+  changes:
+  - message: (Boxcars) CMO fax machine was not named.
+    type: Fix
+  id: 404357
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: Caws
+  changes:
+  - message: (Boxcars) Law fax machine was not named.
+    type: Fix
+  id: 404358
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: Caws
+  changes:
+  - message: (Boxcars) NTR office fax was named 'NCT', fixed.
+    type: Fix
+  id: 404359
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: Caws
+  changes:
+  - message: (Boxcars) NCT office fax was named 'NTR', fixed.
+    type: Fix
+  id: 404360
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: Caws
+  changes:
+  - message: (Boxcars) Three morgue units in Morgue were facing into a wall.
+    type: Fix
+  id: 404361
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: Caws
+  changes:
+  - message: (Boxcars) QM's office no longer starts unpowered.
+    type: Fix
+  id: 404362
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: Caws
+  changes:
+  - message: (Boxcars) Atmos' exit airlock now properly bolts / cycles.
+    type: Fix
+  id: 404363
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: Caws
+  changes:
+  - message: (Boxcars) Chemistry now has a centrifuge.
+    type: Fix
+  id: 404364
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: Caws
+  changes:
+  - message: (Boxcars) Many rooms should no longer partially spaced at roundstart.
+    type: Fix
+  id: 404365
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: Caws
+  changes:
+  - message: (Boxcars) Botany's air scrubber was connected to distro.
+    type: Fix
+  id: 404366
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: Caws
+  changes:
+  - message: (Boxcars) Botany's air vent was connected to waste.
+    type: Fix
+  id: 404367
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: Caws
+  changes:
+  - message: (Boxcars) Morgue now has an air vent and air scrubber.
+    type: Fix
+  id: 404368
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
+- author: Caws
+  changes:
+  - message: (Boxcars) Surgery now has an air vent and air scrubber.
+    type: Fix
+  id: 404369
+  time: '2026-04-19T12:31:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4201
 Order: -1
