@@ -24,7 +24,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     // Periodic blip/laser update
     // How often (in seconds) to push fresh blip state to all open radar consoles.
     private const float BlipUpdateInterval = 0.25f;
-    private float _blipUpdateTimer = 0f;
+    private float _blipUpdateTimer;
 
     /// <summary>
     /// How often to transmit UI updates when a player is actively looking at a console.
@@ -48,12 +48,12 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     {
         base.Update(frameTime);
         _blipUpdateTimer += frameTime;
-        if (_blipUpdateTimer < BlipUpdateInterval)
-            return;
-        _blipUpdateTimer = 0f;
-
-        // _Starlight - prune expired Apollo laser traces before syncing state
-        _laserSystem.PruneExpiredTraces((float)_timing.CurTime.TotalSeconds);
+        if (_blipUpdateTimer >= BlipUpdateInterval)
+        {
+            _blipUpdateTimer = 0f;
+            // _Starlight - prune expired Apollo laser traces before syncing state
+            _laserSystem.PruneExpiredTraces((float)_timing.CurTime.TotalSeconds);
+        }
 
         var query = AllEntityQuery<RadarConsoleComponent>();
         while (query.MoveNext(out var uid, out var comp))

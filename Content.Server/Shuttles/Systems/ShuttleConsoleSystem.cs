@@ -49,7 +49,12 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     // Periodic blip/laser update
     // How often (in seconds) to push fresh blip state to all open radar consoles.
     private const float BlipUpdateInterval = 0.25f;
-    private float _blipUpdateTimer = 0f;
+    private float _blipUpdateTimer;
+
+    /// <summary>
+    /// How often to transmit UI updates when a player is actively looking at a console.
+    /// </summary>
+    private static readonly TimeSpan _activeUpdateInterval = TimeSpan.FromMilliseconds(50);
 
     /// <summary>
     /// How often to transmit UI updates when nobody is actively looking at a console. This makes it so that the
@@ -145,7 +150,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     /// <summary>
     /// Refreshes all of the data for shuttle consoles.
     /// </summary>
-    public void RefreshShuttleConsoles()
+    public void RefreshShuttleConsoles(bool forceUpdate = true)
     {
         var exclusions = new List<ShuttleExclusionObject>();
         GetExclusions(ref exclusions);
@@ -155,7 +160,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         while (query.MoveNext(out var uid, out _))
         {
-            UpdateState(uid, ref dockState, ref dockingPortStates); // Starlight: +dockingPortStates
+            UpdateState(uid, ref dockState, ref dockingPortStates, forceUpdate); // Starlight: +dockingPortStates
         }
     }
 
@@ -271,9 +276,19 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         return result;
     }
 
-    private void UpdateState(EntityUid consoleUid, ref DockingInterfaceState? dockState, ref DockingPortStates? dockingPortStates) // Starlight: DockingPortStates instead
+    private void UpdateState(EntityUid consoleUid, ref DockingInterfaceState? dockState, ref DockingPortStates? dockingPortStates, bool forceUpdate = true) // Starlight: DockingPortStates instead
     {
         EntityUid? entity = consoleUid;
+
+        // Starlight BEGIN
+        if (!TryComp<ShuttleConsoleComponent>(consoleUid, out var component)) return;
+        var shouldIdleUpdate = component.LastInterfaceUpdateTime + _idleUpdateInterval < _timing.CurTime;
+        var shouldActiveUpdate = component.LastInterfaceUpdateTime + _activeUpdateInterval < _timing.CurTime &&
+                                 _ui.IsUiOpen(consoleUid, ShuttleConsoleUiKey.Key);
+        if (!_ui.HasUi(consoleUid, ShuttleConsoleUiKey.Key) || !(forceUpdate || shouldIdleUpdate || shouldActiveUpdate))
+            return;
+        component.LastInterfaceUpdateTime = _timing.CurTime;
+        // Starlight END
 
         var getShuttleEv = new ConsoleShuttleEvent
         {
@@ -305,14 +320,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 new List<ShuttleBeaconObject>(),
                 new List<ShuttleExclusionObject>());
         }
-        // Starlight BEGIN
-        if (!TryComp<ShuttleConsoleComponent>(consoleUid, out var component)) return;
-        var shouldIdleUpdate = component.LastInterfaceUpdateTime + _idleUpdateInterval < _timing.CurTime;
-        if (_ui.HasUi(consoleUid, ShuttleConsoleUiKey.Key) && (shouldIdleUpdate || _ui.IsUiOpen(consoleUid, ShuttleConsoleUiKey.Key)))
-        {
-            component.LastInterfaceUpdateTime = _timing.CurTime;
-            // Starlight END
 
+        if (_ui.HasUi(consoleUid, ShuttleConsoleUiKey.Key))
+        {
             // _Starlight - populate blips and laser traces
             // Populate radar blips for entities with RadarBlipComponent (e.g. artillery shells)
             var consoleMapCoords = _transform.GetMapCoordinates(consoleUid);
@@ -381,14 +391,14 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         // Starlight - Start
         _blipUpdateTimer += frameTime;
-        if (_blipUpdateTimer < BlipUpdateInterval)
-            return;
-        _blipUpdateTimer = 0f;
+        if (_blipUpdateTimer >= BlipUpdateInterval)
+        {
+            _blipUpdateTimer = 0;
+            // _Starlight - prune expired Apollo laser traces before syncing state
+            _laserSystem.PruneExpiredTraces((float)_timing.CurTime.TotalSeconds);
+        }
 
-        // _Starlight - prune expired Apollo laser traces before syncing state
-        _laserSystem.PruneExpiredTraces((float)_timing.CurTime.TotalSeconds);
-
-        RefreshShuttleConsoles();
+        RefreshShuttleConsoles(false);
         // Starlight - End
     }
 
