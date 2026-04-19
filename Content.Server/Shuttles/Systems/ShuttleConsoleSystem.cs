@@ -388,8 +388,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             RemovePilot(uid, comp);
         }
 
-        RefreshShuttleConsoles(false);
-        // Starlight - End
+        RefreshShuttleConsoles(false); // Starlight
     }
 
     protected override void HandlePilotShutdown(EntityUid uid, PilotComponent component, ComponentShutdown args)
