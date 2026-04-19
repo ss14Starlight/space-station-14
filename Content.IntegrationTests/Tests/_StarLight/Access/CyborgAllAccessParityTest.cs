@@ -13,7 +13,7 @@ public sealed class CyborgAllAccessParityTest
     /// </summary>
     private static readonly HashSet<ProtoId<AccessLevelPrototype>> _exclusions =
     [
-        new("Debrief")
+        new("Debrief") // Borgs are not head of staff, and should not be in debrief.
     ];
 
     private static readonly ProtoId<AccessGroupPrototype> _allAccessGroup = "AllAccess";
@@ -36,7 +36,7 @@ public sealed class CyborgAllAccessParityTest
 
             var expectedCyborgTags = allAccessTags.Except(_exclusions).ToList();
 
-            var missingFromCyborg = expectedCyborgTags.Except(allAccessTags).ToList();
+            var missingFromCyborg = expectedCyborgTags.Except(cyborgAllAccessTags).ToList();
             var extraInCyborg = cyborgAllAccessTags.Except(expectedCyborgTags).ToList();
 
             using (Assert.EnterMultipleScope())
