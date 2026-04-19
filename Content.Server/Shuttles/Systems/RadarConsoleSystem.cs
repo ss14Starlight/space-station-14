@@ -23,7 +23,6 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     #region Starlight
     /// <summary>
     /// How often to transmit UI updates when a player is actively looking at a console.
-    /// Turns out the actual data displayed doesn't change much, so a low update rate is fine.
     /// </summary>
     private static readonly TimeSpan _activeUpdateInterval = TimeSpan.FromMilliseconds(250);
 
