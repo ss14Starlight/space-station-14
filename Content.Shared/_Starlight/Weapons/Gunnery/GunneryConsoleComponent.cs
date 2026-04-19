@@ -9,6 +9,7 @@ namespace Content.Shared._Starlight.Weapons.Gunnery;
 /// shuttle-mounted cannons and guide EMP rockets.
 /// </summary>
 [RegisterComponent]
+[AutoGenerateComponentPause]
 public sealed partial class GunneryConsoleComponent : Component
 {
     // ── Server-only runtime state ──────────────────────────────────────────
@@ -18,6 +19,7 @@ public sealed partial class GunneryConsoleComponent : Component
     public EntityUid? TrackedGuidedProjectile;
 
     /// <summary>Server: When this console last updated its UI.</summary>
+    [AutoPausedField]
     public TimeSpan LastInterfaceUpdateTime;
 
     /// <summary>Server: game time at which the last fire command was sent (used to associate spawned guided projectiles).</summary>

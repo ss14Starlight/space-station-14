@@ -5,6 +5,7 @@ namespace Content.Shared.Shuttles.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(SharedRadarConsoleSystem))]
+[AutoGenerateComponentPause]
 public sealed partial class RadarConsoleComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
@@ -30,6 +31,7 @@ public sealed partial class RadarConsoleComponent : Component
     /// <summary>
     /// When the last interface update was transmitted.
     /// </summary>
-    public TimeSpan LastInterfaceUpdateTime = TimeSpan.Zero;
+    [AutoPausedField]
+    public TimeSpan LastInterfaceUpdateTime;
     #endregion
 }

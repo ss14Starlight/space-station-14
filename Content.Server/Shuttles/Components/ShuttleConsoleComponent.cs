@@ -4,6 +4,7 @@ using Content.Shared.Shuttles.Components;
 namespace Content.Server.Shuttles.Components
 {
     [RegisterComponent]
+    [AutoGenerateComponentPause]
     public sealed partial class ShuttleConsoleComponent : SharedShuttleConsoleComponent
     {
         [ViewVariables]
@@ -25,7 +26,8 @@ namespace Content.Server.Shuttles.Components
         /// <summary>
         /// When the last interface update was transmitted.
         /// </summary>
-        public TimeSpan LastInterfaceUpdateTime = TimeSpan.Zero;
+        [AutoPausedField]
+        public TimeSpan LastInterfaceUpdateTime;
         #endregion
     }
 }
