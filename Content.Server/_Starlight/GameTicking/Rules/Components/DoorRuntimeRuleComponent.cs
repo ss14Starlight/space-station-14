@@ -3,8 +3,8 @@ using Content.Shared.Whitelist;
 
 namespace Content.Server._Starlight.GameTicking.Rules.Components;
 
-[RegisterComponent, Access(typeof(DoorRunetimeRule))]
-public sealed partial class DoorRunetimeRuleComponent : Component
+[RegisterComponent, Access(typeof(DoorRuntimeRule))]
+public sealed partial class DoorRuntimeRuleComponent : Component
 {
     public readonly HashSet<EntityUid> AffectedEntities = new();
 

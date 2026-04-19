@@ -51,7 +51,7 @@
       duration: 90
       reoccurrenceDelay: 20
       maxOccurrences: 2
-    - type: DoorRunetimeRule
+    - type: DoorRuntimeRule
       blacklist:
         tags:
           - ExternalAirlock
