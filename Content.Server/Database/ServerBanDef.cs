@@ -127,7 +127,26 @@ namespace Content.Server.Database
     public static class BanDefExtensions
     {
         public static AdminBan ToNullLink(this ServerBanDef banDef)
-            => new(banDef.Id, banDef.UserId, banDef.Address == null ? null : new() { Address = banDef.Address.Value.address.ToString(), CidrMask = banDef.Address.Value.cidrMask }, banDef.HWId == null ? null : new() { Hwid = banDef.HWId.Hwid.ToArray(), Type = (int)banDef.HWId.Type }, banDef.BanTime, banDef.ExpirationTime, banDef.RoundId, banDef.PlaytimeAtNote, banDef.Reason, banDef.Severity.ToString(), banDef.BanningAdmin, banDef.Unban == null ?[] : new() { banDef.Unban.ToNullLink() }, null, (int)banDef.ExemptFlags, banDef.ProjectName, banDef.ServerName);
+            => new()
+            {
+                Id = banDef.Id,
+                UserId = banDef.UserId,
+                Address = banDef.Address == null ? null : new() { Address = banDef.Address.Value.address.ToString(), CidrMask = banDef.Address.Value.cidrMask },
+                HWId = banDef.HWId == null ? null : new() { Hwid = banDef.HWId.Hwid.ToArray(), Type = (int)banDef.HWId.Type },
+                BanTime = banDef.BanTime,
+                ExpirationTime = banDef.ExpirationTime,
+                RoundId = banDef.RoundId,
+                PlayTimeAtNote = banDef.PlaytimeAtNote,
+                Reason = banDef.Reason,
+                Severity = banDef.Severity.ToString(),
+                BanningAdmin = banDef.BanningAdmin,
+                Unban = banDef.Unban == null ? [] : new() { banDef.Unban.ToNullLink() },
+                Role = null,
+                ExemptFlags = (int)banDef.ExemptFlags,
+                ProjectName = banDef.ProjectName,
+                ServerName = banDef.ServerName,
+
+            };
     }
 
     #endregion
