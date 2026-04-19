@@ -274,7 +274,7 @@
     priority: 3
   - type: InstantAction
     event: !type:DragonSpawnRiftActionEvent
-  - type: EorgAction # Starlight
+  - type: EorgPreventAction # Starlight
 
 - type: entity
   parent: BaseAction
@@ -297,7 +297,7 @@
       tags:
       - Wall
     event: !type:DevourActionEvent
-  - type: EorgAction # Starlight
+  - type: EorgPreventAction # Starlight
 
 - type: entity
   parent: BaseAction
@@ -315,4 +315,4 @@
     range: 0
   - type: WorldTargetAction
     event: !type:ActionGunShootEvent
-  - type: EorgAction # Starlight
+  - type: EorgPreventAction # Starlight
