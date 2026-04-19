@@ -36,6 +36,6 @@ public static class AdminBanExtensions
     public static SharedAdminNote? ToNote(this AdminBan ban)
         => ban.UserId == null || ban.Id == null ? null : new(ban.Id.Value, new NetUserId(ban.UserId.Value), ban.RoundId, ban.ServerName, ban.ProjectName, ban.PlayTimeAtNote, NoteType.ServerBan, ban.Reason ?? "", ParseSeverity(ban.Severity), false, "", "", ban.BanTime.DateTime, null, ban.ExpirationTime?.DateTime, null, null, null, null, true);
 
-    public static Dictionary<(int, NoteType), SharedAdminNote> ToNoteDef(this IEnumerable<AdminBan> ban)
-        => ban.Select(b => b.ToNote()).OfType<SharedAdminNote>().ToDictionary(n => (n.Id, n.NoteType));
+    public static Dictionary<(int, NoteType, string, string), SharedAdminNote> ToNoteDef(this IEnumerable<AdminBan> ban)
+        => ban.Select(b => b.ToNote()).OfType<SharedAdminNote>().ToDictionary(n => (n.Id, n.NoteType, n.ServerName ?? "", n.ProjectName ?? ""));
 }
