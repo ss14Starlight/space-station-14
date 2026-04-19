@@ -407,15 +407,16 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             null,
             encodedRole);
 
-        if (_actor.TryGetServerGrain(out var serverGrain))
-            await serverGrain.AddOrUpdateBan(banDef.ToNullLink());
-
         if (!await AddRoleBan(banDef))
         {
             _chat.SendAdminAlert(Loc.GetString("cmd-roleban-existing", ("target", targetUsername ?? "null"), ("role", role)));
 
             return;
         }
+
+        var roleBan = (await _db.GetServerRoleBansAsync(addressRange?.Item1, target, hwid?.Hwid, null, false)).FirstOrDefault(b => b.UserId == target && b.Role == encodedRole && b.BanTime == timeOfBan);
+        if (roleBan != null && _actor.TryGetServerGrain(out var serverGrain))
+            await serverGrain.AddOrUpdateBan(roleBan.ToNullLink());
 
         var length = expires == null ? Loc.GetString("cmd-roleban-inf") : Loc.GetString("cmd-roleban-until", ("expires", expires));
         _chat.SendAdminAlert(Loc.GetString("cmd-roleban-success", ("target", targetUsername ?? "null"), ("role", role), ("reason", reason), ("length", length)));
