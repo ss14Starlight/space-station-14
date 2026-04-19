@@ -502,7 +502,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             }
         }
 
-        await _db.AddServerRoleUnbanAsync(new ServerRoleUnbanDef(banId, unbanningAdmin, DateTimeOffset.Now));
+        await _db.AddServerRoleUnbanAsync(new ServerRoleUnbanDef(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
 
         if (ban.UserId is { } player
             && _playerManager.TryGetSessionById(player, out var session)
