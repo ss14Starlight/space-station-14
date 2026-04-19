@@ -136,8 +136,16 @@
             "copyright": "Taken and modified from /tg/station113 from https://github.com/tgstation/tgstation/blob/ce6beb8a4d61235d9a597a7126c407160ed674ea/icons/mob/huds/hud.dmi, recolor by redmushie (github)"
         },
         {
+            "name": "SyndicateIAA",
+            "copyright": "Chim, recolor by redmushie (github)"
+        },
+        {
             "name": "SyndicateJanitor",
             "copyright": "IamSidzilla"
+        },
+        {
+            "name": "SyndicateMagistrate",
+            "copyright": "Chim, recolor by redmushie (github)"
         },
         {
             "name": "SyndicateQuarterMaster",

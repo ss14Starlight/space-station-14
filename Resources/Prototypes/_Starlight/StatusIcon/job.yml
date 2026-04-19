@@ -318,6 +318,22 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconSyndicateIAA
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: SyndicateIAA
+  jobName: job-name-syndicate-iaa
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconSyndicateMagistrate
+  icon:
+    sprite: *starlight-job-icon-rsi
+    state: SyndicateMagistrate
+  jobName: job-name-syndicate-magistrate
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconSyndicateQuarterMaster
   icon:
     sprite: *starlight-job-icon-rsi
