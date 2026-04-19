@@ -237,7 +237,8 @@ public sealed class AdminNotesEui : BaseEui
         {
             NetworkNotes = Convert(await serverGrain.RequestNotes(NotedPlayer) ?? []);
             var bans = await serverGrain.RequestBans(NotedPlayer, null, null, null, true, false);
-            NetworkNotes = NetworkNotes.Concat(bans.ToNoteDef()).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            foreach (var kvp in bans.ToNoteDef())
+                NetworkNotes.TryAdd(kvp.Key, kvp.Value);
         }
         StateDirty();
     }
