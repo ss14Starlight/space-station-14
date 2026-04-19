@@ -52,7 +52,9 @@
       reoccurrenceDelay: 20
       maxOccurrences: 2
     - type: DoorRunetimeRule
-      blacklistTag: ExternalAirlock
+      blacklist:
+        tags:
+          - ExternalAirlock
 
 - type: entity
   parent: BaseGameRule
