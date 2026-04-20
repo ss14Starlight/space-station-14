@@ -411,7 +411,8 @@ public sealed partial class VampireSystem : EntitySystem
 
         if (HasComp<IPCBatteryComponent>(target) //IPCs don't have blood
             || (!TryComp<MobStateComponent>(target, out var mobState) //Is the entity a mob at all?
-            || mobState.CurrentState == Shared.Mobs.MobState.Dead)) //Dead things aren't a good source of flowing blood
+            //|| mobState.CurrentState == Shared.Mobs.MobState.Dead))  //Dead things aren't a good source of flowing blood
+            ))
         {
             _popup.PopupEntity(Loc.GetString("vampire-drink-target-not-viable"), uid, uid, Shared.Popups.PopupType.MediumCaution);
             comp.IsDrinking = false;
@@ -429,6 +430,9 @@ public sealed partial class VampireSystem : EntitySystem
         {
             sipInefficiency = 1f / comp.NonHumanoidEfficiency;
         }
+
+        if (mobState.CurrentState == Shared.Mobs.MobState.Dead)
+            sipInefficiency *= comp.DeadEfficiency; // Dead things aren't as good source of blood
 
         var maxCanDrink = comp.MaxBloodPerTarget - drunkFromTarget;
         var actualSipAmount = MathF.Min(sipAmount, maxCanDrink);
