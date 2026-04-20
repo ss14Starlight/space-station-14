@@ -679,7 +679,6 @@
   - ServiceWorkerBotanyJumpskirt
   - ServiceWorkerChefJumpsuit
   - ServiceWorkerChefJumpskirt
-  - MaidOutfit
 
 # Performer
 - type: loadoutGroup
@@ -999,3 +998,10 @@
   loadouts:
   - SecGloves
   - SecGlovesFingerless
+
+- type: loadoutGroup
+  id: ParamedicPDA
+  name: loadout-group-paramedic-id
+  loadouts:
+  - ParamedicPDA
+  - SeniorParamedicPDA

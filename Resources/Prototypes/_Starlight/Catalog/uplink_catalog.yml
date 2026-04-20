@@ -560,52 +560,6 @@
   categories:
     - UplinkPointless
 
-- type: listing
-  id: UplinkClothingOuterArmorElegantRaid
-  name: uplink-syndie-elegant-raid-name
-  description: uplink-syndie-elegant-raid-desc
-  icon: { sprite: /Textures/_Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi, state: icon }
-  productEntity: ClothingBackpackSyndicateElegantRaidBundle
-  cost:
-    Telecrystal: 12
-  categories:
-    - UplinkPointless
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - NukeOpsUplink
-
-- type: listing
-  id: UplinkClothingMurderShocks
-  name: uplink-clothing-murder-socks-name
-  description: uplink-clothing-murder-socks-desc
-  productEntity: ClothingUnderSocksMurder
-  cost:
-    Telecrystal: 2
-  categories:
-    - UplinkPointless
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - NukeOpsUplink
-
-- type: listing
-  id: UplinkClothingMurderShocksAgent
-  name: uplink-clothing-murder-socks-name
-  description: uplink-clothing-murder-socks-desc
-  productEntity: ClothingUnderSocksMurder
-  cost:
-    Telecrystal: 1
-  categories:
-    - UplinkPointless
-  conditions:
-    - !type:StoreWhitelistCondition
-      blacklist:
-        tags:
-          - NukeOpsUplink
-
 # Allies
 - type: listing
   id: UplinkSyndicateBorgi
@@ -1006,7 +960,7 @@
   id: UplinkDarkGygaxLoneOps
   name: uplink-mech-teleporter-assault-name
   description: uplink-mech-teleporter-assault-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: darkgygax }
+  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/darkgygax.rsi, state: base }
   productEntity: CrateCybersunDarkGygaxBundle
   cost:
     Telecrystal: 30
@@ -1022,7 +976,7 @@
   id: UplinkMaulerLoneOps
   name: uplink-mech-teleporter-heavy-name
   description: uplink-mech-teleporter-heavy-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: mauler }
+  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/mauler.rsi, state: base }
   productEntity: CrateCybersunMaulerBundle
   cost:
     Telecrystal: 45
