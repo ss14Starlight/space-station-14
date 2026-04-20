@@ -84,3 +84,9 @@ AirlockMaintLawyerLocked: AirlockMaintInternalAffairsLocked
 WindoorSecureSecurityLawyerLocked: WindoorSecureSecurityInternalAffairsLocked
 LockableButtonLawyer: LockableButtonInternalAffairs
 HolopadSecurityLawyer: HolopadSecurityInternalAffairs
+
+#2026-04-20
+ClothingBackpackSyndicateElegantRaidBundle: null
+ClothingOuterMaidArmorRaid: null
+ClothingUnderSocksMurder: null
+PlushieBBC: PlushieDarkForest
