@@ -46,7 +46,6 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     private ServerPlaytimeRecognitionPrototype? _serverPlaytimeRecognition;
     private string? _project;
     private string? _server;
-    private bool _awaitingMerge = false;
     // nulllink end
 
     private ISawmill _sawmill = default!;
@@ -82,27 +81,13 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     {
         _project = value;
         _serverPlaytimeRecognition = null;
-        MergePlayTime();
     }
 
-    private void OnServerChanged(string value)
-    {
+    private void OnServerChanged(string value) =>
         _server = value;
-        MergePlayTime();
-    }
 
     private void MergePlayTime()
     {
-        try
-        {
-            _ = _prototypes.EnumeratePrototypes<ServerPlaytimeRecognitionPrototype>().Any();
-        }
-        catch (InvalidOperationException)
-        {
-            _awaitingMerge = true;
-            return;
-        }
-
         _sawmill.Debug("Staring MergePlayTime.");
 
         _mergedRoles.Clear();
@@ -151,13 +136,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
             _jobBans.Clear();
             _antagBans.Clear();
         }
-        else if (_awaitingMerge && e.NewLevel == ClientRunLevel.Connected)
-        {
-            {
-                _awaitingMerge = false;
-                MergePlayTime();
-            }
-        }
+        else if (e.NewLevel == ClientRunLevel.Connected)
+            MergePlayTime();
     }
 
     private void RxRoleBans(MsgRoleBans message)
