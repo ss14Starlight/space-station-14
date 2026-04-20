@@ -1,4 +1,6 @@
-﻿using Robust.Shared.Containers;
+﻿using Content.Shared.Alert;
+using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Actions.Components;
 
@@ -12,16 +14,16 @@ public sealed partial class WrapEntityHolderComponent : Component
     public EntityUid? Hold = null;
 
     /// <summary>
-    /// How much time it takes for player to unwrap someone from web externally.
+    /// How much time it takes for player to unwrap someone from web using sharp item.
     /// </summary>
     [DataField]
-    public TimeSpan UnWrapTime = TimeSpan.FromSeconds(5);
+    public TimeSpan UnWrapItemTime = TimeSpan.FromSeconds(10);
 
     /// <summary>
-    /// How much time it takes for player to unwrap themselves from web.
+    /// How much time it takes for player to unwrap someone from web without using any item.
     /// </summary>
     [DataField]
-    public TimeSpan SelfUnWrapTime = TimeSpan.FromSeconds(15);
+    public TimeSpan UnWrapHandTime = TimeSpan.FromSeconds(30);
 
     /// <summary>
     /// Container that the wrapped entity will be put into.
@@ -30,4 +32,7 @@ public sealed partial class WrapEntityHolderComponent : Component
     public string ContainerId = "entity";
 
     public BaseContainer? Container = null;
+
+    [DataField]
+    public ProtoId<AlertPrototype> WrappedAlert = "Wrapped";
 }

@@ -10,6 +10,8 @@ using Content.Shared.Humanoid;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Robust.Shared.Network;
+using Content.Shared.Alert;
+using Content.Shared.Hands.EntitySystems;
 
 namespace Content.Shared._Starlight.Actions.EntitySystems;
 
@@ -19,15 +21,19 @@ public sealed class SharedWrapSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<WrapActionEvent>(OnWrapAttempt);
         SubscribeLocalEvent<HumanoidAppearanceComponent, WrapDoAfterEvent>(OnWrap);
+        SubscribeLocalEvent<WrappedComponent, UnWrapAlertEvent>(OnAlertUnwrap);
         SubscribeLocalEvent<WrapEntityHolderComponent, InteractUsingEvent>(OnInteract);
+        SubscribeLocalEvent<WrapEntityHolderComponent, InteractHandEvent>(OnHandInteract);
         SubscribeLocalEvent<WrapEntityHolderComponent, UnwrapDoAfterEvent>(OnUnwrap);
         SubscribeLocalEvent<WrapEntityHolderComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<WrappedComponent, IsRottingEvent>(OnRotting);
@@ -56,7 +62,49 @@ public sealed class SharedWrapSystem : EntitySystem
 
         args.Handled = true;
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, component.UnWrapTime, new UnwrapDoAfterEvent(), args.Target, args.Target, args.Used)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, component.UnWrapItemTime, new UnwrapDoAfterEvent(), args.Target, args.Target, args.Used)
+        {
+            BreakOnDamage = true,
+            BreakOnMove = true,
+            BreakOnHandChange = true,
+            BreakOnDropItem = true,
+        });
+    }
+
+    private void OnHandInteract(EntityUid uid, WrapEntityHolderComponent component, InteractHandEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        args.Handled = true;
+
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, component.UnWrapHandTime, new UnwrapDoAfterEvent(), args.Target, args.Target)
+        {
+            BreakOnDamage = true,
+            BreakOnMove = true,
+            BreakOnHandChange = true,
+            BreakOnDropItem = true,
+        });
+    }
+
+    private void OnAlertUnwrap(EntityUid uid, WrappedComponent component, UnWrapAlertEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        args.Handled = true;
+
+        if (component.Holder == null || Deleted(component.Holder) || !TryComp<WrapEntityHolderComponent>(component.Holder.Value, out var holderComp))
+        {
+            RemComp<WrappedComponent>(uid);
+            _alerts.ClearAlert(uid, args.AlertId);
+            return;
+        }
+
+        var activeItem = _handsSystem.GetActiveItem(uid);
+        TimeSpan time = activeItem == null ? holderComp.UnWrapHandTime : HasComp<SharpComponent>(activeItem) ? holderComp.UnWrapItemTime : holderComp.UnWrapHandTime;
+
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, time, new UnwrapDoAfterEvent(), component.Holder.Value, component.Holder.Value)
         {
             BreakOnDamage = true,
             BreakOnMove = true,
@@ -91,11 +139,11 @@ public sealed class SharedWrapSystem : EntitySystem
     {
         if (args.Handled || !_gameTiming.IsFirstTimePredicted || HasComp<WrappedComponent>(uid))
             return;
-        args.Handled = true;
         var wrapped = EnsureComp<WrappedComponent>(uid);
         _blocker.UpdateCanMove(uid);
         var xform = Transform(uid);
         var holder = PredictedSpawnAttachedTo(args.WrapContainerId, xform.Coordinates);
+        wrapped.Holder = holder;
 
         if (_net.IsServer && TryComp<WrapEntityHolderComponent>(holder, out var holderComp)) // I hate container manager, it just drop client with metadata error when you trying to insert something. It's piece of shit.
         {
@@ -105,8 +153,11 @@ public sealed class SharedWrapSystem : EntitySystem
                 return;
             }
 
+            _alerts.ShowAlert(uid, holderComp.WrappedAlert);
+
             holderComp.Hold = uid;
         }
+        args.Handled = true;
     }
 
     private void OnWrapAttempt(WrapActionEvent args)
@@ -114,13 +165,13 @@ public sealed class SharedWrapSystem : EntitySystem
         if (args.Handled || HasComp<WrappedComponent>(args.Target))
             return;
 
-        args.Handled = true;
-
         _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.Performer, args.WrapTime, new WrapDoAfterEvent(args.WrapContainerId), args.Target, args.Target)
         {
             BreakOnDamage = true,
             BreakOnMove = true,
             NeedHand = false,
         });
+
+        args.Handled = true;
     }
 }
