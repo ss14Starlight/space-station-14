@@ -1216,6 +1216,23 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+  # Starlight edit start - Make ElectricShark give dwarves slow immunity
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.06
+      - !type:GenericStatusEffect
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+        key: IgnoreSlowOnDamage
+        component: IgnoreSlowOnDamage
+        time: 3
+  # Starlight edit end
 
 - type: reagent
   id: ErikaSurprise
@@ -2472,6 +2489,21 @@
           effectProto: StatusEffectDrowsiness
           time: 1
           type: Remove
+  # Starlight edit start - Make IrishBool remove Stun from Dwarves
+        - !type:ModifyStatusEffect
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Dwarf ]
+          effectProto: StatusEffectStunned
+          time: 3.5
+          type: Remove
+        - !type:ModifyKnockdown
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Dwarf ]
+          time: 3.5
+          type: Remove
+  # Starlight edit end
   fizziness: 0.15
 
 - type: reagent
