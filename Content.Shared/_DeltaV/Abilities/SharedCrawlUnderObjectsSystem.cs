@@ -9,13 +9,15 @@ using Content.Shared.Maps;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Weapons.Ranged.Events;
 //using Content.Shared.Standing;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared._DeltaV.Abilities;
 
-public sealed class SharedCrawlUnderObjectsSystem : EntitySystem
+public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -33,10 +35,13 @@ public sealed class SharedCrawlUnderObjectsSystem : EntitySystem
         SubscribeLocalEvent<CrawlUnderObjectsComponent, AttemptClimbEvent>(OnAttemptClimb);
         SubscribeLocalEvent<CrawlUnderObjectsComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
 
-        // SubscribeLocalEvent<CrawlUnderObjectsComponent, DropAttemptEvent>(OnDropAttempt); MIKEY Keep delete?
+        SubscribeLocalEvent<CrawlUnderObjectsComponent, DropAttemptEvent>(OnDropAttempt);
         SubscribeLocalEvent<CrawlUnderObjectsComponent, PickupAttemptEvent>(OnPickupAttempt);
-        SubscribeLocalEvent<CrawlUnderObjectsComponent, AttackAttemptEvent>(OnAttackAttempt);
+        // SubscribeLocalEvent<CrawlUnderObjectsComponent, AttackAttemptEvent>(OnAttackAttempt);
         SubscribeLocalEvent<CrawlUnderObjectsComponent, UseAttemptEvent>(OnUseAttempt);
+        SubscribeLocalEvent<CrawlUnderObjectsComponent, ShotAttemptedEvent>(OnShootAttempt);
+        SubscribeLocalEvent<CrawlUnderObjectsComponent, AttemptMeleeEvent>(OnMeleeAttempt);
+
         // SubscribeLocalEvent<CrawlUnderObjectsComponent, InteractionAttemptEvent>(OnInteractionAttempt); // Too broad of a listener MIKEY kep delete?
     }
 
@@ -66,7 +71,8 @@ public sealed class SharedCrawlUnderObjectsSystem : EntitySystem
             args.Cancelled = true;
     }
 
-    private void OnRefreshMovementSpeed(EntityUid uid, CrawlUnderObjectsComponent component, RefreshMovementSpeedModifiersEvent args)
+    private void OnRefreshMovementSpeed(EntityUid uid, CrawlUnderObjectsComponent component,
+        RefreshMovementSpeedModifiersEvent args)
     {
         if (component.Enabled)
             args.ModifySpeed(component.SneakSpeedModifier, component.SneakSpeedModifier);
@@ -139,48 +145,59 @@ public sealed class SharedCrawlUnderObjectsSystem : EntitySystem
     }
     // --- Hand-blocking event handlers (cuff-style) ---
     // - MIKEY keep delete?
-    // private void OnDropAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref DropAttemptEvent args)
-    // {
-    //     if (component.Enabled && component.BlockHands)
-    //         args.Cancel();
-    // }
+    private void OnDropAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref DropAttemptEvent args)
+    {
+        if (args.Cancelled) return;
+        if (!component.Enabled || !component.BlockHands) return;
+        if (!IsOnCollidingTile(uid)) return;
+
+        args.Cancel();
+    }
+
+    /// <summary>
+    /// Disallows gun use while crouched.
+    /// </summary>
+    private void OnShootAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref ShotAttemptedEvent args)
+    {
+        if (args.Cancelled) return;
+        if (!component.Enabled || !component.BlockHands) return;
+        if (!IsOnCollidingTile(uid)) return;
+
+        // Use popup cooldown here since the event is fired every tick.
+        if (TryPopupCooldown(component))
+            _popup.PopupClient(Loc.GetString("crawl-under-objects-attack-fail"), uid, uid, PopupType.MediumCaution);
+        args.Cancel();
+    }
+
+    private void OnMeleeAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref AttemptMeleeEvent args)
+    {
+        if (args.Cancelled) return;
+        if (!component.Enabled || !component.BlockHands) return;
+        if (!IsOnCollidingTile(uid)) return;
+
+        _popup.PopupClient(Loc.GetString("crawl-under-objects-attack-fail"), uid, uid, PopupType.MediumCaution);
+        args.Cancelled = true;
+    }
 
     private void OnPickupAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref PickupAttemptEvent args)
     {
-        if (IsOnCollidingTile(uid) && component.Enabled && component.BlockHands)
-        {
-            _popup.PopupClient(Loc.GetString("crawl-under-objects-pickup-fail"), uid, uid);
-            args.Cancel();
-        }
-    }
+        if (args.Cancelled) return;
+        if (!component.Enabled || !component.BlockHands) return;
+        if (!IsOnCollidingTile(uid)) return;
 
-    private void OnAttackAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref AttackAttemptEvent args)
-    {
-        if (IsOnCollidingTile(uid) && component.Enabled && component.BlockHands)
-        {
-            _popup.PopupClient(Loc.GetString("crawl-under-objects-attack-fail"), uid, uid);
-            args.Cancel();
-        }
+        _popup.PopupClient(Loc.GetString("crawl-under-objects-pickup-fail"), uid, uid);
+        args.Cancel();
     }
 
     private void OnUseAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref UseAttemptEvent args)
     {
-        if (IsOnCollidingTile(uid) && component.Enabled && component.BlockHands)
-        {
-            _popup.PopupClient(Loc.GetString("crawl-under-objects-use-fail"), uid, uid);
-            args.Cancel();
-        }
-    }
+        if (args.Cancelled) return;
+        if (!component.Enabled || !component.BlockHands) return;
+        if (!IsOnCollidingTile(uid)) return;
 
-    // Too broad of an event listener - MIKEY keep delete?
-    // private void OnInteractionAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref InteractionAttemptEvent args)
-    // {
-    //     if (IsOnCollidingTile(uid) && component.Enabled && component.BlockHands)
-    //     {
-    //         _popup.PopupClient(Loc.GetString("crawl-under-objects-interact-fail"), uid, uid);
-    //         args.Cancelled = true;
-    //     }
-    // }
+        _popup.PopupClient(Loc.GetString("crawl-under-objects-use-fail"), uid, uid);
+        args.Cancel();
+    }
 
     private bool IsOnCollidingTile(EntityUid uid)
     {
@@ -189,6 +206,14 @@ public sealed class SharedCrawlUnderObjectsSystem : EntitySystem
 
         return _turf.IsTileBlocked(tile.Value, CollisionGroup.MobMask);
     }
+
+    /// <summary>
+    /// Used to prevent spamming failure popups since some events are fired every tick (guh). Uses
+    /// <see cref="CrawlUnderObjectsComponent.LastFailedPopup"/> and
+    /// <see cref="CrawlUnderObjectsComponent.FailedPopupCooldown"/> to determine if a popup should be shown.
+    /// </summary>
+    /// <returns>Whether to show the popup this time</returns>
+    protected virtual bool TryPopupCooldown(CrawlUnderObjectsComponent comp) => false;
 
     #endregion
 }
