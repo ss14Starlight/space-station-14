@@ -295,9 +295,6 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (HasComp<MechThrustersComponent>(mech))
             _actions.AddAction(pilot, ref component.MechToggleThrustersActionEntity, component.MechToggleThrustersAction, mech);
         var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
-        foreach (var ent in equipment)
-            if (TryComp<MechEquipmentActionComponent>(ent, out var actionComp))
-                _actions.AddAction(pilot, ref actionComp.EquipmentActionEntity, actionComp.EquipmentAction, ent);
     }
 
     private void RemoveUser(EntityUid mech, EntityUid pilot)
@@ -308,12 +305,6 @@ public abstract partial class SharedMechSystem : EntitySystem
         RemComp<InteractionRelayComponent>(pilot);
 
         _actions.RemoveProvidedActions(pilot, mech);
-        if (!TryComp<MechComponent>(mech, out var mechComp))
-            return;
-        var equipment = new List<EntityUid>(mechComp.EquipmentContainer.ContainedEntities);
-        foreach (var ent in equipment)
-            if (TryComp<MechEquipmentActionComponent>(ent, out var actionComp))
-                _actions.RemoveProvidedActions(pilot, ent);
     }
 
     /// <summary>
@@ -578,6 +569,11 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         var ev = new BeforePilotInsertEvent(uid, toInsert.Value);
         RaiseLocalEvent(uid, ref ev);
+        var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
+        foreach (var ent in equipment)
+        {
+            RaiseLocalEvent(ent, ref ev);
+        }
 
         RaiseLocalEvent(toInsert.Value, ref ev);
 
@@ -607,7 +603,11 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         var ev = new BeforePilotEjectEvent(uid, pilot);
         RaiseLocalEvent(uid, ref ev);
-
+        var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
+        foreach (var ent in equipment)
+        {
+            RaiseLocalEvent(ent, ref ev);
+        }
         RaiseLocalEvent(pilot, ref ev);
 
         _container.RemoveEntity(uid, pilot);
