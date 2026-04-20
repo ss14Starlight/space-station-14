@@ -151,7 +151,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
             _jobBans.Clear();
             _antagBans.Clear();
         }
-        else if (_awaitingMerge && (e.NewLevel == ClientRunLevel.Connected || e.NewLevel == ClientRunLevel.InGame))
+        else if (_awaitingMerge && e.NewLevel == ClientRunLevel.Connected)
         {
             {
                 _awaitingMerge = false;
