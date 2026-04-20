@@ -8,7 +8,7 @@
   name: nt-cc paper
   parent: Paper
   id: PaperNTCC
-  description: 'A single unit of bureaucracy, branded with the logos of Nanotrasen and Central Command.'
+  description: A single unit of bureaucracy, branded with the logos of NanoTrasen and Central Command.
   components:
   - type: Sprite
     sprite: Objects/Misc/bureaucracy.rsi
