@@ -897,6 +897,9 @@ public sealed partial class VampireSystem : EntitySystem
 
     #endregion
 
+    /// <summary>
+    /// Vampire full power level check
+    /// </summary>
     #region Full Power, Passives
     private void UpdateFullPower(EntityUid uid, VampireComponent comp)
     {
