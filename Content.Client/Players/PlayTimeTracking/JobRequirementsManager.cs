@@ -81,10 +81,14 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     {
         _project = value;
         _serverPlaytimeRecognition = null;
+        MergePlayTime();
     }
 
-    private void OnServerChanged(string value) =>
+    private void OnServerChanged(string value)
+    {
         _server = value;
+        MergePlayTime();
+    }
 
     private void MergePlayTime()
     {
@@ -136,8 +140,6 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
             _jobBans.Clear();
             _antagBans.Clear();
         }
-        else if (e.NewLevel == ClientRunLevel.Connected)
-            MergePlayTime();
     }
 
     private void RxRoleBans(MsgRoleBans message)
