@@ -46,6 +46,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     private ServerPlaytimeRecognitionPrototype? _serverPlaytimeRecognition;
     private string? _project;
     private string? _server;
+    private bool _awaitingMerge = false;
     // nulllink end
 
     private ISawmill _sawmill = default!;
@@ -92,6 +93,18 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
     private void MergePlayTime()
     {
+        try
+        {
+            _ = _prototypes.EnumeratePrototypes<ServerPlaytimeRecognitionPrototype>().Any();
+        }
+        catch (InvalidOperationException)
+        {
+            _awaitingMerge = true;
+            return;
+        }
+
+        _sawmill.Debug("Staring MergePlayTime.");
+
         _mergedRoles.Clear();
 
         foreach (var (tracker, time) in _originalRoles)
@@ -137,6 +150,13 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
             _jobWhitelists.Clear();
             _jobBans.Clear();
             _antagBans.Clear();
+        }
+        else if (_awaitingMerge && (e.NewLevel == ClientRunLevel.Connected || e.NewLevel == ClientRunLevel.InGame))
+        {
+            {
+                _awaitingMerge = false;
+                MergePlayTime();
+            }
         }
     }
 
