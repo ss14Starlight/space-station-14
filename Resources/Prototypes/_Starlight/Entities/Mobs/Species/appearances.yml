@@ -191,3 +191,14 @@
     - Snout
     - HeadTop
     - HeadSide
+
+- type: entity
+  save: false
+  name: Rodentia Dummy
+  parent: [BaseSpeciesDummy, BaseInventoryRodentia]
+  id: AppearanceRodentia
+  categories: [ HideSpawnMenu ]
+  description: A dummy rodentia meant to be used in character setup.
+  components:
+    - type: HumanoidAppearance
+      species: Rodentia
