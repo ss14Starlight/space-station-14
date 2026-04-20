@@ -434,15 +434,15 @@ public sealed partial class VampireSystem : EntitySystem
         var actualSipAmount = MathF.Min(sipAmount, maxCanDrink);
 
         //attempt to drain the target's blood level
-        var tagetBloodLevel = _blood.GetBloodLevel(target);
-        if (tagetBloodLevel <= 0.0f) //Check the taget has blood to drink at all
+        var targetBloodLevel = _blood.GetBloodLevel(target);
+        if (targetBloodLevel <= 0.0f) //Check the taget has blood to drink at all
         {
             comp.IsDrinking = false; //Blood level reduction failed
             _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"), uid, uid, Shared.Popups.PopupType.MediumCaution);
             return;
         }
-        else if (tagetBloodLevel <= actualSipAmount * sipInefficiency) //Check if we are attempting to drain too much blood and reduce the amount drank if so
-            actualSipAmount = tagetBloodLevel / sipInefficiency;
+        else if (targetBloodLevel <= actualSipAmount * sipInefficiency) //Check if we are attempting to drain too much blood and reduce the amount drank if so
+            actualSipAmount = targetBloodLevel / sipInefficiency;
 
         // Drain extra blood from the target to account for sipInefficiency. This logic is a bit backwards in that it would make more sense for the sip amount from target to remain constant and the blood gained to vary, but for gameplay this works better for vampires
         if (_blood.TryModifyBloodLevel(target, -actualSipAmount * sipInefficiency)) //Blood lost to Inefficiency is just deleted, overly complex to add system to dump it on the ground, though that would be a nice thing to add in the future maybe?
@@ -699,17 +699,17 @@ public sealed partial class VampireSystem : EntitySystem
             if (_flashImmunity.HasFlashImmunityVisionBlockers(target))
             {
                 if (comp.TotalBlood < comp.MidPowerThreshold)
-                    effectScale = args.FlashImmunityEffectScaleWeak; //If we make it here we are between null and mid
-                if (comp.TotalBlood < comp.HighPowerThreshold)
-                    effectScale = args.FlashImmunityEffectScaleMid; //If we make it here we are between mid and high
-                if (comp.TotalBlood < comp.FullPowerThreshold)
-                    effectScale = args.FlashImmunityEffectScaleStrong; //If we make it here we are between high and full
+                    effectScale = args.FlashImmunityEffectScaleWeak; //below mid
+                else if (comp.TotalBlood < comp.HighPowerThreshold)
+                    effectScale = args.FlashImmunityEffectScaleMid; //mid - high
+                else if (comp.TotalBlood < comp.FullPowerThreshold)
+                    effectScale = args.FlashImmunityEffectScaleStrong; //high - full
             }
 
             if (comp.TotalBlood > comp.FullPowerThreshold) //If vamp is at full power, effect gets scaled up a bit regardless of flash protection
                 effectScale = args.GlareEffectScaleFull;
 
-            if (effectScale == 0) //If the effect is nullified, no point doing anything more.
+            if (effectScale <= 0) //If the effect is nullified, no point doing anything more.
                 continue;
 
             var targetPosition = Transform(target).LocalPosition;
