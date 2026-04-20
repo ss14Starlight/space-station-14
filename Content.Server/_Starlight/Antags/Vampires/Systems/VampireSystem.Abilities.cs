@@ -695,8 +695,22 @@ public sealed partial class VampireSystem : EntitySystem
 
             //reset effectScale for next possible target
             effectScale = 1.0f;
+
             if (_flashImmunity.HasFlashImmunityVisionBlockers(target))
-                effectScale = args.FlashImmunityEffectScale;
+            {
+                if (comp.TotalBlood < comp.MidPowerThreshold)
+                    effectScale = args.FlashImmunityEffectScaleWeak; //If we make it here we are between null and mid
+                if (comp.TotalBlood < comp.HighPowerThreshold)
+                    effectScale = args.FlashImmunityEffectScaleMid; //If we make it here we are between mid and high
+                if (comp.TotalBlood < comp.FullPowerThreshold)
+                    effectScale = args.FlashImmunityEffectScaleStrong; //If we make it here we are between high and full
+            }
+
+            if (comp.TotalBlood > comp.FullPowerThreshold) //If vamp is at full power, effect gets scaled up a bit regardless of flash protection
+                effectScale = args.GlareEffectScaleFull;
+
+            if (effectScale == 0) //If the effect is nullified, no point doing anything more.
+                continue;
 
             var targetPosition = Transform(target).LocalPosition;
             var vectorToTarget = Vector2.Normalize(targetPosition - ourPosition);
@@ -892,7 +906,7 @@ public sealed partial class VampireSystem : EntitySystem
                 uniqueHumanoids++;
         comp.UniqueHumanoidVictims = uniqueHumanoids;
         var prev = comp.FullPower;
-        comp.FullPower = comp.TotalBlood > 1000 && uniqueHumanoids >= 8;
+        comp.FullPower = comp.TotalBlood > comp.FullPowerThreshold && uniqueHumanoids >= comp.FullPowerUniqueHumanoids;
         if (!prev && comp.FullPower)
         {
             _popup.PopupEntity(Loc.GetString("vampire-full-power-achieved"), uid, uid);
