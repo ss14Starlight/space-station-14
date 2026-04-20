@@ -42,18 +42,3 @@
         reagents:
         - ReagentId: Amoxla
           Quantity: 30
-
-- type: entity
-  id: ChemistryBottleCharcoal
-  suffix: charcoal
-  parent: BaseChemistryBottleFilled
-  components:
-  - type: Label
-    currentLabel: reagent-name-charcoal
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Charcoal
-          Quantity: 30
