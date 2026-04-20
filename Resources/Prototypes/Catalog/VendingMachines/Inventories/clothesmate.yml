@@ -59,7 +59,6 @@
     ClothingUniformJumpskirtCasualGreen: 2
     #Starlight
     BodysuitJeansUniformSuit: 3
-    DarkTurtleneckSuit: 2
     CamoUniformSuit: 2
     CoolTanktopUniformSuit: 3
     LumberjackOverallsUniformSuit: 2
@@ -129,6 +128,7 @@
     ClothingBackpackSatchelSmugglerUnanchored: 1
     ClothingHeadHatSolidHeadband: 2
     ClothingUniformJumpsuitTrackSuit: 2 #Starlight
+    DarkTurtleneckSuit: 2 # Starlight
     TatteredClothesUniformSuit: 1 #starlight
     ClothingHeadHatTVHead: 1 #starlight
     ClothingNeckTatteredHood: 1 #starlight
