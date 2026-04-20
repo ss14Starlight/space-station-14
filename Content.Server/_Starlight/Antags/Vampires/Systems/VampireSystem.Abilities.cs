@@ -411,7 +411,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         if (HasComp<IPCBatteryComponent>(target) //IPCs don't have blood
             || (!TryComp<MobStateComponent>(target, out var mobState) //Is the entity a mob at all?
-            || (mobState.CurrentState == Shared.Mobs.MobState.Dead && comp.DeadEfficiency == 0f)  //Dead things aren't a good source of blood
+            || (mobState.CurrentState == Shared.Mobs.MobState.Dead && comp.DeadEfficiency == 0f)  //Dead things aren't a good source of blood if configured to not allow drinking from the dead at all
             ))
         {
             _popup.PopupEntity(Loc.GetString("vampire-drink-target-not-viable"), uid, uid, Shared.Popups.PopupType.MediumCaution);
@@ -428,20 +428,24 @@ public sealed partial class VampireSystem : EntitySystem
             sipInefficiency = 1f / comp.NonHumanoidEfficiency;
 
         if (mobState.CurrentState == Shared.Mobs.MobState.Dead)
-            sipInefficiency *= comp.DeadEfficiency; // Dead things aren't as good source of blood
+            sipInefficiency *= 1f / comp.DeadEfficiency; // Dead things aren't as good source of blood
 
         var maxCanDrink = comp.MaxBloodPerTarget - drunkFromTarget;
         var actualSipAmount = MathF.Min(sipAmount, maxCanDrink);
 
         //attempt to drain the target's blood level
-        if (_blood.GetBloodLevel(target) <= 0.0f) //Check the taget has blood to drink at all
+        var tagetBloodLevel = _blood.GetBloodLevel(target);
+        if (tagetBloodLevel <= 0.0f) //Check the taget has blood to drink at all
         {
             comp.IsDrinking = false; //Blood level reduction failed
             _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"), uid, uid, Shared.Popups.PopupType.MediumCaution);
             return;
         }
+        else if (tagetBloodLevel <= actualSipAmount * sipInefficiency) //Check if we are attempting to drain too much blood and reduce the amount drank if so
+            actualSipAmount = tagetBloodLevel / sipInefficiency;
 
-        if (_blood.TryModifyBloodLevel(target, -actualSipAmount * sipInefficiency))
+        // Drain extra blood from the target to account for sipInefficiency. This logic is a bit backwards in that it would make more sense for the sip amount from target to remain constant and the blood gained to vary, but for gameplay this works better for vampires
+        if (_blood.TryModifyBloodLevel(target, -actualSipAmount * sipInefficiency)) //Blood lost to Inefficiency is just deleted, overly complex to add system to dump it on the ground, though that would be a nice thing to add in the future maybe?
         {
             //Blood level reduction success
             comp.DrunkBlood += (int)actualSipAmount;
