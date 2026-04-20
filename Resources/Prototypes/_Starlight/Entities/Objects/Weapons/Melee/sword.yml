@@ -79,7 +79,7 @@
   name: dawnbreaker
   parent: [ BaseSword, BaseMajorContraband, Welder ]
   id: SwordFlaming
-  description: How do you perfect upon perfection? Why, use fire of course! Be the shining light through maints and fight valiantly! 
+  description: How do you perfect upon perfection? Why, use fire of course! Be the shining light through maints and fight valiantly!
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/dawnbreaker.rsi

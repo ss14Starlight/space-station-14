@@ -54,7 +54,7 @@
   - !type:GroupLoadoutEffect
     proto: SeniorParamedic
   equipment:
-    id: SeniorParamedicPDA 
+    id: SeniorParamedicPDA
 #Starlight end
 
 # Outer clothing

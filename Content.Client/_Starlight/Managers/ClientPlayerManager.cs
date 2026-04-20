@@ -31,7 +31,7 @@ public sealed class ClientPlayerManager : IClientPlayerRolesManager, IPostInject
 
     private void OnPlayerResourcesUpdated()
     {
-        if (!_nullLinkResourcesManager.TryGetResources(out var resources) 
+        if (!_nullLinkResourcesManager.TryGetResources(out var resources)
             || _player.LocalSession == null || _playerData == null)
             return;
 

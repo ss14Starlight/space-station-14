@@ -16,19 +16,19 @@ public sealed class ColorObjectToEyeColorSystem : EntitySystem
 
         SubscribeLocalEvent<ColorObjectToEyeColorComponent, AfterSpawnItemInHandEvent>(OnAfterSpawnItemInHand);
     }
-    
+
     private void OnAfterSpawnItemInHand(Entity<ColorObjectToEyeColorComponent> entity, ref AfterSpawnItemInHandEvent ev)
     {
         if (!TryComp<HumanoidAppearanceComponent>(ev.Performer, out var appearanceComp))
             return;
-        
+
         var color = NormalizeColor(appearanceComp.EyeColor, 1.8f);
 
         _pointLight.SetColor(ev.Entity, color);
 
         _appearance.SetData(ev.Entity, ColorVisuals.Color, color);
     }
-    
+
     /// <summary>
     ///     Normalize the given color and ensure its total brightness matches <see cref="totalBrightness"/>
     /// </summary>
@@ -53,23 +53,23 @@ public sealed class ColorObjectToEyeColorSystem : EntitySystem
         {
             if (newColors[i] <= 1)
                 continue;
-            
+
             reminder += newColors[i] % 1.0f;
             newColors[i] = 1.0f;
             overweight++;
         }
-        
+
         for (var i=0; i<newColors.Length; i++)
         {
             if (newColors[i] > .99)
                 continue;
-            
+
             newColors[i] += reminder/(newColors.Length-overweight);
         }
 
         return new  Color(newColors[0], newColors[1], newColors[2]);
     }
-    
+
 }
 
 [Serializable, NetSerializable]

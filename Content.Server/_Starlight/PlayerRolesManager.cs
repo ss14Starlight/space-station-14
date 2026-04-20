@@ -24,7 +24,7 @@ public sealed partial class PlayerRolesManager : IPlayerRolesManager, IPostInjec
 
     private ISawmill _sawmill = default!;
 
-    public void Initialize() 
+    public void Initialize()
     {
         _netMgr.RegisterNetMessage<MsgUpdatePlayerStatus>();
         _sawmill = _logger.GetSawmill("player_manager");

@@ -21,7 +21,7 @@ namespace Content.Server._Starlight.Magic;
 public sealed class AnimateSpellSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-    
+
     private EntityUid? _lastActionUsed; // Track the last action used for animated objects
 
     public override void Initialize()
@@ -52,10 +52,10 @@ public sealed class AnimateSpellSystem : EntitySystem
 
         // Use default values if no config found on staff
         hpConfig ??= new AnimatedObjectHPComponent();
-        
+
         // Determine HP based on item size with random variance
         int hp = 0;
-        
+
         // Check for stored original size (Item component may have been removed)
         if (TryComp<AnimatedObjectSizeComponent>(uid, out var sizeComp))
         {
@@ -64,7 +64,7 @@ public sealed class AnimateSpellSystem : EntitySystem
             // Get HP range based on size from component configuration
             if (!hpConfig.Ranges.TryGetValue(sizeId, out var range))
                 return;
-            
+
             hp = _random.Next(range.Min, range.Max + 1);
         }
         else

@@ -5,8 +5,17 @@
   description: A rapidly growing cluster of slippery tendons. WHY THE HONKING HONK ARE YOU STOPPING TO LOOK AT IT?!
   components:
     - type: Sprite
-      sprite: _Starlight/Objects/Misc/clownkudzu.rsi
-      state: kudzu_11
+      sprite: _Starlight/Objects/Misc/clownkudzu.rsi ### SL Start
+      layers:
+      - state: kudzu_11
+      - map: [ "enum.EdgeLayer.South" ]
+        state: kudzu_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: kudzu_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: kudzu_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: kudzu_west ### SL End
       drawdepth: Overdoors
     - type: DamageContacts
       damage:
@@ -32,3 +41,7 @@
     - type: SpeedModifierContacts
       walkSpeedModifier: 1.0
       sprintSpeedModifier: 1.0
+    - type: IconSmooth
+      key: walls
+      mode: NoSprite
+    - type: SmoothEdge
