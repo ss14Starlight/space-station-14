@@ -662,6 +662,17 @@
       stock: 1
 
 - type: listing
+  id: NT4PlayerInstrument
+  productEntity: NT4PlayerInstrument
+  cost:
+    NTCredit: 1500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 4
+
+- type: listing
   id: ClothingHeadHatTophatBig
   productEntity: ClothingHeadHatTophatBig
   cost:
@@ -704,14 +715,3 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
-
-- type: listing
-  id: NT4PlayerInstrument
-  productEntity: NT4PlayerInstrument
-  cost:
-    NTCredit: 1500
-  categories:
-    - SLFashionHead
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 4
