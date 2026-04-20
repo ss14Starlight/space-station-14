@@ -15,9 +15,16 @@ public sealed partial class WrapActionEvent : EntityTargetActionEvent
 }
 
 [Serializable, NetSerializable]
-public sealed partial class WrapDoAfterEvent(EntProtoId wrapContainerId) : SimpleDoAfterEvent
+public sealed partial class WrapDoAfterEvent : DoAfterEvent
 {
-    public EntProtoId WrapContainerId = wrapContainerId;
+    public EntProtoId WrapContainerId;
+
+    public WrapDoAfterEvent(EntProtoId wrapContainerId)
+    {
+        WrapContainerId = wrapContainerId;
+    }
+
+    public override DoAfterEvent Clone() => this;
 }
 
 [Serializable, NetSerializable]

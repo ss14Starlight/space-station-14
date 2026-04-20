@@ -1,4 +1,6 @@
-﻿namespace Content.Shared._Starlight.Actions.Components;
+﻿using Robust.Shared.Containers;
+
+namespace Content.Shared._Starlight.Actions.Components;
 
 [RegisterComponent]
 public sealed partial class WrapEntityHolderComponent : Component
@@ -26,4 +28,6 @@ public sealed partial class WrapEntityHolderComponent : Component
     /// </summary>
     [DataField]
     public string ContainerId = "entity";
+
+    public BaseContainer? Container = null;
 }

@@ -2,7 +2,9 @@
   id: EffectTerrorCocoon
   categories: [ HideSpawnMenu ]
   name: cocoon
+  description: Web cocoon with people inside!
   components:
+  - type: Clickable
   - type: Transform
     anchored: True
   - type: InteractionOutline
@@ -21,8 +23,7 @@
         large1: ""
         large2: ""
         large3: ""
-  - type: Container
+  - type: ContainerContainer
     containers:
       entity: !type:Container
-        ents: []
-  - type: WrapEntityHolderComponent
+  - type: WrapEntityHolder
