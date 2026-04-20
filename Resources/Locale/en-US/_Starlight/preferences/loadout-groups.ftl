@@ -15,6 +15,10 @@ loadout-group-assistant-backpack = Assistant backpack
 loadout-group-boxer-jumpsuit = Boxer jumpsuit
 loadout-group-boxer-gloves = Boxer gloves
 
+loadout-group-reporter-head = Reporter head
+
+loadout-group-musician-head = Musician head
+
 # Command
 
 loadout-group-nanotrasenrepresentative-head = NanoTrasen representative head

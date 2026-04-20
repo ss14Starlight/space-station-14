@@ -55,3 +55,20 @@
     sprite: _Starlight/Clothing/Shoes/Specific/schoolwhiteshoes.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Shoes/Specific/schoolwhiteshoes.rsi
+
+- type: entity
+  parent: ClothingShoesSkates
+  id: ClothingShoesSkatesCool
+  name: cooler roller skates
+  description: They're cooler than the other ones.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Shoes/Specific/cool_skates.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Shoes/Specific/cool_skates.rsi
+    clothingVisuals:
+      shoes:
+      - state: equipped-FEET
+        offset: "0, -0.04"
+  - type: Item
+    sprite: _Starlight/Clothing/Shoes/Specific/cool_skates.rsi

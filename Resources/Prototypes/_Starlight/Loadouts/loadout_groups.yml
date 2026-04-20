@@ -712,6 +712,16 @@
   - LizardPlushieClown
   - LizardPlushieMime
 
+# Musician
+- type: loadoutGroup
+  id: MusicianHead
+  name: loadout-group-musician-head
+  minLimit: 0
+  loadouts:
+  - MusicianHeadphonesGeneric
+  - MusicianHeadphonesReporter
+  - MusicianHeadphonesHighEnd
+
 # Boxer
 - type: loadoutGroup
   id: BoxerJumpsuit
@@ -735,6 +745,16 @@
   minLimit: 0
   loadouts:
   - LizardPlushieBoxer
+
+# Reporter
+- type: loadoutGroup
+  id: ReporterHead
+  name: loadout-group-reporter-head
+  minLimit: 0
+  loadouts:
+  - ReporterHeadphonesJob
+  - ReporterHeadphonesGeneric
+  - ReporterHeadphonesHighEnd
 
 # Zookeeper
 - type: loadoutGroup

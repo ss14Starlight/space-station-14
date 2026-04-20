@@ -83,6 +83,28 @@
       stock: 1
 
 - type: listing
+  id: ClothingUniformJumpskirtBartenderBlackAlt
+  productEntity: ClothingUniformJumpskirtBartenderBlackAlt
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSkirt
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingUniformTimelessSkirt
+  productEntity: ClothingUniformTimelessSkirt
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSkirt
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: ClothingUniformJumpskirtVictorianBlack
   productEntity: ClothingUniformJumpskirtVictorianBlack
   cost:
@@ -246,6 +268,18 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
+
+- type: listing
+  id: ClothingUniformTimelessSuit
+  productEntity: ClothingUniformTimelessSuit
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSuit
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
 
 - type: listing
   id: ClothingUniformJumpsuitSuitWaiter
@@ -670,3 +704,14 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
+
+- type: listing
+  id: NT4PlayerInstrument
+  productEntity: NT4PlayerInstrument
+  cost:
+    NTCredit: 1500
+  categories:
+    - SLFashionHead
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 4
