@@ -78,7 +78,7 @@ public sealed partial class VampireComponent : Component
     [DataField]
     public float NonHumanoidEfficiency = 0.125f; //how much blood drawn from target is actually drank vs spilled from animals
     [DataField]
-    public float DeadEfficiency = 0.5f; //how much blood is gained when the target is dead (0 disables drinking from the dead completely
+    public float DeadEfficiency = 0.5f; //how much blood is gained when the target is dead (0 disables drinking from the dead completely)
     [DataField]
     public float BiteDistanceThreshold = 1.5f; //How far a target may be for biting to work
 
