@@ -10,13 +10,19 @@
     bodyType: Static
     canCollide: false
   - type: Sprite
+    noRot: true
     sprite: /Textures/_Starlight/Effects/cocoon.rsi
     layers:
-      - state: large1
-        shader: unshaded
+    - state: large1
+      shader: unshaded
   - type: RandomSprite
     available:
-      - 0:
+    - 0:
         large1: ""
         large2: ""
         large3: ""
+  - type: Container
+    containers:
+      entity: !type:Container
+        ents: []
+  - type: WrapEntityHolderComponent

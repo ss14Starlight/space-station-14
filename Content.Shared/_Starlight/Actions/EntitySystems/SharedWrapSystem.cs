@@ -7,6 +7,8 @@ using Content.Shared.Interaction;
 using Content.Shared.Kitchen.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Stunnable;
+using Content.Shared.Humanoid;
+using Robust.Shared.Containers;
 
 namespace Content.Shared._Starlight.Actions.EntitySystems;
 
@@ -14,36 +16,20 @@ public sealed class SharedWrapSystem : EntitySystem
 {
 
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedTransformSystem _xformSys = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<WrapActionEvent>(OnWrapAttempt);
-        SubscribeLocalEvent<WrapDoAfterEvent>(OnWrap);
-        SubscribeLocalEvent<WrappedComponent, InteractUsingEvent>(OnInteract);
-        SubscribeLocalEvent<WrappedComponent, UnwrapDoAfterEvent>(OnUnwrap);
-        SubscribeLocalEvent<WrappedComponent, StandUpAttemptEvent>(OnStandUpAttempt);
+        SubscribeLocalEvent<HumanoidAppearanceComponent, WrapDoAfterEvent>(OnWrap);
+        SubscribeLocalEvent<WrapEntityHolderComponent, InteractUsingEvent>(OnInteract);
+        SubscribeLocalEvent<WrapEntityHolderComponent, UnwrapDoAfterEvent>(OnUnwrap);
         SubscribeLocalEvent<WrappedComponent, IsRottingEvent>(OnRotting);
         SubscribeLocalEvent<WrappedComponent, UpdateCanMoveEvent>(OnUpdateCanMove);
-    }
-
-    /// <summary>
-    /// Prevent entity from standing up while wrapped.
-    /// </summary>
-    private void OnStandUpAttempt(Entity<WrappedComponent> ent, ref StandUpAttemptEvent args)
-    {
-        args.Cancelled = true;
-
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent.Owner, ent.Comp.SelfUnWrapTime, new UnwrapDoAfterEvent(), ent.Owner, ent.Owner)
-        {
-            BreakOnDamage = true,
-            BreakOnMove = true,
-            NeedHand = true,
-        });
     }
 
     /// <summary>
@@ -61,9 +47,9 @@ public sealed class SharedWrapSystem : EntitySystem
     /// <summary>
     /// Handle item interact for external unwrap.
     /// </summary>
-    private void OnInteract(EntityUid uid, WrappedComponent component, InteractUsingEvent args)
+    private void OnInteract(EntityUid uid, WrapEntityHolderComponent component, InteractUsingEvent args)
     {
-        if (args.Handled || !HasComp<WrappedComponent>(args.Target) || !HasComp<SharpComponent>(args.Used))
+        if (args.Handled || !HasComp<SharpComponent>(args.Used))
             return;
 
         args.Handled = true;
@@ -77,34 +63,42 @@ public sealed class SharedWrapSystem : EntitySystem
         });
     }
 
-    private void OnUnwrap(EntityUid uid, WrappedComponent component, UnwrapDoAfterEvent args)
+    private void OnUnwrap(EntityUid uid, WrapEntityHolderComponent component, UnwrapDoAfterEvent args)
     {
-        if (args.Handled || !HasComp<WrappedComponent>(uid))
+        if (args.Handled)
             return;
 
         args.Handled = true;
 
-        _appearance.SetData(uid, WrappedVisuals.IsWrapped, false);
+        if (component.Hold != null && _container.TryGetContainingContainer(uid, component.Hold.Value, out var container))
+        {
+            _container.Remove(component.Hold.Value, container, true, true);
+            RemComp<WrappedComponent>(component.Hold.Value);
+            _blocker.UpdateCanMove(component.Hold.Value);
+            component.Hold = null;
+        }
 
-        if (component.EffectEntity != null)
-            QueueDel(component.EffectEntity.Value);
-
-        RemComp<WrappedComponent>(uid);
-        _blocker.UpdateCanMove(uid);
+        if (component.Hold == null)
+            PredictedQueueDel(uid);
     }
 
-    private void OnWrap(WrapDoAfterEvent args)
+    private void OnWrap(EntityUid uid, HumanoidAppearanceComponent _, WrapDoAfterEvent args)
     {
-        if (args.Handled || args.Args.EventTarget == null || HasComp<WrappedComponent>(args.Args.EventTarget) || !_stun.TryKnockdown(args.Args.EventTarget.Value, null, true, false, true, true))
+        if (args.Handled || HasComp<WrappedComponent>(uid))
             return;
         args.Handled = true;
-        var wrapped = EnsureComp<WrappedComponent>(args.Args.EventTarget.Value);
-        _blocker.UpdateCanMove(args.Args.EventTarget.Value);
-        _appearance.SetData(args.Args.EventTarget.Value, WrappedVisuals.IsWrapped, true);
-        EnsureComp<TransformComponent>(args.Args.EventTarget.Value, out var xform);
-        var effect = PredictedSpawnAttachedTo(wrapped.WrappedEffectId, xform.Coordinates);
-        _xformSys.SetParent(effect, args.Args.EventTarget.Value);
-        wrapped.EffectEntity = effect;
+        var wrapped = EnsureComp<WrappedComponent>(uid);
+        _blocker.UpdateCanMove(uid);
+        var xform = Transform(uid);
+        var holder = PredictedSpawnAttachedTo(args.WrapContainerId, xform.Coordinates);
+
+        EnsureComp<WrapEntityHolderComponent>(holder, out var holderComp);
+
+        if (_container.TryGetContainer(holder, holderComp.ContainerId, out var container))
+        {
+            _container.Insert(uid, container, force: true);
+            holderComp.Hold = uid;
+        }
     }
 
     private void OnWrapAttempt(WrapActionEvent args)
@@ -114,7 +108,7 @@ public sealed class SharedWrapSystem : EntitySystem
 
         args.Handled = true;
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.Performer, args.WrapTime, new WrapDoAfterEvent(), args.Target, args.Target)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.Performer, args.WrapTime, new WrapDoAfterEvent(args.WrapContainerId), args.Target, args.Target)
         {
             BreakOnDamage = true,
             BreakOnMove = true,
