@@ -120,3 +120,6 @@ language-Lagomorphian-description = A very lynarxical tongue, developed as an in
 
 language-Cosmic-name = Astral Murmur
 language-Cosmic-description = THE CURTAINS MUST FALL
+
+language-Crittish-name = Crittish
+language-Crittish-description = The language of the Rodentia, made up of a series of chirps and squeaks.
