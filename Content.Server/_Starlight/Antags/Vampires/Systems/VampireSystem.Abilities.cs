@@ -411,7 +411,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         if (HasComp<IPCBatteryComponent>(target) //IPCs don't have blood
             || (!TryComp<MobStateComponent>(target, out var mobState) //Is the entity a mob at all?
-            //|| mobState.CurrentState == Shared.Mobs.MobState.Dead))  //Dead things aren't a good source of flowing blood
+            || (mobState.CurrentState == Shared.Mobs.MobState.Dead && comp.DeadEfficiency == 0f)  //Dead things aren't a good source of blood
             ))
         {
             _popup.PopupEntity(Loc.GetString("vampire-drink-target-not-viable"), uid, uid, Shared.Popups.PopupType.MediumCaution);
@@ -423,13 +423,9 @@ public sealed partial class VampireSystem : EntitySystem
         var sipAmount = comp.SipAmount;
 
         if (HasComp<HumanoidAppearanceComponent>(args.Args.Target.Value))
-        {
             sipInefficiency = 1f / comp.HumanoidEfficiency;
-        }
         else
-        {
             sipInefficiency = 1f / comp.NonHumanoidEfficiency;
-        }
 
         if (mobState.CurrentState == Shared.Mobs.MobState.Dead)
             sipInefficiency *= comp.DeadEfficiency; // Dead things aren't as good source of blood
@@ -452,9 +448,7 @@ public sealed partial class VampireSystem : EntitySystem
 
             //Confirm target is a humanoid before progressing objectives
             if (HasComp<HumanoidAppearanceComponent>(args.Args.Target.Value))
-            {
                 comp.TotalBlood += (int)actualSipAmount;
-            }
 
             //Biting Damage
             //A little bit of additional damage to disincentivize blood donations
@@ -471,9 +465,8 @@ public sealed partial class VampireSystem : EntitySystem
                 comp.BlindInc = 0;
             }
             else if (comp.BlindInc < 2)
-            {
                 comp.BlindInc += 1;
-            }
+
             RaiseLocalEvent(uid, new VampireProgressionChangedEvent());
 
             if (!comp.BloodDrunkFromTargets.ContainsKey(target))
