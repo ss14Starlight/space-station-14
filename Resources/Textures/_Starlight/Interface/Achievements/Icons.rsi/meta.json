@@ -8,19 +8,19 @@
   },
   "states": [
     {
-      "name": "DraculaJrMedal"
+      "name": "draculaJrMedal"
     },
     {
-      "name": "ContributorMedal"
+      "name": "contributorMedal"
     },
     {
-      "name": "DamnedMedal"
+      "name": "damnedMedal"
     },
     {
-      "name": "FishMedal"
+      "name": "fishMedal"
     },
     {
-      "name": "HeliosMedal"
+      "name": "heliosMedal"
     }
   ]
 }

@@ -6,8 +6,8 @@
   hidden: false
   showProgress: false
   icon:
-    sprite: _Starlight/Interface/Achievements/Icons.rsi
-    state: FishMedal
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: fishMedal
   requirements:
   - progressType: spawn.count
     requiredProgress: 1
@@ -21,8 +21,8 @@
   hidden: false
   showProgress: true
   icon:
-    sprite: _Starlight/Interface/Achievements/Icons.rsi
-    state: DraculaJrMedal
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: draculaJrMedal
   requirements:
   - progressType: vampire.blooddrank
     requiredProgress: 3000
@@ -38,8 +38,8 @@
   hidden: false
   showProgress: false
   icon:
-    sprite: _Starlight/Interface/Achievements/Icons.rsi
-    state: ContributorMedal
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: contributorMedal
   requirements: []
 
 - type: achievement
@@ -50,6 +50,6 @@
   hidden: true
   showProgress: false
   icon:
-    sprite: _Starlight/Interface/Achievements/Icons.rsi
-    state: HeliosMedal
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: heliosMedal
   requirements: []
