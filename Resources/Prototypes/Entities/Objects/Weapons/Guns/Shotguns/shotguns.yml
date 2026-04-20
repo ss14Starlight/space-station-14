@@ -15,6 +15,9 @@
       Skating:
         knockback: 2
         staminaMultiplier: 50
+      Rodentia:
+        knockback: 3
+        staminaMultiplier: 20
       Resomi:
         knockback: 3
         staminaMultiplier: 20
