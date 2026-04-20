@@ -92,8 +92,6 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
     private void MergePlayTime()
     {
-        _sawmill.Debug("Staring MergePlayTime.");
-
         _mergedRoles.Clear();
 
         foreach (var (tracker, time) in _originalRoles)
