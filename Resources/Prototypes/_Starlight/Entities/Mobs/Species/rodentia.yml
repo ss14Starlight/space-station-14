@@ -158,3 +158,8 @@
       - AnomalyHost
       - Rodentia
       - NotLabelable
+  - type: Item
+    size: Huge
+    allowDirectHandPickup: false
+    shape:
+      - 0, 0, 5, 3
