@@ -31,6 +31,10 @@
     bank: 100
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Instruments/nt4player.rsi
+    layers:
+    - state: icon-base
+    - state: icon-screen
+      shader: unshaded
   - type: Item
     size: Small
     storedRotation: -90

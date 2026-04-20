@@ -11,14 +11,14 @@
 
 - type: entity
   parent: [ClothingUniformBase, ClothingUniformFoldableBase]
-  id: BlackTurtleneckSuit
-  name: black turtleneck
+  id: DarkTurtleneckSuit
+  name: dark turtleneck
   description: The look of an innovator, or a killer, depending on the context.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/black_turtleneck.rsi
+    sprite: _Starlight/Clothing/Uniforms/dark_turtleneck.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/black_turtleneck.rsi
+    sprite: _Starlight/Clothing/Uniforms/dark_turtleneck.rsi
 
 - type: entity
   parent: ClothingUniformBase
