@@ -213,6 +213,9 @@
   id: EmergencyWelder
 
 - type: Tag
+  id: ExternalAirlock
+
+- type: Tag
   id: Felionoid
 
 - type: Tag

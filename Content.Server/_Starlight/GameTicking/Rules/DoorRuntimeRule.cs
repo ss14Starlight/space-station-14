@@ -1,23 +1,24 @@
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.StationEvents.Components;
-using Content.Shared.Access.Systems;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Electrocution;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Station.Components;
+using Content.Shared.Whitelist;
 using Robust.Shared.Timing;
+
 namespace Content.Server.StationEvents.Events;
 
-public sealed class DoorRunetimeRule : StationEventSystem<DoorRunetimeRuleComponent>
+public sealed class DoorRuntimeRule : StationEventSystem<DoorRuntimeRuleComponent>
 {
     [Dependency] private readonly SharedDoorSystem _door = default!;
     [Dependency] private readonly SharedElectrocutionSystem _electrocution = default!;
     [Dependency] private readonly SharedAirlockSystem _airlock = default!;
-    [Dependency] private readonly AccessReaderSystem _access = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
-    protected override void Started(EntityUid uid, DoorRunetimeRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    protected override void Started(EntityUid uid, DoorRuntimeRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, comp, gameRule, args);
 
@@ -65,7 +66,7 @@ public sealed class DoorRunetimeRule : StationEventSystem<DoorRunetimeRuleCompon
         }
     }
 
-    protected override void Ended(EntityUid uid, DoorRunetimeRuleComponent comp, GameRuleComponent gameRule, GameRuleEndedEvent args)
+    protected override void Ended(EntityUid uid, DoorRuntimeRuleComponent comp, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
         base.Ended(uid, comp, gameRule, args);
 
@@ -88,7 +89,7 @@ public sealed class DoorRunetimeRule : StationEventSystem<DoorRunetimeRuleCompon
             if (TryComp<ElectrifiedComponent>(ent, out var electrified))
                 _electrocution.SetElectrified((ent, electrified), false);
 
-            if (_access.GetMainAccessReader(ent, out var accessEnt) && _access.AreAccessTagsAllowed(comp.Blacklist, accessEnt.Value.Comp))
+            if (!_whitelist.CheckBoth(ent, comp.Blacklist, comp.Whitelist))
                 continue;
 
             _door.TryOpen(ent);
