@@ -6,6 +6,51 @@
     ShiftIntensity: 1.0
 
 - type: shader
+  id: StencilDrawUnshaded
+  kind: canvas
+  light_mode: unshaded
+  stencil:
+    ref: 1
+    op: Keep
+    func: NotEqual
+
+- type: shader
+  id: CyberspaceFloor
+  kind: source
+  path: "/Textures/_Starlight/Shaders/cyberspace.swsl"
+  params:
+    spacing: 0.2
+    dotRad: 0.02
+    maxHeight: 0.09
+    baseStretch: 0.0
+    colorLow: 0.25, 0.02, 0.01
+    colorHigh: 0.7, 0.02, 0.01
+
+- type: shader
+  id: CyberspaceWall
+  kind: source
+  path: "/Textures/_Starlight/Shaders/cyberspace.swsl"
+  params:
+    spacing: 0.2
+    dotRad: 0.025
+    maxHeight: 0.3
+    baseStretch: 1.3
+    colorLow: 0.3, 0.02, 0.04
+    colorHigh: 0.8, 0.08, 0.15
+
+- type: shader
+  id: CyberspaceDoor
+  kind: source
+  path: "/Textures/_Starlight/Shaders/cyberspace.swsl"
+  params:
+    spacing: 0.2
+    dotRad: 0.025
+    maxHeight: 0.2
+    baseStretch: 1.1
+    colorLow: 0.02, 0.15, 0.3
+    colorHigh: 0.05, 0.3, 0.7
+
+- type: shader
   id: ModernNightVisionShader
   kind: source
   path: "/Textures/_Starlight/Shaders/night.swsl"
@@ -33,3 +78,18 @@
   id: NullSpaceShader
   kind: source
   path: "/Textures/_Starlight/Shaders/nullspace.swsl"
+
+- type: shader
+  id: NightSkyTrail
+  kind: source
+  path: "/Textures/_Starlight/Shaders/ghost_trail_stripes.swsl"
+
+- type: shaderAdditionalParams
+  id: NightSkyTrail
+  textures:
+    noiseTex: /Textures/_Starlight/Parallaxes/noise_fbm.png
+
+- type: shader
+  id: HolyStarsTrail
+  kind: source
+  path: "/Textures/_Starlight/Shaders/holy_stars_trail.swsl"

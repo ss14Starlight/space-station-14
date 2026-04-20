@@ -2346,6 +2346,510 @@
   copyright: "https://x.com/ArtCybes"
   license: MIT
 
+- type: voice
+  id: antiri
+  voice: 280
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: arborfield
+  voice: 281
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: blastergranny
+  voice: 282
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: bridget
+  voice: 283
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: chandraki
+  voice: 284
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: croakiecaw
+  voice: 285
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: crystalina
+  voice: 286
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: fidget
+  voice: 287
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: gisele
+  voice: 288
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: governess
+  voice: 289
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: hotmess
+  voice: 290
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: impastalady
+  voice: 291
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: janetrauma
+  voice: 292
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: jarana
+  voice: 293
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: kassssandra
+  voice: 294
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: kusochan
+  voice: 295
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: kusohime
+  voice: 296
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: ladykommandant
+  voice: 297
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: madamtophat
+  voice: 298
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: maryjane
+  voice: 299
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: miriam
+  voice: 300
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: operativejumpskirt
+  voice: 301
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: salome
+  voice: 302
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: sarcastica
+  voice: 303
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: shahrazad
+  voice: 304
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: spaceempress
+  voice: 305
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: steele
+  voice: 306
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: sujeong
+  voice: 307
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: thalia
+  voice: 308
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: tipsymcgee
+  voice: 309
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: usagichan
+  voice: 310
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: usagitan
+  voice: 311
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: valaya
+  voice: 312
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: xiene
+  voice: 313
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: zorpina
+  voice: 314
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: monster
+  voice: 315
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: apokalypsis
+  voice: 316
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: bozoschlomo
+  voice: 317
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: chadkegger
+  voice: 318
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: coulros
+  voice: 319
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: detectivegrowler
+  voice: 320
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: dodger
+  voice: 321
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: dorri
+  voice: 322
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: fartley
+  voice: 323
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: gangerunt
+  voice: 324
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: goughman
+  voice: 325
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: harrier
+  voice: 326
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: ioannissouvlakis
+  voice: 327
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: ivanheadrev
+  voice: 328
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: jimmynanotrasen
+  voice: 329
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: johnnanotrasen
+  voice: 330
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: kaeltharion
+  voice: 331
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: ledavid
+  voice: 332
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: pterry
+  voice: 333
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: rockman
+  voice: 334
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: roper
+  voice: 335
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: slopbad
+  voice: 336
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: snorri
+  voice: 337
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: walmartoog
+  voice: 338
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: weakgood
+  voice: 339
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: wheezy
+  voice: 340
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: zorp
+  voice: 341
+  sex: Male
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: kaur
+  voice: 342
+  sex: Female
+  silicon: false
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
 # -----------------------------------------------------------------------------
 
 - type: voice
@@ -2442,3 +2946,83 @@
   sex: Male
   silicon: true
   license: Private license, permission granted for SLN use only.
+
+- type: voice
+  id: maxcap
+  voice: 1014
+  sex: Female
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: polito
+  voice: 1015
+  sex: Female
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: sarahborg
+  voice: 1016
+  sex: Female
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: trashbot
+  voice: 1017
+  sex: Female
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: botboy
+  voice: 1018
+  sex: Male
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: johnborgman
+  voice: 1019
+  sex: Male
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: speekinspel
+  voice: 1020
+  sex: Male
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: vocoder
+  voice: 1021
+  sex: Male
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: wardbot
+  voice: 1022
+  sex: Male
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
+
+- type: voice
+  id: chip
+  voice: 1023
+  sex: Unsexed
+  silicon: true
+  copyright: None
+  license: This voice was generated using a neural network and cannot be copyrighted.
