@@ -228,6 +228,7 @@
     netsync: false
   - type: Appearance
   - type: HandheldLight
+    wattage: 0.50 # Starlight-edit: Decreased from 0.8 to 0.50 to reduce power cell drain. Works 25 mins on medium cell.
     addPrefix: true
     blinkingBehaviourId: blinking
     radiatingBehaviourId: radiating
