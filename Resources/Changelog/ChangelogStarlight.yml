@@ -2568,4 +2568,11 @@ Entries:
   id: 404494
   time: '2026-04-21T18:02:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4191
+- author: SevenShades
+  changes:
+  - message: Added MedTak operators and their associated gear.
+    type: Add
+  id: 404495
+  time: '2026-04-21T18:19:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4179
 Order: -1
