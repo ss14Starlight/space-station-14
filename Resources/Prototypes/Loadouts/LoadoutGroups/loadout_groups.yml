@@ -8,6 +8,8 @@
   - Hairflower # Starlight, lineswap to display the item corresponding to the name of the category first v
   - FlowerWreath # Starlight ^
   - Headphones
+  - ReporterHeadphonesTrinket # Starlight
+  - HighEndHeadphones # Starlight
   - PlushieLizard
   - PlushieSpaceLizard
   - ThreeCandles
@@ -68,16 +70,6 @@
   - AcousticGuitarInstrument
   - TrumpetInstrument
   - RoadCone
-  - MaidOutfit
-  - MaidGloves
-  - MaidOutfitTactical
-  - MaidHeadbandTactical
-  - TacticalMaidGloves
-  - CoderSocks
-  - PawBootTrinket
-  - CatEars
-  - BunnyEars
-  - DogEars
   - ClothWrapGloveTrinket
   - ClothWrapShoeTrinket
   - RollerSkates
@@ -345,7 +337,6 @@
   - TatteredClothes
   - TieDye
   - VintageClothes
-  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup
@@ -426,7 +417,6 @@
   - BartenderJumpsuit
   - BartenderJumpskirt
   - BartenderJumpsuitPurple
-  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup
@@ -476,7 +466,6 @@
   loadouts:
   - ChefJumpsuit
   - ChefJumpskirt
-  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup
@@ -516,16 +505,16 @@
   id: LawyerJumpsuit
   name: loadout-group-lawyer-jumpsuit
   loadouts:
-  - LawyerJumpsuit
-  - LawyerJumpskirt
-  - LawyerJumpsuitBlue
-  - LawyerJumpskirtBlue
-  - LawyerJumpsuitPurple
-  - LawyerJumpskirtPurple
-  - LawyerJumpsuitRed
-  - LawyerJumpskirtRed
-  - LawyerJumpsuitGood
-  - LawyerJumpskirtGood
+  - LawyerJumpsuitService # Starlight start
+  - LawyerJumpskirtService
+  - LawyerJumpsuitGray
+  - LawyerJumpskirtGray
+  - LawyerJumpsuitPink
+  - LawyerJumpskirtPink
+  - LawyerJumpsuitBlackTwo
+  - LawyerJumpskirtBlackTwo
+  - LawyerJumpsuitBad
+  - LawyerJumpskirtBad # Starlight end
 
 
 - type: loadoutGroup

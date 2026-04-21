@@ -136,9 +136,11 @@
     # Starlight edit end
   - type: ToggleableClothing
     slot: head
+    redirectDraw: true # Starlight-edit
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+      cell_slot: !type:ContainerSlot # Starlight-edit
   - type: GroupExamine
   - type: Tag
     tags:
@@ -157,6 +159,18 @@
     - Tail
   - type: ArmorSparkEffect #starlight
   - type: HeatRadiationBlocker # Starlight - Prevents the body from radiating heat
+  # Starlight-start
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        blacklist:
+          tags:
+          - MechReactor
+  # Starlight-end
 
 - type: entity
   abstract: true

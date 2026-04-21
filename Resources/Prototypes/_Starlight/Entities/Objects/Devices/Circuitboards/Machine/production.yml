@@ -280,6 +280,19 @@
         Glass: 2
 
 - type: entity
+  id: VendingMachineLegalDrobeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: LegalDrobe circuitboard
+  description: A machine printed circuit board for a LegalDrobe machine
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineLegalDrobeEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
   id: VendingMachineColaCircuitboard
   parent: BaseMachineCircuitboard
   name: Robust Softdrinks (cola) circuitboard

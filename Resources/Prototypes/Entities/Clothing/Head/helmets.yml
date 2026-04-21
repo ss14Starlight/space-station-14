@@ -29,7 +29,7 @@
 
 #Basic Helmet (Security Helmet)
 - type: entity
-  parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadSuitWithLightBase]
+  parent: [ ClothingHeadLightBase, ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadLightParamsIntermediate ] # Starlight: Inherit from correct base light, include light params
   id: ClothingHeadHelmetBasic
   name: helmet
   description: Standard security gear. Protects the head from impacts.
@@ -292,7 +292,7 @@
 
 #Fire Helmet
 - type: entity
-  parent: ClothingHeadLightBase
+  parent: [ ClothingHeadLightBase, ClothingHeadLightParamsBasic ] # Starlight
   id: ClothingHeadHelmetFire
   name: fire helmet
   description: An atmos tech's best friend. Provides some heat resistance and looks cool.
@@ -320,7 +320,7 @@
 
 #Atmos Fire Helmet
 - type: entity
-  parent: [ClothingHeadLightBase, BaseEngineeringContraband]
+  parent: [ ClothingHeadLightBase, ClothingHeadLightParamsIntermediate, BaseEngineeringContraband ] # Starlight
   id: ClothingHeadHelmetAtmosFire
   name: atmos fire helmet
   description: An atmos fire helmet, able to keep the user cool in any situation.
@@ -350,6 +350,8 @@
       Hair: HEAD
       Snout: HEAD
   - type: BreathMask
+  - type: PointLight # Starlight
+    color: "#a1f7f7" # Starlight
 
 #Chitinous Helmet
 - type: entity
