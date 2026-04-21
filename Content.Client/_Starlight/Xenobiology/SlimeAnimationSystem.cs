@@ -9,7 +9,7 @@ public sealed class SlimeAnimationSystem : EntitySystem
 {
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly AnimationPlayerSystem _animation = default!;
-    
+
     private const string SlimeEatAnimationKey = "slime-eat";
 
     public override void Initialize()
@@ -21,7 +21,7 @@ public sealed class SlimeAnimationSystem : EntitySystem
     private void OnSlimeBiteAnimation(SlimeBiteAnimationMessage args)
     {
         var entityUid = GetEntity(args.Entity);
-        if (_animation.HasRunningAnimation(entityUid, SlimeEatAnimationKey)) 
+        if (_animation.HasRunningAnimation(entityUid, SlimeEatAnimationKey))
             _animation.Stop(entityUid, SlimeEatAnimationKey);
         _animation.Play(entityUid, GetSlimeEatAnimation(args.Angle), SlimeEatAnimationKey);
     }

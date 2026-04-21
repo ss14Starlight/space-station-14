@@ -42,7 +42,7 @@
   - type: ContainerContainer
     containers:
       board: !type:Container
-
+      pai_slot: !type:ContainerSlot
 #abductor
 
 - type: entity
@@ -157,6 +157,7 @@
     layer: 32768
   - type: Sprite
     sprite: _Starlight/Mobs/Net/net_eye.rsi
+    drawdepth: CyberspaceObjects
     layers:
     - map: ["base"]
       state: enemy
@@ -198,6 +199,7 @@
     layer: 32768
   - type: Sprite
     sprite: _Starlight/Mobs/Net/net_eye.rsi
+    drawdepth: CyberspaceObjects
     layers:
     - map: ["base"]
       state: enemy
@@ -287,7 +289,8 @@
   - type: ContainerContainer
     containers:
       board: !type:Container
-    
+      pai_slot: !type:ContainerSlot
+
 # Universal ID Console
 - type: entity
   parent: BaseComputerAiAccess
@@ -377,7 +380,7 @@
       board: !type:Container
       IdCardConsole-privilegedId: !type:ContainerSlot
       IdCardConsole-targetId: !type:ContainerSlot
-
+      pai_slot: !type:ContainerSlot
 # Mining Shuttle Console
 - type: entity
   parent: BaseComputerShuttle

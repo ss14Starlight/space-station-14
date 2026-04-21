@@ -48,11 +48,11 @@
       whitelist:
         components:
           - FaxableObject #used to be PaperComponent - brainfood1183
-      # Starlight-edit: removed blacklist 
+      # Starlight-edit: removed blacklist
       #      blacklist:
       #        components:
       #          - CargoSlip
-      
+
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:

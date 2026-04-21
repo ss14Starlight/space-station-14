@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 
@@ -73,6 +74,7 @@ namespace Content.Shared.Humanoid
             }
         }
 
+        // Starlight start
         public static HumanoidVisualLayers? ToHumanoidLayers(this BodyPartComponent part)
         {
             switch (part.PartType)
@@ -139,5 +141,6 @@ namespace Content.Shared.Humanoid
 
             return null;
         }
+        // Starlight end
     }
 }

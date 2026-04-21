@@ -234,7 +234,7 @@
     - type: ActionGrant
       actions:
         - ActionViewLaws
-    - type: IntrinsicRadioReceiver
+#    - type: IntrinsicRadioReceiver // No longer required.
     - type: IntrinsicRadioTransmitter
       channels:
         - Xenoborg
@@ -304,7 +304,7 @@
     #endregion
     - type: NameIdentifier
       group: Xenoborg
-    
+
     - type: EmagSiliconLaw # should xenoborgs be emagable?
       stunTime: 5
     - type: SiliconLawProvider
@@ -525,7 +525,7 @@
   equipment:
     head: ClothingHeadHatPurplesoft
     back: ClothingBackpackXenomoproach
-  
+
 - type: body
   id: Xenomoproach
   name: "xenomoproach"

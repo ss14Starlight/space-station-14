@@ -41,6 +41,18 @@ public sealed partial class CrawlUnderObjectsComponent : Component
     /// </summary>
     [DataField]
     public bool BlockHands = true;
+
+    /// <summary>
+    ///     CLIENT ONLY When we last showed a failed-to-do-xyz popup for an interaction that was blocked by sneaking.
+    /// </summary>
+    [DataField]
+    public TimeSpan LastFailedPopup = TimeSpan.Zero;
+
+    /// <summary>
+    ///     CLIENT ONLY Minimum time between failed-to-do-xyz popups.
+    /// </summary>
+    [DataField]
+    public TimeSpan FailedPopupCooldown = TimeSpan.FromMilliseconds(500);
 }
 
 [Serializable, NetSerializable]
@@ -49,4 +61,6 @@ public enum SneakMode : byte
     Enabled
 }
 
-public sealed partial class ToggleCrawlingStateEvent : InstantActionEvent { }
+public sealed partial class ToggleCrawlingStateEvent : InstantActionEvent
+{
+}

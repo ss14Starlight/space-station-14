@@ -13,13 +13,13 @@
   id: FlowerWreath
   equipment:
     neck: ClothingHeadHatFlowerWreath # Starlight: Roundstart equipped
-  groupBy: "flowers" # Starlight 
+  groupBy: "flowers" # Starlight
 
 - type: loadout
   id: Hairflower
   equipment:
     head: ClothingHeadHatHairFlowerWhite  # Moffstation - Color changing hairflower + Starlight: Roundstart equipped
-  groupBy: "flowers" # Starlight 
+  groupBy: "flowers" # Starlight
 
 # Headphones
 - type: loadout
@@ -429,11 +429,8 @@
 - type: loadout
   id: TowelColorLightBlue
   effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:DepartmentTimeRequirement
-      department: Medical
-      time: 100h
+  - !type:GroupLoadoutEffect
+    proto: MedicalExpertTimer
   storage:
     back:
     - TowelColorLightBlue

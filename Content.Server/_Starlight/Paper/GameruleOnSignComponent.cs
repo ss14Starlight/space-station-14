@@ -43,7 +43,7 @@ public sealed partial class GameruleOnSignComponent : Component
     /// </summary>
     [DataField]
     public List<EntProtoId<GameRuleComponent>> Rules = [];
-    
+
     /// <summary>
     /// is the faxable component kept? this is for admeme protos
     /// </summary>

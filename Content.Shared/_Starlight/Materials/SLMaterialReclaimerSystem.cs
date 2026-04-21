@@ -10,7 +10,7 @@ public sealed class SLMaterialReclaimerSystem : EntitySystem
 {
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
-    
+
     public override void Initialize()
     {
         SubscribeLocalEvent<MaterialReclaimerComponent,RecyclerTryGibEvent>(OnTryGib);

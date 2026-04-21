@@ -1,7 +1,7 @@
 using Content.Server._FarHorizons.Silicons.Glitching;
 using Content.Server._Starlight.Bluespace;
 using Content.Server._Starlight.GameTicking.Rules.Components;
-using Content.Server.Body.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Light.EntitySystems;
 using Content.Server.Power.Components;
@@ -132,7 +132,7 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
                 else
                     todrain = 0;
 
-                
+
                 _batterySystem.SetCharge((ent, battery), todrain);
             }
         });
