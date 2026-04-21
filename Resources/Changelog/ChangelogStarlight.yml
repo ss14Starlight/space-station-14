@@ -2470,4 +2470,95 @@ Entries:
   id: 404480
   time: '2026-04-21T17:06:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4007
+- author: wonderfulnewworld
+  changes:
+  - message: Graytide Law is back in session! The Lawyer returns to the Starlight Sector! Solve petty disputes between crew members, or negotiate plea bargains for prisoners alongside Internal Affairs Agents.
+    type: Add
+  id: 404481
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: Added Green Lawyer Suit/Suitskirt, Gray Lawyer Suit/Suitskirt, Pink Lawyer Suit/Suitskirt, Show Lawyer Suit/Suitskirt, and Bad Lawyer's Suit/Suitskirt.
+    type: Add
+  id: 404482
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: Added Lawyer SOP to the Guidebook. I know, actual Service SOP. I can't believe it either.
+    type: Add
+  id: 404483
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: Added new sections to Corporate Law regarding Lawyers, Attorney-client privilege, Plea Bargains, and Petty Disputes.
+    type: Add
+  id: 404484
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: Added new Legal Access airlocks.
+    type: Add
+  id: 404485
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: Internal Affairs Agents and the Magistrate no longer have Legal access.
+    type: Remove
+  id: 404486
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: Migrated all the _old_ Lawyer access stuff to IAA's Internal Affairs access.
+    type: Tweak
+  id: 404487
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: The Lawyer's stamp is now green.
+    type: Tweak
+  id: 404488
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: The Lawyer's job icon animation now plays in reverse, with the better looking hammer being the longer-held position now.
+    type: Tweak
+  id: 404489
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: IAAs now have a section in their SoP regarding their interactions with Lawyers.
+    type: Tweak
+  id: 404490
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: IAAs and Lawyers no longer share loadout options with each other, except for their badges.
+    type: Tweak
+  id: 404491
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: IAAs and Lawyers now spawn with the lace-up shoes by default.
+    type: Tweak
+  id: 404492
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: Non-Command stamp-havers can no longer get the Stamp steal objective. You already have one, you're satisfied with it.
+    type: Fix
+  id: 404493
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
 Order: -1
