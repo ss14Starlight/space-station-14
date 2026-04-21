@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Content.Shared._Starlight.Antags.TerrorSpider;
+using Content.Shared._Starlight.Actions.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Spider;
@@ -56,15 +56,21 @@ public sealed class EggInjectSystem : EntitySystem
 
     private void EggInjectionDoAfter(Entity<SpiderComponent> ent, ref EggInjectionDoAfterEvent args)
     {
-        if (args.Cancelled || args.Handled || !_timing.IsFirstTimePredicted)
+        if (args.Cancelled || args.Handled || !_timing.IsFirstTimePredicted || !TryComp<WrapEntityHolderComponent>(ev.Target, out var wrapEntityHolder))
             return;
+
+        if (wrapEntityHolder.Hold == null)
+        {
+            _popup.PopupEntity("This cocoon is empty!", ev.Performer);
+            return;
+        }
 
         args.Handled = true;
 
-        if (args.Target.HasValue && !HasComp<HasEggHolderComponent>(args.Target.Value))
+        if (!HasComp<HasEggHolderComponent>(wrapEntityHolder.Hold.Value))
         {
-            EnsureComp<EggHolderComponent>(args.Target.Value);
-            EnsureComp<HasEggHolderComponent>(args.Target.Value);
+            EnsureComp<EggHolderComponent>(wrapEntityHolder.Hold.Value);
+            EnsureComp<HasEggHolderComponent>(wrapEntityHolder.Hold.Value);
             var ev = new EggsInjectedEvent();
             RaiseLocalEvent(ent, ev);
         }
@@ -72,12 +78,18 @@ public sealed class EggInjectSystem : EntitySystem
 
     private void EggInjection(EggInjectionEvent ev)
     {
-        if (ev.Handled)
+        if (ev.Handled || !TryComp<WrapEntityHolderComponent>(ev.Target, out var wrapEntityHolder))
             return;
+
+        if (wrapEntityHolder.Hold == null)
+        {
+            _popup.PopupEntity("This cocoon is empty!", ev.Performer);
+            return;
+        }
 
         ev.Handled = true;
 
-        if (HasComp<HasEggHolderComponent>(ev.Target))
+        if (HasComp<HasEggHolderComponent>(wrapEntityHolder.Hold.Value))
         {
             _popup.PopupEntity("The target already contains eggs.", ev.Performer);
             return;

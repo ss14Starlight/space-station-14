@@ -111,7 +111,7 @@
     canTargetSelf: false
     whitelist:
       components:
-      - HumanoidAppearance
+      - WrapEntityHolder
     event: !type:EggInjectionEvent
 
 - type: entity
