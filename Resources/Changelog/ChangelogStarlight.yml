@@ -2575,4 +2575,11 @@ Entries:
   id: 404495
   time: '2026-04-21T18:19:49.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4179
+- author: Scarlet Lightweaver, Rinary
+  changes:
+  - message: Changed PAIs to be knocked out of shuttle consoles when ramming or being rammed.
+    type: Tweak
+  id: 404496
+  time: '2026-04-21T19:54:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4010
 Order: -1
