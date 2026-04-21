@@ -20,5 +20,21 @@ namespace Content.Server.Shuttles.Components
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField("whitelistSpecific")]
         public List<EntityUid> FTLWhitelist = new List<EntityUid>();
+
+        #region Starlight
+
+        /// <summary>
+        /// Which container slot to use for slotted PAIs.
+        /// </summary>
+        [DataField]
+        public string PaiSlotId = "pai_slot";
+
+        /// <summary>
+        /// Speed the entity is physically thrown when rammed out.
+        /// </summary>
+        [DataField]
+        public float ItemThrowSpeedOnRam = 6f;
+
+        #endregion
     }
 }
