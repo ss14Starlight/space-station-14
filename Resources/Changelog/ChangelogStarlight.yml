@@ -2421,4 +2421,46 @@ Entries:
   id: 404473
   time: '2026-04-21T12:17:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4212
+- author: redmushie, Roro
+  changes:
+  - message: All hardsuit and helmet lights now have 5 or more tiles of range. See PR for full list.
+    type: Tweak
+  id: 404474
+  time: '2026-04-21T16:41:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3786
+- author: redmushie, Roro
+  changes:
+  - message: A lot of hardsuits have had their light color tweaks to better fit their style and/or to be more distinct among their department.
+    type: Tweak
+  id: 404475
+  time: '2026-04-21T16:41:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3786
+- author: redmushie, Roro
+  changes:
+  - message: Basic mining hardsuit light is now actually inferior to the advanced variant.
+    type: Tweak
+  id: 404476
+  time: '2026-04-21T16:41:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3786
+- author: redmushie, Roro
+  changes:
+  - message: The security helmet uses a battery now.
+    type: Tweak
+  id: 404477
+  time: '2026-04-21T16:41:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3786
+- author: redmushie, Roro
+  changes:
+  - message: The Cybersun juggernaut suit has a light now.
+    type: Add
+  id: 404478
+  time: '2026-04-21T16:41:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3786
+- author: redmushie, Roro
+  changes:
+  - message: (Rinary) all hardsuit helmet lights now use powercell as power source instead of internal battery with re-charge(Currently it consumes 1 mid. power-cell in 25 minutes).
+    type: Tweak
+  id: 404479
+  time: '2026-04-21T16:41:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3786
 Order: -1
