@@ -578,13 +578,13 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtPunkSkirt
-  name: punk skirt
+  name: punk skirt and socks
   description: Slightly metal, very goth.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/punk_skirt.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/punk_skirt_socks.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/punk_skirt.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/punk_skirt_socks.rsi
 
 # Fashion-O-Mat-End
 
