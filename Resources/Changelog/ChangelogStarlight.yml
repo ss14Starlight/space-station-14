@@ -2092,4 +2092,11 @@ Entries:
   id: 404426
   time: '2026-04-21T10:38:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4214
+- author: STARLIGHT TEAM
+  changes:
+  - message: The flashbang, explosive grenade, electrical disruptor kit, and cluster grenade have been returned to the traitor uplink.
+    type: Add
+  id: 404427
+  time: '2026-04-21T11:18:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4215
 Order: -1
