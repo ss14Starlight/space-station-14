@@ -67,6 +67,7 @@
     - Rebel
     - AmateurPhotographer
     - Insecure
+    - LiveLaughLove
 
 
 # You are extremely possessive of your property. Refuse to relinquish it, and if it is misplaced or stolen, it must be retrieved at all costs.
@@ -562,3 +563,9 @@
   moodDesc: thaven-mood-insecure-desc
   moodVars:
     appearance: AppearanceAspects
+
+# Live Laugh Love: Live the shift like it's your last. Laugh at every joke. Spread the joys and love of the station.
+- type: thavenMood
+  id: LiveLaughLove
+  moodName: thaven-mood-live-laugh-love-name
+  moodDesc: thaven-mood-live-laugh-love-desc
