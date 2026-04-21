@@ -156,6 +156,8 @@ public sealed class SharedWrapSystem : EntitySystem
             _alerts.ShowAlert(uid, holderComp.WrappedAlert);
 
             holderComp.Hold = uid;
+
+            DirtyField(holder, holderComp, nameof(WrapEntityHolderComponent.Hold));
         }
         args.Handled = true;
     }

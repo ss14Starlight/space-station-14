@@ -56,12 +56,12 @@ public sealed class EggInjectSystem : EntitySystem
 
     private void EggInjectionDoAfter(Entity<SpiderComponent> ent, ref EggInjectionDoAfterEvent args)
     {
-        if (args.Cancelled || args.Handled || !_timing.IsFirstTimePredicted || !TryComp<WrapEntityHolderComponent>(ev.Target, out var wrapEntityHolder))
+        if (args.Cancelled || args.Handled || !_timing.IsFirstTimePredicted || args.Target == null || !TryComp<WrapEntityHolderComponent>(args.Target.Value, out var wrapEntityHolder))
             return;
 
         if (wrapEntityHolder.Hold == null)
         {
-            _popup.PopupEntity("This cocoon is empty!", ev.Performer);
+            _popup.PopupPredicted("This cocoon is empty!", ent, ent);
             return;
         }
 
@@ -83,7 +83,7 @@ public sealed class EggInjectSystem : EntitySystem
 
         if (wrapEntityHolder.Hold == null)
         {
-            _popup.PopupEntity("This cocoon is empty!", ev.Performer);
+            _popup.PopupPredicted("This cocoon is empty!", ev.Performer, ev.Performer);
             return;
         }
 
@@ -91,7 +91,7 @@ public sealed class EggInjectSystem : EntitySystem
 
         if (HasComp<HasEggHolderComponent>(wrapEntityHolder.Hold.Value))
         {
-            _popup.PopupEntity("The target already contains eggs.", ev.Performer);
+            _popup.PopupPredicted("The target already contains eggs.", ev.Performer, ev.Performer);
             return;
         }
 

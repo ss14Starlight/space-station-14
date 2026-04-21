@@ -337,7 +337,6 @@
   - type: ActionGrant
     actions:
     - ActionEggInjection
-    - ActionEntityWrap
 
 - type: entity
   name: terror green
