@@ -2407,4 +2407,11 @@ Entries:
   id: 404471
   time: '2026-04-21T11:18:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4221
+- author: Conflee
+  changes:
+  - message: Fixed typo in Syndicate Dead Drop announcement.
+    type: Fix
+  id: 404472
+  time: '2026-04-21T11:54:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4213
 Order: -1
