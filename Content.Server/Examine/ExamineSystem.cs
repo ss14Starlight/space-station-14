@@ -69,7 +69,7 @@ namespace Content.Server.Examine
             if (request.GetVerbs)
                 verbs = _verbSystem.GetLocalVerbs(entity, playerEnt, typeof(ExamineVerb));
 
-            var text = GetExamineText(entity, player.AttachedEntity);
+            var text = GetExamineText(entity, player.AttachedEntity, out _); // Starlight-edit
             RaiseNetworkEvent(new ExamineSystemMessages.ExamineInfoResponseMessage(
                 request.NetEntity, request.Id, text, verbs?.ToList()), channel);
         }

@@ -192,6 +192,14 @@ public sealed class StationInitCommand : ToolshedCommand
         return uid;
     }
 
+    [CommandImplementation("setdovariationpass")]
+    public EntityUid SetDoRoundstartVariationPass(IInvocationContext ctx, [PipedArgument] EntityUid uid, bool allow)
+    {
+        if (!EnsureWorkable(ctx, uid, out var comp)) return uid;
+        comp.DoRoundstartVariationPass = allow;
+        return uid;
+    }
+
     [CommandImplementation("initialize")]
     public EntityUid Initialize(IInvocationContext ctx, [PipedArgument] EntityUid uid)
     {
@@ -280,6 +288,10 @@ public sealed class StationInitCommand : ToolshedCommand
     [CommandImplementation("setallowevents")]
     public IEnumerable<EntityUid> SetAllowEvents(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, bool allow)
         => uid.Select(x=>SetAllowEvents(ctx ,x, allow));
+
+    [CommandImplementation("setdovariationpass")]
+    public IEnumerable<EntityUid> SetDoRoundstartVariationPass(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, bool allow)
+        => uid.Select(x => SetDoRoundstartVariationPass(ctx, x, allow));
 
     [CommandImplementation("namegrid")]
     public IEnumerable<EntityUid> NameGrid(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string name)
