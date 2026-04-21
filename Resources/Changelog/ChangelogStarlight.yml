@@ -2099,4 +2099,67 @@ Entries:
   id: 404427
   time: '2026-04-21T11:18:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4215
+- author: wonderfulnewworld, Coolsurf6, Centronias, hollowarc, Pixel8-dev, FreianOfVoid, TheClockman138, davyei, meganerobot, toma1993, Hanzdegloker, whiffets, youtubepoopfuneral, PanzerVo, DuckManZach
+  changes:
+  - message: Ported a few outfits from Moff Station.
+    type: Add
+  id: 404428
+  time: '2026-04-21T11:18:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4217
+- author: wonderfulnewworld, Coolsurf6, Centronias, hollowarc, Pixel8-dev, FreianOfVoid, TheClockman138, davyei, meganerobot, toma1993, Hanzdegloker, whiffets, youtubepoopfuneral, PanzerVo, DuckManZach
+  changes:
+  - message: 'Added the following to the Clothes Mate: Dark Turtleneck (MNGR), Trendy Top, Rugged Clothes.'
+    type: Add
+  id: 404429
+  time: '2026-04-21T11:18:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4217
+- author: wonderfulnewworld, Coolsurf6, Centronias, hollowarc, Pixel8-dev, FreianOfVoid, TheClockman138, davyei, meganerobot, toma1993, Hanzdegloker, whiffets, youtubepoopfuneral, PanzerVo, DuckManZach
+  changes:
+  - message: 'Added the following to WinterDrobe: Field Jacket.'
+    type: Add
+  id: 404430
+  time: '2026-04-21T11:18:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4217
+- author: wonderfulnewworld, Coolsurf6, Centronias, hollowarc, Pixel8-dev, FreianOfVoid, TheClockman138, davyei, meganerobot, toma1993, Hanzdegloker, whiffets, youtubepoopfuneral, PanzerVo, DuckManZach
+  changes:
+  - message: "Added the following to the Fashion-o-mat: Fancy Bartender Uniform, Punk Skirt, Timeless Skirt, Timeless Suit, NT4 Player. The NT4 Player can also be found in the special instrument collector's crate."
+    type: Add
+  id: 404431
+  time: '2026-04-21T11:18:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4217
+- author: wonderfulnewworld, Coolsurf6, Centronias, hollowarc, Pixel8-dev, FreianOfVoid, TheClockman138, davyei, meganerobot, toma1993, Hanzdegloker, whiffets, youtubepoopfuneral, PanzerVo, DuckManZach
+  changes:
+  - message: 'Added the following to mains pools: Cooler Roller Skates, Dark Pirate Garb. They can also be found in the same crates that contain their existing variants.'
+    type: Add
+  id: 404432
+  time: '2026-04-21T11:18:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4217
+- author: wonderfulnewworld, Coolsurf6, Centronias, hollowarc, Pixel8-dev, FreianOfVoid, TheClockman138, davyei, meganerobot, toma1993, Hanzdegloker, whiffets, youtubepoopfuneral, PanzerVo, DuckManZach
+  changes:
+  - message: Added 2 new Headphone variants, Reporter Headphones and High-End Headphones.
+    type: Add
+  id: 404433
+  time: '2026-04-21T11:18:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4217
+- author: wonderfulnewworld, Coolsurf6, Centronias, hollowarc, Pixel8-dev, FreianOfVoid, TheClockman138, davyei, meganerobot, toma1993, Hanzdegloker, whiffets, youtubepoopfuneral, PanzerVo, DuckManZach
+  changes:
+  - message: Reporters and Musicians can now choose to spawn wearing Headphones.
+    type: Add
+  id: 404434
+  time: '2026-04-21T11:18:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4217
+- author: wonderfulnewworld, Coolsurf6, Centronias, hollowarc, Pixel8-dev, FreianOfVoid, TheClockman138, davyei, meganerobot, toma1993, Hanzdegloker, whiffets, youtubepoopfuneral, PanzerVo, DuckManZach
+  changes:
+  - message: Reporter Headphones and High-End Headphones can now be selected as trinkets, requiring 10hrs Reporter and 10hrs Reporter + Musician time respectively.
+    type: Add
+  id: 404435
+  time: '2026-04-21T11:18:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4217
+- author: wonderfulnewworld, Coolsurf6, Centronias, hollowarc, Pixel8-dev, FreianOfVoid, TheClockman138, davyei, meganerobot, toma1993, Hanzdegloker, whiffets, youtubepoopfuneral, PanzerVo, DuckManZach
+  changes:
+  - message: Grouped Headphone trinkets together.
+    type: Tweak
+  id: 404436
+  time: '2026-04-21T11:18:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4217
 Order: -1
