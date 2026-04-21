@@ -122,6 +122,7 @@
         - SemiAuto
         - FullAuto
         - Burst
+      shotsPerBurst: 3
     - type: ChamberMagazineAmmoProvider
       availablePrefixes:
         - ""

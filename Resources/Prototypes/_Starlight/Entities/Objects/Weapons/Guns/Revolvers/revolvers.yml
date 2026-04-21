@@ -107,6 +107,7 @@
     availableModes:
     - SemiAuto
     - Burst
+    shotsPerBurst: 3
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/revolver_stronger.ogg
   - type: RevolverAmmoProvider

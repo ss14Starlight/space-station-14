@@ -100,7 +100,8 @@
     availableModes:
       - SemiAuto
       - FullAuto
-      - Burst # Starlight end
+      - Burst
+    shotsPerBurst: 3 # Starlight end
   - type: ItemSlots
     slots:
       gun_magazine:
