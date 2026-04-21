@@ -266,10 +266,10 @@ public sealed class ToggleableClothingSystem : EntitySystem
         }
         else
         {
+            // Starlight-start
             if (!_inventorySystem.TryEquip(user, parent, component.ClothingUid.Value, component.Slot, triggerHandContact: true))
                 return;
 
-            // Starlight-start
             if (TryComp<HandheldLightComponent>(component.ClothingUid.Value, out var light))
             {
                 _lightSystem.SetDrawSource(component.ClothingUid.Value, component.RedirectDraw ? target : null, light);
