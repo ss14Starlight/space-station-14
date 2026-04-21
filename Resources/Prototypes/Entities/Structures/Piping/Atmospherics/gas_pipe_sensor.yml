@@ -151,39 +151,3 @@
       Quaternary: GasPipeSensorTEGColdAlt3
       Quinary: GasPipeSensorTEGColdAlt4
       # Carpmosia-end - 5 pipe layers
-
-# Starlight Begin
-- type: entity
-  parent: GasPipeSensor
-  id: GasPipeSensorTEGFuel
-  suffix: TEG fuel
-  components:
-  - type: Label
-    currentLabel: gas-pipe-sensor-teg-fuel-loop
-  - type: AtmosPipeLayers
-    alternativePrototypes:
-      Primary: GasPipeSensorTEGFuel
-      Secondary: GasPipeSensorTEGFuelAlt1
-      Tertiary: GasPipeSensorTEGFuelAlt2
-      # Carpmosia-start - 5 pipe layers
-      Quaternary: GasPipeSensorTEGFuelAlt3
-      Quinary: GasPipeSensorTEGFuelAlt4
-      # Carpmosia-end - 5 pipe layers
-
-- type: entity
-  parent: GasPipeSensor
-  id: GasPipeSensorVoxAir
-  suffix: Vox air
-  components:
-  - type: Label
-    currentLabel: gas-pipe-sensor-vox-air-loop
-  - type: AtmosPipeLayers
-    alternativePrototypes:
-      Primary: GasPipeSensorVoxAir
-      Secondary: GasPipeSensorVoxAirAlt1
-      Tertiary: GasPipeSensorVoxAirAlt2
-      # Carpmosia-start - 5 pipe layers
-      Quaternary: GasPipeSensorVoxAirAlt3
-      Quinary: GasPipeSensorVoxAirAlt4
-      # Carpmosia-end - 5 pipe layers
-# Starlight End
