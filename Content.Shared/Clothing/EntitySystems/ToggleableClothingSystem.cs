@@ -266,7 +266,9 @@ public sealed class ToggleableClothingSystem : EntitySystem
         }
         else
         {
-            _inventorySystem.TryEquip(user, parent, component.ClothingUid.Value, component.Slot, triggerHandContact: true);
+            if (!_inventorySystem.TryEquip(user, parent, component.ClothingUid.Value, component.Slot, triggerHandContact: true))
+                return;
+
             // Starlight-start
             if (TryComp<HandheldLightComponent>(component.ClothingUid.Value, out var light))
             {
