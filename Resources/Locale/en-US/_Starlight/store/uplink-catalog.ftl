@@ -115,9 +115,3 @@ uplink-trunk-syndicate-desc = Huge, metal, reflective, and stylish. All the othe
 
 uplink-syndiedrobe-name = SyndieDrobe flatpack
 uplink-syndiedrobe-desc = Looks like Syndieland's back in business.
-
-uplink-syndie-elegant-raid-name = Syndicate Elegant Raid Suit
-uplink-syndie-elegant-raid-desc = Even contract, nuclear killers have the right to remain fabulous. Comes with a pair of cute and tactical noslip socks!
-
-uplink-clothing-murder-socks-name = MURDER socks !!11!!!1
-uplink-clothing-murder-socks-desc = lets KILL people sisters!1!!! comes with noslip.

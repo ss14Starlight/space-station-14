@@ -63,7 +63,9 @@
     CoolTanktopUniformSuit: 3
     LumberjackOverallsUniformSuit: 2
     MechanicOverallsUniformSuit: 2
+    TrendyTopSuit: 2
     MessyDressShirtUniformSuit: 3
+    RuggedClothesUniformSuit: 2 # Starlight
     OldWomanUniformSuit: 2
     PunkJeansUniformSuit: 2
     TieDyeUniformSuit: 2
@@ -125,6 +127,7 @@
     ClothingBackpackSatchelSmugglerUnanchored: 1
     ClothingHeadHatSolidHeadband: 2
     ClothingUniformJumpsuitTrackSuit: 2 #Starlight
+    DarkTurtleneckSuit: 2 # Starlight
     TatteredClothesUniformSuit: 1 #starlight
     ClothingHeadHatTVHead: 1 #starlight
     ClothingNeckTatteredHood: 1 #starlight

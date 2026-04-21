@@ -2349,6 +2349,7 @@
 - type: voice
   id: antiri
   voice: 280
+  name: tts-voice-name-280
   sex: Female
   silicon: false
   copyright: None
@@ -2357,6 +2358,7 @@
 - type: voice
   id: arborfield
   voice: 281
+  name: tts-voice-name-281
   sex: Female
   silicon: false
   copyright: None
@@ -2365,6 +2367,7 @@
 - type: voice
   id: blastergranny
   voice: 282
+  name: tts-voice-name-282
   sex: Female
   silicon: false
   copyright: None
@@ -2373,6 +2376,7 @@
 - type: voice
   id: bridget
   voice: 283
+  name: tts-voice-name-283
   sex: Female
   silicon: false
   copyright: None
@@ -2381,6 +2385,7 @@
 - type: voice
   id: chandraki
   voice: 284
+  name: tts-voice-name-284
   sex: Female
   silicon: false
   copyright: None
@@ -2389,6 +2394,7 @@
 - type: voice
   id: croakiecaw
   voice: 285
+  name: tts-voice-name-285
   sex: Female
   silicon: false
   copyright: None
@@ -2397,6 +2403,7 @@
 - type: voice
   id: crystalina
   voice: 286
+  name: tts-voice-name-286
   sex: Female
   silicon: false
   copyright: None
@@ -2405,6 +2412,7 @@
 - type: voice
   id: fidget
   voice: 287
+  name: tts-voice-name-287
   sex: Female
   silicon: false
   copyright: None
@@ -2413,6 +2421,7 @@
 - type: voice
   id: gisele
   voice: 288
+  name: tts-voice-name-288
   sex: Female
   silicon: false
   copyright: None
@@ -2421,6 +2430,7 @@
 - type: voice
   id: governess
   voice: 289
+  name: tts-voice-name-289
   sex: Female
   silicon: false
   copyright: None
@@ -2429,6 +2439,7 @@
 - type: voice
   id: hotmess
   voice: 290
+  name: tts-voice-name-290
   sex: Female
   silicon: false
   copyright: None
@@ -2437,6 +2448,7 @@
 - type: voice
   id: impastalady
   voice: 291
+  name: tts-voice-name-291
   sex: Female
   silicon: false
   copyright: None
@@ -2445,6 +2457,7 @@
 - type: voice
   id: janetrauma
   voice: 292
+  name: tts-voice-name-292
   sex: Female
   silicon: false
   copyright: None
@@ -2453,6 +2466,7 @@
 - type: voice
   id: jarana
   voice: 293
+  name: tts-voice-name-293
   sex: Female
   silicon: false
   copyright: None
@@ -2461,6 +2475,7 @@
 - type: voice
   id: kassssandra
   voice: 294
+  name: tts-voice-name-294
   sex: Female
   silicon: false
   copyright: None
@@ -2469,6 +2484,7 @@
 - type: voice
   id: kusochan
   voice: 295
+  name: tts-voice-name-295
   sex: Female
   silicon: false
   copyright: None
@@ -2477,6 +2493,7 @@
 - type: voice
   id: kusohime
   voice: 296
+  name: tts-voice-name-296
   sex: Female
   silicon: false
   copyright: None
@@ -2485,6 +2502,7 @@
 - type: voice
   id: ladykommandant
   voice: 297
+  name: tts-voice-name-297
   sex: Female
   silicon: false
   copyright: None
@@ -2493,6 +2511,7 @@
 - type: voice
   id: madamtophat
   voice: 298
+  name: tts-voice-name-298
   sex: Female
   silicon: false
   copyright: None
@@ -2501,6 +2520,7 @@
 - type: voice
   id: maryjane
   voice: 299
+  name: tts-voice-name-299
   sex: Female
   silicon: false
   copyright: None
@@ -2509,6 +2529,7 @@
 - type: voice
   id: miriam
   voice: 300
+  name: tts-voice-name-300
   sex: Female
   silicon: false
   copyright: None
@@ -2517,6 +2538,7 @@
 - type: voice
   id: operativejumpskirt
   voice: 301
+  name: tts-voice-name-301
   sex: Female
   silicon: false
   copyright: None
@@ -2525,6 +2547,7 @@
 - type: voice
   id: salome
   voice: 302
+  name: tts-voice-name-302
   sex: Female
   silicon: false
   copyright: None
@@ -2533,6 +2556,7 @@
 - type: voice
   id: sarcastica
   voice: 303
+  name: tts-voice-name-303
   sex: Female
   silicon: false
   copyright: None
@@ -2541,6 +2565,7 @@
 - type: voice
   id: shahrazad
   voice: 304
+  name: tts-voice-name-304
   sex: Female
   silicon: false
   copyright: None
@@ -2549,6 +2574,7 @@
 - type: voice
   id: spaceempress
   voice: 305
+  name: tts-voice-name-305
   sex: Female
   silicon: false
   copyright: None
@@ -2557,6 +2583,7 @@
 - type: voice
   id: steele
   voice: 306
+  name: tts-voice-name-306
   sex: Female
   silicon: false
   copyright: None
@@ -2565,6 +2592,7 @@
 - type: voice
   id: sujeong
   voice: 307
+  name: tts-voice-name-307
   sex: Female
   silicon: false
   copyright: None
@@ -2573,6 +2601,7 @@
 - type: voice
   id: thalia
   voice: 308
+  name: tts-voice-name-308
   sex: Female
   silicon: false
   copyright: None
@@ -2581,6 +2610,7 @@
 - type: voice
   id: tipsymcgee
   voice: 309
+  name: tts-voice-name-309
   sex: Female
   silicon: false
   copyright: None
@@ -2589,6 +2619,7 @@
 - type: voice
   id: usagichan
   voice: 310
+  name: tts-voice-name-310
   sex: Female
   silicon: false
   copyright: None
@@ -2597,6 +2628,7 @@
 - type: voice
   id: usagitan
   voice: 311
+  name: tts-voice-name-311
   sex: Female
   silicon: false
   copyright: None
@@ -2605,6 +2637,7 @@
 - type: voice
   id: valaya
   voice: 312
+  name: tts-voice-name-312
   sex: Female
   silicon: false
   copyright: None
@@ -2613,6 +2646,7 @@
 - type: voice
   id: xiene
   voice: 313
+  name: tts-voice-name-313
   sex: Female
   silicon: false
   copyright: None
@@ -2621,6 +2655,7 @@
 - type: voice
   id: zorpina
   voice: 314
+  name: tts-voice-name-314
   sex: Female
   silicon: false
   copyright: None
@@ -2629,6 +2664,7 @@
 - type: voice
   id: monster
   voice: 315
+  name: tts-voice-name-315
   sex: Male
   silicon: false
   copyright: None
@@ -2637,6 +2673,7 @@
 - type: voice
   id: apokalypsis
   voice: 316
+  name: tts-voice-name-316
   sex: Male
   silicon: false
   copyright: None
@@ -2645,6 +2682,7 @@
 - type: voice
   id: bozoschlomo
   voice: 317
+  name: tts-voice-name-317
   sex: Male
   silicon: false
   copyright: None
@@ -2653,6 +2691,7 @@
 - type: voice
   id: chadkegger
   voice: 318
+  name: tts-voice-name-318
   sex: Male
   silicon: false
   copyright: None
@@ -2661,6 +2700,7 @@
 - type: voice
   id: coulros
   voice: 319
+  name: tts-voice-name-319
   sex: Male
   silicon: false
   copyright: None
@@ -2669,6 +2709,7 @@
 - type: voice
   id: detectivegrowler
   voice: 320
+  name: tts-voice-name-320
   sex: Male
   silicon: false
   copyright: None
@@ -2677,6 +2718,7 @@
 - type: voice
   id: dodger
   voice: 321
+  name: tts-voice-name-321
   sex: Male
   silicon: false
   copyright: None
@@ -2685,6 +2727,7 @@
 - type: voice
   id: dorri
   voice: 322
+  name: tts-voice-name-322
   sex: Male
   silicon: false
   copyright: None
@@ -2693,6 +2736,7 @@
 - type: voice
   id: fartley
   voice: 323
+  name: tts-voice-name-323
   sex: Male
   silicon: false
   copyright: None
@@ -2701,6 +2745,7 @@
 - type: voice
   id: gangerunt
   voice: 324
+  name: tts-voice-name-324
   sex: Male
   silicon: false
   copyright: None
@@ -2709,6 +2754,7 @@
 - type: voice
   id: goughman
   voice: 325
+  name: tts-voice-name-325
   sex: Male
   silicon: false
   copyright: None
@@ -2717,6 +2763,7 @@
 - type: voice
   id: harrier
   voice: 326
+  name: tts-voice-name-326
   sex: Male
   silicon: false
   copyright: None
@@ -2725,6 +2772,7 @@
 - type: voice
   id: ioannissouvlakis
   voice: 327
+  name: tts-voice-name-327
   sex: Male
   silicon: false
   copyright: None
@@ -2733,6 +2781,7 @@
 - type: voice
   id: ivanheadrev
   voice: 328
+  name: tts-voice-name-328
   sex: Male
   silicon: false
   copyright: None
@@ -2741,6 +2790,7 @@
 - type: voice
   id: jimmynanotrasen
   voice: 329
+  name: tts-voice-name-329
   sex: Male
   silicon: false
   copyright: None
@@ -2749,6 +2799,7 @@
 - type: voice
   id: johnnanotrasen
   voice: 330
+  name: tts-voice-name-330
   sex: Male
   silicon: false
   copyright: None
@@ -2757,6 +2808,7 @@
 - type: voice
   id: kaeltharion
   voice: 331
+  name: tts-voice-name-331
   sex: Male
   silicon: false
   copyright: None
@@ -2765,6 +2817,7 @@
 - type: voice
   id: ledavid
   voice: 332
+  name: tts-voice-name-332
   sex: Male
   silicon: false
   copyright: None
@@ -2773,6 +2826,7 @@
 - type: voice
   id: pterry
   voice: 333
+  name: tts-voice-name-333
   sex: Male
   silicon: false
   copyright: None
@@ -2781,6 +2835,7 @@
 - type: voice
   id: rockman
   voice: 334
+  name: tts-voice-name-334
   sex: Male
   silicon: false
   copyright: None
@@ -2789,6 +2844,7 @@
 - type: voice
   id: roper
   voice: 335
+  name: tts-voice-name-335
   sex: Male
   silicon: false
   copyright: None
@@ -2797,6 +2853,7 @@
 - type: voice
   id: slopbad
   voice: 336
+  name: tts-voice-name-336
   sex: Male
   silicon: false
   copyright: None
@@ -2805,6 +2862,7 @@
 - type: voice
   id: snorri
   voice: 337
+  name: tts-voice-name-337
   sex: Male
   silicon: false
   copyright: None
@@ -2813,6 +2871,7 @@
 - type: voice
   id: walmartoog
   voice: 338
+  name: tts-voice-name-338
   sex: Male
   silicon: false
   copyright: None
@@ -2821,6 +2880,7 @@
 - type: voice
   id: weakgood
   voice: 339
+  name: tts-voice-name-339
   sex: Male
   silicon: false
   copyright: None
@@ -2829,6 +2889,7 @@
 - type: voice
   id: wheezy
   voice: 340
+  name: tts-voice-name-340
   sex: Male
   silicon: false
   copyright: None
@@ -2837,6 +2898,7 @@
 - type: voice
   id: zorp
   voice: 341
+  name: tts-voice-name-341
   sex: Male
   silicon: false
   copyright: None
@@ -2845,6 +2907,7 @@
 - type: voice
   id: kaur
   voice: 342
+  name: tts-voice-name-342
   sex: Female
   silicon: false
   copyright: None
@@ -2950,6 +3013,7 @@
 - type: voice
   id: maxcap
   voice: 1014
+  name: tts-voice-name-1014
   sex: Female
   silicon: true
   copyright: None
@@ -2958,6 +3022,7 @@
 - type: voice
   id: polito
   voice: 1015
+  name: tts-voice-name-1015
   sex: Female
   silicon: true
   copyright: None
@@ -2966,6 +3031,7 @@
 - type: voice
   id: sarahborg
   voice: 1016
+  name: tts-voice-name-1016
   sex: Female
   silicon: true
   copyright: None
@@ -2974,6 +3040,7 @@
 - type: voice
   id: trashbot
   voice: 1017
+  name: tts-voice-name-1017
   sex: Female
   silicon: true
   copyright: None
@@ -2982,6 +3049,7 @@
 - type: voice
   id: botboy
   voice: 1018
+  name: tts-voice-name-1018
   sex: Male
   silicon: true
   copyright: None
@@ -2990,6 +3058,7 @@
 - type: voice
   id: johnborgman
   voice: 1019
+  name: tts-voice-name-1019
   sex: Male
   silicon: true
   copyright: None
@@ -2998,6 +3067,7 @@
 - type: voice
   id: speekinspel
   voice: 1020
+  name: tts-voice-name-1020
   sex: Male
   silicon: true
   copyright: None
@@ -3006,6 +3076,7 @@
 - type: voice
   id: vocoder
   voice: 1021
+  name: tts-voice-name-1021
   sex: Male
   silicon: true
   copyright: None
@@ -3014,6 +3085,7 @@
 - type: voice
   id: wardbot
   voice: 1022
+  name: tts-voice-name-1022
   sex: Male
   silicon: true
   copyright: None
@@ -3022,6 +3094,7 @@
 - type: voice
   id: chip
   voice: 1023
+  name: tts-voice-name-1023
   sex: Unsexed
   silicon: true
   copyright: None
