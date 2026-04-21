@@ -2463,4 +2463,11 @@ Entries:
   id: 404479
   time: '2026-04-21T16:41:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3786
+- author: redmushie
+  changes:
+  - message: Added Debrief access. All roles that are expected in debrief get this by default. Purrfus are the only cyborgs that get this access.
+    type: Add
+  id: 404480
+  time: '2026-04-21T17:06:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4007
 Order: -1
