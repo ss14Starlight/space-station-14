@@ -560,32 +560,6 @@
   categories:
     - UplinkPointless
 
-- type: listing
-  id: UplinkClothingOuterArmorElegantRaid
-  name: uplink-syndie-elegant-raid-name
-  description: uplink-syndie-elegant-raid-desc
-  icon: { sprite: /Textures/_Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi, state: icon }
-  productEntity: ClothingBackpackSyndicateElegantRaidBundle
-  cost:
-    Telecrystal: 10
-  categories:
-    - UplinkPointless
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - NukeOpsUplink
-
-- type: listing
-  id: UplinkClothingMurderShocks
-  name: uplink-clothing-murder-socks-name
-  description: uplink-clothing-murder-socks-desc
-  productEntity: ClothingUnderSocksMurder
-  cost:
-    Telecrystal: 1
-  categories:
-    - UplinkPointless
-
 # Allies
 - type: listing
   id: UplinkSyndicateBorgi
@@ -702,9 +676,9 @@
   productEntity: ClothingHandsChameleonThief
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 7
   cost:
-    Telecrystal: 5
+    Telecrystal: 10
   categories:
     - UplinkWearables
 
@@ -739,6 +713,24 @@
     Telecrystal: 3 #SL / Rebalanced pricing: Armor Vest 3, Web Vest 4, Elite Web vest 5
   categories:
     - UplinkWearables
+
+- type: listing
+  id: UplinkSyndicateDisruptor
+  name: uplink-disruptor-name
+  description: uplink-disruptor-desc
+  productEntity: SyndicateDisruptor
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
 
 # Devices
 
@@ -968,7 +960,7 @@
   id: UplinkDarkGygaxLoneOps
   name: uplink-mech-teleporter-assault-name
   description: uplink-mech-teleporter-assault-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: darkgygax }
+  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/darkgygax.rsi, state: base }
   productEntity: CrateCybersunDarkGygaxBundle
   cost:
     Telecrystal: 30
@@ -984,7 +976,7 @@
   id: UplinkMaulerLoneOps
   name: uplink-mech-teleporter-heavy-name
   description: uplink-mech-teleporter-heavy-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: mauler }
+  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/mauler.rsi, state: base }
   productEntity: CrateCybersunMaulerBundle
   cost:
     Telecrystal: 45

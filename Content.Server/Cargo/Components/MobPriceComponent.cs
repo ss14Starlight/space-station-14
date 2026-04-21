@@ -6,11 +6,13 @@
 [RegisterComponent]
 public sealed partial class MobPriceComponent : Component
 {
+    // Starlight start
     /// <summary>
     /// How much of a penalty per part there should be. This is a multiplier for a multiplier, the penalty for each body part is calculated from the total number of slots, and then multiplied by this.
     /// </summary>
     [DataField("missingBodyPartPenalty")]
     public double MissingBodyPartPenalty = 1.0f;
+    // Starlight end
 
     /// <summary>
     /// The base price this mob should fetch.

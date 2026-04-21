@@ -1,8 +1,8 @@
+using Content.Shared._Starlight.Medical.Body.Events;
+using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Bed.Components;
 using Content.Shared.Bed.Sleep;
-using Content.Shared.Body.Events;
-using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Emag.Systems;

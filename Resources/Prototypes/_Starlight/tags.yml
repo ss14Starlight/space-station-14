@@ -48,6 +48,12 @@
   id: BorgItem
 
 - type: Tag
+  id: BorgModuleCentcomm
+
+- type: Tag
+  id: BorgModuleMedTak
+
+- type: Tag
   id: BorgModuleMining
 
 - type: Tag
@@ -208,6 +214,9 @@
 
 - type: Tag
   id: EmergencyWelder
+
+- type: Tag
+  id: ExternalAirlock
 
 - type: Tag
   id: Felionoid
@@ -487,6 +496,9 @@
     # Tag for reflective vest, used for set bonus detection by ReflectiveSetBonusSystem
 
 - type: Tag
+  id: RollerBed
+
+- type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun
 
 - type: Tag
@@ -584,6 +596,9 @@
 
 - type: Tag
   id: WallmountMassScannerElectronics
+
+- type: Tag
+  id: Wizard
 
 - type: Tag
   id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.

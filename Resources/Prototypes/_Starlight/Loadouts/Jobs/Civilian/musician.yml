@@ -1,0 +1,37 @@
+- type: loadoutEffectGroup
+  id: RisingMusician
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMusician
+      time: 36000 #10 hrs
+- type: loadoutEffectGroup
+  id: CelebrityMusician
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMusician
+      time: 216000 #60 hrs
+
+- type: loadout
+  id: MusicianHeadphonesGeneric
+  equipment:
+    head: ClothingMultipleHeadphones
+
+- type: loadout
+  id: MusicianHeadphonesReporter
+  equipment:
+    head: ClothingMultipleHeadphonesReporter
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: RisingReporter
+
+- type: loadout
+  id: MusicianHeadphonesHighEnd
+  equipment:
+    head: ClothingMultipleHeadphonesHighEnd
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: RisingMusician

@@ -42,6 +42,11 @@ namespace Content.Shared.Humanoid
                 default:
                     return Loc.GetString("namepreset-firstlast",
                         ("first", GetFirstName(speciesProto, gender)), ("last", GetLastName(speciesProto)));
+                // Starlight begin
+                case SpeciesNaming.PrefixSuffix:
+                    return Loc.GetString("namepreset-prefixsuffix",
+                        ("prefix", GetFirstName(speciesProto, gender)), ("suffix", GetLastName(speciesProto)));
+                // Starlight end
             }
         }
 

@@ -1,4 +1,12 @@
 - type: loadoutEffectGroup
+  id: RisingReporter
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobReporter
+      time: 36000 #10 hrs
+- type: loadoutEffectGroup
   id: SeniorReporter
   effects:
   - !type:JobRequirementLoadoutEffect
@@ -23,3 +31,21 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorReporter
+
+- type: loadout
+  id: ReporterHeadphonesGeneric
+  equipment:
+    head: ClothingMultipleHeadphones
+
+- type: loadout
+  id: ReporterHeadphonesJob
+  equipment:
+    head: ClothingMultipleHeadphonesReporter
+
+- type: loadout
+  id: ReporterHeadphonesHighEnd
+  equipment:
+    head: ClothingMultipleHeadphonesHighEnd
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: RisingReporter
