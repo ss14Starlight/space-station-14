@@ -539,10 +539,10 @@
 
 - type: listing
   id: UplinkPistol9mmMagazineSP
-  name: uplink-pistol-magazine-name
-  description: uplink-pistol-magazine-desc
+  name: uplink-pistol-high-capacity-magazine-name # Starlight, actually descriptive now
+  description: uplink-pistol-high-capacity-magazine-desc # Starlight
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_high_capacity_mag.rsi, state: base-icon }
-  productEntity: MagazinePistolSP
+  productEntity: MagazinePistolHighCapacitySP # Staright
   cost:
     Telecrystal: 1
   categories:
@@ -550,8 +550,8 @@
 
 - type: listing
   id: UplinkPistol9mmMagazineHP
-  name: uplink-pistol-magazine-name
-  description: uplink-pistol-magazine-desc
+  name: uplink-pistol-hp-magazine-name # Starlight
+  description: uplink-pistol-hp-magazine-desc # Starlight
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: sp }
   productEntity: MagazinePistolHP
   cost:
@@ -561,8 +561,8 @@
 
 - type: listing
   id: UplinkPistol9mmMagazineFMJ
-  name: uplink-pistol-magazine-name
-  description: uplink-pistol-magazine-desc
+  name: uplink-pistol-fmj-magazine-name # Starlight
+  description: uplink-pistol-fmj-magazine-desc # Starlight
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: fmj }
   productEntity: MagazinePistolFMJ
   cost:
