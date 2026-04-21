@@ -2414,4 +2414,11 @@ Entries:
   id: 404472
   time: '2026-04-21T11:54:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4213
+- author: Caws
+  changes:
+  - message: Arachnids now have their 2 extra web pockets back.
+    type: Fix
+  id: 404473
+  time: '2026-04-21T12:17:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4212
 Order: -1
