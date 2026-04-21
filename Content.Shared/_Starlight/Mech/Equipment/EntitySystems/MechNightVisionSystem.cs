@@ -1,10 +1,11 @@
 using Content.Shared.Actions;
 using Content.Shared.Mech.Equipment.Components;
+using Content.Shared._Starlight.Mech.Equipment.Components;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech;
 using Content.Shared.Eye.Blinding.Components;
 
-namespace Content.Shared.Mech.Equipment.EntitySystems;
+namespace Content.Shared._Starlight.Mech.Equipment.EntitySystems;
 
 /// <summary>
 ///
