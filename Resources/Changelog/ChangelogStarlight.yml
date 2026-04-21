@@ -2400,4 +2400,11 @@ Entries:
   id: 404470
   time: '2026-04-21T11:18:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4220
+- author: Conflee
+  changes:
+  - message: Changed sprites for the Nuclear Centrifuge for licensing, and added new sprites for the Nuclear Fabricator so it doesn't look like a generic protolathe anymore.
+    type: Tweak
+  id: 404471
+  time: '2026-04-21T11:18:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4221
 Order: -1
