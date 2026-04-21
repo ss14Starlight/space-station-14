@@ -51,6 +51,7 @@
     - Paramedic
     - Mining
     - SalvageLead
+    - Debrief
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
