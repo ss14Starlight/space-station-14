@@ -40,6 +40,7 @@ using CCVars = Content.Shared.CCVar.CCVars;
 using Starlight.NullLink;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
+using Content.Shared.Administration;
 #endregion Starlight
 
 namespace Content.Server.Administration.Managers;
@@ -329,7 +330,9 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
     public async Task<ServerBanDef?> GetServerBanAsync(int id, string? project = null, string? server = null)
     {
-        var ban = await _db.GetServerBanAsync(id);
+        var ban = project == null && server == null
+                    ? await _db.GetServerBanAsync(id)
+                    : null;
         if (_actor.TryGetServerGrain(out var serverGrain))
             ban ??= (await serverGrain.RequestBanById(id, project, server))?.ToDef();
         return ban;
