@@ -87,12 +87,13 @@
 
 - type: entity
   parent: PosterBase
-  id: PosterContrabandLustyExomorph
-  name: "Lusty Exomorph"
-  description: "A heretical poster depicting the titular star of an equally heretical book."
+  id: PosterContrabandHereticalExomorph # Starlight
+  name: "Heretical Exomorph" # Starlight
+  description: "They come out at night." # Starlight
   components:
   - type: Sprite
-    state: poster4_contraband
+    sprite: _Starlight/Structures/Wallmounts/posters/hereticalexomorph.rsi # Starlight
+    state: hereticalexomorph # Starlight
 
 - type: entity
   parent: PosterBase
