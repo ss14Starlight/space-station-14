@@ -35,6 +35,24 @@
         - id: MedTakDeathRattleImplanter
 
 - type: entity
+  id: ClothingBackpackMedTakFilledHeavy
+  parent: ClothingBackpackMedTak
+  suffix: Filled, Security, Heavy
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineBoxPistol40SP
+        - id: DrinkMREFlask
+        - id: FoodSnackNutribrick
+        - id: MedTakMindShieldImplanter
+        - id: MedTakDeathRattleImplanter
+        - id: GrenadeFlashBang
+        - id: TearGasGrenade
+        - id: TearGasGrenade
+
+- type: entity
   id: ClothingBackpackMedTakFilledRifle
   parent: ClothingBackpackMedTak
   suffix: Filled, Security, Rifle
@@ -50,11 +68,13 @@
         - id: FoodSnackNutribrick
         - id: MedTakMindShieldImplanter
         - id: MedTakDeathRattleImplanter
+        - id: TearGasGrenade
+        - id: GrenadeFlashBang
 
 - type: entity
   id: ClothingBackpackMedTakFilledLeader
   parent: ClothingBackpackMedTak
-  suffix: Filled, Security, Leader
+  suffix: Filled, Leader
   components:
   - type: EntityTableContainerFill
     containers:
@@ -67,5 +87,7 @@
         - id: FoodSnackNutribrick
         - id: MedTakMindShieldImplanter
         - id: MedTakDeathRattleImplanter
+        - id: TearGasGrenade
+        - id: GrenadeFlashBang
         - id: BoxFolderMedTak
         - id: RubberStampMedTak

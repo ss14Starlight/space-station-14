@@ -237,6 +237,8 @@
       access: [["MedTak"]]
     - type: ShowHealthBars
     - type: SolutionScanner
+    - type: FlashImmunity
+      showInExamine: false
     - type: IntrinsicRadioTransmitter
       channels:
       - Binary

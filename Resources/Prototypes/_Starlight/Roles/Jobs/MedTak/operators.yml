@@ -68,7 +68,7 @@
   id: MedTakSecurityHeavy
   equipment:
     jumpsuit: ClothingUniformJumpsuitCasualRed
-    back: ClothingBackpackMedTakFilledBasic
+    back: ClothingBackpackMedTakFilledHeavy
     shoes: ClothingShoesBootsCombatFilled
     outerClothing: ClothingOuterHardsuitMedTak
     id: MedTakSecurityPDA
