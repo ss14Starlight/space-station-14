@@ -1,5 +1,5 @@
 - type: entity
-  name: Tactical Breaching Hammer
+  name: CODE-12 "Breacher"
   parent: BaseItem
   id: HammerMedTakOneHanded
   description: A charged concusive breaching hammer meant to put a sizeable hole in anything separating you from your client.
@@ -7,8 +7,9 @@
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/Weapons/MedTak/Hammer.rsi
-    state: icon
-    map: [ "enum.ToggleableVisuals.Layer" ]
+    layers:
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: MeleeWeapon
     wideAnimationRotation: -135
     attackRate: 0.7
