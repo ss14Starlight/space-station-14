@@ -359,8 +359,9 @@
 - type: entity
   parent: PosterBase
   id: PosterContrabandExomorphF # Starlight start
-  name: "Exomorph: Not What They Seem?"
-  description: "A poster debating the common misconceptions about Exomorphs. Or at least, that's what you think this poster's about." # Starlight end
+  name: "Exomorphs: Not What They Seem?"
+  description: "A poster debating the common misconceptions about Exomorphs. Or at least, that's what you think this poster's about."
+  suffix: Remove from Maps # Starlight end
   components:
   - type: Sprite
     state: poster36_contraband
