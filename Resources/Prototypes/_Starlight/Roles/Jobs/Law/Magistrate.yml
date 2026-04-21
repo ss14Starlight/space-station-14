@@ -21,7 +21,7 @@
   access:
   - Magistrate
   - IAA
-  - Lawyer
+#  - Lawyer # Lawyer is now for Lawyers, not IAAs/Magis.
   - Brig
   - Security
   - Command

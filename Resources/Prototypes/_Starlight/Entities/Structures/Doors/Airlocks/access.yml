@@ -336,6 +336,32 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/maint.rsi
 
+# Service
+- type: entity
+  parent: AirlockServiceLocked
+  id: AirlockLegalLocked
+  suffix: Legal, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLegal ]
+
+- type: entity
+  parent: AirlockServiceGlassLocked
+  id: AirlockLegalGlassLocked
+  suffix: Legal, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLegal ]
+
+- type: entity
+  parent: AirlockLegalLocked # Starlight
+  id: AirlockMaintLegalLocked # Starlight
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
 # Xenoborg
 - type: entity
   parent: AirlockXenoborgGlass
