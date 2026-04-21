@@ -19,7 +19,7 @@
   components:
     - type: Action
       itemIconStyle: BigAction
-      useDelay: 2
+      useDelay: 3
       icon:
         sprite: _Starlight/Actions/rodentia.rsi
         state: sneak-mode
