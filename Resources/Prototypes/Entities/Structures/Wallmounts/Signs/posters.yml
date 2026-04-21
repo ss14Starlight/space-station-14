@@ -356,15 +356,14 @@
   - type: Sprite
     state: poster35_contraband
 
-- type: entity
-  parent: PosterBase
-  id: PosterContrabandExomorphF # Starlight start
-  name: "Exomorphs: Not What They Seem?"
-  description: "A poster debating the common misconceptions about Exomorphs. Or at least, that's what you think this poster's about."
-  suffix: Remove from Maps # Starlight end
-  components:
-  - type: Sprite
-    state: poster36_contraband
+#- type: entity # Starlight start
+#  parent: PosterBase
+#  id: PosterContrabandBustyBackdoorExoBabes6 -------- Will be made DO NOT MAP in the future, once it's removed from every map.
+#  name: "Exomorphs: Not What They Seem?"
+#  description: "A poster debating the common misconceptions about Exomorphs. Or at least, that's what you think this poster's about."
+#  components:
+#  - type: Sprite
+#    state: poster36_contraband # Starlight end
 
 - type: entity
   parent: PosterBase
