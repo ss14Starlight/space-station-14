@@ -73,6 +73,18 @@ WeaponRevolverSnubRevolver: null
 #2026-03-21
 #WeaponRifleLionhunter: WeaponSniperLionhunter Re-enable when Shooting 3.0 is back
 
+#2026-04-15 - Lawyer | Internal Affairs split
+DoorElectronicsLawyer: DoorElectronicsInternalAffairs
+DoorElectronicsSecurityLawyer: DoorElectronicsSecurityInternalAffairs
+AirlockLawyerLocked: AirlockInternalAffairsLocked
+AirlockLawyerGlassLocked: AirlockInternalAffairsGlassLocked
+AirlockSecurityLawyerLocked: AirlockSecurityInternalAffairsLocked
+AirlockSecurityLawyerGlassLocked: AirlockSecurityInternalAffairsGlassLocked
+AirlockMaintLawyerLocked: AirlockMaintInternalAffairsLocked
+WindoorSecureSecurityLawyerLocked: WindoorSecureSecurityInternalAffairsLocked
+LockableButtonLawyer: LockableButtonInternalAffairs
+HolopadSecurityLawyer: HolopadSecurityInternalAffairs
+
 #2026-04-20
 ClothingBackpackSyndicateElegantRaidBundle: null
 ClothingOuterMaidArmorRaid: null

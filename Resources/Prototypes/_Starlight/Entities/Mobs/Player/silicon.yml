@@ -360,3 +360,29 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMicroreactor
+
+# region MedTak
+
+- type: entity
+  id: PlayerBorgChassisMedTakBattery
+  parent: BorgChassisMedTak
+  suffix: Battery, Modules
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+  - type: DefaultBorgModules
+    modules:
+      - BorgModuleTool
+      - BorgModuleMedTakMedical
+      - BorgModuleMedTakRifle
+      - BorgModuleFireExtinguisher
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        blacklist:
+          tags:
+          - MechReactor

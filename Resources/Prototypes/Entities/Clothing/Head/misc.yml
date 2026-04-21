@@ -62,7 +62,7 @@
     node: flowerwreath
 
 - type: entity
-  parent: ClothingHeadLightBase
+  parent: [ ClothingHeadLightBase, ClothingHeadLightParamsBasic ] # Starlight
   id: ClothingHeadHatPumpkin
   name: pumpkin hat
   description: A jack o' lantern! Believed to ward off evil spirits.

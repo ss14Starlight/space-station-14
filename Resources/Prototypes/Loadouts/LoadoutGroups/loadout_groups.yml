@@ -505,16 +505,16 @@
   id: LawyerJumpsuit
   name: loadout-group-lawyer-jumpsuit
   loadouts:
-  - LawyerJumpsuit
-  - LawyerJumpskirt
-  - LawyerJumpsuitBlue
-  - LawyerJumpskirtBlue
-  - LawyerJumpsuitPurple
-  - LawyerJumpskirtPurple
-  - LawyerJumpsuitRed
-  - LawyerJumpskirtRed
-  - LawyerJumpsuitGood
-  - LawyerJumpskirtGood
+  - LawyerJumpsuitService # Starlight start
+  - LawyerJumpskirtService
+  - LawyerJumpsuitGray
+  - LawyerJumpskirtGray
+  - LawyerJumpsuitPink
+  - LawyerJumpskirtPink
+  - LawyerJumpsuitBlackTwo
+  - LawyerJumpskirtBlackTwo
+  - LawyerJumpsuitBad
+  - LawyerJumpskirtBad # Starlight end
 
 
 - type: loadoutGroup

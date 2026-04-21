@@ -778,3 +778,60 @@
       id: BlackstarIDCard
     - type: PdaBorderColor
       borderColor: "#717059"
+
+# MedTak
+- type: entity
+  parent: [ ParamedicPDA, BaseMedTakContraband ]
+  id: MedTakMedicPDA
+  name: MedTak medic PDA
+  description: Is it blood or red paint?
+  components:
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-medtak
+  - type: Pda
+    id: MedTakMedicIDCard
+  - type: PdaBorderColor
+    accentVColor: "#d7d7d0"
+    borderColor: "#600000"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-medtak
+
+- type: entity
+  parent: MedTakMedicPDA
+  id: MedTakPilotPDA
+  name: MedTak pilot PDA
+  description: It's red paint.
+  components:
+  - type: Pda
+    id: MedTakPilotIDCard
+
+- type: entity
+  parent: MedTakMedicPDA
+  id: MedTakSecurityPDA
+  name: MedTak security PDA
+  description: It's blood.
+  components:
+  - type: Pda
+    id: MedTakSecurityIDCard
+
+- type: entity
+  parent: MedTakMedicPDA
+  id: MedTakTeamLeadPDA
+  name: MedTak team leader PDA
+  description: It's blood.
+  components:
+  - type: Pda
+    id: MedTakTeamLeadIDCard
+
+- type: entity
+  parent: MedTakMedicPDA
+  id: MedTakDispatcherPDA
+  name: MedTak dispatcher PDA
+  description: It's red paint.
+  components:
+  - type: Pda
+    id: MedTakDispatcherIDCard

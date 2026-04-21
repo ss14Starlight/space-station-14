@@ -2421,4 +2421,165 @@ Entries:
   id: 404473
   time: '2026-04-21T12:17:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4212
+- author: redmushie, Roro
+  changes:
+  - message: All hardsuit and helmet lights now have 5 or more tiles of range. See PR for full list.
+    type: Tweak
+  id: 404474
+  time: '2026-04-21T16:41:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3786
+- author: redmushie, Roro
+  changes:
+  - message: A lot of hardsuits have had their light color tweaks to better fit their style and/or to be more distinct among their department.
+    type: Tweak
+  id: 404475
+  time: '2026-04-21T16:41:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3786
+- author: redmushie, Roro
+  changes:
+  - message: Basic mining hardsuit light is now actually inferior to the advanced variant.
+    type: Tweak
+  id: 404476
+  time: '2026-04-21T16:41:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3786
+- author: redmushie, Roro
+  changes:
+  - message: The security helmet uses a battery now.
+    type: Tweak
+  id: 404477
+  time: '2026-04-21T16:41:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3786
+- author: redmushie, Roro
+  changes:
+  - message: The Cybersun juggernaut suit has a light now.
+    type: Add
+  id: 404478
+  time: '2026-04-21T16:41:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3786
+- author: redmushie, Roro
+  changes:
+  - message: (Rinary) all hardsuit helmet lights now use powercell as power source instead of internal battery with re-charge(Currently it consumes 1 mid. power-cell in 25 minutes).
+    type: Tweak
+  id: 404479
+  time: '2026-04-21T16:41:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3786
+- author: redmushie
+  changes:
+  - message: Added Debrief access. All roles that are expected in debrief get this by default. Purrfus are the only cyborgs that get this access.
+    type: Add
+  id: 404480
+  time: '2026-04-21T17:06:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4007
+- author: wonderfulnewworld
+  changes:
+  - message: Graytide Law is back in session! The Lawyer returns to the Starlight Sector! Solve petty disputes between crew members, or negotiate plea bargains for prisoners alongside Internal Affairs Agents.
+    type: Add
+  id: 404481
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: Added Green Lawyer Suit/Suitskirt, Gray Lawyer Suit/Suitskirt, Pink Lawyer Suit/Suitskirt, Show Lawyer Suit/Suitskirt, and Bad Lawyer's Suit/Suitskirt.
+    type: Add
+  id: 404482
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: Added Lawyer SOP to the Guidebook. I know, actual Service SOP. I can't believe it either.
+    type: Add
+  id: 404483
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: Added new sections to Corporate Law regarding Lawyers, Attorney-client privilege, Plea Bargains, and Petty Disputes.
+    type: Add
+  id: 404484
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: Added new Legal Access airlocks.
+    type: Add
+  id: 404485
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: Internal Affairs Agents and the Magistrate no longer have Legal access.
+    type: Remove
+  id: 404486
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: Migrated all the _old_ Lawyer access stuff to IAA's Internal Affairs access.
+    type: Tweak
+  id: 404487
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: The Lawyer's stamp is now green.
+    type: Tweak
+  id: 404488
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: The Lawyer's job icon animation now plays in reverse, with the better looking hammer being the longer-held position now.
+    type: Tweak
+  id: 404489
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: IAAs now have a section in their SoP regarding their interactions with Lawyers.
+    type: Tweak
+  id: 404490
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: IAAs and Lawyers no longer share loadout options with each other, except for their badges.
+    type: Tweak
+  id: 404491
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: IAAs and Lawyers now spawn with the lace-up shoes by default.
+    type: Tweak
+  id: 404492
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: wonderfulnewworld
+  changes:
+  - message: Non-Command stamp-havers can no longer get the Stamp steal objective. You already have one, you're satisfied with it.
+    type: Fix
+  id: 404493
+  time: '2026-04-21T17:37:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: Crazydave91920
+  changes:
+  - message: Added More Thaven Moods!
+    type: Add
+  id: 404494
+  time: '2026-04-21T18:02:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4191
+- author: SevenShades
+  changes:
+  - message: Added MedTak operators and their associated gear.
+    type: Add
+  id: 404495
+  time: '2026-04-21T18:19:49.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4179
+- author: Scarlet Lightweaver, Rinary
+  changes:
+  - message: Changed PAIs to be knocked out of shuttle consoles when ramming or being rammed.
+    type: Tweak
+  id: 404496
+  time: '2026-04-21T19:54:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4010
 Order: -1

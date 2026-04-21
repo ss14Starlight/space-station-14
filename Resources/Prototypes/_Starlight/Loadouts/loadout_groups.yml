@@ -239,6 +239,29 @@
   - RoboticistDuffel
   - LeatherSatchel
 
+# IAA
+- type: loadoutGroup
+  id: IAAJumpsuit
+  name: loadout-group-iaa-jumpsuit
+  loadouts:
+  - LawyerJumpsuit
+  - LawyerJumpskirt
+  - LawyerJumpsuitBlue
+  - LawyerJumpskirtBlue
+  - LawyerJumpsuitPurple
+  - LawyerJumpskirtPurple
+  - LawyerJumpsuitRed
+  - LawyerJumpskirtRed
+  - LawyerJumpsuitGood
+  - LawyerJumpskirtGood
+
+- type: loadoutGroup
+  id: IAANeck
+  name: loadout-group-iaa-neck
+  minLimit: 0
+  loadouts:
+  - LawyerNeck
+
 - type: loadoutGroup
   id: NanoTrasenRepresentativeHead
   name: loadout-group-nanotrasenrepresentative-head
@@ -488,14 +511,25 @@
 
 - type: loadoutGroup
   id: LawyerShoes
-  name: loadout-group-iia-shoes
+  name: loadout-group-lawyer-shoes
   minLimit: 0
   defaultSelected: 1
   loadouts:
-  - BlackShoes
   - LaceupShoes
   - Heels
   - LeatherShoes
+  - BlackShoes
+
+- type: loadoutGroup
+  id: IAAShoes
+  name: loadout-group-iaa-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+  - BlackShoes
 
 - type: loadoutGroup
   id: BlueShieldShoes
