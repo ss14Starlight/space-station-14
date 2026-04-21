@@ -199,7 +199,7 @@ public sealed partial class AdminNotesControl : Control
             {
                 // Yes this is slower than just updating, but new notes get added at the bottom. The user won't notice.
                 Notes.RemoveAllChildren();
-                Inputs.Clear();
+                NetworkInputs.Clear();
                 break;
             }
             Notes.RemoveChild(input);
