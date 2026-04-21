@@ -18,7 +18,7 @@ public sealed class MechNightVisionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<MechNightVisionComponent, MechEquipmentRemovedEvent>(OnNightVisionRemoved);
+        SubscribeLocalEvent<MechNightVisionComponent, MechEquipmentRemovedEvent>(OnEquipmentRemoved);
         SubscribeLocalEvent<MechNightVisionComponent, MechToggleNightVisionEvent>(OnNightVisionToggle);
 
         SubscribeLocalEvent<MechNightVisionComponent, BeforePilotEjectEvent>(OnPilotEject);
@@ -30,7 +30,7 @@ public sealed class MechNightVisionSystem : EntitySystem
     /// <param name="uid"></param>
     /// <param name="comp"></param>
     /// <param name="args"></param>
-    private void OnNightVisionRemoved(EntityUid uid, MechNightVisionComponent comp, ref MechEquipmentRemovedEvent args)
+    private void OnEquipmentRemoved(EntityUid uid, MechNightVisionComponent comp, ref MechEquipmentRemovedEvent args)
     {
         if (!TryComp<MechEquipmentComponent>(uid, out var equipmentComp)
             || equipmentComp.EquipmentOwner == null
@@ -38,7 +38,7 @@ public sealed class MechNightVisionSystem : EntitySystem
             || mechComp.PilotSlot.ContainedEntity == null)
             return;
 
-        if (comp.EquipmentComponentAdded) // Only remove if we actually added this component
+        if (HasComp<NightVisionComponent>(mechComp.PilotSlot.ContainedEntity.Value) && comp.EquipmentComponentAdded)
             RemComp<NightVisionComponent>(mechComp.PilotSlot.ContainedEntity.Value);
         comp.EquipmentComponentAdded = false;
         comp.EquipmentToggled = false;
@@ -58,15 +58,16 @@ public sealed class MechNightVisionSystem : EntitySystem
             || mechComp.PilotSlot.ContainedEntity == null)
             return;
 
-        if (!comp.EquipmentToggled && !HasComp<NightVisionComponent>(mechComp.PilotSlot.ContainedEntity.Value))
+        var pilot = mechComp.PilotSlot.ContainedEntity.Value;
+        if (!comp.EquipmentToggled && !HasComp<NightVisionComponent>(pilot))
         {
-            AddComp<NightVisionComponent>(mechComp.PilotSlot.ContainedEntity.Value);
+            AddComp<NightVisionComponent>(pilot);
             comp.EquipmentComponentAdded = true;
         }
-        else
+        else if (comp.EquipmentToggled)
         {
-            if (comp.EquipmentComponentAdded) // Only remove if we actually added this component
-                RemComp<NightVisionComponent>(mechComp.PilotSlot.ContainedEntity.Value);
+            if (HasComp<NightVisionComponent>(pilot) && comp.EquipmentComponentAdded) // Only remove if we actually added this component
+                RemComp<NightVisionComponent>(pilot);
             comp.EquipmentComponentAdded = false;
         }
 
