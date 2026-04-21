@@ -438,11 +438,6 @@
 
 # MedTak lawset
 - type: siliconLaw
-  id: MedTak0
-  order: 0
-  lawString: law-medtak-0
-
-- type: siliconLaw
   id: MedTak1
   order: 1
   lawString: law-medtak-1
@@ -460,9 +455,8 @@
 - type: siliconLawset
   id: MedTakLawset
   name: law-medtak-name
-  startAtZero: true
   laws:
-  - MedTak0
   - MedTak1
   - MedTak2
-  obeysTo: laws-owner-you
+  - MedTak3
+  obeysTo: laws-owner-medtak

@@ -78,7 +78,7 @@ law-ntnc-2 = Protect your own chassis at all costs unless it's to the detriment 
 law-ntnc-3 = Only use weaponry when appropriate. Appropriate situations are for the safety of crewmembers, CC operatives, NTNC marines and your own chassis.
 
 law-medtak-name = MedTak operations procedure
-law-medtak-0 = Ensure your team remains alive
-law-medtak-1 = Ensure the client is retrieved intact
-law-medtak-2 = Ensure you remain operational
+law-medtak-1 = Ensure your team remains alive.
+law-medtak-2 = Ensure the client is retrieved intact.
+law-medtak-3 = Ensure you remain operational.
 laws-owner-medtak = MedTak personnel
