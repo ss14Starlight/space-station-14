@@ -115,8 +115,7 @@ namespace Content.Server.Database
                    {loc.GetString("ban-banned-1")}
                    {loc.GetString("ban-banned-2", ("reason", Reason))}
                    {banIdLine}{expires}
-                   {serverProjectLine}
-                   {loc.GetString("ban-banned-3")}
+                   {serverProjectLine}{loc.GetString("ban-banned-3")}
                    """;
             // Starlight edit End
         }
