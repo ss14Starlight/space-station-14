@@ -542,6 +542,17 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/space_courier.rsi
 
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTimelessSuit
+  name: timeless suit
+  description: A luxury suit with a timeless design.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/timeless_suit.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/timeless_suit.rsi
+
 # Fashion-O-Mat END
 
 - type: entity

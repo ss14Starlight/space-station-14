@@ -27,6 +27,7 @@
   storage:
     back:
     - ClothingMultipleHeadphones
+  groupBy: "Headphones" # Starlight
 
 # Toys
 - type: loadout

@@ -44,11 +44,43 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMusician
-      time: 72000 # 10hr
+      time: 72000 # 20hr
   storage:
     back:
     - TrumpetInstrument
   groupBy: "Instruments"
+
+# Headphones
+- type: loadout
+  id: ReporterHeadphonesTrinket
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobReporter
+      time: 36000 # 10hr
+  storage:
+    back:
+    - ClothingMultipleHeadphonesReporter
+  groupBy: "Headphones"
+
+- type: loadout
+  id: HighEndHeadphones
+  effects:
+      - !type:JobRequirementLoadoutEffect
+        requirement:
+          !type:RoleTimeRequirement
+          role: JobReporter
+          time: 36000 #10hr
+      - !type:JobRequirementLoadoutEffect
+        requirement:
+          !type:RoleTimeRequirement
+          role: JobMusician
+          time: 36000 #10hr
+  storage:
+    back:
+    - ClothingMultipleHeadphonesHighEnd
+  groupBy: "Headphones"
 
 - type: loadout
   id: RolliePack
