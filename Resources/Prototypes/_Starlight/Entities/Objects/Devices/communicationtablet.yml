@@ -61,4 +61,3 @@
       interfaces:
         enum.CommunicationsConsoleUiKey.Key:
           type: CommunicationsConsoleBoundUserInterface
-          
