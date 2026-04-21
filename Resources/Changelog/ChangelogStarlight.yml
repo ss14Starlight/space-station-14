@@ -2561,4 +2561,11 @@ Entries:
   id: 404493
   time: '2026-04-21T17:37:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4196
+- author: Crazydave91920
+  changes:
+  - message: Added More Thaven Moods!
+    type: Add
+  id: 404494
+  time: '2026-04-21T18:02:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4191
 Order: -1
