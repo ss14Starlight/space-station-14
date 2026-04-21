@@ -85,6 +85,9 @@ WindoorSecureSecurityLawyerLocked: WindoorSecureSecurityInternalAffairsLocked
 LockableButtonLawyer: LockableButtonInternalAffairs
 HolopadSecurityLawyer: HolopadSecurityInternalAffairs
 
+#2026-04-17
+WeaponPistolSP8T: WeaponPistolBlueguard
+
 #2026-04-20
 ClothingBackpackSyndicateElegantRaidBundle: null
 ClothingOuterMaidArmorRaid: null
