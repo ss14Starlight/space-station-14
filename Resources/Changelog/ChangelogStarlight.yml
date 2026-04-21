@@ -2610,4 +2610,18 @@ Entries:
   id: 404500
   time: '2026-04-21T20:26:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4027
+- author: Rinary
+  changes:
+  - message: Fixed power cell slot missing on paramed void suit.
+    type: Fix
+  id: 404501
+  time: '2026-04-21T20:52:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4224
+- author: Rinary
+  changes:
+  - message: Fixed power cell drain when helmet unfolded.
+    type: Fix
+  id: 404502
+  time: '2026-04-21T20:52:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4224
 Order: -1
