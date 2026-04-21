@@ -48,6 +48,14 @@
         },
         {
             "name": "global_label"
+        },
+        {
+            "name": "crypt_medtak",
+			"copyright": "Sevenshades"
+        },
+        {
+            "name": "medtak_label",
+			"copyright": "Sevenshades"
         }
     ]
 }
