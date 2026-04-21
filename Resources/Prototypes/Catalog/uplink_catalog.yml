@@ -552,7 +552,7 @@
   id: UplinkPistol9mmMagazineHP
   name: uplink-pistol-hp-magazine-name # Starlight
   description: uplink-pistol-hp-magazine-desc # Starlight
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: sp }
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red } # Starlight, now actually the right icon
   productEntity: MagazinePistolHP
   cost:
     Telecrystal: 1
@@ -563,7 +563,7 @@
   id: UplinkPistol9mmMagazineFMJ
   name: uplink-pistol-fmj-magazine-name # Starlight
   description: uplink-pistol-fmj-magazine-desc # Starlight
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: fmj }
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: fmj } # Starlight, now actually the right icon
   productEntity: MagazinePistolFMJ
   cost:
     Telecrystal: 1
