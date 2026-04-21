@@ -2582,4 +2582,32 @@ Entries:
   id: 404496
   time: '2026-04-21T19:54:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4010
+- author: ScorchFollower
+  changes:
+  - message: Removed "Dust" varient for the sp-8t.
+    type: Remove
+  id: 404497
+  time: '2026-04-21T20:26:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4027
+- author: ScorchFollower
+  changes:
+  - message: Resprited both service pistol "Blueguard" (Initially was the sp-8t) & BSO's X-01 Multiphase gun.
+    type: Tweak
+  id: 404498
+  time: '2026-04-21T20:26:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4027
+- author: ScorchFollower
+  changes:
+  - message: Changed the name of the sp-8t to the service pistol "Blueguard".
+    type: Tweak
+  id: 404499
+  time: '2026-04-21T20:26:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4027
+- author: ScorchFollower
+  changes:
+  - message: Changed description for the sp-8t / service pistol "Blueguard".
+    type: Tweak
+  id: 404500
+  time: '2026-04-21T20:26:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4027
 Order: -1
