@@ -166,3 +166,4 @@
   - type: VisualPickupable
     offsetFront: -0.16, -0.12
     offsetBack: -0.16, 0.05
+  - type: Rummager
