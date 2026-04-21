@@ -93,12 +93,19 @@
   - type: MechAir
   - type: DoAfter
   - type: Repairable
-    fuelCost: 25
-    doAfterDelay: 10
+    # STARLIGHT BEGIN - Borg-like mech repair
+    damageValue: -30 # 15 seconds to repair durand
+    doAfterDelay: 1
+    fuelCost: 3 # 3x more expensive than cyborg repair costing 70u for durand
+    # STARLIGHT END
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:
         type: MechBoundUserInterface
+      # STARLIGHT BEGIN - Equipment radial
+      enum.MechEquipmentSelectUiKey.Key:
+        type: MechEquipmentSelectBoundUserInterface
+      # STARLIGHT END
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.75

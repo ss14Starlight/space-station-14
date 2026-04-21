@@ -271,7 +271,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatTVHead
   name: tv head
-  description: The label says it will make you look like a true Tumblr sexyman. What does that even mean?
+  description: The label says it will make you beat a skeleton in a popularity poll on Tumblr. What does that even mean?
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/tv_head.rsi
@@ -626,3 +626,65 @@
     sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
+
+# Wizard duel!
+- type: entity
+  parent: ClothingHeadHatRedwizard # Parents red since red wizard hat sprite base
+  id: ClothingHeadHatYellowwizard
+  name: yellow wizard hat
+  description: A strange-looking yellow hat that most certainly belongs to a powerful magic-user.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/wizard_yellow.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/wizard_yellow.rsi
+
+- type: entity
+  parent: ClothingHeadHatWizard # Parents blue since blue wizard hat sprite base
+  id: ClothingHeadHatGreenwizard
+  name: green wizard hat
+  description: A strange-looking green hat that most certainly belongs to a powerful magic-user.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/wizard_green.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/wizard_green.rsi
+
+- type: entity
+  parent: ClothingHeadHatWizard # Parents blue since blue wizard hat sprite base
+  id: ClothingHeadHatPurplewizard
+  name: purple wizard hat
+  description: A strange-looking purple hat that most certainly belongs to a powerful magic-user.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/wizard_purple.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/wizard_purple.rsi
+
+- type: entity
+  parent: ClothingHeadHatWizard # Parents blue since blue wizard hat sprite base
+  id: ClothingHeadHatOrangewizard
+  name: orange wizard hat
+  description: A strange-looking orange hat that most certainly belongs to a powerful magic-user.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/wizard_orange.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/wizard_orange.rsi
+
+- type: entity
+  parent: ClothingHeadHatWizardBase # Parents base since no hamster sprite
+  id: ClothingHeadHatPeachwizard
+  name: peach wizard hat
+  description: A strange-looking peach hat that most certainly belongs to a powerful magic-user.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/wizard_peach.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/wizard_peach.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - WhitelistChameleon

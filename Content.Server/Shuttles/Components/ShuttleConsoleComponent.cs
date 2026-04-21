@@ -4,6 +4,7 @@ using Content.Shared.Shuttles.Components;
 namespace Content.Server.Shuttles.Components
 {
     [RegisterComponent]
+    [AutoGenerateComponentPause] // Starlight
     public sealed partial class ShuttleConsoleComponent : SharedShuttleConsoleComponent
     {
         [ViewVariables]
@@ -22,6 +23,11 @@ namespace Content.Server.Shuttles.Components
         public List<EntityUid> FTLWhitelist = new List<EntityUid>();
 
         #region Starlight
+        /// <summary>
+        /// When the last interface update was transmitted.
+        /// </summary>
+        [AutoPausedField]
+        public TimeSpan LastInterfaceUpdateTime;
 
         /// <summary>
         /// Which container slot to use for slotted PAIs.

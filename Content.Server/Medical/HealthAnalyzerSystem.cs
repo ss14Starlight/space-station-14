@@ -47,7 +47,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     // Starlight-start: Printable health reports.
-    [Dependency] private readonly TimeSystem _timeSystem = default!;
+    [Dependency] private readonly SharedTimeSystem _timeSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly PaperSystem _paperSystem = default!;
@@ -107,6 +107,13 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     {
         if (args.Target == null || !args.CanReach || !HasComp<MobStateComponent>(args.Target) || !_cell.HasDrawCharge(uid.Owner, user: args.User))
         	return;
+
+        // Starlight - Check DamageContainers... this is an upstream variable that is unsued... lets use it!
+        if (uid.Comp.DamageContainers is not null
+            && TryComp<DamageableComponent>(args.Target, out var damageable)
+            && damageable.DamageContainerID is not null
+            && !uid.Comp.DamageContainers.Contains(damageable.DamageContainerID))
+            return;
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);
 

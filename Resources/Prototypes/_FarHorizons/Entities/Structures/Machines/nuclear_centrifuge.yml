@@ -5,7 +5,7 @@
   description: A large machine that can be used to separate radioactive isotopes from spent fuel.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/nuclear_centrifuge.rsi
+    sprite: _Starlight/Structures/Machines/nuclear_centrifuge.rsi #SL Edit
     snapCardinals: true
     layers:
     - state: centrifuge
