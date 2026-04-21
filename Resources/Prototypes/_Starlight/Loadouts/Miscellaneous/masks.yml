@@ -19,3 +19,12 @@
     proto: VeteranBrigmedic
   equipment:
     mask: ClothingMaskGasCorpsman
+
+- type: loadout
+  id: BreathMaskMedicalSecurityBudget
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledBrigmedic
+  equipment:
+    mask: ClothingMaskBreathMedicalSecurityBudget
+

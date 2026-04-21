@@ -109,14 +109,17 @@
   name: enforcer
   parent: [BaseWeaponPistol, BaseSecurityContraband]
   id: WeaponPistolEnforcer
-  description: A pistol of modern design.
+  description: A versatile pistol of modern design.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/enforcer.rsi
     - type: Gun
       fireRate: 6
+      selectedMode: FullAuto
       availableModes:
         - SemiAuto
+        - FullAuto
+        - Burst
     - type: ChamberMagazineAmmoProvider
       availablePrefixes:
         - ""
@@ -142,7 +145,7 @@
     - type: Clothing
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/dp.rsi
     - type: Gun
-      fireRate: 5
+      fireRate: 4
       availableModes:
         - SemiAuto
       soundGunshot:
