@@ -13,10 +13,10 @@ public sealed class PlayerData
     public required ICommonSession Session { get; init; }
     public ImmutableHashSet<ulong> Roles { get; set; } = [];
     public Dictionary<string, double> Resources = [];
+    public Dictionary<string, double> Resources { get; set; } = [];
     public Dictionary<string, Dictionary<string, TimeSpan>> RolePlayTimePerServer { get; set; } = [];
     public ulong DiscordId { get; set; }
     public ImmutableHashSet<Achievement> UnlockedAchievements { get; set; } = [];
-    public bool AchievementCacheHydrated { get; set; }
     public ConcurrentDictionary<string, double> AchievementProgress { get; set; } = new();
     public object AchievementSyncRoot { get; } = new();
 
