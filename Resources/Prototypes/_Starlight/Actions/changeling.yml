@@ -40,7 +40,7 @@
   - type: ChangelingAction
     chemicalCost: 25
     useInLesserForm: true
-  - type: EorgAction
+  - type: EorgPreventAction
 
 
 - type: entity
@@ -342,7 +342,7 @@
   - type: ChangelingAction
     chemicalCost: 75
     useInLesserForm: true
-  - type: EorgAction
+  - type: EorgPreventAction
 
 # utility
 - type: entity
@@ -399,7 +399,7 @@
     event: !type:ActionBiodegradeEvent {}
   - type: ChangelingAction
     chemicalCost: 30
-  - type: EorgAction
+  - type: EorgPreventAction
 
 - type: entity
   id: ActionChameleonSkin

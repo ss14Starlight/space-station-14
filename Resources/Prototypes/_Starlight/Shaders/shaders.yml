@@ -78,3 +78,18 @@
   id: NullSpaceShader
   kind: source
   path: "/Textures/_Starlight/Shaders/nullspace.swsl"
+
+- type: shader
+  id: NightSkyTrail
+  kind: source
+  path: "/Textures/_Starlight/Shaders/ghost_trail_stripes.swsl"
+
+- type: shaderAdditionalParams
+  id: NightSkyTrail
+  textures:
+    noiseTex: /Textures/_Starlight/Parallaxes/noise_fbm.png
+
+- type: shader
+  id: HolyStarsTrail
+  kind: source
+  path: "/Textures/_Starlight/Shaders/holy_stars_trail.swsl"

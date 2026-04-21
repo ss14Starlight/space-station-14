@@ -608,3 +608,99 @@
     - type: Access
       tags:
         - Blackstar
+
+# MedTak
+- type: entity
+  parent: IDCardStandard
+  id: MedTakTeamLeadIDCard
+  name: MedTak team leader ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: MedTakLeader
+    - type: IdCard
+      jobTitle: job-name-medtak-leader
+      jobIcon: JobIconMedTakLeader
+    - type: Access
+      tags:
+        - MedTak
+
+- type: entity
+  parent: IDCardStandard
+  id: MedTakDispatcherIDCard
+  name: MedTak dispatcher ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: MedTakDispatcher
+    - type: IdCard
+      jobTitle: job-name-medtak-dispatcher
+      jobIcon: JobIconMedTakDispatcher
+    - type: Access
+      tags:
+        - MedTak
+
+- type: entity
+  parent: IDCardStandard
+  id: MedTakMedicIDCard
+  name: Medtak medic ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: MedTakMedic
+    - type: IdCard
+      jobTitle: job-name-medtak-medic
+      jobIcon: JobIconMedTakMedic
+    - type: Access
+      tags:
+        - MedTak
+
+- type: entity
+  parent: IDCardStandard
+  id: MedTakPilotIDCard
+  name: Medtak pilot ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: MedTakPilot
+    - type: IdCard
+      jobTitle: job-name-medtak-pilot
+      jobIcon: JobIconMedTakPilot
+    - type: Access
+      tags:
+        - MedTak
+
+- type: entity
+  parent: IDCardStandard
+  id: MedTakSecurityIDCard
+  name: Medtak security ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: MedTakSecurity
+    - type: IdCard
+      jobTitle: job-name-medtak-security
+      jobIcon: JobIconMedTakSecurity
+    - type: Access
+      tags:
+        - MedTak

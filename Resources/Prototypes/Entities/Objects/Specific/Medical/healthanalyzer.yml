@@ -22,6 +22,8 @@
   - type: ItemToggle
     onUse: false
   - type: HealthAnalyzer
+    damageContainers: # SL
+    - Biological
     scanningEndSound:
       path: "/Audio/Items/Medical/healthscanner.ogg"
   - type: Tag

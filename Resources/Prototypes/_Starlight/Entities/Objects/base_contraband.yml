@@ -177,3 +177,11 @@
   components:
   - type: Contraband
     allowedDepartments: [ Medical, Security ]
+
+# MedTak
+- type: entity
+  id: BaseMedTakContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: MedTak

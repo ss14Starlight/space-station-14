@@ -194,3 +194,81 @@
     - SiliconEmotes
     - Unimplantable
     - EmagImmune
+
+# MedTak
+- type: entity
+  id: BorgChassisMedTak
+  parent: BaseBorgChassisNotIonStormable
+  name: MedTak silicon
+  description: A multirole heavy silicon chassis designed to support MedTak units.
+  abstract: true
+  components:
+    - type: TextToSpeech
+    - type: Sprite
+      sprite: _Starlight/Admeme/Mobs/Silicon/Chassis/medtak.rsi
+      layers:
+      - state: borg
+      - state: borg_e
+        map: [ "enum.BorgVisualLayers.Light" ]
+        shader: unshaded
+        visible: false
+      - state: borg_l
+        shader: unshaded
+        map: [ "light" ]
+        visible: false
+    - type: BorgChassis
+      jobIconOverride: JobIconMedTakBorg
+      jobTitleOverride: chat-radio-medtak-borg
+      maxModules: 8
+      moduleWhitelist:
+        tags:
+        - BorgModuleGeneric
+        - BorgModuleMedTak
+      hasMindState: borg_e
+      noMindState: borg_e_r
+    - type: Repairable
+      allowSelfRepair: true
+    - type: BypassLock
+      bypassDelay: 15
+    - type: Access
+      tags:
+      - MedTak
+    - type: AccessReader
+      access: [["MedTak"]]
+    - type: ShowHealthBars
+    - type: SolutionScanner
+    - type: FlashImmunity
+      showInExamine: false
+    - type: IntrinsicRadioTransmitter
+      channels:
+      - Binary
+      - MedTak
+      - Common
+    - type: ActiveRadio
+      channels:
+      - Binary
+      - MedTak
+      - Common
+    - type: MovementAlwaysTouching
+    - type: Speech
+      speechSounds: SyndieBorg
+      allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime']
+    - type: Vocal
+      sounds:
+        Unsexed: UnisexSiliconSyndicate
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: SiliconLawProvider
+      laws: MedTakLawset
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+      - CanPilot
+      - SiliconEmotes
+      - Unimplantable
+      - EmagImmune
+    - type: PointLight
+      color: "#d55858"
+      radius: 5
+      energy: 3

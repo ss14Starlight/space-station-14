@@ -1118,3 +1118,98 @@
     - item: JetpackCyborgCentcomm
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }
+
+# region MedTak
+- type: entity
+  id: BaseBorgModuleMedTak
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+  - type: BorgModule
+    borgFitTypes:
+    - borg-type-medtak
+  - type: Tag
+    tags:
+    - BorgModuleMedTak
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#ffffff"
+      - state: base-module-inhand-left
+        color: "#660505"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#ffffff"
+      right:
+      - state: base-icon-inhand-right
+        color: "#ffffff"
+      - state: base-module-inhand-right
+        color: "#660505"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#ffffff"
+
+- type: entity
+  id: BorgModuleMedTakMedical
+  parent: [ BaseBorgModuleMedTak, BaseProviderBorgModule ]
+  name: MedTak medical cyborg module
+  description: A MedTak cyborg module for medical support.
+  components:
+  - type: Sprite
+    layers:
+    - state: medtak
+    - state: icon-medtak-med
+  - type: ItemBorgModule
+    hands:
+    - item: HandheldHealthAnalyzer
+    - item: TacticalJetInjector
+      hand:
+        emptyLabel: borg-slot-syringe-empty
+        emptyRepresentative: TacticalJetInjector
+        whitelist:
+          tags:
+          - Syringe
+          - JetInjector
+          - Medipen
+    - hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: MedicatedSuture
+        whitelist:
+          components:
+          - Healing
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+          - Bottle
+    - item: MedTakHoverBedSpawnFolded
+      hand:
+        emptyLabel: borg-slot-rollerbeds-empty
+        emptyRepresentative: MedTakHoverBed
+        whitelist:
+          tags:
+          - BodyBag
+          - RollerBed
+    - item: MedkitCombatMedTakFilledBorg
+    - item: BottleCaseMedTakFilled
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: medtak-aid-module }
+
+- type: entity
+  id: BorgModuleMedTakRifle
+  parent: [ BaseBorgModuleMedTak, BaseProviderBorgModule ]
+  name: MedTak rifle cyborg module
+  description: A MedTak cyborg module equipped with a cut down CODE-9 and a breaching hammer.
+  components:
+  - type: Sprite
+    layers:
+    - state: medtak
+    - state: icon-medtak-sec
+  - type: ItemBorgModule
+    hands:
+    - item: WeaponRifleMedTakROW
+    - item: HammerMedTakOneHanded
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: medtak-combat-module }
