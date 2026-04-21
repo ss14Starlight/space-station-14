@@ -2085,4 +2085,11 @@ Entries:
   id: 404425
   time: '2026-04-19T23:15:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4207
+- author: STARLIGHT TEAM
+  changes:
+  - message: Antagonist cards are temporarily disabled for IPCs until filler cards are added.
+    type: Remove
+  id: 404426
+  time: '2026-04-21T10:38:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4214
 Order: -1
