@@ -47,11 +47,20 @@
   color: "#896e14"
   longRange: true
 
+# For WIZARDS & Magic in general
+- type: radioChannel
+  id: Winds
+  name: chat-radio-winds
+  keycode: 'i'
+  frequency: 11037
+  color: "#ff00ff"
+  longRange: true
+
   # For aspace stuff specifically, to keep freelance clear
 - type: radioChannel
   id: Aspace
   name: chat-radio-aspace
-  keycode: 'k'
+  keycode: 'q'
   frequency: 9999
   color: "#ab489f"
 
@@ -62,4 +71,13 @@
   keycode: 'g'
   frequency: 9998
   color: "#954fff"
+  longRange: true
+
+# Medtak
+- type: radioChannel
+  id: MedTak
+  name: chat-radio-medtak
+  keycode: 'k'
+  frequency: 1452
+  color: "#880606"
   longRange: true

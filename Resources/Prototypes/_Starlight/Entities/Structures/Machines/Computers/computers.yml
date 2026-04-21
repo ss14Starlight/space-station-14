@@ -157,6 +157,7 @@
     layer: 32768
   - type: Sprite
     sprite: _Starlight/Mobs/Net/net_eye.rsi
+    drawdepth: CyberspaceObjects
     layers:
     - map: ["base"]
       state: enemy
@@ -198,6 +199,7 @@
     layer: 32768
   - type: Sprite
     sprite: _Starlight/Mobs/Net/net_eye.rsi
+    drawdepth: CyberspaceObjects
     layers:
     - map: ["base"]
       state: enemy

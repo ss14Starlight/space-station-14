@@ -119,6 +119,15 @@
   - type: SolutionScanner
   - type: IgnoreUIRange
   - type: ShowAntagIcons
+  - type: AdminGhostHud # Starlight BEGIN
+  - type: ShowCriminalRecordIcons
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowSyndicateIcons
+  - type: ShowHealthBars
+  - type: ShowHealthIcons
+  - type: ShowHungerIcons
+  - type: ShowThirstIcons # Starlight END
   - type: ShowContrabandDetails
   - type: Inventory
     templateId: aghost

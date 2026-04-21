@@ -224,6 +224,8 @@
       weight: 0.03
     - id: ClothingOuterCoatBomber
       weight: 0.03
+    - id: ClothingOuterCoatField # Starlight
+      weight: 0.03 # Starlight
     - id: ClothingEyesEyepatch
       weight: 0.03
     - id: ClothingMaskBreath

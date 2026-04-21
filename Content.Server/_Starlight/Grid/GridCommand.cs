@@ -40,10 +40,15 @@ public sealed class GridCommand : ToolshedCommand
     public IEnumerable<EntityUid> GetGrids([PipedArgument] IEnumerable<EntityUid> uids) => uids.Select(GetGrid);
 
     [CommandImplementation("getstation")]
-    public EntityUid GetStation([PipedArgument] EntityUid uid) => !TryComp<StationMemberComponent>(uid, out var member)
-        ? EntityUid.Invalid
-        : member.Station;
+    public EntityUid GetStation(IInvocationContext ctx, [PipedArgument] EntityUid uid)
+    {
+        if (TryComp<StationMemberComponent>(uid, out var member) || TryComp(Transform(uid).GridUid, out member))
+            return member.Station;
+        ctx.WriteMarkup($"[color=red]Entity {uid} is not on a station and is not a station grid.[/color]");
+        return EntityUid.Invalid;
+    }
 
     [CommandImplementation("getstation")]
-    public IEnumerable<EntityUid> GetStations([PipedArgument] IEnumerable<EntityUid> uids) => uids.Select(GetStation);
+    public IEnumerable<EntityUid> GetStations(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uids) =>
+        uids.Select(x => GetStation(ctx, x));
 }

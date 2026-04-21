@@ -298,6 +298,7 @@
   categories:
   - UplinkExplosives
 
+# starlight start
 - type: listing
   id: UplinkExplosiveGrenadeFlash
   name: uplink-flash-grenade-name
@@ -307,6 +308,7 @@
     Telecrystal: 1
   categories:
   - UplinkExplosives
+# starlight end
 
 - type: listing
   id: UplinkSmokeGrenade
@@ -366,7 +368,7 @@
   discountDownTo:
     Telecrystal: 3
   cost:
-    Telecrystal: 5
+    Telecrystal: 4
   categories:
     - UplinkExplosives
   conditions:
@@ -477,6 +479,7 @@
       tags:
       - NukeOpsUplink
 
+# starlight start
 - type: listing
   id: UplinkClusterGrenade
   name: uplink-cluster-grenade-name
@@ -489,6 +492,7 @@
     Telecrystal: 8
   categories:
   - UplinkExplosives
+# starlight end
 
 - type: listing
   id: UplinkGrenadeShrapnel
@@ -516,6 +520,7 @@
   categories:
   - UplinkExplosives
 
+# starlight start
 - type: listing
   id: UplinkEmpKit
   name: uplink-emp-kit-name
@@ -528,6 +533,7 @@
     Telecrystal: 6
   categories:
     - UplinkExplosives
+# starlight end
 
 # Ammo
 
@@ -762,7 +768,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 5
+    Telecrystal: 3
   categories:
   - UplinkChemicals
 
@@ -775,7 +781,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 4
+    Telecrystal: 3
   categories:
   - UplinkChemicals
 
@@ -1460,7 +1466,7 @@
   id: UplinkDarkGygax
   name: uplink-mech-teleporter-assault-name
   description: uplink-mech-teleporter-assault-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: darkgygax }
+  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/darkgygax.rsi, state: base }
   productEntity: CrateCybersunDarkGygaxBundle
   cost:
     Telecrystal: 75
@@ -1479,7 +1485,7 @@
   id: UplinkMauler
   name: uplink-mech-teleporter-heavy-name
   description: uplink-mech-teleporter-heavy-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: mauler }
+  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/mauler.rsi, state: base }
   productEntity: CrateCybersunMaulerBundle
   cost:
     Telecrystal: 100

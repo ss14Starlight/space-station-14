@@ -14,6 +14,12 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
+#region Starlight
+using Content.Shared.Item.ItemToggle;
+using Content.Shared.Light.Components;
+using Content.Shared.Light;
+#endregion
+
 namespace Content.Shared.Clothing.EntitySystems;
 
 public sealed class ToggleableClothingSystem : EntitySystem
@@ -27,6 +33,10 @@ public sealed class ToggleableClothingSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedStrippableSystem _strippable = default!;
+    #region Starlight
+    [Dependency] private readonly ItemToggleSystem _toggle = default!;
+    [Dependency] private readonly SharedHandheldLightSystem _lightSystem = default!;
+    #endregion
 
     public override void Initialize()
     {
@@ -219,7 +229,10 @@ public sealed class ToggleableClothingSystem : EntitySystem
         // As unequipped gets called in the middle of container removal, we cannot call a container-insert without causing issues.
         // So we delay it and process it during a system update:
         if (toggleComp.ClothingUid != null && toggleComp.Container != null)
+        {
             _containerSystem.Insert(toggleComp.ClothingUid.Value, toggleComp.Container);
+            _toggle.TryDeactivate(toggleComp.ClothingUid.Value, null, true, false); // Starlight-edit: deactivate after unequip.
+        }
     }
 
     /// <summary>
@@ -248,7 +261,13 @@ public sealed class ToggleableClothingSystem : EntitySystem
                 user, user);
         }
         else
+        {
             _inventorySystem.TryEquip(user, parent, component.ClothingUid.Value, component.Slot, triggerHandContact: true);
+            // Starlight-start
+            if (TryComp<HandheldLightComponent>(component.ClothingUid.Value, out var light))
+                _lightSystem.SetDrawSource(component.ClothingUid.Value, component.RedirectDraw ? target : null, light);
+            // Starlight-end
+        }
     }
 
     private void OnGetActions(EntityUid uid, ToggleableClothingComponent component, GetItemActionsEvent args)

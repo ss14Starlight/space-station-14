@@ -1,0 +1,25 @@
+- type: vendingMachineInventory
+  id: LegalDrobeInventory
+  startingInventory:
+    ClothingUniformJumpsuitLawyerService: 2
+    ClothingUniformJumpskirtLawyerService: 2
+    ClothingUniformJumpsuitLawyerGray: 2
+    ClothingUniformJumpskirtLawyerGray: 2
+    ClothingUniformJumpsuitLawyerPink: 2
+    ClothingUniformJumpskirtLawyerPink: 2
+    ClothingUniformJumpsuitLawyerBlackTwo: 2
+    ClothingUniformJumpskirtLawyerBlackTwo: 2
+    ClothingUniformJumpsuitLawyerBad: 2
+    ClothingUniformJumpskirtLawyerBad: 2
+    ClothingShoesBootsLaceup: 2
+    ClothingHeadsetService: 2
+    ClothingNeckLawyerbadge: 2
+    BriefcaseBrown: 2
+    BookSpaceLaw: 3
+    LuxuryPen: 2
+    HandLabeler: 2
+    EncryptionKeyService: 2
+  contrabandInventory:
+    # "Legally" obtained currency
+    SpaceCash100: 2
+    ToyFigurineLawyer: 1

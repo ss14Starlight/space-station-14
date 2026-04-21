@@ -1675,7 +1675,7 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
-    access: [["Lawyer"]]
+    access: [["IAA"]] # Starlight
 
 - type: entity
   parent: VendingMachine

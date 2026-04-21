@@ -1,0 +1,62 @@
+light_mode unshaded;
+
+uniform highp vec2 headPos;
+uniform highp vec2 tailPos;
+uniform highp float totalLength;
+uniform sampler2D noiseTex;
+
+varying highp vec2 worldPos;
+
+void vertex() {
+    worldPos = aPos;
+}
+
+highp float hash(highp vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+}
+
+// Sample tileable fBm from texture instead of computing it
+highp float fbm(highp vec2 p) {
+    return texture2D(noiseTex, fract(p * 0.25)).r;
+}
+
+void fragment() {
+    highp vec2 fragUV = FRAGCOORD.xy * SCREEN_PIXEL_SIZE;
+
+    highp float distFromHead = distance(fragUV, headPos);
+    highp float distFromTail = distance(fragUV, tailPos);
+    highp float totalDist = distFromHead + distFromTail;
+
+    highp float t = totalDist > 0.001 ? clamp(distFromTail / totalDist, 0.0, 1.0) : 1.0;
+    highp float alpha = t * t * 0.85;
+
+    // World-space cloud smoke from tileable texture
+    highp vec2 smokeUV = worldPos * 1.5 + vec2(TIME * 0.15, TIME * 0.08);
+    highp float cloud = fbm(smokeUV);
+    // Warp with second sample for organic feel
+    highp float cloud2 = fbm(smokeUV + vec2(cloud * 3.0, cloud * 2.0) + vec2(TIME * 0.04));
+    highp float detail = fbm(worldPos * 3.0 + vec2(-TIME * 0.1, TIME * 0.06));
+
+    highp float brightness = cloud2 * cloud2 * 0.1;
+    brightness += detail * detail * 0.08 * t;
+    highp vec3 col = vec3(brightness * 0.7, brightness * 0.6, brightness);
+
+    // Stars
+    highp vec2 starGrid = worldPos * 5.0;
+    highp vec2 starCell = floor(starGrid);
+    highp vec2 starLocal = fract(starGrid) - 0.5;
+
+    highp vec2 starOffset = vec2(hash(starCell), hash(starCell + vec2(73.0, 157.0))) - 0.5;
+    highp float starDist = length(starLocal - starOffset * 0.6);
+
+    highp float starChance = hash(starCell + vec2(31.0, 97.0));
+    highp float star = step(0.7, starChance) * (1.0 - smoothstep(0.0, 0.07, starDist));
+
+    highp float twinkle = 0.5 + 0.5 * sin(TIME * (2.0 + hash(starCell) * 4.0) + hash(starCell) * 6.28);
+    star *= twinkle;
+
+    highp float cloudDim = 1.0 - clamp(cloud2 * 0.5, 0.0, 0.5);
+    col += vec3(0.9, 0.92, 1.0) * star * cloudDim;
+
+    COLOR = vec4(col, alpha);
+}

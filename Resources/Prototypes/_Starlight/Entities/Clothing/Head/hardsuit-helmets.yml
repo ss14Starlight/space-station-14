@@ -1,6 +1,53 @@
+## ARCHETYPES
+# Head-mounted light archetypes. These are the archetypes we've identified and group helmet lights into.
+# Base types ClothingHeadLightBase and ClothingHeadSuitWithLightBase no longer have radius/energy specified,
+# so using one of the below archetypes is required.
+
+- type: entity
+  abstract: true
+  id: ClothingHeadLightParamsBasic # Basic, non-job specific, e.g. the firesuit helmet.
+  components:
+    - type: PointLight
+      radius: 5
+      energy: 1
+
+- type: entity
+  abstract: true
+  id: ClothingHeadLightParamsIntermediate # Intermediate, intended for non-combat jobs.
+  components:
+    - type: PointLight
+      radius: 5
+      energy: 2
+
+- type: entity
+  abstract: true
+  id: ClothingHeadLightParamsAdvanced # Advanced, intended for combatant jobs.
+  components:
+    - type: PointLight
+      radius: 6
+      energy: 3
+
+- type: entity
+  abstract: true
+  id: ClothingHeadLightParamsProfessional # Professional, for e.g. CE, ERT, Mining hardsuit.
+  components:
+    - type: PointLight
+      radius: 7
+      energy: 2.5
+
+- type: entity
+  abstract: true
+  id: ClothingHeadLightParamsFloodlight # Floodlight, for e.g. Advanced mining hardsuit.
+  components:
+    - type: PointLight
+      radius: 9
+      energy: 3
+
+## END OF ARCHETYPES
+
 #BSO Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsAdvanced ]
   id: ClothingHeadHelmetHardsuitBlueshield
   categories: [ HideSpawnMenu ]
   name: blue shield hardsuit helmet
@@ -29,7 +76,7 @@
 
 #NTREP Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsIntermediate ]
   id: ClothingHeadHelmetHardsuitNtrep
   categories: [ HideSpawnMenu ]
   name: NanoTrasen representative's hardsuit helmet
@@ -50,7 +97,7 @@
 
 #Clown Battlesuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsIntermediate ]
   id: ClothingHeadHelmetBattlesuitClown
   name: clown battlesuit helmet
   description: Armored battlesuit helmet for silly needs.
@@ -149,7 +196,7 @@
 
 # USSP
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseSovietContraband]
+  parent: [ ClothingHeadHardsuitBase, BaseSovietContraband, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsIntermediate ]
   id: ClothingHeadHelmetHardsuitSovietMarine
   name: SSF marine hardsuit helmet
   description: From the soviet dieselpunk world.
@@ -182,9 +229,7 @@
       - state: on-equipped-HELMET-unshaded-avali
         shader: unshaded
   - type: PointLight
-    color: green
-    radius: 6
-    energy: 5
+    color: "#50ff50"
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -200,7 +245,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsAdvanced ]
   id: ClothingHeadHelmetHardsuitLuxmax
   categories: [ HideSpawnMenu ]
   name: QM's luxury maxim hardsuit helmet
@@ -222,7 +267,7 @@
 
 # Experimental Security Hardsuit
 - type: entity
-  parent: [ ClothingHeadHelmetHardsuitSecurity, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHelmetHardsuitSecurity, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsAdvanced ]
   id: ClothingHeadHelmetHardsuitSecurityExperimental
   name: experimental security hardsuit helmet
   description: Heavily armored hardsuit helmet for security needs, now with lights!
@@ -233,8 +278,6 @@
     sprite: _Starlight/Clothing/Head/Hardsuits/experimental_security.rsi
   - type: PointLight
     color: "#ffeead"
-    radius: 7
-    energy: 3
   - type: Armor
     modifiers:
       coefficients:
@@ -247,7 +290,7 @@
 
 #Spationaut Lead Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsAdvanced ]
   id: ClothingHeadHelmetHardsuitSpatioLead
   name: spationaut lead hardsuit helmet
   description: A sturdy decorated helmet designed for complex industrial operations in space.
@@ -317,8 +360,6 @@
         - state: equipped-head-avali
         - state: equipped-head-unshaded-avali
           shader: unshaded
-  - type: PointLight
-    radius: 6
   - type: PressureProtection
     highPressureMultiplier: 0.72
     lowPressureMultiplier: 1000
@@ -328,7 +369,7 @@
 
 #Advanced Mining Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsFloodlight ]
   id: ClothingHeadHelmetHardsuitAdvancedMining
   name: advanced mining hardsuit helmet
   description: A specially designed helmet for mining operations.
@@ -394,9 +435,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
-  - type: PointLight
-    radius: 9
-    energy: 3
   - type: Armor
     modifiers:
       coefficients:
@@ -410,7 +448,7 @@
 
 #Mining Hardsuit
 - type: entity
-  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsProfessional ]
   id: ClothingHeadHelmetHardsuitMining
   name: mining hardsuit helmet
   description: A special helmet designed for work in a hazardous, low pressure environments encountered during space mining. Has dual floodlights.
@@ -476,9 +514,6 @@
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
-  - type: PointLight
-    radius: 9
-    energy: 3
   - type: Tag
     tags:
       - CorgiWearable
@@ -524,7 +559,7 @@
 # NanoTrasen Special Forces
 
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsProfessional ]
   id: ClothingHeadHelmetHardsuitNTSF
   name: NanoTrasen special forces hardsuit helmet
   description: A robust helmet for special operations.
@@ -556,7 +591,7 @@
       - state: equipped-head-unshaded
         shader: unshaded
   - type: PointLight
-    color: "#b4eb8f"
+    color: "#b8dfff"
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -575,7 +610,7 @@
         Caustic: 0.80
 
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsProfessional ]
   id: ClothingHeadHelmetHardsuitDecimus
   name: decimus hardsuit helmet
   description: A robust helmet for special operations.

@@ -21,17 +21,3 @@
         - id: BoxFolderBlack
         - id: Pen
 
-- type: entity
-  parent: ClothingBackpackSyndicateBundle
-  id: ClothingBackpackSyndicateElegantRaidBundle
-  name: syndicate elegant raid suit bundle
-  description: "Contains the Syndicate's durable raid armor suit, now more elegant."
-  components:
-    - type: EntityTableContainerFill
-      containers:
-        storagebase: !type:AllSelector
-          children:
-            - id: ClothingOuterMaidArmorRaid
-            - id: ClothingHeadHelmetRaid
-            - id: ClothingHandsGlovesCombat
-            - id: ClothingUnderSocksMurder

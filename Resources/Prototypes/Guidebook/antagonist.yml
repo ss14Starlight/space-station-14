@@ -66,6 +66,10 @@
   id: Wizard
   name: guide-entry-wizard
   text: "/ServerInfo/Guidebook/Antagonist/Wizard.xml"
+  # Moffstation - Start - Wizard Duelist
+  children:
+  - WizardDuel
+  # Moffstation - End
 
 - type: guideEntry
   id: Xenoborgs

@@ -78,6 +78,7 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly IGameTiming Timing = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly GasTankSystem _gasTank = default!;
+    [Dependency] private readonly SharedWiresSystem _wires = default!;
 #endregion Starlight
 
 
@@ -433,7 +434,7 @@ public sealed partial class MechSystem : SharedMechSystem
 
         if (!component.MaintenanceMode)
         {
-            _popup.PopupEntity("You need to turn on maintenance mode first!", uid, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString("mech-requires-maintenance-mode"), uid, PopupType.MediumCaution);
             return;
         }
 
@@ -443,14 +444,37 @@ public sealed partial class MechSystem : SharedMechSystem
         RemoveEquipment(uid, equip, component);
     }
 
+    #region Starlight
     private void OnMaintenanceMessage(EntityUid uid, MechComponent component, MechMaintenanceUiMessage args)
     {
-        component.MaintenanceMode = args.Toggle;
+        TryToggleMaintenanceMode(uid, component, args.Toggle);
 
         Dirty(uid, component); // Starlight-edit: Update Maintenance State
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
     }
+
+    private void TryToggleMaintenanceMode(EntityUid uid, MechComponent component, bool toggle)
+    {
+        if (TryComp<WiresPanelComponent>(uid, out var panelComp))
+        {
+            _wires.TogglePanel(uid, panelComp, toggle, uid);
+        }
+
+        if (component.MaintenanceMode != toggle)
+        {
+            var popupString = toggle ? "mech-maintenance-enabled" : "mech-maintenance-disabled";
+            _popup.PopupPredicted(Loc.GetString(popupString), uid, uid);
+
+            var panelSound = toggle ? component.MaintenanceOnSound : component.MaintenanceOffSound;
+            _audioSystem.PlayPredicted(panelSound, uid, uid);
+        }
+
+        component.MaintenanceMode = toggle;
+
+        UpdateUserInterface(uid, component);
+    }
+    #endregion
 
     private void OnOpenUi(EntityUid uid, MechComponent component, MechOpenUiEvent args)
     {
@@ -469,12 +493,17 @@ public sealed partial class MechSystem : SharedMechSystem
         if (!args.CanAccess || !args.CanInteract)
             return;
 
-        var openUiVerb = new AlternativeVerb
+        // Starlight begin - restrict UI verb to pilot, if pilot present
+        if (IsEmpty(component) || args.User == component.PilotSlot.ContainedEntity)
         {
-            Act = () => ToggleMechUi(uid, component, args.User),
-            Text = Loc.GetString("mech-ui-open-verb")
-        };
-        args.Verbs.Add(openUiVerb);
+            var openUiVerb = new AlternativeVerb
+            {
+                Act = () => ToggleMechUi(uid, component, args.User),
+                Text = Loc.GetString("mech-ui-open-verb")
+            };
+            args.Verbs.Add(openUiVerb);
+        }
+        // Starlight end
 
         if (component.Broken)
             return;
@@ -539,6 +568,7 @@ public sealed partial class MechSystem : SharedMechSystem
                 _hands.DoDrop((args.Args.User, handsComponent), hand);
 
         TryInsert(uid, args.Args.User, component);
+        _ui.CloseUis(uid); // Starlight - close any UIs upon mech entry
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
 
         _factionSystem.Up(args.Args.User, uid);
