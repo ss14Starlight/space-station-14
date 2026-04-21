@@ -64,7 +64,7 @@ public sealed partial class ActorRouter : IActorRouter, IDisposable
         return false;
     }
 
-    public bool TryCreateObjectReference<TGrainObserverInterface>(IGrainObserver obj, [NotNullWhen(true)] out TGrainObserverInterface? objectReference) 
+    public bool TryCreateObjectReference<TGrainObserverInterface>(IGrainObserver obj, [NotNullWhen(true)] out TGrainObserverInterface? objectReference)
         where TGrainObserverInterface : IGrainObserver
     {
         if (OrleansClientHolder.Client is { } client)

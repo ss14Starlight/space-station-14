@@ -28,7 +28,7 @@ public sealed class TerrorEggSystem : AccUpdateEntitySystem
     private void RemoveEgg(Entity<EggHolderComponent> ent, ref ComponentShutdown args) => _eggs.Remove(ent.Owner);
 
     protected override float Threshold { get; set; } = 1f;
-    protected override void AccUpdate()
+    protected override void AccUpdate(float _)
     {
         foreach (var egg in _eggs)
         {

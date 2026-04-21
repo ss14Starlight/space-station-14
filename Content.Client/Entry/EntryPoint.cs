@@ -138,7 +138,7 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
             _prototypeManager.RegisterIgnore("codewordGenerator");
             _prototypeManager.RegisterIgnore("codewordFaction");
-            
+
             _prototypeManager.RegisterIgnore("onSignActions"); //🌟Starlight🌟
 
             _documentManager.Initialize(); // Starlight
@@ -152,7 +152,7 @@ namespace Content.Client.Entry
             _viewportManager.Initialize();
             _ghostKick.Initialize();
             _extendedDisconnectInformation.Initialize();
-            _jobRequirements.Initialize();
+            //_jobRequirements.Initialize(); //🌟Starlight🌟 - Moved to PostInit
             _playbackMan.Initialize();
             _clientsidePlaytimeManager.Initialize();
 
@@ -185,6 +185,8 @@ namespace Content.Client.Entry
             _userInterfaceManager.SetActiveTheme(_configManager.GetCVar(CVars.InterfaceTheme));
             _documentParsingManager.Initialize();
             _titleWindowManager.Initialize();
+
+            _jobRequirements.Initialize(); //🌟Starlight🌟
 
             _baseClient.RunLevelChanged += (_, args) =>
             {

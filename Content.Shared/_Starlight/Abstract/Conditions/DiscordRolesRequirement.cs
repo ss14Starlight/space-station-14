@@ -20,7 +20,7 @@ public sealed partial class DiscordRolesRequirement : BaseRequirement
             return "";
 
         var requirement = Loc.GetString(
-                    "roles-req-any-role-required",
+                    "roles-req-any-role-required-fail",
                     ("discord", Loc.GetString(roleReq.Discord)),
                     ("roles", Loc.GetString(roleReq.RolesLoc)));
         return requirement;
@@ -31,7 +31,7 @@ public sealed partial class DiscordRolesRequirement : BaseRequirement
         base.Handle(user);
 
         return Requirement is not null
-            && _protos.TryIndex(Requirement, out var roleReq) 
+            && _protos.TryIndex(Requirement, out var roleReq)
             && _nulllinkPlayerRoles.IsAnyRole(user, roleReq.Roles);
     }
 }

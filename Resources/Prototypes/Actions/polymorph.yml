@@ -47,6 +47,7 @@
   - type: InstantAction
     event: !type:PolymorphActionEvent
       protoId: WizardRod
+  - type: EorgPreventAction # Starlight
 
 - type: entity
   parent: BaseActionPolymorph

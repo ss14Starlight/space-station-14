@@ -102,7 +102,7 @@
       state: crypt_blue
     - sprite: Objects/Devices/encryption_keys.rsi
       state: com_label
-      
+
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyMerchant
@@ -122,7 +122,7 @@
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyBlackstar
-  name: blackstar encryption key
+  name: Blackstar encryption key
   description: An encryption key used by elite Blackstar mercenaries.
   components:
     - type: EncryptionKey
@@ -135,6 +135,66 @@
           state: crypt_brown
         - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
           state: blackstar_label
+
+- type: entity
+  parent: [ EncryptionKey, BaseMagicalContraband ]
+  id: EncryptionKeyWinds
+  name: winds of magic encryption key
+  description: An encryption key that grants limited access to the Winds of Magic.
+  components:
+    - type: EncryptionKey
+      channels:
+        - Winds
+      defaultChannel: Winds
+    - type: Sprite
+      layers:
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: crypt_purple
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: wizard_label
+
+- type: entity
+  parent: EncryptionKeyWinds
+  id: EncryptionKeyWindsUnremovable
+  name: winds of magic encryption key
+  description: An encryption key that grants permanent access to the Winds of Magic.
+  suffix: Unremovable
+  components:
+    - type: Unremoveable
+
+- type: entity
+  parent: [ EncryptionKey, BaseMagicalContraband ]
+  id: EncryptionKeyWizardMaster
+  name: wizard encryption key
+  description: A magical encryption key used by members of the Space Wizards Federation.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    - Law
+    - Winds
+    defaultChannel: Winds
+  - type: Sprite
+    layers:
+    - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+      state: crypt_purple
+    - state: cap_label
+
+- type: entity
+  parent: EncryptionKeyWizardMaster
+  id: EncryptionKeyWizardMasterUnremovable
+  name: wizard encryption key
+  description: A magical encryption key used by members of the Space Wizards Federation.
+  suffix: Unremovable
+  components:
+    - type: Unremoveable
 
 - type: entity
   parent: EncryptionKey
@@ -171,3 +231,20 @@
           state: crypt_purple
         - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
           state: global_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyMedTak
+  name: MedTak encryption key
+  description: An encryption key used by MedTak operators.
+  components:
+    - type: EncryptionKey
+      channels:
+        - MedTak
+      defaultChannel: MedTak
+    - type: Sprite
+      layers:
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: crypt_medtak
+        - sprite: _Starlight/Objects/Devices/encryption_keys.rsi
+          state: medtak_label

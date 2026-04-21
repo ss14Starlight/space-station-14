@@ -25,7 +25,7 @@ public sealed partial class SpeciesRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason)
+        out FormattedMessage reason) // Starlink: Always return reason
     {
         reason = new FormattedMessage();
 
@@ -33,14 +33,31 @@ public sealed partial class SpeciesRequirement : JobRequirement
             return true;
 
         var sb = new StringBuilder();
-        sb.Append("[color=yellow]");
+        // Starlight: No color here, in .ftl instead
         foreach (var s in Species)
         {
             sb.Append(Loc.GetString(protoManager.Index(s).Name) + " ");
         }
+        // Starlight: No color here, in .ftl instead
 
-        sb.Append("[/color]");
+        // Starlight BEGIN
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            Inverted ? "role-timer-blacklisted-species-pass" : "role-timer-whitelisted-species-pass",
+            ("species", sb)));
+        var hasRequiredSpecies = Species.Contains(profile.Species);
 
+        // !Inverted = Whitelist mode, meaning player must be ONE of the species.
+        // Inverted = Blacklist mode, meaning player must be NONE of the species.
+        if (!Inverted == hasRequiredSpecies)
+            return true;
+
+        // Change to fail message.
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            Inverted ? "role-timer-blacklisted-species-fail" : "role-timer-whitelisted-species-fail",
+            ("species", sb)));
+        return false;
+
+        /*
         if (!Inverted)
         {
             reason = FormattedMessage.FromMarkupPermissive($"{Loc.GetString("role-timer-whitelisted-species")}\n{sb}");
@@ -56,6 +73,6 @@ public sealed partial class SpeciesRequirement : JobRequirement
                 return false;
         }
 
-        return true;
+        return true; */ // Starlight END
     }
 }

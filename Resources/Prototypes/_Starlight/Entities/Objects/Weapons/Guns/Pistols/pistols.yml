@@ -168,6 +168,9 @@
               - CartridgePistolDP
     - type: StealTarget
       stealGroup: OfficerHandgun
+    - type: Engraveable
+      engraveVerb: "engraving-verb-engrave"
+
 
 - type: entity
   name: sp-8t
@@ -182,7 +185,7 @@
     - type: ChamberMagazineAmmoProvider
     - type: StealTarget
       stealGroup: BSOWeapon
-      
+
 - type: entity
   name: sp-8ar
   parent: [WeaponPistolDP, BaseSecurityContraband]

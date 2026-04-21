@@ -40,12 +40,10 @@
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
-  - MedicalGloves
   - MedicalBackpack
   - MedicalDoctorOuterClothing
   - MedicalShoes
   - MedicalDoctorPDA
-  - MedicalEyewear
   - SurvivalMedical
   - Trinkets
   - Scarves
@@ -71,14 +69,15 @@
 - type: roleLoadout
   id: JobIAA
   groups:
-  - LawyerNeck
-  - LawyerJumpsuit
+  - IAANeck
+  - IAAJumpsuit
   - CommonBackpack
-  - LawyerShoes
+  - IAAShoes
   - Trinkets
   - Scarves
   - Pins
   - LuxuryPens
+  - LawyerJobTrinkets
   - Survival
   - GroupSpeciesBreathTool
 
@@ -284,3 +283,11 @@
   - Trinkets
   - Survival
   - GroupSpeciesBreathTool
+
+# Wizard duelist from Moff Station. Placed here instead of in Moff's files since they're not a free agent here.
+- type: roleLoadout
+  id: RoleSurvivalWizardDuelist
+  groups:
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness

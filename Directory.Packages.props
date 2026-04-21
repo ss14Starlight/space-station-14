@@ -10,19 +10,22 @@
     <PackageVersion Include="CSCore" Version="1.2.1.2" />
     <PackageVersion Include="CsvHelper" Version="33.1.0" />
     <PackageVersion Include="ImGui.NET" Version="1.87.3" />
+    <!-- Starlight -->
+    <PackageVersion Include="MonoMod.RuntimeDetour" Version="25.3.4" />
+    <!-- Starlight -->
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="10.0.0" />
     <PackageVersion Include="NetCord" Version="1.0.0-alpha.388" />
-    <PackageVersion Include="Microsoft.Orleans.Client" Version="9.2.1" />
-    <PackageVersion Include="Microsoft.Orleans.Clustering.Redis" Version="9.2.1" />
-    <PackageVersion Include="Microsoft.Orleans.Sdk" Version="9.2.1" />
+    <PackageVersion Include="Microsoft.Orleans.Client" Version="10.0.1" />
+    <PackageVersion Include="Microsoft.Orleans.Clustering.Redis" Version="10.0.1" />
+    <PackageVersion Include="Microsoft.Orleans.Sdk" Version="10.0.1" />
     <PackageVersion Include="NAudio" Version="2.2.1" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
     <PackageVersion Include="OggVorbisEncoder" Version="1.2.2" />
-    <PackageVersion Include="SS14.Starlight.NullLink" Version="1.0.30" />
+    <PackageVersion Include="SS14.Starlight.NullLink" Version="1.0.59" />
     <PackageVersion Include="OpenTK" Version="4.9.4" />
     <PackageVersion Include="StackExchange.Redis" Version="2.10.1" />
     <PackageVersion Include="Veldrid" Version="4.8.0" />

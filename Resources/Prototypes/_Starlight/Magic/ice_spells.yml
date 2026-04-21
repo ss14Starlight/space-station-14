@@ -27,6 +27,7 @@
     sentence: action-speech-spell-icestorm
     tts: action-speech-spell-icestorm-tts
     modifier: Spell
+  - type: EorgPreventAction # Starlight
 
 # Starlight: Ice Storm projectile
 - type: entity

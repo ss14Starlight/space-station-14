@@ -50,6 +50,16 @@
   - type: ResearchClient
   - type: TechnologyDatabase
   - type: StationAiWhitelist #Starlight
+# SL Start: Lighting Update
+  - type: LitOnPowered
+  - type: PointLight
+    autoRot: true
+    color: "#2f6b2b"
+    radius: 2
+    energy: 1.5
+    castShadows: false
+# SL End
+
 
 # a lathe that can be sped up with space lube / slowed down with glue
 - type: entity
@@ -144,7 +154,7 @@
     - StarlightSyndicateAmmoStatic
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
-    - StarlightSecurityAmmoEmagStatic 
+    - StarlightSecurityAmmoEmagStatic
     # Starlight end
     #- SecurityAmmoStatic # SL disable in favor of prior three lines
     - SyndicateAmmoStatic

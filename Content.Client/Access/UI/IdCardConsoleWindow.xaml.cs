@@ -258,16 +258,16 @@ namespace Content.Client.Access.UI
                     if (!_prototypeManager.TryIndex(groupId, out var proto))
                         continue;
 
-                    var groupTags = proto.Tags.Where(tag => 
-                        _prototypeManager.TryIndex<AccessLevelPrototype>(tag, out var accessProto) && 
+                    var groupTags = proto.Tags.Where(tag =>
+                        _prototypeManager.TryIndex<AccessLevelPrototype>(tag, out var accessProto) &&
                         accessProto.CanAddToIdCard).ToList();
-                    
+
                     if (groupTags.Count == 0)
                         continue;
-                        
+
                     var matchingTags = groupTags.Count(tag => allowedAccess.Contains(tag));
                     var threshold = Math.Max(1, Math.Min(3, groupTags.Count / 2));
-                    
+
                     if (matchingTags >= threshold)
                         groupsWithCoverage.Add(groupId);
                 }

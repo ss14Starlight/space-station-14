@@ -16,7 +16,7 @@
       - state: rollerbed
         map: ["unfoldedLayer"]
       - state: rollerbed_folded
-        map: ["foldedLayer"] 
+        map: ["foldedLayer"]
         visible: false
       - state: rollerbed_buckled
         map: ["buckledLayer"]
@@ -80,6 +80,9 @@
             True: {visible: false}
     - type: StaticPrice
       price: 120
+    - type: Tag # Starlight edit: add tag
+      tags:
+      - RollerBed
 
 - type: entity
   parent: RollerBed

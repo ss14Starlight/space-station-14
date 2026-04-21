@@ -25,7 +25,7 @@
             ChiefEngineer: [ 1, 1 ]
             ResearchDirector: [ 1, 1 ]
             Quartermaster: [ 1, 1 ]
-            #service 
+            #service
             Bartender: [ 1, 2 ]
             Botanist: [ 2, 2 ]
             Chef: [ 2, 2 ]
@@ -34,26 +34,26 @@
             Librarian: [ 1, 1 ]
             ServiceWorker: [ 2, 2 ]
             Reporter: [ 2, 2 ]
-            #engineering 
+            #engineering
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 4, 4 ]
             TechnicalAssistant: [ 4, 4 ]
-            #medical 
+            #medical
             Chemist: [ 2, 2 ]
             MedicalDoctor: [ 3, 3 ]
             Paramedic: [ 1, 1 ]
             MedicalIntern: [ 4, 4 ]
             Surgeon: [ 1, 2 ]
-            #science 
+            #science
             Scientist: [ 5, 5 ]
             ResearchAssistant: [ 4, 4 ]
             Roboticist: [ 2, 2 ]
-            #security 
+            #security
             Warden: [ 1, 1 ]
             SecurityOfficer: [ 8, 10 ]
             DutyOfficer: [ 1, 1 ]
             Detective: [ 1, 1 ]
-            SecurityCadet: [ 4, 6 ] 
+            SecurityCadet: [ 4, 6 ]
             Brigmedic: [ 1, 1 ]
             #supply
             SalvageSpecialist: [ 6, 6 ]
@@ -73,8 +73,8 @@
             Borg: [ 2, 4 ]
             #law
             Magistrate: [ 1, 1 ]
-            IAA: [ 2, 2 ]      
-            #Representives
+            IAA: [ 2, 2 ]
+            #Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]

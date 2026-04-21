@@ -24,7 +24,7 @@
       storagebase: !type:AllSelector
         children:
         - id: Stunbaton
-        - id: Handcuffs    
+        - id: Handcuffs
         - id: Brutepack
         - id: Ointment
         - id: Gauze
@@ -39,7 +39,7 @@
       storagebase: !type:AllSelector
         children:
         - id: Stunbaton
-        - id: Handcuffs    
+        - id: Handcuffs
         - id: Brutepack
         - id: Ointment
         - id: Gauze
@@ -54,14 +54,14 @@
       storagebase: !type:AllSelector
         children:
         - id: Stunbaton
-        - id: Handcuffs    
+        - id: Handcuffs
         - id: Brutepack
         - id: Ointment
         - id: Gauze
 
 - type: entity
   id: ClothingBeltBlueShieldWebbingFilled
-  parent: ClothingBeltBlueShieldWebbing 
+  parent: ClothingBeltBlueShieldWebbing
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -147,7 +147,7 @@
         - id: GrenadeFlashBang
         - id: TearGasGrenade
         - id: MedkitCombatFilled
-    
+
 - type: entity
   id: ClothingBeltNTNCRigFilledMed
   parent: ClothingBeltNTNCRig

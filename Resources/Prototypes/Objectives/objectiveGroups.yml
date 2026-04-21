@@ -51,7 +51,7 @@
     CriminalReportsStealObjective: 0.75 #Starlight Unique Target
     SecureKnowledgeStealObjective:  0.75 #Starlight Unique Target
     # Starlight end
-    
+
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKill

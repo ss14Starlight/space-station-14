@@ -44,56 +44,43 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMusician
-      time: 72000 # 10hr
+      time: 72000 # 20hr
   storage:
     back:
     - TrumpetInstrument
   groupBy: "Instruments"
-  
-- type: loadout
-  id: CoderSocks
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    shoes: ClothingUnderSocksCoder
 
-# Meow mrrp ## shut up ### no :3
-
+# Headphones
 - type: loadout
-  id: CatEars
+  id: ReporterHeadphonesTrinket
   effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    head: ClothingHeadHatWhiteCatEars
-  groupBy: "cat ears"
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobReporter
+      time: 36000 # 10hr
+  storage:
+    back:
+    - ClothingMultipleHeadphonesReporter
+  groupBy: "Headphones"
 
 - type: loadout
-  id: BunnyEars
+  id: HighEndHeadphones
   effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    head: ClothingHeadHatBunny
-  groupBy: "cat ears"
-
-- type: loadout
-  id: DogEars
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    head: ClothingHeadHatDogEars
-  groupBy: "cat ears"
+      - !type:JobRequirementLoadoutEffect
+        requirement:
+          !type:RoleTimeRequirement
+          role: JobReporter
+          time: 36000 #10hr
+      - !type:JobRequirementLoadoutEffect
+        requirement:
+          !type:RoleTimeRequirement
+          role: JobMusician
+          time: 36000 #10hr
+  storage:
+    back:
+    - ClothingMultipleHeadphonesHighEnd
+  groupBy: "Headphones"
 
 - type: loadout
   id: RolliePack
@@ -396,7 +383,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMailTech
-      time: 18000 # 5 hours of being ignored while carrying a parcelbomb. 
+      time: 18000 # 5 hours of being ignored while carrying a parcelbomb.
   equipment:
     shoes: ClothingShoesSkates
 
@@ -578,12 +565,6 @@
   equipment:
     shoes: ClothingClothWrap
   groupBy: "cloth wraps"
-  
-- type: loadout
-  id: PawBootTrinket
-  equipment:
-    shoes: ClothingShoesPawBoots
-  groupBy: "Paw Boots"
 
 - type: loadout
   id: ClothWrapGloveTrinket
@@ -591,61 +572,26 @@
     gloves: ClothingClothWrap
   groupBy: "cloth wraps"
 
-# Maid Outfits
 - type: loadout
-  id: MaidOutfit
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtElegantMaid
-  groupBy: "maid outfit"
+  id: TreasureCoinIron
+  storage:
+    back:
+      - TreasureCoinIron
 
 - type: loadout
-  id: MaidGloves
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40 hr
-  equipment:
-    gloves: ClothingHandsMaidGlovesElegant
-  groupBy: "maid outfit"
+  id: TreasureCoinSilver
+  storage:
+    back:
+      - TreasureCoinSilver
 
 - type: loadout
-  id: TacticalMaidGloves
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:DepartmentTimeRequirement
-        department: Security
-        time: 216000 # 60 hours of charging batong
-  equipment:
-    gloves: ClothingHandsTacticalMaidGlovesDelicate
-  groupBy: "maid outfit"
+  id: TreasureCoinGold
+  storage:
+    back:
+      - TreasureCoinGold
 
 - type: loadout
-  id: MaidOutfitTactical
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:DepartmentTimeRequirement
-        department: Security
-        time: 216000 # 60 hours of charging batong
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtTacticalMaid
-  groupBy: "maid outfit"
-
-- type: loadout
-  id: MaidHeadbandTactical
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:DepartmentTimeRequirement
-        department: Security
-        time: 216000 # 60 hours of charging batong
-  equipment:
-    head: ClothingHeadHatTacticalMaidHeadband
-  groupBy: "maid outfit"
+  id: PictureFrame
+  storage:
+    back:
+      - PictureFrame
