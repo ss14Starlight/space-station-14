@@ -20,6 +20,7 @@
   components:
   - type: Inventory
     speciesId: arachnid
+    templateId: arachnid
 
 - type: entity
   id: BaseInventoryAvali
