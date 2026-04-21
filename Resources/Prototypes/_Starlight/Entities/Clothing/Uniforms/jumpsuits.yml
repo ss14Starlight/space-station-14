@@ -323,25 +323,25 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitMimeSexyWhite
-  name: sexy mime costume with white pants
-  description: A sexy mime costume with white pants combines playful charm and allure. The outfit typically features a fitted top, suspenders, and white trousers, with bold black-and-white details. It's perfect for an entertaining yet chic look, exuding both mystery and flirtation.
+  id: ClothingUniformJumpsuitMimeSuaveWhite
+  name: suave mime costume with white pants
+  description: A suave mime costume with white pants combines playful charm and allure. The outfit typically features a fitted top, suspenders, and white trousers, with bold black-and-white details. It's perfect for an entertaining yet chic look, exuding both mystery and confidence.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sexy-mime.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suave-mime.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sexy-mime.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suave-mime.rsi
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitMimeSexyBlack
-  name: sexy mime costume with black pants
-  description: A sexy mime costume with black pants combines playful charm and allure. The outfit typically features a fitted top, suspenders, and white trousers, with bold black-and-white details. It's perfect for an entertaining yet chic look, exuding both mystery and flirtation.
+  id: ClothingUniformJumpsuitMimeSuaveBlack
+  name: suave mime costume with black pants
+  description: A suave mime costume with black pants combines playful charm and allure. The outfit typically features a fitted top, suspenders, and white trousers, with bold black-and-white details. It's perfect for an entertaining yet chic look, exuding both mystery and confidence.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sexy-mime-black.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suave-mime-black.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sexy-mime-black.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suave-mime-black.rsi
 
 - type: entity
   parent: ClothingUniformBase

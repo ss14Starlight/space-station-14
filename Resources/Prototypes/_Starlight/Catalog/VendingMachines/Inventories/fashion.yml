@@ -259,8 +259,8 @@
       stock: 1
 
 - type: listing
-  id: ClothingUniformJumpsuitMimeSexyWhite
-  productEntity: ClothingUniformJumpsuitMimeSexyWhite
+  id: ClothingUniformJumpsuitMimeSuaveWhite
+  productEntity: ClothingUniformJumpsuitMimeSuaveWhite
   cost:
     NTCredit: 400
   categories:
@@ -270,8 +270,8 @@
       stock: 1
 
 - type: listing
-  id: ClothingUniformJumpsuitMimeSexyBlack
-  productEntity: ClothingUniformJumpsuitMimeSexyBlack
+  id: ClothingUniformJumpsuitMimeSuaveBlack
+  productEntity: ClothingUniformJumpsuitMimeSuaveBlack
   cost:
     NTCredit: 400
   categories:
