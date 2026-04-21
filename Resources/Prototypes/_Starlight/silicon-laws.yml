@@ -435,3 +435,34 @@
   - NTNC2
   - NTNC3
   obeysTo: laws-owner-centcom
+
+# MedTak lawset
+- type: siliconLaw
+  id: MedTak0
+  order: 0
+  lawString: law-medtak-0
+
+- type: siliconLaw
+  id: MedTak1
+  order: 1
+  lawString: law-medtak-1
+
+- type: siliconLaw
+  id: MedTak2
+  order: 2
+  lawString: law-medtak-2
+
+- type: siliconLaw
+  id: MedTak3
+  order: 3
+  lawString: law-medtak-3
+
+- type: siliconLawset
+  id: MedTakLawset
+  name: law-medtak-name
+  startAtZero: true
+  laws:
+  - MedTak0
+  - MedTak1
+  - MedTak2
+  obeysTo: laws-owner-you

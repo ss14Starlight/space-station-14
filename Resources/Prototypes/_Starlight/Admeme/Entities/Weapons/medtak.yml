@@ -62,7 +62,7 @@
   name: CODE-9 "Compliance"
   parent: [ BaseWeaponRifle, BaseMedTakContraband ]
   id: WeaponRifleMedTak
-  description: "A bullpuped lightweight rifle designed for MedTak operators.\nAccepts heavy .20 rifle magazines."
+  description: "A bullpuped heavy rifle designed for MedTak operators.\nAccepts heavy .20 rifle magazines."
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/Weapons/MedTak/Rifle.rsi
@@ -77,6 +77,10 @@
     sprite: _Starlight/Admeme/Weapons/MedTak/Rifle.rsi
   - type: Gun
     fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    - SemiAuto
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/aussec.ogg
       params:
@@ -104,6 +108,51 @@
     steps: 4
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  name: CODE-9 ROW
+  parent: BaseItem
+  id: WeaponRifleMedTakROW
+  description: "A cut-down CODE-9 designed for cyborgs, feeding from a slowly recharging internal ammo fabricator"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Weapons/MedTak/CyborgRifle.rsi
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-2
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Item
+    size: Huge
+  - type: Gun
+    fireRate: 7
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/aussec.ogg
+      params:
+        volume: -4
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeRifle
+    capacity: 24
+    proto: CartridgeRifleSP
+    cycleable: false
+  - type: BallisticAmmoSelfRefiller
+    autoRefillRate: 4s
+    affectedByEmp: true
+  - type: AmmoCounter
 
 # Pistol
 - type: entity

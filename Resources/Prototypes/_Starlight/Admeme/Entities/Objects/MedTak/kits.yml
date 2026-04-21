@@ -57,7 +57,7 @@
     - bottle8
   - type: Appearance
   - type: ExplosionResistance
-    damageCoefficient: 0.1
+    damageCoefficient: 0
 
 # MedKit
 - type: entity

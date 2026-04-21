@@ -9,3 +9,4 @@ chat-radio-winds = Winds of Magic
 chat-radio-global = Global
 chat-radio-aspace = Aspace
 chat-radio-medtak = MedTak
+chat-radio-medtak-borg = MedTak Silicon

@@ -204,6 +204,10 @@
             "copyright": "SevenShades"
         },
         {
+            "name": "MedTakBorg",
+            "copyright": "SevenShades"
+        },
+        {
             "name": "MedTak_Mindshield",
             "copyright": "SevenShades",
             "delays": [ [ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ] ]
