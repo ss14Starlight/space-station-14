@@ -37,6 +37,9 @@
     grid:
     - 0,0,3,1
     hideStackVisualsWhenClosed: false
+    whitelist:
+      tags:
+      - Bottle
   - type: Item
     sprite: _Starlight/Admeme/Objects/MedTak/cases.rsi
     size: Small
