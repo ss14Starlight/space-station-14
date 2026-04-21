@@ -18,12 +18,12 @@ public sealed class MechNightVisionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<MechEquipmentActionComponent, MechToggleNightVisionEvent>(OnNightVisionToggle);
+        SubscribeLocalEvent<MechNightVisionComponent, MechToggleNightVisionEvent>(OnNightVisionToggle);
 
-        SubscribeLocalEvent<MechComponent, BeforePilotEjectEvent>(OnPilotEject);
+        SubscribeLocalEvent<MechNightVisionComponent, BeforePilotEjectEvent>(OnPilotEject);
     }
 
-    private void OnNightVisionToggle(EntityUid uid, MechEquipmentActionComponent comp, ref MechToggleNightVisionEvent args)
+    private void OnNightVisionToggle(EntityUid uid, MechNightVisionComponent comp, ref MechToggleNightVisionEvent args)
     {
         if (!TryComp<MechEquipmentComponent>(uid, out var equipmentComp)
             || equipmentComp.EquipmentOwner == null
@@ -38,28 +38,28 @@ public sealed class MechNightVisionSystem : EntitySystem
         }
         else
         {
-            RemComp<NightVisionComponent>(mechComp.PilotSlot.ContainedEntity.Value);
+            if (comp.EquipmentComponentAdded) // Only remove if we actually added this component
+                RemComp<NightVisionComponent>(mechComp.PilotSlot.ContainedEntity.Value);
             comp.EquipmentComponentAdded = false;
         }
 
         comp.EquipmentToggled = !comp.EquipmentToggled;
 
-        _actions.SetToggled(comp.EquipmentActionEntity, comp.EquipmentToggled);
+        _actions.SetToggled((args.Action.Owner, args.Action.Comp), comp.EquipmentToggled);
     }
 
-    private void OnPilotEject(EntityUid uid, MechComponent component, ref BeforePilotEjectEvent args)
+    private void OnPilotEject(EntityUid uid, MechNightVisionComponent component, ref BeforePilotEjectEvent args)
     {
-        if (!HasComp<NightVisionComponent>(args.Pilot))
-            return;
-        var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
-        foreach (var ent in equipment)
-            if (HasComp<MechNightVisionComponent>(ent) && TryComp<MechEquipmentActionComponent>(ent, out var actionComp) && actionComp.EquipmentToggled && actionComp.EquipmentComponentAdded)
-            {
-                RemComp<NightVisionComponent>(args.Pilot);
-                actionComp.EquipmentComponentAdded = false;
-                actionComp.EquipmentToggled = false;
 
-                _actions.SetToggled(actionComp.EquipmentActionEntity, actionComp.EquipmentToggled);
-            }
+        if (HasComp<NightVisionComponent>(args.Pilot) && component.EquipmentToggled && component.EquipmentComponentAdded)
+            RemComp<NightVisionComponent>(args.Pilot);
+
+        component.EquipmentComponentAdded = false;
+        component.EquipmentToggled = false;
+
+        if (TryComp<MechEquipmentActionComponent>(uid, out var actionComp)) // TODO: move elsewhere
+        {
+            _actions.SetToggled(actionComp.EquipmentActionEntity, false);
+        }
     }
 }
