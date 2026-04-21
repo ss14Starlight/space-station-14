@@ -571,9 +571,20 @@
   description: A luxury skirt with a timeless design.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Uniforms/timeless_skirt.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/timeless_skirt.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Uniforms/timeless_skirt.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/timeless_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtPunkDress
+  name: punk dress
+  description: Slightly metal, very goth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/punk_dress.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/punk_dress.rsi
 
 # Fashion-O-Mat-End
 

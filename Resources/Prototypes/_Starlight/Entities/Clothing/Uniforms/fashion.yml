@@ -213,17 +213,6 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: PunkDressUniformSuit
-  name: punk dress
-  description: Slightly metal, very goth.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/punk_dress.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/punk_dress.rsi
-
-- type: entity
-  parent: ClothingUniformBase
   id: RefereeUniformSuit
   name: referee uniform
   description: If theyre holding a red card you might as well shoot them. The time in genpop would be less painful.

@@ -549,9 +549,9 @@
   description: A luxury suit with a timeless design.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Uniforms/timeless_suit.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/timeless_suit.rsi
     - type: Clothing
-      sprite: _Starlight/Clothing/Uniforms/timeless_suit.rsi
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/timeless_suit.rsi
 
 # Fashion-O-Mat END
 
