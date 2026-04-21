@@ -231,7 +231,11 @@ public sealed class ToggleableClothingSystem : EntitySystem
         if (toggleComp.ClothingUid != null && toggleComp.Container != null)
         {
             _containerSystem.Insert(toggleComp.ClothingUid.Value, toggleComp.Container);
-            _toggle.TryDeactivate(toggleComp.ClothingUid.Value, null, true, false); // Starlight-edit: deactivate after unequip.
+            // Starlight-start: deactivate lights after unequip to avoid power drain.
+            toggleComp.IsLightToggled = TryComp<HandheldLightComponent>(toggleComp.ClothingUid.Value, out var light) && light.Activated;
+            if (toggleComp.IsLightToggled)
+                _lightSystem.SetActivated(toggleComp.ClothingUid.Value, false, light, false);
+            // Starlight-end
         }
     }
 
@@ -265,7 +269,10 @@ public sealed class ToggleableClothingSystem : EntitySystem
             _inventorySystem.TryEquip(user, parent, component.ClothingUid.Value, component.Slot, triggerHandContact: true);
             // Starlight-start
             if (TryComp<HandheldLightComponent>(component.ClothingUid.Value, out var light))
+            {
                 _lightSystem.SetDrawSource(component.ClothingUid.Value, component.RedirectDraw ? target : null, light);
+                _lightSystem.SetActivated(component.ClothingUid.Value, component.IsLightToggled, light, false);
+            }
             // Starlight-end
         }
     }

@@ -80,5 +80,10 @@ public sealed partial class ToggleableClothingComponent : Component
     [DataField]
     public bool RedirectDraw = false;
 
+    /// <summary>
+    /// If true, lights will be retoggled after clothing is toggled. This is needed for hardsuit helmets to properly toggle their lights on and off.
+    /// </summary>
+    public bool IsLightToggled = false;
+
     #endregion
 }
