@@ -15,5 +15,4 @@ public sealed partial class BodyPartSocketPrototype : IPrototype
 [DataRecord, NetSerializable]
 public partial record struct BodyPartSocket(
     string SocketId,
-    ProtoId<BodyPartTypePrototype> SocketType,
-    HashSet<ProtoId<BodyPartTypePrototype>>? AllowedPartTypes);
+    ProtoId<BodyPartTypePrototype> SocketType);
