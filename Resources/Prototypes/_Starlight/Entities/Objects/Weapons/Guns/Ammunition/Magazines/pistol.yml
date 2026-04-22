@@ -38,7 +38,7 @@
 
 - type: entity
   id: BaseMagazinePistolHighCapacity
-  name: machine pistol magazine (.35 auto)
+  name: extended pistol magazine (.35 auto)
   parent: BaseItem
   abstract: true
   components:
@@ -418,7 +418,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityEmpty
-  name: machine pistol magazine (.35 auto any)
+  name: extended pistol magazine (.35 auto any)
   suffix: empty
   parent: BaseMagazinePistolHighCapacity
   components:
@@ -439,7 +439,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacitySP
-  name: machine pistol magazine (.35 auto SP)
+  name: extended pistol magazine (.35 auto SP)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -463,7 +463,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityHP
-  name: machine pistol magazine (.35 auto HP)
+  name: extended pistol magazine (.35 auto HP)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -487,7 +487,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityFMJ
-  name: machine pistol magazine (.35 auto FMJ)
+  name: extended pistol magazine (.35 auto FMJ)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -511,7 +511,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityAP
-  name: machine pistol magazine (.35 auto AP)
+  name: extended pistol magazine (.35 auto AP)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -535,7 +535,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityPractice
-  name: machine pistol magazine (.35 auto practice)
+  name: extended pistol magazine (.35 auto practice)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -559,7 +559,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityRubber
-  name: machine pistol magazine (.35 auto rubber)
+  name: extended pistol magazine (.35 auto rubber)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -583,7 +583,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityIncendiary
-  name: machine pistol magazine (.35 auto incendiary)
+  name: extended pistol magazine (.35 auto incendiary)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -607,7 +607,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityUranium
-  name: machine pistol magazine (.35 auto uranium)
+  name: extended pistol magazine (.35 auto uranium)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider

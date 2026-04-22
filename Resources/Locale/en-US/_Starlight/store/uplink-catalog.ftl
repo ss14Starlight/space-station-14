@@ -14,7 +14,7 @@ uplink-stechkin-desc = A small, easily concealable 10mm handgun. Has a threaded 
 uplink-stechkin-bundle-name = Solid Operative Bundle
 uplink-stechkin-bundle-desc = A mysterious cardboard box containing a slew of equipment for only the most solid of operatives.
 
-uplink-pistol-high-capacity-magazine-name = High Capacity Pistol Magazine (.35 auto)
+uplink-pistol-high-capacity-magazine-name = Extended Pistol Magazine (.35 auto)
 uplink-pistol-high-capacity-magazine-desc = Pistol magazine with 16 cartridges. Compatible with the Viper.
 
 uplink-pistol-hp-magazine-name = Pistol Magazine (.35 auto HP)
