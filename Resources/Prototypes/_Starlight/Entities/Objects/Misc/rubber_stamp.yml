@@ -446,3 +446,17 @@
     stampState: "paper_stamp-qm"
   - type: Sprite
     state: stamp-detective
+
+# MedTak
+- type: entity
+  name: MedTak rubber stamp
+  parent: [ RubberStampBase, BaseMedTakContraband ]
+  id: RubberStampMedTak
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: "MedTak"
+    stampedColor: "#880606"
+    stampState: "paper_stamp-syndicate"
+  - type: Sprite
+    state: stamp-syndicate

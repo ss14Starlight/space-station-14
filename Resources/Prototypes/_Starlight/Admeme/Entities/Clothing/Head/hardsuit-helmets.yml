@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseCentcommContraband, ClothingHeadLightParamsProfessional, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitNTNCConsortium
   name: NanoTrasen navy marine hardsuit helmet
   description: A protective hardsuit helmet worn by NanoTrasen Navy Marines.
@@ -23,7 +23,7 @@
         Heat: 0.9
 
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseCentcommContraband, ClothingHeadLightParamsAdvanced, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitNTNCConsortiumMedic
   name: NanoTrasen navy marine medic hardsuit helmet
   description: A protective hardsuit helmet worn by NanoTrasen Navy Marine medical personnel.
@@ -39,4 +39,31 @@
   - type: Armor
     modifiers:
       coefficients:
+        Heat: 0.9
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseMedTakContraband ]
+  id: ClothingHeadHelmetHardsuitMedTak
+  name: MedTak operator helmet
+  description: An armoured helmet worn by MedTak operators.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Head/Hardsuits/medtak_hardsuit_helmet.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Head/Hardsuits/medtak_hardsuit_helmet.rsi
+  - type: PointLight
+    color: "#d55858"
+    radius: 5
+    energy: 3
+  - type: Pierceable
+    level: HardenedMetal
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
         Heat: 0.9

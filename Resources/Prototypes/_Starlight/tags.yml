@@ -51,6 +51,9 @@
   id: BorgModuleCentcomm
 
 - type: Tag
+  id: BorgModuleMedTak
+
+- type: Tag
   id: BorgModuleMining
 
 - type: Tag
@@ -491,6 +494,9 @@
 - type: Tag
   id: ReflectiveArmorVest
     # Tag for reflective vest, used for set bonus detection by ReflectiveSetBonusSystem
+
+- type: Tag
+  id: RollerBed
 
 - type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun
