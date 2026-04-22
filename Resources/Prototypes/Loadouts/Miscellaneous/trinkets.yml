@@ -431,7 +431,7 @@
   id: TowelColorLightBlue
   effects:
   - !type:GroupLoadoutEffect
-    proto: MedicalExpertTimer
+    proto: MedicalJourneymanTimer
   storage:
     back:
     - TowelColorLightBlue
