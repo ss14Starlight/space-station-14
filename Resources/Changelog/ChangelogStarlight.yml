@@ -2666,4 +2666,25 @@ Entries:
   id: 404508
   time: '2026-04-22T12:14:48.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4226
+- author: Scarlet Lightweaver
+  changes:
+  - message: made Inital infecteds understand but not speak zombie.
+    type: Tweak
+  id: 404509
+  time: '2026-04-22T12:41:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4006
+- author: Scarlet Lightweaver
+  changes:
+  - message: Changed zombies healing factor.
+    type: Tweak
+  id: 404510
+  time: '2026-04-22T12:41:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4006
+- author: Scarlet Lightweaver
+  changes:
+  - message: removed herobrine.
+    type: Remove
+  id: 404511
+  time: '2026-04-22T12:41:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4006
 Order: -1
