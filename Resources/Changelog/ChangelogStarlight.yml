@@ -2687,4 +2687,46 @@ Entries:
   id: 404511
   time: '2026-04-22T12:41:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4006
+- author: Scarlet Lightweaver
+  changes:
+  - message: Changed the security cyborg module to have a better kit.(still admeme only).
+    type: Tweak
+  id: 404512
+  time: '2026-04-22T13:15:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4040
+- author: Scarlet Lightweaver
+  changes:
+  - message: changed the security cyborgs health (+55hp).(still admeme only).
+    type: Tweak
+  id: 404513
+  time: '2026-04-22T13:15:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4040
+- author: Scarlet Lightweaver
+  changes:
+  - message: added small armor for security cyborgs.(still admeme only).
+    type: Add
+  id: 404514
+  time: '2026-04-22T13:15:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4040
+- author: Scarlet Lightweaver
+  changes:
+  - message: gave the mauler built in magboots that have no slow penalty and are always on.
+    type: Tweak
+  id: 404515
+  time: '2026-04-22T13:15:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4040
+- author: Scarlet Lightweaver
+  changes:
+  - message: added 2 actions for the security borg chasis (still admeme only).
+    type: Add
+  id: 404516
+  time: '2026-04-22T13:15:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4040
+- author: Scarlet Lightweaver
+  changes:
+  - message: Fixed cosmic cultists not being able to use topicals at tier 3!.
+    type: Fix
+  id: 404517
+  time: '2026-04-22T13:15:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4040
 Order: -1
