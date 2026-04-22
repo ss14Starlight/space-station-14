@@ -1,5 +1,7 @@
 ﻿// SPDX-FileCopyrightText: 2026 Starlight Network
 // SPDX-License-Identifier: MIT
+
+using System.Collections;
 using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Body.Events;
 using Content.Shared._Starlight.Body.Prototypes;
@@ -13,7 +15,7 @@ namespace Content.Shared._Starlight.Body.Systems;
 
 [UsedImplicitly]
 [SerializedType(nameof(BodyPartContainer))]
-public sealed partial class BodyPartContainer : BaseContainer
+public sealed partial class BodyPartContainer : BaseContainer, IEnumerable<Entity<SLBodyPartComponent>>
 {
     private ValueList<EntityUid> _bodyParts = new();
     private ValueList<SLBodyPartComponent> _bodyPartComps = new();
@@ -86,4 +88,31 @@ public sealed partial class BodyPartContainer : BaseContainer
     }
 
     public bool TryRegisterSocket(BodyPartSocket socket) => _socketLookup.TryAdd(socket, -1);
+
+    public struct Enumerable(BodyPartContainer container) : IEnumerator<Entity<SLBodyPartComponent>>
+    {
+        private int _index = 0;
+        private readonly BodyPartContainer _container = container;
+
+
+        public bool MoveNext()
+        {
+            _index++;
+            if (_index < _container.Count) return true;
+            _index = _container.Count - 1;
+            return false;
+        }
+
+        public void Reset() => _index = 0;
+
+        Entity<SLBodyPartComponent> IEnumerator<Entity<SLBodyPartComponent>>.Current => new Entity<SLBodyPartComponent>(_container._bodyParts[_index], _container._bodyPartComps[_index]);
+
+        object? IEnumerator.Current => new Entity<SLBodyPartComponent>(_container._bodyParts[_index], _container._bodyPartComps[_index]);
+
+        public void Dispose(){}
+    }
+
+    public IEnumerator<Entity<SLBodyPartComponent>> GetEnumerator() => new Enumerable(this);
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
