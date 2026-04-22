@@ -45,7 +45,7 @@
   name: blue shield hud eyepatch
 
 - type: entity
-  parent: [BaseCommandManagerContraband, ClothingEyesHudCommand, ClothingHeadEyeBaseFlippable]
+  parent: [BaseCommandManagerContraband, ClothingEyesHudCommand]
   id: ClothingEyesEyepatchHudAssistantManager
   name: assistant manager hud eyepatch
   description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status. Tied by a near-invisible string.
@@ -59,11 +59,6 @@
     - PetWearable
     - WhitelistChameleon
     - HudSecurity
-
-- type: entity
-  parent: [ClothingEyesEyepatchHudAssistantManager,  ClothingHeadEyeBaseFlipped]
-  id: ClothingEyesEyepatchHudAssistantManagerFlipped
-  name: assistant manager hud eyepatch
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
