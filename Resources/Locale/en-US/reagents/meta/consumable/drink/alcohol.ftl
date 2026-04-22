@@ -361,6 +361,3 @@ reagent-desc-zombiecocktail = It gets in your head. Your he-eyeh-ead.
 
 reagent-name-bacchus-blessing = bacchus's blessing
 reagent-desc-bacchus-blessing = You didn't think it was possible for a liquid to be so utterly revolting. Are you sure about this...?
-
-reagent-name-the-last-call = The Last Call
-reagent-desc-the-last-call = There are no good or bad choices. Only consequences.

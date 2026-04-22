@@ -2589,20 +2589,3 @@
   - type: Icon
     sprite: Objects/Consumable/Drinks/bacchusblessing.rsi
     state: icon
-
-- type: entity
-  parent: DrinkGlass
-  id: DrinkTheLastCall
-  suffix: the last call
-  description: There are no good or bad choices. Only consequences.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: TheLastCall
-          Quantity: 30
-  - type: Icon
-    sprite: Objects/Consumable/Drinks/thelastcall.rsi
-    state: icon
