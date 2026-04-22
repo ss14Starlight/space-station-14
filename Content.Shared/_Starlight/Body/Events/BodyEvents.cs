@@ -20,7 +20,7 @@ public interface IBodyEvent<TComp, TEvent> : IBodyEvent<TEvent>
 
 public struct BodyInitEvent;
 
-public record struct BodyPartInitEvent(Entity<SLBodyComponent> Body, BodyInitEvent Args) : IBodyEvent<BodyInitEvent>;
+public record struct BodyPartInitEvent(Entity<SLBodyComponent> Body);
 
-public record struct BodyPartInitEvent<TComp>(Entity<SLBodyComponent> Body, TComp SimComp, BodyInitEvent Args)
-    : IBodyEvent<TComp, BodyInitEvent> where TComp : IComponent;
+public record struct BodyPartInitEvent<TComp>(Entity<SLBodyComponent> Body, TComp SimComp)
+    where TComp : IComponent;

@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 using Content.Shared._Starlight.Body.Components;
+using Content.Shared._Starlight.Body.Events;
 using Content.Shared._Starlight.Body.Prototypes;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -15,9 +16,28 @@ public sealed class BodySystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem ContainerSystem = default!;
     [Dependency] private readonly IPrototypeManager Proto = default!;
 
+    private event Action<BodySystem, Entity<SLBodyComponent>>? _initRelays = null;
     public override void Initialize()
     {
         SubscribeLocalEvent<SLBodyComponent, MapInitEvent>(OnBodyMapInit);
+        SubscribeLocalEvent<SLBodyComponent, BodyInitEvent>(OnBodyInit);
+    }
+
+    private void OnBodyInit(Entity<SLBodyComponent> body, ref BodyInitEvent args)
+    {
+        foreach (var bodyPart in body.Comp.BodyParts)
+            RaiseLocalEvent(bodyPart, new BodyPartInitEvent(body) );
+        _initRelays?.Invoke(this, body);
+    }
+    public void SubscribeBodyPartInitEvent<TBodyComp>(EntityEventHandler<BodyPartInitEvent<TBodyComp>> handler) where TBodyComp: IComponent
+    {
+        _initRelays += (system, body) =>
+        {
+            var comp = system.Comp<TBodyComp>(body);
+            var ev = new BodyPartInitEvent<TBodyComp>(body, comp);
+            foreach (var part in body.Comp.BodyParts)
+                system.RaiseLocalEvent(part, ev);
+        };
     }
 
     private void OnBodyMapInit(Entity<SLBodyComponent> body, ref MapInitEvent args)
@@ -36,6 +56,7 @@ public sealed class BodySystem : EntitySystem
         MakeBodyParts(body, prefabProto);
         body.Comp.BodyBuilt = true;
         Dirty(body);
+        RaiseLocalEvent(body, new BodyInitEvent());
         return true;
     }
 
