@@ -42,17 +42,14 @@
   components:
   - type: BorgSwitchableType
     selectedBorgType: security
-  # Starlight-start: sec lawset and actions
   - type: SiliconLawProvider
     laws: SecurityCyborgLawset
-  - type: FlashImmunity # Starlight: security borg is immune to flashbangs
-  - type: SecurityBorg # Starlight: enables lawbook and call-for-help actions
+  - type: FlashImmunity
+  - type: SecurityBorg
   - type: ActionGrant
     actions:
     - ActionBorgOpenLawbook
     - ActionBorgCallForHelp
-  # Starlight-end
-  # Starlight-start: +55 HP and small armor for security cyborg
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -92,9 +89,7 @@
   - type: Damageable
     damageContainer: Silicon
     damageModifierSet: SecurityBorgArmor
-  # Starlight-end
 
-# Starlight-start: pre-powered variant for spawning/cargo
 - type: entity
   id: BorgChassisSecurityPowered
   parent: BorgChassisSecurity
@@ -109,7 +104,6 @@
         blacklist:
           tags:
           - MechReactor
-# Starlight-end
 
 - type: entity
   id: BorgChassisPurrfus
