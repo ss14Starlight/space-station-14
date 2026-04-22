@@ -1,7 +1,5 @@
 ﻿// SPDX-FileCopyrightText: 2026 Starlight Network
 // SPDX-License-Identifier: MIT
-
-using System.Net.Sockets;
 using Content.Shared._Starlight.Body.Components;
 using Robust.Shared.Prototypes;
 

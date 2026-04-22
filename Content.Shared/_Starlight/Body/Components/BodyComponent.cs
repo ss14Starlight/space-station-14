@@ -4,15 +4,16 @@
 using System.Numerics;
 using Content.Shared._Starlight.Body.Prototypes;
 using Robust.Shared.Collections;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Body.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class SLBodyComponent : Component
 {
     [DataField] public Vector2 RootOffset = Vector2.Zero;
-    [DataField] public ProtoId<BodyPrefabPrototype>? PrefabProto = null;
+    [DataField] public ProtoId<BodyPrefabPrototype>? Prefab = null;
     [DataField] public bool BodyBuilt = false;
     [DataField] public EntityUid RootPartEntity = default;
 

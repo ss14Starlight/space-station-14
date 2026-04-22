@@ -1,0 +1,4 @@
+﻿- type: BodyPrefabPrototype
+  id: SLHumanBodyPrefab
+  root:
+    bodyPart: SLPartHumanoidTorso

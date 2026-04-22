@@ -1,0 +1,7 @@
+﻿- type: entity
+  id: SLBodyTest
+  #parent: BaseItem #bodyparts are not items, they always live inside a body which MAY be an item!
+  name: "TestBody"
+  components:
+  - type: SLBody
+    prefab: SLHumanBodyPrefab

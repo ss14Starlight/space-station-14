@@ -7,7 +7,6 @@ using Content.Shared._Starlight.Body.Prototypes;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-
 namespace Content.Shared._Starlight.Body.System;
 
 public sealed class BodySystem : EntitySystem
@@ -51,7 +50,7 @@ public sealed class BodySystem : EntitySystem
 
     public bool BuildBody(Entity<SLBodyComponent> body)
     {
-        if (body.Comp.BodyBuilt ||  !Proto.TryIndex(body.Comp.PrefabProto, out var prefabProto))
+        if (body.Comp.BodyBuilt ||  !Proto.TryIndex(body.Comp.Prefab, out var prefabProto))
             return false; //body has already been built, or no valid prefab :(
         MakeBodyParts(body, prefabProto);
         body.Comp.BodyBuilt = true;
@@ -117,7 +116,7 @@ public sealed class BodySystem : EntitySystem
         if (bodyPart.Comp.Children == null)
             EnsureChildren(bodyPart);
         var container = bodyPart.Comp.Children!;
-        foreach (var (id, socketTypeId) in bodyPart.Comp.PartSockets)
+        foreach (var (id, socketTypeId) in bodyPart.Comp.Sockets)
         {
             var socketType = Proto.Index(socketTypeId);
             container.TryRegisterSocket(new BodyPartSocket(id, socketType.ID));

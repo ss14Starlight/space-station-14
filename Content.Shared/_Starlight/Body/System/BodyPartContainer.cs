@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: MIT
 
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Body.Events;
 using Content.Shared._Starlight.Body.Prototypes;

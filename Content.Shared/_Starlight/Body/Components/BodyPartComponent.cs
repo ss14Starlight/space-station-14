@@ -3,15 +3,16 @@
 
 using Content.Shared._Starlight.Body.Prototypes;
 using Content.Shared._Starlight.Body.System;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Body.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class SLBodyPartComponent : Component
 {
     [DataField] public ProtoId<BodyPartTypePrototype> PartType = default;
-    [DataField] public Dictionary<string, ProtoId<BodyPartSocketPrototype>> PartSockets = new();
+    [DataField] public Dictionary<string, ProtoId<BodyPartSocketPrototype>> Sockets = new();
 
     [DataField] public BodyPartSocket? ParentSocket = null; //Must be set BEFORE adding to parent's container
     [DataField] public EntityUid Parent = EntityUid.Invalid;
