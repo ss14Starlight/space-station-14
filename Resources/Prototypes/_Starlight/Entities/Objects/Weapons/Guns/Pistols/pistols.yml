@@ -175,7 +175,7 @@
 - type: entity
   name: sp-8t
   parent: [WeaponPistolDP, BaseBlueShieldContraband, BaseGrandTheftContraband]
-  id: WeaponPistolSP8T
+  id: WeaponPistolBlueguard
   components:
     - type: Gun
       soundGunshot:
@@ -183,9 +183,6 @@
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/sp8t.rsi
     - type: ChamberMagazineAmmoProvider
-      availablePrefixes:
-        - ""
-        - dust
     - type: StealTarget
       stealGroup: BSOWeapon
 

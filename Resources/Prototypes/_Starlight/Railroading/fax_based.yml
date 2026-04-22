@@ -1,5 +1,4 @@
 # Conditions
-
 - type: entity
   id: CrewCondition
   categories: [ HideSpawnMenu ]
@@ -12,6 +11,7 @@
       - Abductor
       - Skeleton
       - Terminator
+      - IPC
     - !type:SubjectMindAntagCondition
       blacklist:
       - Brighteye

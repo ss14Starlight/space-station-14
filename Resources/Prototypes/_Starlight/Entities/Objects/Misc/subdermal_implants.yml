@@ -201,3 +201,24 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: MindControlImplant
+
+# MedTak
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantMedTak
+  name: MedTak beacon
+  description: This implant will inform the nearest MedTak unit should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RattleOnTrigger
+    radioChannel: MedTak
+
+- type: entity
+  parent: MindShieldImplant
+  id: MedTakMindShieldImplant
+  name: MedTak mindshield implant
+  description: This implant protects operators from mind control devices.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MindShieldImplant
+    mindShieldStatusIcon: MedTakMindShieldIcon

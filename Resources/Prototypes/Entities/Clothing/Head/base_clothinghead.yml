@@ -67,8 +67,7 @@
   - type: ItemTogglePointLight
   - type: PointLight
     enabled: false
-    radius: 3
-    energy: 1
+    # Starlight: PointLight energy/radius moved to ClothingHeadLightParams(..) prototypes
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     netsync: false
@@ -223,13 +222,13 @@
   - type: ItemTogglePointLight
   - type: PointLight
     enabled: false
-    radius: 3
-    energy: 2
+    # Starlight: PointLight energy/radius moved to ClothingHeadLightParams(..) prototypes
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     netsync: false
   - type: Appearance
   - type: HandheldLight
+    wattage: 0.50 # Starlight-edit: Decreased from 0.8 to 0.50 to reduce power cell drain. Works 25 mins on medium cell.
     addPrefix: true
     blinkingBehaviourId: blinking
     radiatingBehaviourId: radiating
@@ -250,11 +249,13 @@
         startValue: 0.1
         endValue: 2.0
         isLooped: true
-  - type: Battery
-    maxCharge: 600 #lights drain 3/s but recharge of 2 makes this 1/s. Therefore 600 is 10 minutes of light.
-    startingCharge: 600
-  - type: BatterySelfRecharger
-    autoRechargeRate: 2 #recharge of 2 makes total drain 1w / s so max charge is 1:1 with time. Time to fully charge should be 5 minutes. Having recharge gives light an extended flicker period which gives you some warning to return to light area.
+  # Starlight-start: power cells replace battery
+  #- type: Battery
+  #  maxCharge: 600 #lights drain 3/s but recharge of 2 makes this 1/s. Therefore 600 is 10 minutes of light.
+  #  startingCharge: 600
+  #- type: BatterySelfRecharger
+  #  autoRechargeRate: 2 #recharge of 2 makes total drain 1w / s so max charge is 1:1 with time. Time to fully charge should be 5 minutes. Having recharge gives light an extended flicker period which gives you some warning to return to light area.
+  # Starlight-end
 
 - type: entity
   abstract: true
