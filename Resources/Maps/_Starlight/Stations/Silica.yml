@@ -161635,7 +161635,7 @@ entities:
     - type: Transform
       pos: 47.547523,-26.28324
       parent: 2
-- proto: TowelColorGreen
+- proto: TowelColorWhite
   entities:
   - uid: 19608
     components:
@@ -161644,7 +161644,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorLightBlue
+- proto: TowelColorWhite
   entities:
   - uid: 24150
     components:
@@ -161668,7 +161668,7 @@ entities:
     - type: Transform
       pos: -25.545074,-4.574265
       parent: 2
-- proto: TowelColorOrange
+- proto: TowelColorWhite
   entities:
   - uid: 11490
     components:
@@ -161677,7 +161677,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorPurple
+- proto: TowelColorWhite
   entities:
   - uid: 19611
     components:
@@ -161686,14 +161686,14 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorRed
+- proto: TowelColorWhite
   entities:
   - uid: 24154
     components:
     - type: Transform
       pos: 26.730743,-20.271503
       parent: 2
-- proto: TowelColorTeal
+- proto: TowelColorWhite
   entities:
   - uid: 24155
     components:
@@ -161707,7 +161707,7 @@ entities:
     - type: Transform
       pos: 25.376577,-20.250671
       parent: 2
-- proto: TowelColorYellow
+- proto: TowelColorWhite
   entities:
   - uid: 19604
     components:
