@@ -17,5 +17,5 @@ public sealed partial class MechEquipmentActionComponent : Component
     [DataField("actionId")]
     public EntProtoId EquipmentAction = "";
 
-    [DataField] public EntityUid? EquipmentActionEntity;
+    [DataField, AutoNetworkedField] public EntityUid? EquipmentActionEntity;
 }
