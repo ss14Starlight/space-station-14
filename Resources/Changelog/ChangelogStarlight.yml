@@ -2729,4 +2729,25 @@ Entries:
   id: 404517
   time: '2026-04-22T13:15:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4040
+- author: Shades
+  changes:
+  - message: IPC has now 0% resistance on Piercing.
+    type: Tweak
+  id: 404518
+  time: '2026-04-22T16:59:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4234
+- author: Shades
+  changes:
+  - message: IPC has now 10% resistance on Caustic.
+    type: Tweak
+  id: 404519
+  time: '2026-04-22T16:59:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4234
+- author: Shades
+  changes:
+  - message: IPC resistance on Slash got moved from 30% to 10%.
+    type: Tweak
+  id: 404520
+  time: '2026-04-22T16:59:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4234
 Order: -1
