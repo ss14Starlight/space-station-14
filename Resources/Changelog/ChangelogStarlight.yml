@@ -2638,4 +2638,25 @@ Entries:
   id: 404504
   time: '2026-04-22T08:44:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4225
+- author: wonderfulnewworld
+  changes:
+  - message: Added Head of Personnel's Backpack, Satchel, and Duffel. HoP can select them in loadout.
+    type: Add
+  id: 404505
+  time: '2026-04-22T11:33:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4231
+- author: wonderfulnewworld
+  changes:
+  - message: Added generic Command Backpack, Satchel, and Duffel.
+    type: Add
+  id: 404506
+  time: '2026-04-22T11:33:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4231
+- author: wonderfulnewworld
+  changes:
+  - message: Resprited Captain's Duffel.
+    type: Tweak
+  id: 404507
+  time: '2026-04-22T11:33:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4231
 Order: -1
