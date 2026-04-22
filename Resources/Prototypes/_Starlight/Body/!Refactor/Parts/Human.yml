@@ -1,0 +1,69 @@
+﻿- type: entity
+  id: SLPartHumanBase
+  parent: SLPartHumanoidBase #bodyparts are not items, they always live inside a body which MAY be an item!
+  name: "human body part"
+  abstract: true
+  components:
+  - type: SLBodyPart
+    partType: HumanoidGeneric
+
+- type: entity
+  id: SLPartHumanTorso
+  parent: [SLPartHumanBase, SLPartHumanoidTorso]
+  name: "human torso"
+  components:
+  - type: SLBodyPart
+    partType: HumanoidTorso
+    sockets:
+      Head: HumanoidHeadSocket
+      LeftArm: HumanoidArmSocket
+      RightArm: HumanoidArmSocket
+      LeftLeg: HumanoidLegSocket
+      RightLeg: HumanoidLegSocket
+      RightWing: HumanoidWingSocket
+      LeftWing: HumanoidWingSocket
+      Tail: HumanoidTailSocket
+
+- type: entity
+  id: SLPartHumanHead
+  parent: [SLPartHumanBase, SLPartHumanoidHead]
+  name: "human head"
+  components:
+  - type: SLBodyPart
+    partType: HumanoidHead
+
+- type: entity
+  id: SLPartHumanArm
+  parent: [SLPartHumanBase, SLPartHumanoidArm]
+  name: "human arm"
+  components:
+  - type: SLBodyPart
+    partType: HumanoidArm
+    sockets:
+      Hand: HumanoidHandSocket
+
+- type: entity
+  id: SLPartHumanHand
+  parent: [SLPartHumanBase, SLPartHumanoidHand]
+  name: "human hand"
+  components:
+  - type: SLBodyPart
+    partType: HumanoidHand
+
+- type: entity
+  id: SLPartHumanLeg
+  parent: [SLPartHumanBase, SLPartHumanoidLeg]
+  name: "human leg"
+  components:
+  - type: SLBodyPart
+    partType: HumanoidLeg
+    sockets:
+      Foot: HumanoidFootSocket
+
+- type: entity
+  id: SLPartHumanFoot
+  parent: [SLPartHumanBase, SLPartHumanoidFoot]
+  name: "human foot"
+  components:
+  - type: SLBodyPart
+    partType: HumanoidFoot

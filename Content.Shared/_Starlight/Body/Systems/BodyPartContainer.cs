@@ -61,6 +61,8 @@ public sealed partial class BodyPartContainer : BaseContainer,
         entMan.EventBus.RaiseLocalEvent(removed,new SLBodyPartRemovedEvent(removed));
         if (removed.Comp.ParentSocket != null) //If our removed socket is in the lookup, remove the lookup
             _socketLookup[removed.Comp.ParentSocket.Value] = -1;
+        if (index >= _bodyPartComps.Count)
+            return;
         var movedComp = _bodyPartComps[index]; //Update the socket lookup for the component that got moved!
         if (movedComp.ParentSocket != null) _socketLookup[movedComp.ParentSocket.Value] = index;
     }

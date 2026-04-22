@@ -23,8 +23,7 @@ public sealed partial class BodySystem : EntitySystem
     {
         if (body.Comp.BodyBuilt) //We don't want to initialize body twice!
             return;
-        body.Comp.BodyBuilt = BuildBody(body);
-        if (body.Comp.BodyBuilt)
+        if (BuildBody(body))
             Dirty(body);
     }
 
@@ -45,6 +44,8 @@ public sealed partial class BodySystem : EntitySystem
         var bodyPart = new Entity<SLBodyPartComponent>(body.Comp.RootPartEntity,
             Comp<SLBodyPartComponent>(body.Comp.RootPartEntity));
         RecursivelyBuildBodyParts(body, null, bodyPart, prefab.Root);
+        Dirty(body);
+        Dirty(bodyPart);
         return bodyPart;
     }
 

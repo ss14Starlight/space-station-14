@@ -1,0 +1,27 @@
+﻿- type: bodyPrefab
+  id: SLHumanBodyPrefab
+  root:
+    bodyPart: SLPartHumanTorso
+    attachedParts:
+     Head:
+       bodyPart: SLPartHumanHead
+     LeftArm:
+      bodyPart: SLPartHumanArm
+      attachedParts:
+        Hand:
+          bodyPart: SLPartHumanHand
+     RightArm:
+       bodyPart: SLPartHumanArm
+       attachedParts:
+         Hand:
+           bodyPart: SLPartHumanHand
+     LeftLeg:
+       bodyPart: SLPartHumanLeg
+       attachedParts:
+         Foot:
+           bodyPart: SLPartHumanFoot
+     RightLeg:
+       bodyPart: SLPartHumanLeg
+       attachedParts:
+         Foot:
+           bodyPart: SLPartHumanFoot

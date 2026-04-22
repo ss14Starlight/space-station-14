@@ -1,7 +1,0 @@
-﻿- type: bodyPrefab
-  id: SLHumanBodyPrefab
-  root:
-    bodyPart: SLPartHumanoidTorso
-    attachedParts:
-     Head:
-       bodyPart: SLPartHumanoidHead

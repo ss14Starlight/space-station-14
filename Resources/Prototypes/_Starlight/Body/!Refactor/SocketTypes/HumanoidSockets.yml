@@ -1,2 +1,32 @@
 ﻿- type: bodyPartSocket
-  id: SLHumanoidOmniSocket
+  id: HumanoidAnySocket
+
+- type: bodyPartSocket
+  id: HumanoidHeadSocket
+
+- type: bodyPartSocket
+  id: HumanoidHornSocket
+
+- type: bodyPartSocket
+  id: HumanoidHairSocket
+
+- type: bodyPartSocket
+  id: HumanoidTailSocket
+
+- type: bodyPartSocket
+  id: HumanoidWingSocket
+
+- type: bodyPartSocket
+  id: HumanoidEyeSocket
+
+- type: bodyPartSocket
+  id: HumanoidArmSocket
+
+- type: bodyPartSocket
+  id: HumanoidHandSocket
+
+- type: bodyPartSocket
+  id: HumanoidLegSocket
+
+- type: bodyPartSocket
+  id: HumanoidFootSocket

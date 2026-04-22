@@ -11,6 +11,9 @@
   id: HumanoidEye
 
 - type: bodyPartType
+  id: HumanoidHair
+
+- type: bodyPartType
   id: HumanoidTorso
 
 - type: bodyPartType
@@ -27,9 +30,6 @@
 
 - type: bodyPartType
   id: HumanoidWing
-
-- type: bodyPartType
-  id: HumanoidAbdomen
 
 - type: bodyPartType
   id: HumanoidTail

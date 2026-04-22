@@ -1,5 +1,5 @@
 ﻿- type: entity
-  id: SLPartHumanoid
+  id: SLPartHumanoidBase
   #parent: BaseItem #bodyparts are not items, they always live inside a body which MAY be an item!
   name: "humanoid body part"
   abstract: true
@@ -9,24 +9,26 @@
 
 - type: entity
   id: SLPartHumanoidTorso
-  parent: SLPartHumanoid
+  parent: SLPartHumanoidBase
+  abstract: true
   name: "humanoid torso"
   components:
   - type: SLBodyPart
     partType: SLHumanoidTorso
     sockets:
-     Head: SLHumanoidOmniSocket
-     LeftArm: SLHumanoidOmniSocket
-     RightArm: SLHumanoidOmniSocket
-     LeftLeg: SLHumanoidOmniSocket
-     RightLeg: SLHumanoidOmniSocket
-     RightWing: SLHumanoidOmniSocket
-     LeftWing: SLHumanoidOmniSocket
-     Tail: SLHumanoidOmniSocket
+     Head: HumanoidHeadSocket
+     LeftArm: HumanoidArmSocket
+     RightArm: HumanoidArmSocket
+     LeftLeg: HumanoidLegSocket
+     RightLeg: HumanoidLegSocket
+     RightWing: HumanoidWingSocket
+     LeftWing: HumanoidWingSocket
+     Tail: HumanoidTailSocket
 
 - type: entity
   id: SLPartHumanoidHead
-  parent: SLPartHumanoid
+  parent: SLPartHumanoidBase
+  abstract: true
   name: "humanoid head"
   components:
   - type: SLBodyPart
@@ -34,17 +36,19 @@
 
 - type: entity
   id: SLPartHumanoidArm
-  parent: SLPartHumanoid
+  parent: SLPartHumanoidBase
+  abstract: true
   name: "humanoid arm"
   components:
   - type: SLBodyPart
     partType: SLHumanoidArm
     sockets:
-     Hand: SLHumanoidOmniSocket
+     Hand: HumanoidHandSocket
 
 - type: entity
   id: SLPartHumanoidHand
-  parent: SLPartHumanoid
+  parent: SLPartHumanoidBase
+  abstract: true
   name: "humanoid hand"
   components:
   - type: SLBodyPart
@@ -52,17 +56,19 @@
 
 - type: entity
   id: SLPartHumanoidLeg
-  parent: SLPartHumanoid
+  parent: SLPartHumanoidBase
+  abstract: true
   name: "humanoid leg"
   components:
   - type: SLBodyPart
     partType: SLHumanoidLeg
     sockets:
-     Foot: SLHumanoidOmniSocket
+     Foot: HumanoidFootSocket
 
 - type: entity
   id: SLPartHumanoidFoot
-  parent: SLPartHumanoid
+  parent: SLPartHumanoidBase
+  abstract: true
   name: "humanoid foot"
   components:
   - type: SLBodyPart

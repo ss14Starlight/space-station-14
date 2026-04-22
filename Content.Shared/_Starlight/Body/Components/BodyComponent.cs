@@ -9,13 +9,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Body.Components;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class SLBodyComponent : Component
 {
-    [DataField] public Vector2 RootOffset = Vector2.Zero;
-    [DataField] public ProtoId<BodyPrefabPrototype>? Prefab = null;
-    [DataField] public bool BodyBuilt = false;
-    [DataField] public EntityUid RootPartEntity = default;
+    [DataField, AutoNetworkedField] public Vector2 RootOffset = Vector2.Zero;
+    [DataField, AutoNetworkedField] public ProtoId<BodyPrefabPrototype>? Prefab = null;
+    [DataField, AutoNetworkedField] public bool BodyBuilt = false;
+    [DataField, AutoNetworkedField] public EntityUid RootPartEntity = default;
 
     //Cached list of all body parts for quick enumeration
     [NonSerialized] public ValueList<Entity<SLBodyPartComponent>> BodyParts = new();
