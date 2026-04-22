@@ -1,0 +1,92 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Card sprites created by Huaqas (GitHub) with inspiration from DispenserG0inUp. signelcard_down_tarot, box and box_open sprites by DispenserG0inUp.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "empty"
+        },
+        {
+            "name": "singlecard_down_tarot"
+        },
+        {
+            "name": "background_gold"
+        },
+        {
+            "name": "box"
+        },
+        {
+            "name": "box_open"
+        },
+        {
+            "name": "the_fool"
+        },
+        {
+            "name": "the_magician"
+        },
+        {
+            "name": "the_high_priestess"
+        },
+        {
+            "name": "the_empress"
+        },
+        {
+            "name": "the_emperor"
+        },
+        {
+            "name": "the_hierophant"
+        },
+        {
+            "name": "the_lovers"
+        },
+        {
+            "name": "the_chariot"
+        },
+        {
+            "name": "strength"
+        },
+        {
+            "name": "the_hermit"
+        },
+        {
+            "name": "the_wheel_of_fortune"
+        },
+        {
+            "name": "justice"
+        },
+        {
+            "name": "the_hanged_man"
+        },
+        {
+            "name": "death"
+        },
+        {
+            "name": "temperance"
+        },
+        {
+            "name": "the_devil"
+        },
+        {
+            "name": "the_tower"
+        },
+        {
+            "name": "the_star"
+        },
+        {
+            "name": "the_moon"
+        },
+        {
+            "name": "the_sun"
+        },
+        {
+            "name": "judgement"
+        },
+        {
+            "name": "the_world"
+        }
+    ]
+}
