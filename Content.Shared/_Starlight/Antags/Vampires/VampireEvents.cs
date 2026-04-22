@@ -25,12 +25,23 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     /// <summary>Amount glare effects are multiplied by when the vampire is mid-level and the target has flash protection</summary>
     [DataField]
     public float FlashImmunityEffectScaleMid = 0.75f;
-    /// <summary>Amount glare effects are multiplied by when the vampire is high level and the target has flash protection</summary>
+    /// <summary>
+    /// Amount the effect is multiplied by when the vampire is mid-level
+    /// </summary>
+    [DataField]
+    public float FlashImmunityEffectScaleMid = 0.75f;
+    
+    /// <summary>
+    /// Amount the effect is multiplied by when the vampire is high level
+    /// </summary>
     [DataField]
     public float FlashImmunityEffectScaleStrong = 1f;
-    /// <summary>Amount glare effects are multiplied by when the vampire is full power</summary>
+    
+    /// <summary>
+    /// Amount the effect is multiplied by when the vampire is FullPower
+    /// </summary>
     [DataField]
-    public float GlareEffectScaleFull = 1.5f; //Amount the effect is multiplied by when the vampire is FullPower
+    public float GlareEffectScaleFull = 1.5f;
 
     /// <summary>
     /// How many seconds do we need to Paralyze entity in front of glare source.
