@@ -303,6 +303,17 @@
 
 - type: entity
   parent: BasePDA
+  id: AssistantManagerPDA
+  name: assistant manager PDA
+  description: The least poor among the poor.
+  components:
+  - type: Pda
+    id: AssistantManagerIDCard
+  - type: PdaBorderColor
+    borderColor: "#447987"
+
+- type: entity
+  parent: BasePDA
   id: SalvageLeadPDA
   name: salvage lead PDA
   description: Smells like blood and ash.

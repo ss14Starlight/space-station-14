@@ -798,6 +798,22 @@
   loadouts:
   - LizardPlushieZookeeper
 
+# Assistant Manager
+- type: loadoutGroup
+  id: AssistantManagerHead
+  name: loadout-group-assistantmanager-head
+  minLimit: 0
+  loadouts:
+  - AssistantManagerHead
+  - AssistantManagerBeret
+
+- type: loadoutGroup
+  id: AssistantManagerJumpsuit
+  name: loadout-group-assistantmanager-jumpsuit
+  loadouts:
+  - AssistantManagerJumpsuit
+  - AssistantManagerJumpskirt
+
 # Silicon Brain Type
 - type: loadoutGroup
   id: SiliconBrainType

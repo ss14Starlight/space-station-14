@@ -16,6 +16,7 @@ job-name-ert = Emergency Response Team
 job-name-performer = Performer
 job-name-salvagelead = Salvage Lead
 job-name-dutyofficer = Duty Officer
+job-name-assistantmanager = Assistant Manager
 job-name-abductor = Abductor
 job-title-borgi = Borgi
 

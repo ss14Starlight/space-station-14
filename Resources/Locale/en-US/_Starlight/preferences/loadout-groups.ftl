@@ -12,6 +12,9 @@ loadout-group-assistant-glasses = Assistant glasses
 loadout-group-assistant-head = Assistant head
 loadout-group-assistant-backpack = Assistant backpack
 
+loadout-group-assistantmanager-head = Assistant Manager head
+loadout-group-assistantmanager-jumpsuit = Assistant Manager jumpsuit
+
 loadout-group-boxer-jumpsuit = Boxer jumpsuit
 loadout-group-boxer-gloves = Boxer gloves
 

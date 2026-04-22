@@ -1,0 +1,30 @@
+- type: loadoutEffectGroup
+  id: SeniorAssistantManager
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobAssistantManager
+        time: 216000 #60 hrs. No actual benefit for it at this time. PDA will be added with clothes at some point in the future, and a winter coat inspired by Warden.
+
+# Head
+- type: loadout
+  id: AssistantManagerHead
+  equipment:
+    head: ClothingHeadHatCommandSoft
+
+- type: loadout
+  id: AssistantManagerBeret
+  equipment:
+    head: ClothingHeadHatBeretCommand
+
+# Jumpsuit
+- type: loadout
+  id: AssistantManagerJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCommandGeneric
+
+- type: loadout
+  id: AssistantManagerJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCommandGeneric

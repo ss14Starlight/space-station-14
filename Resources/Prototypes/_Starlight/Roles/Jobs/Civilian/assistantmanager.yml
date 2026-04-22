@@ -1,0 +1,41 @@
+- type: job
+  id: AssistantManager
+  name: job-name-assistantmanager
+  description: job-description-assistantmanager
+  playTimeTracker: JobAssistantManager
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 30h
+  - !type:DepartmentTimeRequirement
+    department: Civilian
+    time: 30h
+  - !type:RolesRequirement
+    proto: ExtRolesReq
+  startingGear: AssistantManagerGear
+  icon: "JobIconAssistantManager"
+  supervisors: job-supervisors-command
+  canBeAntag: false
+  access:
+  - Maintenance
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: AssistantManagerGear
+  equipment:
+    id: AssistantManagerPDA
+    ears: ClothingHeadsetAssistantManager
+
+- type: chameleonOutfit
+  id: AssistantManagerChameleonOutfit
+  job: AssistantManager
+  equipment:
+    head: ClothingHeadHatWelding
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGas
+    neck: ClothingNeckMantle
+    outerClothing: ClothingOuterWinterCoat
+    gloves: ClothingHandsGlovesColorYellowBudget
+

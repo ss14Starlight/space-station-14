@@ -41,6 +41,10 @@
             "name": "LawyerSL",
             "delays": [[10, 0.2, 0.2, 0.2]]
         },
+		{
+            "name": "AssistantManager",
+            "copyright": "wonderfulnewworld"
+        },
         {
             "name": "CentComm",
             "copyright": "Happyrobot33, fqqf"

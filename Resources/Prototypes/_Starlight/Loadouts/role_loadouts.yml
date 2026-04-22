@@ -102,6 +102,27 @@
   - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
+  id: JobAssistantManager
+  groups:
+  - GroupTankHarness
+  - AssistantManagerHead
+  - AssistantManagerJumpsuit
+  - AssistantBackpack
+  - AssistantNeck
+  - AssistantFace
+  - AssistantGloves
+  - AssistantOuterClothing
+  - AssistantShoes
+  - AssistantGlasses
+  - Survival
+  - Trinkets
+  - Scarves
+  - Pins
+  - Pens
+  - AssistantJobTrinkets
+  - GroupSpeciesBreathTool
+
+- type: roleLoadout
   id: JobMiningSpecialist
   groups:
   - GroupTankHarness

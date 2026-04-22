@@ -33,6 +33,7 @@
   - Visitor
   - ServiceWorker
   # Starlight start
+  - AssistantManager
   - Performer
   - Lawyer
   - Boxer
