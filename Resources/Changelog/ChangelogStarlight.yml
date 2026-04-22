@@ -1,67 +1,4 @@
 Entries:
-- author: Coolsurf6
-  changes:
-  - message: Mechs now repair like cyborgs slowly over time with a welder.
-    type: Tweak
-  id: 404128
-  time: '2026-04-08T06:58:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4038
-- author: Coolsurf6
-  changes:
-  - message: Mech Chainsword now deal slashing damage instead of piercing.
-    type: Tweak
-  id: 404129
-  time: '2026-04-08T06:58:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4038
-- author: wonderfulnewworld
-  changes:
-  - message: Only Wizards can use wands, staffs, and magical weapons, except for the Staff of Animation/Teleport Scroll. Be cautious about mind swapping; only the Wizard's body is worthy of using magical items.
-    type: Tweak
-  id: 404130
-  time: '2026-04-08T07:06:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4035
-- author: wonderfulnewworld
-  changes:
-  - message: Summon Magic and Summon Guns now costs 25 WizCoin, so WizCoins can be mapped now in small amounts if desired/allowed.
-    type: Tweak
-  id: 404131
-  time: '2026-04-08T07:06:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4035
-- author: Born Stellar
-  changes:
-  - message: Spelling error in Space law corrected.
-    type: Fix
-  id: 404132
-  time: '2026-04-08T17:47:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3578
-- author: Born Stellar
-  changes:
-  - message: Glare revered to previous state.
-    type: Tweak
-  id: 404133
-  time: '2026-04-08T17:47:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3578
-- author: Born Stellar
-  changes:
-  - message: New ability called sleep which costs 15 blood, single target, and a 5 second do-after and has a 2 minute cool down. Flash protection and mind-shields prevent sleeping. Sleep lasts for 10 seconds.
-    type: Add
-  id: 404134
-  time: '2026-04-08T17:47:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3578
-- author: Born Stellar
-  changes:
-  - message: Vampires can no longer drink from dead beings.
-    type: Tweak
-  id: 404135
-  time: '2026-04-08T17:47:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3578
-- author: Born Stellar
-  changes:
-  - message: Vampires can no longer drink from beings that have zero blood.
-    type: Fix
-  id: 404136
-  time: '2026-04-08T17:47:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3578
 - author: Born Stellar
   changes:
   - message: Security guidelines for criminal Vampires now recommends tracking and electro-packing Vampires. Also states plainly that vampires with unusual abilities are always guilty of Cannibalism and Minor Assault at minimum.
@@ -2750,4 +2687,116 @@ Entries:
   id: 404520
   time: '2026-04-22T16:59:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4234
+- author: wonderfulnewworld
+  changes:
+  - message: Added the Dispatcher (15hrs Sec Officer) and the Golden mk58 (100hrs Sec Officer) to security sidearm loadout.
+    type: Add
+  id: 404521
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: Added a budget medical security mask.
+    type: Add
+  id: 404522
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: All members of security can now choose their masks. (And are forced to equip one in loadout by default.).
+    type: Add
+  id: 404523
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: Security now spawn with Extended Survival Kits instead of Security ones, to prevent getting duplicate security masks. Their survival kits already had extended air tanks, so this only changes the mask.
+    type: Tweak
+  id: 404524
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: Due Process Fire Rate -1.
+    type: Tweak
+  id: 404525
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: Dispatcher Fire Rate +0.75.
+    type: Tweak
+  id: 404526
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: 'The Dispatcher now has access to Burst Fire Mode. (Default: Burst.).'
+    type: Tweak
+  id: 404527
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: 'The Enforcer now has access to Full Auto and Burst Fire Modes. (Default: Full Auto.).'
+    type: Tweak
+  id: 404528
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: The Enforcer now has some scatter.
+    type: Tweak
+  id: 404529
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: The Viper now has access to Burst Fire Mode, so the Enforcer isn't just better than it.
+    type: Tweak
+  id: 404530
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: The Viper starts with the extended-capacity magazine now.
+    type: Tweak
+  id: 404531
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: The Captain, HoS, Warden, CE, and BSO no longer spawn with extra insuls in their lockers, and now are forced to equip one in loadout.
+    type: Tweak
+  id: 404532
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: Renamed Machine magazines to Extended magazines.
+    type: Tweak
+  id: 404533
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: Removes the unused, commented out mk64 from the files. For what it's worth, for the same reason pistol's couldn't use the extended magazine, the mk64 didn't work, so it's actually possible to make it work now.
+    type: Remove
+  id: 404534
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: Pistols can actually use the extended-capacity magazines now.
+    type: Fix
+  id: 404535
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: wonderfulnewworld
+  changes:
+  - message: The 3 viper ammos in the uplink have proper loc now.
+    type: Fix
+  id: 404536
+  time: '2026-04-22T18:14:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4227
 Order: -1
