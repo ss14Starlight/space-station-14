@@ -48,7 +48,7 @@
   parent: [BaseCommandManagerContraband, ClothingEyesHudCommand]
   id: ClothingEyesEyepatchHudAssistantManager
   name: assistant manager hud eyepatch
-  description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status. Tied by a near-invisible string.
+  description: A jade-colored heads-up display that scans the humanoids in view and provides accurate data about their ID status. Surrender witness to its' near-invisible string.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Eyes/Hud/assistantpatch.rsi
