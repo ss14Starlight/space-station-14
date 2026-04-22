@@ -15,14 +15,22 @@
   - type: SLBodyPart
     partType: SLHumanoidTorso
     sockets:
-    - Head: SLHumanoidOmniSocket
-    - LeftArm: SLHumanoidOmniSocket
-    - RightArm: SLHumanoidOmniSocket
-    - LeftLeg: SLHumanoidOmniSocket
-    - RightLeg: SLHumanoidOmniSocket
-    - RightWing: SLHumanoidOmniSocket
-    - LeftWing: SLHumanoidOmniSocket
-    - Tail: SLHumanoidOmniSocket
+     Head: SLHumanoidOmniSocket
+     LeftArm: SLHumanoidOmniSocket
+     RightArm: SLHumanoidOmniSocket
+     LeftLeg: SLHumanoidOmniSocket
+     RightLeg: SLHumanoidOmniSocket
+     RightWing: SLHumanoidOmniSocket
+     LeftWing: SLHumanoidOmniSocket
+     Tail: SLHumanoidOmniSocket
+
+- type: entity
+  id: SLPartHumanoidHead
+  parent: SLPartHumanoid
+  name: "humanoid head"
+  components:
+  - type: SLBodyPart
+    partType: SLHumanoidHead
 
 - type: entity
   id: SLPartHumanoidArm
@@ -32,7 +40,7 @@
   - type: SLBodyPart
     partType: SLHumanoidArm
     sockets:
-    - Hand: SLHumanoidOmniSocket
+     Hand: SLHumanoidOmniSocket
 
 - type: entity
   id: SLPartHumanoidHand
@@ -50,7 +58,7 @@
   - type: SLBodyPart
     partType: SLHumanoidLeg
     sockets:
-    - Foot: SLHumanoidOmniSocket
+     Foot: SLHumanoidOmniSocket
 
 - type: entity
   id: SLPartHumanoidFoot

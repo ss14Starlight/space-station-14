@@ -1,7 +1,5 @@
 ﻿// SPDX-FileCopyrightText: 2026 Starlight Network
 // SPDX-License-Identifier: MIT
-
-using System.Diagnostics;
 using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Body.Events;
 using Content.Shared._Starlight.Body.Prototypes;
@@ -9,8 +7,9 @@ using JetBrains.Annotations;
 using Robust.Shared.Collections;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
 
-namespace Content.Shared._Starlight.Body.System;
+namespace Content.Shared._Starlight.Body.Systems;
 
 [UsedImplicitly]
 [SerializedType(nameof(BodyPartContainer))]
@@ -32,7 +31,7 @@ public sealed partial class BodyPartContainer : BaseContainer
         if (toAdd.Comp.ParentSocket != null)
         {
             //Assert if the required socket either doesn't exist or already is occupied
-            Debug.Assert(_socketLookup.TryGetValue(toAdd.Comp.ParentSocket.Value, out var idx) && idx == -1);
+            DebugTools.Assert(_socketLookup.TryGetValue(toAdd.Comp.ParentSocket.Value, out var idx) && idx == -1);
             _socketLookup[toAdd.Comp.ParentSocket.Value] = _bodyParts.Count - 1;
         }
         entMan.EventBus.RaiseLocalEvent(toAdd,new SLBodyPartAddedEvent(toAdd));

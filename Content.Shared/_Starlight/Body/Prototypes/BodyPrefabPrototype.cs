@@ -8,7 +8,7 @@ namespace Content.Shared._Starlight.Body.Prototypes;
 [Prototype]
 public sealed partial class BodyPrefabPrototype  : IPrototype
 {
-    public string ID { get; set; } = string.Empty;
+    [IdDataField] public string ID { get; set; } = string.Empty;
 
     [DataField(required: true)] public BodyPartDef Root = default!;
 }
@@ -16,9 +16,9 @@ public sealed partial class BodyPrefabPrototype  : IPrototype
 [DataRecord]
 public partial record struct BodyPartDef(
     EntProtoId<SLBodyPartComponent> BodyPart,
-    Dictionary<BodyPartSocket, BodyPartDef>? SocketedParts = null,
-    List<BodyPartDef>? InternalParts = null)
+    Dictionary<string, BodyPartDef>? AttachedParts = null,
+    List<BodyPartDef>? ContainedParts = null)
 {
-    public bool HasSocketedChildren => SocketedParts is { Count: > 0 };
-    public bool HasInternalChildren => InternalParts is { Count: > 0 };
+    public bool HasSocketedChildren => AttachedParts is { Count: > 0 };
+    public bool HasInternalChildren => ContainedParts is { Count: > 0 };
 };

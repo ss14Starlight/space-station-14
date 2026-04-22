@@ -1,35 +1,35 @@
-﻿- type: BodyPartType
+﻿- type: bodyPartType
   id: HumanoidGeneric
 
-- type: BodyPartType
+- type: bodyPartType
   id: HumanoidHead
 
-- type: BodyPartType
+- type: bodyPartType
   id: HumanoidHorn
 
-- type: BodyPartType
+- type: bodyPartType
   id: HumanoidEye
 
-- type: BodyPartType
+- type: bodyPartType
   id: HumanoidTorso
 
-- type: BodyPartType
+- type: bodyPartType
   id: HumanoidArm
 
-- type: BodyPartType
+- type: bodyPartType
   id: HumanoidHand
 
-- type: BodyPartType
+- type: bodyPartType
   id: HumanoidLeg
 
-- type: BodyPartType
+- type: bodyPartType
   id: HumanoidFoot
 
-- type: BodyPartType
+- type: bodyPartType
   id: HumanoidWing
 
-- type: BodyPartType
+- type: bodyPartType
   id: HumanoidAbdomen
 
-- type: BodyPartType
+- type: bodyPartType
   id: HumanoidTail

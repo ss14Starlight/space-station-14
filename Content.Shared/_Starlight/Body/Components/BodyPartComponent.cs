@@ -2,9 +2,10 @@
 // SPDX-License-Identifier: MIT
 
 using Content.Shared._Starlight.Body.Prototypes;
-using Content.Shared._Starlight.Body.System;
+using Content.Shared._Starlight.Body.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 
 namespace Content.Shared._Starlight.Body.Components;
 

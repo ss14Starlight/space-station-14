@@ -7,7 +7,7 @@ using Content.Shared._Starlight.Body.Prototypes;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-namespace Content.Shared._Starlight.Body.System;
+namespace Content.Shared._Starlight.Body.Systems;
 
 public sealed class BodySystem : EntitySystem
 {
@@ -74,23 +74,23 @@ public sealed class BodySystem : EntitySystem
         var children = EnsureChildren(newPart); //Create the root BodyPart container and ensure that sockets are properly setup!
         body.Comp.BodyParts.Add(newPart); //cache the new bodypart
         newPart.Comp.Body = body;
-        if (partDef.SocketedParts != null)
-            foreach (var (socket, def) in partDef.SocketedParts)
+        if (partDef.AttachedParts != null)
+            foreach (var (socketId, def) in partDef.AttachedParts)
             {
                 var newChild = EntityManager.SpawnAttachedTo(def.BodyPart, new EntityCoordinates(newPart, 0, 0));
                 var childPart = new Entity<SLBodyPartComponent>(newChild, Comp<SLBodyPartComponent>(newChild));
-                childPart.Comp.ParentSocket = socket;
+                childPart.Comp.ParentSocket = new BodyPartSocket(socketId, newPart.Comp.Sockets[socketId]);
                 childPart.Comp.Parent = newPart;
-                RecursivelyBuildBodyParts(body, children, childPart, partDef);
+                RecursivelyBuildBodyParts(body, children, childPart, def);
             }
 
-        if (partDef.InternalParts != null)
-            foreach (var def in partDef.InternalParts)
+        if (partDef.ContainedParts != null)
+            foreach (var def in partDef.ContainedParts)
             {
                 var newChild = EntityManager.SpawnAttachedTo(def.BodyPart, new EntityCoordinates(newPart, 0, 0));
                 var childPart = new Entity<SLBodyPartComponent>(newChild, Comp<SLBodyPartComponent>(newChild));
                 childPart.Comp.Parent = newPart;
-                RecursivelyBuildBodyParts(body, children, childPart, partDef);
+                RecursivelyBuildBodyParts(body, children, childPart, def);
             }
         Dirty(newPart);
         if (parentContainer != null)

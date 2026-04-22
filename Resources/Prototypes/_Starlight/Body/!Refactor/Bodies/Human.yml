@@ -5,3 +5,6 @@
   components:
   - type: SLBody
     prefab: SLHumanBodyPrefab
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+    state: "torso_m"

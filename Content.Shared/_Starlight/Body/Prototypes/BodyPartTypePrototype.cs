@@ -8,5 +8,5 @@ namespace Content.Shared._Starlight.Body.Prototypes;
 [Prototype]
 public sealed partial class BodyPartTypePrototype : IPrototype
 {
-    public string ID { get; set; } = string.Empty;
+    [IdDataField] public string ID { get; set; } = string.Empty;
 }
