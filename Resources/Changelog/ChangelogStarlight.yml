@@ -2631,4 +2631,11 @@ Entries:
   id: 404503
   time: '2026-04-22T07:48:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4229
+- author: Sparlight
+  changes:
+  - message: Removed hunger drawback from bruizine to avoid critters chugging the jug.
+    type: Tweak
+  id: 404504
+  time: '2026-04-22T08:44:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4225
 Order: -1
