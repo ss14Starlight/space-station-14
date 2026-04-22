@@ -9,36 +9,16 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Body.Systems;
 
-public sealed class BodySystem : EntitySystem
+public sealed partial class BodySystem : EntitySystem
 {
     public const string BodyContainerId = "sl_childbodyparts";
     [Dependency] private readonly SharedContainerSystem ContainerSystem = default!;
     [Dependency] private readonly IPrototypeManager Proto = default!;
 
-    private event Action<BodySystem, Entity<SLBodyComponent>>? _initRelays = null;
     public override void Initialize()
     {
         SubscribeLocalEvent<SLBodyComponent, MapInitEvent>(OnBodyMapInit);
-        SubscribeLocalEvent<SLBodyComponent, BodyInitEvent>(OnBodyInit);
     }
-
-    private void OnBodyInit(Entity<SLBodyComponent> body, ref BodyInitEvent args)
-    {
-        foreach (var bodyPart in body.Comp.BodyParts)
-            RaiseLocalEvent(bodyPart, new BodyPartInitEvent(body) );
-        _initRelays?.Invoke(this, body);
-    }
-    public void SubscribeBodyPartInitEvent<TBodyComp>(EntityEventHandler<BodyPartInitEvent<TBodyComp>> handler) where TBodyComp: IComponent
-    {
-        _initRelays += (system, body) =>
-        {
-            var comp = system.Comp<TBodyComp>(body);
-            var ev = new BodyPartInitEvent<TBodyComp>(body, comp);
-            foreach (var part in body.Comp.BodyParts)
-                system.RaiseLocalEvent(part, ev);
-        };
-    }
-
     private void OnBodyMapInit(Entity<SLBodyComponent> body, ref MapInitEvent args)
     {
         if (body.Comp.BodyBuilt) //We don't want to initialize body twice!

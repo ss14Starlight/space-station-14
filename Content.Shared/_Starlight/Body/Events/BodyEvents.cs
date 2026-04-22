@@ -4,23 +4,26 @@
 using Content.Shared._Starlight.Body.Components;
 
 namespace Content.Shared._Starlight.Body.Events;
+public delegate void BodyEventHandler<in TEvent>(
+    Entity<SLBodyComponent> body,
+    Entity<SLBodyPartComponent> bodyPart,
+    TEvent args);
 
-public interface IBodyEvent<TEvent>
-{
-    Entity<SLBodyComponent> Body { get; set; }
-    TEvent Args { get; set; }
-}
-
-public interface IBodyEvent<TComp, TEvent> : IBodyEvent<TEvent>
-    where TComp:IComponent
-{
-    TComp SimComp { get; set; }
-}
+public delegate void BodyRefEventHandler<TEvent>(
+    Entity<SLBodyComponent> body,
+    Entity<SLBodyPartComponent> bodyPart,
+    ref TEvent args);
 
 
+public delegate void BodyEventHandler<TComp,in TEvent>(
+    Entity<SLBodyComponent, TComp> body,
+    Entity<SLBodyPartComponent> bodyPart,
+    TEvent args)
+    where TComp:IComponent;
+
+public delegate void BodyRefEventHandler<TComp, TEvent>(
+    Entity<SLBodyComponent, TComp> body,
+    Entity<SLBodyPartComponent> bodyPart,
+    ref TEvent args)
+    where TComp:IComponent;
 public struct BodyInitEvent;
-
-public record struct BodyPartInitEvent(Entity<SLBodyComponent> Body);
-
-public record struct BodyPartInitEvent<TComp>(Entity<SLBodyComponent> Body, TComp SimComp)
-    where TComp : IComponent;

@@ -3,9 +3,9 @@
 
 using Content.Shared._Starlight.Body.Prototypes;
 using Content.Shared._Starlight.Body.Systems;
+using Content.Shared.Starlight.Utility;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 
 namespace Content.Shared._Starlight.Body.Components;
 
@@ -13,6 +13,7 @@ namespace Content.Shared._Starlight.Body.Components;
 public sealed partial class SLBodyPartComponent : Component
 {
     [DataField] public ProtoId<BodyPartTypePrototype> PartType = default;
+    [DataField] public ExtendedSpriteSpecifier? ExternalSprite = null;
     [DataField] public Dictionary<string, ProtoId<BodyPartSocketPrototype>> Sockets = new();
 
     [DataField] public BodyPartSocket? ParentSocket = null; //Must be set BEFORE adding to parent's container
