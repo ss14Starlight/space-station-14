@@ -233629,14 +233629,14 @@ entities:
     - type: Transform
       pos: 38.892593,-42.34774
       parent: 2
-- proto: TowelColorGold
+- proto: TowelColorWhite
   entities:
   - uid: 5035
     components:
     - type: Transform
       pos: -22.464365,34.56321
       parent: 2
-- proto: TowelColorLightBlue
+- proto: TowelColorWhite
   entities:
   - uid: 1552
     components:

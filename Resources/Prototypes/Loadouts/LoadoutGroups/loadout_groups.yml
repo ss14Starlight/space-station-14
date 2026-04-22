@@ -48,23 +48,6 @@
   - OffsetCaneNT
   - Cane
   - TowelColorWhite
-  - TowelColorGray
-  - TowelColorBlack
-  - TowelColorRed
-  - TowelColorOrange
-  - TowelColorLightBrown
-  - TowelColorYellow
-  - TowelColorDarkGreen
-  - TowelColorGreen
-  - TowelColorLightBlue
-  - TowelColorDarkBlue
-  - TowelColorPurple
-  - TowelColorMaroon
-  - TowelColorMime
-  - TowelColorSilver
-  - TowelColorGold
-  - TowelColorWhite
-  - TowelColorYellow
   - HarmonicaInstrument # Starlight start
   - FluteInstrument
   - AcousticGuitarInstrument
@@ -265,9 +248,9 @@
   id: HoPBackpack
   name: loadout-group-hop-backpack
   loadouts:
-  - CommonBackpack
-  - CommonSatchel
-  - CommonDuffel
+  - HoPBackpack # Starlight
+  - HoPSatchel # Starlight
+  - HoPDuffel # Starlight
   - HoPBackpackIan
   - LeatherSatchel # starlight
 

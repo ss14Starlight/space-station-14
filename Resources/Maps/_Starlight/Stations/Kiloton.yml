@@ -182854,21 +182854,21 @@ entities:
     - type: Transform
       pos: 50.480743,-14.486377
       parent: 2
-- proto: TowelColorBlue
+- proto: TowelColorWhite
   entities:
   - uid: 27674
     components:
     - type: Transform
       pos: -8.475462,-16.424536
       parent: 2
-- proto: TowelColorGold
+- proto: TowelColorWhite
   entities:
   - uid: 27675
     components:
     - type: Transform
       pos: -4.413609,2.2142553
       parent: 2
-- proto: TowelColorMime
+- proto: TowelColorWhite
   entities:
   - uid: 27676
     components:
@@ -182882,7 +182882,7 @@ entities:
     - type: Transform
       pos: 7.4954243,-15.454691
       parent: 2
-- proto: TowelColorPurple
+- proto: TowelColorWhite
   entities:
   - uid: 27678
     components:

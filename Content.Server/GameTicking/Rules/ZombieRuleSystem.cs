@@ -6,6 +6,7 @@ using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Server.Zombies;
+using Content.Server._Starlight.Language; // Starlight-start: zombie language
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
@@ -34,6 +35,7 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ZombieSystem _zombie = default!;
+    [Dependency] private readonly LanguageSystem _language = default!; // Starlight-start: zombie language
 
     public override void Initialize()
     {
@@ -42,7 +44,16 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
         SubscribeLocalEvent<InitialInfectedRoleComponent, GetBriefingEvent>(OnGetBriefing);
         SubscribeLocalEvent<ZombieRoleComponent, GetBriefingEvent>(OnGetBriefing);
         SubscribeLocalEvent<IncurableZombieComponent, ZombifySelfActionEvent>(OnZombifySelf);
+        SubscribeLocalEvent<ZombieRuleComponent, AfterAntagEntitySelectedEvent>(OnInitialInfectedSelected); // Starlight-start: zombie language
     }
+
+    // Starlight-start: zombie language
+    /// <summary>
+    /// Gives initial infected the ability to understand (but not speak) zombie language.
+    /// </summary>
+    private void OnInitialInfectedSelected(EntityUid uid, ZombieRuleComponent comp, ref AfterAntagEntitySelectedEvent args) =>
+        _language.AddLanguage(args.EntityUid, "Zombie", addSpoken: false, addUnderstood: true);
+    // Starlight-end
 
     private void OnGetBriefing(Entity<InitialInfectedRoleComponent> role, ref GetBriefingEvent args)
     {
