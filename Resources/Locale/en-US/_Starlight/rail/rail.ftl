@@ -407,6 +407,9 @@ rr-whiskeysour-desc = Sweet, sour, and guaranteed to raise eyebrows.
 rr-bacchusblessing = Bacchus’s Blessing
 rr-bacchusblessing-desc = Wine, gods, and the promise of a very loud evening.
 
+rr-thelastcall = The Last Call
+rr-thelastcall-desc = There are no good or bad choices. Only consequences.
+
 # Mail
 rr-mail-open = Mail
 rr-mail-open-desc = Did they write to me? I really want to know.

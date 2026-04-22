@@ -1480,6 +1480,11 @@
   description: flavor-complex-bacchus-blessing
 
 - type: flavor
+  id: thelastcall
+  flavorType: Complex
+  description: flavor-complex-the-last-call
+
+- type: flavor
   id: trashy
   flavorType: Base
   description: flavor-base-trashy
