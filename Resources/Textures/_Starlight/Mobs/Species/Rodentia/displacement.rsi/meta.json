@@ -42,7 +42,7 @@
     {
       "name": "ears",
       "directions": 4,
-      "copyright": "by Zeyria"
+      "copyright": "by DocMoth"
     },
     {
       "name": "eyes",
@@ -63,6 +63,11 @@
       "name": "shoes",
       "directions": 4,
       "copyright": "by Zeyria"
+    },
+    {
+      "name": "neck",
+      "directions": 4,
+      "copyright": "by DocMoth"
     }
   ]
 }
