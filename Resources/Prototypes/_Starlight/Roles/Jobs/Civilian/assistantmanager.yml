@@ -7,8 +7,8 @@
   - !type:DepartmentTimeRequirement
     department: Command
     time: 30h
-  - !type:DepartmentTimeRequirement
-    department: Civilian
+  - !type:RoleTimeRequirement
+    role: JobAssistant # How can you lead the masses if you've never been one of them?
     time: 30h
   - !type:RolesRequirement
     proto: ExtRolesReq

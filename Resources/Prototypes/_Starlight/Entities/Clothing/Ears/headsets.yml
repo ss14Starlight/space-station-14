@@ -33,7 +33,7 @@
   parent: [ ClothingHeadset, BaseCommandManagerContraband ]
   id: ClothingHeadsetAssistantManager
   name: assistant manager headset
-  description: A headset for the least poor among the poor
+  description: A headset for the least poor among the poor.
   components:
     - type: ContainerFill
       containers:
