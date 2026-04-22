@@ -28,3 +28,42 @@
       tags:
         - Hardsuit
         - WhitelistChameleon
+
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseMedTakContraband ]
+  id: ClothingOuterHardsuitMedTak
+  name: MedTak operator hardsuit
+  description: An armoured hardsuit worn by MedTak operators.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/medtak_hardsuit.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/medtak_hardsuit.rsi
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitMedTak
+    - type: PressureProtection
+      highPressureMultiplier: 0.05
+      lowPressureMultiplier: 1000
+    - type: ZombificationResistance
+      zombificationResistanceCoefficient: 0.0
+    - type: StaminaResistance
+      damageCoefficient: 0.75
+    - type: ExplosionResistance
+      damageCoefficient: 0.5
+    - type: Armor # ERT sec values
+      modifiers:
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.6
+          Heat: 0.5
+          Radiation: 0.5
+          Caustic: 0.5
+      staminaModifier: 0.3
+    - type: ClothingSpeedModifier
+      walkModifier: 0.9
+      sprintModifier: 0.9
+    - type: HeldSpeedModifier
+    - type: Tag
+      tags:
+        - Hardsuit

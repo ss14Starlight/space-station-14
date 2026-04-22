@@ -69,14 +69,15 @@
 - type: roleLoadout
   id: JobIAA
   groups:
-  - LawyerNeck
-  - LawyerJumpsuit
+  - IAANeck
+  - IAAJumpsuit
   - CommonBackpack
-  - LawyerShoes
+  - IAAShoes
   - Trinkets
   - Scarves
   - Pins
   - LuxuryPens
+  - LawyerJobTrinkets
   - Survival
   - GroupSpeciesBreathTool
 

@@ -310,7 +310,7 @@
 
 - type: entity
   name: brown briefcase
-  parent: [BaseWeaponSubMachineGun]
+  parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunBriefcase
   description: Useful for carrying items in your hands.
   suffix: Gun
@@ -346,3 +346,7 @@
   - type: Appearance
   - type: StaticPrice
     price: 5000
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8

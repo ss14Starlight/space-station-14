@@ -58,6 +58,7 @@
   - Mining # Starlight
   - SalvageLead # Starlight
   - Mail # Starlight
+  - Debrief # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

@@ -249,3 +249,53 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: CultistChaplain
   allowSelection: false
+
+# MedTak
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedTakLeader
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: MedTakLeader
+  jobName: job-name-medtak-leader
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedTakDispatcher
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: MedTakDispatcher
+  jobName: job-name-medtak-dispatcher
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedTakMedic
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: MedTakMedic
+  jobName: job-name-medtak-medic
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedTakPilot
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: MedTakPilot
+  jobName: job-name-medtak-pilot
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedTakSecurity
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: MedTakSecurity
+  jobName: job-name-medtak-security
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedTakBorg
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: MedTakBorg
+  jobName: job-name-medtak-borg

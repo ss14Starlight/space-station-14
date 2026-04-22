@@ -26,3 +26,20 @@
       rolls: !type:RangeNumberSelector
         range: 0, 2
       tableId: RandomHandwrittenBookTable
+
+- type: entity
+  id: ShelfMedTak
+  parent: ShelfChemistry
+  name: MedTak supplies shelf
+  description: A sturdy and compact shelf for holding medical supplies.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/Shelfs/medtak.rsi
+
+- type: entity
+  parent: ShelfMedTak
+  id: ShelfMedTakSecure
+  suffix: Secure
+  components:
+  - type: AccessReader
+    access: [["MedTak"]]

@@ -64250,7 +64250,7 @@ entities:
     - type: Transform
       pos: -7.5,2.5
       parent: 8810
-- proto: TowelColorLightBlue
+- proto: TowelColorWhite
   entities:
   - uid: 7776
     components:

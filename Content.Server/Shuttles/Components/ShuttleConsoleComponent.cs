@@ -28,6 +28,19 @@ namespace Content.Server.Shuttles.Components
         /// </summary>
         [AutoPausedField]
         public TimeSpan LastInterfaceUpdateTime;
+
+        /// <summary>
+        /// Which container slot to use for slotted PAIs.
+        /// </summary>
+        [DataField]
+        public string PaiSlotId = "pai_slot";
+
+        /// <summary>
+        /// Speed the entity is physically thrown when rammed out.
+        /// </summary>
+        [DataField]
+        public float ItemThrowSpeedOnRam = 6f;
+
         #endregion
     }
 }
