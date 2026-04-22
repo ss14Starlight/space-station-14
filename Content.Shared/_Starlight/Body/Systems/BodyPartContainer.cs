@@ -15,7 +15,9 @@ namespace Content.Shared._Starlight.Body.Systems;
 
 [UsedImplicitly]
 [SerializedType(nameof(BodyPartContainer))]
-public sealed partial class BodyPartContainer : BaseContainer, IEnumerable<Entity<SLBodyPartComponent>>
+public sealed partial class BodyPartContainer : BaseContainer,
+    IEnumerable<Entity<SLBodyPartComponent>>,
+    IEnumerable<(BodyPartSocket, Entity<SLBodyPartComponent>?)>
 {
     private ValueList<EntityUid> _bodyParts = new();
     private ValueList<SLBodyPartComponent> _bodyPartComps = new();
@@ -89,6 +91,12 @@ public sealed partial class BodyPartContainer : BaseContainer, IEnumerable<Entit
 
     public bool TryRegisterSocket(BodyPartSocket socket) => _socketLookup.TryAdd(socket, -1);
 
+    IEnumerator<(BodyPartSocket, Entity<SLBodyPartComponent>?)> IEnumerable<(BodyPartSocket, Entity<SLBodyPartComponent>?)>.GetEnumerator() => new SocketEnumerable(this);
+
+    public IEnumerator<Entity<SLBodyPartComponent>> GetEnumerator() => new Enumerable(this);
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
     public struct Enumerable(BodyPartContainer container) : IEnumerator<Entity<SLBodyPartComponent>>
     {
         private int _index = 0;
@@ -112,7 +120,43 @@ public sealed partial class BodyPartContainer : BaseContainer, IEnumerable<Entit
         public void Dispose(){}
     }
 
-    public IEnumerator<Entity<SLBodyPartComponent>> GetEnumerator() => new Enumerable(this);
+    public struct SocketEnumerable(BodyPartContainer container) : IEnumerator<(BodyPartSocket, Entity<SLBodyPartComponent>?)>
+    {
+        private Dictionary<BodyPartSocket, int>.Enumerator _enumerator = container._socketLookup.GetEnumerator();
+        public bool MoveNext() => _enumerator.MoveNext();
 
-    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        public void Reset()
+        {
+            _enumerator = container._socketLookup.GetEnumerator();
+        }
+
+        (BodyPartSocket, Entity<SLBodyPartComponent>?) IEnumerator<(BodyPartSocket, Entity<SLBodyPartComponent>?)>.
+            Current
+        {
+            get
+            {
+                var idx = _enumerator.Current.Value;
+                if (idx == -1)
+                {
+                    return (_enumerator.Current.Key, null);
+                }
+                return (_enumerator.Current.Key,
+                    new Entity<SLBodyPartComponent>(container._bodyParts[idx], container._bodyPartComps[idx]));
+            }
+        }
+
+        object? IEnumerator.Current
+        {
+            get
+            {
+                var idx = _enumerator.Current.Value;
+                if (idx == -1)
+                    return null;
+                return (_enumerator.Current.Key,
+                    new Entity<SLBodyPartComponent>(container._bodyParts[idx], container._bodyPartComps[idx]));
+            }
+        }
+
+        public void Dispose() => _enumerator.Dispose();
+    }
 }
