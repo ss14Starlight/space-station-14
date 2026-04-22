@@ -34,15 +34,6 @@
   - type: Thieving
     stealthy: true
   - type: Pacified # THE STEALTH BORG DOES NOT FUCKING GET GUNS
-  - type: IntrinsicRadioReceiver
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Binary
-    - Common
-    - Syndicate
-  - type: ActiveRadio
-    channels:
-    - Syndicate
 
 - type: entity
   id: BorgChassisSecurity
@@ -51,6 +42,68 @@
   components:
   - type: BorgSwitchableType
     selectedBorgType: security
+  - type: SiliconLawProvider
+    laws: SecurityCyborgLawset
+  - type: FlashImmunity
+  - type: SecurityBorg
+  - type: ActionGrant
+    actions:
+    - ActionBorgOpenLawbook
+    - ActionBorgCallForHelp
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      155: Critical
+      355: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 130
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 5
+    - trigger:
+        !type:DamageTrigger
+        damage: 355
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:EmptyContainersBehaviour
+        containers:
+        - borg_brain
+        - borg_module
+        - cell_slot
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: SecurityBorgArmor
+
+- type: entity
+  id: BorgChassisSecurityPowered
+  parent: BorgChassisSecurity
+  name: security cyborg
+  suffix: Powered
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+        blacklist:
+          tags:
+          - MechReactor
 
 - type: entity
   id: BorgChassisPurrfus
@@ -62,43 +115,30 @@
     selectedBorgType: purrfus
 
 - type: entity
-  id: BorgChassisCargo
-  parent: BorgChassisSelectable
-  name: cargo cyborg
-  components:
-  - type: TextToSpeech
-  - type: BorgSwitchableType
-    selectedBorgType: cargo
-
-
-# Derelict
-
-- type: entity
   id: PurrfusBorgChassisDerelict
   parent: BaseBorgChassisDerelict
   name: derelict purrfus cyborg
-  description: A man-machine hybrid that assists in station activity. This one is in a state of great disrepair.
+  description: A man-machine hybrid of the purrfus variety. This one is in a state of great disrepair.
   components:
   - type: Sprite
-    sprite: _Starlight/Mobs/Silicon/Chassis/derelict.rsi
+    sprite: _Starlight/Mobs/Silicon/Chassis/purrfus.rsi
     layers:
-    - state: purrfus
-    - state: purrfus_e_r
+    - state: borg
+    - state: borg_e_r
       map: [ "enum.BorgVisualLayers.Light" ]
       shader: unshaded
       visible: false
-    - state: purrfus_l
+    - state: borg_l
       shader: unshaded
       map: [ "light" ]
       visible: false
   - type: BorgChassis
-    maxModules: 5 # One less module slot than the regular module to reflect this being a "broken" cyborg.
+    maxModules: 5
     moduleWhitelist:
       tags:
       - BorgModuleGeneric
-      - BorgModulePurrfus
-    hasMindState: purrfus_e
-    noMindState: purrfus_e_r
+    hasMindState: borg_e
+    noMindState: borg_e_r
   - type: Construction
     node: derelictcyborg
   - type: InteractionPopup
@@ -111,16 +151,19 @@
     channels:
     - Binary
     - Common
-    - Command
-    - Science
-    - Law
   - type: ActiveRadio
     channels:
     - Binary
     - Common
-    - Command
-    - Science
-    - Law
+
+- type: entity
+  id: BorgChassisCargo
+  parent: BorgChassisSelectable
+  name: cargo cyborg
+  components:
+  - type: TextToSpeech
+  - type: BorgSwitchableType
+    selectedBorgType: cargo
 
 # TSF
 # ? Make this Generic in the future if we have... More TSF Borgs?
