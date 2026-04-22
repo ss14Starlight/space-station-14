@@ -126,7 +126,7 @@
     - state: silver
     - sprite: *starlight-icon-rsi
       offset: *icon-offset
-      state: Assistantmanager
+      state: AssistantManager
   - type: PresetIdCard
     job: AssistantManager
 
