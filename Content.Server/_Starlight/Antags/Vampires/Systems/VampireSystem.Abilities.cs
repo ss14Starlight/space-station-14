@@ -928,7 +928,6 @@ public sealed partial class VampireSystem : EntitySystem
     #endregion
 
     #region Full Power, Passives
-    
     /// <summary>
     /// Vampire full power level check
     /// </summary>
