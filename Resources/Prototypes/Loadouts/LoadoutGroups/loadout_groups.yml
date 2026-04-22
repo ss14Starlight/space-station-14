@@ -248,9 +248,9 @@
   id: HoPBackpack
   name: loadout-group-hop-backpack
   loadouts:
-  - CommonBackpack
-  - CommonSatchel
-  - CommonDuffel
+  - HoPBackpack # Starlight
+  - HoPSatchel # Starlight
+  - HoPDuffel # Starlight
   - HoPBackpackIan
   - LeatherSatchel # starlight
 
