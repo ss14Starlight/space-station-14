@@ -15,6 +15,9 @@ public sealed class SecurityBorgActionsSystem : EntitySystem
         SubscribeLocalEvent<SecurityBorgComponent, BorgLawbookActionEvent>(OnLawbook);
     }
 
+    /// <summary>
+    /// Opens the guidebook to the space law page when the borg lawbook action is used.
+    /// </summary>
     private void OnLawbook(EntityUid uid, SecurityBorgComponent _, BorgLawbookActionEvent args)
     {
         if (args.Handled)

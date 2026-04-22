@@ -21,6 +21,9 @@ public sealed class SecurityBorgActionsSystem : EntitySystem
         SubscribeLocalEvent<SecurityBorgComponent, BorgCallForHelpActionEvent>(OnCallForHelp);
     }
 
+    /// <summary>
+    /// Sends a radio message to the security channel with the position of the borg when they call for help.
+    /// </summary>
     private void OnCallForHelp(EntityUid uid, SecurityBorgComponent _, BorgCallForHelpActionEvent args)
     {
         if (args.Handled)
