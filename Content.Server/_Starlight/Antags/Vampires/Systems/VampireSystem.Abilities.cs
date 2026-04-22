@@ -453,8 +453,12 @@ public sealed partial class VampireSystem : EntitySystem
             }
         }
 
-        if (sipInefficiency <= 0f) //If we have set the efficeniency to 0, then no point continuing
+        if (sipInefficiency <= 0f) //If we have set the efficiency to 0, then no point continuing
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-drink-target-rot"), uid, uid, Shared.Popups.PopupType.MediumCaution);
+            comp.IsDrinking = false;
             return;
+        }
 
         sipInefficiency = 1f / sipInefficiency;
 
