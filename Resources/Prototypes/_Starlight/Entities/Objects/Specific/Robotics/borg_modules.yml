@@ -115,7 +115,6 @@
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: hands }
 
-# Starlight-start: Contraband bag for security borg — drops on crit, cannot be voluntarily dropped
 - type: entity
   id: BorgContrabandBag
   parent: BaseStorageItem
@@ -138,8 +137,7 @@
       - Contraband
   - type: Dumpable
   - type: Unremoveable
-    deleteOnDrop: false # Starlight: drops to floor on crit, does not delete
-# Starlight-end
+    deleteOnDrop: false
 
 # region Security
 - type: entity
@@ -154,7 +152,7 @@
     - state: icon-nt
   - type: ItemBorgModule
     hands:
-    - item: WeaponPDW9TaserBorg # Starlight: self-recharging integrated taser
+    - item: WeaponPDW9TaserBorg
       hand:
         emptyRepresentative: WeaponPDW9TaserBorg
         emptyLabel: borg-slot-disabler-empty
@@ -162,37 +160,37 @@
           tags:
           - Disabler
           - Taser
-    - item: BorgStunbatonRechargeable # Starlight: self-recharging integrated stunbaton
+    - item: BorgStunbatonRechargeable
       hand:
         emptyRepresentative: BorgStunbatonRechargeable
         emptyLabel: borg-slot-stunbaton-empty
         whitelist:
           components:
           - Stunbaton
-    - item: BorgHolocuffs # Starlight: regenerating integrated holocuffs
+    - item: BorgHolocuffs
       hand:
         emptyRepresentative: BorgHolocuffs
         emptyLabel: borg-slot-zipties-empty
-    - item: BorgFlashRechargeable # Starlight: integrated flash, undroppable
+    - item: BorgFlashRechargeable
       hand:
         emptyRepresentative: BorgFlashRechargeable
         emptyLabel: borg-slot-flash-empty
         whitelist:
           components:
           - Flash
-    - item: BorgHoloprojectorSecurity # Starlight: integrated holobarrier, undroppable
+    - item: BorgHoloprojectorSecurity
       hand:
         emptyRepresentative: BorgHoloprojectorSecurity
         emptyLabel: borg-slot-holoprojector-empty
         whitelist:
           components:
           - HolosignProjector
-    - item: BorgContrabandBag # Starlight: integrated contraband bag, drops on crit
+    - item: BorgContrabandBag
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
   - type: Tag
     tags:
-    - BorgModuleSecurityStation # Starlight: only fits station security borg
+    - BorgModuleSecurityStation
 
 # region TSF
 - type: entity
