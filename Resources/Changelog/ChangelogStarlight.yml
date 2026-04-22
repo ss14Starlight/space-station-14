@@ -2624,4 +2624,11 @@ Entries:
   id: 404502
   time: '2026-04-21T20:52:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4224
+- author: Wizden
+  changes:
+  - message: Partial upstream.
+    type: Tweak
+  id: 404503
+  time: '2026-04-22T07:48:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4229
 Order: -1
