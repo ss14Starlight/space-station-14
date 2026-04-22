@@ -157,34 +157,6 @@ public sealed partial class ZombieComponent : Component
         }
     };
 
-    // starlight
-    /// <summary>
-    /// What bite damage should be assigned to this mob if it previously had a 0 damage attack (mice, moproaches, etc)
-    /// </summary>
-    [DataField]
-    public DamageSpecifier MinimumDamageOnBite = new()
-    {
-        DamageDict = new()
-        {
-            { "Slash", 10 },
-            { "Structural", 5 }
-        }
-    };
-
-    /// <summary>
-    ///     Starlight, this just makes zombies always attack at the same speed as a base human (and also the first C# code I did eheee :3)
-    /// </summary>
-    [DataField("BiteSpeed")]
-    public float BiteSpeed = 1.0f;
-
-    // Starlight-start: zombie HP buff — configurable threshold boost
-    /// <summary>
-    /// Amount to increase Critical and Dead mob state thresholds upon zombification.
-    /// </summary>
-    [DataField("thresholdBoost")]
-    public FixedPoint2 ThresholdBoost = 15;
-    // Starlight-end
-
     /// <summary>
     ///     Path to antagonist alert sound.
     /// </summary>
@@ -208,4 +180,33 @@ public sealed partial class ZombieComponent : Component
     /// </summary>
     [DataField("newBloodReagents")]
     public Solution NewBloodReagents = new([new("ZombieBlood", 1)]);
+
+    #region Starlight
+
+    /// <summary>
+    /// What bite damage should be assigned to this mob if it previously had a 0 damage attack (mice, moproaches, etc)
+    /// </summary>
+    [DataField]
+    public DamageSpecifier MinimumDamageOnBite = new()
+    {
+        DamageDict = new()
+        {
+            { "Slash", 10 },
+            { "Structural", 5 }
+        }
+    };
+
+    /// <summary>
+    /// This just makes zombies always attack at the same speed as a base human (and also the first C# code I did eheee :3)
+    /// </summary>
+    [DataField("BiteSpeed")]
+    public float BiteSpeed = 1.0f;
+
+    /// <summary>
+    /// Amount to increase Critical and Dead mob state thresholds upon zombification.
+    /// </summary>
+    [DataField("thresholdBoost")]
+    public FixedPoint2 ThresholdBoost = 15;
+
+    #endregion
 }
