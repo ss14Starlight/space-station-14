@@ -1,6 +1,6 @@
 using Content.Shared.Mech;
 using Content.Shared.Actions;
-using Content.Shared.Mech.Equipment.Components;
+using Content.Shared._Starlight.Mech.Equipment.Components;
 
 namespace Content.Shared._Starlight.Mech.Equipment.EntitySystems;
 
