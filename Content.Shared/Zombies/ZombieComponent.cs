@@ -109,15 +109,17 @@ public sealed partial class ZombieComponent : Component
     [DataField("passiveHealing")]
     public DamageSpecifier PassiveHealing = new()
     {
+        // Starlight-start
         DamageDict = new ()
         {
-            { "Blunt", -0.7 }, // Starlight-edit
-            { "Slash", -0.6 }, // Starlight-edit
-            { "Piercing", -0.5 }, // Starlight-edit
-            { "Heat", -0.2 }, // Starlight-edit
-            { "Shock", -0.1 }, // Starlight-edit
-            { "Bloodloss", -0.5 } // Starlight-edit
+            { "Blunt", -0.7 },
+            { "Slash", -0.6 },
+            { "Piercing", -0.5 },
+            { "Heat", -0.2 },
+            { "Shock", -0.1 },
+            { "Bloodloss", -0.5 }
         }
+        // Starlight-end
     };
 
     /// <summary>
@@ -134,9 +136,11 @@ public sealed partial class ZombieComponent : Component
     {
         DamageDict = new()
         {
-            { "Blunt", -3 }, // Starlight-edit
-            { "Slash", -3 }, // Starlight-edit
-            { "Piercing", -3 } // Starlight-edit
+            // Starlight-start
+            { "Blunt", -3 },
+            { "Slash", -3 },
+            { "Piercing", -3 }
+            // Starlight-end
         }
     };
 

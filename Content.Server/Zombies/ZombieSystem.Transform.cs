@@ -22,7 +22,6 @@ using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems; // Starlight-start: zombie HP buff
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NameModifier.EntitySystems;
@@ -47,7 +46,7 @@ using Content.Shared.Temperature.Components;
 #region Starlight
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
-using Content.Server._Starlight.Antags.Vampires;
+using Content.Shared.Mobs.Systems;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Server.Animals.Components;
 using Content.Shared.Animals;
