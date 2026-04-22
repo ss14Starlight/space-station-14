@@ -39,6 +39,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Starlight.Overlay;
+using Content.Shared.Atmos.Rotting;
 
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
@@ -51,6 +52,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly BlindableSystem _blindable = default!;
+    [Dependency] private readonly SharedRottingSystem _rotting = default!;
     private static readonly SoundSpecifier _biteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
     private static readonly SoundSpecifier _devourSound = new SoundPathSpecifier("/Audio/Effects/demon_consume.ogg");
     private readonly Dictionary<EntityUid, List<EntityUid>> _playerShadowSnares = new();
@@ -423,18 +425,46 @@ public sealed partial class VampireSystem : EntitySystem
         var sipAmount = comp.SipAmount;
 
         if (HasComp<HumanoidAppearanceComponent>(args.Args.Target.Value))
-            sipInefficiency = 1f / comp.HumanoidEfficiency;
+            sipInefficiency = comp.HumanoidEfficiency;
         else
-            sipInefficiency = 1f / comp.NonHumanoidEfficiency;
+            sipInefficiency = comp.NonHumanoidEfficiency;
 
         if (mobState.CurrentState == Shared.Mobs.MobState.Dead)
-            sipInefficiency *= 1f / comp.DeadEfficiency; // Dead things aren't as good source of blood
+            sipInefficiency *= comp.DeadEfficiency; // Dead things aren't as good source of blood
+        if (TryComp<PerishableComponent>(target, out var rot)) //Is the target rotting?
+        {
+            switch (rot.Stage)
+            {
+                case 0: //fresh or not rotted at all
+                    sipInefficiency *= comp.Rot0Efficiency;
+                    break;
+                case 1: //initial stages
+                    sipInefficiency *= comp.Rot1Efficiency;
+                    break;
+                case 2: //mid rot
+                    sipInefficiency *= comp.Rot2Efficiency;
+                    break;
+                case 3: //late rot
+                    sipInefficiency *= comp.Rot3Efficiency;
+                    break;
+                case 4: //full rot
+                    sipInefficiency *= comp.Rot4Efficiency;
+                    break;
+            }
+        }
+
+        if (sipInefficiency <= 0f) //If we have set the efficeniency to 0, then no point continuing
+            return;
+
+        sipInefficiency = 1f / sipInefficiency;
 
         var maxCanDrink = comp.MaxBloodPerTarget - drunkFromTarget;
         var actualSipAmount = MathF.Min(sipAmount, maxCanDrink);
+        if (!TryComp<BloodstreamComponent>(target, out var blood)) //Does the target have a blood stream?
+            return;
 
         //attempt to drain the target's blood level
-        var targetBloodLevel = _blood.GetBloodLevel(target);
+        var targetBloodLevel = _blood.GetBloodLevel(target) * blood.BloodReferenceSolution.MaxVolume.Value / 100; //get targets current blood volume in u
         if (targetBloodLevel <= 0.0f) //Check the taget has blood to drink at all
         {
             comp.IsDrinking = false; //Blood level reduction failed
