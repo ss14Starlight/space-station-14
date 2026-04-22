@@ -18,6 +18,7 @@ public sealed class PlayerData
     public ImmutableHashSet<Achievement> UnlockedAchievements { get; set; } = [];
     public ConcurrentDictionary<string, double> AchievementProgress { get; set; } = new();
     public object AchievementSyncRoot { get; } = new();
+    public bool AchievementCacheHydrated { get; set; }
 
     public void SyncRoles(PlayerRolesSyncEvent ev) => Roles = [.. ev.Roles];
 
