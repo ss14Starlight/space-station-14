@@ -180,8 +180,8 @@
     solutions:
       ammo:
         reagents:
-        - ReagentId: Nocturine #🌟Starlight🌟
-          Quantity: 5
+        - ReagentId: ChloralHydrate
+          Quantity: 4
   - type: SolutionTransfer
     maxTransferAmount: 3.5
 
