@@ -1489,8 +1489,8 @@
         damage:
           types:
             Blunt: -2.25 # 9 per u
-      - !type:SatiateHunger
-        factor: -1
+      # - !type:SatiateHunger # Starlight removal
+      #   factor: -1 # Starlight removal
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
