@@ -97509,7 +97509,7 @@ entities:
     - type: Transform
       pos: 36.693336,32.541332
       parent: 2
-- proto: TowelColorOrange
+- proto: TowelColorWhite
   entities:
   - uid: 13167
     components:
