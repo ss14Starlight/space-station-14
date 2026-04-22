@@ -9,4 +9,6 @@ namespace Content.Shared._Starlight.Body.Prototypes;
 public sealed partial class BodyVisualLayerPrototype : IPrototype
 {
     [IdDataField] public string ID { get; set; } = string.Empty;
+    [DataField] public HashSet<ProtoId<BodyVisualLayerPrototype>>? AboveLayers = null;
+    [DataField] public HashSet<ProtoId<BodyVisualLayerPrototype>>? BelowLayers = null;
 }
