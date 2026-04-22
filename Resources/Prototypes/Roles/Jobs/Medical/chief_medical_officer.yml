@@ -30,6 +30,7 @@
   - Cryogenics
   - Surgery # Starlight
   - Paramedic # Starlight
+  - Debrief # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

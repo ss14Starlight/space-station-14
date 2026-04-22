@@ -44,56 +44,43 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobMusician
-      time: 72000 # 10hr
+      time: 72000 # 20hr
   storage:
     back:
     - TrumpetInstrument
   groupBy: "Instruments"
 
+# Headphones
 - type: loadout
-  id: CoderSocks
+  id: ReporterHeadphonesTrinket
   effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    shoes: ClothingUnderSocksCoder
-
-# Meow mrrp ## shut up ### no :3
-
-- type: loadout
-  id: CatEars
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    head: ClothingHeadHatWhiteCatEars
-  groupBy: "cat ears"
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobReporter
+      time: 36000 # 10hr
+  storage:
+    back:
+    - ClothingMultipleHeadphonesReporter
+  groupBy: "Headphones"
 
 - type: loadout
-  id: BunnyEars
+  id: HighEndHeadphones
   effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    head: ClothingHeadHatBunny
-  groupBy: "cat ears"
-
-- type: loadout
-  id: DogEars
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    head: ClothingHeadHatDogEars
-  groupBy: "cat ears"
+      - !type:JobRequirementLoadoutEffect
+        requirement:
+          !type:RoleTimeRequirement
+          role: JobReporter
+          time: 36000 #10hr
+      - !type:JobRequirementLoadoutEffect
+        requirement:
+          !type:RoleTimeRequirement
+          role: JobMusician
+          time: 36000 #10hr
+  storage:
+    back:
+    - ClothingMultipleHeadphonesHighEnd
+  groupBy: "Headphones"
 
 - type: loadout
   id: RolliePack
@@ -580,75 +567,10 @@
   groupBy: "cloth wraps"
 
 - type: loadout
-  id: PawBootTrinket
-  equipment:
-    shoes: ClothingShoesPawBoots
-  groupBy: "Paw Boots"
-
-- type: loadout
   id: ClothWrapGloveTrinket
   equipment:
     gloves: ClothingClothWrap
   groupBy: "cloth wraps"
-
-# Maid Outfits
-- type: loadout
-  id: MaidOutfit
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40hr
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtElegantMaid
-  groupBy: "maid outfit"
-
-- type: loadout
-  id: MaidGloves
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 144000 # 40 hr
-  equipment:
-    gloves: ClothingHandsMaidGlovesElegant
-  groupBy: "maid outfit"
-
-- type: loadout
-  id: TacticalMaidGloves
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:DepartmentTimeRequirement
-        department: Security
-        time: 216000 # 60 hours of charging batong
-  equipment:
-    gloves: ClothingHandsTacticalMaidGlovesDelicate
-  groupBy: "maid outfit"
-
-- type: loadout
-  id: MaidOutfitTactical
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:DepartmentTimeRequirement
-        department: Security
-        time: 216000 # 60 hours of charging batong
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtTacticalMaid
-  groupBy: "maid outfit"
-
-- type: loadout
-  id: MaidHeadbandTactical
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:DepartmentTimeRequirement
-        department: Security
-        time: 216000 # 60 hours of charging batong
-  equipment:
-    head: ClothingHeadHatTacticalMaidHeadband
-  groupBy: "maid outfit"
 
 - type: loadout
   id: TreasureCoinIron

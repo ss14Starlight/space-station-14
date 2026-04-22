@@ -271,7 +271,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatTVHead
   name: tv head
-  description: The label says it will make you look like a true Tumblr sexyman. What does that even mean?
+  description: The label says it will make you beat a skeleton in a popularity poll on Tumblr. What does that even mean?
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Head/Hats/tv_head.rsi

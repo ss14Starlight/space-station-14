@@ -16,6 +16,7 @@
       reagents:
       - ReagentId: SpaceLube
         Quantity: 20
+  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   parent: [ SmokeGrenade ]
@@ -35,6 +36,7 @@
       reagents:
       - ReagentId: SpaceGlue
         Quantity: 20
+  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   parent: SmokeGrenade
@@ -56,3 +58,4 @@
         Quantity: 12
   - type: StaticPrice
     price: 500
+  - type: EorgPreventTrigger # Starlight

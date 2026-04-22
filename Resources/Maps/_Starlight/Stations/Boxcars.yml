@@ -107565,7 +107565,7 @@ entities:
       canCollide: False
     - type: InsideEntityStorage
       storage: 6532
-- proto: TowelColorMime
+- proto: TowelColorWhite
   entities:
   - uid: 16153
     components:

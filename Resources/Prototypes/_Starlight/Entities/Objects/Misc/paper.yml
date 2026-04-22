@@ -3,3 +3,29 @@
   id: TapeRecorderTranscript
   name: record transcript
   # TODO: could have a unique sprite in the future
+
+- type: entity
+  name: MedTak invoice
+  parent: Paper
+  id: PaperMedTak
+  description: A piece of paper headed by the MedTak logo. It looks expensive. For you.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+      color: "#ffffff"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#ffffff"
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: PaperLabelType
+    paperType: CaptainsPaper
+  - type: PaperVisuals
+    headerImagePath: "/Textures/_Starlight/Interface/Paper/MedTak.png"
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 8.0, 16.0, 8.0, 0.0
+    maxWritableArea: 350.0, 0.0
