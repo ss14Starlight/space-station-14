@@ -927,10 +927,11 @@ public sealed partial class VampireSystem : EntitySystem
 
     #endregion
 
+    #region Full Power, Passives
+    
     /// <summary>
     /// Vampire full power level check
     /// </summary>
-    #region Full Power, Passives
     private void UpdateFullPower(EntityUid uid, VampireComponent comp)
     {
         int uniqueHumanoids = 0;
