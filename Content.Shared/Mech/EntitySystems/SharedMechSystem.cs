@@ -566,6 +566,7 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         SetupUser(uid, toInsert.Value);
 
+        // Starlight Begin - Pilot Events
         var ev = new BeforePilotInsertEvent(uid, toInsert.Value);
         RaiseLocalEvent(uid, ref ev);
         var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
@@ -575,6 +576,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         }
 
         RaiseLocalEvent(toInsert.Value, ref ev);
+        // Starlight End
 
         _container.Insert(toInsert.Value, component.PilotSlot);
         UpdateAppearance(uid, component);
@@ -600,6 +602,7 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         var pilot = component.PilotSlot.ContainedEntity.Value;
 
+        // Starlight Begin - Pilot Events
         var ev = new BeforePilotEjectEvent(uid, pilot);
         RaiseLocalEvent(uid, ref ev);
         var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
@@ -608,6 +611,7 @@ public abstract partial class SharedMechSystem : EntitySystem
             RaiseLocalEvent(ent, ref ev);
         }
         RaiseLocalEvent(pilot, ref ev);
+        // Starlight End
 
         _container.RemoveEntity(uid, pilot);
         return true;

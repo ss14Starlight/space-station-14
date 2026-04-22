@@ -13,13 +13,6 @@ namespace Content.Shared._Starlight.Mech.Equipment.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class MechEquipmentActionComponent : Component
 {
-    [DataField]
-    [AutoNetworkedField]
-    public bool EquipmentToggled = false;
-
-    [DataField]
-    [AutoNetworkedField]
-    public bool EquipmentComponentAdded = false;
 
     [DataField("actionId")]
     public EntProtoId EquipmentAction = "";
