@@ -2659,4 +2659,11 @@ Entries:
   id: 404507
   time: '2026-04-22T11:33:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4231
+- author: teapoterror
+  changes:
+  - message: Both of the Commissar Overcoats from Geiger Complex have been removed. Thy drip consumed.
+    type: Remove
+  id: 404508
+  time: '2026-04-22T12:14:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4226
 Order: -1
