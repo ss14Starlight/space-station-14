@@ -104335,7 +104335,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -50.62692,-22.693497
       parent: 2
-- proto: TowelColorMime
+- proto: TowelColorWhite
   entities:
   - uid: 6414
     components:
