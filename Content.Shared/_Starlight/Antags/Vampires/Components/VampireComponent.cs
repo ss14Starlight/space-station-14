@@ -170,10 +170,12 @@ public sealed partial class VampireComponent : Component
     [DataField]
     public int FullPowerUniqueHumanoids = 8;
 
+    /// <summary>Amount of blood drank for the vampire to be considered mid-level</summary>
     [DataField]
-    public int MidPowerThreshold = 200; //Amount of blood drank for the vampire to be considered mid-level
+    public int MidPowerThreshold = 200;
+    /// <summary>Amount of blood drank for the vampire to be considered high-level</summary>
     [DataField]
-    public int HighPowerThreshold = 600; //Amount of blood drank for the vampire to be considered high-level
+    public int HighPowerThreshold = 600;
 
     [ViewVariables(VVAccess.ReadOnly), DataField, AutoNetworkedField]
     public int UniqueHumanoidVictims = 0;

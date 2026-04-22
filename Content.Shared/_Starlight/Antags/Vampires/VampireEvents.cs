@@ -19,15 +19,16 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     [DataField]
     public float Range = 1f;
 
-    /// <summary>
-    /// How much to scale effects if target is wearing flash protection
-    /// </summary>
+    /// <summary>Amount glare effects are multiplied by when the vampire is weak and the target has flash protection</summary>
     [DataField]
-    public float FlashImmunityEffectScaleWeak = 0.0f; //Amount the effect is multiplied by when the vampire is weak
+    public float FlashImmunityEffectScaleWeak = 0.0f;
+    /// <summary>Amount glare effects are multiplied by when the vampire is mid-level and the target has flash protection</summary>
     [DataField]
-    public float FlashImmunityEffectScaleMid = 0.75f; //Amount the effect is multiplied by when the vampire is mid-level
+    public float FlashImmunityEffectScaleMid = 0.75f;
+    /// <summary>Amount glare effects are multiplied by when the vampire is high level and the target has flash protection</summary>
     [DataField]
-    public float FlashImmunityEffectScaleStrong = 1f; //Amount the effect is multiplied by when the vampire is high level
+    public float FlashImmunityEffectScaleStrong = 1f;
+    /// <summary>Amount glare effects are multiplied by when the vampire is full power</summary>
     [DataField]
     public float GlareEffectScaleFull = 1.5f; //Amount the effect is multiplied by when the vampire is FullPower
 
