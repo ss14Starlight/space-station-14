@@ -325,6 +325,36 @@
     energy: 1.6
     color: "#aee8f5"
 
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineLegalDrobe
+  name: LegalDrobe
+  description: Objection! This wardrobe dispenses the rule of law... wait, haven't you seen this before?
+  components:
+  - type: VendingMachine
+    pack: LegalDrobeInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineLegalDrobeCircuitboard # Starlight-edit: Vending Machine boards
+  - type: DatasetVocalizer
+    dataset: LegalDrobeAds
+  - type: SpeakOnUIClosed
+    pack: LegalDrobeGoodbyes
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/legaldrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Lawyer"]] # Starlight
+
 # Syndicate stuff for Serpentcrest and any other uses
 - type: entity
   parent: VendingMachineMedicalBase
@@ -1039,6 +1069,13 @@
 - type: entity
   parent: VendingMachineIceCream
   id: VendingMachineIceCreamEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineLegalDrobe
+  id: VendingMachineLegalDrobeEmpty
   suffix: Empty
   components:
     - type: EmptyVendingMachine

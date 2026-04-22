@@ -1,0 +1,195 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Drawn by hollowarc (Discord).",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "on-equipped-HELMET",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ],
+			"copyright": "hollowarc",
+			"license": "CC-BY-SA-4.0"
+        },
+        {
+            "name": "off-equipped-HELMET",
+            "directions": 4,
+			"copyright": "hollowarc",
+			"license": "CC-BY-SA-4.0"
+        },
+        {
+            "name": "on-equipped-EARS",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ],
+			"copyright": "hollowarc",
+			"license": "CC-BY-SA-4.0"
+        },
+        {
+            "name": "off-equipped-EARS",
+            "directions": 4,
+			"copyright": "hollowarc",
+			"license": "CC-BY-SA-4.0"
+        },
+        {
+            "name": "on-equipped-NECK",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ],
+			"copyright": "hollowarc",
+			"license": "CC-BY-SA-4.0"
+        },
+        {
+            "name": "off-equipped-NECK",
+            "directions": 4,
+			"copyright": "hollowarc",
+			"license": "CC-BY-SA-4.0"
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4,
+			"copyright": "hollowarc",
+			"license": "CC-BY-SA-4.0"
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4,
+			"copyright": "hollowarc",
+			"license": "CC-BY-SA-4.0"
+        },
+        {
+            "name": "icon",
+			"copyright": "hollowarc",
+			"license": "CC-BY-SA-4.0"
+        },
+        {
+            "name": "icon-on",
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ],
+			"copyright": "hollowarc",
+			"license": "CC-BY-SA-4.0"
+        }
+    ]
+}
