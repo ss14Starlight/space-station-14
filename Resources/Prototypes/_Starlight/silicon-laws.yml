@@ -404,7 +404,7 @@
   - Solgov2
   obeysTo: laws-owner-solgov
 
-# Starlight-start: Security Cyborg Lawset
+# Security Cyborg Lawset
 - type: siliconLaw
   id: SecurityCyborg1
   order: 1
@@ -428,7 +428,7 @@
   - SecurityCyborg2
   - SecurityCyborg3
   obeysTo: laws-owner-crew
-# Starlight-end
+
 # NTNC lawset
 - type: siliconLaw
   id: NTNC0
