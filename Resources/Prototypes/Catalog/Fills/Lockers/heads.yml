@@ -231,7 +231,7 @@
       prob: 0.15
     - id: ClothingBeltChiefEngineerFilled
     - id: ClothingEyesGlassesMeson
-    - id: ClothingHandsGlovesColorYellow
+#    - id: ClothingHandsGlovesColorYellow # Starlight, they spawn with these now.
     - id: ClothingHeadsetAltEngineering
     - id: DoorRemoteEngineering
     - id: BoxCECircuitboards
@@ -454,7 +454,7 @@
     - id: DrinkHosFlask
     - id: SecurityShuttleConsoleCircuitboard # Starlight start
     - id: ClothingOuterWinterHoS
-    - id: ClothingHandsGlovesCombat
+#    - id: ClothingHandsGlovesCombat # Starlight, they spawn with them now.
     - id: SecureBriefings
     - id: PrintedDocumentGreenshiftAlert
       conditions:
