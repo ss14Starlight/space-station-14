@@ -15,18 +15,11 @@ public sealed partial class OnSolutionChangedTraitPrototype : AbstractTraitProto
     /// </summary>
     [DataField]
     public List<ProtoId<ExtractReactionPrototype>> ExtractReactions = new();
-    
+
     /// <summary>
     /// The name of the container that holds the solution.
     /// Needed so that the solution changing can communicate with the container itself.
     /// </summary>
     [DataField("containerName", required: true)]
     public string ContainerName = string.Empty;
-
-    /// <summary>
-    /// How many times the solution can be changed before being deleted or exhausted.
-    /// If null, there is no limit.
-    /// </summary>
-    [DataField("useLimit")]
-    public int? UseLimit;
 }
