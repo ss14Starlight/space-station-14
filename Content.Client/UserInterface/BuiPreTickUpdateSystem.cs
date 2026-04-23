@@ -61,6 +61,7 @@ public sealed class BuiPreTickUpdateSystem : EntitySystem
             {
                 if (!_uiSystem.TryGetOpenUi(entity, key, out var ui))
                 {
+                    DebugTools.Assert("Unable to find UI that was in the open UIs list??");
                     continue;
                 }
 
