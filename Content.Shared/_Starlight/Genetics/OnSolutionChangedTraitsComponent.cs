@@ -8,4 +8,11 @@ public sealed partial class OnSolutionChangedTraitsComponent : Component
 {
     [ViewVariables, AutoNetworkedField]
     public Dictionary<OnSolutionChangedTraitPrototype, FixedPoint2> Traits = new();
+
+    /// <summary>
+    /// The name of the container that holds the solution.
+    /// Needed so that the solution changing can communicate with the container itself.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField, DataField("containerName", required: true)]
+    public string ContainerName = string.Empty;
 }
