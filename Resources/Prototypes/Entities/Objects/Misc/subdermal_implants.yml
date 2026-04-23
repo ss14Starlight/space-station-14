@@ -410,7 +410,6 @@
    - type: MindShieldImplant
    - type: Tag
      tags:
-       - MindShield
        - FragileImplant # Funky
 
 # Centcomm implants

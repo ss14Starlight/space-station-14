@@ -40,10 +40,14 @@ public sealed class MalignRiftSpawnRule : StationEventSystem<MalignRiftSpawnRule
         if (!TryGetRandomStation(out var chosenStation))
             return;
 
-        if (!TryComp<StationDataComponent>(chosenStation, out var stationData))
+        if (chosenStation is null)
             return;
 
-        var grid = StationSystem.GetLargestGrid(stationData);
+        if (!TryComp<StationDataComponent>(chosenStation.Value, out var stationData))
+            return;
+
+        var stationEntity = (chosenStation.Value, stationData);
+        var grid = StationSystem.GetLargestGrid(stationEntity);
 
         if (grid is null)
             return;
