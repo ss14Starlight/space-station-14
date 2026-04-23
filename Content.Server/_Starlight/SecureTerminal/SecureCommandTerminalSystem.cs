@@ -86,7 +86,6 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         UpdateAllConsolesForStation(ev.Station);
     }
 
-    // ── Tick ─────────────────────────────────────────────────────────────────
 
     public override void Update(float frameTime)
     {
@@ -178,7 +177,6 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         }
     }
 
-    // ── BUI Events ───────────────────────────────────────────────────────────
 
     private void OnUiOpened(EntityUid uid, SecureCommandTerminalConsoleComponent comp, BoundUIOpenedEvent ev)
     {
@@ -540,7 +538,6 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         UpdateAllConsolesForStation(stationUid.Value);
     }
 
-    // ── Core Logic ───────────────────────────────────────────────────────────
 
     /// <summary>
     /// Attempts to satisfy the first available auth group for <paramref name="actor"/>.
@@ -680,7 +677,6 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         }
     }
 
-    // ── Helpers ──────────────────────────────────────────────────────────────
 
     private static List<bool> BuildSatisfiedGroups(SecureTerminalProposalData proposal,
         SecureCommandTerminalRequestPrototype proto)
@@ -716,7 +712,6 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         return Loc.GetString("secure-terminal-unknown-job");
     }
 
-    // ── Interface Update ─────────────────────────────────────────────────────
 
     private void UpdateConsoleInterface(EntityUid consoleUid)
     {

@@ -172,7 +172,6 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         };
     }
 
-    // ── Right panel ─────────────────────────────────────────────────────────
 
     private void RefreshRightPanel(SecureCommandTerminalInterfaceState state)
     {
