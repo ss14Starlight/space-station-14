@@ -64,7 +64,7 @@
     back:
       - WeaponRevolverDispatcher
       - SpeedLoaderMagnumSP
-      - SpeedLoaderMagnumHP
+      - SpeedLoaderMagnumSP
 
 - type: loadout
   id: SecurityPistolDP
