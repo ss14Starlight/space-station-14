@@ -101,15 +101,6 @@
     containers:
       board: [ DoorElectronicsSecurityInternalAffairs ]
 
-- type: entity
-  parent: WindoorSecureSecurityLocked
-  id: WindoorSecureSecurityInternalAffairsLocked
-  suffix: Security/Internal Affairs, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSecurityInternalAffairs ]
-
 # Legal
 - type: entity
   parent: WindoorServiceLocked
