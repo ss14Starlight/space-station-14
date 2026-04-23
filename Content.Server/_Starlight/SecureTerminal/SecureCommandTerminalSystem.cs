@@ -86,7 +86,6 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         UpdateAllConsolesForStation(ev.Station);
     }
 
-
     public override void Update(float frameTime)
     {
         var now = _timing.CurTime;
@@ -176,7 +175,6 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             UpdateAllConsolesForStation(stationUid);
         }
     }
-
 
     private void OnUiOpened(EntityUid uid, SecureCommandTerminalConsoleComponent comp, BoundUIOpenedEvent ev)
     {
@@ -538,7 +536,6 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         UpdateAllConsolesForStation(stationUid.Value);
     }
 
-
     /// <summary>
     /// Attempts to satisfy the first available auth group for <paramref name="actor"/>.
     /// Returns true if an unsatisfied group was claimed.
@@ -677,7 +674,6 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         }
     }
 
-
     private static List<bool> BuildSatisfiedGroups(SecureTerminalProposalData proposal,
         SecureCommandTerminalRequestPrototype proto)
     {
@@ -711,7 +707,6 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             return jobName;
         return Loc.GetString("secure-terminal-unknown-job");
     }
-
 
     private void UpdateConsoleInterface(EntityUid consoleUid)
     {
