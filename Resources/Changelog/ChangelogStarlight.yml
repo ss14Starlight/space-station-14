@@ -1,46 +1,4 @@
 Entries:
-- author: neurovermi
-  changes:
-  - message: update Clarke flavor text
-    type: Tweak
-  id: 404141
-  time: '2026-04-08T18:02:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4042
-- author: Shades
-  changes:
-  - message: Fixes Weather not having an effect.
-    type: Fix
-  id: 404142
-  time: '2026-04-08T18:07:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4051
-- author: FeralCreature
-  changes:
-  - message: All health analyzers now have the ability to print out a health report containing a patient's information and damages.
-    type: Add
-  id: 404143
-  time: '2026-04-08T18:19:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4066
-- author: Unknown
-  changes:
-  - message: (Ming) Added SpawnpointLatejoin to Arrivals (failsafe that prevents Arrivals from gibbing you).
-    type: Fix
-  id: 404144
-  time: '2026-04-08T18:20:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4065
-- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
-  changes:
-  - message: (Silica) ViroDrobe to Virolgoy.
-    type: Add
-  id: 404145
-  time: '2026-04-08T18:20:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4070
-- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
-  changes:
-  - message: (Silica) GeneDrobe to Medical Hallway.
-    type: Add
-  id: 404146
-  time: '2026-04-08T18:20:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4070
 - author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
   changes:
   - message: (Silica) Mail Tech Lockers.
@@ -2799,4 +2757,46 @@ Entries:
   id: 404540
   time: '2026-04-23T06:27:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4216
+- author: wonderfulnewworld
+  changes:
+  - message: Security/Internal Affairs/Lawyer "Courtroom" Airlocks and Windoors.
+    type: Add
+  id: 404541
+  time: '2026-04-23T12:02:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4237
+- author: wonderfulnewworld
+  changes:
+  - message: Internal Affairs/Lawyer "Attorney" Airlocks and Windoors.
+    type: Add
+  id: 404542
+  time: '2026-04-23T12:02:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4237
+- author: wonderfulnewworld
+  changes:
+  - message: Security normal Windoors (there were only secure ones before).
+    type: Add
+  id: 404543
+  time: '2026-04-23T12:02:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4237
+- author: wonderfulnewworld
+  changes:
+  - message: Security/Internal Affairs Windoors.
+    type: Add
+  id: 404544
+  time: '2026-04-23T12:02:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4237
+- author: wonderfulnewworld
+  changes:
+  - message: Internal Affairs Windoors.
+    type: Add
+  id: 404545
+  time: '2026-04-23T12:02:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4237
+- author: wonderfulnewworld
+  changes:
+  - message: Lawyer Windoors.
+    type: Add
+  id: 404546
+  time: '2026-04-23T12:02:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4237
 Order: -1
