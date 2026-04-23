@@ -21,13 +21,14 @@
   access:
   - Magistrate
   - IAA
-  - Lawyer
+#  - Lawyer # Lawyer is now for Lawyers, not IAAs/Magis.
   - Brig
   - Security
   - Command
   - Maintenance
   - GenpopEnter
   - GenpopLeave
+  - Debrief
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

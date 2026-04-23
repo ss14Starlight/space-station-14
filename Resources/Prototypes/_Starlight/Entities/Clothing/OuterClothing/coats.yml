@@ -445,3 +445,25 @@
     sprite: _Starlight/Clothing/OuterClothing/OverClothes/ratvar_robes.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/OverClothes/ratvar_robes.rsi
+
+- type: entity
+  parent: [ ClothingOuterStorageBase, AllowSuitStorageClothing ]
+  id: ClothingOuterCoatPirateDark
+  name: dark pirate garb
+  description: Yarr, but dark.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/dark_pirate.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/dark_pirate.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatField
+  name: field jacket
+  description: A thick, well-worn field jacket.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/field_jacket.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/field_jacket.rsi

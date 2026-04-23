@@ -1,0 +1,50 @@
+# Jumpsuit
+- type: loadout
+  id: LawyerJumpsuitService
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerService
+
+- type: loadout
+  id: LawyerJumpskirtService
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtLawyerService
+
+- type: loadout
+  id: LawyerJumpsuitGray
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerGray
+
+- type: loadout
+  id: LawyerJumpskirtGray
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtLawyerGray
+
+- type: loadout
+  id: LawyerJumpsuitPink
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerPink
+
+- type: loadout
+  id: LawyerJumpskirtPink
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtLawyerPink
+
+- type: loadout
+  id: LawyerJumpsuitBlackTwo
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlackTwo
+
+- type: loadout
+  id: LawyerJumpskirtBlackTwo
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtLawyerBlackTwo
+
+- type: loadout
+  id: LawyerJumpsuitBad
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBad
+
+- type: loadout
+  id: LawyerJumpskirtBad
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtLawyerBad

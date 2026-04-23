@@ -1,0 +1,4 @@
+﻿# Separate debrief access. Given to Command members but not to Borgs to prevent 500 cyborgs from entering debrief.
+- type: accessLevel
+  id: Debrief
+  name: id-card-access-level-debrief

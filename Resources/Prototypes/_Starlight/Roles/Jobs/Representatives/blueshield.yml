@@ -51,6 +51,7 @@
     - Paramedic
     - Mining
     - SalvageLead
+    - Debrief
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
@@ -62,7 +63,7 @@
     # id: BlueShieldPDA
     ears: ClothingHeadsetAltBSO # Starlight
     # belt: ClothingBeltBlueShieldWebbingFilled
-    pocket1: WeaponPistolSP8T
+    pocket1: WeaponPistolBlueguard
     pocket2: HandheldBSOCrewMonitor
   storage:
     back:

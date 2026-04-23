@@ -300,13 +300,13 @@
 
 - type: entity
   parent: PosterBase
-  id: PosterContrabandWantedMimeSexy
+  id: PosterContrabandWantedMime
   name: "Wanted, Mime"
-  description: "A wanted poster for a rather attractive looking Mime... They've been convicted of ERP and sentenced to death."
+  description: "A wanted poster for a rather bold looking Mime... They've been sentenced to death for their sins."
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/wanted.rsi
-    state: wanted_mimesexy
+    state: wanted_mime
 
 - type: entity
   parent: PosterBase
