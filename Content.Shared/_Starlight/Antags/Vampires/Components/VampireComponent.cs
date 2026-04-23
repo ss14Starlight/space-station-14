@@ -90,7 +90,7 @@ public sealed partial class VampireComponent : Component
     /// how much blood is gained when the target is dead (0 disables drinking from the dead completely)
     /// </summary>
     [DataField]
-    public float DeadEfficiency = 0.5f;
+    public float DeadEfficiency = 0.75f;
     /// <summary>
     /// How much blood is gained when the taget has not yet rotted (less than 30 seconds since death)
     /// </summary>
