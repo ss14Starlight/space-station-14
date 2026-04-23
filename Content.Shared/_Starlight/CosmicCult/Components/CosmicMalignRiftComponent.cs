@@ -17,7 +17,6 @@ public sealed partial class CosmicMalignRiftComponent : Component
     [DataField] public TimeSpan AbsorbTime = TimeSpan.FromSeconds(30);
     [DataField] public TimeSpan PurgeTime = TimeSpan.FromSeconds(25);
     [DataField] public EntProtoId PurgeVFX = "CleanseEffectVFX";
-    [DataField] public ProtoId<HitscanPrototype> BeamVFX = "CosmicLambdaBeam";
     [DataField] public SoundSpecifier PurgeSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/effigy_pulse.ogg");
     [DataField] public SoundSpecifier BeamSFX = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg");
 }

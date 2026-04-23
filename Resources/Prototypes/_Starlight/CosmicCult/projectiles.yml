@@ -189,8 +189,9 @@
     reflective:
     - Energy
 
-- type: hitscan
+- type: entity
   id: CosmicLambdaBeam
+  parent: BasicHitscan
   maxLength: 60
   damage:
     types:

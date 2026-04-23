@@ -40,15 +40,12 @@ namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
 public sealed class CosmicRiftSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly IRobustRandom _rand = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly EmitterSystem _emitter = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
 
@@ -235,11 +232,6 @@ public sealed class CosmicRiftSystem : EntitySystem
         args.Handled = true;
         var tgtpos = Transform(ent).Coordinates;
 
-        _protoMan.TryIndex(ent.Comp.BeamVFX, out var proto);
-        if (proto is null)
-            return;
-        DoShitCodedBeam(ent, args.User, 90, proto);  // Why the fuck do i have to rotate this by 90 degrees? Whatever.
-
         if (TryComp<EmitterComponent>(args.User, out var emitterComp))
             _emitter.PowerOff(args.User, emitterComp);
 
@@ -251,56 +243,5 @@ public sealed class CosmicRiftSystem : EntitySystem
         _audio.PlayPvs(ent.Comp.PurgeSFX, Transform(purgeVFX).Coordinates);
         _audio.PlayPvs(ent.Comp.BeamSFX, Transform(args.User).Coordinates);
         QueueDel(ent);
-    }
-
-    /// <summary>
-    /// This code is lifted, in part, from SharedGunSystem.
-    /// I cleaned it up because i want to be able to arbitrarily shoot lasers without needing guns.
-    /// No, i'm not writing a yummy API-friendly arbitrary sprite-to-raycast visualization system. This is good enough. Fuck you.
-    /// </summary>
-    private void DoShitCodedBeam(EntityUid target, EntityUid source, double rotationOffset, HitscanPrototype hitscan)
-    {
-
-        var sprites = new List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier sprite, float scale)>();
-        var fromCoordinates = Transform(source).Coordinates;
-        var fromMap = _transform.ToMapCoordinates(Transform(source).Coordinates);
-        var toMap = _transform.ToMapCoordinates(Transform(target).Coordinates);
-        var angle = Transform(source).LocalRotation - Angle.FromDegrees(rotationOffset);
-        var distance = (toMap.Position - fromMap.Position).Length();
-
-        if (distance >= 1f)
-        {
-            if (hitscan.MuzzleFlash != null)
-            {
-                var coords = fromCoordinates.Offset(angle.ToVec().Normalized() / 2);
-                var netCoords = GetNetCoordinates(coords);
-
-                sprites.Add((netCoords, angle, hitscan.MuzzleFlash, 1f));
-            }
-
-            if (hitscan.TravelFlash != null)
-            {
-                var coords = fromCoordinates.Offset(angle.ToVec() * (distance + 0.5f) / 2);
-                var netCoords = GetNetCoordinates(coords);
-
-                sprites.Add((netCoords, angle, hitscan.TravelFlash, distance - 1.5f));
-            }
-        }
-
-        if (hitscan.ImpactFlash != null)
-        {
-            var coords = fromCoordinates.Offset(angle.ToVec() * distance);
-            var netCoords = GetNetCoordinates(coords);
-
-            sprites.Add((netCoords, angle.FlipPositive(), hitscan.ImpactFlash, 1f));
-        }
-
-        if (_netManager.IsServer && sprites.Count > 0)
-        {
-            RaiseNetworkEvent(new HitscanEvent
-            {
-                Sprites = sprites,
-            }, Filter.Pvs(fromCoordinates, entityMan: EntityManager));
-        }
     }
 }
