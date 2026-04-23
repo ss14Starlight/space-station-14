@@ -17,7 +17,7 @@
   - BorgModuleSecurity
 
   radioChannels:
-  - Science
+  - Command
   - Security
 
   # Visual
@@ -156,6 +156,14 @@
   - Command
   - Science
   - Law
+
+  addComponents:
+  - type: Access
+    groups:
+    - CyborgAllAccess
+    tags:
+    - Borg
+    - Debrief
 
   # Visual
   inventoryTemplateId: borgTall

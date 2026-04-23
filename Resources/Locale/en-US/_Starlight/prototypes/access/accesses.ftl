@@ -1,3 +1,4 @@
+id-card-access-level-debrief = Debrief
 id-card-access-level-magistrate = Magistrate
 id-card-access-level-ntrep = NanoTrasen Representative
 id-card-access-level-blueshield = BlueShield
@@ -30,3 +31,5 @@ id-card-access-level-solgov = SolGov
 
 id-card-access-level-pirate = Pirate
 id-card-access-level-blackstar = Blackstar
+
+id-card-access-level-medtak = MedTak

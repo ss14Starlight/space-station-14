@@ -9,3 +9,9 @@
   values:
     prefix: thankyou-icecream-
     count: 6
+
+- type: localizedDataset
+  id: LegalDrobeGoodbyes
+  values:
+    prefix: thankyou-legaldrobe-
+    count: 5

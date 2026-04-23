@@ -750,9 +750,9 @@
       color: *color-service-top
     - state: stripe_bottom
       color: *color-service-bottom
-    - sprite: *icon-rsi
+    - sprite: &starlight-icon-rsi _Starlight/Interface/Misc/job_icons.rsi # Starlight
       offset: *icon-offset
-      state: Lawyer
+      state: LawyerSL # Starlight
   - type: PresetIdCard
     job: Lawyer
 
@@ -846,7 +846,7 @@
       color: *color-supply-top
     - state: stripe_bottom
       color: *color-supply-bottom
-    - sprite: &starlight-icon-rsi _Starlight/Interface/Misc/job_icons.rsi
+    - sprite: *starlight-icon-rsi # Starlight
       offset: *icon-offset
       state: SalvageSpecialist # Starlight - Salvage -> SalvageSpecialist
   - type: PresetIdCard
