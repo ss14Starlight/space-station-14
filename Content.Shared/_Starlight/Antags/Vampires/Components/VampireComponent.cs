@@ -143,9 +143,9 @@ public sealed partial class VampireComponent : Component
     /// When <see cref="BloodFullness"/> is empty, apply a movement slowdown.
     /// </summary>
     [DataField]
-    public float StarvationWalkSpeedModifier = 0.85f;
+    public float StarvationWalkSpeedModifier = 0.7f;
     [DataField]
-    public float StarvationSprintSpeedModifier = 0.85f;
+    public float StarvationSprintSpeedModifier = 0.7f;
 
     /// <summary>
     /// When <see cref="BloodFullness"/> is empty, drain this much <see cref="DrunkBlood"/> per second.
