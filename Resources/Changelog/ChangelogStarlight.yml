@@ -1,25 +1,4 @@
 Entries:
-- author: Born Stellar
-  changes:
-  - message: Borgs cannot be glared or forced into hibernation anymore.
-    type: Fix
-  id: 404138
-  time: '2026-04-08T17:47:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3578
-- author: Born Stellar
-  changes:
-  - message: Thralls are now shown in the admin player view.
-    type: Fix
-  id: 404139
-  time: '2026-04-08T17:47:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3578
-- author: Born Stellar
-  changes:
-  - message: Thralls now gain and lose objectives as one would expect them to.
-    type: Fix
-  id: 404140
-  time: '2026-04-08T17:47:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3578
 - author: neurovermi
   changes:
   - message: update Clarke flavor text
@@ -2799,4 +2778,25 @@ Entries:
   id: 404537
   time: '2026-04-23T05:55:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4236
+- author: orhu
+  changes:
+  - message: Sepultum - JaniDrobe in Janitor Closet.
+    type: Add
+  id: 404538
+  time: '2026-04-23T06:27:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4216
+- author: orhu
+  changes:
+  - message: Sepultum - Civilian NanoMed vendors and NanoMed Band-Aids to various locations around the station.
+    type: Add
+  id: 404539
+  time: '2026-04-23T06:27:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4216
+- author: orhu
+  changes:
+  - message: Sepultum - Swapped a cigarette vending machine for a random snack vending machine.
+    type: Tweak
+  id: 404540
+  time: '2026-04-23T06:27:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4216
 Order: -1
