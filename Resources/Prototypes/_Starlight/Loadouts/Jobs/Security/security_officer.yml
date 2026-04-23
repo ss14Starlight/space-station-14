@@ -40,7 +40,7 @@
 # Sidearm Options
 - type: loadout
   id: SecurityMk58
-  dummyEntity: WeaponPistolMk58
+  dummyEntity: WeaponPistolMk58HighCapacity
   storage:
     back:
       - WeaponPistolMk58HighCapacity
@@ -82,7 +82,7 @@
   effects:
     - !type:GroupLoadoutEffect
       proto: EliteOfficer
-  dummyEntity: WeaponPistolGoldenMk58
+  dummyEntity: WeaponPistolGoldenMk58HighCapacity
   storage:
     back:
       - WeaponPistolGoldenMk58HighCapacity
