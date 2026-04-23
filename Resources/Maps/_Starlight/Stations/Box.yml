@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/11/2026 01:45:42
-  entityCount: 29439
+  time: 04/23/2026 21:45:20
+  entityCount: 29443
 maps:
 - 1
 grids:
@@ -16766,7 +16766,7 @@ entities:
         587:
         - - DoorStatus
           - Close
-- proto: AirlockSecurityLawyerGlassLocked
+- proto: AirlockSecurityInternalAffairsGlassLocked
   entities:
   - uid: 591
     components:
@@ -16915,6 +16915,13 @@ entities:
     components:
     - type: Transform
       pos: 40.5,-54.5
+      parent: 2
+- proto: AirlossAutoInjector
+  entities:
+  - uid: 20451
+    components:
+    - type: Transform
+      pos: 2.4895186,31.828466
       parent: 2
 - proto: AirSensor
   entities:
@@ -18091,6 +18098,13 @@ entities:
     components:
     - type: Transform
       pos: 74.59065,-49.452477
+      parent: 2
+- proto: AntiPoisonMedipen
+  entities:
+  - uid: 29443
+    components:
+    - type: Transform
+      pos: 2.4738936,31.307634
       parent: 2
 - proto: APCBasic
   entities:
@@ -22577,6 +22591,18 @@ entities:
     - type: Transform
       pos: -8.5,-27.5
       parent: 2
+- proto: BedsheetBrigmedic
+  entities:
+  - uid: 11139
+    components:
+    - type: Transform
+      pos: 2.5,32.5
+      parent: 2
+  - uid: 11141
+    components:
+    - type: Transform
+      pos: 2.5,33.5
+      parent: 2
 - proto: BedsheetBrown
   entities:
   - uid: 1540
@@ -22654,12 +22680,6 @@ entities:
       parent: 2
 - proto: BedsheetMedical
   entities:
-  - uid: 1552
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,32.5
-      parent: 2
   - uid: 1553
     components:
     - type: Transform
@@ -22669,12 +22689,6 @@ entities:
     components:
     - type: Transform
       pos: 30.5,-27.5
-      parent: 2
-  - uid: 1555
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,33.5
       parent: 2
   - uid: 1556
     components:
@@ -24061,6 +24075,13 @@ entities:
     - type: Transform
       pos: 7.486902,-27.366474
       parent: 2
+- proto: BruteAutoInjector
+  entities:
+  - uid: 20445
+    components:
+    - type: Transform
+      pos: 2.4738936,31.651384
+      parent: 2
 - proto: Bucket
   entities:
   - uid: 1791
@@ -24102,6 +24123,13 @@ entities:
     components:
     - type: Transform
       pos: -25.296118,45.437027
+      parent: 2
+- proto: BurnAutoInjector
+  entities:
+  - uid: 20436
+    components:
+    - type: Transform
+      pos: 2.4738936,31.47951
       parent: 2
 - proto: ButtonFrameCaution
   entities:
@@ -71204,11 +71232,6 @@ entities:
     - type: Transform
       pos: 21.5,-20.5
       parent: 2
-  - uid: 11133
-    components:
-    - type: Transform
-      pos: 3.5,29.5
-      parent: 2
 - proto: ChemistryBottleEZNutrient
   entities:
   - uid: 11134
@@ -71241,22 +71264,12 @@ entities:
     - type: Transform
       pos: 21.5,-18.5
       parent: 2
-  - uid: 11139
-    components:
-    - type: Transform
-      pos: 2.5,29.5
-      parent: 2
 - proto: ChemMaster
   entities:
   - uid: 11140
     components:
     - type: Transform
       pos: 18.5,-16.5
-      parent: 2
-  - uid: 11141
-    components:
-    - type: Transform
-      pos: 4.5,29.5
       parent: 2
   - uid: 11142
     components:
@@ -77434,11 +77447,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,33.5
-      parent: 2
-  - uid: 11924
-    components:
-    - type: Transform
-      pos: 2.5,32.5
       parent: 2
   - uid: 11925
     components:
@@ -132173,7 +132181,7 @@ entities:
   - uid: 19929
     components:
     - type: Transform
-      pos: 3.017087,31.615892
+      pos: 3.105855,31.618093
       parent: 2
   - uid: 19930
     components:
@@ -132718,19 +132726,19 @@ entities:
     - type: Transform
       pos: 79.5,-2.5
       parent: 2
+- proto: HolopadSecurityInternalAffairs
+  entities:
+  - uid: 20009
+    components:
+    - type: Transform
+      pos: 4.5,24.5
+      parent: 2
 - proto: HolopadSecurityInterrogation
   entities:
   - uid: 20008
     components:
     - type: Transform
       pos: -14.5,34.5
-      parent: 2
-- proto: HolopadSecurityLawyer
-  entities:
-  - uid: 20009
-    components:
-    - type: Transform
-      pos: 4.5,24.5
       parent: 2
 - proto: HolopadSecurityLockerRoom
   entities:
@@ -133707,11 +133715,6 @@ entities:
     components:
     - type: Transform
       pos: 69.5,-27.5
-      parent: 2
-  - uid: 20149
-    components:
-    - type: Transform
-      pos: 5.5,29.5
       parent: 2
   - uid: 20150
     components:
@@ -135787,12 +135790,19 @@ entities:
     - type: Transform
       pos: 63.5,-19.5
       parent: 2
-- proto: MedkitBruteFilled
+- proto: MedkitAdvancedFilled
   entities:
-  - uid: 20436
+  - uid: 1555
     components:
     - type: Transform
-      pos: 2.4400573,31.642862
+      pos: 2.464242,29.634403
+      parent: 2
+- proto: MedkitBruteFilled
+  entities:
+  - uid: 1552
+    components:
+    - type: Transform
+      pos: 2.917367,29.634403
       parent: 2
   - uid: 20437
     components:
@@ -135808,6 +135818,13 @@ entities:
     components:
     - type: Transform
       pos: 40.90628,-29.556377
+      parent: 2
+- proto: MedkitBurn
+  entities:
+  - uid: 25267
+    components:
+    - type: Transform
+      pos: 2.636117,29.634403
       parent: 2
 - proto: MedkitBurnFilled
   entities:
@@ -135838,11 +135855,6 @@ entities:
     - type: Transform
       pos: 22.595015,9.598176
       parent: 2
-  - uid: 20445
-    components:
-    - type: Transform
-      pos: 2.2752664,31.845316
-      parent: 2
   - uid: 20446
     components:
     - type: Transform
@@ -135860,6 +135872,11 @@ entities:
       parent: 2
 - proto: MedkitOxygenFilled
   entities:
+  - uid: 11924
+    components:
+    - type: Transform
+      pos: 3.1725063,29.618778
+      parent: 2
   - uid: 20449
     components:
     - type: Transform
@@ -135869,11 +135886,6 @@ entities:
     components:
     - type: Transform
       pos: 38.68753,-29.353252
-      parent: 2
-  - uid: 20451
-    components:
-    - type: Transform
-      pos: 2.7963579,31.772348
       parent: 2
 - proto: MedkitRadiationFilled
   entities:
@@ -135896,6 +135908,11 @@ entities:
       parent: 2
 - proto: MedkitToxinFilled
   entities:
+  - uid: 20149
+    components:
+    - type: Transform
+      pos: 3.4225302,29.618778
+      parent: 2
   - uid: 20455
     components:
     - type: Transform
@@ -137924,14 +137941,6 @@ entities:
     - type: Transform
       pos: 14.5,-44.5
       parent: 2
-- proto: PlasmaChemistryVial
-  entities:
-  - uid: 20761
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 5.4623523,29.386335
-      parent: 2
 - proto: PlasmaReinforcedWindowDirectional
   entities:
   - uid: 20762
@@ -138552,6 +138561,15 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+- proto: PosterContrabandHereticalExomorph
+  entities:
+  - uid: 20863
+    components:
+    - type: Transform
+      pos: 3.5,-37.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: PosterContrabandHighEffectEngineering
   entities:
   - uid: 20860
@@ -138576,15 +138594,6 @@ entities:
     components:
     - type: Transform
       pos: 54.5,19.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
-- proto: PosterContrabandLustyExomorph
-  entities:
-  - uid: 20863
-    components:
-    - type: Transform
-      pos: 3.5,-37.5
       parent: 2
     - type: Fixtures
       fixtures: {}
@@ -146533,6 +146542,27 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -58.5,-15.5
+      parent: 2
+- proto: RedBruizPack
+  entities:
+  - uid: 29440
+    components:
+    - type: Transform
+      pos: 4.1130953,29.571903
+      parent: 2
+- proto: RedLacePack
+  entities:
+  - uid: 29441
+    components:
+    - type: Transform
+      pos: 4.2849703,29.587528
+      parent: 2
+- proto: RedPunctPack
+  entities:
+  - uid: 29442
+    components:
+    - type: Transform
+      pos: 4.5974703,29.618778
       parent: 2
 - proto: ReinforcedGirder
   entities:
@@ -163307,6 +163337,16 @@ entities:
       parent: 2
 - proto: TableGlass
   entities:
+  - uid: 11133
+    components:
+    - type: Transform
+      pos: 4.5,29.5
+      parent: 2
+  - uid: 20761
+    components:
+    - type: Transform
+      pos: 3.5,29.5
+      parent: 2
   - uid: 24770
     components:
     - type: Transform
@@ -163341,11 +163381,6 @@ entities:
     components:
     - type: Transform
       pos: 21.5,10.5
-      parent: 2
-  - uid: 24777
-    components:
-    - type: Transform
-      pos: 2.5,29.5
       parent: 2
   - uid: 24778
     components:
@@ -163540,7 +163575,7 @@ entities:
   - uid: 24816
     components:
     - type: Transform
-      pos: 5.5,29.5
+      pos: 2.5,29.5
       parent: 2
 - proto: TablePlasmaGlass
   entities:
@@ -166298,11 +166333,6 @@ entities:
     - type: Transform
       pos: 41.5,-31.5
       parent: 2
-  - uid: 25267
-    components:
-    - type: Transform
-      pos: 2.5,34.5
-      parent: 2
   - uid: 25268
     components:
     - type: Transform
@@ -166325,6 +166355,17 @@ entities:
     - type: Transform
       pos: 22.5,-26.5
       parent: 2
+- proto: VendingMachineMedicalSecurity
+  entities:
+  - uid: 24777
+    components:
+    - type: Transform
+      pos: 2.5,34.5
+      parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Medical
+      - - Security
 - proto: VendingMachineMediDrobe
   entities:
   - uid: 25272
@@ -187946,7 +187987,7 @@ entities:
       pos: 73.5,-3.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -16178.884
+      secondsUntilStateChange: -16478.05
       state: Opening
   - uid: 29425
     components:
