@@ -91,7 +91,6 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
         RefreshRightPanel(state);
     }
 
-    // ── Left panel ──────────────────────────────────────────────────────────
 
     private void RebuildRequestList(SecureCommandTerminalInterfaceState state)
     {
