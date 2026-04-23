@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/19/2026 00:44:15
-  entityCount: 168
+  time: 04/23/2026 10:22:40
+  entityCount: 193
 maps: []
 grids:
 - 1
@@ -246,6 +246,8 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ExplosionAirtightGrid
+    - type: IFF
+      color: '#FFFFFFFF'
 - proto: AirCanister
   entities:
   - uid: 116
@@ -285,6 +287,39 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,-3.5
+      parent: 1
+- proto: APCBasic
+  entities:
+  - uid: 152
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-1.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 156
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-7.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 159
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-10.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+- proto: ATM
+  entities:
+  - uid: 123
+    components:
+    - type: Transform
+      pos: 2.5,-3.5
       parent: 1
 - proto: AtmosDeviceFanDirectional
   entities:
@@ -353,6 +388,11 @@ entities:
       parent: 1
 - proto: CableApcExtension
   entities:
+  - uid: 115
+    components:
+    - type: Transform
+      pos: -0.5,-10.5
+      parent: 1
   - uid: 147
     components:
     - type: Transform
@@ -378,30 +418,10 @@ entities:
     - type: Transform
       pos: 2.5,-9.5
       parent: 1
-  - uid: 152
-    components:
-    - type: Transform
-      pos: 0.5,-8.5
-      parent: 1
-  - uid: 153
-    components:
-    - type: Transform
-      pos: 0.5,-6.5
-      parent: 1
   - uid: 154
     components:
     - type: Transform
       pos: 0.5,-5.5
-      parent: 1
-  - uid: 155
-    components:
-    - type: Transform
-      pos: 0.5,-4.5
-      parent: 1
-  - uid: 156
-    components:
-    - type: Transform
-      pos: 0.5,-3.5
       parent: 1
   - uid: 157
     components:
@@ -412,11 +432,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-1.5
-      parent: 1
-  - uid: 159
-    components:
-    - type: Transform
-      pos: 0.5,-7.5
       parent: 1
   - uid: 160
     components:
@@ -443,10 +458,129 @@ entities:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
-  - uid: 168
+  - uid: 170
     components:
     - type: Transform
-      pos: 1.5,0.5
+      pos: 2.5,-6.5
+      parent: 1
+  - uid: 171
+    components:
+    - type: Transform
+      pos: 2.5,-7.5
+      parent: 1
+  - uid: 172
+    components:
+    - type: Transform
+      pos: 2.5,-5.5
+      parent: 1
+  - uid: 173
+    components:
+    - type: Transform
+      pos: 1.5,-5.5
+      parent: 1
+  - uid: 174
+    components:
+    - type: Transform
+      pos: -0.5,-5.5
+      parent: 1
+- proto: CableHV
+  entities:
+  - uid: 125
+    components:
+    - type: Transform
+      pos: -1.5,-9.5
+      parent: 1
+  - uid: 146
+    components:
+    - type: Transform
+      pos: -1.5,-8.5
+      parent: 1
+- proto: CableMV
+  entities:
+  - uid: 175
+    components:
+    - type: Transform
+      pos: -1.5,-9.5
+      parent: 1
+  - uid: 176
+    components:
+    - type: Transform
+      pos: -0.5,-9.5
+      parent: 1
+  - uid: 177
+    components:
+    - type: Transform
+      pos: -0.5,-10.5
+      parent: 1
+  - uid: 178
+    components:
+    - type: Transform
+      pos: 0.5,-9.5
+      parent: 1
+  - uid: 179
+    components:
+    - type: Transform
+      pos: 0.5,-8.5
+      parent: 1
+  - uid: 180
+    components:
+    - type: Transform
+      pos: 0.5,-6.5
+      parent: 1
+  - uid: 181
+    components:
+    - type: Transform
+      pos: 0.5,-5.5
+      parent: 1
+  - uid: 182
+    components:
+    - type: Transform
+      pos: 0.5,-7.5
+      parent: 1
+  - uid: 183
+    components:
+    - type: Transform
+      pos: 0.5,-4.5
+      parent: 1
+  - uid: 184
+    components:
+    - type: Transform
+      pos: 0.5,-3.5
+      parent: 1
+  - uid: 185
+    components:
+    - type: Transform
+      pos: 0.5,-2.5
+      parent: 1
+  - uid: 186
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 1
+  - uid: 187
+    components:
+    - type: Transform
+      pos: -0.5,-1.5
+      parent: 1
+  - uid: 188
+    components:
+    - type: Transform
+      pos: -1.5,-1.5
+      parent: 1
+  - uid: 189
+    components:
+    - type: Transform
+      pos: 1.5,-6.5
+      parent: 1
+  - uid: 190
+    components:
+    - type: Transform
+      pos: 2.5,-6.5
+      parent: 1
+  - uid: 191
+    components:
+    - type: Transform
+      pos: 2.5,-7.5
       parent: 1
 - proto: Catwalk
   entities:
@@ -571,7 +705,7 @@ entities:
     - type: Transform
       pos: -0.5,-0.5
       parent: 1
-- proto: ComputerIFFSyndicate
+- proto: ComputerIFF
   entities:
   - uid: 106
     components:
@@ -585,6 +719,18 @@ entities:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
+- proto: DefaultStationBeaconSecurity
+  entities:
+  - uid: 143
+    components:
+    - type: Transform
+      pos: 0.5,-5.5
+      parent: 1
+    - type: NavMapBeacon
+      color: '#660505FF'
+      text: MedTak AV-40
+    - type: WarpPoint
+      location: MedTak AV-40
 - proto: GasPassiveVentAlt3
   entities:
   - uid: 94
@@ -661,11 +807,6 @@ entities:
       parent: 1
 - proto: GasPipeStraightAlt4
   entities:
-  - uid: 125
-    components:
-    - type: Transform
-      pos: 0.5,-7.5
-      parent: 1
   - uid: 132
     components:
     - type: Transform
@@ -690,6 +831,11 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-5.5
+      parent: 1
+  - uid: 153
+    components:
+    - type: Transform
+      pos: 0.5,-7.5
       parent: 1
 - proto: GasPipeTJunctionAlt3
   entities:
@@ -767,13 +913,18 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 1
-- proto: GeneratorWallmountAPULV
+- proto: GeneratorWallmountAPU
   entities:
-  - uid: 115
+  - uid: 169
     components:
+    - type: MetaData
+      desc: 20kW central power unit
+      name: shuttle central power unit
     - type: Transform
-      pos: -1.5,-9.5
+      pos: -1.5,-8.5
       parent: 1
+    - type: PowerSupplier
+      supplyRate: 20000
 - proto: GravityGeneratorMini
   entities:
   - uid: 142
@@ -887,14 +1038,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-2.5
       parent: 1
-  - uid: 146
-    components:
-    - type: Transform
-      pos: -0.5,-8.5
-      parent: 1
   - uid: 166
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,-8.5
+      parent: 1
+  - uid: 168
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 1.5,-8.5
       parent: 1
 - proto: PoweredlightExterior
@@ -1103,6 +1256,14 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-9.5
+      parent: 1
+- proto: SubstationWallBasic
+  entities:
+  - uid: 155
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,-9.5
       parent: 1
 - proto: Thruster
   entities:
