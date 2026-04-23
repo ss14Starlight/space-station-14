@@ -43,8 +43,8 @@
   dummyEntity: WeaponPistolMk58
   storage:
     back:
-      - WeaponPistolMk58
-      - MagazinePistolSP
+      - WeaponPistolMk58HighCapacity
+      - MagazinePistolHighCapacitySP
 
 - type: loadout
   id: SecurityPistolEnforcer
@@ -85,8 +85,8 @@
   dummyEntity: WeaponPistolGoldenMk58
   storage:
     back:
-      - WeaponPistolGoldenMk58
-      - MagazinePistolSP
+      - WeaponPistolGoldenMk58HighCapacity
+      - MagazinePistolHighCapacitySPGolden
 
 # Jumpsuit
 - type: loadout

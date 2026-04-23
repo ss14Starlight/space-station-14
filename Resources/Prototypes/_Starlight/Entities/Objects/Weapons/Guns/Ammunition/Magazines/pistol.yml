@@ -37,6 +37,20 @@
   - type: Appearance
 
 - type: entity
+  id: BaseMagazinePistolGolden
+  parent: BaseMagazinePistol
+  name: golden pistol magazine (.35 auto)
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag_golden.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
   id: BaseMagazinePistolHighCapacity
   name: extended pistol magazine (.35 auto)
   parent: BaseItem
@@ -73,6 +87,20 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  id: BaseMagazinePistolHighCapacityGolden
+  parent: BaseMagazinePistolHighCapacity
+  name: golden extended pistol magazine (.35 auto)
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_high_capacity_mag_golden.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: BaseMagazinePistolSubMachineGun  # Yeah it's weird but it's pistol caliber
@@ -177,10 +205,56 @@
       - state: inhand-right-mag
 
 - type: entity
+  id: MagazinePistolEmptyGolden
+  name: golden pistol magazine (.35 auto any)
+  suffix: empty
+  parent: MagazinePistolSPGolden
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
   id: MagazinePistolSP
   name: pistol magazine (.35 auto SP)
   parent: BaseMagazinePistol
   description: 10-round single-stack magazine for pistols. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolSP
+  - type: Sprite
+    layers:
+    - state: sp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#575EF5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#575EF5"
+
+- type: entity
+  id: MagazinePistolSPGolden
+  name: golden pistol magazine (.35 auto SP)
+  parent: BaseMagazinePistolGolden
+  description: 10-round single-stack magazine for pistols. Comes in a golden magazine.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolSP
@@ -438,9 +512,54 @@
       - state: inhand-right-mag
 
 - type: entity
+  id: MagazinePistolHighCapacityEmptyGolden
+  name: golden extended pistol magazine (.35 auto any)
+  suffix: empty
+  parent: BaseMagazinePistolHighCapacityGolden
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
   id: MagazinePistolHighCapacitySP
   name: extended pistol magazine (.35 auto SP)
   parent: BaseMagazinePistolHighCapacity
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolSP
+  - type: Sprite
+    layers:
+    - state: sp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#575EF5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#575EF5"
+
+- type: entity
+  id: MagazinePistolHighCapacitySPGolden
+  parent: BaseMagazinePistolHighCapacityGolden
+  name: golden extended pistol magazine (.35 auto SP)
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolSP
