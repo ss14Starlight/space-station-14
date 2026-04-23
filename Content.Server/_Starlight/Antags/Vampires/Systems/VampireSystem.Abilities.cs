@@ -744,7 +744,7 @@ public sealed partial class VampireSystem : EntitySystem
                     effectScale = args.FlashImmunityEffectScaleStrong; //high - full
             }
 
-            if (comp.TotalBlood > comp.FullPowerThreshold) //If vamp is at full power, effect gets scaled up a bit regardless of flash protection
+            if (comp.TotalBlood >= comp.FullPowerThreshold) //If vamp is at full power, effect gets scaled up a bit regardless of flash protection
                 effectScale = args.GlareEffectScaleFull;
 
             if (effectScale <= 0) //If the effect is nullified, no point doing anything more.
