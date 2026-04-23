@@ -1,13 +1,6 @@
 Entries:
 - author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
   changes:
-  - message: (Silica) Made Chemistry bigger and added a second Hotplate.
-    type: Add
-  id: 404148
-  time: '2026-04-08T18:20:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4070
-- author: '- add: (Silica) Mailing units for: Botany, Bridge, Cargo, Chemistry, Kitchen, Science, Security.'
-  changes:
   - message: (Silica) Protection Anchors in Vault and Armory.
     type: Add
   id: 404149
@@ -2799,4 +2792,11 @@ Entries:
   id: 404547
   time: '2026-04-23T12:26:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4232
+- author: SevenShades
+  changes:
+  - message: Removed Boxcars station from the map pool.
+    type: Remove
+  id: 404548
+  time: '2026-04-23T18:30:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4238
 Order: -1
