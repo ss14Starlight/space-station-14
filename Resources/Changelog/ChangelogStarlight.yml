@@ -1,13 +1,6 @@
 Entries:
 - author: Born Stellar
   changes:
-  - message: Security guidelines for criminal Vampires now recommends tracking and electro-packing Vampires. Also states plainly that vampires with unusual abilities are always guilty of Cannibalism and Minor Assault at minimum.
-    type: Tweak
-  id: 404137
-  time: '2026-04-08T17:47:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3578
-- author: Born Stellar
-  changes:
   - message: Borgs cannot be glared or forced into hibernation anymore.
     type: Fix
   id: 404138
@@ -2799,4 +2792,11 @@ Entries:
   id: 404536
   time: '2026-04-22T18:14:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4227
+- author: Caws
+  changes:
+  - message: Astro-dirt, fake dirt for use on stations.
+    type: Add
+  id: 404537
+  time: '2026-04-23T05:55:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4236
 Order: -1
