@@ -27,7 +27,7 @@ vampire-drink-target-hard-max = You have drunk the maximum amount of blood from 
 vampire-full-power-achieved = Your vampiric essence surges full power achieved!
 vampire-umbrae-full-power-fov = The shadows bend to your will. You can now see through walls!
 vampire-drink-target-not-viable = This being does not have a beating heart!
-vampire-drink-target-rot = This being's essence is foul, it must be fresh!
+vampire-drink-target-rot = This being's essence is foul!
 vampire-sleep-shielded = This being cannot be put to sleep due to an implant!
 vampire-sleep-protected = Better eye contact is required...
 
