@@ -465,7 +465,11 @@ public sealed partial class VampireSystem : EntitySystem
         var maxCanDrink = comp.MaxBloodPerTarget - drunkFromTarget;
         var actualSipAmount = MathF.Min(sipAmount, maxCanDrink);
         if (!TryComp<BloodstreamComponent>(target, out var blood)) //Does the target have a blood stream?
+        {
+            comp.IsDrinking = false; //Blood level reduction failed
+            _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"), uid, uid, Shared.Popups.PopupType.MediumCaution);
             return;
+        }
 
         //attempt to drain the target's blood level
         var targetBloodLevel = _blood.GetBloodLevel(target) * blood.BloodReferenceSolution.MaxVolume.Value / 100; //get targets current blood volume in u
