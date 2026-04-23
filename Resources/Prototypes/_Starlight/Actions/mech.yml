@@ -1,0 +1,13 @@
+- type: entity
+  id: ActionMechActivateAirHorn
+  name: HOOOOOONNNNNNNKKKKK!!!
+  description: Spread joy to everyone in hearing distance.
+  components:
+    - type: Action
+      useDelay: 25
+      itemIconStyle: BigAction
+      icon:
+        sprite: Objects/Specific/Mech/mecha_equipment.rsi
+        state: mecha_honker
+    - type: InstantAction
+      event: !type:MechActivateAirHornEvent

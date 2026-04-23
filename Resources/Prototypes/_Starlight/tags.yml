@@ -48,6 +48,12 @@
   id: BorgItem
 
 - type: Tag
+  id: BorgModuleCentcomm
+
+- type: Tag
+  id: BorgModuleMedTak
+
+- type: Tag
   id: BorgModuleMining
 
 - type: Tag
@@ -55,6 +61,9 @@
 
 - type: Tag
   id: BorgModuleSecurity
+
+- type: Tag
+  id: BorgModuleSecurityStation
 
 - type: Tag
   id: BorgModuleSupply
@@ -67,7 +76,7 @@
 
 - type: Tag
   id: BulletUnarmedCollide
-  
+
 - type: Tag
   id: BurnedTraitBackground
 
@@ -210,6 +219,9 @@
   id: EmergencyWelder
 
 - type: Tag
+  id: ExternalAirlock
+
+- type: Tag
   id: Felionoid
 
 - type: Tag
@@ -295,7 +307,7 @@
 
 - type: Tag
   id: Inedible # Prevents something from being eaten using DevourSystem, but only if on the direct target (e.g. doesn't apply if in inventory of target)
-  
+
 - type: Tag
   id: InsulatedFabric
 
@@ -320,10 +332,10 @@
 
 - type: Tag
   id: Locker
-  
+
 - type: Tag
   id: LabellerRefillPaper
-  
+
 - type: Tag
   id: LoneOpsUplink
 
@@ -423,7 +435,7 @@
 
 - type: Tag
   id: Nexus
-  
+
 - type: Tag
   id: NotLabelable
 
@@ -477,7 +489,7 @@
 
 - type: Tag
   id: RomerolDisasterSurvivorTraitBackground
-  
+
 - type: Tag
   id: ReflectiveArmorHelmet
     # Tag for reflective helmet, used for set bonus detection by ReflectiveSetBonusSystem
@@ -485,6 +497,9 @@
 - type: Tag
   id: ReflectiveArmorVest
     # Tag for reflective vest, used for set bonus detection by ReflectiveSetBonusSystem
+
+- type: Tag
+  id: RollerBed
 
 - type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun
@@ -584,6 +599,9 @@
 
 - type: Tag
   id: WallmountMassScannerElectronics
+
+- type: Tag
+  id: Wizard
 
 - type: Tag
   id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.

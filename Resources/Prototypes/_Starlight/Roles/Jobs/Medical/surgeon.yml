@@ -14,7 +14,7 @@
   access:
   - Medical
   - Maintenance
-  - Surgery 
+  - Surgery
   extendedAccess:
   - Paramedic
   - Surgery

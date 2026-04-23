@@ -256,7 +256,7 @@
         suitstorage:
           - OxygenTankFilled
         id:
-          - BorgiClearPDA
+          - XenoborgiClearPDA
         back:
           - ClothingBagPet
     - type: ItemSlots

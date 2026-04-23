@@ -142,8 +142,8 @@
     modifiers:
       coefficients:
       # region starlight: lowered values
-        Blunt: 0.7 
-        Slash: 0.7 
+        Blunt: 0.7
+        Slash: 0.7
         Piercing: 0.8
         # end region starlight
         Heat: 0.7
@@ -221,17 +221,17 @@
     modifiers:
       coefficients:
       # region starlight: maxim lowered values
-        Blunt: 0.65 
-        Slash: 0.65 
-        Piercing: 0.65 
-        Heat: 0.6 
-        Radiation: 0.3 
-        Caustic: 0.8 
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.65
+        Heat: 0.6
+        Radiation: 0.3
+        Caustic: 0.8
   - type: ClothingSpeedModifier
     walkModifier: 0.85
-    sprintModifier: 0.85 
+    sprintModifier: 0.85
   - type: ExplosionResistance
-    damageCoefficient: 0.4 
+    damageCoefficient: 0.4
     # end region starlight
   - type: HeldSpeedModifier #Starlight addition
   - type: TemperatureProtection
@@ -922,6 +922,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+  - type: TheDarkImmune # SL
 
 #Ling Space Suit
 - type: entity
@@ -1143,7 +1144,7 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.5 #Starlight edit
-  - type: StaminaResistance 
+  - type: StaminaResistance
     damageCoefficient: 0.75
   - type: Armor #Starlight edit - all resists are new, ert sec was formerly a copy of elite suit, it should not be.
     modifiers:

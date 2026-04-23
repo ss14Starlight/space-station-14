@@ -79,7 +79,7 @@
     proto: MasterGrey
   equipment:
     head: ClothingHeadHatBizarreSoft
-    
+
 - type: loadout
   id: BrimHat
   effects:
@@ -484,7 +484,7 @@
     proto: HonoredAssistant
   equipment:
     outerClothing: ClothingOuterCoatGreytiderTrenchcoat
-  
+
 - type: loadout
   id: SpaceAssholeCoat
   effects:

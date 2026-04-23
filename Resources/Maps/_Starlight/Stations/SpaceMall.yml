@@ -219693,19 +219693,8 @@ entities:
     - type: Transform
       pos: -36.5,-20.5
       parent: 2
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
-  - uid: 2253
-    components:
-    - type: MetaData
-      name: advanced SMES (AI Core)
-    - type: Transform
-      pos: -4.5,-100.5
-      parent: 2
-    - type: Label
-      currentLabel: AI Core
-    - type: NameModifier
-      baseName: advanced SMES
   - uid: 8225
     components:
     - type: MetaData
@@ -219737,6 +219726,19 @@ entities:
       parent: 2
     - type: Label
       currentLabel: SMES Bank Four
+    - type: NameModifier
+      baseName: advanced SMES
+- proto: SMESAdvanced
+  entities:
+  - uid: 2253
+    components:
+    - type: MetaData
+      name: advanced SMES (AI Core)
+    - type: Transform
+      pos: -4.5,-100.5
+      parent: 2
+    - type: Label
+      currentLabel: AI Core
     - type: NameModifier
       baseName: advanced SMES
   - uid: 8228
@@ -233627,14 +233629,14 @@ entities:
     - type: Transform
       pos: 38.892593,-42.34774
       parent: 2
-- proto: TowelColorGold
+- proto: TowelColorWhite
   entities:
   - uid: 5035
     components:
     - type: Transform
       pos: -22.464365,34.56321
       parent: 2
-- proto: TowelColorLightBlue
+- proto: TowelColorWhite
   entities:
   - uid: 1552
     components:

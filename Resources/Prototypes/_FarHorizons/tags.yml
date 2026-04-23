@@ -11,3 +11,12 @@
 
 - type: Tag
   id: ReactorPart
+
+- type: Tag
+  id: IPC
+
+- type: Tag
+  id: OilPack
+
+- type: Tag
+  id: SiliconEmotesFH

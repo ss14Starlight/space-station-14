@@ -1,6 +1,6 @@
 - type: entity
   name: BaseWeaponRevolver
-  parent: [ BaseItem, BaseGunWieldable ] # Starlight-edit
+  parent: BaseItem
   id: BaseWeaponRevolver
   description: A rooty tooty point and shooty.
   abstract: true
@@ -24,12 +24,6 @@
     - Belt
   - type: AmmoCounter
   - type: Gun
-    # Starlight-start
-    minAngle: 5
-    maxAngle: 20
-    angleDecay: 22.5
-    angleIncrease: 15
-    # Starlight-end
     selectedMode: SemiAuto
     fireRate: 1.5
     availableModes:
@@ -58,12 +52,6 @@
     dualWieldInaccuracyPenalty: 27
   - type: StaticPrice
     price: 500
-  # Starlight-start
-  - type: GunWieldBonus
-    angleIncreaseDivider: 1.5
-    minAngleDivider: 1.5
-    maxAngleDivider: 1.5
-  # Starlight-end
 
 - type: entity
   name: Deckard

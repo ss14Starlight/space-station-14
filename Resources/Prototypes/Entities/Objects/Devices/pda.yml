@@ -68,6 +68,7 @@
     falloff: 3
     softness: 5
     autoRot: true
+    castShadows: false #SL lighting optimization
   - type: Ringer
   - type: RingerUplink
   - type: DeviceNetwork
@@ -1668,6 +1669,14 @@
         type: HealthAnalyzerBoundUserInterface
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
+
+- type: entity
+  parent: ChameleonPDA
+  id: ChameleonAgentPDA
+  suffix: Chameleon, Agent ID
+  components:
+  - type: Pda
+    id: AgentIDCard
 
 - type: entity
   parent: BaseWidePDA

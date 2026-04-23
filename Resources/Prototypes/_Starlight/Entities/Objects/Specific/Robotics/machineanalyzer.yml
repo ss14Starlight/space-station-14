@@ -1,0 +1,20 @@
+- type: entity
+  parent: HandheldHealthAnalyzer
+  id: HandheldMachineAnalyzer
+  name: machine analyzer
+  description: A hand-held scanner able to diagnose robotic injuries and the condition of machinery.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/machineanalyzer.rsi
+    layers:
+    - state: icon
+  - type: HealthAnalyzer
+    damageContainers:
+    - Silicon
+    - IPC
+  - type: GuideHelp
+    guides:
+    - Robotics
+    - Cyborgs
+  - type: ItemPrice
+    fallbackPrice: 50

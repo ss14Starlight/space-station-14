@@ -11,7 +11,7 @@ namespace Content.Client._Starlight.Xenobiology.UI
         // Yes I am just copying from HandLabelerWindow.xaml.cs, what do you want from me, it works
         // When I learn more about how the UI works I'll make this better and probably from the ground up
         public event Action<string>? OnNewNameChanged;
-        
+
         /// <summary>
         /// Is the user currently entering text into the control?
         /// </summary>
@@ -50,7 +50,7 @@ namespace Content.Client._Starlight.Xenobiology.UI
             // thing the user will want to be doing with this UI
             LabelLineEdit.GrabKeyboardFocus();
         }
-        
+
         public void SetCurrentNewName(string name)
         {
             if (name == _newName)

@@ -1,11 +1,13 @@
+using Content.Server._FarHorizons.Silicons.Glitching;
 using Content.Server._Starlight.Bluespace;
 using Content.Server._Starlight.GameTicking.Rules.Components;
-using Content.Server.Body.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Light.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Server.StationEvents.Components;
 using Content.Server.Stunnable;
+using Content.Shared._FarHorizons.Silicons.Glitching;
 using Content.Shared.Administration.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.GameTicking.Components;
@@ -36,6 +38,7 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly SharedBatterySystem _batterySystem = default!;
+    [Dependency] private readonly GlitchingSystem _glitching = default!; // Far Horizons
 
     protected override void Started(EntityUid uid, PsychicScreachRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -90,21 +93,20 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
             var ev = new NullSpaceShuntEvent();
             RaiseLocalEvent(ent, ref ev);
 
-            if (HasComp<BloodstreamComponent>(ent))
+            if (HasComp<BorgChassisComponent>(ent) || HasComp<GlitchOnEMPComponent>(ent) || HasComp<GlitchOnIonStormComponent>(ent))
+            {
+                _popup.PopupEntity(Loc.GetString("station-event-psychicscreach-borg"), ent, ent, PopupType.LargeCaution);
+                _statusEffect.TryAddStatusEffectDuration(ent, "StatusEffectTemporaryBlindness", TimeSpan.FromSeconds(5));
+                _glitching.ApplyGlitch(ent, TimeSpan.FromSeconds(35), TimeSpan.FromSeconds(5));
+                _stunSystem.TryAddStunDuration(ent, TimeSpan.FromSeconds(5));
+            }
+            else if (HasComp<BloodstreamComponent>(ent))
             {
                 _popup.PopupEntity(Loc.GetString("station-event-psychicscreach-nosebleed"), ent, ent, PopupType.LargeCaution);
                 _bloodstreamSystem.TryModifyBleedAmount(ent, 1f);
                 _statusEffect.TryAddStatusEffectDuration(ent, "StatusEffectSeeingRainbow", TimeSpan.FromSeconds(30));
                 _vomitSystem.Vomit(ent);
                 _stunSystem.TryKnockdown(ent, TimeSpan.FromSeconds(1));
-            }
-
-            // TODO: Check IPC and apply debuff on them too! (Note if port the MIRCOWAVE IPC Effect, Replace it here!)
-            if (HasComp<BorgChassisComponent>(ent))
-            {
-                _popup.PopupEntity(Loc.GetString("station-event-psychicscreach-borg"), ent, ent, PopupType.LargeCaution);
-                _statusEffect.TryAddStatusEffectDuration(ent, "StatusEffectTemporaryBlindness", TimeSpan.FromSeconds(5));
-                _stunSystem.TryAddStunDuration(ent, TimeSpan.FromSeconds(5));
             }
         }
 
@@ -130,7 +132,7 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
                 else
                     todrain = 0;
 
-                
+
                 _batterySystem.SetCharge((ent, battery), todrain);
             }
         });

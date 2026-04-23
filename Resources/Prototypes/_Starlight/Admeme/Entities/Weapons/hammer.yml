@@ -1,0 +1,100 @@
+- type: entity
+  name: CODE-12 "Breacher"
+  parent: BaseItem
+  id: HammerMedTakOneHanded
+  description: A charged concusive breaching hammer meant to put a sizeable hole in anything separating you from your client.
+  suffix: One-Handed
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Weapons/MedTak/Hammer.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 0.7
+    damage:
+      types:
+        Blunt: 10
+        Structural: 25
+    soundHit:
+      path: /Audio/Weapons/genhit1.ogg
+      params:
+        volume: -2
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,4
+  - type: Tool
+    qualities:
+    - Prying
+    useSound: /Audio/Items/jaws_pry.ogg
+  - type: Prying
+    speedModifier: 1.5
+    pryPowered: true
+    useSound: /Audio/Items/jaws_pry.ogg
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: UseDelay
+    delay: 2
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+     enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: {state: icon-active}
+          False: {state: icon}
+  - type: ItemToggle
+    predictable: false
+    soundActivate:
+      path: /Audio/Items/change_jaws.ogg
+    soundDeactivate:
+      collection: sparks
+      params:
+        variation: 0.250
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Blunt: 15
+        Shock: 10
+        Structural: 150
+    activatedSoundOnHit:
+      path: /Audio/Weapons/smash.ogg
+    deactivatedSoundOnHit:
+      path: /Audio/Weapons/genhit1.ogg
+      params:
+        volume: -2
+
+- type: entity
+  parent: HammerMedTakOneHanded
+  id: HammerMedTak
+  suffix: Wieldable
+  components:
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 10
+        Structural: 25
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 0.7
+    damage:
+      types:
+        Blunt: 5
+  - type: ItemToggle
+    onUse: false
+    onActivate: false
+  - type: AltUseToggle
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Blunt: 5
+        Shock: 10
+        Structural: 100
