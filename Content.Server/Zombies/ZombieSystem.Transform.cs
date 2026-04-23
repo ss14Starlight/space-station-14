@@ -46,10 +46,11 @@ using Content.Shared.Temperature.Components;
 #region Starlight
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
-using Content.Server._Starlight.Antags.Vampires;
+using Content.Shared.Mobs.Systems;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Server.Animals.Components;
 using Content.Shared.Animals;
+using Content.Shared.FixedPoint;
 #endregion Starlight
 
 namespace Content.Server.Zombies;
@@ -79,6 +80,7 @@ public sealed partial class ZombieSystem
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly LanguageSystem _language = default!; // Starlight-edit: Languages
+    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!; // Starlight-start: zombie HP buff
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
     private static readonly ProtoId<TagPrototype> CannotSuicideTag = "CannotSuicide";
@@ -277,6 +279,22 @@ public sealed partial class ZombieSystem
         //Heals the zombie from all the damage it took while human
         _damageable.ClearAllDamage(target);
         _mobState.ChangeMobState(target, MobState.Alive);
+
+        // Starlight-start: zombie HP buff — add ThresholdBoost HP to all non-alive thresholds
+        if (TryComp<MobThresholdsComponent>(target, out var threshComp))
+        {
+            // Capture all values before any writes; SetMobStateThreshold mutates the
+            // dictionary in-place and could clobber the next state's key mid-loop.
+            var boosts = new List<(FixedPoint2 NewValue, MobState State)>();
+            foreach (var state in new[] { MobState.Critical, MobState.Dead })
+            {
+                if (_mobThreshold.TryGetThresholdForState(target, state, out var cur, threshComp))
+                    boosts.Add((cur.Value + zombiecomp.ThresholdBoost, state));
+            }
+            foreach (var (newValue, state) in boosts)
+                _mobThreshold.SetMobStateThreshold(target, newValue, state, threshComp);
+        }
+        // Starlight-end
 
         _faction.ClearFactions(target, dirty: false);
         _faction.AddFaction(target, ZombieFaction);

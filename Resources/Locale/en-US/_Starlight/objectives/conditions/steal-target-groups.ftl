@@ -22,7 +22,7 @@ steal-target-groups-encryption-key-hybrid = salvage, med-sec, med-sci, or statio
 steal-target-groups-hopboard = bureaucratic digi-board
 steal-target-groups-hos-weapon = head of security's Proto-5x or WT550r
 steal-target-groups-security-rare-guns = warden's energy shotgun or the detective's energy magnum
-steal-target-groups-bso-weapon = blueshield officer's X-01 multiphase energy gun or sp8t
+steal-target-groups-bso-weapon = blueshield officer's X-01 multiphase energy gun or blueguard service pistol
 
 # Thief single items
 steal-target-groups-strange-brigmed-bedsheet = strange brigmedic's bedsheet

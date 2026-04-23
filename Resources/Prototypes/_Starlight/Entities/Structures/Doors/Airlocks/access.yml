@@ -362,6 +362,60 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/maint.rsi
 
+# Courtroom
+- type: entity
+  parent: AirlockSecurityLocked
+  id: AirlockCourtroomLocked
+  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCourtroom ]
+
+- type: entity
+  parent: AirlockSecurityGlassLocked
+  id: AirlockCourtroomGlassLocked
+  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCourtroom ]
+
+- type: entity
+  parent: AirlockCourtroomLocked
+  id: AirlockMaintCourtroomLocked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+
+# Attorney
+- type: entity
+  parent: AirlockServiceLocked
+  id: AirlockAttorneyLocked
+  suffix: Internal Affairs/Legal (Attorney), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAttorney ]
+
+- type: entity
+  parent: AirlockServiceGlassLocked
+  id: AirlockAttorneyGlassLocked
+  suffix: Internal Affairs/Legal (Attorney), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAttorney ]
+
+- type: entity
+  parent: AirlockAttorneyLocked
+  id: AirlockMaintAttorneyLocked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+
 # Xenoborg
 - type: entity
   parent: AirlockXenoborgGlass

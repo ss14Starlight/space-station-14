@@ -55,6 +55,7 @@
     delay: 0.5
     damageContainers:
       - Biological
+      - BiologicalMetaphysical
     damage:
       groups:
         Brute: -2
@@ -89,6 +90,7 @@
       Quantity: 0.5
     damageContainers:
       - Biological
+      - BiologicalMetaphysical
     delay: 0.5
     damage:
       types:

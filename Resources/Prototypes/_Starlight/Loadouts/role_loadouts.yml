@@ -98,7 +98,7 @@
   - Scarves
   - Pins
   - Pens
-  - SurvivalSecurity
+  - SurvivalExtended # Starlight
   - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
@@ -155,7 +155,7 @@
   - SecurityShoes
   - SecurityNonLethalWeapon
   - SecuritySidearm
-  - SurvivalSecurity
+  - SurvivalExtended
   - Trinkets
   - Scarves
   - Pins
@@ -167,6 +167,7 @@
   id: JobDutyOfficer
   groups:
   - DutyOfficerHead
+  - SecurityMask # Starlight
   - DutyOfficerJumpsuit
   - SecurityBackpack
   - SecurityEyewear
@@ -176,7 +177,7 @@
   - SecurityShoes
   - SecurityGloves
   - SecurityNonLethalWeapon
-  - SurvivalSecurity
+  - SurvivalExtended
   - Trinkets
   - Scarves
   - Pins
