@@ -8,6 +8,24 @@
       role: JobSecurityOfficer
       time: 18000 # 5 hrs
 
+- type: loadoutEffectGroup
+  id: SkilledOfficer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 54000 # 15 hrs
+
+- type: loadoutEffectGroup
+  id: EliteOfficer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 360000 # 100 hrs!!!
+
 # Non-Lethal Weapons
 - type: loadout
   id: SecurityDominator
@@ -29,6 +47,26 @@
       - MagazinePistolSP
 
 - type: loadout
+  id: SecurityPistolEnforcer
+  dummyEntity: WeaponPistolEnforcer
+  storage:
+    back:
+    - WeaponPistolEnforcer
+    - MagazinePistolSP
+
+- type: loadout
+  id: SecurityRevolverDispatcher
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: SkilledOfficer
+  dummyEntity: WeaponRevolverDispatcher
+  storage:
+    back:
+      - WeaponRevolverDispatcher
+      - SpeedLoaderMagnumSP
+      - SpeedLoaderMagnumHP
+
+- type: loadout
   id: SecurityPistolDP
   effects:
     - !type:GroupLoadoutEffect
@@ -40,12 +78,15 @@
       - MagazinePistol40SP
 
 - type: loadout
-  id: SecurityPistolEnforcer
-  dummyEntity: WeaponPistolEnforcer
+  id: SecurityMk58Gold
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: EliteOfficer
+  dummyEntity: WeaponPistolGoldenMk58
   storage:
     back:
-    - WeaponPistolEnforcer
-    - MagazinePistolSP
+      - WeaponPistolGoldenMk58
+      - MagazinePistolSP
 
 # Jumpsuit
 - type: loadout

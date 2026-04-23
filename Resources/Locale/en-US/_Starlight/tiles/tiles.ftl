@@ -39,3 +39,4 @@ tiles-metal-pruple-floor = purple metal floor
 tiles-metal-red-floor = red metal floor
 tiles-metal-green-floor = green metal floor
 tiles-astro-asteroid-tile = astro-asteroid tile
+tiles-astro-dirt-floor = astro-dirt floor

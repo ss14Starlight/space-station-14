@@ -149342,7 +149342,7 @@ entities:
     - type: Transform
       pos: 68.469986,14.720807
       parent: 2
-- proto: TowelColorBlue
+- proto: TowelColorWhite
   entities:
   - uid: 17599
     components:
@@ -149351,7 +149351,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorBrown
+- proto: TowelColorWhite
   entities:
   - uid: 17600
     components:
@@ -149360,7 +149360,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorDarkBlue
+- proto: TowelColorWhite
   entities:
   - uid: 17584
     components:
@@ -149369,7 +149369,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorDarkGreen
+- proto: TowelColorWhite
   entities:
   - uid: 17585
     components:
@@ -149378,7 +149378,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorGold
+- proto: TowelColorWhite
   entities:
   - uid: 17579
     components:
@@ -149387,7 +149387,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorGray
+- proto: TowelColorWhite
   entities:
   - uid: 17580
     components:
@@ -149396,7 +149396,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorGreen
+- proto: TowelColorWhite
   entities:
   - uid: 17574
     components:
@@ -149405,7 +149405,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorLightBlue
+- proto: TowelColorWhite
   entities:
   - uid: 17575
     components:
@@ -149414,7 +149414,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorLightBrown
+- proto: TowelColorWhite
   entities:
   - uid: 17594
     components:
@@ -149433,7 +149433,7 @@ entities:
     - type: Transform
       pos: 59.741497,78.781525
       parent: 2
-- proto: TowelColorMaroon
+- proto: TowelColorWhite
   entities:
   - uid: 17595
     components:
@@ -149449,7 +149449,7 @@ entities:
     - type: Transform
       pos: 48.68368,7.6803427
       parent: 2
-- proto: TowelColorOrange
+- proto: TowelColorWhite
   entities:
   - uid: 17589
     components:
@@ -149458,7 +149458,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorPink
+- proto: TowelColorWhite
   entities:
   - uid: 17590
     components:
@@ -149467,7 +149467,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorPurple
+- proto: TowelColorWhite
   entities:
   - uid: 17601
     components:
@@ -149476,7 +149476,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorRed
+- proto: TowelColorWhite
   entities:
   - uid: 17586
     components:
@@ -149485,7 +149485,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorSilver
+- proto: TowelColorWhite
   entities:
   - uid: 17581
     components:
@@ -149494,7 +149494,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: TowelColorTeal
+- proto: TowelColorWhite
   entities:
   - uid: 17576
     components:
@@ -149522,7 +149522,7 @@ entities:
     - type: Transform
       pos: 6.398597,-8.277919
       parent: 2
-- proto: TowelColorYellow
+- proto: TowelColorWhite
   entities:
   - uid: 17591
     components:
