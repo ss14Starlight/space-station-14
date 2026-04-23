@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: starlight
   forkVersion: 740a475c6b9362e3e7985e14494c48a4dde538ec
-  time: 04/20/2026 23:28:07
-  entityCount: 24952
+  time: 04/23/2026 01:36:16
+  entityCount: 24958
 maps:
 - 1
 grids:
@@ -145,7 +145,7 @@ entities:
           version: 7
         0,-1:
           ind: 0,-1
-          tiles: TgAAAAABAE4AAAAAAQBOAAAAAAAATgAAAAACABgAAAAAAwAYAAAAAAAAOwAAAAAGABgAAAAAAgA7AAAAAAAAIgAAAAAAADsAAAAABACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAAA7AAAAAAUAGAAAAAABABgAAAAAAAAYAAAAAAIAGAAAAAADADsAAAAABAAYAAAAAAMAIgAAAAAAACIAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAABMAAAAAAAATAAAAAAAAEwAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAATAAAAAAAAEwAAAAAAABMAAAAAAAATAAAAAAAAIMAAAAAAAA4AAAAAAEAOAAAAAAAADgAAAAAAwCDAAAAAAAAVAAAAAAAAFQAAAAAAABUAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAAA8AAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAOAAAAAACADgAAAAAAwA4AAAAAAIAgwAAAAAAAFQAAAAAAABUAAAAAAAAVAAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAAA8AAAAAAAAJgAAAAAAACYAAAAAAQAHAAAAAAAAgwAAAAAAADgAAAAAAgA4AAAAAAEAOAAAAAABAIMAAAAAAABUAAAAAAAAVAAAAAAAAFQAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAPAAAAAAAACYAAAAAAgAmAAAAAAMABwAAAAAAAIMAAAAAAACDAAAAAAAAPAAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAFQAAAAAAACDAAAAAAAAgwAAAAAAAEQAAAAAAABEAAAAAAAARAAAAAAAADwAAAAAAAAmAAAAAAEAJgAAAAABAIMAAAAAAACDAAAAAAAAJgAAAAACACYAAAAAAgAmAAAAAAMAJgAAAAADACYAAAAAAQAmAAAAAAMAJgAAAAACADwAAAAAAABEAAAAAAAARAAAAAAAAEQAAAAAAAA8AAAAAAAAJgAAAAADACYAAAAAAQAmAAAAAAIAPAAAAAAAACYAAAAAAAAmAAAAAAEAJgAAAAABACYAAAAAAwAmAAAAAAAAJgAAAAADACYAAAAAAAA8AAAAAAAARAAAAAAAAEQAAAAAAABEAAAAAAAAPAAAAAAAACYAAAAAAAAmAAAAAAEAJgAAAAAAADwAAAAAAAAmAAAAAAMAJgAAAAADACYAAAAAAAAmAAAAAAEABwAAAAAAAAcAAAAAAAAHAAAAAAAAgwAAAAAAAEQAAAAAAABEAAAAAAAARAAAAAAAADgAAAAAAAA4AAAAAAIAOAAAAAABADgAAAAAAQCDAAAAAAAACwAAAAAAAAsAAAAAAAALAAAAAAAAJgAAAAAAAAcAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAAA8AAAAAAAAgwAAAAAAADwAAAAAAAA4AAAAAAAAOAAAAAABADgAAAAAAAA4AAAAAAAAOAAAAAADAAsAAAAAAAALAAAAAAAACwAAAAAAACYAAAAAAQA6AAAAAAAAgwAAAAAAACYAAAAAAwAmAAAAAAIAJgAAAAABACYAAAAAAwAmAAAAAAIAOAAAAAABADgAAAAAAQA4AAAAAAEAOAAAAAABADgAAAAAAwALAAAAAAAACwAAAAAAAAsAAAAAAAAmAAAAAAAAOgAAAAAAAIMAAAAAAAAmAAAAAAIAJgAAAAABACYAAAAAAgAmAAAAAAIAJgAAAAABADgAAAAAAAA4AAAAAAEAOAAAAAACADgAAAAAAQA4AAAAAAIACwAAAAAAAAsAAAAAAAALAAAAAAAAJgAAAAAAADoAAAAAAACDAAAAAAAAJgAAAAAAACYAAAAAAgAmAAAAAAAAJgAAAAADACYAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAFMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAJgAAAAAAACYAAAAAAAAmAAAAAAEAJgAAAAABACYAAAAAAwBTAAAAAAAAJgAAAAACACYAAAAAAwAmAAAAAAAAJgAAAAAAACYAAAAAAwAmAAAAAAMAJgAAAAACACYAAAAAAQBTAAAAAAAAIgAAAAAAAA==
+          tiles: TgAAAAABAE4AAAAAAQBOAAAAAAAATgAAAAACABgAAAAAAwAYAAAAAAAAOwAAAAAGABgAAAAAAgA7AAAAAAAAIgAAAAAAADsAAAAABACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAAA7AAAAAAUAGAAAAAABABgAAAAAAAAYAAAAAAIAGAAAAAADADsAAAAABAAYAAAAAAMAIgAAAAAAACIAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAABMAAAAAAAATAAAAAAAAEwAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAATAAAAAAAAEwAAAAAAABMAAAAAAAATAAAAAAAAIMAAAAAAAA4AAAAAAEAOAAAAAAAADgAAAAAAwCDAAAAAAAAQwAAAAAAAEMAAAAAAABDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAAA8AAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAOAAAAAACADgAAAAAAwA4AAAAAAIAgwAAAAAAAEMAAAAAAABDAAAAAAAAQwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAAA8AAAAAAAAJgAAAAAAACYAAAAAAQAHAAAAAAAAgwAAAAAAADgAAAAAAgA4AAAAAAEAOAAAAAABAIMAAAAAAABDAAAAAAAAQwAAAAAAAEMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAPAAAAAAAACYAAAAAAgAmAAAAAAMABwAAAAAAAIMAAAAAAACDAAAAAAAAPAAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAACYAAAAAAACDAAAAAAAAgwAAAAAAAEQAAAAAAABEAAAAAAAARAAAAAAAADwAAAAAAAAmAAAAAAEAJgAAAAABAIMAAAAAAACDAAAAAAAAJgAAAAACACYAAAAAAgAmAAAAAAMAJgAAAAADACYAAAAAAQAmAAAAAAMAJgAAAAACADwAAAAAAABEAAAAAAAARAAAAAAAAEQAAAAAAAA8AAAAAAAAJgAAAAADACYAAAAAAQAmAAAAAAIAPAAAAAAAACYAAAAAAAAmAAAAAAEAJgAAAAABACYAAAAAAwAmAAAAAAAAJgAAAAADACYAAAAAAAA8AAAAAAAARAAAAAAAAEQAAAAAAABEAAAAAAAAPAAAAAAAACYAAAAAAAAmAAAAAAEAJgAAAAAAADwAAAAAAAAmAAAAAAMAJgAAAAADACYAAAAAAAAmAAAAAAEABwAAAAAAAAcAAAAAAAAHAAAAAAAAgwAAAAAAAEQAAAAAAABEAAAAAAAARAAAAAAAADgAAAAAAAA4AAAAAAIAOAAAAAABADgAAAAAAQCDAAAAAAAACwAAAAAAAAsAAAAAAAALAAAAAAAAJgAAAAAAAAcAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAAA8AAAAAAAAgwAAAAAAADwAAAAAAAA4AAAAAAAAOAAAAAABADgAAAAAAAA4AAAAAAAAOAAAAAADAAsAAAAAAAALAAAAAAAACwAAAAAAACYAAAAAAQA6AAAAAAAAgwAAAAAAACYAAAAAAwAmAAAAAAIAJgAAAAABACYAAAAAAwAmAAAAAAIAOAAAAAABADgAAAAAAQA4AAAAAAEAOAAAAAABADgAAAAAAwALAAAAAAAACwAAAAAAAAsAAAAAAAAmAAAAAAAAOgAAAAAAAIMAAAAAAAAmAAAAAAIAJgAAAAABACYAAAAAAgAmAAAAAAIAJgAAAAABADgAAAAAAAA4AAAAAAEAOAAAAAACADgAAAAAAQA4AAAAAAIACwAAAAAAAAsAAAAAAAALAAAAAAAAJgAAAAAAADoAAAAAAACDAAAAAAAAJgAAAAAAACYAAAAAAgAmAAAAAAAAJgAAAAADACYAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAFMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAgwAAAAAAAIMAAAAAAACDAAAAAAAAJgAAAAAAACYAAAAAAAAmAAAAAAEAJgAAAAABACYAAAAAAwBTAAAAAAAAJgAAAAACACYAAAAAAwAmAAAAAAAAJgAAAAAAACYAAAAAAwAmAAAAAAMAJgAAAAACACYAAAAAAQBTAAAAAAAAIgAAAAAAAA==
           version: 7
         0,0:
           ind: 0,0
@@ -3301,12 +3301,11 @@ entities:
             5709: 5,-9
             5710: 6,-9
             5711: 7,-9
-            5712: 9,-9
             5713: 8,-9
-            5714: 10,-9
-            5715: 11,-9
             5777: 4,6
             5778: 5,6
+            5869: 11,-9
+            5920: 9,-9
         - node:
             color: '#EFB34196'
             id: HalfTileOverlayGreyscale180
@@ -5765,6 +5764,41 @@ entities:
           decals:
             4757: -40.801735,-14.856013
         - node:
+            color: '#4A4542FF'
+            id: thinplatingeast
+          decals:
+            5914: 11,-12
+        - node:
+            color: '#4A4542FF'
+            id: thinplatingne
+          decals:
+            5917: 11,-11
+        - node:
+            color: '#4A4542FF'
+            id: thinplatingnw
+          decals:
+            5916: 9,-11
+        - node:
+            color: '#4A4542FF'
+            id: thinplatingse
+          decals:
+            5911: 11,-13
+        - node:
+            color: '#4A4542FF'
+            id: thinplatingsouth
+          decals:
+            5913: 10,-13
+        - node:
+            color: '#4A4542FF'
+            id: thinplatingsw
+          decals:
+            5912: 9,-13
+        - node:
+            color: '#4A4542FF'
+            id: thinplatingwest
+          decals:
+            5915: 9,-12
+        - node:
             color: '#D381C996'
             id: trimlinearrowccwne
           decals:
@@ -6100,7 +6134,8 @@ entities:
             0: 53738
           7,1:
             1: 4369
-            0: 57548
+            0: 57420
+            2: 128
           7,2:
             0: 65535
           7,3:
@@ -6230,7 +6265,8 @@ entities:
           -7,4:
             0: 65359
           -6,1:
-            0: 53486
+            0: 53454
+            2: 32
           -6,2:
             0: 19965
           -6,3:
@@ -7183,31 +7219,31 @@ entities:
             0: 4497
             1: 17472
           10,4:
-            2: 5
+            3: 5
             1: 3840
           10,5:
             0: 36863
           10,6:
             0: 48051
           10,3:
-            2: 20480
+            3: 20480
             0: 255
           11,4:
-            2: 3
+            3: 3
             1: 3840
-            3: 8
+            4: 8
           11,5:
             0: 65535
           11,6:
             0: 65531
           11,3:
-            2: 12288
-            3: 32768
+            3: 12288
+            4: 32768
             0: 255
           12,4:
-            3: 1
+            4: 1
             1: 3840
-            2: 12
+            3: 12
           12,6:
             0: 65535
           12,7:
@@ -7246,8 +7282,8 @@ entities:
             0: 65535
           12,3:
             0: 255
-            3: 4096
-            2: 49152
+            4: 4096
+            3: 49152
           12,5:
             0: 3822
           13,5:
@@ -7257,15 +7293,15 @@ entities:
           13,7:
             0: 56719
           13,4:
-            2: 238
+            3: 238
             1: 57344
           13,8:
             0: 221
           13,3:
-            2: 57344
+            3: 57344
             0: 255
           14,4:
-            2: 3
+            3: 3
             0: 60928
             1: 8
           14,5:
@@ -7312,22 +7348,22 @@ entities:
           13,0:
             0: 3822
           13,1:
-            4: 1632
+            5: 1632
           13,-1:
             0: 57344
-            5: 238
+            6: 238
           14,0:
             0: 57906
             1: 3276
           14,1:
-            6: 816
+            7: 816
             1: 34944
           14,2:
             0: 65527
             1: 8
           14,-1:
             0: 60620
-            5: 19
+            6: 19
           15,0:
             0: 56797
           15,2:
@@ -7541,7 +7577,7 @@ entities:
             0: 39935
             1: 25600
           13,-2:
-            5: 65256
+            6: 65256
           13,-5:
             0: 65535
           14,-4:
@@ -7551,7 +7587,7 @@ entities:
             0: 52479
             1: 13056
           14,-2:
-            5: 4368
+            6: 4368
             0: 52428
           14,-5:
             0: 65535
@@ -8283,6 +8319,11 @@ entities:
           moles:
             Oxygen: 21.824879
             Nitrogen: 82.10312
+        - volume: 2500
+          temperature: 293.14975
+          moles:
+            Oxygen: 20.078888
+            Nitrogen: 75.53487
         - volume: 2500
           temperature: 293.15
           moles: {}
@@ -9387,7 +9428,7 @@ entities:
       pos: -1.5,5.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -35844.586
+      secondsUntilStateChange: -38508.484
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9659,7 +9700,7 @@ entities:
       pos: 67.5,48.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -72664.914
+      secondsUntilStateChange: -75328.81
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10121,7 +10162,7 @@ entities:
       pos: 87.5,-23.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -123805.11
+      secondsUntilStateChange: -126469.01
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15469,6 +15510,16 @@ entities:
     - type: Transform
       pos: -68.386734,28.040201
       parent: 2
+- proto: BriefcaseBrown
+  entities:
+  - uid: 21627
+    components:
+    - type: Transform
+      parent: 17439
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+      storage: 17439
 - proto: BrigTimer
   entities:
   - uid: 807
@@ -15482,11 +15533,13 @@ entities:
       - - Security
     - type: DeviceLinkSource
       linkedPorts:
-        806:
+        24958:
         - - Start
           - Close
         - - Timer
           - Open
+        - - Timer
+          - AutoClose
     - type: Fixtures
       fixtures: {}
 - proto: BrokenBottle
@@ -67649,6 +67702,14 @@ entities:
       inSlotFlag: OUTERCLOTHING
     - type: Physics
       canCollide: False
+  - uid: 24602
+    components:
+    - type: Transform
+      parent: 17473
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+      storage: 17473
 - proto: ClothingOuterWinterCoat
   entities:
   - uid: 11033
@@ -68004,6 +68065,16 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: ClothingUniformJumpsuitLawyerBlue
+  entities:
+  - uid: 21628
+    components:
+    - type: Transform
+      parent: 17439
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+      storage: 17439
 - proto: ClothingUniformJumpsuitPrisoner
   entities:
   - uid: 11069
@@ -109149,6 +109220,28 @@ entities:
     - type: Transform
       pos: 31.5,5.5
       parent: 2
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 806
+          - 21627
+          - 21628
+          - 24553
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
   - uid: 17440
     components:
     - type: Transform
@@ -109472,6 +109565,25 @@ entities:
     - type: Transform
       pos: -22.5,5.5
       parent: 2
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 24602
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: LockerMailFilled
   entities:
   - uid: 15134
@@ -110013,6 +110125,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -51.952,-6.49615
       parent: 2
+  - uid: 24553
+    components:
+    - type: Transform
+      parent: 17439
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+      storage: 17439
 - proto: MachineAnomalyGenerator
   entities:
   - uid: 17532
@@ -111280,6 +111400,14 @@ entities:
       fixtures: {}
 - proto: Paper
   entities:
+  - uid: 806
+    components:
+    - type: Transform
+      parent: 17439
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+      storage: 17439
   - uid: 17672
     components:
     - type: Transform
@@ -128468,6 +128596,13 @@ entities:
     - type: Transform
       pos: -23.5,-15.5
       parent: 2
+- proto: SpawnMobMonkeyPunpun
+  entities:
+  - uid: 24957
+    components:
+    - type: Transform
+      pos: 31.5,3.5
+      parent: 2
 - proto: SpawnMobParrot
   entities:
   - uid: 20494
@@ -135746,20 +135881,6 @@ entities:
     - type: Transform
       pos: -49.48351,-8.673055
       parent: 2
-- proto: TowelColorBlue
-  entities:
-  - uid: 21627
-    components:
-    - type: Transform
-      pos: 82.29385,-10.896404
-      parent: 2
-- proto: TowelColorGold
-  entities:
-  - uid: 21628
-    components:
-    - type: Transform
-      pos: -28.63916,28.76595
-      parent: 2
 - proto: TowelColorNT
   entities:
   - uid: 21629
@@ -135828,6 +135949,16 @@ entities:
     components:
     - type: Transform
       pos: 0.58032274,-57.427876
+      parent: 2
+  - uid: 24955
+    components:
+    - type: Transform
+      pos: 82.265625,-10.884299
+      parent: 2
+  - uid: 24956
+    components:
+    - type: Transform
+      pos: -28.723959,28.789621
       parent: 2
 - proto: ToyAi
   entities:
@@ -151393,12 +151524,6 @@ entities:
       parent: 2
 - proto: WindoorSecureSecurityLocked
   entities:
-  - uid: 806
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 10.5,-9.5
-      parent: 2
   - uid: 24603
     components:
     - type: Transform
@@ -151432,7 +151557,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -12356.957
+      secondsUntilStateChange: -15020.8545
       state: Opening
     - type: Airlock
       autoClose: False
@@ -151450,6 +151575,11 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-5.5
+      parent: 2
+  - uid: 24958
+    components:
+    - type: Transform
+      pos: 10.5,-9.5
       parent: 2
 - proto: WindoorSecureServiceLocked
   entities:
