@@ -39,7 +39,7 @@
 - type: entity
   id: BaseMagazinePistolHighCapacity
   name: extended pistol magazine (.35 auto)
-  parent: BaseItem
+  parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
   components:
   - type: Tag
