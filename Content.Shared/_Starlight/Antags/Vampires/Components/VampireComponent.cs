@@ -92,27 +92,27 @@ public sealed partial class VampireComponent : Component
     [DataField]
     public float DeadEfficiency = 0.75f;
     /// <summary>
-    /// How much blood is gained when the taget has not yet rotted (less than 30 seconds since death)
+    /// How much blood is gained when the target has not yet rotted (less than 30 seconds since death)
     /// </summary>
     [DataField]
     public float Rot0Efficiency = 1.0f;
     /// <summary>
-    /// How much blood is gained when the taget is at the initial stage of rot (less than 3:30 since death)
+    /// How much blood is gained when the target is at the initial stage of rot (less than 3:30 since death)
     /// </summary>
     [DataField]
     public float Rot1Efficiency = 0.5f;
     /// <summary>
-    /// How much blood is gained when the taget is at the mid stage of rot (less than 6:45 since death)
+    /// How much blood is gained when the target is at the mid stage of rot (less than 6:45 since death)
     /// </summary>
     [DataField]
     public float Rot2Efficiency = 0.25f;
     /// <summary>
-    /// How much blood is gained when the taget is at the late stage of rot (less than 10:00 since death)
+    /// How much blood is gained when the target is at the late stage of rot (less than 10:00 since death)
     /// </summary>
     [DataField]
     public float Rot3Efficiency = 0.1f;
     /// <summary>
-    /// How much blood is gained when the taget is fully rotted (more than 10:00 since death)
+    /// How much blood is gained when the target is fully rotted (more than 10:00 since death)
     /// </summary>
     [DataField]
     public float Rot4Efficiency = 0.0f;
