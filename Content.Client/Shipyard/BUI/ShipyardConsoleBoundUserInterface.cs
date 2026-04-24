@@ -1,7 +1,6 @@
 using Content.Client.Shipyard.UI;
 using Content.Shared.Shipyard.BUI;
 using Content.Shared.Shipyard.Events;
-using Robust.Client.GameObjects;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 
 namespace Content.Client.Shipyard.BUI;
@@ -14,7 +13,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
     [ViewVariables]
     public int Balance { get; private set; }
 
-    public ShipyardConsoleBoundUserInterface(UserInterfaceComponent owner, Enum uiKey) : base(owner, uiKey)
+    public ShipyardConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
 
@@ -53,9 +52,17 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
     {
         base.Dispose(disposing);
 
-        if (!disposing) return;
+        if (!disposing)
+            return;
 
-        _menu?.Dispose();
+        if (_menu != null)
+        {
+            _menu.OnClose -= Close;
+            _menu.OnOrderApproved -= ApproveOrder;
+
+            _menu.Close();
+            _menu = null;
+        }
     }
 
     private void ApproveOrder(ButtonEventArgs args)
