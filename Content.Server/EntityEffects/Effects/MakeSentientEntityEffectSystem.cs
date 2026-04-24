@@ -39,11 +39,11 @@ public sealed partial class MakeSentientEntityEffectSystem : EntityEffectSystem<
             var knowledge = EnsureComp<LanguageKnowledgeComponent>(entity);
             var fallback = SharedLanguageSystem.FallbackLanguagePrototype;
 
-            if (!knowledge.UnderstoodLanguages.Contains(fallback))
-                knowledge.UnderstoodLanguages.Add(fallback);
+            if (!knowledge.Understands.Contains(fallback))
+                knowledge.Understands.Add(fallback);
 
-            if (!knowledge.SpokenLanguages.Contains(fallback))
-                knowledge.SpokenLanguages.Add(fallback);
+            if (!knowledge.Speaks.Contains(fallback))
+                knowledge.Speaks.Add(fallback);
 
             IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>().UpdateEntityLanguages((entity, speaker));
             // Starlight - End

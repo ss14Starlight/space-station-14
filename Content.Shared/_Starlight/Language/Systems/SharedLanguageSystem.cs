@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System.Text;
 using System.Linq;
 using Content.Shared._Starlight.Language.Components;
@@ -5,11 +6,16 @@ using Content.Shared._Starlight.Language.Events;
 using Content.Shared.GameTicking;
 using Robust.Shared.Prototypes;
 using Content.Shared.Cloning.Events;
+using Robust.Shared.Player;
 
 namespace Content.Shared._Starlight.Language.Systems;
 
 public abstract partial class SharedLanguageSystem : EntitySystem
 {
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly SharedGameTicker _ticker = default!;
+
     /// <summary>
     ///     The language used as a fallback in cases where an entity suddenly becomes a Language Speaker (e.g. the usage of make-sentient).
     /// </summary>
@@ -34,19 +40,20 @@ public abstract partial class SharedLanguageSystem : EntitySystem
     ///     A cached set of all languages in the game
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public HashSet<ProtoId<LanguagePrototype>> Languages = new();
-
-    [Dependency] protected readonly IPrototypeManager _prototype = default!;
-    [Dependency] protected readonly SharedGameTicker _ticker = default!;
+    public ImmutableHashSet<ProtoId<LanguagePrototype>> Languages = ImmutableHashSet<ProtoId<LanguagePrototype>>.Empty;
 
     public override void Initialize()
     {
         Universal = _prototype.Index(UniversalPrototype);
-        Languages = _prototype.EnumeratePrototypes<LanguagePrototype>().Select(x => new ProtoId<LanguagePrototype>(x.ID)).ToHashSet();
+        Languages = _prototype.EnumeratePrototypes<LanguagePrototype>()
+            .Select(x => new ProtoId<LanguagePrototype>(x.ID))
+            .ToImmutableHashSet();
 
         SubscribeLocalEvent<LanguageKnowledgeComponent, CloningEvent>(OnClone);
         SubscribeLocalEvent<LanguageKnowledgeComponent, MapInitEvent>(OnMapInit);
+
         SubscribeLocalEvent<AdditionalLanguageKnowledgeComponent, MapInitEvent>(OnMapInitAdditional);
+
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
     }
 
@@ -62,8 +69,8 @@ public abstract partial class SharedLanguageSystem : EntitySystem
         }
         else
         {
-            comp.SpokenLanguages = ent.Comp.SpokenLanguages;
-            comp.UnderstoodLanguages = ent.Comp.UnderstoodLanguages;
+            comp.Speaks = ent.Comp.Speaks;
+            comp.Understands = ent.Comp.Understands;
         }
         if (TryComp<LanguageSpeakerComponent>(clone, out var speaker))
             UpdateEntityLanguages((clone,speaker));
@@ -80,15 +87,15 @@ public abstract partial class SharedLanguageSystem : EntitySystem
     /// </summary>
     private void OnMapInitAdditional(Entity<AdditionalLanguageKnowledgeComponent> ent, ref MapInitEvent ev)
     {
-        if (TryComp<LanguageKnowledgeComponent>(ent, out var langComp))
-        {
-            langComp.SpokenLanguages = langComp.SpokenLanguages.Union(ent.Comp.SpokenLanguages).Distinct().ToList();
-            langComp.UnderstoodLanguages = langComp.UnderstoodLanguages.Union(ent.Comp.UnderstoodLanguages).Distinct().ToList();
-            if (TryComp<LanguageSpeakerComponent>(ent, out var speaker))
-            {
-                UpdateEntityLanguages((ent, speaker));
-            }
-        }
+        if (!TryComp<LanguageKnowledgeComponent>(ent, out var langComp))
+            return;
+
+        langComp.Speaks = langComp.Speaks.Union(ent.Comp.Speaks).Distinct().ToList();
+        langComp.Understands = langComp.Understands.Union(ent.Comp.Understands).Distinct().ToList();
+        Dirty(ent, langComp);
+
+        if (TryComp<LanguageSpeakerComponent>(ent, out var speaker))
+            UpdateEntityLanguages((ent, speaker));
     }
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs ev)
@@ -96,7 +103,9 @@ public abstract partial class SharedLanguageSystem : EntitySystem
         if (!ev.WasModified<LanguagePrototype>())
             return;
 
-        Languages = _prototype.EnumeratePrototypes<LanguagePrototype>().Select(x => new ProtoId<LanguagePrototype>(x.ID)).ToHashSet();
+        Languages = _prototype.EnumeratePrototypes<LanguagePrototype>()
+            .Select(x => new ProtoId<LanguagePrototype>(x.ID))
+            .ToImmutableHashSet();
     }
 
     public LanguagePrototype? GetLanguagePrototype(ProtoId<LanguagePrototype> id)
@@ -118,10 +127,10 @@ public abstract partial class SharedLanguageSystem : EntitySystem
 
     public bool GetLanguageIcon(LanguagePrototype language, bool obfuscated)
     {
-        if (!obfuscated && language.IconVisibleIfUnderstood)
+        if (!obfuscated && language.IconUnderstood)
             return true;
 
-        if (obfuscated && language.IconVisibleIfNotUnderstood)
+        if (obfuscated && language.IconNotUnderstood)
             return true;
 
         return false;
@@ -141,6 +150,23 @@ public abstract partial class SharedLanguageSystem : EntitySystem
         seed ^= (_ticker.RoundId * 127);
         var random = (seed * 1103515245) + 12345;
         return min + (Math.Abs(random) % (max - min + 1));
+    }
+
+    /// <summary>
+    ///     Returns the LanguageSpeakerComponent of the local player entity.
+    ///     Will return null if the player does not have an entity, or if the client has not yet received the component state.
+    /// </summary>
+    public LanguageSpeakerComponent? GetLocalSpeaker()
+    {
+        return CompOrNull<LanguageSpeakerComponent>(_player.LocalEntity);
+    }
+
+    public void RequestSetLanguage(ProtoId<LanguagePrototype> language)
+    {
+        if (GetLocalSpeaker()?.CurrentLanguage?.Equals(language) == true)
+            return;
+
+        RaiseNetworkEvent(new LanguagesSetMessage(language));
     }
 
     #region public api
@@ -221,7 +247,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
 
     /// <summary>
     ///     Returns the list of languages this entity can understand.
-    /// </summary
+    /// </summary>
     /// <remarks>This simply returns the value of <see cref="LanguageSpeakerComponent.SpokenLanguages"/>.</remarks>
     public List<ProtoId<LanguagePrototype>> GetUnderstoodLanguages(EntityUid uid) => TryComp<LanguageSpeakerComponent>(uid, out var component) ? component.UnderstoodLanguages : [];
 
@@ -250,11 +276,11 @@ public abstract partial class SharedLanguageSystem : EntitySystem
         EnsureComp<LanguageKnowledgeComponent>(uid, out var knowledge);
         EnsureComp<LanguageSpeakerComponent>(uid, out var speaker);
 
-        if (addSpoken && !knowledge.SpokenLanguages.Contains(language))
-            knowledge.SpokenLanguages.Add(language);
+        if (addSpoken && !knowledge.Speaks.Contains(language))
+            knowledge.Speaks.Add(language);
 
-        if (addUnderstood && !knowledge.UnderstoodLanguages.Contains(language))
-            knowledge.UnderstoodLanguages.Add(language);
+        if (addUnderstood && !knowledge.Understands.Contains(language))
+            knowledge.Understands.Add(language);
 
         UpdateEntityLanguages((uid, speaker));
     }
@@ -272,10 +298,10 @@ public abstract partial class SharedLanguageSystem : EntitySystem
             return;
 
         if (removeSpoken)
-            ent.Comp.SpokenLanguages.Remove(language);
+            ent.Comp.Speaks.Remove(language);
 
         if (removeUnderstood)
-            ent.Comp.UnderstoodLanguages.Remove(language);
+            ent.Comp.Understands.Remove(language);
 
         // We don't ensure that the entity has a speaker comp. If it doesn't... Well, woe be the caller of this method.
         UpdateEntityLanguages(ent.Owner);
@@ -314,10 +340,10 @@ public abstract partial class SharedLanguageSystem : EntitySystem
         // We add the intrinsically known languages first so other systems can manipulate them easily
         if (TryComp<LanguageKnowledgeComponent>(ent, out var knowledge))
         {
-            foreach (var spoken in knowledge.SpokenLanguages)
+            foreach (var spoken in knowledge.Speaks)
                 ev.SpokenLanguages.Add(spoken);
 
-            foreach (var understood in knowledge.UnderstoodLanguages)
+            foreach (var understood in knowledge.Understands)
                 ev.UnderstoodLanguages.Add(understood);
         }
 
