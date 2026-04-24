@@ -450,6 +450,9 @@ public sealed partial class VampireSystem : EntitySystem
                 case 4: //full rot
                     sipInefficiency *= comp.Rot4Efficiency;
                     break;
+                default: //if we push past 4 for some reason, just assume same level as 4
+                    sipInefficiency *= comp.Rot4Efficiency;
+                    break;
             }
         }
 
