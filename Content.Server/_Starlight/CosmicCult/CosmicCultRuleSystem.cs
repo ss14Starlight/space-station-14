@@ -251,10 +251,10 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             component.ExtraRiftTimer = _timing.CurTime + TimeSpan.FromSeconds(15);
 
             //do spooky effects
-            var sender = Loc.GetString("cosmiccult-announcement-sender");
-            var mapData = _map.GetMap(_transform.GetMapId(component.MonumentInGame.Owner.ToCoordinates()));
-            _chatSystem.DispatchStationAnnouncement(component.MonumentInGame, Loc.GetString("cosmiccult-announce-tier2-progress"), sender, false, null, Color.FromHex("#4cabb3"));
-            _chatSystem.DispatchStationAnnouncement(component.MonumentInGame, Loc.GetString("cosmiccult-announce-tier2-warning"), null, false, null, Color.FromHex("#cae8e8"));
+            var mobquery = EntityQueryEnumerator<MobStateComponent>();
+            while (mobquery.MoveNext(out var ent, out var _))
+                _popup.PopupEntity(Loc.GetString("cosmiccult-announce-tier2-progress"), ent, ent, PopupType.LargeCaution);
+
             _audio.PlayGlobal(_tier2Sound, Filter.Broadcast(), false, AudioParams.Default);
 
             for (var i = 0; i < Convert.ToInt16(component.TotalCrew / 6); i++) // spawn # malign rifts equal to 16.67% of the playercount

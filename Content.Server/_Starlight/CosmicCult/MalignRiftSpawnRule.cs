@@ -62,7 +62,6 @@ public sealed class MalignRiftSpawnRule : StationEventSystem<MalignRiftSpawnRule
             var sender = Loc.GetString("cosmiccult-announcement-sender");
 
             _chatSystem.DispatchStationAnnouncement(chosenStation.Value, Loc.GetString("cosmiccult-announce-tier2-progress"), sender, false, null, Color.FromHex("#4cabb3"));
-            _chatSystem.DispatchStationAnnouncement(chosenStation.Value, Loc.GetString("cosmiccult-announce-tier2-warning"), null, false, null, Color.FromHex("#cae8e8"));
             _audio.PlayGlobal(comp.Tier2Sound, Filter.Broadcast(), false, AudioParams.Default);
 
             for (var i = 0; i < Convert.ToInt16(totalCrew / 6); i++) // spawn # malign rifts equal to 16.67% of the playercount
