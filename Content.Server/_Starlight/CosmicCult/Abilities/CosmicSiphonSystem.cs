@@ -1,19 +1,12 @@
-using Content.Server.Ghost;
-using Content.Server.Light.Components;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared.Alert;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Mobs.Components;
 using Content.Shared.NPC;
 using Content.Shared.Popups;
-using Content.Shared.StatusEffectNew;
 using Robust.Shared.Player;
-using Robust.Shared.Random;
-using Content.Shared.Light.Components;
 using Content.Shared._Starlight.NullSpace;
 using Content.Shared.SSDIndicator;
 using Content.Server._Starlight.CosmicCult.Components;
@@ -26,13 +19,8 @@ public sealed class CosmicSiphonSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly CosmicCultRuleSystem _cultRule = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly GhostSystem _ghost = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly CosmicCultSystem _cosmicCult = default!;
-
     public override void Initialize()
     {
         base.Initialize();
