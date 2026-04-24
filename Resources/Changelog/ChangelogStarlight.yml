@@ -1,13 +1,6 @@
 Entries:
 - author: Cujo
   changes:
-  - message: (Lagan) Added robotics specific airlocks to robotics without blocking RD server access.
-    type: Add
-  id: 404188
-  time: '2026-04-10T14:28:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4039
-- author: Cujo
-  changes:
   - message: (Lagan) Mapped performer spawn points and enumerated role spawns.
     type: Add
   id: 404189
@@ -2799,4 +2792,11 @@ Entries:
   id: 404587
   time: '2026-04-24T13:59:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4243
+- author: Scarlet Lightweaver
+  changes:
+  - message: Fixed PAIs being voided when the shuttle console breaks when ramming, whops.
+    type: Fix
+  id: 404588
+  time: '2026-04-24T17:41:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4244
 Order: -1
