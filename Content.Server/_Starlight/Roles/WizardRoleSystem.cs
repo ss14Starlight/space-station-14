@@ -1,6 +1,7 @@
 using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Tag;
@@ -23,9 +24,11 @@ public sealed class WizardRoleSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        // RoleAddedEvent fires on the mind entity AFTER MindRoleComponent is fully set up,
-        // and AFTER TransferTo has moved the player into their new body.
+        // Primary path: role is added after the mind already owns an entity.
         SubscribeLocalEvent<RoleAddedEvent>(OnRoleAdded);
+        // Fallback path: the mind is transferred into a body after the role was already added
+        // (e.g. ghost-role takeover where RoleAddedEvent fires before OwnedEntity is set).
+        SubscribeLocalEvent<MindAddedMessage>(OnMindAdded);
     }
 
     private void OnRoleAdded(RoleAddedEvent args)
@@ -38,5 +41,16 @@ public sealed class WizardRoleSystem : EntitySystem
             return;
 
         _tag.AddTag(ownedEntity.Value, WizardTag);
+    }
+
+    // Fallback: fires on the mob entity when a mind is transferred into it.
+    // Covers cases where RoleAddedEvent fired before OwnedEntity was assigned.
+    private void OnMindAdded(MindAddedMessage args)
+    {
+        Entity<MindComponent?> mind = new(args.Mind.Owner, args.Mind.Comp);
+        if (!_roles.MindHasRole<WizardRoleComponent>(mind, out _))
+            return;
+
+        _tag.AddTag(args.Container.Owner, WizardTag);
     }
 }
