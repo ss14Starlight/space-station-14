@@ -4,7 +4,6 @@ using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
 using Robust.Shared.Timing;
-using Content.Shared.Actions;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
@@ -12,7 +11,6 @@ public sealed class CosmicHibernateSystem : EntitySystem
 {
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
