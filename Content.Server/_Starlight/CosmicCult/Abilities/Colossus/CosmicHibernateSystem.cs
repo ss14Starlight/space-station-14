@@ -41,10 +41,5 @@ public sealed class CosmicHibernateSystem : EntitySystem
             Loc.GetString("ghost-role-colossus-hibernate"),
             Transform(ent).Coordinates,
             PopupType.LargeCaution);
-
-        if (comp.TimesHibernated >= 2) // i can't believe i'm hardcoding action removal because ActionCharges are broken on FunkyStation.
-        {
-            _actions.RemoveAction(ent.Owner, ent.Comp.HibernateActionEntity);
-        }
     }
 }
