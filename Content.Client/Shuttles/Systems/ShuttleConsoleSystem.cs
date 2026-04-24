@@ -16,7 +16,6 @@ namespace Content.Client.Shuttles.Systems
         {
             base.Initialize();
             SubscribeLocalEvent<PilotComponent, ComponentHandleState>(OnHandleState);
-            SubscribeLocalEvent<ShuttleConsoleComponent, ComponentShutdown>(OnConsoleShutdown); // Starlight: reset input if the console entity itself is destroyed while we're still piloting.
             var shuttle = _input.Contexts.New("shuttle", "common");
             shuttle.AddFunction(ContentKeyFunctions.ShuttleStrafeUp);
             shuttle.AddFunction(ContentKeyFunctions.ShuttleStrafeDown);
@@ -32,23 +31,6 @@ namespace Content.Client.Shuttles.Systems
             base.Shutdown();
             _input.Contexts.Remove("shuttle");
         }
-
-        // Starlight-start: safety net — if the console entity is deleted while the local player is still
-        // piloting it, RemovePilot may have bailed early server-side (console component already gone),
-        // leaving PilotComponent on the PAI. Reset input here so the screen never stays frozen.
-        private void OnConsoleShutdown(EntityUid uid, ShuttleConsoleComponent component, ComponentShutdown args)
-        {
-            var localEntity = _playerManager.LocalEntity;
-            if (localEntity == null)
-                return;
-            if (!TryComp<PilotComponent>(localEntity.Value, out var pilot))
-                return;
-            if (pilot.Console != uid)
-                return;
-
-            _input.Contexts.SetActiveContext("human");
-        }
-        // Starlight-end
 
         protected override void HandlePilotShutdown(EntityUid uid, PilotComponent component, ComponentShutdown args)
         {

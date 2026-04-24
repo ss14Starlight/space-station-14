@@ -30,11 +30,11 @@ public sealed class PAIShuttleRamSystem : EntitySystem
     {
         base.Initialize();
 
-        // Starlight: when a shuttle console is destroyed (fires before QueueDel), clean up any
+        // When a shuttle console is destroyed (fires before QueueDel), clean up any
         // active pilots so PilotComponent is removed and the player's input is never left stuck.
         SubscribeLocalEvent<ShuttleConsoleComponent, DestructionEventArgs>(OnConsoleDestroyed);
 
-        // Starlight: catch-all for any deletion that doesn't go through DestructionEventArgs
+        // Catch-all for any deletion that doesn't go through DestructionEventArgs
         // (e.g. admin tools, map unload). Also ejects any PAI still in the container.
         SubscribeLocalEvent<ShuttleConsoleComponent, EntityTerminatingEvent>(OnConsoleDying);
 
