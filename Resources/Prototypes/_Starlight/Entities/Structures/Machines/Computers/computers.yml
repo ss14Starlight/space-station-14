@@ -770,8 +770,7 @@
   - type: ShipyardConsole
   - type: AccessReader
     access:
-    - [ Command ]
-    - [ ChiefEngineer ]
+    - [ Captain ]
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.Shipyard
   - type: UserInterface
