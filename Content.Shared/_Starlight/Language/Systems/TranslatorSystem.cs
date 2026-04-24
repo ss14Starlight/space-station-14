@@ -28,10 +28,10 @@ public sealed class TranslatorSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<HandheldTranslatorComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<HandheldTranslatorComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<HandheldTranslatorComponent, EntGotInsertedIntoContainerMessage>(OnTranslatorInserted);
         SubscribeLocalEvent<HandheldTranslatorComponent, EntParentChangedMessage>(OnTranslatorParentChanged);
-        SubscribeLocalEvent<HandheldTranslatorComponent, ActivateInWorldEvent>(OnTranslatorToggle);
         SubscribeLocalEvent<HandheldTranslatorComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
         SubscribeLocalEvent<HandheldTranslatorComponent, PowerCellChangedEvent>(OnPowerCellChanged);
         SubscribeLocalEvent<HandheldTranslatorComponent, ItemToggledEvent>(OnItemToggled);
@@ -39,6 +39,12 @@ public sealed class TranslatorSystem : EntitySystem
         SubscribeLocalEvent<IntrinsicTranslatorComponent, DetermineEntityLanguagesEvent>(OnDetermineLanguages);
 
         SubscribeLocalEvent<HoldsTranslatorComponent, DetermineEntityLanguagesEvent>(OnProxyDetermineLanguages);
+    }
+
+    private void OnMapInit(Entity<HandheldTranslatorComponent> ent, ref MapInitEvent args)
+    {
+        _itemToggle.SetOnActivate(ent.Owner, ent.Comp.ToggleOnInteract);
+        _itemToggle.TrySetActive(ent.Owner, ent.Comp.Enabled);
     }
 
     private void OnExamined(Entity<HandheldTranslatorComponent> ent, ref ExaminedEvent args)
@@ -86,15 +92,6 @@ public sealed class TranslatorSystem : EntitySystem
             if (Exists(oldParent) && HasComp<LanguageSpeakerComponent>(oldParent))
                 _language.UpdateEntityLanguages(oldParent.Value);
         });
-    }
-
-    private void OnTranslatorToggle(Entity<HandheldTranslatorComponent> translator, ref ActivateInWorldEvent args)
-    {
-        if (!translator.Comp.ToggleOnInteract)
-            return;
-
-        args.Handled = true;
-        _itemToggle.TrySetActive(translator.Owner, !translator.Comp.Enabled, args.User);
     }
 
     private void OnPowerCellSlotEmpty(Entity<HandheldTranslatorComponent> translator, ref PowerCellSlotEmptyEvent args)

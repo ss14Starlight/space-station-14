@@ -69,9 +69,13 @@ public sealed partial class ForeignerTraitSystem : EntitySystem
 
         if (!TryComp<HandheldTranslatorComponent>(translator, out var handheld))
         {
-            handheld = AddComp<HandheldTranslatorComponent>(translator);
-            handheld.ToggleOnInteract = true;
-            handheld.SetLanguageOnInteract = true;
+            handheld = new HandheldTranslatorComponent
+            {
+                ToggleOnInteract = true,
+                SetLanguageOnInteract = true
+            };
+
+            AddComp(translator, handheld);
         }
 
         // Allows to speak the specified language and requires entities language.
