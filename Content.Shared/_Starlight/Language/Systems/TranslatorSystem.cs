@@ -3,7 +3,6 @@ using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Examine;
 using Content.Shared.Toggleable;
 using Content.Shared._Starlight.Language.Events;
-using Content.Shared.Interaction;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Popups;
@@ -96,38 +95,23 @@ public sealed class TranslatorSystem : EntitySystem
 
     private void OnPowerCellSlotEmpty(Entity<HandheldTranslatorComponent> translator, ref PowerCellSlotEmptyEvent args)
     {
-        translator.Comp.Enabled = false;
-        Dirty(translator);
-
-        _powerCell.SetDrawEnabled(translator.Owner, false);
-        OnAppearanceChange(translator.AsNullable());
-
-        if (_containers.TryGetContainingContainer(translator.Owner, out var holderCont) && HasComp<LanguageSpeakerComponent>(holderCont.Owner))
-            _language.UpdateEntityLanguages(holderCont.Owner);
+        _itemToggle.TrySetActive(translator.Owner, false);
     }
 
     private void OnPowerCellChanged(Entity<HandheldTranslatorComponent> translator, ref PowerCellChangedEvent args)
     {
         var canEnable = !args.Ejected && _powerCell.HasDrawCharge(translator.Owner);
-        translator.Comp.Enabled = canEnable;
-        Dirty(translator);
-
-        _powerCell.SetDrawEnabled(translator.Owner, canEnable);
-        OnAppearanceChange(translator.AsNullable());
-
-        if (_containers.TryGetContainingContainer(translator.Owner, out var holderCont) && HasComp<LanguageSpeakerComponent>(holderCont.Owner))
-            _language.UpdateEntityLanguages(holderCont.Owner);
+        _itemToggle.TrySetActive(translator.Owner, canEnable);
     }
 
     private void OnItemToggled(Entity<HandheldTranslatorComponent> translator, ref ItemToggledEvent args)
     {
-        var hasPower = _powerCell.HasDrawCharge(translator.Owner);
-        var isEnabled = args.Activated && hasPower;
+        var isEnabled = args.Activated;
         translator.Comp.Enabled = isEnabled;
         Dirty(translator);
 
         _powerCell.SetDrawEnabled(translator.Owner, isEnabled);
-        OnAppearanceChange(translator.Owner);
+        _appearance.SetData(translator, ToggleableVisuals.Enabled, translator.Comp.Enabled);
 
         if (_containers.TryGetContainingContainer(translator.Owner, out var holderCont)
             && TryComp<LanguageSpeakerComponent>(holderCont.Owner, out var languageComp))
@@ -140,9 +124,6 @@ public sealed class TranslatorSystem : EntitySystem
             if (isEnabled && translator.Comp.SetLanguageOnInteract && firstNewLanguage is {})
                 _language.SetLanguage((holderCont.Owner, languageComp), firstNewLanguage);
         }
-
-        if (!hasPower)
-            return;
 
         var loc = isEnabled
             ? "translator-component-turnon"
@@ -213,13 +194,5 @@ public sealed class TranslatorSystem : EntitySystem
         return requireAll
             ? required.All(provided.Contains)
             : required.Any(provided.Contains);
-    }
-
-    private void OnAppearanceChange(Entity<HandheldTranslatorComponent?> translator)
-    {
-        if (!Resolve(translator, ref translator.Comp, false))
-            return;
-
-        _appearance.SetData(translator, ToggleableVisuals.Enabled, translator.Comp.Enabled);
     }
 }
