@@ -5,7 +5,7 @@
   price: 26700
   category: Small
   group: Civilian
-  shuttlePath: /Maps/Shuttles/pts.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/pts.yml
 
 - type: vessel
   id: Barge
@@ -14,8 +14,8 @@
   price: 78500
   category: Medium
   group: Civilian
-  shuttlePath: /Maps/Shuttles/barge.yml
-  
+  shuttlePath: /Maps/_Starlight/Shuttles/barge.yml
+
 - type: vessel
   id: Prospecter
   name: NT-7 Prospecter
@@ -23,4 +23,4 @@
   price: 31350
   category: Small
   group: Civilian
-  shuttlePath: /Maps/Shuttles/prospecter.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/prospecter.yml
