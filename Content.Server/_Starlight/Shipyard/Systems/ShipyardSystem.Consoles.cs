@@ -1,22 +1,23 @@
 using Content.Server.Popups;
 using Content.Server.Cargo.Systems;
-using Content.Server.Shipyard.Components;
+using Content.Server._Starlight.Shipyard.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.GameTicking;
-using Content.Shared.Shipyard.Events;
-using Content.Shared.Shipyard.BUI;
-using Content.Shared.Shipyard.Prototypes;
-using Content.Shared.Shipyard.Components;
+using Content.Shared._Starlight.Shipyard.Events;
+using Content.Shared._Starlight.Shipyard.BUI;
+using Content.Shared._Starlight.Shipyard.Prototypes;
+using Content.Shared._Starlight.Shipyard.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Access.Components;
-using Content.Shared.Shipyard;
+using Content.Shared._Starlight.Shipyard;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Shuttles.Components;
+using Content.Server.Sound;
 
-namespace Content.Server.Shipyard.Systems;
+namespace Content.Server._Starlight.Shipyard.Systems;
 
 public sealed class ShipyardConsoleSystem : SharedShipyardSystem
 {
@@ -124,10 +125,10 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
     }
 
     private void PlayDenySound(EntityUid uid, SharedShipyardConsoleComponent component) =>
-        SoundSystem.Play(component.ErrorSound.GetSound(), Filter.Pvs(uid, entityManager: EntityManager), uid);
+        EmitSoundSystem.Play(component.ErrorSound.GetSound(), Filter.Pvs(uid, entityManager: EntityManager), uid);
 
     private void PlayConfirmSound(EntityUid uid, SharedShipyardConsoleComponent component) =>
-        SoundSystem.Play(component.ConfirmSound.GetSound(), Filter.Pvs(uid, entityManager: EntityManager), uid);
+        EmitSoundSystem.Play(component.ConfirmSound.GetSound(), Filter.Pvs(uid, entityManager: EntityManager), uid);
 
     private bool TryPurchaseVessel(StationBankAccountComponent component, VesselPrototype vessel, out ShuttleComponent? deed)
     {

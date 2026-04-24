@@ -1,10 +1,10 @@
 using Content.Server.Administration;
 using Content.Shared.Maps;
-using Content.Server.Shipyard.Systems;
+using Content.Server._Starlight.Shipyard.Systems;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 
-namespace Content.Server.Shipyard.Commands;
+namespace Content.Server._Starlight.Shipyard.Commands;
 
 /// <summary>
 /// Purchases a shuttle and docks it to a station.

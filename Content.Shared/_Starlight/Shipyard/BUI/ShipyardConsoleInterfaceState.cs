@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Shipyard.BUI;
+namespace Content.Shared._Starlight.Shipyard.BUI;
 
 [NetSerializable, Serializable]
 public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState

@@ -1,9 +1,9 @@
-using Content.Client.Shipyard.UI;
-using Content.Shared.Shipyard.BUI;
-using Content.Shared.Shipyard.Events;
+using Content.Client._Starlight.Shipyard.UI;
+using Content.Shared._Starlight.Shipyard.BUI;
+using Content.Shared._Starlight.Shipyard.Events;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 
-namespace Content.Client.Shipyard.BUI;
+namespace Content.Client._Starlight.Shipyard.BUI;
 
 public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
 {

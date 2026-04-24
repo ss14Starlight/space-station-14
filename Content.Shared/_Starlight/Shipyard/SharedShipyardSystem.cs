@@ -1,7 +1,7 @@
 using JetBrains.Annotations;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Shipyard;
+namespace Content.Shared._Starlight.Shipyard;
 
 [NetSerializable, Serializable]
 public enum ShipyardConsoleUiKey : byte

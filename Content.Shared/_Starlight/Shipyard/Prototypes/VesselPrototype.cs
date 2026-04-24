@@ -1,7 +1,7 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Shipyard.Prototypes;
+namespace Content.Shared._Starlight.Shipyard.Prototypes;
 
 [Prototype]
 

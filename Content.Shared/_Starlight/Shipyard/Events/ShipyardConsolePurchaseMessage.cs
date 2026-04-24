@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Shipyard.Events;
+namespace Content.Shared._Starlight.Shipyard.Events;
 
 /// <summary>
 ///     Purchase a Vessel from the console

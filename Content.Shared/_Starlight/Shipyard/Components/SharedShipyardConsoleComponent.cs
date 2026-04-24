@@ -1,7 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Audio;
 
-namespace Content.Shared.Shipyard.Components;
+namespace Content.Shared._Starlight.Shipyard.Components;
 
 [NetworkedComponent]
 public abstract partial class SharedShipyardConsoleComponent : Component

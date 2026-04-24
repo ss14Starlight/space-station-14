@@ -1,8 +1,8 @@
 using Content.Server.Shuttles.Systems;
 using Content.Server.Cargo.Systems;
 using Content.Server.Station.Systems;
-using Content.Shared.Shipyard;
-using Content.Server.Shipyard.Components;
+using Content.Shared._Starlight.Shipyard;
+using Content.Server._Starlight.Shipyard.Components;
 using Content.Shared.GameTicking;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -12,11 +12,10 @@ using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Shipyard.Systems;
+namespace Content.Server._Starlight.Shipyard.Systems;
 
 public sealed partial class ShipyardSystem : SharedShipyardSystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
