@@ -74,7 +74,7 @@ public sealed class CosmicConversionSystem : EntitySystem
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-chaplain"), uid, args.User);
                 args.Cancel();
             }
-            else if (HasComp<ChangelingComponent>(target))
+            else if (uid.Comp.NegateProtection == false && HasComp<ChangelingComponent>(target))
             {
                 _popup.PopupEntity(Loc.GetString("cult-glyph-target-otherantag"), uid, args.User);
                 args.Cancel();
