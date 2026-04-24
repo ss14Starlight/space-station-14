@@ -1,8 +1,9 @@
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.GameStates;
 
 namespace Content.Server._Starlight.CosmicCult.Components;
 
-[RegisterComponent, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
 public sealed partial class CosmicDebuffQueueComponent : Component
 {
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
@@ -16,12 +17,12 @@ public sealed partial class CosmicDebuffQueueComponent : Component
     public TimeSpan MinTimeInQueue = TimeSpan.FromSeconds(80);
 
     [DataField]
-    public Enum SelectedDebuff;
+    public CosmicDebuffOptions SelectedDebuff;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public int DebuffQuant = 0;
 
-    public Dictionary<Enum, float> DebuffOptions = new Dictionary<Enum, float>()
+    public Dictionary<CosmicDebuffOptions, float> DebuffOptions = new()
     {
        {CosmicDebuffOptions.CosmicDebuffMigraine, 8f},
        {CosmicDebuffOptions.CosmicDebuffStutter, 6f},
