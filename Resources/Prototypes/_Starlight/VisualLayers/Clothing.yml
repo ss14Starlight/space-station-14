@@ -1,0 +1,88 @@
+# SPDX-FileCopyrightText: 2026 Starlight Network
+# SPDX-License-Identifier: MIT
+
+# Clothing visual layers, ordered from bottom to top.
+# These layers sit above the corresponding body layers.
+
+- type: visualLayer
+  id: clothingLayer_UndergarmentBottom
+  aboveLayers:
+    - bodyLayer_LLeg
+    - bodyLayer_RLeg
+
+- type: visualLayer
+  id: clothingLayer_UndergarmentTop
+  aboveLayers:
+    - bodyLayer_Chest
+
+- type: visualLayer
+  id: clothingLayer_Shoes
+  aboveLayers:
+    - bodyLayer_LFoot
+    - bodyLayer_RFoot
+
+- type: visualLayer
+  id: clothingLayer_Socks
+  aboveLayers:
+    - bodyLayer_LFoot
+    - bodyLayer_RFoot
+    - clothingLayer_Shoes
+
+- type: visualLayer
+  id: clothingLayer_OuterBottom
+  aboveLayers:
+    - clothingLayer_UndergarmentBottom
+
+- type: visualLayer
+  id: clothingLayer_OuterTop
+  aboveLayers:
+    - clothingLayer_UndergarmentTop
+
+- type: visualLayer
+  id: clothingLayer_Gloves
+  aboveLayers:
+    - bodyLayer_LHand
+    - bodyLayer_RHand
+
+- type: visualLayer
+  id: clothingLayer_Belt
+  aboveLayers:
+    - clothingLayer_OuterBottom
+
+- type: visualLayer
+  id: clothingLayer_Back
+  aboveLayers:
+    - clothingLayer_OuterTop
+
+- type: visualLayer
+  id: clothingLayer_Neck
+  aboveLayers:
+    - clothingLayer_OuterTop
+
+- type: visualLayer
+  id: clothingLayer_Head
+  aboveLayers:
+    - bodyLayer_Hair
+    - bodyLayer_HeadTop
+
+- type: visualLayer
+  id: clothingLayer_Eyes
+  aboveLayers:
+    - bodyLayer_Eyes
+
+- type: visualLayer
+  id: clothingLayer_Mask
+  aboveLayers:
+    - bodyLayer_Snout
+    - bodyLayer_SnoutCover
+
+- type: visualLayer
+  id: clothingLayer_Ears
+  aboveLayers:
+    - bodyLayer_HeadSide
+
+- type: visualLayer
+  id: clothingLayer_Suit
+  aboveLayers:
+    - clothingLayer_OuterTop
+    - clothingLayer_OuterBottom
