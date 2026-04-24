@@ -17,10 +17,10 @@
   shuttlePath: /Maps/_Starlight/Shuttles/barge.yml
 
 - type: vessel
-  id: Prospecter
-  name: NT-7 Prospecter
+  id: Prospector
+  name: NT-7 Prospector
   description: A small mining vessel designed to assist salvage operations.
   price: 31350
   category: Small
   group: Civilian
-  shuttlePath: /Maps/_Starlight/Shuttles/prospecter.yml
+  shuttlePath: /Maps/_Starlight/Shuttles/prospector.yml
