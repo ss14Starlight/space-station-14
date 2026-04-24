@@ -108,8 +108,8 @@
     - SemiAuto
     - Burst
     shotsPerBurst: 3
-    burstCooldown: 1
-    burstFireRate: 4
+    burstCooldown: 1.2
+    burstFireRate: 3.5
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/revolver_stronger.ogg
   - type: RevolverAmmoProvider

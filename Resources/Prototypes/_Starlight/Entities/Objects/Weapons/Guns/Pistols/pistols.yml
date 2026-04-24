@@ -146,8 +146,8 @@
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/enforcer.rsi
     - type: Gun
-      minAngle: 5
-      maxAngle: 35
+      minAngle: 1
+      maxAngle: 30
       angleIncrease: 5
       angleDecay: 3
       fireRate: 6
