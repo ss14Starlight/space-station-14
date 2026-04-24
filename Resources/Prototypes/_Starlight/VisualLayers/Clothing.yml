@@ -5,84 +5,84 @@
 # These layers sit above the corresponding body layers.
 
 - type: visualLayer
-  id: clothingLayer_UndergarmentBottom
+  id: clothing_undergarmentBottom
   aboveLayers:
-    - bodyLayer_LLeg
-    - bodyLayer_RLeg
+    - body_lLeg
+    - body_rLeg
 
 - type: visualLayer
-  id: clothingLayer_UndergarmentTop
+  id: clothing_undergarmentTop
   aboveLayers:
-    - bodyLayer_Chest
+    - body_chest
 
 - type: visualLayer
-  id: clothingLayer_Shoes
+  id: clothing_shoes
   aboveLayers:
-    - bodyLayer_LFoot
-    - bodyLayer_RFoot
+    - body_lFoot
+    - body_rFoot
 
 - type: visualLayer
-  id: clothingLayer_Socks
+  id: clothing_socks
   aboveLayers:
-    - bodyLayer_LFoot
-    - bodyLayer_RFoot
-    - clothingLayer_Shoes
+    - body_lFoot
+    - body_rFoot
+    - clothing_shoes
 
 - type: visualLayer
-  id: clothingLayer_OuterBottom
+  id: clothing_outerBottom
   aboveLayers:
-    - clothingLayer_UndergarmentBottom
+    - clothing_undergarmentBottom
 
 - type: visualLayer
-  id: clothingLayer_OuterTop
+  id: clothing_outerTop
   aboveLayers:
-    - clothingLayer_UndergarmentTop
+    - clothing_undergarmentTop
 
 - type: visualLayer
-  id: clothingLayer_Gloves
+  id: clothing_gloves
   aboveLayers:
-    - bodyLayer_LHand
-    - bodyLayer_RHand
+    - body_lHand
+    - body_rHand
 
 - type: visualLayer
-  id: clothingLayer_Belt
+  id: clothing_belt
   aboveLayers:
-    - clothingLayer_OuterBottom
+    - clothing_outerBottom
 
 - type: visualLayer
-  id: clothingLayer_Back
+  id: clothing_back
   aboveLayers:
-    - clothingLayer_OuterTop
+    - clothing_outerTop
 
 - type: visualLayer
-  id: clothingLayer_Neck
+  id: clothing_neck
   aboveLayers:
-    - clothingLayer_OuterTop
+    - clothing_outerTop
 
 - type: visualLayer
-  id: clothingLayer_Head
+  id: clothing_head
   aboveLayers:
-    - bodyLayer_Hair
-    - bodyLayer_HeadTop
+    - body_hair
+    - body_headTop
 
 - type: visualLayer
-  id: clothingLayer_Eyes
+  id: clothing_eyes
   aboveLayers:
-    - bodyLayer_Eyes
+    - body_eyes
 
 - type: visualLayer
-  id: clothingLayer_Mask
+  id: clothing_mask
   aboveLayers:
-    - bodyLayer_Snout
-    - bodyLayer_SnoutCover
+    - body_snout
+    - body_snoutCover
 
 - type: visualLayer
-  id: clothingLayer_Ears
+  id: clothing_ears
   aboveLayers:
-    - bodyLayer_HeadSide
+    - body_headSide
 
 - type: visualLayer
-  id: clothingLayer_Suit
+  id: clothing_suit
   aboveLayers:
-    - clothingLayer_OuterTop
-    - clothingLayer_OuterBottom
+    - clothing_outerTop
+    - clothing_outerBottom

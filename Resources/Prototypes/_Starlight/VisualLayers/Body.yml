@@ -5,134 +5,134 @@
 # Each layer declares what it is above/below to establish the sort order.
 
 - type: visualLayer
-  id: bodyLayer_Special
+  id: body_special
 
 - type: visualLayer
-  id: bodyLayer_TailExtras
+  id: body_tailExtras
   aboveLayers:
-    - bodyLayer_Special
+    - body_special
 
 - type: visualLayer
-  id: bodyLayer_Tail
+  id: body_tail
   aboveLayers:
-    - bodyLayer_TailExtras
+    - body_tailExtras
 
 - type: visualLayer
-  id: bodyLayer_LLeg
+  id: body_lLeg
   aboveLayers:
-    - bodyLayer_Tail
+    - body_tail
 
 - type: visualLayer
-  id: bodyLayer_RLeg
+  id: body_rLeg
   aboveLayers:
-    - bodyLayer_Tail
+    - body_tail
 
 - type: visualLayer
-  id: bodyLayer_LFoot
+  id: body_lFoot
   aboveLayers:
-    - bodyLayer_LLeg
+    - body_lLeg
 
 - type: visualLayer
-  id: bodyLayer_RFoot
+  id: body_rFoot
   aboveLayers:
-    - bodyLayer_RLeg
+    - body_rLeg
 
 - type: visualLayer
-  id: bodyLayer_UndergarmentBottom
+  id: body_undergarmentBottom
   aboveLayers:
-    - bodyLayer_LLeg
-    - bodyLayer_RLeg
+    - body_lLeg
+    - body_rLeg
 
 - type: visualLayer
-  id: bodyLayer_Chest
+  id: body_chest
   aboveLayers:
-    - bodyLayer_UndergarmentBottom
+    - body_undergarmentBottom
 
 - type: visualLayer
-  id: bodyLayer_UndergarmentTop
+  id: body_undergarmentTop
   aboveLayers:
-    - bodyLayer_Chest
+    - body_chest
 
 - type: visualLayer
-  id: bodyLayer_LArm
+  id: body_lArm
   aboveLayers:
-    - bodyLayer_Chest
+    - body_chest
 
 - type: visualLayer
-  id: bodyLayer_RArm
+  id: body_rArm
   aboveLayers:
-    - bodyLayer_Chest
+    - body_chest
 
 - type: visualLayer
-  id: bodyLayer_LHand
+  id: body_lHand
   aboveLayers:
-    - bodyLayer_LArm
+    - body_lArm
 
 - type: visualLayer
-  id: bodyLayer_RHand
+  id: body_rHand
   aboveLayers:
-    - bodyLayer_RArm
+    - body_rArm
 
 - type: visualLayer
-  id: bodyLayer_Head
+  id: body_head
   aboveLayers:
-    - bodyLayer_Chest
+    - body_chest
 
 - type: visualLayer
-  id: bodyLayer_Snout
+  id: body_snout
   aboveLayers:
-    - bodyLayer_Head
+    - body_head
 
 - type: visualLayer
-  id: bodyLayer_SnoutCover
+  id: body_snoutCover
   aboveLayers:
-    - bodyLayer_Snout
+    - body_snout
 
 - type: visualLayer
-  id: bodyLayer_HeadSide
+  id: body_headSide
   aboveLayers:
-    - bodyLayer_Head
+    - body_head
 
 - type: visualLayer
-  id: bodyLayer_HeadTop
+  id: body_headTop
   aboveLayers:
-    - bodyLayer_Head
+    - body_head
 
 - type: visualLayer
-  id: bodyLayer_Eyes
+  id: body_eyes
   aboveLayers:
-    - bodyLayer_Head
+    - body_head
 
 - type: visualLayer
-  id: bodyLayer_FacialHair
+  id: body_facialHair
   aboveLayers:
-    - bodyLayer_Snout
+    - body_snout
 
 - type: visualLayer
-  id: bodyLayer_Hair
+  id: body_hair
   aboveLayers:
-    - bodyLayer_HeadTop
+    - body_headTop
 
 - type: visualLayer
-  id: bodyLayer_Handcuffs
+  id: body_handcuffs
   aboveLayers:
-    - bodyLayer_LHand
-    - bodyLayer_RHand
+    - body_lHand
+    - body_rHand
 
 - type: visualLayer
-  id: bodyLayer_Ensnare
+  id: body_ensnare
   aboveLayers:
-    - bodyLayer_Chest
+    - body_chest
 
 - type: visualLayer
-  id: bodyLayer_StencilMask
+  id: body_stencilMask
   aboveLayers:
-    - bodyLayer_Head
+    - body_head
 
 - type: visualLayer
-  id: bodyLayer_Fire
+  id: body_fire
   aboveLayers:
-    - bodyLayer_Chest
+    - body_chest
 
 - type: visualLayer
-  id: bodyLayer_Other
+  id: body_other
