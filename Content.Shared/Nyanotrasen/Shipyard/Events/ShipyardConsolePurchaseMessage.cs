@@ -10,8 +10,6 @@ public sealed class ShipyardConsolePurchaseMessage : BoundUserInterfaceMessage
 {
     public string Vessel; //vessel prototype ID
 
-    public ShipyardConsolePurchaseMessage(string vessel)
-    {
+    public ShipyardConsolePurchaseMessage(string vessel) =>
         Vessel = vessel;
-    }
 }

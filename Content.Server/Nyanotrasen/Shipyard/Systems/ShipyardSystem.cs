@@ -1,150 +1,143 @@
 using Content.Server.Shuttles.Systems;
-using Content.Server.Shuttles.Components;
-using Content.Server.Station.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Shipyard;
 using Content.Server.Shipyard.Components;
-using Content.Shared.MobState.Components;
 using Content.Shared.GameTicking;
-using Robust.Server.GameObjects;
-using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.EntitySerialization.Systems;
+using Content.Shared.Station.Components;
+using Content.Shared.Shuttles.Components;
+using Robust.Server.GameObjects;
+using Robust.Shared.Utility;
 
-namespace Content.Server.Shipyard.Systems
+namespace Content.Server.Shipyard.Systems;
+
+public sealed partial class ShipyardSystem : SharedShipyardSystem
 {
+    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly MapSystem _mapSystem = default!;
+    [Dependency] private readonly PricingSystem _pricing = default!;
+    [Dependency] private readonly ShuttleSystem _shuttle = default!;
+    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly MapLoaderSystem _map = default!;
+    [Dependency] private readonly ShipyardConsoleSystem _shipyardConsole = default!;
 
-    public sealed partial class ShipyardSystem : SharedShipyardSystem
+    public EntityUid? ShipyardMapEntity { get; private set; }
+    public MapId? ShipyardMapId { get; private set; }
+
+    private float _shuttleIndex;
+    private const float ShuttleSpawnBuffer = 1f;
+    private ISawmill _sawmill = default!;
+
+    public override void Initialize()
     {
-        [Dependency] private readonly IMapManager _mapManager = default!;
-        [Dependency] private readonly PricingSystem _pricing = default!;
-        [Dependency] private readonly ShuttleSystem _shuttle = default!;
-        [Dependency] private readonly StationSystem _station = default!;
-        [Dependency] private readonly MapLoaderSystem _map = default!;
-        [Dependency] private readonly ShipyardConsoleSystem _shipyardConsole = default!;
+        base.Initialize();
 
-        public MapId? ShipyardMap { get; private set; }
-        private float _shuttleIndex;
-        private const float ShuttleSpawnBuffer = 1f;
-        private ISawmill _sawmill = default!;
+        _sawmill = Logger.GetSawmill("shipyard");
+        _shipyardConsole.InitializeConsole();
+        SubscribeLocalEvent<ShipyardConsoleComponent, ComponentInit>(OnShipyardStartup);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+    }
 
-        public override void Initialize()
+    private void OnShipyardStartup(EntityUid uid, ShipyardConsoleComponent component, ComponentInit args) =>
+        SetupShipyard();
+
+    private void OnRoundRestart(RoundRestartCleanupEvent ev) =>
+        CleanupShipyard();
+
+    /// <summary>
+    /// Adds a ship to the shipyard, calculates its price, and attempts to ftl-dock it to the given station
+    /// </summary>
+    public void PurchaseShuttle(EntityUid? stationUid, string shuttlePath, out ShuttleComponent? vessel)
+    {
+        vessel = null;
+
+        if (stationUid == null)
+            return;
+
+        if (!TryComp(stationUid.Value, out StationDataComponent? stationData))
+            return;
+
+        var shuttleUid = AddShuttle(shuttlePath);
+        if (shuttleUid == null)
+            return;
+
+        if (!TryComp(shuttleUid.Value, out ShuttleComponent? shuttle))
+            return;
+
+        var targetGrid = _station.GetLargestGrid((stationUid.Value, stationData));
+        if (targetGrid == null)
+            return;
+
+        var price = _pricing.AppraiseGrid(shuttleUid.Value, null);
+
+        _shuttle.TryFTLDock(shuttleUid.Value, shuttle, targetGrid.Value);
+
+        vessel = shuttle;
+
+        _sawmill.Info($"Shuttle {shuttlePath} was purchased at {targetGrid} for {price}");
+    }
+
+    /// <summary>
+    /// Loads a paused shuttle into the ShipyardMap from a file path
+    /// </summary>
+    private EntityUid? AddShuttle(string shuttlePath)
+    {
+        if (ShipyardMapId == null)
+            return null;
+
+        if (!_map.TryLoadGrid(ShipyardMapId.Value, new ResPath(shuttlePath), out var grid) || grid == null)
         {
-            _sawmill = Logger.GetSawmill("shipyard");
-            _shipyardConsole.InitializeConsole();
-            SubscribeLocalEvent<ShipyardConsoleComponent, ComponentInit>(OnShipyardStartup);
-            SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+            _sawmill.Error($"Unable to spawn shuttle {shuttlePath}");
+            return null;
         }
 
-        private void OnShipyardStartup(EntityUid uid, ShipyardConsoleComponent component, ComponentInit args)
+        var gridUid = grid.Value.Owner;
+
+        if (TryComp<MapGridComponent>(gridUid, out var gridComp))
         {
-            SetupShipyard();
+            _shuttleIndex += gridComp.LocalAABB.Width + ShuttleSpawnBuffer;
         }
 
-        private void OnRoundRestart(RoundRestartCleanupEvent ev)
+        return gridUid;
+    }
+
+    private void CleanupShipyard()
+    {
+        if (ShipyardMapEntity == null)
         {
-            CleanupShipyard();
+            ShipyardMapEntity = null;
+            ShipyardMapId = null;
+            return;
         }
 
-        /// <summary>
-        /// Adds a ship to the shipyard, calculates its price, and attempts to ftl-dock it to the given station
-        /// </summary>
-        /// <param name="stationUid">The ID of the station to dock the shuttle to</param>
-        /// <param name="shuttlePath">The path to the grid file to load. Must be a grid file!</param>
-        public void PurchaseShuttle(EntityUid? stationUid, string shuttlePath, out ShuttleComponent? vessel)
+        if (!Exists(ShipyardMapEntity.Value))
         {
-            if (!TryComp<StationDataComponent>(stationUid, out var stationData) || !TryComp<ShuttleComponent>(AddShuttle(shuttlePath), out var shuttle))
-            {
-                vessel = null;
-                return;
-            }
-
-            var targetGrid = _station.GetLargestGrid(stationData);
-
-            if (targetGrid == null)
-            {
-                vessel = null;
-                return;
-            }
-
-            var price = _pricing.AppraiseGrid(shuttle.Owner, null);
-
-            //can do FTLTravel later instead if we want to open that door
-            _shuttle.TryFTLDock(shuttle, targetGrid.Value);
-            vessel = shuttle;
-            _sawmill.Info($"Shuttle {shuttlePath} was purchased at {targetGrid} for {price}");
+            ShipyardMapEntity = null;
+            ShipyardMapId = null;
+            return;
         }
 
-        /// <summary>
-        /// Loads a paused shuttle into the ShipyardMap from a file path
-        /// </summary>
-        /// <param name="shuttlePath">The path to the grid file to load. Must be a grid file!</param>
-        /// <returns>Returns the EntityUid of the shuttle</returns>
-        private EntityUid? AddShuttle(string shuttlePath)
-        {
-            if (ShipyardMap == null)
-                return null;
+        Del(ShipyardMapEntity.Value);
 
-            var loadOptions = new MapLoadOptions()
-            {
-                Offset = (500f + _shuttleIndex, 0f)
-            };
+        ShipyardMapEntity = null;
+        ShipyardMapId = null;
+    }
 
-            if (!_map.TryLoad(ShipyardMap.Value, shuttlePath.ToString(), out var gridList, loadOptions) || gridList == null)
-            {
-                _sawmill.Error($"Unable to spawn shuttle {shuttlePath}");
-                return null;
-            };
+    private void SetupShipyard()
+    {
+        if (ShipyardMapEntity != null && Exists(ShipyardMapEntity.Value))
+            return;
 
-            _shuttleIndex += _mapManager.GetGrid(gridList[0]).LocalAABB.Width + ShuttleSpawnBuffer;
-            var actualGrids = new List<EntityUid>();
-            var gridQuery = GetEntityQuery<MapGridComponent>();
+        ShipyardMapEntity = _mapSystem.CreateMap();
 
-            foreach (var ent in gridList)
-            {
-                if (!gridQuery.HasComponent(ent))
-                    continue;
+        if (!TryComp<MapComponent>(ShipyardMapEntity.Value, out var mapComp))
+            return;
 
-                actualGrids.Add(ent);
-            };
+        ShipyardMapId = mapComp.MapId;
 
-            //only dealing with 1 grid at a time for now, until more is known about multi-grid drifting
-            if (actualGrids.Count != 1)
-            {
-                _sawmill.Error($"Unable to spawn shuttle {shuttlePath}");
-                if (actualGrids.Count > 1)
-                {
-                    foreach (var grid in actualGrids)
-                    {
-                        _mapManager.DeleteGrid(grid);
-                    }
-                }
-                return null;
-            };
-
-            return actualGrids[0];
-        }
-
-        private void CleanupShipyard()
-        {
-            if (ShipyardMap == null || !_mapManager.MapExists(ShipyardMap.Value))
-            {
-                ShipyardMap = null;
-                return;
-            };
-
-            _mapManager.DeleteMap(ShipyardMap.Value);
-        }
-
-        private void SetupShipyard()
-        {
-            if (ShipyardMap != null && _mapManager.MapExists(ShipyardMap.Value))
-                return;
-
-            ShipyardMap = _mapManager.CreateMap();
-
-            _mapManager.SetMapPaused(ShipyardMap.Value, true);
-        }
+        _mapSystem.SetPaused(ShipyardMapEntity.Value, true);
     }
 }

@@ -1,5 +1,5 @@
 using Content.Server.Administration;
-using Content.Server.Maps;
+using Content.Shared.Maps;
 using Content.Server.Shipyard.Systems;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
