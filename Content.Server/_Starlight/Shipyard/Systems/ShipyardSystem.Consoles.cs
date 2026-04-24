@@ -15,7 +15,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Shuttles.Components;
-using Content.Server.Sound;
 
 namespace Content.Server._Starlight.Shipyard.Systems;
 
@@ -125,10 +124,10 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
     }
 
     private void PlayDenySound(EntityUid uid, SharedShipyardConsoleComponent component) =>
-        EmitSoundSystem.Play(component.ErrorSound.GetSound(), Filter.Pvs(uid, entityManager: EntityManager), uid);
+        SoundSystem.Play(component.ErrorSound.GetSound(), Filter.Pvs(uid, entityManager: EntityManager), uid);
 
     private void PlayConfirmSound(EntityUid uid, SharedShipyardConsoleComponent component) =>
-        EmitSoundSystem.Play(component.ConfirmSound.GetSound(), Filter.Pvs(uid, entityManager: EntityManager), uid);
+        SoundSystem.Play(component.ConfirmSound.GetSound(), Filter.Pvs(uid, entityManager: EntityManager), uid);
 
     private bool TryPurchaseVessel(StationBankAccountComponent component, VesselPrototype vessel, out ShuttleComponent? deed)
     {
