@@ -1,9 +1,8 @@
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.GameStates;
 
 namespace Content.Server._Starlight.CosmicCult.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class CosmicDebuffQueueComponent : Component
 {
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
