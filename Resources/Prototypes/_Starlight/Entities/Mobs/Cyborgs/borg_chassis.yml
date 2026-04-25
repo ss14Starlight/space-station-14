@@ -295,7 +295,7 @@
     - type: MovementAlwaysTouching
     - type: Speech
       speechSounds: SyndieBorg
-      allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime']
+      allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Laugh']
     - type: Vocal
       sounds:
         Unsexed: UnisexSiliconSyndicate
