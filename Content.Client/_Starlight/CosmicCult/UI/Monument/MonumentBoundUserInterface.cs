@@ -34,8 +34,6 @@ public sealed class MonumentBoundUserInterface(EntityUid owner, Enum uiKey) : Bo
         _menu?.UpdateState(buiState);
     }
 
-    private void OnInfluenceSelected(ProtoId<InfluencePrototype> selectedInfluence)
-    {
+    private void OnInfluenceSelected(ProtoId<InfluencePrototype> selectedInfluence) =>
         SendMessage(new InfluenceSelectedMessage(selectedInfluence));
-    }
 }

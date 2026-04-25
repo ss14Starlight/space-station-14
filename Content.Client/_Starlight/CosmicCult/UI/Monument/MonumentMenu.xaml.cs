@@ -55,10 +55,7 @@ public sealed partial class MonumentMenu : FancyWindow
         RemoveGlyphButton.OnPressed += _ => OnRemoveGlyphButtonPressed?.Invoke();
         SelectGlyphButton.OnPressed += _ => OnSelectGlyphButtonPressed?.Invoke(_selectedGlyphProtoId);
 
-        _cfg.OnValueChanged(StarlightCCVars.CosmicCultistEntropyValue, entropy =>
-        {
-            _entropyPerCultist = entropy;
-        },
+        _cfg.OnValueChanged(StarlightCCVars.CosmicCultistEntropyValue, entropy => _entropyPerCultist = entropy,
         invokeImmediately: true);
     }
 
