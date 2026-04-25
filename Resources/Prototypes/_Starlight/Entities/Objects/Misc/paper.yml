@@ -21,8 +21,6 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
-  - type: PaperLabelType
-    paperType: CaptainsPaper
   - type: PaperVisuals
     headerImagePath: "/Textures/_Starlight/Interface/Paper/MedTak.png"
     backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"

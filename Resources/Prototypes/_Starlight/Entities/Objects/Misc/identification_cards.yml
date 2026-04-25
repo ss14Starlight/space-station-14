@@ -651,7 +651,7 @@
 - type: entity
   parent: IDCardStandard
   id: MedTakMedicIDCard
-  name: Medtak medic ID card
+  name: MedTak medic ID card
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -670,7 +670,7 @@
 - type: entity
   parent: IDCardStandard
   id: MedTakPilotIDCard
-  name: Medtak pilot ID card
+  name: MedTak pilot ID card
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -689,7 +689,7 @@
 - type: entity
   parent: IDCardStandard
   id: MedTakSecurityIDCard
-  name: Medtak security ID card
+  name: MedTak security ID card
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Misc/id_cards.rsi
