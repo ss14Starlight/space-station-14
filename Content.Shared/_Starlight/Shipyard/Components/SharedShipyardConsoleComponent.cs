@@ -2,7 +2,6 @@ using Robust.Shared.Audio;
 
 namespace Content.Shared._Starlight.Shipyard.Components;
 
-[RegisterComponent]
 public abstract partial class SharedShipyardConsoleComponent : Component
 {
     [DataField("soundError")]
