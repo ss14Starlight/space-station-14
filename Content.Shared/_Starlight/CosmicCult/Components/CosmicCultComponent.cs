@@ -3,7 +3,6 @@ using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
 using Content.Shared._Starlight.CosmicCult.Prototypes;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.Alert;
 using Robust.Shared.Serialization;
 

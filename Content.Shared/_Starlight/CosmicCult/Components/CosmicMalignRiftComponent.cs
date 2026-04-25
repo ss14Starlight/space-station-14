@@ -1,5 +1,4 @@
 using Content.Shared.DoAfter;
-using Content.Shared.Weapons.Ranged;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
