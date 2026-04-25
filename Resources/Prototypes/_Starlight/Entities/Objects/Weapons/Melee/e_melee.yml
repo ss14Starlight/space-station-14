@@ -77,7 +77,7 @@
   id: EnergySwordBanana
   parent: [BaseMeleeWeaponEnergy, BaseSyndicateContraband]
   name: banana energy sword
-  desc: Cybersun's research into bananium weaponry produced some unexpected results. Honk!
+  description: Cybersun's research into bananium weaponry produced some unexpected results. Honk!
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_sword.rsi
