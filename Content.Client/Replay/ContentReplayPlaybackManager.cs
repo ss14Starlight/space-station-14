@@ -185,7 +185,6 @@ public sealed class ContentReplayPlaybackManager
             case PopupEvent:
             case PickupAnimationEvent:
             case MeleeLungeEvent:
-            case HitscanEvent: // Funky
             case ImpactEffectEvent:
             case MuzzleFlashEvent:
             case ColorFlashEffectEvent:
