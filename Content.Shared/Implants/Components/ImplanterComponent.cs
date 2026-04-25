@@ -113,6 +113,12 @@ public sealed partial class ImplanterComponent : Component
     [DataField, AutoNetworkedField]
     public bool DissolveOnUse = false;
 
+    /// <summary>
+    /// Whether or not drawing an implant deletes the implant.
+    /// </summary>
+    [DataField]
+    public bool DeimplantCrushes = false;
+
     public bool UiUpdateNeeded;
 }
 
