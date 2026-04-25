@@ -37,6 +37,7 @@ public sealed partial class VesselPrototype : IPrototype
 
     /// <summary>
     ///     The prototype group of the product. (e.g. Civilian, Syndicate, Contraband etc.)
+    ///     Todo: This is currently unused.
     /// </summary>
     [DataField("group")]
     public string Group { get; private set; } = string.Empty;
