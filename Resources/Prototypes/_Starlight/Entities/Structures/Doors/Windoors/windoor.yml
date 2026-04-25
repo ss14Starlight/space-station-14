@@ -60,6 +60,106 @@
     - type: Wires
       layoutId: AirlockScience
 
+# Security
+- type: entity
+  parent: Windoor
+  id: WindoorSecurityLocked
+  suffix: Security, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+# Internal Affairs
+- type: entity
+  parent: WindoorSecurityLocked
+  id: WindoorInternalAffairsLocked
+  suffix: Internal Affairs, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsInternalAffairs ]
+
+- type: entity
+  parent: WindoorSecureSecurityLocked
+  id: WindoorSecureInternalAffairsLocked
+  suffix: Internal Affairs, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsInternalAffairs ]
+
+# Security/Internal Affairs
+- type: entity
+  parent: WindoorSecurityLocked
+  id: WindoorSecurityInternalAffairsLocked
+  suffix: Security/Internal Affairs, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurityInternalAffairs ]
+
+# Legal
+- type: entity
+  parent: WindoorServiceLocked
+  id: WindoorLegalLocked
+  suffix: Legal, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLegal ]
+
+- type: entity
+  parent: WindoorSecureServiceLocked
+  id: WindoorSecureLegalLocked
+  suffix: Legal, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLegal ]
+
+# Courtroom
+- type: entity
+  parent: WindoorSecurityLocked
+  id: WindoorCourtroomLocked
+  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCourtroom ]
+
+- type: entity
+  parent: WindoorSecureSecurityLocked
+  id: WindoorSecureCourtroomLocked
+  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCourtroom ]
+
+
+# Attorney
+- type: entity
+  parent: WindoorServiceLocked
+  id: WindoorAttorneyLocked
+  suffix: Internal Affairs/Legal (Attorney), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAttorney ]
+
+- type: entity
+  parent: WindoorSecureServiceLocked
+  id: WindoorSecureAttorneyLocked
+  suffix: Internal Affairs/Legal (Attorney), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAttorney ]
+
+
 # MedTak
 - type: entity
   parent: WindoorSecure

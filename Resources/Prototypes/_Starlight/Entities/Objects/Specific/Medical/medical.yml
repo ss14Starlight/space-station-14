@@ -194,6 +194,7 @@
   - type: Healing
     damageContainers:
       - Biological
+      - BiologicalMetaphysical
     delay: 1.6 # STARLIGHT
     damage:
       types:
@@ -297,6 +298,7 @@
   - type: Healing
     damageContainers:
       - Biological
+      - BiologicalMetaphysical
     delay: 1.6 # STARLIGHT
     damage:
       groups:
@@ -398,6 +400,7 @@
   - type: Healing
     damageContainers:
       - Biological
+      - BiologicalMetaphysical
     delay: 1.6 # STARLIGHT
     damage:
       types:
@@ -467,6 +470,7 @@
   - type: Healing
     damageContainers:
       - Biological
+      - BiologicalMetaphysical
     delay: 1.6 # STARLIGHT
     damage:
       types:
@@ -536,6 +540,7 @@
   - type: Healing
     damageContainers:
       - Biological
+      - BiologicalMetaphysical
     delay: 1.6 # STARLIGHT
     damage:
       types:
