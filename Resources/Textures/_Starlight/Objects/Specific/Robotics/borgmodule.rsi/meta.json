@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC0-1.0",
-    "copyright": "Created by Road-Train (github) for Space Station 14. Centcomm module by Abby (happymemories11 - discord)",
+    "copyright": "Created by Road-Train (github) for Space Station 14. Centcomm module by Abby (happymemories11 - discord), MedTak by SevenShades",
     "size": {
         "x": 32,
         "y": 32
@@ -44,6 +44,15 @@
         {
             "name": "base-stripes-inhand-right",
             "directions": 4
+        },
+        {
+            "name": "medtak"
+        },
+        {
+            "name": "icon-medtak-med"
+        },
+        {
+            "name": "icon-medtak-sec"
         }
     ]
 }

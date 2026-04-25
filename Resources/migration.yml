@@ -774,3 +774,6 @@ OrganHumanLegRight: RightLegHuman
 OrganSkeletonPersonTorso: TorsoSkeleton
 OrganSkeletonPersonArmRight: RightArmSkeleton
 # Starlight end
+
+# 2026-01-19
+TowelColorOrange: null

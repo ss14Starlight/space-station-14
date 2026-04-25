@@ -1,7 +1,6 @@
 - type: loadoutGroup
   id: Insuls
   name: loadout-group-insuls-normal
-  minLimit: 0
   defaultSelected: 1
   loadouts:
   - InsulsRegular
@@ -12,7 +11,6 @@
 - type: loadoutGroup
   id: InsulsCombat
   name: loadout-group-insuls-combat
-  minLimit: 0
   defaultSelected: 1
   loadouts:
   - InsulsCombatNoLock
@@ -23,7 +21,6 @@
 - type: loadoutGroup
   id: InsulsCaptain
   name: loadout-group-insuls-captain
-  minLimit: 0
   defaultSelected: 1
   loadouts:
   - InsulsCaptain
@@ -239,6 +236,29 @@
   - RoboticistDuffel
   - LeatherSatchel
 
+# IAA
+- type: loadoutGroup
+  id: IAAJumpsuit
+  name: loadout-group-iaa-jumpsuit
+  loadouts:
+  - LawyerJumpsuit
+  - LawyerJumpskirt
+  - LawyerJumpsuitBlue
+  - LawyerJumpskirtBlue
+  - LawyerJumpsuitPurple
+  - LawyerJumpskirtPurple
+  - LawyerJumpsuitRed
+  - LawyerJumpskirtRed
+  - LawyerJumpsuitGood
+  - LawyerJumpskirtGood
+
+- type: loadoutGroup
+  id: IAANeck
+  name: loadout-group-iaa-neck
+  minLimit: 0
+  loadouts:
+  - LawyerNeck
+
 - type: loadoutGroup
   id: NanoTrasenRepresentativeHead
   name: loadout-group-nanotrasenrepresentative-head
@@ -399,8 +419,10 @@
   name: loadout-group-security-sidearm
   loadouts:
   - SecurityMk58
-  - SecurityPistolDP
   - SecurityPistolEnforcer
+  - SecurityRevolverDispatcher
+  - SecurityPistolDP
+  - SecurityMk58Gold
 
 # Assorted Boots
 - type: loadoutGroup
@@ -488,14 +510,25 @@
 
 - type: loadoutGroup
   id: LawyerShoes
-  name: loadout-group-iia-shoes
+  name: loadout-group-lawyer-shoes
   minLimit: 0
   defaultSelected: 1
   loadouts:
-  - BlackShoes
   - LaceupShoes
   - Heels
   - LeatherShoes
+  - BlackShoes
+
+- type: loadoutGroup
+  id: IAAShoes
+  name: loadout-group-iaa-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+  - BlackShoes
 
 - type: loadoutGroup
   id: BlueShieldShoes
@@ -679,7 +712,6 @@
   - ServiceWorkerBotanyJumpskirt
   - ServiceWorkerChefJumpsuit
   - ServiceWorkerChefJumpskirt
-  - MaidOutfit
 
 # Performer
 - type: loadoutGroup
@@ -713,6 +745,16 @@
   - LizardPlushieClown
   - LizardPlushieMime
 
+# Musician
+- type: loadoutGroup
+  id: MusicianHead
+  name: loadout-group-musician-head
+  minLimit: 0
+  loadouts:
+  - MusicianHeadphonesGeneric
+  - MusicianHeadphonesReporter
+  - MusicianHeadphonesHighEnd
+
 # Boxer
 - type: loadoutGroup
   id: BoxerJumpsuit
@@ -736,6 +778,16 @@
   minLimit: 0
   loadouts:
   - LizardPlushieBoxer
+
+# Reporter
+- type: loadoutGroup
+  id: ReporterHead
+  name: loadout-group-reporter-head
+  minLimit: 0
+  loadouts:
+  - ReporterHeadphonesJob
+  - ReporterHeadphonesGeneric
+  - ReporterHeadphonesHighEnd
 
 # Zookeeper
 - type: loadoutGroup
@@ -828,12 +880,20 @@
 
 # HoS/Ward Masks
 - type: loadoutGroup
-  id: SecurityMask
-  name: loadout-group-security-mask
-  minLimit: 0
+  id: EliteSecurityMask
+  name: loadout-group-security-mask-elite
   loadouts:
     - MaskGasSecurity
     - BreathMaskMedicalSecurity
+    - MaskGasCorpsman
+
+# General Security Masks
+- type: loadoutGroup
+  id: SecurityMask
+  name: loadout-group-security-mask
+  loadouts:
+    - MaskGasSecurity
+    - BreathMaskMedicalSecurityBudget
     - MaskGasCorpsman
 
 # Brigmedic
@@ -999,3 +1059,10 @@
   loadouts:
   - SecGloves
   - SecGlovesFingerless
+
+- type: loadoutGroup
+  id: ParamedicPDA
+  name: loadout-group-paramedic-id
+  loadouts:
+  - ParamedicPDA
+  - SeniorParamedicPDA

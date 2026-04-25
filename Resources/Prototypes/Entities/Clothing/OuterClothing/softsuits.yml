@@ -148,6 +148,7 @@
     stealGroup: ClothingOuterHardsuitVoidParamed
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetVoidParamed
+    redirectDraw: true # Starlight-edit
   - type: ItemToggle
     onUse: false
     soundActivate:
@@ -175,7 +176,20 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+      cell_slot: !type:ContainerSlot # Starlight-edit
   - type: Tag
     tags:
     - CorgiWearable
     - WhitelistChameleon
+  # Starlight-start
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        blacklist:
+          tags:
+          - MechReactor
+  # Starlight-end

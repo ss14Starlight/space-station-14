@@ -57,6 +57,24 @@
     sprite: _Starlight/Clothing/Back/Duffels/corpsman.rsi
 
 - type: entity
+  parent: [ClothingBackpackDuffel, BaseCommandContraband]
+  id: ClothingBackpackDuffelHoP
+  name: head of personnel's duffel bag
+  description: A large duffel bag for the Captain's second in command.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/hop.rsi
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseCommandContraband]
+  id: ClothingBackpackDuffelCommandGeneric
+  name: command duffel bag
+  description: A generic Command-colored duffel bag not associated with any particular department.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Duffels/command.rsi
+
+- type: entity
   parent: [ClothingBackpackDuffel, BaseBlueShieldContraband]
   id: ClothingBackpackDuffelBlueShield
   name: blueshield duffel bag

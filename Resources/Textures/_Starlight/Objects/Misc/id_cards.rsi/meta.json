@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "taken from the game, Abductor ID by Walksanator | Salvage Lead/Medic/Specialist icons by mikeysaurus, makeshift by conf using TG base sprites",
+  "copyright": "taken from the game, Abductor ID by Walksanator | Salvage Lead/Medic/Specialist icons by mikeysaurus, makeshift by conf using TG base sprites | MedTak by SevenShades",
   "size": {
     "x": 32,
     "y": 32
@@ -46,6 +46,10 @@
     {
       "name": "mercenary",
       "copyright": "Edited from TG Station's default.png by @redmushie (github)"
+    },
+    {
+      "name": "medtak",
+      "copyright": "Edited from TG Station's default.png by SevenShades"
     }
   ]
 }

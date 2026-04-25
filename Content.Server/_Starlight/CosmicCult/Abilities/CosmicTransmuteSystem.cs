@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared._Starlight.CosmicCult.Components;
+using Content.Shared._Starlight.NullSpace;
 using Content.Shared.Popups;
 using Content.Shared.Whitelist;
 using Robust.Shared.Random;
@@ -22,6 +23,14 @@ public sealed class CosmicTransmuteSystem : EntitySystem
 
     private void OnTransmuteGlyph(Entity<CosmicGlyphTransmuteComponent> uid, ref TryActivateGlyphEvent args)
     {
+        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
+            if (HasComp<NullSpaceBlockerComponent>(entity))
+            {
+                _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, args.User);
+                args.Cancel();
+                return;
+            }
+
         var tgtpos = Transform(uid).Coordinates;
         var possibleTargets = GatherEntities(uid);
         if (possibleTargets.Count == 0)

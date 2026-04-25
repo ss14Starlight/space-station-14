@@ -74,12 +74,12 @@
         - id: DerelictJanitorCyborgSpawn
         - id: DerelictMedicalCyborgSpawn
         - id: DerelictMiningCyborgSpawn
-        - id: DerelictBorgiSpawn # Starlight
-        - id: DerelictPurrfusCyborgSpawn #Starlight
+        - id: DerelictPurrfusCyborgSpawn # Starlight
     - !type:GroupSelector # Other Borgs
       weight: 15
       children:
-        - id: DerelictSyndicateAssaultCyborgSpawn
+        - id: DerelictBorgiSpawn # Starlight
+   #     - id: DerelictSyndicateAssaultCyborgSpawn # Starlight - no more derelict Syndicate borgs
 
 - type: entity
   id: BaseStationEvent
@@ -362,9 +362,9 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostWizard
       min: 1
-      max: 1
+      max: 3 # Starlight
       prefRoles: [ Wizard ] #starlight
-      playerRatio: 1
+      playerRatio: 60 # Starlight, you know, could be neat for multiple wizards to late spawn.
       pickPlayer: false
       startingGear: WizardBlueGear
       roleLoadout:
@@ -389,6 +389,7 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+        - Wizard
       # Starlight-end
 
 # disabled until event is rewritten to be more interesting
@@ -881,7 +882,7 @@
 
 - type: entity
   parent: BaseGameRule
-  id: DerelictSyndicateAssaultCyborgSpawn
+  id: DerelictSyndicateAssaultCyborgSpawn # Starlight - admeme only, not rollable
   components:
   - type: StationEvent
     globalAnnouncement: false # Starlight

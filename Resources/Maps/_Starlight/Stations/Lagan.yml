@@ -159594,7 +159594,7 @@ entities:
     - type: Transform
       pos: -35.5,37.5
       parent: 2
-- proto: TowelColorSilver
+- proto: TowelColorWhite
   entities:
   - uid: 24991
     components:

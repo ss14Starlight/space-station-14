@@ -52,6 +52,8 @@
     - MechEquipmentKineticAccelerator
     - MechEquipmentHonkerBananaMortar
     - MechEquipmentHonkerMousetrapMortar
+    - MechEquipmentHonkerPieCannon
+    - MechEquipmentHonkerAirHorn
 
 - type: latheRecipePack
   id: StarlightMechReactors
@@ -184,6 +186,7 @@
     - VendingMachineMediDrobeCircuitboard
     - VendingMachineChemDrobeCircuitboard
     - VendingMachineCuraDrobeCircuitboard
+    - VendingMachineLegalDrobeCircuitboard
     - VendingMachineAtmosDrobeCircuitboard
     - VendingMachineEngiDrobeCircuitboard
     - VendingMachineChefDrobeCircuitboard
@@ -201,7 +204,6 @@
     - VendingMachineChemicalsCircuitboard
     - VendingMachineDonkCircuitboard
     - VendingMachineIceCreamCircuitboard
-
 
 # Contraband Vendor Boards (Emag only)
 - type: latheRecipePack

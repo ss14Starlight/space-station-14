@@ -191,3 +191,9 @@
   name: stack-metal-green-floor
   spawn: FloorTileItemMetalGreen
   maxCount: 30
+
+- type: stack
+  id: FloorTileAstroDirt
+  name: stack-astro-dirt-floor
+  spawn: FloorTileItemAstroDirt
+  maxCount: 30

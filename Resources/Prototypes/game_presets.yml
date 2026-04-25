@@ -42,7 +42,7 @@
     - Traitor
     - Revolutionary
     - Zombie
-    - Wizard
+    - WizardDuel # Starlight
     - Xenoborgs
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
@@ -56,6 +56,7 @@
     - SiliconLiberation #Starlight
     - Brighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
+    # - CosmicCult #Starlight
 
 - type: gamePreset
   id: AllerAtOnce
@@ -73,7 +74,8 @@
     - Traitor
     - Revolutionary
     - Zombie
-    - Wizard
+    - SubWizard # Starlight. Well, you did say *Aller* at once.
+    - WizardDuel # Starlight. Well, you did say *Aller* at once.
     - Xenoborgs
     - BasicStationEventScheduler
     - BasicStationEventScheduler # Starlight, ShitStation
@@ -102,6 +104,7 @@
     - LoneOpsSpawn # Starlight
     - RailroadingTerminator # Starlight
     - RailroadingMinor # Starlight
+    # - CosmicCult # Starlight
 
 - type: gamePreset
   id: Extended

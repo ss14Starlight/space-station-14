@@ -42,6 +42,3 @@ hud-chatbox-highlights-tooltip = The words need to be separated by a newline,
 hud-chatbox-highlights-placeholder = @McHands
                                      "Judge"
                                      Medical
-
-hud-chatbox-tts-mute = Mute TTS Channels:
-hud-chatbox-tts-clear-queue = Clear TTS Queue
