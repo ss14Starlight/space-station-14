@@ -1,9 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles.Components;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -14,9 +12,8 @@ namespace Content.Shared.Roles.Jobs;
 /// </summary>
 public abstract partial class SharedJobSystem : EntitySystem
 {
-    [Dependency] private SharedPlayerSystem _playerSystem = default!;
-    [Dependency] private IPrototypeManager _prototypes = default!;
-    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
 
     private readonly Dictionary<string, string> _inverseTrackerLookup = new();
 
@@ -208,26 +205,5 @@ public abstract partial class SharedJobSystem : EntitySystem
     {
         MindTryGetJobName(mindId, out var name);
         return name;
-    }
-
-    public bool CanBeAntag(ICommonSession player)
-    {
-        // If the player does not have any mind associated with them (e.g., has not spawned in or is in the lobby), then
-        // they are eligible to be given an antag role/entity.
-        if (_playerSystem.ContentData(player) is not { Mind: { } mindId })
-            return true;
-
-        if (!MindTryGetJob(mindId, out var prototype))
-            return true;
-
-        return prototype.CanBeAntag;
-    }
-
-    /// <summary>
-    /// Returns true if the given job can be antag.
-    /// </summary>
-    public bool CanBeAntag(ProtoId<JobPrototype> jobId)
-    {
-        return _prototypes.TryIndex(jobId, out var prototype) && prototype.CanBeAntag;
     }
 }

@@ -298,7 +298,9 @@ public sealed partial class StationJobsSystem
     /// <returns>Players and a list of their matching jobs.</returns>
     private Dictionary<NetUserId, List<string>> GetPlayersJobCandidates(int? weight, JobPriority? selectedPriority, ICollection<NetUserId> players)
     {
-        var outputDict = new Dictionary<NetUserId, List<string>>(players.Count);
+        var outputDict = new Dictionary<NetUserId, List<string>>(profiles.Count);
+
+        var antags = _antag.GetAntagJobs();
 
         foreach (var player in players)
         {
@@ -306,34 +308,15 @@ public sealed partial class StationJobsSystem
                 continue;
 
             var roleBans = _banManager.GetJobBans(player);
-            var isPreselectedAntag = _antag.GetPreSelectedAntagSessions().Contains(session);
-            var preselectedAntags = _antag.GetPreSelectedAntagDefinitions(session);
-
-            // Get all the jobs that a player has selected with a priority greater than Never and also that they
-            // have an enabled character with that job preference selected
-            var playerPrefs = _serverPreferences.GetPreferences(player);
-            var playerJobs = playerPrefs.JobPriorities;
-            var allCharacterJobs = new HashSet<ProtoId<JobPrototype>>();
-            foreach (var profile in playerPrefs.Characters.Values)
-            {
-                if (profile is not HumanoidCharacterProfile { Enabled: true } humanoid)
-                    continue;
-                allCharacterJobs.UnionWith(humanoid.JobPreferences);
-            }
-            var filteredPlayerJobs = new HashSet<ProtoId<JobPrototype>>();
-            foreach (var (job, priority) in playerJobs)
-            {
-                if (!(priority == selectedPriority || selectedPriority is null))
-                    continue;
-                if (!allCharacterJobs.Contains(job))
-                    continue;
-                filteredPlayerJobs.Add(job);
-            }
-
-            // Remove jobs that the player in ineligible for
-            var profileJobs = filteredPlayerJobs.ToList();
+            var profileJobs = profile.JobPriorities.Keys.Select(k => new ProtoId<JobPrototype>(k)).ToList();
             var ev = new StationJobsGetCandidatesEvent(player, profileJobs);
             RaiseLocalEvent(ref ev);
+
+            // Shouldn't happen but you know :P
+            if (!_player.TryGetSessionById(player, out var session))
+                continue;
+
+            var (whitelist, blacklist) = antags.GetValueOrDefault(session);
 
             List<string>? availableJobs = null;
 
@@ -347,14 +330,10 @@ public sealed partial class StationJobsSystem
                 if (!_prototypeManager.Resolve(jobId, out var job))
                     continue;
 
-                // If we're an antag but the job can't be an antag, don't allow this job
-                if (isPreselectedAntag && !job.CanBeAntag)
+                if (whitelist != null && !whitelist.Contains(jobId))
                     continue;
 
-                // If we're an antag, make sure that we have a character that is eligible to
-                // become all of our selected antags
-                if (isPreselectedAntag && !preselectedAntags.All(antag =>
-                        _antag.HasPrimaryAntagPreference(session, antag, AntagSelectionTime.IntraPlayerSpawn, job)))
+                if (blacklist != null && blacklist.Contains(jobId))
                     continue;
 
                 if (weight is not null && job.Weight != weight.Value)

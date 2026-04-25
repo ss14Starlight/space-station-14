@@ -8,6 +8,7 @@ using Content.Shared.Roles;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Log;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -122,9 +123,26 @@ public sealed class StationJobsTest
         var allSessions = tideSessions.Concat(capSessions).ToList();
         var allNetIds = allSessions.Select(s => s.UserId).ToHashSet();
 
+        var dummies = await server.AddDummySessions(TotalPlayers);
         await server.WaitAssertion(() =>
         {
-            Assert.That(allSessions, Is.Not.Empty);
+            var fakePlayers = new Dictionary<NetUserId, HumanoidCharacterProfile>(TotalPlayers);
+            var i = 0;
+            foreach (var dummy in dummies)
+            {
+                if (i < PlayerCount)
+                {
+                    fakePlayers.AddJob(dummy, "TAssistant", JobPriority.Medium)
+                        .AddPreference("TClown", JobPriority.Low)
+                        .AddPreference("TMime", JobPriority.High);
+                    i++;
+                }
+                else
+                {
+                    fakePlayers.AddJob(dummy, "TCaptain", JobPriority.High);
+                }
+            }
+            Assert.That(fakePlayers, Is.Not.Empty);
 
             var start = new Stopwatch();
             start.Start();
@@ -257,6 +275,33 @@ public sealed class StationJobsTest
                 }
             });
         });
-        await pair.CleanReturnAsync();
+    }
+}
+
+internal static class JobExtensions
+{
+    public static Dictionary<NetUserId, HumanoidCharacterProfile> AddJob(
+        this Dictionary<NetUserId, HumanoidCharacterProfile> inp, string jobId, JobPriority prio = JobPriority.Medium,
+        int amount = 1)
+    {
+        for (var i = 0; i < amount; i++)
+        {
+            inp.Add(new NetUserId(Guid.NewGuid()), HumanoidCharacterProfile.Random().WithJobPriority(jobId, prio));
+        }
+
+        return inp;
+    }
+
+    public static Dictionary<NetUserId, HumanoidCharacterProfile> AddPreference(
+        this Dictionary<NetUserId, HumanoidCharacterProfile> inp, string jobId, JobPriority prio = JobPriority.Medium)
+    {
+        return inp.ToDictionary(x => x.Key, x => x.Value.WithJobPriority(jobId, prio));
+    }
+
+    public static Dictionary<NetUserId, HumanoidCharacterProfile> WithPlayers(
+        this Dictionary<NetUserId, HumanoidCharacterProfile> inp,
+        Dictionary<NetUserId, HumanoidCharacterProfile> second)
+    {
+        return new[] { inp, second }.SelectMany(x => x).ToDictionary(x => x.Key, x => x.Value);
     }
 }

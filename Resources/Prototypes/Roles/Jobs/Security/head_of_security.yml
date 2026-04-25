@@ -21,7 +21,6 @@
   startingGear: HoSGear
   icon: "JobIconHeadOfSecurity"
   supervisors: job-supervisors-captain
-  canBeAntag: false
   access:
   - Cadet # Starlight
   - HeadOfSecurity

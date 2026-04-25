@@ -23,4 +23,29 @@
   previewStartingGear: WizardBlueGear
   playTimeTracker: AntagWizard # Starlight
 
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Wizard
+  spawnerPrototype: SpawnPointGhostWizard
+  startingGear: WizardBlueGear
+  roleLoadout:
+  - RoleSurvivalExtended
+  briefing:
+    text: wizard-role-greeting
+    color: Turquoise
+    # TODO: Need Wizard Start sound
+    #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
+  # TODO: WizardComp as needed
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Wizard
+  - type: RandomMetadata
+    nameSegments:
+    - NamesWizardFirst
+    - NamesWizardLast
+    nameFormat: name-format-wizard
+  mindRoles:
+  - MindRoleWizard
+
 # See wizard_startinggear for wiz start gear options
