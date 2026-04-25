@@ -15,7 +15,7 @@ public sealed partial class ReactiveContainerSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<ReactiveContainerComponent, EntInsertedIntoContainerMessage>(OnInserted);
-        SubscribeLocalEvent<ReactiveContainerComponent, SolutionContainerChangedEvent>(OnSolutionChange);
+        SubscribeLocalEvent<ReactiveContainerComponent, SolutionChangedEvent>(OnSolutionChange);
     }
 
     private void OnInserted(EntityUid uid, ReactiveContainerComponent comp, EntInsertedIntoContainerMessage args)
@@ -32,14 +32,14 @@ public sealed partial class ReactiveContainerSystem : EntitySystem
         _reactiveSystem.DoEntityReaction(args.Entity, solution, ReactionMethod.Touch);
     }
 
-    private void OnSolutionChange(EntityUid uid, ReactiveContainerComponent comp, SolutionContainerChangedEvent args)
+    private void OnSolutionChange(EntityUid uid, ReactiveContainerComponent comp, SolutionChangedEvent args)
     {
         if (!_solutionContainerSystem.TryGetSolution(uid, comp.Solution, out _, out var solution))
             return;
+
         if (solution.Volume == 0)
             return;
-        if (!TryComp<ContainerManagerComponent>(uid, out var manager))
-            return;
+
         if (!_containerSystem.TryGetContainer(uid, comp.Container, out var container))
             return;
 

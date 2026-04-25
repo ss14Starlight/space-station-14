@@ -41,7 +41,8 @@ public sealed partial class SolutionRegenerationSystem : EntitySystem
 
         // Starlight start
         var time = _timing.CurTime;
-        var query = EntityQueryEnumerator<SLActiveSolutionRegenerationComponent, SolutionRegenerationComponent, SolutionContainerManagerComponent>();
+        // TODO: SolutionRegenerationComponent on Solution Entities!
+        var query = EntityQueryEnumerator<SLActiveSolutionRegenerationComponent, SolutionRegenerationComponent, SolutionManagerComponent>();
         while (query.MoveNext(out var uid, out _, out var regen, out var manager))
         {
             if (time < regen.NextRegenTime)
