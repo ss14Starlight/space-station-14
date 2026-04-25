@@ -37,7 +37,6 @@ using Content.Shared.Eye.Blinding.Components;
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Mindshield.Components;
 using Content.Shared.Starlight.Overlay;
 
 
@@ -651,11 +650,6 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-        if (HasComp<MindShieldComponent>(target))
-        {
-            _popup.PopupEntity(Loc.GetString("vampire-sleep-shielded"), uid, uid, PopupType.SmallCaution);
-            return;
-        }
 
         if (!CheckAndConsumeBloodCost(uid, comp, null, args.BloodCost))
             return;
