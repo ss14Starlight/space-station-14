@@ -1,16 +1,11 @@
-using Content.Server._Starlight.CosmicCult.Components;
-using Content.Server.Bible.Components;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
-using Content.Shared.Damage;
-using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Jittering;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
-using Content.Shared.Timing;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
@@ -116,8 +111,6 @@ public sealed class DeconversionSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void DeconvertCultist(EntityUid uid)
-    {
+    private void DeconvertCultist(EntityUid uid) =>
         RemComp<CosmicCultComponent>(uid);
-    }
 }

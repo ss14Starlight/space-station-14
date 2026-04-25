@@ -1,7 +1,5 @@
 using System.Linq;
-using Content.Server.Bible.Components;
 using Content.Server.Flash;
-using Content.Server.Light.Components;
 using Content.Server.Light.EntitySystems;
 using Content.Server.Stunnable;
 using Content.Shared._Starlight.CosmicCult;
@@ -32,7 +30,7 @@ public sealed class CosmicGlareSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interact = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
 
-    private HashSet<Entity<PoweredLightComponent>> _lights = [];
+    private readonly HashSet<Entity<PoweredLightComponent>> _lights = [];
 
     public override void Initialize()
     {

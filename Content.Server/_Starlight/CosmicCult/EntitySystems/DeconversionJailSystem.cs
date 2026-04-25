@@ -1,19 +1,13 @@
-using Content.Server.Actions;
 using Content.Server.Chat.Systems;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
-using Content.Shared.Mind;
 using Content.Shared.Popups;
-using Content.Shared.Roles;
 using Content.Shared.Chat;
 
 namespace Content.Server._Starlight.CosmicCult;
 public sealed partial class DeconversionJailSystem : SharedDeconversionJailSystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedRoleSystem _role = default!;
 
     public override void Update(float frameTime)
     {
