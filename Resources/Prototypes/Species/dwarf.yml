@@ -13,4 +13,8 @@
   maxWidth: 1.5
   minHeight: 0.8
   defaultHeight: 0.8
-  maxHeight: 0.85 # Starlight end
+  maxHeight: 0.85
+  minAge: 30
+  youngAge: 50
+  oldAge: 130
+  maxAge: 200 # Starlight end
