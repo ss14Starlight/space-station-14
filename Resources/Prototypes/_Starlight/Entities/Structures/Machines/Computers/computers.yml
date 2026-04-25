@@ -752,7 +752,7 @@
   id: ComputerShipyard
   parent: BaseComputer
   name: shipyard console
-  description: Used to purchase and sell shuttles
+  description: Used to purchase shuttles
   components:
   - type: Sprite
     layers:
