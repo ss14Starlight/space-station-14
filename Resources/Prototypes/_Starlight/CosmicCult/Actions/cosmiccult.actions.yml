@@ -207,6 +207,7 @@
       components:
       - BorgChassis
       - SiliconLawUpdater
+      - IPCBrain
     event: !type:EventCosmicFragmentation {}
 
 ## COLOSSUS ACTIONS
@@ -290,6 +291,8 @@
     icon:
       sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: ingress
+  - type: TargetAction
+    range: 2
   - type: EntityTargetAction
     whitelist:
       components:

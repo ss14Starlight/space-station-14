@@ -124,7 +124,13 @@ public abstract partial class SharedDeconversionJailSystem : EntitySystem
 
         _ambientAudio.SetAmbience(ent, true);
         PopUp.PopupCoordinates(Loc.GetString("cosmic-oubliette-activate"), Transform(ent).Coordinates, PopupType.Medium);
-        _doAfter.TryStartDoAfter(doAfterArgs, out var doAfterId);
+        if (!_doAfter.TryStartDoAfter(doAfterArgs, out var doAfterId))
+        {
+            _ambientAudio.SetAmbience(ent, false);
+            ent.Comp.CanInteract = true;
+            Dirty(ent);
+            return;
+        }
         _appearance.SetData(ent, OublietteVisuals.Contents, OublietteStates.Active);
         ent.Comp.OublietteState = OublietteStates.Active;
         ent.Comp.Victim = args.Entity;
@@ -169,8 +175,16 @@ public abstract partial class SharedDeconversionJailSystem : EntitySystem
 
     private void OnDoAfter(Entity<DeconversionOublietteComponent> ent, ref DeconversionJailDoAfter args)
     {
-        if (args.Cancelled || args.Handled || args.Target is null)
+        if (args.Handled)
             return;
+
+        if (args.Cancelled || args.Target is null)
+        {
+            ent.Comp.EjectContents = true;
+            ent.Comp.CanInteract = false;
+            Dirty(ent);
+            return;
+        }
 
         ent.Comp.OublietteState = OublietteStates.Cooldown;
         ent.Comp.CooldownTime = Timing.CurTime + ent.Comp.CooldownWait;
@@ -194,6 +208,8 @@ public abstract partial class SharedDeconversionJailSystem : EntitySystem
 
     private void PurgeAnomInfection(Entity<AnomalyComponent> ent, ref OubliettePurgeAttemptEvent args)
     {
+        if (args.Handled)
+            return;
         _anomaly.ChangeAnomalyHealth(args.Target, -999);
         OublietteSuccess(args.Oubliette, args.Target);
 
@@ -202,6 +218,8 @@ public abstract partial class SharedDeconversionJailSystem : EntitySystem
 
     private void PurgeCosmicCult(Entity<CosmicCultComponent> ent, ref OubliettePurgeAttemptEvent args)
     {
+        if (args.Handled)
+            return;
         RemComp<CosmicCultComponent>(args.Target);
         OublietteSuccess(args.Oubliette, args.Target);
 

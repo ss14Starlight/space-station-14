@@ -45,13 +45,13 @@ public sealed class CosmicSiphonSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("cosmicability-siphon-full"), uid, uid);
             return;
         }
+        if (TryComp<SSDIndicatorComponent>(args.Target, out var ssdComp) && ssdComp.IsSSD)
+        {
+            _popup.PopupEntity(Loc.GetString("cosmicability-siphon-fail-ssd", ("target", Identity.Entity(args.Target, EntityManager))), uid, uid);
+            return;
+        }
         if (HasComp<ActiveNPCComponent>(args.Target) || HasComp<CosmicCultComponent>(args.Target) || !_mobState.IsAlive(args.Target))
         {
-            if (TryComp<SSDIndicatorComponent>(args.Target, out var ssdComp) && ssdComp.IsSSD)
-            {
-                _popup.PopupEntity(Loc.GetString("cosmicability-siphon-fail", ("target", Identity.Entity(args.Target, EntityManager))), uid, uid);
-                return;
-            }
             _popup.PopupEntity(Loc.GetString("cosmicability-siphon-fail", ("target", Identity.Entity(args.Target, EntityManager))), uid, uid);
             return;
         }

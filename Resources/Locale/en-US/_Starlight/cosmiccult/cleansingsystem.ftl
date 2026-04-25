@@ -11,7 +11,7 @@ cosmic-oubliette-random-horror = {$COUNT ->
     [3] You feel your brain expanding and contracting, throbbing like roaring thunder!
     [4] You are nothing but worms, tossed and thrown into a grinder.
     [5] You swear you can see your skin evaporating.
-    [6] You feel as if your skin being turned inside out.
+    [6] You feel as if your skin is being turned inside out.
     *[other] You feel frozen one moment, then boiling the next.
 }
 

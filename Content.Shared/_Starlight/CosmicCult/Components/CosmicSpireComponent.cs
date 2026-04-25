@@ -25,6 +25,9 @@ public sealed partial class CosmicSpireComponent : Component
     public int MotesCap = 7;
 
     [DataField]
+    public int CapEntropyBonus = 5;
+
+    [DataField]
     public HashSet<Gas> DrainGases = new()
     {
         Gas.Oxygen,

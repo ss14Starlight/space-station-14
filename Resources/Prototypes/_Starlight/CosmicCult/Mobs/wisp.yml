@@ -77,6 +77,8 @@
         shader: unshaded
   - type: Speech
   - type: Transform
+  - type: Physics
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:

@@ -138,6 +138,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         SubscribeLocalEvent<CosmicCultComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<CosmicGodComponent, ComponentInit>(OnGodSpawn);
         SubscribeLocalEvent<CosmicCultComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<CosmicCultLeadComponent, MindRemovedMessage>(HandleMindRemoved);
 
         Subs.CVar(_config,
             StarlightCCVars.CosmicCultT2RevealDelaySeconds,
@@ -227,9 +228,9 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             }
 
             var collideQuery = EntityQueryEnumerator<MonumentCollisionComponent>();
-            while (collideQuery.MoveNext(out var collideEnt, out _)) // Starlight Edit: var collideComp -> _
+            while (collideQuery.MoveNext(out var collideEnt, out _))
             {
-                RemComp<MonumentCollisionComponent>(collideEnt); // Starlight Edit: Changed to RemComp
+                RemComp<MonumentCollisionComponent>(collideEnt);
             }
 
             if (TryComp<VisibilityComponent>(component.MonumentInGame, out var visComp))
@@ -632,6 +633,9 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
     /// if it causes issues, this is easy to remove</remarks>
     private void HandleMindRemoved(Entity<CosmicCultLeadComponent> ent, ref MindRemovedMessage args)
     {
+        if (HasComp<CosmicBlankComponent>(ent)) // Their mind got artificially removed, don't start a revote.
+            return;
+
         var sender = Loc.GetString("cosmiccult-announcement-sender");
         var cultistsList = new List<EntityUid>();
         var query = EntityQueryEnumerator<CosmicCultComponent>();
@@ -643,16 +647,13 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             cultistsList.Add(cultist);
         }
 
-        if (HasComp<CosmicBlankComponent>(ent)) // Their mind got artificially removed, don't start a revote.
-            return;
-
         // remove the comp. If they died and ghosted and come back to their body they will no longer be the leader.
         RemCompDeferred<CosmicCultLeadComponent>(ent);
 
         var allCultists = Filter.Empty().FromEntities(cultistsList.ToArray<EntityUid>());
         _chatSystem.DispatchFilteredAnnouncement(allCultists, Loc.GetString("cosmiccult-leader-abandonment-message"), sender: sender, playSound: false, colorOverride: Color.FromHex("#4eb1b1"));
 
-        Timer.Spawn(TimeSpan.FromSeconds(30), () => StewardVote());
+        Timer.Spawn(_voteDelay, StewardVote);
     }
 
     #region De- & Conversion
@@ -804,8 +805,8 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             return;
         var cosmicGamerule = cult.Comp;
 
-        if (TerminatingOrDeleted(uid.Owner)) //Starlight-edit: dev-crash
-            return; //Starlight-edit: dev-crash
+        if (TerminatingOrDeleted(uid.Owner))
+            return;
         _stun.TryAddStunDuration(uid.Owner, TimeSpan.FromSeconds(2));
         foreach (var actionEnt in uid.Comp.ActionEntities) _actions.RemoveAction(actionEnt);
 
@@ -822,9 +823,6 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         if (!_mind.TryGetMind(uid, out var mindId, out var mind))
             return;
 
-        // Starlight Edit
-        // _mind.ClearObjectives((mindId, mind)); // Starlight edit: Removed in favour of only removing Cult Obejctives. With Helper function also removed.
-        // Starlight Start
         if (_mind.TryFindObjective((mindId, mind), "CosmicFinalityObjective", out var finalityObjective) && finalityObjective != null)
             _mind.TryRemoveObjective(mindId, mind, finalityObjective.Value);
         if (_mind.TryFindObjective((mindId, mind), "CosmicMonumentObjective", out var monumentObjective) && monumentObjective != null)
@@ -833,7 +831,6 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             _mind.TryRemoveObjective(mindId, mind, conversionObjective.Value);
         if (_mind.TryFindObjective((mindId, mind), "CosmicEntropyObjective", out var entropyObjective) && entropyObjective != null)
             _mind.TryRemoveObjective(mindId, mind, entropyObjective.Value);
-        // Starlight End
 
         _role.MindRemoveRole<CosmicCultRoleComponent>(mindId);
         _role.MindRemoveRole<RoleBriefingComponent>(mindId);

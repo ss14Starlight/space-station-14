@@ -5,7 +5,7 @@ namespace Content.Server._Starlight.CosmicCult.Components;
 [RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class CosmicDebuffQueueComponent : Component
 {
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
     public TimeSpan ActivationTime = default!;
 
@@ -18,7 +18,7 @@ public sealed partial class CosmicDebuffQueueComponent : Component
     [DataField]
     public CosmicDebuffOptions SelectedDebuff;
 
-    [DataField, AutoNetworkedField]
+    [DataField]
     public int DebuffQuant = 0;
 
     public Dictionary<CosmicDebuffOptions, float> DebuffOptions = new()

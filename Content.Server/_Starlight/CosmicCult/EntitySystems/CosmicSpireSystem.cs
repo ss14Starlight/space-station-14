@@ -84,29 +84,27 @@ public sealed class CosmicSpireSystem : EntitySystem
             else
             {
                 ent.Comp.Enabled = false;
-                var despawnvfx = Spawn(ent.Comp.SpawnVFX, Transform(ent).Coordinates);
+                var capVfx = Spawn(ent.Comp.SpawnVFX, Transform(ent).Coordinates);
                 Spawn(ent.Comp.EntropyMoteStack, Transform(ent).Coordinates);
                 _popup.PopupCoordinates(Loc.GetString("cosmiccult-spire-entropy-cap"), Transform(ent).Coordinates);
                 _ambient.SetAmbience(ent, false);
-                _audio.PlayPvs(ent.Comp.DespawnSFX, despawnvfx);
+                _audio.PlayPvs(ent.Comp.DespawnSFX, capVfx);
                 QueueDel(ent);
 
                 if (_cosmicRule.AssociatedGamerule(ent) is not { } cult)
                     return;
-                cult.Comp.EntropySiphoned += 5;
+                cult.Comp.EntropySiphoned += ent.Comp.CapEntropyBonus;
             }
         }
     }
 
-    private bool Drain(float timeDelta, Entity<CosmicSpireComponent> ent, GasMixture? tile)
-    {
-        return _scrub.Scrub(timeDelta,
+    private bool Drain(float timeDelta, Entity<CosmicSpireComponent> ent, GasMixture? tile) =>
+        _scrub.Scrub(timeDelta,
             ent.Comp.DrainRate * _atmos.PumpSpeedup(),
             ScrubberPumpDirection.Scrubbing,
             ent.Comp.DrainGases,
             tile,
             ent.Comp.Storage);
-    }
 
     private void OnSpireAnalyzed(Entity<CosmicSpireComponent> ent, ref GasAnalyzerScanEvent args)
     {
@@ -114,8 +112,6 @@ public sealed class CosmicSpireSystem : EntitySystem
         args.GasMixtures.Add((Name(ent), ent.Comp.Storage));
     }
 
-    private void UpdateSpireAppearance(EntityUid uid, SpireStatus status)
-    {
+    private void UpdateSpireAppearance(EntityUid uid, SpireStatus status) =>
         _appearance.SetData(uid, SpireVisuals.Status, status);
-    }
 }

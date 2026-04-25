@@ -24,8 +24,6 @@
   - type: Transform
     noRot: true
     anchored: true
-  - type: TileFrictionModifier
-    modifier: 0.4 # makes it slide
   - type: Fixtures
     fixtures:
       fix1:
@@ -140,10 +138,6 @@
         showEnts: False
         occludes: True
         ents: []
-      hidden_slot: !type:ContainerSlot
-        showEnts: False
-        occludes: True
-        ent: null
       entity_storage: !type:Container
         showEnts: False
         occludes: True

@@ -119,7 +119,7 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         EnsureComp<CosmicChantryComponent>(chantry, out var chantryComponent);
         chantryComponent.InternalVictim = wisp;
         chantryComponent.VictimBody = ent;
-        _metaData.SetEntityName(wisp, $"{MetaData(ent).EntityName}"); //Starlight name fix
+        _metaData.SetEntityName(wisp, $"{MetaData(ent).EntityName}");
         _mind.TransferTo(mindId, wisp, mind: mind);
 
         var mins = chantryComponent.EventTime.Minutes;
@@ -137,7 +137,7 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         EnsureComp<CosmicChantryComponent>(chantry, out var chantryComponent);
         chantryComponent.InternalVictim = wisp;
         chantryComponent.VictimBody = ent;
-        _metaData.SetEntityName(wisp, $"{MetaData(ent).EntityName}"); //Starlight name fix
+        _metaData.SetEntityName(wisp, $"{MetaData(ent).EntityName}");
         _mind.TransferTo(mindId, wisp, mind: mind);
 
         var mins = chantryComponent.EventTime.Minutes;
