@@ -259,10 +259,22 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
     {
         foreach (var comp in components)
         {
-            if (comp.Key == "ActionGrant" && comp.Value.Component is ActionGrantComponent actionGrantComp && TryComp<ActionGrantComponent>(target, out var oldComp))
+        // Starlight edit Start: Fixed error on anomaly removal
+            if (comp.Key == "ActionGrant" &&
+                comp.Value.Component is ActionGrantComponent actionGrantComp &&
+                TryComp<ActionGrantComponent>(target, out var oldComp))
+            {
                 _actionGrant.RemoveActions((target, oldComp), actionGrantComp.Actions);
-            else
-                EntityManager.RemoveComponent(target, comp.Value.Component);
+                continue;
+            }
+
+            var type = comp.Value.Component.GetType();
+
+            if (!EntityManager.HasComponent(target, type))
+                continue;
+
+            EntityManager.RemoveComponent(target, type);
+        // Starlight edit End
         }
     }
     // FH - End
