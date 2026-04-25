@@ -162,7 +162,7 @@
       stackRequirements:
         CableHV: 5
         Steel: 5
-        MicroManipulatorStockPart: 2
+        Manipulator: 2
         Plasma: 1
         Glass: 1
 

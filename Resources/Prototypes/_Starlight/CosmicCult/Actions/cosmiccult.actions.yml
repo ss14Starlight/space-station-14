@@ -18,7 +18,6 @@
       components:
       - CosmicCult
       - BibleUser
-    itemIconStyle: NoItem
     event: !type:EventCosmicSiphon {}
 
 - type: entity
@@ -296,7 +295,4 @@
       components:
         - Door
     itemIconStyle: NoItem
-    icon:
-      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
-      state: ingress
     event: !type:EventCosmicAnomalyIngress
