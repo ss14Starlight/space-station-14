@@ -1,5 +1,6 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Power.Components;
+using Content.Server.Radio.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Examine;
 using Content.Shared.Power.EntitySystems;
@@ -20,6 +21,7 @@ namespace Content.Server.Radio.EntitySystems
         [Dependency] private readonly TransformSystem _transformSystem = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+        [Dependency] private readonly RadioSystem _radio = default!;
 
         private const float HeatPerTilePerSecond = 300f;
         private const float OverheatTemperature = Atmospherics.FireMinimumTemperatureToExist + 25f;
@@ -87,6 +89,7 @@ namespace Content.Server.Radio.EntitySystems
                     telecom.Overheated = true;
                     _appearance.SetData(uid, TelecomServerVisuals.Overheated, true);
                     _power.SetPowerDisabled(uid, true, power);
+                    BroadcastOverheatAnnouncement(uid, keys);
                 }
             }
         }
@@ -114,6 +117,17 @@ namespace Content.Server.Radio.EntitySystems
             }
 
             return false;
+        }
+
+        private void BroadcastOverheatAnnouncement(EntityUid uid, EncryptionKeyHolderComponent keys)
+        {
+            foreach (var channelProto in keys.Channels)
+            {
+                if (_prototypeManager.TryIndex(channelProto, out RadioChannelPrototype? channel))
+                {
+                    _radio.SendRadioMessage(uid, Loc.GetString("telecom-overheat-announcement"), channel, uid);
+                }
+            }
         }
 
         private void TryResetOverheat(EntityUid uid, TelecomServerComponent telecom, ApcPowerReceiverComponent power, TransformComponent xform)
