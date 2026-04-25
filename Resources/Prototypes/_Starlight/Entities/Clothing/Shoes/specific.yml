@@ -75,6 +75,7 @@
 
 - type: entity
   parent: [ClothingShoesClown, BaseSyndicateContraband]
+  id: ClownShoesNoSlip
   name: no-slip clown shoes
   description: Tyranny of Honk's latest clothing line targets more specialized clowning niches. Now with 100% less operator slipping!
   components:
