@@ -18,6 +18,12 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
     public string Help => $"{Command} <station ID> <gridfile path>";
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
+        if (args.Length < 2)
+        {
+            shell.WriteError($"Usage: {Help}");
+            return;
+        }
+
         if (!int.TryParse(args[0], out var stationId))
         {
             shell.WriteError($"{args[0]} is not a valid integer.");
@@ -25,9 +31,18 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
         }
 
         var shuttlePath = args[1];
+
+        float delay = 1f;
+        if (args.Length >= 3 && !float.TryParse(args[2], out delay))
+        {
+            shell.WriteError($"{args[2]} is not a valid delay.");
+            return;
+        }
+
         var system = _entityManager.GetEntitySystem<ShipyardSystem>();
         var station = new EntityUid(stationId);
-        system.PurchaseShuttle(station, shuttlePath, out _);
+
+        system.PurchaseShuttle(station, shuttlePath, delay, out _);
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)

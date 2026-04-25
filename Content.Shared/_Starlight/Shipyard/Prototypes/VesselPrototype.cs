@@ -46,4 +46,10 @@ public sealed partial class VesselPrototype : IPrototype
     /// </summary>
     [DataField("shuttlePath", required: true)]
     public ResPath ShuttlePath { get; private set; } = default!;
+
+    /// <summary>
+    ///     Delay before shuttles purchased from the shipyard arrive, in seconds.
+    /// </summary>
+    [DataField]
+    public float Delay = 60f;
 }

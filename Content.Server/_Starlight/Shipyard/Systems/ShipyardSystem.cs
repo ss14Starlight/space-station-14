@@ -83,7 +83,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// </summary>
     /// <param name="stationUid">The ID of the station to dock the shuttle to</param>
     /// <param name="shuttlePath">The path to the shuttle file to load. Must be a grid file!</param>
-    public void PurchaseShuttle(EntityUid? stationUid, string shuttlePath, out ShuttleComponent? vessel)
+    public void PurchaseShuttle(EntityUid? stationUid, string shuttlePath, float delay, out ShuttleComponent? vessel)
     {
         vessel = null;
 
@@ -106,17 +106,18 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var price = _pricing.AppraiseGrid(shuttleUid.Value, null);
 
-        Timer.Spawn(TimeSpan.FromSeconds(60), () =>
+        Timer.Spawn(TimeSpan.FromSeconds(delay), () =>
         {
-            if (!Deleted(shuttleUid.Value) && shuttle != null)
+            if (!Deleted(shuttleUid.Value) &&
+                TryComp(shuttleUid.Value, out ShuttleComponent? shuttleComp))
             {
-                _shuttle.TryFTLDock(shuttleUid.Value, shuttle, targetGrid.Value);
+                _shuttle.TryFTLDock(shuttleUid.Value, shuttleComp, targetGrid.Value);
             }
         });
 
         vessel = shuttle;
 
-        _sawmill.Info($"Shuttle {shuttlePath} was purchased at {targetGrid} for {price}");
+        _sawmill.Info($"Shuttle {shuttlePath} was purchased at {targetGrid} for {price} with delay {delay}s");
     }
 
     /// <summary>

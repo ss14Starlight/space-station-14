@@ -90,7 +90,9 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
 
         var message = new SpeechMessage
         {
-            Text = Loc.GetString("shipyard-console-docking", ("vessel", vessel.Name.ToString()))
+            Text = Loc.GetString("shipyard-console-docking",
+                ("vessel", vessel.Name.ToString()),
+                ("delay", vessel.Delay))
         };
 
         _radio.SendRadioMessage(uid, message, channel, uid);
@@ -139,7 +141,12 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
             return false;
         }
 
-        _shipyard.PurchaseShuttle(stationUid, vessel.ShuttlePath.ToString(), out deed);
+        _shipyard.PurchaseShuttle(
+            stationUid,
+            vessel.ShuttlePath.ToString(),
+            vessel.Delay,
+            out deed
+        );
 
         return deed != null;
     }
