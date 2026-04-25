@@ -1,9 +1,7 @@
 using Content.Shared._Starlight.Devil;
 using Content.Shared._Starlight.Paper;
-using Robust.Shared.Audio;
 using Content.Shared.Paper;
 using System.Text.RegularExpressions;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Devil;
 
@@ -11,12 +9,9 @@ public sealed partial class DevilSystem : SharedDevilSystem
 {
     [Dependency] private readonly PaperSystem _paper = default!;
 
-    private readonly EntProtoId InfernalContractPrototype = "InfernalContract";
-    private SoundPathSpecifier ContractSummonSound = new("/Audio/Effects/thudswoosh.ogg");
-
     private EntityUid CreateContract(EntityUid author, DevilComponent devilComp)
     {
-        var paper = Spawn(InfernalContractPrototype, Transform(author).Coordinates);
+        var paper = Spawn(devilComp.InfernalContractPrototype, Transform(author).Coordinates);
         if (TryComp<InfernalContractComponent>(paper, out var contractComp))
         {
             contractComp.Author = author;
@@ -34,7 +29,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
         var content = Loc.GetString("infernal-contract-base", ("truename", devilComp.TrueName));
         _paper.SetContent(paper, content);
 
-        _audio.PlayPvs(ContractSummonSound, author);
+        _audio.PlayPvs(devilComp.ContractSummonSound, author);
 
         return paper;
     }

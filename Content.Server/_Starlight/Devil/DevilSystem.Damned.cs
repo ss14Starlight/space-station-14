@@ -6,7 +6,6 @@ using Content.Shared._Starlight.Devil;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Audio;
 
 namespace Content.Server._Starlight.Devil;
 
@@ -15,8 +14,6 @@ public sealed partial class DevilSystem : SharedDevilSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly StunSystem _stun = default!;
-
-    private SoundSpecifier DamnedPunishmentSound = new SoundPathSpecifier("/Audio/Effects/snap.ogg");
     private void SubscribeDamned()
     {
         SubscribeLocalEvent<DamnedComponent, DamnationInitFailEvent>(OnDamnationInitFail);
@@ -69,7 +66,14 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         // check to see that all of the damnations will work, before we try to add any
         foreach (var damnation in contract.Damnations)
-            if (!CanDamn((ent, damnedComp), damnation)) return false;
+        {
+            if (!CanDamn((ent, damnedComp), damnation))
+            {
+                var ev = new DamnationInitFailEvent();
+                RaiseLocalEvent(ent, ref ev);
+                return false;
+            }
+        }
 
         foreach (var damnation in contract.Damnations)
         {
@@ -148,6 +152,6 @@ public sealed partial class DevilSystem : SharedDevilSystem
         DamageSpecifier dspec = new();
         dspec.DamageDict.Add("Heat", 150);
         _damageable.TryChangeDamage(uid, dspec, true);
-        _audio.PlayPvs(DamnedPunishmentSound, uid);
+        _audio.PlayPvs(damned.DamnedPunishmentSound, uid);
     }
 }

@@ -3,6 +3,7 @@ using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Roles;
 using Content.Shared._Starlight.Devil;
+using Content.Shared._Starlight.Roles.Components;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
@@ -15,7 +16,8 @@ public sealed partial class DevilRuleSystem : GameRuleSystem<DevilRuleComponent>
         base.Initialize();
 
         SubscribeLocalEvent<DevilRuleComponent, AfterAntagEntitySelectedEvent>(AfterAntagSelected);
-        SubscribeLocalEvent<DevilRuleComponent, GetBriefingEvent>(OnGetBriefing);
+
+        SubscribeLocalEvent<DevilRoleComponent, GetBriefingEvent>(OnGetBriefing);
     }
 
     private void AfterAntagSelected(EntityUid uid, DevilRuleComponent comp, ref AfterAntagEntitySelectedEvent args)
@@ -24,7 +26,7 @@ public sealed partial class DevilRuleSystem : GameRuleSystem<DevilRuleComponent>
         _antag.SendBriefing(args.EntityUid, MakeBriefing(), null, null);
     }
 
-    private void OnGetBriefing(EntityUid uid, DevilRuleComponent comp, ref GetBriefingEvent args) => args.Append(MakeBriefing());
+    private void OnGetBriefing(EntityUid uid, DevilRoleComponent comp, ref GetBriefingEvent args) => args.Append(MakeBriefing());
 
     private string MakeBriefing() => Loc.GetString("devil-role-briefing");
 }

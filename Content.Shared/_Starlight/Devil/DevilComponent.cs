@@ -4,6 +4,7 @@ using Content.Shared._Starlight.Devil;
 using Content.Shared.Dataset;
 using Content.Shared.Damage;
 using Robust.Shared.Serialization;
+using Robust.Shared.Audio;
 
 namespace Content.Shared._Starlight.Devil;
 
@@ -67,6 +68,12 @@ public sealed partial class DevilComponent : Component
 
     [AutoNetworkedField, ViewVariables]
     public string TrueName = "Hellish McEvil";
+
+    [DataField]
+    public EntProtoId InfernalContractPrototype = "InfernalContract";
+
+    [DataField]
+    public SoundPathSpecifier ContractSummonSound = new("/Audio/Effects/thudswoosh.ogg");
 
     [DataField, AutoNetworkedField]
     public DevilChangeCriteria RedEyesAppearance = new(1);

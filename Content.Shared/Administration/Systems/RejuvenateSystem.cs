@@ -2,6 +2,7 @@
 using Content.Shared.Actions.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
 using JetBrains.Annotations;
@@ -28,16 +29,16 @@ public sealed class RejuvenateSystem : EntitySystem
 
     private void OnRejuvenateInstantEvent(Entity<ActionsComponent> ent, ref RejuvenateInstantActionEvent args)
     {
-        if (!TryComp<DamageableComponent>(args.Performer, out var damageable)) return;
-
-        Dictionary<string, FixedPoint.FixedPoint2> preservedDamage = new();
-        foreach (var damageType in args.PreserveDamageTypes)
-        {
-            if (damageable.Damage.DamageDict.TryGetValue(damageType, out var damage))
-                preservedDamage[damageType] = damage;
-        }
-        PerformRejuvenate(args.Performer);
-        _damageable.TryChangeDamage(args.Performer, new() { DamageDict = preservedDamage }, ignoreResistances: true);
+        if (TryComp<DamageableComponent>(args.Performer, out var damageable)) {
+            Dictionary<string, FixedPoint2> preservedDamage = new();
+            foreach (var damageType in args.PreserveDamageTypes)
+            {
+                if (damageable.Damage.DamageDict.TryGetValue(damageType, out var damage))
+                    preservedDamage[damageType] = damage;
+            }
+            PerformRejuvenate(args.Performer);
+            _damageable.TryChangeDamage(args.Performer, new() { DamageDict = preservedDamage }, ignoreResistances: true);
+        } else PerformRejuvenate(args.Performer);
 
         _popup.PopupPredicted(Loc.GetString("entity-rejuvenated-popup", ("name", Name(args.Performer))), args.Performer, args.Performer, PopupType.LargeCaution);
         _audio.PlayPredicted(Sound, args.Performer, args.Performer);
