@@ -72,7 +72,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
 
         var balance = bank.Accounts.GetValueOrDefault(bank.PrimaryAccount, 0);
 
-        if (balance <= vessel.Price)
+        if (balance < vessel.Price)
         {
             ConsolePopup(player, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
             PlayDenySound(uid, component);

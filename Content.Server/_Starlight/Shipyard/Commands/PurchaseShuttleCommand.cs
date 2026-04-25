@@ -12,7 +12,8 @@ namespace Content.Server._Starlight.Shipyard.Commands;
 [AdminCommand(AdminFlags.Fun)]
 public sealed class PurchaseShuttleCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntitySystemManager _entityManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     public string Command => "purchaseshuttle";
     public string Description => "Spawns and docks a specified shuttle from a grid file";
     public string Help => $"{Command} <station ID> <gridfile path>";
@@ -20,7 +21,9 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
     {
         if (args.Length < 2)
         {
-            shell.WriteError($"Usage: {Help}");
+            shell.WriteError(Loc.GetString("shell-wrong-arguments-number-need-specific",
+                ("properAmount", 2), ("currentAmount", args.Length)));
+            shell.WriteLine(Help);
             return;
         }
 
@@ -33,14 +36,15 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
         var shuttlePath = args[1];
 
         float delay = 1f;
-        if (args.Length >= 3 && !float.TryParse(args[2], out delay))
+
+        var station = new EntityUid(stationId);
+        if (!_entityManager.EntityExists(station))
         {
-            shell.WriteError($"{args[2]} is not a valid delay.");
+            shell.WriteError($"No entity with UID {stationId} exists.");
             return;
         }
 
-        var system = _entityManager.GetEntitySystem<ShipyardSystem>();
-        var station = new EntityUid(stationId);
+        var system = _entitySystemManager.GetEntitySystem<ShipyardSystem>();
 
         system.PurchaseShuttle(station, shuttlePath, delay, out _);
     }

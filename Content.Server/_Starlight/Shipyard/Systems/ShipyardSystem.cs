@@ -14,6 +14,8 @@ using Robust.Shared.Utility;
 using Content.Shared.Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
+using System.Numerics;
+using Robust.Shared.Maths;
 
 namespace Content.Server._Starlight.Shipyard.Systems;
 
@@ -26,6 +28,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly ShipyardConsoleSystem _shipyardConsole = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
 
     public EntityUid? ShipyardMapEntity { get; private set; }
     public MapId? ShipyardMapId { get; private set; }
@@ -53,11 +56,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         SetupShipyard();
     }
 
-    private void OnRoundRestart(RoundRestartCleanupEvent ev)
-    {
-        _configManager.UnsubValueChanged(StarlightCCVars.Shipyard, SetShipyardEnabled);
+    private void OnRoundRestart(RoundRestartCleanupEvent ev) =>
         CleanupShipyard();
-    }
 
     private void SetShipyardEnabled(bool value)
     {
@@ -134,10 +134,20 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var gridUid = grid.Value.Owner;
 
+        // Get width for spacing
+        float width = 0f;
+
         if (TryComp<MapGridComponent>(gridUid, out var gridComp))
         {
-            _shuttleIndex += gridComp.LocalAABB.Width + ShuttleSpawnBuffer;
+            width = gridComp.LocalAABB.Width;
         }
+
+        var offset = _shuttleIndex;
+
+        _shuttleIndex += width + ShuttleSpawnBuffer;
+
+        // Move grid in map space
+        _transform.SetWorldPosition(gridUid, new Vector2(offset, 0f));
 
         return gridUid;
     }
