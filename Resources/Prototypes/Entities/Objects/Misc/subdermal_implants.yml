@@ -408,13 +408,6 @@
   components:
    - type: SubdermalImplant
    - type: MindShieldImplant
-   # Starlight Start
-   - type: Tag
-     tags:
-       - FragileImplant
-       - SubdermalImplant
-       - HideContextMenu
-   # Starlight End
 
 # Centcomm implants
 
