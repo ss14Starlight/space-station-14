@@ -207,7 +207,7 @@
       components:
       - BorgChassis
       - SiliconLawUpdater
-      - IPCBrain
+      - IPCBrainHolder
     event: !type:EventCosmicFragmentation {}
 
 ## COLOSSUS ACTIONS
