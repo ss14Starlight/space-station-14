@@ -14,6 +14,4 @@ public enum ShipyardConsoleUiKey : byte
 [UsedImplicitly]
 public abstract class SharedShipyardSystem : EntitySystem
 {
-    public override void Initialize() =>
-        base.Initialize();
 }

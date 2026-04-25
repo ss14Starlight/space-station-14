@@ -23,6 +23,5 @@
                 <!-- Vessels get added here by code -->
             </BoxContainer>
         </ScrollContainer>
-        <TextureButton VerticalExpand="True" />
     </BoxContainer>
 </controls:FancyWindow>

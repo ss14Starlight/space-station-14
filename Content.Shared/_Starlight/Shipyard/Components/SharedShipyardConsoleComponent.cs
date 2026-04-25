@@ -1,9 +1,8 @@
-using Robust.Shared.GameStates;
 using Robust.Shared.Audio;
 
 namespace Content.Shared._Starlight.Shipyard.Components;
 
-[NetworkedComponent]
+[RegisterComponent]
 public abstract partial class SharedShipyardConsoleComponent : Component
 {
     [DataField("soundError")]

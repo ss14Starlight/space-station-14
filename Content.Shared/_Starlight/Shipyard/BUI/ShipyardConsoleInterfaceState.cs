@@ -5,7 +5,7 @@ namespace Content.Shared._Starlight.Shipyard.BUI;
 [NetSerializable, Serializable]
 public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
 {
-    public int Balance;
+    public readonly int Balance;
     public readonly bool AccessGranted;
 
     public ShipyardConsoleInterfaceState(

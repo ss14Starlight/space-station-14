@@ -43,9 +43,8 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
             return;
 
         Balance = cState.Balance;
-        var castState = (ShipyardConsoleInterfaceState) state;
         Populate();
-        _menu?.UpdateState(castState);
+        _menu?.UpdateState(cState);
     }
 
     protected override void Dispose(bool disposing)

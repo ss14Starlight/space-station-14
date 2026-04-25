@@ -8,7 +8,8 @@ namespace Content.Shared._Starlight.Shipyard.Events;
 [Serializable, NetSerializable]
 public sealed class ShipyardConsolePurchaseMessage : BoundUserInterfaceMessage
 {
-    public string Vessel; //vessel prototype ID
+    /// <summary>Vessel prototype ID.</summary>
+    public string Vessel { get; }
 
     public ShipyardConsolePurchaseMessage(string vessel) =>
         Vessel = vessel;

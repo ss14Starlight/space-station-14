@@ -32,7 +32,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
     private float _shuttleIndex;
     private const float ShuttleSpawnBuffer = 1f;
-    private ISawmill _sawmill = default!;
     private bool _enabled;
 
     public override void Initialize()
@@ -41,7 +40,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         _enabled = _configManager.GetCVar(StarlightCCVars.Shipyard);
         _configManager.OnValueChanged(StarlightCCVars.Shipyard, SetShipyardEnabled);
-        _sawmill = Logger.GetSawmill("shipyard");
         _shipyardConsole.InitializeConsole();
         SubscribeLocalEvent<ShipyardConsoleComponent, ComponentInit>(OnShipyardStartup);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
@@ -61,22 +59,22 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         CleanupShipyard();
     }
 
-        private void SetShipyardEnabled(bool value)
+    private void SetShipyardEnabled(bool value)
+    {
+        if (_enabled == value)
+            return;
+
+        _enabled = value;
+
+        if (value)
         {
-            if (_enabled == value)
-                return;
-
-            _enabled = value;
-
-            if (value)
-            {
-                SetupShipyard();
-            }
-            else
-            {
-                CleanupShipyard();
-            }
+            SetupShipyard();
         }
+        else
+        {
+            CleanupShipyard();
+        }
+    }
 
     /// <summary>
     /// Adds a ship to the shipyard, calculates its price, and attempts to ftl-dock it to the given station
@@ -117,7 +115,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         vessel = shuttle;
 
-        _sawmill.Info($"Shuttle {shuttlePath} was purchased at {targetGrid} for {price} with delay {delay}s");
+        Log.Info($"Shuttle {shuttlePath} was purchased at {targetGrid} for {price}");
     }
 
     /// <summary>
@@ -130,7 +128,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (!_map.TryLoadGrid(ShipyardMapId.Value, new ResPath(shuttlePath), out var grid) || grid == null)
         {
-            _sawmill.Error($"Unable to spawn shuttle {shuttlePath}");
+            Log.Error($"Unable to spawn shuttle {shuttlePath}");
             return null;
         }
 
