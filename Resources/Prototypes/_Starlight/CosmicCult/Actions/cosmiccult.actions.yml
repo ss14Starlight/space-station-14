@@ -198,10 +198,6 @@
     maxCharges: 1
   - type: Action
     useDelay: 25
-    whitelist:
-      components:
-      - BorgChassis
-      - SiliconLawUpdater
     itemIconStyle: NoItem
     icon:
       sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
@@ -289,9 +285,13 @@
   name: Force Ingress
   description: Direct the energies from your Anomaly Infection to force a secure doorway open.
   components:
-  - type: EntityTargetAction
+  - type: Action
     useDelay: 60
-    range: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/CosmicCult/Icons/cosmiccult_abilities.rsi
+      state: ingress
+  - type: EntityTargetAction
     whitelist:
       components:
         - Door

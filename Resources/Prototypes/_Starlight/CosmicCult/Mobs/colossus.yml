@@ -283,7 +283,6 @@
       0: Alive
       400: Dead
   - type: CosmicColossus
-    nameSeparator: ", "
   - type: CosmicCorrupting
     mobile: true
     autoDisable: false

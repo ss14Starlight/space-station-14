@@ -192,17 +192,19 @@
 - type: entity
   id: CosmicLambdaBeam
   parent: BasicHitscan
-  maxLength: 60
-  damage:
-    types:
-      Heat: 30
-      Structural: 10
-  muzzleFlash:
-    sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
-    state: muzzle_beam_heavy2
-  travelFlash:
-    sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
-    state: beam_heavy2
-  impactFlash:
-    sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
-    state: impact_beam_heavy2
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 30
+        Structural: 10
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
+      state: muzzle_beam_heavy2
+    travelFlash:
+      sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
+      state: beam_heavy2
+    impactFlash:
+      sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
+      state: impact_beam_heavy2
