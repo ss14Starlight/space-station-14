@@ -1,20 +1,6 @@
 Entries:
 - author: Cujo
   changes:
-  - message: (Lagan) Mapped performer spawn points and enumerated role spawns.
-    type: Add
-  id: 404189
-  time: '2026-04-10T14:28:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4039
-- author: Cujo
-  changes:
-  - message: (Lagan) Added deep fryers to kitchen.
-    type: Add
-  id: 404190
-  time: '2026-04-10T14:28:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4039
-- author: Cujo
-  changes:
   - message: (Lagan) Added protection anchors to vault and armory.
     type: Add
   id: 404191
@@ -2799,4 +2785,18 @@ Entries:
   id: 404588
   time: '2026-04-24T17:41:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4244
+- author: neurovermi
+  changes:
+  - message: Lesser form changelings can devour and use the store again.
+    type: Fix
+  id: 404589
+  time: '2026-04-25T05:14:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4249
+- author: neurovermi
+  changes:
+  - message: Lesser form flavor text now shows that lesser form prevents transformation.
+    type: Tweak
+  id: 404590
+  time: '2026-04-25T05:14:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4249
 Order: -1
