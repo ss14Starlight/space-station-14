@@ -16,7 +16,7 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     public string Command => "purchaseshuttle";
     public string Description => "Spawns and docks a specified shuttle from a grid file";
-    public string Help => $"{Command} <station ID> <gridfile path>";
+    public string Help => $"{Command} <station ID> <gridfile path> [delay]";
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         if (args.Length < 2)
@@ -36,6 +36,11 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
         var shuttlePath = args[1];
 
         float delay = 1f;
+        if (args.Length >= 3 && !float.TryParse(args[2], out delay))
+        {
+            shell.WriteError($"{args[2]} is not a valid delay value.");
+            return;
+        }
 
         var station = new EntityUid(stationId);
         if (!_entityManager.EntityExists(station))
@@ -46,7 +51,15 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
 
         var system = _entitySystemManager.GetEntitySystem<ShipyardSystem>();
 
-        system.PurchaseShuttle(station, shuttlePath, delay, out _);
+        system.PurchaseShuttle(station, shuttlePath, delay, out var vessel);
+
+        if (vessel == null)
+        {
+            shell.WriteError("Failed to purchase shuttle (no vessel returned).");
+            return;
+        }
+
+        shell.WriteLine($"Successfully purchased shuttle '{shuttlePath}' for station {stationId}.");
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)

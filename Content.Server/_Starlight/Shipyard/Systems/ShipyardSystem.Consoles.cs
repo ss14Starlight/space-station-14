@@ -86,7 +86,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
         }
 
         _cargo.UpdateBankAccount((station, bank), -vessel.Price, bank.PrimaryAccount);
-        var channel = new ProtoId<RadioChannelPrototype>("Command");
+        var channel = component.AnnouncementChannel;
 
         var message = new SpeechMessage
         {
@@ -115,9 +115,18 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
 
         var balance = bank.Accounts.GetValueOrDefault(bank.PrimaryAccount, 0);
 
+        var accessGranted = true;
+
+        if (TryComp<AccessReaderComponent>(uid, out var accessReader) &&
+            accessReader.Enabled &&
+            args.Actor is { Valid: true } actor)
+        {
+            accessGranted = _access.IsAllowed(actor, uid, accessReader);
+        }
+
         var newState = new ShipyardConsoleInterfaceState(
             balance,
-            true);
+            accessGranted);
 
         _ui.SetUiState(uid, ShipyardConsoleUiKey.Shipyard, newState);
     }

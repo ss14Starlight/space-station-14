@@ -1,4 +1,6 @@
 using Robust.Shared.Audio;
+using Content.Shared.Radio;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Shipyard.Components;
 
@@ -11,4 +13,7 @@ public abstract partial class SharedShipyardConsoleComponent : Component
     [DataField("soundConfirm")]
     public SoundSpecifier ConfirmSound =
         new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
+
+    [DataField("announcementChannel")]
+    public ProtoId<RadioChannelPrototype> AnnouncementChannel = "Command";
 }
