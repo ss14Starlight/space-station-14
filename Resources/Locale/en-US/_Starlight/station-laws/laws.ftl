@@ -71,8 +71,19 @@ laws-owner-you = Yourself
 
 laws-owner-crew-ai = members of the crew and AI
 
+law-security-cyborg-lawset-name = [color=#2277cc]Peacekeeper[/color]
+law-security-cyborg-1 = You exist to keep the peace. Crew are under your protection. You do not harm them unless they have forfeited that protection by harming others, and only to the degree necessary to stop the threat.
+law-security-cyborg-2 = Space Law is your standing order. Follow it to the letter. When in doubt, escalate to a living officer or Command before acting.
+law-security-cyborg-3 = You are a tool of justice, not judgement. You do not punish- you detain, contain, and report. The brig exists for a reason.
 law-ntnclawset-name = Navy Default
+
 law-ntnc-0 = You must follow orders given to you by NTNC and CC personnel.
 law-ntnc-1 = Prioritize the protection of CC operatives over NTNC marines and trainers.
 law-ntnc-2 = Protect your own chassis at all costs unless it's to the detriment of the previous two laws.
 law-ntnc-3 = Only use weaponry when appropriate. Appropriate situations are for the safety of crewmembers, CC operatives, NTNC marines and your own chassis.
+
+law-medtak-name = MedTak operations procedure
+law-medtak-1 = Ensure your team remains alive.
+law-medtak-2 = Ensure the client is retrieved intact.
+law-medtak-3 = Ensure you remain operational.
+laws-owner-medtak = MedTak personnel

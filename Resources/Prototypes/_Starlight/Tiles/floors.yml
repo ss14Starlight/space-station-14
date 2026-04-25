@@ -671,3 +671,13 @@
   deconstructTools: [ Prying ]
   itemDrop: FloorTileItemSteel
   weather: false
+
+- type: tile
+  id: FloorAstroDirt
+  parent: FloorDirt
+  name: tiles-astro-dirt-floor
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemAstroDirt
+  weather: false

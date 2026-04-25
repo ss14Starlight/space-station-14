@@ -472,7 +472,7 @@
   id: JobHeadOfSecurity
   groups:
   - HeadofSecurityHead
-  - SecurityMask # Starlight
+  - EliteSecurityMask # Starlight
   - HeadofSecurityNeck
   - HeadofSecurityJumpsuit
   - SecurityBackpack
@@ -481,7 +481,7 @@
   - HeadofSecurityOuterClothing
   - SecurityEyewear
   - SecurityShoes
-  - SurvivalSecurity
+  - SurvivalExtended # Starlight, since they can pick their mask now, they shouldn't get an extra security mask.
   - InsulsCombat # Starlight
   - Trinkets
   - Scarves # Starlight
@@ -494,7 +494,7 @@
   id: JobWarden
   groups:
   - WardenHead
-  - SecurityMask # Starlight
+  - EliteSecurityMask # Starlight
   - WardenNeck # Starlight
   - WardenJumpsuit
   - SecurityBackpack
@@ -502,7 +502,7 @@
   - WardenOuterClothing
   - SecurityEyewear
   - SecurityShoes
-  - SurvivalSecurity
+  - SurvivalExtended # Starlight
   - InsulsCombat # Starlight
   - Trinkets
   - Scarves # Starlight
@@ -515,6 +515,7 @@
   id: JobSecurityOfficer
   groups:
   - SecurityHead
+  - SecurityMask # Starlight
   - SecurityJumpsuit
   - SecurityBackpack
   - SecurityEyewear
@@ -526,7 +527,7 @@
   - SecurityTie # Starlight
   - SecurityNonLethalWeapon #Starlight
   - SecuritySidearm #Starlight
-  - SurvivalSecurity
+  - SurvivalExtended # Starlight
   - Trinkets
   - Scarves # Starlight
   - Pins # Starlight
@@ -538,6 +539,7 @@
   id: JobDetective
   groups:
   - DetectiveHead
+  - SecurityMask # Starlight
   - DetectiveNeck
   - DetectiveJumpsuit
   - SecurityBackpack
@@ -545,7 +547,7 @@
   - DetectiveOuterClothing
   - SecurityGloves # Starlight
   - DetectiveShoes # 🌟Starlight🌟
-  - SurvivalSecurity
+  - SurvivalExtended # Starlight
   - Trinkets
   - Scarves # Starlight
   - Pins # Starlight
@@ -556,11 +558,12 @@
 - type: roleLoadout
   id: JobSecurityCadet
   groups:
+  - SecurityMask # Starlight
   - SecurityCadetJumpsuit
   - SecurityBackpack
   - SecurityNonLethalWeapon
   - SecurityEyewear
-  - SurvivalSecurity
+  - SurvivalExtended # Starlight
   - SecurityGloves # Starlight
   - Trinkets
   - Scarves # Starlight

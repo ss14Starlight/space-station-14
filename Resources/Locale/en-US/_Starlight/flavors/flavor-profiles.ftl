@@ -8,3 +8,4 @@ flavor-complex-struggle = like raw struggle
 flavor-base-halal = halal
 flavor-base-greasy = greasy
 flavor-base-festive = festive
+flavor-complex-the-last-call = like death's cold embrace

@@ -93,6 +93,7 @@
   - Wizard
   - Pirate
   - Blackstar
+  - MedTak
 
 - type: accessGroup
   id: Syndicate
@@ -108,3 +109,7 @@
   id: Pirate
   tags:
   - Pirate
+
+- type: accessLevel
+  id: MedTak
+  name: id-card-access-level-medtak

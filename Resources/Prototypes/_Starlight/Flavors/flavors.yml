@@ -42,3 +42,8 @@
   id: festive
   flavorType: Base
   description: flavor-base-festive
+
+- type: flavor
+  id: thelastcall
+  flavorType: Complex
+  description: flavor-complex-the-last-call
