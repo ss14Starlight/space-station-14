@@ -17,6 +17,15 @@
     Biomass: 70
 
 - type: latheRecipe
+  id: BioGenFoodMeat
+  result: FoodMeat
+  categories:
+  - Food   # ← change this if needed!
+  completetime: 1
+  materials:
+    Biomass: 15
+
+- type: latheRecipe
   id: BioGenMaterialCloth1
   result: MaterialCloth1
   categories:

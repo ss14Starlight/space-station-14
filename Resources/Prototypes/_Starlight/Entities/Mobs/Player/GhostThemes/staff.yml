@@ -21,9 +21,8 @@
       sprite: Mobs/Aliens/Carps/dragon.rsi
       state: alive
     color: "#ffffff"
-  requirements:
-  - !type:DiscordRolesRequirement
-    requirement: StaffRolesReq
+
+
 
 - type: ghostTheme
   id: BuffRatKingTheme
@@ -49,9 +48,6 @@
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
       state: ghost-fox
     color: "#ffffff"
-  requirements:
-  - !type:DiscordRolesRequirement
-    requirement: TicketsAdministratorReq
 
 - type: ghostTheme
   id: LizardPlushie

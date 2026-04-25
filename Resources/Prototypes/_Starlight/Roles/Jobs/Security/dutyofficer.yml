@@ -4,9 +4,6 @@
   description: job-description-dutyofficer
   playTimeTracker: JobDutyOfficer
   requirements:
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 18000 # 5 hrs
   startingGear: DutyOfficerGear
   icon: "JobIconDutyOfficer"
   supervisors: job-supervisors-warden

@@ -4,14 +4,6 @@
   description: job-description-magistrate
   playTimeTracker: JobMagistrate
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 180000 #50 hrs
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 36000 # 10h
-    - !type:RolesRequirement
-      proto: ExtRolesReq
   startingGear: MagistrateGear
   icon: "JobIconMagistrate"
   rules: job-rules-corporate-aligned

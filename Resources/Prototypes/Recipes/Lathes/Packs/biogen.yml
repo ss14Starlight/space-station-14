@@ -21,6 +21,7 @@
   - BioGenEZNutrient
   - BioGenRobustHarvest
   - BioGenDiseaseSwab
+  - BioGenFoodMeat
 
 - type: latheRecipePack
   id: BioGenMaterialsStatic

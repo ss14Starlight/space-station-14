@@ -4,18 +4,6 @@
   description: job-description-brigmedic
   playTimeTracker: JobBrigmedic
   requirements:
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 36000 # 10 hrs
-    - !type:RoleTimeRequirement
-      role: JobChemist
-      time: 3h
-    - !type:RoleTimeRequirement
-      role: JobParamedic
-      time: 5h
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 15h # You'll realistically clear this if you clear the chem requirements. Brigmed is being changed to be more-paramedical anyways, so this works with that. Chem time should be removed later on.
   startingGear: BrigmedicGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos

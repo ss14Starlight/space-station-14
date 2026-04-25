@@ -4,12 +4,6 @@
   description: job-description-iaa
   playTimeTracker: JobIAA
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Command
-    time: 36000 # 10h
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 36000 # 10h
   startingGear: IAAGear
   icon: "JobIconIAA"
   rules: job-rules-corporate-aligned

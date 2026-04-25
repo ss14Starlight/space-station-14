@@ -13,13 +13,13 @@
     FoodCondimentBottleVinegar: 2
     ReagentContainerOliveoil: 2
     ReagentContainerMayo: 1
-    VariantCubeBox: 1
+    #Projectverdant Variantcube Removed 
     FoodContainerEgg: 1
     DrinkMilkCarton: 2
     DrinkSoyMilkCarton: 1
     FoodButter: 3
     FoodCheese: 3 #Starlight 1 -> 3
-    FoodMeat: 8 #Starlight 6 -> 8
+    FoodMeat: 16 #Starlight 6 -> 8 #Project Verdant 8 -> 16
     # Starlight-start
     JugCornoil: 2
     KitchenOvenFlatpack: 1

@@ -45,7 +45,6 @@
   id: FillClosetChef
   table: !type:AllSelector
     children:
-    - id: VariantCubeBox
     - id: SprayBottleWater
     - id: FoodBoxCloth
     - id: ReagentContainerSugar

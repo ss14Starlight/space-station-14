@@ -4,9 +4,6 @@
   description: job-description-surgeon
   playTimeTracker: JobSurgeon
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 57600 #16 hrs
   startingGear: SurgeonGear
   icon: "JobIconSurgeon"
   supervisors: job-supervisors-cmo

@@ -4,9 +4,6 @@
   description: job-description-serviceworker
   playTimeTracker: JobServiceWorker
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Civilian
-    time: 0.5h
   startingGear: ServiceWorkerGear
   icon: "JobIconServiceWorker"
   supervisors: job-supervisors-service

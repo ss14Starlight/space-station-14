@@ -4,17 +4,6 @@
   description: job-description-blueshield
   playTimeTracker: JobBlueShield
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 30h # You are the sole bodyguard of the highest ranking people on the station, you have to be good.
-    - !type:DepartmentTimeRequirement
-      department: Command
-      time: 25h # You're expected to be mature, at least a little.
-    - !type:RoleTimeRequirement
-      role: JobBrigmedic
-      time: 3h # Lower stakes version of the same role, and forces you to get Paramed time too. Totals to about 8 hours paramed+brigmed combined.
-    - !type:RolesRequirement
-      proto: ExtRolesReq
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
   rules: job-rules-corporate-aligned

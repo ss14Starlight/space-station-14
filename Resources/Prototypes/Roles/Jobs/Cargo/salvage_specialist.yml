@@ -4,11 +4,6 @@
   description: job-description-salvagespec
   playTimeTracker: JobSalvageSpecialist
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Cargo
-      time: 5h # Starlight start. You should learn how to drive the shuttle, or at least sell stuff at ATS.
-    - !type:OverallPlaytimeRequirement 
-      time: 8h
   icon: "JobIconSalvageSpecialist" # Starlight - New distinct icon, Starlight end
   startingGear: SalvageSpecialistGear
   supervisors: job-supervisors-qm
