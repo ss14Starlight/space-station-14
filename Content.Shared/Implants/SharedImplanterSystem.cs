@@ -18,8 +18,9 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
 #region Starlight
+using Content.Shared._Starlight.Antags.Traitor;
+using Content.Shared._Starlight.Implants.Components;
 using Content.Shared.Mind;
-using Content.Shared.Tag;
 using Content.Shared.Mindshield.Components;
 #endregion
 
@@ -35,10 +36,7 @@ public abstract class SharedImplanterSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
-    // Starlight Start
-    [Dependency] private readonly TagSystem _tags = default!;
-    [DataField] private readonly ProtoId<TagPrototype> _fragileTag = "FragileImplant";
-    // Starlight End
+    [Dependency] private readonly SharedMindSystem _mind = default!; // Starlight-edit
 
     public override void Initialize()
     {
@@ -404,14 +402,14 @@ public abstract class SharedImplanterSystem : EntitySystem
                         continue;
                     }
 
-                    DrawImplantIntoImplanter(implanter, target, implant, implantContainer, implanterContainer, implantComp, component); // Starlight Edit: Added ``component``
+                    DrawImplantIntoImplanter(implanter, target, implant, implantContainer, implanterContainer, implantComp);
                     permanentFound = implantComp.Permanent;
 
                     //Break so only one implant is drawn
                     break;
                 }
 
-                if (component.CurrentMode == ImplanterToggleMode.Draw && !component.ImplantOnly && !permanentFound && !component.DeimplantCrushes) // Starlight Edit: Added ``&& !component.DeimplantCrushes``
+                if (component.CurrentMode == ImplanterToggleMode.Draw && !component.ImplantOnly && !permanentFound)
                     ImplantMode(implanter, component);
             }
             else
@@ -439,7 +437,7 @@ public abstract class SharedImplanterSystem : EntitySystem
                     }
                     else
                     {
-                        DrawImplantIntoImplanter(implanter, target, implant.Value, implantContainer, implanterContainer, implantComp, component); // Starlight Edit
+                        DrawImplantIntoImplanter(implanter, target, implant.Value, implantContainer, implanterContainer, implantComp);
                         permanentFound = implantComp.Permanent;
                     }
 
@@ -470,17 +468,10 @@ public abstract class SharedImplanterSystem : EntitySystem
         _popup.PopupEntity(failedPermanentMessage, target, user);
     }
 
-    private void DrawImplantIntoImplanter(EntityUid implanter, EntityUid target, EntityUid implant, BaseContainer implantContainer, ContainerSlot implanterContainer, SubdermalImplantComponent implantComp, ImplanterComponent implanterComp) // Starlight Edit
+    private void DrawImplantIntoImplanter(EntityUid implanter, EntityUid target, EntityUid implant, BaseContainer implantContainer, ContainerSlot implanterContainer, SubdermalImplantComponent implantComp)
     {
         _container.Remove(implant, implantContainer);
-        // Starlight edit Start: Implant cushing for CosCult
-        if (_tags.HasTag(implant, _fragileTag))
-        {
-            _popup.PopupEntity(Loc.GetString("fragile-implant-extraction"), implanter, PopupType.MediumCaution);
-        }
-        else if (!implanterComp.DeimplantCrushes)
-            _container.Insert(implant, implanterContainer);
-        // Starlight edit End
+        _container.Insert(implant, implanterContainer);
 
         var ev = new TransferDnaEvent { Donor = target, Recipient = implanter };
         RaiseLocalEvent(target, ref ev);
