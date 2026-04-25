@@ -20,7 +20,6 @@
                 Access="Public"
                 MinSize="52 32"
                 Align="Right" />
-            
         </PanelContainer>
     </BoxContainer>
 </PanelContainer>
