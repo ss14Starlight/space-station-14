@@ -130,3 +130,6 @@ uplink-noslip-clown-shoes-desc = For the clowns who want that extra edge against
 
 uplink-banana-esword-name = Banana Energy Sword
 uplink-banana-esword-desc = A bananium-modified energy sword that slips whoever it slices. Does minimal damage.
+
+uplink-mimana-stealthy-name = Stealthy Mimana
+uplink-mimana-stealthy-desc = A mutated mimana that seems to fade into the background. Don't lose it!

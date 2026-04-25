@@ -921,9 +921,9 @@
 
 - type: listing
   id: UplinkMimanaStealthy
-  name: uplink-mimana-stealthy
-  description: uplink-mimana-stealthy
-  productEntity: TrashPeelMimanaStealthy
+  name: uplink-mimana-stealthy-name
+  description: uplink-mimana-stealthy-desc
+  productEntity: TrashMimanaPeelStealthy
   cost:
     Telecrystal: 1
   categories:
