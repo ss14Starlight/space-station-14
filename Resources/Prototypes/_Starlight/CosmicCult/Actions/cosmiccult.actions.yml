@@ -294,5 +294,4 @@
     whitelist:
       components:
         - Door
-    itemIconStyle: NoItem
     event: !type:EventCosmicAnomalyIngress
