@@ -1,5 +1,7 @@
+using System.Diagnostics;
 using Content.Client._Starlight.Shaders;
 using Content.Client._Starlight.Trail;
+using Content.Shared._Starlight.Trail;
 using Content.Shared.Starlight.CCVar;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
@@ -29,12 +31,23 @@ public sealed class TrailSystem : EntitySystem
             _enabled = v;
             _overlay.Enabled = v;
         }, true);
+
+        SubscribeLocalEvent<TrailComponent, MapInitEvent>(OnMapInit);
     }
 
     public override void Shutdown()
     {
         base.Shutdown();
         _overlayMan.RemoveOverlay(_overlay);
+    }
+
+    public void OnMapInit(Entity<TrailComponent> ent, ref MapInitEvent args)
+    {
+        // Ensure ring buffer matches configured capacity
+        if (ent.Comp.Points.Capacity != ent.Comp.MaxPoints)
+            ent.Comp.Points.Resize(ent.Comp.MaxPoints);
+        if (ent.Comp.Samples.Capacity != ent.Comp.MaxPoints)
+            ent.Comp.Samples.Resize(ent.Comp.MaxPoints);
     }
 
     public override void FrameUpdate(float frameTime)
@@ -44,32 +57,40 @@ public sealed class TrailSystem : EntitySystem
         if (!_enabled)
             return;
 
-        var query = EntityQueryEnumerator<TrailComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var trail, out var xform))
+        var query = EntityQueryEnumerator<TrailComponent, TransformComponent, EyeComponent>();
+        while (query.MoveNext(out var uid, out var trail, out var xform, out var eye))
         {
             var worldPos = _xform.GetWorldPosition(xform);
+            var worldRot = _xform.GetWorldRotation(xform);
+            var sample = new TrailSample() { Position = worldPos, EyeRotation = eye.Rotation, Rotation = worldRot };
             var points = trail.Points;
-
-            // Ensure ring buffer matches configured capacity
-            if (points.Capacity != trail.MaxPoints)
-                points.Resize(trail.MaxPoints);
+            var samples = trail.Samples;
 
             var moved = false;
 
-            if (points.Count > 0)
+            if (trail.Mode == TrailMode.Ribbon)
             {
-                var last = points[^1];
-                var dist = (worldPos - last).Length();
-
-                if (dist > TeleportThreshold)
+                if (points.Count > 0)
                 {
-                    points.Clear();
-                    points.PushBack(worldPos);
-                    trail.IdleTimer = 0f;
-                    continue;
-                }
+                    var last = points[^1];
+                    var distSq = (worldPos - last).LengthSquared(); ;
 
-                if (dist >= trail.MinDistance)
+                    if (distSq > TeleportThreshold * TeleportThreshold)
+                    {
+                        points.Clear();
+                        points.PushBack(worldPos);
+                        trail.IdleTimer = 0f;
+                        continue;
+                    }
+
+                    if (distSq >= trail.MinDistance * trail.MinDistance)
+                    {
+                        points.PushBack(worldPos);
+                        moved = true;
+                        trail.IdleTimer = 0f;
+                    }
+                }
+                else
                 {
                     points.PushBack(worldPos);
                     moved = true;
@@ -78,19 +99,45 @@ public sealed class TrailSystem : EntitySystem
             }
             else
             {
-                points.PushBack(worldPos);
-                moved = true;
-                trail.IdleTimer = 0f;
+                if (samples.Count > 0)
+                {
+                    var lastSample = samples[^1];
+                    var sampleDistSq = (worldPos - lastSample.Position).LengthSquared();
+
+                    if (sampleDistSq > TeleportThreshold * TeleportThreshold)
+                    {
+                        samples.Clear();
+                        samples.PushBack(sample);
+                        trail.IdleTimer = 0f;
+                        continue;
+                    }
+
+                    if (sampleDistSq >= trail.MinDistance * trail.MinDistance)
+                    {
+                        samples.PushBack(sample);
+                        moved = true;
+                        trail.IdleTimer = 0f;
+                    }
+                }
+                else
+                {
+                    samples.PushBack(sample);
+                    moved = true;
+                    trail.IdleTimer = 0f;
+                }
             }
 
-            if (!moved && points.Count > 1)
+            if (!moved && (points.Count > 1 || samples.Count > 1))
             {
                 trail.IdleTimer += frameTime;
 
                 if (trail.IdleTimer > trail.DecayDelay)
                 {
                     trail.IdleTimer -= trail.DecayInterval;
-                    points.PopFront();
+                    if (trail.Mode == TrailMode.Ribbon)
+                        points.PopFront();
+                    else
+                        samples.PopFront();
                 }
             }
         }

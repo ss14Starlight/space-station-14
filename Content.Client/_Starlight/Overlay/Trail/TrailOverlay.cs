@@ -1,9 +1,10 @@
 using System.Numerics;
 using Content.Client._Starlight.Shaders;
 using Content.Client._Starlight.Trail;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
-using Robust.Shared.GameObjects;
+using Content.Shared._Starlight.Trail;
 
 namespace Content.Client._Starlight.Overlay.Trail;
 
@@ -12,6 +13,7 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
     public override OverlaySpace Space => OverlaySpace.WorldSpaceEntities;
 
     private readonly IEntityManager _entMan;
+    private readonly SpriteSystem _spriteSys;
     private readonly IStarlightShaderManager _shaderMan;
     private readonly List<Vector2> _verts = [];
     private readonly List<Vector2> _ribbon = [];
@@ -19,6 +21,7 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
     public TrailOverlay(IEntityManager entMan, IStarlightShaderManager shaderMan)
     {
         _entMan = entMan;
+        _spriteSys = entMan.System<SpriteSystem>();
         _shaderMan = shaderMan;
         ZIndex = (int)Shared.DrawDepth.DrawDepth.Effects;
     }
@@ -36,13 +39,16 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
         handle.SetTransform(Matrix3x2.Identity);
 
         var drawn = 0;
-        var query = _entMan.EntityQueryEnumerator<TrailComponent>();
-        while (query.MoveNext(out var comp))
+        var query = _entMan.EntityQueryEnumerator<TrailComponent, SpriteComponent>();
+        while (query.MoveNext(out var comp, out var sprite))
         {
-            if (comp.Points.Count < 2)
+            if (comp.Points.Count < 2 && comp.Samples.Count < 2)
                 continue;
 
-            DrawTrail(handle, comp, args);
+            if (comp.Mode == TrailMode.SpriteGhost)
+                DrawGhostTrail(handle, comp, sprite, args);
+            else
+                DrawTrail(handle, comp, args);
 
             if (++drawn >= MaxTrails)
                 break;
@@ -158,5 +164,41 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
 
         if (shader != null)
             handle.UseShader(null);
+    }
+
+    private void DrawGhostTrail(DrawingHandleWorld handle, TrailComponent comp, SpriteComponent sprite, in OverlayDrawArgs args)
+    {
+        var samples = comp.Samples;
+        var count = samples.Count;
+
+        var oldColor = sprite.Color;
+
+        if (sprite.Icon == null || count == 0)
+            return;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (comp.SkipSamples > 0 && (i % (comp.SkipSamples + 1)) != 0)
+                continue;
+
+            var sample = samples[i];
+            float t = i / (float)(count - 1);
+
+            float alpha = t * t * (3f - 2f * t);
+            alpha *= comp.TrailColor.A;
+
+            if (alpha < 0.05f)
+                continue;
+
+            var color = Color.InterpolateBetween(comp.FadeColor, comp.TrailColor, t).WithAlpha(alpha);
+
+            var ent = (sprite.Owner, sprite);
+
+            ent.sprite.Color = color;
+
+            _spriteSys.RenderSprite(ent, handle, sample.EyeRotation, sample.Rotation, sample.Position, null);
+
+            ent.sprite.Color = oldColor;
+        }
     }
 }
