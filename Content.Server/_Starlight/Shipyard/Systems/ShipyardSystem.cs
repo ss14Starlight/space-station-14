@@ -155,20 +155,21 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     private void CleanupShipyard()
     {
         if (ShipyardMapEntity == null)
-        {
-            ShipyardMapEntity = null;
-            ShipyardMapId = null;
             return;
+
+        if (ShipyardMapId != null)
+        {
+            var query = EntityQueryEnumerator<MapGridComponent>();
+
+            while (query.MoveNext(out var uid, out _))
+            {
+                if (Transform(uid).MapID == ShipyardMapId)
+                    Del(uid);
+            }
         }
 
-        if (!Exists(ShipyardMapEntity.Value))
-        {
-            ShipyardMapEntity = null;
-            ShipyardMapId = null;
-            return;
-        }
-
-        Del(ShipyardMapEntity.Value);
+        if (Exists(ShipyardMapEntity.Value))
+            Del(ShipyardMapEntity.Value);
 
         ShipyardMapEntity = null;
         ShipyardMapId = null;
