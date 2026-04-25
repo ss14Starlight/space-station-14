@@ -62,7 +62,18 @@ namespace Content.Server.Radio.EntitySystems
                 var mixture = _atmosphere.GetTileMixture(grid, map, indices, excite: true);
                 if (mixture == null || mixture.TotalMoles <= 0)
                 {
+                    telecom.SpacedDisabled = true;
+                    _power.SetPowerDisabled(uid, true, power);
                     continue;
+                }
+
+                if (telecom.SpacedDisabled)
+                {
+                    telecom.SpacedDisabled = false;
+                    if (!telecom.Overheated)
+                    {
+                        _power.SetPowerDisabled(uid, false, power);
+                    }
                 }
 
                 if (power.PowerDisabled || !_power.IsPowered(uid) || !ServerHasActiveStationChannel(keys))
@@ -111,6 +122,7 @@ namespace Content.Server.Radio.EntitySystems
             var grid = xform.GridUid;
             var map = xform.MapUid;
             var highestTemperature = float.MinValue;
+            var foundMixture = false;
 
             foreach (var offset in NearbyOffsets)
             {
@@ -120,7 +132,13 @@ namespace Content.Server.Radio.EntitySystems
                     continue;
                 }
 
+                foundMixture = true;
                 highestTemperature = MathF.Max(highestTemperature, mixture.Temperature);
+            }
+
+            if (!foundMixture)
+            {
+                return;
             }
 
             if (highestTemperature <= CooldownTemperature)
@@ -168,7 +186,6 @@ namespace Content.Server.Radio.EntitySystems
             if (mixture == null || mixture.TotalMoles <= 0)
             {
                 args.PushMarkup(Loc.GetString("telecom-spaced"));
-                _power.SetPowerDisabled(uid, true, power);
                 return;
             }
 

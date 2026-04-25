@@ -11,4 +11,7 @@ public sealed partial class TelecomServerComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly)]
     public bool Overheated;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public bool SpacedDisabled;
 }
