@@ -20,12 +20,17 @@ public sealed partial class SlipOnHitSystem : EntitySystem
 
         var addedComp = EnsureComp<SlipperyComponent>(uid, out var slipComp);
         var savedSlipData = slipComp.SlipData;
+        var savedStamDmg = slipComp.StaminaDamage;
 
         slipComp.SlipData = comp.SlipData;
+        slipComp.StaminaDamage = comp.StaminaDamage;
+
         foreach (var ent in ev.HitEntities)
         {
             _slippery.TrySlip(uid, slipComp, ent, false);
         }
+
+        slipComp.StaminaDamage = savedStamDmg;
         slipComp.SlipData = savedSlipData;
         if (addedComp)
             RemComp(uid, slipComp);

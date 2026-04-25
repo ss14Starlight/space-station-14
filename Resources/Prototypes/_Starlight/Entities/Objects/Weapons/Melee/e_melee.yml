@@ -103,6 +103,7 @@
       types:
         Heat: 0.3
   - type: SlipOnHit
+    staminaDamage: 15
     slipData:
       requiredSlipSpeed: 0
       knockdownTime: 1
