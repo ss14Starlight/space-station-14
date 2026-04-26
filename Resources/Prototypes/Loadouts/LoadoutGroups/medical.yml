@@ -246,6 +246,7 @@
   - WhiteShoes
   - MedicalWinterBoots
   - Heels # Starlight
+  - HighHeelBoots # Starlight
 
 - type: loadoutGroup
   id: ParamedicJobTrinkets

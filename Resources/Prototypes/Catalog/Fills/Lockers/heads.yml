@@ -310,18 +310,21 @@
     - id: DoorRemoteMedical
     - id: BoxEncryptionKeyMedical
     - id: BoxCMOCircuitboards
-    - id: AutoMenderBurnFilled #Starlight
-    - id: AutoMenderBruteFilled #Starlight
-    - id: CMOLicense #STARLIGHT
-    - id: EncryptionKeyMedicalScience # Starlight, steal target
-      prob: 0.5 # Starlight
-    - id: PrintedDocumentGreenshiftAlert #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    - id: JawsOfLifeMed #Starlight
+    - id: AutoMenderBurnFilled # Starlight start
+    - id: AutoMenderBruteFilled
+    - id: ClothingBackpackDuffelSurgeryFilled
+    - id: ClothingMaskSterile
+    - id: ClothingHandsGlovesNitrile
+    - id: CMOLicense
+    - id: EncryptionKeyMedicalScience # Steal target
+      prob: 0.5
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    - id: JawsOfLifeMed #Starlight end
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
