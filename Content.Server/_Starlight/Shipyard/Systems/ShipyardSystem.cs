@@ -202,6 +202,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (!TryComp<MapComponent>(ShipyardMapEntity.Value, out var mapComp))
         {
+            Log.Error($"Created shipyard map {ShipyardMapEntity} has no MapComponent; aborting setup.");
             // Clean up the map we just created
             if (Exists(ShipyardMapEntity.Value))
                 Del(ShipyardMapEntity.Value);
