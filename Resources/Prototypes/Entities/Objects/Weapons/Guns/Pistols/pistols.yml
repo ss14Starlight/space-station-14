@@ -101,7 +101,8 @@
       - SemiAuto
       - FullAuto
       - Burst
-    shotsPerBurst: 4 # Starlight end
+    shotsPerBurst: 4
+    burstCooldown: 0.35 # Starlight end
   - type: ItemSlots
     slots:
       gun_magazine:

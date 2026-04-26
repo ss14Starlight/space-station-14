@@ -96,14 +96,46 @@
               - CartridgeMagnum
 
 - type: entity
+  name: mk 58
+  parent: WeaponPistolMk58
+  id: WeaponPistolMk58HighCapacity
+  suffix: 16 rounds
+  description: Designed by Nanotrasen’s Small Arms Division, the Mk58 is a conventional semi-automatic pistol with a simple recoil-operated action and excellent reliability. The standard sidearm of Nanotrasen’s station security and emergency response teams. Feeds from .35 pistol magazines.
+  components:
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazinePistolHighCapacitySP
+
+
+- type: entity
   name: golden mk 58
   parent: [WeaponPistolMk58, BaseSecurityContraband]
   id: WeaponPistolGoldenMk58
+  description: An expensive and rare golden variant of the Mk58, only given out to the elite. Doesn't actually have any functional differences, though. Feeds from .35 pistol magazines.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/golden_mk58.rsi
     - type: Clothing
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/golden_mk58.rsi
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazinePistolSPGolden
+
+- type: entity
+  name: golden mk 58
+  parent: WeaponPistolGoldenMk58
+  id: WeaponPistolGoldenMk58HighCapacity
+  suffix: 16 rounds
+  components:
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazinePistolHighCapacitySPGolden
 
 - type: entity
   name: enforcer
@@ -114,8 +146,8 @@
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/enforcer.rsi
     - type: Gun
-      minAngle: 10
-      maxAngle: 35
+      minAngle: 1
+      maxAngle: 30
       angleIncrease: 5
       angleDecay: 3
       fireRate: 6

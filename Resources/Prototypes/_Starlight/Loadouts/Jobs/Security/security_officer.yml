@@ -40,11 +40,11 @@
 # Sidearm Options
 - type: loadout
   id: SecurityMk58
-  dummyEntity: WeaponPistolMk58
+  dummyEntity: WeaponPistolMk58HighCapacity
   storage:
     back:
-      - WeaponPistolMk58
-      - MagazinePistolSP
+      - WeaponPistolMk58HighCapacity
+      - MagazinePistolHighCapacitySP
 
 - type: loadout
   id: SecurityPistolEnforcer
@@ -64,7 +64,7 @@
     back:
       - WeaponRevolverDispatcher
       - SpeedLoaderMagnumSP
-      - SpeedLoaderMagnumHP
+      - SpeedLoaderMagnumSP
 
 - type: loadout
   id: SecurityPistolDP
@@ -82,11 +82,11 @@
   effects:
     - !type:GroupLoadoutEffect
       proto: EliteOfficer
-  dummyEntity: WeaponPistolGoldenMk58
+  dummyEntity: WeaponPistolGoldenMk58HighCapacity
   storage:
     back:
-      - WeaponPistolGoldenMk58
-      - MagazinePistolSP
+      - WeaponPistolGoldenMk58HighCapacity
+      - MagazinePistolHighCapacitySPGolden
 
 # Jumpsuit
 - type: loadout
