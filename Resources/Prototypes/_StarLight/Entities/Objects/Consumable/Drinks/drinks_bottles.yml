@@ -17,3 +17,23 @@
   - type: Sealable
   - type: StaticPrice
     price: 300
+
+- type: entity
+  parent: [ DrinkVisualsAllFilled, DrinkBottleGlassBaseFull ]
+  id: DrinkRumizineBottleFull
+  name: Uncle Git's Special Reserve
+  description: A battered amber bottle bearing a skull-and-anchor label. The faded text reads "Uncle Git's Special Reserve Rumizine — For the wounds of honest pirates everywhere." Smells like rum, sea salt, and questionable medical practice.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Rumizine
+          Quantity: 100
+  - type: Label
+    currentLabel: reagent-name-rumizine
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/rumbottle.rsi
+  - type: Sealable
+  - type: StaticPrice
+    price: 300
