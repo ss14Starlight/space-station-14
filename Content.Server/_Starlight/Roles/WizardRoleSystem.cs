@@ -65,8 +65,10 @@ public sealed class WizardRoleSystem : EntitySystem
         _tag.AddTag(args.Container.Owner, WizardTag);
     }
 
-    // Fires after a role is removed from the mind. Only strip the tag if
-    // no wizard role of any kind remains on this mind.
+    /// <summary>
+    /// Fires after a role is removed from the mind. Only strip the tag if
+    /// no wizard role of any kind remains on this mind.
+    /// </summary>
     private void OnRoleRemoved(RoleRemovedEvent args)
     {
         if (IsWizardMind(args.MindId, args.Mind))
