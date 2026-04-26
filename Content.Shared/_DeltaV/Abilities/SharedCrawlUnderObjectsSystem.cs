@@ -155,13 +155,12 @@ public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Disallows gun use while crouched.
+    /// Disallows gun use entirely while sneaking.
     /// </summary>
     private void OnShootAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref ShotAttemptedEvent args)
     {
         if (args.Cancelled) return;
         if (!component.Enabled || !component.BlockHands) return;
-        if (!IsOnCollidingTile(uid)) return;
 
         // Use popup cooldown here since the event is fired every tick.
         if (TryPopupCooldown(component))
@@ -169,11 +168,13 @@ public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
         args.Cancel();
     }
 
+    /// <summary>
+    /// Disallows melee use entirely while sneaking.
+    /// </summary>
     private void OnMeleeAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref AttemptMeleeEvent args)
     {
         if (args.Cancelled) return;
         if (!component.Enabled || !component.BlockHands) return;
-        if (!IsOnCollidingTile(uid)) return;
 
         _popup.PopupClient(Loc.GetString("crawl-under-objects-attack-fail"), uid, uid, PopupType.MediumCaution);
         args.Cancelled = true;
