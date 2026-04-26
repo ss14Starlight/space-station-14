@@ -42,6 +42,7 @@ public sealed class ShipyardSystem : SharedShipyardSystem
         _enabled = _configManager.GetCVar(StarlightCCVars.Shipyard);
         _configManager.OnValueChanged(StarlightCCVars.Shipyard, SetShipyardEnabled);
         SubscribeLocalEvent<ShipyardConsoleComponent, ComponentInit>(OnShipyardStartup);
+        SubscribeLocalEvent<ShipyardConsoleComponent, ComponentShutdown>(OnShipyardShutdown);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
 
@@ -52,6 +53,8 @@ public sealed class ShipyardSystem : SharedShipyardSystem
 
         SetupShipyard();
     }
+
+    private void OnShipyardShutdown(EntityUid uid, ShipyardConsoleComponent component, ComponentShutdown args) => CleanupShipyard();
 
     public override void Shutdown()
     {
