@@ -1,0 +1,26 @@
+- type: entity
+  parent: DrinkCanBaseFull
+  id: DrinkCrabJuiceCan
+  name: Crab Juice can
+  description: Now, what do you have to wash that awful taste out of my mouth?
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: JuiceCrab
+          Quantity: 30
+      grindable:
+        reagents:
+        - ReagentId: Aluminium
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 1
+  - type: Tag
+    tags:
+    - DrinkCan
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Drinks/crab_juice_can.rsi
+  - type: Item
+    sprite: _Starlight/Objects/Consumable/Drinks/crab_juice_can.rsi

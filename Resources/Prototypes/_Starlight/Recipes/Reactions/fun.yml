@@ -1,0 +1,9 @@
+- type: reaction
+  id: ConcentratedCorgiJuice
+  reactants:
+    CorgiJuice:
+      amount: 1
+    Vestine:
+      amount: 1
+  products:
+    ConcentratedCorgiJuice: 2

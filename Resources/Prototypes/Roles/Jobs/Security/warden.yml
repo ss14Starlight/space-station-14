@@ -6,7 +6,10 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 20h # Starlight
+      time: 15h # Starlight
+    - !type:RoleTimeRequirement # Starlight
+      role: JobDutyOfficer # Starlight
+      time: 5h # Starlight
     - !type:RoleTimeRequirement
       role: JobDetective # Starlight
       time: 1h # Starlight

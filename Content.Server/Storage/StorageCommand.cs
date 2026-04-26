@@ -6,6 +6,7 @@ using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Robust.Shared.Containers;
 using Robust.Shared.Toolshed;
+using Content.Server._Starlight.Administration.Systems.Commands; // Starlight
 
 namespace Content.Server.Storage;
 
@@ -14,7 +15,7 @@ public sealed class StorageCommand : ToolshedCommand
 {
     private SharedStorageSystem? _storage;
     private SharedContainerSystem? _container;
-
+    private SharedUserInterfaceSystem? _ui; // starlight
 
     [CommandImplementation("insert")]
     public IEnumerable<EntityUid> StorageInsert([PipedArgument] IEnumerable<EntityUid> entsToInsert,
@@ -53,6 +54,21 @@ public sealed class StorageCommand : ToolshedCommand
         return null;
     }
 
-
-
+    //Starlight begin
+    [CommandImplementation("reshape")]
+    public EntityUid StorageResize([PipedArgument] EntityUid uid)
+    {
+        _storage ??= GetSys<SharedStorageSystem>();
+        _container ??= GetSys<SharedContainerSystem>();
+        _ui ??= GetSys<SharedUserInterfaceSystem>();
+        if (!TryComp<StorageComponent>(uid, out var storage) ||
+            !TryComp<Box2IConstructorComponent>(uid, out var boxes)) return uid;
+        _container.EmptyContainer(storage.Container);
+        storage.Grid = boxes.Boxes;
+        RemComp<Box2IConstructorComponent>(uid);
+        _storage.UpdateOccupied((uid, storage)); // <- this is black voodoo magic and i hate it
+        _ui.CloseUi(uid, StorageComponent.StorageUiKey.Key);
+        return uid;
+    }
+    //Starlight end
 }

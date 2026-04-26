@@ -1,0 +1,39 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "humanoid",
+            "copyright": "A custom item by AftrLite(Github)"
+        },
+        {
+            "name": "spider",
+            "copyright": "A custom item by AftrLite(Github)"
+        },
+        {
+            "name": "diona",
+            "copyright": "A custom item by AftrLite(Github)"
+        },
+        {
+            "name": "moth",
+            "copyright": "A custom item by AftrLite(Github)"
+        },
+        {
+            "name": "vox",
+            "copyright": "A custom item by AftrLite(Github)"
+        },
+        {
+            "name": "snail",
+            "copyright": "A custom item by AftrLite(Github)"
+        },
+        {
+            "name": "crab",
+            "copyright": "A custom item by AftrLite(Github)"
+        }
+    ]
+}

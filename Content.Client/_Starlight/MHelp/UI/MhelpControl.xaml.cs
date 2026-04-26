@@ -73,7 +73,7 @@ public sealed partial class MhelpControl : Control
     }
 
     public void SelectTicket(Guid ticketId)
-    {                                    
+    {
         if (!TicketSelector.TryGetTicket(ticketId, out var ticket))
             return;
 

@@ -54,7 +54,7 @@ public sealed class CrewManifestCommand : ToolshedCommand
     [CommandImplementation("removefrom")]
     public IEnumerable<EntityUid> RemoveFromManifest([PipedArgument] IEnumerable<EntityUid> uids, EntityUid station) =>
         uids.Select(x => RemoveFromManifest(x, station));
-    
+
     [CommandImplementation("addplayer")]
     public EntityUid AddPlayerToManifest([PipedArgument] EntityUid station, EntityUid uid, bool useIdJob, bool addRole)
     {
@@ -94,7 +94,7 @@ public sealed class CrewManifestCommand : ToolshedCommand
             var parsed = iconId.Replace("Icon", "").Replace("Job", "");
             if(_proto.HasIndex<JobPrototype>(parsed)) return _proto.Index<JobPrototype>(parsed); // pray.
         }
-        
+
         return AssistantPrototypeId;
     }
 

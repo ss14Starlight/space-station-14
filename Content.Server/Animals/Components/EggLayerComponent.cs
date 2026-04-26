@@ -44,7 +44,7 @@ public sealed partial class EggLayerComponent : Component
     ///     The amount of nutrient consumed on update.
     /// </summary>
     [DataField]
-    public float HungerUsage = 60f;
+    public float HungerUsage = 30f; // Starlight edit 60f -> 30f
 
     [DataField] public EntityUid? Action;
 

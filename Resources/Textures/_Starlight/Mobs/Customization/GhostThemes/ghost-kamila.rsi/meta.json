@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Based On the Starlight Avali, Sprites by Github AegisShieldDev / Discord aegis_shield (230542392300666881)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "ghost-kamila",
+      "directions": 4
+    }
+  ]
+}

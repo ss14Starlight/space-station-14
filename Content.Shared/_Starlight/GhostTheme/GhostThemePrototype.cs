@@ -1,12 +1,9 @@
-using System.Numerics;
-using Content.Shared._NullLink;
 using Content.Shared._Starlight.Abstract.Conditions;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight.Trail;
 using Content.Shared.Starlight.Utility;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
-namespace Content.Shared.Starlight.GhostTheme;
+namespace Content.Shared._Starlight.GhostTheme;
 
 [Prototype("ghostTheme")]
 public sealed partial class GhostThemePrototype : IPrototype
@@ -28,6 +25,9 @@ public sealed partial class GhostThemePrototype : IPrototype
 
     [DataField("private")]
     public bool Private = false;
+
+    [DataField("trail")]
+    public TrailSettings? Trail = null;
 
     [DataField("requirements")]
     public List<BaseRequirement> Requirements = [];

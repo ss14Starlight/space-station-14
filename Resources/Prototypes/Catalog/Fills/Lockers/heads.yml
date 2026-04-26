@@ -92,6 +92,7 @@
     - id: ClothingEyesHudCommand
     - id: EncryptionKeyExpedition #starlight
     - id: SpyglassCaptain #Starlight
+    - id: CommunicationTablet #Starlight
     - id: HeadSkeleton # A skull to accompany your skeleton crew
       conditions:
       - !type:PlayerCountCondition
@@ -131,6 +132,7 @@
     - id: JetpackCaptainFilled
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
 
 # No laser locker, used when the antique laser is placed in the special display crate
 - type: entity
@@ -230,10 +232,16 @@
       prob: 0.15
     - id: ClothingBeltChiefEngineerFilled
     - id: ClothingEyesGlassesMeson
-    - id: ClothingHandsGlovesColorYellow
+#    - id: ClothingHandsGlovesColorYellow # Starlight, they spawn with these now.
     - id: ClothingHeadsetAltEngineering
     - id: DoorRemoteEngineering
     - id: BoxCECircuitboards
+    - id: MatBag #FH
+    - id: WeaponGrapplingGun #FH
+    - id: BoxFlare #FH
+    - id: AstroNavCartridge #FH
+    - id: SheetSteel #FH
+    - id: SheetGlass #FH
     - id: RCD
     - id: RPD # Starlight: RPD
     - id: RCDAmmo
@@ -255,9 +263,10 @@
     - id: ClothingMaskGasAtmos
     - id: ClothingOuterHardsuitEngineeringWhite
     - id: ClothingShoesBootsMagAdv
-    - id: JetpackVoidFilled
+    - id: JetpackVoidEngineerFilled #Starlight edit: CE's custom pack for steal objective
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
 
 # No hardsuit locker
 - type: entity
@@ -290,29 +299,29 @@
   id: LockerFillChiefMedicalOfficerNoHardsuit
   table: !type:AllSelector
     children:
-    - id: ClothingCloakCmoElite
-    - id: BoxEncryptionKeyMedical
-    - id: ClothingBackpackDuffelSurgeryFilled
     - id: ClothingEyesHudMedical
-    - id: ClothingHandsGlovesNitrile
-    - id: ClothingHeadsetAltMedical
-    - id: ClothingMaskSterile
-    - id: DoorRemoteMedical
+    - id: ClothingBeltMedicalFilled
     - id: HandheldCrewMonitor
     - id: Hypospray
-    - id: BoxCMOCircuitboards
-    - id: MedkitFilled
-    - id: RubberStampCMO
     - id: MedTekCartridge
+    # Standard command gear
+    - id: RubberStampCMO
+    - id: ClothingHeadsetAltMedical
+    - id: DoorRemoteMedical
+    - id: BoxEncryptionKeyMedical
+    - id: BoxCMOCircuitboards
     - id: AutoMenderBurnFilled #Starlight
     - id: AutoMenderBruteFilled #Starlight
     - id: CMOLicense #STARLIGHT
+    - id: EncryptionKeyMedicalScience # Starlight, steal target
+      prob: 0.5 # Starlight
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
       - !type:GamemodeCondition #SL
         presets: #SL
         - Greenshift #SL
         - Sandbox #SL
+    - id: JawsOfLifeMed #Starlight
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -323,6 +332,7 @@
     - id: ClothingOuterHardsuitMedical
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
 
 # No hardsuit locker
 - type: entity
@@ -364,7 +374,8 @@
     - id: DoorRemoteResearch
     - id: HandTeleporter
     - id: RubberStampRd
-    - id: RDDiploma #STARLIGHT
+    - id: EncryptionKeyMedicalScience # Starlight, steal target
+      prob: 0.5 # Starlight
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
       - !type:GamemodeCondition #SL
@@ -387,6 +398,7 @@
     - id: ClothingOuterHardsuitRd
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
 
 # No hardsuit locker
 - type: entity
@@ -443,7 +455,7 @@
     - id: DrinkHosFlask
     - id: SecurityShuttleConsoleCircuitboard # Starlight start
     - id: ClothingOuterWinterHoS
-    - id: ClothingHandsGlovesCombat
+#    - id: ClothingHandsGlovesCombat # Starlight, they spawn with them now.
     - id: SecureBriefings
     - id: PrintedDocumentGreenshiftAlert
       conditions:
@@ -462,6 +474,7 @@
     - id: JetpackSecurityFilled
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
     - id: ClothingShoesBootsMagSec
 
 # No hardsuit locker

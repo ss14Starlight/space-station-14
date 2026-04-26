@@ -10,6 +10,7 @@
   startingGear: ParamedicGear
   icon: "JobIconParamedic"
   supervisors: job-supervisors-cmo
+  canBeAntag: false # Starlight
   access:
   - Medical
   - Maintenance
@@ -17,16 +18,17 @@
   - External # Starlight
   extendedAccess:
   - Chemistry
-  - Surgery # Starlight
+  - Surgery # Starlight BEGIN
+  special:
+    - !type:AddImplantSpecial
+      implants: [ MindShieldImplant ]  # Starlight END
 
 - type: startingGear
   id: ParamedicGear
   equipment:
     ears: ClothingHeadsetMedical
-    belt: ClothingBeltMedicalEMTFilled
   storage:
     back:
-    - EmergencyRollerBedSpawnFolded
     - BodyBagLockableFolded #Starlight
     - DefibrillatorParamed #Starlight
 

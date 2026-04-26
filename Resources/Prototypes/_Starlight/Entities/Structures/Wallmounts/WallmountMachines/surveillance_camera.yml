@@ -1,0 +1,14 @@
+- type: entity
+  parent: SurveillanceCameraBase
+  id: SurveillanceCameraIsolatedNetwork
+  name: camera
+  suffix: Isolated Network
+  components:
+    - type: DeviceNetwork
+      deviceNetId: Wired
+      receiveFrequencyId: SurveillanceCameraIsolatedNetwork
+      transmitFrequencyId: SurveillanceCameraIsolatedNetwork
+    - type: SurveillanceCamera
+      networkSet: true
+    - type: StationAiVision
+      enabled: false

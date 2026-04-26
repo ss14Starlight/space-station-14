@@ -27,10 +27,12 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         if (!_playerById.TryGetValue(ev.Player, out var playerData))
             return ValueTask.CompletedTask;
 
-        playerData.RolePlayTimePerServer.Clear();
+        var newPlayTimes = new Dictionary<string, Dictionary<string, TimeSpan>>();
 
         foreach (var serverPlayTime in ev.ServerPlayTimes)
-            playerData.RolePlayTimePerServer[serverPlayTime.Key] = serverPlayTime.Value.ToDictionary(x => x.Tracker, x => x.Time);
+            newPlayTimes[serverPlayTime.Key] = serverPlayTime.Value.ToDictionary(x => x.Tracker, x => x.Time);
+
+        playerData.RolePlayTimePerServer = newPlayTimes;
 
         SendPlayerPlayTime(playerData.Session, playerData.RolePlayTimePerServer);
 

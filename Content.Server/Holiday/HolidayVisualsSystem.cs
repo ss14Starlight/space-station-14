@@ -8,13 +8,13 @@ public sealed class HolidayVisualsSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly HolidaySystem _holiday = default!;
-    
+
     public override void Initialize()
     {
         SubscribeLocalEvent<HolidayVisualsComponent, ComponentInit>(OnVisualsInit);
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
     }
-    
+
     private void OnVisualsInit(Entity<HolidayVisualsComponent> ent, ref ComponentInit args)
     {
         foreach (var (key, holidays) in ent.Comp.Holidays)
@@ -25,7 +25,7 @@ public sealed class HolidayVisualsSystem : EntitySystem
             break;
         }
     }
-    
+
     private void OnRunLevelChanged(GameRunLevelChangedEvent eventArgs)
     {
         if (!_holiday.enabled) return;

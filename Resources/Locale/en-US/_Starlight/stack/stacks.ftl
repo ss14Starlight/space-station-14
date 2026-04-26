@@ -7,9 +7,34 @@ stack-sepia-tile = sepia tile
 stack-terracotta-tile = terracotta tile
 stack-terracotta-diagonal-tile = diagonal terracotta tile
 stack-terracotta-small-tile = small terracotta tile
+stack-labeller-refill-paper = labeller refill paper
 stack-dark-wood-floor = dark wood floor
 stack-dark-wood-pattern-floor = dark wood pattern floor
 stack-dark-large-wood-floor = large dark wood floor
+black-wood-floor = black wooden floor
+dark-wood-floor = dark wooden floor
+light-wood-floor = light wooden floor
+red-wood-floor = red wooden floor
+large-black-wood-floor = large black wooden floor
+large-dark-wood-floor = large dark wooden floor
+large-light-wood-floor = large light wooden floor
+large-red-wood-floor = large red wooden floor
+parquet-black-wood-floor = black wooden parquet
+parquet-dark-wood-floor = dark wooden parquet
+parquet-light-wood-floor = light wooden parquet
+parquet-red-wood-floor = red wooden parquet
+chess-wood-floor = wooden chess floor
+chess-black-wood-floor = black wooden chess floor
+chess-dark-wood-floor = dark wooden chess floor
+chess-light-wood-floor = light wooden chess floor
+chess-red-wood-floor = red wooden chess floor
+stack-metal-dark-floor = dark metal floor
+stack-metal-brown-floor = brown metal floor
+stack-metal-blue-floor = blue metal floor
+stack-metal-purple-floor = purple metal floor
+stack-metal-red-floor = red metal floor
+stack-metal-green-floor = green metal floor
+stack-astro-dirt-floor = astro-dirt floor
 
 stack-bluespacecrystal = {$amount ->
     [1] bluespace
@@ -39,6 +64,14 @@ stack-redointment = {$amount ->
 stack-redbrutepack = {$amount ->
     [1] redbrutepack
     *[other] redbrutepacks
+}
+stack-interdyneointment = {$amount ->
+    [1] interdyneointment
+    *[other] interdyneointments
+}
+stack-interdynebrutepack = {$amount ->
+    [1] interdynebrutepack
+    *[other] interdynebrutepacks
 }
 stack-redpunctpack = {$amount ->
     [1] redpunctpack

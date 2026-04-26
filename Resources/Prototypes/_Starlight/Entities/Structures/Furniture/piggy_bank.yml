@@ -1,0 +1,36 @@
+- type: entity
+  parent: BasePinata
+  id: PropPiggyBank
+  name: piggy bank
+  description: It squeals in fear, for it knows what comes next.
+  components:
+  - type: Pinata
+    hitTable: !type:NestedSelector
+      tableId: PiggyBankTable
+    gibTable: !type:NestedSelector
+      tableId: PiggyBankTable
+      rolls: !type:RangeNumberSelector
+        range: 5, 8
+  - type: Destructible # Same as parent, but spawns BrokenBottle instead of ShardGlass
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 2
+            max: 3
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/piggy_bank.rsi
+    state: piggy_bank

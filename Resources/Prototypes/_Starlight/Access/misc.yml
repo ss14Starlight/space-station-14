@@ -1,0 +1,115 @@
+- type: accessGroup
+  id: CyborgAllAccess # Identical to AllAccess, minus Debrief. Parity ensured by CyborgAllAccessParityTest.
+  tags:
+    - EmergencyShuttleRepealAll
+    - Captain
+    - HeadOfPersonnel
+    - ChiefEngineer
+    - ChiefMedicalOfficer
+    - HeadOfSecurity
+    - ResearchDirector
+    - Command
+    - Cryogenics
+    - Security
+    - Detective
+    - Armory
+    - Brig
+    - Lawyer
+    - Engineering
+    - Medical
+    - Quartermaster
+    - Salvage
+    - Cargo
+    - Research
+    - Service
+    - Maintenance
+    - External
+    - Janitor
+    - Theatre
+    - Bar
+    - Chemistry
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - Atmospherics
+    - GenpopEnter
+    - GenpopLeave
+    - Cadet
+    - Magistrate
+    - Ntrep
+    - IAA
+    - Brigmedic
+    - BlueShield
+    - Robotics
+    - Surgery
+    - Paramedic
+    - Mining
+    - SalvageLead
+    - Mail
+    - Pirate
+
+- type: accessLevel
+  id: Debug1
+  name: id-card-access-level-debug1
+
+- type: accessLevel
+  id: Debug2
+  name: id-card-access-level-debug2
+
+- type: accessLevel
+  id: Debug3
+  name: id-card-access-level-debug3
+
+- type: accessLevel
+  id: Debug4
+  name: id-card-access-level-debug4
+
+- type: accessLevel
+  id: Debug5
+  name: id-card-access-level-debug5
+
+- type: accessLevel
+  id: Freelance
+  name: id-card-access-level-freelance
+
+- type: accessLevel
+  id: Communist
+  name: id-card-access-level-communist
+
+- type: accessLevel
+  id: Blackstar
+  name: id-card-access-level-blackstar
+
+- type: accessGroup
+  id: Misc
+  tags:
+  - Debug1
+  - Debug2
+  - Debug3
+  - Debug4
+  - Debug5
+  - Freelance
+  - Communist
+  - Wizard
+  - Pirate
+  - Blackstar
+  - MedTak
+
+- type: accessGroup
+  id: Syndicate
+  tags:
+  - SyndicateAgent
+  - NuclearOperative
+
+- type: accessLevel
+  id: Pirate
+  name: id-card-access-level-pirate
+
+- type: accessGroup
+  id: Pirate
+  tags:
+  - Pirate
+
+- type: accessLevel
+  id: MedTak
+  name: id-card-access-level-medtak

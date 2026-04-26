@@ -36,7 +36,7 @@ public sealed class AnimateOnSpawnSystem : EntitySystem
         sprite.LayerSetVisible(AnimateOnSpawnVisualLayers.Animation, false);
         _appearanceSystem.SetData(ent, AnimateOnSpawnVisualState.Animating, false);
     }
-    
+
     private void OnCompStart(Entity<AnimateOnSpawnComponent> ent, ref ComponentStartup args)
     {
         if (!HasComp<AnimationPlayerComponent>(ent) ||
@@ -45,12 +45,12 @@ public sealed class AnimateOnSpawnSystem : EntitySystem
 
         if(!sprite.LayerMapTryGet(AnimateOnSpawnVisualLayers.Animation, out var layer))
             return;
-        
+
         var rsi = sprite.LayerGetActualRSI(AnimateOnSpawnVisualLayers.Animation);
         if (rsi is null || !rsi.TryGetState(ent.Comp.AnimationState, out var state))
             return;
         var animLength = state.AnimationLength;
-        
+
         var anim = new Animation
         {
             AnimationTracks =
@@ -69,7 +69,7 @@ public sealed class AnimateOnSpawnSystem : EntitySystem
 
         sprite.LayerSetVisible(AnimateOnSpawnVisualLayers.Animation, true);
         _animationSystem.Play(ent, anim, "spawnAnimation");
-        
+
         _appearanceSystem.SetData(ent, AnimateOnSpawnVisualState.Animating, true);
     }
 }

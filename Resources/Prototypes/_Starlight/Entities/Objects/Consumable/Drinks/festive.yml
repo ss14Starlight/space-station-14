@@ -1,0 +1,22 @@
+
+# ideally this would turn back into a bowl when empty, but for the time being...
+- type: entity
+  parent: [DrinkBaseMaterialPorcelain, DrinkBase]
+  id: DrinkGravyBoat
+  name: gravy boat  # short and stout
+  description: A gravy boat. It simply oozes... gravy.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: Gravy
+          Quantity: 50
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Drinks/gravyboat.rsi
+  - type: FitsInDispenser
+    solution: drink
+  - type: Tag
+    tags:
+    - Dinnerware

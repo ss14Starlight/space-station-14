@@ -29,7 +29,7 @@
 
 #Basic Helmet (Security Helmet)
 - type: entity
-  parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadSuitWithLightBase]
+  parent: [ ClothingHeadLightBase, ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadLightParamsIntermediate ] # Starlight: Inherit from correct base light, include light params
   id: ClothingHeadHelmetBasic
   name: helmet
   description: Standard security gear. Protects the head from impacts.
@@ -170,6 +170,12 @@
     layers:
       Hair: HEAD
       Snout: HEAD
+# Starlight
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 #Janitorial Bombsuit Helmet
 - type: entity
@@ -286,7 +292,7 @@
 
 #Fire Helmet
 - type: entity
-  parent: ClothingHeadLightBase
+  parent: [ ClothingHeadLightBase, ClothingHeadLightParamsBasic ] # Starlight
   id: ClothingHeadHelmetFire
   name: fire helmet
   description: An atmos tech's best friend. Provides some heat resistance and looks cool.
@@ -314,7 +320,7 @@
 
 #Atmos Fire Helmet
 - type: entity
-  parent: [ClothingHeadLightBase, BaseEngineeringContraband]
+  parent: [ ClothingHeadLightBase, ClothingHeadLightParamsIntermediate, BaseEngineeringContraband ] # Starlight
   id: ClothingHeadHelmetAtmosFire
   name: atmos fire helmet
   description: An atmos fire helmet, able to keep the user cool in any situation.
@@ -344,6 +350,8 @@
       Hair: HEAD
       Snout: HEAD
   - type: BreathMask
+  - type: PointLight # Starlight
+    color: "#a1f7f7" # Starlight
 
 #Chitinous Helmet
 - type: entity
@@ -467,6 +475,10 @@
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
 
 #Bone Helmet
 #No need to hide the hair on this one
@@ -520,7 +532,7 @@
         Piercing: 0.9
         Heat: 0.9
   - type: Unremoveable
-  
+
 #Justice Helmet
 - type: entity
   parent: ClothingHeadHelmetBasic
@@ -594,6 +606,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellSmall
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: PowerCellDraw
     drawRate: 2
   - type: ToggleCellDraw
@@ -613,6 +630,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: HideLayerClothing
     layers:
       Hair: HEAD

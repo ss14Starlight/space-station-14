@@ -30,6 +30,7 @@
   - Cryogenics
   - Surgery # Starlight
   - Paramedic # Starlight
+  - Debrief # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -42,7 +43,6 @@
   equipment:
     id: CMOPDA
     ears: ClothingHeadsetCMO
-    belt: ClothingBeltMedicalFilled
   storage:
     back:
     - Flash

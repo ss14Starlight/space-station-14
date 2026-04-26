@@ -6,10 +6,14 @@
     ClothingBackpackDuffelCargo: 3
     ClothingUniformJumpsuitCargo: 3
     ClothingUniformJumpskirtCargo: 3
+    ClothingUniformJumpsuitMail: 2 # Starlight
+    ClothingUniformJumpskirtMail: 2 # Starlight
     CargoOverallsUniformSuit: 2 #Starlight
     ClothingShoesColorBlack: 3
     ClothingHandsGlovesFingerless: 3
+    ClothingBeltCargo: 1 # Starlight
     ClothingHeadHatCargosoft: 3
+    ClothingHeadHatMailsoftVisor: 2 # Starlight
     ClothingHeadHatBeretCargo: 3 # starlight
     ClothingHeadBandBrown: 3
     ClothingHeadsetCargo: 3
@@ -18,6 +22,7 @@
     ClothingOuterWindbreakerCargo: 2 #Starlight
     ClothingNeckScarfStripedBrown: 3
     ClothingShoesBootsWinterCargo: 2
+    ClothingShoesBootsMail: 1 # Starlight
     MailBag: 2
     MailTrolleyFlatpack: 2
     WeaponMeleeBoxcutter: 2
@@ -25,3 +30,8 @@
     ToyFigurineCargoTech: 1
     ToyFigurineSalvage: 1
     ToyFigurineQuartermaster: 1
+    ClothingBackpackTrunkMail: 1 # Starlight start
+  emaggedInventory:
+    ClothingBackpackSalvage: 1
+    ClothingBackpackSatchelSalvage: 1
+    ClothingBackpackDuffelSalvage: 1 # Starlight end
