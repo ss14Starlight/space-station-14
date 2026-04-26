@@ -15,7 +15,11 @@
   customName: true # Starlight start
   standardSize: 200
   standardWeight: 145
-  standardDensity: 130 # Starlight end
+  standardDensity: 130
+  minAge: 30
+  youngAge: 40
+  oldAge: 150
+  maxAge: 250 # Starlight end
 
 - type: speciesBaseSprites
   id: MobDionaSprites
