@@ -30,15 +30,6 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         _menu.PopulateProducts();
     }
 
-    private void Populate()
-    {
-        if (_menu == null)
-            return;
-
-        _menu.PopulateProducts();
-        _menu.PopulateCategories();
-    }
-
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
