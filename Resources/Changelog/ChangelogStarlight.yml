@@ -1,20 +1,6 @@
 Entries:
 - author: Cujo
   changes:
-  - message: (Lagan) Added protection anchors to vault and armory.
-    type: Add
-  id: 404191
-  time: '2026-04-10T14:28:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4039
-- author: Cujo
-  changes:
-  - message: (Lagan) Removed the Chemistry Locker from Brigmedic.
-    type: Remove
-  id: 404192
-  time: '2026-04-10T14:28:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4039
-- author: Cujo
-  changes:
   - message: (Lagan) Redesigned the northern atmos room airlock.
     type: Tweak
   id: 404193
@@ -2799,4 +2785,18 @@ Entries:
   id: 404590
   time: '2026-04-25T05:14:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4249
+- author: Conflee
+  changes:
+  - message: Fixed 'my cool OC is 10000 years old' problems by forcing a 400 year old max age for any species. Elves go up to 400, Resomi 300, Avali 350, Shadekin 300. Increased max age for Lagomorph 90, Diona 250, Dwarf 200, and Slime 130.
+    type: Tweak
+  id: 404591
+  time: '2026-04-25T18:36:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4251
+- author: Conflee
+  changes:
+  - message: Swapped IPC and Lagomorph random character generation chances since Lagomorphs are closer to 'human' than IPCs are. IPCs are very unique and complicated.
+    type: Tweak
+  id: 404592
+  time: '2026-04-25T18:36:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4251
 Order: -1
