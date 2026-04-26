@@ -10,6 +10,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 using System.Linq;
+using Content.Shared._Starlight.Silicons;
 #endregion Starlight
 
 namespace Content.Shared.Silicons.Borgs;
@@ -192,8 +193,16 @@ public abstract partial class SharedBorgSystem
                     else
                     {
                         module.Comp.StoredItems.Remove(handId);
+                        // Starlight: re-spawn item that was consumed externally (e.g. holocuffs applied to a target)
+                        if (hand.Item is { } respawnProto)
+                            item = PredictedSpawnAtPosition(respawnProto, xform.Coordinates);
                     }
                     // Starlight edit end
+                }
+                // Starlight: item entry was removed (consumed) — re-spawn it
+                else if (hand.Item is { } respawnProto)
+                {
+                    item = PredictedSpawnAtPosition(respawnProto, xform.Coordinates);
                 }
             }
             else if (hand.Item is { } itemProto)
@@ -209,6 +218,15 @@ public abstract partial class SharedBorgSystem
                 {
                     _tag.AddTag(pickUp, module.Comp.ModuleItemTag); // Starlight
                     EnsureComp<UnremoveableComponent>(pickUp);
+                }
+
+                // Starlight: stamp borg-owner info onto borg handcuffs so they can return home
+                if (TryComp<BorgHandcuffComponent>(pickUp, out var borgCuff))
+                {
+                    borgCuff.OwnerChassis = chassis.Owner;
+                    borgCuff.HandId = handId;
+                    Dirty(pickUp, borgCuff);
+                    EnsureComp<UnremoveableComponent>(pickUp); // always undroppable
                 }
             }
         }

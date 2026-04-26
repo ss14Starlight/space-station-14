@@ -28,6 +28,28 @@
       stock: 1
 
 - type: listing
+  id: ClothingUniformJumpskirtElegantMaid
+  productEntity: ClothingUniformJumpskirtElegantMaid
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSkirt
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingUniformJumpskirtTacticalMaid
+  productEntity: ClothingUniformJumpskirtTacticalMaid
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSkirt
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: ClothingUniformJumpskirtDressRed
   productEntity: ClothingUniformJumpskirtDressRed
   cost:
@@ -52,6 +74,28 @@
 - type: listing
   id: ClothingUniformJulianneVA11HALLA
   productEntity: ClothingUniformJulianneVA11HALLA
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSkirt
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingUniformJumpskirtBartenderBlackAlt
+  productEntity: ClothingUniformJumpskirtBartenderBlackAlt
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSkirt
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingUniformTimelessSkirt
+  productEntity: ClothingUniformTimelessSkirt
   cost:
     NTCredit: 990
   categories:
@@ -204,6 +248,17 @@
       stock: 1
 
 - type: listing
+  id: ClothingUniformJumpskirtPunkSkirt
+  productEntity: ClothingUniformJumpskirtPunkSkirt
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSkirt
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: ClothingUniformJumpsuitSuitCheckered
   productEntity: ClothingUniformJumpsuitSuitCheckered
   cost:
@@ -226,6 +281,18 @@
       stock: 1
 
 - type: listing
+  id: ClothingUniformTimelessSuit
+  productEntity: ClothingUniformTimelessSuit
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSuit
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+
+- type: listing
   id: ClothingUniformJumpsuitSuitWaiter
   productEntity: ClothingUniformJumpsuitSuitWaiter
   cost:
@@ -237,8 +304,8 @@
       stock: 1
 
 - type: listing
-  id: ClothingUniformJumpsuitMimeSexyWhite
-  productEntity: ClothingUniformJumpsuitMimeSexyWhite
+  id: ClothingUniformJumpsuitMimeSuaveWhite
+  productEntity: ClothingUniformJumpsuitMimeSuaveWhite
   cost:
     NTCredit: 400
   categories:
@@ -248,8 +315,8 @@
       stock: 1
 
 - type: listing
-  id: ClothingUniformJumpsuitMimeSexyBlack
-  productEntity: ClothingUniformJumpsuitMimeSexyBlack
+  id: ClothingUniformJumpsuitMimeSuaveBlack
+  productEntity: ClothingUniformJumpsuitMimeSuaveBlack
   cost:
     NTCredit: 400
   categories:
@@ -307,6 +374,17 @@
   productEntity: ClothingHeadHelmetSilverMusician
   cost:
     NTCredit: 990
+  categories:
+    - SLFashionHead
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingHeadHatTacticalMaidHeadband
+  productEntity: ClothingHeadHatTacticalMaidHeadband
+  cost:
+    NTCredit: 400
   categories:
     - SLFashionHead
   conditions:
@@ -424,10 +502,10 @@
       stock: 1
 
 - type: listing
-  id: PlushieBBC
-  productEntity: PlushieBBC
+  id: PlushieDarkForest
+  productEntity: PlushieDarkForest
   cost:
-    NTCredit: 4500
+    NTCredit: 2500
   categories:
     - SLFashionOther
   conditions:
@@ -570,6 +648,40 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
+
+- type: listing
+  id: ClothingHandsTacticalMaidGlovesDelicate
+  productEntity: ClothingHandsTacticalMaidGlovesDelicate
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+
+- type: listing
+  id: ClothingHandsMaidGlovesElegant
+  productEntity: ClothingHandsMaidGlovesElegant
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: NT4PlayerInstrument
+  productEntity: NT4PlayerInstrument
+  cost:
+    NTCredit: 1500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 4
 
 - type: listing
   id: ClothingHeadHatTophatBig

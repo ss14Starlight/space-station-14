@@ -63,8 +63,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
         // NullLink start
         _net.RegisterNetMessage<MsgUpdatePlayerPlayTime>(Update);
-        _cfg.OnValueChanged(NullLinkCCVars.Project, x => _project = x, true);
-        _cfg.OnValueChanged(NullLinkCCVars.Server, x => _server = x, true);
+        _cfg.OnValueChanged(NullLinkCCVars.Project, OnProjectChanged, true);
+        _cfg.OnValueChanged(NullLinkCCVars.Server, OnServerChanged, true);
         // NullLink end
 
         _client.RunLevelChanged += ClientOnRunLevelChanged;
@@ -77,6 +77,19 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         MergePlayTime();
     }
 
+    private void OnProjectChanged(string value)
+    {
+        _project = value;
+        _serverPlaytimeRecognition = null;
+        MergePlayTime();
+    }
+
+    private void OnServerChanged(string value)
+    {
+        _server = value;
+        MergePlayTime();
+    }
+
     private void MergePlayTime()
     {
         _mergedRoles.Clear();
@@ -84,29 +97,24 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         foreach (var (tracker, time) in _originalRoles)
             _mergedRoles[tracker] = time;
 
-        if (_server is null || _project is null)
-            return;
-
-        if (_serverPlaytimeRecognition is null)
+        if (!string.IsNullOrEmpty(_server) && !string.IsNullOrEmpty(_project))
         {
-            if (!_prototypes.TryIndex<ServerPlaytimeRecognitionPrototype>(_project, out var serverPlaytimeRecognition))
-                return;
+            if (_serverPlaytimeRecognition is null)
+                _prototypes.TryIndex(_project, out _serverPlaytimeRecognition);
 
-            _serverPlaytimeRecognition = serverPlaytimeRecognition;
-        }
-
-        if (_serverPlaytimeRecognition?.Recognition.TryGetValue(_server, out var servers) is true)
-        {
-            foreach (var server in servers)
+            if (_serverPlaytimeRecognition?.Recognition.TryGetValue(_server, out var servers) is true)
             {
-                if (_rolesPerServer.TryGetValue(server, out var rolesForServer))
+                foreach (var server in servers)
                 {
-                    foreach (var (tracker, time) in rolesForServer)
+                    if (_rolesPerServer.TryGetValue(server, out var rolesForServer))
                     {
-                        if (_mergedRoles.ContainsKey(tracker))
-                            _mergedRoles[tracker] += time;
-                        else
-                            _mergedRoles[tracker] = time;
+                        foreach (var (tracker, time) in rolesForServer)
+                        {
+                            if (_mergedRoles.ContainsKey(tracker))
+                                _mergedRoles[tracker] += time;
+                            else
+                                _mergedRoles[tracker] = time;
+                        }
                     }
                 }
             }

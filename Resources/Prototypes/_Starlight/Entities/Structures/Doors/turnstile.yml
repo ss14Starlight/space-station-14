@@ -1,4 +1,4 @@
-# Command
+# Regular turnstiles
 
 - type: entity
   id: TurnstileCommand
@@ -7,6 +7,8 @@
   components:
   - type: AccessReader
     access: [["Command"]]
+
+# CentComm turnstiles
 
 - type: entity
   id: TurnstileCentComm
@@ -21,3 +23,12 @@
           map: [ "enum.TurnstileVisualLayers.Base" ]
     - type: AccessReader
       access: [["Command"]]
+
+- type: entity
+  id: TurnstileCentCommDebrief
+  parent: TurnstileCentComm
+  name: central command turnstile
+  suffix: Debrief
+  components:
+    - type: AccessReader
+      access: [["Debrief"]]

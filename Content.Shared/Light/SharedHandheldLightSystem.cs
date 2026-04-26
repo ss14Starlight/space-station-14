@@ -113,4 +113,16 @@ public abstract class SharedHandheldLightSystem : EntitySystem
 
     public abstract bool TurnOff(Entity<HandheldLightComponent> ent, bool makeNoise = true);
     public abstract bool TurnOn(EntityUid user, Entity<HandheldLightComponent> uid);
+
+    #region Starlight
+
+    public void SetDrawSource(EntityUid uid, EntityUid? source, HandheldLightComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+        component.DrawSource = source;
+        Dirty(uid, component);
+    }
+
+    #endregion
 }

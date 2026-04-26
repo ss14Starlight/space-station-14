@@ -91,5 +91,15 @@ namespace Content.Shared.Shuttles.Components
         /// </summary>
         [DataField]
         public TimeSpan? FTLCooldownOverride = null;
+
+        #region Starlight
+
+        /// <summary>
+        /// How fast the shuttle needs to be moving to count as a ram for the purposes of ejecting a PAI from the console.
+        /// </summary>
+        [DataField]
+        public float RamVelocityThreshold = 5f;
+
+        #endregion
     }
 }

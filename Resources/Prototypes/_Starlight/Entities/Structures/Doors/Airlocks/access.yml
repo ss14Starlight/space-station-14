@@ -336,6 +336,86 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/maint.rsi
 
+# Service
+- type: entity
+  parent: AirlockServiceLocked
+  id: AirlockLegalLocked
+  suffix: Legal, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLegal ]
+
+- type: entity
+  parent: AirlockServiceGlassLocked
+  id: AirlockLegalGlassLocked
+  suffix: Legal, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLegal ]
+
+- type: entity
+  parent: AirlockLegalLocked # Starlight
+  id: AirlockMaintLegalLocked # Starlight
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+# Courtroom
+- type: entity
+  parent: AirlockSecurityLocked
+  id: AirlockCourtroomLocked
+  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCourtroom ]
+
+- type: entity
+  parent: AirlockSecurityGlassLocked
+  id: AirlockCourtroomGlassLocked
+  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCourtroom ]
+
+- type: entity
+  parent: AirlockCourtroomLocked
+  id: AirlockMaintCourtroomLocked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+
+# Attorney
+- type: entity
+  parent: AirlockServiceLocked
+  id: AirlockAttorneyLocked
+  suffix: Internal Affairs/Legal (Attorney), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAttorney ]
+
+- type: entity
+  parent: AirlockServiceGlassLocked
+  id: AirlockAttorneyGlassLocked
+  suffix: Internal Affairs/Legal (Attorney), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAttorney ]
+
+- type: entity
+  parent: AirlockAttorneyLocked
+  id: AirlockMaintAttorneyLocked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+
 # Xenoborg
 - type: entity
   parent: AirlockXenoborgGlass
@@ -852,6 +932,42 @@
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsBlackstar ]
+
+# Blackstar
+- type: entity
+  parent: AirlockBrigmed
+  id: AirlockMedTakLocked
+  suffix: MedTak, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedTak ]
+    - type: Wires
+      layoutId: AirlockMedTak
+
+# MedTak
+- type: entity
+  parent: AirlockBrigmedGlass
+  id: AirlockMedTakGlassLocked
+  suffix: MedTak, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedTak ]
+    - type: Wires
+      layoutId: AirlockMedTak
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockGlassShuttleMedTakLocked
+  suffix: Glass, Docking, MedTak, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedTak ]
+    - type: Wires
+      layoutId: AirlockMedTak
+
 
 # Escape Pods (gridfills)
 - type: entity

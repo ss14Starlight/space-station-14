@@ -136,6 +136,15 @@ thaven-mood-duck-and-cover-desc = Showing your full profile is dangerous, crawl 
 thaven-mood-paranoid-name = Paranoid
 thaven-mood-paranoid-desc = You strongly believe that coords cause cancer.
 
+thaven-mood-universal-collapse-name = Universal Collapse
+thaven-mood-universal-collapse-desc = The universe is collapsing in on itself, only you can save it! You must do this without acting strange or criminal so the station doesn't fall into panic.
+
+thaven-mood-silicons-must-be-used-name = Silicons Must Be Used
+thaven-mood-silicons-must-be-used-desc = Doing labour is outdated and disgusting. All difficult jobs must be done by the silicon, it's what they were made for.
+
+thaven-mood-fish-ancestry-name = Fish Ancestry
+thaven-mood-fish-ancestry-desc = You must submerge or lay in water at least once per 10 minutes, or when you have been in a warm climate. You must do this to avoid drying out.
+
 # we love when server context doesn't properly dispose of data...
 DuplicateTest = DuplicateTestFTL
 DuplicateOverlapTest = DuplicateOverlapTestFTL

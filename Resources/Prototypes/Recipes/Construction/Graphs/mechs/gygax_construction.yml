@@ -162,7 +162,7 @@
       - tag: GygaxArmor
         name: construction-graph-tag-gygax-armor-plates
         icon:
-          sprite: "Objects/Specific/Mech/Mechs/Basic/gygax.rsi"
+          sprite: "_Starlight/Objects/Specific/Mechs/Mechs/gygax.rsi"
           state: gygax_armor
         completed:
         - !type:VisualizerDataInt
