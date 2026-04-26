@@ -145,7 +145,6 @@
     - PowerCellsStatic
     - ElectronicsStatic
     # Starlight Start
-    - OublietteCircuitBoard
     - CassetteTape
     - TapeRecorder
     dynamicPacks:
@@ -307,6 +306,7 @@
     - StarlightLawboards
     - StarlightCircuitImprinterLootable
     - ReactorCircuitboards # FH edit
+    - OublietteCircuitBoard # Starlight
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
