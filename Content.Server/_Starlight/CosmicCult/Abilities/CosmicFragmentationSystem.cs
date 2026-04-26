@@ -108,6 +108,9 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         }
 
         UnEmpower(ent);
+        _actions.RemoveAction(ent.Owner, ent.Comp.CosmicFragmentationActionEntity);
+        ent.Comp.ActionEntities.Remove(ent.Comp.CosmicFragmentationActionEntity);
+        ent.Comp.CosmicFragmentationActionEntity = null;
     }
 
     private void OnFragmentBorg(Entity<BorgChassisComponent> ent, ref MalignFragmentationEvent args)
@@ -144,7 +147,6 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         var secs = chantryComponent.EventTime.Seconds;
         _antag.SendBriefing(wisp, Loc.GetString("cosmiccult-silicon-chantry-briefing", ("minutesandseconds", $"{mins} minutes and {secs} seconds")), Color.FromHex("#4cabb3"), null);
         args.Succeeded = true;
-        _actions.RemoveAction(ent.Owner, args.User.Comp.CosmicFragmentationActionEntity);
     }
 
     private void OnFragmentAi(Entity<SiliconLawUpdaterComponent> ent, ref MalignFragmentationEvent args)
@@ -156,7 +158,6 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         _container.EmptyContainer(container, true);
         _container.Insert(lawboard, container, Transform(args.Target), true);
         args.Succeeded = true;
-        _actions.RemoveAction(ent.Owner, args.User.Comp.CosmicFragmentationActionEntity);
     }
 
     private void OnLawInserted(ref AILawUpdatedEvent args)

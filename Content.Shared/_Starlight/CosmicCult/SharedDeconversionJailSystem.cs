@@ -210,7 +210,7 @@ public abstract partial class SharedDeconversionJailSystem : EntitySystem
     {
         if (args.Handled)
             return;
-        _anomaly.ChangeAnomalyHealth(args.Target, -999);
+        _anomaly.ChangeAnomalyHealth(args.Target, args.Oubliette.Comp.AnomalyPurgeHealth);
         OublietteSuccess(args.Oubliette, args.Target);
 
         args.Handled = true;

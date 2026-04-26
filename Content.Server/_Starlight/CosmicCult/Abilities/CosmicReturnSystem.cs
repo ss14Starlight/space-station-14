@@ -27,23 +27,16 @@ public sealed class CosmicReturnSystem : EntitySystem
     {
         _damageable.TryChangeDamage(args.User, uid.Comp.ProjectionDamage, true);
 
+        if (!_mind.TryGetMind(args.User, out var mindId, out var mind))
+            return;
+
         var projectionEnt = Spawn(uid.Comp.SpawnProjection, Transform(uid).Coordinates);
 
         EnsureComp<CosmicBlankComponent>(args.User);
         EnsureComp<UncryoableComponent>(args.User);
 
-        if (!_mind.TryGetMind(args.User, out var mindId, out _))
-        {
-
-            return;
-        }
-
         _mind.TransferTo(mindId, projectionEnt);
-
-        if (TryComp<MindComponent>(mindId, out var mind))
-        {
-            mind.PreventGhosting = true;
-        }
+        mind.PreventGhosting = true;
 
         EnsureComp<CosmicAstralBodyComponent>(projectionEnt, out var astralComp);
         astralComp.OriginalBody = args.User;
@@ -56,15 +49,11 @@ public sealed class CosmicReturnSystem : EntitySystem
     /// </summary>
     private void OnCosmicReturn(Entity<CosmicAstralBodyComponent> uid, ref EventCosmicReturn args)
     {
-        if (!_mind.TryGetMind(args.Performer, out var mindId, out _))
+        if (!_mind.TryGetMind(args.Performer, out var mindId, out var mind))
             return;
 
         _mind.TransferTo(mindId, uid.Comp.OriginalBody);
-
-        if (TryComp<MindComponent>(mindId, out var mind))
-        {
-            mind.PreventGhosting = false;
-        }
+        mind.PreventGhosting = false;
 
         QueueDel(uid);
 

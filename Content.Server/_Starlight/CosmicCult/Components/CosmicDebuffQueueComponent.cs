@@ -21,6 +21,7 @@ public sealed partial class CosmicDebuffQueueComponent : Component
     [DataField]
     public int DebuffQuant = 0;
 
+    [DataField]
     public Dictionary<CosmicDebuffOptions, float> DebuffOptions = new()
     {
        {CosmicDebuffOptions.CosmicDebuffMigraine, 8f},

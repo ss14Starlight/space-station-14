@@ -27,6 +27,7 @@ public sealed partial class DeconversionOublietteComponent : Component
     [DataField] public TimeSpan EmoteMaxTime = TimeSpan.FromSeconds(11);
     [DataField] public TimeSpan CooldownWait = TimeSpan.FromSeconds(15);
     [DataField] public TimeSpan DeconversionTime = TimeSpan.FromSeconds(35);
+    [DataField] public float AnomalyPurgeHealth = -999f;
     [DataField] public EntityUid? Victim;
     [DataField] public OublietteStates OublietteState;
 
