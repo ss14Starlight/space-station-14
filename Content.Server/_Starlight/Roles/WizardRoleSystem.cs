@@ -53,8 +53,10 @@ public sealed class WizardRoleSystem : EntitySystem
         _tag.AddTag(ownedEntity.Value, WizardTag);
     }
 
-    // Fallback: fires on the mob entity when a mind is transferred into it.
-    // Covers cases where RoleAddedEvent fired before OwnedEntity was assigned.
+    /// <summary>
+    /// Fallback: fires on the mob entity when a mind is transferred into it.
+    /// Covers cases where RoleAddedEvent fired before OwnedEntity was assigned.
+    /// </summary>
     private void OnMindAdded(MindAddedMessage args)
     {
         if (!IsWizardMind(args.Mind.Owner, args.Mind.Comp))
