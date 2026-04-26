@@ -210,5 +210,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             ShipyardMapEntity = null;
             return;
         }
+
+        ShipyardMapId = mapComp.MapId;
+
+        _mapSystem.SetPaused(ShipyardMapEntity.Value, false);
     }
 }
