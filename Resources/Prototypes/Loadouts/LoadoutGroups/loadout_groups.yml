@@ -48,7 +48,23 @@
   - OffsetCaneNT
   - Cane
   - TowelColorWhite
-  - HarmonicaInstrument # Starlight start
+  - TowelColorGray # Starlight start
+  - TowelColorBlack
+  - TowelColorRed
+  - TowelColorOrange
+  - TowelColorLightBrown
+  - TowelColorYellow
+  - TowelColorDarkGreen
+  - TowelColorGreen
+  - TowelColorLightBlue
+  - TowelColorDarkBlue
+  - TowelColorPurple
+  - TowelColorMaroon
+  - TowelColorMime
+  - TowelColorSilver
+  - TowelColorGold
+  - TowelColorWhite
+  - HarmonicaInstrument
   - FluteInstrument
   - AcousticGuitarInstrument
   - TrumpetInstrument
