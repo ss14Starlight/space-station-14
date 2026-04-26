@@ -54,7 +54,8 @@ public sealed class ShipyardSystem : SharedShipyardSystem
         SetupShipyard();
     }
 
-    private void OnShipyardShutdown(EntityUid uid, ShipyardConsoleComponent component, ComponentShutdown args) => CleanupShipyard();
+    private void OnShipyardShutdown(EntityUid uid, ShipyardConsoleComponent component, ComponentShutdown args) =>
+        CleanupShipyard();
 
     public override void Shutdown()
     {
