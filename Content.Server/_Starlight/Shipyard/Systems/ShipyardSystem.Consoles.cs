@@ -16,7 +16,6 @@ using Content.Shared.Shuttles.Components;
 using Robust.Shared.Utility;
 using Robust.Shared.Audio.Systems;
 using Content.Server.Radio.EntitySystems;
-using Content.Shared.Radio;
 using Content.Shared._Starlight.Speech;
 
 namespace Content.Server._Starlight.Shipyard.Systems;
@@ -61,14 +60,26 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
         }
 
         if (vessel.Price <= 0)
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-invalid-price"));
+            PlayDenySound(uid, component);
             return;
+        }
 
         if (_station.GetOwningStation(uid) is not { } station)
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-no-station"));
+            PlayDenySound(uid, component);
             return;
+        }
 
         var bank = GetBankAccount(station);
         if (bank == null)
+        {
+            ConsolePopup(player, Loc.GetString("shipyard-console-no-bank"));
+            PlayDenySound(uid, component);
             return;
+        }
 
         var balance = bank.Accounts.GetValueOrDefault(bank.PrimaryAccount, 0);
 

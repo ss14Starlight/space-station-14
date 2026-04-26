@@ -15,7 +15,6 @@ using Content.Shared.Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using System.Numerics;
-using Robust.Shared.Maths;
 
 namespace Content.Server._Starlight.Shipyard.Systems;
 
@@ -118,10 +117,16 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (ShipyardMapId == null)
                 return;
 
-            if (TryComp(shuttleUid.Value, out ShuttleComponent? shuttleComp))
+            if (!targetGrid.HasValue || Deleted(targetGrid.Value))
             {
-                _shuttle.TryFTLDock(shuttleUid.Value, shuttleComp, targetGrid.Value);
+                Log.Warning($"Target grid vanished before docking shuttle {shuttleUid.Value}");
+                return;
             }
+
+            if (!TryComp(shuttleUid.Value, out ShuttleComponent? shuttleComp))
+                return;
+
+            _shuttle.TryFTLDock(shuttleUid.Value, shuttleComp, targetGrid.Value);
         });
 
         vessel = shuttle;
@@ -196,10 +201,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         ShipyardMapEntity = _mapSystem.CreateMap();
 
         if (!TryComp<MapComponent>(ShipyardMapEntity.Value, out var mapComp))
+        {
+            // Clean up the map we just created
+            if (Exists(ShipyardMapEntity.Value))
+                Del(ShipyardMapEntity.Value);
+
+            ShipyardMapEntity = null;
             return;
-
-        ShipyardMapId = mapComp.MapId;
-
-        _mapSystem.SetPaused(ShipyardMapEntity.Value, false);
+        }
     }
 }
