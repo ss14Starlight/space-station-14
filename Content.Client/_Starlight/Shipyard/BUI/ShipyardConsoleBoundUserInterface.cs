@@ -20,10 +20,14 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
     protected override void Open()
     {
         base.Open();
+
         _menu = new ShipyardConsoleMenu(this);
         _menu.OpenCentered();
         _menu.OnClose += Close;
         _menu.OnOrderApproved += ApproveOrder;
+
+        _menu.PopulateCategories();
+        _menu.PopulateProducts();
     }
 
     private void Populate()
@@ -33,18 +37,6 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
 
         _menu.PopulateProducts();
         _menu.PopulateCategories();
-    }
-
-    protected override void UpdateState(BoundUserInterfaceState state)
-    {
-        base.UpdateState(state);
-
-        if (state is not ShipyardConsoleInterfaceState cState)
-            return;
-
-        Balance = cState.Balance;
-        Populate();
-        _menu?.UpdateState(cState);
     }
 
     protected override void Dispose(bool disposing)

@@ -8,6 +8,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using static Robust.Client.UserInterface.Controls.BaseButton;
+using Content.Shared._Starlight.Shipyard.Events;
 
 namespace Content.Client._Starlight.Shipyard.UI;
 
@@ -29,6 +30,9 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         Title = Loc.GetString("shipyard-console-menu-title");
         SearchBar.OnTextChanged += OnSearchBarTextChanged;
         Categories.OnItemSelected += OnCategoryItemSelected;
+
+        PopulateCategories();
+        PopulateProducts();
     }
 
     private void OnCategoryItemSelected(OptionButton.ItemSelectedEventArgs args)
@@ -75,7 +79,8 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
                     Purchase = { ToolTip = prototype.Description },
                     Price = { Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", prototype.Price.ToString())) },
                 };
-                vesselEntry.Purchase.OnPressed += (args) => OnOrderApproved?.Invoke(args);
+                vesselEntry.Purchase.OnPressed += _ =>
+                    _menu.SendMessage(new ShipyardConsolePurchaseMessage(prototype.ID));
                 Vessels.AddChild(vesselEntry);
             }
         }
@@ -93,7 +98,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         {
             if (!_categoryStrings.Contains(prototype.Category))
             {
-                _categoryStrings.Add(Loc.GetString(prototype.Category));
+                _categoryStrings.Add(prototype.Category);
             }
         }
 
@@ -104,7 +109,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
         foreach (var str in _categoryStrings)
         {
-            Categories.AddItem(str);
+            Categories.AddItem(Loc.GetString(str));
         }
     }
 

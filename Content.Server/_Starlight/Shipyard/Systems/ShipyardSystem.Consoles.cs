@@ -32,8 +32,9 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
-    public void InitializeConsole()
+    public override void Initialize()
     {
+        base.Initialize();
         SubscribeLocalEvent<ShipyardConsoleComponent, ShipyardConsolePurchaseMessage>(OnPurchaseMessage);
         SubscribeLocalEvent<ShipyardConsoleComponent, BoundUIOpenedEvent>(OnConsoleUIOpened);
     }
