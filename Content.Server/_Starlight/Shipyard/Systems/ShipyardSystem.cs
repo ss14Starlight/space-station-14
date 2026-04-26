@@ -18,7 +18,7 @@ using System.Numerics;
 
 namespace Content.Server._Starlight.Shipyard.Systems;
 
-public sealed partial class ShipyardSystem : SharedShipyardSystem
+public sealed class ShipyardSystem : SharedShipyardSystem
 {
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
@@ -26,7 +26,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
-    [Dependency] private readonly ShipyardConsoleSystem _shipyardConsole = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
     public EntityUid? ShipyardMapEntity { get; private set; }
@@ -42,7 +41,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         _enabled = _configManager.GetCVar(StarlightCCVars.Shipyard);
         _configManager.OnValueChanged(StarlightCCVars.Shipyard, SetShipyardEnabled);
-        _shipyardConsole.InitializeConsole();
         SubscribeLocalEvent<ShipyardConsoleComponent, ComponentInit>(OnShipyardStartup);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
@@ -100,16 +98,45 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (shuttleUid == null)
             return;
 
+        void CleanupFailedShuttle(EntityUid uid)
+        {
+            float width = 0f;
+
+            if (TryComp<MapGridComponent>(uid, out var gridComp))
+                width = gridComp.LocalAABB.Width;
+
+            if (Exists(uid))
+                Del(uid);
+
+            _shuttleIndex -= width + ShuttleSpawnBuffer;
+            if (_shuttleIndex < 0f)
+                _shuttleIndex = 0f;
+        }
+
         if (!TryComp(shuttleUid.Value, out ShuttleComponent? shuttle))
+        {
+            Log.Error($"Loaded shuttle {shuttlePath} has no ShuttleComponent; cleaning up.");
+            CleanupFailedShuttle(shuttleUid.Value);
             return;
+        }
 
         var targetGrid = _station.GetLargestGrid((stationUid.Value, stationData));
         if (targetGrid == null)
-            return;
+        {
+            Log.Info($"Shipyard: no valid station grid found for {stationUid}, shuttle will spawn undocked.");
+        }
 
         var price = _pricing.AppraiseGrid(shuttleUid.Value, null);
 
-        Timer.Spawn(TimeSpan.FromSeconds(delay), () =>
+        var checkedDelay = delay;
+
+        if (float.IsNaN(checkedDelay) || checkedDelay < 0f)
+        {
+            Log.Warning($"Shipyard: invalid shuttle delay {delay}, setting to 1.");
+            checkedDelay = 1f;
+        }
+
+        Timer.Spawn(TimeSpan.FromSeconds(checkedDelay), () =>
         {
             if (Deleted(shuttleUid.Value))
                 return;

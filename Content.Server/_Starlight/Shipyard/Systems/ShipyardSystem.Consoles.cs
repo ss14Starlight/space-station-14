@@ -120,11 +120,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
     {
         var station = _station.GetOwningStation(uid);
         var bank = GetBankAccount(station);
-
-        if (bank == null)
-            return;
-
-        var balance = bank.Accounts.GetValueOrDefault(bank.PrimaryAccount, 0);
+        var balance = bank?.Accounts.GetValueOrDefault(bank.PrimaryAccount, 0) ?? 0;
 
         var accessGranted = true;
 
