@@ -79,6 +79,25 @@
   - type: AccessReader
     access: [["Lawyer"]]
 
+# Courtroom
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCourtroom
+  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  components:
+  - type: AccessReader
+    access: [["Security"], ["IAA"], ["Lawyer"]]
+
+
+# Attorney
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsAttorney
+  suffix: Internal Affairs/Legal (Attorney), Locked
+  components:
+  - type: AccessReader
+    access: [["IAA"], ["Lawyer"]]
+
 #Brigmedic
 - type: entity
   parent: DoorElectronics
