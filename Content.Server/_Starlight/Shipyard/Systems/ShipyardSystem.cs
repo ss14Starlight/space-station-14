@@ -56,6 +56,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         SetupShipyard();
     }
 
+    public override void Shutdown()
+    {
+        base.Shutdown();
+        CleanupShipyard();
+    }
+
     private void OnRoundRestart(RoundRestartCleanupEvent ev) =>
         CleanupShipyard();
 
@@ -106,8 +112,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         Timer.Spawn(TimeSpan.FromSeconds(delay), () =>
         {
-            if (!Deleted(shuttleUid.Value) &&
-                TryComp(shuttleUid.Value, out ShuttleComponent? shuttleComp))
+            if (Deleted(shuttleUid.Value))
+                return;
+
+            if (ShipyardMapId == null)
+                return;
+
+            if (TryComp(shuttleUid.Value, out ShuttleComponent? shuttleComp))
             {
                 _shuttle.TryFTLDock(shuttleUid.Value, shuttleComp, targetGrid.Value);
             }
@@ -167,6 +178,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                     Del(uid);
             }
         }
+
+        _shuttleIndex = 0f;
 
         if (Exists(ShipyardMapEntity.Value))
             Del(ShipyardMapEntity.Value);
