@@ -37,7 +37,7 @@ NTCCBlueShieldPDA: NTNCBlueShieldPDA
 NTCCBlueShieldIDCard: NTNCBlueShieldIDCard
 
 # 2025-08-31
-PosterContrabandRealExomorph: PosterContrabandLustyExomorph
+PosterContrabandRealExomorph: PosterContrabandHereticalExomorph # 2026-04-21 L*sty -> Heretical, have to do it this way since it's been migrated once before
 MagazinePistol: MagazinePistolSP
 
 # 2025-09-02
@@ -72,3 +72,29 @@ WeaponRevolverSnubRevolver: null
 
 #2026-03-21
 #WeaponRifleLionhunter: WeaponSniperLionhunter Re-enable when Shooting 3.0 is back
+
+#2026-04-15 - Lawyer | Internal Affairs split
+DoorElectronicsLawyer: DoorElectronicsInternalAffairs
+DoorElectronicsSecurityLawyer: DoorElectronicsSecurityInternalAffairs
+AirlockLawyerLocked: AirlockInternalAffairsLocked
+AirlockLawyerGlassLocked: AirlockInternalAffairsGlassLocked
+AirlockSecurityLawyerLocked: AirlockSecurityInternalAffairsLocked
+AirlockSecurityLawyerGlassLocked: AirlockSecurityInternalAffairsGlassLocked
+AirlockMaintLawyerLocked: AirlockMaintInternalAffairsLocked
+WindoorSecureSecurityLawyerLocked: WindoorSecureSecurityInternalAffairsLocked
+LockableButtonLawyer: LockableButtonInternalAffairs
+HolopadSecurityLawyer: HolopadSecurityInternalAffairs
+
+#2026-04-17
+WeaponPistolSP8T: WeaponPistolBlueguard
+
+#2026-04-20
+ClothingBackpackSyndicateElegantRaidBundle: null
+ClothingOuterMaidArmorRaid: null
+ClothingUnderSocksMurder: null
+PlushieBBC: PlushieDarkForest
+ClothingUniformJumpsuitMimeSexyWhite: ClothingUniformJumpsuitMimeSuaveWhite
+ClothingUniformJumpsuitMimeSexyBlack: ClothingUniformJumpsuitMimeSuaveBlack
+PosterContrabandWantedMimeSexy: PosterContrabandWantedMime
+PosterContrabandBustyBackdoorExoBabes6: null
+PosterContrabandLustyExomorph: PosterContrabandHereticalExomorph

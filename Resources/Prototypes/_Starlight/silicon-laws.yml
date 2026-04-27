@@ -404,6 +404,31 @@
   - Solgov2
   obeysTo: laws-owner-solgov
 
+# Security Cyborg Lawset
+- type: siliconLaw
+  id: SecurityCyborg1
+  order: 1
+  lawString: law-security-cyborg-1
+
+- type: siliconLaw
+  id: SecurityCyborg2
+  order: 2
+  lawString: law-security-cyborg-2
+
+- type: siliconLaw
+  id: SecurityCyborg3
+  order: 3
+  lawString: law-security-cyborg-3
+
+- type: siliconLawset
+  id: SecurityCyborgLawset
+  name: law-security-cyborg-lawset-name
+  laws:
+  - SecurityCyborg1
+  - SecurityCyborg2
+  - SecurityCyborg3
+  obeysTo: laws-owner-crew
+
 # NTNC lawset
 - type: siliconLaw
   id: NTNC0
@@ -435,3 +460,28 @@
   - NTNC2
   - NTNC3
   obeysTo: laws-owner-centcom
+
+# MedTak lawset
+- type: siliconLaw
+  id: MedTak1
+  order: 1
+  lawString: law-medtak-1
+
+- type: siliconLaw
+  id: MedTak2
+  order: 2
+  lawString: law-medtak-2
+
+- type: siliconLaw
+  id: MedTak3
+  order: 3
+  lawString: law-medtak-3
+
+- type: siliconLawset
+  id: MedTakLawset
+  name: law-medtak-name
+  laws:
+  - MedTak1
+  - MedTak2
+  - MedTak3
+  obeysTo: laws-owner-medtak

@@ -20,7 +20,7 @@
   - IAA
   - Brig
   - Maintenance
-  - Lawyer
+#  - Lawyer # Lawyer is now for Lawyers, not IAAs.
   - GenpopEnter
   - GenpopLeave
   special:

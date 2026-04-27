@@ -29,6 +29,7 @@
   - Cryogenics
   - GenpopEnter #starlight
   - GenpopLeave #starlight
+  - Debrief # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

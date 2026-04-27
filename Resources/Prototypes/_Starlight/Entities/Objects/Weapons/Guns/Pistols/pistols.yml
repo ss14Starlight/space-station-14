@@ -96,27 +96,67 @@
               - CartridgeMagnum
 
 - type: entity
+  name: mk 58
+  parent: WeaponPistolMk58
+  id: WeaponPistolMk58HighCapacity
+  suffix: 16 rounds
+  description: Designed by Nanotrasen’s Small Arms Division, the Mk58 is a conventional semi-automatic pistol with a simple recoil-operated action and excellent reliability. The standard sidearm of Nanotrasen’s station security and emergency response teams. Feeds from .35 pistol magazines.
+  components:
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazinePistolHighCapacitySP
+
+
+- type: entity
   name: golden mk 58
   parent: [WeaponPistolMk58, BaseSecurityContraband]
   id: WeaponPistolGoldenMk58
+  description: An expensive and rare golden variant of the Mk58, only given out to the elite. Doesn't actually have any functional differences, though. Feeds from .35 pistol magazines.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/golden_mk58.rsi
     - type: Clothing
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/golden_mk58.rsi
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazinePistolSPGolden
+
+- type: entity
+  name: golden mk 58
+  parent: WeaponPistolGoldenMk58
+  id: WeaponPistolGoldenMk58HighCapacity
+  suffix: 16 rounds
+  components:
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazinePistolHighCapacitySPGolden
 
 - type: entity
   name: enforcer
   parent: [BaseWeaponPistol, BaseSecurityContraband]
   id: WeaponPistolEnforcer
-  description: A pistol of modern design.
+  description: A versatile pistol of modern design.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/enforcer.rsi
     - type: Gun
+      minAngle: 1
+      maxAngle: 30
+      angleIncrease: 5
+      angleDecay: 3
       fireRate: 6
+      selectedMode: FullAuto
       availableModes:
         - SemiAuto
+        - FullAuto
+        - Burst
+      shotsPerBurst: 3
     - type: ChamberMagazineAmmoProvider
       availablePrefixes:
         - ""
@@ -142,7 +182,7 @@
     - type: Clothing
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/dp.rsi
     - type: Gun
-      fireRate: 5
+      fireRate: 4
       availableModes:
         - SemiAuto
       soundGunshot:
@@ -175,7 +215,7 @@
 - type: entity
   name: sp-8t
   parent: [WeaponPistolDP, BaseBlueShieldContraband, BaseGrandTheftContraband]
-  id: WeaponPistolSP8T
+  id: WeaponPistolBlueguard
   components:
     - type: Gun
       soundGunshot:
@@ -183,9 +223,6 @@
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Guns/Pistols/sp8t.rsi
     - type: ChamberMagazineAmmoProvider
-      availablePrefixes:
-        - ""
-        - dust
     - type: StealTarget
       stealGroup: BSOWeapon
 
@@ -313,56 +350,6 @@
       fireRate: 7
       soundGunshot:
         path: /Audio/_Starlight/Weapons/Guns/Gunshots/colt.ogg
-
-# Doesn't work and idk why
-
-#- type: entity
-#name: mk 64
-#parent: [BaseWeaponPistol, BaseSecurityContraband]
-#id: WeaponMachinePistolMk64
-#description: Designed by Nanotrasen’s Small Arms Division, the Mk64 is an unconventional full-auto machine pistol with questionable accuracy, though it can be fired one-handed. Feeds from .35 machine pistol magazines.
-#components:
-#- type: Sprite
-#sprite: _Starlight/Objects/Weapons/Guns/Pistols/mk64.rsi
-#layers:
-#- state: base
-#map: ["enum.GunVisualLayers.Base"]
-#- state: mag-0
-#map: ["enum.GunVisualLayers.Mag"]
-#- type: Clothing
-#sprite: _Starlight/Objects/Weapons/Guns/Pistols/mk64.rsi
-#- type: Gun
-#fireRate: 6
-#availableModes:
-#- FullAuto
-#soundGunshot:
-#path: _Starlight/Audio/Weapons/Guns/Gunshots/uzi.ogg
-#- type: ChamberMagazineAmmoProvider
-#soundRack:
-#path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
-#- type: ItemSlots
-#slots:
-#gun_magazine:
-#name: Magazine
-#startingItem: MagazinePistolHighCapacitySP
-#insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-#ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-#priority: 2
-#whitelist:
-#tags:
-#- MagazinePistolHighCapacity
-#whitelistFailPopup: gun-magazine-whitelist-fail
-#gun_chamber:
-#name: Chamber
-#startingItem: CartridgePistolSP
-#priority: 1
-#whitelist:
-#tags:
-#- CartridgePistol
-#- type: ContainerContainer
-#containers:
-#gun_magazine: !type:ContainerSlot
-#gun_chamber: !type:ContainerSlot
 
 - type: entity
   name: makeshift pistol

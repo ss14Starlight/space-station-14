@@ -22,3 +22,28 @@
         - HudMedical
     - type: EyeProtection
       protectionTime: 5
+
+- type: entity
+  parent: [ ClothingEyesBase, BaseMedTakContraband ]
+  id: ClothingEyesVisorMedTak
+  name: MedTak visor
+  description: A visor for MedTak operators with a built in heads up display and active flash adjustment.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Eyes/Hud/medtak.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Eyes/Hud/medtak.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5

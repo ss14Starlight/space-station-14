@@ -134,6 +134,11 @@
       "name": "ghost-scurret",
       "copyright": "Default Scurret greyscaled",
       "directions": 4
+    },
+    {
+      "name": "ghost-mage",
+      "copyright": "Based off the Terminator Skull & Chaplain Robes",
+      "directions": 4
     }
   ]
 }

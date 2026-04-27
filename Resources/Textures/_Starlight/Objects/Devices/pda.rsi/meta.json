@@ -168,6 +168,17 @@
       "name": "pda-solgov",
       "copyright": "Wassuy",
       "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "pda-medtak",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
     }
   ]
 }

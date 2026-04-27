@@ -41,6 +41,26 @@
   - EmergencyNonBreatherMedical # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
 
+- type: loadoutGroup # Starlight start
+  id: MedicalGloves
+  name: loadout-group-medical-gloves
+  minLimit: 0
+  loadouts:
+  - LatexGloves
+  - NitrileGloves
+
+- type: loadoutGroup
+  id: MedicalEyewear
+  name: loadout-group-medical-glasses
+  minLimit: 0
+  loadouts:
+  - MedicalHud
+  - MedicalEyePatchHud
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+  - MedicalGlassesPrescription # Starlight end
+
 # Chief Medical Officer
 
 - type: loadoutGroup
@@ -246,6 +266,7 @@
   - WhiteShoes
   - MedicalWinterBoots
   - Heels # Starlight
+  - HighHeelBoots # Starlight
 
 - type: loadoutGroup
   id: ParamedicJobTrinkets

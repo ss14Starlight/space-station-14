@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Based on CentDrobe taken from tgstation at https://github.com/tgstation/tgstation/commit/1516a728931b4985c1e86f0c5995a5aa1554a1ad. Modified by potato1234x (github) for SS14. Recolored into Legal by wonderfulnewworld (GitHub)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "broken",
+      "copyright": "TG Station, potato1234x, wonderfulnewworld",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "off",
+      "copyright": "TG Station, potato1234x, wonderfulnewworld",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "panel",
+      "copyright": "TG Station, potato1234x",
+      "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "normal-unshaded",
+      "copyright": "TG Station, potato1234x, wonderfulnewworld",
+      "license": "CC-BY-SA-3.0",
+      "delays": [
+        [
+          1.0,
+          0.1,
+          1.0,
+          0.1,
+          1.0,
+          0.1
+        ]
+      ]
+    }
+  ]
+}
