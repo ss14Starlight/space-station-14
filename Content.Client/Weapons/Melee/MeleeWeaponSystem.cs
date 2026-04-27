@@ -16,7 +16,11 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components; // Starlight-edit™
 using Robust.Shared.Physics.Systems; // Starlight-edit™
 using Robust.Shared.Player;
-using Robust.Shared.Physics; // Starlight-edit™
+using Robust.Shared.Physics;
+using Content.Shared.Humanoid;
+using System.Numerics;
+using Robust.Client.Animations;
+using Robust.Shared.Animations; // Starlight-edit™
 
 namespace Content.Client.Weapons.Melee;
 
@@ -32,10 +36,12 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!; // Starlight-edit™
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly TransformSystem _xform = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 
     private const string MeleeLungeKey = "melee-lunge";
+    private const string HitRecoilAnimationKey = "hit-recoil";
 
     public override void Initialize()
     {
@@ -208,6 +214,65 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     {
         // Server never sends the event to us for predictiveeevent.
         _color.RaiseEffect(Color.Red, targets, Filter.Local());
+        DoHitRecoilEffect(targets, user);
+    }
+
+    private void DoHitRecoilEffect(List<EntityUid> targets, EntityUid? user)
+    {
+        foreach (var target in targets)
+        {
+            if (!TryComp(target, out SpriteComponent? sprite))
+                continue;
+
+            if (!HasComp<HumanoidAppearanceComponent>(target))
+                continue;
+
+            var pushDir = Vector2.Zero;
+            if (user != null)
+            {
+                var worldDelta = _xform.GetWorldPosition(target) - _xform.GetWorldPosition(user.Value);
+                if (worldDelta.LengthSquared() > 0.001f)
+                {
+                    var targetWorldRot = _xform.GetWorldRotation(target);
+                    pushDir = (-targetWorldRot).RotateVec(worldDelta.Normalized());
+                }
+            }
+
+            if (pushDir == Vector2.Zero)
+                pushDir = Vector2.UnitY;
+
+            _animation.Stop(target, HitRecoilAnimationKey);
+            _animation.Play(target, GetHitRecoilAnimation(pushDir), HitRecoilAnimationKey);
+        }
+    }
+
+    private Animation GetHitRecoilAnimation(Vector2 pushDir)
+    {
+        const float length = 0.25f;
+        var push = pushDir * 0.06f;
+        var shake = pushDir * 0.02f;
+
+        return new Animation
+        {
+            Length = TimeSpan.FromSeconds(length),
+            AnimationTracks =
+            {
+                new AnimationTrackComponentProperty
+                {
+                    ComponentType = typeof(SpriteComponent),
+                    Property = nameof(SpriteComponent.Offset),
+                    InterpolationMode = AnimationInterpolationMode.Linear,
+                    KeyFrames =
+                    {
+                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, 0f),
+                        new AnimationTrackProperty.KeyFrame(push, length * 0.15f),
+                        new AnimationTrackProperty.KeyFrame(-shake, length * 0.40f),
+                        new AnimationTrackProperty.KeyFrame(shake * 0.5f, length * 0.65f),
+                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, length),
+                    }
+                }
+            }
+        };
     }
 
     /// <summary>
