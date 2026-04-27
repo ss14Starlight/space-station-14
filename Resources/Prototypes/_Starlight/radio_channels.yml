@@ -60,7 +60,7 @@
 - type: radioChannel
   id: Aspace
   name: chat-radio-aspace
-  keycode: 'k'
+  keycode: 'q'
   frequency: 9999
   color: "#ab489f"
 
@@ -71,4 +71,13 @@
   keycode: 'g'
   frequency: 9998
   color: "#954fff"
+  longRange: true
+
+# Medtak
+- type: radioChannel
+  id: MedTak
+  name: chat-radio-medtak
+  keycode: 'k'
+  frequency: 1452
+  color: "#880606"
   longRange: true

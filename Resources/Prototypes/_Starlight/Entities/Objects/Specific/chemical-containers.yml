@@ -237,3 +237,32 @@
         reagents:
         - ReagentId: Amoxla
           Quantity: 200
+
+# Golden jugs
+- type: entity
+  parent: GoldenJug
+  suffix: bicaridine
+  id: JugGoldenBicaridine
+  components:
+  - type: Label
+    currentLabel: reagent-name-bicaridine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Bicaridine
+          Quantity: 400
+
+- type: entity
+  parent: GoldenJug
+  suffix: dermaline
+  id: JugGoldenDermaline
+  components:
+  - type: Label
+    currentLabel: reagent-name-dermaline
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Dermaline
+          Quantity: 400

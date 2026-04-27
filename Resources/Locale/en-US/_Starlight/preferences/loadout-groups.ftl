@@ -15,6 +15,10 @@ loadout-group-assistant-backpack = Assistant backpack
 loadout-group-boxer-jumpsuit = Boxer jumpsuit
 loadout-group-boxer-gloves = Boxer gloves
 
+loadout-group-reporter-head = Reporter head
+
+loadout-group-musician-head = Musician head
+
 # Command
 
 loadout-group-nanotrasenrepresentative-head = NanoTrasen representative head
@@ -38,6 +42,7 @@ loadout-group-blueshield-id = Blueshield ID
 # Security
 loadout-group-security-tie = Security tie
 loadout-group-security-mask = Security mask
+loadout-group-security-mask-elite = Elite Security mask
 
 loadout-group-brigmedic-gloves = Brigmedic gloves
 loadout-group-security-non-lethal-weapon = Security Non-Lethal Weapon
@@ -57,7 +62,9 @@ loadout-group-dutyofficer-belt = Duty officer belt
 loadout-group-magistrate-jumpsuit = Magistrate jumpsuit
 loadout-group-magistrate-eyewear = Magistrate eyewear
 loadout-group-magistrate-shoes = Magistrate shoes
-loadout-group-iia-shoes = Lawyer shoes
+loadout-group-iaa-jumpsuit = Internal Affairs Agent jumpsuit
+loadout-group-iaa-neck = Internal Affairs Agent neck
+loadout-group-iaa-shoes = Internal Affairs Agent shoes
 loadout-group-magistrate-outer = Magistrate Outer Clothing
 loadout-group-magistrate-headwear = Magistrate Head
 loadout-group-magistrate-hands = Magistrate Gloves
@@ -107,6 +114,8 @@ loadout-group-serviceworker-outerclothing = Service worker outer clothing
 loadout-group-performer-head = Performer head
 loadout-group-performer-jumpsuit = Performer jumpsuit
 loadout-group-performer-outerclothing = Performer outer clothing
+
+loadout-group-lawyer-shoes = Lawyer shoes
 
 # Other
 loadout-group-scarves = Scarf

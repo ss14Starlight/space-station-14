@@ -115,6 +115,30 @@
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: hands }
 
+- type: entity
+  id: BorgContrabandBag
+  parent: BaseStorageItem
+  name: contraband bag
+  description: An integrated evidence bag mounted directly into a security cyborg's chassis. It can collect contraband on contact, and will drop to the floor if the cyborg is incapacitated.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/security.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Large
+    grid:
+    - 0,0,8,3
+    quickInsert: true
+    areaInsert: false
+    whitelist:
+      components:
+      - Contraband
+  - type: Dumpable
+  - type: Unremoveable
+    deleteOnDrop: false
+
 # region Security
 - type: entity
   id: BorgModuleSecurity
@@ -128,44 +152,45 @@
     - state: icon-nt
   - type: ItemBorgModule
     hands:
-    - item: Flash
+    - item: WeaponPDW9TaserBorg
       hand:
-        emptyRepresentative: Flash
-        emptyLabel: borg-slot-flash-empty
-        whitelist:
-          components:
-          - Flash
-    - item: Crowbar
-    - item: Zipties
-      hand:
-        emptyRepresentative: Zipties
-        emptyLabel: borg-slot-zipties-empty
-        whitelist:
-          tags:
-          - Handcuffs # Can be replaced by handcuffs or zipties
-    - item: Stunbaton
-      hand:
-        emptyRepresentative: Stunbaton
-        emptyLabel: borg-slot-stunbaton-empty
-        whitelist:
-          components:
-          - Stunbaton
-    - item: WeaponDisabler
-      hand:
-        emptyRepresentative: WeaponDisabler
+        emptyRepresentative: WeaponPDW9TaserBorg
         emptyLabel: borg-slot-disabler-empty
         whitelist:
           tags:
           - Disabler
-    - item: HoloprojectorSecurity
+          - Taser
+    - item: BorgStunbatonRechargeable
       hand:
-        emptyRepresentative: HoloprojectorSecurity
+        emptyRepresentative: BorgStunbatonRechargeable
+        emptyLabel: borg-slot-stunbaton-empty
+        whitelist:
+          components:
+          - Stunbaton
+    - item: BorgHolocuffs
+      hand:
+        emptyRepresentative: BorgHolocuffs
+        emptyLabel: borg-slot-zipties-empty
+    - item: BorgFlashRechargeable
+      hand:
+        emptyRepresentative: BorgFlashRechargeable
+        emptyLabel: borg-slot-flash-empty
+        whitelist:
+          components:
+          - Flash
+    - item: BorgHoloprojectorSecurity
+      hand:
+        emptyRepresentative: BorgHoloprojectorSecurity
         emptyLabel: borg-slot-holoprojector-empty
         whitelist:
           components:
           - HolosignProjector
+    - item: BorgContrabandBag
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
+  - type: Tag
+    tags:
+    - BorgModuleSecurityStation
 
 # region TSF
 - type: entity
@@ -1118,3 +1143,98 @@
     - item: JetpackCyborgCentcomm
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }
+
+# region MedTak
+- type: entity
+  id: BaseBorgModuleMedTak
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+  - type: BorgModule
+    borgFitTypes:
+    - borg-type-medtak
+  - type: Tag
+    tags:
+    - BorgModuleMedTak
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#ffffff"
+      - state: base-module-inhand-left
+        color: "#660505"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#ffffff"
+      right:
+      - state: base-icon-inhand-right
+        color: "#ffffff"
+      - state: base-module-inhand-right
+        color: "#660505"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#ffffff"
+
+- type: entity
+  id: BorgModuleMedTakMedical
+  parent: [ BaseBorgModuleMedTak, BaseProviderBorgModule ]
+  name: MedTak medical cyborg module
+  description: A MedTak cyborg module for medical support.
+  components:
+  - type: Sprite
+    layers:
+    - state: medtak
+    - state: icon-medtak-med
+  - type: ItemBorgModule
+    hands:
+    - item: HandheldHealthAnalyzer
+    - item: TacticalJetInjector
+      hand:
+        emptyLabel: borg-slot-syringe-empty
+        emptyRepresentative: TacticalJetInjector
+        whitelist:
+          tags:
+          - Syringe
+          - JetInjector
+          - Medipen
+    - hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: MedicatedSuture
+        whitelist:
+          components:
+          - Healing
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+          - Bottle
+    - item: MedTakHoverBedSpawnFolded
+      hand:
+        emptyLabel: borg-slot-rollerbeds-empty
+        emptyRepresentative: MedTakHoverBed
+        whitelist:
+          tags:
+          - BodyBag
+          - RollerBed
+    - item: MedkitCombatMedTakFilledBorg
+    - item: BottleCaseMedTakFilled
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: medtak-aid-module }
+
+- type: entity
+  id: BorgModuleMedTakRifle
+  parent: [ BaseBorgModuleMedTak, BaseProviderBorgModule ]
+  name: MedTak rifle cyborg module
+  description: A MedTak cyborg module equipped with a cut down CODE-9 and a breaching hammer.
+  components:
+  - type: Sprite
+    layers:
+    - state: medtak
+    - state: icon-medtak-sec
+  - type: ItemBorgModule
+    hands:
+    - item: WeaponRifleMedTakROW
+    - item: HammerMedTakOneHanded
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: medtak-combat-module }

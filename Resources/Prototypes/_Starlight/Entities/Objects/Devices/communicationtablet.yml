@@ -1,0 +1,63 @@
+- type: entity
+  name: Captain's Management Tablet
+  parent: [BaseItem, BaseCommandContraband]
+  id: CommunicationTablet
+  description: A portable announcement computer reserved solely for the captain of the station.
+  categories: [ DoNotMap ]
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Service/reporter_digiboard.rsi
+      layers:
+        - state: digiboard-off
+        - state: digiboard-on
+          map: [ "enum.ToggleableVisuals.Layer" ]
+          visible: false
+          shader: unshaded
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ToggleableVisuals.Enabled:
+          enum.ToggleableVisuals.Layer:
+            True: { visible: true }
+            False: { visible: false }
+    - type: ItemToggle
+      onActivate: false
+      onUse: false
+      predictable: false
+      soundActivate:
+        collection: Keyboard
+      soundDeactivate:
+        path: /Audio/Machines/button.ogg
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMedium
+          whitelist:
+            tags:
+              - PowerCell
+              - PowerCellSmall
+    - type: PowerCellDraw
+    - type: ActivatableUIRequiresPowerCell
+    - type: AccessReader
+      access: [[ "Captain" ]]
+    - type: CommunicationsConsole
+      title: comms-console-announcement-title-command
+      sound: /Audio/_Starlight/Announcements/announce2.ogg
+      settableAlertLevels: []
+      canBroadcast: true
+      canShuttle: false
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      transmitFrequencyId: ShuttleTimer
+    - type: ActivatableUI
+      key: enum.CommunicationsConsoleUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.CommunicationsConsoleUiKey.Key:
+          type: CommunicationsConsoleBoundUserInterface

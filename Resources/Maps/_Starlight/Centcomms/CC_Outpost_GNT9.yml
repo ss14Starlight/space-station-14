@@ -52152,7 +52152,7 @@ entities:
     - type: Transform
       pos: 3.6687646,34.603683
       parent: 1
-- proto: TowelColorMime
+- proto: TowelColorWhite
   entities:
   - uid: 106
     components:
