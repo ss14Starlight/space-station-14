@@ -103,7 +103,8 @@ loadout-group-chemist-beaker = Chemist beaker
 loadout-group-chemist-bag = Chemist bag
 loadout-group-chemist-labeler = Chemist labeler
 loadout-group-chemist-shoes = Chemist shoes
-
+loadout-group-medical-glasses = Medical glasses
+loadout-group-medical-gloves = Medical gloves
 # Service
 loadout-group-janitor-neck = Janitor neck
 
