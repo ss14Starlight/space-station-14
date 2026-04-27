@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.Administration;
+using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Prototypes;
@@ -16,13 +17,12 @@ public sealed partial class GameTicker
 {
     /// <summary>
     /// Designated game rule that spawns a fake antagonist to discourage metagaming.
-    /// Has to be a string since <see cref="EntProtoId"/> cannot be a const.
     /// </summary>
-    public const string DummyGameRule = "DummyNonAntag";
+    public static readonly EntProtoId DummyGameRule = "DummyNonAntag";
 
     [ViewVariables] private readonly List<(TimeSpan, string)> _allPreviousGameRules = new();
-    readonly int _effectivePlayerCutoff = 30; // Starlight, the number of online players at which unready players start counting as effectively ready
-    readonly double _unreadyPlayerMultiplier = 0.6; // Starlight, the fraction of unready players that count as effectively ready when above the cutoff
+
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = null!;
 
     /// <summary>
     ///     A list storing the start times of all game rules that have been started this round.
@@ -121,6 +121,29 @@ public sealed partial class GameTicker
         }
 
         return ruleEntity;
+    }
+
+    /// <summary>
+    /// Tries to add a gamerule to the current round, but ignores any <see cref="_ignoredRules"/>
+    /// </summary>
+    /// <param name="gameRule">Game rule entity that we are trying to spawn</param>
+    /// <returns>The entityUid of the spawned game rule, if it wasn't ignored.</returns>
+    public EntityUid? AddFilteredGameRule(EntProtoId gameRule)
+    {
+        if (IsIgnored(gameRule))
+            return null;
+
+        return AddGameRule(gameRule);
+    }
+
+    /// <summary>
+    /// Checks if this GameRule should be ignored before a spawning attempt.
+    /// </summary>
+    /// <param name="gameRule">GameRule we are trying to validate</param>
+    /// <returns>True if the gamerule should be ignored and not spawned.</returns>
+    public bool IsIgnored(EntProtoId gameRule)
+    {
+        return _ignoredRules.Contains(gameRule);
     }
 
     /// <summary>
