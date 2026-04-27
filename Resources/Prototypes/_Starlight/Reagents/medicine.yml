@@ -29,36 +29,6 @@
             Burn: -4
             Brute: -4
 
-- type: reagent
-  id: Rumizine
-  name: reagent-name-rumizine
-  parent: BaseAlcohol
-  desc: reagent-desc-rumizine
-  physicalDesc: reagent-physical-desc-strong-smelling
-  flavor: rum
-  color: "#f09f4255"
-  recognizable: true
-  metamorphicSprite:
-    sprite: Objects/Consumable/Drinks/rumglass.rsi
-    state: icon_empty
-  metamorphicMaxFillLevels: 4
-  metamorphicFillBaseName: fill-
-  metamorphicChangeColor: false
-  metabolisms:
-    Drink:
-      effects:
-      - !type:SatiateThirst
-        factor: 2
-      - !type:AdjustReagent
-        reagent: Ethanol
-        amount: 0.2
-    Medicine:
-      effects:
-      - !type:HealthChange
-        damage:
-          groups:
-            Burn: -4
-            Brute: -4
 
 - type: reagent
   id: Amoxla
