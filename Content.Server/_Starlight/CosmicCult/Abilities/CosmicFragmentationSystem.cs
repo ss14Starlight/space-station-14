@@ -16,6 +16,9 @@ using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.NullSpace;
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
+using Content.Shared.Radio.Components;
+using Content.Shared.Radio;
+using Content.Shared.Mobs;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
@@ -32,7 +35,9 @@ public sealed class CosmicFragmentationSystem : EntitySystem
     [Dependency] private readonly LanguageSystem _languageSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
+
     private readonly ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
+    private readonly ProtoId<RadioChannelPrototype> _cultRadio = "CosmicRadio";
 
     public override void Initialize()
     {
@@ -41,7 +46,7 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         SubscribeLocalEvent<AILawUpdatedEvent>(OnLawInserted);
 
         SubscribeLocalEvent<BorgChassisComponent, MalignFragmentationEvent>(OnFragmentBorg);
-        SubscribeLocalEvent<IPCBrainComponent, MalignFragmentationEvent>(OnFragmentBorg);
+        SubscribeLocalEvent<IPCBrainHolderComponent, MalignFragmentationEvent>(OnFragmentIPC);
         SubscribeLocalEvent<SiliconLawUpdaterComponent, MalignFragmentationEvent>(OnFragmentAi);
 
         SubscribeLocalEvent<CosmicCultComponent, EventCosmicFragmentation>(OnCosmicFragmentation);
@@ -113,50 +118,57 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         ent.Comp.CosmicFragmentationActionEntity = null;
     }
 
-    private void OnFragmentBorg(Entity<BorgChassisComponent> ent, ref MalignFragmentationEvent args)
+    private void OnFragmentBorg(Entity<BorgChassisComponent> ent, ref MalignFragmentationEvent args) =>
+        HandleFragmentSilicon(ent.Owner, ref args);
+
+    private void OnFragmentIPC(Entity<IPCBrainHolderComponent> ent, ref MalignFragmentationEvent args) =>
+        HandleFragmentSilicon(ent.Owner, ref args);
+
+    private void HandleFragmentSilicon(EntityUid ent, ref MalignFragmentationEvent args)
     {
         if (!_mind.TryGetMind(ent, out var mindId, out var mind))
             return;
+
         var wisp = Spawn("CosmicChantryWisp", Transform(ent).Coordinates);
         var chantry = Spawn("CosmicBorgChantry", Transform(ent).Coordinates);
+
         EnsureComp<CosmicChantryComponent>(chantry, out var chantryComponent);
         chantryComponent.InternalVictim = wisp;
         chantryComponent.VictimBody = ent;
+
         _metaData.SetEntityName(wisp, $"{MetaData(ent).EntityName}");
         _mind.TransferTo(mindId, wisp, mind: mind);
 
-        var mins = chantryComponent.EventTime.Minutes;
-        var secs = chantryComponent.EventTime.Seconds;
-        _antag.SendBriefing(wisp, Loc.GetString("cosmiccult-silicon-chantry-briefing", ("minutesandseconds", $"{mins} minutes and {secs} seconds")), Color.FromHex("#4cabb3"), null);
-        args.Succeeded = true;
-    }
-
-    private void OnFragmentBorg(Entity<IPCBrainComponent> ent, ref MalignFragmentationEvent args)
-    {
-        if (!_mind.TryGetMind(ent, out var mindId, out var mind))
-            return;
-        var wisp = Spawn("CosmicChantryWisp", Transform(ent).Coordinates);
-        var chantry = Spawn("CosmicBorgChantry", Transform(ent).Coordinates);
-        EnsureComp<CosmicChantryComponent>(chantry, out var chantryComponent);
-        chantryComponent.InternalVictim = wisp;
-        chantryComponent.VictimBody = ent;
-        _metaData.SetEntityName(wisp, $"{MetaData(ent).EntityName}");
-        _mind.TransferTo(mindId, wisp, mind: mind);
+        AddCultRadio(ent);
+        _mobStateSystem.ChangeMobState(ent, MobState.Critical);
 
         var mins = chantryComponent.EventTime.Minutes;
         var secs = chantryComponent.EventTime.Seconds;
-        _antag.SendBriefing(wisp, Loc.GetString("cosmiccult-silicon-chantry-briefing", ("minutesandseconds", $"{mins} minutes and {secs} seconds")), Color.FromHex("#4cabb3"), null);
+
+        _antag.SendBriefing(
+            wisp,
+            Loc.GetString("cosmiccult-silicon-chantry-briefing",
+                ("minutesandseconds", $"{mins} minutes and {secs} seconds")),
+            Color.FromHex("#4cabb3"),
+            null
+        );
+
         args.Succeeded = true;
     }
 
     private void OnFragmentAi(Entity<SiliconLawUpdaterComponent> ent, ref MalignFragmentationEvent args)
     {
         var lawboard = Spawn("CosmicCultLawBoard", Transform(args.Target).Coordinates);
+
         _container.TryGetContainer(args.Target, "circuit_holder", out var container);
         if (container == null)
             return;
+
         _container.EmptyContainer(container, true);
         _container.Insert(lawboard, container, Transform(args.Target), true);
+
+        AddCultRadio(args.Target);
+
         args.Succeeded = true;
     }
 
@@ -165,10 +177,53 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         if (args.Lawset.Id == "CosmicCultLaws")
         {
             _languageSystem.AddLanguage(args.Target, _cultLanguage);
-            _antag.SendBriefing(args.Target, Loc.GetString("cosmiccult-silicon-subverted-briefing"), Color.FromHex("#4cabb3"), null);
+            AddCultRadio(args.Target);
+
+            _antag.SendBriefing(args.Target,
+                Loc.GetString("cosmiccult-silicon-subverted-briefing"),
+                Color.FromHex("#4cabb3"), null);
         }
         else
+        {
             _languageSystem.RemoveLanguage(args.Target, _cultLanguage);
+            RemoveCultRadio(args.Target);
+        }
+    }
+
+    private void AddCultRadio(EntityUid uid)
+    {
+        if (TryComp<IntrinsicRadioTransmitterComponent>(uid, out var transmitter))
+        {
+            if (!transmitter.Channels.Contains(_cultRadio))
+            {
+                transmitter.Channels.Add(_cultRadio);
+                Dirty(uid, transmitter);
+            }
+        }
+
+        if (TryComp<ActiveRadioComponent>(uid, out var radio))
+        {
+            if (!radio.Channels.Contains(_cultRadio))
+            {
+                radio.Channels.Add(_cultRadio);
+                Dirty(uid, radio);
+            }
+        }
+    }
+
+    private void RemoveCultRadio(EntityUid uid)
+    {
+        if (TryComp<IntrinsicRadioTransmitterComponent>(uid, out var transmitter))
+        {
+            if (transmitter.Channels.Remove(_cultRadio))
+                Dirty(uid, transmitter);
+        }
+
+        if (TryComp<ActiveRadioComponent>(uid, out var radio))
+        {
+            if (radio.Channels.Remove(_cultRadio))
+                Dirty(uid, radio);
+        }
     }
 }
 
