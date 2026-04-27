@@ -5,8 +5,7 @@ rr-criminal-message = Well-wisher: We have just intercepted a fax, you’ve been
 rr-criminal-wrapped-message = [bold]Well-wisher[/bold]: We have just intercepted a fax, you’ve been declared wanted. Nevertheless, your recent malicious act against NT has greatly impressed us. We’ll send you a gift by mail, it should arrive in about 20 minutes.
 
 rr-criminal-letter-name = ORDER, dangerous criminal {$subject} is wanted.
-rr-criminal-1-letter-content = [logo]            [cclogo]
-
+rr-criminal-1-letter-content =
                              [head=3]NT Information Security Department[/head]
 
                   [center][color=#006666][italic][bold]   Order for the immediate interception[/bold][/italic][/color][/center]
@@ -22,8 +21,7 @@ rr-criminal-1-letter-content = [logo]            [cclogo]
    ⠀                                    [italic]Place for stamps[/italic]
 
 rr-criminal-failed-name = Decision regarding the criminal {$subject}.
-rr-criminal-failed-content = [logo]            [cclogo]
-
+rr-criminal-failed-content =
                              [head=3]Authorized inspector on the case[/head]
 
                   [center][color=#006666][italic][bold]            Decision[/bold][/italic][/color][/center]
