@@ -30,8 +30,24 @@
   - !type:GroupLoadoutEffect
     proto: SeniorPhysician
 
-    # Eyewear
+# Gloves
+- type: loadout
+  id: NitrileGloves
+  equipment:
+    gloves: ClothingHandsGlovesNitrile
+
+# Eyewear
 - type: loadout
   id: MedicalGlassesPrescription
   equipment:
     eyes: ClothingEyeGlassesMedicalPrescription
+
+- type: loadout
+  id: MedicalHud
+  equipment:
+    eyes: ClothingEyesHudMedical
+
+- type: loadout
+  id: MedicalEyePatchHud
+  equipment:
+    eyes: ClothingEyesEyepatchHudMedical
