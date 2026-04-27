@@ -9,6 +9,13 @@ namespace Content.IntegrationTests.Tests.GameRules;
 [TestFixture]
 public sealed class StartEndGameRulesTest
 {
+    public override PoolSettings PoolSettings => new PoolSettings
+    {
+        Dirty = true,
+        DummyTicker = false,
+        Map = PoolManager.TestStation
+    };
+
     /// <summary>
     ///     Tests that all game rules can be added/started/ended at the same time without exceptions.
     /// </summary>
