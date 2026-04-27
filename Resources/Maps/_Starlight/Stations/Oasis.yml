@@ -4,7 +4,7 @@ meta:
   engineVersion: 272.0.0
   forkId: starlight
   forkVersion: d45f72dc3b11a4288a0ea4a08fc07102577604c0
-  time: 04/26/2026 22:29:11
+  time: 04/27/2026 18:25:22
   entityCount: 35702
 maps:
 - 1
@@ -16078,7 +16078,7 @@ entities:
       pos: 33.5,-28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -171824.27
+      secondsUntilStateChange: -172267.67
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16120,7 +16120,7 @@ entities:
       pos: 37.5,18.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -227502.81
+      secondsUntilStateChange: -227946.22
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16167,7 +16167,7 @@ entities:
       pos: -18.5,-39.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -223654.8
+      secondsUntilStateChange: -224098.2
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16300,7 +16300,7 @@ entities:
     - type: AccessReader
       accessListsOriginal: []
     - type: Door
-      secondsUntilStateChange: -227450.25
+      secondsUntilStateChange: -227893.66
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16356,7 +16356,7 @@ entities:
       pos: 22.5,-12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -308918.38
+      secondsUntilStateChange: -309361.78
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -17956,7 +17956,7 @@ entities:
       pos: 52.5,-0.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -224881.69
+      secondsUntilStateChange: -225325.1
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18229,7 +18229,7 @@ entities:
       pos: 40.5,2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -222348.36
+      secondsUntilStateChange: -222791.77
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18258,7 +18258,7 @@ entities:
       pos: -22.5,26.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -538114.25
+      secondsUntilStateChange: -538557.6
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18576,7 +18576,7 @@ entities:
       pos: 42.5,10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -204252.58
+      secondsUntilStateChange: -204695.98
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18950,7 +18950,7 @@ entities:
       pos: -13.5,-45.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -223653.39
+      secondsUntilStateChange: -224096.8
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -19177,7 +19177,7 @@ entities:
       pos: 29.5,-42.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -238615.89
+      secondsUntilStateChange: -239059.3
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -19317,7 +19317,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -636943.06
+      secondsUntilStateChange: -637386.44
       state: Opening
   - uid: 631
     components:
@@ -19329,7 +19329,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -636945.7
+      secondsUntilStateChange: -637389.06
       state: Opening
   - uid: 632
     components:
@@ -19341,7 +19341,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -636944.56
+      secondsUntilStateChange: -637387.94
       state: Opening
   - uid: 633
     components:
@@ -19352,7 +19352,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -636943.75
+      secondsUntilStateChange: -637387.1
       state: Opening
   - uid: 28476
     components:
@@ -93355,7 +93355,7 @@ entities:
   - uid: 1802
     components:
     - type: MetaData
-      desc: A large duffel bag for... surgery....
+      desc: A large duffel bag for... surgery...
       name: maints surgery bag
     - type: Transform
       pos: -38.64732,49.368244
@@ -172204,7 +172204,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -201347.64
+      secondsUntilStateChange: -201791.05
       state: Opening
     - type: Airlock
       autoClose: False
@@ -231443,7 +231443,7 @@ entities:
   - uid: 28372
     components:
     - type: MetaData
-      desc: Dont tempt him, he plays Light Souls.
+      desc: Don't tempt him, he plays Light Souls.
       name: Fred's Buckler
     - type: Transform
       rot: 1.5707963267948966 rad
