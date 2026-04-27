@@ -16,7 +16,7 @@ public static class FormattedMessageSanitizer
     public static string[] PaperLabelTags =
         new[]
         {
-            "color", "bold", "bolditalic", "italic", "mono", "icon", "scramble", "font", "head", "bullet" //, "slogo", "cclogo", "logo" <- uncomment once these don't break and make text go out of bounds of the examine textbox
+            "color", "bold", "bolditalic", "italic", "mono", "icon", "scramble", "font", "head", "bullet"
         };
 
     /// <summary>
