@@ -1,0 +1,96 @@
+- - type: entity
+  id: TerraformerMachine
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: terraformer
+  description: A machine designed to slowly convert barren terrain into habitable ground.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+
+  - type: Sprite
+    sprite: Structures/Machines/terraformer.rsi
+    noRot: true
+    layers:
+    - state: icon
+    - state: running
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+
+  - type: Icon
+    sprite: Structures/Machines/terraformer.rsi
+    state: icon
+
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+  - type: ApcPowerReceiver
+    powerLoad: 500
+
+  - type: Terraformer
+    active: true
+    fuel: 100
+    radius: 5
+    fuelPerSecond: 1
+    tileConvertCooldown: 2
+    sourceTiles:
+    - FloorAsteroidSand
+    targetTile: FloorGrass
+
+  - type: Appearance
+
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+
+  - type: WiresPanel
+
+  # Add this only after you create the circuitboard prototype.
+  # - type: Machine
+  #   board: TerraformerMachineCircuitboard
+
+  # Add this only after adding construction containers / board support.
+  # - type: ContainerContainer
+  #   containers:
+  #     machine_board: !type:Container
+  #     machine_parts: !type:Container
+
+  - type: LitOnPowered
+
+  - type: PointLight
+    color: "#4aff70"
+    radius: 3
+    energy: 0.7
+    enabled: false
+    castShadows: false

@@ -1,8 +1,8 @@
 - type: entity
-  name: TSF-Baton-Model5
+  name: TPR-24 Baton
   parent: [BaseItem, BaseTSFContraband]
-  id: TPR-24 Baton
-  description: The Model 5 baton is standard issue for Trans Solar Federation peacekeepers. Built with durability in mind, this proven crowd control device remains effective across TSF territories. Its archaic capacitor design requires no external power source.
+  id: TSFBatonModel5
+  description: The TPR-24 Baton is standard issue for Trans Solar Federation peacekeepers. Built with durability in mind, this proven crowd control device remains effective across TSF territories. Its archaic capacitor design requires no external power source.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Melee/tsf_baton_model5.rsi

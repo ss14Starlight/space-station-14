@@ -542,7 +542,7 @@
 
 - type: entity
   name: G17
-  parent: [BaseTSFContraband, BaseWeaponPistol]
+  parent: [BaseBlueShieldContraband, BaseWeaponPistol]
   id: WeaponPistolTSFModel17
   description: A standard-issue sidearm of the Trans Solar Federation, the Model 17 serves TSF peacekeepers across the galaxy. Built with proven reliability and chambered in .35 auto, this pistol remains a trusted tool of law enforcement. Feeds from .35 pistol magazines.
   components:

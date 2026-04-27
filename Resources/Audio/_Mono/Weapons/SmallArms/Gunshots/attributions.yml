@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: 2025 halycon
+#
+# SPDX-License-Identifier: MPL-2.0
+
+- files: ["ak_fire.ogg", "atreides_fire", "bigshotgun_fire", "hawk_fire", "l6_fire", "mk_fire", "mla_fire", "python_fire", "viper_fire", "wspr_fire", "wt_fire"]
+  license: "CC-BY-NC-4.0"
+  copyright: "Created by Vunsunta, converted to mono and modified by kleinerstation13 (Github)"
+  source: "https://www.dropbox.com/scl/fi/dd03xhdhwg9em8l1xyxtr/Vunsunta-Firearm-Sound-Pack-V2.zip?rlkey=p7cyhkgf462v2bikj8awjbugu&e=2&st=hesyx5au&dl=0"

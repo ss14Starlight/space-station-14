@@ -310,82 +310,77 @@
   - MagistrateBlackGloves
 
 - type: loadoutGroup
-  id: BlueShieldHead
-  name: loadout-group-blueshield-head
+  id: BlueShieldHead #Do not change ID (breaks System)"Project verdant"
+  name: TSFO head
   minLimit: 0
   defaultSelected: 1
   loadouts:
-  - BlueShieldBeret
-  - BlueShieldBountyHat
+  - TSFOBeret
+  - TSFOCap
 
 - type: loadoutGroup
-  id: BlueShieldBackpack
-  name: loadout-group-blueshield-backpack
+  id: BlueShieldBackpack #Do not change ID (breaks System)"Project verdant"
+  name: TSFO backpack
   loadouts:
-  - BlueShieldBackpack
-  - BlueShieldSatchel
-  - BlueShieldDuffel
+  - TSFOBackpack
+  - TSFODuffel
+  - TSFOSatchel
   - LeatherSatchel
 
 - type: loadoutGroup
-  id: BlueShieldJumpsuit
-  name: loadout-group-blueshield-jumpsuit
+  id: BlueShieldJumpsuit #Do not change ID (breaks System)"Project verdant"
+  name: TSFO jumpsuit
   loadouts:
-  - BlueShieldJumpsuit
-  - BlueShieldJumpskirt
-  - EliteBlueShieldJumpsuit
-  - EliteBlueShieldJumpskirt
-  - BlueShieldShirt
-  - BlueShieldSkirt
-  - FormalBlueShieldJumpsuit
+  - TSFMCUniform
+  - TSFMCDesertUniform
+  - TSFOJumpsuit
 
 - type: loadoutGroup
-  id: BlueShieldOuterclothing
-  name: loadout-group-blueshield-outerclothing
+  id: BlueShieldOuterclothing #Do not change ID (breaks System)"Project verdant"
+  name: TSFO outerclothing
   minLimit: 0
   maxLimit: 1
   defaultSelected: 1
   loadouts:
-  - BlueShieldVest
-  - BlueShieldCoat
+  - TSFOvest
 
 - type: loadoutGroup
-  id: BlueShieldBelt
-  name: loadout-group-blueshield-belt
+  id: BlueShieldBelt #Do not change ID (breaks System)"Project verdant"
+  name: TSFO belt
   minLimit: 1
   defaultSelected: 1
   loadouts:
-  - BlueShieldWebbing
-  - BlueShieldMedicalBelt
+  - TSFWebbing
+  - TSFOMedicalBelt
 
 - type: loadoutGroup
-  id: BlueShieldPDA
+  id: BlueShieldPDA #Do not change ID (breaks System)"Project verdant"
   minLimit: 1
   defaultSelected: 1
-  name: loadout-group-blueshield-id
+  name: TSFO id
   loadouts:
-    - BlueShieldPDA
-    - VeteranBlueShieldPDA
+    - TSFOPDA
 
 - type: loadoutGroup
-  id: BlueShieldNeck
+  id: BlueShieldNeck #Do not change ID (breaks System)"Project verdant"
   minLimit: 0
   defaultSelected: 1
-  name: loadout-group-blueshield-neck
+  name: TSFO neck
   loadouts:
-  - BlueShieldFormalCloak
-  - BlueShieldEliteCloak
-  - BlueShieldPoncho
+  - TSFOBadge
+  - TSFOCloak
+  - TSFOEliteCloak
+  - TSFOPoncho
 
 - type: loadoutGroup
-  id: BlueShieldEyewear
+  id: BlueShieldEyewear #Do not change ID (breaks System)"Project verdant"
   minLimit: 1
   defaultSelected: 1
-  name: loadout-group-blueshield-eyewear
+  name: TSFO eyewear
   loadouts:
-  - BlueShieldGlasses
-  - BlueShieldHud
-  - BlueShieldEyePatchHud
+  - TSFOglasses
+  - TSFOhud
+  - TSFOEyePatchHud
 
 - type: loadoutGroup
   id: SecurityNonLethalWeapon

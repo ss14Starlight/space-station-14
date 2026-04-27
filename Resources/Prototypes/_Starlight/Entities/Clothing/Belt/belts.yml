@@ -131,7 +131,7 @@
 - type: entity
   parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseBlueShieldContraband]
   id: ClothingBeltBlueShieldMedicalBelt
-  name: blueshield medical belt
+  name: TSFO Medical Belt
   description: A tactical belt that can hold many items to save the lives of command.
   components:
   - type: Storage

@@ -42,13 +42,13 @@
       state: stamp-iaa
 
 - type: entity
-  name: blueshield rubber stamp
+  name: TSFO fubber stamp
   parent: [ RubberStampBase, BaseBlueShieldContraband ]
   id: RubberStampBSO
   suffix: DO NOT MAP
   components:
   - type: Stamp
-    stampedName: "Blueshield Officer"
+    stampedName: "TSF Officer"
     stampedColor: "#004281"
     stampState: "paper_stamp-bso"
   - type: Sprite

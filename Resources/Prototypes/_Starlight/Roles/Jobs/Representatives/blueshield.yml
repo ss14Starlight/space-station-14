@@ -4,8 +4,8 @@
   description: job-description-blueshield
   playTimeTracker: JobBlueShield
   requirements:
-  startingGear: BlueShieldGear
-  icon: JobIconBlueShield
+  startingGear: TSFOGear
+  icon: JobIconTSFOfficer
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-centcom
   canBeAntag: false
@@ -42,21 +42,38 @@
     - SalvageLead
   special:
     - !type:AddImplantSpecial
-      implants: [MindShieldImplant]
+      implants: [TSFMindShieldImplant]
 
 - type: startingGear
-  id: BlueShieldGear
+  id: TSFOGear
   equipment:
-    # head: ClothingHeadHatBeretBlueShield
-    # id: BlueShieldPDA
-    ears: ClothingHeadsetAltBSO # Starlight
-    # belt: ClothingBeltBlueShieldWebbingFilled
-    pocket1: WeaponPistolSP8T
+    #jumpsuit: ClothingUniformJumpsuitTSF
+   # back: ClothingBackpackMerc
+    #shoes: ClothingShoesBootsCombatFilled
+    #eyes: ClothingEyesGlassesSecurity
+    #head: ClothingHeadHatBeretTSF
+    #neck: ClothingNeckTSFBadge
+    #gloves: ClothingHandsGlovesCombat
+    #outerClothing: ClothingOuterVestRetroOfficer
+    #belt: ClothingBeltTSFMarineWebbing
+    pocket1: WeaponPistolTSFModel17
     pocket2: HandheldBSOCrewMonitor
   storage:
     back:
-    - Flash
-    - ClothingMaskGasBSO
+      - Flash
+      - CrowbarRed
+      - TSFZiptiePack
+      - MagazinePistolSP
+      - MagazinePistolSP
+    belt:
+      - Handcuffs
+      - Handcuffs
+      - TSFBatonModel5
+      - HoloprojectorSecurity
+      - TearGasGrenade
+      - TearGasGrenade
+      - GrenadeFlashBang
+      - GrenadeFlashBang
 
 - type: chameleonOutfit
   id: BlueShieldChameleonOutfit

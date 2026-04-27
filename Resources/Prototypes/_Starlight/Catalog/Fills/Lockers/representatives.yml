@@ -119,18 +119,17 @@
         - id: WeaponMultiphaseGun
         - id: ClothingEyesGlassesBlueShield
         - id: ClothingEyesHudBlueShield
-        - id: ClothingHeadHatBeretBlueShield
-        - id: ClothingUniformJumpsuitBlueShield
-        - id: ClothingUniformJumpskirtBlueShield
+        - id: ClothingHeadHatBeretTSF
         - id: HandheldGPSBasic
         - id: ClothingNeckCloakBsoElite
         - id: ClothingNeckCloakBsoPoncho
         - id: RadioHandheldSecurity
-        - id: ClothingUniformJumpsuitBlueShieldShirt
-        - id: ClothingUniformJumpskirtBlueShieldSkirt
-        - id: ClothingOuterCoatBlueShield
-        - id: ClothingOuterArmorBlueShield
+        - id: ClothingUniformTSFMC
+        - id: ClothingUniformTSFMCDesert
+        - id: ClothingUniformJumpsuitTSF
+        - id: ClothingOuterVestRetroOfficer
         - id: ClothingNeckCloakBsoCape
+        - id: ClothingNeckTSFBadge
         - id: RubberStampBSO
 
 - type: entity

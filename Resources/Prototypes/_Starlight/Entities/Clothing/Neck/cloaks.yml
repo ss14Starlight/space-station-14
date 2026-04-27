@@ -173,8 +173,8 @@
 - type: entity
   parent: [ ClothingNeckBase, BaseBlueShieldContraband ]
   id: ClothingNeckCloakBsoElite
-  name: elite blueshield cloak
-  description: An elite Blueshield Officer's cloak crafted from the latest composite glowing fabric. No true BSO is afraid of shining in the dark!
+  name: Elite TSFO cloak
+  description: An elite TSF Officer's cloak crafted from the latest composite glowing fabric. No true TSFO is afraid of shining in the dark!
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Neck/Cloaks/bso_elite.rsi
@@ -190,8 +190,8 @@
 - type: entity
   parent: [ ClothingNeckBase, BaseBlueShieldContraband ]
   id: ClothingNeckCloakBsoCape
-  name: blueshield formal cloak
-  description: An incredibly large coat, owned only by the most experienced Blueshield Officers. It's said the sleeves have never been worn.
+  name: TSFO Formal Coat
+  description: An incredibly large coat, owned only by the most experienced TSF Officer's. It's said the sleeves have never been worn.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Neck/Cloaks/bso_formal.rsi
@@ -202,8 +202,8 @@
 - type: entity
   parent: [ ClothingNeckBase, BaseBlueShieldContraband ]
   id: ClothingNeckCloakBsoPoncho
-  name: blueshield poncho
-  description: This type of poncho was the signature garment of a legendary BSO with no name, or so it is said.
+  name: TSFO poncho
+  description: A Practical Poncho For The TSFO's that Want to be Cool.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Neck/Cloaks/bso_poncho

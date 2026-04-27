@@ -1,132 +1,96 @@
-# Senior Time
-- type: loadoutEffectGroup
-  id: VeteranBlueshield
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobBlueShield
-      time: 60h
+#Head
+- type: loadout
+  id: TSFOBeret
+  equipment:
+    head: ClothingHeadHatBeretTSF
 
 - type: loadout
-  id: BlueShieldBeret
+  id: TSFOCap
   equipment:
-    head: ClothingHeadHatBeretBlueShield
+    head: ClothingHeadHatRetroOfficer
+#Backpack  
+- type: loadout
+  id: TSFOBackpack
+  equipment:
+    back: ClothingBackpackTSF
 
 - type: loadout
-  id: BlueShieldBountyHat
-  equipment:
-    head: ClothingHeadHatBlueShieldSheriff
-    
-- type: loadout
-  id: BlueShieldBackpack
-  equipment:
-    back: ClothingBackpackBlueShield
-
-- type: loadout
-  id: BlueShieldDuffel
+  id: TSFODuffel
   equipment:
     back: ClothingBackpackDuffelBlueShield
 
 - type: loadout
-  id: BlueShieldSatchel
+  id: TSFOSatchel
   equipment:
     back: ClothingBackpackSatchelBlueShield
-
+#Uniform
 - type: loadout
-  id: BlueShieldJumpskirt
+  id: TSFMCUniform
   equipment:
-    jumpsuit: ClothingUniformJumpskirtBlueShield
+    jumpsuit: ClothingUniformTSFMC
 
 - type: loadout
-  id: BlueShieldJumpsuit
+  id: TSFMCDesertUniform
   equipment:
-    jumpsuit: ClothingUniformJumpsuitBlueShield
+    jumpsuit: ClothingUniformTSFMCDesert
 
 - type: loadout
-  id: EliteBlueShieldJumpskirt
+  id: TSFOJumpsuit
   equipment:
-    jumpsuit: ClothingUniformJumpskirtEliteBlueShield
+    jumpsuit: ClothingUniformJumpsuitTSF
+
 
 - type: loadout
-  id: EliteBlueShieldJumpsuit
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitEliteBlueShield
-
-- type: loadout
-  id: FormalBlueShieldJumpsuit
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitFormalBlueShield
-
-- type: loadout
-  id: BlueShieldShirt
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitBlueShieldShirt
-
-- type: loadout
-  id: BlueShieldSkirt
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtBlueShieldSkirt
-
-- type: loadout
-  id: BlueShieldGlasses
+  id: TSFOglasses
   equipment:
     eyes: ClothingEyesGlassesBlueShield
 
 - type: loadout
-  id: BlueShieldHud
+  id: TSFOhud
   equipment:
     eyes: ClothingEyesHudBlueShield
 
 - type: loadout
-  id: BlueShieldEyePatchHud
+  id: TSFOEyePatchHud
   equipment:
     eyes: ClothingEyesEyepatchHudBlueShield
 
 - type: loadout
-  id: BlueShieldCoat
+  id: TSFOBadge
   equipment:
-    outerClothing: ClothingOuterCoatBlueShield
+    Neck: ClothingNeckTSFBadge
 
 - type: loadout
-  id: BlueShieldVest
+  id: TSFOvest
   equipment:
-    outerClothing: ClothingOuterArmorBlueShield
+    outerClothing: ClothingOuterVestRetroOfficer
 
 - type: loadout
-  id: BlueShieldFormalCloak
+  id: TSFOCloak
   equipment:
     neck: ClothingNeckCloakBsoCape
 
 - type: loadout
-  id: BlueShieldEliteCloak
+  id: TSFOEliteCloak
   equipment:
     neck: ClothingNeckCloakBsoElite
 
 - type: loadout
-  id: BlueShieldPoncho
+  id: TSFOPoncho
   equipment:
     neck: ClothingNeckCloakBsoPoncho
 
 - type: loadout
-  id: BlueShieldWebbing
+  id: TSFWebbing
   equipment:
-    belt: ClothingBeltBlueShieldWebbingFilled
+    belt: ClothingBeltTSFMarineWebbing
 
 - type: loadout
-  id: BlueShieldMedicalBelt
+  id: TSFOMedicalBelt
   equipment:
     belt: ClothingBeltBlueShieldMedicalBeltFilled
     
 - type: loadout
-  id: BlueShieldPDA
+  id: TSFOPDA
   equipment:
-    id: BlueShieldPDA
-
-- type: loadout
-  id: VeteranBlueShieldPDA
-  effects:
-    - !type:GroupLoadoutEffect
-        proto: VeteranBlueshield
-  equipment:
-    id: VeteranBlueShieldPDA
+    id: SolGovPDA

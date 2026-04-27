@@ -1,7 +1,7 @@
 - type: entity
   id: SuitStorageBlueShield
   parent: SuitStorageBase
-  suffix: BlueShield
+  suffix: TSFO
   components:
   - type: EntityTableContainerFill
     containers:
@@ -17,7 +17,7 @@
   
 - type: entity
   id: SuitStorageBlueShieldBluespaced
-  suffix: BlueShield, Bluespaced
+  suffix: TSFO, Bluespaced
   parent: SuitStorageBlueShield
   categories: [ Spawner ]
   components:

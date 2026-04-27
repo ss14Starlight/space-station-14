@@ -99,13 +99,6 @@
     state: icon
 
 - type: stealTargetGroup
-  id: BSOWeapon
-  name: steal-target-groups-bso-weapon
-  sprite:
-    sprite: _Starlight/Objects/Misc/bso_weapon_obj.rsi
-    state: icon
-
-- type: stealTargetGroup
   id: CMOHardsuit
   name: steal-target-groups-clothing-outer-hardsuit-cmo
   sprite:
@@ -175,19 +168,6 @@
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntrepspace.rsi
     state: icon
 
-- type: stealTargetGroup
-  id: BSOHardsuit
-  name: steal-target-groups-clothing-outer-hardsuit-bso
-  sprite:
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/blueshield.rsi
-    state: icon
-
-- type: stealTargetGroup
-  id: BSOMagboots
-  name: steal-target-groups-clothing-shoes-boots-mag-bso
-  sprite:
-    sprite: _Starlight/Clothing/Shoes/Boots/magboots-bso.rsi
-    state: icon
 
 #Thief single items
 

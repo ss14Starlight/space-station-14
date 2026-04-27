@@ -1,7 +1,7 @@
 - type: entity
   parent: [ClothingEyesBase, BaseBlueShieldContraband]
   id: ClothingEyesHudBlueShield
-  name: blue shield hud
+  name: TSFO hud
   description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
   components:
     - type: Sprite
@@ -26,7 +26,7 @@
 - type: entity
   parent: [ClothingEyesHudBlueShield, ClothingHeadEyeBaseFlippable]
   id: ClothingEyesEyepatchHudBlueShield
-  name: blue shield hud eyepatch
+  name: TSFO hudpatch
   description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information. For true patriots.
   components:
     - type: Sprite

@@ -59,8 +59,8 @@
 - type: entity
   parent: [ClothingBackpackDuffel, BaseBlueShieldContraband]
   id: ClothingBackpackDuffelBlueShield
-  name: blueshield duffel bag
-  description: The bag for a Blueshield Officer who is ready for any contingency. 
+  name: TSF duffel bag
+  description: A bad that any TSFO could wish for, with extra room!. 
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Duffels/blueshield.rsi
