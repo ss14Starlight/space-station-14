@@ -65,7 +65,7 @@ public sealed class KillPersonConditionSystem : EntitySystem
             return targetMarooned ? 0.5f : 0f;
 
         // If the shuttle has already left, and the target isn't on it, 100%
-        if (requireMaroon && _emergencyShuttle.ShuttlesLeft )
+        if (requireMaroon && _emergencyShuttle.ShuttlesLeft)
             return targetMarooned ? 1f : 0f;
 
         return 1f; // Good job you did it woohoo
