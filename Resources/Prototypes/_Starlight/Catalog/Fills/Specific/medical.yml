@@ -39,12 +39,15 @@
       - id: ChemistryBottleDexalinPlus
       - id: ChemistryBottleAmoxla
     - !type:GroupSelector # Funny chems
-      weight: 5
+      weight: 4
       children:
       - id: ChemistryBottleLaughter
       - id: ChemistryBottleDoctorsDelight
       - id: ChemistryBottleDesoxyephedrine
       - id: ChemistryBottleEphedrine
+    - !type:GroupSelector # Weh
+      weight: 1
+      children:
       - id: ChemistryBottleWeh
 
 - type: entity
