@@ -29,7 +29,7 @@ public sealed class KillPersonConditionSystem : EntitySystem
         if (!_target.GetTarget(uid, out var target))
             return;
 
-        args.Progress = GetProgress(target.Value, comp.RequireDead, comp.RequireMaroon)
+        args.Progress = GetProgress(target.Value, comp.RequireDead, comp.RequireMaroon);
     }
 
     private float GetProgress(EntityUid target, bool requireDead, bool requireMaroon)
