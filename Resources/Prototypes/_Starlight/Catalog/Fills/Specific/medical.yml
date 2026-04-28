@@ -45,6 +45,7 @@
       - id: ChemistryBottleDoctorsDelight
       - id: ChemistryBottleDesoxyephedrine
       - id: ChemistryBottleEphedrine
+      - id: ChemistryBottleWeh
 
 - type: entity
   id: PenPackMedicalFilled

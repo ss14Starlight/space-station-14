@@ -87,3 +87,18 @@
         reagents:
         - ReagentId: Desoxyephedrine
           Quantity: 30
+
+- type: entity
+  id: ChemistryBottleWeh
+  suffix: weh
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-weh
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: JuiceThatMakesYouWeh
+          Quantity: 30
