@@ -35,7 +35,7 @@ rr-criminal-failed-content =
 
     In this regard, the crime is no longer classified as informational extremism, but as fatal negligence.
 
-    You should [bold]interrogate[/bold] the criminal, and if {SUBJECT($subject)} admits {POSS-ADJ($subject)} guilt, [bold]parole[/bold] {POSS-ADJ($subject)} and allow {OBJECT($subject)} to work it off in lower positions, with damages assessed from one and a half to ten million credits.
+    You should [bold]interrogate[/bold] the criminal, and if {SUBJECT($subject)} admits {POSS-ADJ($subject)} guilt, [bold]parole[/bold] {OBJECT($subject)} and allow {OBJECT($subject)} to work it off in lower positions, with damages assessed from one and a half to ten million credits.
     ─────────────────────────────────────────
    ⠀                                    [italic]Place for stamps[/italic]
 
