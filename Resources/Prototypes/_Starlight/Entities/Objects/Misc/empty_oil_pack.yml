@@ -1,7 +1,7 @@
 - type: entity
   name: Empty Oil Pack
   parent: BaseItem
-  description: Contains nothing. Sealed and no way to insert oil without tear by hand.
+  description: Contains nothing.
   id: EmptyOilPack
   suffix: Full
   components:

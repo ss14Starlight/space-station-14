@@ -20,7 +20,7 @@
       types:
         Bloodloss: -3 #lowers bloodloss damage
     delay: 1.6
-    modifyBloodLevel: 30 #restores about 10% blood per use on standard humanoids.
+    modifyBloodLevel: 15 #restores about 5% blood per use on standard humanoids.
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
       params:

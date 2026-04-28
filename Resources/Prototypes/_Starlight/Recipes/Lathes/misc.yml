@@ -589,7 +589,7 @@
 
 - type: latheRecipe
   id: EmptyOilPack
-  result: EmptyOilPack
+  result: EmptyOilPack1
   completetime: 1
   materials:
     Plastic: 50
