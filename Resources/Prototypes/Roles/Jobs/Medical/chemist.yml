@@ -25,6 +25,9 @@
   equipment:
     # id: ChemistryPDA #Starlight
     ears: ClothingHeadsetMedical
+    belt: ChemBag # Starlight start
+    pocket1: HandLabeler
+    eyes: ClothingEyesGlassesChemical # Starlight end
 
 - type: chameleonOutfit
   id: ChemistChameleonOutfit

@@ -33,13 +33,22 @@ public abstract class SharedTimeSystem : EntitySystem
 
         var newDate = Date.AddDays(totalDays);
 
-        return (stationTime, newDate.ToString("dd.MM.yyyy"));
+        // ISO 8601 (YYYY-MM-DD or YYYYMMDD)
+        return (stationTime, newDate.ToString("yyyy-MM-dd"));
     }
 
     public string GetDate()
     {
-        // please tell me you guys aren't gonna have a 4 week round yet...
-        return Date.ToString("dd.MM.yyyy");
+        // ISO 8601 (YYYY-MM-DD or YYYYMMDD)
+        return Date.ToString("yyyy-MM-dd");
+    }
+
+    /// <summary>
+    /// Gets the ellapsed time of the round, useful for paperwork.
+    /// </summary>
+    public TimeSpan GetShiftDuration()
+    {
+        return _timing.CurTime - _roundStart;
     }
 }
 

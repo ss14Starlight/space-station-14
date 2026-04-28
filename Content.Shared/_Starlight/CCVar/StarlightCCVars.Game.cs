@@ -51,4 +51,9 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<bool> Shipyard =
         CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
+
+    /// The time in seconds that it will take the round to end after the nuke explodes durign nukies.
+    /// </summary>
+    public static readonly CVarDef<float> NukeRoundRestartTime =
+        CVarDef.Create("game.nuke_round_restart_time", 20f, CVar.SERVERONLY);
 }

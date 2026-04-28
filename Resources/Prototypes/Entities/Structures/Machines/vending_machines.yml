@@ -955,7 +955,7 @@
   name: NanoMed Plus
   components:
   - type: VendingMachine
-    pack: NanoMedPlusInventory
+    pack: NanoMedPlusInventorySL # Starlight
     offState: off
     showPrices: false  # Starlight-edit: Vending Machines Prices
   - type: Machine # Starlight-edit: Vending Machine boards

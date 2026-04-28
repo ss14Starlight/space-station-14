@@ -20,6 +20,7 @@ roles-req-manager-roles = --Server Leadership--
 roles-req-patron-roles = patron
 roles-req-carpgames-roles = Carp Games Winner
 roles-req-ticketsadministrator-roles = Tickets Administrator
+roles-req-first-writing-roles = First Writing Contest Winner
 
 triesteport-main = TRIESTEPORT
 overall = overall

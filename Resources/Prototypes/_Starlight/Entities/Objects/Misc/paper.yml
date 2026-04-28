@@ -29,3 +29,25 @@
     backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
     contentMargin: 8.0, 16.0, 8.0, 0.0
     maxWritableArea: 350.0, 0.0
+
+- type: entity
+  name: nt-cc paper
+  parent: Paper
+  id: PaperNTCC
+  description: A single unit of bureaucracy, branded with the logos of NanoTrasen and Central Command.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: paper_ntcc
+    - state: paper_ntcc_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: PaperVisuals
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 0.0, 0.0, 0.0, 0.0
+    headerImagePath: "/Textures/_Starlight/Interface/Paper/paper_heading_nt_cc_logos.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 0.0

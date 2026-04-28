@@ -595,6 +595,7 @@
   groups:
   - GroupTankHarness
   - PsychologistJumpsuit
+  - MedicalGloves # Starlight
   - MedicalBackpack
   - MedicalDoctorHead # Starlight start
   - MedicalDoctorOuterClothing

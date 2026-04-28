@@ -48,11 +48,31 @@
   - OffsetCaneNT
   - Cane
   - TowelColorWhite
-  - HarmonicaInstrument # Starlight start
+  - TowelColorGray # Starlight start
+  - TowelColorBlack
+  - TowelColorRed
+  - TowelColorOrange
+  - TowelColorLightBrown
+  - TowelColorYellow
+  - TowelColorDarkGreen
+  - TowelColorGreen
+  - TowelColorLightBlue
+  - TowelColorDarkBlue
+  - TowelColorPurple
+  - TowelColorMaroon
+  - TowelColorMime
+  - TowelColorSilver
+  - TowelColorGold
+  - HarmonicaInstrument
   - FluteInstrument
   - AcousticGuitarInstrument
   - TrumpetInstrument
   - RoadCone
+  - MaidOutfit
+  - MaidGloves
+  - MaidOutfitTactical
+  - MaidHeadbandTactical
+  - TacticalMaidGloves
   - ClothWrapGloveTrinket
   - ClothWrapShoeTrinket
   - RollerSkates
@@ -320,6 +340,7 @@
   - TatteredClothes
   - TieDye
   - VintageClothes
+  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup
@@ -400,6 +421,7 @@
   - BartenderJumpsuit
   - BartenderJumpskirt
   - BartenderJumpsuitPurple
+  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup
@@ -449,6 +471,7 @@
   loadouts:
   - ChefJumpsuit
   - ChefJumpskirt
+  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup
