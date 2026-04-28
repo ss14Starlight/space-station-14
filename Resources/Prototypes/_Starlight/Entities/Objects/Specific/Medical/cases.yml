@@ -97,15 +97,14 @@
   - type: Storage
     maxItemSize: Normal
     grid:
-    - 0,0,4,2
-    - 1,2,4,3
+    - 0,0,4,3
     whitelist:
        tags:
         - Brutepack
        components:
         - SurgeryTool
   - type: Item
-    size: Normal
+    size: Large
     shape:
     - 0,0,2,1
     sprite: _Starlight/Objects/Specific/Medical/cases.rsi
@@ -119,6 +118,12 @@
   name: chemical case
   suffix: Medical
   description: A plastic case with slots for bottles.
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/cases.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
 
 - type: entity
   id: PenPackMedical
@@ -126,6 +131,12 @@
   name: autoinjector pack
   suffix: Medical
   description: A pouch filled with some autoinjectors.
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/cases.rsi
+    size: Small
+    shape:
+    - 0,0,1,2
 
 - type: entity
   id: SurgicalKitMedical

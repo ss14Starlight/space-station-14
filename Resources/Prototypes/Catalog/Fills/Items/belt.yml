@@ -130,18 +130,19 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: MedkitFilledParamed # Starlight
+        - id: MedkitFilledParamed # Starlight start
         - id: RescueKnife # Starlight
+        - id: BodyBagLockableFolded # Starlight
         # Reagents focused on emergency response rather than outright healing
-        - id: ChemistryBottleInaprovaline
-          amount: 2
+        # - id: ChemistryBottleInaprovaline - moved to locker chem case
+        #   amount: 2
         # - id: ChemistryBottleHaloperidol Starlight - making room (also these are more perscription meds)
-        # - id: ChemistryBottleEthylredoxrazine Starlight end
+        # - id: ChemistryBottleEthylredoxrazine
         - id: Syringe # Starlight - utility
-        - id: ChemistryBottleIpecac
-        - id: ChemistryBottleCharcoal
+        # - id: ChemistryBottleIpecac
+        # - id: ChemistryBottleCharcoal
         - id: EmergencyMedipen # Starlight - really useful for paramedics and can't be made
-          amount: 3 # SL
+          amount: 3 # Starlight end
 
 - type: entity
   id: ClothingBeltPlantFilled

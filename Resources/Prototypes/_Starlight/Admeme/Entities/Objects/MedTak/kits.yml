@@ -98,6 +98,16 @@
     shape:
     - 0,0,2,1
     sprite: _Starlight/Admeme/Objects/MedTak/cases.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,4,2
+    - 1,2,4,3
+    whitelist:
+       tags:
+        - Brutepack
+       components:
+        - SurgeryTool
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector

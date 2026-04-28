@@ -51,6 +51,22 @@
       - id: ChemistryBottleWeh
 
 - type: entity
+  id: BottleCaseParamedicFilled
+  parent: BottleCaseMedical
+  suffix: Paramedic, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ChemistryBottleInaprovaline
+          amount: 2
+        - id: ChemistryBottleIpecac
+        - id: ChemistryBottleCharcoal
+        - id: ChemistryBottleHaloperidol
+        - id: ChemistryBottleEthylredoxrazine
+
+- type: entity
   id: PenPackMedicalFilled
   parent: PenPackMedical
   suffix: Medical, Filled
