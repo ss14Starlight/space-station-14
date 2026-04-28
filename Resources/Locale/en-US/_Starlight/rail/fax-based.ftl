@@ -29,7 +29,7 @@ rr-criminal-failed-name = Decision regarding the criminal {$subject}
 rr-criminal-failed-content =
                          [head=3]Authorized Inspector on the Case[/head]
     ─────────────────────────────────────────
-                                      [center][color=#006666][italic][bold]Mitigation Decision[/bold][/italic][/color][/center]
+                                      [center][color=#006666][italic][bold]Mitigation Decision[/bold][/italic][/color][/center]
     ─────────────────────────────────────────
     Regarding the case of the criminal {$subject}. We have just intercepted a recruitment letter indicating that the crimes committed were not of direct intent.
 
