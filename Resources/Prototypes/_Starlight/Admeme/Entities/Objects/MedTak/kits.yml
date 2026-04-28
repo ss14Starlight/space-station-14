@@ -80,6 +80,7 @@
 # Injector pack
 - type: entity
   name: autoinjector pack
+  suffix: MedTak
   description: A pouch loaded with autoinjectors.
   parent: BaseStorageItem
   id: PenPackMedTak
