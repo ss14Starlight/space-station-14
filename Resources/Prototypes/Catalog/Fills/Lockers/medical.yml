@@ -43,6 +43,29 @@
   id: LockerFillMedicalDoctor
   table: !type:AllSelector
     children:
+    # Starlight start
+    - id: ClothingHeadMirror
+      prob: 0.1
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingHeadsetMedical
+    - !type:GroupSelector
+      children:
+      - id: ClothingHeadHatSurgcapGreen
+        weight: 0.1
+      - id: ClothingHeadHatSurgcapPurple
+        weight: 0.05
+      - id: ClothingHeadHatSurgcapBlue
+        weight: 0.90
+    - !type:GroupSelector
+      children:
+      - id: UniformScrubsColorBlue
+        weight: 0.5
+      - id: UniformScrubsColorGreen
+        weight: 0.1
+      - id: UniformScrubsColorPurple
+        weight: 0.05
+    - id: ClothingMaskSterile
+    #Starlight end
     - id: ClothingEyesHudMedical
     - id: ClothingBeltMedicalFilled
     - id: JetInjector
@@ -121,16 +144,16 @@
     - id: ClothingOuterHardsuitVoidParamed
     - id: ClothingBeltMedicalEMTFilled
     - id: JetInjector
-    - id: PlushieKiosha #starlight
-    - id: EmergencyHandheldCrewMonitor #starlight
-    - id: JawsOfLifeMed #Starlight
-    - id: HandheldHealthAnalyzer
+    - id: EmergencyHandheldCrewMonitor # Starlight
+    - id: JawsOfLifeMed # Starlight
+    # - id: HandheldHealthAnalyzer Starlight - kind of just junk in the locker at this point, use your PDA or get one at a nanomed
     - id: BoxBodyBag
-    - !type:GroupSelector
-      children:
-      - id: RollerBedSpawnFolded
-      - id: CheapRollerBedSpawnFolded
-      - id: EmergencyRollerBedSpawnFolded
+    # Starlight edit - rollerbeds - these are mapped, printable and in your bag round start
+    # - !type:GroupSelector
+    #   children:
+    #   - id: RollerBedSpawnFolded
+    #   - id: CheapRollerBedSpawnFolded
+    #   - id: EmergencyRollerBedSpawnFolded
 
 - type: entity
   parent: LockerParamedic

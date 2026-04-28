@@ -70,6 +70,20 @@
       username: KarmaKitsuna
 
 - type: ghostTheme
+  id: sombrero_penguin
+  name: sombrero penguin
+  description: A penguin, but with sombrero
+  private: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/sombrero_penguin.rsi
+      state: sombrero_penguin
+    color: "#ffffff"
+  requirements:
+    - !type:UsernameRequirement
+      username: Bird_
+
+- type: ghostTheme
   id: ghost-kamila
   name: Avali Ghost
   description: a ghostly Avali.

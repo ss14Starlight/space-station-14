@@ -844,10 +844,12 @@ namespace Content.Server.Database
 
             foreach (var ban in bans)
             {
+                if (ban.Id == null || ban.Network)
+                    continue;
                 db.DbContext.ServerBanHit.Add(new ServerBanHit
                 {
                     ConnectionId = connection,
-                    BanId = ban.Id!.Value
+                    BanId = ban.Id.Value
                 });
             }
 
