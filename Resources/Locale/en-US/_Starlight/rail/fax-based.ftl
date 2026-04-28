@@ -17,7 +17,7 @@ rr-criminal-1-letter-content =
     In accordance with Directive 25, Section B of the Code of Information Crimes, you are ordered to deliver {OBJECT($subject)} to Central Command, dead or alive.
 
     {$subject} [italic]must[/italic] be:
-    - [bold]Handcuffed[/bold] (even if {SUBJECT($subject)} {CONJUGATE-BE($subject)} is compliant)
+    - [bold]Handcuffed[/bold] (even if {SUBJECT($subject)} {CONJUGATE-BE($subject)} compliant)
     - [bold]Searched[/bold]
     - [bold]Interrogated[/bold]
 
