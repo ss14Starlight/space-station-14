@@ -68,7 +68,7 @@
       - id: EmergencyMedipen
       - id: SpaceMedipen
     - !type:GroupSelector # Damage-category injectors
-      weight: 20
+      weight: 24
       children:
       - id: BruteAutoInjector
       - id: BurnAutoInjector
@@ -81,6 +81,6 @@
       - id: PyraAutoInjector
       - id: RadAutoInjector
     - !type:GroupSelector # Funny injectors
-      weight: 5
+      weight: 1
       children:
       - id: WehMedipen
