@@ -1,4 +1,4 @@
-- - type: entity
+- type: entity
   id: TerraformerMachine
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: terraformer
@@ -57,15 +57,42 @@
 
   - type: Terraformer
     active: true
-    fuel: 100
-    radius: 5
+    fuel: 0
+    maxFuel: 100
     fuelPerSecond: 1
+    fuelPerBiomass: 10
+    biomassStack: Biomass
+    radius: 5
     tileConvertCooldown: 2
     sourceTiles:
     - FloorAsteroidSand
     targetTile: FloorGrass
+    atmosCooldown: 0.5
+    targetPressure: 101.325
+    maxPressure: 110
+    gasMolesPerTile: 2
+    scrubGases: true
+    scrubCooldown: 1
+    scrubMolesPerTile: 1
+    targetScrubMoles: 0
+    scrubbedGases:
+    - CarbonDioxide
+    - Plasma
+    - Tritium
+    - NitrousOxide
+    createBarriers: true
+    barrierPrototype: TerraformerAtmosBarrier
+    barrierRadius: 6
+    barrierRefreshCooldown: 5
 
   - type: Appearance
+
+  - type: DeviceNetwork
+    deviceNetId: Wired
+
+  - type: DeviceLinkSink
+    ports:
+    - TerraformerReceiver
 
   - type: GenericVisualizer
     visuals:
@@ -75,16 +102,6 @@
           False: { visible: false }
 
   - type: WiresPanel
-
-  # Add this only after you create the circuitboard prototype.
-  # - type: Machine
-  #   board: TerraformerMachineCircuitboard
-
-  # Add this only after adding construction containers / board support.
-  # - type: ContainerContainer
-  #   containers:
-  #     machine_board: !type:Container
-  #     machine_parts: !type:Container
 
   - type: LitOnPowered
 

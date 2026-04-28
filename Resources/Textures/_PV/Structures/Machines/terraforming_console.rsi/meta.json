@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Custom Terraformer console sprites for Project Verdant, based on Space Station 14 computer sprites.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "Terraformer_Computer",
+      "directions": 4
+    },
+    {
+      "name": "Terraformer_Keyboard",
+      "directions": 4
+    },
+    {
+      "name": "Terraformer_Screen",
+      "directions": 4
+    }
+  ]
+}
