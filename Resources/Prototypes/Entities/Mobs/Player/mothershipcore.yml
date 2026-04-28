@@ -61,7 +61,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 200
+        damage: 400 # Starlight - as tough as an AI Core
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
