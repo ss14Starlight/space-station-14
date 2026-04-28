@@ -34,3 +34,14 @@
   reagents:
     Sigynate: 20
     Dermaline: 20
+
+- type: microwaveMealRecipe
+  id: RecipeOilPack
+  name: oil pack recipe
+  result: OilPack5
+  time: 10
+  group: Medicinal
+  solids:
+    EmptyOilPack: 5
+  reagents:
+    WeldingFuel: 30
