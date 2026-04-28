@@ -7,11 +7,13 @@
   - ChiefMedicalOfficerHead
   - MedicalMask
   - ChiefMedicalOfficerJumpsuit
+  - MedicalGloves # Starlight
   - MedicalBackpack
   - ChiefMedicalOfficerOuterClothing
   - ChiefMedicalOfficerNeck
   - ChiefMedicalOfficerShoes
-  - Glasses
+  - MedicalEyewear # Starlight
+  # - Glasses Starlight
   - SurvivalMedical
   - Trinkets
   - Scarves # 🌟Starlight🌟
@@ -27,11 +29,13 @@
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
+  - MedicalGloves # Starlight
   - MedicalBackpack
   - MedicalDoctorOuterClothing
   - MedicalShoes
   - MedicalDoctorPDA
-  - Glasses
+  - MedicalEyewear # Starlight
+  # - Glasses Starlight
   - SurvivalMedical
   - Trinkets
   - Scarves # 🌟Starlight🌟
@@ -46,14 +50,16 @@
   - GroupTankHarness
   - MedicalInternJumpsuit
   # 🌟Starlight🌟 start
+  - MedicalGloves
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
   - MedicalBackpack
   - MedicalDoctorOuterClothing
   - MedicalShoes
+  - MedicalEyewear
   # 🌟Starlight🌟 end
-  - Glasses
+  # - Glasses Starlight
   - SurvivalMedical
   - Trinkets
   - Scarves # 🌟Starlight🌟
@@ -69,6 +75,7 @@
   - ChemistHead # 🌟Starlight🌟
   - MedicalMask
   - ChemistJumpsuit
+  - MedicalGloves # Starlight
   - ChemistBackpack
   - ChemistOuterClothing
   # 🌟Starlight🌟 start
@@ -96,11 +103,13 @@
   - ParamedicHead
   - MedicalMask
   - ParamedicJumpsuit
+  - MedicalGloves # Starlight
   - MedicalBackpack
   - ParamedicOuterClothing
   - ParamedicShoes
   - ParamedicPDA # 🌟Starlight🌟
-  - Glasses
+  - MedicalEyewear # Starlight
+  # - Glasses Starlight
   - SurvivalMedical
   - Trinkets
   - Scarves # 🌟Starlight🌟
