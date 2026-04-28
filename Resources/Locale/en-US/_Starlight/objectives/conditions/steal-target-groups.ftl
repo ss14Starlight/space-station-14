@@ -54,7 +54,7 @@ steal-target-groups-rcd-rpd = RCDs and RPD
 steal-target-groups-misc-sunglasses = beer goggles, musician shades, security glasses, corpsman glasses, or detective's noir-tech glass
 steal-target-groups-rare-sunglasses = administration, skill, blueshield, or brigmedic sunglass
 steal-target-groups-assistant-headsets = assistant headset
-steal-target-groups-medical-belts = medical belt, EMT belt, corpsman duty belt, tactical trauma belt, tactical trauma rig, blueshield medical belt, or blueshield webbing
+steal-target-groups-medical-belts = filled medical belt, EMT belt, corpsman duty belt, tactical trauma belt, tactical trauma rig, blueshield medical belt, or blueshield webbing
 
 # docs
 steal-target-groups-corporate-documents = classified corporate secrets documents
