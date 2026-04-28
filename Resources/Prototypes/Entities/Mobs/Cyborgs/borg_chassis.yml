@@ -42,7 +42,7 @@
     - purrfus
     - service
     - cargo
- #   - security Currently admeme only
+    - security
   # Starlight-end
 
 - type: entity
