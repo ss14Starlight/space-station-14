@@ -1,6 +1,7 @@
 - type: entity
-  id: BottleCaseMedical
-  parent: [ BaseStorageItem, BaseMedicalContraband ]
+  abstract: true
+  id: BaseBottleCase
+  parent: BaseStorageItem
   name: chemical case
   description: A plastic case with slots for bottles.
   components:
@@ -58,14 +59,13 @@
     - bottle7
     - bottle8
   - type: Appearance
-  - type: ExplosionResistance
-    damageCoefficient: 0
 
 - type: entity
+  abstract: true
+  id: BasePenPack
+  parent: BaseStorageItem
   name: autoinjector pack
   description: A pouch filled with some autoinjectors.
-  parent: [ BaseStorageItem, BaseMedicalContraband ]
-  id: PenPackMedical
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/cases.rsi
@@ -85,10 +85,11 @@
       Cloth: 100
 
 - type: entity
+  abstract: true
+  id: BaseSurgicalKit
+  parent: BaseStorageItem
   name: surgical kit
   description: A compact kit of surgical tools.
-  parent: [ BaseStorageItem, BaseMedicalContraband ]
-  id: SurgicalKitMedical
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/cases.rsi
@@ -113,8 +114,29 @@
       Plastic: 150
 
 - type: entity
+  id: BottleCaseMedical
+  parent: [ BaseBottleCase, BaseMedicalContraband ]
+  name: chemical case
+  suffix: Medical
+  description: A plastic case with slots for bottles.
+
+- type: entity
+  id: PenPackMedical
+  parent: [ BasePenPack, BaseMedicalContraband ]
+  name: autoinjector pack
+  suffix: Medical
+  description: A pouch filled with some autoinjectors.
+
+- type: entity
+  id: SurgicalKitMedical
+  parent: [ BaseSurgicalKit, BaseMedicalContraband ]
   name: surgical kit
-  suffix: Filled
+  suffix: Medical
+  description: A compact kit of surgical tools.
+
+- type: entity
+  name: surgical kit
+  suffix: Medical, Filled
   parent: SurgicalKitMedical
   id: SurgicalKitMedicalFilled
   components:
@@ -130,4 +152,3 @@
         - id: Scalpel
         - id: BoneGel
         - id: BoneSetter
-

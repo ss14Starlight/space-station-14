@@ -1,7 +1,7 @@
 - type: entity
   id: BottleCaseMedicalFilled
-  suffix: Filled
   parent: BottleCaseMedical
+  suffix: Medical, Filled
   components:
   - type: EntityTableContainerFill
     containers:
@@ -48,8 +48,8 @@
 
 - type: entity
   id: PenPackMedicalFilled
-  suffix: Filled
   parent: PenPackMedical
+  suffix: Medical, Filled
   components:
   - type: EntityTableContainerFill
     containers:
