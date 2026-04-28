@@ -21,7 +21,7 @@ public sealed partial class RepairableSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!; // Starlight-edit
 
     public override void Initialize()
     {
