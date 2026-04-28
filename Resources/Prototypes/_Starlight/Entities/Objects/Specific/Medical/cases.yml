@@ -132,11 +132,18 @@
   suffix: Medical
   description: A pouch filled with some autoinjectors.
   components:
+  - type: Storage
+    maxItemSize: Tiny
+    grid:
+    - 0,0,1,1
+    whitelist:
+       tags:
+        - Medipen
   - type: Item
     sprite: _Starlight/Objects/Specific/Medical/cases.rsi
     size: Small
     shape:
-    - 0,0,1,2
+    - 0,0,1,1
 
 - type: entity
   id: SurgicalKitMedical
