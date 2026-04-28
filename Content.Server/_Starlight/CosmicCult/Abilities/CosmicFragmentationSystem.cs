@@ -16,7 +16,6 @@ using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.NullSpace;
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
-using Content.Shared.Radio.Components;
 using Content.Shared.Radio;
 using Content.Shared.Mobs;
 
@@ -139,7 +138,6 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         _metaData.SetEntityName(wisp, $"{MetaData(ent).EntityName}");
         _mind.TransferTo(mindId, wisp, mind: mind);
 
-        AddCultRadio(ent);
         _mobStateSystem.ChangeMobState(ent, MobState.Critical);
 
         var mins = chantryComponent.EventTime.Minutes;
@@ -167,8 +165,6 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         _container.EmptyContainer(container, true);
         _container.Insert(lawboard, container, Transform(args.Target), true);
 
-        AddCultRadio(args.Target);
-
         args.Succeeded = true;
     }
 
@@ -177,7 +173,6 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         if (args.Lawset.Id == "CosmicCultLaws")
         {
             _languageSystem.AddLanguage(args.Target, _cultLanguage);
-            AddCultRadio(args.Target);
 
             _antag.SendBriefing(args.Target,
                 Loc.GetString("cosmiccult-silicon-subverted-briefing"),
@@ -186,43 +181,6 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         else
         {
             _languageSystem.RemoveLanguage(args.Target, _cultLanguage);
-            RemoveCultRadio(args.Target);
-        }
-    }
-
-    private void AddCultRadio(EntityUid uid)
-    {
-        if (TryComp<IntrinsicRadioTransmitterComponent>(uid, out var transmitter))
-        {
-            if (!transmitter.Channels.Contains(_cultRadio))
-            {
-                transmitter.Channels.Add(_cultRadio);
-                Dirty(uid, transmitter);
-            }
-        }
-
-        if (TryComp<ActiveRadioComponent>(uid, out var radio))
-        {
-            if (!radio.Channels.Contains(_cultRadio))
-            {
-                radio.Channels.Add(_cultRadio);
-                Dirty(uid, radio);
-            }
-        }
-    }
-
-    private void RemoveCultRadio(EntityUid uid)
-    {
-        if (TryComp<IntrinsicRadioTransmitterComponent>(uid, out var transmitter))
-        {
-            if (transmitter.Channels.Remove(_cultRadio))
-                Dirty(uid, transmitter);
-        }
-
-        if (TryComp<ActiveRadioComponent>(uid, out var radio))
-        {
-            if (radio.Channels.Remove(_cultRadio))
-                Dirty(uid, radio);
         }
     }
 }
