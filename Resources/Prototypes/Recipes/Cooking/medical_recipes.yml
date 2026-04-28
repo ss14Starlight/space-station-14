@@ -38,10 +38,10 @@
 - type: microwaveMealRecipe
   id: RecipeOilPack
   name: oil pack recipe
-  result: OilPack5
-  time: 10
+  result: OilPack1
+  time: 5
   group: Medicinal
   solids:
-    EmptyOilPack: 5
+    EmptyOilPack: 1
   reagents:
-    WeldingFuel: 30
+    WeldingFuel: 5
