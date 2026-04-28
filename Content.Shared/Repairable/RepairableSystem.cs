@@ -100,10 +100,11 @@ public sealed partial class RepairableSystem : EntitySystem
         if (args.Handled)
             return;
 
-        // Only try repair the target if it is damaged or bleeding
+        // Starlight-start: Only try repair the target if it is damaged or bleeding
         bool isBleeding = TryComp<BloodstreamComponent>(ent, out var bloodstream) && bloodstream.BleedAmount > 0; //for beings that are repaired with the welder, but can bleed (like IPCs)
 
         if ((!TryComp<DamageableComponent>(ent.Owner, out var damageable) || damageable.TotalDamage == 0) && !isBleeding)
+        // Starlight-end
             return;
 
         #region Starlight
