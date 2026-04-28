@@ -7,8 +7,11 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Serialization;
+
+#region Starlight
 using Content.Shared.Body.Components;
 using Content.Shared._Starlight.Medical.Body.Systems;
+#endregion
 
 namespace Content.Shared.Repairable;
 
