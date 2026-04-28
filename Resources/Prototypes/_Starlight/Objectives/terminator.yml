@@ -14,13 +14,14 @@
   parent: [BaseTerminatorObjective, BaseKillObjective]
   id: TerminatorExterminateObjective
   name: Secure our future.
-  description: Follow your programming and kill the target. Make sure they do not evacuate alive. Minimise unnecessary casualties. They know what they will do.
+  description: Follow your programming and kill the target. Ensure they are not evacuated. Minimise unnecessary casualties.
   components:
   - type: PickSpecificPerson
   - type: KillPersonCondition
     requireDead: true
+    requireMaroon: true
   - type: TargetObjective
-    title: objective-condition-kill-head-title
+    title: objective-condition-kill-maroon-title
 
 - type: entity
   parent: BaseTerminatorObjective

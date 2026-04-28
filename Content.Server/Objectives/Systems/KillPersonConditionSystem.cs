@@ -29,7 +29,7 @@ public sealed class KillPersonConditionSystem : EntitySystem
         if (!_target.GetTarget(uid, out var target))
             return;
 
-        args.Progress = GetProgress(target.Value, comp.RequireDead, comp.RequireMaroon);
+        args.Progress = GetProgress(target.Value, comp.RequireDead, comp.RequireMaroon)
     }
 
     private float GetProgress(EntityUid target, bool requireDead, bool requireMaroon)
@@ -39,7 +39,8 @@ public sealed class KillPersonConditionSystem : EntitySystem
             return 1f;
 
         var targetDead = _mind.IsCharacterDeadIc(mind);
-        var targetMarooned = !_emergencyShuttle.IsTargetEscaping(mind.OwnedEntity.Value) || _mind.IsCharacterUnrevivableIc(mind);
+        var targetUnrevivable = _mind.IsCharacterUnrevivableIc(mind); //Starlight
+        var targetMarooned = !_emergencyShuttle.IsTargetEscaping(mind.OwnedEntity.Value) || targetUnrevivable; //Starlight edit: Moved unrevivable check out
         if (!_config.GetCVar(CCVars.EmergencyShuttleEnabled) && requireMaroon)
         {
             requireDead = true;
@@ -48,6 +49,12 @@ public sealed class KillPersonConditionSystem : EntitySystem
 
         if (requireDead && !targetDead)
             return 0f;
+
+        //Starlight start
+        //An unrevivable target is always counted as marooned, regardless of the escape status, so we can update the objective right away.
+        if (requireMaroon && targetUnrevivable)
+            return 1f;
+        //Starlight End
 
         // Always failed if the target needs to be marooned and the shuttle hasn't even arrived yet
         if (requireMaroon && !_emergencyShuttle.EmergencyShuttleArrived)
@@ -58,7 +65,7 @@ public sealed class KillPersonConditionSystem : EntitySystem
             return targetMarooned ? 0.5f : 0f;
 
         // If the shuttle has already left, and the target isn't on it, 100%
-        if (requireMaroon && _emergencyShuttle.ShuttlesLeft)
+        if (requireMaroon && _emergencyShuttle.ShuttlesLeft )
             return targetMarooned ? 1f : 0f;
 
         return 1f; // Good job you did it woohoo
