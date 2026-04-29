@@ -9,7 +9,7 @@ public sealed partial class ServerBanRecognitionPrototype : IPrototype, ISeriali
     [IdDataField]
     public string ID { get; private set; } = default!;
 
-    [DataField(required: false)]
+    [DataField(required: true)]
     public Dictionary<string, string[]> Recognition { get; set; } = [];
 
     void ISerializationHooks.AfterDeserialization()
