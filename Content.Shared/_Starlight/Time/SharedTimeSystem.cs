@@ -54,7 +54,7 @@ public abstract class SharedTimeSystem : EntitySystem
     /// </summary>
     public TimeSpan GetShiftDuration()
     {
-        return _timing.CurTime.Subtract(gameTicker.RoundStartTimeSpan);
+        return _timing.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
     }
 }
 
