@@ -22,12 +22,12 @@ public abstract class SharedTimeSystem : EntitySystem
     private void OnRoundDateSetEvent(RoundDateSetEvent ev) => Date = ev.Date;
 
     /// <summary>
-    /// Gets a flavorful version of the station time. Shifts start at 8AM and station time runs 4x faster than real time.
+    /// Gets a flavorful version of the station time. Shifts start at 12PM and station time runs 4x faster than real time.
     /// </summary>
     public (TimeSpan Time, string Date) GetStationTime()
     {
         var scaledTimeSinceStart = _timing.CurTime.Subtract(_gameTicker.RoundStartTimeSpan).Multiply(4);
-        var stationTime = scaledTimeSinceStart.Add(TimeSpan.FromHours(8));
+        var stationTime = scaledTimeSinceStart.Add(TimeSpan.FromHours(12));
 
         // very long shifts could roll over into the following day.
         var totalDays = (int)stationTime.TotalDays;
@@ -52,10 +52,7 @@ public abstract class SharedTimeSystem : EntitySystem
     /// Gets the ellapsed time of the round, useful for paperwork.
     /// This value is not affected by time scaling and reflects the real duration of a round.
     /// </summary>
-    public TimeSpan GetShiftDuration()
-    {
-        return _timing.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-    }
+    public TimeSpan GetShiftDuration() => _timing.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 }
 
 /// <summary>
