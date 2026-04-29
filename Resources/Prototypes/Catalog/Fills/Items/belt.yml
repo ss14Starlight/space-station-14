@@ -118,7 +118,7 @@
 #        - id: ChemistryBottleEpinephrine # A power item for medical players that feels thematic and worth stealing
 #        - id: PillCanisterTricordrazine
         - id: Bloodpack
-        - id: Bloodpack
+          amount: 2
         - id: EmergencyMedipen # Starlight end
 
 - type: entity
