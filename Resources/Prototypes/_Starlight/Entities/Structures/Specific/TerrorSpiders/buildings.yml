@@ -217,7 +217,9 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    - type: GasMiner
-      spawnGas: Ammonia
-      maxExternalAmount: 101
-      spawnAmount: 20
+  - type: GasMiner
+    spawnGas: Ammonia
+    maxExternalAmount: 101
+    spawnAmount: 20
+    showInfoOnExamine: false
+  - type: AtmosDevice
