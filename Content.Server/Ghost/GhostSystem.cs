@@ -8,6 +8,7 @@ using Content.Server.Ghost.Roles;
 using Content.Server.Mind;
 using Content.Server.Mobs;
 using Content.Server.Roles.Jobs;
+using Content.Shared._Starlight.Ghost;
 using Content.Shared.Actions;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
@@ -119,7 +120,7 @@ namespace Content.Server.Ghost
             // If component not deleting they can see ghosts.
             if (ent.Comp.LifeStage <= ComponentLifeStage.Running)
             {
-                args.VisibilityMask |= (int)VisibilityFlags.Ghost | (int)VisibilityFlags.Net | (int)VisibilityFlags.CosmicCultMonument; // 🌟Starlight🌟
+                args.VisibilityMask |= (int)VisibilityFlags.Ghost | (int)VisibilityFlags.Net | (int)VisibilityFlags.NullSpace; // 🌟Starlight🌟
             }
         }
 
@@ -626,6 +627,11 @@ namespace Content.Server.Ghost
 
             return true;
         }
+
+        //Starlight begin: Ghost admeme nonsense. Couldn't think of a better way to tell client to update chat channel permissions.
+        public void CorporealStateChanged(EntityUid uid, bool isCorporeal) =>
+            RaiseNetworkEvent(new GhostCorporealEvent(isCorporeal), uid);
+        //Starlight end
     }
 
     public sealed class GhostAttemptHandleEvent(MindComponent mind, bool canReturnGlobal) : HandledEntityEventArgs

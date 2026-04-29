@@ -286,6 +286,61 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/clown_distinguished.rsi
 
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerService
+  name: green lawyer suit
+  description: A flashy green suit worn by lawyers and show-offs.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/service_lawyer.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/service_lawyer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerGray
+  name: gray lawyer suit
+  description: A plain gray suit worn by lawyers and show-offs.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyergray.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyergray.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerPink
+  name: pink lawyer suit
+  description: A bright pink suit worn by lawyers that you should call.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyerpink.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyerpink.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerBlackTwo
+  name: show lawyer suit
+  description: A stylish black piece worn by lawyers and show people.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyerblacktwo.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyerblacktwo.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerBad
+  name: bad lawyer's suit
+  description: A bold suit. Perfect for finding your one way, going wherever you want to go.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyerbad.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyerbad.rsi
+
 # Fashion-O-Mat, not obtainable any other way, unless mapped
 
 - type: entity
@@ -323,25 +378,25 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitMimeSexyWhite
-  name: sexy mime costume with white pants
-  description: A sexy mime costume with white pants combines playful charm and allure. The outfit typically features a fitted top, suspenders, and white trousers, with bold black-and-white details. It's perfect for an entertaining yet chic look, exuding both mystery and flirtation.
+  id: ClothingUniformJumpsuitMimeSuaveWhite
+  name: suave mime costume with white pants
+  description: A suave mime costume with white pants combines playful charm and allure. The outfit typically features a fitted top, suspenders, and white trousers, with bold black-and-white details. It's perfect for an entertaining yet chic look, exuding both mystery and confidence.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sexy-mime.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suave-mime.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sexy-mime.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suave-mime.rsi
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitMimeSexyBlack
-  name: sexy mime costume with black pants
-  description: A sexy mime costume with black pants combines playful charm and allure. The outfit typically features a fitted top, suspenders, and white trousers, with bold black-and-white details. It's perfect for an entertaining yet chic look, exuding both mystery and flirtation.
+  id: ClothingUniformJumpsuitMimeSuaveBlack
+  name: suave mime costume with black pants
+  description: A suave mime costume with black pants combines playful charm and allure. The outfit typically features a fitted top, suspenders, and white trousers, with bold black-and-white details. It's perfect for an entertaining yet chic look, exuding both mystery and confidence.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sexy-mime-black.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suave-mime-black.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sexy-mime-black.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suave-mime-black.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -541,6 +596,17 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/space_courier.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/space_courier.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTimelessSuit
+  name: timeless suit
+  description: A luxury suit with a timeless design.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/timeless_suit.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/timeless_suit.rsi
 
 # Fashion-O-Mat END
 

@@ -92,6 +92,7 @@
     - id: ClothingEyesHudCommand
     - id: EncryptionKeyExpedition #starlight
     - id: SpyglassCaptain #Starlight
+    - id: CommunicationTablet #Starlight
     - id: HeadSkeleton # A skull to accompany your skeleton crew
       conditions:
       - !type:PlayerCountCondition
@@ -231,7 +232,7 @@
       prob: 0.15
     - id: ClothingBeltChiefEngineerFilled
     - id: ClothingEyesGlassesMeson
-    - id: ClothingHandsGlovesColorYellow
+#    - id: ClothingHandsGlovesColorYellow # Starlight, they spawn with these now.
     - id: ClothingHeadsetAltEngineering
     - id: DoorRemoteEngineering
     - id: BoxCECircuitboards
@@ -298,32 +299,32 @@
   id: LockerFillChiefMedicalOfficerNoHardsuit
   table: !type:AllSelector
     children:
-    - id: ClothingCloakCmoElite
-    - id: BoxEncryptionKeyMedical
-    - id: ClothingBackpackDuffelSurgeryFilled
     - id: ClothingEyesHudMedical
-    - id: ClothingHandsGlovesNitrile
-    - id: ClothingHeadsetAltMedical
-    - id: ClothingMaskSterile
-    - id: DoorRemoteMedical
+    - id: ClothingBeltMedicalFilled
     - id: HandheldCrewMonitor
     - id: Hypospray
-    - id: BoxCMOCircuitboards
-    - id: MedkitFilled
-    - id: RubberStampCMO
     - id: MedTekCartridge
-    - id: AutoMenderBurnFilled #Starlight
-    - id: AutoMenderBruteFilled #Starlight
-    - id: CMOLicense #STARLIGHT
-    - id: EncryptionKeyMedicalScience # Starlight, steal target
-      prob: 0.5 # Starlight
-    - id: PrintedDocumentGreenshiftAlert #SL
-      conditions: #SL
-      - !type:GamemodeCondition #SL
-        presets: #SL
-        - Greenshift #SL
-        - Sandbox #SL
-    - id: JawsOfLifeMed #Starlight
+    # Standard command gear
+    - id: RubberStampCMO
+    - id: ClothingHeadsetAltMedical
+    - id: DoorRemoteMedical
+    - id: BoxEncryptionKeyMedical
+    - id: BoxCMOCircuitboards
+    - id: AutoMenderBurnFilled # Starlight start
+    - id: AutoMenderBruteFilled
+    - id: ClothingBackpackDuffelSurgeryFilled
+    - id: ClothingMaskSterile
+    - id: ClothingHandsGlovesNitrile
+    - id: CMOLicense
+    - id: EncryptionKeyMedicalScience # Steal target
+      prob: 0.5
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+    - id: JawsOfLifeMed #Starlight end
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -457,7 +458,7 @@
     - id: DrinkHosFlask
     - id: SecurityShuttleConsoleCircuitboard # Starlight start
     - id: ClothingOuterWinterHoS
-    - id: ClothingHandsGlovesCombat
+#    - id: ClothingHandsGlovesCombat # Starlight, they spawn with them now.
     - id: SecureBriefings
     - id: PrintedDocumentGreenshiftAlert
       conditions:

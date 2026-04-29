@@ -186,6 +186,26 @@
   categories:
     - UplinkWeaponry
 
+- type: listing
+  id: UplinkBananaEsword
+  name: uplink-banana-esword-name
+  description: uplink-banana-esword-desc
+  productEntity: EnergySwordBanana
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 8
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Clown
+        - Performer
+        - HeadOfPersonnel
+        - Captain
+
 # Ammo
 
 - type: listing
@@ -546,6 +566,27 @@
         - Quartermaster
         - Captain
 
+- type: listing
+  id: UplinkNoslipClownShoes
+  name: uplink-noslip-clown-shoes-name
+  description: uplink-noslip-clown-shoes-desc
+  productEntity: ClownShoesNoSlip
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Clown
+        - Mime
+        - Performer
+        - HeadOfPersonnel
+        - Captain
+
 # Pointless
 - type: listing
   id: UplinkSyndieDrobe
@@ -559,52 +600,6 @@
     Telecrystal: 20
   categories:
     - UplinkPointless
-
-- type: listing
-  id: UplinkClothingOuterArmorElegantRaid
-  name: uplink-syndie-elegant-raid-name
-  description: uplink-syndie-elegant-raid-desc
-  icon: { sprite: /Textures/_Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi, state: icon }
-  productEntity: ClothingBackpackSyndicateElegantRaidBundle
-  cost:
-    Telecrystal: 12
-  categories:
-    - UplinkPointless
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - NukeOpsUplink
-
-- type: listing
-  id: UplinkClothingMurderShocks
-  name: uplink-clothing-murder-socks-name
-  description: uplink-clothing-murder-socks-desc
-  productEntity: ClothingUnderSocksMurder
-  cost:
-    Telecrystal: 2
-  categories:
-    - UplinkPointless
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - NukeOpsUplink
-
-- type: listing
-  id: UplinkClothingMurderShocksAgent
-  name: uplink-clothing-murder-socks-name
-  description: uplink-clothing-murder-socks-desc
-  productEntity: ClothingUnderSocksMurder
-  cost:
-    Telecrystal: 1
-  categories:
-    - UplinkPointless
-  conditions:
-    - !type:StoreWhitelistCondition
-      blacklist:
-        tags:
-          - NukeOpsUplink
 
 # Allies
 - type: listing
@@ -925,6 +920,24 @@
         - HeadOfPersonnel
         - Captain
 
+- type: listing
+  id: UplinkMimanaStealthy
+  name: uplink-mimana-stealthy-name
+  description: uplink-mimana-stealthy-desc
+  productEntity: TrashMimanaPeelStealthy
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Clown
+        - Mime
+        - Performer
+        - HeadOfPersonnel
+        - Captain
+
 #Explosives
 - type: listing
   id: UplinkPizzaBomb
@@ -1006,7 +1019,7 @@
   id: UplinkDarkGygaxLoneOps
   name: uplink-mech-teleporter-assault-name
   description: uplink-mech-teleporter-assault-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: darkgygax }
+  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/darkgygax.rsi, state: base }
   productEntity: CrateCybersunDarkGygaxBundle
   cost:
     Telecrystal: 30
@@ -1022,7 +1035,7 @@
   id: UplinkMaulerLoneOps
   name: uplink-mech-teleporter-heavy-name
   description: uplink-mech-teleporter-heavy-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: mauler }
+  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/mauler.rsi, state: base }
   productEntity: CrateCybersunMaulerBundle
   cost:
     Telecrystal: 45

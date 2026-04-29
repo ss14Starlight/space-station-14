@@ -367,3 +367,37 @@
   emaggedInventory:
     OminousPill: 1
     StrangePill: 1
+
+- type: vendingMachineInventory
+  id: NanoMedPlusInventorySL
+  startingInventory:
+    HandheldHealthAnalyzer: 3
+    Gauze: 5
+    Brutepack: 5
+    Ointment: 5
+    Bloodpack: 5
+    Tourniquet: 2
+    ChemistryBottleEpinephrine: 3
+    ChemistryBottleBicaridine: 1
+    Syringe: 5
+    JetInjector: 3
+    BoxBottle: 3
+    PillCanisterTricordrazine: 3
+    PillCanisterIron: 1
+    PillCanisterCopper: 1
+    PillCanisterPotassiumIodide: 1
+    SyringeIpecac: 1
+    ClothingEyesHudMedical: 2
+    ClothingEyesEyepatchHudMedical: 2
+    ClothingEyeGlassesMedicalPrescription: 2
+    AutoMenderBruteFilled: 1
+    AutoMenderBurnFilled: 1
+    SpaceMedipen: 1
+  contrabandInventory:
+    PillCanisterRandom: 3
+    PillSpaceDrugs: 3
+    StrangePill: 2
+    FoodApple: 1
+  emaggedInventory:
+    OminousPill: 2
+    PillDesoxyephedrine5: 2

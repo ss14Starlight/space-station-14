@@ -236,6 +236,8 @@
   - GasFilterInline
   - GasFilterInlineAlt1
   - GasFilterInlineAlt2
+  - GasFilterInlineAlt3
+  - GasFilterInlineAlt4
 
 - type: construction
   id: GasFilterInlineAlt1
@@ -254,6 +256,8 @@
   - GasFilterInline
   - GasFilterInlineAlt1
   - GasFilterInlineAlt2
+  - GasFilterInlineAlt3
+  - GasFilterInlineAlt4
 
 - type: construction
   id: GasFilterInlineAlt2
@@ -272,6 +276,48 @@
   - GasFilterInline
   - GasFilterInlineAlt1
   - GasFilterInlineAlt2
+  - GasFilterInlineAlt3
+  - GasFilterInlineAlt4
+
+- type: construction
+  id: GasFilterInlineAlt3
+  hide: true
+  name: inline-gas-filter
+  description: inline-gas-filter-desc
+  graph: GasTrinaryStarlight
+  startNode: start
+  targetNode: inline_filterAlt3
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - GasFilterInline
+  - GasFilterInlineAlt1
+  - GasFilterInlineAlt2
+  - GasFilterInlineAlt3
+  - GasFilterInlineAlt4
+
+- type: construction
+  id: GasFilterInlineAlt4
+  hide: true
+  name: inline-gas-filter
+  description: inline-gas-filter-desc
+  graph: GasTrinaryStarlight
+  startNode: start
+  targetNode: inline_filterAlt4
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+    - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - GasFilterInline
+  - GasFilterInlineAlt1
+  - GasFilterInlineAlt2
+  - GasFilterInlineAlt3
+  - GasFilterInlineAlt4
 
 - type: construction
   id: GasFilterAlt1

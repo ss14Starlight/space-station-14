@@ -11,6 +11,19 @@
           - id: Pen
           - id: RubberStampIAA
 
+- type: entity
+  id: BriefcaseLawyerFilled
+  parent: BriefcaseBrown
+  suffix: Lawyer
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: Paper
+          - id: Pen
+          - id: RubberStampLawyer
+
 # Syndicate dead drop
 - type: entity
   parent: MarkerBase

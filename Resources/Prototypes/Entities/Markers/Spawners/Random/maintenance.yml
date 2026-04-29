@@ -69,7 +69,10 @@
       - id: ClothingOuterCoatLab
       - !type:AllSelector
         children:
-        - id: ClothingOuterCoatPirate
+        - !type:GroupSelector # Starlight start
+          children:
+          - id: ClothingOuterCoatPirate
+          - id: ClothingOuterCoatPirateDark # Starlight end
         - id: ClothingHeadHatPirateTricord
         - id: Spyglass #Starlight
       - id: ClothingHeadHatTophat

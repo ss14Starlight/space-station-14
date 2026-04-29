@@ -147,6 +147,7 @@ guide-entry-sl-service-sop-intro = Service
 guide-entry-sl-service-sop-genproc-intro = General Procedures
 guide-entry-sl-service-sop-staff-intro = Staff Procedures
 guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
+guide-entry-sl-service-sop-lawyer = Lawyer
 
 guide-entry-abductors = Abductors
 guide-entry-terror-spiders = Terror Spiders
@@ -163,3 +164,11 @@ guide-entry-records = Character Records
 
 # Tools
 guide-entry-tools-combination-locks = Combination Locks
+
+
+# Roleplay
+guide-entry-roleplay-intro = Roleplay Guides
+guide-entry-roleplay-01 = The Basics
+guide-entry-roleplay-02 = Collaborative Storytelling
+guide-entry-roleplay-03 = Losing Is Fun
+guide-entry-roleplay-04 = Acting With Mechanics

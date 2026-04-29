@@ -1,0 +1,52 @@
+- type: entity
+  id: ShelfMedTakSecureFilledChems
+  suffix: Secure, Filled, Chems
+  parent: ShelfMedTakSecure
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ChemistryBottlePyrazine
+        - id: ChemistryBottleLeporazine
+        - id: ChemistryBottleInsuzine
+        - id: ChemistryBottleSigynate
+        - id: ChemistryBottleDermaline
+        - id: TacticalJetInjector
+        - id: ChemistryBottleBruizine
+        - id: ChemistryBottleLacerinol
+        - id: ChemistryBottlePuncturase
+        - id: ChemistryBottleBicaridine
+        - id: Syringe
+        - id: ChemistryBottleDiphenhydramine
+        - id: ChemistryBottleDylovene
+        - id: ChemistryBottleHyronalin
+        - id: ChemistryBottlePyrazine
+        - id: ChemistryBottleOmnizine
+        - id: EmergencyMedipen
+        - id: ChemistryBottleAmoxla
+        - id: ChemistryBottleDexalinPlus
+        - id: ChemistryBottleSaline
+        - id: ChemistryBottleEpinephrine
+        - id: ChemistryBottleOmnizine
+        - id: EmergencyMedipen
+
+- type: entity
+  id: ShelfMedTakSecureFilledTopicals
+  suffix: Secure, Filled, Topicals
+  parent: ShelfMedTakSecure
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: AutoMenderBruteFilled
+        - id: AutoMenderBurnFilled
+        - id: JugGoldenBicaridine
+        - id: JugGoldenDermaline
+        - id: MedicatedSuture
+          amount: 2
+        - id: RegenerativeMesh
+          amount: 2
+        - id: Bloodpack
+          amount: 2

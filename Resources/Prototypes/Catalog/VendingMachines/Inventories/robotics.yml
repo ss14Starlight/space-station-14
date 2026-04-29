@@ -8,7 +8,7 @@
     ClothingEyesEyepatchHudDiag: 2
     RemoteSignaller: 3
     Igniter: 2
-    HandheldHealthAnalyzer: 3
+    HandheldMachineAnalyzer: 3 #SL
     Scalpel: 2
     SawElectric: 2
     BoneSetter: 2
