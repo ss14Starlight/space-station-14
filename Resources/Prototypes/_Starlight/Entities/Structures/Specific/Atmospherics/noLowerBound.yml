@@ -11,7 +11,7 @@
     pressureThresholdId: stationPressureNoLowerBound
     gasThresholdPrototypes:
       Oxygen: stationOxygenNoLowerBound
-      Nitrogen: ignore
+      Nitrogen: ignore # Because nitrogen has no upper bound already
       CarbonDioxide: stationCO2
       Plasma: stationPlasma
       Tritium: stationTritium
@@ -82,7 +82,7 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [GasVentPumpNoLowerBoundBase, GasVentPump]
+  parent: [AirSensorNoLowerBoundBase, GasVentPumpNoLowerBoundBase, GasVentPump]
   id: GasVentPumpNoLowerBound
 
 # Gas Scrubber
@@ -121,5 +121,5 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [GasVentScrubberNoLowerBoundBase, GasVentScrubber]
-  id: GasVentScrubberNoLowerBound
+  parent: [AirSensorNoLowerBoundBase, GasVentScrubberNoLowerBoundBase, GasVentScrubber]
+  id: GasVentScrubberNoLowerBound'

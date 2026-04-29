@@ -27,3 +27,33 @@
       Tertiary: GasPipeSensorVoxAirAlt2
       Quaternary: GasPipeSensorVoxAirAlt3
       Quinary: GasPipeSensorVoxAirAlt4
+
+- type: entity
+  parent: GasPipeSensor
+  id: GasPipeSensorNuclearHot
+  suffix: Nuclear Hot Loop
+  components:
+  - type: Label
+    currentLabel: gas-pipe-sensor-nuclear-hot-loop
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasPipeSensorNuclearHot
+      Secondary: GasPipeSensorNuclearHotAlt1
+      Tertiary: GasPipeSensorNuclearHotAlt2
+      Quaternary: GasPipeSensorNuclearHotAlt3
+      Quinary: GasPipeSensorNuclearHotAlt4
+
+- type: entity
+  parent: GasPipeSensor
+  id: GasPipeSensorNuclearCold
+  suffix: Nuclear Cold Loop
+  components:
+  - type: Label
+    currentLabel: gas-pipe-sensor-nuclear-cold-loop
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: GasPipeSensorNuclearCold
+      Secondary: GasPipeSensorNuclearColdAlt1
+      Tertiary: GasPipeSensorNuclearColdAlt2
+      Quaternary: GasPipeSensorNuclearColdAlt3
+      Quinary: GasPipeSensorNuclearColdAlt4
