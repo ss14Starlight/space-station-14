@@ -62,12 +62,10 @@ public sealed class KillPersonConditionSystem : EntitySystem
                 return 0f;
 
             // If the shuttle hasn't left, give 50% progress if the target isn't on the shuttle as a "almost there!"
-            if (!_emergencyShuttle.ShuttlesLeft)
-                return targetMarooned ? 0.5f : 0f;
-
-            // If the shuttle has already left, and the target isn't on it, 100%
-            if (_emergencyShuttle.ShuttlesLeft)
-                return targetMarooned ? 1f : 0f;
+            return !_emergencyShuttle.ShuttlesLeft
+                ? targetMarooned ? 0.5f : 0f
+                // If the shuttle has already left, and the target isn't on it, 100%
+                : targetMarooned ? 1f : 0f;
         }
         //Starlight End
 
