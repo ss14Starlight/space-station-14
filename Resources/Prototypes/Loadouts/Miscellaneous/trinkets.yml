@@ -27,6 +27,7 @@
   storage:
     back:
     - ClothingMultipleHeadphones
+  groupBy: "Headphones" # Starlight
 
 # Toys
 - type: loadout
@@ -322,6 +323,8 @@
     - TowelColorWhite
   groupBy: "towels"
 
+#Starlight Start - Towel Restoration
+
 - type: loadout
   id: TowelColorGray
   effects:
@@ -430,7 +433,7 @@
   id: TowelColorLightBlue
   effects:
   - !type:GroupLoadoutEffect
-    proto: MedicalExpertTimer
+    proto: SeniorPhysician
   storage:
     back:
     - TowelColorLightBlue
@@ -513,3 +516,4 @@
     back:
     - TowelColorGold
   groupBy: "towels"
+# Starlight End

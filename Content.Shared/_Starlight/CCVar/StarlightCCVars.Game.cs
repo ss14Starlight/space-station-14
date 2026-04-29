@@ -45,4 +45,10 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<bool> AutogammaRiftEnabled =
         CVarDef.Create("game.autogamma_enabled", false, CVar.SERVERONLY);
+
+    /// <summary>
+    /// The time in seconds that it will take the round to end after the nuke explodes durign nukies.
+    /// </summary>
+    public static readonly CVarDef<float> NukeRoundRestartTime =
+        CVarDef.Create("game.nuke_round_restart_time", 20f, CVar.SERVERONLY);
 }

@@ -1,48 +1,68 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "'hands' Modified from robohands.rsi, paperwork-module, mail-module, mats-module, loading-module, bartending-module, bookkeeping-module, cooking-module, surgery-module, and xenoborg-rcd-module created for Starlight by TacoLlama (github)",
+    "copyright": "Starlight",
     "size": {
         "x": 32,
         "y": 32
     },
   "states": [
     {
-      "name": "bartending-module"
+      "name": "bartending-module",
+      "copyright": "SevenShades"
     },
     {
-      "name": "bookkeeping-module"
+      "name": "bookkeeping-module",
+      "copyright": "SevenShades"
     },
     {
-      "name": "cooking-module"
+      "name": "cooking-module",
+      "copyright": "SevenShades"
     },
     {
-      "name": "paperwork-module"
+      "name": "paperwork-module",
+      "copyright": "SevenShades"
     },
     {
-      "name": "surgery-module"
+      "name": "surgery-module",
+      "copyright": "SevenShades"
     },
     {
-      "name": "xenoborg-rcd-module"
+      "name": "xenoborg-rcd-module",
+      "copyright": "SevenShades"
     },
     {
-      "name": "mail-module"
+      "name": "mail-module",
+      "copyright": "SevenShades"
     },
     {
-      "name": "mats-module"
+      "name": "mats-module",
+      "copyright": "SevenShades"
     },
     {
-      "name": "loading-module"
+      "name": "loading-module",
+      "copyright": "SevenShades"
     },
     {
-      "name": "plumbing-module"
+      "name": "plumbing-module",
+      "copyright": "AegisShieldDev"
     },
     {
       "name": "hands",
-      "directions": 1
+      "directions": 1,
+      "copyright": "Citrea-Lingua, modified from robohands.rsi"
     },
     {
-      "name": "knife-module"
+      "name": "knife-module",
+      "copyright": "Conflee"
+    },
+    {
+      "name": "medtak-aid-module",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "medtak-combat-module",
+      "copyright": "SevenShades"
     }
   ]
 }

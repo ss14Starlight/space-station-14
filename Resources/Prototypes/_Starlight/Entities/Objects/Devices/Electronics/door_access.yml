@@ -70,6 +70,34 @@
     - type: AccessReader
       access: [["Mail"]]
 
+# Legal
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsLegal
+  suffix: Legal, Locked
+  components:
+  - type: AccessReader
+    access: [["Lawyer"]]
+
+# Courtroom
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCourtroom
+  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  components:
+  - type: AccessReader
+    access: [["Security"], ["IAA"], ["Lawyer"]]
+
+
+# Attorney
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsAttorney
+  suffix: Internal Affairs/Legal (Attorney), Locked
+  components:
+  - type: AccessReader
+    access: [["IAA"], ["Lawyer"]]
+
 #Brigmedic
 - type: entity
   parent: DoorElectronics
@@ -123,3 +151,12 @@
   components:
     - type: AccessReader
       access: [["Blackstar"]]
+
+#MedTak
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMedTak
+  suffix: MedTak, Locked
+  components:
+    - type: AccessReader
+      access: [["MedTak"]]

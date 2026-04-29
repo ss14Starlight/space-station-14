@@ -1,0 +1,131 @@
+{
+    "version": 1,
+    "copyright": "Cards Sprites were originally from Paradise Station (https://github.com/ParadiseSS13/Paradise) and modified by VictorJob and Huaqas (GitHub). Boxes are from VictorJob.",
+    "license": "CC-BY-SA-3.0",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "empty"
+        },
+        {
+            "name": "background"
+        },
+        {
+            "name": "suit_diamonds"
+        },
+        {
+            "name": "suit_hearts"
+        },
+        {
+            "name": "suit_clubs"
+        },
+        {
+            "name": "suit_spades"
+        },
+        {
+            "name": "ace_diamonds"
+        },
+        {
+            "name": "ace_hearts"
+        },
+        {
+            "name": "ace_clubs"
+        },
+        {
+            "name": "ace_spades"
+        },
+        {
+            "name": "num2_red"
+        },
+        {
+            "name": "num3_red"
+        },
+        {
+            "name": "num4_red"
+        },
+        {
+            "name": "num5_red"
+        },
+        {
+            "name": "num6_red"
+        },
+        {
+            "name": "num7_red"
+        },
+        {
+            "name": "num8_red"
+        },
+        {
+            "name": "num9_red"
+        },
+        {
+            "name": "num10_red"
+        },
+        {
+            "name": "numJ_red"
+        },
+        {
+            "name": "numQ_red"
+        },
+        {
+            "name": "numK_red"
+        },
+        {
+            "name": "num2_black"
+        },
+        {
+            "name": "num3_black"
+        },
+        {
+            "name": "num4_black"
+        },
+        {
+            "name": "num5_black"
+        },
+        {
+            "name": "num6_black"
+        },
+        {
+            "name": "num7_black"
+        },
+        {
+            "name": "num8_black"
+        },
+        {
+            "name": "num9_black"
+        },
+        {
+            "name": "num10_black"
+        },
+        {
+            "name": "numJ_black"
+        },
+        {
+            "name": "numQ_black"
+        },
+        {
+            "name": "numK_black"
+        },
+        {
+            "name": "joker",
+            "delays": [
+            [
+            0.5,
+            0.5
+            ]
+        ]
+        },
+        {
+            "name": "singlecard_down"
+        },
+        {
+            "name": "box"
+        },
+        {
+            "name": "box_open"
+        }
+    ]
+}

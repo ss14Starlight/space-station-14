@@ -1,8 +1,10 @@
+using System.Linq;
 using System.Net;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
+using Starlight.NullLink;
 
 
 namespace Content.Server.Database
@@ -24,6 +26,12 @@ namespace Content.Server.Database
         public ServerUnbanDef? Unban { get; }
         public ServerBanExemptFlags ExemptFlags { get; }
 
+        public string? ProjectName { get; } // Starlight-edit
+
+        public string? ServerName { get; } // Starlight-edit
+
+        public bool Network { get; } // Starlight-edit
+
         public ServerBanDef(int? id,
             NetUserId? userId,
             (IPAddress, int)? address,
@@ -36,7 +44,10 @@ namespace Content.Server.Database
             NoteSeverity severity,
             NetUserId? banningAdmin,
             ServerUnbanDef? unban,
-            ServerBanExemptFlags exemptFlags = default)
+            ServerBanExemptFlags exemptFlags = default,
+            string? projectName = null,
+            string? serverName = null,
+            bool network = false)
         {
             if (userId == null && address == null && hwId ==  null)
             {
@@ -63,6 +74,9 @@ namespace Content.Server.Database
             BanningAdmin = banningAdmin;
             Unban = unban;
             ExemptFlags = exemptFlags;
+            ProjectName = projectName;
+            ServerName = serverName;
+            Network = network;
         }
 
         public string FormatBanMessage(IConfigurationManager cfg, ILocalizationManager loc)
@@ -82,10 +96,18 @@ namespace Content.Server.Database
                     : loc.GetString("ban-banned-permanent");
             }
 
-            // Starlight Start: Player facing Ban ID
+            // Starlight Start: Player facing Ban ID && Server/Project Names
             var banIdLine = Id is { } banId
                 ? $"{loc.GetString("ban-banned-id", ("id", banId))}\n"
                 : string.Empty;
+
+            string serverProjectLine;
+            if (ProjectName == null)
+                serverProjectLine = string.Empty;
+            else if (ServerName == null)
+                serverProjectLine = $"{loc.GetString("ban-project", ("project", ProjectName ?? ""))}\n";
+            else
+                serverProjectLine = $"{loc.GetString("ban-project-server", ("project", ProjectName ?? ""), ("server", ServerName ?? ""))}\n";
             // Starlight End
 
             // Starlight edit Start: Added banIdLine
@@ -93,9 +115,38 @@ namespace Content.Server.Database
                    {loc.GetString("ban-banned-1")}
                    {loc.GetString("ban-banned-2", ("reason", Reason))}
                    {banIdLine}{expires}
-                   {loc.GetString("ban-banned-3")}
+                   {serverProjectLine}{loc.GetString("ban-banned-3")}
                    """;
             // Starlight edit End
         }
     }
+
+    #region Starlight
+
+    public static class BanDefExtensions
+    {
+        public static AdminBan ToNullLink(this ServerBanDef banDef)
+            => new()
+            {
+                Id = banDef.Id,
+                UserId = banDef.UserId,
+                Address = banDef.Address == null ? null : new() { Address = banDef.Address.Value.address.ToString(), CidrMask = banDef.Address.Value.cidrMask },
+                HWId = banDef.HWId == null ? null : new() { Hwid = banDef.HWId.Hwid.ToArray(), Type = (int)banDef.HWId.Type },
+                BanTime = banDef.BanTime,
+                ExpirationTime = banDef.ExpirationTime,
+                RoundId = banDef.RoundId,
+                PlayTimeAtNote = banDef.PlaytimeAtNote,
+                Reason = banDef.Reason,
+                Severity = banDef.Severity.ToString(),
+                BanningAdmin = banDef.BanningAdmin,
+                Unban = banDef.Unban == null ? [] : new() { banDef.Unban.ToNullLink() },
+                Role = null,
+                ExemptFlags = (int)banDef.ExemptFlags,
+                ProjectName = banDef.ProjectName,
+                ServerName = banDef.ServerName,
+
+            };
+    }
+
+    #endregion
 }
