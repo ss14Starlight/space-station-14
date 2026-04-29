@@ -1,11 +1,10 @@
 using Content.Server.Popups;
 using Content.Server.Cargo.Systems;
-using Content.Server._Starlight.Shipyard.Components;
+using Content.Shared._Starlight.Shipyard.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Starlight.Shipyard.Events;
 using Content.Shared._Starlight.Shipyard.BUI;
 using Content.Shared._Starlight.Shipyard.Prototypes;
-using Content.Shared._Starlight.Shipyard.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared._Starlight.Shipyard;
@@ -39,7 +38,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
         SubscribeLocalEvent<ShipyardConsoleComponent, BoundUIOpenedEvent>(OnConsoleUIOpened);
     }
 
-    private void OnPurchaseMessage(EntityUid uid, SharedShipyardConsoleComponent component, ShipyardConsolePurchaseMessage args)
+    private void OnPurchaseMessage(EntityUid uid, ShipyardConsoleComponent component, ShipyardConsolePurchaseMessage args)
     {
         if (args.Actor is not { Valid: true } player)
             return;
@@ -117,7 +116,7 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
         _ui.SetUiState(uid, ShipyardConsoleUiKey.Shipyard, newState);
     }
 
-    private void OnConsoleUIOpened(EntityUid uid, SharedShipyardConsoleComponent component, BoundUIOpenedEvent args)
+    private void OnConsoleUIOpened(EntityUid uid, ShipyardConsoleComponent component, BoundUIOpenedEvent args)
     {
         var station = _station.GetOwningStation(uid);
         var bank = GetBankAccount(station);
@@ -142,10 +141,10 @@ public sealed class ShipyardConsoleSystem : SharedShipyardSystem
     private void ConsolePopup(EntityUid player, string text) =>
         _popup.PopupEntity(text, player);
 
-    private void PlayDenySound(EntityUid uid, SharedShipyardConsoleComponent component) =>
+    private void PlayDenySound(EntityUid uid, ShipyardConsoleComponent component) =>
         _audio.PlayPvs(_audio.ResolveSound(component.ErrorSound), uid);
 
-    private void PlayConfirmSound(EntityUid uid, SharedShipyardConsoleComponent component) =>
+    private void PlayConfirmSound(EntityUid uid, ShipyardConsoleComponent component) =>
         _audio.PlayPvs(_audio.ResolveSound(component.ConfirmSound), uid);
 
     private bool TryPurchaseVessel(EntityUid uid, VesselPrototype vessel, out ShuttleComponent? deed)

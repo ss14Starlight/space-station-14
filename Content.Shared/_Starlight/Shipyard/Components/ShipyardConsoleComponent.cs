@@ -4,7 +4,8 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Shipyard.Components;
 
-public abstract partial class SharedShipyardConsoleComponent : Component
+[RegisterComponent]
+public sealed partial class ShipyardConsoleComponent : Component
 {
     [DataField("soundError")]
     public SoundSpecifier ErrorSound =

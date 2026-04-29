@@ -2,7 +2,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Server.Cargo.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared._Starlight.Shipyard;
-using Content.Server._Starlight.Shipyard.Components;
+using Content.Shared._Starlight.Shipyard.Components;
 using Content.Shared.GameTicking;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;

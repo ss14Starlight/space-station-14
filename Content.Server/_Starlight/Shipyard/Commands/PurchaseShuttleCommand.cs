@@ -14,9 +14,11 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+
     public string Command => "purchaseshuttle";
-    public string Description => "Spawns and docks a specified shuttle from a grid file";
-    public string Help => $"{Command} <station ID> <gridfile path> [delay]";
+    public string Description => Loc.GetString("cmd-purchaseshuttle-desc");
+    public string Help => Loc.GetString("cmd-purchaseshuttle-help");
+
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         if (args.Length < 2)
@@ -29,7 +31,8 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
 
         if (!int.TryParse(args[0], out var stationId))
         {
-            shell.WriteError($"{args[0]} is not a valid integer.");
+            shell.WriteError(Loc.GetString("cmd-purchaseshuttle-invalid-integer",
+                ("value", args[0])));
             return;
         }
 
@@ -38,14 +41,16 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
         float delay = 1f;
         if (args.Length >= 3 && !float.TryParse(args[2], out delay))
         {
-            shell.WriteError($"{args[2]} is not a valid delay value.");
+            shell.WriteError(Loc.GetString("cmd-purchaseshuttle-invalid-delay",
+                ("value", args[2])));
             return;
         }
 
         var station = new EntityUid(stationId);
         if (!_entityManager.EntityExists(station))
         {
-            shell.WriteError($"No entity with UID {stationId} exists.");
+            shell.WriteError(Loc.GetString("cmd-purchaseshuttle-no-entity",
+                ("uid", stationId)));
             return;
         }
 
@@ -55,11 +60,13 @@ public sealed class PurchaseShuttleCommand : IConsoleCommand
 
         if (vessel == null)
         {
-            shell.WriteError("Failed to purchase shuttle (no vessel returned).");
+            shell.WriteError(Loc.GetString("cmd-purchaseshuttle-failed"));
             return;
         }
 
-        shell.WriteLine($"Successfully purchased shuttle '{shuttlePath}' for station {stationId}.");
+        shell.WriteLine(Loc.GetString("cmd-purchaseshuttle-success",
+            ("path", shuttlePath),
+            ("station", stationId)));
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
