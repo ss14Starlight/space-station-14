@@ -65,6 +65,17 @@
     sprite: Objects/Misc/id_cards.rsi
     state: icon-captain
 
+# Starlight start
+
+- type: stealTargetGroup
+  id: CaptainTablet
+  name: steal-target-groups-captain-tablet
+  sprite:
+    sprite: _Starlight/Objects/Devices/communication_tablet.rsi
+    state: icon-captain
+
+# Starlight end
+
 - type: stealTargetGroup
   id: JetpackCaptainFilled
   name: steal-target-groups-jetpack-captain-filled

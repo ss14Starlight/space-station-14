@@ -50,6 +50,7 @@
     CorporateSecretsStealObjective: 0.75 #Starlight Unique Target
     CriminalReportsStealObjective: 0.75 #Starlight Unique Target
     SecureKnowledgeStealObjective:  0.75 #Starlight Unique Target
+    CaptainTabletStealObjective: 0.75 # #Starlight Unique Target + newly added
     # Starlight end
 
 
@@ -135,6 +136,7 @@
     SalvageShuttleCircuitboardStealObjective: 1 # technically qm
     MiningShuttleCircuitboardStealObjective: 1 # ditto
     SpyglassCaptainStealObjective: 0.7 #Cappy
+    CaptainTabletStealObjective: 0.7 # captain, newly added
     # Starlight-end
     ClothingOuterHardsuitVoidParamedStealObjective: 1   #med
     MedicalTechFabCircuitboardStealObjective: 1
