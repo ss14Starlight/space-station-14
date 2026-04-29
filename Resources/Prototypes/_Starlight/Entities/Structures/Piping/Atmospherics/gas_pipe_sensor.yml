@@ -31,7 +31,7 @@
 - type: entity
   parent: GasPipeSensor
   id: GasPipeSensorNuclearHot
-  suffix: Nuclear Hot Loop
+  suffix: Nuclear hot
   components:
   - type: Label
     currentLabel: gas-pipe-sensor-nuclear-hot-loop
@@ -46,7 +46,7 @@
 - type: entity
   parent: GasPipeSensor
   id: GasPipeSensorNuclearCold
-  suffix: Nuclear Cold Loop
+  suffix: Nuclear cold
   components:
   - type: Label
     currentLabel: gas-pipe-sensor-nuclear-cold-loop
