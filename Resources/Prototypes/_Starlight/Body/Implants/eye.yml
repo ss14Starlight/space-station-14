@@ -38,6 +38,7 @@
       damageContainers:
       - Inorganic
       - Silicon
+      - IPC
 
 - type: entity
   id: EyeImplantMedical
