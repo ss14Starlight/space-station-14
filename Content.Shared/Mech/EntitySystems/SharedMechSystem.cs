@@ -715,7 +715,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         args.Cancelled = args.User != uid;
     }
 
-    private void OnMechPilotElectrocutionAttempt(EntityUid uid, MechPilotComponent comp, ElectrocutionAttemptEvent args) 
+    private void OnMechPilotElectrocutionAttempt(EntityUid uid, MechPilotComponent comp, ElectrocutionAttemptEvent args)
         => args.SiemensCoefficient *= 0f; // Fully insulate the pilot
     #endregion
 }
