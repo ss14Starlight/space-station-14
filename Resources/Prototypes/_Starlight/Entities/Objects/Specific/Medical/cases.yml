@@ -1,0 +1,172 @@
+- type: entity
+  abstract: true
+  id: BaseBottleCase
+  parent: BaseStorageItem
+  name: chemical case
+  description: A plastic case with slots for bottles.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/cases.rsi
+    layers:
+    - state: bottlecase
+    - state: bottle1
+      map: ["bottle1"]
+      visible: false
+    - state: bottle2
+      map: ["bottle2"]
+      visible: false
+    - state: bottle3
+      map: ["bottle3"]
+      visible: false
+    - state: bottle4
+      map: ["bottle4"]
+      visible: false
+    - state: bottle5
+      map: ["bottle5"]
+      visible: false
+    - state: bottle6
+      map: ["bottle6"]
+      visible: false
+    - state: bottle7
+      map: ["bottle7"]
+      visible: false
+    - state: bottle8
+      map: ["bottle8"]
+      visible: false
+  - type: Storage
+    grid:
+    - 0,0,3,1
+    hideStackVisualsWhenClosed: false
+    whitelist:
+      tags:
+      - Bottle
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/cases.rsi
+    size: Small
+    shape:
+    - 0,0,1,1
+  - type: ItemCounter
+    count:
+      tags: [Bottle]
+    composite: true
+    layerStates:
+    - bottle1
+    - bottle2
+    - bottle3
+    - bottle4
+    - bottle5
+    - bottle6
+    - bottle7
+    - bottle8
+  - type: Appearance
+
+- type: entity
+  abstract: true
+  id: BasePenPack
+  parent: BaseStorageItem
+  name: autoinjector pack
+  description: A pouch filled with some autoinjectors.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/cases.rsi
+    state: injectorpack
+  - type: Storage
+    maxItemSize: Tiny
+    grid:
+    - 0,0,1,2
+    whitelist:
+       tags:
+        - Medipen
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Specific/Medical/cases.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+
+- type: entity
+  abstract: true
+  id: BaseSurgicalKit
+  parent: BaseStorageItem
+  name: surgical kit
+  description: A compact kit of surgical tools.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/cases.rsi
+    state: surgerykit
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,4,3
+    whitelist:
+       tags:
+        - Brutepack
+       components:
+        - SurgeryTool
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+    sprite: _Starlight/Objects/Specific/Medical/cases.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 150
+
+- type: entity
+  id: BottleCaseMedical
+  parent: [ BaseBottleCase, BaseMedicalContraband ]
+  name: chemical case
+  suffix: Medical
+  description: A plastic case with slots for bottles.
+  components:
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/cases.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+
+- type: entity
+  id: PenPackMedical
+  parent: [ BasePenPack, BaseMedicalContraband ]
+  name: autoinjector pack
+  suffix: Medical
+  description: A pouch filled with some autoinjectors.
+  components:
+  - type: Storage
+    maxItemSize: Tiny
+    grid:
+    - 0,0,1,1
+    whitelist:
+       tags:
+        - Medipen
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Medical/cases.rsi
+    size: Small
+    shape:
+    - 0,0,1,1
+
+- type: entity
+  id: SurgicalKitMedical
+  parent: [ BaseSurgicalKit, BaseMedicalContraband ]
+  name: surgical kit
+  suffix: Medical
+  description: A compact kit of surgical tools.
+
+- type: entity
+  name: surgical kit
+  suffix: Medical, Filled
+  parent: SurgicalKitMedical
+  id: SurgicalKitMedicalFilled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Hemostat
+        - id: Saw
+        - id: Drill
+        - id: Cautery
+        - id: Retractor
+        - id: Scalpel
+        - id: BoneGel
+        - id: BoneSetter

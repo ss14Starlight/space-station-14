@@ -31,7 +31,6 @@
   storage:
     back:
     - EmergencyRollerBedSpawnFolded
-    - BodyBagLockableFolded
     - DefibrillatorParamed # Starlight end
 
 - type: chameleonOutfit

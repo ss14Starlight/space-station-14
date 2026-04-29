@@ -316,6 +316,8 @@
     - id: ClothingMaskSterile
     - id: ClothingHandsGlovesNitrile
     - id: CMOLicense
+    - id: BottleCaseMedicalFilled
+    - id: PenPackMedicalFilled
     - id: EncryptionKeyMedicalScience # Steal target
       prob: 0.5
     - id: PrintedDocumentGreenshiftAlert
