@@ -42709,7 +42709,7 @@ entities:
       containers:
       - drainBuffer
       - tank
-- proto: TowelColorGold
+- proto: TowelColorWhite
   entities:
   - uid: 1325
     components:

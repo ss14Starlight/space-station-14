@@ -68,7 +68,7 @@
         color: "#EAE8E8"
   - type: Fiber
     fiberColor: fibers-white
-
+# Starlight Start - Towel Restoration
 - type: entity
   id: TowelColorPurple
   name: purple towel
@@ -663,7 +663,7 @@
         color: "#EAE8E8"
   - type: Fiber
     fiberColor: fibers-white
-
+# Starlight End
 - type: entity
   id: TowelColorNT
   name: NanoTrasen brand towel

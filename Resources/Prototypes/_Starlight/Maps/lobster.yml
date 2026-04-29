@@ -25,6 +25,7 @@
             Chef: [ 2, 2 ]
             Janitor: [ 2, 2 ]
             Chaplain: [ 1, 1 ]
+            Librarian: [ 1, 1 ]
             ServiceWorker: [ 4, 5 ]
             Boxer: [ 2, 2 ]
             #engineering

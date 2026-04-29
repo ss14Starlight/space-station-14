@@ -48,7 +48,7 @@
   - OffsetCaneNT
   - Cane
   - TowelColorWhite
-  - TowelColorGray
+  - TowelColorGray # Starlight start
   - TowelColorBlack
   - TowelColorRed
   - TowelColorOrange
@@ -63,13 +63,16 @@
   - TowelColorMime
   - TowelColorSilver
   - TowelColorGold
-  - TowelColorWhite
-  - TowelColorYellow
-  - HarmonicaInstrument # Starlight start
+  - HarmonicaInstrument
   - FluteInstrument
   - AcousticGuitarInstrument
   - TrumpetInstrument
   - RoadCone
+  - MaidOutfit
+  - MaidGloves
+  - MaidOutfitTactical
+  - MaidHeadbandTactical
+  - TacticalMaidGloves
   - ClothWrapGloveTrinket
   - ClothWrapShoeTrinket
   - RollerSkates
@@ -265,9 +268,9 @@
   id: HoPBackpack
   name: loadout-group-hop-backpack
   loadouts:
-  - CommonBackpack
-  - CommonSatchel
-  - CommonDuffel
+  - HoPBackpack # Starlight
+  - HoPSatchel # Starlight
+  - HoPDuffel # Starlight
   - HoPBackpackIan
   - LeatherSatchel # starlight
 
@@ -337,6 +340,7 @@
   - TatteredClothes
   - TieDye
   - VintageClothes
+  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup
@@ -417,6 +421,7 @@
   - BartenderJumpsuit
   - BartenderJumpskirt
   - BartenderJumpsuitPurple
+  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup
@@ -466,6 +471,7 @@
   loadouts:
   - ChefJumpsuit
   - ChefJumpskirt
+  - MaidOutfit # Starlight
 
 
 - type: loadoutGroup

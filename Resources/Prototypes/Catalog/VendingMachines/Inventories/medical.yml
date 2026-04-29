@@ -2,6 +2,8 @@
   id: NanoMedInventory
   startingInventory:
     HandheldHealthAnalyzer: 1
+    ClothingBeltMedical: 2 # Starlight
+    ClothingBeltMedicalEMT: 1 # Starlight
     Gauze: 3
     Brutepack: 3
     Ointment: 3
@@ -22,6 +24,7 @@
   id: NanoMedCivilianWallInventory
   startingInventory:
     HandheldHealthAnalyzer: 1
+    Gauze: 3 # Starlight
     Tourniquet: 3
     Brutepack: 3
     AloeCream: 3 # Currently just a reskin of Ointment but it's something
@@ -75,6 +78,7 @@
   startingInventory:
     HandheldHealthAnalyzer: 3
     Tourniquet: 5
+    Gauze: 3 # Starlight
     Brutepack: 5
     AloeCream: 5
     Bloodpack: 5

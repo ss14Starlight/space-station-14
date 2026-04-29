@@ -42,6 +42,7 @@ loadout-group-blueshield-id = Blueshield ID
 # Security
 loadout-group-security-tie = Security tie
 loadout-group-security-mask = Security mask
+loadout-group-security-mask-elite = Elite Security mask
 
 loadout-group-brigmedic-gloves = Brigmedic gloves
 loadout-group-security-non-lethal-weapon = Security Non-Lethal Weapon
@@ -102,7 +103,8 @@ loadout-group-chemist-beaker = Chemist beaker
 loadout-group-chemist-bag = Chemist bag
 loadout-group-chemist-labeler = Chemist labeler
 loadout-group-chemist-shoes = Chemist shoes
-
+loadout-group-medical-glasses = Medical glasses
+loadout-group-medical-gloves = Medical gloves
 # Service
 loadout-group-janitor-neck = Janitor neck
 
