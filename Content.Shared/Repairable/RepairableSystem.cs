@@ -8,6 +8,11 @@ using Content.Shared.Popups;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Serialization;
 
+#region Starlight
+using Content.Shared.Body.Components;
+using Content.Shared._Starlight.Medical.Body.Systems;
+#endregion
+
 namespace Content.Shared.Repairable;
 
 public sealed partial class RepairableSystem : EntitySystem
@@ -16,6 +21,7 @@ public sealed partial class RepairableSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!; // Starlight-edit
 
     public override void Initialize()
     {
@@ -94,8 +100,11 @@ public sealed partial class RepairableSystem : EntitySystem
         if (args.Handled)
             return;
 
-        // Only try repair the target if it is damaged
-        if (!TryComp<DamageableComponent>(ent.Owner, out var damageable) || damageable.TotalDamage == 0)
+        // Starlight-start: Only try repair the target if it is damaged or bleeding
+        bool isBleeding = TryComp<BloodstreamComponent>(ent, out var bloodstream) && bloodstream.BleedAmount > 0; //for beings that are repaired with the welder, but can bleed (like IPCs)
+
+        if ((!TryComp<DamageableComponent>(ent.Owner, out var damageable) || damageable.TotalDamage == 0) && !isBleeding)
+        // Starlight-end
             return;
 
         #region Starlight

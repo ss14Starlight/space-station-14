@@ -27,10 +27,11 @@
   id: ParamedicGear
   equipment:
     ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalEMTFilled # Starlight start
   storage:
     back:
-    - BodyBagLockableFolded #Starlight
-    - DefibrillatorParamed #Starlight
+    - EmergencyRollerBedSpawnFolded
+    - DefibrillatorParamed # Starlight end
 
 - type: chameleonOutfit
   id: ParamedicChameleonOutfit

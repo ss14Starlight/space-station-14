@@ -86,6 +86,11 @@ stack-redbruizpack = {$amount ->
     *[other] redbruizpacks
 }
 
+stack-empty-oilpack = {$amount ->
+    [1] emptyoilpack
+    *[other] emptyoilpacks
+}
+
 stack-credit = {$amount ->
     [1] credit
     *[other] credits
