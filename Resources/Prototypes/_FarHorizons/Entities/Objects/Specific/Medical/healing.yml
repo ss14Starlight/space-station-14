@@ -39,15 +39,6 @@
 
 - type: entity
   parent: OilPack
-  id: OilPack5
-  suffix: 5
-  components:
-    - type: Stack
-      stackType: OilPack
-      count: 5
-
-- type: entity
-  parent: OilPack
   id: OilPack1
   suffix: Single
   components:
