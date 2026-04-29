@@ -53,7 +53,7 @@
 - type: serverPlaytimeRecognition
   id: TRIESTEPORT
   recognition:
-    main: #TODO @pixeltheaertist
+    main: [] #TODO @pixeltheaertist
       #- STARLIGHT.alpha
       #- STARLIGHT.delta
       #- STARLIGHT.epsilon
@@ -63,7 +63,7 @@
 - type: serverPlaytimeRecognition
   id: AFTERLIGHT
   recognition:
-    main: #TODO @drsmugleaf
+    main: [] #TODO @drsmugleaf
       #- STARLIGHT.alpha
       #- STARLIGHT.delta
       #- STARLIGHT.epsilon
@@ -73,7 +73,7 @@
 - type: serverPlaytimeRecognition
   id: CLOVER
   recognition:
-    main: #TODO @ai_ivo
+    main: [] #TODO @ai_ivo
       #- STARLIGHT.alpha
       #- STARLIGHT.delta
       #- STARLIGHT.epsilon

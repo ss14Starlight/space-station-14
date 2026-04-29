@@ -18,7 +18,7 @@ public sealed partial class ServerPlaytimeRecognitionPrototype : IPrototype, ISe
         foreach (var (key, values) in Recognition)
             if (values == null)
                 throw new PrototypeLoadException(
-                    $"Prototype '{ID}' of type 'serverPlaytimeRecognition' has invalid configuration: " +
+                    $"Prototype '{ID}' of type '{nameof(ServerPlaytimeRecognitionPrototype)}' has invalid configuration: " +
                     $"The recognition entry '{key}' has a null array value. " +
                     $"To fix this, either specify an array (e.g., '{key}: []') or remove the '{key}' entry entirely.");
     }
