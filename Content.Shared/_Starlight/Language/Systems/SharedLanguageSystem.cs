@@ -7,6 +7,7 @@ using Content.Shared.GameTicking;
 using Robust.Shared.Prototypes;
 using Content.Shared.Cloning.Events;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Language.Systems;
 
@@ -15,6 +16,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedGameTicker _ticker = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     /// <summary>
     ///     The language used as a fallback in cases where an entity suddenly becomes a Language Speaker (e.g. the usage of make-sentient).
@@ -55,6 +57,27 @@ public abstract partial class SharedLanguageSystem : EntitySystem
         SubscribeLocalEvent<AdditionalLanguageKnowledgeComponent, MapInitEvent>(OnMapInitAdditional);
 
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
+    }
+
+    public void CallLanguagesUpdate(EntityUid uid)
+    {
+        var comp = EnsureComp<LanguageSpeakerUpdateComponent>(uid);
+        comp.TargetTick = _gameTiming.CurTick.Value + 1;
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<LanguageSpeakerUpdateComponent, LanguageSpeakerComponent>();
+        while (query.MoveNext(out var ent, out var update, out var speaker))
+        {
+            if (update.TargetTick > _gameTiming.CurTick.Value)
+                continue;
+
+            UpdateEntityLanguages((ent, speaker));
+            RemComp<LanguageSpeakerUpdateComponent>(ent);
+        }
     }
 
     private void OnClone(Entity<LanguageKnowledgeComponent> ent, ref CloningEvent ev)

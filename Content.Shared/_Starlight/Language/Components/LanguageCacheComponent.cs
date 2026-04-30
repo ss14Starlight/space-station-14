@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Language.Components;
 
 // <summary>
-//     Component that "caches" old languages a species had. usefull for revertable language changes.
+//     Component that "caches" old languages a species had. useful for revert-able language changes.
 // </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class LanguageCacheComponent : Component

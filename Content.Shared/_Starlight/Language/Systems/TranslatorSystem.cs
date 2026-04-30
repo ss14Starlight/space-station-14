@@ -42,8 +42,11 @@ public sealed class TranslatorSystem : EntitySystem
 
     private void OnMapInit(Entity<HandheldTranslatorComponent> ent, ref MapInitEvent args)
     {
-        _itemToggle.SetOnActivate(ent.Owner, ent.Comp.ToggleOnInteract);
-        _itemToggle.TrySetActive(ent.Owner, ent.Comp.Enabled);
+        if (TryComp<ItemToggleComponent>(ent, out var toggle))
+        {
+            _itemToggle.SetOnActivate((ent.Owner, toggle), ent.Comp.ToggleOnInteract);
+            _itemToggle.TrySetActive((ent.Owner, toggle), ent.Comp.Enabled);
+        }
     }
 
     private void OnExamined(Entity<HandheldTranslatorComponent> ent, ref ExaminedEvent args)
@@ -84,13 +87,7 @@ public sealed class TranslatorSystem : EntitySystem
         // Update the translator on the next tick - this is necessary because there's a good chance the removal from a container.
         // Was caused by the player moving the translator within their inventory rather than removing it.
         // If that is not the case, then OnProxyDetermineLanguages will remove this translator from HoldsTranslatorComponent.Translators.
-        // TODO STARLIGHT Timers should not be used for in-game logic. Replace this with a component and do it in update next tick instead, or you will get random test fails and other strange behavior
-        var oldParent = args.OldParent;
-        Timer.Spawn(0, () =>
-        {
-            if (Exists(oldParent) && HasComp<LanguageSpeakerComponent>(oldParent))
-                _language.UpdateEntityLanguages(oldParent.Value);
-        });
+        _language.CallLanguagesUpdate(args.OldParent.Value);
     }
 
     private void OnPowerCellSlotEmpty(Entity<HandheldTranslatorComponent> translator, ref PowerCellSlotEmptyEvent args)
@@ -153,7 +150,7 @@ public sealed class TranslatorSystem : EntitySystem
             if (!TryComp(translator, out HandheldTranslatorComponent? translatorComp))
                 continue;
 
-            if (!translatorComp.Enabled || !_powerCell.HasActivatableCharge(ent.Owner))
+            if (!translatorComp.Enabled || !_powerCell.HasActivatableCharge(translator))
                 continue;
 
             if (!_containers.TryGetContainingContainer(translator, out var container) ||
