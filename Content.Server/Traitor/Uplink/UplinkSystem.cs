@@ -52,9 +52,8 @@ public sealed class UplinkSystem : EntitySystem
             return ImplantUplink(user, balance, giveDiscounts);
 
         EnsureComp<UplinkComponent>(uplinkEntity.Value);
-        var store = EnsureComp<StoreComponent>(uplinkEntity.Value); // funkystation - so this is why every pda has StorePresetUplink
 
-        SetUplink(user, uplinkEntity.Value, balance, giveDiscounts); // Starlight, passing uplinkEntity so we can update shop based on objectives
+        SetUplink(user, uplinkEntity.Value, balance, giveDiscounts);
 
         // TODO add BUI. Currently can't be done outside of yaml -_-
         // ^ What does this even mean?
