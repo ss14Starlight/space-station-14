@@ -24,7 +24,6 @@ steal-target-groups-hos-weapon = head of security's Proto-5x or WT550r
 steal-target-groups-security-rare-guns = warden's energy shotgun or the detective's energy magnum
 steal-target-groups-bso-weapon = blueshield officer's X-01 multiphase energy gun or blueguard service pistol
 
-
 # Thief single items
 steal-target-groups-strange-brigmed-bedsheet = strange brigmedic's bedsheet
 steal-target-groups-salvlead-mantle = salvage lead's ceremonial salvager's mantle
