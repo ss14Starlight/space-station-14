@@ -604,10 +604,10 @@
 # Allies
 - type: listing
   id: UplinkSyndicateBorgi
-  name: uplink-syndicate-borgi-name
-  description: uplink-syndicate-borgi-desc
+  name: uplink-syndicate-borgi-bundle-name
+  description: uplink-syndicate-borgi-bundle-desc
   icon: { sprite: Objects/Fun/Balloons/corgi.rsi, state: icon }
-  productEntity: BaseSyndicateBorgiChassis
+  productEntity: SyndiBorgiKitBasicBundle
   cost:
     Telecrystal: 20
   categories:

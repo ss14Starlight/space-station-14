@@ -89,6 +89,11 @@
   name: store-category-pointless
   priority: 10
 
+- type: storeCategory # funkystation start
+  id: UplinkDAGD
+  name: store-category-dagd
+  priority: 11 # funkystation end
+
 #nukie delivery
 
 - type: storeCategory

@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.Objectives.Components; // funkystation
 using Content.Server.Store.Systems;
 using Content.Server.StoreDiscount.Systems;
 using Content.Shared.FixedPoint;
@@ -9,6 +10,7 @@ using Content.Shared.Mind;
 using Content.Shared.PDA;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
+using Content.Shared.Tag; // funkystation
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Traitor.Uplink;
@@ -16,11 +18,13 @@ namespace Content.Server.Traitor.Uplink;
 public sealed class UplinkSystem : EntitySystem
 {
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!; // funkystation
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly SharedSubdermalImplantSystem _subdermalImplant = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!; // funkystation
 
     public static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
     private static readonly EntProtoId FallbackUplinkImplant = "UplinkImplant";
@@ -33,23 +37,28 @@ public sealed class UplinkSystem : EntitySystem
     /// <param name="balance">The amount of currency on the uplink. If null, will just use the amount specified in the preset.</param>
     /// <param name="uplinkEntity">The entity that will actually have the uplink functionality. Defaults to the PDA if null.</param>
     /// <param name="giveDiscounts">Marker that enables discounts for uplink items.</param>
+    /// <param name="currencyProtoId">Id of the currency the store uses. If null, uses Telecrystal</param> // funkystation
+    /// <param name="storePreset">If set to a value, will clear the original preset and replace it with this one.</param> //funkystation
     /// <returns>Whether or not the uplink was added successfully</returns>
     public bool AddUplink(
         EntityUid user,
         FixedPoint2 balance,
         EntityUid? uplinkEntity = null,
-        bool giveDiscounts = false)
+        bool giveDiscounts = false,
+        EntProtoId? currencyProtoId = null,
+        EntProtoId? storePreset = null)
     {
         // Try to find target item if none passed
 
         uplinkEntity ??= FindUplinkTarget(user);
 
         if (uplinkEntity == null)
-            return ImplantUplink(user, balance, giveDiscounts);
+            return ImplantUplink(user, balance, giveDiscounts, uplinkEntity,currencyProtoId, storePreset); // Starlight, need to pass DAGD
 
         EnsureComp<UplinkComponent>(uplinkEntity.Value);
+        var store = EnsureComp<StoreComponent>(uplinkEntity.Value); // funkystation - so this is why every pda has StorePresetUplink
 
-        SetUplink(user, uplinkEntity.Value, balance, giveDiscounts);
+        SetUplink(user, uplinkEntity.Value, balance, giveDiscounts, uplinkEntity, currencyProtoId, storePreset); // Starlight, we need these in the other function
 
         // TODO add BUI. Currently can't be done outside of yaml -_-
         // ^ What does this even mean?
@@ -60,7 +69,7 @@ public sealed class UplinkSystem : EntitySystem
     /// <summary>
     /// Configure TC for the uplink
     /// </summary>
-    public void SetUplink(EntityUid user, EntityUid uplink, FixedPoint2 balance, bool giveDiscounts) // Starlight - make it public for UplinkImplant
+    public void SetUplink(EntityUid user, EntityUid uplink, FixedPoint2 balance, bool giveDiscounts, EntityUid? uplinkEntity = null, EntProtoId? currencyProtoId = null, EntProtoId? storePreset = null) // Starlight - make it public for UplinkImplant
     {
         if (!_mind.TryGetMind(user, out var mind, out _))
             return;
@@ -74,6 +83,19 @@ public sealed class UplinkSystem : EntitySystem
             uplink,
             store);
 
+        if (!_mind.TryGetMind(user, out var mindId, out var mindUser))
+                return;
+
+        foreach (var objective in mindUser.Objectives)
+        {
+                if (HasComp<DieConditionComponent>(objective))
+                {
+                    DAGDUplinkExpansion(user, balance, currencyProtoId, storePreset, uplinkEntity);
+                    break;
+                }
+
+        }
+        // funkystation end
         var uplinkInitializedEvent = new StoreInitializedEvent(
             TargetUser: mind,
             Store: uplink,
@@ -86,7 +108,7 @@ public sealed class UplinkSystem : EntitySystem
     /// <summary>
     /// Implant an uplink as a fallback measure if the traitor had no PDA
     /// </summary>
-    private bool ImplantUplink(EntityUid user, FixedPoint2 balance, bool giveDiscounts)
+    private bool ImplantUplink(EntityUid user, FixedPoint2 balance, bool giveDiscounts, EntityUid? uplinkEntity = null, EntProtoId? currencyProtoId = null, EntProtoId? storePreset = null) // Starlight, need them in all of the functions for DAGD uplink changes
     {
         if (!_proto.Resolve<ListingPrototype>(FallbackUplinkCatalog, out var catalog))
             return false;
@@ -107,9 +129,23 @@ public sealed class UplinkSystem : EntitySystem
             return false;
         }
 
-        SetUplink(user, implant.Value, balance, giveDiscounts);
+        SetUplink(user, implant.Value, balance, giveDiscounts, uplinkEntity, currencyProtoId, storePreset); // Starlight, we need these in the other function
         return true;
     }
+    // funkystation start
+    public bool DAGDUplinkExpansion(EntityUid user, FixedPoint2? balance, EntProtoId? currencyProtoId, EntProtoId? storePreset, EntityUid? uplinkEntity = null) // All uplink changes for people that roll DAGD go here
+    {
+        if (uplinkEntity == null)
+            return false;
+
+        var store = EnsureComp<StoreComponent>(uplinkEntity.Value);
+
+        EnsureComp<TagComponent>(uplinkEntity.Value);
+        _tagSystem.AddTag(uplinkEntity.Value, "DAGDUplink"); // Adds the new Martyr tab
+        _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, 15 } }, uplinkEntity.Value, store); // Adds 15 TC - Starlight 50 -> 15
+        return true;
+    }
+    // funkystation end
 
     /// <summary>
     /// Finds the entity that can hold an uplink for a user.
