@@ -18,7 +18,6 @@ namespace Content.Server.Traitor.Uplink;
 public sealed class UplinkSystem : EntitySystem
 {
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!; // funkystation
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StoreSystem _store = default!;
