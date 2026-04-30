@@ -81,6 +81,8 @@ namespace Content.Server.GameTicking
 
         private ISawmill _sawmill = default!;
 
+        private const string NukeopsRuleId = "Nukeops"; // Starlight
+
         private bool _randomizeCharacters;
 
         public override void Initialize()
@@ -150,7 +152,7 @@ namespace Content.Server.GameTicking
         /// <param name="ev"></param>
         private void OnNukeExploded(NukeExplodedEvent ev)
         {
-            if (!ev.EndRound || IsGameRuleActive("Nukeops")) // nukeops rule system handles nuke ops specific nuke round end logic
+            if (!ev.EndRound || IsGameRuleActive(NukeopsRuleId)) // nukeops rule system handles nuke ops specific nuke round end logic
             {
                 return;
             }
