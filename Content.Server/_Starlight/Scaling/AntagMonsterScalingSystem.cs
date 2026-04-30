@@ -83,6 +83,9 @@ public sealed class ScalingSystem : SharedScalingSystem
 
         double updatedPopulation = 0;
 
+        if (!_recordsSystem.TryGetRandomRecord<GeneralStationRecord>(station, out var entry))
+            return;
+
         var crewMembers = _recordsSystem.GetRecordsOfType<GeneralStationRecord>(station);
 
         foreach (var crewMember in crewMembers)
