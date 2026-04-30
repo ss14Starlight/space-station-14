@@ -224,10 +224,10 @@ accent-chav-replaced-75 = cat
 accent-chav-replacement-75 = hissy wanka
 
 accent-chav-replaced-76 = borg
-accent-chav-replacement-76 = toaster
+accent-chav-replacement-76 = tin man
 
 accent-chav-replaced-77 = borgs
-accent-chav-replacement-77 = toasters
+accent-chav-replacement-77 = tin men
 
 accent-chav-replaced-78 = right
 accent-chav-replacement-78 = roight
