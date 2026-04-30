@@ -761,3 +761,39 @@
       color: "#ff178b"
 
 ## Departmental Communications Consoles END
+
+- type: entity
+  id: ComputerShipyard
+  parent: BaseComputer
+  name: shipyard console
+  description: Used to purchase shuttles.
+  components:
+  - type: Sprite
+    layers:
+      - map: ["computerLayerBody"]
+        state: computer
+      - map: ["computerLayerKeyboard"]
+        state: generic_keyboard
+      - map: ["computerLayerScreen"]
+        state: shipyard
+        sprite: _Starlight/Structures/Machines/computers.rsi
+      - map: ["computerLayerKeys"]
+        state: generic_keys
+      - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+        state: generic_panel_open
+  - type: ShipyardConsole
+  - type: AccessReader
+    access:
+    - [ Captain ]
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Shipyard
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Shipyard:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Computer
+    board: ShipyardComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
