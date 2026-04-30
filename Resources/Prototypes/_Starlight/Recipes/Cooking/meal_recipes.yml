@@ -167,4 +167,13 @@
   result: FoodDonutPlain
   time: 10
   ingredient: FoodDoughRope
-  group: Dessert
+  group: TP14-Deep-Fry
+
+- type: microwaveMealRecipe
+  id: RecipeMeatDonut
+  name: meat donut
+  result: FoodDonutMeat
+  time: 5
+  solids:
+    FoodDonutPlain: 1
+    FoodMeatCutlet: 1
