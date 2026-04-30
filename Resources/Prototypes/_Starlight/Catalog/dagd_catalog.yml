@@ -624,7 +624,7 @@
   productEntity: NukeCodePaperStation
   categories:
   - UplinkDAGD
-  restockTime: 1800
+  restockTime: 2700 # 45 minutes to prepare for complete and total extermination
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
