@@ -9,13 +9,25 @@
     eyes: ClothingEyesGlassesNTNC
     ears: ClothingHeadsetAltNTNC
     mask: ClothingMaskGasSecurity
-    belt: ClothingBeltNTNCRigFilled
+    belt: ClothingBeltNTNCRigFilledMed
     gloves: ClothingHandsGlovesCombat
-    suitstorage: WeaponSubMachineGunWt550
+    suitstorage: WeaponRifleM52
     pocket1: MindShieldImplanter
     pocket2: DeathRattleImplanterCentcomm
   inhand:
   - RadioImplanterCentcomm
+  storage:
+    back:
+      - MedkitCombatFilled
+      - BoxMRE
+    belt:
+      - WeaponPistolSP8AR
+      - MagazinePistol40HP
+      - MagazineRifleM52FMJ
+      - MagazineRifleM52FMJ
+      - MagazineRifleM52FMJ
+      - MagazineBoxRifleFMJ
+      - TSFZiptiePack
 
 - type: startingGear
   id: NTNCTrainerGear
@@ -49,15 +61,27 @@
     eyes: ClothingEyesGlassesNTNC
     ears: ClothingHeadsetAltNTNC
     mask: ClothingMaskGasSecurity
-    belt: ClothingBeltNTNCRigFilled
+    belt: ClothingBeltNTNCRig
     gloves: ClothingHandsGlovesCombat
     suitstorage: WeaponSubMachineGunWt550
     pocket1: MindShieldImplanter
     pocket2: DeathRattleImplanterCentcomm
   inhand:
   - RadioImplanterCentcomm
+  storage:
+    back:
+      - MedkitCombatFilled
+      - BoxMRE
+    belt:
+      - WeaponPistolSP8AR
+      - MagazinePistol40HP
+      - MagazineRifleM52FMJ
+      - MagazineRifleM52FMJ
+      - MagazineRifleM52FMJ
+      - MagazineBoxRifleFMJ
+      - TSFZiptiePack
 
-- type: startingGear
+- type: startingGear # No idea how to make enity spawn or how to keep things in backpacks when you use set outfit
   id: NTNCMedicGear
   equipment:
     jumpsuit: ClothingUniformNTNCFatigues
@@ -75,3 +99,15 @@
     pocket2: DeathRattleImplanterCentcomm
   inhand:
   - RadioImplanterCentcomm
+  storage:
+    back:
+      - MedkitCombatFilled
+      - BoxMRE
+    belt:
+      - WeaponPistolSP8AR
+      - MagazinePistol40HP
+      - MagazineRifleM52FMJ
+      - MagazineRifleM52FMJ
+      - MagazineRifleM52FMJ
+      - MagazineBoxRifleFMJ
+      - TSFZiptiePack

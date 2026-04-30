@@ -13,45 +13,45 @@ If you want to learn more about these kinds of things, check out Microsoft's off
 https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild
 -->
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <Python>python3</Python>
-    <Python Condition="'$(OS)'=='Windows_NT' Or '$(OS)'=='Windows'">py -3</Python>
-    <ProjectGuid>{C899FCA4-7037-4E49-ABC2-44DE72487110}</ProjectGuid>
-    <TargetFramework>net4.7.2</TargetFramework>
-    <RestorePackages>false</RestorePackages>
-  </PropertyGroup>
-  <PropertyGroup>
-    <OutputType>Library</OutputType>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>bin\Debug\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>bin\Release\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Tools|AnyCPU' ">
-    <OutputPath>bin\Tools\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugOpt|AnyCPU' ">
-    <OutputPath>bin\DebugOpt\</OutputPath>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Include="..\.editorconfig">
-      <Link>.editorconfig</Link>
-    </None>
-  </ItemGroup>
-  <Target Name="Build">
-    <Exec Command="$(Python) git_helper.py" CustomErrorRegularExpression="^Error" />
-  </Target>
-  <Target Name="Rebuild" DependsOnTargets="Build" />
-  <Target Name="Clean">
-    <Message Importance="low" Text="Ignoring 'Clean' target." />
-  </Target>
-  <Target Name="Compile">
-  </Target>
-  <Target Name="CoreCompile">
-  </Target>
+    <PropertyGroup>
+        <Python>python3</Python>
+        <Python Condition="'$(OS)'=='Windows_NT' Or '$(OS)'=='Windows'">py -3</Python>
+        <ProjectGuid>{C899FCA4-7037-4E49-ABC2-44DE72487110}</ProjectGuid>
+        <TargetFramework>net4.7.2</TargetFramework>
+        <RestorePackages>false</RestorePackages>
+    </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+    </PropertyGroup>
+    <PropertyGroup>
+        <StartupObject/>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <OutputPath>bin\Debug\</OutputPath>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <OutputPath>bin\Release\</OutputPath>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Tools|AnyCPU' ">
+        <OutputPath>bin\Tools\</OutputPath>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugOpt|AnyCPU' ">
+        <OutputPath>bin\DebugOpt\</OutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="..\.editorconfig">
+            <Link>.editorconfig</Link>
+        </None>
+    </ItemGroup>
+    <Target Name="Build">
+        <Exec Command="$(Python) git_helper.py" CustomErrorRegularExpression="^Error"/>
+    </Target>
+    <Target Name="Rebuild" DependsOnTargets="Build"/>
+    <Target Name="Clean">
+        <Message Importance="low" Text="Ignoring 'Clean' target."/>
+    </Target>
+    <Target Name="Compile">
+    </Target>
+    <Target Name="CoreCompile">
+    </Target>
 </Project>

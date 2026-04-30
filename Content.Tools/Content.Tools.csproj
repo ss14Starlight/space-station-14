@@ -3,13 +3,13 @@
         <OutputType>Exe</OutputType>
     </PropertyGroup>
 
-  <Import Project="../MSBuild/Content.props" />
+    <Import Project="../MSBuild/Content.props"/>
 
     <ItemGroup>
-      <PackageReference Include="YamlDotNet" />
+        <PackageReference Include="YamlDotNet"/>
     </ItemGroup>
 
-  <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
+    <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets"/>
 
-  <Import Project="..\RobustToolbox\Imports\Shared.props" />
+    <Import Project="..\RobustToolbox\Imports\Shared.props"/>
 </Project>

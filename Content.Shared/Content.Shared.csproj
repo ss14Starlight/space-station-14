@@ -1,31 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <WarningsAsErrors>RA0032;nullable</WarningsAsErrors>
-  </PropertyGroup>
-  <Import Project="../MSBuild/Content.props" />
-  <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" PrivateAssets="All" />
-    <PackageReference Include="YamlDotNet" />
-  </ItemGroup>
+    <PropertyGroup>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <WarningsAsErrors>RA0032;nullable</WarningsAsErrors>
+    </PropertyGroup>
+    <Import Project="../MSBuild/Content.props"/>
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" PrivateAssets="All"/>
+        <PackageReference Include="YamlDotNet"/>
+    </ItemGroup>
 
-  <Import Project="..\RobustToolbox\Imports\Lidgren.props" />
-  <Import Project="..\RobustToolbox\Imports\Shared.props" />
+    <Import Project="..\RobustToolbox\Imports\Lidgren.props"/>
+    <Import Project="..\RobustToolbox\Imports\Shared.props"/>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Content.Shared.Database\Content.Shared.Database.csproj" />
-    <ProjectReference Include="..\Content.Starlight.Codegen\Content.Starlight.Codegen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="_Starlight\Movement\" />
-    <Folder Include="Power\Components\" />
-    <Folder Include="_Starlight\Spells\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="_Starlight\Weapon\Components\GunComponent.cs">
-      <SubType>Component</SubType>
-    </Compile>
-  </ItemGroup>
-  <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
-  <Import Project="..\RobustToolbox\MSBuild\Robust.CompNetworkGenerator.targets" />
+    <ItemGroup>
+        <ProjectReference Include="..\Content.Shared.Database\Content.Shared.Database.csproj"/>
+        <ProjectReference Include="..\Content.Starlight.Codegen\Content.Starlight.Codegen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="_Starlight\Movement\"/>
+        <Folder Include="Power\Components\"/>
+        <Folder Include="_Starlight\Spells\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Update="_Starlight\Weapon\Components\GunComponent.cs">
+            <SubType>Component</SubType>
+        </Compile>
+    </ItemGroup>
+    <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets"/>
+    <Import Project="..\RobustToolbox\MSBuild\Robust.CompNetworkGenerator.targets"/>
 </Project>
