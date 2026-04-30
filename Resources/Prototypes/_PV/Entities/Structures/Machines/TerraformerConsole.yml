@@ -1,44 +1,44 @@
-- type: entity
-  parent: BaseComputerAiAccess
-  id: ComputerTerraformingConsole
-  name: terraforming console
-  description: A computer used to interface with Terraformers and upload environmental research data.
-  components:
-  - type: Sprite
-    sprite: _PV/Structures/Machines/terraforming_console.rsi
-    layers:
-    - map: ["computerLayerBody"]
-      state: Terraformer_Computer
-    - map: ["computerLayerKeyboard"]
-      state: Terraformer_Keyboard
-    - map: ["computerLayerScreen"]
-      state: Terraformer_Screen
+#- type: entity
+ # parent: BaseComputerAiAccess
+ # id: ComputerTerraformingConsole
+ # name: terraforming console
+ # description: A computer used to interface with Terraformers and upload environmental research data.
+ # components:
+ # - type: Sprite
+ #   sprite: _PV/Structures/Machines/terraforming_console.rsi
+ #   layers:
+ #   - map: ["computerLayerBody"]
+ #     state: Terraformer_Computer
+ #   - map: ["computerLayerKeyboard"]
+ #     state: Terraformer_Keyboard
+ #   - map: ["computerLayerScreen"]
+ #     state: Terraformer_Screen
     # Temporary: use the body sprite for the maintenance panel until you make a panel-open sprite.
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: Terraformer_Computer
+ #   - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+  #    state: Terraformer_Computer
 
-  - type: ResearchClient
+ # - type: ResearchClient
 
-  - type: DeviceList
+  #- type: DeviceList
 
-  - type: DeviceNetwork
-    deviceNetId: Wired
+ # - type: DeviceNetwork
+ #   deviceNetId: Wired
 
   # Console links to Terraformers.
   # Very high range so it can link across the map, but still requires manual linking.
-  - type: DeviceLinkSource
-    range: 9999
-    ports:
-    - TerraformerSender
+ # - type: DeviceLinkSource
+ #   range: 9999
+ #   ports:
+ #   - TerraformerSender
 
-  - type: ApcPowerReceiver
-    powerLoad: 1000
+ # - type: ApcPowerReceiver
+ #   powerLoad: 1000
 
   # Comment this out until you create TerraformingConsoleCircuitboard.
   # - type: Computer
   #   board: TerraformingConsoleCircuitboard
 
-  - type: PointLight
-    radius: 2.5
-    energy: 1.5
-    color: "#d656c1"
+  #- type: PointLight
+ #   radius: 2.5
+  #  energy: 1.5
+ #   color: "#d656c1"

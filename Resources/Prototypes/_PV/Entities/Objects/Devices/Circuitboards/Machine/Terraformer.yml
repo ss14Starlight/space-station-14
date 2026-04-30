@@ -1,0 +1,67 @@
+﻿- type: entity
+  id: TerraformerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: terraformer machine board
+  description: A machine printed circuit board for a terraformer.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: TerraformerMachine
+    stackRequirements:
+      Manipulator: 2
+      Glass: 1
+      Cable: 5
+    tagRequirements:
+      GlassBeaker:
+        amount: 1
+        defaultPrototype: Beaker
+      Igniter:
+        amount: 1
+        defaultPrototype: Igniter
+
+# Tier 2
+- type: entity
+  id: TerraformerMachineCircuitboardT2
+  parent: BaseMachineCircuitboard
+  name: advanced terraformer machine board
+  description: A machine printed circuit board for an advanced terraformer.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: TerraformerMachineT2
+    stackRequirements:
+      Manipulator: 2
+      Glass: 1
+      Cable: 5
+    tagRequirements:
+      GlassBeaker:
+        amount: 1
+        defaultPrototype: Beaker
+      Igniter:
+        amount: 1
+        defaultPrototype: Igniter
+
+# Tier 3
+- type: entity
+  id: TerraformerMachineCircuitboardT3
+  parent: BaseMachineCircuitboard
+  name: high-end terraformer machine board
+  description: A machine printed circuit board for a high-end terraformer.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: TerraformerMachineT3
+    stackRequirements:
+      Manipulator: 4
+      Glass: 1
+      Cable: 5
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+      Igniter:
+        amount: 2
+        defaultPrototype: Igniter

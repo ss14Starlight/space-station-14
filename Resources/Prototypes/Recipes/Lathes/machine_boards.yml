@@ -472,3 +472,19 @@
   parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
   id: HolopadMachineCircuitboard
   result: HolopadMachineCircuitboard
+
+# Terraformer
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: TerraformerMachineCircuitboard
+  result: TerraformerMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseSilverCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: TerraformerMachineCircuitboardT2
+  result: TerraformerMachineCircuitboardT2
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: TerraformerMachineCircuitboardT3
+  result: TerraformerMachineCircuitboardT3

@@ -9,6 +9,7 @@
   - ExosuitFabricatorMachineCircuitboard
   - CutterMachineCircuitboard
   - BorgChargerCircuitboard
+  - TerraformerMachineCircuitboard
 
 ## Dynamic
 
@@ -83,6 +84,8 @@
   - APECircuitboard
   - ArtifactAnalyzerMachineCircuitboard
   - ArtifactCrusherMachineCircuitboard
+  - TerraformerMachineCircuitboardT2
+  - TerraformerMachineCircuitboardT3
 
 - type: latheRecipePack
   id: CameraBoards

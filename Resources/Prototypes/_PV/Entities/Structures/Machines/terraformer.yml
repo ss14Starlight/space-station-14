@@ -16,6 +16,7 @@
     - state: icon
     - state: running
       shader: unshaded
+      visible: false
       map: ["enum.PowerDeviceVisualLayers.Powered"]
 
   - type: Icon
@@ -83,6 +84,238 @@
     createBarriers: true
     barrierPrototype: TerraformerAtmosBarrier
     barrierRadius: 6
+    barrierRefreshCooldown: 5
+
+  - type: Appearance
+
+  - type: DeviceNetwork
+    deviceNetId: Wired
+
+  - type: DeviceLinkSink
+    ports:
+    - TerraformerReceiver
+
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+
+  - type: WiresPanel
+
+  - type: LitOnPowered
+
+  - type: PointLight
+    color: "#4aff70"
+    radius: 3
+    energy: 0.7
+    enabled: false
+    castShadows: false
+
+# Tier 2
+- type: entity
+  id: TerraformerMachineT2
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: advanced terraformer
+  description: An upgraded version of the base Terraformer designed for a larger area and faster conversion.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+
+  - type: Sprite
+    sprite: Structures/Machines/terraformer_t2.rsi
+    noRot: true
+    layers:
+    - state: icon
+    - state: running
+      shader: unshaded
+      visible: false
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+
+  - type: Icon
+    sprite: Structures/Machines/terraformer_t2.rsi
+    state: icon
+
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+  - type: ApcPowerReceiver
+    powerLoad: 500
+
+  - type: Terraformer
+    active: true
+    fuel: 0
+    maxFuel: 135
+    fuelPerSecond: 1
+    fuelPerBiomass: 15
+    biomassStack: Biomass
+    radius: 8
+    tileConvertCooldown: 1.5
+    sourceTiles:
+    - FloorAsteroidSand
+    targetTile: FloorGrass
+    atmosCooldown: 0.5
+    targetPressure: 101.325
+    maxPressure: 110
+    gasMolesPerTile: 2
+    scrubGases: true
+    scrubCooldown: 1
+    scrubMolesPerTile: 1
+    targetScrubMoles: 0
+    scrubbedGases:
+    - CarbonDioxide
+    - Plasma
+    - Tritium
+    - NitrousOxide
+    createBarriers: true
+    barrierPrototype: TerraformerAtmosBarrier
+    barrierRadius: 9
+    barrierRefreshCooldown: 5
+
+  - type: Appearance
+
+  - type: DeviceNetwork
+    deviceNetId: Wired
+
+  - type: DeviceLinkSink
+    ports:
+    - TerraformerReceiver
+
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+
+  - type: WiresPanel
+
+  - type: LitOnPowered
+
+  - type: PointLight
+    color: "#4aff70"
+    radius: 3
+    energy: 0.7
+    enabled: false
+    castShadows: false
+
+# Tier 3
+- type: entity
+  id: TerraformerMachineT3
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: high-end terraformer
+  description: The best of the best for terraforming. Faster, bigger, better.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+
+  - type: Sprite
+    sprite: Structures/Machines/terraformer_t3.rsi
+    noRot: true
+    layers:
+    - state: icon
+    - state: running
+      shader: unshaded
+      visible: false
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+
+  - type: Icon
+    sprite: Structures/Machines/terraformer_t3.rsi
+    state: icon
+
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+  - type: ApcPowerReceiver
+    powerLoad: 500
+
+  - type: Terraformer
+    active: true
+    fuel: 0
+    maxFuel: 160
+    fuelPerSecond: 0.5
+    fuelPerBiomass: 20
+    biomassStack: Biomass
+    radius: 12
+    tileConvertCooldown: 1
+    sourceTiles:
+    - FloorAsteroidSand
+    targetTile: FloorGrass
+    atmosCooldown: 0.5
+    targetPressure: 101.325
+    maxPressure: 110
+    gasMolesPerTile: 2
+    scrubGases: true
+    scrubCooldown: 1
+    scrubMolesPerTile: 1
+    targetScrubMoles: 0
+    scrubbedGases:
+    - CarbonDioxide
+    - Plasma
+    - Tritium
+    - NitrousOxide
+    createBarriers: true
+    barrierPrototype: TerraformerAtmosBarrier
+    barrierRadius: 13
     barrierRefreshCooldown: 5
 
   - type: Appearance

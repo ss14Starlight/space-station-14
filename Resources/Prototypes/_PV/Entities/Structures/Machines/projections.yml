@@ -9,7 +9,7 @@
     anchored: true
 
   - type: Sprite
-    sprite: Structures/Holo/holofan.rsi
+    sprite: _PV/Structures/Holo/Terrabarrier.rsi
     state: icon
 
   - type: Physics

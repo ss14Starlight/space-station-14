@@ -148,6 +148,7 @@
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
   - ElectrolyzerMachineCircuitboard # Funky atmos = /tg/ gases
+  - TerraformerMachineCircuitboardT2
   technologyPrerequisites:
   - AtmosphericTech
   radioChannels:
@@ -163,13 +164,13 @@
   tier: 2
   cost: 10000
   recipeUnlocks:
-    - WelderExperimental
-    - PowerDrill
-    - JawsOfLife
-    - BorgModuleAdvancedTool
-    - BorgModuleAdvancedPlumbing
-    - Fulton
-    - FultonBeacon
+  - WelderExperimental
+  - PowerDrill
+  - JawsOfLife
+  - BorgModuleAdvancedTool
+  - BorgModuleAdvancedPlumbing
+  - Fulton
+  - FultonBeacon
   radioChannels:
   - Engineering # starlight
   - Supply
@@ -184,16 +185,32 @@
   tier: 2
   cost: 12500
   recipeUnlocks:
-    - MiningDrillDiamond
-    - AdvancedMineralScannerEmpty
-    - MechEquipmentDrillDiamond
-    - BorgModuleAdvancedMining
+  - MiningDrillDiamond
+  - AdvancedMineralScannerEmpty
+  - MechEquipmentDrillDiamond
+  - BorgModuleAdvancedMining
   technologyPrerequisites:
   - SalvageEquipment # starlight
   radioChannels:
   - Supply
 
 # Tier 3
+
+- type: technology
+  id: ExperimentalTerraforming
+  name: research-technology-experimental-terraforming
+  icon:
+    sprite: Structures/Machines/terraformer_t3.rsi
+    state: icon
+  discipline: Industrial
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - TerraformerMachineCircuitboardT3
+  technologyPrerequisites:
+  - AdvancedAtmospherics
+  radioChannels:
+  - Engineering
 
 - type: technology
   id: BluespaceStorage

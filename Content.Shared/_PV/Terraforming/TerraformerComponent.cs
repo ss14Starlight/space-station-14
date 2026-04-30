@@ -30,7 +30,7 @@ public sealed partial class TerraformerComponent : Component
     /// Research points awarded to the linked research server for every successfully converted tile.
     /// </summary>
     [DataField]
-    public int SciencePointsPerTile = 1;
+    public int SciencePointsPerTile = 5;
 
     [DataField]
     public float Accumulator = 0f;
