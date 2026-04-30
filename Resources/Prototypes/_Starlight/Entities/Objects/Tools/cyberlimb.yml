@@ -30,7 +30,7 @@
       - CyberHandItem
   - type: WrenchSurgery
     startSound:
-      path: /Audio/Items/wrench.ogg
+      path: /Audio/Items/ratchet.ogg
 
 - type: entity
   name: screwdriver
