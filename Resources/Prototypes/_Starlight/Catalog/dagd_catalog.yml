@@ -624,6 +624,7 @@
   productEntity: NukeCodePaperStation
   categories:
   - UplinkDAGD
+  restockTime: 1800
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
