@@ -1009,7 +1009,7 @@
     - CyberHandItem
   - type: WelderSurgery
     startSound:
-      /Audio/Items/welder.ogg
+      path: /Audio/Items/welder.ogg
     speed: 0.6
 
 - type: entity

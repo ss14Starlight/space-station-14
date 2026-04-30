@@ -857,7 +857,7 @@ public sealed partial class AdminVerbSystem
             // Engineer arm verb
             Verb engineerArm = new()
             {
-                Text = "Replace the left hand with an Engineer arm.",
+                Text = "Replace the left arm with an Engineer arm.",
                 Category = VerbCategory.Tricks,
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/_Starlight/Mobs/Species/Cyberlimbs/parts.rsi"), "l_engineer_arm"),
                 Act = () =>
