@@ -49,12 +49,12 @@ public sealed class UplinkSystem : EntitySystem
         uplinkEntity ??= FindUplinkTarget(user);
 
         if (uplinkEntity == null)
-            return ImplantUplink(user, balance, giveDiscounts, uplinkEntity); // Starlight, need to pass DAGD
+            return ImplantUplink(user, balance, giveDiscounts);
 
         EnsureComp<UplinkComponent>(uplinkEntity.Value);
         var store = EnsureComp<StoreComponent>(uplinkEntity.Value); // funkystation - so this is why every pda has StorePresetUplink
 
-        SetUplink(user, uplinkEntity.Value, balance, giveDiscounts, uplinkEntity); // Starlight, we need these in the other function
+        SetUplink(user, uplinkEntity.Value, balance, giveDiscounts); // Starlight, passing uplinkEntity so we can update shop based on objectives
 
         // TODO add BUI. Currently can't be done outside of yaml -_-
         // ^ What does this even mean?
@@ -65,7 +65,7 @@ public sealed class UplinkSystem : EntitySystem
     /// <summary>
     /// Configure TC for the uplink
     /// </summary>
-    public void SetUplink(EntityUid user, EntityUid uplink, FixedPoint2 balance, bool giveDiscounts, EntityUid? uplinkEntity = null) // Starlight - make it public for UplinkImplant
+    public void SetUplink(EntityUid user, EntityUid uplink, FixedPoint2 balance, bool giveDiscounts) // Starlight - make it public for UplinkImplant
     {
         if (!_mind.TryGetMind(user, out var mind, out _))
             return;
@@ -86,7 +86,7 @@ public sealed class UplinkSystem : EntitySystem
         {
                 if (HasComp<DieConditionComponent>(objective))
                 {
-                    DAGDUplinkExpansion(user, balance, uplink);
+                    DAGDUplinkExpansion(uplink); // Starlight, actually only need to pass uplink.
                     break;
                 }
 
@@ -104,7 +104,7 @@ public sealed class UplinkSystem : EntitySystem
     /// <summary>
     /// Implant an uplink as a fallback measure if the traitor had no PDA
     /// </summary>
-    private bool ImplantUplink(EntityUid user, FixedPoint2 balance, bool giveDiscounts, EntityUid? uplinkEntity = null) // Starlight, need them in all of the functions for DAGD uplink changes
+    private bool ImplantUplink(EntityUid user, FixedPoint2 balance, bool giveDiscounts)
     {
         if (!_proto.Resolve<ListingPrototype>(FallbackUplinkCatalog, out var catalog))
             return false;
@@ -125,11 +125,11 @@ public sealed class UplinkSystem : EntitySystem
             return false;
         }
 
-        SetUplink(user, implant.Value, balance, giveDiscounts, uplinkEntity); // Starlight, we need these in the other function
+        SetUplink(user, implant.Value, balance, giveDiscounts);
         return true;
     }
     // funkystation start
-    public bool DAGDUplinkExpansion(EntityUid user, FixedPoint2? balance, EntityUid? uplinkEntity = null) // All uplink changes for people that roll DAGD go here
+    public bool DAGDUplinkExpansion(EntityUid? uplinkEntity = null) // Starlight, actually only need uplinkEntity, All uplink changes for people that roll DAGD go here
     {
         if (uplinkEntity == null)
             return false;
