@@ -90,7 +90,7 @@ public sealed class UplinkSystem : EntitySystem
         {
                 if (HasComp<DieConditionComponent>(objective))
                 {
-                    DAGDUplinkExpansion(user, balance, currencyProtoId, storePreset, uplinkEntity);
+                    DAGDUplinkExpansion(user, balance, currencyProtoId, storePreset, uplink);
                     break;
                 }
 
