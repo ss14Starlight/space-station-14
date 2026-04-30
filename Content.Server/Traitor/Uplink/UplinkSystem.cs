@@ -10,7 +10,6 @@ using Content.Shared.Mind;
 using Content.Shared.PDA;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
-using Content.Shared.Tag; // funkystation
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Traitor.Uplink;
@@ -23,7 +22,6 @@ public sealed class UplinkSystem : EntitySystem
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly SharedSubdermalImplantSystem _subdermalImplant = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!; // funkystation
 
     public static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
     private static readonly EntProtoId FallbackUplinkImplant = "UplinkImplant";
@@ -134,8 +132,8 @@ public sealed class UplinkSystem : EntitySystem
 
         var store = EnsureComp<StoreComponent>(uplinkEntity.Value);
 
-        EnsureComp<TagComponent>(uplinkEntity.Value);
-        _tagSystem.AddTag(uplinkEntity.Value, "DAGDUplink"); // Adds the new Martyr tab
+        //EnsureComp<TagComponent>(uplinkEntity.Value);
+        //_tagSystem.AddTag(uplinkEntity.Value, "DAGDUplink"); // Starlight, unneeded, since we'll be using Wizden's way of adding objectives.
         _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, 15 } }, uplinkEntity.Value, store); // Adds 15 TC - Starlight 50 -> 15
         return true;
     }

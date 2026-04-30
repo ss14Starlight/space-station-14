@@ -12,10 +12,10 @@
   categories:
   - UplinkDAGD
   conditions:
-  - !type:StoreWhitelistCondition
+  - !type:BuyerObjectiveWhitelistCondition
     whitelist:
-      tags:
-        - DAGDUplink
+      components:
+        - DieCondition
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -31,10 +31,10 @@
   categories:
   - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -53,10 +53,10 @@
   categories:
   - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -75,10 +75,10 @@
   categories:
   - UplinkDAGD
   conditions:
-  - !type:StoreWhitelistCondition
+  - !type:BuyerObjectiveWhitelistCondition
     whitelist:
-      tags:
-        - DAGDUplink
+      components:
+        - DieCondition
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -94,10 +94,10 @@
   categories:
   - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-        - DAGDUplink
+        components:
+        - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -114,10 +114,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -137,10 +137,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -160,10 +160,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -183,10 +183,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -205,10 +205,10 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -227,10 +227,10 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -247,10 +247,10 @@
   categories:
   - UplinkDAGD
   conditions:
-  - !type:StoreWhitelistCondition
+  - !type:BuyerObjectiveWhitelistCondition
     whitelist:
-      tags:
-      - DAGDUplink
+      components:
+      - DieCondition
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -267,10 +267,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -287,10 +287,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -306,10 +306,10 @@
   categories:
   - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -326,10 +326,10 @@
   categories:
   - UplinkDAGD
   conditions:
-  - !type:StoreWhitelistCondition
+  - !type:BuyerObjectiveWhitelistCondition
     whitelist:
-      tags:
-        - DAGDUplink
+      components:
+        - DieCondition
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -346,10 +346,10 @@
   categories:
   - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -365,10 +365,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -392,10 +392,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -419,10 +419,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -443,10 +443,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -467,10 +467,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -486,10 +486,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -506,10 +506,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -525,10 +525,10 @@
   categories:
   - UplinkDAGD
   conditions:
-  - !type:StoreWhitelistCondition
+  - !type:BuyerObjectiveWhitelistCondition
     whitelist:
-      tags:
-      - DAGDUplink
+      components:
+      - DieCondition
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -544,10 +544,10 @@
   categories:
   - UplinkDAGD
   conditions:
-  - !type:StoreWhitelistCondition
+  - !type:BuyerObjectiveWhitelistCondition
     whitelist:
-      tags:
-      - DAGDUplink
+      components:
+      - DieCondition
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -566,10 +566,10 @@
   categories:
   - UplinkDAGD
   conditions:
-  - !type:StoreWhitelistCondition
+  - !type:BuyerObjectiveWhitelistCondition
     whitelist:
-      tags:
-      - DAGDUplink
+      components:
+      - DieCondition
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -586,10 +586,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -606,10 +606,10 @@
   categories:
     - UplinkDAGD
   conditions:
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -627,10 +627,10 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
-    - !type:StoreWhitelistCondition
+    - !type:BuyerObjectiveWhitelistCondition
       whitelist:
-        tags:
-          - DAGDUplink
+        components:
+          - DieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
