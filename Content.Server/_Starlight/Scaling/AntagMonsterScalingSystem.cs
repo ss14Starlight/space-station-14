@@ -67,14 +67,15 @@ public sealed class ScalingSystem : SharedScalingSystem
 
         var station = _stationSystem.GetNearestStation(mob);
 
-        UpdatePopulation(station);
+        if (!UpdatePopulation(station))
+            return;
 
         ApplyHealthScaling(station, scalingComp, thresholdsComp, _cachedPopulations, _universalHealthWeight);
 
         scalingComp.IsScaled = true;
     }
 
-    private void UpdatePopulation(EntityUid station)
+    private bool UpdatePopulation(EntityUid station)
     {
         _populationBase = _cfg.GetCVar(StarlightCCVars.ScalingPopulationBase);
         _securityWeight = _cfg.GetCVar(StarlightCCVars.ScalingSecurityWeight);
@@ -84,7 +85,7 @@ public sealed class ScalingSystem : SharedScalingSystem
         double updatedPopulation = 0;
 
         if (!_recordsSystem.TryGetRandomRecord<GeneralStationRecord>(station, out var entry))
-            return;
+            return false;
 
         var crewMembers = _recordsSystem.GetRecordsOfType<GeneralStationRecord>(station);
 
@@ -114,5 +115,7 @@ public sealed class ScalingSystem : SharedScalingSystem
 
         _cachedPopulations.GetOrNew(station);
         _cachedPopulations[station] = updatedPopulation - _populationBase;
+
+        return true;
     }
 }
