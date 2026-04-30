@@ -84,7 +84,7 @@
 
 - type: entity
   name: Central Command Tablet
-  parent: [BaseCommunicationTablet, BaseCentcommContraband]
+  parent: [BaseCentcommContraband, BaseCommunicationTablet]
   id: CentCommCommunicationTablet
   description: The older, more narcistic brother of the Captain's Management Tablet. Comes with a fancy self recharging power cell.
   components:

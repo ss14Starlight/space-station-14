@@ -72,7 +72,7 @@
   name: steal-target-groups-captain-tablet
   sprite:
     sprite: _Starlight/Objects/Devices/communication_tablet.rsi
-    state: icon-captain
+    state: communications_tablet
 
 # Starlight end
 
