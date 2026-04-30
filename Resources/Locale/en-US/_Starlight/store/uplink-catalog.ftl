@@ -141,7 +141,7 @@ uplink-reinforcement-radio-medical-cyborg-bundle-name = Syndicate Medical Cyborg
 uplink-reinforcement-radio-medical-cyborg-bundle-desc = A medical borg, with syndicate variants of items where applicable. Comes with basic weapons. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're on the Cyborg's good side.
 
 uplink-reinforcement-radio-saboteur-cyborg-bundle-name = Syndicate Saboteur Cyborg Teleporter bundle
-uplink-reinforcement-radio-saboteur-cyborg-bundle-desc = A saboteur cyborg, complete with syndicate advanced tools, standard hacking equipment, and basic weapons. Comes and a few Syndicate IDs for you and your buddies, just to make sure you're on the Cyborg's good side.
+uplink-reinforcement-radio-saboteur-cyborg-bundle-desc = A saboteur cyborg, complete with syndicate advanced tools, standard hacking equipment, and basic weapons. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're on the Cyborg's good side.
 
 uplink-reinforcement-radio-stealth-cyborg-bundle-name = Syndicate Stealth Cyborg Teleporter bundle
 uplink-reinforcement-radio-stealth-cyborg-bundle-desc = A stealth cyborg. Whilst it is incapable of fighting, it has the ability to disguise, go invisible and move through vents. Comes with standard hacking tools. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're on the Cyborg's good side.
