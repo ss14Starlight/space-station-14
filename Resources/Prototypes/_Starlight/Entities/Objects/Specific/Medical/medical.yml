@@ -617,3 +617,12 @@
   - type: Tag
     tags:
     - Medkit
+
+- type: entity
+  parent: OilPack
+  id: OilPack5
+  suffix: 5
+  components:
+    - type: Stack
+      stackType: OilPack
+      count: 5

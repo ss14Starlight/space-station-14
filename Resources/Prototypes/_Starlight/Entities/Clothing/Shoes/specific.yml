@@ -72,3 +72,12 @@
         offset: "0, -0.04"
   - type: Item
     sprite: _Starlight/Clothing/Shoes/Specific/cool_skates.rsi
+
+- type: entity
+  parent: [ClothingShoesClown, BaseSyndicateContraband]
+  id: ClownShoesNoSlip
+  name: no-slip clown shoes
+  description: Tyranny of Honk's latest clothing line targets more specialized clowning niches. Now with 100% less operator slipping!
+  suffix: No-slip
+  components:
+  - type: NoSlip

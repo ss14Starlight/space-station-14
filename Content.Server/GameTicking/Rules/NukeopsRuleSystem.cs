@@ -32,9 +32,10 @@ using Content.Shared.Cuffs.Components;
 using Content.Shared.Cuffs;
 using Prometheus;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Containers;
 using Content.Server.AlertLevel;
 using Content.Server._Starlight.Station;
+using Content.Shared.Starlight.CCVar;
+using Robust.Shared.Configuration;
 // Starlight End
 
 namespace Content.Server.GameTicking.Rules;
@@ -55,9 +56,12 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly SharedCuffableSystem _cuffable = default!; // Starlight
-    [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // SL
-    [Dependency] private readonly StationCrewCountSystem _stationCrewCount = default!; // Starlight
+    // Starlight Start
+    [Dependency] private readonly SharedCuffableSystem _cuffable = default!;
+    [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
+    [Dependency] private readonly StationCrewCountSystem _stationCrewCount = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    // Starlight End
 
     private static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
     private static readonly ProtoId<TagPrototype> NukeOpsUplinkTagPrototype = "NukeOpsUplink";
@@ -179,7 +183,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 
             if (GameTicker.IsGameRuleActive("Nukeops")) // If it's Nukeops then end the round on any detonation
             {
-                _roundEndSystem.EndRound();
+                _roundEndSystem.EndRound(TimeSpan.FromSeconds(_cfg.GetCVar(StarlightCCVars.NukeRoundRestartTime))); // Starlight Edit: Round end timer set by Cvar
             }
             else
             { // It's a LoneOp. Only end the round if the station was destroyed
@@ -188,7 +192,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 {
                     if (cond.ToString().ToLower() == "NukeExplodedOnCorrectStation") // If this is true, then the nuke destroyed the station! It's likely everyone is very dead so keeping the round going is pointless.
                     {
-                        _roundEndSystem.EndRound(); // end the round!
+                        _roundEndSystem.EndRound(TimeSpan.FromSeconds(_cfg.GetCVar(StarlightCCVars.NukeRoundRestartTime))); // end the round! // Starlight Edit: Round end timer set by Cvar
                         handled = true;
                         break;
                     }
@@ -459,7 +463,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         _nukeopsCount.WithLabels(type.ToString()).Inc(1); // Starlight
 
         if (endRound && (type == WinType.CrewMajor || type == WinType.OpsMajor))
-            _roundEndSystem.EndRound();
+            _roundEndSystem.EndRound(TimeSpan.FromSeconds(_cfg.GetCVar(StarlightCCVars.NukeRoundRestartTime))); // Starlight Edit: Round end timer set by Cvar
     }
 
     private void CheckRoundShouldEnd()

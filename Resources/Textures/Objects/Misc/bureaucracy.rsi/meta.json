@@ -249,6 +249,14 @@
     {
       "name": "paper_stamp-standby",
       "copyright": "by mikeysaurus"
+    },
+    {
+      "name": "paper_ntcc",
+      "copyright": "by CawsForConcern"
+    },
+    {
+      "name": "paper_ntcc_words",
+      "copyright": "by CawsForConcern"
     }
   ]
 }

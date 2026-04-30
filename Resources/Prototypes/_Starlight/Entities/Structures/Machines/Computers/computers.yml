@@ -97,6 +97,8 @@
     - type: CommunicationsConsole
       title: comms-console-announcement-title-centcom
       global: true
+    - type: SecureCommandTerminalConsole
+      enabled: false
     - type: PointLight
       enabled: true
       radius: 1.5
@@ -476,13 +478,13 @@
     canShuttle: false
     global: true
     sound: /Audio/_Starlight/Announcements/tsf_announce.ogg
-  # Starlight Start - Immersive Lighting PR
+  - type: SecureCommandTerminalConsole
+    enabled: false
   - type: PointLight
     radius: 2.5
     energy: 1.8
     color: "#e0da69"
     castShadows: false
-  # Starlight End
 
 ## Departmental Communications Consoles BEGIN
 
@@ -518,6 +520,8 @@
         - orange
       canBroadcast: false
       canShuttle: false
+    - type: SecureCommandTerminalConsole
+      authTerminal: true
     - type: Computer
       board: EngineeringCommsComputerCircuitboard
     - type: PointLight
@@ -551,11 +555,11 @@
       title: comms-console-announcement-title-med
       sound: /Audio/_Starlight/Announcements/announce2.ogg
       color: "#57b8f0"
-      settableAlertLevels:
-        - green
-        - violet
+      settableAlertLevels: []
       canBroadcast: false
       canShuttle: false
+    - type: SecureCommandTerminalConsole
+      authTerminal: true
     - type: Computer
       board: MedicalCommsComputerCircuitboard
     - type: PointLight
@@ -592,6 +596,8 @@
       settableAlertLevels: []
       canBroadcast: false
       canShuttle: false
+    - type: SecureCommandTerminalConsole
+      authTerminal: true
     - type: Computer
       board: ScienceCommsComputerCircuitboard
     - type: PointLight
@@ -631,6 +637,8 @@
         - red
       canBroadcast: false
       canShuttle: false
+    - type: SecureCommandTerminalConsole
+      authTerminal: true
     - type: Computer
       board: SecurityCommsComputerCircuitboard
     - type: PointLight
@@ -667,6 +675,8 @@
       settableAlertLevels: []
       canBroadcast: false
       canShuttle: false
+    - type: SecureCommandTerminalConsole
+      authTerminal: true
     - type: Computer
       board: ServiceCommsComputerCircuitboard
     - type: PointLight
@@ -703,6 +713,8 @@
       settableAlertLevels: []
       canBroadcast: false
       canShuttle: false
+    - type: SecureCommandTerminalConsole
+      authTerminal: true
     - type: Computer
       board: CargoCommsComputerCircuitboard
     - type: PointLight
@@ -739,6 +751,8 @@
       settableAlertLevels: []
       canBroadcast: false
       canShuttle: false
+    - type: SecureCommandTerminalConsole
+      authTerminal: true
     - type: Computer
       board: LawCommsComputerCircuitboard
     - type: PointLight

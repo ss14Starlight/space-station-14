@@ -165,29 +165,26 @@
     outerClothing: ClothingOuterHardsuitERTChaplain
     id: ERTChaplainPDA
     ears: ClothingHeadsetCentCom #Starlight
-    belt: ClothingBeltMilitaryWebbingERT
-    pocket2: CombatKnife
+    belt: ChainsawSword #Starlight
+    neck: ClothingNeckStoleChaplain #Starlight
+    pocket2: WeaponDisabler #Starlight
   storage:
     back:
-    - BoxCandle
-    - BodyBagFolded
-    - BodyBagFolded
+    # Starlight - Start
     - JugWater
-    - JugBlood # End of first row
-    - FoodBakedBunHotX
-    - FoodBakedBunHotX
-    - FoodBakedBunHotX
-    - FoodBakedBunHotX
-    - CosmicCenser # Starlight: Cosmic Cult
-    belt:
+    - JugBlood
     - Bible
-    - Lantern
-    - Lantern
-    - Lantern
+    - CosmicCenser
     - CrowbarRed
-    - WeaponPistolMk58
-    - MagazinePistolSP
+    - Lantern
+    - BodyBagFolded
+    - BodyBagFolded
     - FlippoEngravedLighter
+    - FoodBakedBunHotX
+    - FoodBakedBunHotX
+    - FoodBakedBunHotX
+    - FoodBakedBunHotX
+    # Starlight - End
 
 - type: chameleonOutfit
   id: ERTChaplainChameleonOutfit
@@ -376,6 +373,7 @@
   id: ERTSecurityGearArmedRifle
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTSecurity
+    back: ClothingBackpackERTSecurity # SL
     shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesCentComm
@@ -386,10 +384,19 @@
     belt: ClothingBeltMilitaryWebbingERT
     pocket2: CombatKnife
     suitstorage: WeaponRiflePeacemaker # Starlight-edit: Changed from: WeaponRifleLecter
-  inhand:
-    - WeaponLaserCannon
-    - PortableRecharger
   storage:
+    # SL - Start
+    back:
+    - BoxZiptie
+    - Flash
+    - GrenadeFlashBang
+    - TearGasGrenade
+    - GrenadeStinger
+    - MedkitCombatFilled # End of first line
+    - TelescopicShield
+    - HoloprojectorSecurity
+    - PowerCellHigh
+    # SL - End
     belt:
     - CrowbarRed
     - Zipties

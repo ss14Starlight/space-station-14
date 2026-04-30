@@ -19,17 +19,30 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     [DataField]
     public float Range = 1f;
 
+    /// <summary>Amount glare effects are multiplied by when the vampire is weak and the target has flash protection</summary>
+    [DataField]
+    public float FlashImmunityEffectScaleWeak = 0.0f;
+    /// <summary>Amount glare effects are multiplied by when the vampire is mid-level and the target has flash protection</summary>
+    [DataField]
+    public float FlashImmunityEffectScaleMid = 0.75f;
+
     /// <summary>
-    /// How much to scale effects if target is wearing flash protection
+    /// Amount the effect is multiplied by when the vampire is high level
     /// </summary>
     [DataField]
-    public float FlashImmunityEffectScale = 0.5f;
+    public float FlashImmunityEffectScaleStrong = 1f;
+
+    /// <summary>
+    /// Amount the effect is multiplied by when the vampire is FullPower
+    /// </summary>
+    [DataField]
+    public float GlareEffectScaleFull = 1.5f;
 
     /// <summary>
     /// How many seconds do we need to Paralyze entity in front of glare source.
     /// </summary>
     [DataField]
-    public TimeSpan FrontParalyzeDuration = TimeSpan.FromSeconds(4);
+    public TimeSpan FrontParalyzeDuration = TimeSpan.FromSeconds(5);
 
     /// <summary>
     /// How many seconds do we need to Paralyze entity behind of glare source.
