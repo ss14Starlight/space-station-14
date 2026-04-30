@@ -215,6 +215,12 @@ public abstract partial class SharedBorgSystem
                     EnsureComp<UnremoveableComponent>(pickUp);
                 }
 
+                // Starlight: prevent borg module items from flying away on crit/death even when they
+                // have a hand whitelist (which skips UnremoveableComponent above).
+                // ForceRemovable items (e.g. contraband bag) intentionally keep their drop behaviour.
+                if (!hand.ForceRemovable)
+                    EnsureComp<BorgModuleItemComponent>(pickUp);
+
                 // Starlight: stamp borg-owner info onto borg handcuffs so they can return home
                 if (TryComp<BorgHandcuffComponent>(pickUp, out var borgCuff))
                 {
