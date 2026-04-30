@@ -279,6 +279,9 @@
     - type: AccessReader
       access: [["MedTak"]]
     - type: ShowHealthBars
+      damageContainers:
+      - Biological
+      - IPC
     - type: SolutionScanner
     - type: FlashImmunity
       showInExamine: false
