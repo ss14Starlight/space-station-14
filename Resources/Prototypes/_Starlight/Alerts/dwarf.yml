@@ -1,0 +1,7 @@
+- type: alert
+  id: DwarfCourage
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/dwarf.rsi
+    state: courage
+  name: alerts-dwarf-courage-name
+  description: alerts-dwarf-courage-desc

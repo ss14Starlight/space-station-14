@@ -2806,6 +2806,11 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.3
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: MobThresholdsDeathInTheAfternoon # raise crit to 159, lower death to 160
+        time: 3
+    # end starlight
 
 - type: reagent
   id: Empress75
