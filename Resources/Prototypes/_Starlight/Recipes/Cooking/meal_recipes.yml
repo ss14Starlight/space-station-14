@@ -160,3 +160,11 @@
   solids:
     FoodNoodlesBoiled: 1
     OrganShadekinCore: 1
+
+- type: deepFryingRecipe
+  id: RecipeDonut
+  name: plain donut
+  result: FoodDonutPlain
+  time: 10
+  ingredient: FoodDoughRope
+  group: Dessert
