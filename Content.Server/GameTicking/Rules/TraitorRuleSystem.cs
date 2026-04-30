@@ -153,7 +153,7 @@ public sealed class TraitorRuleSystem : GameRuleSystem<TraitorRuleComponent>
         Note[]? code = null;
 
         Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - Uplink add");
-        var uplinked = _uplink.AddUplink(traitor, startingBalance, pda, true, null, null); // Starlight, needed to pass nulls for DAGD uplink changes
+        var uplinked = _uplink.AddUplink(traitor, startingBalance, pda, true);
 
         if (pda is not null && uplinked)
         {
