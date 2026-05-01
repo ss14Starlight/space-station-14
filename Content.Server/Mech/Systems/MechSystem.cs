@@ -91,7 +91,6 @@ public sealed partial class MechSystem : SharedMechSystem
 
         SubscribeLocalEvent<MechComponent, ToggleActionEvent>(OnToggleLightEvent); // Starlight
         SubscribeLocalEvent<MechComponent, MechToggleSirensEvent>(OnMechToggleSirens); // Starlight
-        SubscribeLocalEvent<MechComponent, MechToggleThrustersEvent>(OnMechToggleThrusters); // Starlight
         SubscribeLocalEvent<MechComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<MechComponent, EntInsertedIntoContainerMessage>(OnInsertEquipment); // Starlight
         SubscribeLocalEvent<MechComponent, EntRemovedFromContainerMessage>(OnItemRemoved); // Starlight-edit: Correct equipment update
@@ -136,11 +135,11 @@ public sealed partial class MechSystem : SharedMechSystem
             if (mechComp.BatterySlot.ContainedEntity != null &&
                 TryComp<BatteryComponent>(mechComp.BatterySlot.ContainedEntity.Value, out var battery))
             {
-                // Try to draw charge if this mech has thrusters and they're enabled
-                if (TryComp<MechThrustersComponent>(uid, out var thrusters) && thrusters.ThrustersEnabled)
-                {
-                    TryChangeEnergy(uid, thrusters.DrawRate);
-                }
+                var passiveDrawEv = new GetPassiveChargeDrawRate(uid);
+                RaiseLocalEvent(uid, passiveDrawEv);
+
+                if (!MathHelper.CloseTo(passiveDrawEv.CumulativeDrawRate, 0f))
+                    TryChangeEnergy(uid, passiveDrawEv.CumulativeDrawRate * frameTime);
 
                 var currentCharge = _battery.GetCharge((mechComp.BatterySlot.ContainedEntity.Value, battery));
                 if( mechComp.PlayPowerUpSound && (int)(currentCharge / battery.MaxCharge * 100) > 0 )

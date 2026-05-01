@@ -18,26 +18,23 @@ public sealed partial class MechThrustersSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<MechThrustersComponent, BeforePilotInsertEvent>(OnPilotEntering);
-        SubscribeLocalEvent<MechThrustersComponent, BeforePilotEjectEvent>(OnPilotEjecting);
+        SubscribeLocalEvent<MechThrustersComponent, GetPassiveChargeDrawRate>(OnGetDrawRate);
+        SubscribeLocalEvent<MechThrustersComponent, MechToggleThrustersEvent>(OnMechToggleThrusters);
     }
 
     // This can probably go in shared
     private void OnPilotEntering(EntityUid uid, MechThrustersComponent comp, ref BeforePilotInsertEvent args)
-    {
+        => _actions.AddAction(args.Pilot, ref comp.MechToggleThrustersActionEntity, comp.MechToggleThrustersAction, uid);
 
-    }
-
-    private void OnPilotEjecting(EntityUid uid, MechThrustersComponent comp, ref BeforePilotEjectEvent args)
-    {
-
-    }
+    private void OnGetDrawRate(EntityUid uid, MechThrustersComponent comp, GetPassiveChargeDrawRate args)
+        => args.CumulativeDrawRate += comp.ThrustersEnabled ? comp.DrawRate : 0f;
 
     private void OnMechToggleThrusters(EntityUid uid, MechThrustersComponent comp, MechToggleThrustersEvent args)
     {
         if (args.Handled)
             return;
 
-        if (!TryComp<MechThrustersComponent>(uid, out var mechComp))
+        if (!TryComp<MechComponent>(uid, out _))
             return;
 
         args.Handled = true;

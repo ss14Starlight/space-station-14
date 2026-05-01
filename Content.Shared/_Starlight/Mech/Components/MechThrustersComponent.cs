@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._Starlight.Mech.Components;
@@ -19,4 +20,9 @@ public sealed partial class MechThrustersComponent : Component
 
     [DataField]
     public TimeSpan Delay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public EntProtoId MechToggleThrustersAction = "ActionMechToggleThrusters";
+
+    [DataField] public EntityUid? MechToggleThrustersActionEntity;
 }
