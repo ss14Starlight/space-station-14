@@ -1,0 +1,186 @@
+- type: listing
+  id: UplinkContortionistJumpsuit
+  name: uplink-contortionist-jumpsuit-name
+  description: uplink-contortionist-jumpsuit-desc
+  productEntity: ClothingUniformJumpsuitAtmosSyndie
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 8
+  cost:
+    Telecrystal: 12
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - AtmosphericTechnician
+        - ChiefEngineer
+        - Captain
+
+- type: listing
+  id: UplinkMarriage
+  name: uplink-marriage-axe-name
+  description: uplink-marriage-axe-desc
+  icon:
+    {
+      sprite: /Textures/_Starlight/Objects/Weapons/Melee/marriage_axe.rsi,
+      state: icon,
+    }
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 18
+  productEntity: MarriageAxe
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Musician
+        - Performer
+        - HeadOfPersonnel
+        - Captain
+
+- type: listing
+  id: UplinkHydra
+  name: uplink-hydra-name
+  description: uplink-hydra-desc
+  icon:
+    {
+      sprite: /Textures/Objects/Weapons/Guns/Launchers/hydra_launcher.rsi,
+      state: icon,
+    }
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 16 # 2's really not much of a discount
+  productEntity: WeaponLauncherHydraSyndicate
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Janitor
+        - HeadOfPersonnel
+        - Captain
+
+- type: listing
+  id: UplinkBananaEsword
+  name: uplink-banana-esword-name
+  description: uplink-banana-esword-desc
+  productEntity: EnergySwordBanana
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 8
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Clown
+        - Performer
+        - HeadOfPersonnel
+        - Captain
+
+- type: listing
+  id: UplinkMagillitisSerumImplant
+  name: uplink-magillitis-serum-implanter-name
+  description: uplink-magillitis-serum-implanter-desc
+  icon: { sprite: _Starlight/Actions/implants.rsi, state: gorilla_rampage }
+  productEntity: MagillitisSerumImplanter
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - ResearchAssistant
+        - Scientist
+        - ResearchDirector
+        - Roboticist # If you're giving it to the rest of the department...
+        - Captain
+
+- type: listing
+  id: UplinkTrunkSyndicate
+  name: uplink-trunk-syndicate-name
+  description: uplink-trunk-syndicate-desc
+  productEntity: ClothingBackpackTrunkSyndicate
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - MailTech
+        - Quartermaster
+        - Captain
+
+- type: listing
+  id: UplinkNoslipClownShoes
+  name: uplink-noslip-clown-shoes-name
+  description: uplink-noslip-clown-shoes-desc
+  productEntity: ClownShoesNoSlip
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Clown
+        - Mime
+        - Performer
+        - HeadOfPersonnel
+        - Captain
+
+- type: listing
+  id: uplinkRiggedBoxingGlovesBoxer
+  name: uplink-rigged-boxing-gloves-name
+  description: uplink-rigged-boxing-gloves-desc
+  productEntity: ClothingHandsGlovesBoxingRigged
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Boxer
+        - HeadOfPersonnel
+        - Captain
+
+- type: listing
+  id: UplinkMimanaStealthy
+  name: uplink-mimana-stealthy-name
+  description: uplink-mimana-stealthy-desc
+  productEntity: TrashMimanaPeelStealthy
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Clown
+        - Mime
+        - Performer
+        - HeadOfPersonnel
+        - Captain
