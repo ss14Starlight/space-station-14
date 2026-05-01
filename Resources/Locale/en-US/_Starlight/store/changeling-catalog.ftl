@@ -3,26 +3,28 @@ evolutionmenu-combat-armblade-plus-name = True Arm Blade
 evolutionmenu-combat-armblade-plus-desc =
     Reform one of your arms into a truly beautiful blade, composed of bone and flesh, and tear the flesh off of your
     victims. Can also pry open doors incredibly quickly, and reflect incoming projectiles. Gives off a beautiful red glow.
-    WARNING: Requires you to absorb at least 5 organics to use the ability.
-    Costs 35 chemicals.
+    WARNING: Requires you to absorb at least 6 organics to use the ability.
+    Costs 30 chemicals.
 
 # Utility
 evolutionmenu-utility-night-eyesight-name = Night Vision Eyesight
 evolutionmenu-utility-night-eyesight-desc =
     Evolve your eyes to be able to see in the dark.
+    WARNING: Requires you to absorb at least 2 organics to use the ability.
     Costs 15 chemicals, once.
 
 evolutionmenu-utility-thermal-eyesight-name = Thermal Eyesight
 evolutionmenu-utility-thermal-eyesight-desc =
     Evolve your eyes to their ultimate form, being able to detect head
     signatures through walls.
-    WARNING: Requires you to absorb at least 2 organics to use the ability.
+    WARNING: Requires you to absorb at least 4 organics to use the ability.
     Costs 30 chemicals, once.
 
 evolutionmenu-utility-risky-stims-name = Desoxyephedrine Overdose
 evolutionmenu-utility-risky-stims-desc =
     Inject a cocktail of risky stimulants into yourself, giving yourself a greater speed boost.
     Poisonous, even moreso when used continuously.
+    WARNING: Requires you to absorb at least 2 organics to use the ability.
     Costs 30 chemicals.
 
 evolutionmenu-utility-hyper-stims-name = Amalgam Overdose
@@ -30,7 +32,7 @@ evolutionmenu-utility-hyper-stims-desc =
     Inject a cocktail of strong stimulants into yourself, quickly removing any stuns and giving
     yourself an even greater speed boost.
     Continuous injection is poisonous.
-    WARNING: Requires you to absorb at least 3 organics to use the ability.
+    WARNING: Requires you to absorb at least 4 organics to use the ability.
     Costs 40 chemicals.
 
 # Sting
@@ -40,7 +42,7 @@ evolutionmenu-sting-burn-desc =
     Inject an organic target with a cocktail of chemicals that burns the blood and disorients
     them.
     May be used while under the effects of Lesser Form.
-    WARNING: Requires you to absorb at least 1 organic to use the ability.
+    WARNING: Requires you to absorb at least 2 organics to use the ability.
     Costs 35 chemicals.
 
 evolutionmenu-sting-drain-name = Draining Sting
@@ -48,5 +50,5 @@ evolutionmenu-sting-drain-desc =
     Inject an organic target with a cocktail of chemicals that quickly erode their hunger and
     thirst.
     May be used while under the effects of Lesser Form.
-    WARNING: Requires you to absorb at least 1 organic to use the ability.
+    WARNING: Requires you to absorb at least 2 organics to use the ability.
     Costs 35 chemicals.

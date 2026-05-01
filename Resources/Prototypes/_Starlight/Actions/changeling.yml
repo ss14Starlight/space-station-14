@@ -90,7 +90,7 @@
   parent: BaseAction
   id: ActionRetractableItemArmBladePlus
   name: True Arm Blade
-  description: Shed your flesh and reform it into a truly beautiful blade. Costs 35 chemicals.
+  description: Shed your flesh and reform it into a truly beautiful blade. Costs 30 chemicals.
   components:
   - type: Action
     useDelay: 2
@@ -108,8 +108,8 @@
     retractSounds:
       collection: gib # Placeholder
   - type: ChangelingAction
-    chemicalCost: 35 # It's *very* strong. This is your *final* upgrade.
-    requireAbsorbed: 5
+    chemicalCost: 30 # It's *very* strong. This is your *final* upgrade.
+    requireAbsorbed: 6
 
 - type: entity
   id: ActionCreateBoneShard
@@ -170,7 +170,7 @@
       collection: gib # Placeholder
   - type: ChangelingAction
     chemicalCost: 20
-    requireAbsorbed: 1
+    requireAbsorbed: 2
 
 - type: entity
   id: ActionShriekDissonant
@@ -189,7 +189,7 @@
   - type: ChangelingAction
     chemicalCost: 30
     useInLesserForm: true
-    requireAbsorbed: 1
+    requireAbsorbed: 2
 
 - type: entity
   id: ActionShriekResonant
@@ -208,7 +208,7 @@
   - type: ChangelingAction
     chemicalCost: 30
     useInLesserForm: true
-    requireAbsorbed: 1
+    requireAbsorbed: 2
 
 - type: entity
   id: ActionToggleStrainedMuscles
@@ -300,7 +300,7 @@
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
-    requireAbsorbed: 1
+    requireAbsorbed: 2
 
 - type: entity
   id: ActionStingLethargic
@@ -347,7 +347,7 @@
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
-    requireAbsorbed: 1
+    requireAbsorbed: 2
 
 - type: entity
   id: ActionStingMute
@@ -490,7 +490,7 @@
     event: !type:ActionThermalEyesightEvent {}
   - type: ChangelingAction
     chemicalCost: 30 # Should have some cost associated with it.
-    requireAbsorbed: 2 # You should at least have to work up to this.
+    requireAbsorbed: 4 # Tier 3 Ability.
 
 - type: entity
   id: ActionBiodegrade
@@ -567,6 +567,7 @@
     event: !type:ActionDesoxyephedrineOverdoseEvent {}
   - type: ChangelingAction
     chemicalCost: 30 # It injects enough Desoxy to hurt you, so it doesn't need to be that more expensive.
+    requireAbsorbed: 2 # It's not that great... but it's a faster stimulant than Ephedrine, so it requires you to have absorbed a bit more.
     useInLesserForm: true
 
 - type: entity
@@ -586,7 +587,7 @@
     event: !type:ActionAmalgamOverdoseEvent {}
   - type: ChangelingAction
     chemicalCost: 40
-    requireAbsorbed: 3 # It's strong.
+    requireAbsorbed: 4 # It's strong. Tier 3 Ability.
     useInLesserForm: true
 
 - type: entity
