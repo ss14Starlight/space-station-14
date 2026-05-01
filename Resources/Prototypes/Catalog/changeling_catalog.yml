@@ -20,7 +20,7 @@
   name: evolutionmenu-combat-armblade-plus-name
   description: evolutionmenu-combat-armblade-plus-desc
   icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: armblade-plus }
-  productAction: ActionRetractableItemArmBlade
+  productAction: ActionRetractableItemArmBladePlus
   cost:
     EvolutionPoint: 5
   categories:
@@ -364,11 +364,11 @@
     stock: 1
 
 - type: listing
-  id: EvolutionMenuStimulantsOverdose
+  id: EvolutionMenuAmalgamOverdose
   name: evolutionmenu-utility-hyper-stims-name
   description: evolutionmenu-utility-hyper-stims-desc
   icon: { sprite: _Starlight/Actions/changeling.rsi, state: amalgam_overdose }
-  productAction: ActionStimulantsOverdose
+  productAction: ActionAmalgamOverdose
   cost:
     EvolutionPoint: 5
   categories:
