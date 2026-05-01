@@ -172,7 +172,11 @@
     - item: BorgHoloprojectorSecurity
       hand:
         emptyRepresentative: BorgHoloprojectorSecurity
-        emptyLabel: borg-slot-holoprojector-empty
+- item: WeaponPDW9TaserBorg
+- item: BorgStunbatonRechargeable
+- item: BorgHolocuffs
+- item: BorgFlashRechargeable
+- item: BorgHoloprojectorSecurity
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
   - type: Tag
