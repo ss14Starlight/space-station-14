@@ -21,7 +21,7 @@
       collection: gib # Placeholder
   #Starlight edit: changeling action costs
   - type: ChangelingAction
-    chemicalCost: 30
+    chemicalCost: 25 # Starlight, it takes energy to recall too... come on.
     requireAbsorbed: 2
 
 - type: entity
