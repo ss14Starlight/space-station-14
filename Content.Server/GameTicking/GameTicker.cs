@@ -144,7 +144,7 @@ namespace Content.Server.GameTicking
             UpdateRoundFlow(frameTime);
             UpdateGameRules();
         }
-        // Starlight start
+        #region Starlight
         /// <summary>
         /// Ends round if a nuke with the component to end the round goes off.
         /// TODO: make this instead check for if the preset overrides nuke explosion ending the round behavior somehow
@@ -159,6 +159,6 @@ namespace Content.Server.GameTicking
 
             _roundEndSystem.EndRound();
         }
-        // Starlight end
+        #endregion
     }
 }
