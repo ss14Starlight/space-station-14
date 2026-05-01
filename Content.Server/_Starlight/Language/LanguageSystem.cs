@@ -8,7 +8,6 @@ using Content.Shared._Starlight.Language.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Chat;
 using Content.Shared.Radio;
-using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -25,7 +24,6 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         base.Initialize();
 
         SubscribeLocalEvent<LanguageSpeakerComponent, MapInitEvent>(OnInitLanguageSpeaker);
-        SubscribeLocalEvent<LanguageSpeakerComponent, ComponentGetState>(OnGetLanguageState);
         SubscribeLocalEvent<LanguageKnowledgeComponent, RadioReceiveEvent>(OnRadioReceiveEvent);
         SubscribeLocalEvent<UniversalLanguageSpeakerComponent, DetermineEntityLanguagesEvent>(OnDetermineUniversalLanguages);
         SubscribeNetworkEvent<LanguagesSetMessage>(OnClientSetLanguage);
@@ -42,16 +40,6 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
             ent.Comp.CurrentLanguage = ent.Comp.SpokenLanguages.FirstOrDefault(UniversalPrototype);
 
         UpdateEntityLanguages(ent!);
-    }
-
-    private void OnGetLanguageState(Entity<LanguageSpeakerComponent> entity, ref ComponentGetState args)
-    {
-        args.State = new LanguageSpeakerComponent.State
-        {
-            CurrentLanguage = entity.Comp.CurrentLanguage,
-            SpokenLanguages = entity.Comp.SpokenLanguages,
-            UnderstoodLanguages = entity.Comp.UnderstoodLanguages
-        };
     }
 
     private void OnDetermineUniversalLanguages(Entity<UniversalLanguageSpeakerComponent> entity, ref DetermineEntityLanguagesEvent ev)
@@ -80,7 +68,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
     /// <param name="language"></param>
     public void SendEntityRadioLanguage(EntityUid source, string message, ProtoId<RadioChannelPrototype> channel, LanguagePrototype language)
     {
-        if (!_actionBlocker.CanSpeak(source) || (language.SpeechOverride.RequireHands && !_actionBlocker.CanInteract(source, null)))
+        if (!_actionBlocker.CanSpeak(source) || (language.Speech.RequireHands && !_actionBlocker.CanInteract(source, null)))
             return;
 
         _radioSystem.SendRadioMessage(source, message, channel, source, language);
@@ -88,9 +76,9 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
 
     private void OnRadioReceiveEvent(EntityUid uid, LanguageKnowledgeComponent _, ref RadioReceiveEvent args)
     {
-        if (args.Language.SpeechOverride.RadioChannel is null
+        if (args.Language.Speech.RadioChannel is null
             || args.Channel is null
-            || args.Channel.ID != args.Language.SpeechOverride.RadioChannel
+            || args.Channel.ID != args.Language.Speech.RadioChannel
             || !TryComp<ActorComponent>(uid, out var actor))
             return;
 
