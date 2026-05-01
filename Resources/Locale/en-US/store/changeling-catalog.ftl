@@ -10,7 +10,7 @@ evolutionmenu-combat-armblade-desc =
 evolutionmenu-combat-boneshard-name = Bone Shard
 evolutionmenu-combat-boneshard-desc =
     Break off shards of your bone and shape them into a throwing star which embeds into your foes and disorients them.
-    But a one timer opportinuty.
+    You only get one with each use.
     Costs 15 chemicals.
 
 evolutionmenu-combat-armor-name = Chitinous Armor

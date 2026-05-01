@@ -472,6 +472,8 @@
     event: !type:ActionNightEyesightEvent {}
   - type: ChangelingAction
     chemicalCost: 15
+    requireAbsorbed: 2
+    useInLesserForm: true
 
 - type: entity
   id: ActionThermalEyesight
@@ -490,6 +492,7 @@
   - type: ChangelingAction
     chemicalCost: 30 # Should have some cost associated with it.
     requireAbsorbed: 4 # Tier 3 Ability.
+    useInLesserForm: true
 
 - type: entity
   id: ActionBiodegrade

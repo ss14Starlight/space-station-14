@@ -10,12 +10,14 @@ evolutionmenu-combat-armblade-plus-desc =
 evolutionmenu-utility-night-eyesight-name = Night Vision Eyesight
 evolutionmenu-utility-night-eyesight-desc =
     Evolve your eyes to be able to see in the dark.
+    May be used while under the effects of Lesser Form.
     WARNING: Requires you to absorb at least 2 organics to use the ability.
     Costs 15 chemicals, once.
 
 evolutionmenu-utility-thermal-eyesight-name = Thermal Eyesight
 evolutionmenu-utility-thermal-eyesight-desc =
     Evolve your eyes to their ultimate form, becoming able to detect heat signatures through walls.
+    May be used while under the effects of Lesser Form.
     WARNING: Requires you to absorb at least 4 organics to use the ability.
     Costs 30 chemicals, once.
 
