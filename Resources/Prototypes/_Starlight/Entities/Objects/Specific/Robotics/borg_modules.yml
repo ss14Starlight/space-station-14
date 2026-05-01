@@ -157,17 +157,10 @@
       hand:
         emptyRepresentative: WeaponPDW9TaserBorg
         emptyLabel: borg-slot-disabler-empty
-        whitelist:
-          tags:
-          - Disabler
-          - Taser
     - item: BorgStunbatonRechargeable
       hand:
         emptyRepresentative: BorgStunbatonRechargeable
         emptyLabel: borg-slot-stunbaton-empty
-        whitelist:
-          components:
-          - Stunbaton
     - item: BorgHolocuffs
       hand:
         emptyRepresentative: BorgHolocuffs
@@ -176,16 +169,10 @@
       hand:
         emptyRepresentative: BorgFlashRechargeable
         emptyLabel: borg-slot-flash-empty
-        whitelist:
-          components:
-          - Flash
     - item: BorgHoloprojectorSecurity
       hand:
         emptyRepresentative: BorgHoloprojectorSecurity
         emptyLabel: borg-slot-holoprojector-empty
-        whitelist:
-          components:
-          - HolosignProjector
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
   - type: Tag
