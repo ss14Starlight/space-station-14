@@ -1,5 +1,5 @@
 - type: entity
-  name: refined arm blade
+  name: true arm blade
   parent: ArmBlade
   id: ArmBladePlus
   description: A truly beautiful blade made out of bone and flesh that tears the flesh off of its victims. Can pry open doors very quickly. Gives off a mild red glow.

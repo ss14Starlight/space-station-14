@@ -405,7 +405,8 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         if (HasComp<FlashImmunityComponent>(uid))
         {
-            _popup.PopupEntity(Loc.GetString("changeling-passive-active"), uid, uid);
+            RemComp<FlashImmunityComponent>(uid); // Starlight, they need to be able to disable it to use the other visions due to how flash protection is written.
+            _popup.PopupEntity(Loc.GetString("changeling-passive-disable"), uid, uid); // Starlight
             return;
         }
 
@@ -417,7 +418,8 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         if (HasComp<NightVisionComponent>(uid))
         {
-            _popup.PopupEntity(Loc.GetString("changeling-passive-active"), uid, uid);
+            RemComp<NightVisionComponent>(uid);
+            _popup.PopupEntity(Loc.GetString("changeling-passive-disable"), uid, uid);
             return;
         }
 

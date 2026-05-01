@@ -109,7 +109,7 @@
       collection: gib # Placeholder
   - type: ChangelingAction
     chemicalCost: 35 # It's *very* strong. This is your *final* upgrade.
-    requireAbsorbed: 6
+    requireAbsorbed: 5
 
 - type: entity
   id: ActionCreateBoneShard
@@ -443,7 +443,7 @@
 - type: entity
   id: ActionAugmentedEyesight
   name: Augmented Eyesight
-  description: Toggle flash protection.
+  description: Toggle flash protection. Must be disabled in order to use other eye augments. # Starlight
   categories: [ HideSpawnMenu ]
   components:
   - type: Action

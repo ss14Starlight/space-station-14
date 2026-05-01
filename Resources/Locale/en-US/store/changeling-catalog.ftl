@@ -96,6 +96,7 @@ evolutionmenu-utility-panacea-desc =
 evolutionmenu-utility-eyesight-name = Augmented Eyesight
 evolutionmenu-utility-eyesight-desc =
     Evolve additional features in your eyes, such as flash protection.
+    Must be disabled in order to use other eye augments.
     Cost-free.
 
 evolutionmenu-utility-biodegrade-name = Biodegrade
