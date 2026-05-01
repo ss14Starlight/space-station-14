@@ -258,7 +258,7 @@
 - type: reagent
   id: CoffeeLiqueur
   name: reagent-name-coffeeliqueur
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-coffeeliqueur
   physicalDesc: reagent-physical-desc-cloudy
   flavor: coffeeliquor
@@ -624,7 +624,7 @@
 - type: reagent
   id: AtomicBomb
   name: reagent-name-atomic-bomb
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-atomic-bomb
   physicalDesc: reagent-physical-desc-cloudy
   flavor: atomicbomb
@@ -646,11 +646,16 @@
       - !type:AdjustReagent
         reagent: Uranium
         amount: 0.05
+# Starlight Start
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+# Starlight End
 
 - type: reagent
   id: B52
   name: reagent-name-b52
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-b52
   physicalDesc: reagent-physical-desc-bubbly
   flavor: b52
@@ -669,6 +674,11 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.15
+# Starlight Start
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+# Starlight End
 
 - type: reagent
   id: BahamaMama
@@ -742,7 +752,7 @@
 - type: reagent
   id: BlackRussian
   name: reagent-name-black-russian
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-black-russian
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: blackrussian
@@ -761,6 +771,11 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+# Starlight Start
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+# Starlight End
 
 - type: reagent
   id: BloodyMary
@@ -795,7 +810,7 @@
 - type: reagent
   id: BraveBull
   name: reagent-name-brave-bull
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-brave-bull
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: bravebull
@@ -814,6 +829,11 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+# Starlight Start
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+# Starlight End
 
 - type: reagent
   id: Bronx
@@ -960,7 +980,7 @@
 - type: reagent
   id: DevilsKiss
   name: reagent-name-devils-kiss
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-devils-kiss
   physicalDesc: reagent-physical-desc-ferrous
   flavor: devilskiss
@@ -986,7 +1006,7 @@
 - type: reagent
   id: DoctorsDelight
   name: reagent-name-doctors-delight
-  parent: BaseDrink
+  parent: BaseAlcohol # Starlight Edit
   desc: reagent-desc-doctors-delight
   physicalDesc: reagent-physical-desc-soothing
   flavor: medicine
@@ -1282,7 +1302,7 @@
 - type: reagent
   id: IrishCoffee
   name: reagent-name-irish-coffee
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-irish-coffee
   physicalDesc: reagent-physical-desc-cloudy
   flavor: irishcoffee
@@ -1301,6 +1321,11 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.15
+# Starlight Start
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+# Starlight End
 
 - type: reagent
   id: JackRose
@@ -2011,7 +2036,7 @@
 - type: reagent
   id: WhiteGilgamesh
   name: reagent-name-white-gilgamesh
-  parent: BaseDrink
+  parent: BaseAlcohol # Starlight Edit
   desc: reagent-desc-white-gilgamesh
   physicalDesc: reagent-physical-desc-creamy
   flavor: white-gilgamesh
@@ -2029,7 +2054,7 @@
 - type: reagent
   id: WhiteRussian
   name: reagent-name-white-russian
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-white-russian
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: whiterussian
@@ -2048,11 +2073,16 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.15
+# Starlight Start
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+# Starlight End
 
 - type: reagent
   id: VodkaRedBool
   name: reagent-name-vodka-red-bool
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-vodka-red-bool
   physicalDesc: reagent-physical-desc-bubbly
   flavor: vodkaredbool
@@ -2083,7 +2113,7 @@
 - type: reagent
   id: XenoBasher
   name: reagent-name-xeno-basher
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-xeno-basher
   physicalDesc: reagent-physical-desc-fizzy-and-creamy
   flavor: xenobasher
@@ -2114,7 +2144,7 @@
 - type: reagent
   id: IrishBool
   name: reagent-name-irish-bool
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-irish-bool
   physicalDesc: reagent-physical-desc-bubbly
   flavor: irishbool
@@ -2145,7 +2175,7 @@
 - type: reagent
   id: BudgetInsulsDrink
   name: reagent-name-budget-insuls
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-budget-insuls
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: budgetinsulsdrink
@@ -2176,7 +2206,7 @@
 - type: reagent
   id: WatermelonWakeup
   name: reagent-name-watermelon-wakeup
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-watermelon-wakeup
   physicalDesc: reagent-physical-desc-sweet
   flavor: watermelonwakeup
@@ -2207,7 +2237,7 @@
 - type: reagent
   id: Rubberneck
   name: reagent-name-rubberneck
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-rubberneck
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: rubberneck
@@ -2438,7 +2468,7 @@
 - type: reagent
   id: EspressoMartini
   name: reagent-name-espresso-martini
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedAlcohol # Starlight Edit
   desc: reagent-desc-espresso-martini
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: espressomartini
@@ -2457,6 +2487,11 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+# Starlight Start
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+# Starlight End
 
 - type: reagent
   id: Daiquiri

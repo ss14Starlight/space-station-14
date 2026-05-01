@@ -1,7 +1,7 @@
 - type: reagent
   id: Coffee
   name: reagent-name-coffee
-  parent: BaseDrink
+  parent: BaseCaffeinatedDrink # Starlight Edit
   desc: reagent-desc-coffee
   physicalDesc: reagent-physical-desc-aromatic
   flavor: coffee
@@ -29,7 +29,7 @@
 - type: reagent
   id: HotCocoa
   name: reagent-name-hot-cocoa
-  parent: BaseDrink
+  parent: BaseCaffeinatedDrink # Starlight Edit
   desc: reagent-desc-hot-cocoa
   physicalDesc: reagent-physical-desc-aromatic
   flavor: chocolate
@@ -89,7 +89,7 @@
 - type: reagent
   id: CafeLatte
   name: reagent-name-cafe-latte
-  parent: BaseDrink
+  parent: BaseCaffeinatedDrink # Starlight Edit
   desc: reagent-desc-cafe-latte
   physicalDesc: reagent-physical-desc-creamy
   flavor: creamy
@@ -109,11 +109,16 @@
         effectProto: StatusEffectDrowsiness
         time: 2
         type: Remove
+# Starlight Start
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+# Starlight End
 
 - type: reagent
   id: GreenTea
   name: reagent-name-green-tea
-  parent: BaseDrink
+  parent: BaseCaffeinatedDrink # Starlight Edit
   desc: reagent-desc-green-tea
   physicalDesc: reagent-physical-desc-aromatic
   flavor: tea
@@ -145,7 +150,7 @@
 - type: reagent
   id: IcedCoffee
   name: reagent-name-iced-coffee
-  parent: BaseDrink
+  parent: BaseCaffeinatedDrink # Starlight Edit
   desc: reagent-desc-iced-coffee
   physicalDesc: reagent-physical-desc-aromatic
   flavor: coffee
@@ -172,7 +177,7 @@
 - type: reagent
   id: IcedGreenTea
   name: reagent-name-iced-green-tea
-  parent: BaseDrink
+  parent: BaseCaffeinatedDrink  # Starlight Edit
   desc: reagent-desc-iced-green-tea
   physicalDesc: reagent-physical-desc-aromatic
   flavor: icedtea
@@ -187,7 +192,7 @@
 - type: reagent
   id: IcedTea
   name: reagent-name-iced-tea
-  parent: BaseDrink
+  parent: BaseCaffeinatedDrink # Starlight Edit
   desc: reagent-desc-iced-tea
   physicalDesc: reagent-physical-desc-aromatic
   flavor: icedtea
@@ -370,7 +375,7 @@
 - type: reagent
   id: SoyLatte
   name: reagent-name-soy-latte
-  parent: BaseDrink
+  parent: BaseCaffeinatedDrink # Starlight Edit
   desc: reagent-desc-soy-latte
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: soy
@@ -390,11 +395,16 @@
         effectProto: StatusEffectDrowsiness
         time: 2
         type: Remove
+# Starlight Start
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+# Starlight End
 
 - type: reagent
   id: Tea
   name: reagent-name-tea
-  parent: BaseDrink
+  parent: BaseCaffeinatedDrink # Starlight Edit
   desc: reagent-desc-tea
   physicalDesc: reagent-physical-desc-aromatic
   flavor: tea
@@ -521,7 +531,7 @@
 - type: reagent
   id: ArnoldPalmer
   name: reagent-name-arnold-palmer
-  parent: BaseAlcohol
+  parent: BaseCaffeinatedDrink # Starlight Edit
   desc: reagent-desc-arnold-palmer
   physicalDesc: reagent-physical-desc-sweet
   flavor: arnoldpalmer
@@ -584,7 +594,7 @@
 - type: reagent
   id: Rewriter
   name: reagent-name-rewriter
-  parent: BaseDrink
+  parent: BaseCaffeinatedDrink # Starlight Edit
   desc: reagent-desc-rewriter
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: sweet
@@ -614,7 +624,7 @@
 - type: reagent
   id: Tortuga
   name: reagent-name-tortuga
-  parent: BaseDrink
+  parent: BaseCaffeinatedDrink # Starlight Edit
   desc: reagent-desc-tortuga
   physicalDesc: reagent-physical-desc-sweet
   flavor: tortuga

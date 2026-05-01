@@ -70,7 +70,7 @@
 - type: reagent
   id: EnergyDrink
   name: reagent-name-energy-drink
-  parent: BaseSoda
+  parent: BaseCaffeinatedSoda # Starlight Edit
   desc: reagent-desc-energy-drink
   physicalDesc: reagent-physical-desc-fizzy
   flavor: energydrink
@@ -251,7 +251,7 @@
 - type: reagent
   id: FourteenLoko
   name: reagent-name-fourteen-loko
-  parent: BaseSoda
+  parent: BaseCaffeinatedSoda # Starlight Edit
   desc: reagent-desc-fourteen-loko
   physicalDesc: reagent-physical-desc-fizzy
   flavor: fourteenlokosoda

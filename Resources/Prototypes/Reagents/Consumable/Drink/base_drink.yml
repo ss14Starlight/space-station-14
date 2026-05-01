@@ -77,3 +77,47 @@
   flavor: sweet
   footstepSound:
     collection: FootstepSlime
+
+# Starlight Start
+- type: reagent
+  id: BaseCaffeinatedDrink
+  parent: BaseDrink
+  abstract: true
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+
+- type: reagent
+  id: BaseCaffeinatedAlcohol
+  parent: BaseAlcohol
+  abstract: true
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.06
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+
+- type: reagent
+  id: BaseCaffeinatedSoda
+  parent: BaseSoda
+  abstract: true
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Theobromine
+        amount: 0.05
+# Starlight End
