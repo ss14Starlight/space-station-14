@@ -194,7 +194,7 @@
 - type: entity
   id: ActionShriekResonant
   name: Resonant Shriek
-  description: Disorient people and break lights, with just your voice. Costs 30 chemicals.
+  description: Disorient people and break lights, with just your voice. Costs 25 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -206,9 +206,8 @@
   - type: InstantAction
     event: !type:ShriekResonantEvent {}
   - type: ChangelingAction
-    chemicalCost: 30
+    chemicalCost: 25
     useInLesserForm: true
-    requireAbsorbed: 2
 
 - type: entity
   id: ActionToggleStrainedMuscles

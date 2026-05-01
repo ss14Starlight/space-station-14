@@ -40,8 +40,7 @@ evolutionmenu-combat-shriek-resonant-desc =
     You emit a tone beyond the range of human hearing,
     bursting lights and causing disorientation in an area around yourself.
     Good for escaping groups, or hindering people from fleeing.
-    WARNING: Requires you to absorb at least 2 organics to use the ability.
-    Costs 30 chemicals.
+    Costs 25 chemicals.
 
 evolutionmenu-combat-strainedmuscles-name = Strained Muscles
 evolutionmenu-combat-strainedmuscles-desc =
