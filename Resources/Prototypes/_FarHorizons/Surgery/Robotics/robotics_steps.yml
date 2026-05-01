@@ -371,7 +371,7 @@
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/IPC/organs.rsi
     state: tongue
-
+#region Starlight
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepRemoveHandImplantRobot
@@ -403,3 +403,4 @@
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
+#endregion Starlight

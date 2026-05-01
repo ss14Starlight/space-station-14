@@ -396,6 +396,7 @@
     speciesWhitelist:
     - IPC
 
+#region Starlight
 - type: entity
   parent: SurgeryBase
   id: SurgeryExtractHandImplantRobot
@@ -515,3 +516,4 @@
     speciesBlacklist: []
     speciesWhitelist:
     - IPC
+#endregion Starlight
