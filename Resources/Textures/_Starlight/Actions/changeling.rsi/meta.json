@@ -8,12 +8,22 @@
     },
     "states": [
         {
-            "name": "augmented_eyesight",
+            "name": "night_eyesight",
 			"copyright": "Paradise Station, wonderfulnewworld",
 			"license": "CC-BY-SA-3.0"
         },
         {
-            "name": "epinephrine_overdose",
+            "name": "thermal_eyesight",
+			"copyright": "Paradise Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "desoxyephedrine_overdose",
+			"copyright": "Paradise Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "amalgam_overdose",
 			"copyright": "Paradise Station, wonderfulnewworld",
 			"license": "CC-BY-SA-3.0"
         },
