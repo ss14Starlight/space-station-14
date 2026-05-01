@@ -90,7 +90,7 @@
   parent: BaseAction
   id: ActionRetractableItemArmBladePlus
   name: True Arm Blade
-  description: Shed your flesh and reform it into a truly beautiful blade. Costs 30 chemicals.
+  description: Shed your flesh and reform it into a truly beautiful blade. Costs 30 chemicals to summon, and 30 chemicals to retract.
   components:
   - type: Action
     useDelay: 2

@@ -2,7 +2,7 @@
   parent: BaseAction
   id: ActionRetractableItemArmBlade
   name: Arm Blade
-  description: Shed your flesh and reform it into a fleshy blade.
+  description: Shed your flesh and reform it into a fleshy blade. Costs 20 chemicals to summon, and 20 chemicals to retract. # Starlight
   components:
   - type: Action
     useDelay: 2

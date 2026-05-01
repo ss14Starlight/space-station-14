@@ -4,7 +4,7 @@ evolutionmenu-combat-armblade-plus-desc =
     Reform one of your arms into a truly beautiful blade, composed of bone and flesh, and tear the flesh off of your victims.
     Can also pry open doors incredibly quickly, and reflect incoming projectiles. Gives off a beautiful red glow.
     WARNING: Requires you to absorb at least 6 organics to use the ability.
-    Costs 30 chemicals.
+    Costs 30 chemicals each time you summon it, and each time you retract it.
 
 # Utility
 evolutionmenu-utility-night-eyesight-name = Night Vision Eyesight
