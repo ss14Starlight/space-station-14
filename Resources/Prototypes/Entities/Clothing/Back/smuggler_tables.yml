@@ -65,7 +65,7 @@
         range: 1, 5
     - id: OminousPill # Starlight start
       amount: !type:RangeNumberSelector
-        range: 0, 2 # Starlight end
+        range: 1, 2 # Starlight end
 
 - type: entityTable #5x tiny
   id: RandomSatchelCannabisTable

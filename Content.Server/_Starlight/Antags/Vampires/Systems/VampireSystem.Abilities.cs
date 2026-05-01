@@ -39,6 +39,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Starlight.Overlay;
+using Content.Shared.Atmos.Rotting;
 
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
@@ -411,7 +412,8 @@ public sealed partial class VampireSystem : EntitySystem
 
         if (HasComp<IPCBatteryComponent>(target) //IPCs don't have blood
             || (!TryComp<MobStateComponent>(target, out var mobState) //Is the entity a mob at all?
-            || mobState.CurrentState == Shared.Mobs.MobState.Dead)) //Dead things aren't a good source of flowing blood
+            || (mobState.CurrentState == Shared.Mobs.MobState.Dead && comp.DeadEfficiency == 0f)  //Dead things aren't a good source of blood if configured to not allow drinking from the dead at all
+            ))
         {
             _popup.PopupEntity(Loc.GetString("vampire-drink-target-not-viable"), uid, uid, Shared.Popups.PopupType.MediumCaution);
             comp.IsDrinking = false;
@@ -422,35 +424,75 @@ public sealed partial class VampireSystem : EntitySystem
         var sipAmount = comp.SipAmount;
 
         if (HasComp<HumanoidAppearanceComponent>(args.Args.Target.Value))
-        {
-            sipInefficiency = 1f / comp.HumanoidEfficiency;
-        }
+            sipInefficiency = comp.HumanoidEfficiency;
         else
+            sipInefficiency = comp.NonHumanoidEfficiency;
+
+        if (mobState.CurrentState == Shared.Mobs.MobState.Dead)
+            sipInefficiency *= comp.DeadEfficiency; // Dead things aren't as good source of blood
+        if (TryComp<PerishableComponent>(target, out var rot)) //Is the target rotting?
         {
-            sipInefficiency = 1f / comp.NonHumanoidEfficiency;
+            switch (rot.Stage)
+            {
+                case 0: //fresh or not rotted at all
+                    sipInefficiency *= comp.Rot0Efficiency;
+                    break;
+                case 1: //initial stages
+                    sipInefficiency *= comp.Rot1Efficiency;
+                    break;
+                case 2: //mid rot
+                    sipInefficiency *= comp.Rot2Efficiency;
+                    break;
+                case 3: //late rot
+                    sipInefficiency *= comp.Rot3Efficiency;
+                    break;
+                case 4: //full rot
+                    sipInefficiency *= comp.Rot4Efficiency;
+                    break;
+                default: //if we push past 4 for some reason, just assume same level as 4
+                    sipInefficiency *= comp.Rot4Efficiency;
+                    break;
+            }
         }
+
+        if (sipInefficiency <= 0f) //If we have set the efficiency to 0, then no point continuing
+        {
+            _popup.PopupEntity(Loc.GetString("vampire-drink-target-rot"), uid, uid, Shared.Popups.PopupType.MediumCaution);
+            comp.IsDrinking = false;
+            return;
+        }
+
+        sipInefficiency = 1f / sipInefficiency;
 
         var maxCanDrink = comp.MaxBloodPerTarget - drunkFromTarget;
         var actualSipAmount = MathF.Min(sipAmount, maxCanDrink);
-
-        //attempt to drain the target's blood level
-        if (_blood.GetBloodLevel(target) <= 0.0f) //Check the taget has blood to drink at all
+        if (!TryComp<BloodstreamComponent>(target, out var blood)) //Does the target have a blood stream?
         {
             comp.IsDrinking = false; //Blood level reduction failed
             _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"), uid, uid, Shared.Popups.PopupType.MediumCaution);
             return;
         }
 
-        if (_blood.TryModifyBloodLevel(target, -actualSipAmount * sipInefficiency))
+        //attempt to drain the target's blood level
+        var targetBloodLevel = _blood.GetBloodLevel(target) * blood.BloodReferenceSolution.MaxVolume.Value / 100; //get target's current blood volume in u
+        if (targetBloodLevel <= 0.0f) //Check the target has blood to drink at all
+        {
+            comp.IsDrinking = false; //Blood level reduction failed
+            _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"), uid, uid, Shared.Popups.PopupType.MediumCaution);
+            return;
+        }
+        else if (targetBloodLevel <= actualSipAmount * sipInefficiency) //Check if we are attempting to drain too much blood and reduce the amount drank if so
+            actualSipAmount = targetBloodLevel / sipInefficiency;
+
+        // Drain extra blood from the target to account for sipInefficiency. This logic is a bit backwards in that it would make more sense for the sip amount from target to remain constant and the blood gained to vary, but for gameplay this works better for vampires
+        if (_blood.TryModifyBloodLevel(target, -actualSipAmount * sipInefficiency)) //Blood lost to Inefficiency is just deleted, overly complex to add system to dump it on the ground, though that would be a nice thing to add in the future maybe?
         {
             //Blood level reduction success
             comp.DrunkBlood += (int)actualSipAmount;
 
             //Confirm target is a humanoid before progressing objectives
             if (HasComp<HumanoidAppearanceComponent>(args.Args.Target.Value))
-            {
                 comp.TotalBlood += (int)actualSipAmount;
-            }
 
             //Biting Damage
             //A little bit of additional damage to disincentivize blood donations
@@ -467,9 +509,8 @@ public sealed partial class VampireSystem : EntitySystem
                 comp.BlindInc = 0;
             }
             else if (comp.BlindInc < 2)
-            {
                 comp.BlindInc += 1;
-            }
+
             RaiseLocalEvent(uid, new VampireProgressionChangedEvent());
 
             if (!comp.BloodDrunkFromTargets.ContainsKey(target))
@@ -694,8 +735,22 @@ public sealed partial class VampireSystem : EntitySystem
 
             //reset effectScale for next possible target
             effectScale = 1.0f;
+
             if (_flashImmunity.HasFlashImmunityVisionBlockers(target))
-                effectScale = args.FlashImmunityEffectScale;
+            {
+                if (comp.TotalBlood < comp.MidPowerThreshold)
+                    effectScale = args.FlashImmunityEffectScaleWeak; //below mid
+                else if (comp.TotalBlood < comp.HighPowerThreshold)
+                    effectScale = args.FlashImmunityEffectScaleMid; //mid - high
+                else if (comp.TotalBlood < comp.FullPowerThreshold)
+                    effectScale = args.FlashImmunityEffectScaleStrong; //high - full
+            }
+
+            if (comp.FullPower) //If vamp is at full power, effect gets scaled up a bit regardless of flash protection
+                effectScale = args.GlareEffectScaleFull;
+
+            if (effectScale <= 0) //If the effect is nullified, no point doing anything more.
+                continue;
 
             var targetPosition = Transform(target).LocalPosition;
             var vectorToTarget = Vector2.Normalize(targetPosition - ourPosition);
@@ -883,6 +938,9 @@ public sealed partial class VampireSystem : EntitySystem
     #endregion
 
     #region Full Power, Passives
+    /// <summary>
+    /// Vampire full power level check
+    /// </summary>
     private void UpdateFullPower(EntityUid uid, VampireComponent comp)
     {
         int uniqueHumanoids = 0;
@@ -891,7 +949,7 @@ public sealed partial class VampireSystem : EntitySystem
                 uniqueHumanoids++;
         comp.UniqueHumanoidVictims = uniqueHumanoids;
         var prev = comp.FullPower;
-        comp.FullPower = comp.TotalBlood > 1000 && uniqueHumanoids >= 8;
+        comp.FullPower = comp.TotalBlood > comp.FullPowerThreshold && uniqueHumanoids >= comp.FullPowerUniqueHumanoids;
         if (!prev && comp.FullPower)
         {
             _popup.PopupEntity(Loc.GetString("vampire-full-power-achieved"), uid, uid);

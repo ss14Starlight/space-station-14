@@ -46,6 +46,7 @@
     letters:
     - name: rr-criminal-letter-name
       content: rr-criminal-1-letter-content
+      paperPrototype: PaperNTCC
       stampState: paper_stamp-centcom
       stampedBy:
         - stampedColor: "#006666"
@@ -66,6 +67,7 @@
     letters:
     - name: rr-criminal-failed-name
       content: rr-criminal-failed-content
+      paperPrototype: PaperNTCC
       stampState: paper_stamp-centcom
       stampedBy:
         - stampedColor: "#006620"
