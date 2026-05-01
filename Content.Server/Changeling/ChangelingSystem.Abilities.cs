@@ -413,7 +413,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         EnsureComp<FlashImmunityComponent>(uid);
         _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
     }
-    // Starlight start
+    #region Starlight
     private void OnNightEyesight(EntityUid uid, ChangelingComponent comp, ref ActionNightEyesightEvent args)
     {
         if (HasComp<NightVisionComponent>(uid))
@@ -437,7 +437,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         EnsureComp<ThermalVisionComponent>(uid);
         _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
     }
-    // Starlight end
+    #endregion
     private void OnBiodegrade(EntityUid uid, ChangelingComponent comp, ref ActionBiodegradeEvent args)
     {
         if (TryComp<CuffableComponent>(uid, out var cuffs) && cuffs.Container.ContainedEntities.Count > 0)
@@ -512,7 +512,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
     }
-    // Starlight start
+    #region Starlight
     private void OnDesoxyephedrineOverdose(EntityUid uid, ChangelingComponent comp, ref ActionDesoxyephedrineOverdoseEvent args)
     {
         var stam = EnsureComp<StaminaComponent>(uid);
@@ -548,7 +548,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
     }
-    // Starlight end
+    #endregion
 
     // john space made me do this
     private void OnHealUltraSwag(EntityUid uid, ChangelingComponent comp, ref ActionFleshmendEvent args)
