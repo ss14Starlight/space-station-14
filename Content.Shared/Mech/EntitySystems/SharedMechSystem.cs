@@ -33,6 +33,7 @@ using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Wires;
+using Content.Shared.Electrocution;
 using Content.Shared._Starlight.Mech;
 using Content.Shared._Starlight.Weapons.Melee.Events;
 #endregion
@@ -91,6 +92,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, CanRepairEvent>(OnRepairAttempt); //  Moved from server side, broken
         SubscribeLocalEvent<MechComponent, AttemptChangePanelEvent>(OnAttemptPanelChanged);
         SubscribeLocalEvent<MechPilotComponent, KnockDownAttemptEvent>(OnKnockdownAttempt);
+        SubscribeLocalEvent<MechPilotComponent, ElectrocutionAttemptEvent>(OnMechPilotElectrocutionAttempt);
         #endregion
 
         InitializeRelay();
@@ -294,10 +296,6 @@ public abstract partial class SharedMechSystem : EntitySystem
             _actions.AddAction(pilot, ref component.MechToggleSirenActionEntity, component.MechToggleSirenAction, mech);
         if (HasComp<MechThrustersComponent>(mech))
             _actions.AddAction(pilot, ref component.MechToggleThrustersActionEntity, component.MechToggleThrustersAction, mech);
-        var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
-        foreach (var ent in equipment)
-            if (TryComp<MechEquipmentActionComponent>(ent, out var actionComp))
-                _actions.AddAction(pilot, ref actionComp.EquipmentActionEntity, actionComp.EquipmentAction, ent);
     }
 
     private void RemoveUser(EntityUid mech, EntityUid pilot)
@@ -308,12 +306,6 @@ public abstract partial class SharedMechSystem : EntitySystem
         RemComp<InteractionRelayComponent>(pilot);
 
         _actions.RemoveProvidedActions(pilot, mech);
-        if (!TryComp<MechComponent>(mech, out var mechComp))
-            return;
-        var equipment = new List<EntityUid>(mechComp.EquipmentContainer.ContainedEntities);
-        foreach (var ent in equipment)
-            if (TryComp<MechEquipmentActionComponent>(ent, out var actionComp))
-                _actions.RemoveProvidedActions(pilot, ent);
     }
 
     /// <summary>
@@ -576,10 +568,17 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         SetupUser(uid, toInsert.Value);
 
+        // Starlight Begin - Pilot Events
         var ev = new BeforePilotInsertEvent(uid, toInsert.Value);
         RaiseLocalEvent(uid, ref ev);
+        var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
+        foreach (var ent in equipment)
+        {
+            RaiseLocalEvent(ent, ref ev);
+        }
 
         RaiseLocalEvent(toInsert.Value, ref ev);
+        // Starlight End
 
         _container.Insert(toInsert.Value, component.PilotSlot);
         UpdateAppearance(uid, component);
@@ -605,10 +604,16 @@ public abstract partial class SharedMechSystem : EntitySystem
 
         var pilot = component.PilotSlot.ContainedEntity.Value;
 
+        // Starlight Begin - Pilot Events
         var ev = new BeforePilotEjectEvent(uid, pilot);
         RaiseLocalEvent(uid, ref ev);
-
+        var equipment = new List<EntityUid>(component.EquipmentContainer.ContainedEntities);
+        foreach (var ent in equipment)
+        {
+            RaiseLocalEvent(ent, ref ev);
+        }
         RaiseLocalEvent(pilot, ref ev);
+        // Starlight End
 
         _container.RemoveEntity(uid, pilot);
         return true;
@@ -709,6 +714,9 @@ public abstract partial class SharedMechSystem : EntitySystem
     {
         args.Cancelled = args.User != uid;
     }
+
+    private void OnMechPilotElectrocutionAttempt(EntityUid uid, MechPilotComponent comp, ElectrocutionAttemptEvent args)
+        => args.SiemensCoefficient *= 0f; // Fully insulate the pilot
     #endregion
 }
 

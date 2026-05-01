@@ -28,11 +28,11 @@ public sealed partial class AtmosMonitoringConsoleNavMapControl : NavMapControl
     /// </summary>
     private readonly float[] _layerFraction =
     {
-        0.50f,  // middle pipe
-        0.625f, // above middle
-        0.375f, // below middle
-        0.75f,  // top pipe
-        0.25f,  // bottom pipe
+        0.50f,  // primary    (middle pipe)
+        0.625f, // secondary  (above middle pipe)
+        0.375f, // tertiary   (below middle pipe)
+        0.75f,  // quaternary (top pipe)
+        0.25f,  // quinary    (bottom pipe)
     };
     // #endregion Starlight
     private const float LineThickness = 0.05f;

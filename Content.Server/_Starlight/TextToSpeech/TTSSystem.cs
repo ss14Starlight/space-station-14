@@ -99,7 +99,7 @@ public sealed partial class TTSSystem : EntitySystem
                     && !_language.CanUnderstand(x.AttachedEntity.Value, args.Language.ID));
             var voice = GetOrAssignVoice(args.Source);
             var channel = new ProtoId<RadioChannelPrototype>(args.Channel.ID);
-            var languageradio = args.Channel == args.Language.SpeechOverride.RadioChannel;
+            var languageradio = args.Channel == args.Language.Speech.RadioChannel;
             var type = languageradio ? TTSType.Mind : TTSType.Radio;
             var effect = languageradio ? TTSEffect.Underwater : TTSEffect.Walkie;
 
@@ -172,7 +172,7 @@ public sealed partial class TTSSystem : EntitySystem
         args.Message.Tts ??= args.Message.Text;
         if (!_isEnabled
             || args.Message.Tts.Length > MaxChars
-            || (!args.Language.SpeechOverride.RequireSpeech && !args.Language.SpeechOverride.RequireSound)
+            || (!args.Language.Speech.RequireSpeech && !args.Language.Speech.RequireSound)
             )
             return;
 

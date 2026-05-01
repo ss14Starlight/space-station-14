@@ -372,6 +372,8 @@
   id: NanoMedPlusInventorySL
   startingInventory:
     HandheldHealthAnalyzer: 3
+    ClothingBeltMedical: 3
+    ClothingBeltMedicalEMT: 2
     Gauze: 5
     Brutepack: 5
     Ointment: 5

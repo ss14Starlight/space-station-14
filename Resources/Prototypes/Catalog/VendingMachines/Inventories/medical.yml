@@ -2,6 +2,8 @@
   id: NanoMedInventory
   startingInventory:
     HandheldHealthAnalyzer: 1
+    ClothingBeltMedical: 2 # Starlight
+    ClothingBeltMedicalEMT: 1 # Starlight
     Gauze: 3
     Brutepack: 3
     Ointment: 3
