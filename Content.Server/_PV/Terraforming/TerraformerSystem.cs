@@ -37,9 +37,6 @@ public sealed class TerraformerSystem : EntitySystem
     private void OnTerraformerShutdown(EntityUid uid, TerraformerComponent comp, ComponentShutdown args)
     {
         DeleteBarriers(comp);
-
-        // When a Terraformer is deleted, its Transform/Grid may already be unreliable.
-        // So force all other active Terraformers to refresh instead of depending on same-grid lookup.
         ForceAllOtherTerraformersToRefresh(uid);
     }
 
@@ -94,8 +91,6 @@ public sealed class TerraformerSystem : EntitySystem
         {
             var poweredAndActive = terraformer.Active && IsPowered(uid);
 
-            // If the machine is inactive or unpowered, remove the barrier ring.
-            // If it had barriers, force every other active Terraformer to refresh.
             if (!poweredAndActive)
             {
                 var deletedAny = DeleteBarriers(terraformer);
@@ -106,13 +101,8 @@ public sealed class TerraformerSystem : EntitySystem
                 continue;
             }
 
-            // Powered + active means the barrier should exist,
-            // even if the Terraformer has no Biomass fuel.
             RefreshBarriersIfNeeded(uid, terraformer, xform, frameTime);
 
-            // No fuel means:
-            // keep barriers, but do not terraform, do not generate gas,
-            // do not scrub gases, and do not consume fuel.
             if (terraformer.Fuel <= 0)
                 continue;
 
@@ -133,7 +123,6 @@ public sealed class TerraformerSystem : EntitySystem
             {
                 terraformer.Accumulator = 0f;
 
-                // Science only happens if a tile was actually converted.
                 if (TryTerraformOneTile(terraformer, xform))
                     AwardSciencePoints(uid, terraformer);
             }
@@ -167,8 +156,6 @@ public sealed class TerraformerSystem : EntitySystem
         if (terraformer.SciencePointsPerTile <= 0)
             return;
 
-        // Award points to the first powered research client with an attached research server.
-        // This avoids using TerraformingConsoleComponent completely.
         var query = EntityQueryEnumerator<ResearchClientComponent>();
 
         while (query.MoveNext(out var consoleUid, out var researchClient))
@@ -254,7 +241,7 @@ public sealed class TerraformerSystem : EntitySystem
 
         foreach (var tile in GetBarrierTiles(gridUid, grid, xform.Coordinates, barrierRadius))
         {
-            if (IsBarrierTileInsideOtherActiveTerraformer(uid, gridUid, grid, tile))
+            if (IsBarrierTileInternalToTerraformerCluster(gridUid, grid, tile))
                 continue;
 
             var coords = _map.GridTileToLocal(gridUid, grid, tile.GridIndices);
@@ -264,39 +251,64 @@ public sealed class TerraformerSystem : EntitySystem
         }
     }
 
-    private bool IsBarrierTileInsideOtherActiveTerraformer(
-        EntityUid ownerUid,
+    private bool IsBarrierTileInternalToTerraformerCluster(
         EntityUid gridUid,
         MapGridComponent grid,
         TileRef barrierTile)
     {
+        var directions = new[]
+        {
+            new Vector2i(1, 0),
+            new Vector2i(-1, 0),
+            new Vector2i(0, 1),
+            new Vector2i(0, -1)
+        };
+
+        foreach (var direction in directions)
+        {
+            var neighbor = barrierTile.GridIndices + direction;
+
+            if (!TryGetUsableTile(gridUid, grid, neighbor, out _))
+                return false;
+
+            if (IsTileBlockedByWall(grid, neighbor))
+                return false;
+
+            if (!IsTileInsideAnyActiveTerraformerField(gridUid, grid, neighbor))
+                return false;
+        }
+
+        return true;
+    }
+
+    private bool IsTileInsideAnyActiveTerraformerField(
+        EntityUid gridUid,
+        MapGridComponent grid,
+        Vector2i tileIndices)
+    {
         var query = EntityQueryEnumerator<TerraformerComponent, TransformComponent>();
 
-        while (query.MoveNext(out var otherUid, out var otherTerraformer, out var otherXform))
+        while (query.MoveNext(out var uid, out var terraformer, out var xform))
         {
-            if (otherUid == ownerUid)
+            if (!terraformer.Active)
                 continue;
 
-            if (!otherTerraformer.Active)
+            if (!IsPowered(uid))
                 continue;
 
-            if (!IsPowered(otherUid))
+            if (!terraformer.CreateBarriers)
                 continue;
 
-            if (otherXform.GridUid == null || otherXform.GridUid.Value != gridUid)
+            if (xform.GridUid == null || xform.GridUid.Value != gridUid)
                 continue;
 
-            var otherCenterTile = _map.GetTileRef(gridUid, grid, otherXform.Coordinates);
-            var otherBarrierRadius = GetBarrierRadius(otherTerraformer);
+            var centerTile = _map.GetTileRef(gridUid, grid, xform.Coordinates);
+            var radius = GetBarrierRadius(terraformer);
 
-            var dx = barrierTile.GridIndices.X - otherCenterTile.GridIndices.X;
-            var dy = barrierTile.GridIndices.Y - otherCenterTile.GridIndices.Y;
+            var dx = tileIndices.X - centerTile.GridIndices.X;
+            var dy = tileIndices.Y - centerTile.GridIndices.Y;
 
-            var distance = MathF.Sqrt(dx * dx + dy * dy);
-
-            // If this barrier tile would be inside another active Terraformer's field,
-            // skip it so overlapping fields merge instead of creating internal walls.
-            if (distance < otherBarrierRadius - 0.75f)
+            if (dx * dx + dy * dy <= radius * radius)
                 return true;
         }
 
@@ -351,9 +363,6 @@ public sealed class TerraformerSystem : EntitySystem
 
         var centerIndices = centerTile.GridIndices;
 
-        if (!IsTileInsideRadius(centerIndices, centerIndices, radius))
-            yield break;
-
         if (!TryGetUsableTile(gridUid, grid, centerIndices, out _))
             yield break;
 
@@ -363,9 +372,6 @@ public sealed class TerraformerSystem : EntitySystem
         reachable.Add(centerIndices);
         queue.Enqueue(centerIndices);
 
-        // Flood-fill outward from the Terraformer.
-        // This prevents the barrier from passing through walls/windows/airlocks
-        // and prevents it from extending into empty/space/off-grid tiles.
         while (queue.Count > 0)
         {
             var current = queue.Dequeue();
@@ -380,7 +386,6 @@ public sealed class TerraformerSystem : EntitySystem
                 if (!IsTileInsideRadius(neighbor, centerIndices, radius))
                     continue;
 
-                // Empty/space/off-grid tiles count as outside the usable area.
                 if (!TryGetUsableTile(gridUid, grid, neighbor, out _))
                     continue;
 
@@ -392,8 +397,6 @@ public sealed class TerraformerSystem : EntitySystem
             }
         }
 
-        // Any reachable tile touching outside radius, off-grid, empty/space,
-        // wall, or unreachable space becomes part of the barrier boundary.
         foreach (var indices in reachable)
         {
             var isBoundary = false;
@@ -408,8 +411,6 @@ public sealed class TerraformerSystem : EntitySystem
                     break;
                 }
 
-                // Important grid-following logic:
-                // if the neighbor is empty/space/off-grid, this tile is the edge.
                 if (!TryGetUsableTile(gridUid, grid, neighbor, out _))
                 {
                     isBoundary = true;
@@ -448,14 +449,11 @@ public sealed class TerraformerSystem : EntitySystem
         if (!_map.TryGetTileRef(gridUid, grid, tileIndices, out tile))
             return false;
 
-        // Empty tiles count as outside the usable grid/asteroid shape.
-        // This prevents barriers from spawning out in empty space.
         if (tile.Tile.IsEmpty)
             return false;
 
         var tileDefinition = _tileDefinition[tile.Tile.TypeId];
 
-        // Space should also count as outside.
         if (tileDefinition.ID == "Space")
             return false;
 
@@ -482,12 +480,9 @@ public sealed class TerraformerSystem : EntitySystem
             if (proto == null)
                 continue;
 
-            // Do not treat Terraformer barriers themselves as walls.
             if (proto.ID == TerraformerBarrierPrototype)
                 continue;
 
-            // Avoid direct AirtightComponent reference because this fork does not expose that type here.
-            // Most walls/windows/airlocks that block atmos have this component in their prototype.
             if (proto.Components.ContainsKey("Airtight"))
                 return true;
         }
@@ -515,7 +510,6 @@ public sealed class TerraformerSystem : EntitySystem
             if (!terraformer.SourceTiles.Contains(tileDefinition.ID))
                 continue;
 
-            // Extra safety: never count a tile that is already the target tile.
             if (tile.Tile.TypeId == targetTile.TileId)
                 continue;
 
