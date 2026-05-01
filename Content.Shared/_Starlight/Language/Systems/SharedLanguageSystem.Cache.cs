@@ -17,7 +17,7 @@ public abstract partial class SharedLanguageSystem
         cache.HasUniversal = HasComp<UniversalLanguageSpeakerComponent>(ent);
         cache.SpeakingCache = ent.Comp.Speaks.ToHashSet();
         cache.UnderstandingCache = ent.Comp.Understands.ToHashSet();
-        Dirty(ent);
+        Dirty(ent.Owner, cache);
     }
 
     /// <summary>
