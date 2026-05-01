@@ -7,6 +7,4 @@ namespace Content.Shared._Starlight.Language.Events;
 ///     This is raised both on the server and on the client.
 ///     The client raises it broadcast after receiving a new language comp state from the server.
 /// </remarks>
-public sealed class LanguagesUpdateEvent : EntityEventArgs
-{
-}
+public sealed class LanguagesUpdateEvent : EntityEventArgs;
