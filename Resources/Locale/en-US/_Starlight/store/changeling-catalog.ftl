@@ -39,7 +39,7 @@ evolutionmenu-utility-hyper-stims-desc =
 
 evolutionmenu-sting-burn-name = Bloodburn Sting
 evolutionmenu-sting-burn-desc =
-    Inject an organic target with a cocktail of chemicals that burns the blood and disorients
+    Inject an organic target with a cocktail of chemicals that burns their blood and disorients
     them.
     May be used while under the effects of Lesser Form.
     WARNING: Requires you to absorb at least 2 organics to use the ability.
