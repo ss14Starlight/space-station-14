@@ -154,29 +154,10 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponPDW9TaserBorg
-      hand:
-        emptyRepresentative: WeaponPDW9TaserBorg
-        emptyLabel: borg-slot-disabler-empty
     - item: BorgStunbatonRechargeable
-      hand:
-        emptyRepresentative: BorgStunbatonRechargeable
-        emptyLabel: borg-slot-stunbaton-empty
     - item: BorgHolocuffs
-      hand:
-        emptyRepresentative: BorgHolocuffs
-        emptyLabel: borg-slot-zipties-empty
     - item: BorgFlashRechargeable
-      hand:
-        emptyRepresentative: BorgFlashRechargeable
-        emptyLabel: borg-slot-flash-empty
     - item: BorgHoloprojectorSecurity
-      hand:
-        emptyRepresentative: BorgHoloprojectorSecurity
-- item: WeaponPDW9TaserBorg
-- item: BorgStunbatonRechargeable
-- item: BorgHolocuffs
-- item: BorgFlashRechargeable
-- item: BorgHoloprojectorSecurity
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
   - type: Tag
