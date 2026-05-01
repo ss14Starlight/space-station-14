@@ -58,7 +58,7 @@
     - UplinkWearables
 
 - type: listing
-  id: UplinkgClothingThievingGloves
+  id: UplinkClothingThievingGloves
   name: uplink-clothing-chameleon-thieving-gloves-name
   description: uplink-clothing-chameleon-thieving-gloves-desc
   productEntity: ClothingHandsChameleonThief

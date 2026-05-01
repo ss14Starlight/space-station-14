@@ -40,7 +40,7 @@
           - NukeOpsUplink
 
 - type: listing
-  id: UplinkWeaponRiflePitpull
+  id: UplinkWeaponRiflePitbull
   name: uplink-pitbull-bundle-name
   description: uplink-pitbull-bundle-desc
   icon:
