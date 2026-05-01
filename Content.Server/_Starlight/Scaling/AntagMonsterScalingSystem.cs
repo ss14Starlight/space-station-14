@@ -84,6 +84,9 @@ public sealed class ScalingSystem : SharedScalingSystem
 
         double updatedPopulation = 0;
 
+        if (!TryComp<StationRecordsComponent>(station, out var recordsComponent))
+            return false;
+
         if (!_recordsSystem.TryGetRandomRecord<GeneralStationRecord>(station, out var entry))
             return false;
 
