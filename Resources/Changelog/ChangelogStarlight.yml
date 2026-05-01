@@ -1,74 +1,4 @@
 Entries:
-- author: antilogical
-  changes:
-  - message: Fixed EOR Summary Cards.
-    type: Fix
-  id: 404342
-  time: '2026-04-19T05:50:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4205
-- author: Wizden team
-  changes:
-  - message: Items given to the medical department round start have been significantly rebalanced. In particular, players no longer spawn with their tools and must get them from a locker or vending machine.
-    type: Tweak
-  id: 404343
-  time: '2026-04-19T07:51:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4206
-- author: Wizden team
-  changes:
-  - message: Thieving Beacons set their coordinates automatically when unfolded.
-    type: Tweak
-  id: 404344
-  time: '2026-04-19T07:51:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4206
-- author: Wizden team
-  changes:
-  - message: The flashbang, explosive grenade, electrical disruptor kit, and cluster grenade have been removed from the traitor uplink.
-    type: Remove
-  id: 404345
-  time: '2026-04-19T07:51:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4206
-- author: Wizden team
-  changes:
-  - message: The grenade penguin has been lowered in price to 4 TC.
-    type: Tweak
-  id: 404346
-  time: '2026-04-19T07:51:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4206
-- author: Wizden team
-  changes:
-  - message: The syndicate bomb has had its explosive power tweaked. It is now a more concentrated explosion over a smaller area.
-    type: Tweak
-  id: 404347
-  time: '2026-04-19T07:51:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4206
-- author: Wizden team
-  changes:
-  - message: The EMP Grenade now detonates on impact.
-    type: Tweak
-  id: 404348
-  time: '2026-04-19T07:51:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4206
-- author: Wizden team
-  changes:
-  - message: Tazinide and Licoxide now are less effective at shocking and don't last as long.
-    type: Tweak
-  id: 404349
-  time: '2026-04-19T07:51:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4206
-- author: Wizden team
-  changes:
-  - message: Nocturine now lasts 9 seconds instead of 6 seconds.
-    type: Tweak
-  id: 404350
-  time: '2026-04-19T07:51:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4206
-- author: Wizden team
-  changes:
-  - message: Hyperzine overdose can no longer be negated completely with Omnizine.
-    type: Tweak
-  id: 404351
-  time: '2026-04-19T07:51:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4206
 - author: Wizden team
   changes:
   - message: Hypodarts now have an increased chemical capacity of 10u up from 7u.
@@ -2799,4 +2729,74 @@ Entries:
   id: 404741
   time: '2026-04-30T13:15:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4302
+- author: Checkraze,
+  changes:
+  - message: The Shipyard Market has arrived to sell some (mostly) New Ships to successful crews.
+    type: Add
+  id: 404742
+  time: '2026-04-30T17:27:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4245
+- author: Checkraze,
+  changes:
+  - message: Some Shipyard fixes.
+    type: Fix
+  id: 404743
+  time: '2026-04-30T17:27:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4245
+- author: Checkraze,
+  changes:
+  - message: 3 Ships available in the Shipyard, The barge, The Private Transport Shuttle and NT-7 Prospector!
+    type: Add
+  id: 404744
+  time: '2026-04-30T17:27:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4245
+- author: Rane
+  changes:
+  - message: The shipyard console now uses Captain access. Shuttles are a huge purchase and require agreement between multiple departments.
+    type: Tweak
+  id: 404745
+  time: '2026-04-30T17:27:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4245
+- author: CrazyPhantom
+  changes:
+  - message: Ported the Shipyard!
+    type: Add
+  id: 404746
+  time: '2026-04-30T17:27:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4245
+- author: CrazyPhantom
+  changes:
+  - message: Updated the Shipyard to work with Modern SS14 along with various miscellaneous fixes.
+    type: Fix
+  id: 404747
+  time: '2026-04-30T17:27:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4245
+- author: CrazyPhantom
+  changes:
+  - message: Updated The barge, PTS and Prospector to Modern SS14.
+    type: Fix
+  id: 404748
+  time: '2026-04-30T17:27:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4245
+- author: CommanderAlex365
+  changes:
+  - message: Added recipes for plain and meat donuts.
+    type: Add
+  id: 404749
+  time: '2026-05-01T06:35:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4311
+- author: Caws
+  changes:
+  - message: Chav accent's word replacement for 'borg/borgs' has been changed to 'tin man/tin men' instead of 'toaster/toasters'.
+    type: Tweak
+  id: 404750
+  time: '2026-05-01T07:21:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4309
+- author: Bigfoot Bravo
+  changes:
+  - message: IPCs can change their screen color via the eye color sliders.
+    type: Fix
+  id: 404751
+  time: '2026-05-01T07:21:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4297
 Order: -1

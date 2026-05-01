@@ -47,6 +47,11 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("game.autogamma_enabled", false, CVar.SERVERONLY);
 
     /// <summary>
+    /// Whether the Shipyard is enabled.
+    /// </summary>
+    public static readonly CVarDef<bool> Shipyard =
+        CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
+
     /// The time in seconds that it will take the round to end after the nuke explodes durign nukies.
     /// </summary>
     public static readonly CVarDef<float> NukeRoundRestartTime =
