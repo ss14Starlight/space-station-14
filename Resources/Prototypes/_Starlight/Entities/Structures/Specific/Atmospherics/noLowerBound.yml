@@ -122,4 +122,4 @@
 
 - type: entity
   parent: [AirSensorNoLowerBoundBase, GasVentScrubberNoLowerBoundBase, GasVentScrubber]
-  id: GasVentScrubberNoLowerBound'
+  id: GasVentScrubberNoLowerBound
