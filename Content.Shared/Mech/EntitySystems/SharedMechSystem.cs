@@ -294,8 +294,6 @@ public abstract partial class SharedMechSystem : EntitySystem
             _actions.AddAction(pilot, ref component.MechToggleLightActionEntity, component.MechToggleLightAction, mech);
         if (component.SirenAvailable)
             _actions.AddAction(pilot, ref component.MechToggleSirenActionEntity, component.MechToggleSirenAction, mech);
-        if (HasComp<MechThrustersComponent>(mech))
-            _actions.AddAction(pilot, ref component.MechToggleThrustersActionEntity, component.MechToggleThrustersAction, mech);
     }
 
     private void RemoveUser(EntityUid mech, EntityUid pilot)

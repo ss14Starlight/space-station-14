@@ -210,34 +210,6 @@ public sealed partial class MechSystem : SharedMechSystem
         UpdateAppearance(uid, component);
     }
 
-    private void OnMechToggleThrusters(EntityUid uid, MechComponent component, MechToggleThrustersEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        if (!TryComp<MechThrustersComponent>(uid, out var mechThrusters))
-            return;
-
-        args.Handled = true;
-
-        mechThrusters.ThrustersEnabled = !mechThrusters.ThrustersEnabled;
-
-        _actions.SetToggled(component.MechToggleThrustersActionEntity, mechThrusters.ThrustersEnabled);
-
-        if (mechThrusters.ThrustersEnabled)
-        {
-            AddComp<CanMoveInAirComponent>(uid);
-            AddComp<MovementAlwaysTouchingComponent>(uid);
-        }
-        else
-        {
-            RemComp<CanMoveInAirComponent>(uid);
-            RemComp<MovementAlwaysTouchingComponent>(uid);
-        }
-
-        Dirty(uid, mechThrusters);
-    }
-
     // Starlight-start: Correct UI/Charge update
 
     private void OnChargeChanged(EntityUid uid, MechComponent component, ref ChargeChangedEvent args)
@@ -246,8 +218,6 @@ public sealed partial class MechSystem : SharedMechSystem
         {
             if(component.Light)
                 ToggleLight(uid, component);
-            if (TryComp(uid, out MechThrustersComponent? mechThrusters) && mechThrusters.ThrustersEnabled)
-                OnMechToggleThrusters(uid, component, new MechToggleThrustersEvent());
             if(!component.PlayPowerUpSound)
                 _audioSystem.PlayPredicted(component.PowerDownSound, uid, uid);
             component.PlayPowerUpSound = true;
@@ -271,10 +241,8 @@ public sealed partial class MechSystem : SharedMechSystem
 
         if ((int)(args.CurrentCharge / args.MaxCharge * 100) == 0) //We run this off of the mech's % power readout, rather than absolute values
         {
-            if(mechComp.Light)
+            if (mechComp.Light)
                 ToggleLight(mech, mechComp);
-            if (TryComp(uid, out MechThrustersComponent? mechThrusters) && mechThrusters.ThrustersEnabled)
-                OnMechToggleThrusters(uid, mechComp, new MechToggleThrustersEvent());
             if(!mechComp.PlayPowerUpSound)
                 _audioSystem.PlayPredicted(mechComp.PowerDownSound, uid, uid);
             mechComp.PlayPowerUpSound = true;
