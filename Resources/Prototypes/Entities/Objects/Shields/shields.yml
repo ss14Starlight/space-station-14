@@ -686,6 +686,6 @@
     - type: MeleeWeapon
       damage:
         types:
-          Blunt: 10 # I mean, you can swing it if you want.
+          Blunt: 12 # I mean, you can swing it if you want.
       soundHit:
         path: "/Audio/Weapons/smash.ogg" # Starlight end
