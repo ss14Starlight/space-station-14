@@ -26,6 +26,8 @@ public sealed partial class HasEggHolderComponent : Component
 [RegisterComponent]
 public sealed partial class TerrorPrincessComponent : Component
 {
+    [DataField]
+    public string Briefing = "terror-spider-princess-briefing";
 }
 
 #endregion
