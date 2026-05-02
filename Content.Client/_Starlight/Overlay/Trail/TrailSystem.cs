@@ -81,7 +81,7 @@ public sealed class TrailSystem : EntitySystem
                 if (points.Count > 0)
                 {
                     var last = points[^1];
-                    var distSq = (worldPos - last).LengthSquared(); ;
+                    var distSq = (worldPos - last).LengthSquared();
 
                     if (distSq > TeleportThreshold * TeleportThreshold)
                     {
