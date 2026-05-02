@@ -107,6 +107,9 @@ public sealed class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpiderRuleComp
         while (crew.MoveNext(out var uid, out _))
             crewList.Add(uid);
 
+        if (crewList.Count == 0)
+            return false;
+
         var crewDeadAmount = CheckGroupStatus(crewList);
         return crewDeadAmount * 100 / crewList.Count >= TargetDeadCrewPercentage;
     }
