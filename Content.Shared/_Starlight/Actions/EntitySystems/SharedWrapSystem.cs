@@ -149,6 +149,8 @@ public sealed class SharedWrapSystem : EntitySystem
         {
             if (holderComp.Container == null || !_container.Insert(uid, holderComp.Container))
             {
+                RemComp<WrappedComponent>(uid);
+                _blocker.UpdateCanMove(uid);
                 PredictedQueueDel(holder);
                 return;
             }
