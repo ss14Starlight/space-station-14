@@ -56,7 +56,7 @@
     - MobSpiderlingTerrorGreen
     intervalSeconds: 90
     despawnWhenDone: true
-    
+
 - type: entity
   parent: EggSpider
   id: TerrorRedEggSpiderFertilized
