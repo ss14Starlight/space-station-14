@@ -44,10 +44,15 @@ public sealed class TrailSystem : EntitySystem
     public void OnMapInit(Entity<TrailComponent> ent, ref MapInitEvent args)
     {
         // Ensure ring buffer matches configured capacity
-        if (ent.Comp.Points.Capacity != ent.Comp.MaxPoints)
-            ent.Comp.Points.Resize(ent.Comp.MaxPoints);
-        if (ent.Comp.Samples.Capacity != ent.Comp.MaxPoints)
-            ent.Comp.Samples.Resize(ent.Comp.MaxPoints);
+        SyncCapacity(ent.Comp);
+    }
+
+    private static void SyncCapacity(TrailComponent comp)
+    {
+        if (comp.Points.Capacity != comp.MaxPoints)
+            comp.Points.Resize(comp.MaxPoints);
+        if (comp.Samples.Capacity != comp.MaxPoints)
+            comp.Samples.Resize(comp.MaxPoints);
     }
 
     public override void FrameUpdate(float frameTime)
@@ -65,6 +70,7 @@ public sealed class TrailSystem : EntitySystem
             var sample = new TrailSample() { Position = worldPos, EyeRotation = eye.Rotation, Rotation = worldRot };
             var points = trail.Points;
             var samples = trail.Samples;
+            SyncCapacity(ent.Comp);
 
             var moved = false;
 
