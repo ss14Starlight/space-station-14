@@ -129,6 +129,7 @@ public sealed class SharedWrapSystem : EntitySystem
                 _container.Remove(held, container, true, true);
             RemComp<WrappedComponent>(held);
             _blocker.UpdateCanMove(held);
+            _alerts.ClearAlert(held, component.WrappedAlert);
             component.Hold = null;
             PredictedQueueDel(uid);
         }
