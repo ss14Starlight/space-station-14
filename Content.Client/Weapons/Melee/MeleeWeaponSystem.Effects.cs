@@ -114,37 +114,28 @@ public sealed partial class MeleeWeaponSystem
                 var startLocalPos = Vector2.Transform(mapPos, TransformSystem.GetInvWorldMatrix(xform.ParentUid));
                 TransformSystem.SetLocalPositionNoLerp(animationUid, startLocalPos, xform);
 
-                if (TryComp<SpriteComponent>(animationUid, out var noneSprite))
-                {
-                    var slideLength = length > 0 ? length : 0.15f;
+                var slideLength = length > 0 ? length : 0.15f;
 
-                    var slideAnim = new Animation
+                var slideAnim = new Animation
+                {
+                    Length = TimeSpan.FromSeconds(slideLength / 1.5f),
+                    AnimationTracks =
                     {
-                        Length = TimeSpan.FromSeconds(slideLength / 1.5f),
-                        AnimationTracks =
+                        new AnimationTrackComponentProperty
                         {
-                            new AnimationTrackComponentProperty
+                            ComponentType = typeof(TransformComponent),
+                            Property = nameof(TransformComponent.LocalPosition),
+                            InterpolationMode = AnimationInterpolationMode.Linear,
+                            KeyFrames =
                             {
-                                ComponentType = typeof(TransformComponent),
-                                Property = nameof(TransformComponent.LocalPosition),
-                                InterpolationMode = AnimationInterpolationMode.Linear,
-                                KeyFrames =
-                                {
-                                    new AnimationTrackProperty.KeyFrame(startLocalPos, 0f),
-                                    new AnimationTrackProperty.KeyFrame(newLocalPos, slideLength / 1.5f),
-                                }
+                                new AnimationTrackProperty.KeyFrame(startLocalPos, 0f),
+                                new AnimationTrackProperty.KeyFrame(newLocalPos, slideLength / 1.5f),
                             }
                         }
-                    };
-                    _animation.Play(animationUid, slideAnim, "none-slide");
-                    _animation.Play(animationUid, GetFadeAnimation(noneSprite, 0f, slideLength, startAlpha: 0f, endAlpha: 1f), FadeAnimationKey);
-                }
-                else
-                {
-                    TransformSystem.SetLocalPositionNoLerp(animationUid, newLocalPos, xform);
-                    if (arcComponent.Fadeout)
-                        _animation.Play(animationUid, GetFadeAnimation(sprite, 0f, 0.15f), FadeAnimationKey);
-                }
+                    }
+                };
+                _animation.Play(animationUid, slideAnim, "none-slide");
+                _animation.Play(animationUid, GetFadeAnimation(sprite, 0f, slideLength, startAlpha: 0f, endAlpha: 1f), FadeAnimationKey);
                 // Starlight End
                 break;
         }
