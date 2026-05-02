@@ -123,16 +123,15 @@ public sealed class SharedWrapSystem : EntitySystem
 
         args.Handled = true;
 
-        if (component.Hold != null && _container.TryGetContainingContainer(uid, component.Hold.Value, out var container))
+        if (component.Hold is { } held && !Deleted(held))
         {
-            _container.Remove(component.Hold.Value, container, true, true);
-            RemComp<WrappedComponent>(component.Hold.Value);
-            _blocker.UpdateCanMove(component.Hold.Value);
+            if (_container.TryGetContainingContainer(uid, held, out var container))
+                _container.Remove(held, container, true, true);
+            RemComp<WrappedComponent>(held);
+            _blocker.UpdateCanMove(held);
             component.Hold = null;
-        }
-
-        if (component.Hold == null)
             PredictedQueueDel(uid);
+        }
     }
 
     private void OnWrap(EntityUid uid, HumanoidAppearanceComponent _, WrapDoAfterEvent args)
