@@ -212,33 +212,36 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
         var ruleOwner = EnsureComp<RuleOwnerComponent>(card.Owner);
         ruleOwner.RuleOwner = ruleEnt.Owner;
 
-        if (TryComp<RailroadSpawnFlowComponent>(card.Owner, out var flow) && flow.JobPrototype is { } job)
+        if (TryComp<RailroadSpawnFlowComponent>(card.Owner, out var flow))
         {
-            if (ruleEnt.Comp.PoolByJob.TryGetValue(job, out var list))
-                list.Add((card.Owner, card.Comp, ruleOwner));
+            if (flow.JobPrototype is { } job)
+            {
+                if (ruleEnt.Comp.PoolByJob.TryGetValue(job, out var list))
+                    list.Add((card.Owner, card.Comp, ruleOwner));
+                else
+                    ruleEnt.Comp.PoolByJob.Add(job, [(card.Owner, card.Comp, ruleOwner)]);
+            }
+            else if (flow.ObjectivePrototype is { } objectivePrototype)
+            {
+                if (ruleEnt.Comp.PoolByObjective.TryGetValue(objectivePrototype, out var list))
+                    list.Add((card.Owner, card.Comp, ruleOwner));
+                else
+                    ruleEnt.Comp.PoolByObjective.Add(objectivePrototype, [(card.Owner, card.Comp, ruleOwner)]);
+            }
+            else if (TryComp<ObjectiveComponent>(card.Owner, out var objective)
+                    && TryComp<MetaDataComponent>(card.Owner, out var meta)
+                    && meta.EntityPrototype is { } objectiveEntityPrototype)
+            {
+                var objectiveProtoId = new EntProtoId<ObjectiveComponent>(objectiveEntityPrototype.ID);
+                if (ruleEnt.Comp.PoolByObjective.TryGetValue(objectiveProtoId, out var list))
+                    list.Add((card.Owner, card.Comp, ruleOwner));
+                else
+                    ruleEnt.Comp.PoolByObjective.Add(objectiveProtoId, [(card.Owner, card.Comp, ruleOwner)]);
+            }
             else
-                ruleEnt.Comp.PoolByJob.Add(job, [(card.Owner, card.Comp, ruleOwner)]);
-        }
-        else if (TryComp<RailroadSpawnFlowComponent>(card.Owner, out flow) && flow.ObjectivePrototype is { } objectivePrototype)
-        {
-            if (ruleEnt.Comp.PoolByObjective.TryGetValue(objectivePrototype, out var list))
-                list.Add((card.Owner, card.Comp, ruleOwner));
-            else
-                ruleEnt.Comp.PoolByObjective.Add(objectivePrototype, [(card.Owner, card.Comp, ruleOwner)]);
-        }
-        else if (TryComp<ObjectiveComponent>(card.Owner, out var objective)
-                 && TryComp<MetaDataComponent>(card.Owner, out var meta)
-                 && meta.EntityPrototype is { } objectiveEntityPrototype)
-        {
-            var objectiveProtoId = new EntProtoId<ObjectiveComponent>(objectiveEntityPrototype.ID);
-            if (ruleEnt.Comp.PoolByObjective.TryGetValue(objectiveProtoId, out var list))
-                list.Add((card.Owner, card.Comp, ruleOwner));
-            else
-                ruleEnt.Comp.PoolByObjective.Add(objectiveProtoId, [(card.Owner, card.Comp, ruleOwner)]);
-        }
-        else
-        {
-            ruleEnt.Comp.Pool.Add((card.Owner, card.Comp, ruleOwner));
+            {
+                ruleEnt.Comp.Pool.Add((card.Owner, card.Comp, ruleOwner));
+            }
         }
     }
 
