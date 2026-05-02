@@ -95,7 +95,7 @@ public sealed class EggInjectSystem : EntitySystem
             return;
         }
 
-        var doAfter = new DoAfterArgs(EntityManager, ev.Performer, TimeSpan.FromSeconds(6), new EggInjectionDoAfterEvent(), ev.Performer, ev.Target)
+        var doAfter = new DoAfterArgs(EntityManager, ev.Performer, TimeSpan.FromSeconds(ev.InjectionDelay), new EggInjectionDoAfterEvent(), ev.Performer, ev.Target)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
