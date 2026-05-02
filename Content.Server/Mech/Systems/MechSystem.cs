@@ -130,6 +130,8 @@ public sealed partial class MechSystem : SharedMechSystem
         {
             if (Timing.CurTime < mechComp.NextUpdateTime)
                 continue;
+
+            var deltaTime = mechComp.Delay + Timing.CurTime - mechComp.NextUpdateTime;
             mechComp.NextUpdateTime += mechComp.Delay;
 
             if (mechComp.BatterySlot.ContainedEntity != null &&
@@ -139,7 +141,7 @@ public sealed partial class MechSystem : SharedMechSystem
                 RaiseLocalEvent(uid, passiveDrawEv);
 
                 if (!MathHelper.CloseTo(passiveDrawEv.CumulativeDrawRate, 0f))
-                    TryChangeEnergy(uid, passiveDrawEv.CumulativeDrawRate * frameTime);
+                    TryChangeEnergy(uid, passiveDrawEv.CumulativeDrawRate * deltaTime.TotalSeconds);
 
                 var currentCharge = _battery.GetCharge((mechComp.BatterySlot.ContainedEntity.Value, battery));
                 if( mechComp.PlayPowerUpSound && (int)(currentCharge / battery.MaxCharge * 100) > 0 )

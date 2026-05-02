@@ -15,7 +15,7 @@ public sealed partial class MechThrustersComponent : Component
     /// Charge draw per second
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("drawRate")]
-    public float DrawRate = 40f;
+    public float DrawRate = 2f;
 
     [DataField]
     public EntProtoId MechToggleThrustersAction = "ActionMechToggleThrusters";

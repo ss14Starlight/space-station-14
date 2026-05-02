@@ -26,7 +26,7 @@ public sealed partial class MechComponent : Component
     /// Starlight: How long to wait before checking again. Moved from MechThrustersComponent.
     /// </summary>
     [DataField]
-    public TimeSpan Delay = TimeSpan.FromSeconds(1);
+    public TimeSpan Delay = TimeSpan.FromSeconds(.5);
 
     /// <summary>
     /// Whether or not an emag disables it.
