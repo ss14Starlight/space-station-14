@@ -118,7 +118,7 @@ public sealed class SharedWrapSystem : EntitySystem
 
     private void OnUnwrap(EntityUid uid, WrapEntityHolderComponent component, UnwrapDoAfterEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || args.Cancelled)
             return;
 
         args.Handled = true;
@@ -136,7 +136,7 @@ public sealed class SharedWrapSystem : EntitySystem
 
     private void OnWrap(EntityUid uid, HumanoidAppearanceComponent _, WrapDoAfterEvent args)
     {
-        if (args.Handled || !_gameTiming.IsFirstTimePredicted || HasComp<WrappedComponent>(uid))
+        if (args.Handled || args.Cancelled || !_gameTiming.IsFirstTimePredicted || HasComp<WrappedComponent>(uid))
             return;
         var wrapped = EnsureComp<WrappedComponent>(uid);
         _blocker.UpdateCanMove(uid);
