@@ -1,5 +1,6 @@
 using Content.Server._Starlight.StationEvents.Events;
 using Robust.Shared.Map;
+using Starlight.NullLink.Attributes;
 
 namespace Content.Server._Starlight.StationEvents.Components;
 
@@ -11,8 +12,14 @@ namespace Content.Server._Starlight.StationEvents.Components;
 public sealed partial class VentSpawnRuleComponent : Component
 {
     /// <summary>
+    /// If true, we'll insert entity in selected vent after antag selection.
+    /// </summary>
+    [DataField]
+    public bool InsertInVent = true;
+
+    /// <summary>
     /// Location that was picked.
     /// </summary>
     [DataField]
-    public MapCoordinates? Coords;
+    public (MapCoordinates, EntityUid)? Vent = null;
 }

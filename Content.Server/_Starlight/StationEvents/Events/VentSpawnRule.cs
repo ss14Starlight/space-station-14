@@ -1,10 +1,15 @@
+using System.Linq;
 using Content.Server._Starlight.StationEvents.Components;
 using Content.Server.Antag;
 using Content.Server.StationEvents.Components;
 using Content.Server.StationEvents.Events;
+using Content.Server.VentCrawl;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Station.Components;
+using Content.Shared.VentCrawl;
 using Robust.Shared.Map;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.StationEvents.Events;
 
@@ -14,47 +19,46 @@ namespace Content.Server._Starlight.StationEvents.Events;
 public sealed class VentSpawnRule : StationEventSystem<VentSpawnRuleComponent>
 {
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly VentCrawlTubeSystem _ventCrawl = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<VentSpawnRuleComponent, AntagSelectLocationEvent>(OnSelectLocation);
+        SubscribeLocalEvent<VentSpawnRuleComponent, AfterAntagEntitySelectedEvent>(OnAfterSelection);
     }
 
-    protected override void Added(EntityUid uid, VentSpawnRuleComponent comp, GameRuleComponent gameRule, GameRuleAddedEvent args)
+    private void OnAfterSelection(Entity<VentSpawnRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
     {
-        base.Added(uid, comp, gameRule, args);
-
-        //Starlight begin | Prefer target station if there is one, if SOMEHOW that odesn't exist, fallback to existing trygetrandomstation call
-        EntityUid? station = null;
-        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
-        station = stationEvent.TargetStation;
-        if (station is null)
-            if (!TryGetRandomStation(out station))
-            {
-                ForceEndSelf(uid, gameRule);
-                return;
-            }
-        //Starlight end
-
-        var locations = EntityQueryEnumerator<VentCritterSpawnLocationComponent, TransformComponent>();
-        var validLocations = new List<EntityCoordinates>();
-        while (locations.MoveNext(out _, out _, out var transform))
-        {
-            if (CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == station)
-                validLocations.Add(transform.Coordinates);
-        }
-
-        // create the spawner!
-        var position = validLocations[Random.Shared.Next(validLocations.Count)];
-        comp.Coords = _transform.ToMapCoordinates(position);
-        Sawmill.Info($"Picked location {comp.Coords} for {ToPrettyString(uid):rule}");
+        if (ent.Comp.Vent is { } vent)
+            _ventCrawl.TryInsert(vent.Item2, args.EntityUid);
     }
 
     private void OnSelectLocation(Entity<VentSpawnRuleComponent> ent, ref AntagSelectLocationEvent args)
     {
-        if (ent.Comp.Coords is { } coords)
-            args.Coordinates.Add(coords);
+        if (!TryComp<StationEventComponent>(ent.Owner, out var stationEvent)) return;
+        var station = stationEvent.TargetStation;
+        if (station is null)
+            if (!TryGetRandomStation(out station))
+            {
+                ForceEndSelf(ent.Owner);
+                return;
+            }
+
+        var locations = EntityQueryEnumerator<VentCritterSpawnLocationComponent, TransformComponent>();
+        var validLocations = new List<(MapCoordinates, EntityUid)>();
+        while (locations.MoveNext(out var uid, out _, out var transform))
+        {
+            if (CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == station)
+                validLocations.Add((_transform.GetMapCoordinates(transform), uid));
+        }
+
+        // create the spawner!
+        var pair = validLocations[RobustRandom.Next(validLocations.Count)];
+
+        ent.Comp.Vent = pair;
+        args.Coordinates.Add(pair.Item1);
+        Sawmill.Info($"Picked location {pair.Item1} for {ToPrettyString(ent.Owner):rule}");
     }
 }

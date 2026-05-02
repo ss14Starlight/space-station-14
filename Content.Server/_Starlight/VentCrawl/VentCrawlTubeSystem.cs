@@ -201,7 +201,7 @@ namespace Content.Server.VentCrawl
             }
         }
 
-        private bool TryInsert(EntityUid uid, EntityUid entity, VentCrawlEntryComponent? entry = null)
+        public bool TryInsert(EntityUid uid, EntityUid entity, VentCrawlEntryComponent? entry = null)
         {
             if (!Resolve(uid, ref entry))
                 return false;
