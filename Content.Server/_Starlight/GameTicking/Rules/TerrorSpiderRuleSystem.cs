@@ -50,8 +50,14 @@ public sealed class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpiderRuleComp
         {
             _roundEnd.CancelRoundEndCountdown(null, false);
             var query = EntityQueryEnumerator<TerrorSpiderRuleComponent>();
-            while (query.MoveNext(out var ruleEnt, out _))
+            while (query.MoveNext(out var ruleEnt, out var ruleComp))
+            {
+                if (ruleComp.LoseProcessed)
+                    return;
+
+                ruleComp.LoseProcessed = true;
                 GameTicker.EndGameRule(ruleEnt); // End all terror spider rules
+            }
 
             // Check if the emergency shuttle is already called (not just arrived)
             if (_roundEnd.IsRoundEndRequested())

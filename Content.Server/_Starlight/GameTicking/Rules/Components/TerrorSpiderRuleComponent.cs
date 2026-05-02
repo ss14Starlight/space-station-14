@@ -11,4 +11,7 @@ public sealed partial class TerrorSpiderRuleComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan TimerWait = TimeSpan.FromSeconds(20);
+
+    [DataField]
+    public bool LoseProcessed = false;
 }
