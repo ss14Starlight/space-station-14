@@ -11,15 +11,11 @@ public sealed partial class MechThrustersComponent : Component
     [AutoNetworkedField]
     public bool ThrustersEnabled = false;
 
+    /// <summary>
+    /// Charge draw per second
+    /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("drawRate")]
-    public float DrawRate = 1f;
-
-    [DataField("nextUpdate", customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoPausedField]
-    public TimeSpan NextUpdateTime;
-
-    [DataField]
-    public TimeSpan Delay = TimeSpan.FromSeconds(1);
+    public float DrawRate = 40f;
 
     [DataField]
     public EntProtoId MechToggleThrustersAction = "ActionMechToggleThrusters";
