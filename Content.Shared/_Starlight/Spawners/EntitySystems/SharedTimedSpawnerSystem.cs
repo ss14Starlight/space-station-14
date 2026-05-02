@@ -34,11 +34,11 @@ public sealed class SharedTimedSpawnerSystem : EntitySystem
             if (timedSpawner.NextFire > curTime)
                 continue;
 
+            // Advance NextFire to catch up, but add only once
             while (timedSpawner.NextFire <= curTime)
-            {
-                _toFire.Add((uid, timedSpawner));
                 timedSpawner.NextFire += timedSpawner.IntervalSeconds;
-            }
+
+            _toFire.Add((uid, timedSpawner));
         }
 
         foreach (var (uid, comp) in _toFire)
