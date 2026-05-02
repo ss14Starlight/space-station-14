@@ -107,7 +107,7 @@ public sealed class RespiratorSystem : EntitySystem
                 if (_gameTiming.CurTime >= respirator.LastGaspEmoteTime + respirator.GaspEmoteCooldown)
                 {
                     respirator.LastGaspEmoteTime = _gameTiming.CurTime;
-                    if(!HasComp<HeldBreathComponent>(uid))//Starlight - If we are holding our breath, do not gasp but still take damage
+                    if(!HasComp<HeldBreathComponent>(uid) && !HasComp<WrappedComponent>(uid))//Starlight - If we are holding our breath, do not gasp but still take damage
                         _chat.TryEmoteWithChat(uid,
                             respirator.GaspEmote,
                             ChatTransmitRange.HideChat,
