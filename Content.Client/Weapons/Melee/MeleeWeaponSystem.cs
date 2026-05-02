@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Client.Gameplay;
 using Content.Shared.Effects;
-using Content.Shared.Physics; // Starlight-edit™
+using Content.Shared.Physics;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
@@ -13,14 +13,18 @@ using Robust.Client.Player;
 using Robust.Client.State;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components; // Starlight-edit™
-using Robust.Shared.Physics.Systems; // Starlight-edit™
 using Robust.Shared.Player;
+
+#region Starlight
+using Content.Shared.Physics;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Physics;
 using Content.Shared.Humanoid;
 using System.Numerics;
 using Robust.Client.Animations;
-using Robust.Shared.Animations; // Starlight-edit™
+using Robust.Shared.Animations;
+#endregion
 
 namespace Content.Client.Weapons.Melee;
 
@@ -34,14 +38,16 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly InputSystem _inputSystem = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!; // Starlight-edit™
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    #region Starlight
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly TransformSystem _xform = default!;
+    #endregion
 
     private EntityQuery<TransformComponent> _xformQuery;
 
     private const string MeleeLungeKey = "melee-lunge";
-    private const string HitRecoilAnimationKey = "hit-recoil";
+    private const string HitRecoilAnimationKey = "hit-recoil"; // Starlight-edit
 
     public override void Initialize()
     {
@@ -214,9 +220,14 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     {
         // Server never sends the event to us for predictiveeevent.
         _color.RaiseEffect(Color.Red, targets, Filter.Local());
-        DoHitRecoilEffect(targets, user);
+        DoHitRecoilEffect(targets, user); // Starlight-edit
     }
 
+    #region Starlight
+
+    /// <summary>
+    /// Plays recoil animation for targets.
+    /// </summary>
     private void DoHitRecoilEffect(List<EntityUid> targets, EntityUid? user)
     {
         foreach (var target in targets)
@@ -274,6 +285,8 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             }
         };
     }
+
+    #endregion
 
     /// <summary>
     /// Raises a heavy attack event with the relevant attacked entities.
