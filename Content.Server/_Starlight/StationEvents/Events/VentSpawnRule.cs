@@ -54,6 +54,12 @@ public sealed class VentSpawnRule : StationEventSystem<VentSpawnRuleComponent>
                 validLocations.Add((_transform.GetMapCoordinates(transform), uid));
         }
 
+        if (validLocations.Count == 0)
+        {
+            ForceEndSelf(ent.Owner);
+            return;
+        }
+
         // create the spawner!
         var pair = validLocations[RobustRandom.Next(validLocations.Count)];
 
