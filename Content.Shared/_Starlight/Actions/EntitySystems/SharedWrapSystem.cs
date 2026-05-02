@@ -145,7 +145,7 @@ public sealed class SharedWrapSystem : EntitySystem
         var holder = PredictedSpawnAttachedTo(args.WrapContainerId, xform.Coordinates);
         wrapped.Holder = holder;
 
-        if (_net.IsServer && TryComp<WrapEntityHolderComponent>(holder, out var holderComp)) // I hate container manager, it just drop client with metadata error when you trying to insert something. It's piece of shit.
+        if (_net.IsServer && TryComp<WrapEntityHolderComponent>(holder, out var holderComp)) // Server-only: client-side container insertion causes metadata errors during prediction.
         {
             if (holderComp.Container == null || !_container.Insert(uid, holderComp.Container))
             {
