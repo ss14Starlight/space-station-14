@@ -1,90 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Boxcars) Freezer added to Genpop.
-    type: Add
-  id: 404355
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) A few JR PACMAN generators to maints.
-    type: Add
-  id: 404356
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) CMO fax machine was not named.
-    type: Fix
-  id: 404357
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) Law fax machine was not named.
-    type: Fix
-  id: 404358
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) NTR office fax was named 'NCT', fixed.
-    type: Fix
-  id: 404359
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) NCT office fax was named 'NTR', fixed.
-    type: Fix
-  id: 404360
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) Three morgue units in Morgue were facing into a wall.
-    type: Fix
-  id: 404361
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) QM's office no longer starts unpowered.
-    type: Fix
-  id: 404362
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) Atmos' exit airlock now properly bolts / cycles.
-    type: Fix
-  id: 404363
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) Chemistry now has a centrifuge.
-    type: Fix
-  id: 404364
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) Many rooms should no longer partially spaced at roundstart.
-    type: Fix
-  id: 404365
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) Botany's air scrubber was connected to distro.
-    type: Fix
-  id: 404366
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
   - message: (Boxcars) Botany's air vent was connected to waste.
     type: Fix
   id: 404367
@@ -2799,4 +2715,88 @@ Entries:
   id: 404754
   time: '2026-05-01T09:48:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4242
+- author: Caws
+  changes:
+  - message: The detective's trenchcoats have been renamed "detective armored trenchcoat" and "noir armored trenchcoat" respectively.
+    type: Tweak
+  id: 404755
+  time: '2026-05-01T10:16:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4314
+- author: Caws
+  changes:
+  - message: The detective armored trenchcoat and noir armored trenchcoat now correctly provide armor again.
+    type: Fix
+  id: 404756
+  time: '2026-05-01T10:16:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4314
+- author: wonderfulnewworld, alexalexmax
+  changes:
+  - message: Added a nuke that doesn't end the round to the spawn menu.
+    type: Add
+  id: 404757
+  time: '2026-05-01T10:16:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4308
+- author: wonderfulnewworld, alexalexmax
+  changes:
+  - message: The (normal) nuke going off now starts the end of round sequence, regardless of gamemode.
+    type: Tweak
+  id: 404758
+  time: '2026-05-01T10:16:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4308
+- author: Trosling
+  changes:
+  - message: Fixed health scaling for ghost role dragons.
+    type: Fix
+  id: 404759
+  time: '2026-05-01T10:50:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4305
+- author: CringeCursed
+  changes:
+  - message: Added Achievements system.
+    type: Add
+  id: 404760
+  time: '2026-05-01T11:15:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4001
+- author: Scarlet Lightweaver
+  changes:
+  - message: Split the security cyborg module up a bit, the contrabag module is its own thing now.
+    type: Tweak
+  id: 404761
+  time: '2026-05-01T11:36:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4303
+- author: Scarlet Lightweaver
+  changes:
+  - message: Fixed security borgs being able to drop and pickup items when crit/PB being inserted.
+    type: Fix
+  id: 404762
+  time: '2026-05-01T11:36:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4303
+- author: Xale
+  changes:
+  - message: Fixed guidebook sorting of chemicals and drinks to once again be in alphabetical order.
+    type: Fix
+  id: 404763
+  time: '2026-05-01T11:54:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4315
+- author: Fasuh
+  changes:
+  - message: Fixed radio using a wrong TTS effect.
+    type: Fix
+  id: 404764
+  time: '2026-05-02T06:14:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4319
+- author: Ohelig
+  changes:
+  - message: Rock anomalies no longer cause weather inside the station.
+    type: Fix
+  id: 404765
+  time: '2026-05-02T06:50:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4320
+- author: Caws
+  changes:
+  - message: Chav accent's word replacement for 'borg/borgs' has been changed to 'tin can/tin cans' instead of 'tin man/tin men'.
+    type: Tweak
+  id: 404766
+  time: '2026-05-02T09:28:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4323
 Order: -1
