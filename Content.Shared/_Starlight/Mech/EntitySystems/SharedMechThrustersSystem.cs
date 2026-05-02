@@ -4,15 +4,14 @@ using Content.Shared._Starlight.Mech.Components;
 using Content.Shared.Actions;
 using Content.Shared.Gravity;
 using Content.Shared.Movement.Components;
-using Content.Shared.Power;
 
-namespace Content.Server._Starlight.Mech.EntitySystems;
+namespace Content.Shared._Starlight.Mech.EntitySystems;
 
 /// <summary>
 /// Handles Mech thruster behavior
 /// </summary>
 // TODO: move to shared plz
-public sealed partial class MechThrustersSystem : EntitySystem
+public sealed partial class SharedMechThrustersSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
 

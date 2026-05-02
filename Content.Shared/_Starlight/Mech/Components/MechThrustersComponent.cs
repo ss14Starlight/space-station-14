@@ -4,7 +4,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._Starlight.Mech.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class MechThrustersComponent : Component
 {
     [DataField]
@@ -20,5 +20,6 @@ public sealed partial class MechThrustersComponent : Component
     [DataField]
     public EntProtoId MechToggleThrustersAction = "ActionMechToggleThrusters";
 
-    [DataField] public EntityUid? MechToggleThrustersActionEntity;
+    [DataField, AutoNetworkedField]
+    public EntityUid? MechToggleThrustersActionEntity;
 }
