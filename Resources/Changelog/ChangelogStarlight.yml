@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Boxcars) Chemistry now has a centrifuge.
-    type: Fix
-  id: 404364
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
   - message: (Boxcars) Many rooms should no longer partially spaced at roundstart.
     type: Fix
   id: 404365
@@ -2799,4 +2792,11 @@ Entries:
   id: 404763
   time: '2026-05-01T11:54:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4315
+- author: Fasuh
+  changes:
+  - message: Fixed radio using a wrong TTS effect.
+    type: Fix
+  id: 404764
+  time: '2026-05-02T06:14:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4319
 Order: -1
