@@ -52,7 +52,7 @@ public sealed class SharedTimedSpawnerSystem : EntitySystem
     {
         var random = RandomPredicted.GetPredictedRandom(_random, _timing, GetNetEntity(uid).Id);
 
-        if ((component.RequiredState != MobState.Invalid && TryComp<MobStateComponent>(uid, out var stateComp) && stateComp.CurrentState != component.RequiredState)
+        if ((component.RequiredState != MobState.Invalid && (!TryComp<MobStateComponent>(uid, out var stateComp) || stateComp.CurrentState != component.RequiredState))
             || !random.Prob(component.Chance))
             return;
 
