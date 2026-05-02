@@ -51,21 +51,25 @@ public sealed partial class MeleeWeaponSystem
         var offset = 1f;
 
         var spriteRotation = Angle.Zero;
-        if (arcComponent.Animation != WeaponArcAnimation.None
-            && TryComp(weapon, out MeleeWeaponComponent? meleeWeaponComponent))
+        // Starlight-start
+        if (TryComp(weapon, out MeleeWeaponComponent? meleeWeaponComponent))
         {
-            if (user != weapon
-                && TryComp(weapon, out SpriteComponent? weaponSpriteComponent))
-                _sprite.CopySprite((weapon, weaponSpriteComponent), (animationUid, sprite));
-
-            spriteRotation = meleeWeaponComponent.WideAnimationRotation;
-
-            if (meleeWeaponComponent.SwingLeft)
-                angle *= -1;
-
             length = (1 / meleeWeaponComponent.AttackRate) * 0.6f;
             offset = meleeWeaponComponent.AnimationOffset;
+
+            if (arcComponent.Animation != WeaponArcAnimation.None)
+            {
+                if (user != weapon
+                    && TryComp(weapon, out SpriteComponent? weaponSpriteComponent))
+                    _sprite.CopySprite((weapon, weaponSpriteComponent), (animationUid, sprite));
+
+                spriteRotation = meleeWeaponComponent.WideAnimationRotation;
+
+                if (meleeWeaponComponent.SwingLeft)
+                    angle *= -1;
+            }
         }
+        // Starlight-end
         _sprite.SetRotation((animationUid, sprite), localPos.ToWorldAngle());
 
         var xform = _xformQuery.GetComponent(animationUid);
@@ -135,7 +139,7 @@ public sealed partial class MeleeWeaponSystem
                     }
                 };
                 _animation.Play(animationUid, slideAnim, "none-slide");
-                _animation.Play(animationUid, GetFadeAnimation(sprite, 0f, slideLength, startAlpha: 0f, endAlpha: 1f), FadeAnimationKey);
+                _animation.Play(animationUid, GetFadeAnimation(sprite, 0f, slideLength / 1.5f, startAlpha: 0f, endAlpha: 1f), FadeAnimationKey);
                 // Starlight End
                 break;
         }
