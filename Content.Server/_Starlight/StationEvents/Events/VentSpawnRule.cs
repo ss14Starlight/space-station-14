@@ -31,8 +31,11 @@ public sealed class VentSpawnRule : StationEventSystem<VentSpawnRuleComponent>
 
     private void OnAfterSelection(Entity<VentSpawnRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
     {
-        if (ent.Comp.Vent is { } vent)
-            _ventCrawl.TryInsert(vent.Item2, args.EntityUid);
+        if (ent.Comp.Vent is not { } vent)
+            return;
+
+        if (!_ventCrawl.TryInsert(vent.Item2, args.EntityUid))
+            Log.Warning($"VentSpawnRule: failed to insert {ToPrettyString(args.EntityUid)} into vent {ToPrettyString(vent.Item2)} — antag spawned outside tube.");
     }
 
     private void OnSelectLocation(Entity<VentSpawnRuleComponent> ent, ref AntagSelectLocationEvent args)
