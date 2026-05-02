@@ -131,8 +131,8 @@ public sealed partial class MechSystem : SharedMechSystem
             if (Timing.CurTime < mechComp.NextUpdateTime)
                 continue;
 
-            var deltaTime = mechComp.Delay + Timing.CurTime - mechComp.NextUpdateTime;
-            mechComp.NextUpdateTime += mechComp.Delay;
+            var deltaTime = Timing.CurTime - (mechComp.NextUpdateTime - mechComp.Delay);
+            mechComp.NextUpdateTime += mechComp.Delay - (Timing.CurTime - mechComp.NextUpdateTime);
 
             if (mechComp.BatterySlot.ContainedEntity != null &&
                 TryComp<BatteryComponent>(mechComp.BatterySlot.ContainedEntity.Value, out var battery))
@@ -388,6 +388,8 @@ public sealed partial class MechSystem : SharedMechSystem
             var mechBattery = EnsureComp<MechBatteryComponent>(component.BatterySlot.ContainedEntity.Value);
             mechBattery.Mech = uid;
         }
+
+        component.NextUpdateTime = Timing.CurTime + component.Delay;
         // Starlight-end
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
