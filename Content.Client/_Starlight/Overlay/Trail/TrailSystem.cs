@@ -70,7 +70,7 @@ public sealed class TrailSystem : EntitySystem
             var sample = new TrailSample() { Position = worldPos, EyeRotation = eye.Rotation, Rotation = worldRot };
             var points = trail.Points;
             var samples = trail.Samples;
-            SyncCapacity(ent.Comp);
+            SyncCapacity(trail);
 
             var moved = false;
 
