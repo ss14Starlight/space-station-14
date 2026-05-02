@@ -3,6 +3,7 @@ using Content.Client._Starlight.Shaders;
 using Content.Client._Starlight.Trail;
 using Content.Shared._Starlight.Trail;
 using Content.Shared.Starlight.CCVar;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 
@@ -14,6 +15,7 @@ public sealed class TrailSystem : EntitySystem
     [Dependency] private readonly IStarlightShaderManager _shaderMan = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     private TrailOverlay _overlay = default!;
     private bool _enabled = true;
@@ -23,7 +25,7 @@ public sealed class TrailSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        _overlay = new TrailOverlay(EntityManager, _shaderMan);
+        _overlay = new TrailOverlay(EntityManager, _shaderMan, _sprite);
         _overlayMan.AddOverlay(_overlay);
 
         Subs.CVar(_cfg, StarlightCCVars.TracesEnabled, v =>

@@ -18,10 +18,10 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
     private readonly List<Vector2> _verts = [];
     private readonly List<Vector2> _ribbon = [];
 
-    public TrailOverlay(IEntityManager entMan, IStarlightShaderManager shaderMan)
+    public TrailOverlay(IEntityManager entMan, IStarlightShaderManager shaderMan, SpriteSystem spriteSystem)
     {
         _entMan = entMan;
-        _spriteSys = entMan.System<SpriteSystem>();
+        _spriteSys = spriteSystem;
         _shaderMan = shaderMan;
         ZIndex = (int)Shared.DrawDepth.DrawDepth.Effects;
     }
