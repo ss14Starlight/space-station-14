@@ -42,13 +42,19 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
         var query = _entMan.EntityQueryEnumerator<TrailComponent, SpriteComponent>();
         while (query.MoveNext(out var comp, out var sprite))
         {
-            if (comp.Points.Count < 2 && comp.Samples.Count < 2)
-                continue;
-
             if (comp.Mode == TrailMode.SpriteGhost)
+            {
+                if (comp.Samples.Count < 2)
+                    continue;
                 DrawGhostTrail(handle, comp, sprite, args);
+            }
             else
+            {
+                if (comp.Points.Count < 2)
+                    continue;
+
                 DrawTrail(handle, comp, args);
+            }
 
             if (++drawn >= MaxTrails)
                 break;
