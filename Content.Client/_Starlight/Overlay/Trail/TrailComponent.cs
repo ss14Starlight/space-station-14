@@ -66,6 +66,9 @@ public sealed partial class TrailComponent : Component
     /// </summary>
     [DataField]
     public int SkipSamples = 0;
+
+    [DataField]
+    public float TeleportThreshold = 3f;
 }
 
 public struct TrailSample

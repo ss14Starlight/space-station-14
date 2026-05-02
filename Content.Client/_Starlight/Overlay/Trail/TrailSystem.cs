@@ -20,8 +20,6 @@ public sealed class TrailSystem : EntitySystem
     private TrailOverlay _overlay = default!;
     private bool _enabled = true;
 
-    private const float TeleportThreshold = 3f;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -83,7 +81,7 @@ public sealed class TrailSystem : EntitySystem
                     var last = points[^1];
                     var distSq = (worldPos - last).LengthSquared();
 
-                    if (distSq > TeleportThreshold * TeleportThreshold)
+                    if (distSq > trail.TeleportThreshold * trail.TeleportThreshold)
                     {
                         points.Clear();
                         points.PushBack(worldPos);
@@ -112,7 +110,7 @@ public sealed class TrailSystem : EntitySystem
                     var lastSample = samples[^1];
                     var sampleDistSq = (worldPos - lastSample.Position).LengthSquared();
 
-                    if (sampleDistSq > TeleportThreshold * TeleportThreshold)
+                    if (sampleDistSq > trail.TeleportThreshold * trail.TeleportThreshold)
                     {
                         samples.Clear();
                         samples.PushBack(sample);
