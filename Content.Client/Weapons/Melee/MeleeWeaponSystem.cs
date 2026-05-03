@@ -40,7 +40,6 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly SpriteSystem _sprite = default!;
     #region Starlight
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly TransformSystem _xform = default!;
     #endregion
 
     private EntityQuery<TransformComponent> _xformQuery;
@@ -240,10 +239,10 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             var pushDir = Vector2.Zero;
             if (user != null)
             {
-                var worldDelta = _xform.GetWorldPosition(target) - _xform.GetWorldPosition(user.Value);
+                var worldDelta = TransformSystem.GetWorldPosition(target) - TransformSystem.GetWorldPosition(user.Value);
                 if (worldDelta.LengthSquared() > 0.001f)
                 {
-                    var targetWorldRot = _xform.GetWorldRotation(target);
+                    var targetWorldRot = TransformSystem.GetWorldRotation(target);
                     pushDir = (-targetWorldRot).RotateVec(worldDelta.Normalized());
                 }
             }

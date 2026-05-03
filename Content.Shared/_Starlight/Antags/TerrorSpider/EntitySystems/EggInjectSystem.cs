@@ -61,7 +61,7 @@ public sealed class EggInjectSystem : EntitySystem
 
         if (wrapEntityHolder.Hold == null)
         {
-            _popup.PopupPredicted("This cocoon is empty!", ent, ent);
+            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-cocoon-empty"), ent, ent);
             return;
         }
 
@@ -74,7 +74,7 @@ public sealed class EggInjectSystem : EntitySystem
             RaiseLocalEvent(ent, ev);
         }
         else
-            _popup.PopupPredicted("The target already contains eggs.", ent, ent);
+            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-already-has-eggs"), ent, ent);
     }
 
     private void EggInjection(EggInjectionEvent ev)
@@ -84,7 +84,7 @@ public sealed class EggInjectSystem : EntitySystem
 
         if (wrapEntityHolder.Hold == null)
         {
-            _popup.PopupPredicted("This cocoon is empty!", ev.Performer, ev.Performer);
+            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-cocoon-empty"), ev.Performer, ev.Performer);
             return;
         }
 
@@ -92,7 +92,7 @@ public sealed class EggInjectSystem : EntitySystem
 
         if (HasComp<HasEggHolderComponent>(wrapEntityHolder.Hold.Value))
         {
-            _popup.PopupPredicted("The target already contains eggs.", ev.Performer, ev.Performer);
+            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-already-has-eggs"), ev.Performer, ev.Performer);
             return;
         }
 
