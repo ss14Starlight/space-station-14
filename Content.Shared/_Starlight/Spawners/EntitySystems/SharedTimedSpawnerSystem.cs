@@ -69,6 +69,6 @@ public sealed class SharedTimedSpawnerSystem : EntitySystem
         }
 
         if (component.DespawnWhenDone)
-            QueueDel(uid);
+            PredictedQueueDel(uid);
     }
 }
