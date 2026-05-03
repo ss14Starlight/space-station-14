@@ -839,7 +839,7 @@
       intervalSeconds: 20
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 1
-      despawnWhenDone: true # Starlight-edit: delete the egg after the chicken spawns
+      despawnWhenDone: true # Starlight-edit: delete the egg after the duck spawns
     #- type: TimedDespawn Starlight-edit
     #  lifetime: 21
 

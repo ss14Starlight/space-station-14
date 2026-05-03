@@ -65,15 +65,16 @@ public sealed class EggInjectSystem : EntitySystem
             return;
         }
 
-        args.Handled = true;
-
         if (!HasComp<HasEggHolderComponent>(wrapEntityHolder.Hold.Value))
         {
+            args.Handled = true;
             EnsureComp<EggHolderComponent>(wrapEntityHolder.Hold.Value);
             EnsureComp<HasEggHolderComponent>(wrapEntityHolder.Hold.Value);
             var ev = new EggsInjectedEvent();
             RaiseLocalEvent(ent, ev);
         }
+        else
+            _popup.PopupPredicted("The target already contains eggs.", ent, ent);
     }
 
     private void EggInjection(EggInjectionEvent ev)

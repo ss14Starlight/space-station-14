@@ -133,7 +133,8 @@ public sealed class TrailSystem : EntitySystem
                 }
             }
 
-            if (!moved && (points.Count > 1 || samples.Count > 1))
+            var activeCount = trail.Mode == TrailMode.Ribbon ? points.Count : samples.Count;
+            if (!moved && activeCount > 1)
             {
                 trail.IdleTimer += frameTime;
 
