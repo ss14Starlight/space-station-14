@@ -57,20 +57,6 @@ public sealed partial class MechComponent : Component
     public bool Light = false;
 
     /// <summary>
-    /// is the mech siren are toggled?
-    /// </summary>
-    [DataField("sirenToggled")]
-    [AutoNetworkedField]
-    public bool Siren = false;
-
-    /// <summary>
-    /// is the mech has siren?
-    /// </summary>
-    [DataField("siren")]
-    [AutoNetworkedField]
-    public bool SirenAvailable = false;
-
-    /// <summary>
     /// How much "health" the mech has left.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
@@ -223,8 +209,6 @@ public sealed partial class MechComponent : Component
     [DataField]
     public EntProtoId MechToggleInternalsAction = "ActionMechToggleInternals";
     [DataField]
-    public EntProtoId MechToggleSirenAction = "ActionMechToggleSirens";
-    [DataField]
     public EntProtoId MechToggleThrustersAction = "ActionMechToggleThrusters";
     #endregion
 
@@ -282,6 +266,5 @@ public sealed partial class MechComponent : Component
     [DataField] public EntityUid? MechEjectActionEntity;
     [DataField] public EntityUid? MechToggleLightActionEntity;
     [DataField] public EntityUid? MechToggleInternalsActionEntity;
-    [DataField] public EntityUid? MechToggleSirenActionEntity;
     [DataField] public EntityUid? MechToggleThrustersActionEntity;
 }

@@ -1,67 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Boxcars) Chemistry now has a centrifuge.
-    type: Fix
-  id: 404364
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) Many rooms should no longer partially spaced at roundstart.
-    type: Fix
-  id: 404365
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) Botany's air scrubber was connected to distro.
-    type: Fix
-  id: 404366
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) Botany's air vent was connected to waste.
-    type: Fix
-  id: 404367
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) Morgue now has an air vent and air scrubber.
-    type: Fix
-  id: 404368
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
-  - message: (Boxcars) Surgery now has an air vent and air scrubber.
-    type: Fix
-  id: 404369
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: CoolSurf6
-  changes:
-  - message: Mech repair-over-time now works on all mechs, as intended.
-    type: Fix
-  id: 404370
-  time: '2026-04-19T12:31:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4203
-- author: Makeshift
-  changes:
-  - message: (Plasma) Interior no longer has weather. You'll no longer get ashed for walking into a hallway during a solar flare!
-    type: Fix
-  id: 404371
-  time: '2026-04-19T12:31:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4198
-- author: Cvlancer
-  changes:
-  - message: Nanomed Security to brigmedic.
-    type: Add
-  id: 404372
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
 - author: Cvlancer
   changes:
   - message: Oxygen deprivation treatment kit to brigmedic.
@@ -2799,4 +2736,67 @@ Entries:
   id: 404763
   time: '2026-05-01T11:54:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4315
+- author: Fasuh
+  changes:
+  - message: Fixed radio using a wrong TTS effect.
+    type: Fix
+  id: 404764
+  time: '2026-05-02T06:14:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4319
+- author: Ohelig
+  changes:
+  - message: Rock anomalies no longer cause weather inside the station.
+    type: Fix
+  id: 404765
+  time: '2026-05-02T06:50:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4320
+- author: Caws
+  changes:
+  - message: Chav accent's word replacement for 'borg/borgs' has been changed to 'tin can/tin cans' instead of 'tin man/tin men'.
+    type: Tweak
+  id: 404766
+  time: '2026-05-02T09:28:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4323
+- author: Caws
+  changes:
+  - message: (Bagel, Box, Cluster, Cog, Cork, Elkridge, Fland, Hotel, Kiloton, Lagan, Manor, Ming, Packed, Plasma, Prism, Reach, Saltern, Sepultum, Silica, Space Mall, Barratry) Keycard Authentication Device to Heads of Staff's offices.
+    type: Add
+  id: 404767
+  time: '2026-05-03T10:42:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4337
+- author: Caws
+  changes:
+  - message: (Lagan, Ming, Sepultum, Barratry) Added Mail Tech lockers and Mail Tech Airlocks.
+    type: Add
+  id: 404768
+  time: '2026-05-03T10:42:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4337
+- author: Unknown
+  changes:
+  - message: Animals Now Understand Galactic Common.
+    type: Add
+  id: 404769
+  time: '2026-05-03T11:42:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4340
+- author: Unknown
+  changes:
+  - message: Space Carp Now Understand Galactic Common.
+    type: Add
+  id: 404770
+  time: '2026-05-03T11:42:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4340
+- author: Unknown
+  changes:
+  - message: Slimes Now Understand Galactic Common.
+    type: Add
+  id: 404771
+  time: '2026-05-03T11:42:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4340
+- author: neurovermi
+  changes:
+  - message: Vim now can install a singular equipment module, instead of none.
+    type: Tweak
+  id: 404772
+  time: '2026-05-03T15:37:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4333
 Order: -1
