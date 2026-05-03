@@ -13,7 +13,7 @@ public sealed partial class TimedSpawnerDespawnTest
     const double Tolerance = 1.0;
 
     [Test]
-    public async Task Main()
+    public async Task TestDespawnWhenDone()
     {
         await using var pair = await PoolManager.GetServerClient();
 
@@ -34,7 +34,8 @@ public sealed partial class TimedSpawnerDespawnTest
                     $"but Lifetime ≈ IntervalSeconds (±{Tolerance}s). This is unnecessary — use DespawnWhenDone instead.");
         }
 
-        if (errors.Count > 0)
-            throw new Exception(string.Join("\n", errors));
+        Assert.That(errors.Count, Is.GreaterThan(0), string.Join("\n", errors));
+
+        await pair.CleanReturnAsync();
     }
 }
