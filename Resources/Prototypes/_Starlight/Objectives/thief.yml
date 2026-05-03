@@ -1,5 +1,10 @@
 # Abstracts
 - type: entity
+  name: steal target
+  id: BaseStealTargetParent
+  abstract: true
+
+- type: entity
   abstract: true
   parent: BaseThiefStealObjective
   id: BaseThiefSecurityStealObjective
@@ -280,6 +285,14 @@
     maxCollectionSize: 14
   - type: Objective
     difficulty: 0.6 # There's a lot of them... but they're comically easy to get. Cargo can also buy PTech restocks, so they can't get this objective either.
+
+- type: entity
+  parent: BaseStealTargetParent
+  id: StealTargetMedicalBeltCollection
+  abstract: true
+  components:
+  - type: StealTarget
+    stealGroup: MedicalBeltCollection
 
 - type: entity
   parent: BaseThiefStealObjective # Easy

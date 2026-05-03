@@ -34,10 +34,12 @@
     state: eye_implant_diagnostic
   - type: FunctionalOrgan
     comps:
+    - type: ShowAccessReaderSettings
     - type: ShowHealthBars
       damageContainers:
       - Inorganic
       - Silicon
+      - IPC
 
 - type: entity
   id: EyeImplantMedical

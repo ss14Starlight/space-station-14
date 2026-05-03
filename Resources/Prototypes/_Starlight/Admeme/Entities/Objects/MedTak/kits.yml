@@ -1,7 +1,7 @@
 # Chemical case
 - type: entity
   id: BottleCaseMedTak
-  parent: [ BaseStorageItem, BaseMedTakContraband ]
+  parent: [ BaseBottleCase, BaseMedTakContraband ]
   name: chemical case
   description: A reinforced case with padded slots for bottles.
   components:
@@ -33,41 +33,20 @@
     - state: bottle8
       map: ["bottle8"]
       visible: false
-  - type: Storage
-    grid:
-    - 0,0,3,1
-    hideStackVisualsWhenClosed: false
-    whitelist:
-      tags:
-      - Bottle
   - type: Item
     sprite: _Starlight/Admeme/Objects/MedTak/cases.rsi
     size: Small
     shape:
     - 0,0,1,1
-  - type: ItemCounter
-    count:
-      tags: [Bottle]
-    composite: true
-    layerStates:
-    - bottle1
-    - bottle2
-    - bottle3
-    - bottle4
-    - bottle5
-    - bottle6
-    - bottle7
-    - bottle8
-  - type: Appearance
   - type: ExplosionResistance
     damageCoefficient: 0
 
 # MedKit
 - type: entity
-  name: MedTak combat kit
-  description: An operator's personal medical kit
   parent: Medkit
   id: MedkitCombatMedTak
+  name: MedTak combat kit
+  description: An operator's personal medical kit.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/Objects/MedTak/medkit.rsi
@@ -79,27 +58,18 @@
 
 # Injector pack
 - type: entity
-  name: autoinjector pack
-  description: A pouch loaded with autoinjectors.
-  parent: BaseStorageItem
+  parent: [ BasePenPack, BaseMedTakContraband ]
   id: PenPackMedTak
+  name: autoinjector pack
+  suffix: MedTak, Filled
+  description: A pouch loaded with autoinjectors.
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/Objects/MedTak/cases.rsi
     state: injectorpack
-  - type: Storage
-    maxItemSize: Tiny
-    grid:
-    - 0,0,1,2
-    whitelist:
-       tags:
-        - Medipen
   - type: Item
     size: Small
     sprite: _Starlight/Admeme/Objects/MedTak/cases.rsi
-  - type: PhysicalComposition
-    materialComposition:
-      Cloth: 100
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
@@ -115,13 +85,19 @@
 # Surgical Kit
 - type: entity
   name: advanced surgical kit
+  suffix: MedTak, Filled
   description: A compact kit of surgical tools.
-  parent: BaseStorageItem
+  parent: [ BaseSurgicalKit, BaseMedTakContraband ]
   id: SurgicalKitMedTak
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/Objects/MedTak/cases.rsi
     state: surgerykit
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,1
+    sprite: _Starlight/Admeme/Objects/MedTak/cases.rsi
   - type: Storage
     maxItemSize: Normal
     grid:
@@ -132,14 +108,6 @@
         - Brutepack
        components:
         - SurgeryTool
-  - type: Item
-    size: Normal
-    shape:
-    - 0,0,2,1
-    sprite: _Starlight/Admeme/Objects/MedTak/cases.rsi
-  - type: PhysicalComposition
-    materialComposition:
-      Plastic: 150
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector

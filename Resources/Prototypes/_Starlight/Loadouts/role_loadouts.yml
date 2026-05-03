@@ -40,10 +40,12 @@
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
+  - MedicalGloves
   - MedicalBackpack
   - MedicalDoctorOuterClothing
   - MedicalShoes
   - MedicalDoctorPDA
+  - MedicalEyewear
   - SurvivalMedical
   - Trinkets
   - Scarves
