@@ -11,7 +11,7 @@ chatsan-word-4 = wtf
 chatsan-replacement-4 = what the fuck
 
 chatsan-word-5 = wth
-chatsan-replacement-5 = what the heck
+chatsan-replacement-5 = what the hell
 
 chatsan-word-6 = tf
 chatsan-replacement-6 = the fuck
