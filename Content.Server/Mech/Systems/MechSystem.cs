@@ -90,7 +90,6 @@ public sealed partial class MechSystem : SharedMechSystem
         base.Initialize();
 
         SubscribeLocalEvent<MechComponent, ToggleActionEvent>(OnToggleLightEvent); // Starlight
-        SubscribeLocalEvent<MechComponent, MechToggleSirensEvent>(OnMechToggleSirens); // Starlight
         SubscribeLocalEvent<MechComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<MechComponent, EntInsertedIntoContainerMessage>(OnInsertEquipment); // Starlight
         SubscribeLocalEvent<MechComponent, EntRemovedFromContainerMessage>(OnItemRemoved); // Starlight-edit: Correct equipment update
@@ -193,22 +192,6 @@ public sealed partial class MechSystem : SharedMechSystem
         args.Handled = true;
 
         ToggleLight(uid, component);
-    }
-
-    private void OnMechToggleSirens(EntityUid uid, MechComponent component, MechToggleSirensEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        args.Handled = true;
-
-        component.Siren = !component.Siren;
-
-        Dirty(uid, component);
-
-        _actions.SetToggled(component.MechToggleSirenActionEntity, component.Siren);
-
-        UpdateAppearance(uid, component);
     }
 
     // Starlight-start: Correct UI/Charge update

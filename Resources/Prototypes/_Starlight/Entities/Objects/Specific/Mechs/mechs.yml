@@ -83,6 +83,7 @@
         - state: base-sirens
           map: [ "enum.MechVisualLayers.Siren" ]
           shader: unshaded
+          visible: false
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
@@ -100,7 +101,7 @@
       pilotWhitelist:
         components:
           - HumanoidAppearance
-      siren: true
+    - type: MechSiren
     - type: MeleeWeapon
       hidden: true
       attackRate: 1
