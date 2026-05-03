@@ -373,8 +373,9 @@
     intervalSeconds: 20
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
-  - type: TimedDespawn #delete the egg after the chicken spawns
-    lifetime: 21
+    despawnWhenDone: true # Starlight-edit
+#  - type: TimedDespawn Starlight-edit #delete the egg after the chicken spawns
+#    lifetime: 21
 
 - type: entity
   name: cockroach
