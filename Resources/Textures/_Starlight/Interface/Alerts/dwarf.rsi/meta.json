@@ -9,6 +9,9 @@
   "states": [
     {
       "name": "courage"
-    }
+    },
+	{
+	  "name": "fortitude"
+	}
   ]
 }

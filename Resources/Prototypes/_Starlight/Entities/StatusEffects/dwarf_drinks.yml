@@ -1,33 +1,67 @@
 # special modifiers and status effects used exclusively by dwarves getting drunk
 
 - type: entity
-  parent: MobStatusEffectDebuff
+  parent: MobStatusEffectBase
   id: MobThresholdsTheHighlander
-  name: there can be only one
+  name: <<TheHighlander Status Effect>>
   components:
   - type: StatusEffect
     whitelist:
       components:
         - MobState
+        - StandingState
+      requireAll: true
+    blacklist:
+      tags:
+      - KnockdownImmune
+    maximumDuration: 3s
   - type: StatusEffectAlert
     alert: DwarfCourage
-  - type: MobThresholds
+  - type: MobThresholdsStatusEffect
     thresholds:
       0: Alive
       219: Critical
       220: Dead
 
 - type: entity
-  parent: MobStatusEffectDebuff
+  parent: MobStatusEffectBase
   id: MobThresholdsDeathInTheAfternoon
-  name: death in the afternoon
+  name: <<DeathInTheAfternoon Status Effect>>
   components:
   - type: StatusEffect
     whitelist:
       components:
         - MobState
+        - StandingState
+      requireAll: true
+    blacklist:
+      tags:
+      - KnockdownImmune
+    maximumDuration: 3s
   - type: StatusEffectAlert
     alert: DwarfCourage
+  - type: MobThresholdsStatusEffect
+    thresholds:
+      0: Alive
+      159: Critical
+      160: Dead
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: ArmorBuffWhiskey
+  name: <<Whiskey Status Effect>>
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+        - MobState
+        - StandingState
+      requireAll: true
+    blacklist:
+      tags:
+      - KnockdownImmune
+  - type: StatusEffectAlert
+    alert: DwarfFortitude
   - type: MobThresholds
     thresholds:
       0: Alive

@@ -2810,6 +2810,9 @@
       - !type:ModifyStatusEffect
         effectProto: MobThresholdsDeathInTheAfternoon # raise crit to 159, lower death to 160
         time: 3
+      - !type:SpawnEntity
+        entity: EffectHearts # holy placeholder, batdwarf
+        number: 1
     # end starlight
 
 - type: reagent

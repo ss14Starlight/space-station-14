@@ -5,3 +5,11 @@
     state: courage
   name: alerts-dwarf-courage-name
   description: alerts-dwarf-courage-desc
+
+- type: alert
+  id: DwarfFortitude
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/dwarf.rsi
+    state: fortitude
+  name: alerts-dwarf-fortitude-name
+  description: alerts-dwarf-fortitude-desc
