@@ -47,6 +47,15 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     private const string MeleeLungeKey = "melee-lunge";
     private const string HitRecoilAnimationKey = "hit-recoil"; // Starlight-edit
 
+    #region Starlight
+    private const float HitRecoilDuration = 0.25f;
+    private const float HitRecoilPushMagnitude = 0.06f;
+    private const float HitRecoilShakeMagnitude = 0.02f;
+    private const float HitRecoilPushFrame = 0.15f;
+    private const float HitRecoilShakeFrame = 0.40f;
+    private const float HitRecoilSettleFrame = 0.65f;
+    #endregion
+
     public override void Initialize()
     {
         base.Initialize();
@@ -257,13 +266,12 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
     private Animation GetHitRecoilAnimation(Vector2 pushDir)
     {
-        const float length = 0.25f;
-        var push = pushDir * 0.06f;
-        var shake = pushDir * 0.02f;
+        var push = pushDir * HitRecoilPushMagnitude;
+        var shake = pushDir * HitRecoilShakeMagnitude;
 
         return new Animation
         {
-            Length = TimeSpan.FromSeconds(length),
+            Length = TimeSpan.FromSeconds(HitRecoilDuration),
             AnimationTracks =
             {
                 new AnimationTrackComponentProperty
@@ -274,10 +282,10 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
                     KeyFrames =
                     {
                         new AnimationTrackProperty.KeyFrame(Vector2.Zero, 0f),
-                        new AnimationTrackProperty.KeyFrame(push, length * 0.15f),
-                        new AnimationTrackProperty.KeyFrame(-shake, length * 0.40f),
-                        new AnimationTrackProperty.KeyFrame(shake * 0.5f, length * 0.65f),
-                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, length),
+                        new AnimationTrackProperty.KeyFrame(push, HitRecoilDuration * HitRecoilPushFrame),
+                        new AnimationTrackProperty.KeyFrame(-shake, HitRecoilDuration * HitRecoilShakeFrame),
+                        new AnimationTrackProperty.KeyFrame(shake * 0.5f, HitRecoilDuration * HitRecoilSettleFrame),
+                        new AnimationTrackProperty.KeyFrame(Vector2.Zero, HitRecoilDuration),
                     }
                 }
             }
