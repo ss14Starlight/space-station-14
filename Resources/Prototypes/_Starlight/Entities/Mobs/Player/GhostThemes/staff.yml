@@ -105,9 +105,9 @@
       sprite: _Starlight/CosmicCult/Mobs/wisp.rsi
       state: wisp
       shader: unshaded
-  # requirements:
-  # - !type:DiscordRolesRequirement
-  #   requirement: SeniorDeveloperReq
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: SeniorDeveloperReq
 
 # Custodian
 - type: ghostTheme
@@ -119,6 +119,6 @@
     sprite:
       sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
       state: ghost-custodian
-  # requirements:
-  # - !type:DiscordRolesRequirement
-  #   requirement: DeveloperReq
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: DeveloperReq
