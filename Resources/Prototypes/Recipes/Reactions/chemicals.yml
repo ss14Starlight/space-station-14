@@ -1,7 +1,6 @@
-# adjusted for Starlight.
 - type: reaction
   id: Ammonia
-  minTemp: 370 # prevents electrolyzed ammonia from recombining.
+  minTemp: 370 # starlight-edit: prevents electrolyzed ammonia from recombining.
   reactants:
     Hydrogen:
       amount: 3
@@ -10,8 +9,8 @@
   products:
     Ammonia: 4
   effects:
-    - !type:AdjustSolutionThermalEnergy # remove heat to stop reaction on repeated recombination during electrolysis
-      delta: -92.28 # actual energy requirement of reaction, works surprisingly well.
+    - !type:AdjustSolutionThermalEnergy # starlight-edit: remove heat to stop reaction on repeated recombination during electrolysis
+      delta: -92.28 # starlight-edit: actual energy requirement of reaction, works surprisingly well.
 
 - type: reaction
   id: CelluloseBreakdown
