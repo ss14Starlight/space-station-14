@@ -34,7 +34,7 @@ public sealed partial class TimedSpawnerDespawnTest
                     $"but Lifetime ≈ IntervalSeconds (±{Tolerance}s). This is unnecessary — use DespawnWhenDone instead.");
         }
 
-        Assert.That(errors.Count, Is.GreaterThan(0), string.Join("\n", errors));
+        Assert.That(errors, Is.Empty, string.Join("\n", errors));
 
         await pair.CleanReturnAsync();
     }
