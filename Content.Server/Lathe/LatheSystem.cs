@@ -202,10 +202,7 @@ namespace Content.Server.Lathe
             var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * component.TimeMultiplier;
             // Starlight Begin
             // Ensure the production time is at least one tick to avoid issue with multiple recipes completing at once causing lag.
-            if (time < _timing.TickPeriod)
-            {
-                time = _timing.TickPeriod;
-            }
+           time = MathHelper.Max(time, _timing.TickPeriod);
             // Starlight End
 
             var lathe = EnsureComp<LatheProducingComponent>(uid);
