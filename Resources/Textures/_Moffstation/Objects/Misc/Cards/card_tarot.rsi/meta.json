@@ -1,92 +1,119 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Card sprites created by Huaqas (GitHub) with inspiration from DispenserG0inUp. signelcard_down_tarot, box and box_open sprites by DispenserG0inUp.",
+    "copyright": "State based Copyright.",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "empty"
+            "name": "empty",
+            "copyright": "Blank Sprite"
         },
         {
-            "name": "singlecard_down_tarot"
+            "name": "singlecard_down_tarot",
+            "copyright": "Made by DispenserG0inUp."
         },
         {
-            "name": "background_gold"
+            "name": "background_gold",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "box"
+            "name": "box",
+            "copyright": "Made by DispenserG0inUp."
         },
         {
-            "name": "box_open"
+            "name": "box_open",
+            "copyright": "Made by DispenserG0inUp."
         },
         {
-            "name": "the_fool"
+            "name": "the_fool",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_magician"
+            "name": "the_magician",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_high_priestess"
+            "name": "the_high_priestess",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_empress"
+            "name": "the_empress",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_emperor"
+            "name": "the_emperor",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_hierophant"
+            "name": "the_hierophant",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_lovers"
+            "name": "the_lovers",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_chariot"
+            "name": "the_chariot",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "strength"
+            "name": "strength",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_hermit"
+            "name": "the_hermit",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_wheel_of_fortune"
+            "name": "the_wheel_of_fortune",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "justice"
+            "name": "justice",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_hanged_man"
+            "name": "the_hanged_man",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "death"
+            "name": "death",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "temperance"
+            "name": "temperance",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_devil"
+            "name": "the_devil",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_tower"
+            "name": "the_tower",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_star"
+            "name": "the_star",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_moon"
+            "name": "the_moon",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_sun"
+            "name": "the_sun",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "judgement"
+            "name": "judgement",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         },
         {
-            "name": "the_world"
+            "name": "the_world",
+            "copyright": "Made by Huaqas (GitHub) with inspiration from DispenserG0inUp."
         }
     ]
 }
