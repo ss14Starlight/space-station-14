@@ -4,7 +4,6 @@ using Content.Shared._Moffstation.Extensions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Utility;
 
 namespace Content.Shared._Moffstation.Cards.Components;
 
@@ -73,18 +72,16 @@ public abstract partial class PlayingCardInDeck : ISealedInheritance;
 [Serializable, NetSerializable]
 public sealed partial class PlayingCardInDeckNetEnt : PlayingCardInDeck
 {
-    public PlayingCardInDeckNetEnt(NetEntity ent)
-    {
+    // Starlight edit Start: Expression body
+    public PlayingCardInDeckNetEnt(NetEntity ent) =>
         Ent = ent;
-    }
 
     [DataField(required: true)]
     public NetEntity Ent;
 
-    public void Deconstruct(out NetEntity ent)
-    {
+    public void Deconstruct(out NetEntity ent) =>
         ent = Ent;
-    }
+    // Starlight edit End: Expression body
 }
 
 // Constructor and deconstructor because these were originally `record`s, but ss14 generation seems broken and I couldn't get it to work.

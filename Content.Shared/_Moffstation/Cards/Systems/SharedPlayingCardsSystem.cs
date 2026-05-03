@@ -167,6 +167,6 @@ public abstract partial class SharedPlayingCardsSystem : EntitySystem
             target,
             user
         );
-        _audio.PlayPredicted(info.Sound, target, user, AudioVariation);
+        _audio.PlayPredicted(info.Sound, target, user, _audioVariation); // Starlight Edit: Fix naming rule violation
     }
 }
