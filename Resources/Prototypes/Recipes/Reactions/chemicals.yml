@@ -1,3 +1,4 @@
+# adjusted for Starlight.
 - type: reaction
   id: Ammonia
   minTemp: 370 # prevents electrolyzed ammonia from recombining.
