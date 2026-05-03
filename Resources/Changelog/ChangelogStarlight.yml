@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Boxcars) Botany's air scrubber was connected to distro.
-    type: Fix
-  id: 404366
-  time: '2026-04-19T12:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4201
-- author: Caws
-  changes:
   - message: (Boxcars) Botany's air vent was connected to waste.
     type: Fix
   id: 404367
@@ -2799,4 +2792,11 @@ Entries:
   id: 404765
   time: '2026-05-02T06:50:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4320
+- author: Caws
+  changes:
+  - message: Chav accent's word replacement for 'borg/borgs' has been changed to 'tin can/tin cans' instead of 'tin man/tin men'.
+    type: Tweak
+  id: 404766
+  time: '2026-05-02T09:28:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4323
 Order: -1
