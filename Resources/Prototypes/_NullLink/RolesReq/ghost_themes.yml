@@ -75,4 +75,4 @@
   roles:
   - 1272899036571238521 # Developer
   discord: roles-req-discord-starlight
-  rolesLoc: roles-req-developer-roles
+  rolesLoc: roles-req-developer
