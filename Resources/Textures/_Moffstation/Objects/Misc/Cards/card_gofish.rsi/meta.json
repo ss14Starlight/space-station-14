@@ -1,50 +1,63 @@
 {
     "version": 1,
     "license": "CC-BY-SA-4.0",
-    "copyright": "Sprites created by Huaqas (GitHub) by modifying various SS14 sprites.",
+    "copyright": "State based Copyright.",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "empty"
+            "name": "empty",
+            "copyright": "Blank Sprite"
         },
         {
-            "name": "singlecard_down_gofish"
+            "name": "singlecard_down_gofish",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "background_blue"
+            "name": "background_blue",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "background_green"
+            "name": "background_green",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "background_red"
+            "name": "background_red",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "background_yellow"
+            "name": "background_yellow",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "rules"
+            "name": "rules",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "box"
+            "name": "box",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "box_open"
+            "name": "box_open",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "carp"
+            "name": "carp",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "holo"
+            "name": "holo",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "magic"
+            "name": "magic",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
             "name": "rainbowcarp",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites.",
             "delays": [
                 [
                     0.15,
@@ -66,121 +79,160 @@
         ]
         },
         {
-            "name": "acmeco"
+            "name": "acmeco",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "dromedaryco"
+            "name": "dromedaryco",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "nomads"
+            "name": "nomads",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "spessman"
+            "name": "spessman",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "ian"
+            "name": "ian",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "lisa"
+            "name": "lisa",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "oldian"
+            "name": "oldian",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "puppy"
+            "name": "puppy",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "appledonut"
+            "name": "appledonut",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "bungodonut"
+            "name": "bungodonut",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "chocolatedonut"
+            "name": "chocolatedonut",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "pinkdonut"
+            "name": "pinkdonut",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "ertengineer"
+            "name": "ertengineer",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "ertleader"
+            "name": "ertleader",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "ertmedic"
+            "name": "ertmedic",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "ertsecurity"
+            "name": "ertsecurity",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "bingus"
+            "name": "bingus",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "exception"
+            "name": "exception",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "floppa"
+            "name": "floppa",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "runtime"
+            "name": "runtime",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "apple"
+            "name": "apple",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "banana"
+            "name": "banana",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "grapes"
+            "name": "grapes",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "orange"
+            "name": "orange",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "brown"
+            "name": "brown",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "grey"
+            "name": "grey",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "real"
+            "name": "real",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "white"
+            "name": "white",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "deathshead"
+            "name": "deathshead",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "moproach"
+            "name": "moproach",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "mothroach"
+            "name": "mothroach",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "rosy"
+            "name": "rosy",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "nukieelite"
+            "name": "nukieelite",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "nukiejuggernaut"
+            "name": "nukiejuggernaut",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "nukiemedic"
+            "name": "nukiemedic",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "nukieoperative"
+            "name": "nukieoperative",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "drazil"
+            "name": "drazil",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "lizard"
+            "name": "lizard",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
             "name": "rainbowlizard",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites.",
             "delays": [
                 [
                     0.15,
@@ -202,43 +254,56 @@
         ]
         },
         {
-            "name": "spacelizard"
+            "name": "spacelizard",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "fourteenloko"
+            "name": "fourteenloko",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "grape"
+            "name": "grape",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "smitecranberry"
+            "name": "smitecranberry",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "spacecola"
+            "name": "spacecola",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "bloodbag"
+            "name": "bloodbag",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "bruisepack"
+            "name": "bruisepack",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "gauze"
+            "name": "gauze",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "ointment"
+            "name": "ointment",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "clown"
+            "name": "clown",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "mime"
+            "name": "mime",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "passenger"
+            "name": "passenger",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         },
         {
-            "name": "skeleton"
+            "name": "skeleton",
+            "copyright": "Made by Huaqas (GitHub) by modifying various SS14 sprites."
         }
     ]
 }
