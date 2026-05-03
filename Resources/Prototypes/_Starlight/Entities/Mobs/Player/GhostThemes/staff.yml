@@ -109,7 +109,6 @@
   - !type:DiscordRolesRequirement
     requirement: SeniorDeveloperReq
 
-# Custodian
 - type: ghostTheme
   id: CustodianTheme
   name: Custodian
