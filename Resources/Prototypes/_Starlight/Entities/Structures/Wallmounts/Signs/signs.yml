@@ -162,7 +162,7 @@
   parent: BaseSign
   id: SignIAA
   name: internal affairs sign
-  description: A sign indicating Interal Affairs and their impending audit of your department.
+  description: A sign indicating Internal Affairs and their impending audit of your department.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
