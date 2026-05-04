@@ -56,6 +56,7 @@ Examples:
 - You can, after being revived, comment on the fact that you have stab wounds if you were killed with a bladed weapon, or that your clothes look burned.
 - You can not, after being revived, comment that you have bullet wounds of a specific caliber which must mean a specific gun was used to kill you. You can't tell that by looking at a wound.
 
+All silicon memories are cached to an on-chassis storage medium that's wirelessly backed up every 5 minutes.  PosiBrains and MMIs that have been removed from their chassis may not recall the last five minutes unless placed back into the chassis they previously inhabited.  Destruction of the chassis results in a total loss of those memories.  Further, corruption of a chassis (such as by Syndicate/SELF emag) discontinues the backups, making all memories after the event completely inaccessible unless placed back into the corrupted chassis.
 
 ## Corporate Secrets
 [color=#9819ff]Corporate Secrets[/color] are only known by high value members of the corporation. These are; All of Command, the Station AI, NanoTrasen Representative, Blue Shield Officer, Magistrate, and all Central Command roles such as ERT, OPs, CBURN, etc. Corporate Secrets should be kept secret until it is necessary to reveal them, revealing them frivolously is frowned upon by Central Command. This information is considered sensitive and libel to cause mass panic if learned by the Crew.
