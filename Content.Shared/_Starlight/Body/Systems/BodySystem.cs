@@ -10,7 +10,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Reflection;
 namespace Content.Shared._Starlight.Body.Systems;
 
-public sealed partial class BodySystem : EntitySystem
+public sealed partial class SLBodySystem : EntitySystem
 {
     public const string BodyContainerId = "sl_childbodyparts";
     [Dependency] private readonly SharedContainerSystem ContainerSystem = default!;

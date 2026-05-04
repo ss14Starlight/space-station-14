@@ -1,56 +1,57 @@
-﻿// SPDX-FileCopyrightText: 2026 Starlight Network
+// SPDX-FileCopyrightText: 2026 Starlight Network
 // SPDX-License-Identifier: MIT
 
 using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Body.Events;
 using Robust.Shared.Collections;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Starlight.Body.Systems;
 
-public sealed partial class BodySystem
+public sealed partial class SLBodySystem
 {
     private readonly Dictionary<Type, Relay> _relayHandlers = new();
 
     public void SubscribeBodyEvent<TEvent>(BodyEventHandler<TEvent> handler) where TEvent : notnull
     {
-        var relay = EnsureRelay<TEvent>();
+        var relay = EnsureRelay<TEvent>(false);
         relay.Handlers += handler;
     }
 
     public void SubscribeBodyEvent<TEvent>(BodyRefEventHandler<TEvent> handler) where TEvent : notnull
     {
-        var relay = EnsureRelay<TEvent>();
+        var relay = EnsureRelay<TEvent>(true);
         relay.RefHandlers += handler;
     }
 
     public void SubscribeBodyEvent<TParentComp,TEvent>(BodyEventHandler<TParentComp,TEvent> handler) where TEvent : notnull where TParentComp : IComponent
     {
-        var relay = EnsureCompRelay<TEvent, TParentComp>();
+        var relay = EnsureCompRelay<TEvent, TParentComp>(false);
         relay.Handlers += handler;
     }
 
     public void SubscribeBodyEvent<TParentComp,TEvent>(BodyRefEventHandler<TParentComp,TEvent> handler) where TEvent : notnull where TParentComp : IComponent
     {
-        var relay = EnsureCompRelay<TEvent, TParentComp>();
+        var relay = EnsureCompRelay<TEvent, TParentComp>(true);
         relay.RefHandlers += handler;
     }
 
-    private Relay<TEvent> EnsureRelay<TEvent>() where TEvent : notnull
+    private Relay<TEvent> EnsureRelay<TEvent>(bool isByRef) where TEvent : notnull
     {
         var evType = typeof(TEvent);
         if (_relayHandlers.TryGetValue(evType, out var rawRelay)) return (Relay<TEvent>)rawRelay;
-        var relay = new Relay<TEvent>(this);
+        var relay = new Relay<TEvent>(this, isByRef);
         _relayHandlers.Add(evType, relay);
         return relay;
     }
 
-    private Relay<TEvent>.CompRelay<TComp> EnsureCompRelay<TEvent, TComp>() where TComp : IComponent where TEvent : notnull
+    private Relay<TEvent>.CompRelay<TComp> EnsureCompRelay<TEvent, TComp>(bool isByRef) where TComp : IComponent where TEvent : notnull
     {
-        var relay = EnsureRelay<TEvent>();
+        var relay = EnsureRelay<TEvent>(isByRef);
         return relay.EnsureCompRelay<TComp>();
     }
 
-    private abstract record Relay(BodySystem Self);
+    private abstract record Relay(SLBodySystem Self);
     private record Relay<TEvent> : Relay where TEvent : notnull
     {
         public event BodyEventHandler<TEvent>? Handlers = null;
@@ -58,10 +59,12 @@ public sealed partial class BodySystem
         private ValueList<CompRelay> _compRelays = new();
         private Dictionary<Type, CompRelay> _relayLookup = new();
 
-        public Relay(BodySystem Self) : base(Self)
+        public Relay(SLBodySystem Self, bool isByRef) : base(Self)
         {
-            Self.SubscribeLocalEvent<SLBodyComponent,TEvent>(HandleRefEvent);
-            Self.SubscribeLocalEvent<SLBodyComponent,TEvent>(HandleEvent);
+            if (isByRef)
+                Self.SubscribeLocalEvent<SLBodyComponent, TEvent>(HandleRefEvent);
+            else
+                Self.SubscribeLocalEvent<SLBodyComponent, TEvent>(HandleEvent);
         }
 
         private void HandleEvent(EntityUid uid, SLBodyComponent component, TEvent args)
@@ -97,9 +100,9 @@ public sealed partial class BodySystem
         public abstract class CompRelay
         {
             public abstract void Raise(Entity<SLBodyComponent> body,
-                BodySystem self, TEvent args);
+                SLBodySystem self, TEvent args);
             public abstract void RaiseRef(Entity<SLBodyComponent> body,
-                BodySystem self, ref TEvent args);
+                SLBodySystem self, ref TEvent args);
         }
 
         public sealed class CompRelay<TComp> : CompRelay where TComp : IComponent
@@ -107,7 +110,7 @@ public sealed partial class BodySystem
             public event BodyEventHandler<TComp,TEvent>? Handlers = null;
             public event BodyRefEventHandler<TComp,TEvent>? RefHandlers = null;
             public override void Raise(Entity<SLBodyComponent> body,
-                BodySystem self, TEvent args)
+                SLBodySystem self, TEvent args)
             {
                 if (Handlers == null || !self.TryComp<TComp>(body, out var comp))
                     return;
@@ -118,7 +121,7 @@ public sealed partial class BodySystem
             }
 
             public override void RaiseRef(Entity<SLBodyComponent> body,
-                BodySystem self, ref TEvent args)
+                SLBodySystem self, ref TEvent args)
             {
                 if (RefHandlers == null || !self.TryComp<TComp>(body, out var comp))
                     return;
