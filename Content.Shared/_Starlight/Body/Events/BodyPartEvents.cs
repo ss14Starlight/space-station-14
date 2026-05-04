@@ -4,7 +4,8 @@
 using Content.Shared._Starlight.Body.Components;
 namespace Content.Shared._Starlight.Body.Events;
 
-
+[ByRefEvent]
 public record struct SLBodyPartAddedEvent(Entity<SLBodyPartComponent> Part);
 
+[ByRefEvent]
 public record struct SLBodyPartRemovedEvent(Entity<SLBodyPartComponent> Part);

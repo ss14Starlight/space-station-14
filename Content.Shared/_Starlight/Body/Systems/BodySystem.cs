@@ -7,6 +7,7 @@ using Content.Shared._Starlight.Body.Prototypes;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Reflection;
 namespace Content.Shared._Starlight.Body.Systems;
 
 public sealed partial class BodySystem : EntitySystem
@@ -78,6 +79,12 @@ public sealed partial class BodySystem : EntitySystem
         {
             //Make sure to insert the body part LAST
             ContainerSystem.Insert(newPart.Owner, parentContainer, force: true);
+        }
+        else
+        {
+            // Root part is never inserted into a container, raise the event manually
+            var ev = new SLBodyPartAddedEvent(newPart);
+            RaiseLocalEvent(newPart, ref ev);
         }
     }
 
