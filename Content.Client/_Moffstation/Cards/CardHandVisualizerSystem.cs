@@ -101,8 +101,8 @@ public sealed partial class CardHandVisualizerSystem : ManagedLayerVisualizerSys
             if (_playingCards.GetComponent(cardInDeck)?.Sprite(faceDownOverride) is not { } currentLayers)
                 continue;
 
-            var rotation = -Angle.FromDegrees(startingAngle + cardIndex * intervalAngle);
-            var x = startingXOffset + cardIndex * intervalOffset;
+            var rotation = -Angle.FromDegrees(startingAngle + (cardIndex * intervalAngle)); // Starlgith Edit: Parenthases
+            var x = startingXOffset + (cardIndex * intervalOffset); // Starlight Edit: Parenthases
             var offset = new Vector2(x, -(x * x) + 0.10f);
             foreach (var (currLayerIndex, currLayerData) in currentLayers.Index())
             {

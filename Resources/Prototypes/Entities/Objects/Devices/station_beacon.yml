@@ -851,6 +851,7 @@
   - type: NavMapBeacon
     defaultText: station-beacon-vox
 
+#region Starlight
 - type: entity
   parent: DefaultStationBeacon
   id: DefaultStationBeaconNCT
@@ -859,6 +860,14 @@
   - type: NavMapBeacon
     defaultText: station-beacon-nct
 
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconLawyer
+  suffix: Lawyer
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-lawyer
+#endregion Starlight
 
 # Ghost Only Beacons
 - type: entity
