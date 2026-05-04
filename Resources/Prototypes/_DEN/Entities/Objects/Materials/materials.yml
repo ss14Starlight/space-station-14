@@ -11,3 +11,5 @@
       interfaces:
         enum.QuickConstructionUiKey.Key:
           type: QuickConstructionBoundUserInterface
+          requireInputValidation: True
+          interactionRange:
