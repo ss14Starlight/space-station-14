@@ -90,7 +90,6 @@ public sealed partial class MechSystem : SharedMechSystem
         base.Initialize();
 
         SubscribeLocalEvent<MechComponent, ToggleActionEvent>(OnToggleLightEvent); // Starlight
-        SubscribeLocalEvent<MechComponent, MechToggleThrustersEvent>(OnMechToggleThrusters); // Starlight
         SubscribeLocalEvent<MechComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<MechComponent, EntInsertedIntoContainerMessage>(OnInsertEquipment); // Starlight
         SubscribeLocalEvent<MechComponent, EntRemovedFromContainerMessage>(OnItemRemoved); // Starlight-edit: Correct equipment update
@@ -130,16 +129,18 @@ public sealed partial class MechSystem : SharedMechSystem
         {
             if (Timing.CurTime < mechComp.NextUpdateTime)
                 continue;
-            mechComp.NextUpdateTime += mechComp.Delay;
+
+            var deltaTime = Timing.CurTime - (mechComp.NextUpdateTime - mechComp.Delay);
+            mechComp.NextUpdateTime += mechComp.Delay - (Timing.CurTime - mechComp.NextUpdateTime);
 
             if (mechComp.BatterySlot.ContainedEntity != null &&
                 TryComp<BatteryComponent>(mechComp.BatterySlot.ContainedEntity.Value, out var battery))
             {
-                // Try to draw charge if this mech has thrusters and they're enabled
-                if (TryComp<MechThrustersComponent>(uid, out var thrusters) && thrusters.ThrustersEnabled)
-                {
-                    TryChangeEnergy(uid, thrusters.DrawRate);
-                }
+                var passiveDrawEv = new GetPassiveChargeDrawRate(uid);
+                RaiseLocalEvent(uid, passiveDrawEv);
+
+                if (!MathHelper.CloseTo(passiveDrawEv.CumulativeDrawRate, 0f))
+                    TryChangeEnergy(uid, passiveDrawEv.CumulativeDrawRate * deltaTime.TotalSeconds);
 
                 var currentCharge = _battery.GetCharge((mechComp.BatterySlot.ContainedEntity.Value, battery));
                 if( mechComp.PlayPowerUpSound && (int)(currentCharge / battery.MaxCharge * 100) > 0 )
@@ -193,34 +194,6 @@ public sealed partial class MechSystem : SharedMechSystem
         ToggleLight(uid, component);
     }
 
-    private void OnMechToggleThrusters(EntityUid uid, MechComponent component, MechToggleThrustersEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        if (!TryComp<MechThrustersComponent>(uid, out var mechThrusters))
-            return;
-
-        args.Handled = true;
-
-        mechThrusters.ThrustersEnabled = !mechThrusters.ThrustersEnabled;
-
-        _actions.SetToggled(component.MechToggleThrustersActionEntity, mechThrusters.ThrustersEnabled);
-
-        if (mechThrusters.ThrustersEnabled)
-        {
-            AddComp<CanMoveInAirComponent>(uid);
-            AddComp<MovementAlwaysTouchingComponent>(uid);
-        }
-        else
-        {
-            RemComp<CanMoveInAirComponent>(uid);
-            RemComp<MovementAlwaysTouchingComponent>(uid);
-        }
-
-        Dirty(uid, mechThrusters);
-    }
-
     // Starlight-start: Correct UI/Charge update
 
     private void OnChargeChanged(EntityUid uid, MechComponent component, ref ChargeChangedEvent args)
@@ -229,8 +202,6 @@ public sealed partial class MechSystem : SharedMechSystem
         {
             if(component.Light)
                 ToggleLight(uid, component);
-            if (TryComp(uid, out MechThrustersComponent? mechThrusters) && mechThrusters.ThrustersEnabled)
-                OnMechToggleThrusters(uid, component, new MechToggleThrustersEvent());
             if(!component.PlayPowerUpSound)
                 _audioSystem.PlayPredicted(component.PowerDownSound, uid, uid);
             component.PlayPowerUpSound = true;
@@ -254,10 +225,8 @@ public sealed partial class MechSystem : SharedMechSystem
 
         if ((int)(args.CurrentCharge / args.MaxCharge * 100) == 0) //We run this off of the mech's % power readout, rather than absolute values
         {
-            if(mechComp.Light)
+            if (mechComp.Light)
                 ToggleLight(mech, mechComp);
-            if (TryComp(uid, out MechThrustersComponent? mechThrusters) && mechThrusters.ThrustersEnabled)
-                OnMechToggleThrusters(uid, mechComp, new MechToggleThrustersEvent());
             if(!mechComp.PlayPowerUpSound)
                 _audioSystem.PlayPredicted(mechComp.PowerDownSound, uid, uid);
             mechComp.PlayPowerUpSound = true;
@@ -402,6 +371,8 @@ public sealed partial class MechSystem : SharedMechSystem
             var mechBattery = EnsureComp<MechBatteryComponent>(component.BatterySlot.ContainedEntity.Value);
             mechBattery.Mech = uid;
         }
+
+        component.NextUpdateTime = Timing.CurTime + component.Delay;
         // Starlight-end
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
