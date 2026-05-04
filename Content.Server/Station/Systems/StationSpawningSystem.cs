@@ -13,6 +13,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.PDA;
+using Content.Shared._Starlight.Humanoid.Events;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
@@ -32,6 +33,7 @@ using Content.Shared.Body.Part;
 using Prometheus;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Body.Systems;
 // Starlight End
 
 namespace Content.Server.Station.Systems;
@@ -183,10 +185,11 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         }
         else
         {
-            // Starlight End
-            entity ??= Spawn(species.Prototype, coordinates);
-        } // Starlight
-
+            entity ??= SpawnAtPosition(species.Prototype, coordinates, SharedBodyVisualizerSystem.NoGenerateAppearanceOverride);
+            var profileLoadedEv = new ApplyAppearanceEvent(profile);
+            RaiseLocalEvent(entity.Value, ref profileLoadedEv);
+        }
+        // Starlight End
         if (profile != null)
         {
             _humanoidSystem.LoadProfile(entity.Value, profile);

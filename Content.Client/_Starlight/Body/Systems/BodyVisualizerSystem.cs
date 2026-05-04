@@ -50,7 +50,7 @@ public sealed class BodyVisualizerSystem : SharedBodyVisualizerSystem
                 if (component.LayerData.Count != delta.AllLayers.Count
                     || !AllPresent(component.LayerData, delta.AllLayers))
                 {
-                    List<ProtoId<VisualLayerPrototype>>? toRemove = null;
+                    List<VisualLayerKey>? toRemove = null;
                     foreach (var key in component.LayerData.Keys)
                     {
                         if (!delta.AllLayers.Contains(key))
@@ -81,33 +81,53 @@ public sealed class BodyVisualizerSystem : SharedBodyVisualizerSystem
         }
     }
 
-    private void HideLayer(EntityUid uid, BodyVisualizerComponent component, ProtoId<VisualLayerPrototype> layerId)
+    private void HideLayer(EntityUid uid, BodyVisualizerComponent component, VisualLayerKey layerId)
     {
         var ent = _sl.Entity<SpriteComponent>(uid);
         if (ent.Comp == null)
             return;
 
-        if (_sprite.LayerMapTryGet(ent, layerId, out var index, false))
+        var keyStr = layerId.ToString();
+        if (_sprite.LayerMapTryGet(ent, keyStr, out var index, false))
             _sprite.LayerSetVisible(ent, index, false);
     }
 
-    private void ApplyLayerToSprite(EntityUid uid, BodyVisualizerComponent component, ProtoId<VisualLayerPrototype> layerId, ExtendedSpriteSpecifier specifier)
+    private void ApplyLayerToSprite(EntityUid uid, BodyVisualizerComponent component, VisualLayerKey layerId, ExtendedSpriteSpecifier specifier)
     {
         var ent = _sl.Entity<SpriteComponent>(uid);
         if (ent.Comp == null)
             return;
 
-        if (!_sprite.LayerMapTryGet(ent, layerId, out var index, false))
-            index = _sprite.LayerMapReserve(ent, layerId);
+        var keyStr = layerId.ToString();
+        if (!_sprite.LayerMapTryGet(ent, keyStr, out var index, false))
+            index = _sprite.LayerMapReserve(ent, keyStr);
 
         _sprite.LayerSetSprite(ent, index, specifier.Sprite);
         _sprite.LayerSetColor(ent, index, specifier.SpriteColor);
         _sprite.LayerSetScale(ent, index, specifier.SpriteScale);
+
+        if (!layerId.Displacement)
+            return;
+
+        var originalKey = new VisualLayerKey(layerId.Layer, layerId.Index);
+        var originalKeyStr = originalKey.ToString();
+        if (!_sprite.LayerMapTryGet(ent, originalKeyStr, out var originalIndex, false))
+            originalIndex = _sprite.LayerMapReserve(ent, originalKeyStr);
+
+        ent.Comp.LayerSetShader(originalIndex, "DisplacedDraw");
+
+        if (!_sprite.TryGetLayer(ent, index, out var layer, true))
+            return;
+
+        layer.CopyToShaderParameters ??= new SpriteComponent.CopyToShaderParameters(
+            originalKeyStr);
+        layer.CopyToShaderParameters!.ParameterTexture = "displacementMap";
+        layer.CopyToShaderParameters!.ParameterUV = "displacementUV";
     }
 
     private static bool AllPresent(
-        Dictionary<ProtoId<VisualLayerPrototype>, ExtendedSpriteSpecifier> dict,
-        HashSet<ProtoId<VisualLayerPrototype>> set)
+        Dictionary<VisualLayerKey, ExtendedSpriteSpecifier> dict,
+        HashSet<VisualLayerKey> set)
     {
         foreach (var key in dict.Keys)
         {
