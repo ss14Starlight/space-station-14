@@ -33,6 +33,11 @@
   components:
   - type: SLBodyPart
     partType: SLHumanoidHead
+    sockets:
+      Eyes: HumanoidEyeSocket
+      # TODO: split into LeftEye/RightEye once per-eye layers are ready
+      #LeftEye: HumanoidEyeSocket
+      #RightEye: HumanoidEyeSocket
 
 - type: entity
   id: SLPartHumanoidArm

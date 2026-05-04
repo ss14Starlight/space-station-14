@@ -5,6 +5,14 @@
     attachedParts:
      Head:
        bodyPart: SLPartHumanHead
+       attachedParts:
+         # TODO: replace with LeftEye/RightEye once per-eye layers are ready
+         Eyes:
+           bodyPart: SLPartHumanEyes
+         #LeftEye:
+         #  bodyPart: SLPartHumanEyes
+         #RightEye:
+         #  bodyPart: SLPartHumanEyes
      LeftArm:
       bodyPart: SLPartHumanArm
       attachedParts:
