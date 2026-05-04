@@ -897,10 +897,5 @@
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
       </Box>
     </ColorBox>
-    <ColorBox Color="#475c7d">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To act as or knowingly aid a known enemy of the Station and NT-CC. Only applies beyond a shadow of doubt.
-      </Box>
-    </ColorBox>
   </Table>
 </Document>
