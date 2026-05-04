@@ -42,7 +42,7 @@ gofish-card-value-name = { $card ->
     [rosy] Rosy Mothroach
     [nukieelite] Elite Nukie
     [nukiejuggernaut] Nukie Juggernaut
-    [nukiemedic] Nukie Medic 
+    [nukiemedic] Nukie Medic
     [nukieoperative] Nukie Operative
     [drazil] Drazil Plushie
     [lizard] Lizard Plushie
@@ -63,7 +63,7 @@ gofish-card-value-name = { $card ->
    *[other] {$card}
 }
 
-gofish-card-desc = 
+gofish-card-desc =
     The border of this card is { $suit }.
     It belongs to the { gofish-card-group-name } group of cards!
 
@@ -72,7 +72,7 @@ gofish-card-suit-name = { $suit ->
     [gofishgreen] Green
     [gofishred] Red
     [gofishyellow] Yellow
-   *[other] {$suit}   
+   *[other] {$suit}
 }
 
 gofish-card-group-name = { $id ->
@@ -183,9 +183,9 @@ gofish-card-rules-content = [color=#1b67a5]
 
     There are 13 groups in a standard Go Fish! deck.
     Each group has four cards, with each card having a border color of either {"[bold][color=Red]Red[/color][/bold], [bold][color=DodgerBlue]Blue[/color][/bold], [bold][color=LimeGreen]Green[/color][/bold] or [bold][color=GoldenRod]Yellow[/color][/bold]"}.
-    
+
     The 13 groups are as follows...
-    {"[mono][bold]1:[/bold] Card         [bold]6:[/bold] Cats       [bold]11:[/bold] Plushies"}
+    {"[mono][bold]1:[/bold] Carp         [bold]6:[/bold] Cats       [bold]11:[/bold] Plushies"}
     {"[bold]2:[/bold] Cigarettes   [bold]7:[/bold] Fruit      [bold]12:[/bold] Soda"}
     {"[bold]3:[/bold] Corgis       [bold]8:[/bold] Mice       [bold]13:[/bold] Troublemakers"}
     {"[bold]4:[/bold] Donuts       [bold]9:[/bold] Mothroachs"}
