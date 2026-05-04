@@ -217,10 +217,12 @@ namespace Content.Server.Lathe
             UpdateRunningAppearance(uid, true);
             UpdateUserInterfaceState(uid, component);
 
-            if (time == TimeSpan.Zero)
-            {
-                FinishProducing(uid, component, lathe);
-            }
+            // Starlight Begin
+            // if (time == TimeSpan.Zero)
+            // {
+            //     FinishProducing(uid, component, lathe);
+            // }
+            // Starlight End
             return true;
         }
 
