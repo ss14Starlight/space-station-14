@@ -3,7 +3,7 @@ using System.Linq;
 using Content.Shared.Access;
 using Robust.Shared.Prototypes;
 
-namespace Content.IntegrationTests.Tests._StarLight.Access;
+namespace Content.IntegrationTests.Tests._Starlight.Access;
 
 public sealed class CyborgAllAccessParityTest
 {

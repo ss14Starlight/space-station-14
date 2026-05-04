@@ -5,7 +5,7 @@ using Content.Shared.GameTicking.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
-namespace Content.IntegrationTests.Tests._StarLight.GameRules;
+namespace Content.IntegrationTests.Tests._Starlight.GameRules;
 
 [TestFixture]
 public sealed class GamePresetsMinPlayersTest
