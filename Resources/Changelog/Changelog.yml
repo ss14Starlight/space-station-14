@@ -3829,14 +3829,6 @@
   id: 9407
   time: '2026-01-15T20:01:06.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/42040
-- author: sowelipililimute
-  changes:
-  - message: Using a core pinpointer piece on another piece no longer causes you to
-      start an unintended construction recipe.
-    type: Fix
-  id: 9408
-  time: '2026-01-15T20:39:02.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/42432
 - author: B_Kirill
   changes:
   - message: Added camera map. Cutting MAP wire hides camera from map while keeping

@@ -1990,7 +1990,7 @@ entities:
     - type: Transform
       pos: 6.8180027,-5.7761726
       parent: 16
-- proto: LeftHandSkeleton # Starlight Edit: OrganSkeletonPersonArmLeft -> LeftArmSkeleton
+- proto: OrganSkeletonPersonHandLeft # Starlight Edit: OrganSkeletonPersonArmLeft -> LeftArmSkeleton
   entities:
   - uid: 174
     components:

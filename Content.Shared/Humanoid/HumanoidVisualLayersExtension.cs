@@ -75,7 +75,7 @@ namespace Content.Shared.Humanoid
             }
         }
 
-        // Starlight Starlight: Reverted NuBody
+        // Starlight Start: Reverted NuBody
         public static HumanoidVisualLayers? ToHumanoidLayers(this BodyPartComponent part)
         {
             switch (part.PartType)
