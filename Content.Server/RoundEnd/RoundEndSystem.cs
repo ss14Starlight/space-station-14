@@ -21,9 +21,11 @@ using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Station.Components;
 using Timer = Robust.Shared.Timing.Timer;
+# region Starlight
 using Content.Shared.Starlight.CCVar;
 using Content.Server.Voting.Managers;
 using Content.Server.Voting;
+# endregion
 
 namespace Content.Server.RoundEnd
 {
@@ -311,8 +313,8 @@ namespace Content.Server.RoundEnd
             }
         }
 
+        // Starlight START
         /// <summary>
-        /// STARLIGHT
         /// Ends round, but with a vote for how long EOR should be
         /// </summary>
         private void EndRoundWithTimeVote(CancellationTokenSource countdownTokenSource)
@@ -334,11 +336,12 @@ namespace Content.Server.RoundEnd
 
             for (int i = 1; i < optionQuantity; i++)
             {
-                if (lastSavedNegativeTime.Seconds - optionSpacing.Seconds < 0)
+                if (lastSavedNegativeTime - optionSpacing > TimeSpan.Zero)
                 {
                     lastSavedNegativeTime = lastSavedNegativeTime.Subtract(optionSpacing);
                     options.Options.Add(($"{lastSavedNegativeTime.Minutes}", lastSavedNegativeTime));
-                    i++;
+                    if (++i >= optionQuantity)
+                        break;
                 }
 
                 lastSavedPositiveTime = lastSavedPositiveTime.Add(optionSpacing);
@@ -378,6 +381,7 @@ namespace Content.Server.RoundEnd
                 Timer.Spawn(picked, AfterEndRoundRestart, countdownTokenSource.Token);
             };
         }
+        // Starlight END
 
         public void EndRound(TimeSpan? countdownTime = null)
         {

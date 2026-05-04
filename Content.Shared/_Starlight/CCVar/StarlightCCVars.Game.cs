@@ -59,7 +59,7 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("game.nuke_round_restart_time", 20f, CVar.SERVERONLY);
 
     /// <summary>
-    /// Enables voting for how long EOR will be, off by default.
+    /// Enables voting for how long EOR will be, on by default.
     /// </summary>
     public static readonly CVarDef<bool> EnableEndRoundTimeVotes =
         CVarDef.Create("game.round_end_time_vote_enabled", true, CVar.SERVER);
