@@ -893,9 +893,5 @@
         To kill three or more sentient humanoids with malicious intent. This only applies when there have been multiple killings with intention.
       </Box>
     </ColorBox>
-    <ColorBox Color="#475c7d">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-      </Box>
-    </ColorBox>
   </Table>
 </Document>
