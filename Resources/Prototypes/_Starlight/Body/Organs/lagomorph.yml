@@ -3,7 +3,7 @@
   parent: OrganHumanEyes
   name: eyes
   suffix: Lagomorph
-  description: "Resomi eyes have great nightvision for hunting prey in maintenance tunnels."
+  description: "Only a few more degrees before we reach 360."
   components:
   - type: OrganVisualization
     layer: Eyes
