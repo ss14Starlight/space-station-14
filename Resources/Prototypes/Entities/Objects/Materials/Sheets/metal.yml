@@ -4,12 +4,14 @@
   id: SheetMetalBase
   description: A sheet of metal, used often on the station in various applications.
   components:
-  # Starlight start
+  #Starlight start
   - type: UserInterface
     interfaces:
       enum.StackCustomSplitUiKey.Key:
         type: StackCustomSplitBoundUserInterface
-  # Starlight end
+      enum.QuickConstructionUiKey.Key:
+        type: QuickConstructionBoundUserInterface
+    # Starlight end
   - type: Sprite
     sprite: Objects/Materials/Sheets/metal.rsi
   - type: Item
@@ -69,6 +71,8 @@
   - type: Appearance
   - type: Extractable
     grindableSolutionName: steel
+  - type: QuickConstructable # DEN quick construction
+    category: Steel
   - type: SolutionContainerManager
     solutions:
       steel:
@@ -77,8 +81,6 @@
           Quantity: 9
         - ReagentId: Carbon
           Quantity: 1
-  - type: QuickConstructable # DEN quick construction
-    category: Steel
 
 - type: entity
   parent: SheetSteel

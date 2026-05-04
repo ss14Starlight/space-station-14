@@ -1,6 +1,7 @@
 ﻿- type: quickConstructionCategory
   id: Steel
   constructionEntries:
+    - CrateGenericSteel #starlight
     - MachineFrame
     - Computer
     - Girder
