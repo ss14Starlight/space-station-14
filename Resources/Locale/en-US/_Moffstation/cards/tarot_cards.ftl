@@ -1,4 +1,4 @@
-tarot-card-name-reverse = tarot card
+tarot-card-name-reverse = Tarot Card
 tarot-card-desc-reverse = The gold etchings on the back of this card are truly magnificent...
 
 tarot-card-value-name = { $card ->
