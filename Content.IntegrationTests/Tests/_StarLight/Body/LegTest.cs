@@ -1,5 +1,4 @@
 ﻿using System.Numerics;
-using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -57,7 +56,7 @@ namespace Content.IntegrationTests.Tests.Body
 
                 Assert.That(!appearanceSystem.TryGetData(human, RotationVisuals.RotationState, out RotationState _, appearance));
 
-                var bodySystem = entityManager.System<BodySystem>();
+                var bodySystem = entityManager.System<Server._Starlight.Medical.Body.Systems.BodySystem>();
                 var legs = bodySystem.GetBodyChildrenOfType(human, BodyPartType.Leg, body);
 
                 foreach (var leg in legs)
