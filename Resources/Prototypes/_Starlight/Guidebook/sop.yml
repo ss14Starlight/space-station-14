@@ -257,6 +257,7 @@
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/security-sop-intro.xml"
   priority: 2
   children:
+  - SpaceLaw
   - security-sop-cadet
   - security-sop-securityofficer
   - security-sop-dutyofficer
