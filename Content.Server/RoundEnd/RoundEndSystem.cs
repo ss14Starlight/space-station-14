@@ -394,7 +394,7 @@ namespace Content.Server.RoundEnd
             _countdownTokenSource = new();
 
             // Starlight
-            if (_cfg.GetCVar(StarlightCCVars.EnableEndRoundTimeVotes))
+            if (_cfg.GetCVar(StarlightCCVars.EnableEndRoundTimeVotes) && countdownTime == null)
             {
                 EndRoundWithTimeVote(_countdownTokenSource);
                 return;
