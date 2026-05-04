@@ -383,7 +383,7 @@ namespace Content.Server.RoundEnd
         }
         // Starlight END
 
-        public void EndRound(TimeSpan? countdownTime = null)
+        public void EndRound(TimeSpan? countdownTime = null, bool priorityTime = false) // Starlight Edit
         {
             if (_gameTicker.RunLevel != GameRunLevel.InRound) return;
             LastCountdownStart = null;
@@ -394,7 +394,7 @@ namespace Content.Server.RoundEnd
             _countdownTokenSource = new();
 
             // Starlight
-            if (_cfg.GetCVar(StarlightCCVars.EnableEndRoundTimeVotes) && countdownTime == null)
+            if (_cfg.GetCVar(StarlightCCVars.EnableEndRoundTimeVotes) && !priorityTime)
             {
                 EndRoundWithTimeVote(_countdownTokenSource);
                 return;
