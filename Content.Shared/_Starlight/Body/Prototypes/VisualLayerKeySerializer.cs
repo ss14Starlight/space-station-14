@@ -21,7 +21,7 @@ public sealed class VisualLayerKeySerializer : ITypeSerializer<VisualLayerKey, V
         ISerializationContext? context = null)
     {
         if (!VisualLayerKey.TryParse(node.Value, out var key))
-            return new ErrorNode(node, $"Invalid VisualLayerKey '{node.Value}'. Expected 'LayerId' or 'LayerId{VisualLayerKey.Separator}Index'.");
+            return new ErrorNode(node, $"Invalid VisualLayerKey '{node.Value}'. Expected 'LayerId', 'LayerId{VisualLayerKey.Separator}Index', 'LayerId{VisualLayerKey.DisplacementSuffix}', or 'LayerId{VisualLayerKey.Separator}Index{VisualLayerKey.DisplacementSuffix}'.");
 
         var protoMan = dependencies.Resolve<IPrototypeManager>();
         return !protoMan.HasIndex(key.Layer)

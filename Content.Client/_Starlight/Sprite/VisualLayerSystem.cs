@@ -1,7 +1,6 @@
 // SPDX-FileCopyrightText: 2026 Starlight Network
 // SPDX-License-Identifier: MIT
 
-using System.Linq;
 using Content.Server.Administration.Systems;
 using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Body.Prototypes;
@@ -18,12 +17,78 @@ public sealed class VisualLayerSystem : EntitySystem
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly StarlightEntitySystem _sl = default!;
 
-    private List<ProtoId<VisualLayerPrototype>> _layerOrderCache = [];
+    private readonly Dictionary<string, int> _layerOrder = [];
+    private readonly List<(VisualLayerKey Key, string Str, int Order)> _scratch = [];
+
+    private Layer[] _layerSwapBuffer = [];
 
     /// <summary>
     /// Layer IDs that could not be sorted due to circular dependencies. Empty if no cycles exist.
     /// </summary>
     public IReadOnlyList<string> CyclicLayers { get; private set; } = [];
+
+    private sealed class LayerDependencyGraph
+    {
+        private readonly Dictionary<string, int> _inDegree = [];
+        private readonly Dictionary<string, HashSet<string>> _edges = [];
+
+        public void AddNode(string id)
+        {
+            _inDegree.TryAdd(id, 0);
+            _edges.TryAdd(id, []);
+        }
+
+        public void AddEdge(string from, string to)
+        {
+            AddNode(from);
+            AddNode(to);
+
+            // Only count the edge once: duplicates (symmetric Above/Below or repeated entries)
+            // must not inflate in-degree, otherwise nodes never reach zero and look cyclic.
+            if (_edges[from].Add(to))
+                _inDegree[to]++;
+        }
+
+        public TopologicalSortResult Sort()
+        {
+            var inDegree = new Dictionary<string, int>(_inDegree);
+            var order = new Dictionary<string, int>();
+            var queue = new Queue<string>();
+
+            foreach (var (id, degree) in inDegree)
+            {
+                if (degree == 0)
+                    queue.Enqueue(id);
+            }
+
+            var nextOrder = 0;
+            while (queue.TryDequeue(out var current))
+            {
+                order[current] = nextOrder++;
+                foreach (var next in _edges[current])
+                {
+                    if (--inDegree[next] == 0)
+                        queue.Enqueue(next);
+                }
+            }
+
+            List<string>? cyclic = null;
+            foreach (var (id, degree) in inDegree)
+            {
+                if (degree > 0)
+                {
+                    (cyclic ??= []).Add(id);
+                    order[id] = nextOrder++;
+                }
+            }
+
+            return new TopologicalSortResult(order, (IReadOnlyList<string>?)cyclic ?? []);
+        }
+    }
+
+    private readonly record struct TopologicalSortResult(
+        Dictionary<string, int> Order,
+        IReadOnlyList<string> CyclicNodes);
 
     public override void Initialize()
     {
@@ -41,28 +106,71 @@ public sealed class VisualLayerSystem : EntitySystem
         if (ent.Comp?.AllLayers is not List<Layer> list)
             return;
 
+        var keys = component.LayerKeys;
+        if (keys.Count == 0)
+            return;
+
+        _scratch.Clear();
+        if (_scratch.Capacity < keys.Count)
+            _scratch.Capacity = keys.Count;
+
+        foreach (var key in keys)
+        {
+            if (!_layerOrder.TryGetValue(key.Layer.Id, out var order))
+                order = int.MaxValue;
+            _scratch.Add((key, key.ToString(), order));
+        }
+
+        _scratch.Sort(static (a, b) =>
+        {
+            var c = a.Order.CompareTo(b.Order);
+            if (c != 0)
+                return c;
+
+            var ai = a.Key.Index ?? int.MinValue;
+            var bi = b.Key.Index ?? int.MinValue;
+            c = ai.CompareTo(bi);
+            if (c != 0)
+                return c;
+
+            return b.Key.Displacement.CompareTo(a.Key.Displacement);
+        });
+
         if (IsOrdered(ent!))
             return;
 
-        var copy = list.ToArray();
+        if (_layerSwapBuffer.Length < list.Count)
+        {
+            var newSize = _layerSwapBuffer.Length == 0 ? 16 : _layerSwapBuffer.Length * 2;
+            while (newSize < list.Count)
+                newSize *= 2;
+            _layerSwapBuffer = new Layer[newSize];
+        }
+
+        var copy = _layerSwapBuffer;
+        list.CopyTo(copy);
+        var oldCount = list.Count;
         list.Clear();
 
-        foreach (var layerId in _layerOrderCache)
+        for (var i = 0; i < _scratch.Count; i++)
         {
-            if (_sprite.LayerMapTryGet(ent, layerId, out var index, false))
+            var (Key, Str, Order) = _scratch[i];
+            if (_sprite.LayerMapTryGet(ent, Str, out var index, false))
             {
                 list.Add(copy[index]);
-                _sprite.LayerMapSet(ent, layerId, list.Count - 1);
+                _sprite.LayerMapSet(ent, Str, list.Count - 1);
             }
         }
+
+        Array.Clear(copy, 0, oldCount);
     }
 
     private bool IsOrdered(Entity<SpriteComponent?> ent)
     {
         var lastIndex = -1;
-        foreach (var layerId in _layerOrderCache)
+        for (var i = 0; i < _scratch.Count; i++)
         {
-            if (!_sprite.LayerMapTryGet(ent, layerId, out var index, false))
+            if (!_sprite.LayerMapTryGet(ent, _scratch[i].Str, out var index, false))
                 continue;
 
             if (index <= lastIndex)
@@ -75,67 +183,36 @@ public sealed class VisualLayerSystem : EntitySystem
 
     private void BuildLayerOrderCache()
     {
-        var inDegree = new Dictionary<string, int>();
-        var edges = new Dictionary<string, List<string>>();
+        var graph = new LayerDependencyGraph();
 
         foreach (var proto in _prototypeManager.EnumeratePrototypes<VisualLayerPrototype>())
         {
-            inDegree.TryAdd(proto.ID, 0);
-            edges.TryAdd(proto.ID, []);
+            graph.AddNode(proto.ID);
 
             if (proto.AboveLayers != null)
             {
                 foreach (var below in proto.AboveLayers)
-                {
-                    edges.TryAdd(below.Id, []);
-                    inDegree.TryAdd(below.Id, 0);
-                    edges[below.Id].Add(proto.ID);
-                    inDegree[proto.ID]++;
-                }
+                    graph.AddEdge(below.Id, proto.ID);
             }
 
             if (proto.BelowLayers != null)
             {
                 foreach (var above in proto.BelowLayers)
-                {
-                    inDegree.TryAdd(above.Id, 0);
-                    edges[proto.ID].Add(above.Id);
-                    inDegree[above.Id]++;
-                }
+                    graph.AddEdge(proto.ID, above.Id);
             }
         }
 
-        var queue = new Queue<string>();
-        foreach (var (id, degree) in inDegree)
+        var result = graph.Sort();
+        _layerOrder.Clear();
+        foreach (var (id, order) in result.Order)
+            _layerOrder[id] = order;
+
+        foreach (var id in result.CyclicNodes)
         {
-            if (degree == 0)
-                queue.Enqueue(id);
+            DebugTools.Assert(false, $"BodyVisualLayer cycle detected: '{id}' is part of a circular dependency.");
         }
 
-        var sorted = new List<string>();
-        while (queue.TryDequeue(out var current))
-        {
-            sorted.Add(current);
-            foreach (var next in edges[current])
-            {
-                inDegree[next]--;
-                if (inDegree[next] == 0)
-                    queue.Enqueue(next);
-            }
-        }
-
-        var cyclic = new List<string>();
-        foreach (var (id, degree) in inDegree)
-        {
-            if (degree > 0)
-            {
-                DebugTools.Assert(false, $"BodyVisualLayer cycle detected: '{id}' is part of a circular dependency.");
-                cyclic.Add(id);
-                sorted.Add(id);
-            }
-        }
-
-        CyclicLayers = cyclic;
-        _layerOrderCache = [.. sorted.Select(id => new ProtoId<VisualLayerPrototype>(id))];
+        CyclicLayers = result.CyclicNodes;
     }
 }
+
