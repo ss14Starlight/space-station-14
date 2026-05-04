@@ -3,17 +3,31 @@
 
 using System.Numerics;
 using Content.Shared._Starlight.Body.Components;
+using Content.Shared._Starlight.Body.Events;
 using Content.Shared._Starlight.Body.Prototypes;
+using Content.Shared._Starlight.Humanoid.Events;
 using Content.Shared.Starlight.Utility;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Body.Systems;
 
-public abstract class SharedBodyVisualizerSystem : EntitySystem
+public abstract partial class SharedBodyVisualizerSystem : EntitySystem
 {
-    private static readonly Dictionary<ProtoId<VisualLayerPrototype>, ExtendedSpriteSpecifier> _emptyModified = [];
+    private static readonly Dictionary<VisualLayerKey, ExtendedSpriteSpecifier> _emptyModified = [];
+
+    /// <summary>
+    /// ComponentRegistry override that sets <see cref="BodyVisualizerComponent.GenerateAppearance"/> to false.
+    /// Use this when spawning a player mob so that the explicit <see cref="ApplyAppearanceEvent"/> drives appearance instead.
+    /// </summary>
+    public static readonly ComponentRegistry NoGenerateAppearanceOverride = new()
+    {
+        ["BodyVisualizer"] = new EntityPrototype.ComponentRegistryEntry(
+            new BodyVisualizerComponent { GenerateAppearance = false },
+            [])
+    };
 
     [Dependency] private readonly IGameTiming _timing = default!;
 
@@ -23,58 +37,98 @@ public abstract class SharedBodyVisualizerSystem : EntitySystem
 
         SubscribeLocalEvent<BodyVisualizerComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<BodyVisualizerComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<BodyVisualizerComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<BodyVisualizerComponent, ApplyAppearanceEvent>(OnApplyProfile, before: [typeof(SLBodySystem)]);
+        SubscribeLocalEvent<BodyPartVisualizerComponent, SLBodyPartAddedEvent>(OnBodyPartAdded);
+        SubscribeLocalEvent<BodyPartVisualizerComponent, SLBodyPartRemovedEvent>(OnBodyPartRemoved);
+    }
+
+    private void OnApplyProfile(Entity<BodyVisualizerComponent> ent, ref ApplyAppearanceEvent args)
+    {
+        if(args.Profile is null)
+        {
+            // TODO: In the body, we need to store somewhere which species it belonged to.
+            // And what about mobs? In general, I would be insanely happy if every mob had unique colors, age, and maybe even markings.
+            // I do not know, this probably all needs to be rewritten.
+            args.Profile = Preferences.HumanoidCharacterProfile.RandomWithSpecies();
+        }
+    }
+
+    private void OnBodyPartAdded(EntityUid uid, BodyPartVisualizerComponent partVis, ref SLBodyPartAddedEvent args)
+    {
+        if (!TryComp<SLBodyPartComponent>(uid, out var part))
+            return;
+
+        if (!TryComp<BodyVisualizerComponent>(part.Body, out var bodyVis))
+            return;
+
+        var allowed = GetAllowedLayers(partVis, part);
+        foreach (var (layerId, specifier) in partVis.BodyVisualLayers)
+        {
+            if (!IsLayerAllowed(layerId, allowed))
+                continue;
+            SetLayer(part.Body, layerId, specifier, bodyVis);
+        }
+    }
+
+    private void OnBodyPartRemoved(EntityUid uid, BodyPartVisualizerComponent partVis, ref SLBodyPartRemovedEvent args)
+    {
+        if (!TryComp<SLBodyPartComponent>(uid, out var part))
+            return;
+
+        if (!TryComp<BodyVisualizerComponent>(part.Body, out var bodyVis))
+            return;
+
+        var allowed = GetAllowedLayers(partVis, part);
+        foreach (var layerId in partVis.BodyVisualLayers.Keys)
+        {
+            if (!IsLayerAllowed(layerId, allowed))
+                continue;
+            RemoveLayer(part.Body, layerId, bodyVis);
+        }
     }
 
     /// <summary>
-    /// Sets or updates a visual layer, tracking the change tick for delta networking.
+    /// Returns the set of allowed layer keys for this part based on its socket,
+    /// or null if no symmetry component is present (meaning all layers are allowed).
     /// </summary>
-    public void SetLayer(
-        EntityUid uid,
-        ProtoId<VisualLayerPrototype> layerId,
-        ExtendedSpriteSpecifier specifier,
-        BodyVisualizerComponent? component = null)
+    private List<VisualLayerKey>? GetAllowedLayers(BodyPartVisualizerComponent vis, SLBodyPartComponent part)
     {
-        if (!Resolve(uid, ref component))
-            return;
+        if (vis.SocketLayers.Count == 0)
+            return null;
 
-        component.LayerData[layerId] = specifier;
-        component.LayerKeys.Add(layerId);
-        component.LayerModifiedTicks[layerId] = _timing.CurTick;
-        Dirty(uid, component);
+        var socketId = part.ParentSocket?.SocketId;
+        if (socketId == null)
+            return vis.SocketLayers.TryGetValue("root", out var rootLayers) ? rootLayers : null;
+
+        return vis.SocketLayers.TryGetValue(socketId, out var layers) ? layers : null;
     }
 
     /// <summary>
-    /// Removes a visual layer. Removal is detected by clients via the delta's full key set.
+    /// Checks if the given layer is allowed based on the socket symmetry rules.
+    /// Ignores the Index part of the key, only base layer ID is checked.
     /// </summary>
-    public void RemoveLayer(
-        EntityUid uid,
-        ProtoId<VisualLayerPrototype> layerId,
-        BodyVisualizerComponent? component = null)
+    private bool IsLayerAllowed(VisualLayerKey layerId, List<VisualLayerKey>? allowed)
     {
-        if (!Resolve(uid, ref component))
-            return;
+        if (allowed == null)
+            return true;
 
-        if (!component.LayerData.Remove(layerId))
-            return;
+        foreach (var allowedKey in allowed)
+        {
+            if (allowedKey.Layer == layerId.Layer)
+                return true;
+        }
 
-        component.LayerKeys.Remove(layerId);
-        component.LayerModifiedTicks.Remove(layerId);
-        Dirty(uid, component);
+        return false;
     }
 
-    /// <summary>
-    /// Sets the sprite offset.
-    /// </summary>
-    public void SetOffset(EntityUid uid, Vector2 offset, BodyVisualizerComponent? component = null)
+    private void OnMapInit(EntityUid uid, BodyVisualizerComponent component, MapInitEvent args)
     {
-        if (!Resolve(uid, ref component))
+        if (!component.GenerateAppearance)
             return;
 
-        if (component.Offset == offset)
-            return;
-
-        component.Offset = offset;
-        Dirty(uid, component);
+        var ev = new ApplyAppearanceEvent(null);
+        RaiseLocalEvent(uid, ref ev);
     }
 
     private static void OnInit(EntityUid uid, BodyVisualizerComponent component, ComponentInit args)
@@ -94,7 +148,7 @@ public abstract class SharedBodyVisualizerSystem : EntitySystem
             return;
         }
 
-        Dictionary<ProtoId<VisualLayerPrototype>, ExtendedSpriteSpecifier>? modifiedLayers = null;
+        Dictionary<VisualLayerKey, ExtendedSpriteSpecifier>? modifiedLayers = null;
         foreach (var (key, tick) in component.LayerModifiedTicks)
         {
             if (tick < args.FromTick)
@@ -109,4 +163,23 @@ public abstract class SharedBodyVisualizerSystem : EntitySystem
         args.State = new BodyVisualizerDeltaState(component.Offset, modifiedLayers ?? _emptyModified, component.LayerKeys);
     }
 
+    internal void SetPartLayerColor(Entity<SLBodyComponent, BodyVisualizerComponent> bodyVis, Entity<SLBodyPartComponent, BodyPartVisualizerComponent> partVis, VisualLayerKey key, Color color)
+    {
+        if (!partVis.Comp2.BodyVisualLayers.TryGetValue(key, out var existing))
+            return;
+
+        if (existing.SpriteColor == color)
+            return;
+
+        existing.SpriteColor = color;
+        partVis.Comp2.BodyVisualLayers[key] = existing;
+        Dirty(partVis, partVis.Comp2);
+
+        var allowed = GetAllowedLayers(partVis.Comp2, partVis.Comp1);
+        if (!IsLayerAllowed(key, allowed))
+            return;
+
+        SetLayer(bodyVis, key, existing, bodyVis.Comp2);
     }
+}
+

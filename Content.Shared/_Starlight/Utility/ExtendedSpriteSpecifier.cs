@@ -7,8 +7,8 @@ using Robust.Shared.Serialization.Manager.Attributes;
 namespace Content.Shared.Starlight.Utility;
 
 [Serializable, NetSerializable]
-[DataDefinition]
-public sealed partial class ExtendedSpriteSpecifier
+[DataDefinition, Virtual]
+public partial class ExtendedSpriteSpecifier
 {
 
     /// <summary>
