@@ -52,12 +52,13 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<bool> Shipyard =
         CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
 
+    /// <summary>
     /// The time in seconds that it will take the round to end after the nuke explodes durign nukies.
     /// </summary>
     public static readonly CVarDef<float> NukeRoundRestartTime =
         CVarDef.Create("game.nuke_round_restart_time", 20f, CVar.SERVERONLY);
 
-        /// <summary>
+    /// <summary>
     /// Enables voting for how long EOR will be, off by default.
     /// </summary>
     public static readonly CVarDef<bool> EnableEndRoundTimeVotes =
