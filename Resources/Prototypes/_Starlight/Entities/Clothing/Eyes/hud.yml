@@ -14,9 +14,11 @@
     - type: ShowHealthBars
       damageContainers:
         - Biological
+        - IPC
     - type: ShowHealthIcons
       damageContainers:
         - Biological
+        - IPC
     - type: Tag
       tags:
         - HudMedical

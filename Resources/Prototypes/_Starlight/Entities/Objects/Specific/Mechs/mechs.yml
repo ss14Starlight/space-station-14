@@ -83,6 +83,7 @@
         - state: base-sirens
           map: [ "enum.MechVisualLayers.Siren" ]
           shader: unshaded
+          visible: false
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
@@ -100,7 +101,7 @@
       pilotWhitelist:
         components:
           - HumanoidAppearance
-      siren: true
+    - type: MechSiren
     - type: MeleeWeapon
       hidden: true
       attackRate: 1
@@ -358,6 +359,9 @@
         types:
           Blunt: 40
           Structural: 200
+    - type: MeleeThrowOnHit
+      speed: 20
+      distance: 5
     - type: MovementSpeedModifier
       baseWalkSpeed: 2
       baseSprintSpeed: 2.2
@@ -581,9 +585,6 @@
       damageModifierSet: MaulerArmor
     - type: MechThrusters
     - type: Magboots
-    - type: Repairable
-      fuelCost: 50
-      doAfterDelay: 25
     - type: PointLight
       mask: /Textures/Effects/LightMasks/cone.png
       autoRot: true

@@ -107,3 +107,4 @@ station-beacon-breakroom-medical = Medical Break Room
 station-beacon-breakroom-science = Science Break Room
 station-beacon-breakroom-security = Security Break Room
 station-beacon-breakroom-service = Service Break Room
+station-beacon-lawyer = Lawyer

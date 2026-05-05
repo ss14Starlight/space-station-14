@@ -33,6 +33,7 @@ using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Wires;
+using Content.Shared.Electrocution;
 using Content.Shared._Starlight.Mech;
 using Content.Shared._Starlight.Weapons.Melee.Events;
 #endregion
@@ -91,6 +92,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, CanRepairEvent>(OnRepairAttempt); //  Moved from server side, broken
         SubscribeLocalEvent<MechComponent, AttemptChangePanelEvent>(OnAttemptPanelChanged);
         SubscribeLocalEvent<MechPilotComponent, KnockDownAttemptEvent>(OnKnockdownAttempt);
+        SubscribeLocalEvent<MechPilotComponent, ElectrocutionAttemptEvent>(OnMechPilotElectrocutionAttempt);
         #endregion
 
         InitializeRelay();
@@ -290,10 +292,6 @@ public abstract partial class SharedMechSystem : EntitySystem
             _actions.AddAction(pilot, ref component.MechToggleInternalsActionEntity, component.MechToggleInternalsAction, mech);
         if (_light.TryGetLight(mech, out var light))
             _actions.AddAction(pilot, ref component.MechToggleLightActionEntity, component.MechToggleLightAction, mech);
-        if (component.SirenAvailable)
-            _actions.AddAction(pilot, ref component.MechToggleSirenActionEntity, component.MechToggleSirenAction, mech);
-        if (HasComp<MechThrustersComponent>(mech))
-            _actions.AddAction(pilot, ref component.MechToggleThrustersActionEntity, component.MechToggleThrustersAction, mech);
     }
 
     private void RemoveUser(EntityUid mech, EntityUid pilot)
@@ -672,7 +670,6 @@ public abstract partial class SharedMechSystem : EntitySystem
         _appearance.SetData(uid, MechVisuals.Open, IsEmpty(component), appearance);
         _appearance.SetData(uid, MechVisuals.Broken, component.Broken, appearance);
         _appearance.SetData(uid, MechVisuals.Light, component.Light, appearance);
-        _appearance.SetData(uid, MechVisuals.Siren, component.Siren, appearance);
     }
 
     private void OnDragDrop(EntityUid uid, MechComponent component, ref DragDropTargetEvent args)
@@ -712,6 +709,9 @@ public abstract partial class SharedMechSystem : EntitySystem
     {
         args.Cancelled = args.User != uid;
     }
+
+    private void OnMechPilotElectrocutionAttempt(EntityUid uid, MechPilotComponent comp, ElectrocutionAttemptEvent args)
+        => args.SiemensCoefficient *= 0f; // Fully insulate the pilot
     #endregion
 }
 

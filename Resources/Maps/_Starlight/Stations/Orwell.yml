@@ -3,9 +3,9 @@ meta:
   category: Map
   engineVersion: 272.0.0
   forkId: starlight
-  forkVersion: d45f72dc3b11a4288a0ea4a08fc07102577604c0
-  time: 04/27/2026 04:05:10
-  entityCount: 29411
+  forkVersion: 98237f9f38802c24eef7f76d36fdc19f627c00d2
+  time: 05/02/2026 05:46:23
+  entityCount: 29422
 maps:
 - 1
 grids:
@@ -7839,7 +7839,8 @@ entities:
           10,5:
             0: 56719
           10,6:
-            0: 57293
+            0: 57229
+            7: 64
           10,7:
             0: 65473
           10,8:
@@ -8120,6 +8121,11 @@ entities:
           temperature: 293.15
           moles:
             Plasma: 6666.982
+        - volume: 2500
+          temperature: 293.14975
+          moles:
+            Oxygen: 20.078888
+            Nitrogen: 75.53487
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -8175,6 +8181,17 @@ entities:
     - type: Action
       originalIconColor: '#FFFFFFFF'
       container: 8
+- proto: ActionToggleLight
+  entities:
+  - uid: 11835
+    mapInit: true
+    paused: true
+    components:
+    - type: Transform
+      parent: 21064
+    - type: Action
+      originalIconColor: '#FFFFFFFF'
+      container: 21064
 - proto: AirAlarm
   entities:
   - uid: 12
@@ -10397,7 +10414,7 @@ entities:
       pos: -57.5,40.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -44159.984
+      secondsUntilStateChange: -45989.023
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10804,7 +10821,7 @@ entities:
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: Door
-      secondsUntilStateChange: -180999.27
+      secondsUntilStateChange: -182828.31
       state: Opening
     - type: DeviceLinkSource
       linkedPorts:
@@ -12527,7 +12544,7 @@ entities:
       pos: 18.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -69956.375
+      secondsUntilStateChange: -71785.414
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12538,7 +12555,7 @@ entities:
       pos: 17.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -69951.305
+      secondsUntilStateChange: -71780.34
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -49774,6 +49791,12 @@ entities:
       rot: 6.283185307179586 rad
       pos: -48.518753,4.6417327
       parent: 2
+  - uid: 29414
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 48.728096,18.504698
+      parent: 2
 - proto: CableMV
   entities:
   - uid: 3171
@@ -71366,12 +71389,12 @@ entities:
   - uid: 11825
     components:
     - type: Transform
-      pos: 48.53179,18.685621
+      pos: 48.48504,18.286167
       parent: 2
   - uid: 11826
     components:
     - type: Transform
-      pos: 48.53179,18.513746
+      pos: 48.491985,18.175055
       parent: 2
 - proto: ClothingBeltBandolier
   entities:
@@ -71430,11 +71453,6 @@ entities:
     - type: Transform
       pos: -48.58623,4.727293
       parent: 2
-  - uid: 11835
-    components:
-    - type: Transform
-      pos: 28.51447,-3.402541
-      parent: 2
   - uid: 11836
     components:
     - type: Transform
@@ -71477,18 +71495,6 @@ entities:
       parent: 11842
     - type: Physics
       canCollide: False
-- proto: ClothingEyesGlassesMeson
-  entities:
-  - uid: 11852
-    components:
-    - type: Transform
-      pos: 28.530094,-2.230666
-      parent: 2
-  - uid: 11853
-    components:
-    - type: Transform
-      pos: 28.60822,-2.371291
-      parent: 2
 - proto: ClothingEyesGlassesSunglasses
   entities:
   - uid: 5696
@@ -71698,7 +71704,7 @@ entities:
   - uid: 11902
     components:
     - type: Transform
-      pos: -27.478218,-4.437266
+      pos: -27.468483,-4.5769734
       parent: 2
   - uid: 11903
     components:
@@ -135830,6 +135836,21 @@ entities:
     - type: Transform
       pos: 46.602856,-18.41996
       parent: 2
+- proto: HandheldMachineAnalyzer
+  entities:
+  - uid: 25254
+    components:
+    - type: Transform
+      parent: 28800
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+      storage: 28800
+  - uid: 29413
+    components:
+    - type: Transform
+      pos: 48.528976,18.925632
+      parent: 2
 - proto: HandheldStationMap
   entities:
   - uid: 20898
@@ -136807,6 +136828,55 @@ entities:
     - type: Action
       originalIconColor: '#FFFFFFFF'
       container: 8
+- proto: KeycardAuth
+  entities:
+  - uid: 11852
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 62.5,-13.5
+      parent: 2
+  - uid: 11853
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 75.5,-0.5
+      parent: 2
+  - uid: 29416
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 48.5,-33.5
+      parent: 2
+  - uid: 29417
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 12.5,-12.5
+      parent: 2
+  - uid: 29419
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -48.5,17.5
+      parent: 2
+  - uid: 29420
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -43.5,26.5
+      parent: 2
+  - uid: 29421
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -28.5,-6.5
+      parent: 2
+  - uid: 29422
+    components:
+    - type: Transform
+      pos: 31.5,36.5
+      parent: 2
 - proto: KitchenElectricGrill
   entities:
   - uid: 21032
@@ -136986,8 +137056,24 @@ entities:
   - uid: 21064
     components:
     - type: Transform
-      pos: 12.524051,-12.266485
+      pos: 12.725367,-12.267633
       parent: 2
+    - type: HandheldLight
+      toggleActionEntity: 11835
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        actions: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 11835
+    - type: Physics
+      canCollide: True
+    - type: ActionsContainer
   - uid: 21065
     components:
     - type: Transform
@@ -138819,6 +138905,21 @@ entities:
     components:
     - type: Transform
       pos: 49.5,0.5
+      parent: 2
+- proto: NunoCardDeckBox
+  entities:
+  - uid: 29418
+    components:
+    - type: Transform
+      pos: -48.972622,-14.288684
+      parent: 2
+- proto: OilPack
+  entities:
+  - uid: 29415
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 48.321404,18.583384
       parent: 2
 - proto: Omnitool
   entities:
@@ -151392,7 +151493,7 @@ entities:
   - uid: 23536
     components:
     - type: Transform
-      pos: 75.53778,-0.4673195
+      pos: 75.68962,-0.38758945
       parent: 2
 - proto: ResearchAndDevelopmentServer
   entities:
@@ -180715,6 +180816,25 @@ entities:
     - type: Transform
       pos: 42.5,25.5
       parent: 2
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 25254
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: WardrobeVirologyFilled
   entities:
   - uid: 28801
