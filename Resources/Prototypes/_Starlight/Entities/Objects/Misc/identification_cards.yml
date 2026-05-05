@@ -16,7 +16,7 @@
 - type: entity
   parent: [ IDCardStandard, BaseCentcommContraband ]
   id: CentcomIDCardOperator
-  name: centcomm operator ID card
+  name: CentComm operator ID card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -60,7 +60,7 @@
 - type: entity
   parent: [ IDCardStandard, BaseCommandContraband ]
   id: NanoTrasenRepresentativeIDCard
-  name: nanotrasen representative ID Card
+  name: NanoTrasen representative ID Card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -102,7 +102,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
-    - state: silver 
+    - state: silver
     - sprite: *id-rsi
       state: stripe_top
       color: "#1b67a5"
@@ -118,7 +118,7 @@
 - type: entity
   parent: [ IDCardStandard, BaseCommandContraband ]
   id: NTNCBlueShieldIDCard
-  name: nanotrasen navy corps marine's ID card
+  name: NanoTrasen navy corps marine's ID card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -247,12 +247,15 @@
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
-    layers: 
+    layers:
     - state: sovietid
   - type: IdCard
     jobIcon: JobIconSoviet
   - type: NanoChatCard
     listNumber: false
+  - type: Access
+    tags:
+      - Communist
 
 - type: entity
   parent: [ IDCardStandard, BaseSyndicateContraband ]
@@ -365,6 +368,16 @@
     - Atmospherics
   - type: NanoChatCard
     listNumber: false
+
+- type: entity
+  parent: AssistantDerelictBorgiIDCard
+  id: XenoborgiIDCard
+  name: xenoborgi ID card
+  suffix: Xenoborgi
+  components:
+    - type: IdCard
+      jobTitle: chat-radio-xenoborg
+      jobIcon: JobIconXenoborg
 
 - type: entity
   parent: IDCardStandard
@@ -507,7 +520,7 @@
 - type: entity
   parent: [ IDCardStandard, BaseCommandContraband ]
   id: NanotrasenCareerTrainerIDCard
-  name: nanotrasen career trainer ID Card
+  name: NanoTrasen career trainer ID Card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
@@ -575,3 +588,119 @@
     - DoorBumpOpener
     - WhitelistChameleon
     - WhitelistChameleonIdCard
+
+# Blackstar
+- type: entity
+  parent: IDCardStandard
+  id: BlackstarIDCard
+  name: Blackstar ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: mercenary
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: Blackstar
+    - type: IdCard
+      jobTitle: job-name-blackstar
+      jobIcon: JobIconBlackstar
+    - type: Access
+      tags:
+        - Blackstar
+
+# MedTak
+- type: entity
+  parent: IDCardStandard
+  id: MedTakTeamLeadIDCard
+  name: MedTak team leader ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: MedTakLeader
+    - type: IdCard
+      jobTitle: job-name-medtak-leader
+      jobIcon: JobIconMedTakLeader
+    - type: Access
+      tags:
+        - MedTak
+
+- type: entity
+  parent: IDCardStandard
+  id: MedTakDispatcherIDCard
+  name: MedTak dispatcher ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: MedTakDispatcher
+    - type: IdCard
+      jobTitle: job-name-medtak-dispatcher
+      jobIcon: JobIconMedTakDispatcher
+    - type: Access
+      tags:
+        - MedTak
+
+- type: entity
+  parent: IDCardStandard
+  id: MedTakMedicIDCard
+  name: Medtak medic ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: MedTakMedic
+    - type: IdCard
+      jobTitle: job-name-medtak-medic
+      jobIcon: JobIconMedTakMedic
+    - type: Access
+      tags:
+        - MedTak
+
+- type: entity
+  parent: IDCardStandard
+  id: MedTakPilotIDCard
+  name: Medtak pilot ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: MedTakPilot
+    - type: IdCard
+      jobTitle: job-name-medtak-pilot
+      jobIcon: JobIconMedTakPilot
+    - type: Access
+      tags:
+        - MedTak
+
+- type: entity
+  parent: IDCardStandard
+  id: MedTakSecurityIDCard
+  name: Medtak security ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: medtak
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: MedTakSecurity
+    - type: IdCard
+      jobTitle: job-name-medtak-security
+      jobIcon: JobIconMedTakSecurity
+    - type: Access
+      tags:
+        - MedTak

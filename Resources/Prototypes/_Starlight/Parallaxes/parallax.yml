@@ -214,7 +214,7 @@
       tiled: true
       shader: ""
   layersLQUseHQ: true
- 
+
 - type: parallax
   id: LavaLight
   layers:
@@ -270,7 +270,7 @@
       slowness: 0
       scale: "1, 1"
       shader: ""
-      
+
 - type: parallax
   id: LandArid
   layers:

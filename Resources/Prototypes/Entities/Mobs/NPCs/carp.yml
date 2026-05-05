@@ -198,7 +198,7 @@
       force: true
       speedModifier: 1.5 # faster because carp are kinda strong
       useSound:
-         path: /Audio/Items/crowbar.ogg 
+         path: /Audio/Items/crowbar.ogg
 
 - type: entity
   id: MobCarpDungeon
@@ -219,7 +219,7 @@
 
 - type: entity
   name: sharkminnow
-  parent: BaseMobCarp
+  parent: BaseMobCarp #starlight Nubody will not pass.
   id: MobShark
   description: A dangerous shark from the blackness of endless space, who loves to drink blood.
   components:
@@ -256,9 +256,11 @@
         Dead:
           Base: dead
           BaseUnshaded: dead_mouth
+    # Starlight - start
     - type: Body
       prototype: Bloodsucker
       requiredLegs: 1
+    # Starlight - end
     - type: Butcherable
       spawned:
         - id: FoodMeatFish

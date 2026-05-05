@@ -32,6 +32,7 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+    - NotLabelable
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -53,11 +54,3 @@
       reagents:
       - ReagentId: AbductorBlood
         Quantity: 300
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobAbductorDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: Abductor

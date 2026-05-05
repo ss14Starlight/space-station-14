@@ -35,7 +35,7 @@
     - Nukeops
     - Traitor
     - Revolutionary
-    - Wizard
+    - WizardDuel
     - Xenoborgs
     - RampingStationEventScheduler
     - SLChangeling #Starlight
@@ -48,6 +48,7 @@
     - SiliconLiberation #Starlight
     - Brighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
+    # - CosmicCult # Starlight
 
 - type: gamePreset
   id: AlmostAllerAtOnce
@@ -64,7 +65,8 @@
     - Nukeops
     - Traitor
     - Revolutionary
-    - Wizard
+    - SubWizard # Well, you did say *Aller* at once.
+    - WizardDuel # Well, you did say *Aller* at once.
     - Xenoborgs
     - BasicStationEventScheduler
     - BasicStationEventScheduler # Starlight, ShitStation
@@ -91,3 +93,4 @@
     - LoneOpsSpawn # Starlight
     - RailroadingTerminator # Starlight
     - RailroadingMinor # Starlight
+    # - CosmicCult # Starlight

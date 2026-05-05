@@ -38,7 +38,7 @@ public sealed partial class IPCMenu : FancyWindow
     private readonly SharedBatterySystem _batterySystem;
 
     public Action? BrainButtonPressed;
-    public Action? EjectBatteryButtonPressed;
+    //public Action? EjectBatteryButtonPressed; The eject battery button is currently bugged and freezes the individual who uses it. Uncomment this when a fix is applied!
     public Action<string>? NameChanged;
 
     private float _accumulatedTime;
@@ -72,7 +72,8 @@ public sealed partial class IPCMenu : FancyWindow
 
         _lastValidName = NameLineEdit.Text;
 
-        EjectBatteryButton.OnPressed += _ => EjectBatteryButtonPressed?.Invoke();
+        //The eject battery button is currently bugged and freezes the individual who uses it. Uncomment this when a fix is applied!
+        //EjectBatteryButton.OnPressed += _ => EjectBatteryButtonPressed?.Invoke();
         BrainButton.OnPressed += _ => BrainButtonPressed?.Invoke();
 
         NameLineEdit.OnTextChanged += OnNameChanged;
@@ -159,7 +160,8 @@ public sealed partial class IPCMenu : FancyWindow
 
         _fullText = PrintConsole(mobstate.ToString(), batteryInserted, batteryCharge, eyeDamage, _bloodLevel, temp, fanMode, fansEfficiency, brain, damage);
         UpdateBrainButton(brain);
-        EjectBatteryButton.Disabled = !batteryInserted;
+        //The eject battery button is currently bugged and freezes the individual who uses it. Uncomment this when a fix is applied!
+        //EjectBatteryButton.Disabled = !batteryInserted;
         ChargeBar.Value = batteryCharge;
         ChargeLabel.Text = Loc.GetString("borg-ui-charge-label",
             ("charge", (int)MathF.Round(batteryCharge * 100)));
@@ -171,7 +173,7 @@ public sealed partial class IPCMenu : FancyWindow
 
         var header = separator;
         var i = 1;
-        while (true)
+        while (i < 7)
         {
             var index = $"ipc-ui-console-header-{i}";
             var line = Loc.GetString(index);

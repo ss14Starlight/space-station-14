@@ -55,3 +55,10 @@
   - 1475631679409492108 # Tickets administrator
   discord: roles-req-discord-starlight
   rolesLoc: roles-req-ticketsadministrator-roles
+
+- type: roleRequirementPrototype
+  id: FirstWritingContestReq
+  roles:
+  - 1494477781772275732 # First Writing Contest Winner
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-first-writing-roles

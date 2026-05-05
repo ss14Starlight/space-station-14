@@ -1,5 +1,5 @@
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
-using Content.Shared.Body.Events;
+using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Database;
 using Content.Shared.Gibbing;
 using Content.Shared.Interaction;
@@ -16,7 +16,7 @@ public sealed partial class IPCSystem
     protected override void SetupBrain()
     {
         base.SetupBrain();
-        
+
         SubscribeLocalEvent<IPCBrainHolderComponent, AfterInteractUsingEvent>(OnBrainInteractUsing);
         SubscribeLocalEvent<IPCBrainHolderComponent, EntInsertedIntoContainerMessage>(OnInserted);
         SubscribeLocalEvent<IPCBrainHolderComponent, EntRemovedFromContainerMessage>(OnRemoved);
@@ -24,13 +24,13 @@ public sealed partial class IPCSystem
         SubscribeLocalEvent<IPCBrainComponent, MindAddedMessage>(OnBrainMindAdded);
     }
 
-    private void OnBrainGibbed(Entity<IPCBrainHolderComponent> ent, ref BeingGibbedEvent args) => 
+    private void OnBrainGibbed(Entity<IPCBrainHolderComponent> ent, ref BeingGibbedEvent args) =>
         _container.EmptyContainer(ent.Comp.BrainContainerSlot);
 
     private void OnInserted(Entity<IPCBrainHolderComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
-        if (!HasComp<IPCBrainComponent>(args.Entity) || 
-            !_mind.TryGetMind(args.Entity, out var mindId, out var mind) || 
+        if (!HasComp<IPCBrainComponent>(args.Entity) ||
+            !_mind.TryGetMind(args.Entity, out var mindId, out var mind) ||
             args.Container != ent.Comp.BrainContainerSlot)
             return;
 
@@ -39,8 +39,8 @@ public sealed partial class IPCSystem
 
     private void OnRemoved(Entity<IPCBrainHolderComponent> ent, ref EntRemovedFromContainerMessage args)
     {
-        if (!HasComp<IPCBrainComponent>(args.Entity) || 
-            !_mind.TryGetMind(ent, out var mindId, out var mind) || 
+        if (!HasComp<IPCBrainComponent>(args.Entity) ||
+            !_mind.TryGetMind(ent, out var mindId, out var mind) ||
             args.Container != ent.Comp.BrainContainerSlot)
             return;
 
@@ -62,7 +62,8 @@ public sealed partial class IPCSystem
     private void OnBrainInteractUsing(Entity<IPCBrainHolderComponent> ent, ref AfterInteractUsingEvent args)
     {
         if (!args.CanReach || args.Handled ||
-            !TryComp(args.Used, out BorgBrainComponent? brain))
+            !TryComp(args.Used, out BorgBrainComponent? brain)
+            || HasComp<StationAIShuntComponent>(args.Used)) // Yeah, No "AI" IPC...
             return;
 
         if (TryComp<WiresPanelComponent>(ent, out var panel) && !panel.Open)
@@ -76,7 +77,7 @@ public sealed partial class IPCSystem
             _container.Insert(args.Used, ent.Comp.BrainContainerSlot);
             _adminLog.Add(LogType.Action, LogImpact.Medium,
                 $"{ToPrettyString(args.User):player} installed brain {ToPrettyString(args.Used)} into IPC {ToPrettyString(ent)}");
-            _popup.PopupEntity(Loc.GetString("ipc-brain-ejected"), ent, args.User);
+            _popup.PopupEntity(Loc.GetString("ipc-brain-inserted"), ent, args.User);
             _audio.PlayPvs(_audio.ResolveSound(ent.Comp.BrainInsertionSound), ent);
             args.Handled = true;
         }

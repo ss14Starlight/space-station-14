@@ -49,6 +49,9 @@ marking-ScreenFrown = Frowny
 marking-ScreenRing = Ring
 marking-ScreenL = L
 
+marking-MarkingStandardHead = Standard Head
+marking-MarkingStandardChest = Standard Chassis
+
 marking-MarkingBishopHeadMonitor = 'Bishop' Screen Head
 marking-MarkingBishopHead = 'Bishop' Head
 marking-MarkingBishopHeadAlt = 'Bishop' Head 2

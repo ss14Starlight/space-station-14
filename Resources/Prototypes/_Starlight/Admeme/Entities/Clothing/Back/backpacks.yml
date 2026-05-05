@@ -1,0 +1,14 @@
+# MedTak
+- type: entity
+  parent: [ ClothingBackpack, BaseMedTakContraband ]
+  id: ClothingBackpackMedTak
+  name: MedTak operator backpack
+  description: A spacious backpack with lots of pockets, worn by MedTak operators.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Back/Backpacks/medtak.rsi
+  - type: Storage
+    grid:
+    - 0,0,8,3
+  - type: ExplosionResistance
+    damageCoefficient: 0.1

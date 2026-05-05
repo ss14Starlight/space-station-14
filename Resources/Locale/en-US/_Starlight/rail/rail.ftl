@@ -34,7 +34,7 @@ rail-open-delivery-task = Open {$Amount} pieces of mail.
 
 rr-apple-pie = Apple pie
 rr-apple-pie-desc = Rumor has it this station has the best apple pies in the galaxy. That’s definitely worth checking out.
-                    
+
 rr-dumplings = Dumplings
 rr-dumplings-desc = Can you imagine? Pierogi. With meat. I didn’t know I needed that until now.
 
@@ -406,6 +406,9 @@ rr-whiskeysour-desc = Sweet, sour, and guaranteed to raise eyebrows.
 
 rr-bacchusblessing = Bacchus’s Blessing
 rr-bacchusblessing-desc = Wine, gods, and the promise of a very loud evening.
+
+rr-thelastcall = The Last Call
+rr-thelastcall-desc = There are no good or bad choices. Only consequences.
 
 # Mail
 rr-mail-open = Mail

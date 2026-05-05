@@ -11,3 +11,19 @@
       amount: 1
   products:
     DraganSpecial: 3
+
+- type: reaction
+  id: TheLastCall
+  requiredMixerCategories:
+  - Shake
+  reactants:
+    ToxinsSpecial:
+      amount: 1
+    PoisonWine:
+      amount: 1
+    Vampiro:
+      amount: 2
+    JackRose:
+      amount: 2
+  products:
+    TheLastCall: 6

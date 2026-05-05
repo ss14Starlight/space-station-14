@@ -42,7 +42,7 @@ public sealed class NullLinkPlayerResourcesManager : SharedNullLinkPlayerResourc
         value = null;
         if (!_playerResources.TryGetValue(id, out var Value))
             return false;
-        
+
         value = Value;
         return true;
     }

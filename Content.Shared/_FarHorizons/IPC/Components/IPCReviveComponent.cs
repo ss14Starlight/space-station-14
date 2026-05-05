@@ -14,7 +14,7 @@ public sealed partial class IPCReviveComponent : Component
     [DataField]
     [AutoNetworkedField]
     public bool RebootButton = false;
-    
+
     [DataField]
     [AutoNetworkedField]
     public TimeSpan RebootTime;

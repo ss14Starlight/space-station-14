@@ -70,8 +70,8 @@
       # Starlight End
   - type: LitOnPowered
   - type: PointLight
-    radius: 1.5
-    energy: 3.0
+    radius: 2.5 #SL 1.5 - > 2.5
+    energy: 1.5 #SL 3.0 -> 1.5
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
@@ -91,6 +91,7 @@
     containers:
       board: !type:Container
         ents: []
+      pai_slot: !type:ContainerSlot {} # Starlight-edit
   - type: LightningTarget
     priority: 1
   - type: RequireProjectileTarget

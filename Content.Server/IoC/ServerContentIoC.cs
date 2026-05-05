@@ -33,6 +33,7 @@ using Content.Shared.Players.RateLimiting;
 
 #region Starlight
 using Content.Server._Starlight.BugReports;
+using Content.Shared._Starlight.Achievement;
 using Content.Server.Holiday;
 using Content.Server.Starlight;
 using Content.Shared.Starlight;
@@ -103,15 +104,16 @@ internal static class ServerContentIoC
         deps.Register<DiscordChatLink>();
 
         // 🌟Starlight🌟 start
-        deps.Register<ISharedPlayersRoleManager, PlayerRolesManager>(); 
-        deps.Register<IPlayerRolesManager, PlayerRolesManager>();     
+        deps.Register<ISharedPlayersRoleManager, PlayerRolesManager>();
+        deps.Register<IPlayerRolesManager, PlayerRolesManager>();
         deps.Register<ITTSClient, TTSClient>();
         deps.Register<ItemPriceManager, ItemPriceManager>();
         deps.Register<IBugReportManager, BugReportManager>();
+        deps.Register<IAchievementRewardManager, NullLinkPlayerManager>();
         deps.Register<PreWrittenDocumentManager>();
         // 🌟Starlight🌟 end
         // nulllink start
-        deps.Register<IActorRouter, ActorRouter>(); 
+        deps.Register<IActorRouter, ActorRouter>();
         deps.Register<NullLinkPlayerManager>();
         deps.Register<INullLinkPlayerManager, NullLinkPlayerManager>();
         deps.Register<INullLinkPlayTimeManager, NullLinkPlayTimeManager>();
