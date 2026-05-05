@@ -2,7 +2,7 @@
   parent: ReagentDispenserBasePowerCell # Starlight edit: power cell soda dispenser
   id: CoffeeDispenserEmpty
   name: coffee dispenser
-  description: A beverage dispenser with a selection of coffee and tea Has a single fill slot for containers.
+  description: A beverage dispenser with a selection of coffee and tea. Has a single fill slot for containers.
   suffix: Empty
   components:
   - type: Rotatable
