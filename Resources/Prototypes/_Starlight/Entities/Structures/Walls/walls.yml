@@ -274,9 +274,6 @@
     snap:
     - Window
   components:
-  - type: Anchorable
-    flags:
-    - Anchorable
   - type: Rotatable
   - type: WallMount
     arc: 360
@@ -294,7 +291,7 @@
     snapCardinals: true
     drawdepth: WallMountedItems
   - type: Transform
-    anchored: false
+    anchored: true
   - type: Tag
     tags:
       - ForceFixRotations
@@ -308,11 +305,14 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb {}
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 250
         mask:
-        - FullTileMask
+        - MachineMask
         layer:
-        - GlassLayer
+        - MidImpassable
+        - LowImpassable
   - type: Airtight
   - type: StaticPrice
     price: 75
