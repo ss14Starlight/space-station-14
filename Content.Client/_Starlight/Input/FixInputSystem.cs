@@ -1,6 +1,5 @@
 using Content.Shared._Starlight.Input;
 using Robust.Client.GameObjects;
-using Robust.Shared.Console;
 
 namespace Content.Client._Starlight.Input;
 

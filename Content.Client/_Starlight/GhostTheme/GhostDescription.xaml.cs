@@ -13,7 +13,7 @@ public sealed partial class GhostDescription : BoxContainer
 
     public event Action<Color>? OnColorSelected;
 
-    private ColorSelectorSliders? _rgbSkinColorSelector = null;
+    private readonly ColorSelectorSliders? _rgbSkinColorSelector = null;
 
     public GhostDescription(
         SpriteSystem spriteSystem,
@@ -37,10 +37,8 @@ public sealed partial class GhostDescription : BoxContainer
         {
             RgbSkinColorContainer.AddChild(_rgbSkinColorSelector = new ColorSelectorSliders());
             RgbSkinColorContainer.Visible = colorizeable;
-            _rgbSkinColorSelector.OnColorChanged += _ =>
-            {
-                OnColorSelected?.Invoke(_rgbSkinColorSelector.Color);
-            };
+            _rgbSkinColorSelector.OnColorChanged += _
+                => OnColorSelected?.Invoke(_rgbSkinColorSelector.Color);
         }
     }
 }
