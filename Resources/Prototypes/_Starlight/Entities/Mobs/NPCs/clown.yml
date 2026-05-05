@@ -41,6 +41,8 @@
         orGroup: ToyGroup
       - id: ClothingShoesSkates
         orGroup: ToyGroup
+      - id: ClothingShoesSkatesCool
+        orGroup: ToyGroup
       - id: RubberChicken
         orGroup: ToyGroup
       - id: DrinkSpaceLube

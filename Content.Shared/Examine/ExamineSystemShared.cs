@@ -253,8 +253,9 @@ namespace Content.Shared.Examine
             return InRangeUnOccluded(originPos, other, range, predicate, ignoreInsideBlocker);
         }
 
-        public FormattedMessage GetExamineText(EntityUid entity, EntityUid? examiner)
+        public FormattedMessage GetExamineText(EntityUid entity, EntityUid? examiner, out ExaminedEvent? ev, string? name = null) // starlight-edit: just pass out the event, that's prob easiest and most scalable.
         {
+            ev = null; // Starlight
             var message = new FormattedMessage();
 
             if (examiner == null)
@@ -276,11 +277,12 @@ namespace Content.Shared.Examine
 
             // Raise the event and let things that subscribe to it change the message...
             var isInDetailsRange = IsInDetailsRange(examiner.Value, entity);
-            var examinedEvent = new ExaminedEvent(message, entity, examiner.Value, isInDetailsRange, hasDescription);
-            RaiseLocalEvent(entity, examinedEvent);
+            // Starlight begin
+            ev = new ExaminedEvent(message, entity, examiner.Value, isInDetailsRange, hasDescription, name);
+            RaiseLocalEvent(entity, ev);
 
-            var newMessage = examinedEvent.GetTotalMessage();
-
+            var newMessage = ev.GetTotalMessage();
+            //Starlight end
             // pop color tag
             newMessage.Pop();
 
@@ -328,17 +330,25 @@ namespace Content.Shared.Examine
         /// </summary>
         public EntityUid Examined { get; }
 
+        // Starlight begin
+        private readonly List<(LocId LocId, int Priority, (string, object)[] ExtraArgs)> _nameModifiers = [];
+        public readonly string BaseName;
+
+        public int Modifiers => _nameModifiers.Count;
+        // Starlight end
+
         private bool _hasDescription;
 
         private ExamineMessagePart? _currentGroupPart;
 
-        public ExaminedEvent(FormattedMessage message, EntityUid examined, EntityUid examiner, bool isInDetailsRange, bool hasDescription)
+        public ExaminedEvent(FormattedMessage message, EntityUid examined, EntityUid examiner, bool isInDetailsRange, bool hasDescription, string? name = null) // Starlight-edit: name editing
         {
             Message = message;
             Examined = examined;
             Examiner = examiner;
             IsInDetailsRange = isInDetailsRange;
             _hasDescription = hasDescription;
+            BaseName = name ?? IoCManager.Resolve<IEntityManager>().GetComponent<MetaDataComponent>(examined).EntityName; // Starlight
         }
 
         /// <summary>
@@ -529,6 +539,29 @@ namespace Content.Shared.Examine
         }
 
         private record ExamineMessagePart(FormattedMessage Message, int Priority, bool DoNewLine, string? Group);
+
+        #region Starlight
+        public void AddNameModifier(LocId locId, int priority = 0, params (string, object)[] extraArgs) =>
+            _nameModifiers.Add((locId, priority, extraArgs));
+
+        public string GetModifiedName()
+        {
+            var name = BaseName;
+
+            foreach (var modifier in _nameModifiers.OrderBy(n => n.Priority))
+            {
+                // Grab any extra args needed by the Loc string
+                var args = modifier.ExtraArgs;
+                // Add the current version of the entity name as an arg
+                Array.Resize(ref args, args.Length + 1);
+                args[^1] = ("baseName", name);
+                // Resolve the Loc string and use the result as the base in the next iteration.
+                name = Loc.GetString(modifier.LocId, args);
+            }
+
+            return name;
+        }
+        #endregion
     }
 
 

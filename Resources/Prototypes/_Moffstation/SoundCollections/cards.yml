@@ -1,0 +1,50 @@
+﻿- type: soundCollection
+  id: cardFan
+  files:
+  - /Audio/_Moffstation/Effects/Cards/cardFan1.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardFan2.ogg
+
+- type: soundCollection
+  id: cardOpenPackage
+  files:
+  - /Audio/_Moffstation/Effects/Cards/cardOpenPackage1.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardOpenPackage2.ogg
+
+- type: soundCollection
+  id: cardPlace
+  files:
+  - /Audio/_Moffstation/Effects/Cards/cardPlace1.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardPlace2.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardPlace3.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardPlace4.ogg
+
+- type: soundCollection
+  id: cardShove
+  files:
+  - /Audio/_Moffstation/Effects/Cards/cardShove1.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardShove2.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardShove3.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardShove4.ogg
+
+- type: soundCollection
+  id: cardShuffle
+  files:
+  - /Audio/_Moffstation/Effects/Cards/cardShuffle.ogg
+
+- type: soundCollection
+  id: cardSlide
+  files:
+  - /Audio/_Moffstation/Effects/Cards/cardSlide1.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardSlide2.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardSlide3.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardSlide4.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardSlide5.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardSlide6.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardSlide7.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardSlide8.ogg
+
+- type: soundCollection
+  id: cardTakeOutPackage
+  files:
+  - /Audio/_Moffstation/Effects/Cards/cardTakeOutPackage1.ogg
+  - /Audio/_Moffstation/Effects/Cards/cardTakeOutPackage2.ogg
