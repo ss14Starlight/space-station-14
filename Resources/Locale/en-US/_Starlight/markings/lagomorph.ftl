@@ -1,4 +1,3 @@
-
 # ears
 marking-LagomorphEarsTall = Tall
 marking-LagomorphEarsTall-tall_ears_outer = Outer
