@@ -62,7 +62,7 @@
     containers:
       storagebase:
         id: CigPackBlue
-        amount: 5
+        amount: 10
   - type: ItemPrice
     priceCategory: cigarete_carton
 
@@ -81,7 +81,7 @@
     containers:
       storagebase:
         id: CigPackBlack
-        amount: 5
+        amount: 10
   - type: ItemPrice
     priceCategory: cigarete_carton
 
