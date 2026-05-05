@@ -263,3 +263,66 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
 # Starlight end
+
+### WALL FAN
+- type: entity
+  id: WallFan
+  parent: [ BaseStructure, BaseStructureDissolvable ] # Starlight-edit
+  name: wall fan
+  description: A large fan inset into the wall for air ventilation.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Tag
+    tags:
+      - ForceFixRotations
+      - Window
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _Starlight/Structures/wall_fan.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/wall_fan.rsi
+    state: wall_fan
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MetalLaserImpact
+  - type: IsRoof
+  - type: PlacementReplacement
+    key: walls
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+  - type: Airtight
+  - type: StaticPrice
+    price: 75
+  - type: RadiationBlocker
+    resistance: 1
+  - type: BlockWeather
+  - type: SunShadowCast
+  - type: Ricochetable
+    chance: 0.4

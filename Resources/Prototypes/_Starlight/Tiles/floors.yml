@@ -681,3 +681,153 @@
   deconstructTools: [ Prying ]
   itemDrop: FloorTileItemAstroDirt
   weather: false
+
+- type: tile
+  id: Floor3x3Black
+  name: tiles-3x3-black-floor
+  sprite: /Textures/_Starlight/Tiles/3x3black.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItem3x3Black
+  heatCapacity: 10000
+
+- type: tile
+  id: Floor3x3Brown
+  name: tiles-3x3-brown-floor
+  sprite: /Textures/_Starlight/Tiles/3x3brown.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItem3x3Brown
+  heatCapacity: 10000
+
+- type: tile
+  id: Floor3x3Steel
+  name: tiles-3x3-steel-floor
+  sprite: /Textures/_Starlight/Tiles/3x3steel.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItem3x3Steel
+  heatCapacity: 10000
+
+- type: tile
+  id: Floor3x3White
+  name: tiles-3x3-white-floor
+  sprite: /Textures/_Starlight/Tiles/3x3white.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItem3x3White
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorOldConcreteBricks
+  name: tiles-old-concrete-bricks-floor
+  sprite: /Textures/_Starlight/Tiles/old_concrete_bricks.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemOldConcreteBricks
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorOldConcreteTile
+  name: tiles-old-concrete-tile-floor
+  sprite: /Textures/_Starlight/Tiles/old_concrete_tile.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemOldConcreteTile
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorOrnate
+  name: tiles-ornate-floor
+  sprite: /Textures/_Starlight/Tiles/ornate.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemOrnate
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorRoughMetal
+  name: tiles-rough-metal-floor
+  sprite: /Textures/_Starlight/Tiles/rough_metal.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemRoughMetal
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorRustyMetal
+  name: tiles-rusty-metal-floor
+  sprite: /Textures/_Starlight/Tiles/rusty_metal.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemRustyMetal
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorSteelGrate
+  name: tiles-steel-grate-floor
+  sprite: /Textures/_Starlight/Tiles/steel_grate.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemSteelGrate
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorTechGreeb
+  name: tiles-tech-greeb-floor
+  sprite: /Textures/_Starlight/Tiles/techfloor_greeb.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemTechGreeb
+  heatCapacity: 10000
