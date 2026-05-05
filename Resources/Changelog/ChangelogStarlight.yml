@@ -1,188 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: Oxygen deprivation treatment kit to brigmedic.
-    type: Add
-  id: 404373
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: Station beacon flatpack and multitool to shop maints.
-    type: Add
-  id: 404374
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: A secure empty chemistry crate in drugstore to be able to transport chems safely and securely.
-    type: Add
-  id: 404375
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: Extended the north dock out a little so it might act as a backup evac point if main evac fails.
-    type: Add
-  id: 404376
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: A protective glass window to the light in Solitary.
-    type: Add
-  id: 404377
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: A Solitary closet to gen pop as a quick place to store extremely unruly prisoners while remaining on station.
-    type: Add
-  id: 404378
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: A blue lawyer suit, briefcase, and luxury pen to bar for a certain inspiring monkey.
-    type: Add
-  id: 404379
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: A dim light to interrogation room and a light switch for the observers in interrogation room.
-    type: Add
-  id: 404380
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: Changed changeling targets name to something that does not break metashield.
-    type: Tweak
-  id: 404381
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: Changed center courtyard class to be more diagonal.
-    type: Tweak
-  id: 404382
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: Made IAA'S tinted windows start transparent at shift start.
-    type: Tweak
-  id: 404383
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: One radiation treatment kit and one toxin treatment kit in brig medic.
-    type: Remove
-  id: 404384
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: A secret door in courtroom.
-    type: Remove
-  id: 404385
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: Mail chute in old courtroom. (Outdated).
-    type: Remove
-  id: 404386
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: Added some plating under some shuttle docks that were outside.
-    type: Fix
-  id: 404387
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: Fixed one wall from "Evil ai" being the wrong material.
-    type: Fix
-  id: 404388
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: Changed asteroid tiles inside the maints shop to dark tiles to stop weather effects.
-    type: Fix
-  id: 404389
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: Fixed several walls that had tiles underneath them. (Thanks to @SuspensionPoint for his useful map editor).
-    type: Fix
-  id: 404390
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: Fixed disposal piping near bridge.
-    type: Fix
-  id: 404391
-  time: '2026-04-19T13:20:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4190
-- author: Cvlancer
-  changes:
-  - message: Wood to maints bar.
-    type: Add
-  id: 404392
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Converted one of the gen pop dorms to solitary.
-    type: Add
-  id: 404393
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Random soap spawner to Bathroom.
-    type: Add
-  id: 404394
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Piggybank to vault.
-    type: Add
-  id: 404395
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Replaced the railings in boxing area to boxing rope.
-    type: Add
-  id: 404396
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Button to interrogation tinted windows.
-    type: Add
-  id: 404397
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Tesla to ai core.
-    type: Add
-  id: 404398
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
   - message: Maints door to botany.
     type: Add
   id: 404399
@@ -2799,4 +2617,186 @@ Entries:
   id: 404772
   time: '2026-05-03T15:37:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4333
+- author: Caws
+  changes:
+  - message: Central Command has upgraded their turnstile software, allowing only authorized personnel with 'Debrief' access to enter the Debrief room.
+    type: Add
+  id: 404773
+  time: '2026-05-04T05:07:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4338
+- author: Caws
+  changes:
+  - message: Air distribution and waste are now automatically turned on at CentComm.
+    type: Tweak
+  id: 404774
+  time: '2026-05-04T05:07:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4338
+- author: Caws
+  changes:
+  - message: (CentComm G24) Cryopod is now connected to distribution rather than an O2 can, which was incompatible with our nitrogen-breathing employees.
+    type: Tweak
+  id: 404775
+  time: '2026-05-04T05:07:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4338
+- author: Caws
+  changes:
+  - message: (CentComm GNT9) Following a medical incident, turbo chargers and additional stasis beds are now available in the Medical Bay.
+    type: Tweak
+  id: 404776
+  time: '2026-05-04T05:07:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4338
+- author: Caws
+  changes:
+  - message: (CentComm SC17) Lighting in the Afterhours Bar has been replaced and more seating areas have been added.
+    type: Tweak
+  id: 404777
+  time: '2026-05-04T05:07:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4338
+- author: Centronias, Huaqas
+  changes:
+  - message: Fixed a few subtle bugs with cards causing visual issues and various mispredicts.
+    type: Fix
+  id: 404778
+  time: '2026-05-04T05:07:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4345
+- author: Centronias, Huaqas
+  changes:
+  - message: Fixed a missing localization on one card deck verb.
+    type: Fix
+  id: 404779
+  time: '2026-05-04T05:07:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4345
+- author: Centronias, Huaqas
+  changes:
+  - message: Picking up cards from hands while your hands are full doesn't crash.
+    type: Fix
+  id: 404780
+  time: '2026-05-04T05:07:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4345
+- author: Karma
+  changes:
+  - message: Updated Magistrate SOP.
+    type: Tweak
+  id: 404781
+  time: '2026-05-04T05:49:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4329
+- author: Cvlancer.
+  changes:
+  - message: (OASIS) Added "Ipc repair bay." to robotics.
+    type: Add
+  id: 404782
+  time: '2026-05-04T05:49:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4321
+- author: Cvlancer.
+  changes:
+  - message: (OASIS Added Keycard Authentication Device to all head of command offices and bridge.
+    type: Add
+  id: 404783
+  time: '2026-05-04T05:49:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4321
+- author: Cvlancer.
+  changes:
+  - message: (LOBSTER) Added "Ipc repair bay/Anom treatment to science".
+    type: Add
+  id: 404784
+  time: '2026-05-04T05:49:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4321
+- author: Cvlancer.
+  changes:
+  - message: (LOBSTER) Added Wall mounted mass scanners to both evac dock and the dock south of park bar.
+    type: Add
+  id: 404785
+  time: '2026-05-04T05:49:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4321
+- author: Cvlancer.
+  changes:
+  - message: (LOBSTER) Added Keycard Authentication Device to all head of command offices and bridge.
+    type: Add
+  id: 404786
+  time: '2026-05-04T05:49:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4321
+- author: Cvlancer.
+  changes:
+  - message: (LOBSTER) Added Syndicate playing cards near the syndicate area.
+    type: Add
+  id: 404787
+  time: '2026-05-04T05:49:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4321
+- author: Cvlancer.
+  changes:
+  - message: (LOBSTER) Removed WEH room.
+    type: Remove
+  id: 404788
+  time: '2026-05-04T05:49:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4321
+- author: Cvlancer.
+  changes:
+  - message: (ORWELL) Added a few ipc healing items to robotics.
+    type: Add
+  id: 404789
+  time: '2026-05-04T05:49:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4321
+- author: Cvlancer.
+  changes:
+  - message: (ORWELL) Added Nuno playing cards to library.
+    type: Add
+  id: 404790
+  time: '2026-05-04T05:49:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4321
+- author: Cvlancer.
+  changes:
+  - message: (ORWELL) Added Keycard Authentication Device to all head of command offices and bridge.
+    type: Add
+  id: 404791
+  time: '2026-05-04T05:49:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4321
+- author: Cvlancer.
+  changes:
+  - message: (ORWELL) Removed a full engineering toolbelt and two engineering goggles security had access too. (Near gen pop substation).
+    type: Remove
+  id: 404792
+  time: '2026-05-04T05:49:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4321
+- author: Conf & Caws
+  changes:
+  - message: New IAA, Law, Lawyer, Magistrate, and NTR signage.
+    type: Add
+  id: 404793
+  time: '2026-05-04T05:49:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4339
+- author: CrazyPhantom
+  changes:
+  - message: The rules have been changed to match the wiki. Just about every rule has been changed in some capacity, Too many changes to mention each one so it is suggested that players re-read them all.
+    type: Tweak
+  id: 404794
+  time: '2026-05-04T05:50:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4328
+- author: CrazyPhantom
+  changes:
+  - message: Silicon memory loss clause has been added to metashield.
+    type: Add
+  id: 404795
+  time: '2026-05-04T05:50:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4328
+- author: CrazyPhantom
+  changes:
+  - message: Rule 15, "Separation of Character from Player".
+    type: Add
+  id: 404796
+  time: '2026-05-04T05:50:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4328
+- author: Magwitch
+  changes:
+  - message: Changed `wth` replacement from `what the heck` to `what the hell`.
+    type: Tweak
+  id: 404797
+  time: '2026-05-04T06:14:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4343
+- author: neurovermi
+  changes:
+  - message: Mech thrusters now turn off correctly when entering a grid.
+    type: Fix
+  id: 404798
+  time: '2026-05-04T06:14:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4331
 Order: -1

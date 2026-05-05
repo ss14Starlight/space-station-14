@@ -42,6 +42,7 @@ public sealed partial class PlayingCardHandComponent : PlayingCardStackComponent
     public static readonly LocId CardsAddedText = "playing-cards-hand-card-count-changed-added";
     public static readonly LocId CardsRemovedText = "playing-cards-hand-card-count-changed-removed";
     public static readonly LocId CardsChangedText = "playing-cards-hand-card-count-changed-unknown";
+    public static readonly LocId CantPickupNoFreeHands = "playing-cards-hand-cant-pickup-no-free-hands";
 
     public new static class Verbs
     {
