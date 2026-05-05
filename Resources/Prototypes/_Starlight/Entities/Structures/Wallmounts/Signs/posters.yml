@@ -616,3 +616,13 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/tspd-fancy.rsi
     state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandHereticalExomorph
+  name: "Heretic Exomorph"
+  description: "They come out at night."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/hereticalexomorph.rsi
+    state: hereticalexomorph
