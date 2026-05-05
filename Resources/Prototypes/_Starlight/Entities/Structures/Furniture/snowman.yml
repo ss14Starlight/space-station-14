@@ -4,7 +4,7 @@
   name: snowman
   description: A cheap decoration.
   components:
-  - type: Destructible 
+  - type: Destructible
     thresholds:
     - trigger: # Overkill threshold
         !type:DamageTrigger
@@ -42,4 +42,3 @@
   - type: Rotatable
   - type: Anchorable
     delay: 1
-  

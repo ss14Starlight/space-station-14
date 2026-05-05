@@ -362,7 +362,7 @@
   description: "A poster debating the common misconceptions about Exomorphs. Or at least, that's what you think this poster's about."
   components:
   - type: Sprite
-    state: poster36_contraband 
+    state: poster36_contraband
 
 - type: entity
   parent: PosterBase

@@ -604,7 +604,7 @@
   id: FloorTileItem3x3Black
   parent: FloorTileItemBase
   name: 3x3 black tile
-  description: A 3 by 3 set of black tiles. 
+  description: A 3 by 3 set of black tiles.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Tiles/tiles.rsi
