@@ -11,3 +11,19 @@
       amount: 1
   products:
     DraganSpecial: 3
+
+- type: reaction
+  id: TheHighlander
+  reactants:
+    BacchusBlessing:
+      amount: 1
+    AtomicBomb:
+      amount: 1
+    LongIslandIcedTea:
+      amount: 1
+    DoctorsDelight:
+      amount: 1
+    Omnizine:
+      amount: 1
+  products:
+    TheHighlander: 1
