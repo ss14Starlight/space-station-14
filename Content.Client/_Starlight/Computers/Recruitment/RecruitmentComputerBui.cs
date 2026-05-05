@@ -105,7 +105,7 @@ public sealed class RecruitmentComputerBui(EntityUid owner, Enum uiKey) : BoundU
                 if(_jobs.TryGetValue(x.ID, out var list))
                     list.Add(c);
                 else
-                    _jobs.Add(x.ID, [c]);
+                    _jobs.Add(x.ID, new(){c});
             }),
         new TextureButton { SetSize = new Vector2(16,16), TexturePath ="/Textures/_Starlight/Interface/Nano/plus.png"}
         .OnClick(()=>SendMessage(new RecruitmentChangeBuiMsg()
