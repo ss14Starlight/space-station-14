@@ -25,7 +25,8 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
     [Dependency] private readonly IRobustRandom _random = default!;
 
     private readonly TransformSystem _transform;
-    private readonly EntityLookupSystem _lookup;
+    private readonly EntityQuery<HysteriaVisionComponent> _hysteriaQuery;
+    private readonly EntityQuery<VampireThrallComponent> _thrallQuery;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
 
@@ -33,61 +34,68 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
     private readonly Dictionary<EntityUid, int> _entitySpriteIndex = new();
 
     // Cached RSI states for each disguise type
-    private readonly RSI.State?[] _disguiseStates = new RSI.State?[HysteriaVisionComponent.DisguiseSprites.Length];
+    private readonly List<RSI.State?> _disguiseStates = new();
     private bool _spritesLoaded;
+    private int _loadedSpriteCount;
 
     public HysteriaVisionOverlay()
     {
         IoCManager.InjectDependencies(this);
         _transform = _entManager.System<TransformSystem>();
-        _lookup = _entManager.System<EntityLookupSystem>();
+        _hysteriaQuery = _entManager.GetEntityQuery<HysteriaVisionComponent>();
+        _thrallQuery = _entManager.GetEntityQuery<VampireThrallComponent>();
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         var player = _playerManager.LocalEntity;
         if (player == null
-            || !_entManager.TryGetComponent<HysteriaVisionComponent>(player, out var hysteria)
+            || !_hysteriaQuery.TryGetComponent(player.Value, out var hysteria)
             || _timing.CurTime > hysteria.EndTime) // Check if effect expired
             return false;
 
+        if (hysteria.DisguiseSprites.Count == 0)
+            return false;
+
         // Load all sprites if not loaded
-        if (!_spritesLoaded)
-            LoadDisguiseSprites();
+        if (!_spritesLoaded || _loadedSpriteCount != hysteria.DisguiseSprites.Count)
+            LoadDisguiseSprites(hysteria);
 
         return _spritesLoaded;
     }
 
-    private void LoadDisguiseSprites()
+    private void LoadDisguiseSprites(HysteriaVisionComponent hysteria)
     {
         _spritesLoaded = true;
+        _loadedSpriteCount = hysteria.DisguiseSprites.Count;
+        _disguiseStates.Clear();
 
-        for (var i = 0; i < HysteriaVisionComponent.DisguiseSprites.Length; i++)
+        for (var i = 0; i < hysteria.DisguiseSprites.Count; i++)
         {
-            var sprite = HysteriaVisionComponent.DisguiseSprites[i];
+            var sprite = hysteria.DisguiseSprites[i];
             var trimmedPath = sprite.Path.TrimStart('/');
             var path = new ResPath("/Textures") / trimmedPath;
 
             if (!_resourceCache.TryGetResource<RSIResource>(path, out var rsiResource)
                 || !rsiResource.RSI.TryGetState(sprite.State, out var rsiState))
             {
-                _disguiseStates[i] = null;
+                _disguiseStates.Add(null);
                 continue;
             }
 
-            _disguiseStates[i] = rsiState;
+            _disguiseStates.Add(rsiState);
         }
     }
 
     /// <summary>
     /// Gets the sprite index for a given entity, assigning a random one if not yet assigned.
     /// </summary>
-    private int GetSpriteIndexForEntity(EntityUid uid)
+    private int GetSpriteIndexForEntity(EntityUid uid, int spriteCount)
     {
         if (_entitySpriteIndex.TryGetValue(uid, out var index))
             return index;
 
-        index = _random.Next(HysteriaVisionComponent.DisguiseSprites.Length);
+        index = _random.Next(spriteCount);
         _entitySpriteIndex[uid] = index;
         return index;
     }
@@ -111,11 +119,15 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
     protected override void Draw(in OverlayDrawArgs args)
     {
         var player = _playerManager.LocalEntity;
-        if (player == null || !_entManager.TryGetComponent<HysteriaVisionComponent>(player, out var hysteria))
+        if (player == null || !_hysteriaQuery.TryGetComponent(player.Value, out var hysteria))
+            return;
+
+        var spriteCount = hysteria.DisguiseSprites.Count;
+        if (spriteCount == 0)
             return;
 
         var preserveSourceThrallVisibility =
-            _entManager.TryGetComponent<VampireThrallComponent>(player.Value, out var playerThrall)
+            _thrallQuery.TryGetComponent(player.Value, out var playerThrall)
             && playerThrall.Master == hysteria.Source;
 
         var worldHandle = args.WorldHandle;
@@ -133,7 +145,7 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
 
             // Skip thralls of the source vampire
             if (preserveSourceThrallVisibility
-                && _entManager.TryGetComponent<VampireThrallComponent>(uid, out var thrall)
+                && _thrallQuery.TryGetComponent(uid, out var thrall)
                 && thrall.Master == hysteria.Source)
                 continue;
 
@@ -145,12 +157,15 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
                 continue;
 
             // Get random sprite for this entity
-            var spriteIndex = GetSpriteIndexForEntity(uid);
+            var spriteIndex = GetSpriteIndexForEntity(uid, spriteCount);
+            if (spriteIndex >= _disguiseStates.Count)
+                continue;
+
             var disguiseState = _disguiseStates[spriteIndex];
             if (disguiseState == null)
                 continue;
 
-            var size = HysteriaVisionComponent.DisguiseSprites[spriteIndex].Size;
+            var size = hysteria.DisguiseSprites[spriteIndex].Size;
 
             // Get the direction from the targets sprite to match their facing
             var rsiDir = GetRsiDirection(xform.LocalRotation.GetCardinalDir());

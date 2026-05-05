@@ -6,8 +6,6 @@ using Content.Shared.Popups;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Body.Components;
-using Content.Shared.Nutrition.Components;
-using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Wieldable;
 using Content.Shared._Starlight.Medical.Body.Systems;
 
@@ -20,7 +18,7 @@ public sealed class VampiricClawsSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly HungerSystem _hunger = default!;
+    [Dependency] private readonly VampireSystem _vampire = default!;
 
     public override void Initialize()
     {
@@ -53,26 +51,23 @@ public sealed class VampiricClawsSystem : EntitySystem
         if (!args.IsHit)
             return;
 
+        if (!TryComp<VampireComponent>(args.User, out var vamp))
+            return;
+
         var bloodGained = 0;
         foreach (var hitEntity in args.HitEntities)
+        {
             if (HasComp<HumanoidAppearanceComponent>(hitEntity)
                 && TryComp<BloodstreamComponent>(hitEntity, out var victimBlood)
                 && _bloodstream.TryModifyBloodLevel((hitEntity, victimBlood), -ent.Comp.BloodPerHit))
+            {
                 bloodGained += ent.Comp.BloodPerHit;
+                _vampire.AddBlood(args.User, vamp, ent.Comp.BloodPerHit, hitEntity);
+            }
+        }
 
-        if (bloodGained > 0 && TryComp<VampireComponent>(args.User, out var vamp))
+        if (bloodGained > 0)
         {
-            vamp.DrunkBlood += bloodGained;
-            vamp.TotalBlood += bloodGained;
-
-            vamp.BloodFullness = MathF.Min(vamp.MaxBloodFullness, vamp.BloodFullness + bloodGained);
-            Dirty(args.User, vamp);
-
-            RaiseLocalEvent(args.User, new VampireProgressionChangedEvent());
-
-            if (TryComp<HungerComponent>(args.User, out var hunger))
-                _hunger.ModifyHunger(args.User, bloodGained * 2, hunger);
-
             ent.Comp.HitsRemaining--;
             Dirty(ent);
             if (ent.Comp.HitsRemaining <= 0)

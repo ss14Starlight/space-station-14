@@ -84,6 +84,26 @@ public record struct BeforePryEvent(EntityUid User, bool PryPowered, bool Force,
 }
 
 /// <summary>
+/// Raised directed on the user before they attempt to pry a target.
+/// Cancel to stop the pry before target-side pry validation runs.
+/// </summary>
+[ByRefEvent]
+public record struct UserBeforePryEvent(EntityUid Target, bool PryPowered, bool Force, bool StrongPry)
+{
+    public readonly EntityUid Target = Target;
+
+    public readonly bool PryPowered = PryPowered;
+
+    public readonly bool Force = Force;
+
+    public readonly bool StrongPry = StrongPry;
+
+    public string? Message;
+
+    public bool Cancelled;
+}
+
+/// <summary>
 /// Raised directed on an entity that has been pried.
 /// </summary>
 [ByRefEvent]
@@ -117,4 +137,3 @@ public record struct GetPryTimeModifierEvent
         User = user;
     }
 }
-

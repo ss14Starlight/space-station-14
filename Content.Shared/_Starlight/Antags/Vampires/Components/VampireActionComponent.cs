@@ -8,6 +8,8 @@ using Robust.Shared.Prototypes;
 /// - BloodToUnlock - required TotalBlood to unlock the action
 /// - BloodCost - Amount to consume on use
 /// - RequiredClass - optional class requirement for the action to be usable
+/// - RequiresFullPower - whether the vampire must have achieved full power
+/// - AllowNonVampireUsers - lets directly granted admin/debug actions run without adding VampireComponent
 /// </summary>
 [RegisterComponent]
 public sealed partial class VampireActionComponent : Component
@@ -20,4 +22,10 @@ public sealed partial class VampireActionComponent : Component
 
     [DataField]
     public ProtoId<VampireClassPrototype>? RequiredClass = null;
+
+    [DataField]
+    public bool RequiresFullPower;
+
+    [DataField]
+    public bool AllowNonVampireUsers = true;
 }

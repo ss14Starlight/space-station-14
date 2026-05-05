@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Polymorph;
 using Robust.Shared.Audio;
@@ -74,6 +75,12 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     [DataField]
     public float DotStaminaDamage = 5f;
 
+    [DataField]
+    public int DotTickCount = 10;
+
+    [DataField]
+    public TimeSpan DotTickInterval = TimeSpan.FromSeconds(1);
+
     /// <summary>
     /// chem and amount to inject to targets.
     /// </summary>
@@ -116,9 +123,52 @@ public sealed partial class VampireSleepDoAfterEvent : SimpleDoAfterEvent
 
 }
 
-public sealed partial class VampireRejuvenateIActionEvent : InstantActionEvent;
+public sealed partial class VampireRejuvenateIActionEvent : InstantActionEvent
+{
+    [DataField]
+    public bool ResetStamina = true;
 
-public sealed partial class VampireRejuvenateIIActionEvent : InstantActionEvent;
+    [DataField]
+    public bool RemoveStuns = true;
+}
+
+public sealed partial class VampireRejuvenateIIActionEvent : InstantActionEvent
+{
+    [DataField]
+    public bool ResetStamina = true;
+
+    [DataField]
+    public bool RemoveStuns = true;
+
+    [DataField]
+    public FixedPoint2 ReagentPurgeAmount = FixedPoint2.New(10);
+
+    [DataField]
+    public HashSet<string> PurgedMetabolismGroups = new()
+    {
+        "Poison",
+    };
+
+    [DataField]
+    public int HealTicks = 5;
+
+    [DataField]
+    public TimeSpan HealTickInterval = TimeSpan.FromSeconds(3.5);
+
+    [DataField]
+    public Dictionary<string, FixedPoint2> HealGroups = new()
+    {
+        { "Brute", FixedPoint2.New(4) },
+        { "Burn", FixedPoint2.New(4) },
+    };
+
+    [DataField]
+    public Dictionary<string, FixedPoint2> HealTypes = new()
+    {
+        { "Poison", FixedPoint2.New(4) },
+        { "Asphyxiation", FixedPoint2.New(5) },
+    };
+}
 
 public sealed partial class VampireClassSelectActionEvent : InstantActionEvent;
 
@@ -245,6 +295,9 @@ public sealed partial class VampireBloodEruptionActionEvent : InstantActionEvent
 
     [DataField]
     public float TargetRange = 2f;
+
+    [DataField]
+    public string PuddleReagent = "Blood";
 }
 
 // The Blood Bringer's Rite
@@ -273,6 +326,12 @@ public sealed partial class VampireBloodBringersRiteActionEvent : InstantActionE
 
     [DataField]
     public int Cost = 10;
+
+    [DataField]
+    public int MaxTicks = 150;
+
+    [DataField(required: true)]
+    public EntProtoId BeamPrototype;
 }
 
 #endregion
@@ -361,6 +420,9 @@ public sealed partial class VampireExtinguishActionEvent : InstantActionEvent
 public sealed partial class VampireShadowBoxingActionEvent : EntityTargetActionEvent
 {
     [DataField]
+    public TimeSpan Duration = TimeSpan.FromSeconds(10);
+
+    [DataField]
     public TimeSpan Interval = TimeSpan.FromSeconds(0.9);
 
     [DataField]
@@ -371,6 +433,9 @@ public sealed partial class VampireShadowBoxingActionEvent : EntityTargetActionE
 
     [DataField]
     public SoundSpecifier? HitSound;
+
+    [DataField]
+    public EntProtoId PunchEffectPrototype = "WeaponArcPunch";
 }
 
 [Serializable, NetSerializable]
@@ -460,6 +525,9 @@ public sealed partial class VampireSubspaceSwapActionEvent : EntityTargetActionE
     public float SlowMultiplier = 0.4f;
     [DataField]
     public TimeSpan HysteriaDuration = TimeSpan.FromSeconds(15);
+
+    [DataField(required: true)]
+    public List<HysteriaDisguiseSprite> HysteriaDisguiseSprites = new();
 }
 
 public sealed partial class VampireDecoyActionEvent : InstantActionEvent
@@ -498,6 +566,9 @@ public sealed partial class VampireBloodBondActionEvent : InstantActionEvent
     /// </summary>
     [DataField]
     public TimeSpan TickInterval = TimeSpan.FromSeconds(2);
+
+    [DataField(required: true)]
+    public EntProtoId BeamPrototype;
 }
 
 public sealed partial class VampireMassHysteriaActionEvent : InstantActionEvent
@@ -519,6 +590,10 @@ public sealed partial class VampireMassHysteriaActionEvent : InstantActionEvent
     /// </summary>
     [DataField]
     public TimeSpan HysteriaDuration = TimeSpan.FromSeconds(30);
+
+    [DataField(required: true)]
+    public List<HysteriaDisguiseSprite> HysteriaDisguiseSprites = new();
+
     [DataField]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_Starlight/Effects/vampire/sound_hallucinations_im_here1.ogg");
 }
@@ -542,6 +617,27 @@ public sealed partial class VampireBloodSwellActionEvent : InstantActionEvent
     /// </summary>
     [DataField]
     public float MeleeBonusDamage = 14f;
+
+    [DataField]
+    public HashSet<string> ReducedDamageTypes = new()
+    {
+        "Blunt",
+        "Slash",
+        "Piercing",
+        "Heat",
+        "Cold",
+        "Shock",
+        "Caustic",
+    };
+
+    [DataField]
+    public float IncomingDamageMultiplier = 0.5f;
+
+    [DataField]
+    public float StaminaDamageMultiplier = 0.5f;
+
+    [DataField]
+    public float StatusEffectDurationMultiplier = 0.5f;
 }
 
 public sealed partial class VampireBloodRushActionEvent : InstantActionEvent
@@ -594,8 +690,18 @@ public sealed partial class VampireDemonicGraspActionEvent : WorldTargetActionEv
     /// </summary>
     [DataField]
     public float ProjectileSpeed = 15f;
+
     [DataField]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_Starlight/Effects/vampire/exit_blood.ogg");
+
+    [DataField]
+    public TimeSpan TileInterval = TimeSpan.FromMilliseconds(50);
+
+    [DataField]
+    public EntProtoId EffectPrototype = "VampireDemonicGraspEffect";
+
+    [DataField]
+    public EntProtoId ImmobilizedEffectPrototype = "VampireImmobilizedEffect";
 }
 
 public sealed partial class VampireChargeActionEvent : WorldTargetActionEvent
@@ -635,14 +741,18 @@ public sealed partial class VampireChargeActionEvent : WorldTargetActionEvent
 public sealed class VampireDemonicGraspVisualEvent : EntityEventArgs
 {
     public NetEntity Source { get; }
+    public NetCoordinates Start { get; }
     public NetCoordinates Target { get; }
     public float Speed { get; }
+    public EntProtoId Prototype { get; }
 
-    public VampireDemonicGraspVisualEvent(NetEntity source, NetCoordinates target, float speed)
+    public VampireDemonicGraspVisualEvent(NetEntity source, NetCoordinates start, NetCoordinates target, float speed, EntProtoId prototype)
     {
         Source = source;
+        Start = start;
         Target = target;
         Speed = speed;
+        Prototype = prototype;
     }
 }
 
