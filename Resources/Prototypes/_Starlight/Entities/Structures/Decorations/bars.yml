@@ -29,7 +29,7 @@
   - type: StaticPrice
     price: 30
   - type: Transform
-    anchored: false
+    anchored: true
   - type: Tag
     tags:
       - ForceFixRotations

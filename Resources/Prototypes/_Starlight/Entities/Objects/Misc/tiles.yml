@@ -699,7 +699,7 @@
 - type: entity
   id: FloorTileItemOrnate
   parent: FloorTileItemBase
-  name: orante tile
+  name: ornate tile
   description: Old orante tiles.
   components:
   - type: Sprite

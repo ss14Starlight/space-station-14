@@ -1198,7 +1198,7 @@
   id: VinylPlayerCircuitBoard
   parent: BaseMachineCircuitboard
   name: vinyl player circuitboard
-  description: A machine printed circuit board for a gramophone.
+  description: A machine printed circuit board for a vinyl player.
   components:
     - type: Sprite
       state: service
