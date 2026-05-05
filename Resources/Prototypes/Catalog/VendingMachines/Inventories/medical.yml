@@ -40,9 +40,9 @@
     PillDesoxyephedrine5: 1 # Starlight
 
 # Core medical supply vendor
-#region Starlight - reverts Wizden NanoMed inventory changes
 - type: vendingMachineInventory
   id: NanoMedPlusInventory
+  #region Starlight - reverts Wizden NanoMed inventory changes
   startingInventory:
     HandheldHealthAnalyzer: 3
     ClothingBeltMedical: 3
@@ -76,7 +76,7 @@
   emaggedInventory:
     OminousPill: 2
     PillDesoxyephedrine5: 2
-#endregion Starlight
+  #endregion Starlight
 
 # All access version. Should reflect NanoMedCivilianWallInventory, but with more stock
 - type: vendingMachineInventory
