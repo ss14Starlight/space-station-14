@@ -2799,4 +2799,11 @@ Entries:
   id: 404798
   time: '2026-05-04T06:14:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4331
+- author: ZerraTheBunny
+  changes:
+  - message: lagomorph species has been made more rabbit-like
+    type: Tweak
+  id: 404798
+  time: '2026-05-05T10:23:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4353
 Order: -1
