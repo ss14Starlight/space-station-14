@@ -1247,30 +1247,6 @@
     - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
       state: shorthair3
 - type: marking
-  id: LagomorphHairD
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Lagomorph]
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: d
-- type: marking
-  id: LagomorphHairE
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Lagomorph]
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: e
-- type: marking
-  id: LagomorphHairF
-  bodyPart: Hair
-  markingCategory: Hair
-  speciesRestriction: [Lagomorph]
-  sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: f
-- type: marking
   id: LagomorphHairShorthairg
   bodyPart: Hair
   markingCategory: Hair
