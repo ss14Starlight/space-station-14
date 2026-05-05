@@ -1,104 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: Maints door to botany.
-    type: Add
-  id: 404399
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Posters to botany.
-    type: Add
-  id: 404400
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Goliath cloak to maints alter and sec shuttle.
-    type: Add
-  id: 404401
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Clean bot to artifact room.
-    type: Add
-  id: 404402
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Add wooden pews to courtroom.
-    type: Add
-  id: 404403
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Mail tech locker to mail room.
-    type: Add
-  id: 404404
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Unidentified mantle to maints.
-    type: Add
-  id: 404405
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Parcel's added to mail tech.
-    type: Add
-  id: 404406
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Hydraulic clamp to cargo next to the ripley.
-    type: Add
-  id: 404407
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Removed the strange wiring with smes/generators in ai core area. Now ai core is powered by 3 substations that when disconnected from main station last for 15 minutes before ai runs on reserve battery.
-    type: Tweak
-  id: 404408
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Changed mail tech doors to mail access.
-    type: Tweak
-  id: 404409
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Replaced cargo wardrobes with cargo lockers in cargo break room.
-    type: Tweak
-  id: 404410
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Replaced the maid girder with a reinforced one and also added more reinforced girders to maints.
-    type: Tweak
-  id: 404411
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: A bunch of ai cameras that peaked to far into maints and also dorms.
-    type: Remove
-  id: 404412
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
   - message: Fixed security being double substationed by cutting two mv wires.
     type: Fix
   id: 404413
@@ -2806,4 +2708,102 @@ Entries:
   id: 404798
   time: '2026-05-05T10:23:47.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4353
+- author: Caws
+  changes:
+  - message: Salvage Lead's locker now starts with a nitrogen tank and a cooling unit inside of it.
+    type: Tweak
+  id: 404799
+  time: '2026-05-05T07:11:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4358
+- author: Ohelig
+  changes:
+  - message: Fixes mining being able to crash the server by queueing up too many ore processor recipes.
+    type: Fix
+  id: 404800
+  time: '2026-05-05T07:11:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4344
+- author: Caws
+  changes:
+  - message: (Serpentcrest) Lawyers.
+    type: Add
+  id: 404801
+  time: '2026-05-05T07:11:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4350
+- author: Caws
+  changes:
+  - message: (Serpentcrest) Lawyer Office.
+    type: Add
+  id: 404802
+  time: '2026-05-05T07:11:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4350
+- author: Caws
+  changes:
+  - message: (Serpentcrest) IAA and Magistrate signs.
+    type: Add
+  id: 404803
+  time: '2026-05-05T07:11:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4350
+- author: Caws
+  changes:
+  - message: (Serpentcrest) NTR signs.
+    type: Add
+  id: 404804
+  time: '2026-05-05T07:11:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4350
+- author: Caws
+  changes:
+  - message: (Serpentcrest) Reworked the Courtroom so that traffic walks through the spectator area rather than the middle of the courtroom.
+    type: Tweak
+  id: 404805
+  time: '2026-05-05T07:11:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4350
+- author: Caws
+  changes:
+  - message: (Serpentcrest) Lawyers Office.
+    type: Add
+  id: 404806
+  time: '2026-05-05T07:11:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4350
+- author: Caws
+  changes:
+  - message: (Serpentcrest) IPC repair area added to Robotics.
+    type: Add
+  id: 404807
+  time: '2026-05-05T07:11:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4350
+- author: Caws
+  changes:
+  - message: (Serpentcrest) Issues with tiles letting exterior weather in have been resolved. The bar and other areas will no longer get blasted with radiation during solar flares.
+    type: Fix
+  id: 404808
+  time: '2026-05-05T07:11:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4350
+- author: Ohelig
+  changes:
+  - message: Adds some protos for mappers to do Freezer and Vox atmos a little easier.
+    type: Add
+  id: 404809
+  time: '2026-05-05T12:35:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4289
+- author: Ohelig
+  changes:
+  - message: Adds some protos for mappers to do Gas Pipe Sensors a little easier.
+    type: Add
+  id: 404810
+  time: '2026-05-05T12:35:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4289
+- author: Ohelig
+  changes:
+  - message: Adds some protos for mappers to do Break Room station beacons a little easier.
+    type: Add
+  id: 404811
+  time: '2026-05-05T12:35:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4289
+- author: Ohelig
+  changes:
+  - message: Adds a random solar panel generator for mapper to do solars a little easier.
+    type: Add
+  id: 404812
+  time: '2026-05-05T12:35:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4289
 Order: -1

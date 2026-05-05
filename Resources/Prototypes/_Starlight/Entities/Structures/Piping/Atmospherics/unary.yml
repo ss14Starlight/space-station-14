@@ -1,0 +1,9 @@
+- type: entity
+  parent: GasThermoMachineFreezerEnabled
+  id: GasThermoMachineFreezerEnabledCold
+  suffix: Enabled, 235K
+  components:
+  - type: GasThermoMachine
+    targetTemperature: 235 # Atmospherics.FreezerTemp
+  - type: ApcPowerReceiver
+    powerDisabled: false
