@@ -358,7 +358,7 @@ public sealed partial class AchievementWindow : DefaultWindow
         {
             if (ch is '_' or ' ')
             {
-                if (builder.Length > 0 && builder[builder.Length - 1] != ' ')
+                if (builder.Length > 0 && builder[^1] != ' ')
                     builder.Append(' ');
 
                 capitalizeNext = true;

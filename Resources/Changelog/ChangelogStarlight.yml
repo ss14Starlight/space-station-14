@@ -1,34 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: Changed mail tech doors to mail access.
-    type: Tweak
-  id: 404409
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Replaced cargo wardrobes with cargo lockers in cargo break room.
-    type: Tweak
-  id: 404410
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: Replaced the maid girder with a reinforced one and also added more reinforced girders to maints.
-    type: Tweak
-  id: 404411
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
-  - message: A bunch of ai cameras that peaked to far into maints and also dorms.
-    type: Remove
-  id: 404412
-  time: '2026-04-19T13:20:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4194
-- author: Cvlancer
-  changes:
   - message: Fixed security being double substationed by cutting two mv wires.
     type: Fix
   id: 404413
@@ -2799,4 +2771,32 @@ Entries:
   id: 404808
   time: '2026-05-05T07:11:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4350
+- author: Ohelig
+  changes:
+  - message: Adds some protos for mappers to do Freezer and Vox atmos a little easier.
+    type: Add
+  id: 404809
+  time: '2026-05-05T12:35:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4289
+- author: Ohelig
+  changes:
+  - message: Adds some protos for mappers to do Gas Pipe Sensors a little easier.
+    type: Add
+  id: 404810
+  time: '2026-05-05T12:35:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4289
+- author: Ohelig
+  changes:
+  - message: Adds some protos for mappers to do Break Room station beacons a little easier.
+    type: Add
+  id: 404811
+  time: '2026-05-05T12:35:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4289
+- author: Ohelig
+  changes:
+  - message: Adds a random solar panel generator for mapper to do solars a little easier.
+    type: Add
+  id: 404812
+  time: '2026-05-05T12:35:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4289
 Order: -1
