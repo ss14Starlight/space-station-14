@@ -4,9 +4,13 @@ using Robust.Client.UserInterface;
 namespace Content.Client._Starlight.Antags.Vampires;
 
 [UsedImplicitly]
-public sealed class VampireLocateBui(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
+public sealed class VampireLocateBui : BoundUserInterface
 {
     private VampireLocateWindow? _window;
+
+    public VampireLocateBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    {
+    }
 
     protected override void Open()
     {

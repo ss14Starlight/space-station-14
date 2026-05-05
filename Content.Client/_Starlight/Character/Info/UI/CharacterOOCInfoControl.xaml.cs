@@ -13,7 +13,9 @@ namespace Content.Client._Starlight.Character.Info.UI;
 public sealed partial class CharacterOOCInfoControl : Control
 {
     public CharacterOOCInfoControl()
-        => RobustXamlLoader.Load(this);
+    {
+        RobustXamlLoader.Load(this);
+    }
 
     public void SetCharacter(EntityUid? target, IEntityManager entityManager, EntityUid? viewer = null)
     {

@@ -2,6 +2,7 @@ using System.Numerics;
 using System.Threading;
 using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
+using Content.Shared.Actions;
 using Content.Shared.Maps;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
@@ -71,10 +72,14 @@ public sealed class MonumentPlacementPreviewSystem : EntitySystem
     }
 
     private void OnCosmicMoveMonument(Entity<CosmicCultLeadComponent> ent, ref EventCosmicMoveMonument args)
-        => DoMonumentAnimation(args.Performer);
+    {
+        DoMonumentAnimation(args.Performer);
+    }
 
     private void OnCosmicPlaceMonument(Entity<CosmicCultLeadComponent> ent, ref EventCosmicPlaceMonument args)
-        => DoMonumentAnimation(args.Performer);
+    {
+        DoMonumentAnimation(args.Performer);
+    }
 
     //duplicated from the ability check, minus the station check because that can't be done clientside afaik?
     //and no popups because they're done in the ability check as well
@@ -163,7 +168,10 @@ public sealed class MonumentPlacementPreviewSystem : EntitySystem
 
         //start a timer to start the fade out as well, with the same cancellation token
         Timer.Spawn(comp.PrimeTime + comp.ConfirmDelay - TimeSpan.FromSeconds(overlay.FadeOutTime),
-            () => overlay.FadingOut = true,
+            () =>
+            {
+                overlay.FadingOut = true;
+            },
             tokenSource.Token
         );
     }

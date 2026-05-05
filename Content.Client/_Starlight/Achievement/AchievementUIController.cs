@@ -63,10 +63,16 @@ public sealed class AchievementUIController : UIController, IOnStateEntered<Game
     }
 
     public void LoadButton()
-        => _achievementButton?.OnPressed += OnButtonPressed;
+    {
+        if (_achievementButton != null)
+            _achievementButton.OnPressed += OnButtonPressed;
+    }
 
     public void UnloadButton()
-        => _achievementButton?.OnPressed -= OnButtonPressed;
+    {
+        if (_achievementButton != null)
+            _achievementButton.OnPressed -= OnButtonPressed;
+    }
 
     private void OnButtonPressed(BaseButton.ButtonEventArgs obj)
     {

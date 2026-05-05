@@ -1,8 +1,11 @@
+using System;
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Silicons.StationAi;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
+using Robust.Shared.Localization;
+using Robust.Shared.Maths;
 
 namespace Content.Client._Starlight.Silicons.StationAi;
 

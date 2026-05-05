@@ -1,5 +1,6 @@
 using Content.Client._Starlight.Silicons.StationAi;
 using Content.Shared.Silicons.StationAi;
+using Robust.Shared.Player;
 
 namespace Content.Client.Silicons.StationAi;
 
@@ -47,5 +48,7 @@ public sealed partial class StationAiSystem
     }
 
     private void OnWarpWindowClosed()
-        => _warpUi?.ClearWindow();
+    {
+        _warpUi?.ClearWindow();
+    }
 }

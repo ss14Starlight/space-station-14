@@ -1,5 +1,6 @@
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Starlight.Weapons.Gunnery;
+using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Map;
@@ -26,7 +27,7 @@ public sealed class GunneryConsoleWindow : FancyWindow
 
     // ── Cannon list state ──────────────────────────────────────────────────
 
-    private List<CannonBlipData> _cannons = [];
+    private List<CannonBlipData> _cannons = new();
 
     public GunneryConsoleWindow()
     {

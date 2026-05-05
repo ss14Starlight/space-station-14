@@ -16,7 +16,7 @@ namespace Content.Client._Starlight.UserInterface.Systems.Language;
 public sealed class LanguageMenuUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
     public LanguageMenuWindow? LanguageWindow;
-    private MenuButton? _languageButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.LanguageButton;
+    private MenuButton? LanguageButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.LanguageButton;
 
     public void OnStateEntered(GameplayState state)
     {
@@ -25,10 +25,16 @@ public sealed class LanguageMenuUIController : UIController, IOnStateEntered<Gam
         LanguageWindow = UIManager.CreateWindow<LanguageMenuWindow>();
         LayoutContainer.SetAnchorPreset(LanguageWindow, LayoutContainer.LayoutPreset.CenterTop);
 
-        LanguageWindow.OnClose += ()
-            => _languageButton?.Pressed = false;
-        LanguageWindow.OnOpen += ()
-            => _languageButton?.Pressed = true;
+        LanguageWindow.OnClose += () =>
+        {
+            if (LanguageButton != null)
+                LanguageButton.Pressed = false;
+        };
+        LanguageWindow.OnOpen += () =>
+        {
+            if (LanguageButton != null)
+                LanguageButton.Pressed = true;
+        };
 
         CommandBinds.Builder.Bind(ContentKeyFunctions.OpenLanguageMenu,
             InputCmdHandler.FromDelegate(_ => ToggleWindow())).Register<LanguageMenuUIController>();
@@ -36,37 +42,43 @@ public sealed class LanguageMenuUIController : UIController, IOnStateEntered<Gam
 
     public void OnStateExited(GameplayState state)
     {
-        LanguageWindow?.Dispose();
-        LanguageWindow = null;
+        if (LanguageWindow != null)
+        {
+            LanguageWindow.Dispose();
+            LanguageWindow = null;
+        }
 
         CommandBinds.Unregister<LanguageMenuUIController>();
     }
 
     public void UnloadButton()
     {
-        if (_languageButton == null)
+        if (LanguageButton == null)
             return;
 
-        _languageButton.OnPressed -= LanguageButtonPressed;
+        LanguageButton.OnPressed -= LanguageButtonPressed;
     }
 
     public void LoadButton()
     {
-        if (_languageButton == null)
+        if (LanguageButton == null)
             return;
 
-        _languageButton.OnPressed += LanguageButtonPressed;
+        LanguageButton.OnPressed += LanguageButtonPressed;
     }
 
     private void LanguageButtonPressed(ButtonEventArgs args)
-        => ToggleWindow();
+    {
+        ToggleWindow();
+    }
 
     private void ToggleWindow()
     {
         if (LanguageWindow == null)
             return;
 
-        _languageButton?.SetClickPressed(!LanguageWindow.IsOpen);
+        if (LanguageButton != null)
+            LanguageButton.SetClickPressed(!LanguageWindow.IsOpen);
 
         if (LanguageWindow.IsOpen)
             LanguageWindow.Close();

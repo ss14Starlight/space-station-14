@@ -1,11 +1,13 @@
 ﻿using Content.Client._Starlight.Character.Info.UI;
+using Content.Shared._Starlight.Character.Info;
 
 // ReSharper disable CheckNamespace
 namespace Content.Client.UserInterface.Systems.Character;
 
 public sealed partial class CharacterUIController
 {
-    private readonly Dictionary<EntityUid, CharacterInspectWindow> _openInspectionWindows = new();
+    private Dictionary<EntityUid, CharacterInspectWindow> _openInspectionWindows = new();
+
 
     public void OpenInspectCharacterWindow(EntityUid target, EntityUid viewer)
     {

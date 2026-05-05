@@ -17,7 +17,7 @@ public sealed class ClientEncryptionKeySystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly StarlightEntitySystem _sl = default!;
-    private EntityUid _singleton;
+    private EntityUid singleton;
 
     public override void Initialize()
     {
@@ -53,10 +53,10 @@ public sealed class ClientEncryptionKeySystem : EntitySystem
     {
         var meta = MetaData(entity);
         if (meta.EntityPrototype is null) return;
-        _sl.TryGetSingleton(meta.EntityPrototype, out _singleton);
-        if (_singleton == EntityUid.Invalid) return;
-        if(!TryComp<SpriteComponent>(_singleton, out var sprite)) return;
-        if (!_sprite.TryGetLayer((_singleton, sprite), index, out var layer, false)) return;
+        _sl.TryGetSingleton(meta.EntityPrototype, out singleton);
+        if (singleton == EntityUid.Invalid) return;
+        if(!TryComp<SpriteComponent>(singleton, out var sprite)) return;
+        if (!_sprite.TryGetLayer((singleton, sprite), index, out var layer, false)) return;
         _sprite.LayerSetRsi((entity.Owner, entity.Comp), index, layer.RSI, layer.State);
     }
 

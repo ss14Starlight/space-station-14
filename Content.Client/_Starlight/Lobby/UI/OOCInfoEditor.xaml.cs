@@ -4,20 +4,23 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
 
-namespace Content.Client._Starlight.Lobby.UI;
-
-[GenerateTypedNameReferences]
-public sealed partial class OOCInfoEditor : Control
+namespace Content.Client._Starlight.Lobby.UI
 {
-    private void RegisterListener(TextEdit control, string locId, ILocalizationManager loc)
-        => control.Placeholder = new Rope.Leaf(loc.GetString(locId));
-
-    public OOCInfoEditor()
+    [GenerateTypedNameReferences]
+    public sealed partial class OOCInfoEditor : Control
     {
-        RobustXamlLoader.Load(this);
-        IoCManager.InjectDependencies(this);
-        var loc = IoCManager.Resolve<ILocalizationManager>();
-        RegisterListener(PersonalNotesInput, "personal-notes-text-placeholder", loc);
-        RegisterListener(OOCNotesInput, "ooc-notes-text-placeholder", loc);
+        private void RegisterListener(TextEdit control, string locId, ILocalizationManager loc)
+        {
+            control.Placeholder = new Rope.Leaf(loc.GetString(locId));
+        }
+
+        public OOCInfoEditor()
+        {
+            RobustXamlLoader.Load(this);
+            IoCManager.InjectDependencies(this);
+            var loc = IoCManager.Resolve<ILocalizationManager>();
+            RegisterListener(PersonalNotesInput, "personal-notes-text-placeholder", loc);
+            RegisterListener(OOCNotesInput, "ooc-notes-text-placeholder", loc);
+        }
     }
 }

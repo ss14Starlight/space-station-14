@@ -65,8 +65,10 @@ public sealed partial class MhelpControl : Control
         };
 
         PingSound.Pressed = _config.GetCVar(StarlightCCVars.MHelpPing);
-        PingSound.OnPressed += sound
-            => _config.SetCVar(StarlightCCVars.MHelpPing, sound.Button.Pressed);
+        PingSound.OnPressed += sound =>
+        {
+            _config.SetCVar(StarlightCCVars.MHelpPing, sound.Button.Pressed);
+        };
         _config.OnValueChanged(StarlightCCVars.MHelpPing, v => PingSound.Pressed = v);
     }
 

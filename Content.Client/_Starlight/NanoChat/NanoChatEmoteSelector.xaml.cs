@@ -23,7 +23,7 @@ public sealed partial class NanoChatEmoteSelector : DefaultWindow
     private List<NanoChatEmoteCache.EmoteData> _displayedEmotes = new();
     private readonly Queue<string> _recentlyUsedEmotes = new();
     private string _currentCategory = "All";
-    private readonly SpriteSystem? _spriteSystem;
+    private SpriteSystem? _spriteSystem;
 
     public event Action<string>? OnEmoteSelected;
 
@@ -108,7 +108,9 @@ public sealed partial class NanoChatEmoteSelector : DefaultWindow
     }
 
     private void ClearSearch()
-        => SearchInput.Text = string.Empty;
+    {
+        SearchInput.Text = string.Empty;
+    }
 
     private void OnSearchChanged(LineEdit.LineEditEventArgs args)
     {
@@ -286,8 +288,8 @@ public sealed partial class NanoChatEmoteSelector : DefaultWindow
 
     private void UpdateGridLayout()
     {
-        const int ScrollbarWidth = 12;
-        var availableWidth = EmoteScrollContainer.PixelSize.X - ScrollbarWidth;
+        const int scrollbarWidth = 12;
+        var availableWidth = EmoteScrollContainer.PixelSize.X - scrollbarWidth;
 
         if (availableWidth <= 0)
             return;
@@ -313,7 +315,9 @@ public sealed partial class NanoChatEmoteSelector : DefaultWindow
     }
 
     private void UpdateRecentEmotes()
-        => RecentlyUsedSection.Visible = _recentlyUsedEmotes.Count > 0 &&
-            _currentCategory == "All" &&
-            string.IsNullOrWhiteSpace(SearchInput.Text);
+    {
+        RecentlyUsedSection.Visible = _recentlyUsedEmotes.Count > 0 &&
+                                       _currentCategory == "All" &&
+                                       string.IsNullOrWhiteSpace(SearchInput.Text);
+    }
 }

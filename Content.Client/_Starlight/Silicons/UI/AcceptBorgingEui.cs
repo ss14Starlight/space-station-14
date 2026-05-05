@@ -36,5 +36,7 @@ public sealed class AcceptBorgingEui : BaseEui
     }
 
     public override void Closed()
-        => _window.Close();
+    {
+        _window.Close();
+    }
 }

@@ -2,7 +2,9 @@ using Content.Client._Starlight.TTS;
 using Content.Shared.GameTicking;
 using Content.Shared.Radio;
 using Content.Shared.Starlight.TextToSpeech;
+using Robust.Client.Player;
 using Robust.Shared.Audio;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.TextToSpeech;

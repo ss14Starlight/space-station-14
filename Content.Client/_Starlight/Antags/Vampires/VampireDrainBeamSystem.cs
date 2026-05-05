@@ -27,7 +27,7 @@ public sealed class VampireDrainBeamSystem : EntitySystem
     /// Tracks client-side beam visual entities
     /// Key = (kind, source, target) pair, Value = visual beam entity
     /// </summary>
-    private readonly Dictionary<(BeamKind, EntityUid, EntityUid), EntityUid> _activeBeamVisuals = [];
+    private readonly Dictionary<(BeamKind, EntityUid, EntityUid), EntityUid> _activeBeamVisuals = new();
 
     public override void Initialize()
     {

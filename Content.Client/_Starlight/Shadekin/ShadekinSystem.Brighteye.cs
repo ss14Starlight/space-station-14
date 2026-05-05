@@ -6,7 +6,9 @@ namespace Content.Client._Starlight.Shadekin;
 public sealed partial class ShadekinSystem : EntitySystem
 {
     public void InitializeBrighteye()
-        => SubscribeLocalEvent<BrighteyeComponent, GetGenericAlertCounterAmountEvent>(OnGetCounterAmount);
+    {
+        SubscribeLocalEvent<BrighteyeComponent, GetGenericAlertCounterAmountEvent>(OnGetCounterAmount);
+    }
 
     private void OnGetCounterAmount(Entity<BrighteyeComponent> ent, ref GetGenericAlertCounterAmountEvent args)
     {

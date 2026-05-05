@@ -3,19 +3,20 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Network;
 using Robust.Client.UserInterface.CustomControls;
 
-namespace Content.Client._Starlight.Silicons.UI;
-
-[GenerateTypedNameReferences]
-public sealed partial class AcceptBorgingWindow : DefaultWindow
+namespace Content.Client._Starlight.Silicons.UI
 {
-    [Dependency] private readonly IClientNetManager _netManager = default!;
-    public event Action? OnAcceptButtonPressed;
-    public event Action? OnDenyButtonPressed;
-
-    public AcceptBorgingWindow()
+    [GenerateTypedNameReferences]
+    public sealed partial class AcceptBorgingWindow : DefaultWindow
     {
-        RobustXamlLoader.Load(this);
-        AcceptButton.OnPressed += _ => OnAcceptButtonPressed?.Invoke();
-        DenyButton.OnPressed += _ => OnDenyButtonPressed?.Invoke();
+        [Dependency] private readonly IClientNetManager _netManager = default!;
+        public event Action? OnAcceptButtonPressed;
+        public event Action? OnDenyButtonPressed;
+
+        public AcceptBorgingWindow()
+        {
+            RobustXamlLoader.Load(this);
+            AcceptButton.OnPressed += _ => OnAcceptButtonPressed?.Invoke();
+            DenyButton.OnPressed += _ => OnDenyButtonPressed?.Invoke();
+        }
     }
 }

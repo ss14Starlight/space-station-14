@@ -4,6 +4,7 @@ using Content.Shared._Starlight.Plumbing.Components;
 using Content.Client.SubFloor;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Atmos.Piping;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 
@@ -21,11 +22,11 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
-    private static readonly Color _inletColor = new(1.0f, 0.35f, 0.35f);  // Vibrant Red
-    private static readonly Color _outletColor = new(0.35f, 0.6f, 1.0f);  // Vibrant Blue
-    private static readonly Color _mixingInletColor = new(0.35f, 0.9f, 0.35f);  // Vibrant Green
-    private static readonly PlumbingConnectionLayer[] _connectionLayers = Enum.GetValues<PlumbingConnectionLayer>();
-    private static readonly PipeDirection[] _cardinalDirections =
+    private static readonly Color InletColor = new(1.0f, 0.35f, 0.35f);  // Vibrant Red
+    private static readonly Color OutletColor = new(0.35f, 0.6f, 1.0f);  // Vibrant Blue
+    private static readonly Color MixingInletColor = new(0.35f, 0.9f, 0.35f);  // Vibrant Green
+    private static readonly PlumbingConnectionLayer[] ConnectionLayers = Enum.GetValues<PlumbingConnectionLayer>();
+    private static readonly PipeDirection[] CardinalDirections =
     [
         PipeDirection.North,
         PipeDirection.South,
@@ -33,7 +34,7 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
         PipeDirection.West,
     ];
 
-    private static readonly ManifoldSideSpec[] _manifoldSides =
+    private static readonly ManifoldSideSpec[] ManifoldSides =
     [
         new(PipeDirection.North, 3),
         new(PipeDirection.South, 3),
@@ -60,7 +61,7 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
         // Create one layer for each cardinal direction
         // The layer will swap between disconnected/connected sprites based on connection state
         // Insert at layer 0 so connectors render UNDER the plumbing machine sprite
-        foreach (var layerKey in _connectionLayers)
+        foreach (var layerKey in ConnectionLayers)
         {
             var direction = (PipeDirection) layerKey;
             var baseOffset = GetDirectionOffset(direction, component.Offset);
@@ -80,7 +81,9 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
     }
 
     private static Vector2 GetDirectionOffset(PipeDirection direction, float offset)
-        => direction.ToDirection().ToVec() * offset;
+    {
+        return direction.ToDirection().ToVec() * offset;
+    }
 
     private void OnAppearanceChanged(EntityUid uid, PlumbingConnectorAppearanceComponent component, ref AppearanceChangeEvent args)
     {
@@ -137,7 +140,8 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
         var outletDirectionsLocal = outletDirections.RotatePipeDirection(-localRotation);
         var mixingInletDirectionsLocal = mixingInletDirections.RotatePipeDirection(-localRotation);
 
-        foreach (var layerKey in _connectionLayers)
+
+        foreach (var layerKey in ConnectionLayers)
         {
             var dir = (PipeDirection)layerKey;
             var hasNode = nodeDirectionsLocal.HasDirection(dir);
@@ -205,9 +209,9 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
                 continue;
 
             _sprite.LayerSetRsiState((uid, sprite), layerKey, component.Connected.RsiState);
-            const float ForwardOffset = 0f;
+            const float forwardOffset = 0f;
             _sprite.LayerSetOffset((uid, sprite), layerKey,
-                GetManifoldSlotOffset(direction, slotIndex, slotCount, ForwardOffset, ManifoldSlotSpacing, component.Offset, localRotation));
+                GetManifoldSlotOffset(direction, slotIndex, slotCount, forwardOffset, ManifoldSlotSpacing, component.Offset, localRotation));
             layer.Color = Color.White;
         }
     }
@@ -239,7 +243,7 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
 
     private static IEnumerable<(PipeDirection Direction, int SlotIndex, int SlotCount, string LayerName)> EnumerateManifoldLayers()
     {
-        foreach (var side in _manifoldSides)
+        foreach (var side in ManifoldSides)
         {
             for (var slotIndex = 0; slotIndex < side.SlotCount; slotIndex++)
             {
@@ -250,7 +254,7 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
 
     private void HideAllLayers(EntityUid uid, SpriteComponent sprite)
     {
-        foreach (var layerKey in _connectionLayers)
+        foreach (var layerKey in ConnectionLayers)
         {
             var layerName = layerKey.ToString();
             if (_sprite.LayerMapTryGet((uid, sprite), layerName, out var key, false))
@@ -284,17 +288,19 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
     }
 
     private static Vector2 GetPerpendicularOffset(PipeDirection direction, float magnitude)
-        => direction switch
+    {
+        return direction switch
         {
             PipeDirection.North or PipeDirection.South => new Vector2(magnitude, 0f),
             PipeDirection.East or PipeDirection.West => new Vector2(0f, magnitude),
             _ => Vector2.Zero,
-    };
+        };
+    }
 
     private static int RotateManifoldSlotsToLocal(int packedData, Angle localRotation)
     {
         var rotated = 0;
-        foreach (var worldDirection in _cardinalDirections)
+        foreach (var worldDirection in CardinalDirections)
         {
             var mask = ReadPackedDirectionNibble(packedData, worldDirection);
             if (mask == 0)
@@ -329,14 +335,16 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
     }
 
     private static int GetDirectionNibbleShift(PipeDirection direction)
-        => direction switch
+    {
+        return direction switch
         {
             PipeDirection.North => 0,
             PipeDirection.South => 4,
             PipeDirection.East => 8,
             PipeDirection.West => 12,
             _ => -1,
-    };
+        };
+    }
 
     private static Vector2 GetManifoldSlotOffset(PipeDirection direction, int slotIndex, int slotCount, float baseOffset, float slotSpacing, float connectorOffset, Angle localRotation)
     {
@@ -357,7 +365,7 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
             return baseDirectionOffset + layerOffset;
         }
 
-        var centeredIndex = slotIndex - ((slotCount - 1) / 2f);
+        var centeredIndex = slotIndex - (slotCount - 1) / 2f;
         var spread = centeredIndex * slotSpacing;
 
         var perpendicularOffset = direction switch
@@ -373,25 +381,27 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
     private static Color GetConnectorColor(bool isInlet, bool isOutlet, bool isMixingInlet)
     {
         if (isMixingInlet)
-            return _mixingInletColor;
+            return MixingInletColor;
 
         if (isInlet)
-            return _inletColor;
+            return InletColor;
 
         if (isOutlet)
-            return _outletColor;
+            return OutletColor;
 
         return Color.White;
     }
 
     private SpriteComponent.DirectionOffset ToOffset(PipeDirection direction)
-        => direction switch
+    {
+        return direction switch
         {
             PipeDirection.North => SpriteComponent.DirectionOffset.Flip,
             PipeDirection.East => SpriteComponent.DirectionOffset.CounterClockwise,
             PipeDirection.West => SpriteComponent.DirectionOffset.Clockwise,
             _ => SpriteComponent.DirectionOffset.None,
-    };
+        };
+    }
 
     private enum PlumbingConnectionLayer : byte
     {

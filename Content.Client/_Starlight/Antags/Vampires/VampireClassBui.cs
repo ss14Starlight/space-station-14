@@ -3,16 +3,24 @@ using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
+using Robust.Shared.IoC;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Client._Starlight.Antags.Vampires;
 
 [UsedImplicitly]
-public sealed class VampireClassBui(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
+public sealed class VampireClassBui : BoundUserInterface
 {
     private SimpleRadialMenu? _menu;
     private bool _choiceMade;
-    private readonly IPrototypeManager _proto = IoCManager.Resolve<IPrototypeManager>();
+    private readonly IPrototypeManager _proto;
+
+    public VampireClassBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    {
+        _proto = IoCManager.Resolve<IPrototypeManager>();
+    }
 
     protected override void Open()
     {
@@ -42,7 +50,8 @@ public sealed class VampireClassBui(EntityUid owner, Enum uiKey) : BoundUserInte
     {
         if (disposing)
         {
-            _menu?.OnClose -= OnMenuClosed;
+            if (_menu != null)
+                _menu.OnClose -= OnMenuClosed;
             _menu = null;
         }
 

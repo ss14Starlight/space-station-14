@@ -100,10 +100,14 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
 
     #region Layer Removals
     private void OnCosmicStarMarkRemoved(Entity<CosmicStarMarkComponent> uid, ref ComponentShutdown args)
-        => _sprite.RemoveLayer(uid.Owner, CosmicRevealedKey.Key);
+    {
+        _sprite.RemoveLayer(uid.Owner, CosmicRevealedKey.Key);
+    }
 
     private void OnCosmicImpositionRemoved(Entity<CosmicImposingComponent> uid, ref ComponentShutdown args)
-        => _sprite.RemoveLayer(uid.Owner, CosmicImposingKey.Key);
+    {
+        _sprite.RemoveLayer(uid.Owner, CosmicImposingKey.Key);
+    }
     #endregion
 
     #region Icons

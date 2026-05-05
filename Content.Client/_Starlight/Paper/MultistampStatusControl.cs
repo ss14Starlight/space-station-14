@@ -5,32 +5,33 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
 
-namespace Content.Client._Starlight.Paper;
-
-public sealed class MultistampStatusControl : Control
+namespace Content.Client._Starlight.Paper
 {
-    private readonly MultistampComponent _parent;
-    private readonly RichTextLabel _label;
-
-    public MultistampStatusControl(MultistampComponent parent)
+    public sealed class MultistampStatusControl : Control
     {
-        _parent = parent;
-        _label = new RichTextLabel { StyleClasses = { StyleClass.ItemStatus } };
-        _label.SetMarkup(_parent.StatusShowStamp ? _parent.CurrentStampName : string.Empty);
-        AddChild(_label);
-    }
+        private readonly MultistampComponent _parent;
+        private readonly RichTextLabel _label;
 
-    protected override void FrameUpdate(FrameEventArgs args)
-    {
-        base.FrameUpdate(args);
-
-        if (_parent.UiUpdateNeeded)
+        public MultistampStatusControl(MultistampComponent parent)
         {
-            _parent.UiUpdateNeeded = false;
-            Update();
+            _parent = parent;
+            _label = new RichTextLabel { StyleClasses = { StyleClass.ItemStatus } };
+            _label.SetMarkup(_parent.StatusShowStamp ? _parent.CurrentStampName : string.Empty);
+            AddChild(_label);
         }
-    }
 
-    public void Update()
-        => _label.SetMarkup(_parent.StatusShowStamp ? _parent.CurrentStampName : string.Empty);
+        protected override void FrameUpdate(FrameEventArgs args)
+        {
+            base.FrameUpdate(args);
+
+            if (_parent.UiUpdateNeeded)
+            {
+                _parent.UiUpdateNeeded = false;
+                Update();
+            }
+        }
+
+        public void Update()
+            => _label.SetMarkup(_parent.StatusShowStamp ? _parent.CurrentStampName : string.Empty);
+    }
 }

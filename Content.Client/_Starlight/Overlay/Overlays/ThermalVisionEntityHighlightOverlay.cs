@@ -4,6 +4,5 @@ namespace Content.Client._Starlight.Overlay;
 
 public sealed class ThermalVisionEntityHighlightOverlay : BaseEntityHighlightOverlay
 {
-    public ThermalVisionEntityHighlightOverlay(ShaderPrototype shader) : base(shader)
-        => ZIndex = (int?)OverlayZIndexes.ThermalVisionEntityHighlight;
+    public ThermalVisionEntityHighlightOverlay(ShaderPrototype shader) : base(shader) { ZIndex = (int?)OverlayZIndexes.ThermalVisionEntityHighlight; }
 }

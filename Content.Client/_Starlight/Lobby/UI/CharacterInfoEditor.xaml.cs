@@ -4,23 +4,26 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
 
-namespace Content.Client._Starlight.Lobby.UI;
-
-[GenerateTypedNameReferences]
-public sealed partial class CharacterInfoEditor : Control
+namespace Content.Client._Starlight.Lobby.UI
 {
-    public CharacterInfoEditor()
+    [GenerateTypedNameReferences]
+    public sealed partial class CharacterInfoEditor : Control
     {
-        RobustXamlLoader.Load(this);
-        IoCManager.InjectDependencies(this);
+        public CharacterInfoEditor()
+        {
+            RobustXamlLoader.Load(this);
+            IoCManager.InjectDependencies(this);
 
-        var loc = IoCManager.Resolve<ILocalizationManager>();
-        RegisterListener(PhysicalDescInput, "character-physical-text-placeholder", loc);
-        RegisterListener(PersonalityDescInput, "character-personality-text-placeholder", loc);
-        RegisterListener(SecretsInput, "character-secrets-text-placeholder", loc);
-        RegisterListener(ExploitableInput, "character-exploitable-text-placeholder", loc);
+            var loc = IoCManager.Resolve<ILocalizationManager>();
+            RegisterListener(PhysicalDescInput, "character-physical-text-placeholder", loc);
+            RegisterListener(PersonalityDescInput, "character-personality-text-placeholder", loc);
+            RegisterListener(SecretsInput, "character-secrets-text-placeholder", loc);
+            RegisterListener(ExploitableInput, "character-exploitable-text-placeholder", loc);
+        }
+
+        private void RegisterListener(TextEdit control, string locId, ILocalizationManager loc)
+        {
+            control.Placeholder = new Rope.Leaf(loc.GetString(locId));
+        }
     }
-
-    private void RegisterListener(TextEdit control, string locId, ILocalizationManager loc)
-        => control.Placeholder = new Rope.Leaf(loc.GetString(locId));
 }

@@ -4,7 +4,9 @@ using Robust.Client.UserInterface.RichText;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Utility;
+using Robust.Shared.IoC;
 using Content.Client.Paper.UI;
+using Robust.Client.Graphics;
 
 namespace Content.Client.UserInterface.RichText;
 
@@ -14,19 +16,19 @@ namespace Content.Client.UserInterface.RichText;
 public sealed class DateTimeTagHandler : IMarkupTagHandler
 {
     public string Name => "datetime";
-    private static int s_dateTimeCounter = 0;
+    private static int _dateTimeCounter = 0;
 
     /// <summary>
     /// Font line height set by PaperWindow to ensure buttons match text height
     /// </summary>
     public static float FontLineHeight { get; set; } = 16.0f; // Default fallback
 
-    private static int GetDateTimeIndex(MarkupNode _) => s_dateTimeCounter++;
+    private static int GetDateTimeIndex(MarkupNode node) => _dateTimeCounter++;
 
     /// <summary>
     /// Resets the datetime counter to ensure consistent indexing across renders.
     /// </summary>
-    public static void ResetDateTimeCounter() => s_dateTimeCounter = 0;
+    public static void ResetDateTimeCounter() => _dateTimeCounter = 0;
 
     /// <summary>
     /// Counts datetime buttons before the clicked button to determine which [datetime] tag it represents.
@@ -67,7 +69,9 @@ public sealed class DateTimeTagHandler : IMarkupTagHandler
     }
 
     public DateTimeTagHandler()
-        => IoCManager.InjectDependencies(this);
+    {
+        IoCManager.InjectDependencies(this);
+    }
 
     public void PushDrawContext(MarkupNode node, MarkupDrawingContext context) { }
     public void PopDrawContext(MarkupNode node, MarkupDrawingContext context) { }
@@ -96,7 +100,7 @@ public sealed class DateTimeTagHandler : IMarkupTagHandler
         {
             // Find the PaperWindow parent
             var parent = btn.Parent;
-            while (parent is not null and not PaperWindow)
+            while (parent != null && parent is not PaperWindow)
                 parent = parent.Parent;
 
             if (parent is PaperWindow paperWindow)
@@ -111,4 +115,6 @@ public sealed class DateTimeTagHandler : IMarkupTagHandler
         control = btn;
         return true;
     }
+
+
 }

@@ -11,5 +11,7 @@ public sealed class SLCharacterInfoSystem : SLSharedCharacterInfoSystem
     private CharacterUIController _controller => _ui.GetUIController<CharacterUIController>();
 
     protected override void OpenCharacterWindow(EntityUid target, EntityUid requester)
-        => _controller.OpenInspectCharacterWindow(target, requester);
+    {
+        _controller.OpenInspectCharacterWindow(target, requester);
+    }
 }

@@ -1,5 +1,7 @@
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared._Starlight.Lock;
 using JetBrains.Annotations;
+using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 
 namespace Content.Client._Starlight.Lock;
@@ -20,12 +22,18 @@ public sealed class DigitalLockBoundUserInterface : BoundUserInterface
         base.Open();
         _menu = this.CreateWindow<DigitalLockMenu>();
 
-        _menu.OnKeypadButtonPressed += i
-            => SendMessage(new DigitalLockKeypadMessage(i));
-        _menu.OnEnterButtonPressed += ()
-            => SendMessage(new DigitalLockKeypadEnterMessage());
-        _menu.OnClearButtonPressed += ()
-            => SendMessage(new DigitalLockKeypadClearMessage());
+        _menu.OnKeypadButtonPressed += i =>
+        {
+            SendMessage(new DigitalLockKeypadMessage(i));
+        };
+        _menu.OnEnterButtonPressed += () =>
+        {
+            SendMessage(new DigitalLockKeypadEnterMessage());
+        };
+        _menu.OnClearButtonPressed += () =>
+        {
+            SendMessage(new DigitalLockKeypadClearMessage());
+        };
 
         _menu.FillKeypadGrid();
     }
