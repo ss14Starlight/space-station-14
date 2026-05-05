@@ -14,24 +14,30 @@ public sealed partial class SpawnAttachedToEntityEffectSystem : EntityEffectSyst
 {
     [Dependency] private readonly INetManager _net = default!;
 
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+
     protected override void Effect(Entity<TransformComponent> entity, ref EntityEffectEvent<SpawnAttachedTo> args)
     {
         var quantity = args.Effect.Number * (int)Math.Floor(args.Scale);
         var proto = args.Effect.Entity;
         EntityUid ent = entity.Owner;
 
+        // don't actually use SpawnAttachedTo() because that guesses the parent entity -- we already have that information so we can do it the more reliable way:
+
         if (args.Effect.Predicted)
         {
             for (var i = 0; i < quantity; i++)
             {
-                PredictedSpawnAttachedTo(proto, ent.ToCoordinates());
+                var new_ent = PredictedSpawnAtPosition(proto, ent.ToCoordinates());
+                _transform.SetParent(new_ent, ent);
             }
         }
         else if (_net.IsServer)
         {
             for (var i = 0; i < quantity; i++)
             {
-                SpawnAttachedTo(proto, ent.ToCoordinates());
+                var new_ent = SpawnAtPosition(proto, ent.ToCoordinates());
+                _transform.SetParent(new_ent, ent);
             }
         }
     }
