@@ -1,5 +1,3 @@
-using Content.Client.Eye.Blinding;
-using Content.Client.GameTicking.Managers;
 using Content.Shared.Eye.Blinding.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -7,11 +5,7 @@ using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared.Inventory.Events;
-using Content.Shared.Flash.Components;
 using Content.Shared.Starlight.Overlay;
-using Content.Shared.Mech.Components;
-using Content.Shared.Mech;
 
 namespace Content.Client._Starlight.Overlay;
 
@@ -24,12 +18,13 @@ public sealed class ThermalVisionSystem : SharedThermalVisionSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly FlashImmunitySystem _flashImmunity = default!;
 
-
     private ThermalVisionEntityHighlightOverlay _throughWallsOverlay = default!;
     private ThermalVisionOverlay _overlay = default!;
 
     [ViewVariables]
     private EntityUid? _effect = null;
+    private const string BrightnessShaderPrototype = "BrightnessShader";
+    private const string ThermalVisionShaderPrototype = "ThermalVisionScreenShader";
     protected override bool IsPredict() => !_timing.IsFirstTimePredicted;
     public override void Initialize()
     {
@@ -44,8 +39,8 @@ public sealed class ThermalVisionSystem : SharedThermalVisionSystem
 
         SubscribeLocalEvent<ThermalVisionComponent, FlashImmunityCheckEvent>(OnFlashImmunityChanged);
 
-        _throughWallsOverlay = new(_prototypeManager.Index<ShaderPrototype>("BrightnessShader"));
-        _overlay = new(_prototypeManager.Index<ShaderPrototype>("ThermalVisionScreenShader"));
+        _throughWallsOverlay = new(_prototypeManager.Index<ShaderPrototype>(BrightnessShaderPrototype));
+        _overlay = new(_prototypeManager.Index<ShaderPrototype>(ThermalVisionShaderPrototype));
     }
 
     private void OnFlashImmunityChanged(Entity<ThermalVisionComponent> ent, ref FlashImmunityCheckEvent args)
@@ -61,24 +56,16 @@ public sealed class ThermalVisionSystem : SharedThermalVisionSystem
     }
 
     private void OnPlayerAttached(Entity<ThermalVisionComponent> ent, ref LocalPlayerAttachedEvent args)
-    {
-        AttemptAddVision(ent.Owner);
-    }
+        => AttemptAddVision(ent.Owner);
 
     private void OnPlayerDetached(Entity<ThermalVisionComponent> ent, ref LocalPlayerDetachedEvent args)
-    {
-        AttemptRemoveVision(ent.Owner, true);
-    }
+        => AttemptRemoveVision(ent.Owner, true);
 
     protected override void ToggleOn(Entity<ThermalVisionComponent> ent)
-    {
-        AttemptAddVision(ent.Owner);
-    }
+        => AttemptAddVision(ent.Owner);
 
     protected override void ToggleOff(Entity<ThermalVisionComponent> ent)
-    {
-        AttemptRemoveVision(ent.Owner);
-    }
+        => AttemptRemoveVision(ent.Owner);
 
     private void AttemptAddVision(EntityUid uid)
     {

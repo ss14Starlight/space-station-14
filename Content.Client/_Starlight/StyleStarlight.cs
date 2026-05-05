@@ -108,7 +108,7 @@ public sealed class StyleStarlight : StyleBase
     // Fancy Tree elements
     public static readonly Color FancyTreeEvenRowColor = Color.FromHex("#141412");
     public static readonly Color FancyTreeOddRowColor = FancyTreeEvenRowColor * new Color(0.8f, 0.8f, 0.8f);
-    public static readonly Color FancyTreeSelectedRowColor = new Color(55, 55, 68);
+    public static readonly Color FancyTreeSelectedRowColor = new(55, 55, 68);
 
     //Used by the APC and SMES menus
     public const string StyleClassPowerStateNone = "PowerStateNone";
@@ -434,7 +434,6 @@ public sealed class StyleStarlight : StyleBase
             Texture = squareTex,
             ContentMarginLeftOverride = 10
         };
-
 
         // NanoHeading
         var nanoHeadingTex = resCache.GetTexture("/Textures/_Starlight/Interface/Nano/nanoheading.svg.96dpi.png");

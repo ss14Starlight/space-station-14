@@ -5,8 +5,6 @@ using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Shared.IoC;
-using Robust.Shared.Localization;
 using Robust.Shared.Utility;
 using System.Numerics;
 
@@ -52,7 +50,6 @@ public sealed partial class PlumbingPillPressWindow : DefaultWindow
             OutputModeSelector.SelectId(args.Id);
             OnSetOutputMode?.Invoke((PillPressOutputMode) args.Id);
         };
-
 
         DosageInput.Text = "10";
         SetDosageButton.OnPressed += _ =>
@@ -155,26 +152,20 @@ public sealed partial class PlumbingPillPressWindow : DefaultWindow
             PillTypeGrid.AddChild(PillTypeButtons[i]);
 
             var pillType = i;
-            PillTypeButtons[i].OnPressed += _ =>
-            {
-                OnSetPillType?.Invoke(pillType);
-            };
+            PillTypeButtons[i].OnPressed += _
+                => OnSetPillType?.Invoke(pillType);
         }
 
         PillTypeButtons[0].Pressed = true;
     }
 
     private void UpdateToggleButton()
-    {
-        ToggleStatusButton.Text = _enabled
+        => ToggleStatusButton.Text = _enabled
             ? Loc.GetString("plumbing-pill-press-enabled")
             : Loc.GetString("plumbing-pill-press-disabled");
-    }
 
     private void UpdateMixingVisibility()
-    {
-        MixingContainer.Visible = _mixingEnabled;
-    }
+        => MixingContainer.Visible = _mixingEnabled;
 
     public void UpdateState(PlumbingPillPressBoundUserInterfaceState state)
     {

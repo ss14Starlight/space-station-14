@@ -15,8 +15,8 @@ public sealed class ClouldEmotesSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    private SpriteSpecifier EmoteStart = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Effects/cloud_emotes.rsi"), "emote_start");
-    private SpriteSpecifier EmoteEnd = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Effects/cloud_emotes.rsi"), "emote_end");
+    private readonly SpriteSpecifier _emoteStart = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Effects/cloud_emotes.rsi"), "emote_start");
+    private readonly SpriteSpecifier _emoteEnd = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Effects/cloud_emotes.rsi"), "emote_end");
 
     public override void Initialize()
     {
@@ -26,9 +26,7 @@ public sealed class ClouldEmotesSystem : EntitySystem
     }
 
     private void OnMessage(CloudEmotesMessage args, EntitySessionEventArgs session)
-    {
-        Emote(GetEntity(args.Uid), args.Emote);
-    }
+        => Emote(GetEntity(args.Uid), args.Emote);
 
     public void Emote(EntityUid uid, string emote)
     {
@@ -41,9 +39,9 @@ public sealed class ClouldEmotesSystem : EntitySystem
         if (_sprite.LayerMapTryGet((uid, sprite), CloudEmotesKey.Key, out var _, false))
             return;
 
-        var adj = _sprite.GetLocalBounds((uid, sprite)).Height / 2 + ((1.0f / 32) * 6.0f);
+        var adj = (_sprite.GetLocalBounds((uid, sprite)).Height / 2) + (1.0f / 32 * 6.0f);
 
-        var layer = _sprite.AddLayer((uid, sprite), EmoteStart);
+        var layer = _sprite.AddLayer((uid, sprite), _emoteStart);
         _sprite.LayerMapSet((uid, sprite), CloudEmotesKey.Key, layer);
 
         _sprite.LayerSetOffset((uid, sprite), layer, new Vector2(0.0f, adj));
@@ -53,7 +51,7 @@ public sealed class ClouldEmotesSystem : EntitySystem
 
         Timer.Spawn(TimeSpan.FromSeconds(0.2f), () => _sprite.LayerSetSprite((uid, sprite), CloudEmotesKey.Key, cloudEmote.Icon));
 
-        Timer.Spawn(TimeSpan.FromSeconds(0.2f + cloudEmote.AnimationTime), () => _sprite.LayerSetSprite((uid, sprite), CloudEmotesKey.Key, EmoteEnd));
+        Timer.Spawn(TimeSpan.FromSeconds(0.2f + cloudEmote.AnimationTime), () => _sprite.LayerSetSprite((uid, sprite), CloudEmotesKey.Key, _emoteEnd));
 
         Timer.Spawn(TimeSpan.FromSeconds(0.4f + cloudEmote.AnimationTime), () => _sprite.RemoveLayer((uid, sprite), CloudEmotesKey.Key));
     }
