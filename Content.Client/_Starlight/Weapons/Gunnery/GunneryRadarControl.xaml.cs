@@ -12,6 +12,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
+
 namespace Content.Client._Starlight.Weapons.Gunnery;
 
 /// <summary>
@@ -455,7 +456,7 @@ public sealed class GunneryRadarControl : BaseShuttleControl
         var s = S * scale;
         var verts = new Vector2[] { center + new Vector2(0, -s), center + new Vector2(-s * 0.65f, s * 0.5f), center + new Vector2(s * 0.65f, s * 0.5f) };
         handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, (ReadOnlySpan<Vector2>)verts, color.WithAlpha(0.85f));
-        handle.DrawPrimitives(DrawPrimitiveTopology.LineStrip, (ReadOnlySpan<Vector2>)[verts[0], verts[1], verts[2], verts[0]], color);
+        handle.DrawPrimitives(DrawPrimitiveTopology.LineStrip, (ReadOnlySpan<Vector2>)new Vector2[] { verts[0], verts[1], verts[2], verts[0] }, color);
     }
 
     private static void DrawBlipCircle(DrawingHandleScreen handle, Vector2 center, Color color, float scale)
@@ -470,7 +471,7 @@ public sealed class GunneryRadarControl : BaseShuttleControl
         var h = 5f * scale;
         var verts = new Vector2[] { center + new Vector2(-h, -h), center + new Vector2(h, -h), center + new Vector2(h, h), center + new Vector2(-h, h) };
         handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, (ReadOnlySpan<Vector2>)verts, color.WithAlpha(0.85f));
-        handle.DrawPrimitives(DrawPrimitiveTopology.LineStrip, (ReadOnlySpan<Vector2>)[verts[0], verts[1], verts[2], verts[3], verts[0]], color);
+        handle.DrawPrimitives(DrawPrimitiveTopology.LineStrip, (ReadOnlySpan<Vector2>)new Vector2[] { verts[0], verts[1], verts[2], verts[3], verts[0] }, color);
     }
 
     /// <summary>Draws a filled diamond (rotated square) — used for cannon blips.</summary>
@@ -483,6 +484,6 @@ public sealed class GunneryRadarControl : BaseShuttleControl
         var left   = center + new Vector2(-h, 0);
         var verts  = new Vector2[] { top, right, bottom, left };
         handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, (ReadOnlySpan<Vector2>)verts, color.WithAlpha(0.80f));
-        handle.DrawPrimitives(DrawPrimitiveTopology.LineStrip, (ReadOnlySpan<Vector2>)[top, right, bottom, left, top], color);
+        handle.DrawPrimitives(DrawPrimitiveTopology.LineStrip, (ReadOnlySpan<Vector2>)new Vector2[] { top, right, bottom, left, top }, color);
     }
 }
