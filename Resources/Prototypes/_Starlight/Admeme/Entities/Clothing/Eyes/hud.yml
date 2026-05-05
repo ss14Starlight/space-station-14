@@ -46,5 +46,6 @@
   - type: Tag
     tags:
     - HudMedical
+    - CorgiWearable
   - type: EyeProtection
     protectionTime: 5

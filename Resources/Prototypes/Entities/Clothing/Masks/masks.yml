@@ -41,6 +41,9 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: Tag
+    tags:
+    - CorgiWearable #Starlight edit
 
 - type: entity
   parent: [ClothingMaskGas, BaseSyndicateContraband]
