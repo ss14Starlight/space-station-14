@@ -20,10 +20,9 @@ public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
 
     private SimpleRadialMenu? _menu;
 
-    public QuickConstructionBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
+    public QuickConstructionBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) =>
         IoCManager.InjectDependencies(this);
-    }
+    //SL - warning fix
 
     protected override void Open()
     {
@@ -78,7 +77,9 @@ public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
             categoryButtons.Add(prototype, list);
         }
 
-        var models = new RadialMenuOptionBase[constructionButtons.Count + categoryEntries.Count];
+        var models =
+            new RadialMenuOptionBase[constructionButtons.Count +
+                                     categoryButtons.Count]; // SL - fixed using input count instead of current count
         var modelIndex = 0;
 
         foreach (var (prototype, buttonList) in categoryButtons)
@@ -117,6 +118,6 @@ public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
             },
             new ConstructionPlacementHijack(constructionSystem, proto));
 
-        _menu?.Close();
+        //_menu?.Close(); //SL - I think this was trying to keep the menu open when crafting items, but the radial system calls menu.close anyway and i dont wanna edit all that
     }
 }
