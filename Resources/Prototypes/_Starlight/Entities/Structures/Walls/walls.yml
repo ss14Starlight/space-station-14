@@ -266,63 +266,58 @@
 
 ### WALL FAN
 - type: entity
+  parent: BaseWallmountMetallic
   id: WallFan
-  parent: [ BaseStructure, BaseStructureDissolvable ] # Starlight-edit
   name: wall fan
-  description: A large fan inset into the wall for air ventilation.
   placement:
     mode: SnapgridCenter
     snap:
-    - Wall
+    - Window
   components:
-  - type: Tag
-    tags:
-      - ForceFixRotations
-      - Window
-  - type: Sprite
-    drawdepth: WallTops
-    sprite: _Starlight/Structures/wall_fan.rsi
-  - type: Icon
-    sprite: _Starlight/Structures/wall_fan.rsi
-    state: wall_fan
   - type: Anchorable
     flags:
     - Anchorable
   - type: Rotatable
-  - type: RangedDamageSound
-    soundGroups:
-      Brute:
-        collection:
-          MetalBulletImpact
-    soundTypes:
-      Heat:
-        collection:
-          MetalLaserImpact
-  - type: IsRoof
-  - type: PlacementReplacement
-    key: walls
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
+  - type: WallMount
+    arc: 360
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Sprite
+    sprite: _Starlight/Structures/wall_fan.rsi
+    state: wall_fan
+    snapCardinals: true
+    drawdepth: WallMountedItems
+  - type: Transform
+    anchored: false
+  - type: Tag
+    tags:
+      - ForceFixRotations
+      - Window
+  - type: Icon
+    sprite: _Starlight/Structures/wall_fan.rsi
+    state: wall_fan
   - type: Physics
     bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeAabb
-          bounds: "-0.5,-0.5,0.5,0.5"
+          !type:PhysShapeAabb {}
         mask:
         - FullTileMask
         layer:
-        - WallLayer
-        density: 1000
+        - GlassLayer
   - type: Airtight
   - type: StaticPrice
     price: 75
   - type: RadiationBlocker
     resistance: 1
   - type: BlockWeather
-  - type: SunShadowCast
   - type: Ricochetable
     chance: 0.4
