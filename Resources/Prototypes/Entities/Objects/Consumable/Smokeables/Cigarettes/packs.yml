@@ -223,7 +223,7 @@
     containers:
       storagebase:
         id: CigaretteSyndicate
-        amount: 10
+        amount: 20
 
 - type: entity
   id: CigPackMixed
@@ -355,6 +355,6 @@
       storagebase: !type:AllSelector
         children:
         - id: CigaretteBub
-          amount: 10
+          amount: 20
 
 ### end SL
