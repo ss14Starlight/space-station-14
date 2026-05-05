@@ -73,7 +73,7 @@ public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
             if (categoryButtons.TryGetValue(prototype, out var list))
                 continue;
 
-            list = ConvertToButtons(prototype.ConstructionEntries,prototype.CategoryEntries).ToList();
+            list = ConvertToButtons(prototype.ConstructionEntries, prototype.CategoryEntries).ToList();
             categoryButtons.Add(prototype, list);
         }
 
