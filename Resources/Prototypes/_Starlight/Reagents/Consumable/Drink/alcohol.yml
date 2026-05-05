@@ -102,3 +102,32 @@
         component: SeeingRainbows
         type: Add
         time: 120
+
+- type: reagent
+  id: Highlander
+  name: reagent-name-highlander
+  parent: BaseAlcohol
+  desc: reagent-desc-highlander
+  physicalDesc: reagent-physical-desc-highlander
+  flavor: highlander
+  color: "#95530f"
+  metamorphicSprite:
+    sprite: _Starlight/Objects/Consumable/Drinks/highlander.rsi
+    state: empty
+  metamorphicMaxFillLevels: 1
+  metamorphicFillBaseName: full-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.3
+      - !type:ModifyStatusEffect
+        effectProto: MobThresholdsTheHighlander # raise crit to 219
+        time: 3
+      - !type:SpawnAttachedTo
+        entity: EffectDwarfPower
+        number: 1

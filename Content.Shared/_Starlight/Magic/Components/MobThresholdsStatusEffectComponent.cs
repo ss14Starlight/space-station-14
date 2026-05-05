@@ -2,9 +2,9 @@ using Content.Shared._Starlight.Scaling;
 using Robust.Shared.GameStates;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
-using Content.Shared._Starlight.Alchemy.Systems;
+using Content.Shared._Starlight.Magic.Systems;
 
-namespace Content.Shared._Starlight.Alchemy.Components;
+namespace Content.Shared._Starlight.Magic.Components;
 
 /// <summary>
 /// Allows overriding MobThresholds (crit, death, etc.) as a status effect. Obviously, not stackable.

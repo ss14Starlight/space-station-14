@@ -1,0 +1,25 @@
+- type: entity
+  id: EffectDwarfPower
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.59
+  - type: Sprite
+    noRot: true
+    drawdepth: Effects
+    sprite: Effects/electricity.rsi
+    layers:
+    - state: electrified
+      shader: unshaded
+      map: [ "enum.ColorVisuals.Color" ]
+  - type: PointLight
+    radius: 4
+    color: "#FFFF00"
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/sparks2.ogg
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: AnimationPlayer

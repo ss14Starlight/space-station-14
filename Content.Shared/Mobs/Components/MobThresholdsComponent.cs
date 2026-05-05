@@ -1,5 +1,5 @@
 using Content.Shared._Starlight.Scaling;
-using Content.Shared._Starlight.Alchemy.Systems;
+using Content.Shared._Starlight.Magic.Systems;
 using Content.Shared.Alert;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Systems;

@@ -3,12 +3,12 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
-using Content.Shared._Starlight.Alchemy.Components;
+using Content.Shared._Starlight.Magic.Components;
 using Content.Shared.Chat;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 
-namespace Content.Shared._Starlight.Alchemy.Systems;
+namespace Content.Shared._Starlight.Magic.Systems;
 
 public sealed class MobThresholdStatusEffectSystem : EntitySystem
 {

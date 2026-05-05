@@ -42,3 +42,8 @@
   id: festive
   flavorType: Base
   description: flavor-base-festive
+
+- type: flavor
+  id: highlander
+  flavorType: Base
+  description: flavor-complex-highlander
