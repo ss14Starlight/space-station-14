@@ -30,7 +30,7 @@ public sealed class GridCommand : ToolshedCommand
     }
 
     [CommandImplementation("getplayers")]
-    public IEnumerable<EntityUid> GetPlayersOnGrids([PipedArgument] IEnumerable<EntityUid> grids, bool excludeGhosts = false) =>
+    public IEnumerable<EntityUid> GetPlayersOnGrids([PipedArgument] IEnumerable<EntityUid> grids, bool _ = false) =>
         grids.SelectMany(x => GetPlayersOnGrid(x));
 
     [CommandImplementation("get")]
