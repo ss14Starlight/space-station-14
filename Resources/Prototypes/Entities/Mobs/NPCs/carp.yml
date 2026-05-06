@@ -13,6 +13,8 @@
       understands:
       - Carptongue
       - Thaveyan
+      - GalacticCommon
+
   # Starlight-end
     - type: InputMover
     - type: MobMover

@@ -1,5 +1,3 @@
-using Content.Client.Eye.Blinding;
-using Content.Client.GameTicking.Managers;
 using Content.Shared.Eye.Blinding.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -7,11 +5,7 @@ using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared.Inventory.Events;
-using Content.Shared.Flash.Components;
 using Content.Shared.Starlight.Overlay;
-using Content.Shared.Mech.Components;
-using Content.Shared.Mech;
 
 namespace Content.Client._Starlight.Overlay;
 
