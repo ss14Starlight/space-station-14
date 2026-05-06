@@ -49,7 +49,7 @@
     - 0,0,0,1
   - type: Storage
     grid:
-    - 0,0,4,3
+    - 0,0,4,3 #STARLIGHT
     # 🌟Starlight - Start🌟
     whitelist:
       components:
@@ -62,7 +62,7 @@
     containers:
       storagebase:
         id: Cigarette
-        amount: 20
+        amount: 20 #STARLIGHT
   - type: ItemCounter
     count:
       tags: [Cigarette]
@@ -223,7 +223,7 @@
     containers:
       storagebase:
         id: CigaretteSyndicate
-        amount: 20
+        amount: 20 #STARLIGHT
 
 - type: entity
   id: CigPackMixed
@@ -355,6 +355,6 @@
       storagebase: !type:AllSelector
         children:
         - id: CigaretteBub
-          amount: 20
+          amount: 20 #STARLIGHT
 
 ### end SL
