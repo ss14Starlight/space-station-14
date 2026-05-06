@@ -93,29 +93,65 @@ secure-terminal-warops-security-desc = Deploys an ERT Security detail specialize
                                        Use when the station is under direct armed assault during a declared War Ops.
 secure-terminal-warops-security-announcement = An Emergency Response Team — Security Specialized detail — has been authorized and is en route. Estimated arrival: 30 minutes.
 
-secure-terminal-ert-security-name = ERT Security
-secure-terminal-ert-security-desc = Deploys an ERT Security detail.
-secure-terminal-ert-security-announcement = An Emergency Response Team — Security detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+secure-terminal-ert-security-amber-name = ERT Security (Amber)
+secure-terminal-ert-security-amber-desc = TODO
+secure-terminal-ert-security-amber-announcement = An Emergency Response Team — Security (Amber) detail — has been authorized and is en route. Estimated arrival: 10 minutes.
 
-secure-terminal-ert-engineering-name = ERT Engineering
-secure-terminal-ert-engineering-desc = Deploys an ERT Engineering detail to assist with critical station infrastructure.
-    Recommended when the station has suffered catastrophic structural, atmospheric, or power failures beyond local repair capacity.
-secure-terminal-ert-engineering-announcement = An Emergency Response Team — Engineering detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+secure-terminal-ert-security-red-name = ERT Security (Red)
+secure-terminal-ert-security-red-desc = TODO
+secure-terminal-ert-security-red-announcement = An Emergency Response Team — Security (Red) detail — has been authorized and is en route. Estimated arrival: 10 minutes.
 
-secure-terminal-ert-medical-name = ERT Medical
-secure-terminal-ert-medical-desc = Deploys an ERT Medical detail for mass casualty triage and emergency surgery.
-    Recommended when the station's medical department is overwhelmed, incapacitated, or destroyed.
-secure-terminal-ert-medical-announcement = An Emergency Response Team — Medical detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+secure-terminal-ert-security-gamma-name = ERT Security (Gamma)
+secure-terminal-ert-security-gamma-desc = TODO
+secure-terminal-ert-security-gamma-announcement = An Emergency Response Team — Security (Gamma) detail — has been authorized and is en route. Estimated arrival: 10 minutes.
 
-secure-terminal-ert-janitorial-name = ERT Janitorial
-secure-terminal-ert-janitorial-desc = Deploys an ERT Janitorial detail for hazardous cleanup and station restoration.
-    Recommended following large-scale biological, chemical, or environmental contamination requiring rapid decontamination.
-secure-terminal-ert-janitorial-announcement = An Emergency Response Team — Janitorial detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+secure-terminal-ert-engineering-amber-name = ERT Engineering (Amber)
+secure-terminal-ert-engineering-amber-desc = TODO
+secure-terminal-ert-engineering-amber-announcement = An Emergency Response Team — Engineering (Amber) detail — has been authorized and is en route. Estimated arrival: 10 minutes.
 
-secure-terminal-ert-chaplain-name = ERT Chaplain
-secure-terminal-ert-chaplain-desc = Deploys an ERT Chaplain for crew morale and last rites support.
-    Provides pastoral support and maintains crew morale during prolonged emergencies.
-secure-terminal-ert-chaplain-announcement = An Emergency Response Team — Chaplaincy — has been authorized and is en route. Estimated arrival: 10 minutes.
+secure-terminal-ert-engineering-red-name = ERT Engineering (Red)
+secure-terminal-ert-engineering-red-desc = TODO
+secure-terminal-ert-engineering-red-announcement = An Emergency Response Team — Engineering (Red) detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+
+secure-terminal-ert-engineering-gamma-name = ERT Engineering (Gamma)
+secure-terminal-ert-engineering-gamma-desc = TODO
+secure-terminal-ert-engineering-gamma-announcement = An Emergency Response Team — Engineering (Gamma) detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+
+secure-terminal-ert-medical-amber-name = ERT Medical (Amber)
+secure-terminal-ert-medical-amber-desc = TODO
+secure-terminal-ert-medical-amber-announcement = An Emergency Response Team — Medical (Amber) detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+
+secure-terminal-ert-medical-red-name = ERT Medical (Red)
+secure-terminal-ert-medical-red-desc = TODO
+secure-terminal-ert-medical-red-announcement = An Emergency Response Team — Medical (Red) detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+
+secure-terminal-ert-medical-gamma-name = ERT Medical (Gamma)
+secure-terminal-ert-medical-gamma-desc = TODO
+secure-terminal-ert-medical-gamma-announcement = An Emergency Response Team — Medical (Gamma) detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+
+secure-terminal-ert-janitorial-amber-name = ERT Janitorial (Amber)
+secure-terminal-ert-janitorial-amber-desc = TODO
+secure-terminal-ert-janitorial-amber-announcement = An Emergency Response Team — Janitorial (Amber) detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+
+secure-terminal-ert-janitorial-red-name = ERT Janitorial (Red)
+secure-terminal-ert-janitorial-red-desc = TODO
+secure-terminal-ert-janitorial-red-announcement = An Emergency Response Team — Janitorial (Red) detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+
+secure-terminal-ert-janitorial-gamma-name = ERT Janitorial (Gamma)
+secure-terminal-ert-janitorial-gamma-desc = TODO
+secure-terminal-ert-janitorial-gamma-announcement = An Emergency Response Team — Janitorial (Gamma) detail — has been authorized and is en route. Estimated arrival: 10 minutes.
+
+secure-terminal-ert-chaplain-amber-name = ERT Chaplain (Amber)
+secure-terminal-ert-chaplain-amber-desc = TODO
+secure-terminal-ert-chaplain-amber-announcement = An Emergency Response Team — Chaplaincy (Amber) — has been authorized and is en route. Estimated arrival: 10 minutes.
+
+secure-terminal-ert-chaplain-red-name = ERT Chaplain (Red)
+secure-terminal-ert-chaplain-red-desc = TODO
+secure-terminal-ert-chaplain-red-announcement = An Emergency Response Team — Chaplaincy (Red) — has been authorized and is en route. Estimated arrival: 10 minutes.
+
+secure-terminal-ert-chaplain-gamma-name = ERT Chaplain (Gamma)
+secure-terminal-ert-chaplain-gamma-desc = TODO
+secure-terminal-ert-chaplain-gamma-announcement = An Emergency Response Team — Chaplaincy (Gamma) — has been authorized and is en route. Estimated arrival: 10 minutes.
 
 secure-terminal-ert-cburn-name = ERT CBURN
 secure-terminal-ert-cburn-desc = Deploys an ERT CBURN detail.

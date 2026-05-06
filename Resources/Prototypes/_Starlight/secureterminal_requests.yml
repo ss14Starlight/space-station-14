@@ -28,17 +28,43 @@
     - "Captain / HoS (2)"
   cooldownSecs: 3600
 
-# ── ERT Security ─────────────────────────────────────────────────────────────
+# ── ERT Security (Amber) ─────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
-  id: ErtSecurity
-  name: secure-terminal-ert-security-name
-  description: secure-terminal-ert-security-desc
-  announcement: secure-terminal-ert-security-announcement
+  id: ErtSecurityAmber
+  name: secure-terminal-ert-security-amber-name
+  description: secure-terminal-ert-security-amber-desc
+  announcement: secure-terminal-ert-security-amber-announcement
+  announcementColor: "#ff9933"
+  activationDelaySecs: 600
+  requiresWarNotDeclared: true
+  requireReason: true
+  fee: 3000
+  salaryPenalty: 0.03
+  actionType: GameRule
+  gameruleId: ERTSecSpawn
+  oneTimeUse: true
+  sortOrder: 38
+  authGroups:
+    - [Captain, HeadOfSecurity]
+    - [Captain, HeadOfSecurity]
+  authGroupLabels:
+    - "Captain / HoS (1)"
+    - "Captain / HoS (2)"
+  cooldownSecs: 3600
+  authTimer: 20
+
+# ── ERT Security (Red) ────────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ErtSecurityRed
+  name: secure-terminal-ert-security-red-name
+  description: secure-terminal-ert-security-red-desc
+  announcement: secure-terminal-ert-security-red-announcement
   announcementColor: "#ff4444"
   activationDelaySecs: 600
   requiresWarNotDeclared: true
   requireReason: true
   requiresAdminApproval: true
+  requiresAlertLevel: red
   fee: 5000
   salaryPenalty: 0.05
   actionType: GameRule
@@ -54,15 +80,68 @@
   cooldownSecs: 3600
   authTimer: 20
 
-# ── ERT Engineering ───────────────────────────────────────────────────────────
+# ── ERT Security (Gamma) ──────────────────────────────────────────────────────────────
+- type: secureTerminalRequest 
+  id: ErtSecurityGamma
+  name: secure-terminal-ert-security-gamma-name
+  description: secure-terminal-ert-security-gamma-desc
+  announcement: secure-terminal-ert-security-gamma-announcement
+  announcementColor: "#ff1111"
+  activationDelaySecs: 600
+  requiresWarNotDeclared: true
+  requireReason: true
+  requiresAdminApproval: true
+  requiresAlertLevel: gamma
+  fee: 7000
+  salaryPenalty: 0.07
+  actionType: GameRule
+  gameruleId: ERTSecSpawn
+  oneTimeUse: true
+  sortOrder: 42
+  authGroups:
+    - [Captain, HeadOfSecurity]
+    - [Captain, HeadOfSecurity]
+  authGroupLabels:
+    - "Captain / HoS (1)"
+    - "Captain / HoS (2)"
+  cooldownSecs: 3600
+  authTimer: 20
+
+# ── ERT Engineering (Amber) ───────────────────────────────────────────────────────────
 - type: secureTerminalRequest
-  id: ErtEngineering
-  name: secure-terminal-ert-engineering-name
-  description: secure-terminal-ert-engineering-desc
-  announcement: secure-terminal-ert-engineering-announcement
+  id: ErtEngineeringAmber
+  name: secure-terminal-ert-engineering-amber-name
+  description: secure-terminal-ert-engineering-amber-desc
+  announcement: secure-terminal-ert-engineering-amber-announcement
+  announcementColor: "#ffcc66"
+  activationDelaySecs: 600
+  requireReason: true
+  fee: 3000
+  salaryPenalty: 0.03
+  actionType: GameRule
+  gameruleId: ERTEngiSpawn
+  oneTimeUse: true
+  sortOrder: 48
+  authGroups:
+    - [Captain, ChiefEngineer]
+    - [Captain, ChiefEngineer]
+  authGroupLabels:
+    - "Captain / CE (1)"
+    - "Captain / CE (2)"
+  cooldownSecs: 3600
+  authTimer: 20
+
+# ── ERT Engineering (Red) ──────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ErtEngineeringRed
+  name: secure-terminal-ert-engineering-red-name
+  description: secure-terminal-ert-engineering-red-desc
+  announcement: secure-terminal-ert-engineering-red-announcement
   announcementColor: "#ffaa33"
   activationDelaySecs: 600
   requireReason: true
+  requiresAdminApproval: true
+  requiresAlertLevel: red
   fee: 5000
   salaryPenalty: 0.05
   actionType: GameRule
@@ -78,15 +157,67 @@
   cooldownSecs: 3600
   authTimer: 20
 
-# ── ERT Medical ───────────────────────────────────────────────────────────────
+# ── ERT Engineering (Gamma) ────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
-  id: ErtMedical
-  name: secure-terminal-ert-medical-name
-  description: secure-terminal-ert-medical-desc
-  announcement: secure-terminal-ert-medical-announcement
+  id: ErtEngineeringGamma
+  name: secure-terminal-ert-engineering-gamma-name
+  description: secure-terminal-ert-engineering-gamma-desc
+  announcement: secure-terminal-ert-engineering-gamma-announcement
+  announcementColor: "#ff7700"
+  activationDelaySecs: 600
+  requireReason: true
+  requiresAdminApproval: true
+  requiresAlertLevel: gamma
+  fee: 7000
+  salaryPenalty: 0.07
+  actionType: GameRule
+  gameruleId: ERTEngiSpawn
+  oneTimeUse: true
+  sortOrder: 52
+  authGroups:
+    - [Captain, ChiefEngineer]
+    - [Captain, ChiefEngineer]
+  authGroupLabels:
+    - "Captain / CE (1)"
+    - "Captain / CE (2)"
+  cooldownSecs: 3600
+  authTimer: 20
+
+# ── ERT Medical (Amber) ───────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ErtMedicalAmber
+  name: secure-terminal-ert-medical-amber-name
+  description: secure-terminal-ert-medical-amber-desc
+  announcement: secure-terminal-ert-medical-amber-announcement
+  announcementColor: "#66ff99"
+  activationDelaySecs: 600
+  requireReason: true
+  fee: 3000
+  salaryPenalty: 0.03
+  actionType: GameRule
+  gameruleId: ERTMedSpawn
+  oneTimeUse: true
+  sortOrder: 58
+  authGroups:
+    - [Captain, ChiefMedicalOfficer]
+    - [Captain, ChiefMedicalOfficer]
+  authGroupLabels:
+    - "Captain / CMO (1)"
+    - "Captain / CMO (2)"
+  cooldownSecs: 3600
+  authTimer: 20
+
+# ── ERT Medical (Red) ──────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ErtMedicalRed
+  name: secure-terminal-ert-medical-red-name
+  description: secure-terminal-ert-medical-red-desc
+  announcement: secure-terminal-ert-medical-red-announcement
   announcementColor: "#33ff66"
   activationDelaySecs: 600
   requireReason: true
+  requiresAdminApproval: true
+  requiresAlertLevel: red
   fee: 5000
   salaryPenalty: 0.05
   actionType: GameRule
@@ -102,15 +233,67 @@
   cooldownSecs: 3600
   authTimer: 20
 
-# ── ERT Janitorial ────────────────────────────────────────────────────────────
+# ── ERT Medical (Gamma) ────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
-  id: ErtJanitorial
-  name: secure-terminal-ert-janitorial-name
-  description: secure-terminal-ert-janitorial-desc
-  announcement: secure-terminal-ert-janitorial-announcement
+  id: ErtMedicalGamma
+  name: secure-terminal-ert-medical-gamma-name
+  description: secure-terminal-ert-medical-gamma-desc
+  announcement: secure-terminal-ert-medical-gamma-announcement
+  announcementColor: "#00ff33"
+  activationDelaySecs: 600
+  requireReason: true
+  requiresAdminApproval: true
+  requiresAlertLevel: gamma
+  fee: 7000
+  salaryPenalty: 0.07
+  actionType: GameRule
+  gameruleId: ERTMedSpawn
+  oneTimeUse: true
+  sortOrder: 62
+  authGroups:
+    - [Captain, ChiefMedicalOfficer]
+    - [Captain, ChiefMedicalOfficer]
+  authGroupLabels:
+    - "Captain / CMO (1)"
+    - "Captain / CMO (2)"
+  cooldownSecs: 3600
+  authTimer: 20
+
+# ── ERT Janitorial (Amber) ────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ErtJanitorialAmber
+  name: secure-terminal-ert-janitorial-amber-name
+  description: secure-terminal-ert-janitorial-amber-desc
+  announcement: secure-terminal-ert-janitorial-amber-announcement
+  announcementColor: "#ccffcc"
+  activationDelaySecs: 600
+  requireReason: true
+  fee: 3000
+  salaryPenalty: 0.03
+  actionType: GameRule
+  gameruleId: ERTJaniSpawn
+  oneTimeUse: true
+  sortOrder: 68
+  authGroups:
+    - [Captain, HeadOfPersonnel]
+    - [Captain, HeadOfPersonnel]
+  authGroupLabels:
+    - "Captain / HoP (1)"
+    - "Captain / HoP (2)"
+  cooldownSecs: 3600
+  authTimer: 20
+
+# ── ERT Janitorial (Red) ──────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ErtJanitorialRed
+  name: secure-terminal-ert-janitorial-red-name
+  description: secure-terminal-ert-janitorial-red-desc
+  announcement: secure-terminal-ert-janitorial-red-announcement
   announcementColor: "#aaffaa"
   activationDelaySecs: 600
   requireReason: true
+  requiresAdminApproval: true
+  requiresAlertLevel: red
   fee: 5000
   salaryPenalty: 0.05
   actionType: GameRule
@@ -126,21 +309,99 @@
   cooldownSecs: 3600
   authTimer: 20
 
-# ── ERT Chaplain ──────────────────────────────────────────────────────────────
+# ── ERT Janitorial (Gamma) ────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
-  id: ErtChaplain
-  name: secure-terminal-ert-chaplain-name
-  description: secure-terminal-ert-chaplain-desc
-  announcement: secure-terminal-ert-chaplain-announcement
+  id: ErtJanitorialGamma
+  name: secure-terminal-ert-janitorial-gamma-name
+  description: secure-terminal-ert-janitorial-gamma-desc
+  announcement: secure-terminal-ert-janitorial-gamma-announcement
+  announcementColor: "#88ff88"
+  activationDelaySecs: 600
+  requireReason: true
+  requiresAdminApproval: true
+  requiresAlertLevel: gamma
+  fee: 7000
+  salaryPenalty: 0.07
+  actionType: GameRule
+  gameruleId: ERTJaniSpawn
+  oneTimeUse: true
+  sortOrder: 72
+  authGroups:
+    - [Captain, HeadOfPersonnel]
+    - [Captain, HeadOfPersonnel]
+  authGroupLabels:
+    - "Captain / HoP (1)"
+    - "Captain / HoP (2)"
+  cooldownSecs: 3600
+  authTimer: 20
+
+# ── ERT Chaplain (Amber) ──────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ErtChaplainAmber
+  name: secure-terminal-ert-chaplain-amber-name
+  description: secure-terminal-ert-chaplain-amber-desc
+  announcement: secure-terminal-ert-chaplain-amber-announcement
+  announcementColor: "#eeeeff"
+  activationDelaySecs: 600
+  requireReason: true
+  fee: 3000
+  salaryPenalty: 0.03
+  actionType: GameRule
+  gameruleId: ERTChaplainSpawn
+  oneTimeUse: true
+  sortOrder: 78
+  authGroups:
+    - [Captain, Ntrep]
+    - [Captain, Ntrep]
+  authGroupLabels:
+    - "Captain / NTR (1)"
+    - "Captain / NTR (2)"
+  cooldownSecs: 3600
+  authTimer: 20
+
+# ── ERT Chaplain (Red) ──────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ErtChaplainRed
+  name: secure-terminal-ert-chaplain-red-name
+  description: secure-terminal-ert-chaplain-red-desc
+  announcement: secure-terminal-ert-chaplain-red-announcement
   announcementColor: "#ddddff"
   activationDelaySecs: 600
   requireReason: true
+  requiresAdminApproval: true
+  requiresAlertLevel: red
   fee: 5000
   salaryPenalty: 0.05
   actionType: GameRule
   gameruleId: ERTChaplainSpawn
   oneTimeUse: true
   sortOrder: 80
+  authGroups:
+    - [Captain, Ntrep]
+    - [Captain, Ntrep]
+  authGroupLabels:
+    - "Captain / NTR (1)"
+    - "Captain / NTR (2)"
+  cooldownSecs: 3600
+  authTimer: 20
+
+# ── ERT Chaplain (Gamma) ──────────────────────────────────────────────────────────────
+- type: secureTerminalRequest
+  id: ErtChaplainGamma
+  name: secure-terminal-ert-chaplain-gamma-name
+  description: secure-terminal-ert-chaplain-gamma-desc
+  announcement: secure-terminal-ert-chaplain-gamma-announcement
+  announcementColor: "#bbbbff"
+  activationDelaySecs: 600
+  requireReason: true
+  requiresAdminApproval: true
+  requiresAlertLevel: gamma
+  fee: 7000
+  salaryPenalty: 0.07
+  actionType: GameRule
+  gameruleId: ERTChaplainSpawn
+  oneTimeUse: true
+  sortOrder: 82
   authGroups:
     - [Captain, Ntrep]
     - [Captain, Ntrep]
