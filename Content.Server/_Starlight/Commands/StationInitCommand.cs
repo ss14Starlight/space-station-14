@@ -16,14 +16,13 @@ namespace Content.Server._Starlight.Commands;
 [AdminCommand(AdminFlags.Fun)]
 public sealed class StationInitCommand : ToolshedCommand
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     private StationSystem? _station;
-    private static readonly string InitText = "Initialized new station with id";
-    private static readonly string Advice = "Add more grids to this station by using stations:addgrid.";
-    private static readonly string AlreadyStation = "This grid already belongs to a station. Consider using stations:addgrid.";
-    private static readonly string NoId = "You must set the ID of this station with stationinit:setid before you can initialize it.";
-    private static readonly string NotGrid = "This entity is not a grid.";
-    private static readonly string InvalidEntity = "This entity is either deleted or invalid.";
+    private static readonly string _initText = "Initialized new station with id";
+    private static readonly string _advice = "Add more grids to this station by using stations:addgrid.";
+    private static readonly string _alreadyStation = "This grid already belongs to a station. Consider using stations:addgrid.";
+    private static readonly string _noId = "You must set the ID of this station with stationinit:setid before you can initialize it.";
+    private static readonly string _notGrid = "This entity is not a grid.";
+    private static readonly string _invalidEntity = "This entity is either deleted or invalid.";
 
     /// <summary>
     /// Mark the beginning of the chain, attaching BecomesStationMidRoundComponent to the piped grid.
@@ -33,7 +32,7 @@ public sealed class StationInitCommand : ToolshedCommand
     {
         if (HasComp<StationMemberComponent>(uid))
         {
-            ctx.WriteLine(AlreadyStation);
+            ctx.WriteLine(_alreadyStation);
             return uid;
         }
         EnsureComp<BecomesStationMidRoundComponent>(uid);
@@ -212,7 +211,6 @@ public sealed class StationInitCommand : ToolshedCommand
     public EntityUid InitializeGet(IInvocationContext ctx, [PipedArgument] EntityUid uid) =>
         !EnsureId(ctx, uid, out _) ? EntityUid.Invalid : CreateStation(ctx, uid);
 
-
     [CommandImplementation("begin")]
     public IEnumerable<EntityUid> Begin(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid)
         => uid.Select(x=>Begin(ctx ,x));
@@ -310,19 +308,19 @@ public sealed class StationInitCommand : ToolshedCommand
         comp = null;
         if (uid == EntityUid.Invalid || Deleted(uid))
         {
-            ctx.WriteLine(InvalidEntity);
+            ctx.WriteLine(_invalidEntity);
             return false;
         }
 
         if (HasComp<StationMemberComponent>(uid))
         {
-            ctx.WriteLine(AlreadyStation);
+            ctx.WriteLine(_alreadyStation);
             return false;
         }
 
         if (!HasComp<MapGridComponent>(uid))
         {
-            ctx.WriteLine(NotGrid);
+            ctx.WriteLine(_notGrid);
             return false;
         }
         _station ??= EntitySystemManager.GetEntitySystem<StationSystem>();
@@ -333,7 +331,7 @@ public sealed class StationInitCommand : ToolshedCommand
     {
         if (!EnsureWorkable(ctx, uid, out comp)) return false;
         if (comp.Id is not null) return true;
-        ctx.WriteLine(NoId);
+        ctx.WriteLine(_noId);
         return false;
     }
 
@@ -341,7 +339,7 @@ public sealed class StationInitCommand : ToolshedCommand
     {
         if (!EnsureWorkable(ctx, uid, out var comp)) return uid;
         var ent = _station?.InitializeNewStationMidRound(uid, comp.BaseStationProtos, comp);
-        ctx.WriteLine($"{InitText} {ent}. {Advice}");
+        ctx.WriteLine($"{_initText} {ent}. {_advice}");
         return ent ?? EntityUid.Invalid;
     }
 }

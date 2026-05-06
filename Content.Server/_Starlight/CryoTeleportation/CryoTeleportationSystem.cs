@@ -1,9 +1,5 @@
-using System.Linq;
 using Content.Server.Bed.Cryostorage;
-using Content.Server.GameTicking;
-using Content.Server.Mind;
 using Content.Shared._Starlight.Polymorph.Components;
-using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Bed.Cryostorage;
 using Content.Shared.GameTicking;
@@ -23,7 +19,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Content.Shared.Station.Components;
 
-namespace Content.Server.Starlight.CryoTeleportation;
+namespace Content.Server._Starlight.CryoTeleportation;
 
 public sealed class CryoTeleportationSystem : EntitySystem
 {

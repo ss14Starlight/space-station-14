@@ -24,14 +24,13 @@ namespace Content.Server._Starlight.CrewManifest;
 public sealed class CrewManifestCommand : ToolshedCommand
 {
     [Dependency] private readonly IPlayerManager _plr = default!;
-    [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     private StationRecordsSystem? _records;
     private JobSystem? _job;
     private MindSystem? _mind;
     private ContainerSystem? _container;
     private InventorySystem? _inventory;
-    private static readonly string AssistantPrototypeId = "Assistant";
+    private static readonly string _assistantPrototypeId = "Assistant";
 
     [CommandImplementation("addto")]
     public EntityUid AddToManifest([PipedArgument] EntityUid uid, EntityUid station, bool useIdJob, bool addRole)
@@ -84,7 +83,7 @@ public sealed class CrewManifestCommand : ToolshedCommand
         _container ??= EntitySystemManager.GetEntitySystem<ContainerSystem>();
         _inventory ??= EntitySystemManager.GetEntitySystem<InventorySystem>();
 
-        if (!_inventory.TryGetSlotEntity(player, "id", out var target)) return AssistantPrototypeId;
+        if (!_inventory.TryGetSlotEntity(player, "id", out var target)) return _assistantPrototypeId;
         if (TryComp<PdaComponent>(target, out var pda) && pda.ContainedId is { } id &&
             TryComp<IdCardComponent>(id, out var card))
         {
@@ -95,7 +94,7 @@ public sealed class CrewManifestCommand : ToolshedCommand
             if(_proto.HasIndex<JobPrototype>(parsed)) return _proto.Index<JobPrototype>(parsed); // pray.
         }
 
-        return AssistantPrototypeId;
+        return _assistantPrototypeId;
     }
 
     private void AddRecord(EntityUid station, EntityUid player, bool useIdJob, bool addRole)

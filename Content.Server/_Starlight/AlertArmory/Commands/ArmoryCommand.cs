@@ -5,7 +5,7 @@ using Content.Shared.Administration;
 using Content.Shared.Station.Components;
 using Robust.Shared.Console;
 
-namespace Content.Server.Starlight.AlertArmory.Commands;
+namespace Content.Server._Starlight.AlertArmory.Commands;
 
 /// <summary>
 /// Call/Recall Armory shuttles.
@@ -117,7 +117,7 @@ public sealed class ArmoryCommand : IConsoleCommand
         return null;
     }
 
-    private static void ListArmories(IConsoleShell shell, IEntityManager entMan, StationSystem stationSys, string[] args)
+    private static void ListArmories(IConsoleShell shell, IEntityManager entMan, StationSystem stationSys, string[] _)
     {
         foreach (var station in stationSys.GetStations())
         {

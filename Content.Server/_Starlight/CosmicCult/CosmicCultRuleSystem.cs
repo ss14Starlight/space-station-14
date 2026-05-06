@@ -120,7 +120,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
     private readonly SoundSpecifier _tier2Sound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/tier2.ogg");
     private readonly SoundSpecifier _monumentAlert = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/tier_up.ogg");
 
-    private ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
+    private readonly ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
 
     /// <summary>
     /// Mind role to add to cultists.
@@ -166,9 +166,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
 
     #region Starting Events
     protected override void Started(EntityUid uid, CosmicCultRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
-    {
-        component.StewardVoteTimer = _timing.CurTime + _voteDelay;
-    }
+        => component.StewardVoteTimer = _timing.CurTime + _voteDelay;
 
     protected override void ActiveTick(EntityUid uid, CosmicCultRuleComponent component, GameRuleComponent gameRule, float frameTime)
     {
@@ -316,9 +314,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
     }
 
     private void OnAntagSelect(Entity<CosmicCultRuleComponent> uid, ref AfterAntagEntitySelectedEvent args)
-    {
-        TryStartCult(args.EntityUid, uid);
-    }
+        => TryStartCult(args.EntityUid, uid);
     #endregion
 
     #region Round & Objectives
@@ -346,9 +342,9 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
                 var spawnTgt = Transform(newSpawn.Uid).Coordinates;
 
                 if (cultRule.Cultists.Contains(player))
-                    Timer.Spawn(TimeSpan.FromSeconds(30), () => { EndRoundVoid(player, spawnTgt, cultRule, null); });
+                    Timer.Spawn(TimeSpan.FromSeconds(30), () => EndRoundVoid(player, spawnTgt, cultRule, null));
                 else
-                    Timer.Spawn(_rand.Next(TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(30)), () => { EndRoundVoid(player, spawnTgt, cultRule, monumentMap); });
+                    Timer.Spawn(_rand.Next(TimeSpan.FromSeconds(8), TimeSpan.FromSeconds(30)), () => EndRoundVoid(player, spawnTgt, cultRule, monumentMap));
             }
         }
     }
