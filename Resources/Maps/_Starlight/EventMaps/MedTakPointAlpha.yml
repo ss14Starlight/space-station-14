@@ -83,6 +83,7 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
+      fTLMassLimits: False
       dampingModifier: 0.25
     - type: ImplicitRoof
     - type: NavMap
