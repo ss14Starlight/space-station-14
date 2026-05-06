@@ -36,7 +36,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 // Starlight Start
-using Content.Server.Body.Systems;
 using Content.Server.Body.Components;
 using Content.Server.Bible.Components;
 using Content.Server.GameTicking.Rules.Components;
@@ -46,6 +45,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Prometheus;
+using Content.Server._Starlight.Medical.Body.Systems;
 // Starlight End
 
 namespace Content.Server.Antag;

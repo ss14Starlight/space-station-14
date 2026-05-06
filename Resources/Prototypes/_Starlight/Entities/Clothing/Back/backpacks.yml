@@ -35,6 +35,24 @@
       sprite: _Starlight/Clothing/Back/Backpacks/corpsman.rsi
 
 - type: entity
+  parent: [ClothingBackpack, BaseCommandContraband]
+  id: ClothingBackpackHoP
+  name: head of personnel's backpack
+  description: A luxurious backpack, perfect for filling to the brim with paperwork.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Backpacks/hop.rsi
+
+- type: entity
+  parent: [ClothingBackpack, BaseCommandContraband]
+  id: ClothingBackpackCommandGeneric
+  name: command backpack
+  description: A Command-colored backpack with NanoTrasen's colors. It has an aura of non-descript authority.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Backpacks/command.rsi
+
+- type: entity
   parent: [ClothingBackpack, BaseBlueShieldContraband]
   id: ClothingBackpackBlueShield
   name: blueshield backpack
@@ -62,3 +80,18 @@
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Back/Backpacks/tsf.rsi
+
+- type: entity
+  parent: [ ClothingBackpack, BaseMagicalContraband ]
+  id: ClothingBackpackWizard
+  name: wizard backpack
+  description: A magical backpack carried by members of the Space Wizards Federation.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/Backpacks/wizard.rsi
+    - type: ExplosionResistance
+      damageCoefficient: 0.1
+    - type: Storage
+      grid:
+      - 0,0,8,4
+

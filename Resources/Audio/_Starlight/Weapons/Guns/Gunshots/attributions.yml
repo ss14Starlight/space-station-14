@@ -37,3 +37,8 @@
   license: "CC-BY-NC-4.0"
   copyright: "Starch70 on Monolith"
   source: "https://github.com/Monolith-Station/Monolith/pull/2369/changes/ff9584192f8d63d21d4ef30b3473209ff771bcaf"
+
+- files: ["code-6.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Heretic on Starlight"
+  source: "https://freesound.org/people/Heretic4522/sounds/850829/"

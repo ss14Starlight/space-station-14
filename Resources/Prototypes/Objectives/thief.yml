@@ -89,6 +89,8 @@
   parent: BaseThiefStealCollectionObjective
   id: StampStealCollectionObjective
   components:
+  - type: NotJobRequirement # Starlight
+    jobs: [ Lawyer, IAA, Chaplain, Clown, Mime, Psychologist, SalvageLead, Warden, Detective, Brigmedic, BlueShield ] # Starlight. Too easy.
   - type: StealCondition
     stealGroup: Stamp
     minCollectionSize: 5

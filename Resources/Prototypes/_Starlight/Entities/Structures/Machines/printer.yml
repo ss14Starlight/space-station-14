@@ -38,9 +38,9 @@
           bounds: "-0.25,-0.25,0.25,0.25"
         density: 25
         mask:
-        - TabletopMachineMask
+        - MachineMask
         layer:
-        - TabletopMachineLayer
+        - MachineLayer
   - type: MaterialStorage
     whitelist:
       tags:

@@ -138,6 +138,7 @@
 # Starlight begin
     - PietyVendInventory
     - PrideDrobeInventory
+    - LegalDrobeInventory
 # Starlight end
   - type: Sprite
     layers:

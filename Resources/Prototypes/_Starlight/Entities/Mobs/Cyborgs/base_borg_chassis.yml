@@ -1,4 +1,4 @@
-﻿# Derelict
+﻿# region Derelict
 
 - type: entity
   parent: BaseBorgChassis
@@ -36,6 +36,8 @@
       - Xenoborg
       - Binary
   - type: BorgChassis
+    jobIconOverride: JobIconXenoborg
+    jobTitleOverride: chat-radio-xenoborg
     maxModules: 3
     hasMindState: robot_e
     noMindState: robot_e_r
@@ -101,3 +103,149 @@
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: BypassLock
     bypassDelay: 15 # We don't want people to easily be able to remove xenoborg brains.
+
+# region NTNC
+
+- type: entity
+  parent: BaseBorgChassisNotIonStormable
+  id: BaseNTNCChassis
+  name: NT-NC
+  description: A special chassis produced by Nanotrasen to aid Centcom forces in their duties.
+  save: false
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Silicon/Chassis/NTNC_Borg.rsi
+  - type: TextToSpeech
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBorg
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasenSilicon
+  - type: Access
+    enabled: false
+    groups:
+    - AllAccess
+    tags:
+    - CentralCommand
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: ShowJobIcons
+  - type: InteractionPopup
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Xenoborg
+    allowedEmotes:
+    - Laugh
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconXenoborg
+  - type: FlashImmunity
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - CentCom
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    - Law
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - CentCom
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    - Law
+  - type: SiliconLawProvider
+    laws: NTNCLawset
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Inorganic
+    - Silicon
+  - type: ShowHealthIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+
+- type: entity
+  parent: BaseNTNCChassis
+  id: NTNCBorgChassisHAW
+  name: NT-NC H.A.W
+  description: A special chassis produced by Nanotrasen to aid Centcom forces in their duties. The H.A.W (Hazardous Assault Walker) features heavy armaments and a specialised access configurator designed to grant immediate entry.
+  components:
+  - type: TextToSpeech
+  - type: Sprite
+    layers:
+      - state: borg
+      - state: borg_e
+        map: ["enum.BorgVisualLayers.Light"]
+        shader: unshaded
+        visible: false
+      - state: borg_l
+        shader: unshaded
+        map: ["light"]
+        visible: false
+  - type: BorgChassis
+    maxModules: 5
+    moduleWhitelist:
+      tags:
+        - BorgModuleGeneric
+        - BorgModuleCentcomm
+        - BorgModuleEngineering
+    hasMindState: borg_e
+    noMindState: borg_e_r
+  - type: MobThresholds # tankier
+    thresholds:
+      0: Alive
+      150: Critical
+      300: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 5
+    - trigger:
+        !type:DamageTrigger
+        damage: 450
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:EmptyContainersBehaviour
+        containers:
+        - borg_brain
+        - borg_module
+        - cell_slot
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: InteractionPopup
+    interactSuccessString: petting-success-syndicate-cyborg
+    interactFailureString: petting-failure-syndicate-cyborg
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg

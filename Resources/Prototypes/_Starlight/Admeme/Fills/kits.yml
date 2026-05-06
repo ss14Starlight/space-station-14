@@ -1,0 +1,49 @@
+- type: entity
+  id: MedkitCombatMedTakFilled
+  suffix: Filled
+  parent: MedkitCombatMedTak
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedicatedSuture
+        - id: RegenerativeMesh
+        - id: SyringeEphedrine
+        - id: SyringeSaline
+        - id: BruteAutoInjector
+        - id: BurnAutoInjector
+
+- type: entity
+  id: MedkitCombatMedTakFilledBorg
+  suffix: Filled, Borg
+  parent: MedkitCombatMedTak
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedicatedSuture
+        - id: RegenerativeMesh
+        - id: Bloodpack
+        - id: Syringe
+        - id: ChemistryEmptyBottle01
+
+- type: entity
+  id: BottleCaseMedTakFilled
+  suffix: Filled, Medic
+  parent: BottleCaseMedTak
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ChemistryBottleInaprovaline
+        - id: ChemistryBottleEpinephrine
+        - id: ChemistryBottleCharcoal
+        - id: ChemistryBottleTranexamicAcid
+        - id: ChemistryBottlePuncturase
+        - id: ChemistryBottleBicaridine
+        - id: ChemistryBottlePyrazine
+        - id: ChemistryBottleDermaline

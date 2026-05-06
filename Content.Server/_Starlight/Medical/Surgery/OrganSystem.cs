@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Content.Server._Starlight.Language;
 using Content.Server.Humanoid;
-using Content.Shared._Starlight.Language.Components.Translators;
 using Content.Shared.Actions;
 using Content.Shared.CollectiveMind;
 using Content.Shared.Damage;
@@ -15,6 +14,7 @@ using Content.Shared.Speech.Muting;
 using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared._Starlight.Cybernetics;
 using Content.Shared._Starlight.Cybernetics.Components;
+using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Tag;

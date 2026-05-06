@@ -49,6 +49,7 @@ using Content.Shared.Contraband;
 using Content.Shared.Electrocution;
 using Content.Shared.Humanoid;
 using Content.Shared.Overlays;
+using Content.Shared._Starlight.Medical.Body.Part;
 #endregion Starlight
 
 namespace Content.Server.Administration.Systems;
@@ -805,7 +806,7 @@ public sealed partial class AdminVerbSystem
                 {
                     var showHealthBars = EnsureComp<ShowHealthBarsComponent>(args.Target);
                     showHealthBars.DamageContainers.Add("Biological");
-                    showHealthBars.HealthStatusIcon = "HealthIcon";
+                    showHealthBars.HealthStatusIcon = "HealthBarMarkerIcon"; // Starlight
 
                     var showHealthIcons = EnsureComp<ShowHealthIconsComponent>(args.Target);
                     showHealthIcons.DamageContainers.Add("Biological");

@@ -1,4 +1,4 @@
-using Content.Server.Body.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Humanoid;
 using Content.Shared._Starlight.Medical.Body;

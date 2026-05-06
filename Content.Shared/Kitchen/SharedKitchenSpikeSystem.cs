@@ -358,7 +358,7 @@ public sealed class SharedKitchenSpikeSystem : EntitySystem
 
         // Show it at the end of the examine so it looks good.
         args.PushMarkup(Loc.GetString("comp-kitchen-spike-hooked", ("victim", Identity.Entity(victim.Value, EntityManager))), -1);
-        args.PushMessage(_examineSystem.GetExamineText(victim.Value, args.Examiner), -2);
+        args.PushMessage(_examineSystem.GetExamineText(victim.Value, args.Examiner, out _), -2); // Starlight-edit
     }
 
     private void OnGetVerbs(Entity<KitchenSpikeComponent> ent, ref GetVerbsEvent<Verb> args)

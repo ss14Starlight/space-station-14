@@ -1,0 +1,159 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Original sprite taken from tgstation at commit https://github.com/tgstation/tgstation/commit/5a73e8f825ff279e82949b9329783a9e3070e2da, icon and equiped sprites drawn and remaining sprites touched up by Pixel8-dev, modified further into reporter by wonderfulnewworld (GitHub)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "on-equipped-HELMET",
+            "directions": 4,
+            "delays": [
+                [
+                    0.125,
+                    0.125,
+                    0.125,
+                    0.125
+                ],
+                [
+                    0.125,
+                    0.125,
+                    0.125,
+                    0.125
+                ],
+                [
+                    0.125,
+                    0.125,
+                    0.125,
+                    0.125
+                ],
+                [
+                    0.125,
+                    0.125,
+                    0.125,
+                    0.125
+                ]
+            ],
+			"copyright": "TG Station, Pixel8-dev, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "off-equipped-HELMET",
+            "directions": 4,
+			"copyright": "TG Station, Pixel8-dev, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "on-equipped-EARS",
+            "directions": 4,
+            "delays": [
+                [
+                    0.125,
+                    0.125,
+                    0.125,
+                    0.125
+                ],
+                [
+                    0.125,
+                    0.125,
+                    0.125,
+                    0.125
+                ],
+                [
+                    0.125,
+                    0.125,
+                    0.125,
+                    0.125
+                ],
+                [
+                    0.125,
+                    0.125,
+                    0.125,
+                    0.125
+                ]
+            ],
+			"copyright": "TG Station, Pixel8-dev, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "off-equipped-EARS",
+            "directions": 4,
+			"copyright": "TG Station, Pixel8-dev, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "on-equipped-NECK",
+            "directions": 4,
+            "delays": [
+                [
+                    0.125,
+                    0.125,
+                    0.125,
+                    0.125
+                ],
+                [
+                    0.125,
+                    0.125,
+                    0.125,
+                    0.125
+                ],
+                [
+                    0.125,
+                    0.125,
+                    0.125,
+                    0.125
+                ],
+                [
+                    0.125,
+                    0.125,
+                    0.125,
+                    0.125
+                ]
+            ],
+			"copyright": "TG Station, Pixel8-dev, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "off-equipped-NECK",
+            "directions": 4,
+			"copyright": "TG Station, Pixel8-dev, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4,
+			"copyright": "TG Station, Pixel8-dev, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4,
+			"copyright": "TG Station, Pixel8-dev, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "icon",
+			"copyright": "TG Station, Pixel8-dev, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "icon-on",
+            "delays": [
+                [
+				    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ],
+			"copyright": "TG Station, Pixel8-dev, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        }
+    ]
+}

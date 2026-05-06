@@ -1,0 +1,38 @@
+# start
+
+- type: guideEntry
+  id: RoleplayGuideIntro
+  name: guide-entry-roleplay-intro
+  text: "/ServerInfo/_StarLight/Guidebook/Roleplay/RoleplayGuides.xml"
+  priority: 0
+  children:
+    - RoleplayGuide01
+    - RoleplayGuide02
+    - RoleplayGuide03
+    - RoleplayGuide04
+
+# chapters
+
+- type: guideEntry
+  id: RoleplayGuide01
+  name: guide-entry-roleplay-01
+  text: "/ServerInfo/_StarLight/Guidebook/Roleplay/RP01.xml"
+  priority: 1
+
+- type: guideEntry
+  id: RoleplayGuide02
+  name: guide-entry-roleplay-02
+  text: "/ServerInfo/_StarLight/Guidebook/Roleplay/RP02.xml"
+  priority: 2
+
+- type: guideEntry
+  id: RoleplayGuide03
+  name: guide-entry-roleplay-03
+  text: "/ServerInfo/_StarLight/Guidebook/Roleplay/RP03.xml"
+  priority: 3
+
+- type: guideEntry
+  id: RoleplayGuide04
+  name: guide-entry-roleplay-04
+  text: "/ServerInfo/_StarLight/Guidebook/Roleplay/RP04.xml"
+  priority: 4

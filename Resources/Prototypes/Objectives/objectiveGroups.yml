@@ -46,7 +46,7 @@
     NTRepBriefcaseSecureStealObjective: 0.75 # Same as most NT Rep stuff.
     BSOHardsuitStealObjective: 0.75 # Same as the above...
     BSOMagbootsStealObjective: 0.75 # Easier to hide, at least.
-    BSOWeaponStealObjective: 0.75 # Blue Shield weapons. Includes the X-01 and SP8T.
+    BSOWeaponStealObjective: 0.75 # Blue Shield weapons. Includes the X-01 and Blueguard Service Pistol.
     CorporateSecretsStealObjective: 0.75 #Starlight Unique Target
     CriminalReportsStealObjective: 0.75 #Starlight Unique Target
     SecureKnowledgeStealObjective:  0.75 #Starlight Unique Target

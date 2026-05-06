@@ -468,3 +468,27 @@
     tags:
     - PaddyMech
   # end region
+
+- type: entity
+  id: WeaponMechSniperMime
+  name: S.H.H. "Quietus" Carbine
+  description: A mime invention, field tests have shown that targets cannot even scream before going down.
+  suffix: Mech, Gun, Combat, Sniper
+  parent: [ BaseMechWeaponRange, CombatMechEquipment, BaseSyndicateContraband ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_mime
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/hushpup.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: MechAmmoProvider #Starlight - MechAmmoProvider
+    proto: BulletAntiMateriel
+    fireCost: 150
+  - type: Appearance

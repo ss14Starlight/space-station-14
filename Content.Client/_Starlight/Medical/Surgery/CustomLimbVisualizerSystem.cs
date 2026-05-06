@@ -1,23 +1,8 @@
-﻿using Content.Shared.Starlight.ItemSwitch;
-using Content.Shared.Interaction.Events;
-using Content.Shared.Interaction;
-using Content.Shared.Item;
-using Content.Shared.Item.ItemToggle.Components;
-using Content.Shared.Toggleable;
-using Content.Shared.Verbs;
+﻿using Content.Shared.Item;
 using Robust.Client.GameObjects;
 using Content.Shared.Starlight.Medical.Surgery;
 using Content.Shared.Humanoid;
-using System;
 using System.Numerics;
-using Robust.Client.Graphics;
-using Content.Shared.DisplacementMap;
-using Content.Client.DisplacementMap;
-using System.Reflection;
-using Robust.Shared.Graphics.RSI;
-using Robust.Shared.Utility;
-using Content.Client.Clothing;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
 
@@ -25,8 +10,6 @@ namespace Content.Client._Starlight.Medical.Surgery;
 
 public sealed class CustomLimbVisualizerSystem : EntitySystem
 {
-    [Dependency] private readonly DisplacementMapSystem _displacement = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
     public override void Initialize()
     {
         base.Initialize();
