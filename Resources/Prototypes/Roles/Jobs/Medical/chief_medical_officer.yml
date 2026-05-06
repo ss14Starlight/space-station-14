@@ -43,6 +43,7 @@
   equipment:
     id: CMOPDA
     ears: ClothingHeadsetCMO
+    belt: ClothingBeltMedicalFilled # Starlight - adding back belts
   storage:
     back:
     - Flash

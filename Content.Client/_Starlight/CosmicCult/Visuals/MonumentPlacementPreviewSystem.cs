@@ -2,7 +2,6 @@ using System.Numerics;
 using System.Threading;
 using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
-using Content.Shared.Actions;
 using Content.Shared.Maps;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
@@ -71,11 +70,11 @@ public sealed class MonumentPlacementPreviewSystem : EntitySystem
         );
     }
 
-    private void OnCosmicMoveMonument(Entity<CosmicCultLeadComponent> ent, ref EventCosmicMoveMonument args) =>
-        DoMonumentAnimation(args.Performer);
+    private void OnCosmicMoveMonument(Entity<CosmicCultLeadComponent> ent, ref EventCosmicMoveMonument args)
+        => DoMonumentAnimation(args.Performer);
 
-    private void OnCosmicPlaceMonument(Entity<CosmicCultLeadComponent> ent, ref EventCosmicPlaceMonument args) =>
-        DoMonumentAnimation(args.Performer);
+    private void OnCosmicPlaceMonument(Entity<CosmicCultLeadComponent> ent, ref EventCosmicPlaceMonument args)
+        => DoMonumentAnimation(args.Performer);
 
     //duplicated from the ability check, minus the station check because that can't be done clientside afaik?
     //and no popups because they're done in the ability check as well

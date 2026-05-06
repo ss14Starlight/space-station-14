@@ -1,0 +1,106 @@
+- type: entity
+  id: BottleCaseMedicalFilled
+  parent: BottleCaseMedical
+  suffix: Medical, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: RandomBottleSafeTable
+        rolls: !type:RangeNumberSelector
+          range: 6, 8
+
+- type: entityTable
+  id: RandomBottleSafeTable
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector # Bloodloss Chems
+      weight: 30
+      children:
+      - id: ChemistryBottleSaline
+      - id: ChemistryBottleAmmonia
+      - id: ChemistryBottleDexalin
+    - !type:GroupSelector # Brutes/Burns/Tric
+      weight: 30
+      children:
+      - id: ChemistryBottleBicaridine
+      - id: ChemistryBottleKelotane
+      - id: ChemistryBottleTricordrazine
+    - !type:GroupSelector # Toxins/Epinephrine
+      weight: 30
+      children:
+      - id: ChemistryBottleHyronalin
+      - id: ChemistryBottleEthylredoxrazine
+      - id: ChemistryBottlePhalanximine
+      - id: ChemistryBottleEpinephrine
+    - !type:GroupSelector # Good chems
+      weight: 5
+      children:
+      - id: ChemistryBottleDexalinPlus
+      - id: ChemistryBottleAmoxla
+    - !type:GroupSelector # Funny chems
+      weight: 4
+      children:
+      - id: ChemistryBottleLaughter
+      - id: ChemistryBottleDoctorsDelight
+      - id: ChemistryBottleDesoxyephedrine
+      - id: ChemistryBottleEphedrine
+    - !type:GroupSelector # Weh
+      weight: 1
+      children:
+      - id: ChemistryBottleWeh
+
+- type: entity
+  id: BottleCaseParamedicFilled
+  parent: BottleCaseMedical
+  suffix: Paramedic, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ChemistryBottleInaprovaline
+          amount: 2
+        - id: ChemistryBottleIpecac
+        - id: ChemistryBottleCharcoal
+        - id: ChemistryBottleHaloperidol
+        - id: ChemistryBottleEthylredoxrazine
+
+- type: entity
+  id: PenPackMedicalFilled
+  parent: PenPackMedical
+  suffix: Medical, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: RandomInjectorSafeTable
+        rolls: !type:RangeNumberSelector
+          range: 2, 4
+
+- type: entityTable
+  id: RandomInjectorSafeTable
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector # Common injectors
+      weight: 65
+      children:
+      - id: EmergencyMedipen
+      - id: SpaceMedipen
+    - !type:GroupSelector # Damage-category injectors
+      weight: 24
+      children:
+      - id: BruteAutoInjector
+      - id: BurnAutoInjector
+      - id: AntiPoisonMedipen
+    - !type:GroupSelector # Specific, rare injectors
+      weight: 10
+      children:
+      - id: AirlossAutoInjector
+      - id: PunctAutoInjector
+      - id: PyraAutoInjector
+      - id: RadAutoInjector
+    - !type:GroupSelector # Funny injectors
+      weight: 1
+      children:
+      - id: WehMedipen

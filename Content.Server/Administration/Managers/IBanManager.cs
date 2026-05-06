@@ -1,5 +1,7 @@
+using System.Collections.Immutable;
 using System.Net;
 using System.Threading.Tasks;
+using Content.Server.Database;
 using Content.Shared.Database;
 using Content.Shared.Roles;
 using Robust.Shared.Network;
@@ -122,4 +124,32 @@ public interface IBanManager
     /// </summary>
     /// <param name="pSession">Player's session</param>
     public void SendRoleBans(ICommonSession pSession);
+
+    #region Starlight
+    /// <summary>
+    /// Retrieves a list of server ban definitions matching the specified criteria.
+    /// </summary>
+    public Task<List<ServerBanDef>> GetServerBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true);
+
+    /// <summary>
+    /// Creates a record of an unban action for a previously issued server ban.
+    /// </summary>
+    public Task CreateServerUnban(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime);
+
+    /// <summary>
+    /// Retrieves the details of a server ban with the specified identifier.
+    /// </summary>
+    public Task<ServerBanDef?> GetServerBanAsync(int id, string? project = null, string? server = null);
+
+    /// <summary>
+    /// Retrieves a server ban record that matches the specified address, user ID, hardware ID, or set of
+    /// modern hardware IDs.
+    /// </summary>
+    public Task<ServerBanDef?> GetServerBanAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds);
+
+    /// <summary>
+    /// Retrieves a list of server role bans that match the specified criteria.
+    /// </summary>
+    public Task<List<ServerRoleBanDef>> GetServerRoleBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true);
+    #endregion
 }
