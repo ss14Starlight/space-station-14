@@ -15,9 +15,13 @@ alert-level-red = Red
 alert-level-red-announcement = There is a threat onboard the station that endangers the entire crew. Security should prepare to use lethal force if necessary. Crewmembers should find a safe place to shelter in, and are advised to follow any present authorities.
 alert-level-red-instructions = Crewmembers should find a safe place to shelter in, and are advised to follow any present authorities.
 
+# Starlight - start
 alert-level-violet = Violet
-alert-level-violet-announcement = There is a viral threat on the station. Medical staff are advised to isolate crewmembers with any symptoms. Crewmembers are advised to distance themselves from others and perform safety measures to prevent further spread.
-alert-level-violet-instructions = Crewmembers are advised to distance themselves from others and perform safety measures to prevent further spread.
+alert-level-violet-announcement = Confirmed station-wide outbreak by station command. Seek heads of staff for further instructions. All personnel must contain the outbreak.
+alert-level-violet-instructions = All personnel must contain the outbreak.
+# alert-level-violet-announcement = There is a viral threat on the station. Medical staff are advised to isolate crewmembers with any symptoms. Crewmembers are advised to distance themselves from others and perform safety measures to prevent further spread.
+# alert-level-violet-instructions = Crewmembers are advised to distance themselves from others and perform safety measures to prevent further spread.
+# Starlight - End
 
 alert-level-yellow = Yellow
 alert-level-yellow-announcement = There is a localized structural or atmospheric threat within the station. Engineering staff are advised to immediately respond and perform safety measures. Crewmembers are advised to stay away from the threat, and stay in their workplaces if necessary.

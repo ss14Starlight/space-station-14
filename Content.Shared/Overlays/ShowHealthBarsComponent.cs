@@ -23,5 +23,5 @@ public sealed partial class ShowHealthBarsComponent : Component
     };
 
     [DataField]
-    public ProtoId<HealthIconPrototype>? HealthStatusIcon = "HealthIconFine";
+    public ProtoId<HealthBarIconPrototype>? HealthStatusIcon = "HealthBarMarkerIcon"; // Starlight
 }

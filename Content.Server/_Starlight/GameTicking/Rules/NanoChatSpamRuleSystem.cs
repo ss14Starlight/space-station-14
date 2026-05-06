@@ -46,7 +46,7 @@ public sealed class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComp
     [Dependency] private readonly SharedJobSystem _jobs = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
-    [Dependency] private readonly TimeSystem _timeSystem = default!;
+    [Dependency] private readonly SharedTimeSystem _timeSystem = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
 
     private static readonly Regex RandomNumberPattern = new(@"\[\[randomnumber:(\d+):(\d+)\]\]", RegexOptions.Compiled);

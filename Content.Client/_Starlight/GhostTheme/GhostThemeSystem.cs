@@ -1,3 +1,4 @@
+using Content.Client._Starlight.Trail;
 using Content.Server.Administration.Systems;
 using Content.Shared._Starlight.GhostTheme;
 using Robust.Client.GameObjects;
@@ -39,6 +40,22 @@ public sealed class GhostThemeSystem : EntitySystem
 
         spriteType.Comp.NoRotation = ghostThemePrototype.SpriteSpecifier.SpriteRotation;
         spriteType.Comp.OverrideContainerOcclusion = true;
-    }
 
+        // Apply trail effect
+        if (ghostThemePrototype.Trail != null)
+        {
+            var trail = EnsureComp<TrailComponent>(ent.Owner);
+            trail.TrailColor = ghostThemePrototype.Trail.Color;
+            trail.MaxPoints = ghostThemePrototype.Trail.MaxPoints;
+            trail.LineWidth = ghostThemePrototype.Trail.LineWidth;
+            trail.MinDistance = ghostThemePrototype.Trail.MinDistance;
+            trail.DecayDelay = ghostThemePrototype.Trail.DecayDelay;
+            trail.DecayInterval = ghostThemePrototype.Trail.DecayInterval;
+            trail.Shader = ghostThemePrototype.Trail.Shader;
+        }
+        else
+        {
+            RemComp<TrailComponent>(ent.Owner);
+        }
+    }
 }

@@ -30,7 +30,7 @@
   id: Ripley2
   name: research-technology-ripley-mkii
   icon:
-    sprite: Objects/Specific/Mech/Mechs/Basic/ripleymkii.rsi
+    sprite: _Starlight/Objects/Specific/Mechs/Mechs/ripleymkii.rsi
     state: base
   discipline: Industrial
   tier: 2
@@ -47,7 +47,7 @@
   id: Clarke
   name: research-technology-clarke
   icon:
-    sprite: Objects/Specific/Mech/Mechs/Basic/clarke.rsi
+    sprite: _Starlight/Objects/Specific/Mechs/Mechs/clarke.rsi
     state: base
   discipline: Industrial
   tier: 2

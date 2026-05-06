@@ -13,6 +13,12 @@ public static class FormattedMessageSanitizer
      */
     public static string[] ItemLabelTags = new[] { "color", "bold", "bolditalic", "italic", "mono" };
 
+    public static string[] PaperLabelTags =
+        new[]
+        {
+            "color", "bold", "bolditalic", "italic", "mono", "icon", "scramble", "font", "head", "bullet"
+        };
+
     /// <summary>
     /// Sanitize the given message using a whitelist, allowing only explicitly permitted tags and/or raw text.
     /// </summary>

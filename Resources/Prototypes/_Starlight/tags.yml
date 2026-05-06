@@ -48,6 +48,12 @@
   id: BorgItem
 
 - type: Tag
+  id: BorgModuleCentcomm
+
+- type: Tag
+  id: BorgModuleMedTak
+
+- type: Tag
   id: BorgModuleMining
 
 - type: Tag
@@ -55,6 +61,12 @@
 
 - type: Tag
   id: BorgModuleSecurity
+
+- type: Tag
+  id: BorgModuleSecurityStation
+
+- type: Tag
+  id: BorgContrabandBag
 
 - type: Tag
   id: BorgModuleSupply
@@ -208,6 +220,9 @@
 
 - type: Tag
   id: EmergencyWelder
+
+- type: Tag
+  id: ExternalAirlock
 
 - type: Tag
   id: Felionoid
@@ -485,6 +500,9 @@
 - type: Tag
   id: ReflectiveArmorVest
     # Tag for reflective vest, used for set bonus detection by ReflectiveSetBonusSystem
+
+- type: Tag
+  id: RollerBed
 
 - type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun

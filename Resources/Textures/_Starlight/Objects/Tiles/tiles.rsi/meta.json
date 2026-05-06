@@ -68,6 +68,9 @@
         },
         {
             "name": "tile_metal_service"
+        },
+        {
+            "name": "tile_astro_dirt"
         }
     ]
 }

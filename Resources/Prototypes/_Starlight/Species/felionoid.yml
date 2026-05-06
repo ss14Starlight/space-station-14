@@ -5,12 +5,13 @@
   prototype: MobFelionoid
   sprites: MobFelionoidSprites
   markingLimits: MobFelionoidMarkingLimits
-  dollPrototype: MobFelionoidDummy
+  dollPrototype: AppearanceFelionoid
   skinColoration: Hues
   defaultSkinTone: "#666666"
-  maleFirstNames: names_felionoid
-  femaleFirstNames: names_felionoid
-  naming: First
+  maleFirstNames: names_felionoid_prefix
+  femaleFirstNames: names_felionoid_prefix
+  lastNames: names_felionoid_suffix
+  naming: PrefixSuffix
   customName: true
   minHeight: 0.8
   defaultHeight: 0.8
@@ -24,9 +25,12 @@
   sprites:
     Head: MobFelionoidHead
     Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Chest: MobFelionoidTorso
+    HeadTop: MobHumanoidAnyMarking
     Eyes: MobFelionoidEyes
     LArm: MobFelionoidLArm
     RArm: MobFelionoidRArm
@@ -51,9 +55,13 @@
     Head:
       points: 1
       required: true
-    Snout:
+    HeadTop:
       points: 1
       required: true
+      defaultMarkings: [ FelionoidEars]
+    Snout:
+      points: 1
+      required: false
     Arms:
       points: 4
       required: true
@@ -61,12 +69,18 @@
       points: 4
       required: true
     Chest:
-      points: 1
+      points: 2
       required: false
     Tail:
       points: 1
       required: true
-      defaultMarkings: [ FelionoidTailAnimated ]
+      defaultMarkings: [ FelionoidTail ]
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false
 
 - type: humanoidBaseSprite
   id: MobFelionoidEyes

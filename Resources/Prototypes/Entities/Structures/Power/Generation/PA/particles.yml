@@ -19,6 +19,9 @@
       damage:
         types:
           Radiation: 25
+      projectileType: Intangible # Starlight BEGIN
+      maximumHits: 3
+      deleteOnMaximumHits: true # Starlight END
     - type: Physics
     - type: Fixtures
       fixtures:
@@ -75,9 +78,12 @@
       path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
     damage:
       types:
-        Radiation: 10
+        Radiation: 25 # Starlight: Consistency
+    projectileType: Intangible # Starlight BEGIN
+    maximumHits: 3
+    deleteOnMaximumHits: true # Starlight END
   - type: TimedDespawn
     lifetime: 0.6
   - type: SinguloFood
-    energy: -10
+    energy: -30 # Starlight: Stronger
     energyFactor: 0.97
