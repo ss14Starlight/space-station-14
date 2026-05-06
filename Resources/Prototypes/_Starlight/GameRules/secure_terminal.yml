@@ -96,7 +96,7 @@
     - type: StationEvent
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Amber-Sec.yml
 
 - type: entity
   parent: BaseGameRule
@@ -105,7 +105,7 @@
     - type: StationEvent
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Red-Sec.yml
 
 - type: entity
   parent: BaseGameRule
@@ -114,7 +114,7 @@
     - type: StationEvent
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Gamma-Sec.yml
 
 - type: entity
   parent: BaseGameRule
@@ -123,7 +123,7 @@
     - type: StationEvent
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Engi.yml
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Amber-Engi.yml
 
 - type: entity
   parent: BaseGameRule
@@ -132,7 +132,7 @@
     - type: StationEvent
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Engi.yml
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Red-Engi.yml
 
 - type: entity
   parent: BaseGameRule
@@ -141,7 +141,7 @@
     - type: StationEvent
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Engi.yml
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Gamma-Engi.yml
 
 - type: entity
   parent: BaseGameRule
@@ -150,7 +150,7 @@
     - type: StationEvent
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Med.yml
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Amber-Med.yml
 
 - type: entity
   parent: BaseGameRule
@@ -159,7 +159,7 @@
     - type: StationEvent
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Med.yml
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Red-Med.yml
 
 - type: entity
   parent: BaseGameRule
@@ -168,7 +168,7 @@
     - type: StationEvent
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Med.yml
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Gamma-Med.yml
 
 - type: entity
   parent: BaseGameRule
@@ -177,7 +177,7 @@
     - type: StationEvent
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Jani.yml
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Amber-Jani.yml
 
 - type: entity
   parent: BaseGameRule
@@ -186,7 +186,7 @@
     - type: StationEvent
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Jani.yml
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Red-Jani.yml
 
 - type: entity
   parent: BaseGameRule
@@ -195,9 +195,9 @@
     - type: StationEvent
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Jani.yml
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Gamma-Jani.yml
 
-- type: entity
+- type: entity #todo, test if chap ERT actually spawns because no grid path ever added for some reason
   parent: BaseGameRule
   id: ERTChaplainSpawnAmber
   components:
