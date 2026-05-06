@@ -16,8 +16,6 @@ public sealed class ArmoryCommand : IConsoleCommand
     public string Command => "armory";
     public string Description => "Send, recall, or list armory shuttles.";
     public string Help => GetDynamicHelp();
-    private const string NoStationError = "No station with armories found.";
-    private const string NoArmoryConfigError = "Station does not have armory shuttles configured.";
     private const string UnknownArmoryError = "Unknown armory '{0}'.";
     private const string InTransitError = "Armory '{0}' is currently in transit.";
     private const string SendingMessage = "Sending armory '{0}' to the station.";
@@ -61,21 +59,6 @@ public sealed class ArmoryCommand : IConsoleCommand
             shell.WriteLine(Help);
             return;
         }
-
-        // Try to find the station
-        // var stationUid = GetStationUid(shell, entMan, stationSystem);
-        //
-        // if (stationUid == null)
-        // {
-        //     shell.WriteError(NoStationError);
-        //     return;
-        // }
-        //
-        // if (!entMan.TryGetComponent<AlertArmoryStationComponent>(stationUid.Value, out var stationComp))
-        // {
-        //     shell.WriteError(NoArmoryConfigError);
-        //     return;
-        // }
 
         var action = args[0].ToLowerInvariant();
 
