@@ -20,13 +20,14 @@
   components:
   - type: Inventory
     speciesId: arachnid
+    templateId: arachnid
 
 - type: entity
   id: BaseInventoryAvali
   abstract: true
   components:
   - type: Inventory
-    speciesId: Avali
+    speciesId: avali
     displacements:
       jumpsuit:
         sizeMaps:

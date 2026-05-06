@@ -46,6 +46,7 @@
     - Brigmedic
     - Surgery
     - Paramedic
+    - Debrief
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]

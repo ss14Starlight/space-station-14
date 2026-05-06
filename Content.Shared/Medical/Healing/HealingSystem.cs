@@ -21,7 +21,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
-using Content.Shared._FarHorizons.Medical.ConditionalHealing;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared._Starlight.Medical.Body.Systems;
@@ -40,7 +39,6 @@ public sealed class HealingSystem : EntitySystem
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly ConditionalHealingSystem _conditionalHealing = default!; // Far Horizons
     [Dependency] private readonly BlindableSystem _blindable = default!; // Far Horizons
 
     public override void Initialize()
@@ -59,13 +57,7 @@ public sealed class HealingSystem : EntitySystem
             return;
 
         if (!TryComp(args.Used, out HealingComponent? healing))
-        {
-            // Far Horizons, handle fake components from conditional healing
-            if(args.Used is null || _conditionalHealing.SelectBestMatch(args.Used.Value, target) is not ConditionalHealingData healingData)
-                return;
-            healing = healingData.MakeComponent();
-            healing.Owner = args.Used.Value;
-        }
+            return;
 
         if (healing.DamageContainers is not null &&
             target.Comp.DamageContainerID is not null &&

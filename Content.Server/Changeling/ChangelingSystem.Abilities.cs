@@ -503,7 +503,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
     public void OnLesserForm(EntityUid uid, ChangelingComponent comp, ref ActionLesserFormEvent args)
     {
-        var newUid = TransformEntity(uid, protoId: "MobMonkey", comp: comp);
+        var newUid = TransformEntity(uid, protoId: "MobLingMonkey", comp: comp); // Starlight - fix lesser form
         if (newUid == null)
         {
             comp.Chemicals += Comp<ChangelingActionComponent>(args.Action).ChemicalCost;

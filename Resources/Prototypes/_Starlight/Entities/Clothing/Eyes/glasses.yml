@@ -126,9 +126,11 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
+    - IPC
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+    - IPC
   - type: Tag
     tags:
     - HudMedical
@@ -139,6 +141,35 @@
 
 - type: entity
   parent: [ClothingEyesBase, BaseCentcommContraband]
+  id: ClothingEyesGlassesCentCommBase
+  abstract: true
+  components:
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: ShowCriminalRecordIcons
+    - type: ShowAccessReaderSettings
+    - type: ShowHealthBars
+      damageContainers:
+        - Biological
+        - Inorganic
+        - Silicon
+        - IPC
+    - type: ShowHealthIcons
+      damageContainers:
+        - Biological
+        - Inorganic
+        - Silicon
+        - IPC
+    - type: FlashImmunity
+    - type: EyeProtection
+      protectionTime: 5
+    - type: Tag
+      tags:
+        - HudMedical
+        - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlassesCentCommBase
   id: ClothingEyesGlassesCentComm
   name: CentComm officer's glasses
   description: The innovative green lenses hide your eyes from light flashes and have a built-in visor.
@@ -147,22 +178,11 @@
     sprite: _Starlight/Clothing/Eyes/Glasses/centcomm.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Eyes/Glasses/centcomm.rsi
-  - type: FlashImmunity
-  - type: ShowJobIcons
-  - type: ShowMindShieldIcons
-  - type: ShowCriminalRecordIcons
-  - type: ShowHealthBars
-    damageContainers:
-    - Biological
-  - type: ShowHealthIcons
-    damageContainers:
-    - Biological
   - type: Tag
     tags:
     - HudMedical
     - CorgiWearable
-  - type: EyeProtection
-    protectionTime: 5
+    - WhitelistChameleon
   - type: StealTarget
     stealGroup: RareGlassesCollection
 
@@ -229,6 +249,18 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionscience.rsi
   - type: VisionCorrection
+
+- type: entity
+  parent: ClothingEyesGlassesCentCommBase
+  id: ClothingEyesGlassesCentCommPrescription
+  name: prescription CentComm glasses
+  description: A set of prescription glasses for CentComm personnel. Protects against flashes and has a built-in visor.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Glasses/prescriptioncentcomm.rsi
+    - type: VisionCorrection
 
 # USSP
 
@@ -321,4 +353,14 @@
       - type: EyeProtection
         protectionTime: 5
 
-
+- type: entity
+  parent: ClothingEyesGlassesCentCommBase
+  id: ClothingEyesGlassesJamjarCentComm
+  name: CentComm jamjar glasses
+  description: For looking at their profits with even wider eyes.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Glasses/jamjarcentcomm.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Glasses/jamjarcentcomm.rsi
+    - type: VisionCorrection

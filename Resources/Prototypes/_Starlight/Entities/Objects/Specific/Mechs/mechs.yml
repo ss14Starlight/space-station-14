@@ -10,7 +10,7 @@
     - type: Sprite
       drawdepth: Mobs
       noRot: true
-      sprite: Objects/Specific/Mech/Mechs/Basic/ripleymkii.rsi
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/ripleymkii.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
           state: base
@@ -25,7 +25,7 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       pilotWhitelist:
         components:
@@ -35,12 +35,10 @@
       attackRate: 1
       damage:
         types:
-          #Starlight Start
           Blunt: 25 #brought in line with Ripley
     - type: MovementSpeedModifier
       baseWalkSpeed: 2 #All mechs walk at the same speed
       baseSprintSpeed: 3.0 #Mk II is still slower, but not unusably slow
-    #Starlight End
     - type: Damageable
       damageModifierSet: MediumArmorNT
     - type: PointLight
@@ -53,10 +51,8 @@
       graph: PaddyUpgrade
       node: start
       defaultTarget: paddy
-    # 🌟Starlight-start🌟
     - type: Prying
       pryPowered: true
-# 🌟Starlight-end🌟
 
 - type: entity
   id: MechRipley2Battery
@@ -66,7 +62,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorHigh #Starlight - MechReactors
+          - MechReactorHigh
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -80,13 +76,14 @@
     - type: Sprite
       drawdepth: Mobs
       noRot: true
-      sprite: Objects/Specific/Mech/Mechs/Basic/paddy.rsi
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/paddy.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
           state: base
         - state: base-sirens
           map: [ "enum.MechVisualLayers.Siren" ]
           shader: unshaded
+          visible: false
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
@@ -98,22 +95,22 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
-      maxEquipmentAmount: 4 # 🌟Starlight-Change
+      maxEquipmentAmount: 4
       pilotWhitelist:
         components:
           - HumanoidAppearance
-      siren: true
+    - type: MechSiren
     - type: MeleeWeapon
       hidden: true
       attackRate: 1
-      bluntStaminaDamageFactor: 1.5 # 🌟Starlight-Change
+      bluntStaminaDamageFactor: 1.5
       damage:
         types:
           Blunt: 30 #Decent for a loader, but without the high structural damage of a combat mech. #
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
+      baseWalkSpeed: 2
       baseSprintSpeed: 4
     - type: PointLight
       mask: /Textures/Effects/LightMasks/cone.png
@@ -130,7 +127,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorHigh #Starlight - MechReactors
+          - MechReactorHigh
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -143,7 +140,6 @@
       startingEquipment:
         - WeaponMechCombatDisabler
         - WeaponMechCombatFlashbangLauncher
-#      - MechEquipmentSecGrabber
 
 # Clarke
 - type: entity
@@ -155,7 +151,7 @@
     - type: Sprite
       drawdepth: Mobs
       noRot: true
-      sprite: Objects/Specific/Mech/Mechs/Basic/clarke.rsi
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/clarke.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
           state: base
@@ -166,7 +162,7 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       pilotWhitelist:
         components:
@@ -178,7 +174,7 @@
         types:
           Blunt: 26
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
+      baseWalkSpeed: 2
       baseSprintSpeed: 4.5
     - type: MechThrusters
     - type: PointLight
@@ -196,7 +192,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorHigh #Starlight - MechReactors
+          - MechReactorHigh
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -212,7 +208,7 @@
     - type: Sprite
       drawdepth: Mobs
       noRot: true
-      sprite: Objects/Specific/Mech/Mechs/Basic/gygax.rsi
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/gygax.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
           state: base
@@ -223,7 +219,7 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 325
       pilotWhitelist:
@@ -236,16 +232,12 @@
         types:
           Blunt: 30 #THWACK
           Structural: 180
-    # STARLIGHT BEGIN
     - type: MeleeThrowOnHit
       speed: 15
       distance: 2.5
-    # STARLIGHT END
     - type: MovementSpeedModifier
-      # 🌟Starlight-start🌟
       baseWalkSpeed: 2 #All mechs walk at the same speed
       baseSprintSpeed: 4.0
-    # 🌟Starlight-end🌟
     - type: Damageable
       damageModifierSet: GygaxArmor
     - type: MechThrusters
@@ -264,7 +256,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorHigh #Starlight - MechReactors
+          - MechReactorHigh
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -278,7 +270,7 @@
     - type: Sprite
       drawdepth: Mobs
       noRot: true
-      sprite: Objects/Specific/Mech/Mechs/Basic/durand.rsi
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/durand.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
           state: base
@@ -289,7 +281,7 @@
       baseState: base
       openState: base-open
       brokenState: base-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 465
       pilotWhitelist:
@@ -302,21 +294,15 @@
         types:
           Blunt: 40
           Structural: 220
-    # STARLIGHT BEGIN
     - type: MeleeThrowOnHit
       speed: 18
       distance: 4
-    # STARLIGHT END
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
-      baseSprintSpeed: 2.8 #Starlight - No longer unusably slow
+      baseWalkSpeed: 2
+      baseSprintSpeed: 2.8
     - type: Damageable
       damageModifierSet: DurandArmor
     - type: MechThrusters
-    - type: Repairable
-      damageValue: -30 # 15 seconds to repair durand
-      doAfterDelay: 1
-      fuelCost: 3 # 3x more expensive than cyborg repair costing 70u for durand
     - type: PointLight
       mask: /Textures/Effects/LightMasks/cone.png
       autoRot: true
@@ -332,7 +318,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorHigh #Starlight - MechReactors
+          - MechReactorHigh
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -348,18 +334,18 @@
     - type: Sprite
       drawdepth: Mobs
       noRot: true
-      sprite: Objects/Specific/Mech/mecha.rsi
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/marauder.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
-          state: marauder
+          state: base
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
     - type: Mech
-      baseState: marauder
-      openState: marauder-open
-      brokenState: marauder-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      baseState: base
+      openState: base-open
+      brokenState: base-broken
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 575
       maxEquipmentAmount: 4
@@ -373,15 +359,15 @@
         types:
           Blunt: 40
           Structural: 200
+    - type: MeleeThrowOnHit
+      speed: 20
+      distance: 5
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
-      baseSprintSpeed: 2.2 #Starlight - No longer unusably slow
+      baseWalkSpeed: 2
+      baseSprintSpeed: 2.2
     - type: Damageable
       damageModifierSet: HeavyArmorNT
     - type: MechThrusters
-    - type: Repairable
-      fuelCost: 30
-      doAfterDelay: 15
 
 - type: entity
   id: MechMarauderBattery
@@ -391,7 +377,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorHyper #Starlight - MechReactors
+          - MechReactorHyper
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -417,18 +403,18 @@
     - type: Sprite
       drawdepth: Mobs
       noRot: true
-      sprite: Objects/Specific/Mech/mecha.rsi
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/seraph.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
-          state: seraph
+          state: base
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
     - type: Mech
-      baseState: seraph
-      openState: seraph-open
-      brokenState: seraph-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      baseState: base
+      openState: base-open
+      brokenState: base-broken
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 700
       maxEquipmentAmount: 5
@@ -442,20 +428,15 @@
         types:
           Blunt: 60
           Structural: 400
-    # STARLIGHT BEGIN
     - type: MeleeThrowOnHit
       speed: 20
       distance: 5
-    # STARLIGHT END
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
+      baseWalkSpeed: 2
       baseSprintSpeed: 3.7
     - type: Damageable
       damageModifierSet: HeavyArmorNT
     - type: MechThrusters
-    - type: Repairable
-      fuelCost: 30
-      doAfterDelay: 20
 
 - type: entity
   id: MechSeraphBattery
@@ -465,7 +446,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorAntique #Starlight - MechReactors
+          - MechReactorAntique
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -494,18 +475,18 @@
     - type: Sprite
       drawdepth: Mobs
       noRot: true
-      sprite: Objects/Specific/Mech/mecha.rsi
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/darkgygax.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
-          state: darkgygax
+          state: base
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
     - type: Mech
-      baseState: darkgygax
-      openState: darkgygax-open
-      brokenState: darkgygax-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      baseState: base
+      openState: base-open
+      brokenState: base-broken
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 375
       maxEquipmentAmount: 4
@@ -519,20 +500,15 @@
         types:
           Blunt: 30
           Structural: 200
-    # STARLIGHT BEGIN
     - type: MeleeThrowOnHit
       speed: 15
       distance: 3
-    # STARLIGHT END
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
-      baseSprintSpeed: 4.5 # 🌟Starlight-Change - Faster than regular Gygax
+      baseWalkSpeed: 2
+      baseSprintSpeed: 4.5
     - type: Damageable
       damageModifierSet: MediumArmorSyndi
     - type: MechThrusters
-    - type: Repairable
-      fuelCost: 40
-      doAfterDelay: 20
     - type: PointLight
       mask: /Textures/Effects/LightMasks/cone.png
       autoRot: true
@@ -548,7 +524,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorMicro #Starlight - MechReactors
+          - MechReactorMicro
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -574,18 +550,18 @@
     - type: Sprite
       drawdepth: Mobs
       noRot: true
-      sprite: Objects/Specific/Mech/mecha.rsi
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/mauler.rsi
       layers:
         - map: [ "enum.MechVisualLayers.Base" ]
-          state: mauler
+          state: base
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
     - type: Mech
-      baseState: mauler
-      openState: mauler-open
-      brokenState: mauler-broken
-      mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
+      baseState: base
+      openState: base-open
+      brokenState: base-broken
+      mechToPilotDamageMultiplier: 0.0
       airtight: true
       maxIntegrity: 550
       maxEquipmentAmount: 5
@@ -599,20 +575,16 @@
         types:
           Blunt: 50
           Structural: 400
-    # STARLIGHT BEGIN
     - type: MeleeThrowOnHit
       speed: 20
       distance: 5
-    # STARLIGHT END
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2 #Starlight - All mechs walk at the same speed
-      baseSprintSpeed: 2.2 #Starlight - No longer unusably slow
+      baseWalkSpeed: 2
+      baseSprintSpeed: 2.2
     - type: Damageable
       damageModifierSet: MaulerArmor
     - type: MechThrusters
-    - type: Repairable
-      fuelCost: 50
-      doAfterDelay: 25
+    - type: Magboots
     - type: PointLight
       mask: /Textures/Effects/LightMasks/cone.png
       autoRot: true
@@ -629,7 +601,7 @@
     - type: ContainerFill
       containers:
         mech-battery-slot:
-          - MechReactorMicro #Starlight - MechReactors
+          - MechReactorMicro
         mech-gas-tank-slot:
           - MechAirTankFilled
 
@@ -645,3 +617,143 @@
         - WeaponMechCombatShotgun
         - WeaponMechCombatMissileRack6
         - WeaponMechCombatTeslaCannon
+
+# Dark H.O.N.K.
+- type: entity
+  parent: [ BaseMech, SpecialMech, SyndieMech, BaseSyndicateContraband ]
+  id: MechHonkerDark
+  name: Dark H.O.N.K.
+  description: A Cybersun-modified H.O.N.K. that strikes fear into the hearts of all who hear its squeaking footsteps.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      noRot: true
+      sprite: Objects/Specific/Mech/Mechs/Basic/honker.rsi
+      layers:
+        - map: [ "enum.MechVisualLayers.Base" ]
+          state: dark
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepClown
+        params:
+          variation: 0.17
+    - type: MeleeWeapon
+      hidden: true
+      attackRate: 1
+      damage:
+        types:
+          Structural: 400 # Heeeeeere's H.O.N.K.ie!!!
+      soundHit:
+        path: /Audio/Items/bikehorn.ogg
+    - type: MeleeThrowOnHit
+      speed: 1
+      distance: 4 # To be even more annoying
+    - type: Mech
+      baseState: dark
+      openState: dark-open
+      brokenState: dark-broken
+      mechToPilotDamageMultiplier: 0.0
+      maxIntegrity: 550
+      maxEquipmentAmount: 5
+      airtight: true # Space Honks is real.
+      pilotWhitelist:
+        components:
+          - HumanoidAppearance
+
+- type: entity
+  parent: MechHonkerDark
+  id: MechHonkerDarkBattery
+  suffix: Battery, Air
+  components:
+    - type: ContainerFill
+      containers:
+        mech-battery-slot:
+          - MechReactorMicro
+        mech-gas-tank-slot:
+          - MechAirTankFilled
+
+- type: entity
+  parent: MechHonkerDarkBattery
+  id: MechHonkerDarkFilled
+  suffix: Battery, Filled
+  components:
+    - type: Mech
+      startingEquipment:
+        - WeaponMechSpecialBananaMortar
+        - WeaponMechSpecialMousetrapMortar
+        - MechEquipmentHorn
+        - WeaponMechSpecialPieCannon
+
+# Reticence
+- type: entity
+  id: MechMimeSyndie
+  parent: [ BaseMech, CombatMech, BaseSyndicateContraband, SyndieMech ]
+  name: Reticence
+  description: A lightweight mech favored by mime assassins. Whisper-quiet servos and shock absorber arrays result in drastically reduced footstep sound.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      noRot: true
+      sprite: _Starlight/Objects/Specific/Mechs/Mechs/reticence.rsi
+      layers:
+        - map: [ "enum.MechVisualLayers.Base" ]
+          state: base
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+        params:
+          volume: -12
+    - type: Mech
+      baseState: base
+      openState: base-open
+      brokenState: base-broken
+      mechToPilotDamageMultiplier: 0.0
+      airtight: true
+      maxIntegrity: 250
+      maxEquipmentAmount: 4
+      pilotWhitelist:
+        components:
+          - HumanoidAppearance
+    - type: MeleeWeapon
+      hidden: true
+      attackRate: 1
+      damage:
+        types:
+          Blunt: 20
+          Structural: 150
+    - type: MeleeThrowOnHit
+      speed: 15
+      distance: 3
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 4.5
+    - type: Damageable
+      damageModifierSet: MediumArmorSyndi
+    - type: MechThrusters
+    - type: PointLight
+      mask: /Textures/Effects/LightMasks/cone.png
+      autoRot: true
+      radius: 7
+      energy: 6
+      enabled: false
+
+- type: entity
+  parent: MechMimeSyndie
+  id: MechMimeSyndieBattery
+  suffix: Battery, Air
+  components:
+    - type: ContainerFill
+      containers:
+        mech-battery-slot:
+          - MechReactorMicro
+        mech-gas-tank-slot:
+          - MechAirTankFilled
+
+- type: entity
+  parent: MechMimeSyndieBattery
+  id: MechMimeSyndieFilled
+  suffix: Battery, Filled
+  components:
+    - type: Mech
+      startingEquipment:
+        - WeaponMechSniperMime

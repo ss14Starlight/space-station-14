@@ -8,10 +8,10 @@
   dollPrototype: AppearanceLagomorph
   skinColoration: Hues
   customName: true
-  minAge: 22
+  minAge: 20
   youngAge: 25
   oldAge: 70
-  maxAge: 80
+  maxAge: 90
   minWidth: 0.9
   defaultWidth: 1
   maxWidth: 1.2

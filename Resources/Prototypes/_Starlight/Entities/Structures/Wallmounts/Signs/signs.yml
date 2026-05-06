@@ -156,3 +156,45 @@
     - state: evac
     - state: evac_unlit
       shader: unshaded
+
+# Law
+- type: entity
+  parent: BaseSign
+  id: SignIAA
+  name: internal affairs sign
+  description: A sign indicating Internal Affairs and their impending audit of your department.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: iaa
+
+- type: entity
+  parent: BaseSign
+  id: SignLawyerOffice
+  name: lawyer sign
+  description: A sign indicating the presence of someone you better call.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: lawyer
+
+- type: entity
+  parent: BaseSign
+  id: SignMagistrate
+  name: magistrate sign
+  description: A sign indicating the presence of the ultimate authority of Corporate Law.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: magistrate
+
+# NT
+- type: entity
+  parent: BaseSign
+  id: SignNTR
+  name: NTR sign
+  description: A sign indicating the physical presence of NanoTrasen aboard the station.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: ntr

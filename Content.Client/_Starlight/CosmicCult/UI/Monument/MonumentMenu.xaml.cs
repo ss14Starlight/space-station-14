@@ -55,10 +55,8 @@ public sealed partial class MonumentMenu : FancyWindow
         RemoveGlyphButton.OnPressed += _ => OnRemoveGlyphButtonPressed?.Invoke();
         SelectGlyphButton.OnPressed += _ => OnSelectGlyphButtonPressed?.Invoke(_selectedGlyphProtoId);
 
-        _cfg.OnValueChanged(StarlightCCVars.CosmicCultistEntropyValue, entropy =>
-        {
-            _entropyPerCultist = entropy;
-        },
+        _cfg.OnValueChanged(StarlightCCVars.CosmicCultistEntropyValue, entropy
+            => _entropyPerCultist = entropy,
         invokeImmediately: true);
     }
 
@@ -163,7 +161,7 @@ public sealed partial class MonumentMenu : FancyWindow
         }
     }
 
-    private InfluenceUIBox.InfluenceUIBoxState GetUIBoxStateForInfluence(InfluencePrototype influence, MonumentBuiState state)
+    private InfluenceUIBox.InfluenceUIBoxState GetUIBoxStateForInfluence(InfluencePrototype influence, MonumentBuiState _)
     {
         if (!_ent.TryGetComponent<CosmicCultComponent>(_player.LocalEntity, out var cultComp))
             return InfluenceUIBox.InfluenceUIBoxState.Locked; //early return with locked if there's somehow no cult comp

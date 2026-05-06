@@ -21,6 +21,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using NullLinkAdminBan = Starlight.NullLink.AdminBan;
 
 #region Starlight
 using System.Net.Http.Json;
@@ -36,6 +37,10 @@ using Content.Server._NullLink.Helpers;
 using Content.Shared.Starlight.CCVar;
 using Robust.Shared;
 using CCVars = Content.Shared.CCVar.CCVars;
+using Starlight.NullLink;
+using Content.Shared._NullLink;
+using Content.Shared.NullLink.CCVar;
+using Content.Shared.Administration;
 #endregion Starlight
 
 namespace Content.Server.Administration.Managers;
@@ -77,6 +82,8 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
     private static readonly Regex DiscordWebhookRegex = new(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$", RegexOptions.Compiled);
 
+    private ServerBanRecognitionPrototype? _banRecognition; // NullLink-edit: ban recognition system
+
     public void Initialize()
     {
         _netManager.RegisterNetMessage<MsgRoleBans>();
@@ -91,9 +98,26 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         _cfg.OnValueChanged(StarlightCCVars.DiscordBanWebhook, OnWebhookChanged, true);
         _cfg.OnValueChanged(CVars.GameHostName, OnServerNameChanged, true);
 
+        _cfg.OnValueChanged(NullLinkCCVars.Project, UpdateProject, true); // NullLink-edit: update project for recognition system
+
         _userDbData.AddOnLoadPlayer(CachePlayerData);
         _userDbData.AddOnPlayerDisconnect(ClearPlayerData);
     }
+
+    #region NullLink
+
+    private void UpdateProject(string obj)
+    {
+        if (!_prototypeManager.TryIndex<ServerBanRecognitionPrototype>(obj, out var banRecognition))
+        {
+            _banRecognition = null;
+            return;
+        }
+
+        _banRecognition = banRecognition;
+    }
+
+    #endregion
 
     private async Task CachePlayerData(ICommonSession player, CancellationToken cancel)
     {
@@ -196,14 +220,23 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             ("name", targetName),
             ("ip", addressRangeString),
             ("hwid", hwidString),
+            ("project", banDef.ProjectName ?? ""), // NullLink-edit: include project and server in log message
+            ("server", banDef.ServerName ?? ""), // NullLink-edit: include project and server in log message
             ("reason", reason));
 
         _sawmill.Info(logMessage);
         _chat.SendAdminAlert(logMessage);
 
-        var ban = await _db.GetServerBanAsync(null, target, null, null);
+        // Starlight-start
+        var ban = await _db.GetServerBanAsync(addressRange?.Item1, target, hwid?.Hwid, null);
         if (ban != null)
+        {
             SendWebhook(await GenerateBanPayload(ban, minutes));
+
+            if (_actor.TryGetServerGrain(out var serverGrain))
+                await serverGrain.AddOrUpdateBan(ban.ToNullLink());
+        }
+        // Starlight-end
 
         KickMatchingConnectedPlayers(banDef, "newly placed ban");
     }
@@ -243,6 +276,88 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         var message = def.FormatBanMessage(_cfg, _localizationManager);
         player.Channel.Disconnect(message);
     }
+
+    #region Starlight
+
+    public async Task CreateServerUnban(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime)
+    {
+        if (_actor.TryGetServerGrain(out var serverGrain))
+        {
+            if (await serverGrain.RequestBanById(banId) is { } networkBan)
+            {
+                var unbans = networkBan.Unban;
+                unbans.Add(new AdminUnban(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
+                var newBan = new AdminBan()
+                {
+                    Id = networkBan.Id,
+                    UserId = networkBan.UserId,
+                    Address = networkBan.Address,
+                    HWId = networkBan.HWId,
+                    BanTime = networkBan.BanTime,
+                    ExpirationTime = networkBan.ExpirationTime,
+                    RoundId = networkBan.RoundId,
+                    PlayTimeAtNote = networkBan.PlayTimeAtNote,
+                    Reason = networkBan.Reason,
+                    Severity = networkBan.Severity,
+                    BanningAdmin = networkBan.BanningAdmin,
+                    Unban = unbans,
+                    Role = networkBan.Role,
+                    ExemptFlags = networkBan.ExemptFlags,
+                    ProjectName = networkBan.ProjectName,
+                    ServerName = networkBan.ServerName
+                };
+                await serverGrain.AddOrUpdateBan(newBan);
+            }
+        }
+
+        await _db.AddServerUnbanAsync(new ServerUnbanDef(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
+    }
+
+    public async Task<List<ServerBanDef>> GetServerBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true)
+    {
+        var bans = await _db.GetServerBansAsync(address, userId, hwId, modernHWIds, includeUnbanned);
+        if (_actor.TryGetServerGrain(out var serverGrain))
+        {
+            var network = await serverGrain.RequestBans(userId, address, hwId, modernHWIds, includeUnbanned);
+            if (_actor.Server != null && _banRecognition?.Recognition.TryGetValue(_actor.Server, out var targets) == true)
+                // Filter network bans based on recognition rules
+                network = network.Where(ban => targets.Contains($"{ban.ProjectName}.{ban.ServerName}")).ToList();
+
+            bans = bans.Concat(network.ToDef()).ToList();
+        }
+        return bans;
+    }
+
+    public async Task<ServerBanDef?> GetServerBanAsync(int id, string? project = null, string? server = null)
+    {
+        var ban = project == null && server == null
+                    ? await _db.GetServerBanAsync(id)
+                    : null;
+        if (_actor.TryGetServerGrain(out var serverGrain))
+            ban ??= (await serverGrain.RequestBanById(id, project, server))?.ToDef();
+        return ban;
+    }
+
+    public async Task<ServerBanDef?> GetServerBanAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds)
+    {
+        var ban = await _db.GetServerBanAsync(address, userId, hwId, modernHWIds);
+        if (_actor.TryGetServerGrain(out var serverGrain))
+            ban ??= (await serverGrain.RequestBan(address, userId, hwId, modernHWIds))?.ToDef();
+        return ban;
+    }
+
+    public async Task<List<ServerRoleBanDef>> GetServerRoleBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true)
+    {
+        var bans = await _db.GetServerRoleBansAsync(address, userId, hwId, modernHWIds, includeUnbanned);
+        if (_actor.TryGetServerGrain(out var serverGrain))
+        {
+            var network = await serverGrain.RequestBans(userId, address, hwId, modernHWIds, includeUnbanned, true);
+            bans = bans.Concat(network.ToRoleDef()).ToList();
+        }
+        return bans;
+    }
+
+    #endregion Starlight
 
     #endregion
 
@@ -320,6 +435,10 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             return;
         }
 
+        var roleBan = (await _db.GetServerRoleBansAsync(addressRange?.Item1, target, hwid?.Hwid, null, false)).FirstOrDefault(b => b.UserId == target && b.Role == encodedRole && b.BanTime == timeOfBan);
+        if (roleBan != null && _actor.TryGetServerGrain(out var serverGrain))
+            await serverGrain.AddOrUpdateBan(roleBan.ToNullLink());
+
         var length = expires == null ? Loc.GetString("cmd-roleban-inf") : Loc.GetString("cmd-roleban-until", ("expires", expires));
         _chat.SendAdminAlert(Loc.GetString("cmd-roleban-success", ("target", targetUsername ?? "null"), ("role", role), ("reason", reason), ("length", length)));
 
@@ -393,7 +512,35 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             return response.ToString();
         }
 
-        await _db.AddServerRoleUnbanAsync(new ServerRoleUnbanDef(banId, unbanningAdmin, DateTimeOffset.Now));
+        if (_actor.TryGetServerGrain(out var serverGrain))
+        {
+            if (await serverGrain.RequestBanById(banId) is { } networkBan)
+            {
+                var unbans = networkBan.Unban;
+                unbans.Add(new AdminUnban(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
+                var newBan = new AdminBan() {
+                    Id = networkBan.Id,
+                    UserId = networkBan.UserId,
+                    Address = networkBan.Address,
+                    HWId = networkBan.HWId,
+                    BanTime = networkBan.BanTime,
+                    ExpirationTime = networkBan.ExpirationTime,
+                    RoundId = networkBan.RoundId,
+                    PlayTimeAtNote = networkBan.PlayTimeAtNote,
+                    Reason = networkBan.Reason,
+                    Severity = networkBan.Severity,
+                    BanningAdmin = networkBan.BanningAdmin,
+                    Unban = unbans,
+                    Role = networkBan.Role,
+                    ExemptFlags = networkBan.ExemptFlags,
+                    ProjectName = networkBan.ProjectName,
+                    ServerName = networkBan.ServerName
+                };
+                await serverGrain.AddOrUpdateBan(networkBan);
+            }
+        }
+
+        await _db.AddServerRoleUnbanAsync(new ServerRoleUnbanDef(banId, unbanningAdmin, unbanTime, _actor.Project, _actor.Server));
 
         if (ban.UserId is { } player
             && _playerManager.TryGetSessionById(player, out var session)

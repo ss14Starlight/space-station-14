@@ -14,7 +14,7 @@ public sealed class MarkupCommand : ToolshedCommand
     private MarkupTextSystem? _markup;
 
     [CommandImplementation("adddesc")]
-    public EntityUid AddDescription(IInvocationContext ctx, [PipedArgument] EntityUid uid, string id, string text)
+    public EntityUid AddDescription(IInvocationContext ctx, [PipedArgument] EntityUid uid, string id, string text, int priority)
     {
         EnsureDescriptionComp(uid, out var comp);
         if (comp.Texts.Any(kvp => kvp.Key == id))
@@ -22,13 +22,13 @@ public sealed class MarkupCommand : ToolshedCommand
             ctx.WriteLine($"A description text with the id {id} already exists on the entity {uid}.");
             return uid;
         }
-        _markup?.AddDescriptionText((uid, comp), id, text);
+        _markup?.AddDescriptionText((uid, comp), id, text, priority);
         ctx.WriteLine($"Added text with id {id} to {uid}'s description.");
         return uid;
     }
 
     [CommandImplementation("editdesc")]
-    public EntityUid EditDescription(IInvocationContext ctx, [PipedArgument] EntityUid uid, string id, string text)
+    public EntityUid EditDescription(IInvocationContext ctx, [PipedArgument] EntityUid uid, string id, string text, int priority)
     {
         EnsureDescriptionComp(uid, out var comp);
         if (comp.Texts.All(kvp => kvp.Key != id))
@@ -36,7 +36,7 @@ public sealed class MarkupCommand : ToolshedCommand
             ctx.WriteLine($"No description text with the id {id} exists on the entity {uid}.");
             return uid;
         }
-        _markup?.EditDescriptionText((uid, comp), id, text);
+        _markup?.EditDescriptionText((uid, comp), id, text, priority);
         ctx.WriteLine($"Updated text with id {id} in {uid}'s description.");
         return uid;
     }
@@ -75,19 +75,19 @@ public sealed class MarkupCommand : ToolshedCommand
         }
         ctx.WriteLine($"Markup descriptions for entity {uid}:");
         foreach (var kvp in comp.Texts)
-            ctx.WriteLine($"- {kvp.Key}: \"{kvp.Value.Replace("\"", "\\\"")}\"");
+            ctx.WriteLine($"- {kvp.Key}: \"{kvp.Value.Item2.Replace("\"", "\\\"")}\"");
         return uid;
     }
 
     [CommandImplementation("adddesc")]
     public IEnumerable<EntityUid> AddDescription(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid,
-        string id, string text) =>
-        uid.Select(x => AddDescription(ctx, x, id, text));
+        string id, string text, int priority) =>
+        uid.Select(x => AddDescription(ctx, x, id, text, priority));
 
     [CommandImplementation("editdesc")]
     public IEnumerable<EntityUid> EditDescription(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid,
-        string id, string text) =>
-        uid.Select(x => EditDescription(ctx, x, id, text));
+        string id, string text, int priority) =>
+        uid.Select(x => EditDescription(ctx, x, id, text, priority));
 
     [CommandImplementation("rmdesc")]
     public IEnumerable<EntityUid> RemoveDescription(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid,

@@ -481,6 +481,16 @@
     SheetPrinter: 100
 
 - type: latheRecipe
+  id: PrintedDocumentEOCDesignationRecipe
+  result: PrintedDocumentEOCDesignation
+  categories:
+  - OrdersAndInstructions
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
   id: PrintedDocumentMedicalInterventionOrderRecipe
   result: PrintedDocumentMedicalInterventionOrder
   categories:

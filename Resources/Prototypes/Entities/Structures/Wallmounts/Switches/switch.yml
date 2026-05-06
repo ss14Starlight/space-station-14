@@ -285,11 +285,11 @@
 
 - type: entity
   parent: LockableButton
-  id: LockableButtonLawyer
-  suffix: Lawyer
+  id: LockableButtonInternalAffairs # Starlight
+  suffix: Internal Affairs # Starlight
   components:
   - type: AccessReader
-    access: [["Lawyer"]]
+    access: [["IAA"]] # Starlight
 
 - type: entity
   parent: LockableButton

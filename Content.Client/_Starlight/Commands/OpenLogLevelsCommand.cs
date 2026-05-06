@@ -1,5 +1,4 @@
 using Content.Client._Starlight.Logs;
-using Robust.Client.UserInterface;
 using Robust.Shared.Console;
 
 namespace Content.Client._Starlight.Commands;

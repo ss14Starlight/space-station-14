@@ -48,6 +48,8 @@ using Content.Client.CollectiveMind;
 using Content.Shared._Starlight.Language;
 using System.Diagnostics.CodeAnalysis;
 using Content.Client._Starlight.Language.Systems;
+using Content.Shared._Starlight.Ghost;
+using Content.Shared._Starlight.NameConfusion;
 using Content.Shared._Starlight.Radio;
 //Starlight end
 
@@ -201,6 +203,7 @@ public sealed partial class ChatUIController : UIController
         _net.RegisterNetMessage<MsgChatMessage>(OnChatMessage);
         _net.RegisterNetMessage<MsgDeleteChatMessagesBy>(OnDeleteChatMessagesBy);
         SubscribeNetworkEvent<DamageForceSayEvent>(OnDamageForceSay);
+        SubscribeNetworkEvent<GhostCorporealEvent>(OnCorporealChanged); // Starlight
         _config.OnValueChanged(CCVars.ChatEnableColorName, (value) => { _chatNameColorsEnabled = value; });
         _chatNameColorsEnabled = _config.GetCVar(CCVars.ChatEnableColorName);
 
@@ -558,7 +561,7 @@ public sealed partial class ChatUIController : UIController
 
             // Can only send local / radio / emote when attached to a non-ghost entity.
             // TODO: this logic is iffy (checking if controlling something that's NOT a ghost), is there a better way to check this?
-            if (_ghost is not {IsGhost: true})
+            if (_ghost is not {IsGhost: true} or {Player.BypassGhostChat:true}) // Starlight-edit: keep these enabled if bypass enabled.
             {
                 CanSendChannels |= ChatSelectChannel.Local;
                 CanSendChannels |= ChatSelectChannel.Whisper;
@@ -706,7 +709,7 @@ public sealed partial class ChatUIController : UIController
 
     public ChatSelectChannel MapLocalIfGhost(ChatSelectChannel channel)
     {
-        if (channel == ChatSelectChannel.Local && _ghost is {IsGhost: true})
+        if (channel == ChatSelectChannel.Local && _ghost is {IsGhost: true, Player.BypassGhostChat:false}) // Starlight-edit
             return ChatSelectChannel.Dead;
 
         return channel;
@@ -824,7 +827,7 @@ public sealed partial class ChatUIController : UIController
 
         if (chatChannel == ChatSelectChannel.Local)
         {
-            if (_ghost?.IsGhost != true)
+            if (_ghost?.IsGhost != true && _ghost?.Player?.BypassGhostChat != true) // Starlight edit
                 return (chatChannel, text, null, null, null, language); //Starlight edit
             else
                 chatChannel = ChatSelectChannel.Dead;
@@ -906,6 +909,11 @@ public sealed partial class ChatUIController : UIController
         chatBox.ChatInput.Input.ForceSubmitText();
     }
 
+    // Starlight begin: dumb event listener for updating channel permissions
+    private void OnCorporealChanged(GhostCorporealEvent ev, EntitySessionEventArgs _) =>
+        UpdateChannelPermissions();
+    // Starlight end
+
     private void OnChatMessage(MsgChatMessage message)
     {
         var msg = message.Message;
@@ -925,7 +933,7 @@ public sealed partial class ChatUIController : UIController
         {
             var grammar = _ent.GetComponentOrNull<GrammarComponent>(_ent.GetEntity(msg.SenderEntity));
             if (grammar != null && grammar.ProperNoun == true)
-                msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name")));
+                msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name"), msg.SenderEntity)); // Starlight-edit: Pass entity so you can use a consistent color.
         }
 
         // Color any words chosen by the client.
@@ -1042,16 +1050,21 @@ public sealed partial class ChatUIController : UIController
         }
     }
 
+    // Starlight begin: consistent name color if altered by NameConfusionSystem.
     /// <summary>
     /// Returns the chat name color for a mob
     /// </summary>
     /// <param name="name">Name of the mob</param>
     /// <returns>Hex value of the color</returns>
-    public string GetNameColor(string name)
+    public string GetNameColor(string name, NetEntity sender)
     {
+        var ent = EntityManager.GetEntity(sender);
+        if (EntityManager.TryGetComponent<NameConfusionComponent>(ent, out var confusion))
+            if (confusion.OriginalName is not null) name = confusion.OriginalName;
         var colorIdx = Math.Abs(name.GetHashCode() % _chatNameColors.Length);
         return _chatNameColors[colorIdx];
     }
+    // Starlight end
 
     private readonly record struct SpeechBubbleData(ChatMessage Message, SpeechBubble.SpeechType Type);
 

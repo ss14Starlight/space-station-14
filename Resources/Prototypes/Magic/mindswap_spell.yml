@@ -22,3 +22,4 @@
     sentence: action-speech-spell-mind-swap
     tts: action-speech-spell-mind-swap-tts
     modifier: Spell
+  - type: EorgPreventAction # Starlight
