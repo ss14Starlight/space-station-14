@@ -15,7 +15,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Server._Starlight.SecureTerminal;
+using Content.Server.Starlight.SecureTerminal;
 
 namespace Content.Shared.Starlight.Economy;
 public sealed partial class SalarySystem : SharedSalarySystem
