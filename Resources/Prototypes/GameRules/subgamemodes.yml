@@ -76,9 +76,9 @@
     - VampireDrainObjective
   - type: AntagRandomObjectives
     sets:
-    - groups: VampireObjectiveGroupState
+    - groups: VampireObjectiveGroupsStateOnly
       maxPicks: 1
-    - groups: VampireObjectiveGroupSteal
+    - groups: VampireObjectiveGroupsStealOnly
       maxPicks: 1
     maxDifficulty: 10
   - type: AntagSelection
