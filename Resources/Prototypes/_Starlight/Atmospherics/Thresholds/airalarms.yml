@@ -1,0 +1,22 @@
+# NoLowerBound - For air alarms where spacing is ok, but should otherwise be equivalent to station atmos
+
+- type: alarmThreshold
+  id: stationTemperatureNoLowerBound
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 393.15
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.8
+
+- type: alarmThreshold
+  id: stationPressureNoLowerBound
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 550
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.7
+
+- type: alarmThreshold
+  id: stationOxygenNoLowerBound
+  upperBound: !type:AlarmThresholdSetting
+    threshold: 0.45
+  upperWarnAround: !type:AlarmThresholdSetting
+    threshold: 0.8
