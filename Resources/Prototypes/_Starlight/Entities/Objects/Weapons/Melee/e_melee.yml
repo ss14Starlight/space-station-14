@@ -108,3 +108,4 @@
       requiredSlipSpeed: 0
       knockdownTime: 1
       launchForwardsMultiplier: 2
+  - type: ClumsyOnly
