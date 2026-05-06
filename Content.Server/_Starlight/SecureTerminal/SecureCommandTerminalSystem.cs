@@ -6,7 +6,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
-using Content.Server._Starlight.AlertArmory;
+using Content.Server.Starlight.AlertArmory;
 using Content.Shared.Access.Systems;
 using Content.Shared.Database;
 using Content.Shared.Popups;
@@ -31,7 +31,7 @@ using Content.Shared.Toggleable;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Shared._NullLink;
 
-namespace Content.Server._Starlight.SecureTerminal;
+namespace Content.Server.Starlight.SecureTerminal;
 
 /// <summary>
 /// Drives the Secure Command Terminal — proposal creation, multi-party authorization,
@@ -688,7 +688,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
     {
         var tags = _access.FindAccessTags(actor);
         return proto.AuthGroups.Any(group =>
-            group.Any(tag => tags.Contains((Robust.Shared.Prototypes.ProtoId<Content.Shared.Access.AccessLevelPrototype>)tag)));
+            group.Any(tag => tags.Contains((ProtoId<Shared.Access.AccessLevelPrototype>)tag)));
     }
 
     private bool IsWarDeclared()
