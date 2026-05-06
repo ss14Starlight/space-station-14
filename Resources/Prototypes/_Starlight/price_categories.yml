@@ -8,12 +8,12 @@
   min: 3
   max: 6
 
-- type: priceCategory
+- type: priceCategory #STARLIGHT
   id: cigaretes
   min: 6
   max: 30
 
-- type: priceCategory
+- type: priceCategory #STARLIGHT
   id: cigarete_carton
   min: 60
   max: 300

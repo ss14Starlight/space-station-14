@@ -1,17 +1,17 @@
 - type: vendingMachineInventory
   id: CigaretteMachineInventory
   startingInventory:
-    CigPackGreen: 10
-    CigPackRed: 10
-    CigPackBlue: 10
-    CigPackBlack: 10
-    CigPackMixed: 10
-    CigCartonGreen: 2
-    CigCartonRed: 2
-    CigCartonBlue: 2
-    CigCartonBlack: 2
-    CigCartonMixed: 2
-    CigarCase: 1
+    CigPackGreen: 10 #STARLIGHT
+    CigPackRed: 10 #STARLIGHT
+    CigPackBlue: 10 #STARLIGHT
+    CigPackBlack: 10 #STARLIGHT
+    CigPackMixed: 10 #STARLIGHT
+    CigCartonGreen: 2 #STARLIGHT
+    CigCartonRed: 2 #STARLIGHT
+    CigCartonBlue: 2 #STARLIGHT
+    CigCartonBlack: 2 #STARLIGHT
+    CigCartonMixed: 2 #STARLIGHT
+    CigarCase: 1 
     SmokingPipeFilledTobacco: 1
     Vape: 1
     Matchbox: 5

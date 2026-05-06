@@ -2,7 +2,7 @@
   id: CigCartonGreen
   parent: [ BoxCardboard, BaseBagOpenClose ]
   name: Spessman's Smokes carton
-  description: "A carton containing 10 packets of Spessman's Smokes."
+  description: "A carton containing 10 packets of Spessman's Smokes." #STARLIGHT
   components:
   - type: Sprite
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/green.rsi
@@ -12,12 +12,12 @@
     size: Normal
   - type: Storage
     grid:
-    - 0,0,4,3
+    - 0,0,4,3 #STARLIGHT
   - type: EntityTableContainerFill
     containers:
       storagebase:
         id: CigPackGreen
-        amount: 10
+        amount: 10 #STARLIGHT
   - type: Tag
     tags:
     - Trash
@@ -26,13 +26,13 @@
       Plastic: 50
   - type: SpaceGarbage
   - type: ItemPrice
-    priceCategory: cigarete_carton
+    priceCategory: cigarete_carton #STARLIGHT
 
 - type: entity
   id: CigCartonRed
   parent: CigCartonGreen
   name: DromedaryCo carton
-  description: A carton containing 10 packets of Dromedarycos.
+  description: A carton containing 10 packets of Dromedarycos. #STARLIGHT
   components:
   - type: Sprite
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/red.rsi
@@ -43,15 +43,15 @@
     containers:
       storagebase:
         id: CigPackRed
-        amount: 10
+        amount: 10 #STARLIGHT
   - type: ItemPrice
-    priceCategory: cigarete_carton
+    priceCategory: cigarete_carton #STARLIGHT
 
 - type: entity
   id: CigCartonBlue
   parent: CigCartonGreen
   name: AcmeCo carton
-  description: A carton containing 10 packets of AcmeCo.
+  description: A carton containing 10 packets of AcmeCo. #STARLIGHT
   components:
   - type: Sprite
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/blue.rsi
@@ -62,15 +62,15 @@
     containers:
       storagebase:
         id: CigPackBlue
-        amount: 10
+        amount: 10 #STARLIGHT
   - type: ItemPrice
-    priceCategory: cigarete_carton
+    priceCategory: cigarete_carton #STARLIGHT
 
 - type: entity
   id: CigCartonBlack
   parent: CigCartonGreen
   name: Nomads carton
-  description: A carton containing 10 packets of Nomads.
+  description: A carton containing 10 packets of Nomads. #STARLIGHT
   components:
   - type: Sprite
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/black.rsi
@@ -81,9 +81,9 @@
     containers:
       storagebase:
         id: CigPackBlack
-        amount: 10
+        amount: 10 #STARLIGHT
   - type: ItemPrice
-    priceCategory: cigarete_carton
+    priceCategory: cigarete_carton #STARLIGHT
 
 - type: entity
   id: CigCartonMixed
