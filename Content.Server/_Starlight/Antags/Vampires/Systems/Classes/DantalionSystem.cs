@@ -461,18 +461,17 @@ public sealed class DantalionSystem : SharedDantalionSystem
             return;
         }
 
+        var duration = args.PacifyDuration;
+        if (duration <= TimeSpan.Zero)
+            return;
+
         var actionEntity = args.Action.Owner;
         if (!Exists(actionEntity) || !_vampire.CheckAndConsumeBloodCost(uid, vampire, actionEntity))
             return;
 
-        var duration = args.PacifyDuration;
-
         EnsureComp<PacifiedComponent>(target);
-        if (duration > TimeSpan.Zero)
-        {
-            var active = EnsureComp<ActiveVampirePacifyComponent>(target);
-            active.EndTime = _timing.CurTime + duration;
-        }
+        var active = EnsureComp<ActiveVampirePacifyComponent>(target);
+        active.EndTime = _timing.CurTime + duration;
 
         _popup.PopupEntity(Loc.GetString("vampire-pacify-success", ("target", Identity.Entity(target, EntityManager))), uid, uid);
         _popup.PopupEntity(Loc.GetString("vampire-pacify-target", ("duration", Math.Round(args.PacifyDuration.TotalSeconds))), target, target, PopupType.Medium);
@@ -562,6 +561,8 @@ public sealed class DantalionSystem : SharedDantalionSystem
 
         var decoyComp = EnsureComp<VampireDecoyComponent>(decoy);
         decoyComp.Detonated = false;
+        decoyComp.DisplayPopup = args.DecoyFlashDisplayPopup;
+        decoyComp.Probability = args.DecoyFlashProbability;
 
         // Set lifetime
         var life = args.DecoyDuration < TimeSpan.Zero ? TimeSpan.Zero : args.DecoyDuration;

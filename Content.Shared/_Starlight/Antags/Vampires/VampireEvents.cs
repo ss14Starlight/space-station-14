@@ -1,6 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared.DoAfter;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Polymorph;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
@@ -536,6 +537,12 @@ public sealed partial class VampireDecoyActionEvent : InstantActionEvent
     public TimeSpan DecoyDuration = TimeSpan.FromSeconds(6);
     [DataField]
     public TimeSpan InvisibilityDuration = TimeSpan.FromSeconds(6);
+    [DataField]
+    public float DecoyVisibility = -1f;
+    [DataField]
+    public bool DecoyFlashDisplayPopup = true;
+    [DataField]
+    public float DecoyFlashProbability = 1f;
 }
 
 public sealed partial class VampireRallyThrallsActionEvent : InstantActionEvent
@@ -617,6 +624,9 @@ public sealed partial class VampireBloodSwellActionEvent : InstantActionEvent
     /// </summary>
     [DataField]
     public float MeleeBonusDamage = 14f;
+
+    [DataField]
+    public ProtoId<DamageTypePrototype> MeleeBonusDamageType = "Blunt";
 
     [DataField]
     public HashSet<string> ReducedDamageTypes = new()
@@ -744,14 +754,16 @@ public sealed class VampireDemonicGraspVisualEvent : EntityEventArgs
     public NetCoordinates Start { get; }
     public NetCoordinates Target { get; }
     public float Speed { get; }
+    public TimeSpan TileInterval { get; }
     public EntProtoId Prototype { get; }
 
-    public VampireDemonicGraspVisualEvent(NetEntity source, NetCoordinates start, NetCoordinates target, float speed, EntProtoId prototype)
+    public VampireDemonicGraspVisualEvent(NetEntity source, NetCoordinates start, NetCoordinates target, float speed, TimeSpan tileInterval, EntProtoId prototype)
     {
         Source = source;
         Start = start;
         Target = target;
         Speed = speed;
+        TileInterval = tileInterval;
         Prototype = prototype;
     }
 }

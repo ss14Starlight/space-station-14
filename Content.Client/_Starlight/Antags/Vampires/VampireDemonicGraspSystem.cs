@@ -61,11 +61,7 @@ public sealed class VampireDemonicGraspSystem : EntitySystem
         if (!Exists(source))
             return;
 
-        var interval = ev.Speed > 0f
-            ? TimeSpan.FromSeconds(1f / ev.Speed)
-            : TimeSpan.FromMilliseconds(50);
-
-        TryStartVisual(source, GetCoordinates(ev.Start), GetCoordinates(ev.Target), interval, ev.Prototype);
+        TryStartVisual(source, GetCoordinates(ev.Start), GetCoordinates(ev.Target), ev.TileInterval, ev.Prototype);
     }
 
     private bool TryGetVisualEnd(EntityCoordinates start, EntityCoordinates target, float range, out EntityCoordinates end)
@@ -88,7 +84,7 @@ public sealed class VampireDemonicGraspSystem : EntitySystem
 
     private void TryStartVisual(EntityUid source, EntityCoordinates start, EntityCoordinates end, TimeSpan interval, EntProtoId prototype)
     {
-        if (Deleted(start.EntityId) || Deleted(end.EntityId) || start.EntityId != end.EntityId)
+        if (interval <= TimeSpan.Zero || Deleted(start.EntityId) || Deleted(end.EntityId) || start.EntityId != end.EntityId)
             return;
 
         var delta = end.Position - start.Position;

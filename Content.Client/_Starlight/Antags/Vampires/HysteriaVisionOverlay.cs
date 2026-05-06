@@ -35,8 +35,8 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
 
     // Cached RSI states for each disguise type
     private readonly List<RSI.State?> _disguiseStates = new();
+    private readonly List<HysteriaDisguiseSprite> _loadedDisguiseSprites = new();
     private bool _spritesLoaded;
-    private int _loadedSpriteCount;
 
     public HysteriaVisionOverlay()
     {
@@ -57,22 +57,44 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
         if (hysteria.DisguiseSprites.Count == 0)
             return false;
 
-        // Load all sprites if not loaded
-        if (!_spritesLoaded || _loadedSpriteCount != hysteria.DisguiseSprites.Count)
-            LoadDisguiseSprites(hysteria);
+        EnsureDisguiseSpritesLoaded(hysteria);
 
         return _spritesLoaded;
+    }
+
+    private void EnsureDisguiseSpritesLoaded(HysteriaVisionComponent hysteria)
+    {
+        if (_spritesLoaded && IsSpriteCacheCurrent(hysteria))
+            return;
+
+        LoadDisguiseSprites(hysteria);
+    }
+
+    private bool IsSpriteCacheCurrent(HysteriaVisionComponent hysteria)
+    {
+        if (_loadedDisguiseSprites.Count != hysteria.DisguiseSprites.Count)
+            return false;
+
+        for (var i = 0; i < hysteria.DisguiseSprites.Count; i++)
+        {
+            if (!_loadedDisguiseSprites[i].Equals(hysteria.DisguiseSprites[i]))
+                return false;
+        }
+
+        return true;
     }
 
     private void LoadDisguiseSprites(HysteriaVisionComponent hysteria)
     {
         _spritesLoaded = true;
-        _loadedSpriteCount = hysteria.DisguiseSprites.Count;
         _disguiseStates.Clear();
+        _loadedDisguiseSprites.Clear();
+        _entitySpriteIndex.Clear();
 
         for (var i = 0; i < hysteria.DisguiseSprites.Count; i++)
         {
             var sprite = hysteria.DisguiseSprites[i];
+            _loadedDisguiseSprites.Add(sprite);
             var trimmedPath = sprite.Path.TrimStart('/');
             var path = new ResPath("/Textures") / trimmedPath;
 
@@ -125,6 +147,8 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
         var spriteCount = hysteria.DisguiseSprites.Count;
         if (spriteCount == 0)
             return;
+
+        EnsureDisguiseSpritesLoaded(hysteria);
 
         var preserveSourceThrallVisibility =
             _thrallQuery.TryGetComponent(player.Value, out var playerThrall)

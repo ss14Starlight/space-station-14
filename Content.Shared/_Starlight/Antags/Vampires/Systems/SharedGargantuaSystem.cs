@@ -67,6 +67,7 @@ public abstract class SharedGargantuaSystem : EntitySystem
 
         active.EnhancedThreshold = args.EnhancedThreshold;
         active.MeleeBonusDamage = FixedPoint2.New(args.MeleeBonusDamage);
+        active.MeleeBonusDamageType = args.MeleeBonusDamageType;
         active.ReducedDamageTypes.Clear();
         foreach (var damageType in args.ReducedDamageTypes)
         {
@@ -94,8 +95,9 @@ public abstract class SharedGargantuaSystem : EntitySystem
         if (vampire.TotalBlood < ent.Comp.EnhancedThreshold)
             return;
 
-        args.Damage.DamageDict.TryGetValue("Blunt", out var blunt);
-        args.Damage.DamageDict["Blunt"] = blunt + ent.Comp.MeleeBonusDamage;
+        var damageType = ent.Comp.MeleeBonusDamageType;
+        args.Damage.DamageDict.TryGetValue(damageType, out var damage);
+        args.Damage.DamageDict[damageType] = damage + ent.Comp.MeleeBonusDamage;
     }
 
     private void OnBloodSwellMeleeDamage(Entity<ActiveBloodSwellComponent> ent, ref StatusEffectRelayedEvent<GetMeleeDamageEvent> args)

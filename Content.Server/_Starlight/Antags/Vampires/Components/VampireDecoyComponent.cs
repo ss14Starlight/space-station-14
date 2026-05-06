@@ -27,5 +27,11 @@ public sealed partial class VampireDecoyComponent : Component
     public float SlowTo = 0.5f;
 
     [DataField]
+    public bool DisplayPopup = true;
+
+    [DataField]
+    public float Probability = 1f;
+
+    [DataField]
     public SoundSpecifier FlashSound = new SoundPathSpecifier("/Audio/Weapons/flash.ogg");
 }

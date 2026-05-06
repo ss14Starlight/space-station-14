@@ -72,7 +72,7 @@ public abstract class SharedDantalionSystem : EntitySystem
 
         stealth ??= EnsureComp<StealthComponent>(ent);
         _stealth.SetEnabled(ent, true, stealth);
-        _stealth.SetVisibility(ent, -1f, stealth);
+        _stealth.SetVisibility(ent, args.DecoyVisibility, stealth);
 
         var invisDuration = args.InvisibilityDuration < TimeSpan.Zero ? TimeSpan.Zero : args.InvisibilityDuration;
         if (invisDuration > TimeSpan.Zero)

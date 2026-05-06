@@ -589,7 +589,15 @@ public sealed class UmbraeSystem : SharedUmbraeSystem
                 continue;
             }
 
-            var curDist = (_transform.GetWorldPosition(Transform(uid)) - _transform.GetWorldPosition(Transform(target))).Length();
+            var sourceXform = Transform(uid);
+            var targetXform = Transform(target);
+            if (sourceXform.MapID != targetXform.MapID)
+            {
+                active.NextTick = now + active.TickInterval;
+                continue;
+            }
+
+            var curDist = (_transform.GetWorldPosition(sourceXform) - _transform.GetWorldPosition(targetXform)).Length();
             if (curDist <= active.Range)
             {
                 var spec = new DamageSpecifier(_proto.Index<DamageTypePrototype>(_bluntTypeId), FixedPoint2.New(active.BrutePerTick));

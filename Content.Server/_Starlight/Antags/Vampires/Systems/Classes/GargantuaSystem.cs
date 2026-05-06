@@ -364,6 +364,7 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
             GetNetCoordinates(xform.Coordinates),
             GetNetCoordinates(endCoords),
             args.ProjectileSpeed,
+            tileInterval,
             args.EffectPrototype));
 
         var active = EnsureComp<ActiveVampireDemonicGraspComponent>(uid);
@@ -387,24 +388,30 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
         var query = EntityQueryEnumerator<ActiveVampireDemonicGraspComponent>();
         while (query.MoveNext(out var uid, out var active))
         {
-            if (now < active.NextTileTime)
-                continue;
-
-            active.CurrentTile++;
-            if (active.CurrentTile > active.MaxTiles || !Exists(active.GridUid))
+            if (active.TileInterval <= TimeSpan.Zero)
             {
                 RemComp<ActiveVampireDemonicGraspComponent>(uid);
                 continue;
             }
 
-            var tileCoords = active.StartCoordinates.Offset(active.Direction * active.CurrentTile);
-            if (ProcessDemonicGraspTile(uid, active, tileCoords))
+            while (now >= active.NextTileTime)
             {
-                RemComp<ActiveVampireDemonicGraspComponent>(uid);
-                continue;
-            }
+                active.CurrentTile++;
+                if (active.CurrentTile > active.MaxTiles || !Exists(active.GridUid))
+                {
+                    RemComp<ActiveVampireDemonicGraspComponent>(uid);
+                    break;
+                }
 
-            active.NextTileTime = now + active.TileInterval;
+                var tileCoords = active.StartCoordinates.Offset(active.Direction * active.CurrentTile);
+                if (ProcessDemonicGraspTile(uid, active, tileCoords))
+                {
+                    RemComp<ActiveVampireDemonicGraspComponent>(uid);
+                    break;
+                }
+
+                active.NextTileTime += active.TileInterval;
+            }
         }
     }
 

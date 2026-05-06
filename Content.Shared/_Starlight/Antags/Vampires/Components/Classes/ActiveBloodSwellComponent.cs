@@ -1,4 +1,6 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 
 namespace Content.Shared._Starlight.Antags.Vampires.Components.Classes;
@@ -17,6 +19,9 @@ public sealed partial class ActiveBloodSwellComponent : Component
 
     [DataField, AutoNetworkedField]
     public FixedPoint2 MeleeBonusDamage = FixedPoint2.New(14f);
+
+    [DataField, AutoNetworkedField]
+    public ProtoId<DamageTypePrototype> MeleeBonusDamageType = "Blunt";
 
     [DataField]
     public HashSet<string> ReducedDamageTypes = new()
