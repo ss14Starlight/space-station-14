@@ -80,7 +80,7 @@
   id: SolarFlare
   components:
     - type: StationEvent
-      weight: 8
+      weight: 0
       startAnnouncementColor: Red
       startAnnouncement: station-event-solarflare-start-announcement
       startAudio:
