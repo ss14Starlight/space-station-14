@@ -1,9 +1,7 @@
-using Content.Shared.Interaction.Events;
 using Content.Shared.PAI;
 using Content.Shared.PDA;
 using Content.Shared.UserInterface;
 using Robust.Server.Containers;
-using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 
 namespace Content.Server.PAI;

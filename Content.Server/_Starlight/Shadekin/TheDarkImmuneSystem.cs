@@ -1,10 +1,6 @@
-using Content.Server._Starlight.Shadekin;
 using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
-using Content.Shared.Popups;
-using Content.Shared.Research.Components;
-using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Shadekin;
 

@@ -6,7 +6,6 @@ namespace Content.Server._Starlight.Railroading;
 
 public sealed partial class RailroadingSpawnCardsHandlerSystem : EntitySystem
 {
-    [Dependency] private readonly RailroadRuleSystem _railroadRule = default!;
     [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
 
     public override void Initialize()

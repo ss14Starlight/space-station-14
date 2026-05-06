@@ -13,12 +13,10 @@ public sealed partial class ShadegenSystem : EntitySystem
     [Dependency] private readonly PoweredLightSystem _light = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly HandheldLightSystem _handheldLight = default!;
-    private readonly HashSet<EntityUid> _updateQueue = new();
+    private readonly HashSet<EntityUid> _updateQueue = [];
 
     public override void Initialize()
-    {
-        base.Initialize();
-    }
+        => base.Initialize();
 
     public override void Update(float frameTime)
     {

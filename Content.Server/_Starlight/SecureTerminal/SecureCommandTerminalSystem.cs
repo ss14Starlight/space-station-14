@@ -6,7 +6,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
-using Content.Server.Starlight.AlertArmory;
+using Content.Server._Starlight.AlertArmory;
 using Content.Shared.Access.Systems;
 using Content.Shared.Database;
 using Content.Shared.Popups;
@@ -31,7 +31,7 @@ using Content.Shared.Toggleable;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Shared._NullLink;
 
-namespace Content.Server.Starlight.SecureTerminal;
+namespace Content.Server._Starlight.SecureTerminal;
 
 /// <summary>
 /// Drives the Secure Command Terminal — proposal creation, multi-party authorization,
@@ -577,7 +577,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
     /// <summary>
     /// If all auth groups are satisfied, begin the countdown and charge the fee.
     /// </summary>
-    private void CheckAndStartCountdown(EntityUid stationUid,
+    private void CheckAndStartCountdown(EntityUid _,
         SecureCommandTerminalStationComponent stationComp,
         string requestId, SecureCommandTerminalRequestPrototype proto)
     {

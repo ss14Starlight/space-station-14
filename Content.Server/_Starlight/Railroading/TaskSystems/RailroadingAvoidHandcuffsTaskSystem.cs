@@ -2,7 +2,6 @@
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Cuffs;
-using Content.Shared.Mobs;
 using Content.Shared.Objectives;
 
 namespace Content.Server._Starlight.Railroading;

@@ -1,7 +1,6 @@
 using Content.Server.EUI;
 using Content.Shared.Starlight.NewLife;
 using Content.Shared.Eui;
-using Content.Shared.Ghost.Roles;
 
 namespace Content.Server.Ghost.Roles.UI;
 
@@ -9,10 +8,10 @@ public sealed class NewLifeEui : BaseEui
 {
     private readonly NewLifeSystem _newLifeSystem;
     private readonly HashSet<int> _usedSlots;
-    private int _remainingLives;
-    private int _maxLives;
-    private TimeSpan _lastGhostTime;
-    private TimeSpan _cooldown;
+    private readonly int _remainingLives;
+    private readonly int _maxLives;
+    private readonly TimeSpan _lastGhostTime;
+    private readonly TimeSpan _cooldown;
     public NewLifeEui(HashSet<int> usedSlots, int remainingLives, int maxLives, TimeSpan lastGhostTime, TimeSpan cooldown)
     {
         _newLifeSystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<NewLifeSystem>();
@@ -33,9 +32,7 @@ public sealed class NewLifeEui : BaseEui
     };
 
     public override void HandleMessage(EuiMessageBase msg)
-    {
-        base.HandleMessage(msg);
-    }
+        => base.HandleMessage(msg);
 
     public override void Closed()
     {

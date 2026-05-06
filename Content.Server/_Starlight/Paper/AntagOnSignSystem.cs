@@ -6,7 +6,7 @@ using Content.Shared.Paper;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.Whitelist; // Starlight
+using Content.Shared.Whitelist;
 
 namespace Content.Server._Starlight.Paper;
 
@@ -19,7 +19,6 @@ public sealed class AntagOnSignSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     private ISawmill _sawmill = default!;
-
 
     private readonly EntProtoId _paradoxCloneRuleId = "ParadoxCloneSpawn";
 
@@ -40,7 +39,7 @@ public sealed class AntagOnSignSystem : EntitySystem
 
     private void OnPaperSigned(EntityUid uid, AntagOnSignComponent component, PaperSignedEvent args)
     {
-        if (_whitelist.IsWhitelistPass(component.Blacklist, args.Signer)) return; // Starlight - prevent blacklisted entities from becoming antag
+        if (_whitelist.IsWhitelistPass(component.Blacklist, args.Signer)) return; // prevent blacklisted entities from becoming antag
         if (component.ChargesRemaining <= 0)
             return;
         var signer = args.Signer;
@@ -53,7 +52,6 @@ public sealed class AntagOnSignSystem : EntitySystem
 
         if (_random.NextFloat() > component.Chance)
             return;
-
 
         var session = actor.PlayerSession;
         foreach (var antag in component.Antags)

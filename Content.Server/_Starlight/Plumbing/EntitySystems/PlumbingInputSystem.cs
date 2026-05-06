@@ -6,7 +6,6 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using JetBrains.Annotations;
 
-
 namespace Content.Server._Starlight.Plumbing.EntitySystems;
 
 /// <summary>

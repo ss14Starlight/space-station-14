@@ -67,7 +67,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     private static readonly ProtoId<TagPrototype> _coreTag = "ShadekinCore";
     private static readonly ProtoId<TagPrototype> _damagedCoreTag = "DamagedShadekinCore";
     private TimeSpan _nextUpdate = TimeSpan.Zero;
-    private TimeSpan _updateCooldown = TimeSpan.FromSeconds(1f);
+    private readonly TimeSpan _updateCooldown = TimeSpan.FromSeconds(1f);
 
     private sealed class LightCone
     {
@@ -75,16 +75,16 @@ public sealed partial class ShadekinSystem : EntitySystem
         public float InnerWidth { get; set; }
         public float OuterWidth { get; set; }
     }
-    private readonly Dictionary<string, List<LightCone>> lightMasks = new()
+    private readonly Dictionary<string, List<LightCone>> _lightMasks = new()
     {
         ["/Textures/Effects/LightMasks/cone.png"] = new List<LightCone>
     {
-        new LightCone { Direction = 0, InnerWidth = 30, OuterWidth = 60 }
+        new() { Direction = 0, InnerWidth = 30, OuterWidth = 60 }
     },
         ["/Textures/Effects/LightMasks/double_cone.png"] = new List<LightCone>
     {
-        new LightCone { Direction = 0, InnerWidth = 30, OuterWidth = 60 },
-        new LightCone { Direction = 180, InnerWidth = 30, OuterWidth = 60 }
+        new() { Direction = 0, InnerWidth = 30, OuterWidth = 60 },
+        new() { Direction = 180, InnerWidth = 30, OuterWidth = 60 }
     }
     };
 
@@ -105,10 +105,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     }
 
     private void CoreOrganInit(EntityUid uid, OrganShadekinCoreComponent component, OrganAddedToBodyEvent args)
-    {
-        if (component.OrganOwner is null)
-            component.OrganOwner = args.Body;
-    }
+        => component.OrganOwner ??= args.Body;
 
     private void OnExamined(EntityUid uid, OrganShadekinCoreComponent component, ref ExaminedEvent args)
     {
@@ -139,9 +136,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     }
 
     public void UpdateAlert(EntityUid uid, ShadekinComponent component, short state)
-    {
-        _alerts.ShowAlert(uid, component.ShadekinAlert, state);
-    }
+        => _alerts.ShowAlert(uid, component.ShadekinAlert, state);
 
     private Angle GetAngle(EntityUid lightUid, SharedPointLightComponent lightComp, EntityUid targetUid)
     {
@@ -155,7 +150,7 @@ public sealed partial class ShadekinSystem : EntitySystem
         var oppositeMapDiff = (-lightRot).RotateVec(mapDiff);
         var angle = oppositeMapDiff.ToWorldAngle();
 
-        if (angle == double.NaN && _transform.ContainsEntity(targetUid, lightUid) || _transform.ContainsEntity(lightUid, targetUid))
+        if ((angle == double.NaN && _transform.ContainsEntity(targetUid, lightUid)) || _transform.ContainsEntity(lightUid, targetUid))
         {
             angle = 0f;
         }
@@ -211,7 +206,7 @@ public sealed partial class ShadekinSystem : EntitySystem
             if (light.Comp.MaskPath is not null)
             {
                 var angleToTarget = GetAngle(light, light.Comp, uid);
-                foreach (var cone in lightMasks[light.Comp.MaskPath])
+                foreach (var cone in _lightMasks[light.Comp.MaskPath])
                 {
                     var coneLight = 0f;
                     var angleAttenuation = (float)Math.Min((float)Math.Max(cone.OuterWidth - angleToTarget, 0f), cone.InnerWidth) / cone.OuterWidth;
@@ -241,9 +236,9 @@ public sealed partial class ShadekinSystem : EntitySystem
         if (!TryComp<PassiveDamageComponent>(uid, out var passive))
             return;
 
-        if (shadekinState == ShadekinState.Annoying ||
-            shadekinState == ShadekinState.High ||
-            shadekinState == ShadekinState.Extreme)
+        if (shadekinState is ShadekinState.Annoying or
+            ShadekinState.High or
+            ShadekinState.Extreme)
         {
             passive.DamageCap = 1;
         }
@@ -281,7 +276,7 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     private void OnRefreshMovementSpeedModifiers(EntityUid uid, ShadekinComponent component, RefreshMovementSpeedModifiersEvent args)
     {
-        if (component.CurrentState == ShadekinState.High || component.CurrentState == ShadekinState.Extreme)
+        if (component.CurrentState is ShadekinState.High or ShadekinState.Extreme)
         {
             if (!TryComp<MovementSpeedModifierComponent>(uid, out var movement))
                 return;
