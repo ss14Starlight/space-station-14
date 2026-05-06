@@ -87,6 +87,208 @@
     - type: LoadMapRule
       gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml
 
+#region ERT Shuttles
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTSecSpawnAmber
+  components:
+    - type: StationEvent
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTSecSpawnRed
+  components:
+    - type: StationEvent
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTSecSpawnGamma
+  components:
+    - type: StationEvent
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTEngiSpawnAmber
+  components:
+    - type: StationEvent
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Engi.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTEngiSpawnRed
+  components:
+    - type: StationEvent
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Engi.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTEngiSpawnGamma
+  components:
+    - type: StationEvent
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Engi.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTMedSpawnAmber
+  components:
+    - type: StationEvent
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Med.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTMedSpawnRed
+  components:
+    - type: StationEvent
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Med.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTMedSpawnGamma
+  components:
+    - type: StationEvent
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Med.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTJaniSpawnAmber
+  components:
+    - type: StationEvent
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Jani.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTJaniSpawnRed
+  components:
+    - type: StationEvent
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Jani.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTJaniSpawnGamma
+  components:
+    - type: StationEvent
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Jani.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTChaplainSpawnAmber
+  components:
+    - type: StationEvent
+    - type: AntagRandomSpawn
+    - type: AntagLoadProfileRule
+    - type: AntagSelection
+      definitions:
+        - spawnerPrototype: SpawnPointGhostERTChaplain
+          pickPlayer: false
+          startingGear: ERTChaplainGearEVA
+          roleLoadout:
+            - RoleSurvivalMilitaryDouble
+          components:
+            - type: BibleUser
+            - type: RandomMetadata
+              nameSegments:
+                - NamesMilitaryLast
+              nameFormat: name-format-ert-specialist
+            - type: AutoImplant
+              implants:
+                - MindShieldImplant
+                - DeathRattleImplantCentcomm
+            - type: SpawnOnTrigger
+              proto: ERTChaplainSpawnEffect
+            - type: TriggerOnSpawn
+          mindRoles:
+            - MindRoleGhostCorporateAligned
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTChaplainSpawnRed
+  components:
+    - type: StationEvent
+    - type: AntagRandomSpawn
+    - type: AntagLoadProfileRule
+    - type: AntagSelection
+      definitions:
+        - spawnerPrototype: SpawnPointGhostERTChaplain
+          pickPlayer: false
+          startingGear: ERTChaplainGearEVA
+          roleLoadout:
+            - RoleSurvivalMilitaryDouble
+          components:
+            - type: BibleUser
+            - type: RandomMetadata
+              nameSegments:
+                - NamesMilitaryLast
+              nameFormat: name-format-ert-specialist
+            - type: AutoImplant
+              implants:
+                - MindShieldImplant
+                - DeathRattleImplantCentcomm
+            - type: SpawnOnTrigger
+              proto: ERTChaplainSpawnEffect
+            - type: TriggerOnSpawn
+          mindRoles:
+            - MindRoleGhostCorporateAligned
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTChaplainSpawnGamma
+  components:
+    - type: StationEvent
+    - type: AntagRandomSpawn
+    - type: AntagLoadProfileRule
+    - type: AntagSelection
+      definitions:
+        - spawnerPrototype: SpawnPointGhostERTChaplain
+          pickPlayer: false
+          startingGear: ERTChaplainGearEVA
+          roleLoadout:
+            - RoleSurvivalMilitaryDouble
+          components:
+            - type: BibleUser
+            - type: RandomMetadata
+              nameSegments:
+                - NamesMilitaryLast
+              nameFormat: name-format-ert-specialist
+            - type: AutoImplant
+              implants:
+                - MindShieldImplant
+                - DeathRattleImplantCentcomm
+            - type: SpawnOnTrigger
+              proto: ERTChaplainSpawnEffect
+            - type: TriggerOnSpawn
+          mindRoles:
+            - MindRoleGhostCorporateAligned
+            
+#endregion
+
 # Spawners
 - type: entity
   id: SpawnPointGhostERTLeaderArmed
