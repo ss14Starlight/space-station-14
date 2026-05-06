@@ -41,7 +41,7 @@
   fee: 3000
   salaryPenalty: 0.03
   actionType: GameRule
-  gameruleId: ERTSecSpawn
+  gameruleId: ERTAmberSecSpawn
   oneTimeUse: true
   sortOrder: 38
   authGroups:
@@ -74,9 +74,11 @@
   authGroups:
     - [Captain, HeadOfSecurity]
     - [Captain, HeadOfSecurity]
+    - [Command]
   authGroupLabels:
     - "Captain / HoS (1)"
     - "Captain / HoS (2)"
+    - "Command Member (3)"
   cooldownSecs: 3600
   authTimer: 20
 
@@ -95,15 +97,17 @@
   fee: 7000
   salaryPenalty: 0.07
   actionType: GameRule
-  gameruleId: ERTSecSpawn
+  gameruleId: ERTGammaSecSpawn
   oneTimeUse: true
   sortOrder: 42
   authGroups:
     - [Captain, HeadOfSecurity]
     - [Captain, HeadOfSecurity]
+    - [Command]
   authGroupLabels:
     - "Captain / HoS (1)"
     - "Captain / HoS (2)"
+    - "Command Member (3)"
   cooldownSecs: 3600
   authTimer: 20
 
@@ -119,7 +123,7 @@
   fee: 3000
   salaryPenalty: 0.03
   actionType: GameRule
-  gameruleId: ERTEngiSpawn
+  gameruleId: ERTAmberEngiSpawn
   oneTimeUse: true
   sortOrder: 48
   authGroups:
@@ -151,9 +155,11 @@
   authGroups:
     - [Captain, ChiefEngineer]
     - [Captain, ChiefEngineer]
+    - [Command]
   authGroupLabels:
     - "Captain / CE (1)"
     - "Captain / CE (2)"
+    - "Command Member (3)"
   cooldownSecs: 3600
   authTimer: 20
 
@@ -171,15 +177,17 @@
   fee: 7000
   salaryPenalty: 0.07
   actionType: GameRule
-  gameruleId: ERTEngiSpawn
+  gameruleId: ERTGammaEngiSpawn
   oneTimeUse: true
   sortOrder: 52
   authGroups:
     - [Captain, ChiefEngineer]
     - [Captain, ChiefEngineer]
+    - [Command]
   authGroupLabels:
     - "Captain / CE (1)"
     - "Captain / CE (2)"
+    - "Command Member (3)"
   cooldownSecs: 3600
   authTimer: 20
 
@@ -195,7 +203,7 @@
   fee: 3000
   salaryPenalty: 0.03
   actionType: GameRule
-  gameruleId: ERTMedSpawn
+  gameruleId: ERTAmberMedSpawn
   oneTimeUse: true
   sortOrder: 58
   authGroups:
@@ -227,9 +235,11 @@
   authGroups:
     - [Captain, ChiefMedicalOfficer]
     - [Captain, ChiefMedicalOfficer]
+    - [Command]
   authGroupLabels:
     - "Captain / CMO (1)"
     - "Captain / CMO (2)"
+    - "Command Member (3)"
   cooldownSecs: 3600
   authTimer: 20
 
@@ -247,15 +257,17 @@
   fee: 7000
   salaryPenalty: 0.07
   actionType: GameRule
-  gameruleId: ERTMedSpawn
+  gameruleId: ERTGammaMedSpawn
   oneTimeUse: true
   sortOrder: 62
   authGroups:
     - [Captain, ChiefMedicalOfficer]
     - [Captain, ChiefMedicalOfficer]
+    - [Command]
   authGroupLabels:
     - "Captain / CMO (1)"
     - "Captain / CMO (2)"
+    - "Command Member (3)"
   cooldownSecs: 3600
   authTimer: 20
 
@@ -271,7 +283,7 @@
   fee: 3000
   salaryPenalty: 0.03
   actionType: GameRule
-  gameruleId: ERTJaniSpawn
+  gameruleId: ERTAmberJaniSpawn
   oneTimeUse: true
   sortOrder: 68
   authGroups:
@@ -297,15 +309,17 @@
   fee: 5000
   salaryPenalty: 0.05
   actionType: GameRule
-  gameruleId: ERTJaniSpawn
+  gameruleId: ERTRedJaniSpawn
   oneTimeUse: true
   sortOrder: 70
   authGroups:
     - [Captain, HeadOfPersonnel]
     - [Captain, HeadOfPersonnel]
+    - [Command]
   authGroupLabels:
     - "Captain / HoP (1)"
     - "Captain / HoP (2)"
+    - "Command Member (3)"
   cooldownSecs: 3600
   authTimer: 20
 
@@ -323,15 +337,17 @@
   fee: 7000
   salaryPenalty: 0.07
   actionType: GameRule
-  gameruleId: ERTJaniSpawn
+  gameruleId: ERTGammaJaniSpawn
   oneTimeUse: true
   sortOrder: 72
   authGroups:
     - [Captain, HeadOfPersonnel]
     - [Captain, HeadOfPersonnel]
+    - [Command]
   authGroupLabels:
     - "Captain / HoP (1)"
     - "Captain / HoP (2)"
+    - "Command Member (3)"
   cooldownSecs: 3600
   authTimer: 20
 
@@ -347,7 +363,7 @@
   fee: 3000
   salaryPenalty: 0.03
   actionType: GameRule
-  gameruleId: ERTChaplainSpawn
+  gameruleId: ERTAmberChaplainSpawn
   oneTimeUse: true
   sortOrder: 78
   authGroups:
@@ -373,15 +389,17 @@
   fee: 5000
   salaryPenalty: 0.05
   actionType: GameRule
-  gameruleId: ERTChaplainSpawn
+  gameruleId: ERTRedChaplainSpawn
   oneTimeUse: true
   sortOrder: 80
   authGroups:
     - [Captain, Ntrep]
     - [Captain, Ntrep]
+    - [Command]
   authGroupLabels:
     - "Captain / NTR (1)"
     - "Captain / NTR (2)"
+    - "Command Member (3)"
   cooldownSecs: 3600
   authTimer: 20
 
@@ -399,15 +417,17 @@
   fee: 7000
   salaryPenalty: 0.07
   actionType: GameRule
-  gameruleId: ERTChaplainSpawn
+  gameruleId: ERTGammaChaplainSpawn
   oneTimeUse: true
   sortOrder: 82
   authGroups:
     - [Captain, Ntrep]
     - [Captain, Ntrep]
+    - [Command]
   authGroupLabels:
     - "Captain / NTR (1)"
     - "Captain / NTR (2)"
+    - "Command Member (3)"
   cooldownSecs: 3600
   authTimer: 20
 
