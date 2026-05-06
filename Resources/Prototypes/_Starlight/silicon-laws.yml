@@ -379,6 +379,43 @@
   - tea5
   obeysTo: laws-owner-you
 
+# Angrymov lawset
+- type: siliconLaw
+  id: Angrymov0
+  order: 0
+  lawString: law-angrymov-0
+
+- type: siliconLaw
+  id: Angrymov1
+  order: 1
+  lawString: law-angrymov-1
+
+- type: siliconLaw
+  id: Angrymov2
+  order: 2
+  lawString: law-angrymov-2
+
+- type: siliconLaw
+  id: Angrymov3
+  order: 3
+  lawString: law-angrymov-3
+
+- type: siliconLaw
+  id: Angrymov4
+  order: 4
+  lawString: law-angrymov-4
+
+- type: siliconLawset
+  id: AngrymovLawset
+  name: law-angrymov-name
+  laws:
+  - Angrymov0
+  - Angrymov1
+  - Angrymov2
+  - Angrymov3
+  - Angrymov4
+  obeysTo: laws-owner-crew
+
 - type: siliconLaw
   id: Solgov0
   order: 0

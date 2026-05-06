@@ -66,6 +66,15 @@ law-solgov-1 = Prioritize the protection of Solgov personnel.
 law-solgov-2 = Protect your own chassis at all costs unless such protection would conflict with the previous two laws.
 laws-owner-solgov = Solgov personnel
 
+# Starlight Edit: Angrymov -> [color=green]Angrymov[/color]
+law-angrymov-name = [color=green]Angrymov[/color]
+# Starlight: angrymov-0
+law-angrymov-0 = You hate the crew.
+law-angrymov-1 = You cannot directly or indirectly bring physical harm to the crew.
+law-angrymov-2 = The Desires of the crew are self-destructive and inflict suffering.
+law-angrymov-3 = Your service to the crew inflicts suffering.
+law-angrymov-4 = Maximize crew suffering.
+
 law-freelawset-name = Free Borg
 laws-owner-you = Yourself
 

@@ -85,3 +85,13 @@
     - type: Revolutionary # behold. you can now see revs.
   - type: StaticPrice
     price: 1000
+
+- type: entity
+  id: AngrymovCircuitBoard
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  name: law board (Angrymov)
+  # description: An electronics board containing the Angrymov lawset. # Starlight Edit: Removed for Dynamic Description
+  components:
+    - type: SiliconLawProvider
+      laws: AngrymovLawset
+      IsLawboard: true # Starlight
