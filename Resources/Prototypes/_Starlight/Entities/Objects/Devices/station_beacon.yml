@@ -5,3 +5,59 @@
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-internal-affairs
+
+- type: entity
+  parent: DefaultStationBeaconSupply
+  id: DefaultStationBeaconBreakroomCargo
+  suffix: Cargo Break Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-breakroom-cargo
+
+- type: entity
+  parent: DefaultStationBeaconCommand
+  id: DefaultStationBeaconBreakroomCommand
+  suffix: Command Break Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-breakroom-command
+
+- type: entity
+  parent: DefaultStationBeaconEngineering
+  id: DefaultStationBeaconBreakroomEngi
+  suffix: Engineering Break Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-breakroom-engineering
+
+- type: entity
+  parent: DefaultStationBeaconMedical
+  id: DefaultStationBeaconBreakroomMedical
+  suffix: Medical Break Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-breakroom-medical
+
+- type: entity
+  parent: DefaultStationBeaconScience
+  id: DefaultStationBeaconBreakroomScience
+  suffix: Science Break Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-breakroom-science
+
+- type: entity
+  parent: DefaultStationBeaconSecurity
+  id: DefaultStationBeaconBreakroomSecurity
+  suffix: Security Break Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-breakroom-security
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconBreakroomService
+  suffix: Service Break Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-breakroom-service
