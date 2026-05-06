@@ -111,6 +111,7 @@ public sealed class SLSelect<T> : OptionButton
     }
     public SLSelect<T> StateHasChanged()
     {
+        Clear();
         var i = -1;
         foreach (var item in Items)
             AddItem(_render(item), ++i);
