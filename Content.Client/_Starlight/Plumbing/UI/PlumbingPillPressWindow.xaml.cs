@@ -26,6 +26,10 @@ public sealed partial class PlumbingPillPressWindow : DefaultWindow
     private bool _enabled = true;
     private bool _mixingEnabled;
     private bool _eastLastEdited = true;
+    private const uint MinDosage = 1;
+    private const uint MaxDosage = 20;
+    private const uint DefaultDosage = 10;
+    private const int PillsPerRow = 10;
     private const string PillsRsiPath = "/Textures/Objects/Specific/Chemistry/pills.rsi";
     private const int PillTypeCount = (int) SharedChemMaster.PillTypes;
 
@@ -51,10 +55,10 @@ public sealed partial class PlumbingPillPressWindow : DefaultWindow
             OnSetOutputMode?.Invoke((PillPressOutputMode) args.Id);
         };
 
-        DosageInput.Text = "10";
+        DosageInput.Text = DefaultDosage.ToString();
         SetDosageButton.OnPressed += _ =>
         {
-            if (!uint.TryParse(DosageInput.Text, out var val) || val < 1 || val > 20)
+            if (!uint.TryParse(DosageInput.Text, out var val) || val < MinDosage || val > MaxDosage)
                 return;
             OnSetDosage?.Invoke(val);
         };
@@ -127,9 +131,9 @@ public sealed partial class PlumbingPillPressWindow : DefaultWindow
             var styleBase = SpinBox.MiddleButtonStyle;
 
             // Open-left for first in row, open-right for last in row
-            if (i % 10 == 0)
+            if (i % PillsPerRow == 0)
                 styleBase = SpinBox.LeftButtonStyle;
-            else if (i % 10 == 9)
+            else if (i % PillsPerRow == PillsPerRow - 1)
                 styleBase = SpinBox.RightButtonStyle;
 
             PillTypeButtons[i] = new Button

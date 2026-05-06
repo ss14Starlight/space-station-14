@@ -51,9 +51,9 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
     private const float GuideOffset = 0.125f;
 
     private EntityCoordinates _mouseCoordsRaw = default;
-    private static AtmosPipeLayer s_currentLayer = AtmosPipeLayer.Primary;
-    private static EntityUid? s_lastLayerSyncEntity = null;
-    private static AtmosPipeLayer? s_lastLayerSynced = null;
+    private AtmosPipeLayer _currentLayer = AtmosPipeLayer.Primary;
+    private EntityUid? _lastLayerSyncEntity = null;
+    private AtmosPipeLayer? _lastLayerSynced = null;
     private Color _guideColor = new(0, 0, 0.5785f);
 
     public AlignRPDAtmosPipeLayers(PlacementManager pMan) : base(pMan)
@@ -204,15 +204,15 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
         }
 
         // Update layer if changed
-        if (newLayer != s_currentLayer)
-            s_currentLayer = newLayer;
+        if (newLayer != _currentLayer)
+            _currentLayer = newLayer;
 
         if (rcd.CurrentMode == RpdMode.Free)
         {
-            UpdateSelectedLayer(heldEntity.Value, s_currentLayer);
+            UpdateSelectedLayer(heldEntity.Value, _currentLayer);
         }
 
-        UpdatePlacer(s_currentLayer);
+        UpdatePlacer(_currentLayer);
     }
 
     // Why this replaced UpdateEyeRotation:
@@ -226,10 +226,10 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
     //   and uses it directly during placement in Free mode.
     private void UpdateSelectedLayer(EntityUid heldEntity, AtmosPipeLayer layer)
     {
-        if (s_lastLayerSyncEntity != heldEntity || s_lastLayerSynced != layer)
+        if (_lastLayerSyncEntity != heldEntity || _lastLayerSynced != layer)
         {
-            s_lastLayerSyncEntity = heldEntity;
-            s_lastLayerSynced = layer;
+            _lastLayerSyncEntity = heldEntity;
+            _lastLayerSynced = layer;
             _entityNetwork.SendSystemNetworkMessage(new RPDSelectedLayerEvent(_entityManager.GetNetEntity(heldEntity), (byte) layer));
         }
     }
