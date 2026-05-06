@@ -1,6 +1,6 @@
 using Robust.Shared.Utility;
 
-namespace Content.Server._Starlight.AlertArmory;
+namespace Content.Server.Starlight.AlertArmory;
 
 [RegisterComponent]
 public sealed partial class AlertArmoryStationComponent : Component
