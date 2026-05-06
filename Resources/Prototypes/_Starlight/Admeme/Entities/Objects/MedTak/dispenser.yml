@@ -73,11 +73,15 @@
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/Objects/MedTak/dispenser.rsi
+    noRot: false
     layers:
     - state: wallmount
     - state: wallmount-screen
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: WallMount
+  - type: Physics
+    canCollide: false
   - type: PlumbingSmartDispenser
     solutionName: fridge
     maxPerReagent: 100
