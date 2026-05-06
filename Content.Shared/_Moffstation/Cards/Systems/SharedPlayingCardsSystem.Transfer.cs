@@ -67,8 +67,8 @@ public abstract partial class SharedPlayingCardsSystem
         IEnumerable<Entity<PlayingCardComponent>> cards,
         EntityCoordinates cardsCoords,
         EntityUid? user
-    ) where TStack : PlayingCardStackComponent
-    {
+    // Starlight edit Start: Expression body
+    ) where TStack : PlayingCardStackComponent =>
         TransferImpl(
             (range, _) => cards.Take(range).Select(it => new CardLike.Entity(it)),
             cardsCoords,
@@ -77,7 +77,7 @@ public abstract partial class SharedPlayingCardsSystem
             ..,
             user
         );
-    }
+    // Starlight edit End: Expression body
 
     /// Special case of <see cref="Add{TStack}(Entity{TStack}, IEnumerable{Entity{PlayingCardComponent}}, EntityCoordinates, EntityUid?)">Add</see>
     /// which takes exactly one card, allowing for skipping providing the cards' coordinates.
@@ -86,7 +86,6 @@ public abstract partial class SharedPlayingCardsSystem
         Entity<PlayingCardComponent> card,
         EntityUid? user
     ) where TStack : PlayingCardStackComponent => Add(stack, [card], Transform(card).Coordinates, user);
-
 
     /// A source of cards for transferring. Cards in the specified <paramref name="range"/> are taken from their current
     /// location and yielded in the returned enumerable. The <paramref name="user"/> is also provided so that things
@@ -109,7 +108,6 @@ public abstract partial class SharedPlayingCardsSystem
 
         public sealed record Unspawned(PlayingCardInDeck Data) : CardLike;
     }
-
 
     /// <summary>
     /// The implementation of all card movement into and out of stacks.

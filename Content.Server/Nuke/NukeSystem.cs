@@ -636,6 +636,7 @@ public sealed class NukeSystem : EntitySystem
         RaiseLocalEvent(new NukeExplodedEvent()
         {
             OwningStation = transform.GridUid,
+            EndRound = component.EndRound, // Starlight, for ending the round
         });
 
         _sound.StopStationEventMusic(uid, StationEventMusicType.Nuke);
@@ -708,6 +709,7 @@ public sealed class NukeSystem : EntitySystem
 public sealed class NukeExplodedEvent : EntityEventArgs
 {
     public EntityUid? OwningStation;
+    public bool EndRound; // Starlight, for ending the round
 }
 
 /// <summary>

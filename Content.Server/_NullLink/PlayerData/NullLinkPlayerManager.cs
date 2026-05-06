@@ -7,6 +7,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.Database;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Shared._NullLink;
+using Content.Shared._Starlight.Achievement;
 using Content.Shared.NullLink.CCVar;
 using Robust.Server.Player;
 using Robust.Shared.Asynchronous;
@@ -18,7 +19,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._NullLink.PlayerData;
 
-public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
+public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager, IAchievementRewardManager
 {
     [Dependency] private readonly IActorRouter _actors = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -49,6 +50,8 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         _netMgr.RegisterNetMessage<MsgUpdatePlayerRoles>();
         _netMgr.RegisterNetMessage<MsgUpdatePlayerPlayTime>();
         _netMgr.RegisterNetMessage<MsgUpdatePlayerResources>();
+        _netMgr.RegisterNetMessage<MsgAchievementList>();
+        _netMgr.RegisterNetMessage<MsgAchievementNotification>();
         _playerManager.PlayerStatusChanged += PlayerStatusChanged;
         InitializeLinking();
         _cfg.OnValueChanged(NullLinkCCVars.RoleReqMentors, UpdateMentors, true);
@@ -69,7 +72,13 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
             return;
 
         foreach (var player in _playerById)
-            _ = serverGrain.PlayerConnected(player.Key);
+        {
+            serverGrain.PlayerConnected(player.Key)
+                .FireAndForget(err => _sawmill.Error($"PlayerConnected after reconnect failed for {player.Key}: {err}"));
+            GetUnlockedAchievements(player.Key)
+                .Then(_ => SendAchievementList(player.Key))
+                .FireAndForget(err => _sawmill.Error($"Achievement sync after reconnect failed for {player.Key}: {err}"));
+        }
     }
 
     public void Shutdown()
