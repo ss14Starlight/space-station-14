@@ -1,4 +1,71 @@
 ﻿Entries:
+- author: TiniestShark
+  changes:
+  - message: Reptilians now have Mask/Helmet displacements. Snoots are no longer smushed.
+    type: Add
+  id: 8912
+  time: '2025-09-03T16:45:18.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/39351
+- author: TiniestShark
+  changes:
+  - message: Added unique tail sprites to Hard/Softsuits for reptilians! (Wagging
+      animation not supported)
+    type: Add
+  id: 8913
+  time: '2025-09-03T16:45:49.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/35842
+- author: TrixxedHeart & Flareguy
+  changes:
+  - message: Three new tails for Vox.
+    type: Add
+  id: 8914
+  time: '2025-09-03T18:05:48.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/39083
+- author: MissKay1994
+  changes:
+  - message: Interns will no longer be hired infinitely
+    type: Tweak
+  id: 8915
+  time: '2025-09-03T20:16:07.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/40001
+- author: Hitlinemoss
+  changes:
+  - message: Added the senior courier PDA for Cargo Technicians with a significant
+      amount of playtime.
+    type: Add
+  id: 8916
+  time: '2025-09-03T20:22:28.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/37661
+- author: breeplayx3
+  changes:
+  - message: Berry delight now requires blueberry cake as a precursor
+    type: Tweak
+  id: 8917
+  time: '2025-09-03T21:06:05.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/40085
+- author: ArtisticRoomba
+  changes:
+  - message: Added atmospherics delta-pressure structure damage. Objects like windows,
+      thindows, windoors, etc. will have damage done to them depending on the pressure
+      difference across the sides of the object.
+    type: Add
+  id: 8918
+  time: '2025-09-03T23:58:48.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/39238
+- author: ArtisticRoomba
+  changes:
+  - message: Inflatable walls and airlocks now actually take Delta-Pressure damage.
+    type: Fix
+  id: 8919
+  time: '2025-09-04T01:08:53.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/40098
+- author: Quantum-cross
+  changes:
+  - message: Hot gas now looks hot!
+    type: Add
+  id: 8920
+  time: '2025-09-04T03:17:39.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/39107
 - author: jkwookee
   changes:
   - message: QM Golden Knuckledusters can be properly obtained as a Syndicate steal
@@ -3799,6 +3866,14 @@
   id: 9412
   time: '2026-01-16T02:09:01.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/42446
+- author: neomoth
+  changes:
+  - message: Fix zombie resistance, instead of making you more likely to be infected,
+      it now properly makes you less likely to be infected.
+    type: Fix
+  id: 9413
+  time: '2026-01-16T08:40:47.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/42451
 - author: Samuka
   changes:
   - message: The mothership now starts with more materials so there is less need to
