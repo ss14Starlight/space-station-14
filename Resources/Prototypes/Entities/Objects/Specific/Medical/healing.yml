@@ -37,7 +37,6 @@
   - type: Healing
     damageContainers:
       - Biological
-      - BiologicalMetaphysical # Starlight, allow tier-3 cultists
     delay: 1.6 # STARLIGHT
     damage:
       types:
@@ -87,7 +86,6 @@
   - type: Healing
     damageContainers:
       - Biological
-      - BiologicalMetaphysical # Starlight, allow tier-3 cultists
     delay: 1.6 # STARLIGHT
     damage:
       types:
@@ -137,7 +135,6 @@
   - type: Healing
     damageContainers:
       - Biological
-      - BiologicalMetaphysical # Starlight, allow tier-3 cultists
     delay: 1.6 # STARLIGHT
     damage:
       groups:
@@ -185,7 +182,6 @@
   - type: Healing
     damageContainers:
       - Biological
-      - BiologicalMetaphysical # Starlight, allow tier-3 cultists
     delay: 1.6 # STARLIGHT
     damage:
       groups:
@@ -233,7 +229,7 @@
   - type: Healing
     damageContainers:
       - Biological
-      - BiologicalMetaphysical # Starlight, allow tier-3 cultists
+
     damage:
       types:
         Bloodloss: -0.5 #lowers bloodloss damage
@@ -281,7 +277,6 @@
     - type: Healing
       damageContainers:
         - Biological
-        - BiologicalMetaphysical # Starlight, allow tier-3 cultists
       damage:
         groups:
           Brute: 5 # Tourniquets HURT!
@@ -321,7 +316,6 @@
   - type: Healing
     damageContainers:
       - Biological
-      - BiologicalMetaphysical # Starlight, allow tier-3 cultists
     delay: 1.6 # STARLIGHT
     damage:
       types:
@@ -378,7 +372,6 @@
   - type: Healing
     damageContainers:
     - Biological
-    - BiologicalMetaphysical # Starlight, allow tier-3 cultists
     damage:
       groups: # these are all split across multiple types
         Brute: -150

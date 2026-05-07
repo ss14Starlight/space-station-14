@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "taken from https://github.com/goonstation/goonstation",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "metaAtlas": false,
+  "states": [
+    {
+      "name": "draculaJrMedal"
+    },
+    {
+      "name": "contributorMedal"
+    },
+    {
+      "name": "damnedMedal"
+    },
+    {
+      "name": "fishMedal"
+    },
+    {
+      "name": "heliosMedal"
+    }
+  ]
+}

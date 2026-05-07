@@ -217,6 +217,7 @@
     speaks:
     - Chicken
     understands:
+    - GalacticCommon
     - Chicken
   - type: MobThresholds
     thresholds:
@@ -523,6 +524,7 @@
     speaks:
     - Mothroach
     understands:
+    - GalacticCommon
     - Moffic
     - Mothroach
   # Starlight-end
@@ -709,6 +711,7 @@
     speaks:
     - Duck
     understands:
+    - GalacticCommon
     - Duck
   - type: MobThresholds
     thresholds:
@@ -1347,6 +1350,7 @@
     speaks:
     - Ancestor
     understands:
+    - GalacticCommon
     - Ancestor
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
@@ -1606,6 +1610,7 @@
     - Ancestor
     - Draconic
     understands:
+    - GalacticCommon
     - Ancestor
     - Draconic
   # Starlight-end
@@ -1804,6 +1809,7 @@
     speaks:
     - Mouse
     understands:
+    - GalacticCommon
     - Mouse
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
@@ -2596,6 +2602,7 @@
     speaks:
     - Chittin
     understands:
+    - GalacticCommon
     - Chittin
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
@@ -2979,6 +2986,7 @@
     speaks:
     - Fox
     understands:
+    - GalacticCommon
     - Fox
     - Canilunzt
   # Starlight-end
@@ -3145,6 +3153,7 @@
     speaks:
     - Dog
     understands:
+    - GalacticCommon
     - Dog
     - Canilunzt
   # Starlight-end
@@ -3181,6 +3190,7 @@
     understands:
     - Dog
     - GalacticCommon
+    - Canilunzt
   # Starlight End
   - type: Sprite
     drawdepth: Mobs
@@ -3280,6 +3290,7 @@
     speaks:
     - Cat
     understands:
+    - GalacticCommon
     - Cat
     - Nekomimetic
   # Starlight-end
@@ -3646,6 +3657,7 @@
     speaks:
     - Mouse
     understands:
+    - GalacticCommon
     - Mouse
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
@@ -3807,6 +3819,7 @@
     speaks:
     - Pig
     understands:
+    - GalacticCommon
     - Pig
   # Starlight-end
   - type: Sprite
@@ -3883,6 +3896,7 @@
     speaks:
     - Sylvan
     understands:
+    - GalacticCommon
     - Sylvan
   # Starlight-end
   - type: Sprite
@@ -3972,6 +3986,7 @@
     speaks:
     - Sylvan
     understands:
+    - GalacticCommon
     - Sylvan
   # Starlight-end
 

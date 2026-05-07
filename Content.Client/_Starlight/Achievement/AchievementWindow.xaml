@@ -1,0 +1,80 @@
+<ui:AchievementWindow xmlns="https://spacestation14.io"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:ui="clr-namespace:Content.Client._Starlight.Achievement"
+                      Title=""
+                      MinSize="760 420"
+                      SetSize="860 620">
+    <PanelContainer Name="WindowFrame" HorizontalExpand="True" VerticalExpand="True">
+        <BoxContainer Orientation="Vertical"
+                      HorizontalExpand="True"
+                      VerticalExpand="True"
+                      Margin="6 6 6 6"
+                      SeparationOverride="6">
+            <PanelContainer Name="HeroPanel">
+                <Label Name="HeroTitle"
+                       Text="{Loc 'achievement-window-title'}"
+                       Margin="12 8 12 8"
+                       FontColorOverride="#F6E5A6" />
+            </PanelContainer>
+
+            <BoxContainer Orientation="Horizontal"
+                          HorizontalExpand="True"
+                          VerticalExpand="True"
+                          SeparationOverride="8">
+                <PanelContainer Name="SidebarPanel" MinSize="220 0" VerticalExpand="True">
+                    <BoxContainer Orientation="Vertical"
+                                  HorizontalExpand="True"
+                                  VerticalExpand="True"
+                                  Margin="4 4 4 4"
+                                  SeparationOverride="4">
+                        <PanelContainer Name="SidebarHeaderPanel">
+                            <Label Text="{Loc 'achievement-window-categories'}"
+                                   Margin="10 7 10 7"
+                                   FontColorOverride="#F6E5A6" />
+                        </PanelContainer>
+
+                        <PanelContainer Name="SidebarBodyPanel" HorizontalExpand="True" VerticalExpand="True">
+                            <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                                <BoxContainer Name="CategoryList"
+                                              Orientation="Vertical"
+                                              HorizontalExpand="True"
+                                              SeparationOverride="6"
+                                              Margin="6 6 6 6" />
+                            </ScrollContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <PanelContainer Name="ContentPanel" HorizontalExpand="True" VerticalExpand="True">
+                    <BoxContainer Orientation="Vertical"
+                                  HorizontalExpand="True"
+                                  VerticalExpand="True"
+                                  Margin="4 4 4 4"
+                                  SeparationOverride="4">
+                        <PanelContainer Name="ContentHeaderPanel">
+                            <BoxContainer Orientation="Vertical" Margin="10 7 10 8">
+                                <Label Name="CategoryHeader"
+                                       Text="{Loc 'achievement-window-category-all'}"
+                                       FontColorOverride="#FFD83D" />
+                                <Label Name="CategorySummary"
+                                       Text=""
+                                       Margin="0 3 0 0"
+                                       FontColorOverride="#E0D0A4" />
+                            </BoxContainer>
+                        </PanelContainer>
+
+                        <PanelContainer Name="ContentBodyPanel" HorizontalExpand="True" VerticalExpand="True">
+                            <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
+                                <BoxContainer Name="AchievementList"
+                                              Orientation="Vertical"
+                                              HorizontalExpand="True"
+                                              SeparationOverride="6"
+                                              Margin="8 8 8 8" />
+                            </ScrollContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</ui:AchievementWindow>

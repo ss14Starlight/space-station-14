@@ -27,8 +27,11 @@ using Content.Shared.Speech.Muting;
 using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
+// Starlight Start
+using Content.Shared.Starlight.SecureTerminal;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Shared.Silicons.StationAi;
 // Starlight End
 
 namespace Content.Server.Communications
@@ -70,6 +73,10 @@ namespace Content.Server.Communications
 
             // On console init, set cooldown
             SubscribeLocalEvent<CommunicationsConsoleComponent, MapInitEvent>(OnCommunicationsConsoleMapInit);
+
+            // Starlight Start: Secure Command Terminal
+            SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleOpenSecureTerminalMessage>(OnOpenSecureTerminalMessage);
+            // Starlight End
         }
 
         public override void Update(float frameTime)
@@ -115,6 +122,18 @@ namespace Content.Server.Communications
             comp.AdditionalGrids.Add(ccComp.Entity.Value);
             //Starlight end
         }
+
+        // Starlight Start: Secure Command Terminal
+        private void OnOpenSecureTerminalMessage(EntityUid uid, CommunicationsConsoleComponent comp,
+            CommunicationsConsoleOpenSecureTerminalMessage msg)
+        {
+            if (msg.Actor is not { Valid: true } actor) return;
+            if (!CanUse(actor, uid)) return;
+            if (!TryComp<SecureCommandTerminalConsoleComponent>(uid, out var terminal) || !terminal.Enabled) return;
+            if (HasComp<StationAiHeldComponent>(actor)) return;
+            _uiSystem.TryOpenUi(uid, SecureCommandTerminalUiKey.Key, actor);
+        }
+        // Starlight End
 
         /// <summary>
         /// Update the UI of every comms console.
@@ -209,7 +228,8 @@ namespace Content.Server.Communications
                 callRecallCooldownEnd: recallEndTime,
                 shuttleCountdownEnd: _roundEndSystem.ExpectedCountdownEnd,
                 shuttleCallsAllowed: _roundEndSystem.GetShuttleCallsEnabled(),
-                lastCountdownStart: _roundEndSystem.LastCountdownStart
+                lastCountdownStart: _roundEndSystem.LastCountdownStart,
+                hasSecureTerminal: TryComp<Content.Shared.Starlight.SecureTerminal.SecureCommandTerminalConsoleComponent>(uid, out var sct) && sct.Enabled
             // Starlight edit End
             ));
         }

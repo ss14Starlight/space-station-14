@@ -22,6 +22,8 @@ guide-entry-sl-rule-11 = Rule 11
 guide-entry-sl-rule-12 = Rule 12
 guide-entry-sl-rule-13 = Rule 13
 guide-entry-sl-rule-14 = Rule 14
+guide-entry-sl-rule-15 = Rule 15
+guide-entry-sl-rule-16 = Rule 16
 guide-entry-sl-metashield = Metashield
 
 guide-entry-sl-silicon-1 = Sil.Rule 1

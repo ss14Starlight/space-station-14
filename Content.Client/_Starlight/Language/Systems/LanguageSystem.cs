@@ -1,16 +1,13 @@
-using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared._Starlight.Language.Events;
 using Content.Shared._Starlight.Language.Systems;
 using Robust.Client.Player;
-using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.Language.Systems;
 
 public sealed class LanguageSystem : SharedLanguageSystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
 
     /// <summary>
     ///     Invoked when the Languages of the local player entity change, for use in UI.
@@ -20,38 +17,16 @@ public sealed class LanguageSystem : SharedLanguageSystem
     public override void Initialize()
     {
         base.Initialize();
-        _playerManager.LocalPlayerAttached += NotifyUpdate;
-        SubscribeLocalEvent<LanguageSpeakerComponent, ComponentHandleState>(OnHandleState);
+
+        _player.LocalPlayerAttached += NotifyUpdate;
+
+        SubscribeLocalEvent<LanguageSpeakerComponent, AfterAutoHandleStateEvent>(OnSpeakerState);
     }
 
-    private void OnHandleState(Entity<LanguageSpeakerComponent> ent, ref ComponentHandleState args)
+    private void OnSpeakerState(Entity<LanguageSpeakerComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (args.Current is not LanguageSpeakerComponent.State state)
-            return;
-
-        ent.Comp.CurrentLanguage = state.CurrentLanguage;
-        ent.Comp.SpokenLanguages = state.SpokenLanguages;
-        ent.Comp.UnderstoodLanguages = state.UnderstoodLanguages;
-
-        if (ent.Owner == _playerManager.LocalEntity)
+        if (ent.Owner == _player.LocalEntity)
             NotifyUpdate(ent);
-    }
-
-    /// <summary>
-    ///     Returns the LanguageSpeakerComponent of the local player entity.
-    ///     Will return null if the player does not have an entity, or if the client has not yet received the component state.
-    /// </summary>
-    public LanguageSpeakerComponent? GetLocalSpeaker()
-    {
-        return CompOrNull<LanguageSpeakerComponent>(_playerManager.LocalEntity);
-    }
-
-    public void RequestSetLanguage(ProtoId<LanguagePrototype> language)
-    {
-        if (GetLocalSpeaker()?.CurrentLanguage?.Equals(language) == true)
-            return;
-
-        RaiseNetworkEvent(new LanguagesSetMessage(language));
     }
 
     private void NotifyUpdate(EntityUid localPlayer)

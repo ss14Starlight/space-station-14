@@ -366,8 +366,13 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
         foreach (var timer in playTimes)
         {
-            data.TrackerTimes.Add(timer.Tracker, timer.TimeSpent);
-            data.MergedTrackerTimes.Add(timer.Tracker, timer.TimeSpent); //NullLink
+            // Starlight start
+            ref var tracked = ref CollectionsMarshal.GetValueRefOrAddDefault(data.TrackerTimes, timer.Tracker, out _);
+            tracked += timer.TimeSpent;
+
+            ref var merged = ref CollectionsMarshal.GetValueRefOrAddDefault(data.MergedTrackerTimes, timer.Tracker, out _); //NullLink
+            merged += timer.TimeSpent; //NullLink
+            // Starlight end
         }
 
         data.Initialized = true;
