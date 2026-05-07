@@ -17,6 +17,8 @@ public sealed class MobThresholdStatusEffectSystem : EntitySystem
 
     public override void Initialize()
     {
+        base.Initialize();
+
         SubscribeLocalEvent<MobThresholdsStatusEffectComponent, StatusEffectRemovedEvent>(MobThresholdsStatusEffectRemoved);
         SubscribeLocalEvent<MobThresholdsStatusEffectComponent, StatusEffectAppliedEvent>(MobThresholdsStatusEffectApplied);
     }
