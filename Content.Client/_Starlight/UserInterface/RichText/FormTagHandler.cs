@@ -5,7 +5,6 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface;
 using Robust.Shared.Utility;
 using Content.Client.Paper.UI;
-using Robust.Client.Graphics;
 
 namespace Content.Client.UserInterface.RichText;
 
@@ -18,21 +17,21 @@ public sealed class FormTagHandler : IMarkupTagHandler
 
     public bool CanHandle(MarkupNode node) => node.Name == "form" || node.Value.StringValue?.StartsWith("__FORM_") == true;
 
-    private static int _formCounter = 0;
+    private static int s_formCounter = 0;
     private static readonly Dictionary<string, int> _formPositions = new();
-    private static string _lastText = "";
+    private static string s_lastText = "";
 
     /// <summary>
     /// Font line height set by PaperWindow to ensure buttons match text height
     /// </summary>
     public static float FontLineHeight { get; set; } = 16.0f; // Default fallback
 
-    private static int GetFormIndex(MarkupNode node) => _formCounter++;
+    private static int GetFormIndex(MarkupNode _) => s_formCounter++;
 
     /// <summary>
     /// Resets the form counter to ensure consistent indexing across renders.
     /// </summary>
-    public static void ResetFormCounter() => _formCounter = 0;
+    public static void ResetFormCounter() => s_formCounter = 0;
 
     /// <summary>
     /// Counts form buttons before the clicked button to determine which [form] tag it represents.
@@ -77,10 +76,10 @@ public sealed class FormTagHandler : IMarkupTagHandler
     /// </summary>
     public static void SetFormText(string text)
     {
-        if (_lastText != text)
+        if (s_lastText != text)
         {
             _formPositions.Clear();
-            _lastText = text;
+            s_lastText = text;
             var pos = 0;
             var index = 0;
             while ((pos = text.IndexOf("[form]", pos)) != -1)
@@ -118,7 +117,7 @@ public sealed class FormTagHandler : IMarkupTagHandler
         {
             // Find the PaperWindow parent
             var parent = btn.Parent;
-            while (parent != null && parent is not PaperWindow)
+            while (parent is not null and not PaperWindow)
                 parent = parent.Parent;
 
             if (parent is PaperWindow paperWindow)
