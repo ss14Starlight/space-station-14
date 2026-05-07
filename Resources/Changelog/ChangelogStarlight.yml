@@ -1,34 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Coolsurf6, Centronias, hollowarc, Pixel8-dev, FreianOfVoid, TheClockman138, davyei, meganerobot, toma1993, Hanzdegloker, whiffets, youtubepoopfuneral, PanzerVo, DuckManZach
   changes:
-  - message: 'Added the following to mains pools: Cooler Roller Skates, Dark Pirate Garb. They can also be found in the same crates that contain their existing variants.'
-    type: Add
-  id: 404432
-  time: '2026-04-21T11:18:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4217
-- author: wonderfulnewworld, Coolsurf6, Centronias, hollowarc, Pixel8-dev, FreianOfVoid, TheClockman138, davyei, meganerobot, toma1993, Hanzdegloker, whiffets, youtubepoopfuneral, PanzerVo, DuckManZach
-  changes:
-  - message: Added 2 new Headphone variants, Reporter Headphones and High-End Headphones.
-    type: Add
-  id: 404433
-  time: '2026-04-21T11:18:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4217
-- author: wonderfulnewworld, Coolsurf6, Centronias, hollowarc, Pixel8-dev, FreianOfVoid, TheClockman138, davyei, meganerobot, toma1993, Hanzdegloker, whiffets, youtubepoopfuneral, PanzerVo, DuckManZach
-  changes:
-  - message: Reporters and Musicians can now choose to spawn wearing Headphones.
-    type: Add
-  id: 404434
-  time: '2026-04-21T11:18:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4217
-- author: wonderfulnewworld, Coolsurf6, Centronias, hollowarc, Pixel8-dev, FreianOfVoid, TheClockman138, davyei, meganerobot, toma1993, Hanzdegloker, whiffets, youtubepoopfuneral, PanzerVo, DuckManZach
-  changes:
-  - message: Reporter Headphones and High-End Headphones can now be selected as trinkets, requiring 10hrs Reporter and 10hrs Reporter + Musician time respectively.
-    type: Add
-  id: 404435
-  time: '2026-04-21T11:18:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4217
-- author: wonderfulnewworld, Coolsurf6, Centronias, hollowarc, Pixel8-dev, FreianOfVoid, TheClockman138, davyei, meganerobot, toma1993, Hanzdegloker, whiffets, youtubepoopfuneral, PanzerVo, DuckManZach
-  changes:
   - message: Grouped Headphone trinkets together.
     type: Tweak
   id: 404436
@@ -2799,4 +2771,32 @@ Entries:
   id: 404831
   time: '2026-05-07T07:05:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4298
+- author: wonderfulnewworld
+  changes:
+  - message: (Starboard) Massive Mains expansion north of Cargo/Science.
+    type: Add
+  id: 404832
+  time: '2026-05-07T08:14:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4371
+- author: wonderfulnewworld
+  changes:
+  - message: (Starboard) The Lawyers have arrived.
+    type: Add
+  id: 404833
+  time: '2026-05-07T08:14:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4371
+- author: wonderfulnewworld
+  changes:
+  - message: (Starboard) Robotics and the Brig now support IPCs.
+    type: Add
+  id: 404834
+  time: '2026-05-07T08:14:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4371
+- author: wonderfulnewworld
+  changes:
+  - message: (Starboard) Keycard Authentication Devices have been added to all heads' rooms.
+    type: Add
+  id: 404835
+  time: '2026-05-07T08:14:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4371
 Order: -1
