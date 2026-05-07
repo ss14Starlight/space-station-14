@@ -86,17 +86,6 @@
       state: antler-w
 
 - type: marking
-  id: LagomorphEarsDeerAntlersBigw
-  bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: deer
-    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
-      state: antler-bigw
-
-- type: marking
   id: LagomorphEarsDeerAntlersDriedbush
   bodyPart: HeadTop
   markingCategory: HeadTop
