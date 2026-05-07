@@ -40,10 +40,13 @@ public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
         _menu.OpenOverMouseScreenPosition();
     }
 
+    // Starlight Edit Start
     private IEnumerable<RadialMenuOptionBase> ConvertToButtons(
         List<ProtoId<ConstructionPrototype>> constructionEntries,
-        List<ProtoId<QuickConstructionCategoryPrototype>> categoryEntries)
+        List<ProtoId<QuickConstructionCategoryPrototype>> categoryEntries,
+        HashSet<ProtoId<QuickConstructionCategoryPrototype>>? visitedCategories = null)
     {
+        visitedCategories ??= [];
         var constructionSystem = EntMan.System<ConstructionSystem>();
 
         ValueList<RadialMenuActionOptionBase> constructionButtons = [];
@@ -64,18 +67,19 @@ public sealed class QuickConstructionBoundUserInterface : BoundUserInterface
             constructionButtons.Add(topLevelActionOption);
         }
 
-
-        foreach (var categoryEntry in categoryEntries)
+        foreach (var categoryEntry in categoryEntries.Where(categoryEntry => visitedCategories.Add(categoryEntry)))
         {
-            if (!_prototypeManager.TryIndex(categoryEntry, out var prototype))
+            if (!_prototypeManager.TryIndex(categoryEntry, out var prototype) || categoryButtons.TryGetValue(prototype, out var list))
+            {
+                visitedCategories.Remove(categoryEntry);
                 continue;
+            }
 
-            if (categoryButtons.TryGetValue(prototype, out var list))
-                continue;
-
-            list = ConvertToButtons(prototype.ConstructionEntries, prototype.CategoryEntries).ToList();
+            list = ConvertToButtons(prototype.ConstructionEntries, prototype.CategoryEntries, visitedCategories).ToList();
             categoryButtons.Add(prototype, list);
+            visitedCategories.Remove(categoryEntry);
         }
+        // Starlight Edit End
 
         var models =
             new RadialMenuOptionBase[constructionButtons.Count +
