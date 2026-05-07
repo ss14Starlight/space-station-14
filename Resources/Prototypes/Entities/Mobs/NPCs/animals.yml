@@ -515,7 +515,7 @@
 
 - type: entity
   name: mothroach
-  parent: MobCockroach #starlight Nubody will not pass.
+  parent: MobCockroach # Starlight Edit: Removed BaseMobMothroach
   id: MobMothroach
   description: This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches.
   components:
@@ -923,7 +923,7 @@
 
 - type: entity
   name: cow
-  parent: SimpleMobBase #starlight Nubody will not pass.
+  parent: SimpleMobBase # Starlight Edit: Removed BaseMobRuminant
   id: MobCow
   description: Moo.
   components:
@@ -1010,7 +1010,7 @@
 
 - type: entity
   name: crab
-  parent: SimpleMobBase #starlight Nubody will not pass.
+  parent: SimpleMobBase # Starlight Edit: Removed BaseMobHemocyanin
   id: MobCrab
   description: A folk legend goes around that his claw snaps spacemen out of existence over distasteful remarks. Be polite and tolerant for your own safety.
   components:
@@ -1090,7 +1090,7 @@
 
 - type: entity
   name: goat
-  parent: SimpleMobBase #starlight Nubody will not pass.
+  parent: SimpleMobBase # Starlight Edit: Removed BaseMobRuminant
   id: MobGoat
   description: Her spine consists of long sharp segments, no wonder she is so grumpy.
   components:
@@ -1341,7 +1341,7 @@
 - type: entity
   name: genetic ancestor
   id: MobBaseAncestor
-  parent: [SimpleMobBase, StripableInventoryBase] #starlight Nubody will not pass.
+  parent: [SimpleMobBase, StripableInventoryBase] # Starlight Edit: Removed BaseMobAnimal
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
@@ -1407,6 +1407,12 @@
       state: "creampie_human"
       visible: false
   - type: Hands
+    # Starlight edit Start: Reverted NuBody
+    # activeHandId: Hand
+    # hands:
+    #   Hand:
+    #     location: Left
+    # Starlight edit End: Reverted NuBody
   - type: ComplexInteraction
   - type: GenericVisualizer
     visuals:
@@ -1800,23 +1806,23 @@
 
 - type: entity
   name: mouse
-  parent: SimpleMobBase #starlight Nubody will not pass.
+  parent:
+  - SimpleMobBase
+  # - BaseMobAnimal # Starlight Edit: Revert NuBody
   id: MobMouse
   description: Squeak!
   components:
-  # Starlight-start: Languages
+  # Starlight Start
   - type: LanguageKnowledge
     speaks:
     - Mouse
     understands:
     - GalacticCommon
     - Mouse
-  # Starlight-end
-  - type: VentCrawler # Starlight-edit: Vent Crawl
-  # Starlight - start
+  - type: VentCrawler
   - type: Body
     prototype: Mouse
-  # Starlight - end
+  # Starlight End
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -2593,7 +2599,7 @@
 # Code unique spider prototypes or combine them all into one spider and get a
 # random sprite state when you spawn it.
 - type: entity
-  parent: [ SimpleMobBase, MobCombat ] #starlight Nubody will not pass.
+  parent: [ SimpleMobBase, MobCombat ] # Starlight Edit: Removed BaseMobHemocyanin
   id: MobSpiderBase
   abstract: true
   components:
@@ -3887,7 +3893,7 @@
 
 - type: entity
   name: diona nymph
-  parent: [SimpleMobBase, StripableInventoryBase]
+  parent: [SimpleMobBase, StripableInventoryBase] # Starlight Edit: Removed BaseMobAnimal
   id: MobDionaNymph
   description: It's like a cat, only.... branch-ier.
   components:
@@ -4138,6 +4144,14 @@
             sprite: Mobs/Pets/displacements.rsi
             state: corgi_head_displacement
   - type: Hands # HANDS!
+    # Starlight edit Start: Reverted NuBody
+    # activeHandId: Right
+    # hands:
+    #   Right:
+    #     location: Right
+    #   Left:
+    #     location: Left
+    # Starlight edit End: Reverted NuBody
   - type: Puller
   - type: Cuffable # bad dog!
   - type: BlockWriting # dogs can't write, paws unwieldy; mouth-writing is a myth
