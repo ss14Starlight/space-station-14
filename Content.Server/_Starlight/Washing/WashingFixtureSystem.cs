@@ -46,12 +46,17 @@ public sealed class WashingFixtureSystem : EntitySystem
         var user = args.User;
         var target = args.Target;
 
+        bool isDirty = (TryComp<CreamPiedComponent>(user, out var creamPiedComp) && creamPiedComp.CreamPied)
+            || HasComp<LubedComponent>(user)
+            || HasComp<GluedComponent>(user);
+
         var verb = new AlternativeVerb()
         {
             Act = () => TryStartCleaning(entity, user, target),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/bubbles.svg.192dpi.png")),
             Text = Loc.GetString("washing-verb-text"),
-            Message = Loc.GetString("washing-verb-message"),
+            Message = Loc.GetString(isDirty ? "washing-verb-message" : "washing-verb-message-disabled"),
+            Disabled = !isDirty,
         };
 
         args.Verbs.Add(verb);
