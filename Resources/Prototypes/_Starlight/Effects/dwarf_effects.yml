@@ -24,6 +24,7 @@
       - HideContextMenu
   - type: AnimationPlayer
 
+# unused for now:
 - type: entity
   id: EffectDwarfFortitude
   categories: [ HideSpawnMenu ]

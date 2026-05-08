@@ -47,9 +47,9 @@
       160: Dead
 
 - type: entity
-  parent: MobStatusEffectBase
-  id: ArmorModWhiskey
-  name: <<Whiskey Status Effect>>
+  abstract: true
+  id: ArmorModDwarfGeneric
+  name: <<Dwarf Armor Mod Status Effect>>
   components:
   - type: StatusEffect
     whitelist:
@@ -62,12 +62,20 @@
       - KnockdownImmune
   - type: StatusEffectAlert
     alert: DwarfFortitude
+
+# Example of ArmorModStatusEffect and SoundStatusEffect with all parameters set:
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModWhiskey
+  name: <<Whiskey Status Effect>>
+  components:
   - type: ArmorModStatusEffect
-    ignoreKnockdown: true
+    ignoreKnockdown: false
     staminaDamageModifier: 1.0
+    explosionCoefficient: 1.00
     modifiers:
       coefficients:
-        Blunt: 0.95
+        Blunt: 0.90
   - type: SoundStatusEffect
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-whiskey.ogg
@@ -77,3 +85,212 @@
     #endSound:
     #  path: /Audio/_Starlight/Magic/gust.ogg
     endPositional: false
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModAbsinthe
+  name: <<Absinthe Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Piercing: 0.90
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModCognac
+  name: <<Cognac Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Cold: 0.90
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-cognac.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModAntifreeze
+  name: <<Antifreeze Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Cold: 0.50
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-cognac.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModGin
+  name: <<Gin Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Caustic: 0.90
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-gin.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModRum
+  name: <<Rum Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Slash: 0.90
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-rum.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModTequila
+  name: <<Tequila Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Heat: 0.90
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-tequila.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModVermouth
+  name: <<Vermouth Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Shock: 0.90
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-vermouth.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModAndalusia
+  name: <<Andalusia Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Shock: 0.90
+        Piercing: 0.90
+        Slash: 1.05
+        Heat: 1.05
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-rum.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModB52
+  name: <<B52 Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    explosionCoefficient: 0.75
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-cognac.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModDriestMartini
+  name: <<Driest Martini Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Slash: 0.75
+        Blunt: 0.75
+        Piercing: 0.75
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-gin.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModErikaSurprise
+  name: <<Erika Surprise Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Heat: 0.85
+        Cold: 0.85
+        Shock: 0.85
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModGargleBlaster
+  name: <<Gargle Blaster Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Slash: 0.85
+        Blunt: 0.85
+        Piercing: 0.85
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-cognac.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModGrog
+  name: <<Grog Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Slash: 0.9
+        Heat: 0.9
+        Blunt: 1.05
+        Cold: 1.05
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-rum.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModMoscowMule
+  name: <<Moscow Mule Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Poison: 0.9
+        Radiation: 0.9
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-moscowmule.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModDaiquiri
+  name: <<Daiquiri Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Cold: 0.9
+        Piercing: 1.05
+        Shock: 1.05
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-rum.ogg

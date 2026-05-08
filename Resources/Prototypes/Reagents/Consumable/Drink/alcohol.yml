@@ -45,6 +45,14 @@
         - !type:ReagentCondition
           reagent: Absinthe
           min: 10
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModAbsinthe # 10% Piercing resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: Ale
@@ -168,6 +176,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModCognac # 10% cold resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: DeadRum
@@ -306,6 +322,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModGin # 10% caustic resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: CoffeeLiqueur
@@ -404,6 +428,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModRum # 10% slash resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: Sake
@@ -450,6 +482,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModTequila # 10% heat resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: Vermouth
@@ -465,6 +505,22 @@
   metamorphicMaxFillLevels: 4
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+  # starlight - dwarf drink effects
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.06
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModVermouth # 10% shock resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+  # end starlight
 
 - type: reagent
   id: Vodka
@@ -524,14 +580,8 @@
         amount: 0.2
     # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
-        effectProto: ArmorModWhiskey # 5% blunt resist
+        effectProto: ArmorModWhiskey # 10% blunt resist
         time: 3
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Dwarf ]
-      - !type:SpawnAttachedTo
-        entity: EffectDwarfFortitude
-        number: 1
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
@@ -724,6 +774,22 @@
   metamorphicMaxFillLevels: 4
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+  # starlight - dwarf drink effects
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.06
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModAndalusia # 10% Piercing/Shock Resist & -5% Slash/Heat Resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+  # end starlight
 
 #Antifreeze as a drink is a bright blue color while it is an orangish red otherwise.
 #As a result this sprite doesn't need changing.
@@ -750,6 +816,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.15
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModAntifreeze # 50% cold resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: AtomicBomb
@@ -799,6 +873,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.15
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModB52 # 25% Explosion Resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: BahamaMama
@@ -1200,6 +1282,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.15
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModDriestMartini # 25% Brute Damage Resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: Eggnog
@@ -1263,6 +1353,22 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   fizziness: 0.15
+  # starlight - dwarf drink effects
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.06
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModErikaSurprise # 15% Heat/Cold/Shock Resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+  # end starlight
 
 - type: reagent
   id: GargleBlaster
@@ -1286,6 +1392,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModGargleBlaster # 15% Blunt/Slash/Piercing Resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: GinFizz
@@ -1372,6 +1486,22 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
+  # starlight - dwarf drink effects
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.06
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModGrog # 10% Slash/Burn Resist & -5% Blunt/Cold Resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+  # end starlight
 
 - type: reagent
   id: HippiesDelight
@@ -2715,6 +2845,14 @@
       - !type:AdjustReagent
         reagent: Copper
         amount: 0.05
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModMoscowMule # 10% Poison/Radiation Resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: Mimeosa
@@ -2903,6 +3041,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.1
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModDaiquiri # 10% Blunt/Cold Resist & -5% Piercing/Shock Resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: TheSunAlsoRises
