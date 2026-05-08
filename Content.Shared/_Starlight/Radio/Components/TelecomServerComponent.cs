@@ -14,7 +14,6 @@ public sealed partial class TelecomServerComponent : Component
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool SpacedDisabled;
-    
     /// <summary>Heat added to each surrounding tile per second while powered, in kJ.</summary>
     [DataField]
     public float HeatPerTilePerSecond = 300f;
