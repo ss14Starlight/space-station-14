@@ -20,7 +20,6 @@ namespace Content.Client.Radio.EntitySystems
         public override void Initialize()
         {
             base.Initialize();
-            
             SubscribeLocalEvent<TelecomServerComponent, AppearanceChangeEvent>(OnAppearanceChange);
         }
 
