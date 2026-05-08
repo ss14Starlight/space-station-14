@@ -89,9 +89,3 @@ ghostrole-information-derelict-stealth-xenoborg-description = You are a stealth 
 
 ghostrole-information-derelict-borgi-xenoborg-name = Derelict XenoBorgi
 ghostrole-information-derelict-borgi-xenoborg-description = You are a xenoborgi the mothership left behind. After months of exposure to ion storms you find yourself near a space station.
-
-
-
-
-
-
