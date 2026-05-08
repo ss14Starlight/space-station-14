@@ -39,6 +39,7 @@
             Librarian: [ 1, 1 ]
             ServiceWorker: [ 3, 4 ]
             Reporter: [ 1, 1 ]
+            Lawyer: [ 1, 1 ]
             #engineering
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 5, 6 ]

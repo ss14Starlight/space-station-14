@@ -2,7 +2,6 @@
 using Content.Server.Cargo.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Administration;
-using Content.Shared.Body.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reagent;
@@ -15,9 +14,12 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using System.Linq;
 using Content.Shared.Research.Prototypes;
 using Content.Server._Starlight.Medical.Body.Systems;
+#region Starlight
+using System.Linq;
+using Content.Shared.Body.Components;
+#endregion
 
 namespace Content.Server.Cargo.Systems;
 
@@ -28,9 +30,9 @@ public sealed class PricingSystem : EntitySystem
 {
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!; // Starlight
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly BodySystem _bodySystem = default!; // Starlight: Reverted NuBody
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -95,7 +97,7 @@ public sealed class PricingSystem : EntitySystem
             Log.Error($"Tried to get the mob price of {ToPrettyString(uid)}, which has no {nameof(MobStateComponent)}.");
             return;
         }
-        // Starlight start
+        // Starlight edit Start: Reverted NuBody
         var partPenalty = 0.0;
         if (TryComp<BodyComponent>(uid, out var body))
         {
@@ -108,7 +110,7 @@ public sealed class PricingSystem : EntitySystem
         }
 
         args.Price += (component.Price - partPenalty) * (_mobStateSystem.IsAlive(uid, state) ? 1.0 : component.DeathPenalty);
-        // Starlight end
+        // Starlight edit End: Reverted NuBody
     }
 
     private double GetSolutionPrice(Entity<SolutionContainerManagerComponent> entity)
