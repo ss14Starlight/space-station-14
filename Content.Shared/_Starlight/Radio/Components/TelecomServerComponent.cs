@@ -14,4 +14,16 @@ public sealed partial class TelecomServerComponent : Component
 
     [ViewVariables(VVAccess.ReadOnly)]
     public bool SpacedDisabled;
+    
+    /// <summary>Heat added to each surrounding tile per second while powered, in kJ.</summary>
+    [DataField]
+    public float HeatPerTilePerSecond = 300f;
+
+    /// <summary>Surrounding gas temperature at which the server shuts itself off, in Kelvin.</summary>
+    [DataField]
+    public float OverheatTemperature = Atmospherics.FireMinimumTemperatureToExist + 25f;
+
+    /// <summary>Surrounding gas temperature below which the overheated server may restart, in Kelvin.</summary>
+    [DataField]
+    public float CooldownTemperature = Atmospherics.T20C + 10f;
 }

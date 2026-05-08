@@ -60,7 +60,7 @@ namespace Content.Server.Radio.EntitySystems
                 var indices = _transformSystem.GetGridTilePositionOrDefault((uid, xform));
                 var grid = xform.GridUid;
                 var map = xform.MapUid;
-                var mixture = _atmosphere.GetTileMixture(grid, map, indices, excite: true);
+                var mixture = _atmosphere.GetTileMixture(grid, map, indices, excite: false);
                 if (mixture == null || mixture.TotalMoles <= 0)
                 {
                     telecom.SpacedDisabled = true;
@@ -71,10 +71,7 @@ namespace Content.Server.Radio.EntitySystems
                 if (telecom.SpacedDisabled)
                 {
                     telecom.SpacedDisabled = false;
-                    if (!telecom.Overheated)
-                    {
-                        _power.SetPowerDisabled(uid, false, power);
-                    }
+                    _power.SetPowerDisabled(uid, false, power);
                 }
 
                 if (power.PowerDisabled || !_power.IsPowered(uid) || !ServerHasActiveStationChannel(keys))
@@ -111,7 +108,7 @@ namespace Content.Server.Radio.EntitySystems
                 }
                 else
                 {
-                    return true;
+                    continue;
                 }
             }
 
@@ -123,6 +120,14 @@ namespace Content.Server.Radio.EntitySystems
             foreach (var channelProto in keys.Channels)
             {
                 if (_prototypeManager.TryIndex(channelProto, out RadioChannelPrototype? channel))
+                {
+                    _radio.SendRadioMessage(uid, Loc.GetString("telecom-overheat-announcement"), channel, uid);
+                }
+            }
+
+            foreach (var customChannel in keys.CustomChannels)
+            {
+                if (_prototypeManager.TryIndex(customChannel, out RadioChannelPrototype? channel))
                 {
                     _radio.SendRadioMessage(uid, Loc.GetString("telecom-overheat-announcement"), channel, uid);
                 }
@@ -184,7 +189,6 @@ namespace Content.Server.Radio.EntitySystems
 
             return maxTemperature;
 }
-
         private void OnExaminedEvent(EntityUid uid, TelecomServerComponent component, ExaminedEvent args)
         {
             var xform = Transform(uid);
@@ -208,7 +212,6 @@ namespace Content.Server.Radio.EntitySystems
 
             if (Loc.TryGetString("telecom-server-examined",
                 out var str,
-                ("tempColor", "red"),
                 ("currenttemp", Math.Round(serverTemperature, 2))))
             {
                 args.PushMarkup(str);

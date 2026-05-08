@@ -22,7 +22,6 @@ namespace Content.Client.Radio.EntitySystems
             base.Initialize();
             SubscribeLocalEvent<TelecomServerComponent, AppearanceChangeEvent>(OnAppearanceChange);
         }
-
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
