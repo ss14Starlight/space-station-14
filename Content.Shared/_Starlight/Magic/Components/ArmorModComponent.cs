@@ -3,6 +3,7 @@ using Robust.Shared.GameStates;
 using Content.Shared._Starlight.Magic.Systems;
 using Content.Shared.Armor;
 using Content.Shared.Damage;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Magic.Components;
 
@@ -13,21 +14,24 @@ namespace Content.Shared._Starlight.Magic.Components;
 [Access(typeof(SharedArmorModSystem), typeof(SharedScalingSystem))]
 public sealed partial class ArmorModComponent : Component
 {
-    /// <summary>
-    /// The damage reduction
-    /// </summary>
-    [DataField(required: true)]
+    public Dictionary<EntityUid, ArmorMod> modifiers = new();
+};
+
+[DataDefinition]
+[Serializable, NetSerializable]
+[Virtual]
+[Access(typeof(SharedArmorModSystem), typeof(SharedScalingSystem))]
+public partial class ArmorMod
+{
     public DamageModifierSet Modifiers = default!;
-
-    /// <summary>
-    /// If true, ignores knockdown from tasers.
-    /// </summary>
-    [DataField]
     public bool IgnoreKnockdown = false;
-
-    /// <summary>
-    /// Stamina damage reduction
-    /// </summary>
-    [DataField("staminaModifier")]
     public float StaminaDamageModifier = 1.0f;
-}
+
+    public ArmorMod(DamageModifierSet modifiers, bool ignoreKnockdown, float staminaDamageModifier)
+    {
+        // i am a brainlet, and this is my deep copy constructor
+        Modifiers = new DamageModifierSet(modifiers);
+        IgnoreKnockdown = ignoreKnockdown;
+        StaminaDamageModifier = staminaDamageModifier;
+    }
+};

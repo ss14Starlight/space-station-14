@@ -127,9 +127,15 @@
       - !type:ModifyStatusEffect
         effectProto: MobThresholdsTheHighlander # raise crit to 219
         time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
       - !type:SpawnAttachedTo
-        entity: EffectDwarfPower
+        entity: EffectDwarfCourage
         number: 1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
 
 - type: reagent
   id: TheLastCall

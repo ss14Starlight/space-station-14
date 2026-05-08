@@ -48,7 +48,7 @@
 
 - type: entity
   parent: MobStatusEffectBase
-  id: ArmorBuffWhiskey
+  id: ArmorModWhiskey
   name: <<Whiskey Status Effect>>
   components:
   - type: StatusEffect
@@ -62,8 +62,18 @@
       - KnockdownImmune
   - type: StatusEffectAlert
     alert: DwarfFortitude
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      159: Critical
-      160: Dead
+  - type: ArmorModStatusEffect
+    ignoreKnockdown: true
+    staminaDamageModifier: 1.0
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-whiskey.ogg
+      params:
+        volume: -12.0
+    startPositional: false
+    #endSound:
+    #  path: /Audio/_Starlight/Magic/gust.ogg
+    endPositional: false

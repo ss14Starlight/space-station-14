@@ -24,5 +24,18 @@ namespace Content.Shared.Damage
 
         [DataField("flatReductions", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<float, DamageTypePrototype>))]
         public Dictionary<string, float> FlatReduction = new();
+
+        // BEGIN STARLIGHT
+        public DamageModifierSet(DamageModifierSet dms)
+        {
+            // copying constructor for duplicating damage modifier sets
+            // some magic status effects can have variable or decaying damage modifiers
+            // therefore, we need a cheap and idiomatic way to create copies of DamageModifierSets that can be safely be modified
+            // (may also prevent memory leaks if the prototype that creates DamageModifierSets is generated at runtime)
+            Coefficients = new Dictionary<string, float>(dms.Coefficients);
+            FlatReduction = new Dictionary<string, float>(dms.FlatReduction);
+        }
+
+        // END STARLIGHT
     }
 }

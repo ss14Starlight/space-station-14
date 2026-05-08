@@ -522,6 +522,20 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModWhiskey # 5% blunt resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+      - !type:SpawnAttachedTo
+        entity: EffectDwarfFortitude
+        number: 1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: Wine
@@ -2810,9 +2824,15 @@
       - !type:ModifyStatusEffect
         effectProto: MobThresholdsDeathInTheAfternoon # raise crit to 159, lower death to 160
         time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
       - !type:SpawnAttachedTo
-        entity: EffectDwarfPower
+        entity: EffectDwarfCourage
         number: 1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
     # end starlight
 
 - type: reagent
