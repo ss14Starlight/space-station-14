@@ -1,7 +1,5 @@
 using Content.Shared._Starlight.Magic.Components;
 using Content.Shared.Armor;
-using Content.Shared.Inventory;
-using Content.Shared.Silicons.Borgs;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Stunnable;

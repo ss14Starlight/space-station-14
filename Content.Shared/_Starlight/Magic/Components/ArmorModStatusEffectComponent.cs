@@ -1,7 +1,5 @@
-using Content.Shared._Starlight.Scaling;
 using Robust.Shared.GameStates;
 using Content.Shared._Starlight.Magic.Systems;
-using Content.Shared.Armor;
 using Content.Shared.Damage;
 
 namespace Content.Shared._Starlight.Magic.Components;
@@ -10,7 +8,7 @@ namespace Content.Shared._Starlight.Magic.Components;
 /// Factory for adding ArmorModComponents to mobs. These are temporary ArmorComponents granted as a status effect with no corresponding inventory slot.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-[Access(typeof(SharedArmorModSystem), typeof(SharedScalingSystem))]
+[Access(typeof(SharedArmorModSystem))]
 public sealed partial class ArmorModStatusEffectComponent : Component
 {
     /// <summary>

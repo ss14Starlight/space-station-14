@@ -1,7 +1,5 @@
-using Content.Shared._Starlight.Scaling;
 using Robust.Shared.GameStates;
 using Content.Shared._Starlight.Magic.Systems;
-using Content.Shared.Armor;
 using Content.Shared.Damage;
 using Robust.Shared.Serialization;
 
@@ -11,7 +9,7 @@ namespace Content.Shared._Starlight.Magic.Components;
 /// Allows applying a DamageModifierSet and other attributes of an ArmorComponent as a StatusEffect.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-[Access(typeof(SharedArmorModSystem), typeof(SharedScalingSystem))]
+[Access(typeof(SharedArmorModSystem))]
 public sealed partial class ArmorModComponent : Component
 {
     public Dictionary<EntityUid, ArmorMod> modifiers = new();
@@ -20,7 +18,7 @@ public sealed partial class ArmorModComponent : Component
 [DataDefinition]
 [Serializable, NetSerializable]
 [Virtual]
-[Access(typeof(SharedArmorModSystem), typeof(SharedScalingSystem))]
+[Access(typeof(SharedArmorModSystem))]
 public partial class ArmorMod
 {
     public DamageModifierSet Modifiers = default!;

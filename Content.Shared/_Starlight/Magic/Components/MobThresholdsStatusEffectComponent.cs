@@ -1,4 +1,3 @@
-using Content.Shared._Starlight.Scaling;
 using Robust.Shared.GameStates;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
@@ -10,7 +9,7 @@ namespace Content.Shared._Starlight.Magic.Components;
 /// Allows overriding MobThresholds (crit, death, etc.) as a status effect. Obviously, not stackable.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-[Access(typeof(MobThresholdStatusEffectSystem), typeof(SharedScalingSystem))]
+[Access(typeof(MobThresholdStatusEffectSystem))]
 public sealed partial class MobThresholdsStatusEffectComponent : Component
 {
     [DataField("thresholds", required: true)]
