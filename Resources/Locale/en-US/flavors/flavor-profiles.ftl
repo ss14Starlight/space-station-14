@@ -251,7 +251,8 @@ flavor-complex-syndie-bomb = like bitter whiskey
 flavor-complex-tequila-sunrise = like a mexican morning
 flavor-complex-irish-coffee = like an alcoholic wakeup call
 flavor-complex-iced-beer = like ice cold piss
-flavor-complex-gargle-blaster = like somebody smashed your head with a lemon-covered brick of gold
+# Starlight (make it actually be the quote):
+flavor-complex-gargle-blaster = like having your brains smashed out by a slice of lemon wrapped round a large gold brick
 flavor-complex-bloody-mary = like a bad hangover
 flavor-complex-beepsky = like oil and whiskey
 flavor-complex-banana-honk = like a banana milkshake
