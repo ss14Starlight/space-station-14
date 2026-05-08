@@ -1,7 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using Content.Server.NodeContainer;
-using Content.Server.NodeContainer.Nodes;
 using Content.Server.Power.Components;
 using Content.Server.Power.Nodes;
 using Content.Server.Shuttles.Components;
@@ -13,233 +9,301 @@ using Content.Server.NodeContainer.EntitySystems;
 using Content.Shared.Starlight.CCVar;
 using Robust.Shared.Configuration;
 
-namespace Content.Server._Starlight.Power.EntitySystems
+namespace Content.Server._Starlight.Power.EntitySystems;
+
+/// <summary>
+/// Allows cables to connect over docks.
+/// </summary>
+public sealed class CableDockingSystem : EntitySystem
 {
-    /// <summary>
-    /// Allows cables to connect over docks.
-    /// </summary>
-    public sealed class CableDockingSystem : EntitySystem
+    #region Dependencies
+
+    [Dependency] public readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly NodeGroupSystem _nodeGroupSystem = default!;
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+
+    private readonly List<CableNode> _dockACables = [];
+    private readonly List<CableNode> _dockBCables = [];
+    private readonly List<CableNode> _otherCables = [];
+    private readonly List<CableNode> _reachableCableScratch = [];
+
+    #endregion
+
+    #region CVar
+
+    public bool DockHV = true;
+    public bool DockMV = false;
+    public bool DockLV = false;
+
+    #endregion
+
+    #region Initialization
+
+    public override void Initialize()
     {
-        #region Dependencies
+        base.Initialize();
 
-        [Dependency] public readonly SharedMapSystem _mapSystem = default!;
-        [Dependency] private readonly NodeGroupSystem _nodeGroupSystem = default!;
-        [Dependency] private IConfigurationManager _configurationManager = default!;
+        SubscribeLocalEvent<DockEvent>(OnDocked);
+        SubscribeLocalEvent<UndockEvent>(OnUndocked);
 
-        #endregion
+        _configurationManager.OnValueChanged(StarlightCCVars.DockHV, v => DockHV = v, true);
+        _configurationManager.OnValueChanged(StarlightCCVars.DockMV, v => DockMV = v, true);
+        _configurationManager.OnValueChanged(StarlightCCVars.DockLV, v => DockLV = v, true);
+    }
 
-        #region CVar
+    #endregion
 
-        public bool DockHV = true;
-        public bool DockMV = false;
-        public bool DockLV = false;
+    #region Docking Logic
 
-        #endregion
+    private void OnDocked(DockEvent ev)
+    {
+        if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
+            return;
 
-        #region Initialization
+        GetDockCableNodes(dockA, _dockACables);
+        GetDockCableNodes(dockB, _dockBCables);
 
-        public override void Initialize()
+        foreach (var cableA in _dockACables)
         {
-            base.Initialize();
-            SubscribeLocalEvent<DockEvent>(OnDocked);
-            SubscribeLocalEvent<UndockEvent>(OnUndocked);
-
-            _configurationManager.OnValueChanged(StarlightCCVars.DockHV, v => DockHV = v, true);
-            _configurationManager.OnValueChanged(StarlightCCVars.DockMV, v => DockMV = v, true);
-            _configurationManager.OnValueChanged(StarlightCCVars.DockLV, v => DockLV = v, true);
-        }
-
-        #endregion
-
-        #region Docking Logic
-
-        private void OnDocked(DockEvent ev)
-        {
-            var dockA = ev.DockA.Owner;
-            var dockB = ev.DockB.Owner;
-
-            var cablesA = GetDockCableNodes(dockA).ToList();
-            var cablesB = GetDockCableNodes(dockB).ToList();
-
-            foreach (var cableA in cablesA)
-            foreach (var cableB in cablesB)
+            foreach (var cableB in _dockBCables)
             {
-                if (IsAnchored(cableA.Owner) &&
-                    IsAnchored(cableB.Owner) &&
-                    CanConnect(cableA, cableB))
-                {
-                    LinkCables(cableA, cableB);
-                }
+                if (!CanConnect(cableA, cableB))
+                    continue;
+
+                LinkCables(cableA, cableB);
             }
         }
+    }
 
-        private void OnUndocked(UndockEvent ev)
+    private void OnUndocked(UndockEvent ev)
+    {
+        if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
+            return;
+
+        GetDockCableNodes(dockA, _dockACables);
+        GetDockCableNodes(dockB, _dockBCables);
+
+        foreach (var cableA in _dockACables)
         {
-            var dockA = ev.DockA.Owner;
-            var dockB = ev.DockB.Owner;
-
-            var cablesA = GetDockCableNodes(dockA).ToList();
-            var cablesB = GetDockCableNodes(dockB).ToList();
-
-            foreach (var cableA in cablesA)
-            foreach (var cableB in cablesB)
+            foreach (var cableB in _dockBCables)
             {
                 UnlinkCables(cableA, cableB);
             }
         }
+    }
 
-        #endregion
+    #endregion
 
-        #region Cable Query
+    #region Cable Query
 
-        public IEnumerable<CableNode> GetDockCableNodes(EntityUid dock)
+    public IEnumerable<CableNode> GetDockCableNodes(EntityUid dock)
+    {
+        var result = new List<CableNode>();
+        GetDockCableNodes(dock, result);
+        return result;
+    }
+
+    private void GetDockCableNodes(EntityUid dock, List<CableNode> result)
+    {
+        result.Clear();
+
+        var xform = Transform(dock);
+        if (xform.GridUid == null)
+            return;
+
+        if (!TryComp<MapGridComponent>(xform.GridUid.Value, out var grid))
+            return;
+
+        var dockTile = _mapSystem.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
+
+        foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, dockTile))
         {
-            var xform = Transform(dock);
-            if (xform.GridUid == null)
-                yield break;
-            if (!TryComp<MapGridComponent>(xform.GridUid.Value, out var grid))
-                yield break;
+            if (ent == dock)
+                continue;
 
-            var dockTile = _mapSystem.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
-            foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, dockTile))
+            if (!TryComp<NodeContainerComponent>(ent, out var nodeContainer))
+                continue;
+
+            foreach (var node in nodeContainer.Nodes.Values)
             {
-                if (ent == dock)
+                if (node is not CableNode cableNode)
                     continue;
-                if (!TryComp<NodeContainerComponent>(ent, out var nodeContainer))
+
+                if (cableNode.Deleting)
                     continue;
-                var entXform = Transform(ent);
-                if (!entXform.Anchored)
+
+                if (!TryComp<CableComponent>(cableNode.Owner, out var cable))
                     continue;
-                foreach (var node in nodeContainer.Nodes.Values.OfType<CableNode>())
-                {
-                    if (TryComp<CableComponent>(node.Owner, out var cable) && ShouldDockCableType(cable))
-                        yield return node;
-                }
+
+                if (!ShouldDockCableType(cable))
+                    continue;
+
+                result.Add(cableNode);
             }
         }
+    }
 
-        private bool ShouldDockCableType(CableComponent cable)
+    private bool ShouldDockCableType(CableComponent cable)
+        => cable.CableType switch
         {
-            return cable.CableType switch
+            CableType.HighVoltage => DockHV,
+            CableType.MediumVoltage => DockMV,
+            CableType.Apc => DockLV,
+            _ => false
+        };
+
+    private bool ShouldDockCableType(CableNode node)
+    {
+        if (!TryComp<CableComponent>(node.Owner, out var cable))
+            return false;
+
+        return ShouldDockCableType(cable);
+    }
+
+    public bool CanConnect(CableNode a, CableNode b)
+    {
+        if (a == b)
+            return false;
+
+        if (a.Deleting || b.Deleting)
+            return false;
+
+        if (!TryComp<CableComponent>(a.Owner, out var cableA) || !ShouldDockCableType(cableA))
+            return false;
+
+        if (!TryComp<CableComponent>(b.Owner, out var cableB) || !ShouldDockCableType(cableB))
+            return false;
+
+        return cableA.CableType == cableB.CableType;
+    }
+
+    public void TryConnectDockedCable(CableNode node)
+    {
+        if (!ShouldDockCableType(node))
+            return;
+
+        if (!TryGetAnchoredTile(node.Owner, out var gridUid, out var grid, out var tile))
+            return;
+
+        foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid, grid, tile))
+        {
+            if (ent == node.Owner)
+                continue;
+
+            if (!TryComp<DockingComponent>(ent, out var docking) || docking.DockedWith is not { } otherDock)
+                continue;
+
+            GetDockCableNodes(otherDock, _otherCables);
+
+            foreach (var otherCable in _otherCables)
             {
-                CableType.HighVoltage => DockHV,
-                CableType.MediumVoltage => DockMV,
-                CableType.Apc => DockLV,
-                _ => false
-            };
-        }
+                if (!CanConnect(node, otherCable))
+                    continue;
 
-        private bool ShouldDockCableType(CableNode node)
-        {
-            if (!TryComp<CableComponent>(node.Owner, out var cable))
-                return false;
-            return ShouldDockCableType(cable);
-        }
-
-        public bool CanConnect(CableNode a, CableNode b)
-        {
-            if (a == b)
-                return false;
-            if (!TryComp<CableComponent>(a.Owner, out var cableA) || !ShouldDockCableType(cableA))
-                return false;
-            if (!TryComp<CableComponent>(b.Owner, out var cableB) || !ShouldDockCableType(cableB))
-                return false;
-            if (a.Deleting || b.Deleting)
-                return false;
-            if (cableA.CableType != cableB.CableType)
-                return false;
-            return true;
-        }
-
-        public void TryConnectDockedCable(CableNode node)
-        {
-            if (!ShouldDockCableType(node))
-                return;
-            var xform = Transform(node.Owner);
-            if (xform.GridUid == null || !xform.Anchored)
-                return;
-            if (!TryComp<MapGridComponent>(xform.GridUid.Value, out var grid))
-                return;
-            var tile = _mapSystem.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
-
-            var anchoredEntities = _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, tile).ToList();
-            var dockedEntities = anchoredEntities.Where(ent =>
-                ent != node.Owner &&
-                TryComp<DockingComponent>(ent, out var docking) &&
-                docking.DockedWith is not null).ToList();
-
-            foreach (var ent in dockedEntities)
-            {
-                var docking = Comp<DockingComponent>(ent);
-                var otherDock = docking.DockedWith!.Value;
-                var otherCables = GetDockCableNodes(otherDock).Where(p => IsAnchored(p.Owner));
-                foreach (var otherCable in otherCables)
-                {
-                    if (CanConnect(node, otherCable))
-                        LinkCables(node, otherCable);
-                }
+                LinkCables(node, otherCable);
             }
         }
+    }
 
-        public void RemoveDockConnections(CableNode node)
+    public void RemoveDockConnections(CableNode node)
+    {
+        var reachable = node.GetAlwaysReachable();
+        if (reachable == null)
+            return;
+
+        _reachableCableScratch.Clear();
+
+        foreach (var target in reachable)
         {
-            var reachable = node.GetAlwaysReachable();
-            if (reachable == null)
-                return;
-            foreach (var target in reachable.ToList())
-            {
-                if (target is CableNode cableNode &&
-                    TryComp<CableComponent>(cableNode.Owner, out var cable) &&
-                    ShouldDockCableType(cable))
-                {
-                    UnlinkCables(node, cableNode);
-                }
-            }
+            if (target is not CableNode cableNode)
+                continue;
+
+            if (!TryComp<CableComponent>(cableNode.Owner, out var cable))
+                continue;
+
+            if (!ShouldDockCableType(cable))
+                continue;
+
+            _reachableCableScratch.Add(cableNode);
         }
 
-        #endregion
-
-        private bool IsAnchored(EntityUid uid)
+        foreach (var cableNode in _reachableCableScratch)
         {
-            return Transform(uid).Anchored;
+            UnlinkCables(node, cableNode);
+        }
+    }
+
+    #endregion
+
+    private bool TryGetAnchoredTile(
+        EntityUid uid,
+        out EntityUid gridUid,
+        out MapGridComponent grid,
+        out Vector2i tile)
+    {
+        gridUid = default;
+        grid = default!;
+        tile = default;
+
+        var xform = Transform(uid);
+        if (xform.GridUid is not { } xformGridUid || !xform.Anchored)
+            return false;
+
+        if (!TryComp<MapGridComponent>(xformGridUid, out var gridComp))
+            return false;
+
+        gridUid = xformGridUid;
+        grid = gridComp;
+        tile = _mapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
+        return true;
+    }
+
+#pragma warning disable CS0618 // Using .Owner for Performance.
+    private static bool TryGetDockEntity(DockingComponent component, out EntityUid uid)
+    {
+        uid = component.Owner;
+        return true;
+    }
+#pragma warning restore CS0618
+
+    private void LinkCables(CableNode a, CableNode b)
+    {
+        var reachableA = a.GetAlwaysReachable();
+        var reachableB = b.GetAlwaysReachable();
+
+        if (reachableA != null && reachableA.Contains(b) && reachableB != null && reachableB.Contains(a))
+            return;
+
+        a.AddAlwaysReachable(b);
+        b.AddAlwaysReachable(a);
+
+        _nodeGroupSystem.QueueReflood(a);
+        _nodeGroupSystem.QueueReflood(b);
+    }
+
+    private void UnlinkCables(CableNode a, CableNode b)
+    {
+        var reachableA = a.GetAlwaysReachable();
+        var reachableB = b.GetAlwaysReachable();
+
+        var changed = false;
+
+        if (reachableA != null && reachableA.Contains(b))
+        {
+            a.RemoveAlwaysReachable(b);
+            changed = true;
         }
 
-        private void LinkCables(CableNode a, CableNode b)
+        if (reachableB != null && reachableB.Contains(a))
         {
-            var reachableA = a.GetAlwaysReachable();
-            var reachableB = b.GetAlwaysReachable();
-            if (reachableA != null && reachableA.Contains(b) && reachableB != null && reachableB.Contains(a))
-                return;
-
-            a.AddAlwaysReachable(b);
-            b.AddAlwaysReachable(a);
-            _nodeGroupSystem.QueueReflood(a);
-            _nodeGroupSystem.QueueReflood(b);
+            b.RemoveAlwaysReachable(a);
+            changed = true;
         }
 
-        private void UnlinkCables(CableNode a, CableNode b)
-        {
-            var reachableA = a.GetAlwaysReachable();
-            var reachableB = b.GetAlwaysReachable();
-            var changed = false;
+        if (!changed)
+            return;
 
-            if (reachableA != null && reachableA.Contains(b))
-            {
-                a.RemoveAlwaysReachable(b);
-                changed = true;
-            }
-
-            if (reachableB != null && reachableB.Contains(a))
-            {
-                b.RemoveAlwaysReachable(a);
-                changed = true;
-            }
-
-            if (!changed)
-                return;
-
-            _nodeGroupSystem.QueueReflood(a);
-            _nodeGroupSystem.QueueReflood(b);
-        }
+        _nodeGroupSystem.QueueReflood(a);
+        _nodeGroupSystem.QueueReflood(b);
     }
 }
