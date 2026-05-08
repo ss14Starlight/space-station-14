@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Maps;
 using Content.Shared._Starlight.Shadekin;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
@@ -19,6 +20,7 @@ public sealed class LightGridSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedMapSystem _maps = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
     private readonly Dictionary<EntityUid, GridLightingState> _gridStates = new();
     private readonly Dictionary<EntityUid, List<WorldLightSourceData>> _mapLights = new();
     private readonly Dictionary<EntityUid, List<WorldLightSourceData>> _containerLights = new();
@@ -512,6 +514,9 @@ public sealed class LightGridSystem : EntitySystem
         if (GetLightBlockingContainer(uid) is { } containerUid)
             return GetDirectLightExposure(_containerLights.GetValueOrDefault(containerUid), worldPos);
 
+        if (IsOpenSpace(xform))
+            return OpenSpaceExposure;
+
         var size = NearbyGridSearchRange * 2f;
         var bounds = Box2.CenteredAround(worldPos, new Vector2(size, size));
 
@@ -535,6 +540,14 @@ public sealed class LightGridSystem : EntitySystem
         exposure += GetMapAmbientExposure(xform.MapID);
 
         return exposure;
+    }
+
+    private bool IsOpenSpace(TransformComponent xform)
+    {
+        if (!_turf.TryGetTileRef(xform.Coordinates, out var tileRef))
+            return true;
+
+        return _turf.IsSpace(tileRef.Value);
     }
 
     private float GetDirectLightExposure(List<WorldLightSourceData>? lightSources, Vector2 worldPos)
