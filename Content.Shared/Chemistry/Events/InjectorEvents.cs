@@ -1,6 +1,7 @@
 ﻿using Content.Shared.DoAfter;
 using Content.Shared.Inventory;
 using Robust.Shared.Serialization;
+using Content.Shared.Chemistry.Components; // Starlight: Achievements
 
 namespace Content.Shared.Chemistry.Events;
 
@@ -41,3 +42,16 @@ public sealed class SelfBeforeInjectEvent(EntityUid user, EntityUid usedInjector
 [ByRefEvent]
 public sealed class TargetBeforeInjectEvent(EntityUid user, EntityUid usedInjector, EntityUid target, string? overrideMessage = null)
     : BeforeInjectTargetEvent(user, usedInjector, target, overrideMessage);
+// Starlight start: Achievements
+/// <summary>
+/// Raised on the target after an injector successfully transfers solution into it.
+/// </summary>
+public sealed class SuccessfulInjectEvent(EntityUid user, EntityUid usedInjector, EntityUid target, Solution transferredSolution)
+    : EntityEventArgs
+{
+    public readonly EntityUid EntityUsingInjector = user;
+    public readonly EntityUid UsedInjector = usedInjector;
+    public readonly EntityUid TargetGettingInjected = target;
+    public readonly Solution TransferredSolution = transferredSolution;
+}
+// Starlight end: Achievements

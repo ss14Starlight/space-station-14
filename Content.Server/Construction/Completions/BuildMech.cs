@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Starlight.Achievement; //Starlight: Achievements
 using Content.Server.Atmos.Components;
 using Content.Server.Mech.Systems;
 using Content.Shared.Construction;
@@ -47,7 +48,12 @@ public sealed partial class BuildMech : IGraphAction
         var entChangeEv = new ConstructionChangeEntityEvent(newMech, uid);
         entityManager.EventBus.RaiseLocalEvent(uid, entChangeEv);
         entityManager.EventBus.RaiseLocalEvent(newMech, entChangeEv, broadcast: true);
+        // Starlignt start: Achievements
+        if (userUid is { } user && MechPrototype == "MechDurand")
+            entityManager.EntitySysManager.GetEntitySystem<AchievementSystem>().QueueUnlockAchievement(user, "a_weapon_to_surpass_you_know");
+
         entityManager.QueueDeleteEntity(uid);
+        // Starlight end: Achievements
     }
 
     private void TryTransferContainerContents(EntityUid uid, IEntityManager entityManager, string sourceContainerID, ContainerSlot targetSlot)
