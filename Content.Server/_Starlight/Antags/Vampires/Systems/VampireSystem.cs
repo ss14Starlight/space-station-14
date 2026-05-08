@@ -535,8 +535,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         var enabled = vamp.TotalBlood >= vac.BloodToUnlock &&
-             (vac.RequiredClass == null || ValidateVampireClass(owner, vamp, vac.RequiredClass)) &&
-             (!vac.RequiresFullPower || vamp.FullPower);
+             (vac.RequiredClass == null || ValidateVampireClass(owner, vamp, vac.RequiredClass));
 
         _actions.SetEnabled(action.AsNullable(), enabled);
     }

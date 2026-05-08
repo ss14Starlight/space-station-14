@@ -19,6 +19,7 @@ using Content.Shared.Ghost;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Maps;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
@@ -151,6 +152,7 @@ public sealed class HemomancerSystem : SharedHemomancerSystem
         {
             var oldClaws = active.SpawnedClaws.Value;
             active.SpawnedClaws = null;
+            RemComp<UnremoveableComponent>(oldClaws);
             EntityManager.DeleteEntity(oldClaws);
         }
 
@@ -164,7 +166,6 @@ public sealed class HemomancerSystem : SharedHemomancerSystem
         var coords = Transform(uid).Coordinates;
         var claws = EntityManager.SpawnEntity("VampiricClawsItem", coords);
         active.SpawnedClaws = claws;
-        Dirty(uid, active);
 
         if (TryComp<VampireComponent>(uid, out var vampire))
         {
@@ -172,7 +173,20 @@ public sealed class HemomancerSystem : SharedHemomancerSystem
             Dirty(uid, vampire);
         }
 
-        _hands.TryPickupAnyHand(uid, claws);
+        if (!_hands.TryPickupAnyHand(uid, claws, checkActionBlocker: false, animate: false))
+        {
+            active.SpawnedClaws = null;
+
+            if (vampire != null && vampire.SpawnedClaws == claws)
+            {
+                vampire.SpawnedClaws = null;
+                Dirty(uid, vampire);
+            }
+
+            RemComp<UnremoveableComponent>(claws);
+            EntityManager.DeleteEntity(claws);
+            return;
+        }
 
         if (TryComp<WieldableComponent>(claws, out var wieldable) && _hands.IsHolding(uid, claws, out _))
             _wieldable.TryWield(claws, wieldable, uid);

@@ -332,6 +332,12 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
         if (!HasComp<GargantuaComponent>(uid))
             return;
 
+        if (HasComp<ActiveVampireDemonicGraspComponent>(uid))
+        {
+            args.Handled = true;
+            return;
+        }
+
         var xform = Transform(uid);
         if (xform.GridUid is not { } gridUid)
             return;
@@ -347,6 +353,8 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
         if (!_vampire.CheckAndConsumeBloodCost(uid, comp, actionEntity))
             return;
 
+        args.Handled = true;
+
         // Check if combat mode is active for pulling
         var shouldPull = TryComp<CombatModeComponent>(uid, out var combat) && combat.IsInCombatMode;
 
@@ -357,15 +365,6 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
         var tileInterval = args.ProjectileSpeed > 0f
             ? TimeSpan.FromSeconds(1f / args.ProjectileSpeed)
             : args.TileInterval;
-        var endCoords = xform.Coordinates.Offset(direction * maxTiles);
-
-        RaiseNetworkEvent(new VampireDemonicGraspVisualEvent(
-            GetNetEntity(uid),
-            GetNetCoordinates(xform.Coordinates),
-            GetNetCoordinates(endCoords),
-            args.ProjectileSpeed,
-            tileInterval,
-            args.EffectPrototype));
 
         var active = EnsureComp<ActiveVampireDemonicGraspComponent>(uid);
         active.StartCoordinates = xform.Coordinates;
@@ -379,8 +378,6 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
         active.EffectPrototype = args.EffectPrototype;
         active.ImmobilizedEffectPrototype = args.ImmobilizedEffectPrototype;
         active.NextTileTime = _timing.CurTime + tileInterval;
-
-        args.Handled = true;
     }
 
     private void ProcessActiveDemonicGrasps(TimeSpan now)
@@ -431,6 +428,7 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
                 && physics.Hard
                 && (physics.CollisionLayer & (int) CollisionGroup.Impassable) != 0)
             {
+                EntityManager.SpawnAttachedTo(active.EffectPrototype, tileCoords);
                 return true;
             }
         }
@@ -470,6 +468,7 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
             return true;
         }
 
+        EntityManager.SpawnAttachedTo(active.EffectPrototype, tileCoords);
         return false;
     }
 

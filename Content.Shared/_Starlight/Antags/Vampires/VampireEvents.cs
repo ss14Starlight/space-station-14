@@ -744,28 +744,4 @@ public sealed partial class VampireChargeActionEvent : WorldTargetActionEvent
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Effects/Footsteps/largethud.ogg");
 }
 
-/// <summary>
-/// Event for syncing demonic grasp projectile visuals
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class VampireDemonicGraspVisualEvent : EntityEventArgs
-{
-    public NetEntity Source { get; }
-    public NetCoordinates Start { get; }
-    public NetCoordinates Target { get; }
-    public float Speed { get; }
-    public TimeSpan TileInterval { get; }
-    public EntProtoId Prototype { get; }
-
-    public VampireDemonicGraspVisualEvent(NetEntity source, NetCoordinates start, NetCoordinates target, float speed, TimeSpan tileInterval, EntProtoId prototype)
-    {
-        Source = source;
-        Start = start;
-        Target = target;
-        Speed = speed;
-        TileInterval = tileInterval;
-        Prototype = prototype;
-    }
-}
-
 #endregion

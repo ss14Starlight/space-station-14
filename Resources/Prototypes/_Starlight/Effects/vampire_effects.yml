@@ -305,7 +305,7 @@
       state: demonic_grasp
       drawdepth: Effects
     - type: TimedDespawn
-      lifetime: 2.0
+      lifetime: 1.39
     - type: Physics
       canCollide: false
     - type: Transform

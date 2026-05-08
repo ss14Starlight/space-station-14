@@ -25,7 +25,7 @@
   parent: BaseAction
   id: ActionVampireGlare
   name: Glare(Free)
-  description: Paralyze and mute nearby targets, dealing stamina damage over time.
+  description: Stare down nearby targets, dealing stamina damage. Targets in front are paralyzed, muted, and take extra stamina damage over time.
   components:
     - type: Action
       useDelay: 60
@@ -72,7 +72,7 @@
   parent: BaseAction
   id: ActionVampireRejuvenateI
   name: Rejuvenate(Free)
-  description: Instantly remove stuns and recover 100 stamina damage.
+  description: Instantly remove stuns and knockdown, and reset your stamina damage.
   components:
     - type: Action
       useDelay: 35
@@ -93,7 +93,7 @@
   parent: BaseAction
   id: ActionVampireRejuvenateII
   name: Rejuvenate(Free)
-  description: Instantly remove stuns and recover 100 stamina, plus purge harmful reagents (10u) and heal 20 brute, 20 burn, 20 toxin, and 30 oxy loss.
+  description: Remove stuns and knockdown, reset stamina, purge up to 10u of poisons, then heal 20 brute, 20 burn, 20 poison, and 25 asphyxiation over time.
   components:
     - type: Action
       useDelay: 30
@@ -146,7 +146,7 @@
   parent: BaseAction
   id: ActionVampireHemomancerClaws
   name: Vampiric Claws
-  description: Create undroppable claws of blood. Each hit grants +5 blood. Has 15 swings. Use in hand to dispel.
+  description: Create undroppable blood claws. Successful blood-draining hits grant 5 blood, the claws dissipate after 15 draining hits or when used in hand.
   components:
     - type: Action
       useDelay: 30
@@ -209,7 +209,7 @@
   parent: BaseAction
   id: ActionVampireBloodBarrier
   name: Blood Barrier
-  description: Creates 3 blood barriers at the target location. Vampires can pass through them.
+  description: Creates up to 3 blood barriers in a line at the target location. You can pass through your own barriers.
   components:
     - type: Action
       useDelay: 60
@@ -253,7 +253,7 @@
   parent: BaseAction
   id: ActionVampireBloodEruption
   name: Blood Eruption(100)
-  description: Cause any blood within 4 tiles of you to erupt, dealing 50 brute damage to anyone standing on it.
+  description: Erupt blood puddles within 10 tiles of you, dealing 50 blunt damage to targets on those puddles.
   components:
     - type: Action
       useDelay: 90
@@ -278,7 +278,7 @@
   parent: BaseAction
   id: ActionVampireBloodBringersRite
   name: Blood Bringers Rite(Toggle)
-  description: When toggled, everyone around you begins to bleed profusely. You will drain their blood and rejuvenate yourself with it.
+  description: Requires full power. Toggle a 4-tile aura that costs 10 blood every 2 seconds, drains nearby victims, damages them, and heals you.
   components:
     - type: Action
       useDelay: 1 # Toggle
@@ -309,7 +309,7 @@
   parent: BaseAction
   id: ActionVampireCloakOfDarkness
   name: Cloak of Darkness(Toggle)
-  description: Toggle invisibility and speed boost that scales with darkness. More effective in dark areas, less effective in bright light.
+  description: Toggle stealth that is strongest in darkness and weakest in bright light. Nearby mobs reveal you.
   components:
     - type: Action
       useDelay: 2 # Toggle
@@ -353,7 +353,7 @@
   parent: BaseAction
   id: ActionVampireShadowAnchor
   name: Shadow Anchor (20)
-  description: First use, place a shadow anchor beacon (lasts 2 min). Second use while it exists instantly return to it and consume the beacon.
+  description: First use channels for 5 seconds to place a shadow anchor at your feet. Use again to return to it, or return automatically after 2 minutes.
   components:
     - type: Action
       useDelay: 60 # 1min
@@ -432,7 +432,7 @@
   parent: BaseAction
   id: ActionVampireExtinguish
   name: Extinguish Lights (0)
-  description: Destroy all light sources within 3 tiles, gaining 5 blood per light.
+  description: Destroy powered lights within 4 tiles.
   components:
     - type: Action
       useDelay: 20
@@ -539,7 +539,7 @@
   parent: BaseAction
   id: ActionVampireSubspaceSwap
   name: Subspace Swap(30)
-  description: Select a target within 7 tiles to swap positions, slowing them for 4 seconds.
+  description: Swap positions with a living target within 7 tiles, slowing them for 4 seconds and afflicting them with hysteria for 15 seconds.
   components:
     - type: Action
       useDelay: 30
@@ -577,7 +577,7 @@
   parent: BaseAction
   id: ActionVampireDecoy
   name: Decoy(30)
-  description: Leave behind a fragile duplicate that blinds attackers when harmed while you vanish into invisibility.
+  description: Leave behind a fragile duplicate for 6 seconds and become invisible for 6 seconds. The decoy flashes attackers when harmed.
   components:
     - type: Action
       useDelay: 40
@@ -619,7 +619,7 @@
   parent: BaseAction
   id: ActionVampireBloodBond
   name: Blood Bond(Toggle)
-  description: Toggle a blood tether to nearby thralls, redistributing damage between you at the cost of 2.5 blood per second.
+  description: Toggle blood tethers to visible thralls within 3 tiles, splitting incoming damage across the linked group at the cost of 2.5 blood per second.
   components:
     - type: Action
       useDelay: 2 # Toggle
@@ -643,7 +643,7 @@
   parent: BaseAction
   id: ActionVampireMassHysteria
   name: Mass Hysteria(70)
-  description: Flood every nearby mind (except thralls) with terror, flashing them and cursing them with hallucinations for 30 seconds.
+  description: Requires full power. Flood nearby non-thrall humanoids within 8 tiles with terror, flashing them for 3 seconds and causing hysteria for 30 seconds.
   components:
     - type: Action
       useDelay: 180 # 3min
@@ -710,7 +710,7 @@
   parent: BaseAction
   id: ActionVampireBloodRush
   name: Blood Rush(30)
-  description: For 10 seconds - double your movement speed.
+  description: For 10 seconds, increase your movement speed by 50%.
   components:
     - type: Action
       useDelay: 30
@@ -732,7 +732,7 @@
   parent: BaseAction
   id: ActionVampireSeismicStomp
   name: Seismic Stomp(30)
-  description: Slam the ground, knocking down and throwing all creatures within 3 tiles away from you. Destroys floor tiles.
+  description: Slam the ground, knocking down and throwing all creatures within 3 tiles away from you.
   components:
     - type: Action
       useDelay: 60
@@ -801,7 +801,7 @@
   parent: BaseAction
   id: ActionVampireCharge
   name: Charge(30)
-  description: Charge in the target direction until hitting an obstacle or void. Creatures take 60 brute and are thrown 5 tiles. Structures take 150 damage. Walls are destroyed.
+  description: Requires full power. Charge in the target direction until hitting an obstacle or void. Creatures take 60 brute and are thrown 5 tiles; structures take 150 damage and walls are destroyed.
   components:
     - type: Action
       useDelay: 30

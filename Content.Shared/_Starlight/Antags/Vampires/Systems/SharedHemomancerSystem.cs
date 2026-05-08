@@ -13,7 +13,7 @@ public abstract class SharedHemomancerSystem : EntitySystem
     }
 
     protected virtual bool TryUseHemomancerClaws(EntityUid uid, EntityUid actionEntity)
-        => true;
+        => false;
 
     protected virtual void OnPredictedHemomancerClaws(EntityUid uid, ActiveVampireHemomancerClawsComponent active, VampireHemomancerClawsActionEvent args)
     {
