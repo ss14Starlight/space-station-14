@@ -2018,6 +2018,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: ArmorModPainkiller # 25% Bloodloss Resist
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: Patron

@@ -22,6 +22,9 @@
       0: Alive
       219: Critical
       220: Dead
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-highlander.ogg
 
 - type: entity
   parent: MobStatusEffectBase
@@ -199,6 +202,9 @@
   name: <<B52 Status Effect>>
   components:
   - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Heat: 1.0
     explosionCoefficient: 0.75
   - type: SoundStatusEffect
     startSound:
@@ -212,12 +218,25 @@
   - type: ArmorModStatusEffect
     modifiers:
       coefficients:
-        Slash: 0.75
-        Blunt: 0.75
-        Piercing: 0.75
+        Slash: 0.85
+        Blunt: 0.85
+        Piercing: 0.85
   - type: SoundStatusEffect
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-gin.ogg
+
+- type: entity
+  parent: ArmorModDwarfGeneric
+  id: ArmorModPainkiller
+  name: <<Painkiller Status Effect>>
+  components:
+  - type: ArmorModStatusEffect
+    modifiers:
+      coefficients:
+        Bloodloss: 0.0 # the pain has been killed
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-rum.ogg
 
 - type: entity
   parent: ArmorModDwarfGeneric

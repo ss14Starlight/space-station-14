@@ -116,6 +116,7 @@
     state: empty
   metamorphicMaxFillLevels: 1
   metamorphicFillBaseName: full-
+  metamorphicChangeColor: false
   metabolisms:
     Drink:
       effects:
