@@ -725,7 +725,7 @@
   - type: StationEvent
     globalAnnouncement: false # Starlight
     weight: 8
-    reoccurrenceDelay: 15 # Starlight. IPCs exist now too, and ion storms are kinda funny/mostly harmless, so they can be more frequent.
+    reoccurrenceDelay: 20
     duration: 1
   - type: IonStormRule
 

@@ -368,4 +368,15 @@
     - id: KudzuGrowth
     - id: PowerGridCheck
     - id: VentClog
-    - id: IonStorm # I think it's funny to have the double chance to get this.
+    - id: IonStormPlus # I think it's funny to have the double chance to get this.
+
+- type: entity
+  parent: BaseGameRule
+  id: IonStormPlus # It's a more frequent Ion Storm, for ShitStation.
+  components:
+  - type: StationEvent
+    globalAnnouncement: false # Starlight
+    weight: 10
+    reoccurrenceDelay: 15
+    duration: 1
+  - type: IonStormRule
