@@ -1,62 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Saltern) Doubled the size of Atmos.
-    type: Add
-  id: 404441
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Second burn chamber for Atmos.
-    type: Add
-  id: 404442
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Electrolyzer for Atmos.
-    type: Add
-  id: 404443
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Added two publicly accessible portable scrubbers outside of engineering.
-    type: Add
-  id: 404444
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Added a desktop computer to the Library.
-    type: Add
-  id: 404445
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Security now has a fax machine.
-    type: Add
-  id: 404446
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) NanoMed Security added to Brigmedic.
-    type: Add
-  id: 404447
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Added a second medical bed to Brigmedic.
-    type: Add
-  id: 404448
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
   - message: (Saltern) Donut vending machine added to Security.
     type: Add
   id: 404449
@@ -2799,4 +2743,60 @@ Entries:
   id: 404840
   time: '2026-05-08T05:49:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4368
+- author: Kirb, honeyed-lemons
+  changes:
+  - message: Quick Construct, use a construction material in your hand to access a radial menu of common blueprints.
+    type: Add
+  id: 404841
+  time: '2026-05-08T09:32:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4351
+- author: Unknown
+  changes:
+  - message: Completely changed most of the backgrounds wordings as to encourage RP rather than grant Meta-Info.
+    type: Tweak
+  id: 404842
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: Added "USSP" Background.
+    type: Add
+  id: 404843
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: Added "Paradox Clone" Background.
+    type: Add
+  id: 404844
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: Added "Corporate Frontier" Background.
+    type: Add
+  id: 404845
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: Added "Outer Fringe" Background.
+    type: Add
+  id: 404846
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: You can now have 2 Backgrounds.
+    type: Add
+  id: 404847
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Huaqas, Centronias
+  changes:
+  - message: Go Fish! A new card game can be found in the Games Clean Fun Vendor!
+    type: Add
+  id: 404848
+  time: '2026-05-08T10:23:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4348
 Order: -1
