@@ -175,7 +175,7 @@ public sealed class AbductorConsoleBui : BoundUserInterface
             SendMessage(new AbductorAttractBuiMsg());
             Close();
         };
-        _window.TargetLabel.SetMessage(msg, new Type[1] { typeof(ColorTag) });
+        _window.TargetLabel.SetMessage(msg, [typeof(ColorTag)]);
 
         // experiment tab
 

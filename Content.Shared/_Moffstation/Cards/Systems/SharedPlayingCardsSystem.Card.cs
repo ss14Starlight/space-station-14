@@ -18,7 +18,7 @@ namespace Content.Shared._Moffstation.Cards.Systems;
 public abstract partial class SharedPlayingCardsSystem
 {
     /// The ID of the entity prototype which is used to construct cards dynamically.
-    private static readonly EntProtoId<PlayingCardComponent> BaseCardEntId = "PlayingCardDynamic";
+    private static readonly EntProtoId<PlayingCardComponent> _baseCardEntId = "PlayingCardDynamic"; // Starlight Edit: Fix Naming rule Violation
 
     private void InitCard()
     {
@@ -32,14 +32,12 @@ public abstract partial class SharedPlayingCardsSystem
         SubscribeLocalEvent<PlayingCardComponent, GetVerbsEvent<UtilityVerb>>(OnGetUtilityVerbs);
     }
 
-
     /// Sets the card's facing to <paramref name="faceDown"/>, or flips it if <paramref name="faceDown"/> is null.
-    public void Flip(Entity<PlayingCardComponent> card, bool? faceDown)
-    {
+    // Starlight edit Start: Expression body
+    public void Flip(Entity<PlayingCardComponent> card, bool? faceDown) =>
         // Delegate to internal method, discarding its return value.
         SetFacingOrFlip(card, faceDown);
-    }
-
+    // Starlight edit End: Expression body
 
     private void OnStartup(Entity<PlayingCardComponent> entity, ref ComponentStartup args)
     {
@@ -160,7 +158,6 @@ public abstract partial class SharedPlayingCardsSystem
         return (hand, hand);
     }
 
-
     /// These interactions are invoked when left-clicking on a card with a held item.
     private void OnInteractUsing(Entity<PlayingCardComponent> targetCard, ref InteractUsingEvent args)
     {
@@ -193,7 +190,7 @@ public abstract partial class SharedPlayingCardsSystem
             targetCard => verbs.Add(CardPickup, () => JoinIntoHandIfHeldOtherwiseDeck(usedCard, targetCard, user)),
             // Deck: draw a card from the target deck, creating a new hand with this card.
             targetDeck => verbs.Add(PlayingCardDeckComponent.Verbs.CardPickup,
-                () => JoinIntoHandIfHeldOtherwiseDeck(usedCard, targetDeck, TopCardRange, user)),
+                () => JoinIntoHandIfHeldOtherwiseDeck(usedCard, targetDeck, _topCardRange, user)),
             // Hand: open the picker UI. It'll handle combining cards and stuff.
             targetHand => verbs.Add(PlayingCardHandComponent.Verbs.CardPickup,
                 () => OpenPickerUi(targetHand, usedCard, user))
@@ -218,7 +215,7 @@ public abstract partial class SharedPlayingCardsSystem
             // Stack: draw one card from the used deck, placing it on the target card, creating a new deck.
             usedDeck => verbs.Add(DeckPutDown,
                 PlacementVerbPriority,
-                () => JoinIntoHandIfHeldOtherwiseDeck(targetCard, usedDeck, TopCardRange, user)),
+                () => JoinIntoHandIfHeldOtherwiseDeck(targetCard, usedDeck, _topCardRange, user)),
             // Hand: pick a card from the used hand to combine with the target card.
             usedHand => verbs.Add(HandPutDown, PlacementVerbPriority, () => OpenPickerUi(usedHand, targetCard, user))
         );
@@ -226,7 +223,6 @@ public abstract partial class SharedPlayingCardsSystem
         // Flip
         args.Verbs.Add(PlayingCardComponent.Verbs.Flip, () => Flip(targetCard, faceDown: null));
     }
-
 
     /// Sets the card's facing to <paramref name="faceDown"/>, or flips it if <paramref name="faceDown"/> is null.
     /// Returns whether or not the card's facing was changed.
@@ -253,7 +249,7 @@ public abstract partial class SharedPlayingCardsSystem
 
     /// Like <see cref="Flip"/>, but for a <see cref="PlayingCardInDeck"/>, which may be an unspawned card in a
     /// deck.
-    private bool FlipCardInDeck(PlayingCardInDeck card, bool? faceDown = null) => card switch
+    private bool FlipCardInDeck(PlayingCardInDeck card, bool? faceDown) => card switch
     {
         PlayingCardInDeckNetEnt(var cardNetEnt) =>
             NetEntToCard(cardNetEnt) is { } cardEnt && SetFacingOrFlip(cardEnt, faceDown),
@@ -269,7 +265,7 @@ public abstract partial class SharedPlayingCardsSystem
         EntityCoordinates coords
     )
     {
-        var spawned = PredictedSpawnAtPosition(BaseCardEntId, coords);
+        var spawned = PredictedSpawnAtPosition(_baseCardEntId, coords); // Starlight Edit: Fix Naming rule Violation
         var cardComp = Comp<PlayingCardComponent>(spawned);
         TryApplyCardData(ref cardComp, data);
         Dirty(spawned, cardComp);
@@ -298,21 +294,23 @@ public abstract partial class SharedPlayingCardsSystem
     {
         PlayingCardSuitPrototype? suit = null;
         if (!_proto.Resolve(data.Deck, out var deck) ||
-            data.Suit is { } suitId &&
-            !_proto.Resolve(suitId, out suit))
+            (data.Suit is { } suitId && // Starlight Edit: Parenthases
+            !_proto.Resolve(suitId, out suit)))
             return false;
 
         comp.ObverseLayers = AssembleObverseSpriteLayers(data.Card, deck, suit);
         comp.ReverseLayers = deck.CommonReverseLayers.WithUnlessAlreadySpecified(rsiPath: deck.RsiPath.ToString());
         comp.FaceDown = data.Card.FaceDown;
 
-        (string, object)[] locArgs = suit is null
-            ? [("card", Loc.GetString(deck.CardValueLoc, ("card", data.Card.Id.ToLowerInvariant())))]
-            :
-            [
-                ("suit", Loc.GetString(deck.SuitLoc, ("suit", suit.ID.ToLowerInvariant()))),
-                ("card", Loc.GetString(deck.CardValueLoc, ("card", data.Card.Id.ToLowerInvariant()))),
-            ];
+        var idAndCard = new List<(string, object)>
+        {
+        ("id", data.Card.Id.ToLowerInvariant()),
+        ("card", Loc.GetString(deck.CardValueLoc, ("card", data.Card.Id.ToLowerInvariant()))),
+        };
+        var idCardAndSuit = suit is null
+        ? idAndCard
+        : idAndCard.Concat([("suit", Loc.GetString(deck.SuitLoc, ("suit", suit.ID.ToLowerInvariant())))]);
+        var locArgs = idCardAndSuit.ToArray();
 
         comp.ObverseName = Loc.GetString(data.Card.NameLoc ?? deck.CardNameLoc, locArgs);
         comp.Description = Loc.GetString(deck.CardDescLoc, locArgs);

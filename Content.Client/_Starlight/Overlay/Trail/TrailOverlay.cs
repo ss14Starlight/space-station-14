@@ -3,7 +3,6 @@ using Content.Client._Starlight.Shaders;
 using Content.Client._Starlight.Trail;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
-using Robust.Shared.GameObjects;
 
 namespace Content.Client._Starlight.Overlay.Trail;
 
@@ -66,7 +65,7 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
             var size = viewport.Size;
 
             var tail = points[0];
-            var head = points[points.Count - 1];
+            var head = points[^1];
             var tailLocal = viewport.WorldToLocal(tail);
             var headLocal = viewport.WorldToLocal(head);
             var tailUV = new Vector2(tailLocal.X / size.X, 1f - (tailLocal.Y / size.Y));
@@ -129,7 +128,7 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
         // Semicircle cap at the head
         if (points.Count >= 2)
         {
-            var head = points[points.Count - 1];
+            var head = points[^1];
             var trailLen = 0f;
             for (var j = 0; j < points.Count - 1; j++)
                 trailLen += (points[j + 1] - points[j]).Length();
@@ -137,16 +136,16 @@ public sealed class TrailOverlay : Robust.Client.Graphics.Overlay
             var radius = MathF.Min(halfWidth, trailLen);
             if (radius > 0.01f)
             {
-                var lastDir = points[points.Count - 1] - points[points.Count - 2];
+                var lastDir = points[^1] - points[^2];
                 var lastLen = lastDir.Length();
                 var fwd = lastLen > 0.001f ? lastDir / lastLen : Vector2.UnitX;
 
-                const int capSegs = 8;
+                const int CapSegs = 8;
                 var startAngle = MathF.Atan2(fwd.Y, fwd.X) - (MathF.PI * 0.5f);
-                for (var s = 0; s < capSegs; s++)
+                for (var s = 0; s < CapSegs; s++)
                 {
-                    var a0 = startAngle + (s / (float)capSegs * MathF.PI);
-                    var a1 = startAngle + ((s + 1) / (float)capSegs * MathF.PI);
+                    var a0 = startAngle + (s / (float)CapSegs * MathF.PI);
+                    var a1 = startAngle + ((s + 1) / (float)CapSegs * MathF.PI);
                     _verts.Add(head);
                     _verts.Add(head + (new Vector2(MathF.Cos(a0), MathF.Sin(a0)) * radius));
                     _verts.Add(head + (new Vector2(MathF.Cos(a1), MathF.Sin(a1)) * radius));
