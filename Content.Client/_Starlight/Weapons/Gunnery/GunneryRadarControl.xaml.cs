@@ -4,17 +4,15 @@ using Content.Shared._Starlight.Weapons.Gunnery;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
-using JetBrains.Annotations;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
-using Robust.Shared.Collections;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Utility;
+
 namespace Content.Client._Starlight.Weapons.Gunnery;
 
 /// <summary>
@@ -291,7 +289,7 @@ public sealed class GunneryRadarControl : BaseShuttleControl
                 continue;
 
             var originScreen = Vector2.Transform(originMapCoords.Position, blipWorldToView);
-            var endScreen    = Vector2.Transform(originMapCoords.Position + laser.Direction * laser.Length, blipWorldToView);
+            var endScreen    = Vector2.Transform(originMapCoords.Position + (laser.Direction * laser.Length), blipWorldToView);
             handle.DrawLine(originScreen, endScreen, laser.Color.WithAlpha(0.9f));
             handle.DrawLine(originScreen, endScreen, laser.Color.WithAlpha(0.35f));
         }
@@ -358,7 +356,7 @@ public sealed class GunneryRadarControl : BaseShuttleControl
             const string GuidanceText = "GUIDANCE ACTIVE — hold LMB to steer";
             var dim = handle.GetDimensions(Font, GuidanceText, 1f);
             handle.DrawString(Font,
-                new Vector2(PixelWidth / 2f - dim.X / 2f, PixelHeight - dim.Y - 8f),
+                new Vector2((PixelWidth / 2f) - (dim.X / 2f), PixelHeight - dim.Y - 8f),
                 GuidanceText, Color.LimeGreen);
         }
     }
@@ -401,9 +399,7 @@ public sealed class GunneryRadarControl : BaseShuttleControl
     }
 
     private Vector2 InverseScalePosition(Vector2 value)
-    {
-        return (value - MidPointVector) / MinimapScale;
-    }
+        => (value - MidPointVector) / MinimapScale;
 
     /// <summary>
     /// Checks whether the given control-local click position is close enough to a
