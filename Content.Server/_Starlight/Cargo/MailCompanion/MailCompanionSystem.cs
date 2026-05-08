@@ -13,12 +13,12 @@ namespace Content.Server._Starlight.Cargo.MailCompanion;
 
 public sealed class MailCompanionSystem : EntitySystem
 {
-    private static readonly TimeSpan _sensorDataTimeout = TimeSpan.FromSeconds(10);
-
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [DataField]
+    private static readonly TimeSpan _sensorDataTimeout = TimeSpan.FromSeconds(10);
 
     public override void Initialize()
     {

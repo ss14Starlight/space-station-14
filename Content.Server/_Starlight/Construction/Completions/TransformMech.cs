@@ -17,12 +17,14 @@ namespace Content.Server.Construction.Completions;
 [UsedImplicitly, DataDefinition]
 public sealed partial class TransformMech : IGraphAction
 {
-    private static ISawmill s_log => IoCManager.Resolve<ILogManager>().GetSawmill("construction.mech");
+    [Dependency] private readonly ILogManager _logManager = default!;
+
+    private ISawmill _log { get => field ??= _logManager.GetSawmill("construction.mech"); } = default!;
 
     [DataField(required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string MechPrototype = string.Empty;
 
-    [DataField("batteryContainer")]
+    [DataField]
     public string BatteryContainer = "mech-battery-slot";
 
     [DataField]
@@ -39,34 +41,34 @@ public sealed partial class TransformMech : IGraphAction
     {
         if (!entityManager.TryGetComponent(uid, out ContainerManagerComponent? containerManager))
         {
-            s_log.Warning($"Mech construct entity {uid} did not have a container manager! Aborting build mech action.");
+            _log.Warning($"Mech construct entity {uid} did not have a container manager! Aborting build mech action.");
             return;
         }
 
         var containerSystem = entityManager.EntitySysManager.GetEntitySystem<ContainerSystem>();
         var mechSys = entityManager.System<MechSystem>();
 
-        if(!containerSystem.TryGetContainer(uid, BatteryContainer, out var batteryContainer, containerManager))
+        if (!containerSystem.TryGetContainer(uid, BatteryContainer, out var batteryContainer, containerManager))
         {
-            s_log.Warning($"Mech construct entity {uid} did not have the specified '{BatteryContainer}' container! Aborting build mech action.");
+            _log.Warning($"Mech construct entity {uid} did not have the specified '{BatteryContainer}' container! Aborting build mech action.");
             return;
         }
 
-        if(!containerSystem.TryGetContainer(uid, GasTankContainer, out var gasTankContainer, containerManager))
+        if (!containerSystem.TryGetContainer(uid, GasTankContainer, out var gasTankContainer, containerManager))
         {
-            s_log.Warning($"Mech construct entity {uid} did not have the specified '{GasTankContainer}' container! Aborting build mech action.");
+            _log.Warning($"Mech construct entity {uid} did not have the specified '{GasTankContainer}' container! Aborting build mech action.");
             return;
         }
 
-        if(!containerSystem.TryGetContainer(uid, EquipmentContainer, out var equipmentContainer, containerManager))
+        if (!containerSystem.TryGetContainer(uid, EquipmentContainer, out var equipmentContainer, containerManager))
         {
-            s_log.Warning($"Mech construct entity {uid} did not have the specified '{EquipmentContainer}' container! Aborting build mech action.");
+            _log.Warning($"Mech construct entity {uid} did not have the specified '{EquipmentContainer}' container! Aborting build mech action.");
             return;
         }
 
-        if(!containerSystem.TryGetContainer(uid, PilotContainer, out var pilotContainer, containerManager))
+        if (!containerSystem.TryGetContainer(uid, PilotContainer, out var pilotContainer, containerManager))
         {
-            s_log.Warning($"Mech construct entity {uid} did not have the specified '{PilotContainer}' container! Aborting build mech action.");
+            _log.Warning($"Mech construct entity {uid} did not have the specified '{PilotContainer}' container! Aborting build mech action.");
             return;
         }
         var transform = entityManager.GetComponent<TransformComponent>(uid);
@@ -79,7 +81,7 @@ public sealed partial class TransformMech : IGraphAction
                 var cell = batteryContainer.ContainedEntities[0];
                 if (!entityManager.TryGetComponent<BatteryComponent>(cell, out var batteryComponent))
                 {
-                    s_log.Warning($"Mech construct entity {uid} had an invalid entity in container \"{BatteryContainer}\"! Aborting build mech action.");
+                    _log.Warning($"Mech construct entity {uid} had an invalid entity in container \"{BatteryContainer}\"! Aborting build mech action.");
                     return;
                 }
 

@@ -10,7 +10,7 @@ namespace Content.Server._Starlight.Administration.Systems.Commands;
 public sealed class ClientCompCommand : ToolshedCommand
 {
     private static readonly string _addedPrefix = "Attempted to add component with the name";
-    private static readonly string _addedSuffix = "to the entity all clients.";
+    private static readonly string _addedSuffix = "to the entity on all clients.";
     private static readonly string _writePrefix = "Attempted to vvwrite";
     private static readonly string _writeInfix = "into";
     private static readonly string _writeSuffix = "on all clients.";

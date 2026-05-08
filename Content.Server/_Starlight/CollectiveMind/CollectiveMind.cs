@@ -11,6 +11,7 @@ namespace Content.Server.CollectiveMind;
 public sealed partial class CollectiveMind : SharedCollectiveMindSystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+    private const string CorruptionAlphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public override void Initialize()
     {
         base.Initialize();
@@ -70,19 +71,15 @@ public sealed partial class CollectiveMind : SharedCollectiveMindSystem
     }
 
     private string CorruptRandom()
-    {
         //const string punctuation = "\"\\`~!@#$%^&*()_+-={}[]|\\;:<>,.?/";
-        const string Ran = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        return Ran[_random.NextByte((byte)Ran.Length)].ToString();
-    }
+        => CorruptionAlphabet[_random.NextByte((byte)CorruptionAlphabet.Length)].ToString();
 
     private string CorruptRandomMultiple(int repeats)
     {
-        string corrupted = "";
-        for (int repeat = 0; repeat < repeats; repeat++)
+        var corrupted = "";
+        for (var repeat = 0; repeat < repeats; repeat++)
         {
-            const string Ran = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            corrupted += Ran[_random.NextByte((byte)Ran.Length)].ToString();
+            return CorruptionAlphabet[_random.NextByte((byte)CorruptionAlphabet.Length)].ToString();
         }
         return corrupted;
     }

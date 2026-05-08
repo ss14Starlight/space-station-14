@@ -58,8 +58,14 @@ public sealed class AllowShuttleCallsCommand : LocalizedEntityCommands
             PrintStatus(shell, newState);
 
             var makeAnnouncement = true;
-            if (args.Length >= 2 && bool.TryParse(args[1], out var parsedAnnounce))
-                makeAnnouncement = parsedAnnounce;
+            if (args.Length >= 2 && !string.IsNullOrWhiteSpace(args[1]))
+            {
+                if (!bool.TryParse(args[1], out makeAnnouncement))
+                {
+                    shell.WriteError("Optional: whether to announce the change (true/false). Defaults to true.");
+                    return;
+                }
+            }
 
             if (makeAnnouncement)
                 Announce(shell, args, newState);

@@ -77,6 +77,9 @@ public sealed class AccessClothingBlockerSystem : EntitySystem
         }
     }
 
-    private async Task PopupWithDelay(string message, EntityUid uid, PopupType popupType)
-        => _popup.PopupEntity(message, uid, popupType);
+    private Task PopupWithDelay(string message, EntityUid uid, PopupType popupType)
+    {
+        _popup.PopupEntity(message, uid, popupType);
+        return Task.CompletedTask;
+    }
 }

@@ -35,7 +35,6 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Parallax;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
@@ -63,7 +62,6 @@ using Content.Shared._Starlight.Language;
 using Content.Server.Weather;
 using Content.Shared.Shuttles.Components;
 using Content.Shared._Starlight.Shadekin;
-using Content.Shared.Body.Components;
 
 namespace Content.Server._Starlight.CosmicCult;
 
@@ -778,6 +776,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         RemComp<PressureImmunityComponent>(uid);
         RemComp<TemperatureImmunityComponent>(uid);
         RemComp<CosmicStarMarkComponent>(uid);
+        RemComp<CosmicCultExamineComponent>(uid);
         _damage.SetDamageContainerID(uid.Owner, uid.Comp.StoredDamageContainer);
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-deconverted-fluff"), Color.FromHex("#4cabb3"), _deconvertSound);
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-deconverted-briefing"), Color.FromHex("#cae8e8"), null);

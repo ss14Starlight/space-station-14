@@ -46,8 +46,10 @@ public sealed class PipeDockingSystem : EntitySystem
         if (!DockPipes)
             return;
 
-        var dockA = ev.DockA.Owner;
-        var dockB = ev.DockB.Owner;
+        if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
+            return;
+
+        _dockConnectionsChecked.Clear();
 
         var dockAConnecting = GetDockConnectingPipe(dockA).Where(ShouldDockPipeType).ToList();
         var dockBConnecting = GetDockConnectingPipe(dockB).Where(ShouldDockPipeType).ToList();
@@ -116,8 +118,8 @@ public sealed class PipeDockingSystem : EntitySystem
 
     private void OnUndocked(UndockEvent ev)
     {
-        var dockA = ev.DockA.Owner;
-        var dockB = ev.DockB.Owner;
+        if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
+            return;
 
         var pipesA = GetDockConnectingPipe(dockA);
         var pipesB = GetDockConnectingPipe(dockB);
@@ -249,11 +251,11 @@ public sealed class PipeDockingSystem : EntitySystem
     {
         if (!DockPipes)
             return;
-        if (!_dockConnectionsChecked.Add(pipeEntity))
-            return;
 
         var xform = Transform(pipeEntity);
         if (xform.GridUid == null || !xform.Anchored)
+            return;
+        if (!_dockConnectionsChecked.Add(pipeEntity))
             return;
         if (!EntityManager.TryGetComponent<MapGridComponent>(xform.GridUid.Value, out var grid))
             return;
@@ -300,6 +302,19 @@ public sealed class PipeDockingSystem : EntitySystem
                 pipeNode.RemoveAlwaysReachable(node);
             }
         }
+    }
+
+    private bool TryGetDockEntity(DockingComponent component, out EntityUid uid)
+    {
+        var query = EntityQueryEnumerator<DockingComponent>();
+        while (query.MoveNext(out uid, out var docking))
+        {
+            if (ReferenceEquals(docking, component))
+                return true;
+        }
+
+        uid = default;
+        return false;
     }
 
     private bool IsAnchored(EntityUid uid)

@@ -30,7 +30,7 @@ public sealed class CrewManifestCommand : ToolshedCommand
     private MindSystem? _mind;
     private ContainerSystem? _container;
     private InventorySystem? _inventory;
-    private static readonly string _assistantPrototypeId = "Assistant";
+    private static readonly ProtoId<JobPrototype> _assistantPrototypeId = "Assistant";
 
     [CommandImplementation("addto")]
     public EntityUid AddToManifest([PipedArgument] EntityUid uid, EntityUid station, bool useIdJob, bool addRole)

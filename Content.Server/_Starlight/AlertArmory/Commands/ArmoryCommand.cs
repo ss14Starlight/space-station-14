@@ -104,7 +104,8 @@ public sealed class ArmoryCommand : IConsoleCommand
     {
         foreach (var station in stationSys.GetStations())
         {
-            var comp = entMan.GetComponent<AlertArmoryStationComponent>(station);
+            if (!entMan.TryGetComponent<AlertArmoryStationComponent>(station, out var comp))
+                continue;
             var stationName = entMan.GetComponent<MetaDataComponent>(station).EntityName;
             shell.WriteLine($"Available armories for station {stationName}:");
 
@@ -138,7 +139,8 @@ public sealed class ArmoryCommand : IConsoleCommand
 
         foreach (var station in targetStations)
         {
-            var comp = entMan.GetComponent<AlertArmoryStationComponent>(station);
+            if (!entMan.TryGetComponent<AlertArmoryStationComponent>(station, out var comp))
+                continue;
 
             if (!ValidateAndCheckTransit(shell, entMan, comp, args[2].ToLowerInvariant(), out var armoryKey))
                 return;
@@ -165,7 +167,8 @@ public sealed class ArmoryCommand : IConsoleCommand
 
         foreach (var station in targetStations)
         {
-            var comp = entMan.GetComponent<AlertArmoryStationComponent>(station);
+            if (!entMan.TryGetComponent<AlertArmoryStationComponent>(station, out var comp))
+                continue;
 
             if (!ValidateAndCheckTransit(shell, entMan, comp, args[2].ToLowerInvariant(), out var armoryKey))
                 return;

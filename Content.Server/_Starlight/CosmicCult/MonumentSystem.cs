@@ -193,7 +193,7 @@ public sealed class MonumentSystem : SharedMonumentSystem
     }
 
     public void PhaseOutMonument(Entity<MonumentComponent> ent)
-        => ent.Comp.PhaseOutTimer = _timing.CurTime + TimeSpan.FromSeconds(0.45);
+        => ent.Comp.PhaseOutTimer = _timing.CurTime + ent.Comp.PhaseOutDelay;
 
     public void UpdateMonumentProgress(Entity<MonumentComponent> ent, Entity<CosmicCultRuleComponent> cult)
         => ent.Comp.CurrentProgress = ent.Comp.TotalEntropy + (cult.Comp.TotalCult * _config.GetCVar(StarlightCCVars.CosmicCultistEntropyValue));

@@ -50,7 +50,9 @@ public sealed class CosmicSiphonSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("cosmicability-siphon-full"), uid, uid);
             return;
         }
-        if (HasComp<ActiveNPCComponent>(args.Target) || (TryComp<MobStateComponent>(args.Target, out var state) && state.CurrentState != MobState.Alive))
+        if (HasComp<ActiveNPCComponent>(args.Target) ||
+            !TryComp<MobStateComponent>(args.Target, out var state) ||
+            state.CurrentState != MobState.Alive)
         {
             _popup.PopupEntity(Loc.GetString("cosmicability-siphon-fail", ("target", Identity.Entity(args.Target, EntityManager))), uid, uid);
             return;
