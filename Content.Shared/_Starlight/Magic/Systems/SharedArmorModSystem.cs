@@ -5,6 +5,7 @@ using Content.Shared.Silicons.Borgs;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Stunnable;
+using Content.Shared.Explosion;
 
 using Content.Shared.StatusEffectNew;
 
@@ -28,11 +29,18 @@ public sealed class SharedArmorModSystem : EntitySystem
 
         SubscribeLocalEvent<ArmorModComponent, DamageModifyEvent>(OnDamageModify);
         SubscribeLocalEvent<ArmorModComponent, StaminaModifyEvent>(OnStaminaDamageModify);
+        SubscribeLocalEvent<ArmorModComponent, GetExplosionResistanceEvent>(OnGetExplosionResistance);
 
         // unimplemented since this just handles the special case of borg gear being organized differently from clothing (not applicable to these intrinsic mods):
         // SubscribeLocalEvent<ArmorModComponent, DamageModifyEvent>(OnBorgDamageModify);
 
         SubscribeLocalEvent<ArmorModComponent, KnockDownAttemptEvent>(OnKnockdownAttempt);
+    }
+
+    private void OnGetExplosionResistance(EntityUid uid, ArmorModComponent component, ref GetExplosionResistanceEvent args)
+    {
+        foreach (var modifier in component.modifiers)
+            args.DamageCoefficient *= modifier.Value.ExplosionResistance;
     }
 
     private void ArmorModStatusEffectApplied(EntityUid ent, ArmorModStatusEffectComponent effect, ref StatusEffectAppliedEvent args)
@@ -41,7 +49,7 @@ public sealed class SharedArmorModSystem : EntitySystem
             component = AddComp<ArmorModComponent>(args.Target);
 
         if (!component.modifiers.ContainsKey(ent))
-            component.modifiers[ent] = new ArmorMod(effect.Modifiers, effect.IgnoreKnockdown, effect.StaminaDamageModifier);
+            component.modifiers[ent] = new ArmorMod(effect.Modifiers, effect.IgnoreKnockdown, effect.StaminaDamageModifier, effect.ExplosionResistance);
     }
 
     private void ArmorModStatusEffectRemoved(EntityUid ent, ArmorModStatusEffectComponent effect, ref StatusEffectRemovedEvent args)

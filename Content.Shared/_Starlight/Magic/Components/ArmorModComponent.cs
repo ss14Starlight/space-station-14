@@ -26,12 +26,14 @@ public partial class ArmorMod
     public DamageModifierSet Modifiers = default!;
     public bool IgnoreKnockdown = false;
     public float StaminaDamageModifier = 1.0f;
+    public float ExplosionResistance = 1.0f;
 
-    public ArmorMod(DamageModifierSet modifiers, bool ignoreKnockdown, float staminaDamageModifier)
+    public ArmorMod(DamageModifierSet modifiers, bool ignoreKnockdown, float staminaDamageModifier, float explosionResistance)
     {
         // i am a brainlet, and this is my deep copy constructor
         Modifiers = new DamageModifierSet(modifiers);
         IgnoreKnockdown = ignoreKnockdown;
         StaminaDamageModifier = staminaDamageModifier;
+        ExplosionResistance = explosionResistance;
     }
 };

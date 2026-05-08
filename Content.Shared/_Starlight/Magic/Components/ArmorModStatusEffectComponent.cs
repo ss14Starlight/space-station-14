@@ -30,6 +30,12 @@ public sealed partial class ArmorModStatusEffectComponent : Component
     /// </summary>
     [DataField("staminaModifier")]
     public float StaminaDamageModifier = 1.0f;
+
+    /// <summary>
+    /// Explosion resistance
+    /// </summary>
+    [DataField("explosionResistance")]
+    public float ExplosionResistance = 1.0f;
 }
 
-// will attempt to process normal CoefficientQueryEvents from ArmorComponent.cs, regardless of slot flags
+// will process normal CoefficientQueryEvents from ArmorComponent.cs
