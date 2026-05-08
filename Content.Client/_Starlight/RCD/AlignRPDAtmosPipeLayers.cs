@@ -1,8 +1,6 @@
 using Content.Client.Gameplay;
 using Content.Client.Hands.Systems;
 using Content.Shared.Atmos.Components;
-using Content.Shared._Starlight.Atmos.EntitySystems;
-using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
 using Content.Shared.RCD;
 using Content.Shared.RCD.Components;
@@ -53,9 +51,9 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
     private const float GuideOffset = 0.125f;
 
     private EntityCoordinates _mouseCoordsRaw = default;
-    private static AtmosPipeLayer _currentLayer = AtmosPipeLayer.Primary;
-    private static EntityUid? _lastLayerSyncEntity = null;
-    private static AtmosPipeLayer? _lastLayerSynced = null;
+    private AtmosPipeLayer _currentLayer = AtmosPipeLayer.Primary;
+    private EntityUid? _lastLayerSyncEntity = null;
+    private AtmosPipeLayer? _lastLayerSynced = null;
     private Color _guideColor = new(0, 0, 0.5785f);
 
     public AlignRPDAtmosPipeLayers(PlacementManager pMan) : base(pMan)
@@ -94,8 +92,8 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
         {
             var gridRotation = _transformSystem.GetWorldRotation(gridUid.Value);
             var worldPosition = _mapSystem.LocalToWorld(gridUid.Value, grid, MouseCoords.Position);
-            var direction = (_eyeManager.CurrentEye.Rotation + gridRotation + Math.PI / 2).GetCardinalDir();
-            var multi = (direction == Direction.North || direction == Direction.South) ? -1f : 1f;
+            var direction = (_eyeManager.CurrentEye.Rotation + gridRotation + (Math.PI / 2)).GetCardinalDir();
+            var multi = (direction is Direction.North or Direction.South) ? -1f : 1f;
 
             // Center circle (Primary layer)
             args.WorldHandle.DrawCircle(worldPosition, GuideRadius, _guideColor);
@@ -132,13 +130,13 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
 
         if (pManager.CurrentPermission!.IsTile)
         {
-            MouseCoords = new EntityCoordinates(MouseCoords.EntityId, new Vector2(CurrentTile.X + tileSize / 2,
-                CurrentTile.Y + tileSize / 2));
+            MouseCoords = new EntityCoordinates(MouseCoords.EntityId, new Vector2(CurrentTile.X + (tileSize / 2),
+                CurrentTile.Y + (tileSize / 2)));
         }
         else
         {
-            MouseCoords = new EntityCoordinates(MouseCoords.EntityId, new Vector2(CurrentTile.X + tileSize / 2 + pManager.PlacementOffset.X,
-                CurrentTile.Y + tileSize / 2 + pManager.PlacementOffset.Y));
+            MouseCoords = new EntityCoordinates(MouseCoords.EntityId, new Vector2(CurrentTile.X + (tileSize / 2) + pManager.PlacementOffset.X,
+                CurrentTile.Y + (tileSize / 2) + pManager.PlacementOffset.Y));
         }
 
         var player = _playerManager.LocalSession?.AttachedEntity;
@@ -188,18 +186,18 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
                 if (mouseCoordsDiff.Length() > MouseDeadzoneRadius / 2)
                 {
                     var gridRotation = _transformSystem.GetWorldRotation(gridId.Value);
-                    var direction = (new Angle(mouseCoordsDiff) + _eyeManager.CurrentEye.Rotation + gridRotation + Math.PI / 2).GetCardinalDir();
+                    var direction = (new Angle(mouseCoordsDiff) + _eyeManager.CurrentEye.Rotation + gridRotation + (Math.PI / 2)).GetCardinalDir();
 
                     // RPD uses 5-layer free placement (inner + outer rings), RPLD uses 3-layer (inner ring only).
                     if (!rcd.IsRPLD && mouseCoordsDiff.Length() > MouseDeadzoneRadius)
                     {
                         // Outer ring
-                        newLayer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Quaternary : AtmosPipeLayer.Quinary;
+                        newLayer = (direction is Direction.North or Direction.East) ? AtmosPipeLayer.Quaternary : AtmosPipeLayer.Quinary;
                     }
                     else
                     {
                         // Inner ring
-                        newLayer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Secondary : AtmosPipeLayer.Tertiary;
+                        newLayer = (direction is Direction.North or Direction.East) ? AtmosPipeLayer.Secondary : AtmosPipeLayer.Tertiary;
                     }
                 }
                 break;

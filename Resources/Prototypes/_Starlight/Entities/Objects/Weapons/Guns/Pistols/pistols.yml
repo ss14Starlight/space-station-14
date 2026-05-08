@@ -132,6 +132,14 @@
         gun_magazine:
           name: Magazine
           startingItem: MagazinePistolSPGolden
+          insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+          priority: 2
+          whitelist:
+            tags:
+              - MagazinePistol
+              - MagazinePistolHighCapacitySP
+          whitelistFailPopup: gun-magazine-whitelist-fail
 
 - type: entity
   name: golden mk 58
