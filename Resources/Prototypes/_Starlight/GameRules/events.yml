@@ -270,7 +270,7 @@
 
 - type: entity
   parent: BaseGameRule
-  id: XenoborgScoutDerelictSpawn
+  id: XenoBorgScoutDerelictSpawn
   components:
     - type: StationEvent
       globalAnnouncement: false # Starlight
