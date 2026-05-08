@@ -1,8 +1,6 @@
-using Content.Shared._Starlight.Abstract.Extensions;
-using Content.Shared._Starlight.Medical.Body.Systems;
-using Content.Shared.Administration.Logs;
+﻿using Content.Shared.Administration.Logs;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Organ;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
@@ -26,6 +24,11 @@ using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
+#region Starlight
+using Content.Shared.Body.Organ;
+using Content.Shared._Starlight.Abstract.Extensions;
+using Content.Shared._Starlight.Medical.Body.Systems;
+#endregion
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
@@ -59,7 +62,7 @@ public sealed partial class IngestionSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     // Body Component Dependencies
-    [Dependency] private readonly SharedBodySystem _body = default!; // Starlight
+    [Dependency] private readonly SharedBodySystem _body = default!; // Starlight Edit: BodySystem -> SharedBodySystem
     [Dependency] private readonly ReactiveSystem _reaction = default!;
     [Dependency] private readonly StomachSystem _stomach = default!;
 
@@ -180,7 +183,7 @@ public sealed partial class IngestionSystem : EntitySystem
     /// <param name="food">Entity being eaten</param>
     /// <param name="stomachs">Stomachs available to digest</param>
     /// <param name="popup">Should we also display popup text if it exists?</param>
-    public bool IsDigestibleBy(EntityUid food, List<Entity<StomachComponent, OrganComponent>> stomachs, out bool popup) // Starlight
+    public bool IsDigestibleBy(EntityUid food, List<Entity<StomachComponent, OrganComponent>> stomachs, out bool popup) // Starlight Edit: Added OrganComponent
     {
         popup = false;
         var ev = new IsDigestibleEvent();
@@ -197,7 +200,7 @@ public sealed partial class IngestionSystem : EntitySystem
             foreach (var ent in stomachs)
             {
                 // We need one stomach that can digest our special food.
-                if (_whitelistSystem.IsWhitelistPass(ent.Comp1.SpecialDigestible, food)) // Starlight
+                if (_whitelistSystem.IsWhitelistPass(ent.Comp1.SpecialDigestible, food)) // Starlight Edit: Comp -> Comp1
                     return true;
             }
         }
@@ -206,9 +209,11 @@ public sealed partial class IngestionSystem : EntitySystem
             foreach (var ent in stomachs)
             {
                 // We need one stomach that can digest normal food.
-                if (ent.Comp1.SpecialDigestible == null // Starlight
-                    || !ent.Comp1.IsSpecialDigestibleExclusive // Starlight
+                // Starlight edit Start: Comp -> Comp1
+                if (ent.Comp1.SpecialDigestible == null
+                    || !ent.Comp1.IsSpecialDigestibleExclusive
                     || _whitelistSystem.IsWhitelistPass(ent.Comp1.SpecialDigestible, food))
+                // Starlight edit End: Comp -> Comp1
                     return true;
             }
         }
@@ -223,7 +228,7 @@ public sealed partial class IngestionSystem : EntitySystem
     /// </summary>
     /// <param name="food">Entity being eaten</param>
     /// <param name="stomach">Stomachs that is attempting to digest.</param>
-    public bool IsDigestibleBy(EntityUid food, Entity<StomachComponent, OrganComponent> stomach) // Starlight
+    public bool IsDigestibleBy(EntityUid food, Entity<StomachComponent, OrganComponent> stomach) // Starlight Edit: Added OrganComponent
     {
         var ev = new IsDigestibleEvent();
         RaiseLocalEvent(food, ref ev);
@@ -235,9 +240,9 @@ public sealed partial class IngestionSystem : EntitySystem
             return true;
 
         if (ev.SpecialDigestion)
-            return _whitelistSystem.IsWhitelistPass(stomach.Comp1.SpecialDigestible, food); // Starlight
+            return _whitelistSystem.IsWhitelistPass(stomach.Comp1.SpecialDigestible, food); // Starlight Edit: Comp -> Comp1
 
-        if (stomach.Comp1.SpecialDigestible == null || !stomach.Comp1.IsSpecialDigestibleExclusive || _whitelistSystem.IsWhitelistPass(stomach.Comp1.SpecialDigestible, food)) // Starlight
+        if (stomach.Comp1.SpecialDigestible == null || !stomach.Comp1.IsSpecialDigestibleExclusive || _whitelistSystem.IsWhitelistPass(stomach.Comp1.SpecialDigestible, food)) // Starlight Edit: Comp -> Comp1
             return true;
 
         return false;
@@ -323,7 +328,7 @@ public sealed partial class IngestionSystem : EntitySystem
         foreach (var ent in stomachs)
         {
             var owner = ent.Owner;
-            if (!_solutionContainer.ResolveSolution(owner, StomachSystem.DefaultSolutionName, ref ent.Comp1.Solution, out var stomachSol)) // Starlight
+            if (!_solutionContainer.ResolveSolution(owner, StomachSystem.DefaultSolutionName, ref ent.Comp1.Solution, out var stomachSol)) // Starlight Edit: Comp -> Comp1
                 continue;
 
             if (stomachSol.AvailableVolume <= highestAvailable)

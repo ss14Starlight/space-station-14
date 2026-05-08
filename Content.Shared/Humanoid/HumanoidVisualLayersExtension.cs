@@ -1,6 +1,7 @@
+#region Starlight
 using Content.Shared._Starlight.Medical.Body.Part;
-using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+#endregion
 
 namespace Content.Shared.Humanoid
 {
@@ -74,7 +75,7 @@ namespace Content.Shared.Humanoid
             }
         }
 
-        // Starlight start
+        // Starlight Start: Reverted NuBody
         public static HumanoidVisualLayers? ToHumanoidLayers(this BodyPartComponent part)
         {
             switch (part.PartType)
@@ -141,6 +142,6 @@ namespace Content.Shared.Humanoid
 
             return null;
         }
-        // Starlight end
+        // Starlight End: Reverted NuBody
     }
 }
