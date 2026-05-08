@@ -1,21 +1,22 @@
-using Content.Shared._Starlight.Language.Components.Translators;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared._Starlight.Language.Components;
 
 /// <summary>
 ///     An implant that allows the implantee to speak and understand other languages.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class TranslatorImplantComponent : BaseTranslatorComponent
 {
     /// <summary>
     ///     Whether the implantee knows the languages necessary to speak using this implant.
     /// </summary>
-    public bool SpokenRequirementSatisfied = false;
+    [DataField, AutoNetworkedField]
+    public bool SpokenRequirementSatisfied;
 
     /// <summary>
     ///     Whether the implantee knows the languages necessary to understand translations of this implant.
     /// </summary>
-    public bool UnderstoodRequirementSatisfied = false;
+    [DataField, AutoNetworkedField]
+    public bool UnderstoodRequirementSatisfied;
 }

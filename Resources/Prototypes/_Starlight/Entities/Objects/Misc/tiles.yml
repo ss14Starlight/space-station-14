@@ -599,3 +599,20 @@
       - FloorMetalGreen
   - type: Stack
     stackType: FloorTileMetalGreen
+
+# Terrain
+- type: entity
+  id: FloorTileItemAstroDirt
+  parent: FloorTileItemBase
+  name: astro-dirt tile
+  description: Fake dirt. It's easily removable, but completely devoid of the nutrients that plants crave.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_astro_dirt
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorAstroDirt
+  - type: Stack
+    stackType: FloorTileAstroDirt

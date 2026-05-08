@@ -37,6 +37,7 @@
             ServiceWorker: [ 2, 2 ]
             Performer: [ 2, 2 ]
             Reporter: [ 2, 3 ]
+            Lawyer: [ 1, 1 ]
             #engineering (8)
             AtmosphericTechnician: [ 4, 4 ]
             StationEngineer: [ 4, 4 ]

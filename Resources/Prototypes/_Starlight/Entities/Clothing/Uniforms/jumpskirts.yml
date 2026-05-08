@@ -186,6 +186,61 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/clown_distinguished.rsi
 
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtLawyerService
+  name: green lawyer suitskirt
+  description: A flashy green suitskirt worn by lawyers and show-offs.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/service_lawyer.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/service_lawyer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtLawyerGray
+  name: gray lawyer suitskirt
+  description: A plain gray suitskirt worn by lawyers and show-offs.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyergray.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyergray.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtLawyerPink
+  name: pink lawyer suitskirt
+  description: A bright pink suitskirt worn by lawyers that you should call.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyerpink.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyerpink.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtLawyerBlackTwo
+  name: show lawyer suitskirt
+  description: A stylish black piece worn by lawyers and show people.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyerblacktwo.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyerblacktwo.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtLawyerBad
+  name: bad lawyer's suitskirt
+  description: A bold suitskirt. Perfect for finding your one way, going wherever you want to go.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyerbad.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/lawyerbad.rsi
+
 # Fashion-O-Mat-Start, not obtainable any other way, unless mapped
 # All CC/Synd stuff in Fashion-O-Mat is replica
 
@@ -533,6 +588,17 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtBartenderBlackAlt
+  name: fancy bartender uniform
+  description: A nice and tidy uniform, with leggings to match.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/alt_blackbartender.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/alt_blackbartender.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformElegantLadyDress
   name: elegant lady's dress
   description: "A voluminous white blouse with a black skirt-perfect for highlighting your beauty, darling!"
@@ -552,6 +618,28 @@
       sprite: _Starlight/Clothing/Uniforms/Jumpskirt/pastry.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Uniforms/Jumpskirt/pastry.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTimelessSkirt
+  name: timeless skirt
+  description: A luxury skirt with a timeless design.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/timeless_skirt.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpskirt/timeless_skirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtPunkSkirt
+  name: punk skirt and socks
+  description: Slightly metal, very goth.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/punk_skirt_socks.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/punk_skirt_socks.rsi
 
 # Fashion-O-Mat-End
 

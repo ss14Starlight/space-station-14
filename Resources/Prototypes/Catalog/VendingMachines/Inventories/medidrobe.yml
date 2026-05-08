@@ -4,6 +4,8 @@
     # Essential Medical Clothing
     ClothingEyesHudMedical: 2
     ClothingEyesEyepatchHudMedical: 2
+    ClothingBeltMedical: 4 # Starlight
+    ClothingBeltMedicalEMT: 2 # Starlight
     # Optional Clothing
     ClothingHeadHatBeretMedic: 2
     ClothingHeadNurseHat: 2

@@ -40,10 +40,12 @@
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
+  - MedicalGloves
   - MedicalBackpack
   - MedicalDoctorOuterClothing
   - MedicalShoes
   - MedicalDoctorPDA
+  - MedicalEyewear
   - SurvivalMedical
   - Trinkets
   - Scarves
@@ -69,14 +71,15 @@
 - type: roleLoadout
   id: JobIAA
   groups:
-  - LawyerNeck
-  - LawyerJumpsuit
+  - IAANeck
+  - IAAJumpsuit
   - CommonBackpack
-  - LawyerShoes
+  - IAAShoes
   - Trinkets
   - Scarves
   - Pins
   - LuxuryPens
+  - LawyerJobTrinkets
   - Survival
   - GroupSpeciesBreathTool
 
@@ -97,7 +100,7 @@
   - Scarves
   - Pins
   - Pens
-  - SurvivalSecurity
+  - SurvivalExtended # Starlight
   - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
@@ -154,7 +157,7 @@
   - SecurityShoes
   - SecurityNonLethalWeapon
   - SecuritySidearm
-  - SurvivalSecurity
+  - SurvivalExtended
   - Trinkets
   - Scarves
   - Pins
@@ -166,6 +169,7 @@
   id: JobDutyOfficer
   groups:
   - DutyOfficerHead
+  - SecurityMask # Starlight
   - DutyOfficerJumpsuit
   - SecurityBackpack
   - SecurityEyewear
@@ -175,7 +179,7 @@
   - SecurityShoes
   - SecurityGloves
   - SecurityNonLethalWeapon
-  - SurvivalSecurity
+  - SurvivalExtended
   - Trinkets
   - Scarves
   - Pins

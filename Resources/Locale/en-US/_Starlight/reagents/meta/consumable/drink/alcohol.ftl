@@ -4,3 +4,5 @@ reagent-name-dragan-special = Dragan special
 reagent-desc-dragan-special = 'You is incompetence!!!'
 reagent-name-highlander = the highlander
 reagent-desc-highlander = There can be only one. A dwarf who drinks this brew will remain steadfast until the moment before death.
+reagent-name-the-last-call = The Last Call
+reagent-desc-the-last-call = There are no good or bad choices. Only consequences.

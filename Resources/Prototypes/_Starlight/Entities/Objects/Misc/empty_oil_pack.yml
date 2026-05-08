@@ -1,0 +1,33 @@
+- type: entity
+  name: Empty Oil Pack
+  parent: BaseItem
+  description: Contains nothing.
+  id: EmptyOilPack
+  suffix: Full
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Specific/Medical/medical.rsi
+      state: oilpack-empty
+    - type: Stack
+      stackType: EmptyOilPack
+      count: 10
+    - type: StackPrice
+      price: 10
+
+- type: entity
+  parent: EmptyOilPack
+  id: EmptyOilPack5
+  suffix: 5
+  components:
+    - type: Stack
+      stackType: EmptyOilPack
+      count: 5
+
+- type: entity
+  parent: EmptyOilPack
+  id: EmptyOilPack1
+  suffix: Single
+  components:
+    - type: Stack
+      stackType: EmptyOilPack
+      count: 1

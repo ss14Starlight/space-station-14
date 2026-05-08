@@ -1,0 +1,82 @@
+- type: startingGear
+  id: MedTakTeamLead
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCasualRed
+    back: ClothingBackpackMedTakFilledLeader
+    shoes: ClothingShoesBootsCombatFilled
+    outerClothing: ClothingOuterHardsuitMedTak
+    id: MedTakTeamLeadPDA
+    eyes: ClothingEyesVisorMedTak
+    ears: ClothingHeadsetAltMedTak
+    mask: ClothingMaskGasSecurity
+    belt: ClothingBeltMedTakFilledRifle
+    gloves: ClothingHandsGlovesCombat
+    suitstorage: WeaponRifleMedTak
+    pocket1: PenPackMedTak
+    pocket2: DoubleEmergencyOxygenTankFilled
+
+- type: startingGear
+  id: MedTakMedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCasualRed
+    back: ClothingBackpackMedTakFilledMedic
+    shoes: ClothingShoesBootsCombatFilled
+    outerClothing: ClothingOuterHardsuitMedTak
+    id: MedTakMedicPDA
+    eyes: ClothingEyesVisorMedTak
+    ears: ClothingHeadsetAltMedTak
+    mask: ClothingMaskGasSecurity
+    belt: ClothingBeltMedTakFilledMedic
+    gloves: ClothingHandsGlovesCombat
+    pocket1: PenPackMedTak
+    pocket2: DoubleEmergencyOxygenTankFilled
+
+- type: startingGear
+  id: MedTakPilot
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCasualRed
+    back: ClothingBackpackMedTakFilledBasic
+    shoes: ClothingShoesBootsCombatFilled
+    outerClothing: ClothingOuterHardsuitMedTak
+    id: MedTakPilotPDA
+    eyes: ClothingEyesVisorMedTak
+    ears: ClothingHeadsetAltMedTak
+    mask: ClothingMaskGasSecurity
+    belt: ClothingBeltMedTakFilledPilot
+    gloves: ClothingHandsGlovesCombat
+    pocket1: PenPackMedTak
+    pocket2: DoubleEmergencyOxygenTankFilled
+
+- type: startingGear
+  id: MedTakSecurityRifle
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCasualRed
+    back: ClothingBackpackMedTakFilledRifle
+    shoes: ClothingShoesBootsCombatFilled
+    outerClothing: ClothingOuterHardsuitMedTak
+    id: MedTakSecurityPDA
+    eyes: ClothingEyesVisorMedTak
+    ears: ClothingHeadsetAltMedTak
+    mask: ClothingMaskGasSecurity
+    belt: ClothingBeltMedTakFilledRifle
+    gloves: ClothingHandsGlovesCombat
+    suitstorage: WeaponRifleMedTak
+    pocket1: PenPackMedTak
+    pocket2: DoubleEmergencyOxygenTankFilled
+
+- type: startingGear
+  id: MedTakSecurityHeavy
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCasualRed
+    back: ClothingBackpackMedTakFilledHeavy
+    shoes: ClothingShoesBootsCombatFilled
+    outerClothing: ClothingOuterHardsuitMedTak
+    id: MedTakSecurityPDA
+    eyes: ClothingEyesVisorMedTak
+    ears: ClothingHeadsetAltMedTak
+    mask: ClothingMaskGasSecurity
+    belt: ClothingBeltMedTakFilledHeavy
+    gloves: ClothingHandsGlovesCombat
+    suitstorage: WeaponLightMachineGunMedTak
+    pocket1: PenPackMedTak
+    pocket2: DoubleEmergencyOxygenTankFilled

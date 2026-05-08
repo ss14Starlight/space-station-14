@@ -13,7 +13,7 @@
 				</BoxContainer>
 
 				<!--RPM gauge-->
-				<PanelContainer Name="Speed" StyleClasses="Inset">
+				<PanelContainer Name="Speed" StyleClasses="BackgroundPanelDark">
 					<BoxContainer Orientation="Vertical">
 						<Label Text="{Loc 'gas-turbine-ui-rpm'}" StyleClasses="LabelKeyText" />
 						<GridContainer Name="RPMMeter" Columns="1" VerticalExpand="True" Margin="0 0 0 0">
@@ -25,7 +25,7 @@
 				<!--Right panel-->
 				<BoxContainer Name="RightPanel" Orientation="Vertical" Margin="5 5 5 5" SeparationOverride="10" HorizontalExpand="True" VerticalExpand="True">
 					<!--Indicator Lights-->
-					<PanelContainer Name="Indicators" StyleClasses="Inset">
+					<PanelContainer Name="Indicators" StyleClasses="BackgroundPanelDark">
 						<GridContainer Columns="4">
 							<Label Text="{Loc 'gas-turbine-ui-overspeed'}" StyleClasses="StatusFieldTitle" />
 							<TextureRect Name="TurbineOverspeed" SetSize="16 16" HorizontalAlignment="Left" HorizontalExpand="True"/>
@@ -41,7 +41,7 @@
 					<!--Inputs-->
 					<controls:StripeBack VerticalExpand="True">
 						<BoxContainer Name="Inputs" Orientation="Vertical" Margin="5 5 5 5" SeparationOverride="10" HorizontalExpand="True" >
-							<PanelContainer StyleClasses="Inset" Margin="0 0 0 8">
+							<PanelContainer StyleClasses="BackgroundPanelDark" Margin="0 0 0 8">
 								<BoxContainer Orientation="Vertical">
 									<BoxContainer Orientation="Horizontal">
 										<Label Text="{Loc gas-turbine-ui-flow-rate}" StyleClasses="StatusFieldTitle" HorizontalExpand="True" />
@@ -56,7 +56,7 @@
 								</BoxContainer>
 							</PanelContainer>
 
-							<PanelContainer StyleClasses="Inset" Margin="0 0 0 8">
+							<PanelContainer StyleClasses="BackgroundPanelDark" Margin="0 0 0 8">
 								<BoxContainer Orientation="Vertical" >
 									<BoxContainer Orientation="Horizontal">
 										<Label Text="{Loc gas-turbine-ui-stator-load}" StyleClasses="StatusFieldTitle" HorizontalExpand="True" />
@@ -79,7 +79,7 @@
 
 			<!--Blade / Stator info-->
 			<BoxContainer Name="PartInfo" Orientation="Horizontal" VerticalExpand="True" Margin="4">
-				<PanelContainer StyleClasses="Inset" HorizontalExpand="True" Margin="4">
+				<PanelContainer StyleClasses="BackgroundPanelDark" HorizontalExpand="True" Margin="4">
 					<TextureRect Name="BladeTexture" SetSize="128 128" TextureScale="2 2" HorizontalAlignment="Center" VerticalAlignment="Center"
 									 TexturePath="/Textures/_FarHorizons/Interface/FissionGenerator/gas_turbine_parts/blade.png"/>
 
@@ -98,7 +98,7 @@
 					</BoxContainer>
 				</PanelContainer>
 
-				<PanelContainer StyleClasses="Inset" HorizontalExpand="True" Margin="4">
+				<PanelContainer StyleClasses="BackgroundPanelDark" HorizontalExpand="True" Margin="4">
 					<TextureRect Name="StatorTexture" SetSize="128 128" TextureScale="2 2" HorizontalAlignment="Center"
 								 TexturePath="/Textures/_FarHorizons/Interface/FissionGenerator/gas_turbine_parts/stator.png"/>
 

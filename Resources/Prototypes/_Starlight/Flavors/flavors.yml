@@ -47,3 +47,8 @@
   id: highlander
   flavorType: Base
   description: flavor-complex-highlander
+  
+- type: flavor
+  id: thelastcall
+  flavorType: Complex
+  description: flavor-complex-the-last-call

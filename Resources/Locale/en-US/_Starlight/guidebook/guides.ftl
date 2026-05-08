@@ -22,6 +22,8 @@ guide-entry-sl-rule-11 = Rule 11
 guide-entry-sl-rule-12 = Rule 12
 guide-entry-sl-rule-13 = Rule 13
 guide-entry-sl-rule-14 = Rule 14
+guide-entry-sl-rule-15 = Rule 15
+guide-entry-sl-rule-16 = Rule 16
 guide-entry-sl-metashield = Metashield
 
 guide-entry-sl-silicon-1 = Sil.Rule 1
@@ -147,6 +149,7 @@ guide-entry-sl-service-sop-intro = Service
 guide-entry-sl-service-sop-genproc-intro = General Procedures
 guide-entry-sl-service-sop-staff-intro = Staff Procedures
 guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
+guide-entry-sl-service-sop-lawyer = Lawyer
 
 guide-entry-abductors = Abductors
 guide-entry-terror-spiders = Terror Spiders
