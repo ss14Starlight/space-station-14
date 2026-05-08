@@ -404,7 +404,9 @@
     - type: SalvageMobRestrictions
 
 - type: entity
-  parent: SimpleSpaceMobBase #starlight Nubody will not pass.
+  parent:
+  - SimpleSpaceMobBase
+  # - BaseMobAnimal # Starlight Edit: Revert NuBody
   id: MobSnail
   name: snail
   description: Revolting unless you're french.
@@ -601,7 +603,7 @@
   - type: MovementAlwaysTouching
 
 - type: entity
-  parent: MobSnail #starlight Nubody will not pass.
+  parent: MobSnail # Starlight Edit: Removed BaseMobMothroach
   id: MobSnailMoth
   name: Snoth
   components:
