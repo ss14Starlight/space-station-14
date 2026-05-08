@@ -46,8 +46,8 @@
   - type: MobThresholdsStatusEffect
     thresholds:
       0: Alive
-      159: Critical
-      160: Dead
+      129: Critical
+      130: Dead
 
 - type: entity
   abstract: true

@@ -2968,7 +2968,7 @@
         amount: 0.3
     # starlight - dwarf drink effects
       - !type:ModifyStatusEffect
-        effectProto: MobThresholdsDeathInTheAfternoon # raise crit to 159, lower death to 160
+        effectProto: MobThresholdsDeathInTheAfternoon # raise crit to 129, lower death to 130
         time: 3
         conditions:
         - !type:MetabolizerTypeCondition
