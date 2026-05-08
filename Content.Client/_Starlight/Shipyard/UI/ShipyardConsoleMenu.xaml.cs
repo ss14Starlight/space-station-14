@@ -19,7 +19,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
     public event Action<ButtonEventArgs>? OnOrderApproved;
     private readonly ShipyardConsoleBoundUserInterface _menu;
-    private readonly List<string> _categoryStrings = new();
+    private readonly List<string> _categoryStrings = [];
     private string? _category;
 
     public ShipyardConsoleMenu(ShipyardConsoleBoundUserInterface owner)

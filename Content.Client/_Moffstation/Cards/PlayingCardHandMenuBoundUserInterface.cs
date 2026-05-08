@@ -25,8 +25,8 @@ public sealed class PlayingCardHandMenuBoundUserInterface(
         _menu.OpenOverMouseScreenPosition();
     }
 
-    public override void Update()
-    {
+    // Stalright edit Start: Expression body
+    public override void Update() =>
         _menu?.SetButtons(
             EntMan.System<SharedPlayingCardsSystem>()
                 .GetCards(Owner)
@@ -36,7 +36,7 @@ public sealed class PlayingCardHandMenuBoundUserInterface(
                     ToolTip = card.Comp.Name(),
                 })
         );
-    }
+    // Starlight edit End: Expression body
 
     private void OnPressed(Entity<PlayingCardComponent> card)
     {

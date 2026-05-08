@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "copyright": "Cards, Decks and Hands Sprites were originally from Paradise Station (https://github.com/ParadiseSS13/Paradise) then modified by VictorJob. Boxes are from VictorJob. Nuno version made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub).",
+    "copyright": "State based Copyright.",
     "license": "CC-BY-SA-3.0",
     "size": {
         "x": 32,
@@ -8,73 +8,96 @@
     },
     "states": [
         {
-            "name": "background_red"
+            "name": "empty",
+            "copyright": "Blank sprite"
         },
         {
-            "name": "background_blue"
+            "name": "background_red",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "background_green"
+            "name": "background_blue",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "background_yellow"
+            "name": "background_green",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "box"
+            "name": "background_yellow",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "box_open"
+            "name": "box",
+            "copyright": "Made by VictorJob"
         },
         {
-            "name": "nuno0"
+            "name": "box_open",
+            "copyright": "Made by VictorJob"
         },
         {
-            "name": "nuno1"
+            "name": "nuno0",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "nuno2"
+            "name": "nuno1",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "nuno3"
+            "name": "nuno2",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "nuno4"
+            "name": "nuno3",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "nuno5"
+            "name": "nuno4",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "nuno6"
+            "name": "nuno5",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "nuno7"
+            "name": "nuno6",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "nuno8"
+            "name": "nuno7",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "nuno9"
+            "name": "nuno8",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "nunoplus2"
+            "name": "nuno9",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "nunoreverse"
+            "name": "nunoplus2",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "nunoskip"
+            "name": "nunoreverse",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "plus4"
+            "name": "nunoskip",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "wildcard"
+            "name": "plus4",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "singlecard_down_nuno"
+            "name": "wildcard",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         },
         {
-            "name": "empty"
+            "name": "singlecard_down_nuno",
+            "copyright": "Made by vyas (@agentepanela twitter) and Day-OS. Modified by Huaqas (GitHub)."
         }
     ]
 }

@@ -8,8 +8,8 @@ public sealed class PlayingCardsSystem : SharedPlayingCardsSystem
 {
     [Dependency] private readonly AppearanceSystem _appearance = default!;
 
-    protected override void ForceAppearanceUpdate(Entity<PlayingCardComponent> card)
-    {
+    // Starlight edit Start: Expression body
+    protected override void ForceAppearanceUpdate(Entity<PlayingCardComponent> card) =>
         _appearance.OnChangeData(card, CompOrNull<SpriteComponent>(card));
-    }
+    // Starlight edit End: Expression body
 }

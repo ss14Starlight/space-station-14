@@ -1,4 +1,3 @@
-using Content.Client.Lobby.UI;
 using Content.Shared._Starlight.Shadekin;
 using Robust.Client.GameObjects;
 using Robust.Shared.Map;
@@ -14,9 +13,7 @@ public sealed class ShadegenSystem : EntitySystem
     private readonly HashSet<EntityUid> _updateQueue = new();
 
     public override void Initialize()
-    {
-        base.Initialize();
-    }
+        => base.Initialize();
 
     public override void FrameUpdate(float frameTime)
     {
