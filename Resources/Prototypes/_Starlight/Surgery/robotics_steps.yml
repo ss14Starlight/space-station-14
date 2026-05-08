@@ -1,0 +1,31 @@
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveHandImplantRobot
+  name: Remove Hand Implant
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: ScrewdriverSurgery
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: HandImplant
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveBrainImplantRobot
+  name: Remove Brain Implant
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: ScrewdriverSurgery
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: BrainImplant
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map

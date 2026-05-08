@@ -25,6 +25,7 @@
             Janitor: [ 2, 3 ]
             Chaplain: [ 2, 3 ]
             Librarian: [ 1, 1 ]
+            Lawyer: [ 2, 2 ]
             ServiceWorker: [ 3, 5 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]

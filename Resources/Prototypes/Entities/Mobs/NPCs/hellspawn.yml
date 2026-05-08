@@ -1,9 +1,10 @@
 - type: entity
   name: hellspawn
-  parent: #starlight Nubody will not pass.
+  parent:
   - BaseSimpleMob
   - MobCombat
   - MobBloodstream
+  # - BaseMobAnimal # Starlight Edit: Reverted NuBody
   id: MobHellspawn
   description: An unstoppable force of carnage.
   components:
