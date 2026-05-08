@@ -134,6 +134,9 @@ uplink-banana-esword-desc = A bananium-modified energy sword that slips whoever 
 uplink-mimana-stealthy-name = Stealthy Mimana
 uplink-mimana-stealthy-desc = A mutated mimana that seems to fade into the background. Don't lose it!
 
+uplink-hushpup-ammo-name = Buckshot box (12 gauge)
+uplink-hushpup-ammo-desc = A box of 16 buckshot shotgun shells. Compatible with the Hushpup.
+
 uplink-reinforcement-radio-assault-cyborg-bundle-name = Syndicate Assault Cyborg Teleporter bundle
 uplink-reinforcement-radio-assault-cyborg-bundle-desc = Radio in a syndicate assault cyborg, equipped with a modified L6, a double esword, and basic hacking tools. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're on the Cyborg's good side.
 
