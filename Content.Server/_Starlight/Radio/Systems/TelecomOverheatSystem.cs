@@ -22,7 +22,7 @@ namespace Content.Server.Radio.EntitySystems
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly RadioSystem _radio = default!;
-        private const float HeatPerTilePerSecond = 300f;    
+        private const float HeatPerTilePerSecond = 300f;
         private const float OverheatTemperature = Atmospherics.FireMinimumTemperatureToExist + 25f;
         private const float CooldownTemperature = Atmospherics.T20C + 10f;
 
@@ -202,7 +202,7 @@ namespace Content.Server.Radio.EntitySystems
 
             serverTemperature = mixture.Temperature;
             if (component.Overheated)
-            {   
+            {
                 args.PushMarkup(Loc.GetString("telecom-overheated"));
             }
 
