@@ -60,7 +60,6 @@
             - type: TradeStation
           paths:
             - /Maps/_Starlight/trading_outpost.yml # Starlight Edit, new ATS
-          nameGrid: false # Starlight - honors entityName
 #        mining: !type:GridSpawnGroup # 🌟Starlight begin🌟
 #          paths:
 #            - /Maps/Shuttles/mining.yml
