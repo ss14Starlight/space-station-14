@@ -138,13 +138,14 @@
         vgroid: !type:DungeonSpawnGroup
           minimumDistance: 600 # Starlight Edit: 300 -> 600
           maximumDistance: 650 # Starlight Edit: 350 -> 650
-          # Starlight: Keep these ^ in sync with VGRoidSpawnValidationSystem.cs
+          directDungeonSpawn: true # Starlight: Avoid temp-map/FTL placement for this large guaranteed grid.
           nameDataset: NamesBorer
           stationGrid: false
           addComponents:
           - type: Gravity
             enabled: true
             inherent: true
+          - type: VGRoidSpawnMarker # Starlight
           protos:
           - VGRoid
 

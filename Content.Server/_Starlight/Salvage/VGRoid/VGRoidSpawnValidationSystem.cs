@@ -20,13 +20,7 @@ public sealed class VGRoidSpawnValidationSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    // Keep these in sync with Resources/Prototypes/Entities/Stations/base.yml.
     private const string VGRoidPrototype = "VGRoid";
-    private const float ExpectedMinEdgeDistance = 600f;
-    private const float ExpectedMaxEdgeDistance = 650f;
-
-    // Small cushion so harmless float/bounds differences do not scream every round.
-    private const float DistanceTolerance = 16f;
 
     private ISawmill _sawmill = default!;
 
@@ -73,11 +67,12 @@ public sealed class VGRoidSpawnValidationSystem : EntitySystem
         var query = EntityQueryEnumerator<MapGridComponent, TransformComponent, MetaDataComponent>();
         while (query.MoveNext(out var uid, out var grid, out var xform, out var meta))
         {
-            if (!IsVGRoid(uid, meta))
+            var hasMarker = TryComp(uid, out VGRoidSpawnMarkerComponent? marker);
+            if (!hasMarker && !IsVGRoid(uid, meta))
                 continue;
 
             foundAny = true;
-            ValidateVGRoid(uid, grid, xform, meta, stations, reason);
+            ValidateVGRoid(uid, grid, xform, meta, marker, stations, reason);
         }
 
         if (!foundAny)
@@ -89,6 +84,7 @@ public sealed class VGRoidSpawnValidationSystem : EntitySystem
         MapGridComponent grid,
         TransformComponent xform,
         MetaDataComponent meta,
+        VGRoidSpawnMarkerComponent? marker,
         List<StationGridInfo> stations,
         string reason)
     {
@@ -100,19 +96,36 @@ public sealed class VGRoidSpawnValidationSystem : EntitySystem
             return;
         }
 
+        if (marker == null)
+        {
+            _sawmill.Warning(
+                $"Unable to validate {ToPrettyString(uid)} during {reason}: VGRoid grid has no VGRoidSpawnMarker component. " +
+                "Metadata fallback recognized it, but no configured distance range is available.");
+            return;
+        }
+
+        if (marker.MaximumEdgeDistance <= 0f || marker.MaximumEdgeDistance < marker.MinimumEdgeDistance)
+        {
+            _sawmill.Error(
+                $"Unable to validate {ToPrettyString(uid)} during {reason}: invalid VGRoidSpawnMarker range " +
+                $"{marker.MinimumEdgeDistance:F0}-{marker.MaximumEdgeDistance:F0}. " +
+                "The marker should be populated from the DungeonSpawnGroup distance config when spawned.");
+            return;
+        }
+
         var targetInfo = target.Value;
         var centerDistance = Vector2.Distance(vgroidInfo.Center, targetInfo.Center);
         var edgeDistance = GetEdgeDistance(centerDistance, targetInfo.Radius, vgroidInfo.Radius);
         var wrongMap = vgroidInfo.MapId != targetInfo.MapId;
-        var tooClose = edgeDistance < ExpectedMinEdgeDistance - DistanceTolerance;
-        var tooFar = edgeDistance > ExpectedMaxEdgeDistance + DistanceTolerance;
+        var tooClose = edgeDistance < marker.MinimumEdgeDistance - marker.DistanceTolerance;
+        var tooFar = edgeDistance > marker.MaximumEdgeDistance + marker.DistanceTolerance;
 
         _sawmill.Info(
             $"VGRoid spawn check ({reason}): grid={ToPrettyString(uid)} proto={meta.EntityPrototype?.ID ?? "<none>"} " +
             $"station={ToPrettyString(targetInfo.Station)} stationGrid={ToPrettyString(targetInfo.Grid)} " +
             $"actualMap={vgroidInfo.MapId} expectedMap={targetInfo.MapId} " +
             $"centerDistance={centerDistance:F1} edgeDistance={edgeDistance:F1} " +
-            $"expectedEdgeDistance={ExpectedMinEdgeDistance:F0}-{ExpectedMaxEdgeDistance:F0} " +
+            $"expectedEdgeDistance={marker.MinimumEdgeDistance:F0}-{marker.MaximumEdgeDistance:F0} " +
             $"vgroidCenter={vgroidInfo.Center} stationCenter={targetInfo.Center}");
 
         if (!wrongMap && !tooClose && !tooFar)
@@ -122,12 +135,17 @@ public sealed class VGRoidSpawnValidationSystem : EntitySystem
             $"VGRoid spawned outside the configured range ({reason}): grid={ToPrettyString(uid)} " +
             $"actualMap={vgroidInfo.MapId} expectedMap={targetInfo.MapId} " +
             $"centerDistance={centerDistance:F1} edgeDistance={edgeDistance:F1} " +
-            $"expectedEdgeDistance={ExpectedMinEdgeDistance:F0}-{ExpectedMaxEdgeDistance:F0}. Repositioning.");
+            $"expectedEdgeDistance={marker.MinimumEdgeDistance:F0}-{marker.MaximumEdgeDistance:F0}. Repositioning.");
 
-        RepositionVGRoid(uid, grid, xform, targetInfo);
+        RepositionVGRoid(uid, grid, xform, targetInfo, marker);
     }
 
-    private void RepositionVGRoid(EntityUid uid, MapGridComponent grid, TransformComponent xform, StationGridInfo target)
+    private void RepositionVGRoid(
+        EntityUid uid,
+        MapGridComponent grid,
+        TransformComponent xform,
+        StationGridInfo target,
+        VGRoidSpawnMarkerComponent marker)
     {
         var mapUid = _map.GetMapOrInvalid(target.MapId);
         if (mapUid == EntityUid.Invalid)
@@ -138,7 +156,7 @@ public sealed class VGRoidSpawnValidationSystem : EntitySystem
 
         var theta = _random.NextFloat(0f, MathF.PI * 2f);
         var direction = new Vector2(MathF.Cos(theta), MathF.Sin(theta));
-        var edgeDistance = _random.NextFloat(ExpectedMinEdgeDistance, ExpectedMaxEdgeDistance);
+        var edgeDistance = _random.NextFloat(marker.MinimumEdgeDistance, marker.MaximumEdgeDistance);
         var centerDistance = edgeDistance + target.Radius + GetGridRadius(grid);
         var desiredCenter = target.Center + (direction * centerDistance);
 
@@ -156,7 +174,7 @@ public sealed class VGRoidSpawnValidationSystem : EntitySystem
         _sawmill.Info(
             $"Repositioned VGRoid: grid={ToPrettyString(uid)} map={newInfo.MapId} " +
             $"centerDistance={newCenterDistance:F1} edgeDistance={newEdgeDistance:F1} " +
-            $"expectedEdgeDistance={ExpectedMinEdgeDistance:F0}-{ExpectedMaxEdgeDistance:F0} " +
+            $"expectedEdgeDistance={marker.MinimumEdgeDistance:F0}-{marker.MaximumEdgeDistance:F0} " +
             $"newCenter={newInfo.Center} stationCenter={target.Center}");
     }
 
@@ -187,7 +205,7 @@ public sealed class VGRoidSpawnValidationSystem : EntitySystem
         return stations;
     }
 
-    private static StationGridInfo? PickTargetStation(GridInfo vgroid, List<StationGridInfo> stations)
+    private StationGridInfo? PickTargetStation(GridInfo vgroid, List<StationGridInfo> stations)
     {
         var sameMap = stations
             .Where(station => station.MapId == vgroid.MapId)
@@ -198,7 +216,7 @@ public sealed class VGRoidSpawnValidationSystem : EntitySystem
             return sameMap;
 
         // If the VGRoid is on a map with no station at all, fall back to the first main station grid.
-        // This should stop VGroid spawning on the wrong map through god knows what means.
+        // This is the path that catches the "spawned on map 90 instead of map 64" style failure.
         return stations.FirstOrDefault();
     }
 
@@ -215,7 +233,8 @@ public sealed class VGRoidSpawnValidationSystem : EntitySystem
         => MathF.Max(0f, centerDistance - stationRadius - vgroidRadius);
 
     private bool IsVGRoid(EntityUid uid)
-        => TryComp(uid, out MetaDataComponent? meta) && IsVGRoid(uid, meta);
+        => HasComp<VGRoidSpawnMarkerComponent>(uid)
+            || TryComp(uid, out MetaDataComponent? meta) && IsVGRoid(uid, meta);
 
     private static bool IsVGRoid(EntityUid _, MetaDataComponent meta)
         => meta.EntityPrototype?.ID == VGRoidPrototype

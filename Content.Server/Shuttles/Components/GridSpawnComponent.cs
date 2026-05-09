@@ -38,7 +38,7 @@ public interface IGridSpawnGroup
     int MinCount { get; set; }
 
     /// <inheritdoc />
-    int MaxCount { get; set; }
+    public int MaxCount { get; set; } // Starlight Edit: Made Public
 
     /// <summary>
     /// Components to be added to any spawned grids.
@@ -94,6 +94,14 @@ public sealed partial class DungeonSpawnGroup : IGridSpawnGroup
 
     /// <inheritdoc />
     public bool StationGrid { get; set; } = false;
+
+    // Starlight Start
+    /// <summary>
+    /// Generate this dungeon directly on the target station map instead of generating it
+    /// on a temporary map and moving it through FTL proximity placement.
+    /// </summary>
+    public bool DirectDungeonSpawn { get; set; } = false;
+    // Starlight End
 }
 
 [DataRecord]

@@ -14,6 +14,7 @@ using Content.Server._Starlight.Station;
 using Robust.Shared.Prototypes;
 using Content.Shared.Procedural;
 using Content.Shared.Random.Helpers;
+using Content.Server._Starlight.Salvage.VGRoid;
 #endregion
 
 namespace Content.Server.Shuttles.Systems;
@@ -93,7 +94,7 @@ public sealed partial class ShuttleSystem
         _mapSystem.DeleteMap(mapId);
     }
 
-    private bool TryDungeonSpawn(Entity<MapGridComponent?> targetGrid, DungeonSpawnGroup group, string groupName, out EntityUid spawned) // Starlight Edit: Added ``string groupName``
+    private bool TryDungeonSpawn(Entity<MapGridComponent?> targetGrid, DungeonSpawnGroup group, out EntityUid spawned)
     {
         spawned = EntityUid.Invalid;
 
@@ -127,12 +128,12 @@ public sealed partial class ShuttleSystem
         var spawnMapCoords = _transform.ToMapCoordinates(spawnCoords);
         var targetCenterMapCoords = _transform.ToMapCoordinates(targetCenterCoords);
 
-        // VGRoid uses this DungeonSpawn path, but the generic path moves the
-        // generated grid via TryFTLProximity after generation. That is the path that
-        // can place large dungeon grids on the wrong map or absurdly far away when FTL
-        // proximity selection breaks. VGRoid has a fixed intended round-start distance, so
-        // generate it directly on the station map and place its finished bounds by edge distance.
-        if (groupName.Equals("vgroid", StringComparison.OrdinalIgnoreCase))
+        // Some large guaranteed dungeon spawns are safer when generated
+        // directly on the station map. The generic path generates on a temporary map and
+        // later moves the grid through FTL proximity placement, which can produce bad
+        // placement for very large round-start dungeon grids. Keep this data-driven so
+        // YAML controls which groups use direct placement.
+        if (group.DirectDungeonSpawn)
         {
             var seed = _random.Next();
             var spawnedGrid = _mapManager.CreateGridEntity(targetCenterMapCoords.MapId);
@@ -142,8 +143,8 @@ public sealed partial class ShuttleSystem
             _transform.SetMapCoordinates(spawnedGrid, spawnMapCoords);
             _dungeon.GenerateDungeon(dungeonProto, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, seed);
 
-            PlaceVGRoidAtConfiguredDistance(spawnedGrid, targetGrid, group, targetCenterMapCoords, spawnMapCoords.Position);
-            LogVGRoidSpawn(spawnedGrid, targetGrid, dungeonProtoId, seed, group, targetCenterMapCoords);
+            PlaceDirectDungeonAtConfiguredDistance(spawnedGrid, targetGrid, group, targetCenterMapCoords, spawnMapCoords.Position);
+            LogDirectDungeonSpawn(spawnedGrid, targetGrid, dungeonProtoId, seed, group, targetCenterMapCoords);
 
             spawned = spawnedGrid.Owner;
             return true;
@@ -162,7 +163,7 @@ public sealed partial class ShuttleSystem
     }
 
     // Starlight Start
-    private void PlaceVGRoidAtConfiguredDistance(
+    private void PlaceDirectDungeonAtConfiguredDistance(
         Entity<MapGridComponent> spawnedGrid,
         Entity<MapGridComponent?> targetGrid,
         DungeonSpawnGroup group,
@@ -193,7 +194,7 @@ public sealed partial class ShuttleSystem
         _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(desiredOrigin, targetCenterMapCoords.MapId));
     }
 
-    private void LogVGRoidSpawn(
+    private void LogDirectDungeonSpawn(
         Entity<MapGridComponent> spawnedGrid,
         Entity<MapGridComponent?> targetGrid,
         ProtoId<DungeonConfigPrototype> dungeonProtoId,
@@ -211,7 +212,7 @@ public sealed partial class ShuttleSystem
         var outOfRange = edgeDistance < group.MinimumDistance || edgeDistance > group.MaximumDistance;
 
         Log.Info(
-            $"VGRoid dungeon spawn: grid={ToPrettyString(spawnedGrid.Owner)} " +
+            $"Direct dungeon spawn: grid={ToPrettyString(spawnedGrid.Owner)} " +
             $"targetGrid={ToPrettyString(targetGrid.Owner)} proto={dungeonProtoId} seed={seed} " +
             $"actualMap={spawnedXform.MapID} expectedMap={targetCenterMapCoords.MapId} " +
             $"centerDistance={centerDistance:F1} edgeDistance={edgeDistance:F1} " +
@@ -222,7 +223,7 @@ public sealed partial class ShuttleSystem
             return;
 
         Log.Error(
-            $"VGRoid dungeon spawn outside configured range: grid={ToPrettyString(spawnedGrid.Owner)} " +
+            $"Direct dungeon spawn outside configured range: grid={ToPrettyString(spawnedGrid.Owner)} " +
             $"targetGrid={ToPrettyString(targetGrid.Owner)} actualMap={spawnedXform.MapID} " +
             $"expectedMap={targetCenterMapCoords.MapId} centerDistance={centerDistance:F1} " +
             $"edgeDistance={edgeDistance:F1} expectedEdgeRange={group.MinimumDistance:F1}-{group.MaximumDistance:F1} " +
@@ -234,6 +235,19 @@ public sealed partial class ShuttleSystem
 
     private static float GetGridSpawnRadius(MapGridComponent grid)
         => grid.LocalAABB.Size.Length() / 2f;
+
+    private void ApplySpawnMarkerConfig(EntityUid spawned, IGridSpawnGroup group)
+    {
+        if (group is not DungeonSpawnGroup dungeon ||
+            !TryComp(spawned, out VGRoidSpawnMarkerComponent? marker))
+        {
+            return;
+        }
+
+        // Keep the validator's expected range sourced from the same data that controls placement.
+        marker.MinimumEdgeDistance = dungeon.MinimumDistance;
+        marker.MaximumEdgeDistance = dungeon.MaximumDistance;
+    }
     // Starlight End
     private bool TryGridSpawn(EntityUid targetGrid, EntityUid stationUid, MapId mapId, GridSpawnGroup group, out EntityUid spawned)
     {
@@ -316,7 +330,7 @@ public sealed partial class ShuttleSystem
                             if (!station.AllowDungeonSpawn)
                                 continue;
                         // Starlight end
-                        if (!TryDungeonSpawn(targetGrid.Value, dungeon, group.Key, out spawned)) // Starlight Edit: Added ``group.Key``
+                        if (!TryDungeonSpawn(targetGrid.Value, dungeon, out spawned))
                             continue;
 
                         break;
@@ -354,6 +368,7 @@ public sealed partial class ShuttleSystem
                 }
 
                 EntityManager.AddComponents(spawned, group.Value.AddComponents); // SL edit
+                ApplySpawnMarkerConfig(spawned, group.Value); // Starlight
             }
         }
 
