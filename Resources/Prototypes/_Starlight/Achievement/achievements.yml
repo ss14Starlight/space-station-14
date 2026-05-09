@@ -75,7 +75,7 @@
   showProgress: false
   icon:
     sprite: _Starlight/Interface/Achievements/icons.rsi
-    state: heliosMedal
+    state: whiskeyEcho
   requirements: []
 
 - type: achievement
@@ -87,7 +87,7 @@
   showProgress: false
   icon:
     sprite: _Starlight/Interface/Achievements/icons.rsi
-    state: heliosMedal
+    state: assumingDirectControl
   requirements: []
 
 - type: achievement
@@ -99,7 +99,7 @@
   showProgress: false
   icon:
     sprite: _Starlight/Interface/Achievements/icons.rsi
-    state: heliosMedal
+    state: homingMeteors
   requirements: []
 
 - type: achievement

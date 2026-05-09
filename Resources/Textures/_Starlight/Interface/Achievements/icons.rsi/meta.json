@@ -18,7 +18,7 @@
     },
     {
       "name": "damnedMedal",
-	  "copyright": "taken from https://github.com/goonstation/goonstation"
+	  "copyright": "@wayiscute (discord)"
     },
     {
       "name": "fishMedal",
@@ -34,6 +34,18 @@
     },
     {
       "name": "dragonSlayer",
+	  "copyright": "@trosling (discord)"
+    },
+    {
+      "name": "assumingDirectControl",
+	  "copyright": "@trosling (discord)"
+    },
+	{
+      "name": "homingMeteors",
+	  "copyright": "@trosling (discord)"
+    },
+	{
+      "name": "whiskeyEcho",
 	  "copyright": "@trosling (discord)"
     }
   ]
