@@ -1,5 +1,6 @@
 using Content.Shared.FixedPoint;
 using Robust.Shared.Serialization;
+using Content.Shared._Starlight.Magic.Components; // Starlight
 
 namespace Content.Shared.DoAfter;
 
@@ -216,6 +217,13 @@ public sealed partial class DoAfterArgs
     {
         User = user;
         Delay = delay;
+
+        // BEGIN STARLIGHT
+        var bonusScalarComp = entManager.GetComponent<BonusScalarComponent>(user);
+        if (bonusScalarComp != null)
+            Delay *= bonusScalarComp.doAfterDelay;
+        // END STARLIGHT
+
         Target = target;
         Used = used;
         EventTarget = eventTarget;
