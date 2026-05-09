@@ -1,97 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Saltern) Evac meteor shielding.
-    type: Add
-  id: 404437
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Arrivals meteor shielding.
-    type: Add
-  id: 404438
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Several new places for visitor shuttles to park by Arrivals & Evac (that don't block them).
-    type: Add
-  id: 404439
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Screens! Saltern had none. Now you can see what Alert Level it is without checking your PDA.
-    type: Add
-  id: 404440
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Doubled the size of Atmos.
-    type: Add
-  id: 404441
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Second burn chamber for Atmos.
-    type: Add
-  id: 404442
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Electrolyzer for Atmos.
-    type: Add
-  id: 404443
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Added two publicly accessible portable scrubbers outside of engineering.
-    type: Add
-  id: 404444
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Added a desktop computer to the Library.
-    type: Add
-  id: 404445
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Security now has a fax machine.
-    type: Add
-  id: 404446
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) NanoMed Security added to Brigmedic.
-    type: Add
-  id: 404447
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Added a second medical bed to Brigmedic.
-    type: Add
-  id: 404448
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Donut vending machine added to Security.
-    type: Add
-  id: 404449
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
   - message: (Saltern) Some more decals in Medical Reception.
     type: Add
   id: 404450
@@ -2799,4 +2708,95 @@ Entries:
   id: 404836
   time: '2026-05-07T13:29:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4385
+- author: Caws
+  changes:
+  - message: Scarves now protect you from cold temperatures, equivalent to wearing winter boots.
+    type: Add
+  id: 404837
+  time: '2026-05-08T05:49:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4388
+- author: Caws
+  changes:
+  - message: Winter boots protection from cold temperatures has been slightly decreased.
+    type: Tweak
+  id: 404838
+  time: '2026-05-08T05:49:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4388
+- author: Caws
+  changes:
+  - message: Winter coats protection from cold temperatures has been decreased. Wearing a coat with either a scarf or boots will still give you plenty of resistance against dangerously cold temperatures.
+    type: Tweak
+  id: 404839
+  time: '2026-05-08T05:49:51.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4388
+- author: Caws
+  changes:
+  - message: Boxes of shotgun ammo are now available on the Syndicate Uplinks. Hushpup enjoys rejoice.
+    type: Add
+  id: 404840
+  time: '2026-05-08T05:49:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4368
+- author: Kirb, honeyed-lemons
+  changes:
+  - message: Quick Construct, use a construction material in your hand to access a radial menu of common blueprints.
+    type: Add
+  id: 404841
+  time: '2026-05-08T09:32:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4351
+- author: Unknown
+  changes:
+  - message: Completely changed most of the backgrounds wordings as to encourage RP rather than grant Meta-Info.
+    type: Tweak
+  id: 404842
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: Added "USSP" Background.
+    type: Add
+  id: 404843
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: Added "Paradox Clone" Background.
+    type: Add
+  id: 404844
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: Added "Corporate Frontier" Background.
+    type: Add
+  id: 404845
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: Added "Outer Fringe" Background.
+    type: Add
+  id: 404846
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: You can now have 2 Backgrounds.
+    type: Add
+  id: 404847
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Huaqas, Centronias
+  changes:
+  - message: Go Fish! A new card game can be found in the Games Clean Fun Vendor!
+    type: Add
+  id: 404848
+  time: '2026-05-08T10:23:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4348
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Changed ParticleDecelerator to deal 10 rad damage.
+    type: Tweak
+  id: 404849
+  time: '2026-05-09T09:11:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4396
 Order: -1
