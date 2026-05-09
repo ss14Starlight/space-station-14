@@ -1781,8 +1781,8 @@
 - type: entity
   parent: [ BaseXenoborgModuleStealth, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleHypo
-  name: nocturine hypo xenoborg module
-  description: Module with a self-refilling nocturine hypo.
+  name: hypo xenoborg module # Starlight
+  description: Module with self-refilling hypos. # Starlight
   components:
   - type: Sprite
     layers:
@@ -1791,6 +1791,7 @@
   - type: ItemBorgModule
     hands:
     - item: NocturineHypo
+    - item: LicoxideHypo # Starlight. It's not that good. They can have it.
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-hypo-module }
 
