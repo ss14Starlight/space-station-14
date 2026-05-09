@@ -43,8 +43,7 @@ public sealed partial class DevilComponent : Component
         "Gun",
         "Electricity",
         "Noslip",
-        "Mute",
-        "TestFail"
+        "Mute"
     };
 
     /// <summary>
