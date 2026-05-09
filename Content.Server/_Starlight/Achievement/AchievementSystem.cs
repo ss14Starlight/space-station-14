@@ -91,6 +91,7 @@ public sealed class AchievementSystem : EntitySystem
 
     private static readonly TimeSpan AchievementHydrationRetryDelay = TimeSpan.FromSeconds(3);
     private static readonly TimeSpan VentKillWindow = TimeSpan.FromSeconds(30);
+    private const float HesDeadJimDamageThreshold = 2000f;
     private const string EthanolReagentId = "Ethanol";
     private const string UplinkCatEarsListingId = "UplinkCatEars";
 
@@ -591,7 +592,7 @@ public sealed class AchievementSystem : EntitySystem
     private void OnDamageableChanged(EntityUid uid, DamageableComponent damageable, ref DamageChangedEvent args)
     {
         if (!_playerManager.TryGetSessionByEntity(uid, out var session)
-            || damageable.TotalDamage.Float() < 2000f
+            || damageable.TotalDamage.Float() < HesDeadJimDamageThreshold
             || !HasRequiredDamageGroups(damageable))
         {
             return;

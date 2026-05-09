@@ -33,6 +33,7 @@ using Content.Shared.Cuffs;
 using Prometheus;
 using Robust.Shared.Prototypes;
 using Content.Server.AlertLevel;
+using Content.Server._NullLink.Helpers;
 using Content.Server._Starlight.Station;
 using Content.Shared.Starlight.CCVar;
 using Robust.Shared.Configuration;
@@ -499,7 +500,9 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 if (crewCount < threshold)
                     continue;
 
-                _ = _achievements.TryUnlockAchievementAsync(session, achievementId);
+                _achievements.TryUnlockAchievementAsync(session, achievementId)
+                    .AsTask()
+                    .FireAndForget();
             }
         }
     }
