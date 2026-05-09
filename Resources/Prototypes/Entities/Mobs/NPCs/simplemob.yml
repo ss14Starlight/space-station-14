@@ -35,12 +35,13 @@
 
 - type: entity
   abstract: true
-  parent: #starlight Nubody will not pass.
+  parent:
   - BaseSimpleMob
   - MobAtmosExposed
   - MobCombat
   - MobBloodstream
   - MobFlammable
+  # - BaseMobAnimal # Starlight Edit: Reverted NuBody
   id: SimpleSpaceMobBase # Mob without barotrauma, freezing and asphyxiation (for space carps!?)
   suffix: AI
   components:

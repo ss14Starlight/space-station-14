@@ -1,0 +1,160 @@
+# Go Fish Cards
+- type: entity
+  parent: BasePlayingCardDeckBox
+  id: GoFishCardDeckBox
+  name: box of go fish cards
+  suffix: GoFish
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Objects/Misc/Cards/card_gofish.rsi
+  - type: ContainerFill
+    containers:
+      storagebase:
+      - GoFishCardDeck
+
+- type: entity
+  parent: BasePlayingCardDeck
+  id: GoFishCardDeck
+  name: deck of cards
+  suffix: GoFish
+  components:
+  - type: Sprite
+    layers:
+    - state: empty # Dummy layer because the actual visuals are composed dynamically.
+      sprite: _Moffstation/Objects/Misc/Cards/card_gofish.rsi
+      visible: False
+  - type: PlayingCardDeck
+    prototype: StandardGoFishCards
+
+# GoFish Deck Definitions
+- type: playingCardDeck
+  id: StandardGoFishCards
+  sprite: _Moffstation/Objects/Misc/Cards/card_gofish.rsi
+  commonReverseLayers:
+  - state: singlecard_down_gofish
+  cardNameLoc: gofish-card-name
+  cardDescLoc: gofish-card-desc
+  cardReverseNameLoc: gofish-card-name-reverse
+  cardReverseDescLoc: gofish-card-desc-reverse
+  suitLoc: gofish-card-suit-name
+  cardValueLoc: gofish-card-value-name
+  cards:
+  #- id: rules
+  - prototype: GoFishRulesCard
+  - suit: GoFishBlue
+  - suit: GoFishGreen
+  - suit: GoFishRed
+  - suit: GoFishYellow
+
+- type: entity
+  parent: [ BasePlayingCard ]
+  id: GoFishRulesCard
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Objects/Misc/Cards/card_gofish.rsi
+    state: rules
+  - type: Paper # Don't want to parent off BasePaper or Paper to avoid inheriting PaperVisuals and Sprite layers.
+    editingDisabled: true # No one can change the rules of the game. Not even god...
+    content: gofish-card-rules-content
+  - type: ActivatableUI
+    key: enum.PaperUiKey.Key
+    requiresComplex: false
+  - type: UserInterface
+    interfaces:
+      enum.PaperUiKey.Key:
+        type: PaperBoundUserInterface
+  - type: PlayingCard
+    obverseLayers:
+    - state: rules
+      sprite: _Moffstation/Objects/Misc/Cards/card_gofish.rsi
+    reverseLayers:
+    - state: singlecard_down_gofish
+      sprite: _Moffstation/Objects/Misc/Cards/card_gofish.rsi
+    name: Go Fish! Rules Card
+    reverseName: playing card
+    description: This is the rules card! You may read it to get a better understanding of the rules.
+
+- type: playingCardSuit
+  id: GoFishBlue
+  commonObverseLayers:
+  - state: background_blue
+  defaultObverseLayerState: "{card}"
+  cards:
+  - id: "holo" # Carp
+  - id: "acmeco" # Cigarette
+  - id: "ian" # Corgi
+  - id: "chocolatedonut" # Donut
+  - id: "ertleader" # ERT
+  - id: "runtime" # Cat
+  - id: "orange" # Fruit
+  - id: "grey" # Mice
+  - id: "moproach" # Mothroach
+  - id: "nukiemedic" # Nukie
+  - id: "spacelizard" # Plushie
+  - id: "grape" # Soda
+  - id: "gauze" # Topical
+  - id: "mime" # Troublemaker
+
+- type: playingCardSuit
+  id: GoFishGreen
+  commonObverseLayers:
+  - state: background_green
+  defaultObverseLayerState: "{card}"
+  cards:
+  - id: "carp" # Carp
+  - id: "spessman" # Cigarette
+  - id: "puppy" # Corgi
+  - id: "appledonut" # Donut
+  - id: "ertmedic" # ERT
+  - id: "floppa" # Cat
+  - id: "apple" # Fruit
+  - id: "white" # Mice
+  - id: "mothroach" # Mothroach
+  - id: "nukiejuggernaut" # Nukie
+  - id: "lizard" # Plushie
+  - id: "smitecranberry" # Soda
+  - id: "bruisepack" # Topical
+  - id: "passenger" # Troublemaker
+
+- type: playingCardSuit
+  id: GoFishRed
+  commonObverseLayers:
+  - state: background_red
+  defaultObverseLayerState: "{card}"
+  cards:
+  - id: "magic" # Carp
+  - id: "dromedaryco" # Cigarette
+  - id: "lisa" # Corgi
+  - id: "pinkdonut" # Donut
+  - id: "ertsecurity" # ERT
+  - id: "bingus" # Cat
+  - id: "grapes" # Fruit
+  - id: "brown" # Mice
+  - id: "deathshead" # Mothroach
+  - id: "nukieelite" # Nukie
+  - id: "drazil" # Plushie
+  - id: "spacecola" # Soda
+  - id: "bloodbag" # Topical
+  - id: "clown" # Troublemaker
+
+- type: playingCardSuit
+  id: GoFishYellow
+  commonObverseLayers:
+  - state: background_yellow
+  defaultObverseLayerState: "{card}"
+  cards:
+  - id: "rainbowcarp" # Carp
+  - id: "nomads" # Cigarette
+  - id: "oldian" # Corgi
+  - id: "bungodonut" # Donut
+  - id: "ertengineer" # ERT
+  - id: "exception" # Cat
+  - id: "banana" # Fruit
+  - id: "real" # Mice
+  - id: "rosy" # Mothroach
+  - id: "nukieoperative" # Nukie
+  - id: "rainbowlizard" # Plushie
+  - id: "fourteenloko" # Soda
+  - id: "ointment" # Topical
+  - id: "skeleton" # Troublemaker
