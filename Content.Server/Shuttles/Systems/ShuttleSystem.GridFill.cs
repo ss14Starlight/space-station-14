@@ -162,7 +162,7 @@ public sealed partial class ShuttleSystem
         return true;
     }
 
-    // Starlight Start
+    #region Starlight
     private void PlaceDirectDungeonAtConfiguredDistance(
         Entity<MapGridComponent> spawnedGrid,
         Entity<MapGridComponent?> targetGrid,
@@ -248,7 +248,7 @@ public sealed partial class ShuttleSystem
         marker.MinimumEdgeDistance = dungeon.MinimumDistance;
         marker.MaximumEdgeDistance = dungeon.MaximumDistance;
     }
-    // Starlight End
+    #endregion
     private bool TryGridSpawn(EntityUid targetGrid, EntityUid stationUid, MapId mapId, GridSpawnGroup group, out EntityUid spawned)
     {
         spawned = EntityUid.Invalid;
