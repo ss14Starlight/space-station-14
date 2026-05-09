@@ -1,0 +1,34 @@
+# Drop Pod Console — placed on a DropPod grid to let syndicate operatives select and launch it at the station.
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerDropPodSyndicate
+  name: drop pod deployment console
+  description: A hardened syndicate console for selecting an impact beacon and launching the drop pod at the station. [color=red]Restricted to authorised personnel.[/color]
+  components:
+  - type: DropPodConsole
+  - type: ActivatableUI
+    key: enum.DropPodConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.DropPodConsoleUiKey.Key:
+        type: DropPodConsoleBui
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-syndie
+    - map: ["computerLayerKeys"]
+      state: syndie_generic_keys
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b01010"
+  - type: Tag
+    tags:
+    - EmagImmune
