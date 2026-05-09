@@ -10,25 +10,26 @@ using Content.Shared.Humanoid.Markings;
 using Content.Shared._Starlight.Sprite;
 using Robust.Shared.Utility;
 using Robust.Server.GameObjects;
-using Robust.Shared.Player;
 using Content.Shared.Audio;
 using Content.Server.Audio;
 using Robust.Shared.Audio;
+using Content.Shared._Starlight.Paper;
+using System.Text.RegularExpressions;
+using Content.Shared.Paper;
 
 namespace Content.Server._Starlight.Devil;
 
 public sealed partial class DevilSystem : SharedDevilSystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly RandomMetadataSystem _randomMetadata = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
     [Dependency] private readonly PointLightSystem _pointLight = default!;
+    [Dependency] private readonly PaperSystem _paper = default!;
 
     private EntProtoId SummonBidentActionProto = "ActionSummonBident";
 
@@ -37,9 +38,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
         base.Initialize();
 
         SubscribeLocalEvent<DevilComponent, ComponentStartup>(OnStartup, before: [typeof(DamageableSystem)]);
-
         SubscribeLocalEvent<DevilComponent, SummonDemonicContractEvent>(OnSummonDemonicContract);
-        SubscribeLocalEvent<DevilComponent, OpenDamnationsMenuEvent>(OnOpenDamnationsMenu);
 
         SubscribeLocalEvent<DevilComponent, DevilSoulsDamnedCountChangedEvent>(OnDevilSoulsDamnedCountChanged);
 
@@ -55,21 +54,40 @@ public sealed partial class DevilSystem : SharedDevilSystem
     }
 
     #region abilities
+    protected EntityUid CreateContract(EntityUid author, DevilComponent devilComp)
+    {
+        var paper = Spawn(devilComp.InfernalContractPrototype, Transform(author).Coordinates);
+        if (TryComp<InfernalContractComponent>(paper, out var contractComp))
+        {
+            contractComp.Author = author;
+            Dirty<InfernalContractComponent>((paper, contractComp));
+        }
+
+        if (TryComp<ParsablePaperComponent>(paper, out var parsableComp))
+        {
+            // adds true name to the required patterns, as this dynamically changes between devils
+            // this is also shit, preferably this would somehow be able to exist entirely in yaml
+            var regexSanitisedTruename = NameSanitizeRegex().Replace(devilComp.TrueName, "");
+            parsableComp.RequiredPatterns.Add($"(?<={Regex.Escape(regexSanitisedTruename)}, an agent of hell.).*");
+        }
+
+        var content = Loc.GetString("infernal-contract-base", ("truename", devilComp.TrueName));
+        _paper.SetContent(paper, content);
+
+        _audio.PlayPredicted(devilComp.ContractSummonSound, author, author);
+
+        return paper;
+    }
+
+    [GeneratedRegex("^[-, a-zA-Z0-9]")]
+    private static partial Regex NameSanitizeRegex();
+
     private void OnSummonDemonicContract(EntityUid uid, DevilComponent devilComp, ref SummonDemonicContractEvent args)
     {
         var paper = CreateContract(uid, devilComp);
         _hands.TryPickupAnyHand(uid, paper);
 
         args.Handled = true;
-    }
-
-    private void OnOpenDamnationsMenu(EntityUid uid, DevilComponent devilComp, ref OpenDamnationsMenuEvent args)
-    {
-        if (!TryComp<UserInterfaceComponent>(uid, out var userInterfaceComp) || !TryComp<ActorComponent>(uid, out var actorComp)) return;
-
-        var uiState = new DevilDamnationsBuiState(devilComp.AvailableDamnations);
-        _userInterface.SetUiState((uid, userInterfaceComp), DamnationsMenuUiKey.Key, uiState);
-        _userInterface.TryToggleUi((uid, userInterfaceComp), DamnationsMenuUiKey.Key, actorComp.PlayerSession);
     }
     #endregion
 

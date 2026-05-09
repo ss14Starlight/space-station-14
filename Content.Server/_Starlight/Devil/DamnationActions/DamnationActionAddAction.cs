@@ -2,19 +2,17 @@ using Content.Server.Actions;
 using Content.Shared._Starlight.Devil.DamnationActions;
 using Content.Shared._Starlight.Devil;
 using Robust.Shared.Prototypes;
+using Content.Server.Administration.Components;
 
 namespace Content.Server._Starlight.Devil.DamnationActions;
 
-public sealed partial class DamnationActionAddAction : DamnationAction
+public sealed partial class DamnationActionAddAction : SharedDamnationActionAddAction
 {
-    [DataField]
-    List<ProtoId<EntityPrototype>> Actions = new();
-    private ActionsSystem _actions = default!;
-
     private Dictionary<EntityUid, List<EntityUid>> ProvidedActions = new();
 
     public override bool Action(Entity<DamnedComponent> victim)
     {
+        // we need action uids on server, so outright replace shared method
         if(!ProvidedActions.ContainsKey(victim)) ProvidedActions[victim] = new();
         foreach (var action in Actions)
         {
@@ -34,12 +32,5 @@ public sealed partial class DamnationActionAddAction : DamnationAction
         ProvidedActions.Remove(victim);
 
         return true;
-    }
-
-    public override void ResolveIoC()
-    {
-        base.ResolveIoC();
-
-        _actions = _entityManager.System<ActionsSystem>();
     }
 }

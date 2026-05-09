@@ -3,7 +3,10 @@ using System.Text.RegularExpressions;
 using Content.Shared._Starlight.Paper;
 using Content.Shared.Examine;
 using Content.Shared.Paper;
+using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Devil;
@@ -11,7 +14,11 @@ namespace Content.Shared._Starlight.Devil;
 public abstract partial class SharedDevilSystem : EntitySystem
 {
     [Dependency] private readonly ParsablePaperSystem _parsablePaper = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly PaperSystem _paper = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -19,6 +26,11 @@ public abstract partial class SharedDevilSystem : EntitySystem
         SubscribeLocalEvent<InfernalContractComponent, ExaminedEvent>(OnExamineEvent);
         SubscribeLocalEvent<InfernalContractComponent, PaperSignedEvent>(OnSignedEvent);
         SubscribeLocalEvent<InfernalContractComponent, PaperWriteAttemptEvent>(OnPaperWriteAttempt);
+
+        SubscribeLocalEvent<DevilComponent, OpenDamnationsMenuEvent>(OnOpenDamnationsMenu);
+
+        SubscribeLocalEvent<DamnedComponent, DamnationInitFailEvent>(OnDamnationInitFail);
+        SubscribeLocalEvent<DamnedComponent, ComponentShutdown>(OnDamnationShutdown);
     }
 
     #region contract
@@ -73,7 +85,7 @@ public abstract partial class SharedDevilSystem : EntitySystem
         if (!TryComp<DevilComponent>(contractComp.Author, out var devilComp)) return null;
         var availableDamnations = devilComp.AvailableDamnations.Select(d =>
         {
-            _prototype.TryIndex<DamnationPrototype>(d, out var damnationProto);
+            _proto.TryIndex<DamnationPrototype>(d, out var damnationProto);
             return damnationProto!.Name.ToLower();
         }).ToList();
         foreach (var damnation in rawDamnations)
@@ -88,7 +100,7 @@ public abstract partial class SharedDevilSystem : EntitySystem
 
         foreach (var damnation in data.Damnations)
         {
-            if (_prototype.TryIndex<DamnationPrototype>(damnation, out var damnationProto))
+            if (_proto.TryIndex<DamnationPrototype>(damnation, out var damnationProto))
                 data.Cost += damnationProto.Cost;
         }
 
@@ -135,6 +147,146 @@ public abstract partial class SharedDevilSystem : EntitySystem
             args.Cancelled = true;
             return;
         }
+
+        // ok now we damn
+        var contract = GetContractContent(uid);
+        if (contract == null) return;
+        if (contract?.Damnations.Count == 0) return;
+
+        DamnEntity(args.Signer, (InfernalContractData)contract!, contractComp.Author);
+
+        contractComp.Completed = true;
+        Dirty(uid, contractComp);
+    }
+    #endregion
+
+    #region damnation
+    protected bool CanDamn(Entity<DamnedComponent> entity, ProtoId<DamnationPrototype> proto) => !entity.Comp.Damnations.Contains(proto);
+
+    protected bool AddDamnation(Entity<DamnedComponent> entity, ProtoId<DamnationPrototype> proto)
+    {
+        // here we shove all the components in, and then await their potential fails later via the event
+        if (!CanDamn(entity, proto)) return false;
+        if (!_proto.TryIndex(proto, out var damnationPrototype)) return false;
+
+        EntityManager.AddComponents(entity.Owner, damnationPrototype.Components);
+        EntityManager.RemoveComponents(entity.Owner, damnationPrototype.RemovedComponents);
+
+        foreach (var action in damnationPrototype.Actions)
+        {
+            if (!action.IocResolved)
+            {
+                action.ResolveIoC();
+                action.IocResolved = true;
+            }
+
+            if (!action.Action(entity)) return false;
+        }
+
+        entity.Comp.NetCost += damnationPrototype.Cost;
+        entity.Comp.Damnations.Add(proto);
+
+        return true;
+    }
+
+    protected bool DamnEntity(EntityUid ent, InfernalContractData contract, EntityUid devil)
+    {
+        EnsureComp<DamnedComponent>(ent, out var damnedComp);
+
+        damnedComp.DamnedBy = devil;
+
+        // we add here instead of component startup so that we can know the devil's uid
+        if (TryComp<DevilComponent>(devil, out var devilComponent) && contract.Damnations.Contains(devilComponent.SoulDamnation))
+        {
+            devilComponent.DamnedSouls.Add(ent);
+
+            var ev = new DevilSoulsDamnedCountChangedEvent();
+            RaiseLocalEvent(devil, ref ev);
+        }
+
+        // check to see that all of the damnations will work, before we try to add any
+        foreach (var damnation in contract.Damnations)
+        {
+            if (!CanDamn((ent, damnedComp), damnation))
+            {
+                var ev = new DamnationInitFailEvent();
+                RaiseLocalEvent(ent, ref ev);
+                return false;
+            }
+        }
+
+        foreach (var damnation in contract.Damnations)
+        {
+            if(!AddDamnation((ent, damnedComp), damnation))
+            {
+                var ev = new DamnationInitFailEvent();
+                RaiseLocalEvent(ent, ref ev);
+                return false;
+            }
+        }
+
+        _popup.PopupPredicted(Loc.GetString("devil-popup-damnation", ("name", Name(ent))), ent, ent, PopupType.MediumCaution);
+
+        return true;
+    }
+
+    protected bool RemoveDamnation(Entity<DamnedComponent> entity, ProtoId<DamnationPrototype> damnation)
+    {
+        if (!entity.Comp.Damnations.Contains(damnation)) return false;
+        if (!_proto.TryIndex(damnation, out var damnationPrototype)) return false;
+
+        if (damnationPrototype.ReverseOnRemove)
+        {
+            EntityManager.RemoveComponents(entity.Owner, damnationPrototype.Components);
+            EntityManager.AddComponents(entity.Owner, damnationPrototype.RemovedComponents);
+        }
+
+        foreach (var action in damnationPrototype.Actions)
+        {
+            if (!action.IocResolved) {
+                action.ResolveIoC();
+                action.IocResolved = true;
+            }
+
+            action.ReverseAction(entity);
+        }
+
+        entity.Comp.Damnations.Remove(damnation);
+
+        return true;
+    }
+
+    /// <summary>
+    /// If this event is triggered, a damnation has failed to apply, so we need to reverse them all
+    /// </summary>
+    private void OnDamnationInitFail(Entity<DamnedComponent> ent, ref DamnationInitFailEvent args)
+    {
+        var damnations = new List<ProtoId<DamnationPrototype>>(ent.Comp.Damnations);
+        foreach (var damnation in damnations)
+            RemoveDamnation(ent, damnation);
+        RemComp<DamnedComponent>(ent.Owner);
+
+        _popup.PopupEntity(Loc.GetString("devil-popup-damnation-fail"), ent.Owner, PopupType.Small);
+    }
+
+    private void OnDamnationShutdown(Entity<DamnedComponent> ent, ref ComponentShutdown args)
+    {
+        if (TryComp<DevilComponent>(ent.Comp.DamnedBy, out var devilComp)) {
+            devilComp.DamnedSouls.Remove(ent.Owner);
+            var ev = new DevilSoulsDamnedCountChangedEvent();
+            RaiseLocalEvent(ent.Comp.DamnedBy, ref ev);
+        }
+    }
+    #endregion
+
+    #region abilities
+    private void OnOpenDamnationsMenu(EntityUid uid, DevilComponent devilComp, ref OpenDamnationsMenuEvent args)
+    {
+        if (!TryComp<UserInterfaceComponent>(uid, out var userInterfaceComp) || !TryComp<ActorComponent>(uid, out var actorComp)) return;
+
+        var uiState = new DevilDamnationsBuiState(devilComp.AvailableDamnations);
+        _userInterface.SetUiState((uid, userInterfaceComp), DamnationsMenuUiKey.Key, uiState);
+        _userInterface.TryToggleUi((uid, userInterfaceComp), DamnationsMenuUiKey.Key, actorComp.PlayerSession);
     }
     #endregion
 }

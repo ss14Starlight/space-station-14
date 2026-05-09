@@ -1,9 +1,7 @@
-using Content.Shared._Starlight.Devil.DamnationActions;
 using Content.Shared.Alert;
 using Robust.Shared.Prototypes;
-using Content.Shared._Starlight.Devil;
 
-namespace Content.Server._Starlight.Devil.DamnationActions;
+namespace Content.Shared._Starlight.Devil.DamnationActions;
 
 public sealed partial class DamnationActionAddAlert : DamnationAction
 {
