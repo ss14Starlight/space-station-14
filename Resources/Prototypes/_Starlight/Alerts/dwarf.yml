@@ -13,3 +13,11 @@
     state: fortitude
   name: alerts-dwarf-fortitude-name
   description: alerts-dwarf-fortitude-desc
+
+- type: alert
+  id: DwarfFury
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/dwarf.rsi
+    state: fury
+  name: alerts-dwarf-fury-name
+  description: alerts-dwarf-fury-desc

@@ -6,7 +6,7 @@ using Content.Shared._Starlight.Magic.Systems;
 namespace Content.Shared._Starlight.Magic.Components;
 
 /// <summary>
-/// Allows overriding MobThresholds (crit, death, etc.) as a status effect. Obviously, not stackable.
+/// Allows overriding MobThresholds (crit, death, etc.) as a status effect. Not stackable.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 [Access(typeof(MobThresholdStatusEffectSystem))]

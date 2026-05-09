@@ -5,17 +5,25 @@ using Content.Shared.Damage;
 namespace Content.Shared._Starlight.Magic.Components;
 
 /// <summary>
-/// Factory for adding ArmorModComponents to mobs. These are temporary ArmorComponents granted as a status effect with no corresponding inventory slot.
+/// Factory for adding <see cref="BonusArmorComponent"/>s to mobs. These are temporary <see cref="ArmorComponent"/>s,
+/// granted as a status effect with no corresponding inventory slot. Multiple may be applied simultaneously from
+/// different sources, so long as each source is its own entity with <see cref="BonusArmorStatusEffectComponent"/>.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-[Access(typeof(SharedArmorModSystem))]
-public sealed partial class ArmorModStatusEffectComponent : Component
+[Access(typeof(SharedBonusArmorSystem))]
+public sealed partial class BonusArmorStatusEffectComponent : Component
 {
     /// <summary>
     /// The damage reduction
     /// </summary>
     [DataField(required: true)]
     public DamageModifierSet Modifiers = default!;
+
+    /// <summary>
+    /// If true, the effect will reset itself if already active from the same source; useful for decaying buffs.
+    /// </summary>
+    [DataField]
+    public bool OverwriteOnRefresh = false;
 
     /// <summary>
     /// If true, ignores knockdown from tasers.

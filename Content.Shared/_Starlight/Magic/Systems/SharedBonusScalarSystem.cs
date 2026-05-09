@@ -1,0 +1,80 @@
+using Content.Shared._Starlight.Magic.Components;
+
+using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
+
+using Content.Shared.StatusEffectNew;
+using YamlDotNet.Core.Events;
+
+namespace Content.Shared._Starlight.Magic.Systems;
+
+/// <summary>
+///     This handles logic relating to <see cref="BonusScalarComponent" /> and <see cref="BonusScalarStatusEffectComponent" />.
+///
+///     Not used in the handling of actual wearable armor items.
+/// </summary>
+public sealed class SharedBonusScalarSystem : EntitySystem
+{
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<BonusScalarStatusEffectComponent, StatusEffectAppliedEvent>(BonusScalarStatusEffectApplied);
+        SubscribeLocalEvent<BonusScalarStatusEffectComponent, StatusEffectRemovedEvent>(BonusScalarStatusEffectRemoved);
+    }
+
+    private void Recalculate(EntityUid ent, BonusScalarComponent component)
+    {
+        component.unarmedAttackRate = 1.0f;
+        component.unarmedDamage = 1.0f;
+        component.meleeWeaponAttackRate = 1.0f;
+        component.meleeWeaponDamage = 1.0f;
+        component.rangedWeaponDamage = 1.0f;
+        component.rangedWeaponAttackRate = 1.0f;
+        component.doAfterDelay = 1.0f;
+        foreach (var modifier in component.modifiers)
+        {
+            component.unarmedAttackRate *= modifier.Value.unarmedAttackRate;
+            component.unarmedDamage *= modifier.Value.unarmedDamage;
+            component.meleeWeaponAttackRate *= modifier.Value.meleeWeaponAttackRate;
+            component.meleeWeaponDamage *= modifier.Value.meleeWeaponDamage;
+            component.rangedWeaponDamage *= modifier.Value.rangedWeaponDamage;
+            component.rangedWeaponAttackRate *= modifier.Value.rangedWeaponAttackRate;
+            component.doAfterDelay *= modifier.Value.doAfterDelay;
+        }
+        Dirty(ent, component);
+    }
+
+    private void BonusScalarStatusEffectApplied(EntityUid ent, BonusScalarStatusEffectComponent effect, ref StatusEffectAppliedEvent args)
+    {
+        if (!TryComp(args.Target, out BonusScalarComponent? component))
+            component = AddComp<BonusScalarComponent>(args.Target);
+
+        if (!component.modifiers.ContainsKey(ent) || effect.OverwriteOnRefresh) {
+            if(component.modifiers.ContainsKey(ent))
+            {
+                // refresh the buff only if OverwriteOnRefresh applies and the key was found:
+                component.modifiers.Remove(ent);
+            }
+
+            // this /should/ copy, since BonusScalarCoefficients is a struct:
+            component.modifiers[ent] = effect.coefficients;
+        }
+
+        Recalculate(ent, component);
+    }
+
+    private void BonusScalarStatusEffectRemoved(EntityUid ent, BonusScalarStatusEffectComponent effect, ref StatusEffectRemovedEvent args)
+    {
+        if (!TryComp(args.Target, out BonusScalarComponent? component))
+            return;
+
+        if (component.modifiers.ContainsKey(ent))
+            component.modifiers.Remove(ent);
+
+        if (component.modifiers.Count == 0)
+            RemComp<BonusScalarComponent>(args.Target);
+
+        Recalculate(ent, component);
+    }
+}
