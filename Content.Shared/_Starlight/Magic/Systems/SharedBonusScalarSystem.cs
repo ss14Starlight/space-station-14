@@ -1,10 +1,5 @@
 using Content.Shared._Starlight.Magic.Components;
-
-using Content.Shared.Damage;
-using Content.Shared.Damage.Systems;
-
 using Content.Shared.StatusEffectNew;
-using YamlDotNet.Core.Events;
 
 namespace Content.Shared._Starlight.Magic.Systems;
 
@@ -42,7 +37,7 @@ public sealed class SharedBonusScalarSystem : EntitySystem
             component.rangedWeaponAttackRate *= modifier.Value.rangedWeaponAttackRate;
             component.doAfterDelay *= modifier.Value.doAfterDelay;
         }
-        Dirty(ent, component);
+        // Dirty(ent, component);
     }
 
     private void BonusScalarStatusEffectApplied(EntityUid ent, BonusScalarStatusEffectComponent effect, ref StatusEffectAppliedEvent args)

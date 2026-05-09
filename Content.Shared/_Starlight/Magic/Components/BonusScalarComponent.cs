@@ -1,6 +1,5 @@
 using Robust.Shared.GameStates;
 using Content.Shared._Starlight.Magic.Systems;
-using Content.Shared.Damage;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Magic.Components;
