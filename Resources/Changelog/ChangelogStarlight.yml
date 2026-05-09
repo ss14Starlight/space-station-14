@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Saltern) Donut vending machine added to Security.
-    type: Add
-  id: 404449
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
   - message: (Saltern) Some more decals in Medical Reception.
     type: Add
   id: 404450
@@ -2799,4 +2792,11 @@ Entries:
   id: 404848
   time: '2026-05-08T10:23:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4348
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Changed ParticleDecelerator to deal 10 rad damage.
+    type: Tweak
+  id: 404849
+  time: '2026-05-09T09:11:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4396
 Order: -1
