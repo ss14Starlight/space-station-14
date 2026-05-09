@@ -35,7 +35,7 @@ public interface IGridSpawnGroup
     public ProtoId<LocalizedDatasetPrototype>? NameDataset { get; }
 
     /// <inheritdoc />
-    int MinCount { get; set; }
+    public int MinCount { get; set; } // Starlight Edit: Made Public
 
     /// <inheritdoc />
     public int MaxCount { get; set; } // Starlight Edit: Made Public
