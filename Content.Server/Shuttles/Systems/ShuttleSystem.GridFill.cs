@@ -112,7 +112,7 @@ public sealed partial class ShuttleSystem
 
         var targetPhysics = _physicsQuery.Comp(targetGrid);
         // var spawnCoords = new EntityCoordinates(targetGrid, targetPhysics.LocalCenter); // Starlight Edit: Removed
-        // Starlgith Start
+        // Starlight Start
         var targetCenterCoords = new EntityCoordinates(targetGrid, targetPhysics.LocalCenter);
         var spawnCoords = targetCenterCoords;
         var distancePadding = MathF.Max(targetGrid.Comp.LocalAABB.Width, targetGrid.Comp.LocalAABB.Height);

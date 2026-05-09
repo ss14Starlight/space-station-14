@@ -10,7 +10,7 @@ using Robust.Shared.Random;
 namespace Content.Server._Starlight.Salvage.VGRoid;
 
 /// <summary>
-/// A self-heal PATCH for VGroid spawning so admins aren't bombarded with fix AHelps. With some helpfull logging. (God I hope this at least helps)
+/// A self-heal PATCH for VGroid spawning so admins aren't bombarded with fix AHelps. With some helpful logging. (God I hope this at least helps)
 /// Remove this once(if) VGroid actually gets fixed.
 /// </summary>
 public sealed class VGRoidSpawnValidationSystem : EntitySystem
