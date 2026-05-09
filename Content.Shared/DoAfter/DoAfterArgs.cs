@@ -219,9 +219,10 @@ public sealed partial class DoAfterArgs
         Delay = delay;
 
         // BEGIN STARLIGHT
-        var bonusScalarComp = entManager.GetComponent<BonusScalarComponent>(user);
-        if (bonusScalarComp != null)
+        if (entManager.TryGetComponent<BonusScalarComponent>(user, out var bonusScalarComp))
+        {
             Delay *= bonusScalarComp.doAfterDelay;
+        }
         // END STARLIGHT
 
         Target = target;

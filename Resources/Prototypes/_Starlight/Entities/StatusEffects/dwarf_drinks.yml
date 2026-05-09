@@ -415,7 +415,7 @@
   components:
   - type: BonusScalarStatusEffect
     coefficients:
-      doAfterDelay: 1.25
+      doAfterDelay: 0.75
   - type: SoundStatusEffect
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg

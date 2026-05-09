@@ -2302,6 +2302,22 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   fizziness: 0.6
+  # starlight - dwarf drink effects
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.06
+      - !type:ModifyStatusEffect
+        effectProto: BonusScalarSyndicateBomb # -25% DoAfter Duration
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+  # end starlight
 
 - type: reagent
   id: TequilaSunrise
