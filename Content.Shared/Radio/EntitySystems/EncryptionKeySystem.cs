@@ -19,6 +19,7 @@ using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
 #region Starlight
 using Content.Shared._Starlight.Radio;
 using Content.Shared.Interaction.Components;
+using Content.Shared.Verbs;
 #endregion
 
 namespace Content.Shared.Radio.EntitySystems;
@@ -47,7 +48,61 @@ public sealed partial class EncryptionKeySystem : EntitySystem
         SubscribeLocalEvent<EncryptionKeyHolderComponent, EntInsertedIntoContainerMessage>(OnContainerModified);
         SubscribeLocalEvent<EncryptionKeyHolderComponent, EntRemovedFromContainerMessage>(OnContainerModified);
         SubscribeLocalEvent<EncryptionKeyHolderComponent, EncryptionRemovalFinishedEvent>(OnKeyRemoval);
+
+        SubscribeLocalEvent<EncryptionKeyHolderComponent, GetVerbsEvent<Verb>>(AddMuteVerb);
     }
+
+    // Starlight
+    private void AddMuteVerb(EntityUid uid, EncryptionKeyHolderComponent comp, GetVerbsEvent<Verb> args)
+    {
+        foreach (var key in comp.KeyContainer.ContainedEntities)
+        {
+            if (!TryComp<EncryptionKeyComponent>(key, out var keyComp))
+                continue;
+
+            var locString = Loc.GetString("encryption-key-mute");
+            foreach (var channel in keyComp.Channels)
+            {
+                if (!_protoManager.TryIndex<RadioChannelPrototype>(channel, out var channelPrototype))
+                    continue;
+
+                var muteVerb = new Verb
+                {
+                    Text = $"{locString} {channelPrototype.LocalizedName}",
+                    Act = () =>
+                    {
+                        keyComp.Channels.Remove(channelPrototype);
+                        keyComp.MutedChannels.Add(channelPrototype);
+                        UpdateChannels(uid, comp);
+                    },
+                    Category = VerbCategory.ManageChannels
+                };
+                args.Verbs.Add(muteVerb);
+            }
+
+            locString = Loc.GetString("encryption-key-unmute");
+            foreach (var channel in keyComp.MutedChannels)
+            {
+                if (!_protoManager.TryIndex<RadioChannelPrototype>(channel, out var channelPrototype))
+                    continue;
+
+                var unmuteVerb = new Verb
+                {
+                    Text = $"{locString} {channelPrototype.LocalizedName}",
+                    Act = () =>
+                    {
+                        keyComp.MutedChannels.Remove(channelPrototype);
+                        keyComp.Channels.Add(channelPrototype);
+                        UpdateChannels(uid, comp);
+                    },
+                    Category = VerbCategory.ManageChannels
+                };
+
+                args.Verbs.Add(unmuteVerb);
+            }
+        }
+    }
+    // Starlight End
 
     private void OnKeyRemoval(EntityUid uid, EncryptionKeyHolderComponent component, EncryptionRemovalFinishedEvent args)
     {

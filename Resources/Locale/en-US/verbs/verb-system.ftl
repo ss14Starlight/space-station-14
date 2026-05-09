@@ -30,6 +30,7 @@ verb-categories-fax = Set Destination
 verb-categories-power-level = Power Level
 verb-categories-switch = Switch
 verb-categories-adjust = Adjust
+verb-categories-manage-channels = Manage Channels
 
 verb-common-toggle-light = Toggle light
 verb-common-close = Close
