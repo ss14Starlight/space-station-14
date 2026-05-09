@@ -17,9 +17,7 @@ public sealed class CustomObjectiveSummaryUIController : UIController
     }
 
     private void OnCustomObjectiveSummaryOpen(CustomObjectiveSummaryOpenMessage msg, EntitySessionEventArgs args)
-    {
-        OpenWindow();
-    }
+        => OpenWindow();
 
     public void OpenWindow()
     {
