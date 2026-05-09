@@ -67,10 +67,13 @@
     removeEmpty: true
     solutionOnBody: false
     solution: "Lung"
-    metabolizerTypes: [ Resomi, Human ] #They get both so they can still breathe oxygen without us needing to add Resomi everywhere Human is listed
+    metabolizerTypes: [ Resomi, Slime ] #They get both so they can still breathe nitrogen without us needing to add Resomi everywhere Slime is listed
     groups:
     - id: Gas
       rateModifier: 100.0
+  - type: Lung
+    alert:
+      LowNitrogen
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Resomi/organs.rsi
     layers:

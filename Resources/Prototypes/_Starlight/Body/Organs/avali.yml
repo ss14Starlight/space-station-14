@@ -76,6 +76,17 @@
   suffix: Avali
   description: "The lungs of an avali."
   components:
+  - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
+    metabolizerTypes: [ Resomi, Slime ] #They get both so they can still breathe nitrogen without us needing to add Resomi everywhere Slime is listed
+    groups:
+    - id: Gas
+      rateModifier: 100.0
+  - type: Lung
+    alert:
+      LowNitrogen
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Avali/organs.rsi
     layers:
