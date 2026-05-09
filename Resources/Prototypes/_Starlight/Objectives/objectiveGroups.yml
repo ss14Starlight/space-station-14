@@ -96,7 +96,7 @@
     ThiefObjectiveGroupEscapeForced: 10 # High weight to basically force you to get it.
 
 - type: weightedRandom
-  id: ThiefObjectiveGroupEscapeForced # Starlight
+  id: ThiefObjectiveGroupEscapeForced
   weights:
-    EscapeThiefShuttleObjective: 1 # Starlight
-    EscapeMasterThiefObjective: 0.33 # Starlight
+    EscapeThiefShuttleObjective: 1
+    EscapeMasterThiefObjective: 0.33
