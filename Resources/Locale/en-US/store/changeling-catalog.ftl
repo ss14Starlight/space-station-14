@@ -119,9 +119,10 @@ evolutionmenu-utility-fleshmend-desc =
     Rapidly heal yourself of all bruises and burns.
     Costs 35 chemicals.
 
+# Starlight - monkey form is permanent (until transform is fixed, at least)
 evolutionmenu-utility-lesserform-name = Lesser Form
 evolutionmenu-utility-lesserform-desc =
-    Abandon your current form and turn into a sentient monkey.
+    Abandon your current form and turn into a sentient monkey. Permanently.
     Costs 20 chemicals.
 
 evolutionmenu-utility-spacesuit-name = Space Adaptation
@@ -135,7 +136,7 @@ evolutionmenu-utility-hivemindaccess-desc =
     Default radio key is +h
 
 evolutionmenu-utility-fakemindshield-name = Fake MindShield
-evolutionmenu-utility-fakemindshield-desc = 
+evolutionmenu-utility-fakemindshield-desc =
     Modifies a small portion of greymatter to be able to mimic MindShield signals, allowing you to trick specific devices.
     May need a few toggle attempts to get the right frequency.
     Cost 0 chemicals.

@@ -1,15 +1,23 @@
-using Robust.Shared.Map;
-using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Client.Examine;
+using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Robust.Client.GameObjects;
 using Robust.Client.ResourceManagement;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Random;
 
 namespace Content.Client._FarHorizons.Power.Generation.FissionGenerator;
 
-public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
+public sealed class NuclearReactorSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly TransformSystem _transformSystem = default!;
+
+    private readonly float _threshold = 1f;
+    private float _accumulator = 0;
 
     public override void Initialize()
     {
@@ -83,5 +91,56 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
 
         _sprite.LayerSetRsiState(entSprite, layer, state);
         _sprite.LayerSetColor(entSprite, layer, color);
+    }
+
+    public override void FrameUpdate(float frameTime)
+    {
+        _accumulator += frameTime;
+        if (_accumulator >= _threshold)
+        {
+            AccUpdate();
+            _accumulator = 0;
+        }
+        return;
+
+        void AccUpdate()
+        {
+            var query = EntityQueryEnumerator<NuclearReactorComponent>();
+            while (query.MoveNext(out var uid, out var component))
+            {
+                UpdateParticles(uid, component);
+            }
+        }
+    }
+
+    // If there was a particle system, I would use it, for now I'm just stealing the jetpack's system like I'm not supposed to
+    private void UpdateParticles(EntityUid uid, NuclearReactorComponent comp)
+    {
+        if(!comp.IsSmoking && !comp.IsBurning)
+            return;
+
+        var uidXform = Transform(uid);
+
+        var coordinates = uidXform.Coordinates;
+        var gridUid = _transformSystem.GetGrid(coordinates);
+
+        if (TryComp<MapGridComponent>(gridUid, out var grid))
+        {
+            coordinates = new EntityCoordinates(gridUid.Value, _mapSystem.WorldToLocal(gridUid.Value, grid, _transformSystem.ToMapCoordinates(coordinates).Position));
+        }
+        else if (uidXform.MapUid != null)
+        {
+            coordinates = new EntityCoordinates(uidXform.MapUid.Value, _transformSystem.GetWorldPosition(uidXform));
+        }
+        else
+        {
+            return;
+        }
+
+        if(comp.IsSmoking)
+            Spawn("NuclearReactorSmokeEffect", coordinates.Offset(new(_random.NextFloat(-1, 1),_random.NextFloat(-1, 1))));
+
+        if(comp.IsBurning)
+            Spawn("NuclearReactorFireEffect", coordinates.Offset(new(_random.NextFloat(-1, 1),_random.NextFloat(-1, 1))));
     }
 }

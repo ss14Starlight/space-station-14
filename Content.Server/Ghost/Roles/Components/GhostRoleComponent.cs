@@ -2,6 +2,7 @@ using Content.Server.Ghost.Roles.Raffles;
 using Content.Server.Mind.Commands;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Server.Ghost.Roles.Components;
 
@@ -104,5 +105,16 @@ public sealed partial class GhostRoleComponent : Component
     [DataField("job")]
     [Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // also FIXME Friends
     public ProtoId<JobPrototype>? JobProto = null;
+
+    // Starlight start
+    /// <summary>
+    /// Important Ghost Roles will leave a sound and chat info.
+    /// </summary>
+    [DataField]
+    public bool Important = false;
+
+    [NonSerialized]
+    public bool HasNotifiedGhosts = false;
+    // Starlight end
 }
 

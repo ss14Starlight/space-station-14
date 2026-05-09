@@ -4,13 +4,21 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Localizations;
 using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Containers;
-using Content.Shared.Tag; // Starlight
+#region Starlight
+using Content.Shared.Tag;
+using Content.Shared.Interaction;
+using Content.Shared.Tools.Components;
+using Content.Shared.Tools.Systems;
+using System.Linq;
+using Content.Shared._Starlight.Silicons;
+#endregion Starlight
 
 namespace Content.Shared.Silicons.Borgs;
 
 public abstract partial class SharedBorgSystem
 {
     private EntityQuery<BorgModuleComponent> _moduleQuery;
+    [Dependency] private readonly SharedToolSystem _tool = default!; //Starlight
 
     public void InitializeModule()
     {
@@ -25,6 +33,7 @@ public abstract partial class SharedBorgSystem
         SubscribeLocalEvent<ItemBorgModuleComponent, ComponentStartup>(OnProvideItemStartup);
         SubscribeLocalEvent<ItemBorgModuleComponent, BorgModuleSelectedEvent>(OnItemModuleSelected);
         SubscribeLocalEvent<ItemBorgModuleComponent, BorgModuleUnselectedEvent>(OnItemModuleUnselected);
+        SubscribeLocalEvent<ItemBorgModuleComponent, AfterInteractUsingEvent>(OnInteractUsing);//Starlight
 
         _moduleQuery = GetEntityQuery<BorgModuleComponent>();
     }
@@ -184,6 +193,9 @@ public abstract partial class SharedBorgSystem
                     else
                     {
                         module.Comp.StoredItems.Remove(handId);
+                        // Starlight: re-spawn item that was consumed externally (e.g. holocuffs applied to a target)
+                        if (hand.Item is { } respawnProto)
+                            item = PredictedSpawnAtPosition(respawnProto, xform.Coordinates);
                     }
                     // Starlight edit end
                 }
@@ -196,11 +208,20 @@ public abstract partial class SharedBorgSystem
             if (item is { } pickUp)
             {
                 _hands.DoPickup(chassis, handId, pickUp, hands);
-                
+
                 if (!hand.ForceRemovable && hand.Hand.Whitelist == null && hand.Hand.Blacklist == null)
                 {
-                    _tag.AddTag(pickUp, chassis.Comp.ModuleItemTag); // Starlight
+                    _tag.AddTag(pickUp, module.Comp.ModuleItemTag); // Starlight
                     EnsureComp<UnremoveableComponent>(pickUp);
+                }
+
+                // Starlight: stamp borg-owner info onto borg handcuffs so they can return home
+                if (TryComp<BorgHandcuffComponent>(pickUp, out var borgCuff))
+                {
+                    borgCuff.OwnerChassis = chassis.Owner;
+                    borgCuff.HandId = handId;
+                    Dirty(pickUp, borgCuff);
+                    EnsureComp<UnremoveableComponent>(pickUp); // always undroppable
                 }
             }
         }
@@ -243,4 +264,25 @@ public abstract partial class SharedBorgSystem
 
         Dirty(module);
     }
+
+    #region Starlight
+    private void OnInteractUsing(EntityUid uid, ItemBorgModuleComponent component, ref AfterInteractUsingEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (TryComp<ToolComponent>(args.Used, out var tool)
+                 && _tool.HasQuality(args.Used, component.ItemExtractionMethod, tool))
+        {
+            if (!TryComp<ContainerManagerComponent>(uid, out var manager)) return;
+            if (!_container.TryGetContainer(uid, component.HoldingContainer, out var container, manager)) return;
+            foreach (var item in container.ContainedEntities.ToList())
+            {
+                if (_tag.HasTag(item, component.ModuleItemTag)) continue;
+                while (_container.TryGetContainingContainer(item, out var containing))
+                    if (!_container.Remove(item, containing)) break;
+            }
+        }
+    }
+    #endregion Starlight
 }

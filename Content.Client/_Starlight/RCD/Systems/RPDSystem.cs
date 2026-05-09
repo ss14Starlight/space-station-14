@@ -4,7 +4,6 @@ using Content.Shared.RCD.Components;
 using Content.Shared.RCD.Systems;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.RCD.Systems;
@@ -19,9 +18,7 @@ public sealed class RPDSystem : EntitySystem
     }
 
     private Control OnItemStatus(Entity<RCDComponent> entity)
-    {
-        return new RPDModeStatusControl(entity);
-    }
+        => new RPDModeStatusControl(entity);
 
     private sealed class RPDModeStatusControl : Control
     {
@@ -37,8 +34,8 @@ public sealed class RPDSystem : EntitySystem
         public RPDModeStatusControl(Entity<RCDComponent> entity)
         {
             _uid = entity.Owner;
-            _isRpd = entity.Comp.IsRpd;
-            _rcdSystem = EntitySystem.Get<RCDSystem>();
+            _isRpd = entity.Comp.IsRpd || entity.Comp.IsRPLD;
+            _rcdSystem = Get<RCDSystem>();
             AddChild(_label);
         }
 

@@ -61,7 +61,7 @@ def check_rsi(rsi: str, schema: Draft7Validator):
         return
 
     state_names = {state["name"] for state in meta_json["states"]}
-    
+
     ignore_list = ["bestia.png", "dantalion.png", "hemomancer.png", "gargantua.png", "umbrae.png"]
 
     # Go over contents of RSI directory and ensure there is no extra garbage.

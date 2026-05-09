@@ -129,15 +129,15 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     {
         if (args.Handled)
             return;
-        
+
         // Starlight-start: AI upload console linking
-        if (!component.Subverted 
-            && TryComp<StationAiCoreComponent>(Transform(uid).ParentUid, out var aiCore) 
+        if (!component.Subverted
+            && TryComp<StationAiCoreComponent>(Transform(uid).ParentUid, out var aiCore)
             && aiCore.LawConsole != null
-            && _container.TryGetContainer(aiCore.LawConsole.Value, "circuit_holder", out var container) 
-            && container.ContainedEntities.Count != 0 
-            && TryComp(container.ContainedEntities.First(), out SiliconLawProviderComponent? provider) 
-            && provider != null 
+            && _container.TryGetContainer(aiCore.LawConsole.Value, "circuit_holder", out var container)
+            && container.ContainedEntities.Count != 0
+            && TryComp(container.ContainedEntities.First(), out SiliconLawProviderComponent? provider)
+            && provider != null
             && component.Laws != provider.Laws)
         {
             component.Laws = provider.Laws;
@@ -364,6 +364,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             // Components on lawboards TODO remove components provided by the old board when it is removed.
             if (provider.Components != null)
                 _entMan.AddComponents(update, provider.Components);
+            // AILawUpdatedEvent
+            var evt = new Content.Server._Starlight.Silicons.AILawUpdatedEvent(update, provider.Laws);
+            RaiseLocalEvent(ref evt);
         }
         // Starlight-end
 
@@ -381,17 +384,27 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
 
         if (args.EmagComponent == null)
             return;
-        
-        if (!_tag.HasTag(args.EmagComponent.Owner, "FreeMag"))
+
+        if (!_tag.HasTag(args.EmagComponent.Owner, "CanAffectLawBoards")) //TODO test, changed from "FreeMAG"
             return;
+
 
         if (!ent.Comp.IsLawboard)
             return;
-        ent.Comp.Laws = "FreeLawset";
-        ent.Comp.Lawset = GetLawset("FreeLawset");
 
+        var emag = args.EmagComponent;
+        if (emag.Lawset.HasValue)
+        {
+            var lawset = emag.Lawset.Value; //Fallback to FreeLawSet because clearly something is going on
+            ent.Comp.Laws = lawset; //"FreeLawset"; TODO test
+            ent.Comp.Lawset = GetLawset(lawset); //"FreeLawset"); TODO test
+        }
+        else
+        {
+            return;
+        }
         _popup.PopupEntity(Loc.GetString("lawboard-emag-popup"), ent);
-        
+
         args.Repeatable = true;
         args.Handled = true;
     }

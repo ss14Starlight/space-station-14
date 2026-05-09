@@ -45,6 +45,8 @@ entities:
       inherent: True
       enabled: True
     - type: PressureImmunity
+    - type: FTLDestination
+      enabled: false
     - type: PreventFTL
     - type: MapAtmosphere
       space: False

@@ -1,0 +1,9 @@
+- type: entity
+  id: BaseStructureDissolvable
+  parent: BaseStructure
+  abstract: true
+  components:
+  - type: Appearance
+  - type: Reactive
+    groups:
+      Dissolvable: [ Touch ]

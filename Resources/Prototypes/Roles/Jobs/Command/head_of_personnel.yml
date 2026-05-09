@@ -7,7 +7,7 @@
     # Starlight - we've changed basically this whole block to be service instead of captain-lite
     - !type:DepartmentTimeRequirement
       department: Civilian
-      time: 20h
+      time: 20h # Starlight
     - !type:RoleTimeRequirement
       role: JobBotanist
       time: 3h
@@ -57,6 +57,8 @@
   - Paramedic # Starlight
   - Mining # Starlight
   - SalvageLead # Starlight
+  - Mail # Starlight
+  - Debrief # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

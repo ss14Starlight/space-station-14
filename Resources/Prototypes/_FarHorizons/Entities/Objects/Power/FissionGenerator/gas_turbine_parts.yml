@@ -1,0 +1,132 @@
+- type: entity
+  id: BaseGasTurbinePart
+  parent: BaseItem
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Power/FissionGenerator/gas_turbine_parts.rsi
+    state: turbine_blade
+  - type: Item
+    size: Huge
+  - type: MultiHandedItem
+  - type: GuideHelp
+    guides:
+    - GasTurbine
+    - Power
+
+# Blades
+- type: entity
+  id: BaseGasTurbineBlade
+  parent: BaseGasTurbinePart
+  categories: [ HideSpawnMenu ]
+  name: Gas Turbine Blade
+  description: A replacement blade for the gas turbine.
+  components:
+  - type: GasTurbineBlade
+  - type: Tag
+    tags:
+    - GasTurbineBlade
+
+- type: entity
+  id: SteelGasTurbineBlade
+  parent: BaseGasTurbineBlade
+  name: Steel Gas Turbine Blade
+  components:
+  - type: GasTurbineBlade
+    material: Steel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 1000
+
+- type: entity
+  id: BrassGasTurbineBlade
+  parent: BaseGasTurbineBlade
+  name: Brass Gas Turbine Blade
+  components:
+  - type: GasTurbineBlade
+    material: Brass
+  - type: PhysicalComposition
+    materialComposition:
+      Brass: 1000
+
+- type: entity
+  id: DiamondGasTurbineBlade
+  parent: BaseGasTurbineBlade
+  name: Diamond Gas Turbine Blade
+  components:
+  - type: GasTurbineBlade
+    material: Diamond
+  - type: PhysicalComposition
+    materialComposition:
+      Diamond: 1000
+
+- type: entity
+  id: GoldGasTurbineBlade
+  parent: BaseGasTurbineBlade
+  name: Gold Gas Turbine Blade
+  components:
+  - type: GasTurbineBlade
+    material: Gold
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 1000
+
+- type: entity
+  id: PlasteelGasTurbineBlade
+  parent: BaseGasTurbineBlade
+  name: Plasteel Gas Turbine Blade
+  components:
+  - type: GasTurbineBlade
+    material: Plasteel
+  - type: PhysicalComposition
+    materialComposition:
+      Plasteel: 1000
+
+# Stators
+- type: entity
+  id: BaseGasTurbineStator
+  parent: BaseGasTurbinePart
+  categories: [ HideSpawnMenu ]
+  name: Gas Turbine Stator
+  description: A replacement stator for the gas turbine.
+  components:
+  - type: Sprite
+    state: turbine_stator
+  - type: GasTurbineStator
+  - type: Tag
+    tags:
+    - GasTurbineStator
+
+- type: entity
+  id: SteelGasTurbineStator
+  parent: BaseGasTurbineStator
+  name: Steel Gas Turbine Stator
+  components:
+  - type: GasTurbineStator
+    material: Steel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 1000
+
+- type: entity
+  id: SilverGasTurbineStator
+  parent: BaseGasTurbineStator
+  name: Silver Gas Turbine Stator
+  components:
+  - type: GasTurbineStator
+    material: Silver
+  - type: PhysicalComposition
+    materialComposition:
+      Silver: 1000
+
+- type: entity
+  id: GoldGasTurbineStator
+  parent: BaseGasTurbineStator
+  name: Gold Gas Turbine Stator
+  components:
+  - type: GasTurbineStator
+    material: Gold
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 1000

@@ -2,6 +2,8 @@
   id: NanoMedInventory
   startingInventory:
     HandheldHealthAnalyzer: 1
+    ClothingBeltMedical: 2 # Starlight
+    ClothingBeltMedicalEMT: 1 # Starlight
     Gauze: 3
     Brutepack: 3
     Ointment: 3
@@ -11,28 +13,40 @@
     PillCanisterTricordrazine: 2
   contrabandInventory:
     PillCanisterRandom: 1
+    StrangePill: 1 # Starlight
     PowerCellSmall: 2
+  emaggedInventory: # Starlight
+    OminousPill: 1 # Starlight
+    PillDesoxyephedrine5: 1 # Starlight
 
+# All access version. Should reflect the stock of NanoMedInventory, but less powerful
 - type: vendingMachineInventory
   id: NanoMedCivilianWallInventory
   startingInventory:
     HandheldHealthAnalyzer: 1
-    AloeCream: 2
-    Gauze: 3
+    Gauze: 3 # Starlight
+    Tourniquet: 3
     Brutepack: 3
-    Ointment: 2
+    AloeCream: 3 # Currently just a reskin of Ointment but it's something
     Bloodpack: 3
-    ChemistryBottleEpinephrine: 3
+    ChemistryBottleInaprovaline: 3
     Syringe: 3
-    PillCanisterTricordrazine: 2
+    PillTricordrazine: 10
   contrabandInventory:
     PillCanisterRandom: 1
-    PowerCellSmall: 2
+    StrangePill: 1 # Starlight
+  emaggedInventory: # Starlight
+    OminousPill: 1 # Starlight
+    PillDesoxyephedrine5: 1 # Starlight
 
+# Core medical supply vendor
 - type: vendingMachineInventory
   id: NanoMedPlusInventory
+  #region Starlight - reverts Wizden NanoMed inventory changes
   startingInventory:
     HandheldHealthAnalyzer: 3
+    ClothingBeltMedical: 3
+    ClothingBeltMedicalEMT: 2
     Gauze: 5
     Brutepack: 5
     Ointment: 5
@@ -41,7 +55,7 @@
     ChemistryBottleEpinephrine: 3
     ChemistryBottleBicaridine: 1
     Syringe: 5
-    JetInjector: 2
+    JetInjector: 3
     BoxBottle: 3
     PillCanisterTricordrazine: 3
     PillCanisterIron: 1
@@ -50,33 +64,40 @@
     SyringeIpecac: 1
     ClothingEyesHudMedical: 2
     ClothingEyesEyepatchHudMedical: 2
-    ClothingEyeGlassesMedicalPrescription: 2 #Starlight
+    ClothingEyeGlassesMedicalPrescription: 2
     AutoMenderBruteFilled: 1
     AutoMenderBurnFilled: 1
-    SpaceMedipen: 1 #Starlight
+    SpaceMedipen: 1
   contrabandInventory:
     PillCanisterRandom: 3
     PillSpaceDrugs: 3
+    StrangePill: 2
     FoodApple: 1
+  emaggedInventory:
+    OminousPill: 2
+    PillDesoxyephedrine5: 2
+  #endregion Starlight
 
+# All access version. Should reflect NanoMedCivilianWallInventory, but with more stock
 - type: vendingMachineInventory
   id: NanoMedCivilianInventory
   startingInventory:
     HandheldHealthAnalyzer: 3
-    AloeCream: 3
-    Gauze: 5
+    Tourniquet: 5
+    Gauze: 3 # Starlight
     Brutepack: 5
-    Ointment: 4
+    AloeCream: 5
     Bloodpack: 5
-    Tourniquet: 1
-    ChemistryBottleEpinephrine: 3
+    ChemistryBottleInaprovaline: 5
     Syringe: 5
-    BoxBottle: 3
-    PillCanisterTricordrazine: 2
-    PillCanisterIron: 1
-    PillCanisterCopper: 1
-    PillCanisterPotassiumIodide: 1
+    PillTricordrazine: 10
+    PillIron: 5
+    PillCopper: 5
   contrabandInventory:
     PillCanisterRandom: 1
     PillSpaceDrugs: 3
+    StrangePill: 2 # Starlight
     FoodApple: 1
+  emaggedInventory: # Starlight
+    OminousPill: 2 # Starlight
+    PillDesoxyephedrine5: 1 # Starlight

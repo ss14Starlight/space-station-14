@@ -1,8 +1,0 @@
-- type: construction
-  id: DesktopComputer
-  graph: DesktopComputer
-  startNode: start
-  targetNode: computer
-  category: construction-category-machines
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false

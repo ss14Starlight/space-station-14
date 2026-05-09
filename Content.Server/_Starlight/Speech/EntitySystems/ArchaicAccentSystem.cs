@@ -15,11 +15,5 @@ public sealed class ArchaicAccentSystem : EntitySystem
     }
 
     private void OnAccent(EntityUid uid, ArchaicAccentComponent component, AccentGetEvent args)
-    {
-        var message = args.Message;
-
-        message = _replacement.ApplyReplacements(message, "archaic");
-
-        args.Message = message;
-    }
-};
+        => args.Message = _replacement.ApplyReplacements(args.Message, "archaic");
+}

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by UnicornOnLSD (GitHub), original sprite taken from https://github.com/Monolith-Station/Monolith/pull/67/commits/336edc25edbbf4bd78c682be67028f213ac1cd18",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "space_artillery",
+      "directions": 4
+    }
+  ]
+}

@@ -1,4 +1,5 @@
-﻿using Content.Shared.Body.Part;
+﻿using Content.Shared._Starlight.Medical.Body.Part;
+using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Chemistry.Reagent;
@@ -11,6 +12,7 @@ using Content.Shared.Popups;
 using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
 using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Starlight.Medical.Surgery.Steps;
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
@@ -104,13 +106,31 @@ public abstract partial class SharedSurgerySystem
     }
     private void OnStep(Entity<SurgeryStepComponent> ent, ref SurgeryStepEvent args)
     {
+        if(!_entitySystem.TryGetSingleton(args.StepProto, out var stepEnt)
+            || !TryComp(stepEnt, out SurgeryStepComponent? stepComp)) return;
+
         foreach (var reg in (ent.Comp.Tools ?? []).Values)
         {
             var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
             if (tool == default) return;
 
-            if (_net.IsServer && TryComp(tool, out SurgeryToolComponent? toolComp) && toolComp.EndSound != null)
-                _audio.PlayPvs(toolComp.EndSound, tool);
+            var specificToolComp = EntityManager.GetComponents(tool)
+                .OfType<ISurgeryToolComponent>();
+
+            SoundSpecifier? endSound = null;
+            foreach(var usedTool in specificToolComp)
+            {
+                var requestedTool = stepComp.Tools?.FirstOrDefault().Key;
+                if(requestedTool != null)
+                    if(usedTool.ToolType.Contains(requestedTool))
+                    {
+                        endSound = usedTool.EndSound;
+                    }
+            }
+
+            if (_net.IsServer && TryComp(tool, out SurgeryToolComponent? toolComp) && endSound != null)
+                _audio.PlayPvs(endSound, tool);
+
             if (ent.Comp.ReagentId != null && _solutionContainerSystem.TryGetSolution(tool, "drink", out var solution))
                 _solutionContainerSystem.RemoveReagent(solution.Value, new ReagentQuantity(ent.Comp.ReagentId, ent.Comp.ReagentQuantity));
         }
@@ -259,11 +279,29 @@ public abstract partial class SharedSurgerySystem
         foreach (var tool in validTools)
             if (TryComp(tool, out SurgeryToolComponent? toolComp))
             {
-                duration *= toolComp.Speed;
-                if (toolComp.StartSound != null) _audio.PlayPvs(toolComp.StartSound, tool);
+                var toolSpeed = 1f;
+                var toolSuccessRate = 1f;
+                SoundSpecifier? startSound = null;
+                var specificToolComp = EntityManager.GetComponents(tool)
+                    .OfType<ISurgeryToolComponent>();
 
-                if(toolComp.SuccessRate < SmallestSuccessRate)
-                    SmallestSuccessRate = toolComp.SuccessRate;
+                foreach(var usedTool in specificToolComp)
+                {
+                    var requestedTool = stepComp.Tools?.FirstOrDefault().Key;
+                    if(requestedTool != null)
+                        if(usedTool.ToolType.Contains(requestedTool))
+                        {
+                            toolSpeed = usedTool.Speed;
+                            toolSuccessRate = usedTool.SuccessRate;
+                            startSound = usedTool.StartSound;
+                        }
+                }
+
+                duration *= toolSpeed;
+                if (startSound != null) _audio.PlayPvs(startSound, tool);
+
+                if(toolSuccessRate < SmallestSuccessRate)
+                    SmallestSuccessRate = toolSuccessRate;
             }
 
         if (TryComp(body, out TransformComponent? xform))

@@ -1,0 +1,82 @@
+# Skilled Time
+- type: loadoutEffectGroup
+  id: SkilledClown
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobClown
+      time: 54000 # 15 hrs
+
+- type: loadoutEffectGroup
+  id: ApprenticeClown
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobClown
+      time: 21600 # 6 hrs
+
+# Jumpsuits
+- type: loadout
+  id: ClownFormalJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledClown
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitClownFormal
+
+- type: loadout
+  id: ClownFormalJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledClown
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtClownFormal
+
+- type: loadout
+  id: ClownSpottedJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ApprenticeClown
+  equipment:
+    jumpsuit: SpottedClownUniformSuit
+
+- type: loadout
+  id: ClownStripedJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledClown
+  equipment:
+    jumpsuit: StripedClownUniformSuit
+
+- type: loadout
+  id: ClownCandyJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledClown
+  equipment:
+    jumpsuit: CandyClownUniformSuit
+
+- type: loadout
+  id: ClownClownJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ApprenticeClown
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPerformerClown
+
+- type: loadout
+  id: ClownClownJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ApprenticeClown
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPerformerClown
+
+
+
+
+
+
+

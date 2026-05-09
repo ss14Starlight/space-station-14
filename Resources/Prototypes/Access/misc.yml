@@ -44,7 +44,10 @@
   - Surgery
   - Paramedic
   - Mining
-  - SalvageLead # Starlight end
+  - SalvageLead
+  - Mail
+  - Pirate # Adding another access? Make sure to also assign it to CyborgAllAccess.
+  - Debrief # Starlight end
 
 
 - type: accessGroup

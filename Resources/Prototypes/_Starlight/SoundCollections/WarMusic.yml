@@ -1,0 +1,5 @@
+- type: soundCollection
+  id: WarMusic
+  files:
+    - /Audio/_Starlight/StationEvents/War_Inevitable.ogg
+    - /Audio/_Starlight/StationEvents/nuclearoperations_infil.ogg

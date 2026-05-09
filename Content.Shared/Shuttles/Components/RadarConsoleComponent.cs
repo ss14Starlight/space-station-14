@@ -5,6 +5,7 @@ namespace Content.Shared.Shuttles.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(SharedRadarConsoleSystem))]
+[AutoGenerateComponentPause] // Starlight
 public sealed partial class RadarConsoleComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
@@ -25,4 +26,12 @@ public sealed partial class RadarConsoleComponent : Component
     /// </summary>
     [DataField]
     public bool FollowEntity = false;
+
+    #region Starlight
+    /// <summary>
+    /// When the last interface update was transmitted.
+    /// </summary>
+    [AutoPausedField]
+    public TimeSpan LastInterfaceUpdateTime;
+    #endregion
 }

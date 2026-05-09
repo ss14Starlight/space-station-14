@@ -1,0 +1,5 @@
+﻿- type: soundCollection
+  id: NukeLoneOpMusic
+  files:
+    - /Audio/StationEvents/running_out.ogg
+    - /Audio/_Starlight/StationEvents/One_Against_All.ogg

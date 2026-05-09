@@ -1,9 +1,0 @@
-- type: quickPhrase
-  parent: BaseEpistemicsJobPhrase
-  id: SAIPhrase
-  text: job-name-station-ai
-
-- type: quickPhrase
-  parent: BaseSecurityJobPhrase
-  id: BrigmedicPhrase
-  text: job-name-brigmedic
