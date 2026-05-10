@@ -64,7 +64,7 @@
       - !type:HealthChange
         conditions:
           - !type:ReagentCondition
-            reagent: HeartbreakerToxin
+            reagent: Amoxla
             min: 25
         damage:
           types:
