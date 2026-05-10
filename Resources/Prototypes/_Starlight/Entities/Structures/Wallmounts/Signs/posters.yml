@@ -506,3 +506,123 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/plasma.rsi
     state: plasma_monke
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandARFRadio
+  name: "ARF"
+  description: "An old communist radio station."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/arf-radio.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitDuty
+  name: "Duty"
+  description: "Paperwork is service."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/duty.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitEarth
+  name: "Earth"
+  description: "A poster depicting the clean, Frutiger Aero Earth of the 2500s. Only the richest of the rich live there now, less than 1 billion."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/earth.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandGEC
+  name: "GEC"
+  description: "Galactic Energy Collective. They still sell oil?"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/gec.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitJustice
+  name: "Justice"
+  description: "The scales of justice."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/justice.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitLuna
+  name: "Luna"
+  description: "Luna, the luxury city built on Earth's moon. Covered in embassies and estates used by the TSF's diplomats."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/luna.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitRecycle
+  name: "Recycle"
+  description: "Every station is equipped with recycling equipment, be sure to use it!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/recycle.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitSerene
+  name: "Serene"
+  description: "A resort world near Skrell space."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/serene.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitSpaceCops2
+  name: "Space Cops"
+  description: "An old show about the Trans-Solar Police Department."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/space-cops.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitStarkistFancy
+  name: "Starkist"
+  description: "A delicious tropical drink! Distinct- legally and in flavor!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/starkist-fancy.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitTSPDRangers
+  name: "TSPD Rangers"
+  description: "Rangers of the Trans-Solar Police Department. The closest thing to a real cop you'll see in the fringe."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/tspd-fancy.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandHereticalExomorph
+  name: "Heretic Exomorph"
+  description: "They come out at night."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/hereticalexomorph.rsi
+    state: hereticalexomorph

@@ -595,9 +595,10 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.5
+    staminaModifier: 0.25 # Starlight, the armor's okay.. but not really substantial given the weapons crew has.
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.65
+    walkModifier: 0.8 # Starlight, they can be a little faster.
+    sprintModifier: 0.75 # Starlight
   - type: HeldSpeedModifier
   - type: ExplosionResistance
     damageCoefficient: 0.5
