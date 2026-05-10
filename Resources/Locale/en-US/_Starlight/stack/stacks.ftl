@@ -35,6 +35,17 @@ stack-metal-purple-floor = purple metal floor
 stack-metal-red-floor = red metal floor
 stack-metal-green-floor = green metal floor
 stack-astro-dirt-floor = astro-dirt floor
+stack-3x3black-floor = 3x3 black floor
+stack-3x3brown-floor = 3x3 brown floor
+stack-3x3steel-floor = 3x3 steel floor
+stack-3x3white-floor = 3x3 white floor
+stack-old-concrete-bricks-floor = old concrete brick floor
+stack-old-concrete-tile-floor = old concrete tile floor
+stack-ornate-floor = ornate floor
+stack-rough-metal-floor = rough metal floor
+stack-rusty-metal-floor = rusty metal floor
+stack-steel-grate-floor = steel grate floor
+stack-tech-greeb-floor = tech maints greeb floor
 
 stack-bluespacecrystal = {$amount ->
     [1] bluespace
