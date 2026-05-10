@@ -136,14 +136,16 @@
           - ChunkDebrisSmall
           #Starlight End
         vgroid: !type:DungeonSpawnGroup
-          minimumDistance: 300
-          maximumDistance: 350
+          minimumDistance: 600 # Starlight Edit: 300 -> 600
+          maximumDistance: 650 # Starlight Edit: 350 -> 650
+          directDungeonSpawn: true # Starlight: Avoid temp-map/FTL placement for this large guaranteed grid.
           nameDataset: NamesBorer
           stationGrid: false
           addComponents:
           - type: Gravity
             enabled: true
             inherent: true
+          - type: VGRoidSpawnMarker # Starlight
           protos:
           - VGRoid
 
