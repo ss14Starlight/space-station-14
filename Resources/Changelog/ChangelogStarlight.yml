@@ -1,11 +1,4 @@
 Entries:
-- author: ScorchFollower
-  changes:
-  - message: Changed description for the sp-8t / service pistol "Blueguard".
-    type: Tweak
-  id: 404500
-  time: '2026-04-21T20:26:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4027
 - author: Rinary
   changes:
   - message: Fixed power cell slot missing on paramed void suit.
@@ -2799,4 +2792,11 @@ Entries:
   id: 404899
   time: '2026-05-10T10:36:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4313
+- author: Huaqas, Centronias
+  changes:
+  - message: Tarot Cards can now be found in the chaplain's PietyVendor!
+    type: Add
+  id: 404900
+  time: '2026-05-10T10:58:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4346
 Order: -1
